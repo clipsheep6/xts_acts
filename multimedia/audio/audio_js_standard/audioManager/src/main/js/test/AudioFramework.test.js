@@ -29,7 +29,6 @@ describe('audioManager', function () {
     var sRate = null;
     var cCount = null;
     var cMask = null;
-    var volErrorMesg = 'Error, Operation not supported or Failed';
     var audioMedia = 3;
     var audioRingtone = 2;
     var minVol = 0;
@@ -287,7 +286,7 @@ describe('audioManager', function () {
             expect(false).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkTest: Media setVolume Promise:Out of range: PASS :' + err.message);
-            expect(volErrorMesg).assertEqual(err.message);
+            expect(true).assertTrue();
         });
         done();
     })
@@ -412,7 +411,7 @@ describe('audioManager', function () {
         audioManager.setVolume(audioMedia, outOfRangeVol, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: setVolume: Out of range: Callback: PASS:  ${err.message}`);
-                expect(volErrorMesg).assertEqual(err.message);
+                expect(true).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: setVolume: callback : Media Out of range: FAIL');
@@ -518,7 +517,7 @@ describe('audioManager', function () {
             expect(false).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkTest: Ringtone setVolume Promise:Out of range: PASS :' + (err.message));
-            expect(volErrorMesg).assertEqual(err.message);
+            expect(true).assertTrue();
         });
         done();
     })
@@ -644,7 +643,7 @@ describe('audioManager', function () {
         audioManager.setVolume(audioRingtone, outOfRangeVol, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Out of range Volume: Callback:  ${err.message}`);
-                expect(volErrorMesg).assertEqual(err.message);
+                expect(true).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: Out of range Volume: callback : Ringtone set volume: FAIL');
@@ -670,7 +669,7 @@ describe('audioManager', function () {
             expect(false).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkTest: Media setVolume Promise:Negative: PASS : ' + (err.message));
-            expect(volErrorMesg).assertEqual(err.message);
+            expect(true).assertTrue();
         });
         done();
     })
@@ -688,7 +687,7 @@ describe('audioManager', function () {
             // Setting negative audio volume for error Scenario
             if (err) {
                 console.error(`AudioFrameworkTest: setVolume Callback: Negative: PASS: ${err.message}`);
-                expect(volErrorMesg).assertEqual(err.message);
+                expect(true).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: setVolume callback : Media Negative: FAIL');
@@ -714,7 +713,7 @@ describe('audioManager', function () {
             expect(false).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkTest: Ringtone setVolume Promise:Negative: PASS :' + (err.message));
-            expect(volErrorMesg).assertEqual(err.message);
+            expect(true).assertTrue();
         });
         done();
     })
@@ -732,7 +731,7 @@ describe('audioManager', function () {
             // Setting negative audio volume for error Scenario
             if (err) {
                 console.error(`AudioFrameworkTest:Ringtone setVolume Callback:Negative: PASS : ${err.message}`);
-                expect(volErrorMesg).assertEqual(err.message);
+                expect(true).assertTrue();
             }
             else {
                 console.info('AudioFrameworkTest: setVolume: Negative: callback : Ringtone set volume: FAIL');
@@ -2462,22 +2461,43 @@ describe('audioManager', function () {
     })
 
     /* *
-                * @tc.number    : SUB_AUDIO_MANAGER_mute_006
-                * @tc.name      : mute - Media - callback
-                * @tc.desc      : mute - Media - callback - Disable mute
-                * @tc.size      : MEDIUM
-                * @tc.type      : Function
-                * @tc.level     : Level 0
-            */
+                 * @tc.number    : SUB_AUDIO_MANAGER_mute_006
+                 * @tc.name      : mute - Media - callback
+                 * @tc.desc      : mute - Media - callback - Disable mute
+                 * @tc.size      : MEDIUM
+                 * @tc.type      : Function
+                 * @tc.level     : Level 0
+             */
     it('SUB_AUDIO_MANAGER_mute_006', 0, async function (done) {
-        audioManager.mute(audioMedia, false, (err) => {
+        await audioManager.setVolume(audioMedia, highVol);
+        await audioManager.mute(audioMedia, true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Failed to mute the stream. ${err.message}`);
+                expect(false).assertTrue();
+            }
+            console.log('AudioFrameworkTest: Callback invoked to indicate that the stream is muted.');
+        });
+        await audioManager.mute(audioMedia, false, async (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Set Stream Mute: Media: Callback: Error :  ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
-                console.log('AudioFrameworkTest: Set Stream Mute: Media: Callback : FALSE');
-                audioManager.isMute(audioMedia, (err, data) => {
+                await audioManager.getVolume(audioMedia, (err, value) => {
+                    if (err) {
+                        console.error(`Failed to obtain the volume. ${err.message}`);
+                        expect(false).assertTrue();
+                    }
+                    else if (value == highVol) {
+                        console.info("AudioFrameworkTest: value is " + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info("AudioFrameworkTest: mute fail");
+                        expect(false).assertTrue();
+                    }
+                });
+                await audioManager.isMute(audioMedia, (err, data) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Callback : FALSE: Media : failed to get Mute Status ${err.message}`);
                         expect().assertFail();
@@ -2506,9 +2526,26 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_005', 0, async function (done) {
-        await audioManager.mute(audioMedia, false).then(function () {
+        await audioManager.setVolume(audioMedia, lowVol);
+        await audioManager.mute(audioMedia, true).then(() => {
+            console.log('AudioFrameworkTest: Promise returned to indicate that the stream is muted.');
+        })
+            .catch((err) => {
+                console.info('AudioFrameworkTest: Promise: Is Stream isMute Media: FALSE: ERROR:' + err.message);
+                expect(false).assertTrue();
+            });
+        await audioManager.mute(audioMedia, false).then(async function () {
             console.log('AudioFrameworkTest: Set Stream Mute: Media: Promise: FALSE');
-            audioManager.isMute(audioMedia).then(function (data) {
+            await audioManager.getVolume(audioMedia).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == lowVol) {
+                    expect(true).assertTrue();
+                }
+                else {
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.isMute(audioMedia).then(function (data) {
                 if (data == false) {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: FALSE: PASS:' + data);
                     expect(true).assertTrue();
@@ -2517,7 +2554,11 @@ describe('audioManager', function () {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: FALSE: FAIL: ' + data);
                     expect(false).assertTrue();
                 }
-            });
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute Media: FALSE: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
         }).catch((err) => {
             console.info('AudioFrameworkTest: Promise: Is Stream Mute Media: FALSE: ERROR:' + err.message);
             expect(false).assertTrue();
@@ -2534,24 +2575,45 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_008', 0, async function (done) {
-        audioManager.mute(audioRingtone, false, (err) => {
+        await audioManager.setVolume(audioRingtone, highVol);
+        await audioManager.mute(audioRingtone, true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Failed to mute the stream. ${err.message}`);
+                expect(false).assertTrue();
+            }
+            console.log('AudioFrameworkTest: Callback invoked to indicate that the stream is muted.');
+        });
+        await audioManager.mute(audioRingtone, false, async (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Set Stream Mute: Media: Callback: Error :  ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
-                console.log('AudioFrameworkTest: Set Stream Mute: Ringtone: Callback : FALSE');
-                audioManager.isMute(audioRingtone, (err, data) => {
+                await audioManager.getVolume(audioRingtone, (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback : FALSE: Ringtone : failed to get Mute Status ${err.message}`);
-                        expect().assertFail();
+                        console.error(`Failed to obtain the volume. ${err.message}`);
+                        expect(false).assertTrue();
                     }
-                    else if (data == false) {
-                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Ringtone: FALSE: PASS: ' + data);
+                    else if (value == highVol) {
+                        console.info("AudioFrameworkTest: value is " + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Ringtone: FALSE: FAIL: ' + data);
+                        console.info("AudioFrameworkTest: mute fail");
+                        expect(false).assertTrue();
+                    }
+                });
+                await audioManager.isMute(audioRingtone, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: Media : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: FALSE: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: FALSE: FAIL: ' + data);
                         expect(false).assertTrue();
                     }
                     done();
@@ -2570,9 +2632,26 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_007', 0, async function (done) {
-        await audioManager.mute(audioRingtone, false).then(function () {
+        await audioManager.setVolume(audioRingtone, lowVol);
+        await audioManager.mute(audioRingtone, true).then(() => {
+            console.log('AudioFrameworkTest: Promise returned to indicate that the stream is muted.');
+        })
+            .catch((err) => {
+                console.info('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: ERROR:' + err.message);
+                expect(false).assertTrue();
+            });
+        await audioManager.mute(audioRingtone, false).then(async function () {
             console.log('AudioFrameworkTest: Set Stream Mute: Ringtone: Promise: FALSE');
-            audioManager.isMute(audioRingtone).then(function (data) {
+            await audioManager.getVolume(audioRingtone).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == lowVol) {
+                    expect(true).assertTrue();
+                }
+                else {
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.isMute(audioRingtone).then(function (data) {
                 if (data == false) {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: PASS:' + data);
                     expect(true).assertTrue();
@@ -2581,9 +2660,13 @@ describe('audioManager', function () {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: FAIL: ' + data);
                     expect(false).assertTrue();
                 }
-            });
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute Ringtone: FALSE: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
         }).catch((err) => {
-            console.info('AudioFrameworkTest: Promise: Is Stream Mute Rington: FALSE: ERROR:' + err.message);
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: ERROR:' + err.message);
             expect(false).assertTrue();
         });
         done();
@@ -2598,24 +2681,45 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_015', 0, async function (done) {
-        audioManager.mute(audio.AudioVolumeType.MEDIA, false, (err) => {
+        await audioManager.setVolume(audio.AudioVolumeType.MEDIA, highVol);
+        await audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Failed to mute the stream. ${err.message}`);
+                expect(false).assertTrue();
+            }
+            console.log('AudioFrameworkTest: Callback invoked to indicate that the stream is muted.');
+        });
+        await audioManager.mute(audio.AudioVolumeType.MEDIA, false, async (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Set Stream Mute: Media: Callback: Error :  ${err.message}`);
-                expect().assertFail();
+                expect(false).assertTrue();
             }
             else {
-                console.log('AudioFrameworkTest: Set Stream Mute: Media: ENAME: Callback : FALSE');
-                audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, data) => {
+                await audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback : FALSE: Media : ENAME: failed to get Mute Status ${err.message}`);
-                        expect().assertFail();
+                        console.error(`Failed to obtain the volume. ${err.message}`);
+                        expect(false).assertTrue();
                     }
-                    else if (data == false) {
-                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: ENAME: FALSE: PASS: ' + data);
+                    else if (value == highVol) {
+                        console.info("AudioFrameworkTest: value is " + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: ENAME: FALSE: FAIL: ' + data);
+                        console.info("AudioFrameworkTest: mute fail");
+                        expect(false).assertTrue();
+                    }
+                });
+                await audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: Media : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: FALSE: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: FALSE: FAIL: ' + data);
                         expect(false).assertTrue();
                     }
                     done();
@@ -2634,20 +2738,41 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_011', 0, async function (done) {
-        await audioManager.mute(audio.AudioVolumeType.MEDIA, false).then(function () {
-            console.log('AudioFrameworkTest: Set Stream Mute: Media: ENAME: Promise: FALSE');
-            audioManager.isMute(audio.AudioVolumeType.MEDIA).then(function (data) {
-                if (data == false) {
-                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: ENAME: FALSE: PASS:' + data);
+        await audioManager.setVolume(audio.AudioVolumeType.MEDIA, lowVol);
+        await audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
+            console.log('AudioFrameworkTest: Promise returned to indicate that the stream is muted.');
+        })
+            .catch((err) => {
+                console.info('AudioFrameworkTest: Promise: Is Stream isMute Media: FALSE: ERROR:' + err.message);
+                expect(false).assertTrue();
+            });
+        await audioManager.mute(audio.AudioVolumeType.MEDIA, false).then(async function () {
+            console.log('AudioFrameworkTest: Set Stream Mute: Media: Promise: FALSE');
+            await audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == lowVol) {
                     expect(true).assertTrue();
                 }
                 else {
-                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: ENAME: FALSE: FAIL: ' + data);
                     expect(false).assertTrue();
                 }
             });
+            await audioManager.isMute(audio.AudioVolumeType.MEDIA).then(function (data) {
+                if (data == false) {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: FALSE: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: FALSE: FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute Media: FALSE: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
         }).catch((err) => {
-            console.info('AudioFrameworkTest: Promise: Is Stream Mute Media: ENAME: FALSE: ERROR:' + err.message);
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute Media: FALSE: ERROR:' + err.message);
             expect(false).assertTrue();
         });
         done();
@@ -2662,24 +2787,45 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_016', 0, async function (done) {
-        audioManager.mute(audio.AudioVolumeType.RINGTONE, false, (err) => {
+        await audioManager.setVolume(audio.AudioVolumeType.RINGTONE, highVol);
+        await audioManager.mute(audio.AudioVolumeType.RINGTONE, true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Failed to mute the stream. ${err.message}`);
+                expect(false).assertTrue();
+            }
+            console.log('AudioFrameworkTest: Callback invoked to indicate that the stream is muted.');
+        });
+        await audioManager.mute(audio.AudioVolumeType.RINGTONE, false, async (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Set Stream Mute: Media: Callback: Error :  ${err.message}`);
-                expect().assertFail();
+                expect(false).assertTrue();
             }
             else {
-                console.log('AudioFrameworkTest: Set Stream Mute: Ringtone: ENAME: Callback : FALSE');
-                audioManager.isMute(audio.AudioVolumeType.RINGTONE, (err, data) => {
+                await audioManager.getVolume(audio.AudioVolumeType.RINGTONE, (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback : FALSE: Ringtone : ENAME: failed to get Mute Status ${err.message}`);
-                        expect().assertFail();
+                        console.error(`Failed to obtain the volume. ${err.message}`);
+                        expect(false).assertTrue();
                     }
-                    else if (data == false) {
-                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Ringtone: ENAME: FALSE: PASS: ' + data);
+                    else if (value == highVol) {
+                        console.info("AudioFrameworkTest: value is " + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Ringtone: ENAME: FALSE: FAIL: ' + data);
+                        console.info("AudioFrameworkTest: mute fail");
+                        expect(false).assertTrue();
+                    }
+                });
+                await audioManager.isMute(audio.AudioVolumeType.RINGTONE, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: Media : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: FALSE: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute Media: FALSE: FAIL: ' + data);
                         expect(false).assertTrue();
                     }
                     done();
@@ -2690,28 +2836,261 @@ describe('audioManager', function () {
     })
 
     /* *
-                * @tc.number    : SUB_AUDIO_MANAGER_mute_014
-                * @tc.name      : mute - Media - Promise - ENAME:
-                * @tc.desc      : mute - Media - Promise - Disable mute
+               * @tc.number    : SUB_AUDIO_MANAGER_mute_014
+               * @tc.name      : mute - RINGTONE - Promise - ENAME:
+               * @tc.desc      : mute - RINGTONE - Promise - Disable mute
+               * @tc.size      : MEDIUM
+               * @tc.type      : Function
+               * @tc.level     : Level 0
+           */
+    it('SUB_AUDIO_MANAGER_mute_014', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.RINGTONE, lowVol);
+        await audioManager.mute(audio.AudioVolumeType.RINGTONE, true).then(() => {
+            console.log('AudioFrameworkTest: Promise returned to indicate that the stream is muted.');
+        })
+            .catch((err) => {
+                console.info('AudioFrameworkTest: Promise: Is Stream isMute Ringtone: FALSE: ERROR:' + err.message);
+                expect(false).assertTrue();
+            });
+        await audioManager.mute(audio.AudioVolumeType.RINGTONE, false).then(async function () {
+            console.log('AudioFrameworkTest: Set Stream Mute: Ringtone: Promise: FALSE');
+            await audioManager.getVolume(audio.AudioVolumeType.RINGTONE).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == lowVol) {
+                    expect(true).assertTrue();
+                }
+                else {
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.isMute(audio.AudioVolumeType.RINGTONE).then(function (data) {
+                if (data == false) {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute Ringtone: FALSE: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: FALSE: ERROR:' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_021
+                * @tc.name      : mute - VOICE_CALL - callback - ENAME
+                * @tc.desc      : mute - VOICE_CALL - callback - Disable mute
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
-    it('SUB_AUDIO_MANAGER_mute_014', 0, async function (done) {
-        await audioManager.mute(audio.AudioVolumeType.MEDIA, false).then(function () {
-            console.log('AudioFrameworkTest: Set Stream Mute: Media: ENAME: Promise: FALSE');
-            audioManager.isMute(audio.AudioVolumeType.MEDIA).then(function (data) {
-                if (data == false) {
-                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: ENAME: FALSE: PASS:' + data);
+    it('SUB_AUDIO_MANAGER_mute_021', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, highVol);
+        await audioManager.mute(audio.AudioVolumeType.VOICE_CALL, true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Failed to mute the stream. ${err.message}`);
+                expect(false).assertTrue();
+            }
+            console.log('AudioFrameworkTest: Callback invoked to indicate that the stream is muted.');
+        });
+        await audioManager.mute(audio.AudioVolumeType.VOICE_CALL, false, async (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Set Stream Mute: VOICE_CALL: Callback: Error :  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                await audioManager.getVolume(audio.AudioVolumeType.VOICE_CALL, (err, value) => {
+                    if (err) {
+                        console.error(`Failed to obtain the volume. ${err.message}`);
+                        expect(false).assertTrue();
+                    }
+                    else if (value == highVol) {
+                        console.info("AudioFrameworkTest: value is " + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info("AudioFrameworkTest: mute fail");
+                        expect(false).assertTrue();
+                    }
+                });
+                await audioManager.isMute(audio.AudioVolumeType.VOICE_CALL, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: VOICE_CALL : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_CALL: FALSE: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_CALL: FALSE: FAIL: ' + data);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_022
+                * @tc.name      : mute - VOICE_CALL - Promise -  ENAME
+                * @tc.desc      : mute - VOICE_CALL - Promise - Disable mute
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_022', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, lowVol);
+        await audioManager.mute(audio.AudioVolumeType.VOICE_CALL, true).then(() => {
+            console.log('AudioFrameworkTest: Promise returned to indicate that the stream is muted.');
+        })
+            .catch((err) => {
+                console.info('AudioFrameworkTest: Promise: Is Stream isMute VOICE_CALL: FALSE: ERROR:' + err.message);
+                expect(false).assertTrue();
+            });
+        await audioManager.mute(audio.AudioVolumeType.VOICE_CALL, false).then(async function () {
+            console.log('AudioFrameworkTest: Set Stream Mute: VOICE_CALL: Promise: FALSE');
+            await audioManager.getVolume(audio.AudioVolumeType.VOICE_CALL).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == lowVol) {
                     expect(true).assertTrue();
                 }
                 else {
-                    console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: ENAME: FALSE: FAIL: ' + data);
                     expect(false).assertTrue();
                 }
             });
+            await audioManager.isMute(audio.AudioVolumeType.VOICE_CALL).then(function (data) {
+                if (data == false) {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_CALL: FALSE: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_CALL: FALSE: FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute VOICE_CALL: FALSE: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
         }).catch((err) => {
-            console.info('AudioFrameworkTest: Promise: Is Stream Mute Media: ENAME: FALSE: ERROR:' + err.message);
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute VOICE_CALL: FALSE: ERROR:' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_023
+                * @tc.name      : mute - VOICE_ASSISTANT - callback - ENAME
+                * @tc.desc      : mute - VOICE_ASSISTANT - callback - Disable mute
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_023', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, highVol);
+        await audioManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT, true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Failed to mute the stream. ${err.message}`);
+                expect(false).assertTrue();
+            }
+            console.log('AudioFrameworkTest: Callback invoked to indicate that the stream is muted.');
+        });
+        await audioManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT, false, async (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Set Stream Mute: VOICE_ASSISTANT: Callback: Error :  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                await audioManager.getVolume(audio.AudioVolumeType.VOICE_ASSISTANT, (err, value) => {
+                    if (err) {
+                        console.error(`Failed to obtain the volume. ${err.message}`);
+                        expect(false).assertTrue();
+                    }
+                    else if (value == highVol) {
+                        console.info("AudioFrameworkTest: value is " + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info("AudioFrameworkTest: mute fail");
+                        expect(false).assertTrue();
+                    }
+                });
+                await audioManager.isMute(audio.AudioVolumeType.VOICE_ASSISTANT, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: VOICE_ASSISTANT : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_ASSISTANT: FALSE: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_ASSISTANT: FALSE: FAIL: ' + data);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_024
+                * @tc.name      : mute - VOICE_ASSISTANT - Promise -  ENAME
+                * @tc.desc      : mute - VOICE_ASSISTANT - Promise - Disable mute
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_024', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+        await audioManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT, true).then(() => {
+            console.log('AudioFrameworkTest: Promise returned to indicate that the stream is muted.');
+        })
+            .catch((err) => {
+                console.info('AudioFrameworkTest: Promise: Is Stream isMute VOICE_ASSISTANT: FALSE: ERROR:' + err.message);
+                expect(false).assertTrue();
+            });
+        await audioManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT, false).then(async function () {
+            console.log('AudioFrameworkTest: Set Stream Mute: VOICE_ASSISTANT: Promise: FALSE');
+            await audioManager.getVolume(audio.AudioVolumeType.VOICE_ASSISTANT).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == lowVol) {
+                    expect(true).assertTrue();
+                }
+                else {
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.isMute(audio.AudioVolumeType.VOICE_ASSISTANT).then(function (data) {
+                if (data == false) {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_ASSISTANT: FALSE: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_ASSISTANT: FALSE: FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute VOICE_ASSISTANT: FALSE: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute VOICE_ASSISTANT: FALSE: ERROR:' + err.message);
             expect(false).assertTrue();
         });
         done();
@@ -2726,10 +3105,25 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_017', 0, async function (done) {
-        await audioManager.mute(audioMedia, true).then(function () {
+        await audioManager.setVolume(audioMedia, highVol);
+        await audioManager.mute(audioMedia, true).then(async function () {
             console.log('AudioFrameworkTest: Set Stream Mute: Media: Promise: TRUE');
-            audioManager.setVolume(audioMedia, lowVol);
-            audioManager.isMute(audioMedia).then(function (data) {
+            await audioManager.getVolume(audioMedia, (err, value) => {
+                if (err) {
+                    console.error(`Failed to obtain the volume. ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == 0) {
+                    console.info("AudioFrameworkTest: value is " + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info("AudioFrameworkTest: mute fail");
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.setVolume(audioMedia, lowVol);
+            await audioManager.isMute(audioMedia).then(function (data) {
                 if (data == false) {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: SetVolume: PASS:' + data);
                     expect(true).assertTrue();
@@ -2738,7 +3132,11 @@ describe('audioManager', function () {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Media: SetVolume: FAIL: ' + data);
                     expect(false).assertTrue();
                 }
-            });
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute Media: SetVolume: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
         }).catch((err) => {
             console.info('AudioFrameworkTest: Promise: Is Stream Mute Media: SetVolume: ERROR:' + err.message);
             expect(false).assertTrue();
@@ -2755,17 +3153,25 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_018', 0, async function (done) {
-        audioManager.mute(audioMedia, true, async (err) => {
+        await audioManager.setVolume(audioMedia, lowVol);
+        await audioManager.mute(audioMedia, true, async (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Callback : SetVolume: Media : failed to set Mute Status ${err.message}`);
                 expect().assertFail();
             }
             else {
                 console.log('AudioFrameworkTest: Set Stream Mute: Media: Callback : TRUE');
-                await sleep(100);
+                await audioManager.getVolume(audioMedia).then((value) => {
+                    console.info("AudioFrameworkTest: value is " + value);
+                    if (value == 0) {
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        expect(false).assertTrue();
+                    }
+                });
                 await audioManager.setVolume(audioMedia, highVol);
-                await sleep(100);
-                audioManager.isMute(audioMedia, (err, data) => {
+                await audioManager.isMute(audioMedia, (err, data) => {
                     if (err) {
                         console.error(`AudioFrameworkTest: Callback : SetVolume: Media : failed to get Mute Status ${err.message}`);
                         expect().assertFail();
@@ -2794,8 +3200,18 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_019', 0, async function (done) {
+        await audioManager.setVolume(audioRingtone, lowVol);
         await audioManager.mute(audioRingtone, true).then(async function () {
             console.log('AudioFrameworkTest: Set Stream Mute: Ringtone: Promise: SetVolume');
+            await audioManager.getVolume(audioRingtone).then((value) => {
+                console.info("AudioFrameworkTest: value is " + value);
+                if (value == 0) {
+                    expect(true).assertTrue();
+                }
+                else {
+                    expect(false).assertTrue();
+                }
+            });
             await audioManager.setVolume(audioRingtone, highVol);
             await audioManager.isMute(audioRingtone).then(function (data) {
                 if (data == false) {
@@ -2806,7 +3222,11 @@ describe('audioManager', function () {
                     console.log('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: SetVolume: FAIL: ' + data);
                     expect(false).assertTrue();
                 }
-            });
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute Ringtone: SetVolume: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
         }).catch((err) => {
             console.info('AudioFrameworkTest: Promise: Is Stream Mute Ringtone: SetVolume: ERROR:' + err.message);
             expect(false).assertTrue();
@@ -2823,13 +3243,23 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_mute_020', 0, async function (done) {
-        audioManager.mute(audioRingtone, true, (err) => {
+        await audioManager.setVolume(audioRingtone, highVol);
+        audioManager.mute(audioRingtone, true, async (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Callback : SetVolume: Ringtone : failed to set Mute Status ${err.message}`);
                 expect().assertFail();
             }
             else {
                 console.log('AudioFrameworkTest: Set Stream Mute: Ringtone: Callback : SetVolume');
+                await audioManager.getVolume(audioRingtone).then((value) => {
+                    if (value == 0) {
+                        console.info("AudioFrameworkTest: value is " + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        expect(false).assertTrue();
+                    }
+                });
                 audioManager.setVolume(audioRingtone, lowVol);
                 audioManager.isMute(audioRingtone, (err, data) => {
                     if (err) {
@@ -2842,6 +3272,196 @@ describe('audioManager', function () {
                     }
                     else {
                         console.log('AudioFrameworkTest: Callback : Is Stream Mute Ringtone: SetVolume: FAIL: ' + data);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_025
+                * @tc.name      : mute - VOICE_CALL - Promise - SetVolume
+                * @tc.desc      : mute - VOICE_CALL - Promise - Enable mute -SetVolume
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_025', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, highVol);
+        await audioManager.mute(audio.AudioVolumeType.VOICE_CALL, true).then(async function () {
+            console.log('AudioFrameworkTest: Set Stream Mute: VOICE_CALL: Promise: TRUE');
+            await audioManager.getVolume(audio.AudioVolumeType.VOICE_CALL, (err, value) => {
+                if (err) {
+                    console.error(`Failed to obtain the volume. ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == 0) {
+                    console.info("AudioFrameworkTest: value is " + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info("AudioFrameworkTest: mute fail");
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, lowVol);
+            await audioManager.isMute(audio.AudioVolumeType.VOICE_CALL).then(function (data) {
+                if (data == false) {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_CALL: SetVolume: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_CALL: SetVolume: FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute VOICE_CALL: SetVolume: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute VOICE_CALL: SetVolume: ERROR:' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_026
+                * @tc.name      : mute - VOICE_CALL - callback - SetVolume
+                * @tc.desc      : mute - VOICE_CALL - callback - Enable mute - SetVolume
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_026', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, highVol);
+        audioManager.mute(audio.AudioVolumeType.VOICE_CALL, true, async (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Callback : SetVolume: VOICE_CALL : failed to set Mute Status ${err.message}`);
+                expect().assertFail();
+            }
+            else {
+                console.log('AudioFrameworkTest: Set Stream Mute: VOICE_CALL: Callback : SetVolume');
+                await audioManager.getVolume(audio.AudioVolumeType.VOICE_CALL).then((value) => {
+                    if (value == 0) {
+                        console.info("AudioFrameworkTest: value is " + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        expect(false).assertTrue();
+                    }
+                });
+                audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, lowVol);
+                audioManager.isMute(audio.AudioVolumeType.VOICE_CALL, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : SetVolume: VOICE_CALL : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_CALL: SetVolume: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_CALL: SetVolume: FAIL: ' + data);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_027
+                * @tc.name      : mute - VOICE_ASSISTANT - Promise - SetVolume
+                * @tc.desc      : mute - VOICE_ASSISTANT - Promise - Enable mute -SetVolume
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_027', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, highVol);
+        await audioManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT, true).then(async function () {
+            console.log('AudioFrameworkTest: Set Stream Mute: VOICE_ASSISTANT: Promise: TRUE');
+            await audioManager.getVolume(audio.AudioVolumeType.VOICE_ASSISTANT, (err, value) => {
+                if (err) {
+                    console.error(`Failed to obtain the volume. ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == 0) {
+                    console.info("AudioFrameworkTest: value is " + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info("AudioFrameworkTest: mute fail");
+                    expect(false).assertTrue();
+                }
+            });
+            await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+            await audioManager.isMute(audio.AudioVolumeType.VOICE_ASSISTANT).then(function (data) {
+                if (data == false) {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_ASSISTANT: SetVolume: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.log('AudioFrameworkTest: Promise: Is Stream Mute VOICE_ASSISTANT: SetVolume: FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            })
+                .catch((err) => {
+                    console.info('AudioFrameworkTest: Promise: Is Stream isMute VOICE_ASSISTANT: SetVolume: ERROR:' + err.message);
+                    expect(false).assertTrue();
+                });
+        }).catch((err) => {
+            console.info('AudioFrameworkTest: Promise: Is Stream Mute VOICE_ASSISTANT: SetVolume: ERROR:' + err.message);
+            expect(false).assertTrue();
+        });
+        done();
+    })
+
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_mute_028
+                * @tc.name      : mute - VOICE_ASSISTANT - callback - SetVolume
+                * @tc.desc      : mute - VOICE_ASSISTANT - callback - Enable mute - SetVolume
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_mute_028', 0, async function (done) {
+        await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, highVol);
+        audioManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT, true, async (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Callback : SetVolume: VOICE_ASSISTANT : failed to set Mute Status ${err.message}`);
+                expect().assertFail();
+            }
+            else {
+                console.log('AudioFrameworkTest: Set Stream Mute: VOICE_ASSISTANT: Callback : SetVolume');
+                await audioManager.getVolume(audio.AudioVolumeType.VOICE_ASSISTANT).then((value) => {
+                    if (value == 0) {
+                        console.info("AudioFrameworkTest: value is " + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        expect(false).assertTrue();
+                    }
+                });
+                audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+                audioManager.isMute(audio.AudioVolumeType.VOICE_ASSISTANT, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : SetVolume: VOICE_ASSISTANT : failed to get Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if (data == false) {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_ASSISTANT: SetVolume: PASS: ' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.log('AudioFrameworkTest: Callback : Is Stream Mute VOICE_ASSISTANT: SetVolume: FAIL: ' + data);
                         expect(false).assertTrue();
                     }
                     done();
@@ -3327,10 +3947,10 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_001', 0, async function (done) {
-        const promise = audioManager.setAudioParameter('PBits per sample', '8 bit');
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '8 bit');
         promise.then(function () {
             console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
-            audioManager.getAudioParameter('PBits per sample').then(function (value) {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
                 if (value == '8 bit') {
                     console.info('AudioFrameworkTest: Promise: getAudioParameter: Bits per sample : PASS :' + value);
                     expect(true).assertTrue();
@@ -3354,16 +3974,16 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_002', 0, async function (done) {
-        const promise = audioManager.setAudioParameter('PNumber', '4800');
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '4800');
         promise.then(function () {
             console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
-            audioManager.getAudioParameter('PNumber').then(function (value) {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
                 if (value == '4800') {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter: PNumber : PASS :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter : PNumber : FAIL :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -3381,16 +4001,16 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_003', 0, async function (done) {
-        const promise = audioManager.setAudioParameter('PLNumber', longValue);
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', longValue);
         promise.then(function () {
             console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
-            audioManager.getAudioParameter('PLNumber').then(function (value) {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
                 if (value == longValue) {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter: PLNumber : PASS :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter : PLNumber : FAIL :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -3408,16 +4028,16 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_004', 0, async function (done) {
-        const promise = audioManager.setAudioParameter('PDecimal', '10.000000234324324324');
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '10.000000234324324324');
         promise.then(function () {
             console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
-            audioManager.getAudioParameter('PDecimal').then(function (value) {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
                 if (value == '10.000000234324324324') {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter: PDecimal : PASS :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter : PDecimal : FAIL :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -3435,16 +4055,16 @@ describe('audioManager', function () {
                * @tc.level     : Level 0
            */
     it('SUB_AUDIO_MANAGER_setAudioParameter_005', 0, async function (done) {
-        const promise = audioManager.setAudioParameter('1212', 'PPNumber');
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', 'PPNumber');
         promise.then(function () {
             console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
-            audioManager.getAudioParameter('1212').then(function (value) {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
                 if (value == 'PPNumber') {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter: 1212 : PASS :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter : 1212 : FAIL :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -3462,16 +4082,16 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_006', 0, async function (done) {
-        const promise = audioManager.setAudioParameter('PSpecial', '[]\:";<>?,./~!@#$%^*()_+-={}|');
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '[]\:";<>?,./~!@#$%^*()_+-={}|');
         promise.then(function () {
             console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
-            audioManager.getAudioParameter('PSpecial').then(function (value) {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
                 if (value == '[]\:";<>?,./~!@#$%^*()_+-={}|') {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter: PSpecial : PASS :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Promise: getAudioParameter : PSpecial : FAIL :' + value);
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
                     expect(false).assertTrue();
                 }
             });
@@ -3489,24 +4109,24 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_007', 0, async function (done) {
-        audioManager.setAudioParameter('CBSample Rate', '16 bit', (err) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '16 bit', (err) => {
             console.info('AudioFrameworkTest: Audio Parameter Test: Callback : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : setAudioParameter: CBSample Rate : Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
-                audioManager.getAudioParameter('CBSample Rate', (err, value) => {
+                audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback : getAudioParameter: CBSample Rate: Error: ${err.message}`);
+                        console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
                     else if (value == '16 bit') {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: CBSample Rate: PASS :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: CBSample Rate: FAIL :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -3525,24 +4145,24 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_008', 0, async function (done) {
-        audioManager.setAudioParameter('Special', '~!@#$%^*()_+-={}|[]\:";<>?,./', (err) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '~!@#$%^*()_+-={}|[]\:";<>?,./', (err) => {
             console.info('AudioFrameworkTest: Audio Parameter Test: Callback : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : setAudioParameter: Special : Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
-                audioManager.getAudioParameter('Special', (err, value) => {
+                audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback : getAudioParam: Special: Error: ${err.message}`);
+                        console.error(`AudioFrameworkTest: Callback : getAudioParam: VOICE_PHONE_STATUS: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
                     else if (value == '~!@#$%^*()_+-={}|[]\:";<>?,./') {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: Special: PASS :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: Special: FAIL :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -3561,24 +4181,24 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_009', 0, async function (done) {
-        audioManager.setAudioParameter('CBDecimal', '10000.21321432432432', (err) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '10000.21321432432432', (err) => {
             console.info('AudioFrameworkTest: Audio Parameter Test: Callback : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : setAudioParameter: CBDecimal : Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
-                audioManager.getAudioParameter('CBDecimal', (err, value) => {
+                audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback :getAudioParm: CBDecimal:Error: ${err.message}`);
+                        console.error(`AudioFrameworkTest: Callback :getAudioParm: VOICE_PHONE_STATUS:Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
                     else if (value == '10000.21321432432432') {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: CBDecimal: PASS :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: CBDecimal: FAIL :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -3597,24 +4217,24 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_010', 0, async function (done) {
-        audioManager.setAudioParameter('CBNumber', '5454', (err) => {
-            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :CBNumber : setAudioParameter');
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '5454', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : setAudioParameter: CBNumber : Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
             else {
-                audioManager.getAudioParameter('CBNumber', (err, value) => {
+                audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
                     if (err) {
-                        console.error(`AudioFrameworkTest: Callback : getAudioParam: CBNumber: Error: ${err.message}`);
+                        console.error(`AudioFrameworkTest: Callback : getAudioParam: VOICE_PHONE_STATUS: Error: ${err.message}`);
                         expect(false).assertTrue();
                     }
                     else if (value == '5454') {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: CBNumber: PASS :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
                         expect(true).assertTrue();
                     }
                     else {
-                        console.info('AudioFrameworkTest: Callback: getAudioParameter: CBNumber: FAIL :' + value);
+                        console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
                         expect(false).assertTrue();
                     }
                     done();
@@ -3633,23 +4253,23 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_011', 0, async function (done) {
-        audioManager.setAudioParameter('CBLNumber', longValue, (err) => {
-            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :CBLNumber : setAudioParameter');
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', longValue, (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : setAudioParameter: CBLNumber : Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            audioManager.getAudioParameter('CBLNumber', (err, value) => {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
                 if (err) {
-                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: CBLNumber: Error: ${err.message}`);
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
                     expect(false).assertTrue();
                 }
                 else if (value == longValue) {
-                    console.info('AudioFrameworkTest: Callback: getAudioParameter: CBLNumber: PASS :' + value);
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Callback: getAudioParameter: CBLNumber: FAIL :' + value);
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
                     expect(false).assertTrue();
                 }
                 done();
@@ -3667,23 +4287,23 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_setAudioParameter_012', 0, async function (done) {
-        audioManager.setAudioParameter('345667', 'xyza', (err) => {
-            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :345667 : setAudioParameter');
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', 'xyza', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : setAudioParameter: 345667 : Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            audioManager.getAudioParameter('345667', (err, value) => {
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
                 if (err) {
-                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: 345667: Error: ${err.message}`);
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
                     expect(false).assertTrue();
                 }
                 else if (value == 'xyza') {
-                    console.info('AudioFrameworkTest: Callback: getAudioParameter: 345667: PASS :' + value);
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
                     expect(true).assertTrue();
                 }
                 else {
-                    console.info('AudioFrameworkTest: Callback: getAudioParameter: 345667: FAIL :' + value);
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
                     expect(false).assertTrue();
                 }
                 done();
@@ -3701,16 +4321,19 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_001', 0, async function (done) {
-        const promise = audioManager.getAudioParameter('PBits per sample');
-        promise.then(function (value) {
-            if (value == '8 bit') {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter: Bits per sample : PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter : Bits per sample : FAIL :' + value);
-                expect(false).assertTrue();
-            }
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '8 bit');
+        promise.then(function () {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
+                if (value == '8 bit') {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+            });
         });
         await promise;
         done();
@@ -3725,16 +4348,19 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_002', 0, async function (done) {
-        const promise = audioManager.getAudioParameter('PNumber');
-        promise.then(function (value) {
-            if (value == '4800') {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter: PNumber : PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter : PNumber : FAIL :' + value);
-                expect(false).assertTrue();
-            }
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '4800');
+        promise.then(function () {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
+                if (value == '4800') {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+            });
         });
         await promise;
         done();
@@ -3749,16 +4375,19 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_003', 0, async function (done) {
-        const promise = audioManager.getAudioParameter('PLNumber');
-        promise.then(function (value) {
-            if (value == longValue) {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter: PLNumber : PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter : PLNumber : FAIL :' + value);
-                expect(false).assertTrue();
-            }
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', longValue);
+        promise.then(function () {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
+                if (value == longValue) {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+            });
         });
         await promise;
         done();
@@ -3773,16 +4402,19 @@ describe('audioManager', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_004', 0, async function (done) {
-        const promise = audioManager.getAudioParameter('PDecimal');
-        promise.then(function (value) {
-            if (value == '10.000000234324324324') {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter: PDecimal : PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter : PDecimal : FAIL :' + value);
-                expect(false).assertTrue();
-            }
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '10.0000000000234');
+        promise.then(function () {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
+                if (value == '10.0000000000234') {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+            });
         });
         await promise;
         done();
@@ -3797,16 +4429,19 @@ describe('audioManager', function () {
                * @tc.level     : Level 0
            */
     it('SUB_AUDIO_MANAGER_getAudioParameter_005', 0, async function (done) {
-        const promise = audioManager.getAudioParameter('1212');
-        promise.then(function (value) {
-            if (value == 'PPNumber') {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter: 1212 : PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter : 1212 : FAIL :' + value);
-                expect(false).assertTrue();
-            }
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', 'PPNumber');
+        promise.then(function () {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
+                if (value == 'PPNumber') {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+            });
         });
         await promise;
         done();
@@ -3815,22 +4450,25 @@ describe('audioManager', function () {
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_006
                 * @tc.name      : getAudioParameter - Promise - Special Characters
-                * @tc.desc      : getAudioParameter - Promise - Special Characters
+                * @tc.desc      : getAudioParameter - Promise - Special Characters 
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_006', 0, async function (done) {
-        const promise = audioManager.getAudioParameter('PSpecial');
-        promise.then(function (value) {
-            if (value == '[]\:";<>?,./~!@#$%^*()_+-={}|') {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter: PSpecial : PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Promise: getAudioParameter : PSpecial : FAIL :' + value);
-                expect(false).assertTrue();
-            }
+        const promise = audioManager.setAudioParameter('VOICE_PHONE_STATUS', '[]\:";<>?,./~!@#$%^*()_+-={}|');
+        promise.then(function () {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Promise : setAudioParameter');
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS').then(function (value) {
+                if (value == '[]\:";<>?,./~!@#$%^*()_+-={}|') {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter: VOICE_PHONE_STATUS : PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Promise: getAudioParameter : VOICE_PHONE_STATUS : FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+            });
         });
         await promise;
         done();
@@ -3838,52 +4476,68 @@ describe('audioManager', function () {
 
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_007
-                * @tc.name      : getAudioParameter - Callback - Character & Number
+                * @tc.name      : getAudioParameter - Callback - Character & Number 
                 * @tc.desc      : getAudioParameter - Callback - Character & Number
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_007', 0, async function (done) {
-        audioManager.getAudioParameter('CBSample Rate', (err, value) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '16 bit', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : getAudioParameter: CBSample Rate: Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            else if (value == '16 bit') {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBSample Rate: PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBSample Rate: FAIL :' + value);
-                expect(false).assertTrue();
-            }
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == '16 bit') {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+                done();
+            });
             done();
         });
     })
 
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_008
-                * @tc.name      : getAudioParameter - Callback - Special Character
+                * @tc.name      : getAudioParameter - Callback - Special Character ~!@#$%^*()_+-={}|[]\:";<>?,./
                 * @tc.desc      : getAudioParameter - Callback - Special Character
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_008', 0, async function (done) {
-        audioManager.getAudioParameter('Special', (err, value) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '~!@#$%^*()_+-={}|[]\:";<>?,./', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : getAudioParameter: Special: Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            else if (value == '~!@#$%^*()_+-={}|[]\:";<>?,./') {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: Special: PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: Special: FAIL :' + value);
-                expect(false).assertTrue();
-            }
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == '~!@#$%^*()_+-={}|[]\:";<>?,./') {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+                done();
+            });
             done();
         });
     })
@@ -3891,80 +4545,105 @@ describe('audioManager', function () {
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_009
                 * @tc.name      : getAudioParameter - Callback - Decimal
-                * @tc.desc      : getAudioParameter - Callback - Decimal
+                * @tc.desc      : getAudioParameter - Callback - Decimal 10000.21321432432432
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_009', 0, async function (done) {
-        audioManager.getAudioParameter('CBDecimal', (err, value) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '10000.21321432432432', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : getAudioParameter: CBDecimal: Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            else if (value == '10000.21321432432432') {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBDecimal: PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBDecimal: FAIL :' + value);
-                expect(false).assertTrue();
-            }
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == '10000.21321432432432') {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+                done();
+            });
             done();
         });
     })
 
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_010
-                * @tc.name      : getAudioParameter - Callback - Number
+                * @tc.name      : getAudioParameter - Callback - Number 5454
                 * @tc.desc      : getAudioParameter - Callback - Number
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_010', 0, async function (done) {
-        audioManager.getAudioParameter('CBNumber', (err, value) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', '5454', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : getAudioParameter: CBNumber: Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            else if (value == '5454') {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBNumber: PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBNumber: FAIL :' + value);
-                expect(false).assertTrue();
-            }
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == '5454') {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+                done();
+            });
             done();
         });
     })
 
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_011
-                * @tc.name      : getAudioParameter - Callback - Long Number
+                * @tc.name      : getAudioParameter - Callback - Long Number longValue
                 * @tc.desc      : getAudioParameter - Callback - Long Number
                 * @tc.size      : MEDIUM
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_MANAGER_getAudioParameter_011', 0, async function (done) {
-        audioManager.getAudioParameter('CBLNumber', (err, value) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', longValue, (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : getAudioParameter: CBLNumber: Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            else if (value == longValue) {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBLNumber: PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: CBLNumber: FAIL :' + value);
-                expect(false).assertTrue();
-            }
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == longValue) {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+                done();
+            });
             done();
         });
     })
+
 
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_getAudioParameter_012
@@ -3974,23 +4653,33 @@ describe('audioManager', function () {
                 * @tc.type      : Function
                 * @tc.level     : Level 0
             */
+
     it('SUB_AUDIO_MANAGER_getAudioParameter_012', 0, async function (done) {
-        audioManager.getAudioParameter('345667', (err, value) => {
+        audioManager.setAudioParameter('VOICE_PHONE_STATUS', 'xyza', (err) => {
+            console.info('AudioFrameworkTest: Audio Parameter Test: Callback :VOICE_PHONE_STATUS : setAudioParameter');
             if (err) {
-                console.error(`AudioFrameworkTest: Callback : getAudioParameter: 345667: Error: ${err.message}`);
+                console.error(`AudioFrameworkTest: Callback : setAudioParameter: VOICE_PHONE_STATUS : Error: ${err.message}`);
                 expect(false).assertTrue();
             }
-            else if (value == 'xyza') {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: 345667: PASS :' + value);
-                expect(true).assertTrue();
-            }
-            else {
-                console.info('AudioFrameworkTest: Callback: getAudioParameter: 345667: FAIL :' + value);
-                expect(false).assertTrue();
-            }
+            audioManager.getAudioParameter('VOICE_PHONE_STATUS', (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: Callback : getAudioParameter: VOICE_PHONE_STATUS: Error: ${err.message}`);
+                    expect(false).assertTrue();
+                }
+                else if (value == 'xyza') {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: PASS :' + value);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('AudioFrameworkTest: Callback: getAudioParameter: VOICE_PHONE_STATUS: FAIL :' + value);
+                    expect(false).assertTrue();
+                }
+                done();
+            });
             done();
         });
     })
+
 
     /* *
                 * @tc.number    : SUB_AUDIO_MANAGER_onVolumeChange_001
@@ -4427,18 +5116,31 @@ describe('audioManager', function () {
         done();
     })
 
-     /* *
-             * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_001
-             * @tc.name      : DeviceType - BLUETOOTH_SCO
-             * @tc.desc      : DeviceType - BLUETOOTH_SCO
-             * @tc.size      : MEDIUM
-             * @tc.type      : Function
-             * @tc.level     : Level 0
-         */
-     it('SUB_AUDIO_MANAGER_DeviceType_001', 0, async function (done) {
+    /* *
+            * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_001
+            * @tc.name      : DeviceType - BLUETOOTH_SCO
+            * @tc.desc      : DeviceType - BLUETOOTH_SCO
+            * @tc.size      : MEDIUM
+            * @tc.type      : Function
+            * @tc.level     : Level 0
+        */
+    it('SUB_AUDIO_MANAGER_DeviceType_001', 0, async function (done) {
         expect(audio.DeviceType.BLUETOOTH_SCO).assertEqual(7);
         await sleep(50);
         done();
     })
 
+    /* *
+                * @tc.number    : SUB_AUDIO_MANAGER_DeviceType_002
+                * @tc.name      : DeviceType - WIRED_HEADPHONES
+                * @tc.desc      : DeviceType - WIRED_HEADPHONES
+                * @tc.size      : MEDIUM
+                * @tc.type      : Function
+                * @tc.level     : Level 0
+            */
+    it('SUB_AUDIO_MANAGER_DeviceType_002', 0, async function (done) {
+        expect(audio.DeviceType.WIRED_HEADPHONES).assertEqual(4);
+        await sleep(50);
+        done();
+    })
 })

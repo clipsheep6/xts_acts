@@ -1404,4 +1404,5 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       console.log(msgStr + 'done ');
       done();
     })
+  })
 }
