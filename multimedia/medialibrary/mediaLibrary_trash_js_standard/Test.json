@@ -1,0 +1,69 @@
+{
+    "description": "Configuration for mediaLibrary Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "1200000",
+        "package": "ohos.acts.multimedia.mediaLibrary.trash",
+        "shell-timeout": "1200000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [
+            ],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.MediaLibraryDataA/*",
+                
+                "mkdir -pv /storage/media/100/local/files/{Pictures,Videos,Audios,Documents}",
+                "mkdir -p /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA",
+                "./resource/medialibrary/01.mp3 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA",
+                "./resource/medialibrary/01.mp4 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA",
+                "./resource/medialibrary/01.dat ->/data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -pv /storage/media/100/local/files/Pictures/{trash,trashCb,DynamicCb01,DynamicPro01}",
+                "mkdir -pv /storage/media/100/local/files/Videos/{trash,trashCb,DynamicCb01,DynamicPro01}",
+                "mkdir -pv /storage/media/100/local/files/Audios/{trash,trashCb,DynamicCb01,DynamicPro01}",
+                "mkdir -pv /storage/media/100/local/files/Documents/{trash,trashCb,DynamicCb01,DynamicPro01}",
+
+                "for d in trash trashCb; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.jpg /storage/media/100/local/files/Pictures/$$d/0$$i.jpg; done;done;",
+                "for d in trash trashCb; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.mp3 /storage/media/100/local/files/Audios/$$d/0$$i.mp3; done;done;",
+                "for d in trash trashCb; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.mp4 /storage/media/100/local/files/Videos/$$d/0$$i.mp4; done;done;",
+                "for d in trash trashCb; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.dat /storage/media/100/local/files/Documents/$$d/0$$i.dat; done;done;",
+
+                "for d in DynamicCb01 DynamicPro01;  do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.jpg /storage/media/100/local/files/Pictures/$$d ;done;",
+                "for d in DynamicCb01 DynamicPro01;  do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.mp3 /storage/media/100/local/files/Audios/$$d ;done;",
+                "for d in DynamicCb01 DynamicPro01;  do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.mp4 /storage/media/100/local/files/Videos/$$d ;done;",
+                "for d in DynamicCb01 DynamicPro01;  do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.MediaLibraryDataA/01.dat /storage/media/100/local/files/Documents/$$d ;done;",
+
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "aa start -a com.ohos.photos.MainAbility -b com.ohos.photos",
+                "sleep 60",
+                "sleep 60",
+                "sleep 60"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsMediaLibraryTrashJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

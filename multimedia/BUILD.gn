@@ -45,6 +45,7 @@ group("multimedia") {
       "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
       "medialibrary/mediaLibrary_js:mediaLibrary_js_hap",
       "medialibrary/mediaLibrary_js_standard:mediaLibrary_js_hap",
+      "medialibrary/mediaLibrary_trash_js_standard:mediaLibrary_trash_js_hap",
     ]
   } else {
     deps = [
