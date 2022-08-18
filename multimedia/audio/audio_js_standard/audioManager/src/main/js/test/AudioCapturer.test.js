@@ -1897,16 +1897,12 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await audio,createAudioCapturer(AudioCapturerOptions).then(async function (data) {
-            if (data == undefined) {
-                console.info('AudioFrameworkRecLog: AudioCapturer Created: Uncsuccess:' +data);
-                expect(true).assertTrue();
-            } else {
-                console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data.state);
-            }
-        }).catch((err) => {
+        await audio,createAudioCapturer(audioCapturerOptions8000).then(async function (data) {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data);
             expect(true).assertFail();
+        }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
+            expect(true).assertTrue();
         });
         done();
     })
@@ -2255,14 +2251,11 @@ describe('audioCapturer', function () {
         }
 
         await audio,createAudioCapturer(audioCapturerOptions8000).then(async function (data) {
-            if (data == undefined) {
-                console.info('AudioFrameworkRecLog: AudioCapturer Created: Uncsuccess:' +data);
-                expect(true).assertTrue();
-            } else {
-                console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data.state);
-            }
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data);
+            expect(true).assertFail();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
+            expect(true).assertTrue();
         });
         done();
     })
