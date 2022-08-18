@@ -29,8 +29,6 @@ ohos_js_hap_suite("hls_player_js_hap") {
   hap_name = "ActsHLSPlayerJsTest"
   subsystem_name = "multimedia"
   part_name = "multimedia_player_framework"
-  #  part_name = "prebuilt_hap"
-  #  subsystem_name = "xts"
 }
 ohos_js_assets("video_player_js_assets") {
   source_dir = "./src/main/js/default"
