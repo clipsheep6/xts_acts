@@ -80,7 +80,7 @@ describe('audioCapturer', function () {
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
             let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            letLE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioCapturerOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
