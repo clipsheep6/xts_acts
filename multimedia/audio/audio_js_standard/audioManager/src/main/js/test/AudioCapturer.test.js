@@ -1092,7 +1092,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -1111,7 +1111,7 @@ describe('audioCapturer', function () {
                     }
                 });
             })
-         
+
             numBuffersToCapture--;
         }
         await sleep(1000);
@@ -1896,13 +1896,13 @@ describe('audioCapturer', function () {
             streamInfo: AudioStreamInfo,
             capturerInfo: AudioCapturerInfo
         }
-		
-		await audio,createAudioCapturer(AudioCapturerOptions).then(async function (data) {
-                console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data.state);
-				expect(true).assertTrue();
-            }).catch((err) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
-			expect(true).assertTrue();
+
+        await audio, createAudioCapturer(AudioCapturerOptions).then(async function (data) {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' + data.state);
+            expect(true).assertTrue();
+        }).catch((err) => {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' + err.message);
+            expect(true).assertTrue();
         });
         done();
     })
@@ -1975,11 +1975,11 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-       await audio,createAudioCapturer(AudioCapturerOptions).then(async function (data) {
-            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data);
+        await audio, createAudioCapturer(AudioCapturerOptions).then(async function (data) {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' + data);
             expect(true).assertFail();
         }).catch((err) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' + err.message);
             expect(true).assertTrue();
         });
         done();
@@ -2148,7 +2148,7 @@ describe('audioCapturer', function () {
             capturerInfo: audioCapturerInfo48000,
         }
 
-         await getFd("capture_js-48000-2C-1S32LE.pcm");
+        await getFd("capture_js-48000-2C-1S32LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions48000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2182,7 +2182,7 @@ describe('audioCapturer', function () {
             capturerInfo: audioCapturerInfo48000,
         }
 
-         await getFd("capture_js-48000-2C-1S32LE.pcm");
+        await getFd("capture_js-48000-2C-1S32LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions48000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2216,7 +2216,7 @@ describe('audioCapturer', function () {
             capturerInfo: audioCapturerInfo8000,
         }
 
-         await getFd("capture_js-8000-1C-8B.pcm");
+        await getFd("capture_js-8000-1C-8B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions8000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2250,7 +2250,7 @@ describe('audioCapturer', function () {
             capturerInfo: audioCapturerInfo8000,
         }
 
-         await getFd("capture_js-8000-1C-8B.pcm");
+        await getFd("capture_js-8000-1C-8B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions8000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2284,7 +2284,7 @@ describe('audioCapturer', function () {
             capturerInfo: audioCapturerInfo11025,
         }
 
-         await getFd("capture_js-11025-2C-16B.pcm");
+        await getFd("capture_js-11025-2C-16B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions11025, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2318,7 +2318,7 @@ describe('audioCapturer', function () {
             capturerInfo: audioCapturerInfo11025,
         }
 
-         await getFd("capture_js-11025-2C-16B.pcm");
+        await getFd("capture_js-11025-2C-16B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions11025, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -3009,7 +3009,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -3160,7 +3160,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -3435,10 +3435,10 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO NEW STATE---------');
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
-			expect(true).assertTrue();
+            expect(true).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-			expect(false).assertTrue();
+            expect(false).assertTrue();
         });
         await sleep(1000);
         await audioCapPromise.release().then(async function () {
@@ -3455,12 +3455,12 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
                 expect(true).assertTrue();
             } else {
-				console.info('AudioFrameworkRecLog: Capturer released :SUCCESS ');
-				expect(false).assertTrue();  
+                console.info('AudioFrameworkRecLog: Capturer released :SUCCESS ');
+                expect(false).assertTrue();
             }
         });
         await sleep(1000);
-		done();
+        done();
     })
 
 
@@ -4142,11 +4142,11 @@ describe('audioCapturer', function () {
         }
 
         await audio.createAudioCapturer(AudioCapturerOptionsInvalid).then(async function (data) {
-                console.info('AudioFrameworkRecLog: AudioCapturer Created : Success:' + data.state);
-				expect(true).assertTrue();
+            console.info('AudioFrameworkRecLog: AudioCapturer Created : Success:' + data.state);
+            expect(true).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-			expect(false).assertTrue();
+            expect(false).assertTrue();
         });
         done();
     })
@@ -4648,7 +4648,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -4786,7 +4786,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -4918,7 +4918,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5051,7 +5051,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5184,7 +5184,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5318,7 +5318,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5452,7 +5452,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5585,7 +5585,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5716,7 +5716,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -5871,7 +5871,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -6026,7 +6026,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
@@ -6182,7 +6182,7 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
+            await new Promise((resolve, reject) => {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
