@@ -85,6 +85,7 @@ public:
     int32_t ResetEnc();
     int32_t ReleaseEnc();
     int32_t CalcuError();
+
     void SetReadPath(const char * inp_path, uint32_t es[], uint32_t length);
     void SetEosState(bool needSetEos);
     void SetSavePath(const char * outp_path);
@@ -94,6 +95,13 @@ public:
     int32_t GetFrameCount();
     bool GetEncEosState();
     bool GetDecEosState();
+    void PopInqueueDec();
+    void PopOutqueueDec();
+    void PopInqueueEnc();
+    void PopOutqueueEnc();
+    int32_t PushInbufferDec(uint32_t index, uint32_t bufferSize);
+    int32_t PushInbufferEnc();
+
     ADecEncSignal* acodecSignal_ = nullptr;
     uint32_t decInCnt_ = 0;
     uint32_t decOutCnt_ = 0;

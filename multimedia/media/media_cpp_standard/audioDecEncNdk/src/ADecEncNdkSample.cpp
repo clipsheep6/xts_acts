@@ -15,6 +15,7 @@
 
 #include "ADecEncNdkSample.h"
 #include "native_avmemory.h"
+#include "native_averrors.h"
 
 using namespace OHOS;
 using namespace OHOS::Media;
@@ -22,7 +23,6 @@ using namespace std;
 
 namespace {
     constexpr uint32_t SAMPLE_DURATION_US = 23000;
-    constexpr bool NEED_DUMP = true;
 }
 
 void AdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -36,6 +36,7 @@ void AdecAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userDa
 {
     cout << "DEC Format Changed" << endl;
 }
+
 void AdecAsyncNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
@@ -51,7 +52,6 @@ void AdecAsyncNeedInputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data
 void AdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, OH_AVCodecBufferAttr *attr, void *userData)
 {
     ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
-    cout << "DEC OutputAvailable, index = " << index << endl;
     unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
     if (acodecSignal_->isFlushing_.load()) {
         cout << "DEC OutputAvailable: isFlushing_.load() is true, return" << endl;
@@ -64,10 +64,11 @@ void AdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data
     acodecSignal_->inCondEnc_.notify_all();
 }
 
-
 void AencAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
 {
+    ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
     cout << "ENC Error errorCode=" << errorCode << endl;
+    acodecSignal_->errorNum_ += 1;
 }
 
 void AencAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
@@ -115,12 +116,8 @@ ADecEncNdkSample::~ADecEncNdkSample()
 {
     OH_AudioDecoder_Destroy(adec_);
     OH_AudioEncoder_Destroy(aenc_);
-
     delete acodecSignal_;
     acodecSignal_ = nullptr;
-
-    // delete acodecSignal_;
-    // acodecSignal_ = nullptr;
 }
 
 struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
@@ -137,7 +134,6 @@ struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
     cbDec_.onNeedOutputData = AdecAsyncNewOutputData;
     int32_t ret = OH_AudioDecoder_SetCallback(adec_, cbDec_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioDecoder_SetCallback");
-    // return codec;
     return adec_;
 }
 
@@ -157,7 +153,6 @@ int32_t ADecEncNdkSample::StartDec()
 {
     cout << "Enter start dec" << endl;
     isDecRunning_.store(true);
-
     if (testFile_ == nullptr) {
         testFile_ = std::make_unique<std::ifstream>();
         NDK_CHECK_AND_RETURN_RET_LOG(testFile_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
@@ -169,20 +164,6 @@ int32_t ADecEncNdkSample::StartDec()
     }
     cout << "Exit start dec" << endl;
     return OH_AudioDecoder_Start(adec_);
-}
-
-void ADecEncNdkSample::ReRead()
-{
-    if (testFile_ != nullptr) {
-        testFile_->close();
-        cout << "ReRead close before file success "<< endl;
-    }
-    cout << "ReRead INP_FILE is " << INP_FILE << endl;
-    testFile_->open(INP_FILE, std::ios::in | std::ios::binary);
-    if (testFile_ != nullptr) {
-        cout << "testFile open success" << endl;
-    }
-    decInCnt_ = 0;
 }
 
 void ADecEncNdkSample::ResetDecParam()
@@ -206,7 +187,6 @@ void ADecEncNdkSample::ResetDecParam()
     lock2.unlock();
     acodecSignal_->isFlushing_.store(false);
     isDecRunning_.store(true);
-    cout << "isDecRunning_.load() is " << isDecRunning_.load() << endl;
 }
 
 void ADecEncNdkSample::ResetEncParam()
@@ -230,7 +210,6 @@ void ADecEncNdkSample::ResetEncParam()
     lock2.unlock();
     acodecSignal_->isFlushing_.store(false);
     isEncRunning_.store(true);
-    cout << "isEncRunning_.load() is " << isEncRunning_.load() << endl;
 }
 
 int32_t ADecEncNdkSample::StopDec()
@@ -313,7 +292,6 @@ int32_t ADecEncNdkSample::ResetDec()
 
 int32_t ADecEncNdkSample::ReleaseDec()
 {
-
     cout << "enter Release DEC" << endl;
     isDecRunning_.store(false);
     isEncRunning_.store(false);
@@ -331,34 +309,48 @@ int32_t ADecEncNdkSample::ReleaseDec()
     return AV_ERR_OK;
 }
 
+void ADecEncNdkSample::PopInqueueDec()
+{
+    if(acodecSignal_ == nullptr) {
+        return;
+    }
+    acodecSignal_->inQueueDec_.pop();
+    acodecSignal_->inBufferQueueDec_.pop();
+}
+
+int32_t ADecEncNdkSample::PushInbufferDec(uint32_t index, uint32_t bufferSize)
+{
+    struct OH_AVCodecBufferAttr attr;
+    attr.offset = 0;
+    attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
+    if (decInCnt_ == ES_LENGTH) {
+        cout << "DEC input: set EOS" << endl;
+        attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
+        attr.pts = 0;
+        attr.size = 0;
+        isDecInputEOS = true;
+    } else {
+        attr.pts = timeStampDec_;
+        attr.size = bufferSize;
+    }
+    return OH_AudioDecoder_PushInputData(adec_, index, attr);
+}
 
 void ADecEncNdkSample::InputFuncDec()
 {
     while(true) {
-        cout << "DEC enter InputFuncDec()" << endl;
         if (!isDecRunning_.load()) {
             break;
         }
-
         unique_lock<mutex> lock(acodecSignal_->inMutexDec_);
-        acodecSignal_->inCondDec_.wait(lock, [this](){return acodecSignal_->inQueueDec_.size() > 0;});
-        cout << "DEC inQueueDec_.size() is " << acodecSignal_->inQueueDec_.size() << endl;
-
+        acodecSignal_->inCondDec_.wait(lock, [this]() {return acodecSignal_->inQueueDec_.size() > 0; });
         if (!isDecRunning_.load()) {
             break;
         }
-        if (acodecSignal_->isFlushing_.load() || isDecInputEOS) {
-            acodecSignal_->inQueueDec_.pop();
-            acodecSignal_->inBufferQueueDec_.pop();
-            continue;
-        }
-
         uint32_t index = acodecSignal_->inQueueDec_.front();
         OH_AVMemory *buffer = reinterpret_cast<OH_AVMemory *>(acodecSignal_->inBufferQueueDec_.front());
-        if (buffer == nullptr) {
-            cout << "DEC input Fatal: GetInputBuffer fail" << endl;
-            acodecSignal_->inQueueDec_.pop();
-            acodecSignal_->inBufferQueueDec_.pop();
+        if (acodecSignal_->isFlushing_.load() || isDecInputEOS || buffer == nullptr) {
+            PopInqueueDec();
             continue;
         }
         NDK_CHECK_AND_RETURN_LOG(testFile_ != nullptr && testFile_->is_open(), "Fatal: open file fail");
@@ -367,49 +359,27 @@ void ADecEncNdkSample::InputFuncDec()
             bufferSize = ES[decInCnt_];
             char *fileBuffer = (char *)malloc(sizeof(char) * bufferSize + 1);
             NDK_CHECK_AND_RETURN_LOG(fileBuffer != nullptr, "Fatal: malloc fail");
-
             (void)testFile_->read(fileBuffer, bufferSize);
             if (testFile_->eof()) {
                 free(fileBuffer);
-                cout << "Finish" << endl;
                 break;
             }
             if (memcpy_s(OH_AVMemory_GetAddr(buffer), OH_AVMemory_GetSize(buffer), fileBuffer, bufferSize) != EOK) {
                 free(fileBuffer);
-                cout << "DEC input Fatal: memcpy fail" << endl;
-                acodecSignal_->inQueueDec_.pop();
-                acodecSignal_->inBufferQueueDec_.pop();
+                PopInqueueDec();
                 break;
             }
             free(fileBuffer);
         } 
-        struct OH_AVCodecBufferAttr attr;
-        attr.offset = 0;
-        attr.flags = AVCODEC_BUFFER_FLAGS_NONE;
-        if (decInCnt_ == ES_LENGTH) {
-            cout << "DEC input: set EOS" << endl;
-            attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
-            attr.pts = 0;
-            attr.size = 0;
-            isDecInputEOS = true;
-        } else {
-            attr.pts = timeStampDec_;
-            attr.size = bufferSize;
-        }
-        OH_AVErrCode ret = OH_AudioDecoder_PushInputData(adec_, index, attr);
-        if (ret != AV_ERR_OK) {
+        if (PushInbufferDec(index, bufferSize) != AV_ERR_OK) {
             cout << "Fatal: OH_AudioDecoder_PushInputData fail" << endl;
             acodecSignal_->errorNum_ += 1;
         } else {
             decInCnt_ ++;
-            cout << "DEC input success , decInCnt_ = " << decInCnt_ << endl;
         }
         timeStampDec_ += SAMPLE_DURATION_US;
-        acodecSignal_->inQueueDec_.pop();
-        acodecSignal_->inBufferQueueDec_.pop();
+        PopInqueueDec();
     }
-    cout << "DEC InputFuncDec: exit while(true)" << endl;
-
 }
 
 struct OH_AVCodec* ADecEncNdkSample::CreateAudioEncoder(std::string mimetype)
@@ -443,7 +413,6 @@ int32_t ADecEncNdkSample::StartEnc()
         inputLoopEnc_ = make_unique<thread>(&ADecEncNdkSample::InputFuncEnc, this);
         NDK_CHECK_AND_RETURN_RET_LOG(inputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
     }
-
     if (outputLoopEnc_ == nullptr) {
         outputLoopEnc_ = make_unique<thread>(&ADecEncNdkSample::OutputFuncEnc, this);
         NDK_CHECK_AND_RETURN_RET_LOG(outputLoopEnc_ != nullptr, AV_ERR_UNKNOWN, "Fatal: No memory");
@@ -558,6 +527,68 @@ int32_t ADecEncNdkSample::ReleaseEnc()
     return AV_ERR_OK;
 }
 
+void ADecEncNdkSample::PopOutqueueDec()
+{
+    if(acodecSignal_ == nullptr) {
+        return;
+    }
+    acodecSignal_->outQueueDec_.pop();
+    acodecSignal_->sizeQueueDec_.pop();
+    acodecSignal_->flagQueueDec_.pop();
+    acodecSignal_->outBufferQueueDec_.pop();
+}
+
+void ADecEncNdkSample::PopInqueueEnc()
+{
+    if(acodecSignal_ == nullptr) {
+        return;
+    }
+    acodecSignal_->inQueueEnc_.pop();
+    acodecSignal_->inBufferQueueEnc_.pop();
+}
+
+int32_t ADecEncNdkSample::PushInbufferEnc()
+{
+    uint32_t indexEnc = acodecSignal_->inQueueEnc_.front();
+    OH_AVMemory *bufferEnc = reinterpret_cast<OH_AVMemory *>(acodecSignal_->inBufferQueueEnc_.front());
+    if (bufferEnc == nullptr) {
+        cout << "Fatal: GetEncInputBuffer fail" << endl;
+        return AV_ERR_NO_MEMORY;
+    }
+    uint32_t indexDec = acodecSignal_->outQueueDec_.front();
+    OH_AVMemory * bufferDec = acodecSignal_->outBufferQueueDec_.front();
+    uint32_t sizeDecOut = acodecSignal_->sizeQueueDec_.front();
+    uint32_t flagDecOut = acodecSignal_->flagQueueDec_.front();
+
+    struct OH_AVCodecBufferAttr attr;
+    attr.offset = 0;
+    attr.size = sizeDecOut;
+    attr.pts = timeStampEnc_;
+    attr.flags = 0;
+    if (flagDecOut == 1) {
+        cout << "DEC output EOS " << endl;
+        isDecOutputEOS = true;
+        cout << "set isDecOutputEOS = true " << endl;
+        if (setEos) {
+            isEncInputEOS = true;
+            attr.flags = 1;
+        }
+    } else {
+        if (memcpy_s(OH_AVMemory_GetAddr(bufferEnc), OH_AVMemory_GetSize(bufferEnc), OH_AVMemory_GetAddr(bufferDec), sizeDecOut) != EOK) {
+            cout << "ENC input Fatal: memcpy fail" << endl;
+            PopOutqueueDec();
+            PopInqueueEnc();
+            return AV_ERR_OPERATE_NOT_PERMIT;
+        }
+        if (OH_AudioDecoder_FreeOutputData(adec_, indexDec) != AV_ERR_OK) {
+            cout << "Fatal: DEC ReleaseDecOutputBuffer fail" << endl;
+            acodecSignal_->errorNum_ += 1;
+        } else {
+            decOutCnt_ += 1;
+        }
+    }
+    return OH_AudioEncoder_PushInputData(aenc_, indexEnc, attr);
+}
 
 void ADecEncNdkSample::InputFuncEnc()
 {
@@ -567,82 +598,81 @@ void ADecEncNdkSample::InputFuncEnc()
             break;
         }
         unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
-        acodecSignal_->inCondEnc_.wait(lock, [this](){
+        acodecSignal_->inCondEnc_.wait(lock, [this]() {
             return (acodecSignal_->inQueueEnc_.size() > 0 && acodecSignal_->outQueueDec_.size() > 0);});
 
         if (!isEncRunning_.load()) {
             break;
         }
         if (acodecSignal_->isFlushing_.load() || isDecOutputEOS) {
-            acodecSignal_->outQueueDec_.pop();
-            acodecSignal_->sizeQueueDec_.pop();
-            acodecSignal_->flagQueueDec_.pop();
-            acodecSignal_->outBufferQueueDec_.pop();
-            acodecSignal_->inQueueEnc_.pop();
-            acodecSignal_->inBufferQueueEnc_.pop();
+            PopOutqueueDec();
+            PopInqueueEnc();
             continue;
         }
-
-        uint32_t indexEnc = acodecSignal_->inQueueEnc_.front();
-        OH_AVMemory *bufferEnc = reinterpret_cast<OH_AVMemory *>(acodecSignal_->inBufferQueueEnc_.front());
-        NDK_CHECK_AND_RETURN_LOG(bufferEnc != nullptr, "Fatal: GetEncInputBuffer fail");
-
-        uint32_t indexDec = acodecSignal_->outQueueDec_.front();
-        OH_AVMemory * bufferDec = acodecSignal_->outBufferQueueDec_.front();
-        uint32_t sizeDecOut = acodecSignal_->sizeQueueDec_.front();
-        uint32_t flagDecOut = acodecSignal_->flagQueueDec_.front();
-
-        struct OH_AVCodecBufferAttr attr;
-        attr.offset = 0;
-        attr.size = sizeDecOut;
-        attr.pts = timeStampEnc_;
-        attr.flags = 0;
-        if (flagDecOut == 1) {
-            cout << "DEC output EOS " << endl;
-            isDecOutputEOS = true;
-            cout << "set isDecOutputEOS = true " << endl;
-            if (setEos) {
-                isEncInputEOS = true;
-                attr.flags = 1;
-            }
-        } else {
-            if (memcpy_s(OH_AVMemory_GetAddr(bufferEnc), OH_AVMemory_GetSize(bufferEnc), OH_AVMemory_GetAddr(bufferDec), sizeDecOut) != EOK) {
-                cout << "ENC input Fatal: memcpy fail" << endl;
-                acodecSignal_->outQueueDec_.pop();
-                acodecSignal_->sizeQueueDec_.pop();
-                acodecSignal_->flagQueueDec_.pop();
-                acodecSignal_->outBufferQueueDec_.pop();
-                acodecSignal_->inQueueEnc_.pop();
-                acodecSignal_->inBufferQueueEnc_.pop();
-                break;
-            }
-            if (OH_AudioDecoder_FreeOutputData(adec_, indexDec) != AV_ERR_OK) {
-                cout << "Fatal: DEC ReleaseDecOutputBuffer fail" << endl;
-                acodecSignal_->errorNum_ += 1;
-            } else {
-                decOutCnt_ += 1;
-            }
-        }
-        acodecSignal_->outQueueDec_.pop();
-        acodecSignal_->sizeQueueDec_.pop();
-        acodecSignal_->flagQueueDec_.pop();
-        acodecSignal_->outBufferQueueDec_.pop();
-
-        OH_AVErrCode ret = OH_AudioEncoder_PushInputData(aenc_, indexEnc, attr);
-        if (ret != AV_ERR_OK) {
+        if (PushInbufferEnc() != AV_ERR_OK) {
             cout << "Fatal error, exit" << endl;
             acodecSignal_->errorNum_ += 1;
-            break;
         } else {
             encInCnt_ ++;
         }
-
         timeStampEnc_ += SAMPLE_DURATION_US;
-        acodecSignal_->inQueueEnc_.pop();
-        acodecSignal_->inBufferQueueEnc_.pop();
+        PopOutqueueDec();
+        PopInqueueEnc();
     }
-    cout << "DEC-ENC InputFuncEnc: exit while(true)" << endl;
+}
 
+void ADecEncNdkSample::PopOutqueueEnc()
+{
+    if(acodecSignal_ == nullptr) {
+        return;
+    }
+    acodecSignal_->outQueueEnc_.pop();
+    acodecSignal_->sizeQueueEnc_.pop();
+    acodecSignal_->flagQueueEnc_.pop();
+    acodecSignal_->outBufferQueueEnc_.pop();
+}
+
+void ADecEncNdkSample::OutputFuncEnc()
+{
+    while(true) {
+        if (!isEncRunning_.load()) {
+            break;
+        }
+        unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
+        acodecSignal_->outCondEnc_.wait(lock, [this](){ return acodecSignal_->outQueueEnc_.size() > 0; });
+        if (!isEncRunning_.load()) {
+            break;
+        }
+        if (acodecSignal_->isFlushing_.load() || isEncOutputEOS) {
+            PopOutqueueEnc();
+            continue;
+        }
+        uint32_t index = acodecSignal_->outQueueEnc_.front();
+        auto buffer = acodecSignal_->outBufferQueueEnc_.front();
+        uint32_t size = acodecSignal_->sizeQueueEnc_.front();
+        uint32_t encOutflag = acodecSignal_->flagQueueEnc_.front();
+        if (encOutflag == 1) {
+            cout << "ENC get output EOS" << endl;
+            isEncOutputEOS = true;
+        } else {
+            FILE *outFile;
+            outFile = fopen(OUT_FILE, "a");
+            if (outFile == nullptr) {
+                cout << "dump data fail" << endl;
+            } else {
+                fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+            }
+            fclose(outFile);
+            if (OH_AudioEncoder_FreeOutputData(aenc_, index) != AV_ERR_OK) {
+                cout << "Fatal: ReleaseOutputBuffer fail" << endl;
+                acodecSignal_->errorNum_ += 1;
+            } else {
+                encOutCnt_ += 1;
+                cout << "ENC output cnt: "<< encOutCnt_ << endl;
+            }
+        }
+        PopOutqueueEnc();
+    }
 }
 
 void ADecEncNdkSample::SetReadPath(const char * inp_path, uint32_t es[], uint32_t length)
@@ -650,6 +680,20 @@ void ADecEncNdkSample::SetReadPath(const char * inp_path, uint32_t es[], uint32_
     INP_FILE = inp_path;
     ES = es;
     ES_LENGTH = length;
+}
+
+void ADecEncNdkSample::ReRead()
+{
+    if (testFile_ != nullptr) {
+        testFile_->close();
+        cout << "ReRead close before file success "<< endl;
+    }
+    cout << "ReRead INP_FILE is " << INP_FILE << endl;
+    testFile_->open(INP_FILE, std::ios::in | std::ios::binary);
+    if (testFile_ != nullptr) {
+        cout << "testFile open success" << endl;
+    }
+    decInCnt_ = 0;
 }
 
 void ADecEncNdkSample::SetEosState(bool needSetEos)
@@ -662,63 +706,6 @@ void ADecEncNdkSample::SetSavePath(const char * outp_path)
     OUT_FILE = outp_path;
 }
 
-void ADecEncNdkSample::OutputFuncEnc()
-{
-    while(true) {
-        cout << "ENC enter OutputFuncEnc()" << endl;
-
-        if (!isEncRunning_.load()) {
-            break;
-        }
-
-        unique_lock<mutex> lock(acodecSignal_->outMutexEnc_);
-        acodecSignal_->outCondEnc_.wait(lock, [this](){ return acodecSignal_->outQueueEnc_.size() > 0; });
-
-        if (!isEncRunning_.load()) {
-            break;
-        }
-        if (acodecSignal_->isFlushing_.load() || isEncOutputEOS) {
-            acodecSignal_->outQueueEnc_.pop();
-            acodecSignal_->sizeQueueEnc_.pop();        
-            acodecSignal_->flagQueueEnc_.pop();
-            acodecSignal_->outBufferQueueEnc_.pop();
-            continue;
-        }
-        uint32_t index = acodecSignal_->outQueueEnc_.front();
-        auto buffer = acodecSignal_->outBufferQueueEnc_.front();
-        uint32_t size = acodecSignal_->sizeQueueEnc_.front();
-        uint32_t encOutflag = acodecSignal_->flagQueueEnc_.front();
-        
-        if (encOutflag == 1) {
-            cout << "ENC get output EOS" << endl;
-            isEncOutputEOS = true;
-        } else {
-            if (NEED_DUMP) {
-                FILE *outFile;
-                outFile = fopen(OUT_FILE, "a");
-                if (outFile == nullptr) {
-                    cout << "dump data fail" << endl;
-                } else {
-                    fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
-                }
-                fclose(outFile);
-            }
-            if (OH_AudioEncoder_FreeOutputData(aenc_, index) != AV_ERR_OK) {
-                cout << "Fatal: ReleaseOutputBuffer fail" << endl;
-                acodecSignal_->errorNum_ += 1;
-            } else {
-                encOutCnt_ += 1;
-                cout << "ENC output cnt: "<< encOutCnt_ << endl;
-            }
-        }
-        acodecSignal_->outQueueEnc_.pop();
-        acodecSignal_->sizeQueueEnc_.pop();        
-        acodecSignal_->flagQueueEnc_.pop();
-        acodecSignal_->outBufferQueueEnc_.pop();
-    }
-    cout << "ENC OutputFuncEnc: exit while(true)" << endl;
-}
-
 int32_t ADecEncNdkSample::CalcuError()
 {
     cout << "errorNum_ is :" << acodecSignal_->errorNum_ << endl;
@@ -726,13 +713,10 @@ int32_t ADecEncNdkSample::CalcuError()
     cout << "decOutCnt_ is :" << decOutCnt_ << endl;
     cout << "encInCnt_ is :" << encInCnt_ << endl;
     cout << "encOutCnt_ is :" << encOutCnt_ << endl;
-
     cout << "acodecSignal_->inQueueDec_.size() is :" << acodecSignal_->inQueueDec_.size() << endl;
     cout << "acodecSignal_->outQueueDec_.size() is :" << acodecSignal_->outQueueDec_.size() << endl;
     cout << "acodecSignal_->inQueueEnc_.size() is :" << acodecSignal_->inQueueEnc_.size() << endl;
     cout << "acodecSignal_->outQueueEnc_.size() is :" << acodecSignal_->outQueueEnc_.size() << endl;
-
-
     return acodecSignal_->errorNum_ ;
 }
 
