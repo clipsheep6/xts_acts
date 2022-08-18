@@ -1897,9 +1897,9 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await audio, createAudioCapturer(AudioCapturerOptions).then(async function (data) {
+        await audio.createAudioCapturer(AudioCapturerOptions).then(async function (data) {
             console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' + data.state);
-            expect(true).assertTrue();
+            expect(false).assertTrue();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' + err.message);
             expect(true).assertTrue();
@@ -1975,7 +1975,7 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await audio, createAudioCapturer(AudioCapturerOptions).then(async function (data) {
+        await audio.createAudioCapturer(AudioCapturerOptions).then(async function (data) {
             console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' + data);
             expect(true).assertFail();
         }).catch((err) => {
