@@ -36,16 +36,13 @@ public:
     // Preset action of the test case
     void SetUp(void)
     {
-        // testInfo_ = ::testing::UnitTest::GetInstance()->current_test_info();
         printf("ActsVideoDecEncNdkTest::SetUp");
     }
     // Cleanup action of the test case
     virtual void TearDown(void)
     {
-        // testInfo_ = ::testing::UnitTest::GetInstance()->current_test_info();
         printf("ActsVideoDecEncNdkTest::TearDown");
     }
-    // const ::testing::TestInfo *testInfo_ = nullptr;
 };
 }
 }

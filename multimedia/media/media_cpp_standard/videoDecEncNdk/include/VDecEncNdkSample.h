@@ -88,6 +88,7 @@ public:
     int32_t FlushEnc();
     int32_t ResetEnc();
     int32_t ReleaseEnc();
+    
     int32_t CalcuError();
     void SetReadPath(std::string filepath);
     void SetSavePath(std::string filepath);
@@ -97,6 +98,10 @@ public:
     int32_t GetFrameCount();
     bool GetEncEosState();
     bool GetDecEosState();
+    void PopInqueueDec();
+    void PopOutqueueDec();
+    void PopOutqueueEnc();
+    int32_t PushInbufferDec(uint32_t index, uint32_t bufferSize);
     VDecEncSignal* vcodecSignal_ = nullptr;
     bool isDecInputEOS = false;
     bool isEncInputEOS = false;
@@ -128,7 +133,6 @@ private:
     std::string inFile_ = "/data/media/out_320_240_10s.h264";
     std::string outFile_ = "/data/media/video_out.es";
 };
-
 }
 }
 #endif // VIDEODECENC_NDK_SAMPLE_H
