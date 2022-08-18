@@ -1900,8 +1900,7 @@ describe('audioCapturer', function () {
 		await audio,createAudioCapturer(AudioCapturerOptions).then(async function (data) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data.state);
 				expect(true).assertTrue();
-            }
-        }).catch((err) => {
+            }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
 			expect(true).assertTrue();
         });
