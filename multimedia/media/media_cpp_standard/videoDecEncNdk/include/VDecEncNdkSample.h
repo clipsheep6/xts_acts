@@ -35,7 +35,6 @@
 
 namespace OHOS {
 namespace Media {
-
 class VDecEncSignal {
 public:
     std::mutex inMutexDec_;
@@ -59,9 +58,7 @@ public:
     int32_t errorNum_ = 0;
     std::atomic<bool> isVdecFlushing_ = false;
     std::atomic<bool> isVencFlushing_ = false;
-
 };
-
 
 class VDecEncNdkSample : public NoCopyable {
 public:
@@ -101,6 +98,7 @@ public:
     void PopInqueueDec();
     void PopOutqueueDec();
     void PopOutqueueEnc();
+    void SendEncEos();
     int32_t PushInbufferDec(uint32_t index, uint32_t bufferSize);
     VDecEncSignal* vcodecSignal_ = nullptr;
     bool isDecInputEOS = false;

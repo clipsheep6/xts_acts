@@ -18,7 +18,7 @@
 
 #include <stdio.h>
 
-#define RET_FAIL -1
+#define RET_FAIL (-1)
 #define RET_OK   0
 
 #define NDK_CHECK_AND_RETURN_RET_LOG(cond, ret, fmt, ...)       \

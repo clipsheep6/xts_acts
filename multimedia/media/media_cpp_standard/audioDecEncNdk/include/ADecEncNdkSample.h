@@ -35,7 +35,6 @@
 
 namespace OHOS {
 namespace Media {
-
 class ADecEncSignal {
 public:
     std::mutex inMutexDec_;
@@ -61,7 +60,6 @@ public:
     std::atomic<bool> isFlushing_ = false;
 };
 
-
 class ADecEncNdkSample : public NoCopyable {
 public:
     ADecEncNdkSample() = default;
@@ -86,9 +84,9 @@ public:
     int32_t ReleaseEnc();
     int32_t CalcuError();
 
-    void SetReadPath(const char * inp_path, uint32_t es[], uint32_t length);
+    void SetReadPath(const char* inp_path, uint32_t es[], uint32_t length);
     void SetEosState(bool needSetEos);
-    void SetSavePath(const char * outp_path);
+    void SetSavePath(const char* outp_path);
     void ReRead();
     void ResetDecParam();
     void ResetEncParam();
@@ -131,11 +129,10 @@ private:
     struct OH_AVCodecAsyncCallback cbEnc_;
     int64_t timeStampEnc_ = 0;
     std::string outDir_ = "/data/media/out.aac";
-    const char * INP_FILE;
-    const char * OUT_FILE;
+    const char* INP_FILE;
+    const char* OUT_FILE;
     uint32_t* ES;
     uint32_t ES_LENGTH = 0;
-
 };
 }
 }

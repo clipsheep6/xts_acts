@@ -13,15 +13,13 @@
  * limitations under the License.
  */
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <string>
 #include "gtest/gtest.h"
-#include "ActsVideoDecEncNdkTest.h"
 #include "native_avcodec_videodecoder.h"
 #include "native_avcodec_videoencoder.h"
-#include "native_avformat.h"
 #include "native_avcodec_base.h"
+#include "native_avformat.h"
+#include "ActsVideoDecEncNdkTest.h"
 
 using namespace std;
 using namespace testing::ext;
@@ -35,51 +33,53 @@ namespace {
     constexpr uint32_t DEFAULT_HEIGHT = 240;
     constexpr uint32_t DEFAULT_PIXELFORMAT = 2;
     constexpr uint32_t DEFAULT_FRAMERATE = 60;
-    const char * READPATH = "/data/media/out_320_240_10s.h264";
+    const char* READPATH = "/data/media/out_320_240_10s.h264";
 
-}
 
-bool CheckDecDesc(map<string, int> InDesc, OH_AVFormat* OutDesc){
-    int32_t out ;
-    for(const auto& t: InDesc){
-         bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
-         cout << "key: " << t.first << "; out: " << out <<endl;
-        if(!res){
-            cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
-            return false;
+    bool CheckDecDesc(map<string, int> InDesc, OH_AVFormat* OutDesc)
+    {
+        int32_t out ;
+        for (const auto& t: InDesc) {
+            bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
+            cout << "key: " << t.first << "; out: " << out <<endl;
+            if (!res) {
+                cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
+                return false;
+            }
+            if (out != t.second) {
+                cout << "OH_AVFormat_GetIntValue error. key: " << t.first
+                << "; expect: "<< t.second
+                << ", actual: "<< out << endl;
+                return false;
+            }
+            out = 0;
         }
-        if(out != t.second){
-            cout << "OH_AVFormat_GetIntValue error. key: " << t.first
-            << "; expect: "<< t.second
-            << ", actual: "<< out << endl;
-            return false;
-        }
-        out = 0;
+        return true;
     }
-    return true;
-}
 
-bool SetFormat(struct OH_AVFormat *format, map<string, int> mediaDescription){
-    const char *key;
-    for(const auto& t: mediaDescription){
-        key = t.first.c_str();
-        if (not OH_AVFormat_SetIntValue(format, key, t.second)){
-            cout << "OH_AV_FormatPutIntValue Fail. format key: " << t.first
-            << ", value: "<< t.second << endl;
-            return false;
+    bool SetFormat(struct OH_AVFormat *format, map<string, int> mediaDescription)
+    {
+        const char *key;
+        for (const auto& t: mediaDescription) {
+            key = t.first.c_str();
+            if (not OH_AVFormat_SetIntValue(format, key, t.second)) {
+                cout << "OH_AV_FormatPutIntValue Fail. format key: " << t.first
+                << ", value: "<< t.second << endl;
+                return false;
+            }
         }
+        return true;
     }
-    return true;
-}
 
-struct OH_AVFormat* createFormat()
-{
-    OH_AVFormat *DefaultFormat = OH_AVFormat_Create();
-    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
-    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
-    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
-    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_FRAME_RATE, DEFAULT_FRAMERATE);
-    return DefaultFormat;
+    struct OH_AVFormat* createFormat()
+    {
+        OH_AVFormat *DefaultFormat = OH_AVFormat_Create();
+        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_FRAME_RATE, DEFAULT_FRAMERATE);
+        return DefaultFormat;
+    }
 }
 
 /**
@@ -96,7 +96,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
     struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath(READPATH);
-    vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_001.es");
     
     OH_AVFormat *VideoFormat = OH_AVFormat_Create();
@@ -125,7 +124,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
@@ -142,7 +141,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
  * @tc.name      : reset at end of stream
  * @tc.desc      : Basic function test
  */
- HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest002, Function | MediumTest | Level1)
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest002, Function | MediumTest | Level1)
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
@@ -151,7 +150,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
     struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath(READPATH);
-    vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_002.es");
     
     OH_AVFormat *VideoFormat = createFormat();
@@ -164,7 +162,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest001, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ResetDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
@@ -191,7 +189,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
     struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath(READPATH);
-    vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_003.es");
     
     OH_AVFormat *VideoFormat = createFormat();
@@ -204,7 +201,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
@@ -214,12 +211,12 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
 }
 
- /**
- * @tc.number    : ActsVideoDecEncNdkTest004
- * @tc.name      : flush at running
- * @tc.desc      : Basic function test
- */
- HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest004, Function | MediumTest | Level1)
+/**
+* @tc.number    : ActsVideoDecEncNdkTest004
+* @tc.name      : flush at running
+* @tc.desc      : Basic function test
+*/
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest004, Function | MediumTest | Level1)
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
@@ -241,7 +238,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(vDecEncSample->GetFrameCount() < 100){};
+    while (vDecEncSample->GetFrameCount() < 100) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushEnc());
     vDecEncSample->ReRead();
@@ -253,7 +250,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest003, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
@@ -291,7 +288,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetDecEosState()){};
+    while (!vDecEncSample->GetDecEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushEnc());
@@ -304,7 +301,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
@@ -320,7 +317,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
  * @tc.name      : stop at running and restart to eos
  * @tc.desc      : Basic function test
  */
- HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest006, Function | MediumTest | Level1)
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest006, Function | MediumTest | Level1)
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
@@ -342,7 +339,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(vDecEncSample->GetFrameCount() < 100){};
+    while (vDecEncSample->GetFrameCount() < 100) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopEnc());
     vDecEncSample->ReRead();
@@ -353,7 +350,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest005, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
@@ -393,7 +390,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest007, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetDecEosState()){};
+    while (!vDecEncSample->GetDecEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->FlushEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
@@ -405,7 +402,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest007, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
@@ -432,7 +429,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath(READPATH);
-    vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_008.es");
     
     OH_AVFormat *VideoFormat = createFormat();
@@ -445,7 +441,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ResetDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ResetEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->CalcuError());
@@ -453,7 +449,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     vDecEncSample->ResetDecParam();
     vDecEncSample->ResetEncParam();
     vDecEncSample->SetSavePath("/data/media/video_008_2.es");
-    vDecEncSample->SetEosState(true);
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureDec(VideoFormat));
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ConfigureEnc(VideoFormat));
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->GetSurface());
@@ -463,7 +458,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StopDec());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
@@ -481,7 +476,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
  * @tc.name      : release at eos and restart to eos
  * @tc.desc      : Basic function test
  */
- HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest009, Function | MediumTest | Level1)
+HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest009, Function | MediumTest | Level1)
 {
     VDecEncNdkSample *vDecEncSample = new VDecEncNdkSample();
 
@@ -490,7 +485,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     struct OH_AVCodec* videoEnc = vDecEncSample->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc);
     vDecEncSample->SetReadPath(READPATH);
-    vDecEncSample->SetEosState(true);
     vDecEncSample->SetSavePath("/data/media/video_009.es");
     
     OH_AVFormat *VideoFormat = createFormat();
@@ -504,7 +498,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->StartDec());
 
-    while(!vDecEncSample->GetEncEosState()){};
+    while (!vDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseDec());
     videoDec = nullptr;
     ASSERT_EQ(AV_ERR_OK, vDecEncSample->ReleaseEnc());
@@ -521,7 +515,6 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     struct OH_AVCodec* videoEnc2 = vDecEncSample2->CreateVideoEncoder(MIME_TYPE_ENC);
     ASSERT_NE(nullptr, videoEnc2);
     vDecEncSample2->SetReadPath(READPATH);
-    vDecEncSample->SetEosState(true);
     vDecEncSample2->SetSavePath("/data/media/video_009_2.es");
     
     ASSERT_EQ(AV_ERR_OK, vDecEncSample2->ConfigureDec(VideoFormat));
@@ -533,7 +526,7 @@ HWTEST_F(ActsVideoDecEncNdkTest, ActsVideoDecEncNdkTest008, Function | MediumTes
     ASSERT_EQ(AV_ERR_OK, vDecEncSample2->StartEnc());
     ASSERT_EQ(AV_ERR_OK, vDecEncSample2->StartDec());
 
-    while(!vDecEncSample2->GetEncEosState()){};
+    while (!vDecEncSample2->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, vDecEncSample2->ReleaseDec());
     videoDec2 = nullptr;
     ASSERT_EQ(AV_ERR_OK, vDecEncSample2->ReleaseEnc());
