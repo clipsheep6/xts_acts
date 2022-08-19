@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "400000",
+        "package": "com.example.myapplicationxtsd",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsTouchInterceptTest.hap",
+            "accessibilityGestureD.hap",
+            "accessibilityGesture2D.hap"
+            
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },        
+        {
+        "type": "ShellKit",
+        "teardown-command":[
+            "bm uninstall -n com.example.myapplicationxtsd",
+            "bm uninstall -n com.example.accessibilitygestured.hmservice",
+            "bm uninstall -n com.example.accessibilitygesture2d.hmservice"
+        ]
+        }
+    ]
+}

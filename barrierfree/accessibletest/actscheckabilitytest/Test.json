@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "280000",
+        "package": "com.example.checkabilityisopen",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsCheckAbilityTest.hap",
+            "accessibilityBaseAbility.hap",
+            "accessibilityCheckAbility.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },        
+        {
+        "type": "ShellKit",
+        "teardown-command":[
+            "bm uninstall -n com.example.checkabilityisopen",
+            "bm uninstall -n com.example.accessiblebaseability.hmservice",
+            "bm uninstall -n com.example.accessiblecheckability.hmservice"
+        ]
+        }
+    ]
+}

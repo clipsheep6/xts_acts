@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "280000",
+        "package": "com.example.accessibilityconfigpart",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsMouseAutoClickTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },        
+        {
+        "type": "ShellKit",
+        "teardown-command":[
+            "bm uninstall -n com.example.accessibilityconfigpart"
+        ]
+        }
+    ]
+}

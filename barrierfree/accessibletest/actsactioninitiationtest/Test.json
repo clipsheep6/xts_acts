@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "380000",
+        "package": "com.example.actioninitiationtest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsActionInitiationTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },        
+        {
+        "type": "ShellKit",
+        "teardown-command":[
+            "bm uninstall -n com.example.actioninitiationtest"
+        ]
+        }
+    ]
+}
