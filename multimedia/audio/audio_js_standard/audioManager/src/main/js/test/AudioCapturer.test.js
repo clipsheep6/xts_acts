@@ -23,24 +23,31 @@ describe('audioCapturer', function () {
     var audioCapCallBack;
     var audioCapPromise;
     var dirPath;
-    async function getFd(fileName) {
+    var fpath;
+    async function getAbilityInfo(fileName) {
         let context = await featureAbility.getContext();
+        console.info("case0 context is  " + context);
         await context.getFilesDir().then((data) => {
-            dirPath = data + '/' + fileName;
-            console.info('case2 dirPath is ' + dirPath);
+            console.info("case1 getFilesDir is path " + data);
+            fpath = data + '/' + fileName;
+            console.info('case2 fpath is ' + fpath);
         })
     }
-    async function closeFileDescriptor() {
-        await resourceManager.getResourceManager().then(async (mgr) => {
-            await mgr.closeRawFileDescriptor(dirPath).then(value => {
-                console.log('AudioFrameworkRenderLog:case closeRawFileDescriptor success for file:' + dirPath);
-            }).catch(error => {
-                console.log('AudioFrameworkRenderLog:case closeRawFileDescriptor err: ' + error);
-            });
-        });
+    async function getInfo(fileName) {
+        let context = await featureAbility.getContext();
+        console.info("case0 context is  " + context);
+        await context.getFilesDir().then((data) => {
+            console.info("case1 getFilesDir is path " + data);
+            dirPath = data + '/' + fileName;
+            console.info('case2 fpath is ' + dirPath);
+        })
     }
+    const audioManager = audio.getAudioManager();
+    console.info('AudioFrameworkRenderLog: Create AudioManger Object JS Framework');
+
     const audioManagerRec = audio.getAudioManager();
     console.info('AudioFrameworkRecLog: Create AudioManger Object JS Framework');
+
     beforeAll(async function () {
         console.info('AudioFrameworkTest: beforeAll: Prerequisites at the test suite level');
         await sleep(100);
@@ -54,7 +61,6 @@ describe('audioCapturer', function () {
 
     afterEach(function () {
         console.info('AudioFrameworkTest: afterEach: Test case-level clearance conditions');
-        closeFileDescriptor();
     })
 
     afterAll(async function () {
@@ -67,7 +73,7 @@ describe('audioCapturer', function () {
     }
 
 
-    async function recPromise(AudioCapturerOptions, dirPath, AudioScene) {
+    async function recPromise(AudioCapturerOptions, fpath, AudioScene) {
 
         var resultFlag = 'new';
         console.info('AudioFrameworkRecLog: Promise : Audio Recording Function');
@@ -79,9 +85,9 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
-            let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let sampleFormat = AudioCapturerOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
                 return;
@@ -94,7 +100,7 @@ describe('audioCapturer', function () {
             return resultFlag;
         }
 
-        console.info('AudioFrameworkRecLog: AudioCapturer : Path : ' + dirPath);
+        console.info('AudioFrameworkRecLog: AudioCapturer : Path : ' + fpath);
 
         console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCap.state);
 
@@ -154,7 +160,7 @@ describe('audioCapturer', function () {
         var bufferSize = await audioCap.getBufferSize();
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
 
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         }
@@ -164,7 +170,7 @@ describe('audioCapturer', function () {
             return resultFlag;
         }
 
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         }
@@ -213,7 +219,7 @@ describe('audioCapturer', function () {
     }
 
 
-    async function recCallBack(AudioCapturerOptions, dirPath, AudioScene) {
+    async function recCallBack(AudioCapturerOptions, fpath, AudioScene) {
 
         var resultFlag = true;
         console.info('AudioFrameworkRecLog: CallBack : Audio Recording Function');
@@ -282,7 +288,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -291,7 +297,7 @@ describe('audioCapturer', function () {
             return resultFlag;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -363,7 +369,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -414,7 +420,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -459,7 +465,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -530,7 +536,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -546,7 +552,6 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
             }
         });
-        await sleep(1000);
         await audioCapCallBack.start(async (err, value) => {
             console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
             console.info('AudioFrameworkRecLog: ---------START---------');
@@ -602,7 +607,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -690,7 +695,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -773,7 +778,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -861,7 +866,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -950,7 +955,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1026,7 +1031,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_010', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -1036,7 +1041,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1073,7 +1078,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -1081,7 +1086,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -1092,26 +1097,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
-         
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(1000);
@@ -1155,7 +1155,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1198,7 +1198,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1242,7 +1242,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1307,7 +1307,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1372,7 +1372,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1448,7 +1448,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1525,7 +1525,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1599,7 +1599,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1674,7 +1674,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1739,7 +1739,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_PROMISE_READ_BUFFER_020', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkpromisereadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkpromisereadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -1749,7 +1749,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1785,7 +1785,7 @@ describe('audioCapturer', function () {
         stateFlag = true;
 
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -1793,7 +1793,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -1854,7 +1854,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1862,7 +1862,7 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await getFd("capture_CB_js-44100-2C-16B.pcm");
+        await getInfo("capture_CB_js-44100-2C-16B.pcm");
         var resultFlag = await recCallBack(AudioCapturerOptions, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(1000);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -1888,7 +1888,7 @@ describe('audioCapturer', function () {
         }
 
         var AudioCapturerInfo = {
-            source: 1,
+            source: -1,
             capturerFlags: 0
         }
 
@@ -1897,11 +1897,13 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await getFd("capture_CB_js-44100-2C-16B.pcm");
-        var resultFlag = await recCallBack(AudioCapturerOptions, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
-        await sleep(1000);
-        console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
-        expect(resultFlag).assertTrue();
+        await audio,createAudioCapturer(audioCapturerOptions8000).then(async function (data) {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data);
+            expect(true).assertFail();
+        }).catch((err) => {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
+            expect(true).assertTrue();
+        });
         done();
     })
 
@@ -1926,7 +1928,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -1934,7 +1936,7 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await getFd("capture_js-44100-2C-16B.pcm");
+        await getInfo("capture_js-44100-2C-16B.pcm");
         var resultFlag = await recPromise(AudioCapturerOptions, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -1964,7 +1966,7 @@ describe('audioCapturer', function () {
         }
 
         var AudioCapturerInfo = {
-            source: 1,
+            source: 7,
             capturerFlags: 0
         }
 
@@ -1973,7 +1975,7 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await getFd("capture_js-44100-2C-16B.pcm");
+        await getInfo("capture_js-44100-2C-16B.pcm");
         var resultFlag = await recPromise(AudioCapturerOptions, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2001,14 +2003,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions44100 = {
             streamInfo: audioStreamInfo44100,
             capturerInfo: audioCapturerInfo44100,
         }
 
-        await getFd("capture_js-44100-1C-16LE.pcm");
+        await getInfo("capture_js-44100-1C-16LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions44100, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2035,15 +2037,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo44100 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions44100 = {
             streamInfo: audioStreamInfo44100,
             capturerInfo: audioCapturerInfo44100,
         }
 
-        await getFd("capture_js-44100-1C-16LE.pcm");
+        await getInfo("capture_js-44100-1C-16LE.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions44100, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2071,14 +2073,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo96000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions96000 = {
             streamInfo: audioStreamInfo96000,
             capturerInfo: audioCapturerInfo96000,
         }
 
-        await getFd("capture_js-96000-1C-S24LE.pcm");
+        await getInfo("capture_js-96000-1C-S24LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions96000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2104,15 +2106,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo96000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions96000 = {
             streamInfo: audioStreamInfo96000,
             capturerInfo: audioCapturerInfo96000,
         }
 
-        await getFd("capture_js-96000-1C-S24LE.pcm");
+        await getInfo("capture_js-96000-1C-S24LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions96000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2139,14 +2141,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo48000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions48000 = {
             streamInfo: audioStreamInfo48000,
             capturerInfo: audioCapturerInfo48000,
         }
 
-         await getFd("capture_js-48000-2C-1S32LE.pcm");
+         await getInfo("capture_js-48000-2C-1S32LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions48000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2172,15 +2174,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo48000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions48000 = {
             streamInfo: audioStreamInfo48000,
             capturerInfo: audioCapturerInfo48000,
         }
 
-         await getFd("capture_js-48000-2C-1S32LE.pcm");
+         await getInfo("capture_js-48000-2C-1S32LE.pcm");
         var resultFlag = await recPromise(audioCapturerOptions48000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2207,14 +2209,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo8000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions8000 = {
             streamInfo: audioStreamInfo8000,
             capturerInfo: audioCapturerInfo8000,
         }
 
-         await getFd("capture_js-8000-1C-8B.pcm");
+         await getInfo("capture_js-8000-1C-8B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions8000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2241,20 +2243,20 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo8000 = {
             source: 1,
-            capturerFlags: 0
+            capturerFlags: 0,
         }
         var audioCapturerOptions8000 = {
             streamInfo: audioStreamInfo8000,
             capturerInfo: audioCapturerInfo8000,
         }
 
-         await getFd("capture_js-8000-1C-8B.pcm");
-        var resultFlag = await recPromise(audioCapturerOptions8000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
-        await sleep(100);
-        console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
-
-        expect(resultFlag).assertTrue();
-
+        await audio,createAudioCapturer(audioCapturerOptions8000).then(async function (data) {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: Success:' +data);
+            expect(true).assertFail();
+        }).catch((err) => {
+            console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR:' +err.message);
+            expect(true).assertTrue();
+        });
         done();
     })
 
@@ -2275,14 +2277,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo11025 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions11025 = {
             streamInfo: audioStreamInfo11025,
             capturerInfo: audioCapturerInfo11025,
         }
 
-         await getFd("capture_js-11025-2C-16B.pcm");
+         await getInfo("capture_js-11025-2C-16B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions11025, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2308,15 +2310,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo11025 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions11025 = {
             streamInfo: audioStreamInfo11025,
             capturerInfo: audioCapturerInfo11025,
         }
 
-         await getFd("capture_js-11025-2C-16B.pcm");
+         await getInfo("capture_js-11025-2C-16B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions11025, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2344,14 +2346,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo12000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions12000 = {
             streamInfo: audioStreamInfo12000,
             capturerInfo: audioCapturerInfo12000,
         }
 
-        await getFd("capture_js-12000-1C-24B.pcm");
+        await getInfo("capture_js-12000-1C-24B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions12000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2377,15 +2379,15 @@ describe('audioCapturer', function () {
             encodingType: 0
         };
         var audioCapturerInfo12000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions12000 = {
             streamInfo: audioStreamInfo12000,
             capturerInfo: audioCapturerInfo12000,
         }
 
-        await getFd("capture_js-12000-1C-24B.pcm");
+        await getInfo("capture_js-12000-1C-24B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions12000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2412,14 +2414,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo16000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions16000 = {
             streamInfo: audioStreamInfo16000,
             capturerInfo: audioCapturerInfo16000,
         }
 
-        await getFd("capture_js-16000-2C-32B.pcm");
+        await getInfo("capture_js-16000-2C-32B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions16000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2445,15 +2447,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo16000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions16000 = {
             streamInfo: audioStreamInfo16000,
             capturerInfo: audioCapturerInfo16000,
         }
 
-        await getFd("capture_js-16000-2C-32B.pcm");
+        await getInfo("capture_js-16000-2C-32B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions16000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2480,14 +2482,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo22050 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions22050 = {
             streamInfo: audioStreamInfo22050,
             capturerInfo: audioCapturerInfo22050,
         }
 
-        await getFd("capture_js-22050-1C-8B.pcm");
+        await getInfo("capture_js-22050-1C-8B.pcm");
         var resultFlag = await recPromise(audioCapturerOptions22050, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
         console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
@@ -2513,15 +2515,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo22050 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions22050 = {
             streamInfo: audioStreamInfo22050,
             capturerInfo: audioCapturerInfo22050,
         }
 
-        await getFd("capture_js-22050-1C-8B.pcm");
+        await getInfo("capture_js-22050-1C-8B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions22050, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2549,14 +2551,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo24000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions24000 = {
             streamInfo: audioStreamInfo24000,
             capturerInfo: audioCapturerInfo24000,
         }
 
-        await getFd("capture_js-24000-2C-16B.pcm");
+        await getInfo("capture_js-24000-2C-16B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions24000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2583,15 +2585,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo24000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions24000 = {
             streamInfo: audioStreamInfo24000,
             capturerInfo: audioCapturerInfo24000,
         }
 
-        await getFd("capture_js-24000-2C-16B.pcm");
+        await getInfo("capture_js-24000-2C-16B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions24000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2619,14 +2621,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo32000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions32000 = {
             streamInfo: audioStreamInfo32000,
             capturerInfo: audioCapturerInfo32000,
         }
 
-        await getFd("capture_js-32000-1C-24B.pcm");
+        await getInfo("capture_js-32000-1C-24B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions32000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2653,15 +2655,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo32000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions32000 = {
             streamInfo: audioStreamInfo32000,
             capturerInfo: audioCapturerInfo32000,
         }
 
-        await getFd("capture_js-32000-1C-24B.pcm");
+        await getInfo("capture_js-32000-1C-24B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions32000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2693,14 +2695,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo64000 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions64000 = {
             streamInfo: audioStreamInfo64000,
             capturerInfo: audioCapturerInfo64000,
         }
 
-        await getFd("capture_js-64000-2C-32B.pcm");
+        await getInfo("capture_js-64000-2C-32B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions64000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2729,15 +2731,15 @@ describe('audioCapturer', function () {
             encodingType: 0,
         };
         var audioCapturerInfo64000 = {
-            source: 1,
-            capturerFlags: 0
+            source: 0,
+            capturerFlags: 0,
         }
         var audioCapturerOptions64000 = {
             streamInfo: audioStreamInfo64000,
             capturerInfo: audioCapturerInfo64000,
         }
 
-        await getFd("capture_js-64000-2C-32B.pcm");
+        await getInfo("capture_js-64000-2C-32B.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions64000, dirPath, audio.AudioScene.AUDIO_SCENE_VOICE_CHAT);
         await sleep(100);
@@ -2766,14 +2768,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions44100 = {
             streamInfo: audioStreamInfo44100,
             capturerInfo: audioCapturerInfo44100,
         }
 
-        await getFd("capture_js-44100-1C-16LE.pcm");
+        await getInfo("capture_js-44100-1C-16LE.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions44100, dirPath, audio.AudioScene.AUDIO_SCENE_DEFAULT);
         await sleep(100);
@@ -2802,14 +2804,14 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var audioCapturerOptions44100 = {
             streamInfo: audioStreamInfo44100,
             capturerInfo: audioCapturerInfo44100,
         }
 
-        await getFd("capture_js-44100-1C-16LE.pcm");
+        await getInfo("capture_js-44100-1C-16LE.pcm");
 
         var resultFlag = await recPromise(audioCapturerOptions44100, dirPath, 0);
         await sleep(100);
@@ -2831,7 +2833,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_START_055', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -2841,7 +2843,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -2930,7 +2932,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_READ_WRITE_056', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -2940,7 +2942,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -2988,7 +2990,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -2996,7 +2998,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -3007,34 +3009,30 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        await audioCapCallBack.getAudioTime().then(async function (audioTime1) {
-                            console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime1);
-                            if (audioTime1 != 0) {
-                                stateFlag = true;
-                            } else {
-                                stateFlag = false;
-                            }
-                        }).catch((err) => {
-                            console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-                        });
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    await audioCapCallBack.getAudioTime().then(async function (audioTime1) {
+                        console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime1);
+                        if (audioTime1 != 0) {
+                            stateFlag = true;
+                        } else {
+                            stateFlag = false;
+                        }
+                    }).catch((err) => {
+                        console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
+                    });
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -3081,7 +3079,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_STOP_057', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -3091,7 +3089,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -3139,7 +3137,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -3147,7 +3145,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -3158,34 +3156,30 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        await audioCapCallBack.getAudioTime().then(async function (audioTime1) {
-                            console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime1);
-                            if (audioTime1 != 0) {
-                                stateFlag = true;
-                            } else {
-                                stateFlag = false;
-                            }
-                        }).catch((err) => {
-                            console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-                        });
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    await audioCapCallBack.getAudioTime().then(async function (audioTime1) {
+                        console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime1);
+                        if (audioTime1 != 0) {
+                            stateFlag = true;
+                        } else {
+                            stateFlag = false;
+                        }
+                    }).catch((err) => {
+                        console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
+                    });
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -3265,7 +3259,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -3349,7 +3343,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -3420,7 +3414,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -3451,18 +3445,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                stateFlag = true;
+                expect(stateFlag).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
-                if ((audioCapPromise.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                stateFlag = false;
+                expect(stateFlag).assertTrue();
+                done();
             }
         });
         await sleep(1000);
@@ -3490,7 +3480,7 @@ describe('audioCapturer', function () {
 
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -3566,7 +3556,7 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: 1,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -3645,7 +3635,7 @@ describe('audioCapturer', function () {
 
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -3724,7 +3714,7 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: 1,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -3805,7 +3795,7 @@ describe('audioCapturer', function () {
 
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -3877,7 +3867,7 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: 1,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -3950,7 +3940,7 @@ describe('audioCapturer', function () {
 
         var audioCapturerInfo44100 = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -4026,7 +4016,7 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: 1,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -4099,7 +4089,7 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: 1,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -4139,7 +4129,7 @@ describe('audioCapturer', function () {
         };
         var audioCapturerInfo44100 = {
             source: 1000,
-            capturerFlags: 0
+            capturerFlags: 1,
         }
         var AudioCapturerOptionsInvalid = {
             streamInfo: audioStreamInfo44100,
@@ -4179,7 +4169,7 @@ describe('audioCapturer', function () {
         }
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptions = {
             streamInfo: AudioStreamInfo,
@@ -4294,7 +4284,7 @@ describe('audioCapturer', function () {
         }
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptions = {
             streamInfo: AudioStreamInfo,
@@ -4375,7 +4365,7 @@ describe('audioCapturer', function () {
         }
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptions = {
             streamInfo: AudioStreamInfo,
@@ -4472,7 +4462,7 @@ describe('audioCapturer', function () {
         }
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
         var AudioCapturerOptions = {
             streamInfo: AudioStreamInfo,
@@ -4579,7 +4569,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_5000_REACH_075', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -4589,7 +4579,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -4638,7 +4628,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -4646,7 +4636,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -4657,25 +4647,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -4717,7 +4703,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_1000_REACH_076', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -4727,7 +4713,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -4776,7 +4762,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -4784,7 +4770,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -4795,25 +4781,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -4849,7 +4831,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_10000_REACH_077', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -4859,7 +4841,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -4908,7 +4890,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -4916,7 +4898,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -4927,25 +4909,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -4982,7 +4960,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_100_REACH_078', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -4992,7 +4970,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5041,7 +5019,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5049,7 +5027,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5060,25 +5038,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5115,7 +5089,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_1_REACH_079', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5125,7 +5099,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5174,7 +5148,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5182,7 +5156,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5193,25 +5167,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5249,7 +5219,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_0_REACH_080', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5259,7 +5229,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5308,7 +5278,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5316,7 +5286,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5327,25 +5297,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5383,7 +5349,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_LARGEVALUE_REACH_081', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5393,7 +5359,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5442,7 +5408,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5450,7 +5416,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5461,25 +5427,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5516,7 +5478,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_NEGATIVEVALUE_REACH_082', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5526,7 +5488,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5575,7 +5537,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5583,7 +5545,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5594,25 +5556,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5649,7 +5607,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_1000_084', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5659,7 +5617,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5677,7 +5635,7 @@ describe('audioCapturer', function () {
         });
         await sleep(1000);
         audioCapCallBack.on('periodReach', 1000, (position) => {
-            if (position == 1000) {
+            if (position == "1000") {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
                 stateFlag = true;
@@ -5706,7 +5664,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5714,7 +5672,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5725,25 +5683,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5804,7 +5758,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_1_085', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5814,7 +5768,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -5832,7 +5786,7 @@ describe('audioCapturer', function () {
         });
         await sleep(1000);
         audioCapCallBack.on('periodReach', 1, (position) => {
-            if (position == 1) {
+            if (position == "1") {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
                 stateFlag = true;
@@ -5861,7 +5815,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -5869,7 +5823,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -5880,25 +5834,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -5959,7 +5909,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_NEGATIVE_086', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -5969,7 +5919,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -6016,7 +5966,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -6024,7 +5974,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -6035,25 +5985,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
@@ -6115,7 +6061,7 @@ describe('audioCapturer', function () {
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_223750_087', 0, async function (done) {
         var stateFlag;
-        await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
+        await getAbilityInfo("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -6125,7 +6071,7 @@ describe('audioCapturer', function () {
 
         var AudioCapturerInfo = {
             source: audio.SourceType.SOURCE_TYPE_MIC,
-            capturerFlags: 0
+            capturerFlags: 1
         }
 
         var AudioCapturerOptions = {
@@ -6172,7 +6118,7 @@ describe('audioCapturer', function () {
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
-        var fd = fileio.openSync(dirPath, 0o102, 0o777);
+        var fd = fileio.openSync(fpath, 0o102, 0o777);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
@@ -6180,7 +6126,7 @@ describe('audioCapturer', function () {
             stateFlag = false;
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
+        fd = fileio.openSync(fpath, 0o2002, 0o666);
         if (fd !== null) {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
@@ -6191,25 +6137,21 @@ describe('audioCapturer', function () {
         var numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK CB READ BUFFER---------');
-            await new Promise((resolve,reject)=>{
-                audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
-                    if (err) {
-                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
-                        reject(err);
-                    } else {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
-                        console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
-                        await sleep(50);
-                        console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
-                        var number = fileio.writeSync(fd, buffer);
-                        console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
-                        await sleep(100);
-                        stateFlag = true;
-                        resolve();
-                    }
-                });
-            })
+            audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
+                if (err) {
+                    console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                    stateFlag = false;
+                } else {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
+                    console.info('AudioFrameworkRecLog: AudioCapturer : readvalue : ' + buffer);
+                    await sleep(50);
+                    console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
+                    var number = fileio.writeSync(fd, buffer);
+                    console.info('BufferRecLog: data written: ' + number);
+                    await sleep(100);
+                    stateFlag = true;
+                }
+            });
             numBuffersToCapture--;
         }
         await sleep(3000);
