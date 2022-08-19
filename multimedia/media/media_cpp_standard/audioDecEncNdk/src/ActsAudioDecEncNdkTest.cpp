@@ -27,8 +27,6 @@ using namespace testing::ext;
 using namespace OHOS;
 using namespace OHOS::Media;
 
-
-
 namespace {
     uint32_t ES_AAC_48000_32_1[] = {
         283, 336, 291, 405, 438, 411, 215, 215, 313, 270, 342, 641, 554, 545, 545, 546,
@@ -129,7 +127,6 @@ namespace {
         }
         return true;
     }
-
 }
 
 /**
@@ -211,7 +208,7 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest002, Function | MediumTes
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
-    while (aDecEncSample->GetFrameCount() < 999) {};
+    while (!aDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ResetDec());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
@@ -251,7 +248,7 @@ HWTEST_F(ActsAudioDecEncNdkTest, ActsAudioDecEncNdkTest003, Function | MediumTes
 
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartEnc());
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->StartDec());
-    while (aDecEncSample->GetFrameCount() < 1000) {};
+    while (!aDecEncSample->GetEncEosState()) {};
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseDec());
     audDec = nullptr;
     ASSERT_EQ(AV_ERR_OK, aDecEncSample->ReleaseEnc());

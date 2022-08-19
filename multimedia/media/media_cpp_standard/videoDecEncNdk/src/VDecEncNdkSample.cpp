@@ -70,7 +70,7 @@ namespace {
         vcodecSignal_->inCondDec_.notify_all();
     }
 
-    void VdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, 
+    void VdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data,
                                 OH_AVCodecBufferAttr *attr, void *userData)
     {
         VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
@@ -97,7 +97,7 @@ namespace {
         cout << "ENC Format Changed" << endl;
     }
 
-    void VencAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data, 
+    void VencAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVMemory *data,
                                 OH_AVCodecBufferAttr *attr, void *userData)
     {
         VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
@@ -572,7 +572,7 @@ int32_t VDecEncNdkSample::StartEnc()
     return OH_VideoEncoder_Start(venc_);
 }
 
-int32_t VDecEncNdkSample::StopEnc() 
+int32_t VDecEncNdkSample::StopEnc()
 {
     cout << "Enter enc stop" << endl;
     unique_lock<mutex> lock(vcodecSignal_->outMutexEnc_);
@@ -698,7 +698,6 @@ void VDecEncNdkSample::OutputFuncEnc()
             if (ret != 0) {
                 cout << "Fatal: ReleaseOutputBuffer fail" << endl;
                 vcodecSignal_->errorNum_ += 1;
-
             } else {
                 encOutCnt_ += 1;
                 cout << "ENC OUT.: output success, encOutCnt_ is " << encOutCnt_ << endl;
