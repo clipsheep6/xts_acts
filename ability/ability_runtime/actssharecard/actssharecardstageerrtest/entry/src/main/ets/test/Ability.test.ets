@@ -79,14 +79,14 @@ export default function abilityTest() {
         * @tc.name    : Support cross-device sharing
         * @tc.desc    : Unauthorized card sharing callback form
         */
-        it('FMS_ShareForm_2900',0, async function  (done) {
+        it('FMS_ShareForm_2900',0, function  (done) {
             console.log("start FMS_ShareForm_2900 =====>");
-            await formHost.shareForm(cardFormId.toString(), "xxxxxxx",(err,data) => {
+            formHost.shareForm(cardFormId.toString(), "xxxxxxx",(err,data) => {
                 console.log("FormMgrService shareForm FMS_ShareForm_2900 ====> result data:" + data);
                 console.log("FormMgrService shareForm FMS_ShareForm_2900 ====> result err:" + err.code);
                 expect(err.code==2).assertTrue();
+                done();
             })
-            done();
         })
     })
 }

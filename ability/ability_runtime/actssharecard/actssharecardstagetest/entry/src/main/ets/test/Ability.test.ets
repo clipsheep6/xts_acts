@@ -134,9 +134,9 @@ export default function abilityTest() {
       * @tc.name    : Support cross-device sharing
       * @tc.desc    : Card interface passes in non-existent formId, callback form test
       */
-    it('FMS_ShareForm_4300', 0,async function  (done) {
+    it('FMS_ShareForm_4300', 0, function  (done) {
       console.log("start FMS_ShareForm_4300 =====>");
-      await formHost.shareForm("111111", "xxxxxxx", (err, data) => {
+      formHost.shareForm("111111", "xxxxxxx", (err, data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_4300 ====> result data:" + data);
         console.log("FormMgrService shareForm FMS_ShareForm_4300 ====> result err:" + err.code);
         expect(err.code == 4).assertTrue();
@@ -149,9 +149,9 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface formId is passed in null, and the callback form test
      */
-    it('FMS_ShareForm_4400', 0,async function  (done) {
+    it('FMS_ShareForm_4400', 0, function  (done) {
       console.log("start FMS_ShareForm_4400 =====>");
-      await formHost.shareForm(null, "xxxxxxx", (err, data) => {
+      formHost.shareForm(null, "xxxxxxx", (err, data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_4400 ====> result data:" + data);
         console.log("FormMgrService shareForm FMS_ShareForm_4400 ====> result err:" + err.code);
         expect(err.code == 1).assertTrue();
@@ -164,9 +164,9 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface formId is passed in undefined, and the callback form test
      */
-    it('FMS_ShareForm_4500', 0,async function  (done) {
+    it('FMS_ShareForm_4500', 0, function  (done) {
       console.log("start FMS_ShareForm_4500 =====>");
-      await formHost.shareForm(undefined, "xxxxxxx", (err, data) => {
+      formHost.shareForm(undefined, "xxxxxxx", (err, data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_4500 ====> result data:" + data);
         console.log("FormMgrService shareForm FMS_ShareForm_4500 ====> result err:" + err.code);
         expect(err.code == 1).assertTrue();
@@ -179,9 +179,9 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface formId is passed in ‘’, and the callback form test
      */
-    it('FMS_ShareForm_4600', 0,async function  (done) {
+    it('FMS_ShareForm_4600', 0, function  (done) {
       console.log("start FMS_ShareForm_4600 =====>");
-      await formHost.shareForm("", "xxxxxxx", (err, data) => {
+      formHost.shareForm("", "xxxxxxx", (err, data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_4600 ====> result data:" + data);
         console.log("FormMgrService shareForm FMS_ShareForm_4600 ====> result err:" + err.code);
         expect(err.code == 1).assertTrue();
@@ -194,9 +194,9 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : Card interface passes in non-existent deviceId, promise form test
      */
-    it('FMS_ShareForm_0900', 0,async function  (done) {
+    it('FMS_ShareForm_0900', 0, async function  (done) {
       console.log("start FMS_ShareForm_0900 =====>");
-     await formHost.shareForm(cardFormId.toString(), "xxxxxxx").then((data) => {
+      await formHost.shareForm(cardFormId.toString(), "xxxxxxx").then((data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_0900 ====> result data:" + data);
         expect().assertFail();
       }).catch((err) => {
@@ -266,7 +266,7 @@ export default function abilityTest() {
       let dmClass;
       let deviceId;
       console.log("FormMgrService getTrustedDeviceListSync called");
-     await deviceManager.createDeviceManager("com.example.sharecardexceptionparameterstagetest", async (err, dm) => {
+      await deviceManager.createDeviceManager("com.example.sharecardexceptionparameterstagetest", async (err, dm) => {
         console.log("FormMgrService createDeviceManager err:" + JSON.stringify(err) + '  --success:' + 
         JSON.stringify(dm))
         dmClass = dm;
@@ -292,14 +292,14 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : Card interface passes in non-existent deviceId, callback form test
      */
-    it('FMS_ShareForm_4900', 0,async function  (done) {
+    it('FMS_ShareForm_4900', 0, function  (done) {
       console.log("start FMS_ShareForm_4900 =====>");
-       await formHost.shareForm(cardFormId.toString(), "xxxxxxx",(err,data) => {
+        formHost.shareForm(cardFormId.toString(), "xxxxxxx", (err, data) => {
           console.log("FormMgrService shareForm FMS_ShareForm_4900 ====> result data:" + data);
           console.log("FormMgrService shareForm FMS_ShareForm_4900 ====> result err:" + err.code);
           expect(err.code == 37).assertTrue();
           done();
-        });
+      });
     })
 
     /*
@@ -307,9 +307,9 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface formId is passed in null, and the promise form test
      */
-    it('FMS_ShareForm_5000', 0,async function  (done) {
+    it('FMS_ShareForm_5000', 0, function  (done) {
       console.log("start FMS_ShareForm_5000 =====>");
-      await formHost.shareForm(cardFormId.toString(), null, (err, data) => {
+      formHost.shareForm(cardFormId.toString(), null, (err, data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_5000 ====> result data:" + data);
         console.log("FormMgrService shareForm FMS_ShareForm_5000 ====> result err:" + err.code);
         expect(err.code == 1).assertTrue();
@@ -322,9 +322,9 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface formId is passed in undefined, and the promise form test
      */
-    it('FMS_ShareForm_5100', 0,async function  (done) {
+    it('FMS_ShareForm_5100', 0, function  (done) {
       console.log("start FMS_ShareForm_5100 =====>");
-      await formHost.shareForm(cardFormId.toString(), undefined, (err, data) => {
+      formHost.shareForm(cardFormId.toString(), undefined, (err, data) => {
         console.log("FormMgrService shareForm FMS_ShareForm_5100 ====> result data:" + data);
         console.log("FormMgrService shareForm FMS_ShareForm_5100 ====> result err:" + err.code);
         expect(err.code == 1).assertTrue();
@@ -337,13 +337,13 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface formId is passed in "", and the promise form test
      */
-    it('FMS_ShareForm_5200', 0,async function  (done) {
+    it('FMS_ShareForm_5200', 0, function  (done) {
       console.log("start FMS_ShareForm_5200 =====>");
-      await formHost.shareForm(cardFormId.toString(), "", (err, data) => {
-        console.log("FormMgrService shareForm FMS_ShareForm_5200 ====> result data:" + data);
-        console.log("FormMgrService shareForm FMS_ShareForm_5200 ====> result err:" + err.code);
-        expect(err.code == 1).assertTrue();
-        done();
+        formHost.shareForm(cardFormId.toString(), "", (err, data) => {
+          console.log("FormMgrService shareForm FMS_ShareForm_5200 ====> result data:" + data);
+          console.log("FormMgrService shareForm FMS_ShareForm_5200 ====> result err:" + err.code);
+          expect(err.code == 1).assertTrue();
+          done();
       });
     })
 
@@ -352,16 +352,16 @@ export default function abilityTest() {
      * @tc.name    : Support cross-device sharing
      * @tc.desc    : The card interface passes in the designId of the machine, test in the form of promise
      */
-    it('FMS_ShareForm_5300', 0,async function  (done) {
+    it('FMS_ShareForm_5300', 0, function  (done) {
       let dmClass;
       let deviceId;
       console.log("FormMgrService getTrustedDeviceListSync called");
-      await deviceManager.createDeviceManager("com.example.sharecardexceptionparameterstagetest", async(err, dm) => {
+        deviceManager.createDeviceManager("com.example.sharecardexceptionparameterstagetest", async(err, dm) => {
         console.log("FormMgrService createDeviceManager err:" + JSON.stringify(err) + '  --success:' + JSON.stringify(dm))
         dmClass = dm;
         deviceId = dmClass.getLocalDeviceInfoSync();
         console.log("start FMS_ShareForm_5300 =====>+" + JSON.stringify(deviceId));
-        await formHost.shareForm(cardFormId.toString(), deviceId.toString(), (err, data) => {
+          formHost.shareForm(cardFormId.toString(), deviceId.toString(), (err, data) => {
           console.log("FormMgrService shareForm FMS_ShareForm_5300 ====> result data:" + data);
           console.log("FormMgrService shareForm FMS_ShareForm_5300 ====> result err:" + err.code);
           expect(err.code == 37).assertTrue();
