@@ -23,6 +23,8 @@ ohos_js_hap_suite("ActsShareCardStageTest") {
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
   hap_name = "ActsShareCardStageTest"
+  subsystem_name="ability"
+  part_name="form_fwk"
 }
 
 ohos_app_scope("actssharecarstagetest_app_profile") {

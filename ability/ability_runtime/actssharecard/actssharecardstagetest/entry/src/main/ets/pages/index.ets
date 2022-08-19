@@ -45,7 +45,7 @@ struct Index {
                 .onAcquired((form) => {
                   console.log(`[FormMgrService]form info:` + JSON.stringify(form));
                   commonEventData.parameters.formId= form.id;
-                  commonEvent.publish("ACTS_SHARE_FROM_CommonEvent", commonEventData, (err) => {
+                  commonEvent.publish("FMS_SHARE_FROM_CommonEvent", commonEventData, (err) => {
                     console.log('======>FormMgrService FormId:'+commonEventData.parameters.formId)
                     setTimeout(()=>{
                       globalThis.abilityContext.terminateSelf()

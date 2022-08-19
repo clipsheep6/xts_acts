@@ -12,14 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import commonEvent from '@ohos.commonEvent'
-let formId;
-let commonEventData = {
-  parameters: {
-    formId:formId
-  }
-}
-
 @Entry
 @Component
 struct Index {
@@ -31,29 +23,6 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        FormComponent({
-                id: 0,
-                name: "widget",
-                bundle: "com.example.sharecardexceptionparameterstagetest",
-                ability: "FormAbility",
-                module: "entry",
-                dimension: FormDimension.Dimension_2_4,
-                temporary: false
-              })
-                .allowUpdate(true)
-                .visibility(Visibility.Visible)
-                .onAcquired((form) => {
-                  console.log(`[FormMgrService]form info:` + JSON.stringify(form));
-                  commonEventData.parameters.formId= form.id;
-                  commonEvent.publish("ACTS_SHARE_FROM_CommonEvent", commonEventData, (err) => {
-                    console.log('======>FormMgrService FormId:'+commonEventData.parameters.formId)
-                  })
-                })
-                .onError((err) => {
-                  console.log(`[FormMgrService]failed to add form, err:` + JSON.stringify(err));
-                })
-                .size({ width: 400, height: 200 })
-                .margin({ top: '5%' })
       }
       .width('100%')
     }

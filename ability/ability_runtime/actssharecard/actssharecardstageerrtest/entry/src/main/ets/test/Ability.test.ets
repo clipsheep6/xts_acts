@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import formHost from '@ohos.application.formHost';
 import commonEvent from '@ohos.commonEvent'
 const CASE_TIMEOUT = 5000;
 let cardFormId;
-var ACTS_SHARE_FROM = {
-    events: ["ACTS_SHARE_FROM_CommonEvent"]
+var FMS_SHARE_FROM = {
+    events: ["FMS_SHARE_FROM_CommonEvent"]
 };
 export default function abilityTest() {
-    describe('ActsAbilityTest', function () {
-        beforeAll(function(done){
+    describe('ActsAbilityTest',function  () {
+        beforeAll(async function(done){
             let subscriber;
             let flag=true
             function subscribeCallBack (err, data) {
                 console.debug("====> formId:====>" + JSON.stringify(data.parameters.formId));
-                if (data.event == "ACTS_SHARE_FROM_CommonEvent") {
+                if (data.event == "FMS_SHARE_FROM_CommonEvent") {
                     console.debug("====> formId:====>" + JSON.stringify(data.parameters.formId));
                     cardFormId=data.parameters.formId
                 }
@@ -38,9 +38,9 @@ export default function abilityTest() {
                 console.debug("====>UnSubscribeCallback====>");
                 done();
             }
-            commonEvent.createSubscriber(ACTS_SHARE_FROM).then((data) => {
+           await commonEvent.createSubscriber(FMS_SHARE_FROM).then(async(data) => {
                 console.debug("Create Subscriber====>");
-                globalThis.abilityContext.startAbility(
+                await globalThis.abilityContext.startAbility(
                     {
                         bundleName: 'com.example.sharecardexceptionparameterstagetest',
                         abilityName: 'MainAbility1'
@@ -59,53 +59,34 @@ export default function abilityTest() {
         })
 
         /*
-         * @tc.number  : ACTS_ShareForm_5400
+         * @tc.number  : FMS_ShareForm_5400
          * @tc.name    : Support cross-device sharing
          * @tc.desc    : Unauthorized card sharing promise form
          */
-        it('ACTS_ShareForm_5400',0, function (done) {
-            let flag=true
-            console.log("start ACTS_ShareForm_5400 =====>");
-            formHost.shareForm(cardFormId.toString(), "xxxxxxx").then((data) => {
-                console.log("FormMgrService shareForm ACTS_ShareForm_5400 ====> result data:" + data);
+        it('FMS_ShareForm_5400',0, async function (done) {
+            console.log("start FMS_ShareForm_5400 =====>");
+            await formHost.shareForm(cardFormId.toString(), "xxxxxxx").then((data) => {
+                console.log("FormMgrService shareForm FMS_ShareForm_5400 ====> result data:" + data);
+                expect().assertFail();
             }).catch((err)=>{
-                console.log("FormMgrService shareForm ACTS_ShareForm_5400 ====> result err:" + err.code);
+                console.log("FormMgrService shareForm FMS_ShareForm_5400 ====> result err:" + err.code);
                 expect(err.code==2).assertTrue();
-                if(err.code==2){
-                    flag=false
-                    done();
-                }
             });
-            setTimeout(()=>{
-                if(flag==true){
-                    console.debug("====>in timeout ACTS_ShareForm_5400====");
-                    expect().assertFail();
-                }
-            },CASE_TIMEOUT)
+            done();
         })
         /*
-        * @tc.number  : ACTS_ShareForm_2900
+        * @tc.number  : FMS_ShareForm_2900
         * @tc.name    : Support cross-device sharing
         * @tc.desc    : Unauthorized card sharing callback form
         */
-        it('ACTS_ShareForm_2900',0, function (done) {
-            let flag=true
-            console.log("start ACTS_ShareForm_2900 =====>");
-            formHost.shareForm(cardFormId.toString(), "xxxxxxx",(err,data) => {
-                console.log("FormMgrService shareForm ACTS_ShareForm_2900 ====> result data:" + data);
-                console.log("FormMgrService shareForm ACTS_ShareForm_2900 ====> result err:" + err.code);
+        it('FMS_ShareForm_2900',0, async function  (done) {
+            console.log("start FMS_ShareForm_2900 =====>");
+            await formHost.shareForm(cardFormId.toString(), "xxxxxxx",(err,data) => {
+                console.log("FormMgrService shareForm FMS_ShareForm_2900 ====> result data:" + data);
+                console.log("FormMgrService shareForm FMS_ShareForm_2900 ====> result err:" + err.code);
                 expect(err.code==2).assertTrue();
-                if(err.code==2){
-                    flag=false
-                    done();
-                }
             })
-            setTimeout(()=>{
-                if(flag==true){
-                    console.debug("====>in timeout ACTS_ShareForm_2900====");
-                    expect().assertFail();
-                }
-            },CASE_TIMEOUT)
+            done();
         })
     })
 }

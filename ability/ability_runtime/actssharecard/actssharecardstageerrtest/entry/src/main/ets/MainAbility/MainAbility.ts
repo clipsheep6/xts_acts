@@ -14,7 +14,7 @@
  */
 import Ability from '@ohos.application.Ability'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from 'hypium/index'
+import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 
 export default class MainAbility extends Ability {
@@ -36,7 +36,6 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         console.log('MainAbility onWindowStageCreate')
-        // windowStage.setUIContent(this.context, 'MainAbility/pages/index', null)
     }
 
     onWindowStageDestroy() {
