@@ -1,0 +1,32 @@
+{
+	"flag": 10,
+	"DistributedPermissionKit": {
+		"AllocateDuid": [],
+		"QueryDuid": [],
+		"IsDuid": [],
+		"CreateAppIdInfo1": [],
+		"CreateAppIdInfo2": [],
+		"CreateAppIdInfo3": [],
+		"ParseAppIdInfo": [],
+		"CheckDPermission": [],
+		"CheckPermission": [],
+		"CheckSelfPermission": [],
+		"CheckCallingPermission": [],
+		"CheckCallingOrSelfPermission": [],
+		"IsRestrictedPermission": [],
+		"CheckCallerPermission": [],
+		"VerifyPermissionFromRemote": [],
+		"VerifySelfPermissionFromRemote": [],
+		"CanRequestPermissionFromRemote": [],
+		"GrantSensitivePermissionToRemoteApp": [],
+		"RegisterUsingPermissionReminder": [],
+		"UnregisterUsingPermissionReminder": [],
+		"CheckPermissionAndStartUsing": [],
+		"CheckCallerPermissionAndStartUsing": [],
+		"StartUsingPermission": [],
+		"AddPermissionUsedRecord": [],
+		"StopUsingPermission":[],
+		"GetPermissionUsedRecords1": [],
+		"GetPermissionUsedRecords2": []
+	}
+}
