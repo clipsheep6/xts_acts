@@ -1,0 +1,46 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("fa") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "eightbatch/fa_applicationinfo_test:FaApplicationinfoTest",
+      "eightbatch/fa_auxapplicationinfo_test:FaAuxapplicationinfoTest",
+      "eightbatch/fa_coverapi_test:FaCoverapiTest",
+      "eightbatch/fa_equeryabilitybywant_test:FaEqueryabilitybywantTest",
+      "eightbatch/fa_missionmanager_test:FaMissionmanagerTest",
+      "fourthbatch/fa_abilitystart_test:FaAbilitystartTest",
+      "fourthbatch/fa_auxabilitystartapi7_test:FaAuxabilitystartapi7Test",
+      "fourthbatch/fa_auxabilitystartapi8_test:FaAuxabilitystartapi8Test",
+      "ninthbatch/fa_configurationconstant_test:FaConfigurationconstantTest",
+      "ninthbatch/fa_movemissiontofront_test:FaMovemissiontofrontTest",
+      "sixthbatch/fa_auxclearapi7_test:FaAuxclearapi7Test",
+      "sixthbatch/fa_auxclearapi8_test:FaAuxclearapi8Test",
+      "sixthbatch/fa_auxstate2_test:FaAuxstate2Test",
+      "sixthbatch/fa_auxstate_test:FaAuxstateTest",
+      "sixthbatch/fa_auxtaskmanagerapi7_test:FaAuxtaskmanagerapi7Test",
+      "sixthbatch/fa_auxtaskmanagerapi8_test:FaAuxtaskmanagerapi8Test",
+      "sixthbatch/fa_auxtaskswiting_test:FaAuxtaskswitingTest",
+      "sixthbatch/fa_clear_test:FaClearTest",
+      "sixthbatch/fa_lock_test:FaLockTest",
+      "sixthbatch/fa_lockapi7_test:FaLockapi7Test",
+      "sixthbatch/fa_lockapi8_test:FaLockapi8Test",
+      "sixthbatch/fa_state_test:FaStateTest",
+      "sixthbatch/fa_taskmanager_test:FaTaskmanagerTest",
+      "sixthbatch/fa_taskswiting_test:FaTaskswitingTest",
+    ]
+  }
+}

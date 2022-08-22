@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "entry2_MainAbility",
+      "value": "entry2_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_mainability2",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry2_MainAbility2",
+      "value": "entry2_MainAbility2"
+    },
+    {
+      "name": "description_mainability3",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry2_MainAbility3",
+      "value": "entry2_MainAbility3"
+    },
+    {
+      "name": "description_mainability4",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry2_MainAbility4",
+      "value": "entry2_MainAbility4"
+    },
+    {
+      "name": "description_serviceability2",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_mainability0200",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry2_MainAbility0200",
+      "value": "entry2_MainAbility0200"
+    },
+    {
+      "name": "description_mainability03",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry2_MainAbility03",
+      "value": "entry2_MainAbility03"
+    },
+    {
+      "name": "description_mainability0300",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry2_MainAbility0300",
+      "value": "entry2_MainAbility0300"
+    },
+    {
+      "name": "description_serviceability1300",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_serviceability1400",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_serviceability1500",
+      "value": "hap sample empty service"
+    }
+  ]
+}

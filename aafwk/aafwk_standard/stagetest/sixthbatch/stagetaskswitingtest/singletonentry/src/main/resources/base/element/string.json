@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "singletonentry_singletonEntryAbilty1",
+      "value": "singletonentry_singletonEntryAbilty1"
+    },
+    {
+      "name": "description_singletonentryabilty1",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_singletonentryabilty2",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "singletonentry_singletonEntryAbilty2",
+      "value": "singletonentry_singletonEntryAbilty2"
+    },
+    {
+      "name": "description_singletonentryabilty3",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "singletonentry_singletonEntryAbilty3",
+      "value": "singletonentry_singletonEntryAbilty3"
+    },
+    {
+      "name": "description_singletonentryabilty4",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "singletonentry_singletonEntryAbilty4",
+      "value": "singletonentry_singletonEntryAbilty4"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "app": {
+    "bundleName": "com.example.etsmyapplication",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.entry3",
+    "name": ".Entry3MainAbility",
+    "mainAbility": ".Entry3MainAbility",
+    "srcPath": "",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry3",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "Entry3MainAbility",
+        "name": ".Entry3MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_entry3mainability",
+        "formsEnabled": false,
+        "label": "$string:entry3_Entry3MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".Entry3MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

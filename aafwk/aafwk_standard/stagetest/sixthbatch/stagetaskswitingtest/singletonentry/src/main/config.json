@@ -1,0 +1,142 @@
+{
+  "app": {
+    "bundleName": "com.example.missionapplication",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.singletonentry",
+    "name": ".MyApplication",
+    "mainAbility": ".singletonEntryAbilty1",
+    "srcPath": "",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "singletonentry",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "singletonEntryAbilty1",
+        "name": ".singletonEntryAbilty1",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_singletonentryabilty1",
+        "formsEnabled": false,
+        "label": "$string:singletonentry_singletonEntryAbilty1",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "singletonEntryAbilty2",
+        "name": ".singletonEntryAbilty2",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_singletonentryabilty2",
+        "formsEnabled": false,
+        "label": "$string:singletonentry_singletonEntryAbilty2",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "singletonEntryAbilty3",
+        "name": ".singletonEntryAbilty3",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_singletonentryabilty3",
+        "formsEnabled": false,
+        "label": "$string:singletonentry_singletonEntryAbilty3",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "singletonEntryAbilty4",
+        "name": ".singletonEntryAbilty4",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_singletonentryabilty4",
+        "formsEnabled": false,
+        "label": "$string:singletonentry_singletonEntryAbilty4",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".singletonEntryAbilty1",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".singletonEntryAbilty2",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".singletonEntryAbilty3",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".singletonEntryAbilty4",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

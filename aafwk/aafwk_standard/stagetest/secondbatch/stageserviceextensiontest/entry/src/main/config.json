@@ -1,0 +1,207 @@
+{
+  "app": {
+    "bundleName": "ohos.acts.aafwk.pldtest.myapplication",
+    "vendor": "acts",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.acts.aafwk.pldtest.myapplication",
+    "name": ".MyApplication",
+    "mainAbility": ".MainAbility",
+    "srcPath": "",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "srcPath": "MainAbility2",
+        "name": ".MainAbility2",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability2",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility2",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "srcPath": "ServiceAbility",
+        "name": ".ServiceAbility",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility2",
+        "name": ".ServiceAbility2",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability2",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility3",
+        "name": ".ServiceAbility3",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability3",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility4",
+        "name": ".ServiceAbility4",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability4",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility5",
+        "name": ".ServiceAbility5",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability5",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility6",
+        "name": ".ServiceAbility6",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability6",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility7",
+        "name": ".ServiceAbility7",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability7",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility8",
+        "name": ".ServiceAbility8",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability8",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility9",
+        "name": ".ServiceAbility9",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability9",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility10",
+        "name": ".ServiceAbility10",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability10",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility11",
+        "name": ".ServiceAbility11",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability11",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility12",
+        "name": ".ServiceAbility12",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability12",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility13",
+        "name": ".ServiceAbility13",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability13",
+        "type": "service"
+      },
+      {
+        "srcPath": "ServiceAbility14",
+        "name": ".ServiceAbility14",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability14",
+        "type": "service"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility2",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}
