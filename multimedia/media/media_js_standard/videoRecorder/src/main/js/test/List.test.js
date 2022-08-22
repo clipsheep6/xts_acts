@@ -12,7 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 require('./VideoRecorderFuncCallbackTest.test.js')
-require('./VideoRecorderFuncPromiseTest.test.js')
 require('./VideoRecorderAPICallbackTest.test.js')
 require('./VideoRecorderEnumTest.test.js')
+require('./VideoRecorderFuncCallbackTest.test.js')
+require('./VideoRecorderAVCFuncCallbackTest.test.js')
+require('./VideoRecorderAVCFuncPromiseTest.test.js')
+ 
+require('./VideoRecorderSpliterCallbackTest.test.js') 
+require('./VideoRecorderSpliterCallbackAbnormalTest.test.js')  
+require('./VideoRecorderSpliterCallbackStabilityTest.test.js')
+require('./VideoRecorderSpliterPromiseTest.test.js')  
+require('./VideoRecorderSpliterPromiseAbnormalTest.test.js')  
+require('./VideoRecorderSpliterPromiseStabilityTest.test.js')  
+
+

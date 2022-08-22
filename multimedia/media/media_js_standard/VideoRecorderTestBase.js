@@ -21,10 +21,9 @@ import * as mediaTestBase from './MediaTestBase.js';
 const VIDEO_TRACK = 'video_track';
 const AUDIO_TRACK = 'audio_track';
 const AUDIO_VIDEO_TYPE = 'audio_video';
-const ONLYVIDEO_TYPE = 'only_video';
 const DELTA_TIME = 1000;
 const PLAY_TIME = 1000;
-
+let tarckType = new Array(VIDEO_TRACK, AUDIO_TRACK);
 
 export async function initCaptureSession(videoOutPut, cameraManager, cameras, cameraID) {
     let cameraInput = await cameraManager.createCameraInput(cameras[cameraID].cameraId);
@@ -35,10 +34,12 @@ export async function initCaptureSession(videoOutPut, cameraManager, cameras, ca
         return;
     }
     let captureSession = await camera.createCaptureSession(null);
+    console.info('case captureSession success'+captureSession);
     await captureSession.beginConfig();
     await captureSession.addInput(cameraInput);
     await captureSession.addOutput(videoOutPut);
     await captureSession.commitConfig();
+    console.info('case commitConfig success');
     return captureSession;
 }
 
@@ -50,20 +51,36 @@ export function getTrackArray(videoType, recorderConfigFile) {
     if (videoType == AUDIO_VIDEO_TYPE) {
         let audioTrack = new Array(recorderConfigFile.audioBitrate, recorderConfigFile.audioChannels,
                                    'audio/mpeg', recorderConfigFile.audioSampleRate);
-        let videoTrack = new Array('video/mpeg', recorderConfigFile.videoFrameHeight,
-                                   recorderConfigFile.videoFrameWidth);
-        let trackArray = new Array(videoTrack, audioTrack);
-        return trackArray;
-    } else if (videoType == ONLYVIDEO_TYPE) {
-        let videoTrack = new Array('video/mpeg',
-                                   recorderConfigFile.videoFrameHeight, recorderConfigFile.videoFrameWidth);
-        let trackArray = new Array(videoTrack);
-        return trackArray;
+        console.info('audioTrack fd success:'+audioTrack);
+
+        if (recorderConfigFile.videoCodec == 'video/avc'){
+            let videoTrack = new Array('video/x-h264', recorderConfigFile.videoFrameHeight,
+                recorderConfigFile.videoFrameWidth);
+            console.info('videoTrack fd success:' + videoTrack);
+            let trackArray = new Array(videoTrack, audioTrack);
+            console.info('trackArray fd success:' + trackArray);
+            return trackArray;
+        }else{
+            let videoTrack = new Array('video/mpeg', recorderConfigFile.videoFrameHeight,
+                recorderConfigFile.videoFrameWidth);
+            console.info('videoTrack fd success:' + videoTrack);
+            let trackArray = new Array(videoTrack, audioTrack);
+            console.info('trackArray fd success:' + trackArray);
+            return trackArray;
+        }
+
     } else {
-        let audioTrack = new Array(recorderConfigFile.audioEncodeBitRate, recorderConfigFile.numberOfChannels,
-            'audio/mpeg', recorderConfigFile.audioSampleRate);
-        let trackArray = new Array(audioTrack);
-        return trackArray;
+        if (recorderConfigFile.videoCodec == 'video/avc') {
+            let videoTrack = new Array('video/x-h264',
+                recorderConfigFile.videoFrameHeight, recorderConfigFile.videoFrameWidth);
+            let trackArray = new Array(videoTrack);
+            return trackArray;
+        } else {
+            let videoTrack = new Array('video/mpeg',
+                recorderConfigFile.videoFrameHeight, recorderConfigFile.videoFrameWidth);
+            let trackArray = new Array(videoTrack);
+            return trackArray;
+        }
     }
 }
 
@@ -96,28 +113,29 @@ export async function checkVideos(playFdPath, duration, trackArray, playerSurfac
             videoPlayer = video;
             expect(videoPlayer.state).assertEqual('idle');
         } else {
-            console.info('case createVideoPlayer is failed'); 
+            console.info('case createVideoPlayer is failed');
             expect().assertFail();
         }
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
     console.info('[checkVideos] case checkVideos fdPath is :' + playFdPath);
 
     videoPlayer.url = playFdPath;
-    let tarckType = undefined;
-    if (playerSurfaceId != null) {
-        tarckType = new Array(VIDEO_TRACK, AUDIO_TRACK);
-        await videoPlayer.setDisplaySurface(playerSurfaceId).then(() => {
-            console.info('case setDisplaySurface success');
-            expect(videoPlayer.state).assertEqual('idle');
-        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-    } else {
-        tarckType = new Array(AUDIO_TRACK);
-    }
+    await videoPlayer.setDisplaySurface(playerSurfaceId).then(() => {
+        console.info('case setDisplaySurface success');
+        expect(videoPlayer.state).assertEqual('idle');
+    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
+
+    console.info('[checkVideos] case output-- fdPath is :'+videoPlayer.url);
+
     await videoPlayer.prepare().then(() => {
+        console.info('case prepare-1 success');
         expect(videoPlayer.state).assertEqual('prepared');
+        console.info('case prepare-2 success');
         expect(videoPlayer.duration).assertClose(duration, DELTA_TIME);
         console.info('case prepare called!!');
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+
 
     await videoPlayer.getTrackDescription().then((arrayList) => {
         console.info('case getTrackDescription called!!');
@@ -128,7 +146,7 @@ export async function checkVideos(playFdPath, duration, trackArray, playerSurfac
             expect().assertFail();
         }
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-    
+
     let startTime = videoPlayer.currentTime;
     await videoPlayer.play().then(() => {
         console.info('case play called!!');
@@ -147,8 +165,12 @@ export async function checkVideos(playFdPath, duration, trackArray, playerSurfac
         console.info('case release called!!');
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
 
+    console.info('arrayDescription.length!:'+arrayDescription.length);
+    console.info('trackArray.length!:'+trackArray.length);
     expect(arrayDescription.length).assertEqual(trackArray.length);
+
     for (let i = 0; i < arrayDescription.length; i++) {
         checkDescription(arrayDescription[i], tarckType[i], trackArray[i]);
+        console.info('case relecheckDescriptionase called!!');
     }
 }
