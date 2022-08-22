@@ -20,7 +20,7 @@ ohos_js_hap_suite("camera_unspc_ets_hap") {
   ]
   ets2abc = true
 
-  certificate_profile = "./signature/openharmony_sx.p7b"
+  certificate_profile = "./signature/myApplication_ohos_Provision.p7b"
   hap_name = "ActsCameraUnspcETSTest"
   subsystem_name = "multimedia"
   part_name = "multimedia_camera_standard"
