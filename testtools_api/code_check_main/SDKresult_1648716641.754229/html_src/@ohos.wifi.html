@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>短距通信子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>communication</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.wifi</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>wifi</td><td>declare namespace wifi {
+    
+    function enableWifi(): boolean;
+
+    
+    function disableWifi(): boolean;
+
+    
+    function isWifiActive(): boolean;
+
+    
+    function scan(): boolean;
+
+    
+    function getScanInfos(): Promise<Array<WifiScanInfo>>;
+    function getScanInfos(callback: AsyncCallback<Array<WifiScanInfo>>): void;
+
+    
+    function addDeviceConfig(config: WifiDeviceConfig): Promise<number>;
+    function addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback<number>): void;
+
+    
+     function addUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;
+     function addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void;
+ 
+     
+     function removeUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;
+     function removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void;
+
+    
+    function connectToNetwork(networkId: number): boolean;
+
+    
+    function connectToDevice(config: WifiDeviceConfig): boolean;
+
+    
+    function disconnect(): boolean;
+
+    
+    function getSignalLevel(rssi: number, band: number): number;
+
+    
+    function getLinkedInfo(): Promise<WifiLinkedInfo>;
+    function getLinkedInfo(callback: AsyncCallback<WifiLinkedInfo>): void;
+
+    
+    function isConnected(): boolean;
+
+    
+    function getSupportedFeatures(): number;
+
+    
+    function isFeatureSupported(featureId: number): boolean;
+
+    
+    function getDeviceMacAddress(): string[];
+
+    
+    function getIpInfo(): IpInfo;
+
+    
+    function getCountryCode(): string;
+
+    
+    function reassociate(): boolean;
+
+    
+    function reconnect(): boolean;
+
+    
+    function getDeviceConfigs(): Array<WifiDeviceConfig>;
+
+    
+    function updateNetwork(config: WifiDeviceConfig): number;
+
+    
+    function disableNetwork(netId: number): boolean;
+
+    
+    function removeAllNetwork(): boolean;
+
+    
+    function removeDevice(id: number): boolean;
+
+    
+    function enableHotspot(): boolean;
+
+    
+    function disableHotspot(): boolean;
+
+    
+     function isHotspotDualBandSupported(): boolean;
+
+    
+    function isHotspotActive(): boolean;
+
+    
+    function setHotspotConfig(config: HotspotConfig): boolean;
+
+    
+    function getHotspotConfig(): HotspotConfig;
+
+    
+    function getStations(): Array<StationInfo>;
+
+    
+    function getP2pLinkedInfo(): Promise<WifiP2pLinkedInfo>;
+    function getP2pLinkedInfo(callback: AsyncCallback<WifiP2pLinkedInfo>): void;
+
+    
+    function getCurrentGroup(): Promise<WifiP2pGroupInfo>;
+    function getCurrentGroup(callback: AsyncCallback<WifiP2pGroupInfo>): void;
+
+    
+    function getP2pPeerDevices(): Promise<WifiP2pDevice[]>;
+    function getP2pPeerDevices(callback: AsyncCallback<WifiP2pDevice[]>): void;
+
+    
+    function createGroup(config: WifiP2PConfig): boolean;
+
+    
+    function removeGroup(): boolean;
+
+    
+    function p2pConnect(config: WifiP2PConfig): boolean;
+
+    
+    function p2pCancelConnect(): boolean;
+
+    
+    function startDiscoverDevices(): boolean;
+
+    
+    function stopDiscoverDevices(): boolean;
+
+    
+    function deletePersistentGroup(netId: number): boolean;
+
+    
+    function setDeviceName(devName: string): boolean;
+
+    
+    function on(type: "wifiStateChange", callback: Callback<number>): void;
+
+    
+    function off(type: "wifiStateChange", callback?: Callback<number>): void;
+
+    
+    function on(type: "wifiConnectionChange", callback: Callback<number>): void;
+
+    
+    function off(type: "wifiConnectionChange", callback?: Callback<number>): void;
+
+    
+    function on(type: "wifiScanStateChange", callback: Callback<number>): void;
+
+    
+    function off(type: "wifiScanStateChange", callback?: Callback<number>): void;
+
+    
+    function on(type: "wifiRssiChange", callback: Callback<number>): void;
+
+    
+    function off(type: "wifiRssiChange", callback?: Callback<number>): void;
+
+    
+     function on(type: "streamChange", callback: Callback<number>): void;
+
+     
+     function off(type: "streamChange", callback?: Callback<number>): void;
+
+    
+    function on(type: "hotspotStateChange", callback: Callback<number>): void;
+
+    
+    function off(type: "hotspotStateChange", callback?: Callback<number>): void;
+
+    
+    function on(type: "hotspotStaJoin", callback: Callback<StationInfo>): void;
+
+    
+    function off(type: "hotspotStaJoin", callback?: Callback<StationInfo>): void;
+
+    
+    function on(type: "hotspotStaLeave", callback: Callback<StationInfo>): void;
+
+    
+    function off(type: "hotspotStaLeave", callback?: Callback<StationInfo>): void;
+
+    
+    function on(type: "p2pStateChange", callback: Callback<number>): void;
+
+    
+    function off(type: "p2pStateChange", callback?: Callback<number>): void;
+
+    
+    function on(type: "p2pConnectionChange", callback: Callback<WifiP2pLinkedInfo>): void;
+
+    
+    function off(type: "p2pConnectionChange", callback?: Callback<WifiP2pLinkedInfo>): void;
+
+    
+    function on(type: "p2pDeviceChange", callback: Callback<WifiP2pDevice>): void;
+
+    
+    function off(type: "p2pDeviceChange", callback?: Callback<WifiP2pDevice>): void;
+
+    
+    function on(type: "p2pPeerDeviceChange", callback: Callback<WifiP2pDevice[]>): void;
+
+    
+    function off(type: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): void;
+
+    
+    function on(type: "p2pPersistentGroupChange", callback: Callback<void>): void;
+
+    
+    function off(type: "p2pPersistentGroupChange", callback?: Callback<void>): void;
+
+    
+    function on(type: "p2pDiscoveryChange", callback: Callback<number>): void;
+
+    
+    function off(type: "p2pDiscoveryChange", callback?: Callback<number>): void;
+
+    
+    interface WifiDeviceConfig {
+        
+        ssid: string;
+
+        
+        bssid: string;
+
+        
+        preSharedKey: string;
+
+        
+        isHiddenSsid: boolean;
+
+        
+        securityType: WifiSecurityType;
+
+        
+        
+        creatorUid: number;
+
+        
+        
+        disableReason: number;
+
+        
+        
+        netId: number;
+
+        
+        
+        randomMacType: number;
+
+        
+        
+        randomMacAddr: string;
+
+        
+        
+        ipType: IpType;
+
+        
+        
+        staticIp: IpConfig;
+    }
+
+    
+    interface IpConfig {
+        ipAddress: number;
+        gateway: number;
+        dnsServers: number[];
+        domains: Array<string>;
+    }
+
+    
+    interface WifiScanInfo {
+        
+        ssid: string;
+
+        
+        bssid: string;
+
+        
+        capabilities: string;
+
+        
+        securityType: WifiSecurityType;
+
+        
+        rssi: number;
+
+        
+        band: number;
+
+        
+        frequency: number;
+
+        
+        channelWidth: number;
+
+        
+        timestamp: number;
+    }
+
+    
+    enum WifiSecurityType {
+        
+        WIFI_SEC_TYPE_INVALID = 0,
+
+        
+        WIFI_SEC_TYPE_OPEN = 1,
+
+        
+        WIFI_SEC_TYPE_WEP = 2,
+
+        
+        WIFI_SEC_TYPE_PSK = 3,
+
+        
+        WIFI_SEC_TYPE_SAE = 4,
+    }
+
+    
+    interface WifiLinkedInfo {
+        
+        ssid: string;
+
+        
+        bssid: string;
+
+        
+        
+        networkId: number;
+
+        
+        rssi: number;
+
+        
+        band: number;
+
+        
+        linkSpeed: number;
+
+        
+        frequency: number;
+
+        
+        isHidden: boolean;
+
+        
+        isRestricted: boolean;
+
+        
+        
+        chload: number;
+
+        
+        
+        snr: number;
+
+        
+        macAddress: string;
+
+        
+        ipAddress: number;
+
+        
+        
+        suppState: SuppState;
+
+        
+        connState: ConnState;
+    }
+
+    
+    interface IpInfo {
+        
+        ipAddress: number;
+
+        
+        gateway: number;
+
+        
+        netmask: number;
+
+        
+        primaryDns: number;
+
+        
+        secondDns: number;
+
+        
+        serverIp: number;
+
+        
+        leaseDuration: number;
+    }
+
+    
+    interface HotspotConfig {
+        
+        ssid: string;
+
+        
+        securityType: WifiSecurityType;
+
+        
+        band: number;
+
+        
+        preSharedKey: string;
+
+        
+        maxConn: number;
+    }
+
+    
+    interface StationInfo {
+        
+        name: string;
+
+        
+        macAddress: string;
+
+        
+        ipAddress: string;
+    }
+
+    
+     enum IpType {
+        
+        STATIC,
+
+        
+        DHCP,
+
+        
+        UNKNOWN,
+    }
+
+    
+    export enum SuppState {
+        
+        DISCONNECTED,
+
+        
+        INTERFACE_DISABLED,
+
+        
+        INACTIVE,
+
+        
+        SCANNING,
+
+        
+        AUTHENTICATING,
+
+        
+        ASSOCIATING,
+
+        
+        ASSOCIATED,
+
+        
+        FOUR_WAY_HANDSHAKE,
+
+        
+        GROUP_HANDSHAKE,
+
+        
+        COMPLETED,
+
+        
+        UNINITIALIZED,
+
+        
+        INVALID
+    }
+
+    
+    export enum ConnState {
+        
+        SCANNING,
+
+        
+        CONNECTING,
+
+        
+        AUTHENTICATING,
+
+        
+        OBTAINING_IPADDR,
+
+        
+        CONNECTED,
+
+        
+        DISCONNECTING,
+
+        
+        DISCONNECTED,
+
+        
+        UNKNOWN
+    }
+
+    
+    interface WifiP2pDevice {
+        
+        deviceName: string;
+
+        
+        deviceAddress: string;
+
+        
+        primaryDeviceType: string;
+
+        
+        deviceStatus: P2pDeviceStatus;
+
+        
+        groupCapabilitys: number;
+    }
+
+    
+    interface WifiP2PConfig {
+        
+        deviceAddress: string;
+
+        
+        netId: number;
+
+        
+        passphrase: string;
+
+        
+        groupName: string;
+
+        
+        goBand: GroupOwnerBand;
+    }
+
+    
+    interface WifiP2pGroupInfo {
+        
+        isP2pGo: boolean;
+
+        
+        ownerInfo: WifiP2pDevice;
+
+        
+        passphrase: string;
+
+        
+        interface: string;
+
+        
+        groupName: string;
+
+        
+        networkId: number;
+
+        
+        frequency: number;
+
+        
+        clientDevices: WifiP2pDevice[];
+
+        
+        goIpAddress: string;
+    }
+
+    
+    enum P2pConnectState {
+        DISCONNECTED = 0,
+        CONNECTED = 1,
+    }
+
+    
+    interface WifiP2pLinkedInfo {
+        
+        connectState: P2pConnectState;
+
+        
+        isGroupOwner: boolean;
+
+        
+        groupOwnerAddr: string;
+    }
+
+    
+    enum P2pDeviceStatus {
+        CONNECTED = 0,
+        INVITED = 1,
+        FAILED = 2,
+        AVAILABLE = 3,
+        UNAVAILABLE = 4,
+    }
+
+    
+    enum GroupOwnerBand {
+        GO_BAND_AUTO = 0,
+        GO_BAND_2GHZ = 1,
+        GO_BAND_5GHZ = 2,
+    }
+}</td><td>wifi</td><td>None</td><td>0</td><td>635</td><tr><tr><td>wifi</td><td>function enableWifi(): boolean;</td><td>enableWifi</td><td>None</td><td>0</td><td>4</td><tr><tr><td>wifi</td><td>function disableWifi(): boolean;</td><td>disableWifi</td><td>None</td><td>0</td><td>4</td><tr><tr><td>wifi</td><td>function isWifiActive(): boolean;</td><td>isWifiActive</td><td>None</td><td>0</td><td>31</td><tr><tr><td>wifi</td><td>function scan(): boolean;</td><td>scan</td><td>None</td><td>0</td><td>30</td><tr><tr><td>wifi</td><td>function getScanInfos(): Promise<Array<WifiScanInfo>>;</td><td>getScanInfos</td><td>None</td><td>0</td><td>1</td><tr><tr><td>wifi</td><td>function getScanInfos(callback: AsyncCallback<Array<WifiScanInfo>>): void;</td><td>getScanInfos</td><td>None</td><td>1</td><td>4</td><tr><tr><td>wifi</td><td>function addDeviceConfig(config: WifiDeviceConfig): Promise<number>;</td><td>addDeviceConfig</td><td>None</td><td>1</td><td>9</td><tr><tr><td>wifi</td><td>function addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback<number>): void;</td><td>addDeviceConfig</td><td>None</td><td>2</td><td>3</td><tr><tr><td>wifi</td><td>function addUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;</td><td>addUntrustedConfig</td><td>None</td><td>1</td><td>0</td><tr><tr><td>wifi</td><td>function addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void;</td><td>addUntrustedConfig</td><td>None</td><td>2</td><td>0</td><tr><tr><td>wifi</td><td>function removeUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;</td><td>removeUntrustedConfig</td><td>None</td><td>1</td><td>0</td><tr><tr><td>wifi</td><td>function removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void;</td><td>removeUntrustedConfig</td><td>None</td><td>2</td><td>0</td><tr><tr><td>wifi</td><td>function connectToNetwork(networkId: number): boolean;</td><td>connectToNetwork</td><td>None</td><td>1</td><td>7</td><tr><tr><td>wifi</td><td>function connectToDevice(config: WifiDeviceConfig): boolean;</td><td>connectToDevice</td><td>None</td><td>1</td><td>26</td><tr><tr><td>wifi</td><td>function disconnect(): boolean;</td><td>disconnect</td><td>None</td><td>0</td><td>5</td><tr><tr><td>wifi</td><td>function getSignalLevel(rssi: number, band: number): number;</td><td>getSignalLevel</td><td>None</td><td>2</td><td>18</td><tr><tr><td>wifi</td><td>function getLinkedInfo(): Promise<WifiLinkedInfo>;</td><td>getLinkedInfo</td><td>None</td><td>0</td><td>1</td><tr><tr><td>wifi</td><td>function getLinkedInfo(callback: AsyncCallback<WifiLinkedInfo>): void;</td><td>getLinkedInfo</td><td>None</td><td>1</td><td>5</td><tr><tr><td>wifi</td><td>function isConnected(): boolean;</td><td>isConnected</td><td>None</td><td>0</td><td>30</td><tr><tr><td>wifi</td><td>function getSupportedFeatures(): number;</td><td>getSupportedFeatures</td><td>None</td><td>0</td><td>1</td><tr><tr><td>wifi</td><td>function isFeatureSupported(featureId: number): boolean;</td><td>isFeatureSupported</td><td>None</td><td>1</td><td>3</td><tr><tr><td>wifi</td><td>function getDeviceMacAddress(): string[];</td><td>getDeviceMacAddress</td><td>None</td><td>0</td><td>3</td><tr><tr><td>wifi</td><td>function getIpInfo(): IpInfo;</td><td>getIpInfo</td><td>None</td><td>0</td><td>1</td><tr><tr><td>wifi</td><td>function getCountryCode(): string;</td><td>getCountryCode</td><td>None</td><td>0</td><td>3</td><tr><tr><td>wifi</td><td>function reassociate(): boolean;</td><td>reassociate</td><td>None</td><td>0</td><td>1</td><tr><tr><td>wifi</td><td>function reconnect(): boolean;</td><td>reconnect</td><td>None</td><td>0</td><td>2</td><tr><tr><td>wifi</td><td>function getDeviceConfigs(): Array<WifiDeviceConfig>;</td><td>getDeviceConfigs</td><td>None</td><td>0</td><td>36</td><tr><tr><td>wifi</td><td>function updateNetwork(config: WifiDeviceConfig): number;</td><td>updateNetwork</td><td>None</td><td>1</td><td>1</td><tr><tr><td>wifi</td><td>function disableNetwork(netId: number): boolean;</td><td>disableNetwork</td><td>None</td><td>1</td><td>3</td><tr><tr><td>wifi</td><td>function removeAllNetwork(): boolean;</td><td>removeAllNetwork</td><td>None</td><td>0</td><td>19</td><tr><tr><td>wifi</td><td>function removeDevice(id: number): boolean;</td><td>removeDevice</td><td>None</td><td>1</td><td>2</td><tr><tr><td>wifi</td><td>function enableHotspot(): boolean;</td><td>enableHotspot</td><td>None</td><td>0</td><td>3</td><tr><tr><td>wifi</td><td>function disableHotspot(): boolean;</td><td>disableHotspot</td><td>None</td><td>0</td><td>13</td><tr><tr><td>wifi</td><td>function isHotspotDualBandSupported(): boolean;</td><td>isHotspotDualBandSupported</td><td>None</td><td>0</td><td>3</td><tr><tr><td>wifi</td><td>function isHotspotActive(): boolean;</td><td>isHotspotActive</td><td>None</td><td>0</td><td>45</td><tr><tr><td>wifi</td><td>function setHotspotConfig(config: HotspotConfig): boolean;</td><td>setHotspotConfig</td><td>None</td><td>1</td><td>19</td><tr><tr><td>wifi</td><td>function getHotspotConfig(): HotspotConfig;</td><td>getHotspotConfig</td><td>None</td><td>0</td><td>24</td><tr><tr><td>wifi</td><td>function getStations(): Array<StationInfo>;</td><td>getStations</td><td>None</td><td>0</td><td>2</td><tr><tr><td>wifi</td><td>function getP2pLinkedInfo(): Promise<WifiP2pLinkedInfo>;</td><td>getP2pLinkedInfo</td><td>None</td><td>0</td><td>2</td><tr><tr><td>wifi</td><td>function getP2pLinkedInfo(callback: AsyncCallback<WifiP2pLinkedInfo>): void;</td><td>getP2pLinkedInfo</td><td>None</td><td>1</td><td>4</td><tr><tr><td>wifi</td><td>function getCurrentGroup(): Promise<WifiP2pGroupInfo>;</td><td>getCurrentGroup</td><td>None</td><td>0</td><td>5</td><tr><tr><td>wifi</td><td>function getCurrentGroup(callback: AsyncCallback<WifiP2pGroupInfo>): void;</td><td>getCurrentGroup</td><td>None</td><td>1</td><td>10</td><tr><tr><td>wifi</td><td>function getP2pPeerDevices(): Promise<WifiP2pDevice[]>;</td><td>getP2pPeerDevices</td><td>None</td><td>0</td><td>2</td><tr><tr><td>wifi</td><td>function getP2pPeerDevices(callback: AsyncCallback<WifiP2pDevice[]>): void;</td><td>getP2pPeerDevices</td><td>None</td><td>1</td><td>4</td><tr><tr><td>wifi</td><td>function createGroup(config: WifiP2PConfig): boolean;</td><td>createGroup</td><td>None</td><td>1</td><td>5</td><tr><tr><td>wifi</td><td>function removeGroup(): boolean;</td><td>removeGroup</td><td>None</td><td>0</td><td>5</td><tr><tr><td>wifi</td><td>function p2pConnect(config: WifiP2PConfig): boolean;</td><td>p2pConnect</td><td>None</td><td>1</td><td>9</td><tr><tr><td>wifi</td><td>function p2pCancelConnect(): boolean;</td><td>p2pCancelConnect</td><td>None</td><td>0</td><td>2</td><tr><tr><td>wifi</td><td>function startDiscoverDevices(): boolean;</td><td>startDiscoverDevices</td><td>None</td><td>0</td><td>3</td><tr><tr><td>wifi</td><td>function stopDiscoverDevices(): boolean;</td><td>stopDiscoverDevices</td><td>None</td><td>0</td><td>3</td><tr><tr><td>wifi</td><td>function deletePersistentGroup(netId: number): boolean;</td><td>deletePersistentGroup</td><td>None</td><td>1</td><td>1</td><tr><tr><td>wifi</td><td>function setDeviceName(devName: string): boolean;</td><td>setDeviceName</td><td>None</td><td>1</td><td>3</td><tr><tr><td>wifi</td><td>function on(type: "wifiStateChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "wifiStateChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "wifiConnectionChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "wifiConnectionChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "wifiScanStateChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "wifiScanStateChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "wifiRssiChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "wifiRssiChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "streamChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "streamChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "hotspotStateChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "hotspotStateChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "hotspotStaJoin", callback: Callback<StationInfo>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "hotspotStaJoin", callback?: Callback<StationInfo>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "hotspotStaLeave", callback: Callback<StationInfo>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "hotspotStaLeave", callback?: Callback<StationInfo>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "p2pStateChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "p2pStateChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "p2pConnectionChange", callback: Callback<WifiP2pLinkedInfo>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "p2pConnectionChange", callback?: Callback<WifiP2pLinkedInfo>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "p2pDeviceChange", callback: Callback<WifiP2pDevice>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "p2pDeviceChange", callback?: Callback<WifiP2pDevice>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "p2pPeerDeviceChange", callback: Callback<WifiP2pDevice[]>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "p2pPersistentGroupChange", callback: Callback<void>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "p2pPersistentGroupChange", callback?: Callback<void>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>wifi</td><td>function on(type: "p2pDiscoveryChange", callback: Callback<number>): void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>wifi</td><td>function off(type: "p2pDiscoveryChange", callback?: Callback<number>): void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>WifiDeviceConfig</td><td>interface WifiDeviceConfig {
+        
+        ssid: string;
+
+        
+        bssid: string;
+
+        
+        preSharedKey: string;
+
+        
+        isHiddenSsid: boolean;
+
+        
+        securityType: WifiSecurityType;
+
+        
+        
+        creatorUid: number;
+
+        
+        
+        disableReason: number;
+
+        
+        
+        netId: number;
+
+        
+        
+        randomMacType: number;
+
+        
+        
+        randomMacAddr: string;
+
+        
+        
+        ipType: IpType;
+
+        
+        
+        staticIp: IpConfig;
+    }</td><td>WifiDeviceConfig</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WifiDeviceConfig</td><td>ssid: string</td><td>ssid</td><td>22</td><td>1</td><td>97</td><tr><tr><td>WifiDeviceConfig</td><td>bssid: string</td><td>bssid</td><td>22</td><td>1</td><td>25</td><tr><tr><td>WifiDeviceConfig</td><td>preSharedKey: string</td><td>preSharedKey</td><td>22</td><td>1</td><td>64</td><tr><tr><td>WifiDeviceConfig</td><td>isHiddenSsid: boolean</td><td>isHiddenSsid</td><td>22</td><td>1</td><td>31</td><tr><tr><td>WifiDeviceConfig</td><td>securityType: WifiSecurityType</td><td>securityType</td><td>22</td><td>1</td><td>52</td><tr><tr><td>WifiDeviceConfig</td><td>creatorUid: number</td><td>creatorUid</td><td>22</td><td>1</td><td>19</td><tr><tr><td>WifiDeviceConfig</td><td>disableReason: number</td><td>disableReason</td><td>22</td><td>1</td><td>19</td><tr><tr><td>WifiDeviceConfig</td><td>netId: number</td><td>netId</td><td>22</td><td>1</td><td>26</td><tr><tr><td>WifiDeviceConfig</td><td>randomMacType: number</td><td>randomMacType</td><td>22</td><td>1</td><td>19</td><tr><tr><td>WifiDeviceConfig</td><td>randomMacAddr: string</td><td>randomMacAddr</td><td>22</td><td>1</td><td>19</td><tr><tr><td>WifiDeviceConfig</td><td>ipType: IpType</td><td>ipType</td><td>22</td><td>1</td><td>19</td><tr><tr><td>WifiDeviceConfig</td><td>staticIp: IpConfig</td><td>staticIp</td><td>22</td><td>1</td><td>19</td><tr><tr><td>IpConfig</td><td>interface IpConfig {
+        ipAddress: number;
+        gateway: number;
+        dnsServers: number[];
+        domains: Array<string>;
+    }</td><td>IpConfig</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IpConfig</td><td>ipAddress: number</td><td>ipAddress</td><td>22</td><td>1</td><td>25</td><tr><tr><td>IpConfig</td><td>gateway: number</td><td>gateway</td><td>22</td><td>1</td><td>22</td><tr><tr><td>IpConfig</td><td>dnsServers: number[]</td><td>dnsServers</td><td>22</td><td>1</td><td>1</td><tr><tr><td>IpConfig</td><td>domains: Array<string></td><td>domains</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WifiScanInfo</td><td>interface WifiScanInfo {
+        
+        ssid: string;
+
+        
+        bssid: string;
+
+        
+        capabilities: string;
+
+        
+        securityType: WifiSecurityType;
+
+        
+        rssi: number;
+
+        
+        band: number;
+
+        
+        frequency: number;
+
+        
+        channelWidth: number;
+
+        
+        timestamp: number;
+    }</td><td>WifiScanInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WifiScanInfo</td><td>ssid: string</td><td>ssid</td><td>22</td><td>1</td><td>97</td><tr><tr><td>WifiScanInfo</td><td>bssid: string</td><td>bssid</td><td>22</td><td>1</td><td>25</td><tr><tr><td>WifiScanInfo</td><td>capabilities: string</td><td>capabilities</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiScanInfo</td><td>securityType: WifiSecurityType</td><td>securityType</td><td>22</td><td>1</td><td>52</td><tr><tr><td>WifiScanInfo</td><td>rssi: number</td><td>rssi</td><td>22</td><td>1</td><td>12</td><tr><tr><td>WifiScanInfo</td><td>band: number</td><td>band</td><td>22</td><td>1</td><td>27</td><tr><tr><td>WifiScanInfo</td><td>frequency: number</td><td>frequency</td><td>22</td><td>1</td><td>6</td><tr><tr><td>WifiScanInfo</td><td>channelWidth: number</td><td>channelWidth</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiScanInfo</td><td>timestamp: number</td><td>timestamp</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiSecurityType</td><td>enum WifiSecurityType {
+        
+        WIFI_SEC_TYPE_INVALID = 0,
+
+        
+        WIFI_SEC_TYPE_OPEN = 1,
+
+        
+        WIFI_SEC_TYPE_WEP = 2,
+
+        
+        WIFI_SEC_TYPE_PSK = 3,
+
+        
+        WIFI_SEC_TYPE_SAE = 4,
+    }</td><td>WifiSecurityType</td><td>40</td><td>0</td><td>41</td><tr><tr><td>WifiSecurityType</td><td>WIFI_SEC_TYPE_INVALID = 0,</td><td>WIFI_SEC_TYPE_INVALID</td><td>42</td><td>1</td><td>2</td><tr><tr><td>WifiSecurityType</td><td>WIFI_SEC_TYPE_OPEN = 1,</td><td>WIFI_SEC_TYPE_OPEN</td><td>42</td><td>1</td><td>5</td><tr><tr><td>WifiSecurityType</td><td>WIFI_SEC_TYPE_WEP = 2,</td><td>WIFI_SEC_TYPE_WEP</td><td>42</td><td>1</td><td>8</td><tr><tr><td>WifiSecurityType</td><td>WIFI_SEC_TYPE_PSK = 3,</td><td>WIFI_SEC_TYPE_PSK</td><td>42</td><td>1</td><td>31</td><tr><tr><td>WifiSecurityType</td><td>WIFI_SEC_TYPE_SAE = 4,</td><td>WIFI_SEC_TYPE_SAE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>WifiLinkedInfo</td><td>interface WifiLinkedInfo {
+        
+        ssid: string;
+
+        
+        bssid: string;
+
+        
+        
+        networkId: number;
+
+        
+        rssi: number;
+
+        
+        band: number;
+
+        
+        linkSpeed: number;
+
+        
+        frequency: number;
+
+        
+        isHidden: boolean;
+
+        
+        isRestricted: boolean;
+
+        
+        
+        chload: number;
+
+        
+        
+        snr: number;
+
+        
+        macAddress: string;
+
+        
+        ipAddress: number;
+
+        
+        
+        suppState: SuppState;
+
+        
+        connState: ConnState;
+    }</td><td>WifiLinkedInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WifiLinkedInfo</td><td>ssid: string</td><td>ssid</td><td>22</td><td>1</td><td>97</td><tr><tr><td>WifiLinkedInfo</td><td>bssid: string</td><td>bssid</td><td>22</td><td>1</td><td>25</td><tr><tr><td>WifiLinkedInfo</td><td>networkId: number</td><td>networkId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>WifiLinkedInfo</td><td>rssi: number</td><td>rssi</td><td>22</td><td>1</td><td>12</td><tr><tr><td>WifiLinkedInfo</td><td>band: number</td><td>band</td><td>22</td><td>1</td><td>27</td><tr><tr><td>WifiLinkedInfo</td><td>linkSpeed: number</td><td>linkSpeed</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiLinkedInfo</td><td>frequency: number</td><td>frequency</td><td>22</td><td>1</td><td>6</td><tr><tr><td>WifiLinkedInfo</td><td>isHidden: boolean</td><td>isHidden</td><td>22</td><td>1</td><td>33</td><tr><tr><td>WifiLinkedInfo</td><td>isRestricted: boolean</td><td>isRestricted</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiLinkedInfo</td><td>chload: number</td><td>chload</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiLinkedInfo</td><td>snr: number</td><td>snr</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiLinkedInfo</td><td>macAddress: string</td><td>macAddress</td><td>22</td><td>1</td><td>4</td><tr><tr><td>WifiLinkedInfo</td><td>ipAddress: number</td><td>ipAddress</td><td>22</td><td>1</td><td>25</td><tr><tr><td>WifiLinkedInfo</td><td>suppState: SuppState</td><td>suppState</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiLinkedInfo</td><td>connState: ConnState</td><td>connState</td><td>22</td><td>1</td><td>8</td><tr><tr><td>IpInfo</td><td>interface IpInfo {
+        
+        ipAddress: number;
+
+        
+        gateway: number;
+
+        
+        netmask: number;
+
+        
+        primaryDns: number;
+
+        
+        secondDns: number;
+
+        
+        serverIp: number;
+
+        
+        leaseDuration: number;
+    }</td><td>IpInfo</td><td>20</td><td>0</td><td>2</td><tr><tr><td>IpInfo</td><td>ipAddress: number</td><td>ipAddress</td><td>22</td><td>1</td><td>25</td><tr><tr><td>IpInfo</td><td>gateway: number</td><td>gateway</td><td>22</td><td>1</td><td>22</td><tr><tr><td>IpInfo</td><td>netmask: number</td><td>netmask</td><td>22</td><td>1</td><td>2</td><tr><tr><td>IpInfo</td><td>primaryDns: number</td><td>primaryDns</td><td>22</td><td>1</td><td>2</td><tr><tr><td>IpInfo</td><td>secondDns: number</td><td>secondDns</td><td>22</td><td>1</td><td>2</td><tr><tr><td>IpInfo</td><td>serverIp: number</td><td>serverIp</td><td>22</td><td>1</td><td>2</td><tr><tr><td>IpInfo</td><td>leaseDuration: number</td><td>leaseDuration</td><td>22</td><td>1</td><td>4</td><tr><tr><td>HotspotConfig</td><td>interface HotspotConfig {
+        
+        ssid: string;
+
+        
+        securityType: WifiSecurityType;
+
+        
+        band: number;
+
+        
+        preSharedKey: string;
+
+        
+        maxConn: number;
+    }</td><td>HotspotConfig</td><td>20</td><td>0</td><td>82</td><tr><tr><td>HotspotConfig</td><td>ssid: string</td><td>ssid</td><td>22</td><td>1</td><td>97</td><tr><tr><td>HotspotConfig</td><td>securityType: WifiSecurityType</td><td>securityType</td><td>22</td><td>1</td><td>52</td><tr><tr><td>HotspotConfig</td><td>band: number</td><td>band</td><td>22</td><td>1</td><td>27</td><tr><tr><td>HotspotConfig</td><td>preSharedKey: string</td><td>preSharedKey</td><td>22</td><td>1</td><td>64</td><tr><tr><td>HotspotConfig</td><td>maxConn: number</td><td>maxConn</td><td>22</td><td>1</td><td>23</td><tr><tr><td>StationInfo</td><td>interface StationInfo {
+        
+        name: string;
+
+        
+        macAddress: string;
+
+        
+        ipAddress: string;
+    }</td><td>StationInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>StationInfo</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>232</td><tr><tr><td>StationInfo</td><td>macAddress: string</td><td>macAddress</td><td>22</td><td>1</td><td>4</td><tr><tr><td>StationInfo</td><td>ipAddress: string</td><td>ipAddress</td><td>22</td><td>1</td><td>25</td><tr><tr><td>IpType</td><td>enum IpType {
+        
+        STATIC,
+
+        
+        DHCP,
+
+        
+        UNKNOWN,
+    }</td><td>IpType</td><td>40</td><td>0</td><td>2</td><tr><tr><td>IpType</td><td>STATIC,</td><td>STATIC</td><td>42</td><td>1</td><td>1</td><tr><tr><td>IpType</td><td>DHCP,</td><td>DHCP</td><td>42</td><td>1</td><td>2</td><tr><tr><td>IpType</td><td>UNKNOWN,</td><td>UNKNOWN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SuppState</td><td>export enum SuppState {
+        
+        DISCONNECTED,
+
+        
+        INTERFACE_DISABLED,
+
+        
+        INACTIVE,
+
+        
+        SCANNING,
+
+        
+        AUTHENTICATING,
+
+        
+        ASSOCIATING,
+
+        
+        ASSOCIATED,
+
+        
+        FOUR_WAY_HANDSHAKE,
+
+        
+        GROUP_HANDSHAKE,
+
+        
+        COMPLETED,
+
+        
+        UNINITIALIZED,
+
+        
+        INVALID
+    }</td><td>SuppState</td><td>40</td><td>0</td><td>1</td><tr><tr><td>SuppState</td><td>DISCONNECTED,</td><td>DISCONNECTED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>SuppState</td><td>INTERFACE_DISABLED,</td><td>INTERFACE_DISABLED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>INACTIVE,</td><td>INACTIVE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>SCANNING,</td><td>SCANNING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SuppState</td><td>AUTHENTICATING,</td><td>AUTHENTICATING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SuppState</td><td>ASSOCIATING,</td><td>ASSOCIATING</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>ASSOCIATED,</td><td>ASSOCIATED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>FOUR_WAY_HANDSHAKE,</td><td>FOUR_WAY_HANDSHAKE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>GROUP_HANDSHAKE,</td><td>GROUP_HANDSHAKE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>COMPLETED,</td><td>COMPLETED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SuppState</td><td>UNINITIALIZED,</td><td>UNINITIALIZED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ConnState</td><td>export enum ConnState {
+        
+        SCANNING,
+
+        
+        CONNECTING,
+
+        
+        AUTHENTICATING,
+
+        
+        OBTAINING_IPADDR,
+
+        
+        CONNECTED,
+
+        
+        DISCONNECTING,
+
+        
+        DISCONNECTED,
+
+        
+        UNKNOWN
+    }</td><td>ConnState</td><td>40</td><td>0</td><td>1</td><tr><tr><td>ConnState</td><td>SCANNING,</td><td>SCANNING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ConnState</td><td>CONNECTING,</td><td>CONNECTING</td><td>42</td><td>1</td><td>4</td><tr><tr><td>ConnState</td><td>AUTHENTICATING,</td><td>AUTHENTICATING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ConnState</td><td>OBTAINING_IPADDR,</td><td>OBTAINING_IPADDR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ConnState</td><td>CONNECTED,</td><td>CONNECTED</td><td>42</td><td>1</td><td>14</td><tr><tr><td>ConnState</td><td>DISCONNECTING,</td><td>DISCONNECTING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ConnState</td><td>DISCONNECTED,</td><td>DISCONNECTED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>WifiP2pDevice</td><td>interface WifiP2pDevice {
+        
+        deviceName: string;
+
+        
+        deviceAddress: string;
+
+        
+        primaryDeviceType: string;
+
+        
+        deviceStatus: P2pDeviceStatus;
+
+        
+        groupCapabilitys: number;
+    }</td><td>WifiP2pDevice</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WifiP2pDevice</td><td>deviceName: string</td><td>deviceName</td><td>22</td><td>1</td><td>5</td><tr><tr><td>WifiP2pDevice</td><td>deviceAddress: string</td><td>deviceAddress</td><td>22</td><td>1</td><td>13</td><tr><tr><td>WifiP2pDevice</td><td>primaryDeviceType: string</td><td>primaryDeviceType</td><td>22</td><td>1</td><td>4</td><tr><tr><td>WifiP2pDevice</td><td>deviceStatus: P2pDeviceStatus</td><td>deviceStatus</td><td>22</td><td>1</td><td>19</td><tr><tr><td>WifiP2pDevice</td><td>groupCapabilitys: number</td><td>groupCapabilitys</td><td>22</td><td>1</td><td>4</td><tr><tr><td>WifiP2PConfig</td><td>interface WifiP2PConfig {
+        
+        deviceAddress: string;
+
+        
+        netId: number;
+
+        
+        passphrase: string;
+
+        
+        groupName: string;
+
+        
+        goBand: GroupOwnerBand;
+    }</td><td>WifiP2PConfig</td><td>20</td><td>0</td><td>10</td><tr><tr><td>WifiP2PConfig</td><td>deviceAddress: string</td><td>deviceAddress</td><td>22</td><td>1</td><td>13</td><tr><tr><td>WifiP2PConfig</td><td>netId: number</td><td>netId</td><td>22</td><td>1</td><td>26</td><tr><tr><td>WifiP2PConfig</td><td>passphrase: string</td><td>passphrase</td><td>22</td><td>1</td><td>9</td><tr><tr><td>WifiP2PConfig</td><td>groupName: string</td><td>groupName</td><td>22</td><td>1</td><td>9</td><tr><tr><td>WifiP2PConfig</td><td>goBand: GroupOwnerBand</td><td>goBand</td><td>22</td><td>1</td><td>7</td><tr><tr><td>WifiP2pGroupInfo</td><td>interface WifiP2pGroupInfo {
+        
+        isP2pGo: boolean;
+
+        
+        ownerInfo: WifiP2pDevice;
+
+        
+        passphrase: string;
+
+        
+        interface: string;
+
+        
+        groupName: string;
+
+        
+        networkId: number;
+
+        
+        frequency: number;
+
+        
+        clientDevices: WifiP2pDevice[];
+
+        
+        goIpAddress: string;
+    }</td><td>WifiP2pGroupInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WifiP2pGroupInfo</td><td>isP2pGo: boolean</td><td>isP2pGo</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiP2pGroupInfo</td><td>ownerInfo: WifiP2pDevice</td><td>ownerInfo</td><td>22</td><td>1</td><td>5</td><tr><tr><td>WifiP2pGroupInfo</td><td>passphrase: string</td><td>passphrase</td><td>22</td><td>1</td><td>9</td><tr><tr><td>WifiP2pGroupInfo</td><td>interface: string</td><td>interface</td><td>22</td><td>1</td><td>70</td><tr><tr><td>WifiP2pGroupInfo</td><td>groupName: string</td><td>groupName</td><td>22</td><td>1</td><td>9</td><tr><tr><td>WifiP2pGroupInfo</td><td>networkId: number</td><td>networkId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>WifiP2pGroupInfo</td><td>frequency: number</td><td>frequency</td><td>22</td><td>1</td><td>6</td><tr><tr><td>WifiP2pGroupInfo</td><td>clientDevices: WifiP2pDevice[]</td><td>clientDevices</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiP2pGroupInfo</td><td>goIpAddress: string</td><td>goIpAddress</td><td>22</td><td>1</td><td>2</td><tr><tr><td>P2pConnectState</td><td>enum P2pConnectState {
+        DISCONNECTED = 0,
+        CONNECTED = 1,
+    }</td><td>P2pConnectState</td><td>40</td><td>0</td><td>3</td><tr><tr><td>P2pConnectState</td><td>DISCONNECTED = 0,</td><td>DISCONNECTED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>P2pConnectState</td><td>CONNECTED = 1,</td><td>CONNECTED</td><td>42</td><td>1</td><td>14</td><tr><tr><td>WifiP2pLinkedInfo</td><td>interface WifiP2pLinkedInfo {
+        
+        connectState: P2pConnectState;
+
+        
+        isGroupOwner: boolean;
+
+        
+        groupOwnerAddr: string;
+    }</td><td>WifiP2pLinkedInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WifiP2pLinkedInfo</td><td>connectState: P2pConnectState</td><td>connectState</td><td>22</td><td>1</td><td>6</td><tr><tr><td>WifiP2pLinkedInfo</td><td>isGroupOwner: boolean</td><td>isGroupOwner</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WifiP2pLinkedInfo</td><td>groupOwnerAddr: string</td><td>groupOwnerAddr</td><td>22</td><td>1</td><td>2</td><tr><tr><td>P2pDeviceStatus</td><td>enum P2pDeviceStatus {
+        CONNECTED = 0,
+        INVITED = 1,
+        FAILED = 2,
+        AVAILABLE = 3,
+        UNAVAILABLE = 4,
+    }</td><td>P2pDeviceStatus</td><td>40</td><td>0</td><td>7</td><tr><tr><td>P2pDeviceStatus</td><td>CONNECTED = 0,</td><td>CONNECTED</td><td>42</td><td>1</td><td>14</td><tr><tr><td>P2pDeviceStatus</td><td>INVITED = 1,</td><td>INVITED</td><td>42</td><td>1</td><td>3</td><tr><tr><td>P2pDeviceStatus</td><td>FAILED = 2,</td><td>FAILED</td><td>42</td><td>1</td><td>3</td><tr><tr><td>P2pDeviceStatus</td><td>AVAILABLE = 3,</td><td>AVAILABLE</td><td>42</td><td>1</td><td>7</td><tr><tr><td>P2pDeviceStatus</td><td>UNAVAILABLE = 4,</td><td>UNAVAILABLE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>GroupOwnerBand</td><td>enum GroupOwnerBand {
+        GO_BAND_AUTO = 0,
+        GO_BAND_2GHZ = 1,
+        GO_BAND_5GHZ = 2,
+    }</td><td>GroupOwnerBand</td><td>40</td><td>0</td><td>1</td><tr><tr><td>GroupOwnerBand</td><td>GO_BAND_AUTO = 0,</td><td>GO_BAND_AUTO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>GroupOwnerBand</td><td>GO_BAND_2GHZ = 1,</td><td>GO_BAND_2GHZ</td><td>42</td><td>1</td><td>1</td><tr><tr><td>GroupOwnerBand</td><td>GO_BAND_5GHZ = 2,</td><td>GO_BAND_5GHZ</td><td>42</td><td>1</td><td>1</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

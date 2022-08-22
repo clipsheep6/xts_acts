@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>安全子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>security</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.userIAM.userAuth</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>userAuth</td><td>declare namespace userAuth {
+    export enum AuthenticationResult {
+        
+        NO_SUPPORT = -1,
+
+        
+        SUCCESS = 0,
+
+        
+        COMPARE_FAILURE = 1,
+
+        
+        CANCELED = 2,
+
+        
+        TIMEOUT = 3,
+
+        
+        CAMERA_FAIL = 4,
+
+        
+        BUSY = 5,
+
+        
+        INVALID_PARAMETERS = 6,
+
+        
+        LOCKED = 7,
+
+        
+        NOT_ENROLLED = 8,
+
+        
+        GENERAL_ERROR = 100,
+    }
+
+    
+    type AuthType = "ALL" | "FACE_ONLY";
+
+    
+    type SecureLevel = "S1" | "S2" | "S3" | "S4";
+
+    interface Authenticator {
+        
+        execute(type: AuthType, level: SecureLevel, callback: AsyncCallback<number>): void;
+        execute(type: AuthType, level: SecureLevel): Promise<number>;
+    }
+
+    
+    function getAuthenticator(): Authenticator;
+
+    
+    class UserAuth {
+        
+        constructor();
+
+        
+        getVersion() : number;
+
+        
+        getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number;
+
+        
+        auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+        
+        cancelAuth(contextID : Uint8Array) : number;
+    }
+
+    interface IUserAuthCallback {
+        
+        onResult: (result : number, extraInfo : AuthResult) => void;
+
+        
+        onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
+    }
+
+    
+    interface AuthResult {
+        token ?: Uint8Array;
+        remainTimes ?: number;
+        freezingTime ?: number;
+    }
+
+    
+    enum ResultCode {
+        
+        SUCCESS = 0,
+
+        
+        FAIL = 1,
+
+        
+        GENERAL_ERROR = 2,
+
+        
+        CANCELED = 3,
+
+        
+        TIMEOUT = 4,
+
+        
+        TYPE_NOT_SUPPORT = 5,
+
+        
+        TRUST_LEVEL_NOT_SUPPORT = 6,
+
+        
+        BUSY = 7,
+
+        
+        INVALID_PARAMETERS = 8,
+
+        
+        LOCKED = 9,
+
+        
+        NOT_ENROLLED = 10
+    }
+
+    
+    enum FaceTips {
+        
+        FACE_AUTH_TIP_TOO_BRIGHT = 1,
+
+        
+        FACE_AUTH_TIP_TOO_DARK = 2,
+
+        
+        FACE_AUTH_TIP_TOO_CLOSE = 3,
+
+        
+        FACE_AUTH_TIP_TOO_FAR = 4,
+
+        
+        FACE_AUTH_TIP_TOO_HIGH = 5,
+
+        
+        FACE_AUTH_TIP_TOO_LOW = 6,
+
+        
+        FACE_AUTH_TIP_TOO_RIGHT = 7,
+
+        
+        FACE_AUTH_TIP_TOO_LEFT = 8,
+
+        
+        FACE_AUTH_TIP_TOO_MUCH_MOTION = 9,
+
+        
+        FACE_AUTH_TIP_POOR_GAZE = 10,
+
+        
+        FACE_AUTH_TIP_NOT_DETECTED = 11,
+    }
+
+    
+    enum FingerprintTips {
+        
+        FINGERPRINT_AUTH_TIP_GOOD = 0,
+
+        
+        FINGERPRINT_AUTH_TIP_DIRTY = 1,
+
+        
+        FINGERPRINT_AUTH_TIP_INSUFFICIENT = 2,
+
+        
+        FINGERPRINT_AUTH_TIP_PARTIAL = 3,
+
+        
+        FINGERPRINT_AUTH_TIP_TOO_FAST = 4,
+
+        
+        FINGERPRINT_AUTH_TIP_TOO_SLOW = 5
+    }
+
+    
+    enum UserAuthType {
+        
+        FACE = 2,
+
+        
+        FINGERPRINT = 4
+    }
+
+    
+    enum AuthTrustLevel {
+        
+        ATL1 = 10000,
+
+        
+        ATL2 = 20000,
+
+        
+        ATL3 = 30000,
+
+        
+        ATL4 = 40000
+    }
+}</td><td>userAuth</td><td>None</td><td>0</td><td>0</td><tr><tr><td>userAuth</td><td>function getAuthenticator(): Authenticator;</td><td>getAuthenticator</td><td>None</td><td>0</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>export enum AuthenticationResult {
+        
+        NO_SUPPORT = -1,
+
+        
+        SUCCESS = 0,
+
+        
+        COMPARE_FAILURE = 1,
+
+        
+        CANCELED = 2,
+
+        
+        TIMEOUT = 3,
+
+        
+        CAMERA_FAIL = 4,
+
+        
+        BUSY = 5,
+
+        
+        INVALID_PARAMETERS = 6,
+
+        
+        LOCKED = 7,
+
+        
+        NOT_ENROLLED = 8,
+
+        
+        GENERAL_ERROR = 100,
+    }</td><td>AuthenticationResult</td><td>40</td><td>0</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>NO_SUPPORT = -1,</td><td>NO_SUPPORT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>SUCCESS = 0,</td><td>SUCCESS</td><td>42</td><td>1</td><td>664</td><tr><tr><td>AuthenticationResult</td><td>COMPARE_FAILURE = 1,</td><td>COMPARE_FAILURE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>CANCELED = 2,</td><td>CANCELED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>TIMEOUT = 3,</td><td>TIMEOUT</td><td>42</td><td>1</td><td>5</td><tr><tr><td>AuthenticationResult</td><td>CAMERA_FAIL = 4,</td><td>CAMERA_FAIL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>BUSY = 5,</td><td>BUSY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>INVALID_PARAMETERS = 6,</td><td>INVALID_PARAMETERS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>LOCKED = 7,</td><td>LOCKED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>NOT_ENROLLED = 8,</td><td>NOT_ENROLLED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthenticationResult</td><td>GENERAL_ERROR = 100,</td><td>GENERAL_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Authenticator</td><td>interface Authenticator {
+        
+        execute(type: AuthType, level: SecureLevel, callback: AsyncCallback<number>): void;
+        execute(type: AuthType, level: SecureLevel): Promise<number>;
+    }</td><td>Authenticator</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Authenticator</td><td>execute(type: AuthType, level: SecureLevel, callback: AsyncCallback<number>): void;</td><td>execute</td><td>21</td><td>3</td><td>14</td><tr><tr><td>Authenticator</td><td>execute(type: AuthType, level: SecureLevel): Promise<number>;</td><td>execute</td><td>21</td><td>2</td><td>0</td><tr><tr><td>UserAuth</td><td>class UserAuth {
+        
+        constructor();
+
+        
+        getVersion() : number;
+
+        
+        getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number;
+
+        
+        auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+        
+        cancelAuth(contextID : Uint8Array) : number;
+    }</td><td>UserAuth</td><td>10</td><td>0</td><td>0</td><tr><tr><td>UserAuth</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserAuth</td><td>getVersion() : number;</td><td>getVersion</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserAuth</td><td>getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : number;</td><td>getAvailableStatus</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserAuth</td><td>auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;</td><td>auth</td><td>11</td><td>4</td><td>0</td><tr><tr><td>UserAuth</td><td>cancelAuth(contextID : Uint8Array) : number;</td><td>cancelAuth</td><td>11</td><td>1</td><td>0</td><tr><tr><td>IUserAuthCallback</td><td>interface IUserAuthCallback {
+        
+        onResult: (result : number, extraInfo : AuthResult) => void;
+
+        
+        onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;
+    }</td><td>IUserAuthCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IUserAuthCallback</td><td>onResult: (result : number, extraInfo : AuthResult) => void;</td><td>onResult</td><td>21</td><td>2</td><td>0</td><tr><tr><td>IUserAuthCallback</td><td>onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void;</td><td>onAcquireInfo</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AuthResult</td><td>interface AuthResult {
+        token ?: Uint8Array;
+        remainTimes ?: number;
+        freezingTime ?: number;
+    }</td><td>AuthResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AuthResult</td><td>token ?: Uint8Array</td><td>token</td><td>22</td><td>1</td><td>89</td><tr><tr><td>AuthResult</td><td>remainTimes ?: number</td><td>remainTimes</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AuthResult</td><td>freezingTime ?: number</td><td>freezingTime</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>enum ResultCode {
+        
+        SUCCESS = 0,
+
+        
+        FAIL = 1,
+
+        
+        GENERAL_ERROR = 2,
+
+        
+        CANCELED = 3,
+
+        
+        TIMEOUT = 4,
+
+        
+        TYPE_NOT_SUPPORT = 5,
+
+        
+        TRUST_LEVEL_NOT_SUPPORT = 6,
+
+        
+        BUSY = 7,
+
+        
+        INVALID_PARAMETERS = 8,
+
+        
+        LOCKED = 9,
+
+        
+        NOT_ENROLLED = 10
+    }</td><td>ResultCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ResultCode</td><td>SUCCESS = 0,</td><td>SUCCESS</td><td>42</td><td>1</td><td>664</td><tr><tr><td>ResultCode</td><td>FAIL = 1,</td><td>FAIL</td><td>42</td><td>1</td><td>85</td><tr><tr><td>ResultCode</td><td>GENERAL_ERROR = 2,</td><td>GENERAL_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>CANCELED = 3,</td><td>CANCELED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>TIMEOUT = 4,</td><td>TIMEOUT</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResultCode</td><td>TYPE_NOT_SUPPORT = 5,</td><td>TYPE_NOT_SUPPORT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>TRUST_LEVEL_NOT_SUPPORT = 6,</td><td>TRUST_LEVEL_NOT_SUPPORT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>BUSY = 7,</td><td>BUSY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>INVALID_PARAMETERS = 8,</td><td>INVALID_PARAMETERS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>LOCKED = 9,</td><td>LOCKED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>NOT_ENROLLED = 10</td><td>NOT_ENROLLED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>enum FaceTips {
+        
+        FACE_AUTH_TIP_TOO_BRIGHT = 1,
+
+        
+        FACE_AUTH_TIP_TOO_DARK = 2,
+
+        
+        FACE_AUTH_TIP_TOO_CLOSE = 3,
+
+        
+        FACE_AUTH_TIP_TOO_FAR = 4,
+
+        
+        FACE_AUTH_TIP_TOO_HIGH = 5,
+
+        
+        FACE_AUTH_TIP_TOO_LOW = 6,
+
+        
+        FACE_AUTH_TIP_TOO_RIGHT = 7,
+
+        
+        FACE_AUTH_TIP_TOO_LEFT = 8,
+
+        
+        FACE_AUTH_TIP_TOO_MUCH_MOTION = 9,
+
+        
+        FACE_AUTH_TIP_POOR_GAZE = 10,
+
+        
+        FACE_AUTH_TIP_NOT_DETECTED = 11,
+    }</td><td>FaceTips</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_BRIGHT = 1,</td><td>FACE_AUTH_TIP_TOO_BRIGHT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_DARK = 2,</td><td>FACE_AUTH_TIP_TOO_DARK</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_CLOSE = 3,</td><td>FACE_AUTH_TIP_TOO_CLOSE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_FAR = 4,</td><td>FACE_AUTH_TIP_TOO_FAR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_HIGH = 5,</td><td>FACE_AUTH_TIP_TOO_HIGH</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_LOW = 6,</td><td>FACE_AUTH_TIP_TOO_LOW</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_RIGHT = 7,</td><td>FACE_AUTH_TIP_TOO_RIGHT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_LEFT = 8,</td><td>FACE_AUTH_TIP_TOO_LEFT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_TOO_MUCH_MOTION = 9,</td><td>FACE_AUTH_TIP_TOO_MUCH_MOTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_POOR_GAZE = 10,</td><td>FACE_AUTH_TIP_POOR_GAZE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTips</td><td>FACE_AUTH_TIP_NOT_DETECTED = 11,</td><td>FACE_AUTH_TIP_NOT_DETECTED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>enum FingerprintTips {
+        
+        FINGERPRINT_AUTH_TIP_GOOD = 0,
+
+        
+        FINGERPRINT_AUTH_TIP_DIRTY = 1,
+
+        
+        FINGERPRINT_AUTH_TIP_INSUFFICIENT = 2,
+
+        
+        FINGERPRINT_AUTH_TIP_PARTIAL = 3,
+
+        
+        FINGERPRINT_AUTH_TIP_TOO_FAST = 4,
+
+        
+        FINGERPRINT_AUTH_TIP_TOO_SLOW = 5
+    }</td><td>FingerprintTips</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_AUTH_TIP_GOOD = 0,</td><td>FINGERPRINT_AUTH_TIP_GOOD</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_AUTH_TIP_DIRTY = 1,</td><td>FINGERPRINT_AUTH_TIP_DIRTY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_AUTH_TIP_INSUFFICIENT = 2,</td><td>FINGERPRINT_AUTH_TIP_INSUFFICIENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_AUTH_TIP_PARTIAL = 3,</td><td>FINGERPRINT_AUTH_TIP_PARTIAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_AUTH_TIP_TOO_FAST = 4,</td><td>FINGERPRINT_AUTH_TIP_TOO_FAST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_AUTH_TIP_TOO_SLOW = 5</td><td>FINGERPRINT_AUTH_TIP_TOO_SLOW</td><td>42</td><td>1</td><td>0</td><tr><tr><td>UserAuthType</td><td>enum UserAuthType {
+        
+        FACE = 2,
+
+        
+        FINGERPRINT = 4
+    }</td><td>UserAuthType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>UserAuthType</td><td>FACE = 2,</td><td>FACE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>UserAuthType</td><td>FINGERPRINT = 4</td><td>FINGERPRINT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>enum AuthTrustLevel {
+        
+        ATL1 = 10000,
+
+        
+        ATL2 = 20000,
+
+        
+        ATL3 = 30000,
+
+        
+        ATL4 = 40000
+    }</td><td>AuthTrustLevel</td><td>40</td><td>0</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL1 = 10000,</td><td>ATL1</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL2 = 20000,</td><td>ATL2</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL3 = 30000,</td><td>ATL3</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL4 = 40000</td><td>ATL4</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.net.socket</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>socket</td><td>declare namespace socket {
+  export 
+  
+  function constructUDPSocketInstance(): UDPSocket;
+
+  
+  function constructTCPSocketInstance(): TCPSocket;
+
+  export interface UDPSendOptions {
+    
+    data: string | ArrayBuffer;
+    
+    address: NetAddress;
+  }
+
+  export interface ExtraOptionsBase {
+    
+    receiveBufferSize?: number;
+    
+    sendBufferSize?: number;
+    
+    reuseAddress?: boolean;
+    
+    socketTimeout?: number;
+  }
+
+  export interface UDPExtraOptions extends ExtraOptionsBase {
+    
+    broadcast?: boolean;
+  }
+
+  export interface SocketStateBase {
+    
+    isBound: boolean;
+    
+    isClose: boolean;
+    
+    isConnected: boolean;
+  }
+
+  export interface SocketRemoteInfo {
+    
+    address: string;
+    
+    family: 'IPv4' | 'IPv6';
+    
+    port: number;
+    
+    size: number;
+  }
+
+  export interface UDPSocket {
+    
+    bind(address: NetAddress, callback: AsyncCallback<void>): void;
+    bind(address: NetAddress): Promise<void>;
+
+    
+    send(options: UDPSendOptions, callback: AsyncCallback<void>): void;
+    send(options: UDPSendOptions): Promise<void>;
+
+    
+    close(callback: AsyncCallback<void>): void;
+    close(): Promise<void>;
+
+    
+    getState(callback: AsyncCallback<SocketStateBase>): void;
+    getState(): Promise<SocketStateBase>;
+
+    
+    setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback<void>): void;
+    setExtraOptions(options: UDPExtraOptions): Promise<void>;
+
+    
+    on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    on(type: 'listening' | 'close', callback: Callback<void>): void;
+
+    
+    off(type: 'listening' | 'close', callback?: Callback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+
+    
+    off(type: 'error', callback?: ErrorCallback): void;
+  }
+
+  export interface TCPConnectOptions {
+    
+    address: NetAddress;
+    
+    timeout?: number;
+  }
+
+  export interface TCPSendOptions {
+    
+    data: string | ArrayBuffer;
+    
+    encoding?: string;
+  }
+
+  export interface TCPExtraOptions extends ExtraOptionsBase {
+    
+    keepAlive?: boolean;
+    
+    OOBInline?: boolean;
+    
+    TCPNoDelay?: boolean;
+    
+    socketLinger: {on: boolean, linger: number};
+  }
+
+  export interface TCPSocket {
+    
+    bind(address: NetAddress, callback: AsyncCallback<void>): void;
+    bind(address: NetAddress): Promise<void>;
+
+    
+    connect(options: TCPConnectOptions, callback: AsyncCallback<void>): void;
+    connect(options: TCPConnectOptions): Promise<void>;
+
+    
+    send(options: TCPSendOptions, callback: AsyncCallback<void>): void;
+    send(options: TCPSendOptions): Promise<void>;
+
+    
+    close(callback: AsyncCallback<void>): void;
+    close(): Promise<void>;
+
+    
+    getRemoteAddress(callback: AsyncCallback<NetAddress>): void;
+    getRemoteAddress(): Promise<NetAddress>;
+
+    
+    getState(callback: AsyncCallback<SocketStateBase>): void;
+    getState(): Promise<SocketStateBase>;
+
+    
+    setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback<void>): void;
+    setExtraOptions(options: TCPExtraOptions): Promise<void>;
+
+    
+    on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    on(type: 'connect' | 'close', callback: Callback<void>): void;
+
+    
+    off(type: 'connect' | 'close', callback?: Callback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+
+    
+    off(type: 'error', callback?: ErrorCallback): void;
+  }
+}</td><td>socket</td><td>None</td><td>0</td><td>165</td><tr><tr><td>socket</td><td>function constructUDPSocketInstance(): UDPSocket;</td><td>constructUDPSocketInstance</td><td>None</td><td>0</td><td>4</td><tr><tr><td>socket</td><td>function constructTCPSocketInstance(): TCPSocket;</td><td>constructTCPSocketInstance</td><td>None</td><td>0</td><td>4</td><tr><tr><td>UDPSendOptions</td><td>export interface UDPSendOptions {
+    
+    data: string | ArrayBuffer;
+    
+    address: NetAddress;
+  }</td><td>UDPSendOptions</td><td>20</td><td>0</td><td>8</td><tr><tr><td>UDPSendOptions</td><td>data: string | ArrayBuffer</td><td>data</td><td>22</td><td>1</td><td>2666</td><tr><tr><td>UDPSendOptions</td><td>address: NetAddress</td><td>address</td><td>22</td><td>1</td><td>138</td><tr><tr><td>ExtraOptionsBase</td><td>export interface ExtraOptionsBase {
+    
+    receiveBufferSize?: number;
+    
+    sendBufferSize?: number;
+    
+    reuseAddress?: boolean;
+    
+    socketTimeout?: number;
+  }</td><td>ExtraOptionsBase</td><td>20</td><td>0</td><td>16</td><tr><tr><td>ExtraOptionsBase</td><td>receiveBufferSize?: number</td><td>receiveBufferSize</td><td>22</td><td>1</td><td>8</td><tr><tr><td>ExtraOptionsBase</td><td>sendBufferSize?: number</td><td>sendBufferSize</td><td>22</td><td>1</td><td>8</td><tr><tr><td>ExtraOptionsBase</td><td>reuseAddress?: boolean</td><td>reuseAddress</td><td>22</td><td>1</td><td>8</td><tr><tr><td>ExtraOptionsBase</td><td>socketTimeout?: number</td><td>socketTimeout</td><td>22</td><td>1</td><td>8</td><tr><tr><td>UDPExtraOptions</td><td>export interface UDPExtraOptions extends ExtraOptionsBase {
+    
+    broadcast?: boolean;
+  }</td><td>UDPExtraOptions</td><td>None</td><td>0</td><td>4</td><tr><tr><td>UDPExtraOptions</td><td>broadcast?: boolean</td><td>broadcast</td><td>22</td><td>1</td><td>4</td><tr><tr><td>SocketStateBase</td><td>export interface SocketStateBase {
+    
+    isBound: boolean;
+    
+    isClose: boolean;
+    
+    isConnected: boolean;
+  }</td><td>SocketStateBase</td><td>20</td><td>0</td><td>5</td><tr><tr><td>SocketStateBase</td><td>isBound: boolean</td><td>isBound</td><td>22</td><td>1</td><td>1</td><tr><tr><td>SocketStateBase</td><td>isClose: boolean</td><td>isClose</td><td>22</td><td>1</td><td>6</td><tr><tr><td>SocketStateBase</td><td>isConnected: boolean</td><td>isConnected</td><td>22</td><td>1</td><td>1</td><tr><tr><td>SocketRemoteInfo</td><td>export interface SocketRemoteInfo {
+    
+    address: string;
+    
+    family: 'IPv4' | 'IPv6';
+    
+    port: number;
+    
+    size: number;
+  }</td><td>SocketRemoteInfo</td><td>20</td><td>0</td><td>12</td><tr><tr><td>SocketRemoteInfo</td><td>address: string</td><td>address</td><td>22</td><td>1</td><td>138</td><tr><tr><td>SocketRemoteInfo</td><td>family: 'IPv4' | 'IPv6'</td><td>family</td><td>22</td><td>1</td><td>33</td><tr><tr><td>SocketRemoteInfo</td><td>port: number</td><td>port</td><td>22</td><td>1</td><td>933</td><tr><tr><td>SocketRemoteInfo</td><td>size: number</td><td>size</td><td>22</td><td>1</td><td>200</td><tr><tr><td>UDPSocket</td><td>export interface UDPSocket {
+    
+    bind(address: NetAddress, callback: AsyncCallback<void>): void;
+    bind(address: NetAddress): Promise<void>;
+
+    
+    send(options: UDPSendOptions, callback: AsyncCallback<void>): void;
+    send(options: UDPSendOptions): Promise<void>;
+
+    
+    close(callback: AsyncCallback<void>): void;
+    close(): Promise<void>;
+
+    
+    getState(callback: AsyncCallback<SocketStateBase>): void;
+    getState(): Promise<SocketStateBase>;
+
+    
+    setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback<void>): void;
+    setExtraOptions(options: UDPExtraOptions): Promise<void>;
+
+    
+    on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    on(type: 'listening' | 'close', callback: Callback<void>): void;
+
+    
+    off(type: 'listening' | 'close', callback?: Callback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+
+    
+    off(type: 'error', callback?: ErrorCallback): void;
+  }</td><td>UDPSocket</td><td>20</td><td>0</td><td>190</td><tr><tr><td>UDPSocket</td><td>bind(address: NetAddress, callback: AsyncCallback<void>): void;</td><td>bind</td><td>21</td><td>2</td><td>58</td><tr><tr><td>UDPSocket</td><td>bind(address: NetAddress): Promise<void>;</td><td>bind</td><td>21</td><td>1</td><td>4</td><tr><tr><td>UDPSocket</td><td>send(options: UDPSendOptions, callback: AsyncCallback<void>): void;</td><td>send</td><td>21</td><td>2</td><td>130</td><tr><tr><td>UDPSocket</td><td>send(options: UDPSendOptions): Promise<void>;</td><td>send</td><td>21</td><td>1</td><td>6</td><tr><tr><td>UDPSocket</td><td>close(callback: AsyncCallback<void>): void;</td><td>close</td><td>21</td><td>1</td><td>272</td><tr><tr><td>UDPSocket</td><td>close(): Promise<void>;</td><td>close</td><td>21</td><td>0</td><td>3</td><tr><tr><td>UDPSocket</td><td>getState(callback: AsyncCallback<SocketStateBase>): void;</td><td>getState</td><td>21</td><td>1</td><td>26</td><tr><tr><td>UDPSocket</td><td>getState(): Promise<SocketStateBase>;</td><td>getState</td><td>21</td><td>0</td><td>2</td><tr><tr><td>UDPSocket</td><td>setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback<void>): void;</td><td>setExtraOptions</td><td>21</td><td>2</td><td>56</td><tr><tr><td>UDPSocket</td><td>setExtraOptions(options: UDPExtraOptions): Promise<void>;</td><td>setExtraOptions</td><td>21</td><td>1</td><td>0</td><tr><tr><td>UDPSocket</td><td>on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>UDPSocket</td><td>off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>UDPSocket</td><td>on(type: 'listening' | 'close', callback: Callback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>UDPSocket</td><td>off(type: 'listening' | 'close', callback?: Callback<void>): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>UDPSocket</td><td>on(type: 'error', callback: ErrorCallback): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>UDPSocket</td><td>off(type: 'error', callback?: ErrorCallback): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>TCPConnectOptions</td><td>export interface TCPConnectOptions {
+    
+    address: NetAddress;
+    
+    timeout?: number;
+  }</td><td>TCPConnectOptions</td><td>20</td><td>0</td><td>8</td><tr><tr><td>TCPConnectOptions</td><td>address: NetAddress</td><td>address</td><td>22</td><td>1</td><td>138</td><tr><tr><td>TCPConnectOptions</td><td>timeout?: number</td><td>timeout</td><td>22</td><td>1</td><td>60</td><tr><tr><td>TCPSendOptions</td><td>export interface TCPSendOptions {
+    
+    data: string | ArrayBuffer;
+    
+    encoding?: string;
+  }</td><td>TCPSendOptions</td><td>20</td><td>0</td><td>12</td><tr><tr><td>TCPSendOptions</td><td>data: string | ArrayBuffer</td><td>data</td><td>22</td><td>1</td><td>2666</td><tr><tr><td>TCPSendOptions</td><td>encoding?: string</td><td>encoding</td><td>22</td><td>1</td><td>91</td><tr><tr><td>TCPExtraOptions</td><td>export interface TCPExtraOptions extends ExtraOptionsBase {
+    
+    keepAlive?: boolean;
+    
+    OOBInline?: boolean;
+    
+    TCPNoDelay?: boolean;
+    
+    socketLinger: {on: boolean, linger: number};
+  }</td><td>TCPExtraOptions</td><td>None</td><td>0</td><td>29</td><tr><tr><td>TCPExtraOptions</td><td>keepAlive?: boolean</td><td>keepAlive</td><td>22</td><td>1</td><td>10</td><tr><tr><td>TCPExtraOptions</td><td>OOBInline?: boolean</td><td>OOBInline</td><td>22</td><td>1</td><td>13</td><tr><tr><td>TCPExtraOptions</td><td>TCPNoDelay?: boolean</td><td>TCPNoDelay</td><td>22</td><td>1</td><td>13</td><tr><tr><td>TCPExtraOptions</td><td>socketLinger: {on: boolean, linger: number}</td><td>socketLinger</td><td>22</td><td>1</td><td>16</td><tr><tr><td>TCPSocket</td><td>export interface TCPSocket {
+    
+    bind(address: NetAddress, callback: AsyncCallback<void>): void;
+    bind(address: NetAddress): Promise<void>;
+
+    
+    connect(options: TCPConnectOptions, callback: AsyncCallback<void>): void;
+    connect(options: TCPConnectOptions): Promise<void>;
+
+    
+    send(options: TCPSendOptions, callback: AsyncCallback<void>): void;
+    send(options: TCPSendOptions): Promise<void>;
+
+    
+    close(callback: AsyncCallback<void>): void;
+    close(): Promise<void>;
+
+    
+    getRemoteAddress(callback: AsyncCallback<NetAddress>): void;
+    getRemoteAddress(): Promise<NetAddress>;
+
+    
+    getState(callback: AsyncCallback<SocketStateBase>): void;
+    getState(): Promise<SocketStateBase>;
+
+    
+    setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback<void>): void;
+    setExtraOptions(options: TCPExtraOptions): Promise<void>;
+
+    
+    on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+    
+    on(type: 'connect' | 'close', callback: Callback<void>): void;
+
+    
+    off(type: 'connect' | 'close', callback?: Callback<void>): void;
+
+    
+    on(type: 'error', callback: ErrorCallback): void;
+
+    
+    off(type: 'error', callback?: ErrorCallback): void;
+  }</td><td>TCPSocket</td><td>20</td><td>0</td><td>224</td><tr><tr><td>TCPSocket</td><td>bind(address: NetAddress, callback: AsyncCallback<void>): void;</td><td>bind</td><td>21</td><td>2</td><td>58</td><tr><tr><td>TCPSocket</td><td>bind(address: NetAddress): Promise<void>;</td><td>bind</td><td>21</td><td>1</td><td>4</td><tr><tr><td>TCPSocket</td><td>connect(options: TCPConnectOptions, callback: AsyncCallback<void>): void;</td><td>connect</td><td>21</td><td>2</td><td>382</td><tr><tr><td>TCPSocket</td><td>connect(options: TCPConnectOptions): Promise<void>;</td><td>connect</td><td>21</td><td>1</td><td>21</td><tr><tr><td>TCPSocket</td><td>send(options: TCPSendOptions, callback: AsyncCallback<void>): void;</td><td>send</td><td>21</td><td>2</td><td>130</td><tr><tr><td>TCPSocket</td><td>send(options: TCPSendOptions): Promise<void>;</td><td>send</td><td>21</td><td>1</td><td>6</td><tr><tr><td>TCPSocket</td><td>close(callback: AsyncCallback<void>): void;</td><td>close</td><td>21</td><td>1</td><td>272</td><tr><tr><td>TCPSocket</td><td>close(): Promise<void>;</td><td>close</td><td>21</td><td>0</td><td>3</td><tr><tr><td>TCPSocket</td><td>getRemoteAddress(callback: AsyncCallback<NetAddress>): void;</td><td>getRemoteAddress</td><td>21</td><td>1</td><td>13</td><tr><tr><td>TCPSocket</td><td>getRemoteAddress(): Promise<NetAddress>;</td><td>getRemoteAddress</td><td>21</td><td>0</td><td>1</td><tr><tr><td>TCPSocket</td><td>getState(callback: AsyncCallback<SocketStateBase>): void;</td><td>getState</td><td>21</td><td>1</td><td>26</td><tr><tr><td>TCPSocket</td><td>getState(): Promise<SocketStateBase>;</td><td>getState</td><td>21</td><td>0</td><td>2</td><tr><tr><td>TCPSocket</td><td>setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback<void>): void;</td><td>setExtraOptions</td><td>21</td><td>2</td><td>56</td><tr><tr><td>TCPSocket</td><td>setExtraOptions(options: TCPExtraOptions): Promise<void>;</td><td>setExtraOptions</td><td>21</td><td>1</td><td>0</td><tr><tr><td>TCPSocket</td><td>on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>TCPSocket</td><td>off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>TCPSocket</td><td>on(type: 'connect' | 'close', callback: Callback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>TCPSocket</td><td>off(type: 'connect' | 'close', callback?: Callback<void>): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>TCPSocket</td><td>on(type: 'error', callback: ErrorCallback): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>TCPSocket</td><td>off(type: 'error', callback?: ErrorCallback): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>升级服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>updater</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.update</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>update</td><td>declare namespace update {
+    
+    export enum PackageTypes {
+        PACKAGE_TYPE_NORMAL = 1,
+        PACKAGE_TYPE_BASE = 2,
+        PACKAGE_TYPE_CUST = 3,
+        PACKAGE_TYPE_PRELOAD = 4,
+        PACKAGE_TYPE_COTA = 5,
+        PACKAGE_TYPE_VERSION = 6,
+        PACKAGE_TYPE_PATCH = 7
+    }
+
+    
+    export interface CheckResult {
+        
+        versionName: number;
+
+        
+        versionCode: string;
+
+        
+        size: number;
+
+        
+        verifyInfo: string;
+
+        
+        packageType: PackageTypes;
+
+        
+        descriptionId: string;
+    }
+
+    
+    export interface DescriptionInfo {
+        
+        descriptionId: string;
+
+        
+        content: string;
+    }
+
+    
+    export enum NewVersionStatus {
+        
+        VERSION_STATUS_ERR = -1,
+
+        
+        VERSION_STATUS_NEW = 0,
+
+        
+        VERSION_STATUS_NONE = 1,
+
+        
+        VERSION_STATUS_BUSY = 2
+    }
+
+    
+    export interface NewVersionInfo {
+        
+        status: NewVersionStatus;
+
+        
+        errMsg: string;
+
+        
+        checkResults: Array<CheckResult>;
+
+        
+        descriptionInfo: Array<DescriptionInfo>;
+    }
+
+    
+    export enum UpdateState {
+        UPDATE_STATE_INIT = 0,
+        UPDATE_STATE_CHECK_VERSION_ON = 10,
+        UPDATE_STATE_CHECK_VERSION_FAIL,
+        UPDATE_STATE_CHECK_VERSION_SUCCESS,
+        UPDATE_STATE_DOWNLOAD_ON = 20,
+        UPDATE_STATE_DOWNLOAD_PAUSE,
+        UPDATE_STATE_DOWNLOAD_CANCEL,
+        UPDATE_STATE_DOWNLOAD_FAIL,
+        UPDATE_STATE_DOWNLOAD_SUCCESS,
+        UPDATE_STATE_VERIFY_ON = 30,
+        UPDATE_STATE_VERIFY_FAIL,
+        UPDATE_STATE_VERIFY_SUCCESS,
+        UPDATE_STATE_PACKAGE_TRANS_ON = 70,
+        UPDATE_STATE_PACKAGE_TRANS_FAIL,
+        UPDATE_STATE_PACKAGE_TRANS_SUCCESS,
+        UPDATE_STATE_INSTALL_ON = 80,
+        UPDATE_STATE_INSTALL_FAIL,
+        UPDATE_STATE_INSTALL_SUCCESS,
+        UPDATE_STATE_UPDATE_ON = 90,
+        UPDATE_STATE_UPDATE_FAIL,
+        UPDATE_STATE_UPDATE_SUCCESS
+    }
+
+    
+    export interface Progress {
+        
+        percent: number;
+
+        
+        status: UpdateState;
+
+        
+        endReason: string;
+    }
+
+    
+    export enum InstallMode {
+        
+        INSTALL_MODE_NORMAL,
+
+        
+        INSTALL_MODE_NIGHT,
+
+        
+        INSTALL_MODE_AUTO
+    }
+
+    
+    export interface UpdatePolicy {
+        
+        autoDownload: boolean;
+
+        
+        installMode: INSTALL_MODE;
+
+        
+        autoUpgradeInterval: Array<number>;
+    }
+
+    
+    export interface UpdateProgressCallback {
+        (progress: Progress): void;
+    }
+
+    
+    export interface Updater {
+        
+        checkNewVersion(callback: AsyncCallback<NewVersionInfo>): void;
+        checkNewVersion(): Promise<NewVersionInfo>;
+
+        
+        download(): void;
+
+        
+        upgrade(): void;
+
+        
+        getNewVersionInfo(callback: AsyncCallback<NewVersionInfo>): void;
+        getNewVersionInfo(): Promise<NewVersionInfo>;
+
+        
+        getUpdatePolicy(callback: AsyncCallback<UpdatePolicy>): void;
+        getUpdatePolicy(): Promise<UpdatePolicy>;
+
+        
+        setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback<number>): void;
+        setUpdatePolicy(policy: UpdatePolicy): Promise<number>;
+
+        
+        applyNewVersion(callback: AsyncCallback<number>): void;
+        applyNewVersion(): Promise<number>;
+
+        
+        rebootAndCleanCache(callback: AsyncCallback<number>): void;
+        rebootAndCleanCache(): Promise<number>;
+	
+	
+        rebootAndCleanUserData(callback: AsyncCallback<number>): void;
+        rebootAndCleanUserData(): Promise<number>;
+
+        
+        verifyUpdatePackage(upgradeFile: string, certsFile: string): void;
+
+        
+        on(eventType: 'downloadProgress', callback: UpdateProgressCallback): void;
+        on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
+        on(eventType: 'verifyProgress', callback: UpdateProgressCallback): void;
+
+        
+        off(eventType: 'downloadProgress', callback?: UpdateProgressCallback): void;
+        off(eventType: 'upgradeProgress', callback?: UpdateProgressCallback): void;
+        off(eventType: 'verifyProgress', callback?: UpdateProgressCallback): void;
+
+	
+        cancel(): void;
+    }
+
+    export type UpdateTypes =
+        'OTA' |
+        'patch';
+
+    
+    function getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater;
+
+    
+    function getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater;
+
+    
+    function getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater;
+}</td><td>update</td><td>None</td><td>0</td><td>204</td><tr><tr><td>update</td><td>function getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater;</td><td>getUpdater</td><td>None</td><td>2</td><td>12</td><tr><tr><td>update</td><td>function getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater;</td><td>getUpdaterForOther</td><td>None</td><td>3</td><td>3</td><tr><tr><td>update</td><td>function getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater;</td><td>getUpdaterFromOther</td><td>None</td><td>3</td><td>3</td><tr><tr><td>PackageTypes</td><td>export enum PackageTypes {
+        PACKAGE_TYPE_NORMAL = 1,
+        PACKAGE_TYPE_BASE = 2,
+        PACKAGE_TYPE_CUST = 3,
+        PACKAGE_TYPE_PRELOAD = 4,
+        PACKAGE_TYPE_COTA = 5,
+        PACKAGE_TYPE_VERSION = 6,
+        PACKAGE_TYPE_PATCH = 7
+    }</td><td>PackageTypes</td><td>40</td><td>0</td><td>13</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_NORMAL = 1,</td><td>PACKAGE_TYPE_NORMAL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_BASE = 2,</td><td>PACKAGE_TYPE_BASE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_CUST = 3,</td><td>PACKAGE_TYPE_CUST</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_PRELOAD = 4,</td><td>PACKAGE_TYPE_PRELOAD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_COTA = 5,</td><td>PACKAGE_TYPE_COTA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_VERSION = 6,</td><td>PACKAGE_TYPE_VERSION</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PackageTypes</td><td>PACKAGE_TYPE_PATCH = 7</td><td>PACKAGE_TYPE_PATCH</td><td>42</td><td>1</td><td>1</td><tr><tr><td>CheckResult</td><td>export interface CheckResult {
+        
+        versionName: number;
+
+        
+        versionCode: string;
+
+        
+        size: number;
+
+        
+        verifyInfo: string;
+
+        
+        packageType: PackageTypes;
+
+        
+        descriptionId: string;
+    }</td><td>CheckResult</td><td>20</td><td>0</td><td>6</td><tr><tr><td>CheckResult</td><td>versionName: number</td><td>versionName</td><td>22</td><td>1</td><td>6</td><tr><tr><td>CheckResult</td><td>versionCode: string</td><td>versionCode</td><td>22</td><td>1</td><td>6</td><tr><tr><td>CheckResult</td><td>size: number</td><td>size</td><td>22</td><td>1</td><td>9</td><tr><tr><td>CheckResult</td><td>verifyInfo: string</td><td>verifyInfo</td><td>22</td><td>1</td><td>6</td><tr><tr><td>CheckResult</td><td>packageType: PackageTypes</td><td>packageType</td><td>22</td><td>1</td><td>2</td><tr><tr><td>CheckResult</td><td>descriptionId: string</td><td>descriptionId</td><td>22</td><td>1</td><td>6</td><tr><tr><td>DescriptionInfo</td><td>export interface DescriptionInfo {
+        
+        descriptionId: string;
+
+        
+        content: string;
+    }</td><td>DescriptionInfo</td><td>20</td><td>0</td><td>7</td><tr><tr><td>DescriptionInfo</td><td>descriptionId: string</td><td>descriptionId</td><td>22</td><td>1</td><td>6</td><tr><tr><td>DescriptionInfo</td><td>content: string</td><td>content</td><td>22</td><td>1</td><td>8</td><tr><tr><td>NewVersionStatus</td><td>export enum NewVersionStatus {
+        
+        VERSION_STATUS_ERR = -1,
+
+        
+        VERSION_STATUS_NEW = 0,
+
+        
+        VERSION_STATUS_NONE = 1,
+
+        
+        VERSION_STATUS_BUSY = 2
+    }</td><td>NewVersionStatus</td><td>40</td><td>0</td><td>11</td><tr><tr><td>NewVersionStatus</td><td>VERSION_STATUS_ERR = -1,</td><td>VERSION_STATUS_ERR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NewVersionStatus</td><td>VERSION_STATUS_NEW = 0,</td><td>VERSION_STATUS_NEW</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NewVersionStatus</td><td>VERSION_STATUS_NONE = 1,</td><td>VERSION_STATUS_NONE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NewVersionStatus</td><td>VERSION_STATUS_BUSY = 2</td><td>VERSION_STATUS_BUSY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NewVersionInfo</td><td>export interface NewVersionInfo {
+        
+        status: NewVersionStatus;
+
+        
+        errMsg: string;
+
+        
+        checkResults: Array<CheckResult>;
+
+        
+        descriptionInfo: Array<DescriptionInfo>;
+    }</td><td>NewVersionInfo</td><td>20</td><td>0</td><td>63</td><tr><tr><td>NewVersionInfo</td><td>status: NewVersionStatus</td><td>status</td><td>22</td><td>1</td><td>50</td><tr><tr><td>NewVersionInfo</td><td>errMsg: string</td><td>errMsg</td><td>22</td><td>1</td><td>0</td><tr><tr><td>NewVersionInfo</td><td>checkResults: Array<CheckResult></td><td>checkResults</td><td>22</td><td>1</td><td>18</td><tr><tr><td>NewVersionInfo</td><td>descriptionInfo: Array<DescriptionInfo></td><td>descriptionInfo</td><td>22</td><td>1</td><td>6</td><tr><tr><td>UpdateState</td><td>export enum UpdateState {
+        UPDATE_STATE_INIT = 0,
+        UPDATE_STATE_CHECK_VERSION_ON = 10,
+        UPDATE_STATE_CHECK_VERSION_FAIL,
+        UPDATE_STATE_CHECK_VERSION_SUCCESS,
+        UPDATE_STATE_DOWNLOAD_ON = 20,
+        UPDATE_STATE_DOWNLOAD_PAUSE,
+        UPDATE_STATE_DOWNLOAD_CANCEL,
+        UPDATE_STATE_DOWNLOAD_FAIL,
+        UPDATE_STATE_DOWNLOAD_SUCCESS,
+        UPDATE_STATE_VERIFY_ON = 30,
+        UPDATE_STATE_VERIFY_FAIL,
+        UPDATE_STATE_VERIFY_SUCCESS,
+        UPDATE_STATE_PACKAGE_TRANS_ON = 70,
+        UPDATE_STATE_PACKAGE_TRANS_FAIL,
+        UPDATE_STATE_PACKAGE_TRANS_SUCCESS,
+        UPDATE_STATE_INSTALL_ON = 80,
+        UPDATE_STATE_INSTALL_FAIL,
+        UPDATE_STATE_INSTALL_SUCCESS,
+        UPDATE_STATE_UPDATE_ON = 90,
+        UPDATE_STATE_UPDATE_FAIL,
+        UPDATE_STATE_UPDATE_SUCCESS
+    }</td><td>UpdateState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_INIT = 0,</td><td>UPDATE_STATE_INIT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_CHECK_VERSION_ON = 10,</td><td>UPDATE_STATE_CHECK_VERSION_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_CHECK_VERSION_FAIL,</td><td>UPDATE_STATE_CHECK_VERSION_FAIL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_CHECK_VERSION_SUCCESS,</td><td>UPDATE_STATE_CHECK_VERSION_SUCCESS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_DOWNLOAD_ON = 20,</td><td>UPDATE_STATE_DOWNLOAD_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_DOWNLOAD_PAUSE,</td><td>UPDATE_STATE_DOWNLOAD_PAUSE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_DOWNLOAD_CANCEL,</td><td>UPDATE_STATE_DOWNLOAD_CANCEL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_DOWNLOAD_FAIL,</td><td>UPDATE_STATE_DOWNLOAD_FAIL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_DOWNLOAD_SUCCESS,</td><td>UPDATE_STATE_DOWNLOAD_SUCCESS</td><td>42</td><td>1</td><td>11</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_VERIFY_ON = 30,</td><td>UPDATE_STATE_VERIFY_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_VERIFY_FAIL,</td><td>UPDATE_STATE_VERIFY_FAIL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_VERIFY_SUCCESS,</td><td>UPDATE_STATE_VERIFY_SUCCESS</td><td>42</td><td>1</td><td>11</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_PACKAGE_TRANS_ON = 70,</td><td>UPDATE_STATE_PACKAGE_TRANS_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_PACKAGE_TRANS_FAIL,</td><td>UPDATE_STATE_PACKAGE_TRANS_FAIL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_PACKAGE_TRANS_SUCCESS,</td><td>UPDATE_STATE_PACKAGE_TRANS_SUCCESS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_INSTALL_ON = 80,</td><td>UPDATE_STATE_INSTALL_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_INSTALL_FAIL,</td><td>UPDATE_STATE_INSTALL_FAIL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_INSTALL_SUCCESS,</td><td>UPDATE_STATE_INSTALL_SUCCESS</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_UPDATE_ON = 90,</td><td>UPDATE_STATE_UPDATE_ON</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdateState</td><td>UPDATE_STATE_UPDATE_FAIL,</td><td>UPDATE_STATE_UPDATE_FAIL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Progress</td><td>export interface Progress {
+        
+        percent: number;
+
+        
+        status: UpdateState;
+
+        
+        endReason: string;
+    }</td><td>Progress</td><td>20</td><td>0</td><td>87</td><tr><tr><td>Progress</td><td>percent: number</td><td>percent</td><td>22</td><td>1</td><td>36</td><tr><tr><td>Progress</td><td>status: UpdateState</td><td>status</td><td>22</td><td>1</td><td>50</td><tr><tr><td>Progress</td><td>endReason: string</td><td>endReason</td><td>22</td><td>1</td><td>26</td><tr><tr><td>InstallMode</td><td>export enum InstallMode {
+        
+        INSTALL_MODE_NORMAL,
+
+        
+        INSTALL_MODE_NIGHT,
+
+        
+        INSTALL_MODE_AUTO
+    }</td><td>InstallMode</td><td>40</td><td>0</td><td>11</td><tr><tr><td>InstallMode</td><td>INSTALL_MODE_NORMAL,</td><td>INSTALL_MODE_NORMAL</td><td>42</td><td>1</td><td>1</td><tr><tr><td>InstallMode</td><td>INSTALL_MODE_NIGHT,</td><td>INSTALL_MODE_NIGHT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>UpdatePolicy</td><td>export interface UpdatePolicy {
+        
+        autoDownload: boolean;
+
+        
+        installMode: INSTALL_MODE;
+
+        
+        autoUpgradeInterval: Array<number>;
+    }</td><td>UpdatePolicy</td><td>20</td><td>0</td><td>165</td><tr><tr><td>UpdatePolicy</td><td>autoDownload: boolean</td><td>autoDownload</td><td>22</td><td>1</td><td>32</td><tr><tr><td>UpdatePolicy</td><td>installMode: INSTALL_MODE</td><td>installMode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>UpdatePolicy</td><td>autoUpgradeInterval: Array<number></td><td>autoUpgradeInterval</td><td>22</td><td>1</td><td>24</td><tr><tr><td>UpdateProgressCallback</td><td>export interface UpdateProgressCallback {
+        (progress: Progress): void;
+    }</td><td>UpdateProgressCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>UpdateProgressCallback</td><td>(progress: Progress): void</td><td>progress</td><td>22</td><td>1</td><td>95</td><tr><tr><td>Updater</td><td>export interface Updater {
+        
+        checkNewVersion(callback: AsyncCallback<NewVersionInfo>): void;
+        checkNewVersion(): Promise<NewVersionInfo>;
+
+        
+        download(): void;
+
+        
+        upgrade(): void;
+
+        
+        getNewVersionInfo(callback: AsyncCallback<NewVersionInfo>): void;
+        getNewVersionInfo(): Promise<NewVersionInfo>;
+
+        
+        getUpdatePolicy(callback: AsyncCallback<UpdatePolicy>): void;
+        getUpdatePolicy(): Promise<UpdatePolicy>;
+
+        
+        setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback<number>): void;
+        setUpdatePolicy(policy: UpdatePolicy): Promise<number>;
+
+        
+        applyNewVersion(callback: AsyncCallback<number>): void;
+        applyNewVersion(): Promise<number>;
+
+        
+        rebootAndCleanCache(callback: AsyncCallback<number>): void;
+        rebootAndCleanCache(): Promise<number>;
+	
+	
+        rebootAndCleanUserData(callback: AsyncCallback<number>): void;
+        rebootAndCleanUserData(): Promise<number>;
+
+        
+        verifyUpdatePackage(upgradeFile: string, certsFile: string): void;
+
+        
+        on(eventType: 'downloadProgress', callback: UpdateProgressCallback): void;
+        on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
+        on(eventType: 'verifyProgress', callback: UpdateProgressCallback): void;
+
+        
+        off(eventType: 'downloadProgress', callback?: UpdateProgressCallback): void;
+        off(eventType: 'upgradeProgress', callback?: UpdateProgressCallback): void;
+        off(eventType: 'verifyProgress', callback?: UpdateProgressCallback): void;
+
+	
+        cancel(): void;
+    }</td><td>Updater</td><td>20</td><td>0</td><td>39</td><tr><tr><td>Updater</td><td>checkNewVersion(callback: AsyncCallback<NewVersionInfo>): void;</td><td>checkNewVersion</td><td>21</td><td>1</td><td>33</td><tr><tr><td>Updater</td><td>checkNewVersion(): Promise<NewVersionInfo>;</td><td>checkNewVersion</td><td>21</td><td>0</td><td>5</td><tr><tr><td>Updater</td><td>download(): void;</td><td>download</td><td>21</td><td>0</td><td>60</td><tr><tr><td>Updater</td><td>upgrade(): void;</td><td>upgrade</td><td>21</td><td>0</td><td>51</td><tr><tr><td>Updater</td><td>getNewVersionInfo(callback: AsyncCallback<NewVersionInfo>): void;</td><td>getNewVersionInfo</td><td>21</td><td>1</td><td>28</td><tr><tr><td>Updater</td><td>getNewVersionInfo(): Promise<NewVersionInfo>;</td><td>getNewVersionInfo</td><td>21</td><td>0</td><td>5</td><tr><tr><td>Updater</td><td>getUpdatePolicy(callback: AsyncCallback<UpdatePolicy>): void;</td><td>getUpdatePolicy</td><td>21</td><td>1</td><td>27</td><tr><tr><td>Updater</td><td>getUpdatePolicy(): Promise<UpdatePolicy>;</td><td>getUpdatePolicy</td><td>21</td><td>0</td><td>5</td><tr><tr><td>Updater</td><td>setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback<number>): void;</td><td>setUpdatePolicy</td><td>21</td><td>2</td><td>32</td><tr><tr><td>Updater</td><td>setUpdatePolicy(policy: UpdatePolicy): Promise<number>;</td><td>setUpdatePolicy</td><td>21</td><td>1</td><td>5</td><tr><tr><td>Updater</td><td>applyNewVersion(callback: AsyncCallback<number>): void;</td><td>applyNewVersion</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Updater</td><td>applyNewVersion(): Promise<number>;</td><td>applyNewVersion</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Updater</td><td>rebootAndCleanCache(callback: AsyncCallback<number>): void;</td><td>rebootAndCleanCache</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Updater</td><td>rebootAndCleanCache(): Promise<number>;</td><td>rebootAndCleanCache</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Updater</td><td>rebootAndCleanUserData(callback: AsyncCallback<number>): void;</td><td>rebootAndCleanUserData</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Updater</td><td>rebootAndCleanUserData(): Promise<number>;</td><td>rebootAndCleanUserData</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Updater</td><td>verifyUpdatePackage(upgradeFile: string, certsFile: string): void;</td><td>verifyUpdatePackage</td><td>21</td><td>2</td><td>5</td><tr><tr><td>Updater</td><td>on(eventType: 'downloadProgress', callback: UpdateProgressCallback): void;</td><td>on</td><td>21</td><td>2</td><td>1008</td><tr><tr><td>Updater</td><td>on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;</td><td>on</td><td>21</td><td>2</td><td>1008</td><tr><tr><td>Updater</td><td>on(eventType: 'verifyProgress', callback: UpdateProgressCallback): void;</td><td>on</td><td>21</td><td>2</td><td>1008</td><tr><tr><td>Updater</td><td>off(eventType: 'downloadProgress', callback?: UpdateProgressCallback): void;</td><td>off</td><td>21</td><td>2</td><td>35</td><tr><tr><td>Updater</td><td>off(eventType: 'upgradeProgress', callback?: UpdateProgressCallback): void;</td><td>off</td><td>21</td><td>2</td><td>35</td><tr><tr><td>Updater</td><td>off(eventType: 'verifyProgress', callback?: UpdateProgressCallback): void;</td><td>off</td><td>21</td><td>2</td><td>35</td><tr><tr><td>Updater</td><td>cancel(): void;</td><td>cancel</td><td>21</td><td>0</td><td>20</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

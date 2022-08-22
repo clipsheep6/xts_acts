@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>媒体子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>multimedia</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.multimedia.mediaLibrary</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>mediaLibrary</td><td>declare namespace mediaLibrary {
+  
+  function getMediaLibrary(): MediaLibrary;
+  
+  function getMediaLibrary(context: Context): MediaLibrary;
+
+  
+  enum MediaType {
+    
+    FILE = 0,
+    
+    IMAGE,
+    
+    VIDEO,
+    
+    AUDIO
+  }
+
+  
+  interface MediaAssetOption {
+    
+    src: string;
+    
+    mimeType: string;
+    
+    relativePath?: string;
+  }
+
+  
+  interface MediaSelectOption {
+    
+    type: 'image' | 'video' | 'media';
+    
+    count: number;
+  }
+
+  
+  interface FileAsset {
+    
+    readonly id: number;
+    
+    readonly uri: string;
+    
+    readonly mimeType: string;
+    
+    readonly mediaType: MediaType;
+    
+    displayName: string;
+    
+    title: string;
+    
+    relativePath: string;
+    
+    readonly parent: number;
+    
+    readonly size: number;
+    
+    readonly dateAdded: number;
+    
+    readonly dateModified: number;
+    
+    readonly dateTaken: number;
+    
+    readonly artist: string;
+    
+    readonly audioAlbum: string;
+    
+    readonly width: number;
+    
+    readonly height: number;
+    
+    orientation: number;
+    
+    readonly duration: number;
+    
+    readonly albumId: number;
+    
+    readonly albumUri: string;
+    
+    readonly albumName: string;
+
+    
+    isDirectory(callback: AsyncCallback<boolean>): void;
+    
+    isDirectory():Promise<boolean>;
+    
+    commitModify(callback: AsyncCallback<void>): void;
+    
+    commitModify(): Promise<void>;
+    
+    open(mode: string, callback: AsyncCallback<number>): void;
+    
+    open(mode: string): Promise<number>;
+    
+    close(fd: number, callback: AsyncCallback<void>): void;
+    
+    close(fd: number): Promise<void>;
+    
+    getThumbnail(callback: AsyncCallback<image.PixelMap>): void;
+    
+    getThumbnail(size: Size, callback: AsyncCallback<image.PixelMap>): void;
+    
+    getThumbnail(size?: Size): Promise<image.PixelMap>;
+    
+    favorite(isFavorite: boolean, callback: AsyncCallback<void>): void;
+    
+    favorite(isFavorite: boolean): Promise<void>;
+    
+    isFavorite(callback: AsyncCallback<boolean>): void;
+    
+    isFavorite():Promise<boolean>;
+    
+    trash(isTrash: boolean, callback: AsyncCallback<void>): void;
+    
+    trash(isTrash: boolean): Promise<void>;
+    
+    isTrash(callback: AsyncCallback<boolean>): void;
+    
+    isTrash():Promise<boolean>;
+  }
+
+  
+  enum FileKey {
+    
+    ID = "file_id",
+    
+    RELATIVE_PATH = "relative_path",
+    
+    DISPLAY_NAME = "display_name",
+    
+    PARENT = "parent",
+    
+    MIME_TYPE = "mime_type",
+    
+    MEDIA_TYPE = "media_type",
+    
+    SIZE = "size",
+    
+    DATE_ADDED = "date_added",
+    
+    DATE_MODIFIED = "date_modified",
+    
+    DATE_TAKEN = "date_taken",
+    
+    TITLE = "title",
+    
+    ARTIST = "artist",
+    
+    AUDIOALBUM = "audio_album",
+    
+    DURATION = "duration",
+    
+    WIDTH = "width",
+    
+    HEIGHT = "height",
+    
+    ORIENTATION = "orientation",
+    
+    ALBUM_ID = "bucket_id",
+    
+    ALBUM_NAME = "bucket_display_name",
+  }
+
+  
+  interface MediaFetchOptions {
+    
+    selections: string;
+    
+    selectionArgs: Array<string>;
+    
+    order?: string;
+    
+    uri?: string;
+    
+    networkId?: string;
+    
+    extendArgs?: string;
+  }
+
+  
+  interface FetchFileResult {
+    
+    getCount(): number;
+    
+    isAfterLast(): boolean;
+    
+    close(): void;
+    
+    getFirstObject(callback: AsyncCallback<FileAsset>): void;
+    
+    getFirstObject(): Promise<FileAsset>;
+    
+    getNextObject(callback: AsyncCallback<FileAsset>): void;
+    
+    getNextObject(): Promise<FileAsset>;
+    
+    getLastObject(callback: AsyncCallback<FileAsset>): void;
+    
+    getLastObject(): Promise<FileAsset>;
+    
+    getPositionObject(index: number, callback: AsyncCallback<FileAsset>): void;
+    
+    getPositionObject(index: number): Promise<FileAsset>;
+     
+    getAllObject(callback: AsyncCallback<Array<FileAsset>>): void;
+    
+    getAllObject(): Promise<Array<FileAsset>>;
+  }
+
+  
+  interface Album {
+    
+    readonly albumId: number;
+    
+    albumName: string;
+    
+    readonly albumUri: string;
+    
+    readonly dateModified: number;
+    
+    readonly count: number;
+    
+    readonly relativePath: string;
+    
+    readonly coverUri: string;
+
+    
+    commitModify(callback: AsyncCallback<void>): void;
+    
+    commitModify(): Promise<void>;
+    
+    getFileAssets(callback: AsyncCallback<FetchFileResult>): void;
+    
+    getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;
+    
+    getFileAssets(options?: MediaFetchOptions): Promise<FetchFileResult>;
+  }
+
+  
+  enum DirectoryType {
+    
+    DIR_CAMERA = 0,
+    
+    DIR_VIDEO,
+    
+    DIR_IMAGE,
+    
+    DIR_AUDIO,
+    
+    DIR_DOCUMENTS,
+    
+    DIR_DOWNLOAD
+  }
+
+  
+  interface MediaLibrary {
+    
+    getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;
+    
+    getPublicDirectory(type: DirectoryType): Promise<string>;
+    
+    getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;
+    
+    getFileAssets(options: MediaFetchOptions): Promise<FetchFileResult>;
+    
+    on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback<void>): void;
+    
+     off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback<void>): void;
+    
+    createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback<FileAsset>): void;
+    
+    createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise<FileAsset>;
+    
+    deleteAsset(uri: string, callback: AsyncCallback<void>): void;
+    
+    deleteAsset(uri: string): Promise<void>;
+    
+    getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array<Album>>): void;
+    
+    getAlbums(options: MediaFetchOptions): Promise<Array<Album>>;
+    
+    storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback<string>): void;
+    
+    storeMediaAsset(option: MediaAssetOption): Promise<string>;
+    
+    startImagePreview(images: Array<string>, index: number, callback: AsyncCallback<void>): void;
+    
+    startImagePreview(images: Array<string>, callback: AsyncCallback<void>): void;
+    
+    startImagePreview(images: Array<string>, index?: number): Promise<void>;
+    
+    startMediaSelect(option: MediaSelectOption, callback: AsyncCallback<Array<string>>): void;
+    
+    startMediaSelect(option: MediaSelectOption): Promise<Array<string>>;
+    
+    getActivePeers(callback: AsyncCallback<Array<PeerInfo>>): void;
+    
+    getActivePeers(): Promise<Array<PeerInfo>>;
+    
+    getAllPeers(callback: AsyncCallback<Array<PeerInfo>>): void;
+    
+    getAllPeers(): Promise<Array<PeerInfo>>;
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+  }
+
+  
+  interface Size {
+    
+    width: number;
+    
+    height: number;
+  }
+  
+  
+  interface PeerInfo {
+    
+    readonly deviceName: string;
+    
+    readonly networkId: string;
+    
+    readonly deviceType: DeviceType;
+    
+    readonly isOnline: boolean;
+  }
+
+  
+  enum DeviceType {
+    
+    TYPE_UNKNOWN = 0,
+    
+    TYPE_LAPTOP,
+    
+    TYPE_PHONE,
+    
+    TYPE_TABLET,
+    
+    TYPE_WATCH,
+    
+    TYPE_CAR,
+    
+    TYPE_TV
+  }
+}</td><td>mediaLibrary</td><td>None</td><td>0</td><td>373</td><tr><tr><td>mediaLibrary</td><td>function getMediaLibrary(): MediaLibrary;</td><td>getMediaLibrary</td><td>None</td><td>0</td><td>86</td><tr><tr><td>mediaLibrary</td><td>function getMediaLibrary(context: Context): MediaLibrary;</td><td>getMediaLibrary</td><td>None</td><td>1</td><td>86</td><tr><tr><td>MediaType</td><td>enum MediaType {
+    
+    FILE = 0,
+    
+    IMAGE,
+    
+    VIDEO,
+    
+    AUDIO
+  }</td><td>MediaType</td><td>40</td><td>0</td><td>149</td><tr><tr><td>MediaType</td><td>FILE = 0,</td><td>FILE</td><td>42</td><td>1</td><td>171</td><tr><tr><td>MediaType</td><td>IMAGE,</td><td>IMAGE</td><td>42</td><td>1</td><td>81</td><tr><tr><td>MediaType</td><td>VIDEO,</td><td>VIDEO</td><td>42</td><td>1</td><td>1720</td><tr><tr><td>MediaAssetOption</td><td>interface MediaAssetOption {
+    
+    src: string;
+    
+    mimeType: string;
+    
+    relativePath?: string;
+  }</td><td>MediaAssetOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MediaAssetOption</td><td>src: string</td><td>src</td><td>22</td><td>1</td><td>116</td><tr><tr><td>MediaAssetOption</td><td>mimeType: string</td><td>mimeType</td><td>22</td><td>1</td><td>23</td><tr><tr><td>MediaAssetOption</td><td>relativePath?: string</td><td>relativePath</td><td>22</td><td>1</td><td>65</td><tr><tr><td>MediaSelectOption</td><td>interface MediaSelectOption {
+    
+    type: 'image' | 'video' | 'media';
+    
+    count: number;
+  }</td><td>MediaSelectOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MediaSelectOption</td><td>type: 'image' | 'video' | 'media'</td><td>type</td><td>22</td><td>1</td><td>3051</td><tr><tr><td>MediaSelectOption</td><td>count: number</td><td>count</td><td>22</td><td>1</td><td>203</td><tr><tr><td>FileAsset</td><td>interface FileAsset {
+    
+    readonly id: number;
+    
+    readonly uri: string;
+    
+    readonly mimeType: string;
+    
+    readonly mediaType: MediaType;
+    
+    displayName: string;
+    
+    title: string;
+    
+    relativePath: string;
+    
+    readonly parent: number;
+    
+    readonly size: number;
+    
+    readonly dateAdded: number;
+    
+    readonly dateModified: number;
+    
+    readonly dateTaken: number;
+    
+    readonly artist: string;
+    
+    readonly audioAlbum: string;
+    
+    readonly width: number;
+    
+    readonly height: number;
+    
+    orientation: number;
+    
+    readonly duration: number;
+    
+    readonly albumId: number;
+    
+    readonly albumUri: string;
+    
+    readonly albumName: string;
+
+    
+    isDirectory(callback: AsyncCallback<boolean>): void;
+    
+    isDirectory():Promise<boolean>;
+    
+    commitModify(callback: AsyncCallback<void>): void;
+    
+    commitModify(): Promise<void>;
+    
+    open(mode: string, callback: AsyncCallback<number>): void;
+    
+    open(mode: string): Promise<number>;
+    
+    close(fd: number, callback: AsyncCallback<void>): void;
+    
+    close(fd: number): Promise<void>;
+    
+    getThumbnail(callback: AsyncCallback<image.PixelMap>): void;
+    
+    getThumbnail(size: Size, callback: AsyncCallback<image.PixelMap>): void;
+    
+    getThumbnail(size?: Size): Promise<image.PixelMap>;
+    
+    favorite(isFavorite: boolean, callback: AsyncCallback<void>): void;
+    
+    favorite(isFavorite: boolean): Promise<void>;
+    
+    isFavorite(callback: AsyncCallback<boolean>): void;
+    
+    isFavorite():Promise<boolean>;
+    
+    trash(isTrash: boolean, callback: AsyncCallback<void>): void;
+    
+    trash(isTrash: boolean): Promise<void>;
+    
+    isTrash(callback: AsyncCallback<boolean>): void;
+    
+    isTrash():Promise<boolean>;
+  }</td><td>FileAsset</td><td>20</td><td>0</td><td>579</td><tr><tr><td>FileAsset</td><td>isDirectory(callback: AsyncCallback<boolean>): void;</td><td>isDirectory</td><td>21</td><td>1</td><td>9</td><tr><tr><td>FileAsset</td><td>isDirectory():Promise<boolean>;</td><td>isDirectory</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileAsset</td><td>commitModify(callback: AsyncCallback<void>): void;</td><td>commitModify</td><td>21</td><td>1</td><td>116</td><tr><tr><td>FileAsset</td><td>commitModify(): Promise<void>;</td><td>commitModify</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileAsset</td><td>open(mode: string, callback: AsyncCallback<number>): void;</td><td>open</td><td>21</td><td>2</td><td>471</td><tr><tr><td>FileAsset</td><td>open(mode: string): Promise<number>;</td><td>open</td><td>21</td><td>1</td><td>7</td><tr><tr><td>FileAsset</td><td>close(fd: number, callback: AsyncCallback<void>): void;</td><td>close</td><td>21</td><td>2</td><td>394</td><tr><tr><td>FileAsset</td><td>close(fd: number): Promise<void>;</td><td>close</td><td>21</td><td>1</td><td>8</td><tr><tr><td>FileAsset</td><td>getThumbnail(callback: AsyncCallback<image.PixelMap>): void;</td><td>getThumbnail</td><td>21</td><td>1</td><td>182</td><tr><tr><td>FileAsset</td><td>getThumbnail(size: Size, callback: AsyncCallback<image.PixelMap>): void;</td><td>getThumbnail</td><td>21</td><td>2</td><td>182</td><tr><tr><td>FileAsset</td><td>getThumbnail(size?: Size): Promise<image.PixelMap>;</td><td>getThumbnail</td><td>21</td><td>1</td><td>0</td><tr><tr><td>FileAsset</td><td>favorite(isFavorite: boolean, callback: AsyncCallback<void>): void;</td><td>favorite</td><td>21</td><td>2</td><td>186</td><tr><tr><td>FileAsset</td><td>favorite(isFavorite: boolean): Promise<void>;</td><td>favorite</td><td>21</td><td>1</td><td>0</td><tr><tr><td>FileAsset</td><td>isFavorite(callback: AsyncCallback<boolean>): void;</td><td>isFavorite</td><td>21</td><td>1</td><td>270</td><tr><tr><td>FileAsset</td><td>isFavorite():Promise<boolean>;</td><td>isFavorite</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileAsset</td><td>trash(isTrash: boolean, callback: AsyncCallback<void>): void;</td><td>trash</td><td>21</td><td>2</td><td>56</td><tr><tr><td>FileAsset</td><td>trash(isTrash: boolean): Promise<void>;</td><td>trash</td><td>21</td><td>1</td><td>0</td><tr><tr><td>FileAsset</td><td>isTrash(callback: AsyncCallback<boolean>): void;</td><td>isTrash</td><td>21</td><td>1</td><td>20</td><tr><tr><td>FileAsset</td><td>isTrash():Promise<boolean>;</td><td>isTrash</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileAsset</td><td>readonly id: number</td><td>id</td><td>22</td><td>1</td><td>6103</td><tr><tr><td>FileAsset</td><td>readonly uri: string</td><td>uri</td><td>22</td><td>1</td><td>152</td><tr><tr><td>FileAsset</td><td>readonly mimeType: string</td><td>mimeType</td><td>22</td><td>1</td><td>23</td><tr><tr><td>FileAsset</td><td>readonly mediaType: MediaType</td><td>mediaType</td><td>22</td><td>1</td><td>123</td><tr><tr><td>FileAsset</td><td>displayName: string</td><td>displayName</td><td>22</td><td>1</td><td>58</td><tr><tr><td>FileAsset</td><td>title: string</td><td>title</td><td>22</td><td>1</td><td>101</td><tr><tr><td>FileAsset</td><td>relativePath: string</td><td>relativePath</td><td>22</td><td>1</td><td>65</td><tr><tr><td>FileAsset</td><td>readonly parent: number</td><td>parent</td><td>22</td><td>1</td><td>10</td><tr><tr><td>FileAsset</td><td>readonly size: number</td><td>size</td><td>22</td><td>1</td><td>3487</td><tr><tr><td>FileAsset</td><td>readonly dateAdded: number</td><td>dateAdded</td><td>22</td><td>1</td><td>12</td><tr><tr><td>FileAsset</td><td>readonly dateModified: number</td><td>dateModified</td><td>22</td><td>1</td><td>44</td><tr><tr><td>FileAsset</td><td>readonly dateTaken: number</td><td>dateTaken</td><td>22</td><td>1</td><td>12</td><tr><tr><td>FileAsset</td><td>readonly artist: string</td><td>artist</td><td>22</td><td>1</td><td>14</td><tr><tr><td>FileAsset</td><td>readonly audioAlbum: string</td><td>audioAlbum</td><td>22</td><td>1</td><td>28</td><tr><tr><td>FileAsset</td><td>readonly width: number</td><td>width</td><td>22</td><td>1</td><td>773</td><tr><tr><td>FileAsset</td><td>readonly height: number</td><td>height</td><td>22</td><td>1</td><td>771</td><tr><tr><td>FileAsset</td><td>orientation: number</td><td>orientation</td><td>22</td><td>1</td><td>47</td><tr><tr><td>FileAsset</td><td>readonly duration: number</td><td>duration</td><td>22</td><td>1</td><td>101</td><tr><tr><td>FileAsset</td><td>readonly albumId: number</td><td>albumId</td><td>22</td><td>1</td><td>70</td><tr><tr><td>FileAsset</td><td>readonly albumUri: string</td><td>albumUri</td><td>22</td><td>1</td><td>23</td><tr><tr><td>FileAsset</td><td>readonly albumName: string</td><td>albumName</td><td>22</td><td>1</td><td>73</td><tr><tr><td>FileKey</td><td>enum FileKey {
+    
+    ID = "file_id",
+    
+    RELATIVE_PATH = "relative_path",
+    
+    DISPLAY_NAME = "display_name",
+    
+    PARENT = "parent",
+    
+    MIME_TYPE = "mime_type",
+    
+    MEDIA_TYPE = "media_type",
+    
+    SIZE = "size",
+    
+    DATE_ADDED = "date_added",
+    
+    DATE_MODIFIED = "date_modified",
+    
+    DATE_TAKEN = "date_taken",
+    
+    TITLE = "title",
+    
+    ARTIST = "artist",
+    
+    AUDIOALBUM = "audio_album",
+    
+    DURATION = "duration",
+    
+    WIDTH = "width",
+    
+    HEIGHT = "height",
+    
+    ORIENTATION = "orientation",
+    
+    ALBUM_ID = "bucket_id",
+    
+    ALBUM_NAME = "bucket_display_name",
+  }</td><td>FileKey</td><td>40</td><td>0</td><td>32</td><tr><tr><td>FileKey</td><td>ID = "file_id",</td><td>ID</td><td>42</td><td>1</td><td>3266</td><tr><tr><td>FileKey</td><td>RELATIVE_PATH = "relative_path",</td><td>RELATIVE_PATH</td><td>42</td><td>1</td><td>14</td><tr><tr><td>FileKey</td><td>DISPLAY_NAME = "display_name",</td><td>DISPLAY_NAME</td><td>42</td><td>1</td><td>4</td><tr><tr><td>FileKey</td><td>PARENT = "parent",</td><td>PARENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>MIME_TYPE = "mime_type",</td><td>MIME_TYPE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>MEDIA_TYPE = "media_type",</td><td>MEDIA_TYPE</td><td>42</td><td>1</td><td>198</td><tr><tr><td>FileKey</td><td>SIZE = "size",</td><td>SIZE</td><td>42</td><td>1</td><td>1059</td><tr><tr><td>FileKey</td><td>DATE_ADDED = "date_added",</td><td>DATE_ADDED</td><td>42</td><td>1</td><td>16</td><tr><tr><td>FileKey</td><td>DATE_MODIFIED = "date_modified",</td><td>DATE_MODIFIED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>DATE_TAKEN = "date_taken",</td><td>DATE_TAKEN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>TITLE = "title",</td><td>TITLE</td><td>42</td><td>1</td><td>11</td><tr><tr><td>FileKey</td><td>ARTIST = "artist",</td><td>ARTIST</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>AUDIOALBUM = "audio_album",</td><td>AUDIOALBUM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>DURATION = "duration",</td><td>DURATION</td><td>42</td><td>1</td><td>112</td><tr><tr><td>FileKey</td><td>WIDTH = "width",</td><td>WIDTH</td><td>42</td><td>1</td><td>53</td><tr><tr><td>FileKey</td><td>HEIGHT = "height",</td><td>HEIGHT</td><td>42</td><td>1</td><td>53</td><tr><tr><td>FileKey</td><td>ORIENTATION = "orientation",</td><td>ORIENTATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>ALBUM_ID = "bucket_id",</td><td>ALBUM_ID</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FileKey</td><td>ALBUM_NAME = "bucket_display_name",</td><td>ALBUM_NAME</td><td>42</td><td>1</td><td>6</td><tr><tr><td>MediaFetchOptions</td><td>interface MediaFetchOptions {
+    
+    selections: string;
+    
+    selectionArgs: Array<string>;
+    
+    order?: string;
+    
+    uri?: string;
+    
+    networkId?: string;
+    
+    extendArgs?: string;
+  }</td><td>MediaFetchOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>MediaFetchOptions</td><td>selections: string</td><td>selections</td><td>22</td><td>1</td><td>235</td><tr><tr><td>MediaFetchOptions</td><td>selectionArgs: Array<string></td><td>selectionArgs</td><td>22</td><td>1</td><td>235</td><tr><tr><td>MediaFetchOptions</td><td>order?: string</td><td>order</td><td>22</td><td>1</td><td>1200</td><tr><tr><td>MediaFetchOptions</td><td>uri?: string</td><td>uri</td><td>22</td><td>1</td><td>152</td><tr><tr><td>MediaFetchOptions</td><td>networkId?: string</td><td>networkId</td><td>22</td><td>1</td><td>8</td><tr><tr><td>MediaFetchOptions</td><td>extendArgs?: string</td><td>extendArgs</td><td>22</td><td>1</td><td>18</td><tr><tr><td>FetchFileResult</td><td>interface FetchFileResult {
+    
+    getCount(): number;
+    
+    isAfterLast(): boolean;
+    
+    close(): void;
+    
+    getFirstObject(callback: AsyncCallback<FileAsset>): void;
+    
+    getFirstObject(): Promise<FileAsset>;
+    
+    getNextObject(callback: AsyncCallback<FileAsset>): void;
+    
+    getNextObject(): Promise<FileAsset>;
+    
+    getLastObject(callback: AsyncCallback<FileAsset>): void;
+    
+    getLastObject(): Promise<FileAsset>;
+    
+    getPositionObject(index: number, callback: AsyncCallback<FileAsset>): void;
+    
+    getPositionObject(index: number): Promise<FileAsset>;
+     
+    getAllObject(callback: AsyncCallback<Array<FileAsset>>): void;
+    
+    getAllObject(): Promise<Array<FileAsset>>;
+  }</td><td>FetchFileResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FetchFileResult</td><td>getCount(): number;</td><td>getCount</td><td>21</td><td>0</td><td>54</td><tr><tr><td>FetchFileResult</td><td>isAfterLast(): boolean;</td><td>isAfterLast</td><td>21</td><td>0</td><td>8</td><tr><tr><td>FetchFileResult</td><td>close(): void;</td><td>close</td><td>21</td><td>0</td><td>402</td><tr><tr><td>FetchFileResult</td><td>getFirstObject(callback: AsyncCallback<FileAsset>): void;</td><td>getFirstObject</td><td>21</td><td>1</td><td>128</td><tr><tr><td>FetchFileResult</td><td>getFirstObject(): Promise<FileAsset>;</td><td>getFirstObject</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FetchFileResult</td><td>getNextObject(callback: AsyncCallback<FileAsset>): void;</td><td>getNextObject</td><td>21</td><td>1</td><td>23</td><tr><tr><td>FetchFileResult</td><td>getNextObject(): Promise<FileAsset>;</td><td>getNextObject</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FetchFileResult</td><td>getLastObject(callback: AsyncCallback<FileAsset>): void;</td><td>getLastObject</td><td>21</td><td>1</td><td>9</td><tr><tr><td>FetchFileResult</td><td>getLastObject(): Promise<FileAsset>;</td><td>getLastObject</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FetchFileResult</td><td>getPositionObject(index: number, callback: AsyncCallback<FileAsset>): void;</td><td>getPositionObject</td><td>21</td><td>2</td><td>35</td><tr><tr><td>FetchFileResult</td><td>getPositionObject(index: number): Promise<FileAsset>;</td><td>getPositionObject</td><td>21</td><td>1</td><td>0</td><tr><tr><td>FetchFileResult</td><td>getAllObject(callback: AsyncCallback<Array<FileAsset>>): void;</td><td>getAllObject</td><td>21</td><td>1</td><td>260</td><tr><tr><td>FetchFileResult</td><td>getAllObject(): Promise<Array<FileAsset>>;</td><td>getAllObject</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Album</td><td>interface Album {
+    
+    readonly albumId: number;
+    
+    albumName: string;
+    
+    readonly albumUri: string;
+    
+    readonly dateModified: number;
+    
+    readonly count: number;
+    
+    readonly relativePath: string;
+    
+    readonly coverUri: string;
+
+    
+    commitModify(callback: AsyncCallback<void>): void;
+    
+    commitModify(): Promise<void>;
+    
+    getFileAssets(callback: AsyncCallback<FetchFileResult>): void;
+    
+    getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;
+    
+    getFileAssets(options?: MediaFetchOptions): Promise<FetchFileResult>;
+  }</td><td>Album</td><td>20</td><td>0</td><td>378</td><tr><tr><td>Album</td><td>commitModify(callback: AsyncCallback<void>): void;</td><td>commitModify</td><td>21</td><td>1</td><td>116</td><tr><tr><td>Album</td><td>commitModify(): Promise<void>;</td><td>commitModify</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Album</td><td>getFileAssets(callback: AsyncCallback<FetchFileResult>): void;</td><td>getFileAssets</td><td>21</td><td>1</td><td>525</td><tr><tr><td>Album</td><td>getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;</td><td>getFileAssets</td><td>21</td><td>2</td><td>525</td><tr><tr><td>Album</td><td>getFileAssets(options?: MediaFetchOptions): Promise<FetchFileResult>;</td><td>getFileAssets</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Album</td><td>readonly albumId: number</td><td>albumId</td><td>22</td><td>1</td><td>70</td><tr><tr><td>Album</td><td>albumName: string</td><td>albumName</td><td>22</td><td>1</td><td>73</td><tr><tr><td>Album</td><td>readonly albumUri: string</td><td>albumUri</td><td>22</td><td>1</td><td>23</td><tr><tr><td>Album</td><td>readonly dateModified: number</td><td>dateModified</td><td>22</td><td>1</td><td>44</td><tr><tr><td>Album</td><td>readonly count: number</td><td>count</td><td>22</td><td>1</td><td>203</td><tr><tr><td>Album</td><td>readonly relativePath: string</td><td>relativePath</td><td>22</td><td>1</td><td>65</td><tr><tr><td>Album</td><td>readonly coverUri: string</td><td>coverUri</td><td>22</td><td>1</td><td>23</td><tr><tr><td>DirectoryType</td><td>enum DirectoryType {
+    
+    DIR_CAMERA = 0,
+    
+    DIR_VIDEO,
+    
+    DIR_IMAGE,
+    
+    DIR_AUDIO,
+    
+    DIR_DOCUMENTS,
+    
+    DIR_DOWNLOAD
+  }</td><td>DirectoryType</td><td>40</td><td>0</td><td>80</td><tr><tr><td>DirectoryType</td><td>DIR_CAMERA = 0,</td><td>DIR_CAMERA</td><td>42</td><td>1</td><td>10</td><tr><tr><td>DirectoryType</td><td>DIR_VIDEO,</td><td>DIR_VIDEO</td><td>42</td><td>1</td><td>28</td><tr><tr><td>DirectoryType</td><td>DIR_IMAGE,</td><td>DIR_IMAGE</td><td>42</td><td>1</td><td>30</td><tr><tr><td>DirectoryType</td><td>DIR_AUDIO,</td><td>DIR_AUDIO</td><td>42</td><td>1</td><td>25</td><tr><tr><td>DirectoryType</td><td>DIR_DOCUMENTS,</td><td>DIR_DOCUMENTS</td><td>42</td><td>1</td><td>12</td><tr><tr><td>MediaLibrary</td><td>interface MediaLibrary {
+    
+    getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;
+    
+    getPublicDirectory(type: DirectoryType): Promise<string>;
+    
+    getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;
+    
+    getFileAssets(options: MediaFetchOptions): Promise<FetchFileResult>;
+    
+    on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback<void>): void;
+    
+     off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback<void>): void;
+    
+    createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback<FileAsset>): void;
+    
+    createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise<FileAsset>;
+    
+    deleteAsset(uri: string, callback: AsyncCallback<void>): void;
+    
+    deleteAsset(uri: string): Promise<void>;
+    
+    getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array<Album>>): void;
+    
+    getAlbums(options: MediaFetchOptions): Promise<Array<Album>>;
+    
+    storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback<string>): void;
+    
+    storeMediaAsset(option: MediaAssetOption): Promise<string>;
+    
+    startImagePreview(images: Array<string>, index: number, callback: AsyncCallback<void>): void;
+    
+    startImagePreview(images: Array<string>, callback: AsyncCallback<void>): void;
+    
+    startImagePreview(images: Array<string>, index?: number): Promise<void>;
+    
+    startMediaSelect(option: MediaSelectOption, callback: AsyncCallback<Array<string>>): void;
+    
+    startMediaSelect(option: MediaSelectOption): Promise<Array<string>>;
+    
+    getActivePeers(callback: AsyncCallback<Array<PeerInfo>>): void;
+    
+    getActivePeers(): Promise<Array<PeerInfo>>;
+    
+    getAllPeers(callback: AsyncCallback<Array<PeerInfo>>): void;
+    
+    getAllPeers(): Promise<Array<PeerInfo>>;
+    
+    release(callback: AsyncCallback<void>): void;
+    
+    release(): Promise<void>;
+  }</td><td>MediaLibrary</td><td>20</td><td>0</td><td>1320</td><tr><tr><td>MediaLibrary</td><td>getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;</td><td>getPublicDirectory</td><td>21</td><td>2</td><td>93</td><tr><tr><td>MediaLibrary</td><td>getPublicDirectory(type: DirectoryType): Promise<string>;</td><td>getPublicDirectory</td><td>21</td><td>1</td><td>0</td><tr><tr><td>MediaLibrary</td><td>getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;</td><td>getFileAssets</td><td>21</td><td>2</td><td>525</td><tr><tr><td>MediaLibrary</td><td>getFileAssets(options: MediaFetchOptions): Promise<FetchFileResult>;</td><td>getFileAssets</td><td>21</td><td>1</td><td>0</td><tr><tr><td>MediaLibrary</td><td>on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>MediaLibrary</td><td>off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback<void>): void;</td><td>off</td><td>21</td><td>2</td><td>125</td><tr><tr><td>MediaLibrary</td><td>createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback<FileAsset>): void;</td><td>createAsset</td><td>21</td><td>4</td><td>200</td><tr><tr><td>MediaLibrary</td><td>createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise<FileAsset>;</td><td>createAsset</td><td>21</td><td>3</td><td>9</td><tr><tr><td>MediaLibrary</td><td>deleteAsset(uri: string, callback: AsyncCallback<void>): void;</td><td>deleteAsset</td><td>21</td><td>2</td><td>18</td><tr><tr><td>MediaLibrary</td><td>deleteAsset(uri: string): Promise<void>;</td><td>deleteAsset</td><td>21</td><td>1</td><td>0</td><tr><tr><td>MediaLibrary</td><td>getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array<Album>>): void;</td><td>getAlbums</td><td>21</td><td>2</td><td>93</td><tr><tr><td>MediaLibrary</td><td>getAlbums(options: MediaFetchOptions): Promise<Array<Album>>;</td><td>getAlbums</td><td>21</td><td>1</td><td>0</td><tr><tr><td>MediaLibrary</td><td>storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback<string>): void;</td><td>storeMediaAsset</td><td>21</td><td>2</td><td>0</td><tr><tr><td>MediaLibrary</td><td>storeMediaAsset(option: MediaAssetOption): Promise<string>;</td><td>storeMediaAsset</td><td>21</td><td>1</td><td>0</td><tr><tr><td>MediaLibrary</td><td>startImagePreview(images: Array<string>, index: number, callback: AsyncCallback<void>): void;</td><td>startImagePreview</td><td>21</td><td>3</td><td>0</td><tr><tr><td>MediaLibrary</td><td>startImagePreview(images: Array<string>, callback: AsyncCallback<void>): void;</td><td>startImagePreview</td><td>21</td><td>2</td><td>0</td><tr><tr><td>MediaLibrary</td><td>startImagePreview(images: Array<string>, index?: number): Promise<void>;</td><td>startImagePreview</td><td>21</td><td>2</td><td>0</td><tr><tr><td>MediaLibrary</td><td>startMediaSelect(option: MediaSelectOption, callback: AsyncCallback<Array<string>>): void;</td><td>startMediaSelect</td><td>21</td><td>2</td><td>0</td><tr><tr><td>MediaLibrary</td><td>startMediaSelect(option: MediaSelectOption): Promise<Array<string>>;</td><td>startMediaSelect</td><td>21</td><td>1</td><td>0</td><tr><tr><td>MediaLibrary</td><td>getActivePeers(callback: AsyncCallback<Array<PeerInfo>>): void;</td><td>getActivePeers</td><td>21</td><td>1</td><td>31</td><tr><tr><td>MediaLibrary</td><td>getActivePeers(): Promise<Array<PeerInfo>>;</td><td>getActivePeers</td><td>21</td><td>0</td><td>0</td><tr><tr><td>MediaLibrary</td><td>getAllPeers(callback: AsyncCallback<Array<PeerInfo>>): void;</td><td>getAllPeers</td><td>21</td><td>1</td><td>65</td><tr><tr><td>MediaLibrary</td><td>getAllPeers(): Promise<Array<PeerInfo>>;</td><td>getAllPeers</td><td>21</td><td>0</td><td>0</td><tr><tr><td>MediaLibrary</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>MediaLibrary</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>Size</td><td>interface Size {
+    
+    width: number;
+    
+    height: number;
+  }</td><td>Size</td><td>20</td><td>0</td><td>586</td><tr><tr><td>Size</td><td>width: number</td><td>width</td><td>22</td><td>1</td><td>773</td><tr><tr><td>Size</td><td>height: number</td><td>height</td><td>22</td><td>1</td><td>771</td><tr><tr><td>PeerInfo</td><td>interface PeerInfo {
+    
+    readonly deviceName: string;
+    
+    readonly networkId: string;
+    
+    readonly deviceType: DeviceType;
+    
+    readonly isOnline: boolean;
+  }</td><td>PeerInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PeerInfo</td><td>readonly deviceName: string</td><td>deviceName</td><td>22</td><td>1</td><td>40</td><tr><tr><td>PeerInfo</td><td>readonly networkId: string</td><td>networkId</td><td>22</td><td>1</td><td>8</td><tr><tr><td>PeerInfo</td><td>readonly deviceType: DeviceType</td><td>deviceType</td><td>22</td><td>1</td><td>73</td><tr><tr><td>PeerInfo</td><td>readonly isOnline: boolean</td><td>isOnline</td><td>22</td><td>1</td><td>8</td><tr><tr><td>DeviceType</td><td>enum DeviceType {
+    
+    TYPE_UNKNOWN = 0,
+    
+    TYPE_LAPTOP,
+    
+    TYPE_PHONE,
+    
+    TYPE_TABLET,
+    
+    TYPE_WATCH,
+    
+    TYPE_CAR,
+    
+    TYPE_TV
+  }</td><td>DeviceType</td><td>40</td><td>0</td><td>60</td><tr><tr><td>DeviceType</td><td>TYPE_UNKNOWN = 0,</td><td>TYPE_UNKNOWN</td><td>42</td><td>1</td><td>12</td><tr><tr><td>DeviceType</td><td>TYPE_LAPTOP,</td><td>TYPE_LAPTOP</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>TYPE_PHONE,</td><td>TYPE_PHONE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>TYPE_TABLET,</td><td>TYPE_TABLET</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>TYPE_WATCH,</td><td>TYPE_WATCH</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>TYPE_CAR,</td><td>TYPE_CAR</td><td>42</td><td>1</td><td>2</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

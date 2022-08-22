@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.telephony.radio</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>radio</td><td>declare namespace radio {
+  
+  function getRadioTech(slotId: number,
+    callback: AsyncCallback<{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology}>): void;
+  function getRadioTech(slotId: number): Promise<{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology}>;
+
+  
+  function getNetworkState(callback: AsyncCallback<NetworkState>): void;
+  function getNetworkState(slotId: number, callback: AsyncCallback<NetworkState>): void;
+  function getNetworkState(slotId?: number): Promise<NetworkState>;
+
+  
+  function sendUpdateCellLocationRequest(callback: AsyncCallback<void>): void;
+  function sendUpdateCellLocationRequest(): Promise<void>;
+
+  
+  function getCellInformation(callback: AsyncCallback<Array<CellInformation>>): void;
+  function getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation>>): void;
+  function getCellInformation(slotId?: number): Promise<Array<CellInformation>>;
+
+  
+  function getNetworkSelectionMode(slotId: number, callback: AsyncCallback<NetworkSelectionMode>): void;
+  function getNetworkSelectionMode(slotId: number): Promise<NetworkSelectionMode>;
+
+  
+  function setNetworkSelectionMode(options: NetworkSelectionModeOptions, callback: AsyncCallback<void>): void;
+  function setNetworkSelectionMode(options: NetworkSelectionModeOptions): Promise<void>;
+
+  
+  function getNetworkSearchInformation(slotId: number, callback: AsyncCallback<NetworkSearchResult>): void;
+  function getNetworkSearchInformation(slotId: number): Promise<NetworkSearchResult>;
+
+  
+  function getISOCountryCodeForNetwork(slotId: number, callback: AsyncCallback<string>): void;
+  function getISOCountryCodeForNetwork(slotId: number): Promise<string>;
+
+  
+  function getNrOptionMode(callback: AsyncCallback<NrOptionMode>): void;
+  function getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode>): void;
+  function getNrOptionMode(slotId?: number): Promise<NrOptionMode>;
+
+  
+  function getIMEI(callback: AsyncCallback<string>): void;
+  function getIMEI(slotId: number, callback: AsyncCallback<string>): void;
+  function getIMEI(slotId?: number): Promise<string>;
+
+  
+  function getMEID(callback: AsyncCallback<string>): void;
+  function getMEID(slotId: number, callback: AsyncCallback<string>): void;
+  function getMEID(slotId?: number): Promise<string>;
+
+  
+  function getUniqueDeviceId(callback: AsyncCallback<string>): void;
+  function getUniqueDeviceId(slotId: number, callback: AsyncCallback<string>): void;
+  function getUniqueDeviceId(slotId?: number): Promise<string>;
+
+  
+  function getPrimarySlotId(callback: AsyncCallback<number>): void;
+  function getPrimarySlotId(): Promise<number>;
+
+  
+  function setPrimarySlotId(slotId: number, callback: AsyncCallback<void>): void;
+  function setPrimarySlotId(slotId: number): Promise<void>;
+
+  
+  function getSignalInformation(slotId: number, callback: AsyncCallback<Array<SignalInformation>>): void;
+  function getSignalInformation(slotId: number): Promise<Array<SignalInformation>>;
+
+  
+  function isNrSupported(): boolean;
+
+  
+  function isNrSupported(slotId: number): boolean;
+
+  
+  function isRadioOn(callback: AsyncCallback<boolean>): void;
+  function isRadioOn(slotId: number, callback: AsyncCallback<boolean>): void
+  function isRadioOn(slotId?: number): Promise<boolean>;
+
+  
+  function turnOnRadio(callback: AsyncCallback<void>): void;
+  function turnOnRadio(slotId: number, callback: AsyncCallback<void>): void;
+  function turnOnRadio(slotId?: number): Promise<void>;
+
+  
+  function turnOffRadio(callback: AsyncCallback<void>): void;
+  function turnOffRadio(slotId: number, callback: AsyncCallback<void>): void;
+  function turnOffRadio(slotId?: number): Promise<void>;
+
+  
+  function getOperatorName(slotId: number, callback: AsyncCallback<string>): void;
+  function getOperatorName(slotId: number): Promise<string>;
+
+  
+  function setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void>): void;
+  function setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void>;
+
+  
+  function getPreferredNetwork(slotId: number, callback: AsyncCallback<PreferredNetworkMode>): void;
+  function getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode>;
+
+  
+  export enum PreferredNetworkMode {
+    PREFERRED_NETWORK_MODE_GSM = 1,
+    PREFERRED_NETWORK_MODE_WCDMA = 2,
+    PREFERRED_NETWORK_MODE_LTE = 3,
+    PREFERRED_NETWORK_MODE_LTE_WCDMA = 4,
+    PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM = 5,
+    PREFERRED_NETWORK_MODE_WCDMA_GSM = 6,
+    PREFERRED_NETWORK_MODE_CDMA = 7,
+    PREFERRED_NETWORK_MODE_EVDO = 8,
+    PREFERRED_NETWORK_MODE_EVDO_CDMA = 9,
+    PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA = 10,
+    PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA = 11,
+    PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA = 12,
+    PREFERRED_NETWORK_MODE_TDSCDMA = 13,
+    PREFERRED_NETWORK_MODE_TDSCDMA_GSM = 14,
+    PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA = 15,
+    PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM = 16,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA = 17,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_GSM = 18,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA = 19,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM = 20,
+    PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 21,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 22,
+    PREFERRED_NETWORK_MODE_NR = 31,
+    PREFERRED_NETWORK_MODE_NR_LTE = 32,
+    PREFERRED_NETWORK_MODE_NR_LTE_WCDMA = 33,
+    PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM = 34,
+    PREFERRED_NETWORK_MODE_NR_LTE_EVDO_CDMA = 35,
+    PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM_EVDO_CDMA = 36,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA = 37,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM = 38,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA = 39,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM = 40,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 41,
+    PREFERRED_NETWORK_MODE_MAX_VALUE = 99,
+  }
+
+  
+  export enum RadioTechnology {
+    
+    RADIO_TECHNOLOGY_UNKNOWN = 0,
+
+    
+    RADIO_TECHNOLOGY_GSM = 1,
+
+    
+    RADIO_TECHNOLOGY_1XRTT = 2,
+
+    
+    RADIO_TECHNOLOGY_WCDMA = 3,
+
+    
+    RADIO_TECHNOLOGY_HSPA = 4,
+
+    
+    RADIO_TECHNOLOGY_HSPAP = 5,
+
+    
+    RADIO_TECHNOLOGY_TD_SCDMA = 6,
+
+    
+    RADIO_TECHNOLOGY_EVDO = 7,
+
+    
+    RADIO_TECHNOLOGY_EHRPD = 8,
+
+    
+    RADIO_TECHNOLOGY_LTE = 9,
+
+    
+    RADIO_TECHNOLOGY_LTE_CA = 10,
+
+    
+    RADIO_TECHNOLOGY_IWLAN = 11,
+
+    
+    RADIO_TECHNOLOGY_NR = 12
+  }
+
+  export interface SignalInformation {
+    
+    signalType: NetworkType;
+
+    
+    signalLevel: number;
+  }
+
+  
+  export enum NetworkType {
+    
+    NETWORK_TYPE_UNKNOWN,
+
+    
+    NETWORK_TYPE_GSM,
+
+    
+    NETWORK_TYPE_CDMA,
+
+    
+    NETWORK_TYPE_WCDMA,
+
+    
+    NETWORK_TYPE_TDSCDMA,
+
+    
+    NETWORK_TYPE_LTE,
+
+    
+    NETWORK_TYPE_NR
+  }
+
+  
+  export interface NetworkState {
+    
+    longOperatorName: string;
+
+    
+    shortOperatorName: string;
+
+    
+    plmnNumeric: string;
+
+    
+    isRoaming: boolean;
+
+    
+    regState: RegState;
+
+    
+    cfgTech: RadioTechnology;
+
+    
+    nsaState: NsaState;
+
+    
+    isCaActive: boolean;
+
+    
+    isEmergency: boolean;
+  }
+
+  
+  export enum RegState {
+    
+    REG_STATE_NO_SERVICE = 0,
+
+    
+    REG_STATE_IN_SERVICE = 1,
+
+    
+    REG_STATE_EMERGENCY_CALL_ONLY = 2,
+
+    
+    REG_STATE_POWER_OFF = 3
+  }
+
+  
+  export enum NsaState {
+    
+    NSA_STATE_NOT_SUPPORT = 1,
+
+    
+    NSA_STATE_NO_DETECT = 2,
+
+    
+    NSA_STATE_CONNECTED_DETECT = 3,
+
+    
+    NSA_STATE_IDLE_DETECT = 4,
+
+    
+    NSA_STATE_DUAL_CONNECTED = 5,
+
+    
+    NSA_STATE_SA_ATTACHED = 6
+  }
+
+  
+  export interface CellInformation {
+    
+    networkType: NetworkType;
+
+    
+    isCamped: boolean;
+
+    
+    timeStamp: number;
+
+    
+    signalInformation: SignalInformation;
+
+    data: CdmaCellInformation | GsmCellInformation | LteCellInformation | NrCellInformation | TdscdmaCellInformation
+      | WcdmaCellInformation;
+  }
+
+  
+  export interface CdmaCellInformation {
+    baseId: number;
+    latitude: number;
+    longitude: number;
+    nid: number;
+    sid: number;
+  }
+
+  
+  export interface GsmCellInformation {
+    lac: number;
+    cellId: number;
+    arfcn: number;
+    bsic: number;
+    mcc: string;
+    mnc: string;
+  }
+
+  
+  export interface LteCellInformation {
+    cgi: number;
+    pci: number;
+    tac: number;
+    earfcn: number;
+    bandwidth: number;
+    mcc: string;
+    mnc: string;
+    isSupportEndc: boolean;
+  }
+
+  
+  export interface NrCellInformation {
+    nrArfcn: number;
+    pci: number;
+    tac: number;
+    nci: number;
+    mcc: string;
+    mnc: string;
+  }
+
+  
+  export interface TdscdmaCellInformation {
+    lac: number;
+    cellId: number;
+    cpid: number;
+    uarfcn: number;
+    mcc: string;
+    mnc: string;
+  }
+
+  
+  export interface WcdmaCellInformation {
+    lac: number;
+    cellId: number;
+    psc: number;
+    uarfcn: number;
+    mcc: string;
+    mnc: string;
+  }
+
+  
+  export enum NrOptionMode {
+    
+    NR_OPTION_UNKNOWN,
+
+    
+    NR_OPTION_NSA_ONLY,
+
+    
+    NR_OPTION_SA_ONLY,
+
+    
+    NR_OPTION_NSA_AND_SA,
+  }
+
+  
+  export interface NetworkSearchResult {
+    isNetworkSearchSuccess: boolean;
+    networkSearchResult: Array<NetworkInformation>;
+  }
+
+  
+  export interface NetworkInformation {
+    operatorName: string;
+    operatorNumeric: string;
+    state: NetworkInformationState;
+    radioTech: string;
+  }
+
+  
+  export enum NetworkInformationState {
+    
+    NETWORK_UNKNOWN,
+
+    
+    NETWORK_AVAILABLE,
+
+    
+    NETWORK_CURRENT,
+
+    
+    NETWORK_FORBIDDEN
+  }
+
+  
+  export interface NetworkSelectionModeOptions {
+    slotId: number;
+    selectMode: NetworkSelectionMode;
+    networkInformation: NetworkInformation;
+    resumeSelection: boolean;
+  }
+
+  export enum NetworkSelectionMode {
+    
+    NETWORK_SELECTION_UNKNOWN,
+
+    
+    NETWORK_SELECTION_AUTOMATIC,
+
+    
+    NETWORK_SELECTION_MANUAL
+  }
+}</td><td>radio</td><td>None</td><td>0</td><td>172</td><tr><tr><td>radio</td><td>function getRadioTech(slotId: number,
+    callback: AsyncCallback<{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology}>): void;</td><td>getRadioTech</td><td>None</td><td>2</td><td>8</td><tr><tr><td>radio</td><td>function getRadioTech(slotId: number): Promise<{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology}>;</td><td>getRadioTech</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function getNetworkState(callback: AsyncCallback<NetworkState>): void;</td><td>getNetworkState</td><td>None</td><td>1</td><td>9</td><tr><tr><td>radio</td><td>function getNetworkState(slotId: number, callback: AsyncCallback<NetworkState>): void;</td><td>getNetworkState</td><td>None</td><td>2</td><td>9</td><tr><tr><td>radio</td><td>function getNetworkState(slotId?: number): Promise<NetworkState>;</td><td>getNetworkState</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function sendUpdateCellLocationRequest(callback: AsyncCallback<void>): void;</td><td>sendUpdateCellLocationRequest</td><td>None</td><td>1</td><td>11</td><tr><tr><td>radio</td><td>function sendUpdateCellLocationRequest(): Promise<void>;</td><td>sendUpdateCellLocationRequest</td><td>None</td><td>0</td><td>1</td><tr><tr><td>radio</td><td>function getCellInformation(callback: AsyncCallback<Array<CellInformation>>): void;</td><td>getCellInformation</td><td>None</td><td>1</td><td>16</td><tr><tr><td>radio</td><td>function getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation>>): void;</td><td>getCellInformation</td><td>None</td><td>2</td><td>16</td><tr><tr><td>radio</td><td>function getCellInformation(slotId?: number): Promise<Array<CellInformation>>;</td><td>getCellInformation</td><td>None</td><td>1</td><td>1</td><tr><tr><td>radio</td><td>function getNetworkSelectionMode(slotId: number, callback: AsyncCallback<NetworkSelectionMode>): void;</td><td>getNetworkSelectionMode</td><td>None</td><td>2</td><td>8</td><tr><tr><td>radio</td><td>function getNetworkSelectionMode(slotId: number): Promise<NetworkSelectionMode>;</td><td>getNetworkSelectionMode</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function setNetworkSelectionMode(options: NetworkSelectionModeOptions, callback: AsyncCallback<void>): void;</td><td>setNetworkSelectionMode</td><td>None</td><td>2</td><td>10</td><tr><tr><td>radio</td><td>function setNetworkSelectionMode(options: NetworkSelectionModeOptions): Promise<void>;</td><td>setNetworkSelectionMode</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function getNetworkSearchInformation(slotId: number, callback: AsyncCallback<NetworkSearchResult>): void;</td><td>getNetworkSearchInformation</td><td>None</td><td>2</td><td>14</td><tr><tr><td>radio</td><td>function getNetworkSearchInformation(slotId: number): Promise<NetworkSearchResult>;</td><td>getNetworkSearchInformation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function getISOCountryCodeForNetwork(slotId: number, callback: AsyncCallback<string>): void;</td><td>getISOCountryCodeForNetwork</td><td>None</td><td>2</td><td>8</td><tr><tr><td>radio</td><td>function getISOCountryCodeForNetwork(slotId: number): Promise<string>;</td><td>getISOCountryCodeForNetwork</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function getNrOptionMode(callback: AsyncCallback<NrOptionMode>): void;</td><td>getNrOptionMode</td><td>None</td><td>1</td><td>17</td><tr><tr><td>radio</td><td>function getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode>): void;</td><td>getNrOptionMode</td><td>None</td><td>2</td><td>17</td><tr><tr><td>radio</td><td>function getNrOptionMode(slotId?: number): Promise<NrOptionMode>;</td><td>getNrOptionMode</td><td>None</td><td>1</td><td>1</td><tr><tr><td>radio</td><td>function getIMEI(callback: AsyncCallback<string>): void;</td><td>getIMEI</td><td>None</td><td>1</td><td>11</td><tr><tr><td>radio</td><td>function getIMEI(slotId: number, callback: AsyncCallback<string>): void;</td><td>getIMEI</td><td>None</td><td>2</td><td>11</td><tr><tr><td>radio</td><td>function getIMEI(slotId?: number): Promise<string>;</td><td>getIMEI</td><td>None</td><td>1</td><td>1</td><tr><tr><td>radio</td><td>function getMEID(callback: AsyncCallback<string>): void;</td><td>getMEID</td><td>None</td><td>1</td><td>7</td><tr><tr><td>radio</td><td>function getMEID(slotId: number, callback: AsyncCallback<string>): void;</td><td>getMEID</td><td>None</td><td>2</td><td>7</td><tr><tr><td>radio</td><td>function getMEID(slotId?: number): Promise<string>;</td><td>getMEID</td><td>None</td><td>1</td><td>1</td><tr><tr><td>radio</td><td>function getUniqueDeviceId(callback: AsyncCallback<string>): void;</td><td>getUniqueDeviceId</td><td>None</td><td>1</td><td>11</td><tr><tr><td>radio</td><td>function getUniqueDeviceId(slotId: number, callback: AsyncCallback<string>): void;</td><td>getUniqueDeviceId</td><td>None</td><td>2</td><td>11</td><tr><tr><td>radio</td><td>function getUniqueDeviceId(slotId?: number): Promise<string>;</td><td>getUniqueDeviceId</td><td>None</td><td>1</td><td>1</td><tr><tr><td>radio</td><td>function getPrimarySlotId(callback: AsyncCallback<number>): void;</td><td>getPrimarySlotId</td><td>None</td><td>1</td><td>4</td><tr><tr><td>radio</td><td>function getPrimarySlotId(): Promise<number>;</td><td>getPrimarySlotId</td><td>None</td><td>0</td><td>0</td><tr><tr><td>radio</td><td>function setPrimarySlotId(slotId: number, callback: AsyncCallback<void>): void;</td><td>setPrimarySlotId</td><td>None</td><td>2</td><td>8</td><tr><tr><td>radio</td><td>function setPrimarySlotId(slotId: number): Promise<void>;</td><td>setPrimarySlotId</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function getSignalInformation(slotId: number, callback: AsyncCallback<Array<SignalInformation>>): void;</td><td>getSignalInformation</td><td>None</td><td>2</td><td>8</td><tr><tr><td>radio</td><td>function getSignalInformation(slotId: number): Promise<Array<SignalInformation>>;</td><td>getSignalInformation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function isNrSupported(): boolean;</td><td>isNrSupported</td><td>None</td><td>0</td><td>6</td><tr><tr><td>radio</td><td>function isNrSupported(slotId: number): boolean;</td><td>isNrSupported</td><td>None</td><td>1</td><td>6</td><tr><tr><td>radio</td><td>function isRadioOn(callback: AsyncCallback<boolean>): void;</td><td>isRadioOn</td><td>None</td><td>1</td><td>13</td><tr><tr><td>radio</td><td>function isRadioOn(slotId: number, callback: AsyncCallback<boolean>): void
+  function isRadioOn(slotId?: number): Promise<boolean>;</td><td>isRadioOn</td><td>None</td><td>2</td><td>13</td><tr><tr><td>radio</td><td>function isRadioOn(slotId?: number): Promise<boolean>;</td><td>isRadioOn</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function turnOnRadio(callback: AsyncCallback<void>): void;</td><td>turnOnRadio</td><td>None</td><td>1</td><td>17</td><tr><tr><td>radio</td><td>function turnOnRadio(slotId: number, callback: AsyncCallback<void>): void;</td><td>turnOnRadio</td><td>None</td><td>2</td><td>17</td><tr><tr><td>radio</td><td>function turnOnRadio(slotId?: number): Promise<void>;</td><td>turnOnRadio</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function turnOffRadio(callback: AsyncCallback<void>): void;</td><td>turnOffRadio</td><td>None</td><td>1</td><td>12</td><tr><tr><td>radio</td><td>function turnOffRadio(slotId: number, callback: AsyncCallback<void>): void;</td><td>turnOffRadio</td><td>None</td><td>2</td><td>12</td><tr><tr><td>radio</td><td>function turnOffRadio(slotId?: number): Promise<void>;</td><td>turnOffRadio</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function getOperatorName(slotId: number, callback: AsyncCallback<string>): void;</td><td>getOperatorName</td><td>None</td><td>2</td><td>10</td><tr><tr><td>radio</td><td>function getOperatorName(slotId: number): Promise<string>;</td><td>getOperatorName</td><td>None</td><td>1</td><td>0</td><tr><tr><td>radio</td><td>function setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void>): void;</td><td>setPreferredNetwork</td><td>None</td><td>3</td><td>32</td><tr><tr><td>radio</td><td>function setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void>;</td><td>setPreferredNetwork</td><td>None</td><td>2</td><td>0</td><tr><tr><td>radio</td><td>function getPreferredNetwork(slotId: number, callback: AsyncCallback<PreferredNetworkMode>): void;</td><td>getPreferredNetwork</td><td>None</td><td>2</td><td>16</td><tr><tr><td>radio</td><td>function getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode>;</td><td>getPreferredNetwork</td><td>None</td><td>1</td><td>0</td><tr><tr><td>PreferredNetworkMode</td><td>export enum PreferredNetworkMode {
+    PREFERRED_NETWORK_MODE_GSM = 1,
+    PREFERRED_NETWORK_MODE_WCDMA = 2,
+    PREFERRED_NETWORK_MODE_LTE = 3,
+    PREFERRED_NETWORK_MODE_LTE_WCDMA = 4,
+    PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM = 5,
+    PREFERRED_NETWORK_MODE_WCDMA_GSM = 6,
+    PREFERRED_NETWORK_MODE_CDMA = 7,
+    PREFERRED_NETWORK_MODE_EVDO = 8,
+    PREFERRED_NETWORK_MODE_EVDO_CDMA = 9,
+    PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA = 10,
+    PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA = 11,
+    PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA = 12,
+    PREFERRED_NETWORK_MODE_TDSCDMA = 13,
+    PREFERRED_NETWORK_MODE_TDSCDMA_GSM = 14,
+    PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA = 15,
+    PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM = 16,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA = 17,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_GSM = 18,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA = 19,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM = 20,
+    PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 21,
+    PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 22,
+    PREFERRED_NETWORK_MODE_NR = 31,
+    PREFERRED_NETWORK_MODE_NR_LTE = 32,
+    PREFERRED_NETWORK_MODE_NR_LTE_WCDMA = 33,
+    PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM = 34,
+    PREFERRED_NETWORK_MODE_NR_LTE_EVDO_CDMA = 35,
+    PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM_EVDO_CDMA = 36,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA = 37,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM = 38,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA = 39,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM = 40,
+    PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 41,
+    PREFERRED_NETWORK_MODE_MAX_VALUE = 99,
+  }</td><td>PreferredNetworkMode</td><td>40</td><td>0</td><td>59</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_GSM = 1,</td><td>PREFERRED_NETWORK_MODE_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_WCDMA = 2,</td><td>PREFERRED_NETWORK_MODE_WCDMA</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE = 3,</td><td>PREFERRED_NETWORK_MODE_LTE</td><td>42</td><td>1</td><td>14</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_WCDMA = 4,</td><td>PREFERRED_NETWORK_MODE_LTE_WCDMA</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM = 5,</td><td>PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_WCDMA_GSM = 6,</td><td>PREFERRED_NETWORK_MODE_WCDMA_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_CDMA = 7,</td><td>PREFERRED_NETWORK_MODE_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_EVDO = 8,</td><td>PREFERRED_NETWORK_MODE_EVDO</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_EVDO_CDMA = 9,</td><td>PREFERRED_NETWORK_MODE_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA = 10,</td><td>PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA = 11,</td><td>PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA = 12,</td><td>PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_TDSCDMA = 13,</td><td>PREFERRED_NETWORK_MODE_TDSCDMA</td><td>42</td><td>1</td><td>6</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_GSM = 14,</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_GSM</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA = 15,</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA</td><td>42</td><td>1</td><td>4</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM = 16,</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA = 17,</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA</td><td>42</td><td>1</td><td>9</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_GSM = 18,</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA = 19,</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA</td><td>42</td><td>1</td><td>5</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM = 20,</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 21,</td><td>PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM_EVDO_CDMA</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 22,</td><td>PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR = 31,</td><td>PREFERRED_NETWORK_MODE_NR</td><td>42</td><td>1</td><td>11</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE = 32,</td><td>PREFERRED_NETWORK_MODE_NR_LTE</td><td>42</td><td>1</td><td>10</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_WCDMA = 33,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_WCDMA</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM = 34,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_EVDO_CDMA = 35,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM_EVDO_CDMA = 36,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA = 37,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA</td><td>42</td><td>1</td><td>5</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM = 38,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA = 39,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM = 40,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA = 41,</td><td>PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>PreferredNetworkMode</td><td>PREFERRED_NETWORK_MODE_MAX_VALUE = 99,</td><td>PREFERRED_NETWORK_MODE_MAX_VALUE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>export enum RadioTechnology {
+    
+    RADIO_TECHNOLOGY_UNKNOWN = 0,
+
+    
+    RADIO_TECHNOLOGY_GSM = 1,
+
+    
+    RADIO_TECHNOLOGY_1XRTT = 2,
+
+    
+    RADIO_TECHNOLOGY_WCDMA = 3,
+
+    
+    RADIO_TECHNOLOGY_HSPA = 4,
+
+    
+    RADIO_TECHNOLOGY_HSPAP = 5,
+
+    
+    RADIO_TECHNOLOGY_TD_SCDMA = 6,
+
+    
+    RADIO_TECHNOLOGY_EVDO = 7,
+
+    
+    RADIO_TECHNOLOGY_EHRPD = 8,
+
+    
+    RADIO_TECHNOLOGY_LTE = 9,
+
+    
+    RADIO_TECHNOLOGY_LTE_CA = 10,
+
+    
+    RADIO_TECHNOLOGY_IWLAN = 11,
+
+    
+    RADIO_TECHNOLOGY_NR = 12
+  }</td><td>RadioTechnology</td><td>40</td><td>0</td><td>0</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_UNKNOWN = 0,</td><td>RADIO_TECHNOLOGY_UNKNOWN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_GSM = 1,</td><td>RADIO_TECHNOLOGY_GSM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_1XRTT = 2,</td><td>RADIO_TECHNOLOGY_1XRTT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_WCDMA = 3,</td><td>RADIO_TECHNOLOGY_WCDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_HSPA = 4,</td><td>RADIO_TECHNOLOGY_HSPA</td><td>42</td><td>1</td><td>2</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_HSPAP = 5,</td><td>RADIO_TECHNOLOGY_HSPAP</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_TD_SCDMA = 6,</td><td>RADIO_TECHNOLOGY_TD_SCDMA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_EVDO = 7,</td><td>RADIO_TECHNOLOGY_EVDO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_EHRPD = 8,</td><td>RADIO_TECHNOLOGY_EHRPD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_LTE = 9,</td><td>RADIO_TECHNOLOGY_LTE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_LTE_CA = 10,</td><td>RADIO_TECHNOLOGY_LTE_CA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_IWLAN = 11,</td><td>RADIO_TECHNOLOGY_IWLAN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RadioTechnology</td><td>RADIO_TECHNOLOGY_NR = 12</td><td>RADIO_TECHNOLOGY_NR</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SignalInformation</td><td>export interface SignalInformation {
+    
+    signalType: NetworkType;
+
+    
+    signalLevel: number;
+  }</td><td>SignalInformation</td><td>20</td><td>0</td><td>8</td><tr><tr><td>SignalInformation</td><td>signalType: NetworkType</td><td>signalType</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SignalInformation</td><td>signalLevel: number</td><td>signalLevel</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkType</td><td>export enum NetworkType {
+    
+    NETWORK_TYPE_UNKNOWN,
+
+    
+    NETWORK_TYPE_GSM,
+
+    
+    NETWORK_TYPE_CDMA,
+
+    
+    NETWORK_TYPE_WCDMA,
+
+    
+    NETWORK_TYPE_TDSCDMA,
+
+    
+    NETWORK_TYPE_LTE,
+
+    
+    NETWORK_TYPE_NR
+  }</td><td>NetworkType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_UNKNOWN,</td><td>NETWORK_TYPE_UNKNOWN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_GSM,</td><td>NETWORK_TYPE_GSM</td><td>42</td><td>1</td><td>3</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_CDMA,</td><td>NETWORK_TYPE_CDMA</td><td>42</td><td>1</td><td>2</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_WCDMA,</td><td>NETWORK_TYPE_WCDMA</td><td>42</td><td>1</td><td>4</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_TDSCDMA,</td><td>NETWORK_TYPE_TDSCDMA</td><td>42</td><td>1</td><td>3</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_LTE,</td><td>NETWORK_TYPE_LTE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>NetworkState</td><td>export interface NetworkState {
+    
+    longOperatorName: string;
+
+    
+    shortOperatorName: string;
+
+    
+    plmnNumeric: string;
+
+    
+    isRoaming: boolean;
+
+    
+    regState: RegState;
+
+    
+    cfgTech: RadioTechnology;
+
+    
+    nsaState: NsaState;
+
+    
+    isCaActive: boolean;
+
+    
+    isEmergency: boolean;
+  }</td><td>NetworkState</td><td>20</td><td>0</td><td>14</td><tr><tr><td>NetworkState</td><td>longOperatorName: string</td><td>longOperatorName</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkState</td><td>shortOperatorName: string</td><td>shortOperatorName</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkState</td><td>plmnNumeric: string</td><td>plmnNumeric</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkState</td><td>isRoaming: boolean</td><td>isRoaming</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NetworkState</td><td>regState: RegState</td><td>regState</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NetworkState</td><td>cfgTech: RadioTechnology</td><td>cfgTech</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NetworkState</td><td>nsaState: NsaState</td><td>nsaState</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NetworkState</td><td>isCaActive: boolean</td><td>isCaActive</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NetworkState</td><td>isEmergency: boolean</td><td>isEmergency</td><td>22</td><td>1</td><td>12</td><tr><tr><td>RegState</td><td>export enum RegState {
+    
+    REG_STATE_NO_SERVICE = 0,
+
+    
+    REG_STATE_IN_SERVICE = 1,
+
+    
+    REG_STATE_EMERGENCY_CALL_ONLY = 2,
+
+    
+    REG_STATE_POWER_OFF = 3
+  }</td><td>RegState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>RegState</td><td>REG_STATE_NO_SERVICE = 0,</td><td>REG_STATE_NO_SERVICE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RegState</td><td>REG_STATE_IN_SERVICE = 1,</td><td>REG_STATE_IN_SERVICE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>RegState</td><td>REG_STATE_EMERGENCY_CALL_ONLY = 2,</td><td>REG_STATE_EMERGENCY_CALL_ONLY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RegState</td><td>REG_STATE_POWER_OFF = 3</td><td>REG_STATE_POWER_OFF</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NsaState</td><td>export enum NsaState {
+    
+    NSA_STATE_NOT_SUPPORT = 1,
+
+    
+    NSA_STATE_NO_DETECT = 2,
+
+    
+    NSA_STATE_CONNECTED_DETECT = 3,
+
+    
+    NSA_STATE_IDLE_DETECT = 4,
+
+    
+    NSA_STATE_DUAL_CONNECTED = 5,
+
+    
+    NSA_STATE_SA_ATTACHED = 6
+  }</td><td>NsaState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>NsaState</td><td>NSA_STATE_NOT_SUPPORT = 1,</td><td>NSA_STATE_NOT_SUPPORT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NsaState</td><td>NSA_STATE_NO_DETECT = 2,</td><td>NSA_STATE_NO_DETECT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NsaState</td><td>NSA_STATE_CONNECTED_DETECT = 3,</td><td>NSA_STATE_CONNECTED_DETECT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NsaState</td><td>NSA_STATE_IDLE_DETECT = 4,</td><td>NSA_STATE_IDLE_DETECT</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NsaState</td><td>NSA_STATE_DUAL_CONNECTED = 5,</td><td>NSA_STATE_DUAL_CONNECTED</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NsaState</td><td>NSA_STATE_SA_ATTACHED = 6</td><td>NSA_STATE_SA_ATTACHED</td><td>42</td><td>1</td><td>2</td><tr><tr><td>CellInformation</td><td>export interface CellInformation {
+    
+    networkType: NetworkType;
+
+    
+    isCamped: boolean;
+
+    
+    timeStamp: number;
+
+    
+    signalInformation: SignalInformation;
+
+    data: CdmaCellInformation | GsmCellInformation | LteCellInformation | NrCellInformation | TdscdmaCellInformation
+      | WcdmaCellInformation;
+  }</td><td>CellInformation</td><td>20</td><td>0</td><td>24</td><tr><tr><td>CellInformation</td><td>networkType: NetworkType</td><td>networkType</td><td>22</td><td>1</td><td>6</td><tr><tr><td>CellInformation</td><td>isCamped: boolean</td><td>isCamped</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CellInformation</td><td>timeStamp: number</td><td>timeStamp</td><td>22</td><td>1</td><td>1</td><tr><tr><td>CellInformation</td><td>signalInformation: SignalInformation</td><td>signalInformation</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CdmaCellInformation</td><td>export interface CdmaCellInformation {
+    baseId: number;
+    latitude: number;
+    longitude: number;
+    nid: number;
+    sid: number;
+  }</td><td>CdmaCellInformation</td><td>20</td><td>0</td><td>3</td><tr><tr><td>CdmaCellInformation</td><td>baseId: number</td><td>baseId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CdmaCellInformation</td><td>latitude: number</td><td>latitude</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CdmaCellInformation</td><td>longitude: number</td><td>longitude</td><td>22</td><td>1</td><td>3</td><tr><tr><td>CdmaCellInformation</td><td>nid: number</td><td>nid</td><td>22</td><td>1</td><td>4</td><tr><tr><td>CdmaCellInformation</td><td>sid: number</td><td>sid</td><td>22</td><td>1</td><td>14</td><tr><tr><td>GsmCellInformation</td><td>export interface GsmCellInformation {
+    lac: number;
+    cellId: number;
+    arfcn: number;
+    bsic: number;
+    mcc: string;
+    mnc: string;
+  }</td><td>GsmCellInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GsmCellInformation</td><td>lac: number</td><td>lac</td><td>22</td><td>1</td><td>61</td><tr><tr><td>GsmCellInformation</td><td>cellId: number</td><td>cellId</td><td>22</td><td>1</td><td>4</td><tr><tr><td>GsmCellInformation</td><td>arfcn: number</td><td>arfcn</td><td>22</td><td>1</td><td>6</td><tr><tr><td>GsmCellInformation</td><td>bsic: number</td><td>bsic</td><td>22</td><td>1</td><td>4</td><tr><tr><td>GsmCellInformation</td><td>mcc: string</td><td>mcc</td><td>22</td><td>1</td><td>5</td><tr><tr><td>GsmCellInformation</td><td>mnc: string</td><td>mnc</td><td>22</td><td>1</td><td>6</td><tr><tr><td>LteCellInformation</td><td>export interface LteCellInformation {
+    cgi: number;
+    pci: number;
+    tac: number;
+    earfcn: number;
+    bandwidth: number;
+    mcc: string;
+    mnc: string;
+    isSupportEndc: boolean;
+  }</td><td>LteCellInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LteCellInformation</td><td>cgi: number</td><td>cgi</td><td>22</td><td>1</td><td>2</td><tr><tr><td>LteCellInformation</td><td>pci: number</td><td>pci</td><td>22</td><td>1</td><td>2</td><tr><tr><td>LteCellInformation</td><td>tac: number</td><td>tac</td><td>22</td><td>1</td><td>9572</td><tr><tr><td>LteCellInformation</td><td>earfcn: number</td><td>earfcn</td><td>22</td><td>1</td><td>2</td><tr><tr><td>LteCellInformation</td><td>bandwidth: number</td><td>bandwidth</td><td>22</td><td>1</td><td>2</td><tr><tr><td>LteCellInformation</td><td>mcc: string</td><td>mcc</td><td>22</td><td>1</td><td>5</td><tr><tr><td>LteCellInformation</td><td>mnc: string</td><td>mnc</td><td>22</td><td>1</td><td>6</td><tr><tr><td>LteCellInformation</td><td>isSupportEndc: boolean</td><td>isSupportEndc</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NrCellInformation</td><td>export interface NrCellInformation {
+    nrArfcn: number;
+    pci: number;
+    tac: number;
+    nci: number;
+    mcc: string;
+    mnc: string;
+  }</td><td>NrCellInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>NrCellInformation</td><td>nrArfcn: number</td><td>nrArfcn</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NrCellInformation</td><td>pci: number</td><td>pci</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NrCellInformation</td><td>tac: number</td><td>tac</td><td>22</td><td>1</td><td>9572</td><tr><tr><td>NrCellInformation</td><td>nci: number</td><td>nci</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NrCellInformation</td><td>mcc: string</td><td>mcc</td><td>22</td><td>1</td><td>5</td><tr><tr><td>NrCellInformation</td><td>mnc: string</td><td>mnc</td><td>22</td><td>1</td><td>6</td><tr><tr><td>TdscdmaCellInformation</td><td>export interface TdscdmaCellInformation {
+    lac: number;
+    cellId: number;
+    cpid: number;
+    uarfcn: number;
+    mcc: string;
+    mnc: string;
+  }</td><td>TdscdmaCellInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TdscdmaCellInformation</td><td>lac: number</td><td>lac</td><td>22</td><td>1</td><td>61</td><tr><tr><td>TdscdmaCellInformation</td><td>cellId: number</td><td>cellId</td><td>22</td><td>1</td><td>4</td><tr><tr><td>TdscdmaCellInformation</td><td>cpid: number</td><td>cpid</td><td>22</td><td>1</td><td>2</td><tr><tr><td>TdscdmaCellInformation</td><td>uarfcn: number</td><td>uarfcn</td><td>22</td><td>1</td><td>2</td><tr><tr><td>TdscdmaCellInformation</td><td>mcc: string</td><td>mcc</td><td>22</td><td>1</td><td>5</td><tr><tr><td>TdscdmaCellInformation</td><td>mnc: string</td><td>mnc</td><td>22</td><td>1</td><td>6</td><tr><tr><td>WcdmaCellInformation</td><td>export interface WcdmaCellInformation {
+    lac: number;
+    cellId: number;
+    psc: number;
+    uarfcn: number;
+    mcc: string;
+    mnc: string;
+  }</td><td>WcdmaCellInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WcdmaCellInformation</td><td>lac: number</td><td>lac</td><td>22</td><td>1</td><td>61</td><tr><tr><td>WcdmaCellInformation</td><td>cellId: number</td><td>cellId</td><td>22</td><td>1</td><td>4</td><tr><tr><td>WcdmaCellInformation</td><td>psc: number</td><td>psc</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WcdmaCellInformation</td><td>uarfcn: number</td><td>uarfcn</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WcdmaCellInformation</td><td>mcc: string</td><td>mcc</td><td>22</td><td>1</td><td>5</td><tr><tr><td>WcdmaCellInformation</td><td>mnc: string</td><td>mnc</td><td>22</td><td>1</td><td>6</td><tr><tr><td>NrOptionMode</td><td>export enum NrOptionMode {
+    
+    NR_OPTION_UNKNOWN,
+
+    
+    NR_OPTION_NSA_ONLY,
+
+    
+    NR_OPTION_SA_ONLY,
+
+    
+    NR_OPTION_NSA_AND_SA,
+  }</td><td>NrOptionMode</td><td>40</td><td>0</td><td>18</td><tr><tr><td>NrOptionMode</td><td>NR_OPTION_UNKNOWN,</td><td>NR_OPTION_UNKNOWN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>NrOptionMode</td><td>NR_OPTION_NSA_ONLY,</td><td>NR_OPTION_NSA_ONLY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NrOptionMode</td><td>NR_OPTION_SA_ONLY,</td><td>NR_OPTION_SA_ONLY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NrOptionMode</td><td>NR_OPTION_NSA_AND_SA,</td><td>NR_OPTION_NSA_AND_SA</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NetworkSearchResult</td><td>export interface NetworkSearchResult {
+    isNetworkSearchSuccess: boolean;
+    networkSearchResult: Array<NetworkInformation>;
+  }</td><td>NetworkSearchResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>NetworkSearchResult</td><td>isNetworkSearchSuccess: boolean</td><td>isNetworkSearchSuccess</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkSearchResult</td><td>networkSearchResult: Array<NetworkInformation></td><td>networkSearchResult</td><td>22</td><td>1</td><td>8</td><tr><tr><td>NetworkInformation</td><td>export interface NetworkInformation {
+    operatorName: string;
+    operatorNumeric: string;
+    state: NetworkInformationState;
+    radioTech: string;
+  }</td><td>NetworkInformation</td><td>20</td><td>0</td><td>0</td><tr><tr><td>NetworkInformation</td><td>operatorName: string</td><td>operatorName</td><td>22</td><td>1</td><td>5</td><tr><tr><td>NetworkInformation</td><td>operatorNumeric: string</td><td>operatorNumeric</td><td>22</td><td>1</td><td>3</td><tr><tr><td>NetworkInformation</td><td>state: NetworkInformationState</td><td>state</td><td>22</td><td>1</td><td>134</td><tr><tr><td>NetworkInformation</td><td>radioTech: string</td><td>radioTech</td><td>22</td><td>1</td><td>3</td><tr><tr><td>NetworkInformationState</td><td>export enum NetworkInformationState {
+    
+    NETWORK_UNKNOWN,
+
+    
+    NETWORK_AVAILABLE,
+
+    
+    NETWORK_CURRENT,
+
+    
+    NETWORK_FORBIDDEN
+  }</td><td>NetworkInformationState</td><td>40</td><td>0</td><td>0</td><tr><tr><td>NetworkInformationState</td><td>NETWORK_UNKNOWN,</td><td>NETWORK_UNKNOWN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>NetworkInformationState</td><td>NETWORK_AVAILABLE,</td><td>NETWORK_AVAILABLE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>NetworkInformationState</td><td>NETWORK_CURRENT,</td><td>NETWORK_CURRENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>NetworkSelectionModeOptions</td><td>export interface NetworkSelectionModeOptions {
+    slotId: number;
+    selectMode: NetworkSelectionMode;
+    networkInformation: NetworkInformation;
+    resumeSelection: boolean;
+  }</td><td>NetworkSelectionModeOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>NetworkSelectionModeOptions</td><td>slotId: number</td><td>slotId</td><td>22</td><td>1</td><td>113</td><tr><tr><td>NetworkSelectionModeOptions</td><td>selectMode: NetworkSelectionMode</td><td>selectMode</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkSelectionModeOptions</td><td>networkInformation: NetworkInformation</td><td>networkInformation</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkSelectionModeOptions</td><td>resumeSelection: boolean</td><td>resumeSelection</td><td>22</td><td>1</td><td>2</td><tr><tr><td>NetworkSelectionMode</td><td>export enum NetworkSelectionMode {
+    
+    NETWORK_SELECTION_UNKNOWN,
+
+    
+    NETWORK_SELECTION_AUTOMATIC,
+
+    
+    NETWORK_SELECTION_MANUAL
+  }</td><td>NetworkSelectionMode</td><td>40</td><td>0</td><td>18</td><tr><tr><td>NetworkSelectionMode</td><td>NETWORK_SELECTION_UNKNOWN,</td><td>NETWORK_SELECTION_UNKNOWN</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NetworkSelectionMode</td><td>NETWORK_SELECTION_AUTOMATIC,</td><td>NETWORK_SELECTION_AUTOMATIC</td><td>42</td><td>1</td><td>2</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

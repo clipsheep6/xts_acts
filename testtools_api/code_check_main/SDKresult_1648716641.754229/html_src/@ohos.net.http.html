@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.net.http</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>http</td><td>declare namespace http {
+  
+  function createHttp(): HttpRequest;
+
+  export interface HttpRequestOptions {
+    
+    method?: RequestMethod; // default is GET
+    
+    extraData?: string | Object | ArrayBuffer;
+    
+    header?: Object; // default is 'content-type': 'application/json'
+    
+    readTimeout?: number; // default is 60s
+    
+    connectTimeout?: number; // default is 60s.
+  }
+
+  export interface HttpRequest {
+    
+    request(url: string, callback: AsyncCallback<HttpResponse>): void;
+    request(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpResponse>): void;
+    request(url: string, options?: HttpRequestOptions): Promise<HttpResponse>;
+
+    
+    destroy(): void;
+
+    
+    on(type: "headerReceive", callback: AsyncCallback<Object>): void;
+
+    
+    off(type: "headerReceive", callback?: AsyncCallback<Object>): void;
+
+    
+    on(type: "headersReceive", callback: Callback<Object>): void;
+
+    
+    off(type: "headersReceive", callback?: Callback<Object>): void;
+
+    
+    once(type: "headersReceive", callback: Callback<Object>): void;
+  }
+
+  export enum RequestMethod {
+    OPTIONS = "OPTIONS",
+    GET = "GET",
+    HEAD = "HEAD",
+    POST = "POST",
+    PUT = "PUT",
+    DELETE = "DELETE",
+    TRACE = "TRACE",
+    CONNECT = "CONNECT"
+  }
+
+  export enum ResponseCode {
+    OK = 200,
+    CREATED,
+    ACCEPTED,
+    NOT_AUTHORITATIVE,
+    NO_CONTENT,
+    RESET,
+    PARTIAL,
+    MULT_CHOICE = 300,
+    MOVED_PERM,
+    MOVED_TEMP,
+    SEE_OTHER,
+    NOT_MODIFIED,
+    USE_PROXY,
+    BAD_REQUEST = 400,
+    UNAUTHORIZED,
+    PAYMENT_REQUIRED,
+    FORBIDDEN,
+    NOT_FOUND,
+    BAD_METHOD,
+    NOT_ACCEPTABLE,
+    PROXY_AUTH,
+    CLIENT_TIMEOUT,
+    CONFLICT,
+    GONE,
+    LENGTH_REQUIRED,
+    PRECON_FAILED,
+    ENTITY_TOO_LARGE,
+    REQ_TOO_LONG,
+    UNSUPPORTED_TYPE,
+    INTERNAL_ERROR = 500,
+    NOT_IMPLEMENTED,
+    BAD_GATEWAY,
+    UNAVAILABLE,
+    GATEWAY_TIMEOUT,
+    VERSION
+  }
+
+  export interface HttpResponse {
+    
+    result: string | Object | ArrayBuffer;
+    
+    responseCode: ResponseCode | number;
+    
+    header: Object;
+    
+    cookies: string;
+  }
+}</td><td>http</td><td>None</td><td>0</td><td>343</td><tr><tr><td>http</td><td>function createHttp(): HttpRequest;</td><td>createHttp</td><td>None</td><td>0</td><td>46</td><tr><tr><td>HttpRequestOptions</td><td>export interface HttpRequestOptions {
+    
+    method?: RequestMethod; // default is GET
+    
+    extraData?: string | Object | ArrayBuffer;
+    
+    header?: Object; // default is 'content-type': 'application/json'
+    
+    readTimeout?: number; // default is 60s
+    
+    connectTimeout?: number; // default is 60s.
+  }</td><td>HttpRequestOptions</td><td>20</td><td>0</td><td>69</td><tr><tr><td>HttpRequestOptions</td><td>method?: RequestMethod</td><td>method</td><td>22</td><td>1</td><td>51</td><tr><tr><td>HttpRequestOptions</td><td>extraData?: string | Object | ArrayBuffer</td><td>extraData</td><td>22</td><td>1</td><td>41</td><tr><tr><td>HttpRequestOptions</td><td>header?: Object</td><td>header</td><td>22</td><td>1</td><td>97</td><tr><tr><td>HttpRequestOptions</td><td>readTimeout?: number</td><td>readTimeout</td><td>22</td><td>1</td><td>41</td><tr><tr><td>HttpRequestOptions</td><td>connectTimeout?: number</td><td>connectTimeout</td><td>22</td><td>1</td><td>41</td><tr><tr><td>HttpRequest</td><td>export interface HttpRequest {
+    
+    request(url: string, callback: AsyncCallback<HttpResponse>): void;
+    request(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpResponse>): void;
+    request(url: string, options?: HttpRequestOptions): Promise<HttpResponse>;
+
+    
+    destroy(): void;
+
+    
+    on(type: "headerReceive", callback: AsyncCallback<Object>): void;
+
+    
+    off(type: "headerReceive", callback?: AsyncCallback<Object>): void;
+
+    
+    on(type: "headersReceive", callback: Callback<Object>): void;
+
+    
+    off(type: "headersReceive", callback?: Callback<Object>): void;
+
+    
+    once(type: "headersReceive", callback: Callback<Object>): void;
+  }</td><td>HttpRequest</td><td>20</td><td>0</td><td>162</td><tr><tr><td>HttpRequest</td><td>request(url: string, callback: AsyncCallback<HttpResponse>): void;</td><td>request</td><td>21</td><td>2</td><td>55</td><tr><tr><td>HttpRequest</td><td>request(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpResponse>): void;</td><td>request</td><td>21</td><td>3</td><td>55</td><tr><tr><td>HttpRequest</td><td>request(url: string, options?: HttpRequestOptions): Promise<HttpResponse>;</td><td>request</td><td>21</td><td>2</td><td>0</td><tr><tr><td>HttpRequest</td><td>destroy(): void;</td><td>destroy</td><td>21</td><td>0</td><td>5</td><tr><tr><td>HttpRequest</td><td>on(type: "headerReceive", callback: AsyncCallback<Object>): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>HttpRequest</td><td>off(type: "headerReceive", callback?: AsyncCallback<Object>): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>HttpRequest</td><td>on(type: "headersReceive", callback: Callback<Object>): void;</td><td>on</td><td>21</td><td>2</td><td>35526</td><tr><tr><td>HttpRequest</td><td>off(type: "headersReceive", callback?: Callback<Object>): void;</td><td>off</td><td>21</td><td>2</td><td>403</td><tr><tr><td>HttpRequest</td><td>once(type: "headersReceive", callback: Callback<Object>): void;</td><td>once</td><td>21</td><td>2</td><td>8</td><tr><tr><td>RequestMethod</td><td>export enum RequestMethod {
+    OPTIONS = "OPTIONS",
+    GET = "GET",
+    HEAD = "HEAD",
+    POST = "POST",
+    PUT = "PUT",
+    DELETE = "DELETE",
+    TRACE = "TRACE",
+    CONNECT = "CONNECT"
+  }</td><td>RequestMethod</td><td>40</td><td>0</td><td>51</td><tr><tr><td>RequestMethod</td><td>OPTIONS = "OPTIONS",</td><td>OPTIONS</td><td>42</td><td>1</td><td>2</td><tr><tr><td>RequestMethod</td><td>GET = "GET",</td><td>GET</td><td>42</td><td>1</td><td>36</td><tr><tr><td>RequestMethod</td><td>HEAD = "HEAD",</td><td>HEAD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>RequestMethod</td><td>POST = "POST",</td><td>POST</td><td>42</td><td>1</td><td>12</td><tr><tr><td>RequestMethod</td><td>PUT = "PUT",</td><td>PUT</td><td>42</td><td>1</td><td>10</td><tr><tr><td>RequestMethod</td><td>DELETE = "DELETE",</td><td>DELETE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>RequestMethod</td><td>TRACE = "TRACE",</td><td>TRACE</td><td>42</td><td>1</td><td>10</td><tr><tr><td>RequestMethod</td><td>CONNECT = "CONNECT"</td><td>CONNECT</td><td>42</td><td>1</td><td>28</td><tr><tr><td>ResponseCode</td><td>export enum ResponseCode {
+    OK = 200,
+    CREATED,
+    ACCEPTED,
+    NOT_AUTHORITATIVE,
+    NO_CONTENT,
+    RESET,
+    PARTIAL,
+    MULT_CHOICE = 300,
+    MOVED_PERM,
+    MOVED_TEMP,
+    SEE_OTHER,
+    NOT_MODIFIED,
+    USE_PROXY,
+    BAD_REQUEST = 400,
+    UNAUTHORIZED,
+    PAYMENT_REQUIRED,
+    FORBIDDEN,
+    NOT_FOUND,
+    BAD_METHOD,
+    NOT_ACCEPTABLE,
+    PROXY_AUTH,
+    CLIENT_TIMEOUT,
+    CONFLICT,
+    GONE,
+    LENGTH_REQUIRED,
+    PRECON_FAILED,
+    ENTITY_TOO_LARGE,
+    REQ_TOO_LONG,
+    UNSUPPORTED_TYPE,
+    INTERNAL_ERROR = 500,
+    NOT_IMPLEMENTED,
+    BAD_GATEWAY,
+    UNAVAILABLE,
+    GATEWAY_TIMEOUT,
+    VERSION
+  }</td><td>ResponseCode</td><td>40</td><td>0</td><td>237</td><tr><tr><td>ResponseCode</td><td>OK = 200,</td><td>OK</td><td>42</td><td>1</td><td>8</td><tr><tr><td>ResponseCode</td><td>CREATED,</td><td>CREATED</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>ACCEPTED,</td><td>ACCEPTED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>NOT_AUTHORITATIVE,</td><td>NOT_AUTHORITATIVE</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>NO_CONTENT,</td><td>NO_CONTENT</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>RESET,</td><td>RESET</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ResponseCode</td><td>PARTIAL,</td><td>PARTIAL</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>MULT_CHOICE = 300,</td><td>MULT_CHOICE</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>MOVED_PERM,</td><td>MOVED_PERM</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>MOVED_TEMP,</td><td>MOVED_TEMP</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>SEE_OTHER,</td><td>SEE_OTHER</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>NOT_MODIFIED,</td><td>NOT_MODIFIED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>USE_PROXY,</td><td>USE_PROXY</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>BAD_REQUEST = 400,</td><td>BAD_REQUEST</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>UNAUTHORIZED,</td><td>UNAUTHORIZED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>PAYMENT_REQUIRED,</td><td>PAYMENT_REQUIRED</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>FORBIDDEN,</td><td>FORBIDDEN</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ResponseCode</td><td>NOT_FOUND,</td><td>NOT_FOUND</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>BAD_METHOD,</td><td>BAD_METHOD</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>NOT_ACCEPTABLE,</td><td>NOT_ACCEPTABLE</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>PROXY_AUTH,</td><td>PROXY_AUTH</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ResponseCode</td><td>CLIENT_TIMEOUT,</td><td>CLIENT_TIMEOUT</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>CONFLICT,</td><td>CONFLICT</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>GONE,</td><td>GONE</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>LENGTH_REQUIRED,</td><td>LENGTH_REQUIRED</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>PRECON_FAILED,</td><td>PRECON_FAILED</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>ENTITY_TOO_LARGE,</td><td>ENTITY_TOO_LARGE</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>REQ_TOO_LONG,</td><td>REQ_TOO_LONG</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>UNSUPPORTED_TYPE,</td><td>UNSUPPORTED_TYPE</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>INTERNAL_ERROR = 500,</td><td>INTERNAL_ERROR</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>NOT_IMPLEMENTED,</td><td>NOT_IMPLEMENTED</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>BAD_GATEWAY,</td><td>BAD_GATEWAY</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ResponseCode</td><td>UNAVAILABLE,</td><td>UNAVAILABLE</td><td>42</td><td>1</td><td>8</td><tr><tr><td>ResponseCode</td><td>GATEWAY_TIMEOUT,</td><td>GATEWAY_TIMEOUT</td><td>42</td><td>1</td><td>7</td><tr><tr><td>HttpResponse</td><td>export interface HttpResponse {
+    
+    result: string | Object | ArrayBuffer;
+    
+    responseCode: ResponseCode | number;
+    
+    header: Object;
+    
+    cookies: string;
+  }</td><td>HttpResponse</td><td>20</td><td>0</td><td>60</td><tr><tr><td>HttpResponse</td><td>result: string | Object | ArrayBuffer</td><td>result</td><td>22</td><td>1</td><td>1757</td><tr><tr><td>HttpResponse</td><td>responseCode: ResponseCode | number</td><td>responseCode</td><td>22</td><td>1</td><td>16</td><tr><tr><td>HttpResponse</td><td>header: Object</td><td>header</td><td>22</td><td>1</td><td>97</td><tr><tr><td>HttpResponse</td><td>cookies: string</td><td>cookies</td><td>22</td><td>1</td><td>12</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

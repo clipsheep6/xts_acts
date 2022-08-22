@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.telephony.sim</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>sim</td><td>declare namespace sim {
+  
+  function isSimActive(slotId: number, callback: AsyncCallback<boolean>): void;
+  function isSimActive(slotId: number): Promise<boolean>;
+
+  
+  function getDefaultVoiceSlotId(callback: AsyncCallback<number>): void;
+  function getDefaultVoiceSlotId(): Promise<number>;
+
+  
+  function hasOperatorPrivileges(slotId: number, callback: AsyncCallback<boolean>): void;
+  function hasOperatorPrivileges(slotId: number): Promise<boolean>;
+
+  
+  function getISOCountryCodeForSim(slotId: number, callback: AsyncCallback<string>): void;
+  function getISOCountryCodeForSim(slotId: number): Promise<string>;
+
+  
+  function getSimOperatorNumeric(slotId: number, callback: AsyncCallback<string>): void;
+  function getSimOperatorNumeric(slotId: number): Promise<string>;
+
+  
+  function getSimSpn(slotId: number, callback: AsyncCallback<string>): void;
+  function getSimSpn(slotId: number): Promise<string>;
+
+  
+  function getSimState(slotId: number, callback: AsyncCallback<SimState>): void;
+  function getSimState(slotId: number): Promise<SimState>;
+
+  
+  function getCardType(slotId: number, callback: AsyncCallback<CardType>): void;
+  function getCardType(slotId: number): Promise<CardType>;
+
+  
+  function getSimIccId(slotId: number, callback: AsyncCallback<string>): void;
+  function getSimIccId(slotId: number): Promise<string>;
+
+  
+  function getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string>): void;
+  function getVoiceMailIdentifier(slotId: number): Promise<string>;
+
+  
+  function getVoiceMailNumber(slotId: number, callback: AsyncCallback<string>): void;
+  function getVoiceMailNumber(slotId: number): Promise<string>;
+
+  
+  function setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback: AsyncCallback<void>): void;
+  function setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<void>;
+
+  
+  function getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string>): void;
+  function getSimTelephoneNumber(slotId: number): Promise<string>;
+
+  
+  function getSimGid1(slotId: number, callback: AsyncCallback<string>): void;
+  function getSimGid1(slotId: number): Promise<string>;
+
+  
+  function getMaxSimCount(): number;
+
+  
+  function getIMSI(slotId: number, callback: AsyncCallback<string>): void;
+  function getIMSI(slotId: number): Promise<string>;
+
+  
+  function hasSimCard(slotId: number, callback: AsyncCallback<boolean>): void;
+  function hasSimCard(slotId: number): Promise<boolean>;
+
+  
+  function getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo>): void;
+  function getSimAccountInfo(slotId: number): Promise<IccAccountInfo>;
+
+  
+  function getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo>>): void;
+  function getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo>>;
+
+  
+  function setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void>): void;
+  function setDefaultVoiceSlotId(slotId: number): Promise<void>;
+
+  
+  function activateSim(slotId: number, callback: AsyncCallback<void>): void;
+  function activateSim(slotId: number): Promise<void>;
+
+  
+  function deactivateSim(slotId: number, callback: AsyncCallback<void>): void;
+  function deactivateSim(slotId: number): Promise<void>;
+
+  
+  function setShowName(slotId: number, name: string, callback: AsyncCallback<void>): void;
+  function setShowName(slotId: number, name: string): Promise<void>;
+
+  
+  function getShowName(slotId: number, callback: AsyncCallback<string>): void;
+  function getShowName(slotId: number): Promise<string>;
+
+  
+  function setShowNumber(slotId: number, number: string, callback: AsyncCallback<void>): void;
+  function setShowNumber(slotId: number, number: string): Promise<void>;
+
+  
+  function getShowNumber(slotId: number, callback: AsyncCallback<string>): void;
+  function getShowNumber(slotId: number): Promise<string>;
+
+  
+  function getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig>>): void;
+  function getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig>>;
+
+  
+  function unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse>): void;
+  function unlockPin(slotId: number, pin: string): Promise<LockStatusResponse>;
+
+  
+  function unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse>): void;
+  function unlockPuk(slotId: number, newPin: string, puk: string): Promise<LockStatusResponse>;
+
+  
+  function alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback<LockStatusResponse>): void;
+  function alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse>;
+
+  
+  function setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStatusResponse>): void;
+  function setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse>;
+
+  
+  function unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse>): void;
+  function unlockPin2(slotId: number, pin2: string): Promise<LockStatusResponse>;
+
+  
+  function unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse>): void;
+  function unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise<LockStatusResponse>;
+
+  
+  function alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallback<LockStatusResponse>): void;
+  function alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse>;
+
+  
+  function queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallback<Array<DiallingNumbersInfo>>): void
+  function queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo>>;
+
+  
+  function addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void>): void;
+  function addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void>;
+
+  
+  function delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void>): void;
+  function delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void>;
+
+  
+  function updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void>): void;
+  function updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void>;
+
+  
+  function getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockState>): void;
+  function getLockState(slotId: number, lockType: LockType): Promise<LockState>;
+
+  
+  function sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void>): void;
+  function sendEnvelopeCmd(slotId: number, cmd: string): Promise<void>;
+
+  
+  function sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<void>): void;
+  function sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void>;
+
+  
+  function unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse>): void;
+  function unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse>;
+
+  
+  export interface OperatorConfig {
+    field: string;
+    value: string;
+  }
+
+  
+  export interface IccAccountInfo {
+    
+    simId: number;
+    
+    slotIndex: number;
+    
+    isEsim: boolean;
+    
+    isActive: boolean;
+    
+    iccId: string;
+    
+    showName: string;
+    
+    showNumber: string;
+  }
+
+  
+  export interface LockStatusResponse {
+    
+    result: number;
+    
+    remain?: number;
+  }
+
+  
+  export interface DiallingNumbersInfo {
+    alphaTag: string;
+    number: string;
+    recordNumber?: number;
+    pin2?: string;
+  }
+
+  
+  export interface LockInfo {
+    lockType: LockType;
+    password: string;
+    state: LockState;
+  }
+
+  
+  export interface PersoLockInfo {
+    lockType: PersoLockType;
+    password: string;
+  }
+
+  
+  export enum LockType {
+    PIN_LOCK = 1,
+    FDN_LOCK = 2,
+  }
+
+  
+  export enum CardType {
+    
+    UNKNOWN_CARD = -1,
+
+    
+    SINGLE_MODE_SIM_CARD = 10,
+
+    
+    SINGLE_MODE_USIM_CARD = 20,
+
+    
+    SINGLE_MODE_RUIM_CARD = 30,
+
+    
+    DUAL_MODE_CG_CARD = 40,
+
+    
+    CT_NATIONAL_ROAMING_CARD = 41,
+
+    
+    CU_DUAL_MODE_CARD = 42,
+
+    
+    DUAL_MODE_TELECOM_LTE_CARD = 43,
+
+    
+    DUAL_MODE_UG_CARD = 50,
+
+    
+    SINGLE_MODE_ISIM_CARD = 60
+  }
+
+  export enum SimState {
+    
+    SIM_STATE_UNKNOWN,
+
+    
+    SIM_STATE_NOT_PRESENT,
+
+    
+    SIM_STATE_LOCKED,
+
+    
+    SIM_STATE_NOT_READY,
+
+    
+    SIM_STATE_READY,
+
+    
+    SIM_STATE_LOADED
+  }
+
+  
+  export enum LockState {
+    
+    LOCK_OFF = 0,
+
+    
+    LOCK_ON = 1,
+  }
+
+  
+  export enum ContactType {
+    GENERAL_CONTACT = 1,
+    FIXED_DIALING = 2,
+  }
+
+  
+  export enum PersoLockType {
+    PN_PIN_LOCK, //Network Personalization (refer 3GPP TS 22.022 [33])
+    PN_PUK_LOCK,
+    PU_PIN_LOCK, //network sUbset Personalization (refer 3GPP TS 22.022 [33])
+    PU_PUK_LOCK,
+    PP_PIN_LOCK, //service Provider Personalization (refer 3GPP TS 22.022 [33])
+    PP_PUK_LOCK,
+    PC_PIN_LOCK, //Corporate Personalization (refer 3GPP TS 22.022 [33])
+    PC_PUK_LOCK,
+    SIM_PIN_LOCK, //SIM/USIM personalisation (refer 3GPP TS 22.022 [33])
+    SIM_PUK_LOCK,
+  }
+}</td><td>sim</td><td>None</td><td>0</td><td>237</td><tr><tr><td>sim</td><td>function isSimActive(slotId: number, callback: AsyncCallback<boolean>): void;</td><td>isSimActive</td><td>None</td><td>2</td><td>11</td><tr><tr><td>sim</td><td>function isSimActive(slotId: number): Promise<boolean>;</td><td>isSimActive</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getDefaultVoiceSlotId(callback: AsyncCallback<number>): void;</td><td>getDefaultVoiceSlotId</td><td>None</td><td>1</td><td>8</td><tr><tr><td>sim</td><td>function getDefaultVoiceSlotId(): Promise<number>;</td><td>getDefaultVoiceSlotId</td><td>None</td><td>0</td><td>0</td><tr><tr><td>sim</td><td>function hasOperatorPrivileges(slotId: number, callback: AsyncCallback<boolean>): void;</td><td>hasOperatorPrivileges</td><td>None</td><td>2</td><td>12</td><tr><tr><td>sim</td><td>function hasOperatorPrivileges(slotId: number): Promise<boolean>;</td><td>hasOperatorPrivileges</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getISOCountryCodeForSim(slotId: number, callback: AsyncCallback<string>): void;</td><td>getISOCountryCodeForSim</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function getISOCountryCodeForSim(slotId: number): Promise<string>;</td><td>getISOCountryCodeForSim</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getSimOperatorNumeric(slotId: number, callback: AsyncCallback<string>): void;</td><td>getSimOperatorNumeric</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function getSimOperatorNumeric(slotId: number): Promise<string>;</td><td>getSimOperatorNumeric</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getSimSpn(slotId: number, callback: AsyncCallback<string>): void;</td><td>getSimSpn</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function getSimSpn(slotId: number): Promise<string>;</td><td>getSimSpn</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getSimState(slotId: number, callback: AsyncCallback<SimState>): void;</td><td>getSimState</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function getSimState(slotId: number): Promise<SimState>;</td><td>getSimState</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getCardType(slotId: number, callback: AsyncCallback<CardType>): void;</td><td>getCardType</td><td>None</td><td>2</td><td>2</td><tr><tr><td>sim</td><td>function getCardType(slotId: number): Promise<CardType>;</td><td>getCardType</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getSimIccId(slotId: number, callback: AsyncCallback<string>): void;</td><td>getSimIccId</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function getSimIccId(slotId: number): Promise<string>;</td><td>getSimIccId</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string>): void;</td><td>getVoiceMailIdentifier</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getVoiceMailIdentifier(slotId: number): Promise<string>;</td><td>getVoiceMailIdentifier</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getVoiceMailNumber(slotId: number, callback: AsyncCallback<string>): void;</td><td>getVoiceMailNumber</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getVoiceMailNumber(slotId: number): Promise<string>;</td><td>getVoiceMailNumber</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback: AsyncCallback<void>): void;</td><td>setVoiceMailInfo</td><td>None</td><td>4</td><td>12</td><tr><tr><td>sim</td><td>function setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<void>;</td><td>setVoiceMailInfo</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string>): void;</td><td>getSimTelephoneNumber</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getSimTelephoneNumber(slotId: number): Promise<string>;</td><td>getSimTelephoneNumber</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getSimGid1(slotId: number, callback: AsyncCallback<string>): void;</td><td>getSimGid1</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function getSimGid1(slotId: number): Promise<string>;</td><td>getSimGid1</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getMaxSimCount(): number;</td><td>getMaxSimCount</td><td>None</td><td>0</td><td>5</td><tr><tr><td>sim</td><td>function getIMSI(slotId: number, callback: AsyncCallback<string>): void;</td><td>getIMSI</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getIMSI(slotId: number): Promise<string>;</td><td>getIMSI</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function hasSimCard(slotId: number, callback: AsyncCallback<boolean>): void;</td><td>hasSimCard</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function hasSimCard(slotId: number): Promise<boolean>;</td><td>hasSimCard</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo>): void;</td><td>getSimAccountInfo</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getSimAccountInfo(slotId: number): Promise<IccAccountInfo>;</td><td>getSimAccountInfo</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo>>): void;</td><td>getActiveSimAccountInfoList</td><td>None</td><td>1</td><td>10</td><tr><tr><td>sim</td><td>function getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo>>;</td><td>getActiveSimAccountInfoList</td><td>None</td><td>0</td><td>0</td><tr><tr><td>sim</td><td>function setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void>): void;</td><td>setDefaultVoiceSlotId</td><td>None</td><td>2</td><td>6</td><tr><tr><td>sim</td><td>function setDefaultVoiceSlotId(slotId: number): Promise<void>;</td><td>setDefaultVoiceSlotId</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function activateSim(slotId: number, callback: AsyncCallback<void>): void;</td><td>activateSim</td><td>None</td><td>2</td><td>20</td><tr><tr><td>sim</td><td>function activateSim(slotId: number): Promise<void>;</td><td>activateSim</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function deactivateSim(slotId: number, callback: AsyncCallback<void>): void;</td><td>deactivateSim</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function deactivateSim(slotId: number): Promise<void>;</td><td>deactivateSim</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function setShowName(slotId: number, name: string, callback: AsyncCallback<void>): void;</td><td>setShowName</td><td>None</td><td>3</td><td>10</td><tr><tr><td>sim</td><td>function setShowName(slotId: number, name: string): Promise<void>;</td><td>setShowName</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function getShowName(slotId: number, callback: AsyncCallback<string>): void;</td><td>getShowName</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getShowName(slotId: number): Promise<string>;</td><td>getShowName</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function setShowNumber(slotId: number, number: string, callback: AsyncCallback<void>): void;</td><td>setShowNumber</td><td>None</td><td>3</td><td>10</td><tr><tr><td>sim</td><td>function setShowNumber(slotId: number, number: string): Promise<void>;</td><td>setShowNumber</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function getShowNumber(slotId: number, callback: AsyncCallback<string>): void;</td><td>getShowNumber</td><td>None</td><td>2</td><td>10</td><tr><tr><td>sim</td><td>function getShowNumber(slotId: number): Promise<string>;</td><td>getShowNumber</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig>>): void;</td><td>getOperatorConfigs</td><td>None</td><td>2</td><td>16</td><tr><tr><td>sim</td><td>function getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig>>;</td><td>getOperatorConfigs</td><td>None</td><td>1</td><td>0</td><tr><tr><td>sim</td><td>function unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse>): void;</td><td>unlockPin</td><td>None</td><td>3</td><td>24</td><tr><tr><td>sim</td><td>function unlockPin(slotId: number, pin: string): Promise<LockStatusResponse>;</td><td>unlockPin</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse>): void;</td><td>unlockPuk</td><td>None</td><td>4</td><td>20</td><tr><tr><td>sim</td><td>function unlockPuk(slotId: number, newPin: string, puk: string): Promise<LockStatusResponse>;</td><td>unlockPuk</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback<LockStatusResponse>): void;</td><td>alterPin</td><td>None</td><td>4</td><td>20</td><tr><tr><td>sim</td><td>function alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse>;</td><td>alterPin</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStatusResponse>): void;</td><td>setLockState</td><td>None</td><td>3</td><td>7</td><tr><tr><td>sim</td><td>function setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse>;</td><td>setLockState</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse>): void;</td><td>unlockPin2</td><td>None</td><td>3</td><td>10</td><tr><tr><td>sim</td><td>function unlockPin2(slotId: number, pin2: string): Promise<LockStatusResponse>;</td><td>unlockPin2</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse>): void;</td><td>unlockPuk2</td><td>None</td><td>4</td><td>10</td><tr><tr><td>sim</td><td>function unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise<LockStatusResponse>;</td><td>unlockPuk2</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallback<LockStatusResponse>): void;</td><td>alterPin2</td><td>None</td><td>4</td><td>10</td><tr><tr><td>sim</td><td>function alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse>;</td><td>alterPin2</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallback<Array<DiallingNumbersInfo>>): void
+  function queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo>>;</td><td>queryIccDiallingNumbers</td><td>None</td><td>3</td><td>10</td><tr><tr><td>sim</td><td>function queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo>>;</td><td>queryIccDiallingNumbers</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void>): void;</td><td>addIccDiallingNumbers</td><td>None</td><td>4</td><td>13</td><tr><tr><td>sim</td><td>function addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void>;</td><td>addIccDiallingNumbers</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void>): void;</td><td>delIccDiallingNumbers</td><td>None</td><td>4</td><td>10</td><tr><tr><td>sim</td><td>function delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void>;</td><td>delIccDiallingNumbers</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void>): void;</td><td>updateIccDiallingNumbers</td><td>None</td><td>4</td><td>10</td><tr><tr><td>sim</td><td>function updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void>;</td><td>updateIccDiallingNumbers</td><td>None</td><td>3</td><td>0</td><tr><tr><td>sim</td><td>function getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockState>): void;</td><td>getLockState</td><td>None</td><td>3</td><td>4</td><tr><tr><td>sim</td><td>function getLockState(slotId: number, lockType: LockType): Promise<LockState>;</td><td>getLockState</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void>): void;</td><td>sendEnvelopeCmd</td><td>None</td><td>3</td><td>2</td><tr><tr><td>sim</td><td>function sendEnvelopeCmd(slotId: number, cmd: string): Promise<void>;</td><td>sendEnvelopeCmd</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<void>): void;</td><td>sendTerminalResponseCmd</td><td>None</td><td>3</td><td>2</td><tr><tr><td>sim</td><td>function sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void>;</td><td>sendTerminalResponseCmd</td><td>None</td><td>2</td><td>0</td><tr><tr><td>sim</td><td>function unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse>): void;</td><td>unlockSimLock</td><td>None</td><td>3</td><td>8</td><tr><tr><td>sim</td><td>function unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse>;</td><td>unlockSimLock</td><td>None</td><td>2</td><td>0</td><tr><tr><td>OperatorConfig</td><td>export interface OperatorConfig {
+    field: string;
+    value: string;
+  }</td><td>OperatorConfig</td><td>20</td><td>0</td><td>16</td><tr><tr><td>OperatorConfig</td><td>field: string</td><td>field</td><td>22</td><td>1</td><td>61</td><tr><tr><td>OperatorConfig</td><td>value: string</td><td>value</td><td>22</td><td>1</td><td>574</td><tr><tr><td>IccAccountInfo</td><td>export interface IccAccountInfo {
+    
+    simId: number;
+    
+    slotIndex: number;
+    
+    isEsim: boolean;
+    
+    isActive: boolean;
+    
+    iccId: string;
+    
+    showName: string;
+    
+    showNumber: string;
+  }</td><td>IccAccountInfo</td><td>20</td><td>0</td><td>2</td><tr><tr><td>IccAccountInfo</td><td>simId: number</td><td>simId</td><td>22</td><td>1</td><td>2</td><tr><tr><td>IccAccountInfo</td><td>slotIndex: number</td><td>slotIndex</td><td>22</td><td>1</td><td>5</td><tr><tr><td>IccAccountInfo</td><td>isEsim: boolean</td><td>isEsim</td><td>22</td><td>1</td><td>1</td><tr><tr><td>IccAccountInfo</td><td>isActive: boolean</td><td>isActive</td><td>22</td><td>1</td><td>1</td><tr><tr><td>IccAccountInfo</td><td>iccId: string</td><td>iccId</td><td>22</td><td>1</td><td>3</td><tr><tr><td>IccAccountInfo</td><td>showName: string</td><td>showName</td><td>22</td><td>1</td><td>5</td><tr><tr><td>IccAccountInfo</td><td>showNumber: string</td><td>showNumber</td><td>22</td><td>1</td><td>5</td><tr><tr><td>LockStatusResponse</td><td>export interface LockStatusResponse {
+    
+    result: number;
+    
+    remain?: number;
+  }</td><td>LockStatusResponse</td><td>20</td><td>0</td><td>2</td><tr><tr><td>LockStatusResponse</td><td>result: number</td><td>result</td><td>22</td><td>1</td><td>1757</td><tr><tr><td>LockStatusResponse</td><td>remain?: number</td><td>remain</td><td>22</td><td>1</td><td>8</td><tr><tr><td>DiallingNumbersInfo</td><td>export interface DiallingNumbersInfo {
+    alphaTag: string;
+    number: string;
+    recordNumber?: number;
+    pin2?: string;
+  }</td><td>DiallingNumbersInfo</td><td>20</td><td>0</td><td>4</td><tr><tr><td>DiallingNumbersInfo</td><td>alphaTag: string</td><td>alphaTag</td><td>22</td><td>1</td><td>11</td><tr><tr><td>DiallingNumbersInfo</td><td>number: string</td><td>number</td><td>22</td><td>1</td><td>1139</td><tr><tr><td>DiallingNumbersInfo</td><td>recordNumber?: number</td><td>recordNumber</td><td>22</td><td>1</td><td>11</td><tr><tr><td>DiallingNumbersInfo</td><td>pin2?: string</td><td>pin2</td><td>22</td><td>1</td><td>9</td><tr><tr><td>LockInfo</td><td>export interface LockInfo {
+    lockType: LockType;
+    password: string;
+    state: LockState;
+  }</td><td>LockInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LockInfo</td><td>lockType: LockType</td><td>lockType</td><td>22</td><td>1</td><td>5</td><tr><tr><td>LockInfo</td><td>password: string</td><td>password</td><td>22</td><td>1</td><td>27</td><tr><tr><td>LockInfo</td><td>state: LockState</td><td>state</td><td>22</td><td>1</td><td>134</td><tr><tr><td>PersoLockInfo</td><td>export interface PersoLockInfo {
+    lockType: PersoLockType;
+    password: string;
+  }</td><td>PersoLockInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PersoLockInfo</td><td>lockType: PersoLockType</td><td>lockType</td><td>22</td><td>1</td><td>5</td><tr><tr><td>PersoLockInfo</td><td>password: string</td><td>password</td><td>22</td><td>1</td><td>27</td><tr><tr><td>LockType</td><td>export enum LockType {
+    PIN_LOCK = 1,
+    FDN_LOCK = 2,
+  }</td><td>LockType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>LockType</td><td>PIN_LOCK = 1,</td><td>PIN_LOCK</td><td>42</td><td>1</td><td>19</td><tr><tr><td>LockType</td><td>FDN_LOCK = 2,</td><td>FDN_LOCK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>CardType</td><td>export enum CardType {
+    
+    UNKNOWN_CARD = -1,
+
+    
+    SINGLE_MODE_SIM_CARD = 10,
+
+    
+    SINGLE_MODE_USIM_CARD = 20,
+
+    
+    SINGLE_MODE_RUIM_CARD = 30,
+
+    
+    DUAL_MODE_CG_CARD = 40,
+
+    
+    CT_NATIONAL_ROAMING_CARD = 41,
+
+    
+    CU_DUAL_MODE_CARD = 42,
+
+    
+    DUAL_MODE_TELECOM_LTE_CARD = 43,
+
+    
+    DUAL_MODE_UG_CARD = 50,
+
+    
+    SINGLE_MODE_ISIM_CARD = 60
+  }</td><td>CardType</td><td>40</td><td>0</td><td>22</td><tr><tr><td>CardType</td><td>UNKNOWN_CARD = -1,</td><td>UNKNOWN_CARD</td><td>42</td><td>1</td><td>5</td><tr><tr><td>CardType</td><td>SINGLE_MODE_SIM_CARD = 10,</td><td>SINGLE_MODE_SIM_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>SINGLE_MODE_USIM_CARD = 20,</td><td>SINGLE_MODE_USIM_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>SINGLE_MODE_RUIM_CARD = 30,</td><td>SINGLE_MODE_RUIM_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>DUAL_MODE_CG_CARD = 40,</td><td>DUAL_MODE_CG_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>CT_NATIONAL_ROAMING_CARD = 41,</td><td>CT_NATIONAL_ROAMING_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>CU_DUAL_MODE_CARD = 42,</td><td>CU_DUAL_MODE_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>DUAL_MODE_TELECOM_LTE_CARD = 43,</td><td>DUAL_MODE_TELECOM_LTE_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>DUAL_MODE_UG_CARD = 50,</td><td>DUAL_MODE_UG_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>CardType</td><td>SINGLE_MODE_ISIM_CARD = 60</td><td>SINGLE_MODE_ISIM_CARD</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SimState</td><td>export enum SimState {
+    
+    SIM_STATE_UNKNOWN,
+
+    
+    SIM_STATE_NOT_PRESENT,
+
+    
+    SIM_STATE_LOCKED,
+
+    
+    SIM_STATE_NOT_READY,
+
+    
+    SIM_STATE_READY,
+
+    
+    SIM_STATE_LOADED
+  }</td><td>SimState</td><td>40</td><td>0</td><td>64</td><tr><tr><td>SimState</td><td>SIM_STATE_UNKNOWN,</td><td>SIM_STATE_UNKNOWN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SimState</td><td>SIM_STATE_NOT_PRESENT,</td><td>SIM_STATE_NOT_PRESENT</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SimState</td><td>SIM_STATE_LOCKED,</td><td>SIM_STATE_LOCKED</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SimState</td><td>SIM_STATE_NOT_READY,</td><td>SIM_STATE_NOT_READY</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SimState</td><td>SIM_STATE_READY,</td><td>SIM_STATE_READY</td><td>42</td><td>1</td><td>3</td><tr><tr><td>LockState</td><td>export enum LockState {
+    
+    LOCK_OFF = 0,
+
+    
+    LOCK_ON = 1,
+  }</td><td>LockState</td><td>40</td><td>0</td><td>30</td><tr><tr><td>LockState</td><td>LOCK_OFF = 0,</td><td>LOCK_OFF</td><td>42</td><td>1</td><td>5</td><tr><tr><td>LockState</td><td>LOCK_ON = 1,</td><td>LOCK_ON</td><td>42</td><td>1</td><td>3</td><tr><tr><td>ContactType</td><td>export enum ContactType {
+    GENERAL_CONTACT = 1,
+    FIXED_DIALING = 2,
+  }</td><td>ContactType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ContactType</td><td>GENERAL_CONTACT = 1,</td><td>GENERAL_CONTACT</td><td>42</td><td>1</td><td>17</td><tr><tr><td>ContactType</td><td>FIXED_DIALING = 2,</td><td>FIXED_DIALING</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PersoLockType</td><td>export enum PersoLockType {
+    PN_PIN_LOCK, //Network Personalization (refer 3GPP TS 22.022 [33])
+    PN_PUK_LOCK,
+    PU_PIN_LOCK, //network sUbset Personalization (refer 3GPP TS 22.022 [33])
+    PU_PUK_LOCK,
+    PP_PIN_LOCK, //service Provider Personalization (refer 3GPP TS 22.022 [33])
+    PP_PUK_LOCK,
+    PC_PIN_LOCK, //Corporate Personalization (refer 3GPP TS 22.022 [33])
+    PC_PUK_LOCK,
+    SIM_PIN_LOCK, //SIM/USIM personalisation (refer 3GPP TS 22.022 [33])
+    SIM_PUK_LOCK,
+  }</td><td>PersoLockType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>PersoLockType</td><td>PN_PIN_LOCK, //Network Personalization (refer 3GPP TS 22.022 [33]</td><td>PN_PIN_LOCK</td><td>40</td><td>0</td><td>4</td><tr><tr><td>PersoLockType</td><td>PU_PIN_LOCK, //network sUbset Personalization (refer 3GPP TS 22.022 [33]</td><td>PU_PIN_LOCK</td><td>40</td><td>0</td><td>2</td><tr><tr><td>PersoLockType</td><td>PP_PIN_LOCK, //service Provider Personalization (refer 3GPP TS 22.022 [33]</td><td>PP_PIN_LOCK</td><td>40</td><td>0</td><td>2</td><tr><tr><td>PersoLockType</td><td>PC_PIN_LOCK, //Corporate Personalization (refer 3GPP TS 22.022 [33]</td><td>PC_PIN_LOCK</td><td>40</td><td>0</td><td>2</td><tr><tr><td>PersoLockType</td><td>SIM_PIN_LOCK, //SIM/USIM personalisation (refer 3GPP TS 22.022 [33]</td><td>SIM_PIN_LOCK</td><td>40</td><td>0</td><td>2</td><tr><tr><td>PersoLockType</td><td>PN_PUK_LOCK,</td><td>PN_PUK_LOCK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PersoLockType</td><td>PU_PUK_LOCK,</td><td>PU_PUK_LOCK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PersoLockType</td><td>PP_PUK_LOCK,</td><td>PP_PUK_LOCK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PersoLockType</td><td>PC_PUK_LOCK,</td><td>PC_PUK_LOCK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PersoLockType</td><td>SIM_PUK_LOCK,</td><td>SIM_PUK_LOCK</td><td>42</td><td>1</td><td>2</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>文件存储子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>storage</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@system.file</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>FileResponse</td><td>export interface FileResponse {
+  
+  uri: string;
+
+  
+  length: number;
+
+  
+  lastModifiedTime: number;
+
+  
+  type: "dir" | "file";
+
+  
+  subFiles?: Array<FileResponse>;
+}</td><td>FileResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileResponse</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileResponse</td><td>length: number</td><td>length</td><td>22</td><td>1</td><td>202</td><tr><tr><td>FileResponse</td><td>lastModifiedTime: number</td><td>lastModifiedTime</td><td>22</td><td>1</td><td>19</td><tr><tr><td>FileResponse</td><td>type: "dir" | "file"</td><td>type</td><td>22</td><td>1</td><td>273</td><tr><tr><td>FileResponse</td><td>subFiles?: Array<FileResponse></td><td>subFiles</td><td>22</td><td>1</td><td>18</td><tr><tr><td>FileMoveOption</td><td>export interface FileMoveOption {
+  
+  srcUri: string;
+
+  
+  dstUri: string;
+
+  
+  success?: (uri: string) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileMoveOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileMoveOption</td><td>success?: (uri: string) => void;</td><td>success</td><td>21</td><td>1</td><td>450</td><tr><tr><td>FileMoveOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileMoveOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileMoveOption</td><td>srcUri: string</td><td>srcUri</td><td>22</td><td>1</td><td>32</td><tr><tr><td>FileMoveOption</td><td>dstUri: string</td><td>dstUri</td><td>22</td><td>1</td><td>38</td><tr><tr><td>FileListResponse</td><td>export interface FileListResponse {
+  
+  fileList: Array<FileResponse>;
+}</td><td>FileListResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileListResponse</td><td>fileList: Array<FileResponse></td><td>fileList</td><td>22</td><td>1</td><td>12</td><tr><tr><td>FileListOption</td><td>export interface FileListOption {
+  
+  uri: string;
+
+  
+  success?: (data: FileListResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileListOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileListOption</td><td>success?: (data: FileListResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>450</td><tr><tr><td>FileListOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileListOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileListOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileCopyOption</td><td>export interface FileCopyOption {
+  
+  srcUri: string;
+
+  
+  dstUri: string;
+
+  
+  success?: (uri: string) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileCopyOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileCopyOption</td><td>success?: (uri: string) => void;</td><td>success</td><td>21</td><td>1</td><td>450</td><tr><tr><td>FileCopyOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileCopyOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileCopyOption</td><td>srcUri: string</td><td>srcUri</td><td>22</td><td>1</td><td>32</td><tr><tr><td>FileCopyOption</td><td>dstUri: string</td><td>dstUri</td><td>22</td><td>1</td><td>38</td><tr><tr><td>FileGetOption</td><td>export interface FileGetOption {
+  
+  uri: string;
+
+  
+  recursive?: boolean;
+
+  
+  success?: (file: FileResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileGetOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileGetOption</td><td>success?: (file: FileResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>450</td><tr><tr><td>FileGetOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileGetOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileGetOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileGetOption</td><td>recursive?: boolean</td><td>recursive</td><td>22</td><td>1</td><td>27</td><tr><tr><td>FileDeleteOption</td><td>export interface FileDeleteOption {
+  
+  uri: string;
+
+  
+  success?: () => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileDeleteOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileDeleteOption</td><td>success?: () => void;</td><td>success</td><td>21</td><td>0</td><td>450</td><tr><tr><td>FileDeleteOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileDeleteOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileDeleteOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileWriteTextOption</td><td>export interface FileWriteTextOption {
+  
+  uri: string;
+
+  
+  text: string;
+
+  
+  encoding?: string;
+
+  
+  append?: boolean;
+
+  
+  success?: () => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileWriteTextOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileWriteTextOption</td><td>success?: () => void;</td><td>success</td><td>21</td><td>0</td><td>450</td><tr><tr><td>FileWriteTextOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileWriteTextOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileWriteTextOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileWriteTextOption</td><td>text: string</td><td>text</td><td>22</td><td>1</td><td>185</td><tr><tr><td>FileWriteTextOption</td><td>encoding?: string</td><td>encoding</td><td>22</td><td>1</td><td>45</td><tr><tr><td>FileWriteTextOption</td><td>append?: boolean</td><td>append</td><td>22</td><td>1</td><td>25</td><tr><tr><td>FileReadTextResponse</td><td>export interface FileReadTextResponse {
+  
+  text: string;
+}</td><td>FileReadTextResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileReadTextResponse</td><td>text: string</td><td>text</td><td>22</td><td>1</td><td>185</td><tr><tr><td>FileReadTextOption</td><td>export interface FileReadTextOption {
+  
+  uri: string;
+
+  
+  encoding?: string;
+
+  
+  position?: number;
+
+  
+  length?: number;
+
+  
+  success?: (data: FileReadTextResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileReadTextOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileReadTextOption</td><td>success?: (data: FileReadTextResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>450</td><tr><tr><td>FileReadTextOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileReadTextOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileReadTextOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileReadTextOption</td><td>encoding?: string</td><td>encoding</td><td>22</td><td>1</td><td>45</td><tr><tr><td>FileReadTextOption</td><td>position?: number</td><td>position</td><td>22</td><td>1</td><td>44</td><tr><tr><td>FileReadTextOption</td><td>length?: number</td><td>length</td><td>22</td><td>1</td><td>202</td><tr><tr><td>FileWriteArrayBufferOption</td><td>export interface FileWriteArrayBufferOption {
+  
+  uri: string;
+
+  
+  buffer: Uint8Array;
+
+  
+  position?: number;
+
+  
+  append?: boolean;
+
+  
+  success?: () => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileWriteArrayBufferOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileWriteArrayBufferOption</td><td>success?: () => void;</td><td>success</td><td>21</td><td>0</td><td>450</td><tr><tr><td>FileWriteArrayBufferOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileWriteArrayBufferOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileWriteArrayBufferOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileWriteArrayBufferOption</td><td>buffer: Uint8Array</td><td>buffer</td><td>22</td><td>1</td><td>129</td><tr><tr><td>FileWriteArrayBufferOption</td><td>position?: number</td><td>position</td><td>22</td><td>1</td><td>44</td><tr><tr><td>FileWriteArrayBufferOption</td><td>append?: boolean</td><td>append</td><td>22</td><td>1</td><td>25</td><tr><tr><td>FileReadArrayBufferResponse</td><td>export interface FileReadArrayBufferResponse {
+  
+  buffer: Uint8Array;
+}</td><td>FileReadArrayBufferResponse</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileReadArrayBufferResponse</td><td>buffer: Uint8Array</td><td>buffer</td><td>22</td><td>1</td><td>129</td><tr><tr><td>FileReadArrayBufferOption</td><td>export interface FileReadArrayBufferOption {
+  
+  uri: string;
+
+  
+  position?: number;
+
+  
+  length?: number;
+
+  
+  success?: (data: FileReadArrayBufferResponse) => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileReadArrayBufferOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileReadArrayBufferOption</td><td>success?: (data: FileReadArrayBufferResponse) => void;</td><td>success</td><td>21</td><td>1</td><td>450</td><tr><tr><td>FileReadArrayBufferOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileReadArrayBufferOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileReadArrayBufferOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileReadArrayBufferOption</td><td>position?: number</td><td>position</td><td>22</td><td>1</td><td>44</td><tr><tr><td>FileReadArrayBufferOption</td><td>length?: number</td><td>length</td><td>22</td><td>1</td><td>202</td><tr><tr><td>FileAccessOption</td><td>export interface FileAccessOption {
+  
+  uri: string;
+
+  
+  success?: () => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileAccessOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileAccessOption</td><td>success?: () => void;</td><td>success</td><td>21</td><td>0</td><td>450</td><tr><tr><td>FileAccessOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileAccessOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileAccessOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileMkdirOption</td><td>export interface FileMkdirOption {
+  
+  uri: string;
+
+  
+  recursive?: boolean;
+
+  
+  success?: () => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileMkdirOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileMkdirOption</td><td>success?: () => void;</td><td>success</td><td>21</td><td>0</td><td>450</td><tr><tr><td>FileMkdirOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileMkdirOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileMkdirOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileMkdirOption</td><td>recursive?: boolean</td><td>recursive</td><td>22</td><td>1</td><td>27</td><tr><tr><td>FileRmdirOption</td><td>export interface FileRmdirOption {
+  
+  uri: string;
+
+  
+  recursive?: boolean;
+
+  
+  success?: () => void;
+
+  
+  fail?: (data: string, code: number) => void;
+
+  
+  complete?: () => void;
+}</td><td>FileRmdirOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>FileRmdirOption</td><td>success?: () => void;</td><td>success</td><td>21</td><td>0</td><td>450</td><tr><tr><td>FileRmdirOption</td><td>fail?: (data: string, code: number) => void;</td><td>fail</td><td>21</td><td>2</td><td>1221</td><tr><tr><td>FileRmdirOption</td><td>complete?: () => void;</td><td>complete</td><td>21</td><td>0</td><td>0</td><tr><tr><td>FileRmdirOption</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>446</td><tr><tr><td>FileRmdirOption</td><td>recursive?: boolean</td><td>recursive</td><td>22</td><td>1</td><td>27</td><tr><tr><td>File</td><td>export default class File {
+  
+  static move(options: FileMoveOption): void;
+
+  
+  static copy(options: FileCopyOption): void;
+
+  
+  static list(options: FileListOption): void;
+
+  
+  static get(options: FileGetOption): void;
+
+  
+  static delete(options: FileDeleteOption): void;
+
+  
+  static writeText(options: FileWriteTextOption): void;
+
+  
+  static readText(options: FileReadTextOption): void;
+
+  
+  static writeArrayBuffer(options: FileWriteArrayBufferOption): void;
+
+  
+  static readArrayBuffer(options: FileReadArrayBufferOption): void;
+
+  
+  static access(options: FileAccessOption): void;
+
+  
+  static mkdir(options: FileMkdirOption): void;
+
+  
+  static rmdir(options: FileRmdirOption): void;
+}</td><td>File</td><td>10</td><td>0</td><td>3294</td><tr><tr><td>File</td><td>static move(options: FileMoveOption): void;</td><td>move</td><td>11</td><td>1</td><td>27</td><tr><tr><td>File</td><td>static copy(options: FileCopyOption): void;</td><td>copy</td><td>11</td><td>1</td><td>165</td><tr><tr><td>File</td><td>static list(options: FileListOption): void;</td><td>list</td><td>11</td><td>1</td><td>61</td><tr><tr><td>File</td><td>static get(options: FileGetOption): void;</td><td>get</td><td>11</td><td>1</td><td>331</td><tr><tr><td>File</td><td>static delete(options: FileDeleteOption): void;</td><td>delete</td><td>11</td><td>1</td><td>88</td><tr><tr><td>File</td><td>static writeText(options: FileWriteTextOption): void;</td><td>writeText</td><td>11</td><td>1</td><td>199</td><tr><tr><td>File</td><td>static readText(options: FileReadTextOption): void;</td><td>readText</td><td>11</td><td>1</td><td>124</td><tr><tr><td>File</td><td>static writeArrayBuffer(options: FileWriteArrayBufferOption): void;</td><td>writeArrayBuffer</td><td>11</td><td>1</td><td>155</td><tr><tr><td>File</td><td>static readArrayBuffer(options: FileReadArrayBufferOption): void;</td><td>readArrayBuffer</td><td>11</td><td>1</td><td>42</td><tr><tr><td>File</td><td>static access(options: FileAccessOption): void;</td><td>access</td><td>11</td><td>1</td><td>212</td><tr><tr><td>File</td><td>static mkdir(options: FileMkdirOption): void;</td><td>mkdir</td><td>11</td><td>1</td><td>468</td><tr><tr><td>File</td><td>static rmdir(options: FileRmdirOption): void;</td><td>rmdir</td><td>11</td><td>1</td><td>425</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

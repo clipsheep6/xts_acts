@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>程序访问控制子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>security</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.abilityAccessCtrl</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>abilityAccessCtrl</td><td>declare namespace abilityAccessCtrl {
+    
+    function createAtManager(): AtManager;
+  
+    
+    interface AtManager {
+        
+        verifyAccessToken(tokenID: number, permissionName: string): Promise<GrantStatus>;
+
+        
+        grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise<number>;
+        grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback<number>): void;
+
+        
+        revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise<number>;
+        revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback<number>): void;
+
+        
+        getPermissionFlags(tokenID: number, permissionName: string): Promise<number>;
+    }
+  
+    
+    export enum GrantStatus {
+        
+        PERMISSION_DENIED = -1,
+        
+        PERMISSION_GRANTED = 0,
+    }
+  }</td><td>abilityAccessCtrl</td><td>None</td><td>0</td><td>28</td><tr><tr><td>abilityAccessCtrl</td><td>function createAtManager(): AtManager;</td><td>createAtManager</td><td>None</td><td>0</td><td>24</td><tr><tr><td>AtManager</td><td>interface AtManager {
+        
+        verifyAccessToken(tokenID: number, permissionName: string): Promise<GrantStatus>;
+
+        
+        grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise<number>;
+        grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback<number>): void;
+
+        
+        revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise<number>;
+        revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback<number>): void;
+
+        
+        getPermissionFlags(tokenID: number, permissionName: string): Promise<number>;
+    }</td><td>AtManager</td><td>20</td><td>0</td><td>24</td><tr><tr><td>AtManager</td><td>verifyAccessToken(tokenID: number, permissionName: string): Promise<GrantStatus>;</td><td>verifyAccessToken</td><td>21</td><td>2</td><td>2</td><tr><tr><td>AtManager</td><td>grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise<number>;</td><td>grantUserGrantedPermission</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AtManager</td><td>grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback<number>): void;</td><td>grantUserGrantedPermission</td><td>21</td><td>4</td><td>31</td><tr><tr><td>AtManager</td><td>revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise<number>;</td><td>revokeUserGrantedPermission</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AtManager</td><td>revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback<number>): void;</td><td>revokeUserGrantedPermission</td><td>21</td><td>4</td><td>34</td><tr><tr><td>AtManager</td><td>getPermissionFlags(tokenID: number, permissionName: string): Promise<number>;</td><td>getPermissionFlags</td><td>21</td><td>2</td><td>0</td><tr><tr><td>GrantStatus</td><td>export enum GrantStatus {
+        
+        PERMISSION_DENIED = -1,
+        
+        PERMISSION_GRANTED = 0,
+    }</td><td>GrantStatus</td><td>40</td><td>0</td><td>10</td><tr><tr><td>GrantStatus</td><td>PERMISSION_DENIED = -1,</td><td>PERMISSION_DENIED</td><td>42</td><td>1</td><td>7</td><tr><tr><td>GrantStatus</td><td>PERMISSION_GRANTED = 0,</td><td>PERMISSION_GRANTED</td><td>42</td><td>1</td><td>4</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

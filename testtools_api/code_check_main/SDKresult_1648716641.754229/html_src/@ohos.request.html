@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>Misc软件服务子系统-输入法</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>miscservices</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.request</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>request</td><td>declare namespace request {
+
+  
+  const NETWORK_MOBILE: number;
+
+  
+  const NETWORK_WIFI: number;
+
+  
+  const ERROR_CANNOT_RESUME: number;
+
+  
+  const ERROR_DEVICE_NOT_FOUND: number;
+
+  
+  const ERROR_FILE_ALREADY_EXISTS: number;
+
+  
+  const ERROR_FILE_ERROR: number;
+
+  
+  const ERROR_HTTP_DATA_ERROR: number;
+
+  
+  const ERROR_INSUFFICIENT_SPACE: number;
+
+  
+  const ERROR_TOO_MANY_REDIRECTS: number;
+
+  
+  const ERROR_UNHANDLED_HTTP_CODE: number;
+
+  
+  const ERROR_UNKNOWN: number;
+
+  
+  const PAUSED_QUEUED_FOR_WIFI: number;
+
+  
+  const PAUSED_UNKNOWN: number;
+
+  
+  const PAUSED_WAITING_FOR_NETWORK: number;
+
+  
+  const PAUSED_WAITING_TO_RETRY: number;
+
+  
+  const SESSION_FAILED: number;
+
+  
+  const SESSION_PAUSED: number;
+
+  
+  const SESSION_PENDING: number;
+
+  
+  const SESSION_RUNNING: number;
+
+  
+  const SESSION_SUCCESSFUL: number;
+
+  
+  function download(config: DownloadConfig, callback: AsyncCallback<DownloadTask>): void;
+
+  
+  function download(config: DownloadConfig): Promise<DownloadTask>;
+
+  
+  function upload(config: UploadConfig, callback: AsyncCallback<UploadTask>): void;
+
+  
+  function upload(config: UploadConfig): Promise<UploadTask>;
+
+  
+  interface DownloadConfig {
+    
+    url: string;
+    
+    header?: Object;
+    
+    enableMetered?: boolean;
+    
+    enableRoaming?: boolean;
+    
+    description?: string;
+    
+    networkType?: number;
+    
+    filePath?: string;
+    
+    title?: string;
+  }
+
+  
+  interface DownloadInfo {
+    
+    description: string;
+    	
+    downloadedBytes: number;
+    
+    downloadId: number;
+    
+    failedReason: number;
+    
+    fileName: string;
+    
+    filePath: string;
+    
+    pausedReason: number;
+    
+    status: number;
+    
+    targetURI: string;
+    
+    downloadTitle: string;
+    
+    downloadTotalBytes: number;
+  }
+
+  interface DownloadTask {
+    
+    on(type: 'progress', callback: (receivedSize: number, totalSize: number) => void): void;
+
+    
+    off(type: 'progress', callback?: (receivedSize: number, totalSize: number) => void): void;
+
+    
+    on(type: 'complete' | 'pause' | 'remove', callback: () => void): void;
+
+    
+    off(type: 'complete' | 'pause' | 'remove', callback?: () => void): void;
+
+    
+    on(type: 'fail', callback: (err: number) => void): void;
+
+    
+    off(type: 'fail', callback?: (err: number) => void): void;
+
+    
+    remove(callback: AsyncCallback<boolean>): void;
+
+    
+    remove(): Promise<boolean>;
+
+    
+    pause(callback: AsyncCallback<void>): void;
+
+    
+    pause(): Promise<void>;
+
+    
+    resume(callback: AsyncCallback<void>): void;
+
+    
+    resume(): Promise<void>;
+
+    
+    query(callback: AsyncCallback<DownloadInfo>): void;
+
+    
+    query(): Promise<DownloadInfo>;
+
+    
+    queryMimeType(callback: AsyncCallback<string>): void;
+
+    
+    queryMimeType(): Promise<string>;
+  }
+
+  
+  interface File {
+    
+    filename: string;
+    
+    name: string;
+    
+    uri: string;
+    
+    type: string;
+  }
+
+  
+  interface RequestData {
+    
+    name: string;
+    
+    value: string;
+  }
+
+  
+  interface UploadConfig {
+    
+    url: string;
+    
+    header: Object;
+    
+    method: string;
+    
+    files: Array<File>;
+    
+    data: Array<RequestData>;
+  }
+
+  interface UploadTask {
+    
+    on(type: 'progress', callback: (uploadedSize: number, totalSize: number) => void): void;
+
+    
+    off(type: 'progress', callback?: (uploadedSize: number, totalSize: number) => void): void;
+
+    
+    on(type: 'headerReceive', callback: (header: object) => void): void;
+
+    
+    off(type: 'headerReceive', callback?: (header: object) => void): void;
+
+    
+    remove(callback: AsyncCallback<boolean>): void;
+
+    
+    remove(): Promise<boolean>;
+  }
+}</td><td>request</td><td>None</td><td>0</td><td>190</td><tr><tr><td>request</td><td>function download(config: DownloadConfig, callback: AsyncCallback<DownloadTask>): void;</td><td>download</td><td>None</td><td>2</td><td>124</td><tr><tr><td>request</td><td>function download(config: DownloadConfig): Promise<DownloadTask>;</td><td>download</td><td>None</td><td>1</td><td>2</td><tr><tr><td>request</td><td>function upload(config: UploadConfig, callback: AsyncCallback<UploadTask>): void;</td><td>upload</td><td>None</td><td>2</td><td>46</td><tr><tr><td>request</td><td>function upload(config: UploadConfig): Promise<UploadTask>;</td><td>upload</td><td>None</td><td>1</td><td>5</td><tr><tr><td>request</td><td>const NETWORK_MOBILE: number</td><td>NETWORK_MOBILE</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const NETWORK_WIFI: number</td><td>NETWORK_WIFI</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_CANNOT_RESUME: number</td><td>ERROR_CANNOT_RESUME</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_DEVICE_NOT_FOUND: number</td><td>ERROR_DEVICE_NOT_FOUND</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_FILE_ALREADY_EXISTS: number</td><td>ERROR_FILE_ALREADY_EXISTS</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_FILE_ERROR: number</td><td>ERROR_FILE_ERROR</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_HTTP_DATA_ERROR: number</td><td>ERROR_HTTP_DATA_ERROR</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_INSUFFICIENT_SPACE: number</td><td>ERROR_INSUFFICIENT_SPACE</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_TOO_MANY_REDIRECTS: number</td><td>ERROR_TOO_MANY_REDIRECTS</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_UNHANDLED_HTTP_CODE: number</td><td>ERROR_UNHANDLED_HTTP_CODE</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const ERROR_UNKNOWN: number</td><td>ERROR_UNKNOWN</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const PAUSED_QUEUED_FOR_WIFI: number</td><td>PAUSED_QUEUED_FOR_WIFI</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const PAUSED_UNKNOWN: number</td><td>PAUSED_UNKNOWN</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const PAUSED_WAITING_FOR_NETWORK: number</td><td>PAUSED_WAITING_FOR_NETWORK</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const PAUSED_WAITING_TO_RETRY: number</td><td>PAUSED_WAITING_TO_RETRY</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const SESSION_FAILED: number</td><td>SESSION_FAILED</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const SESSION_PAUSED: number</td><td>SESSION_PAUSED</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const SESSION_PENDING: number</td><td>SESSION_PENDING</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const SESSION_RUNNING: number</td><td>SESSION_RUNNING</td><td>31</td><td>1</td><td>4</td><tr><tr><td>request</td><td>const SESSION_SUCCESSFUL: number</td><td>SESSION_SUCCESSFUL</td><td>31</td><td>1</td><td>4</td><tr><tr><td>DownloadConfig</td><td>interface DownloadConfig {
+    
+    url: string;
+    
+    header?: Object;
+    
+    enableMetered?: boolean;
+    
+    enableRoaming?: boolean;
+    
+    description?: string;
+    
+    networkType?: number;
+    
+    filePath?: string;
+    
+    title?: string;
+  }</td><td>DownloadConfig</td><td>20</td><td>0</td><td>2</td><tr><tr><td>DownloadConfig</td><td>url: string</td><td>url</td><td>22</td><td>1</td><td>10</td><tr><tr><td>DownloadConfig</td><td>header?: Object</td><td>header</td><td>22</td><td>1</td><td>12</td><tr><tr><td>DownloadConfig</td><td>enableMetered?: boolean</td><td>enableMetered</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadConfig</td><td>enableRoaming?: boolean</td><td>enableRoaming</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadConfig</td><td>description?: string</td><td>description</td><td>22</td><td>1</td><td>2</td><tr><tr><td>DownloadConfig</td><td>networkType?: number</td><td>networkType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DownloadConfig</td><td>filePath?: string</td><td>filePath</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadConfig</td><td>title?: string</td><td>title</td><td>22</td><td>1</td><td>10</td><tr><tr><td>DownloadInfo</td><td>interface DownloadInfo {
+    
+    description: string;
+    	
+    downloadedBytes: number;
+    
+    downloadId: number;
+    
+    failedReason: number;
+    
+    fileName: string;
+    
+    filePath: string;
+    
+    pausedReason: number;
+    
+    status: number;
+    
+    targetURI: string;
+    
+    downloadTitle: string;
+    
+    downloadTotalBytes: number;
+  }</td><td>DownloadInfo</td><td>20</td><td>0</td><td>2</td><tr><tr><td>DownloadInfo</td><td>description: string</td><td>description</td><td>22</td><td>1</td><td>2</td><tr><tr><td>DownloadInfo</td><td>downloadedBytes: number</td><td>downloadedBytes</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>downloadId: number</td><td>downloadId</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>failedReason: number</td><td>failedReason</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>fileName: string</td><td>fileName</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>filePath: string</td><td>filePath</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>pausedReason: number</td><td>pausedReason</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>status: number</td><td>status</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>targetURI: string</td><td>targetURI</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>downloadTitle: string</td><td>downloadTitle</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadInfo</td><td>downloadTotalBytes: number</td><td>downloadTotalBytes</td><td>22</td><td>1</td><td>1</td><tr><tr><td>DownloadTask</td><td>interface DownloadTask {
+    
+    on(type: 'progress', callback: (receivedSize: number, totalSize: number) => void): void;
+
+    
+    off(type: 'progress', callback?: (receivedSize: number, totalSize: number) => void): void;
+
+    
+    on(type: 'complete' | 'pause' | 'remove', callback: () => void): void;
+
+    
+    off(type: 'complete' | 'pause' | 'remove', callback?: () => void): void;
+
+    
+    on(type: 'fail', callback: (err: number) => void): void;
+
+    
+    off(type: 'fail', callback?: (err: number) => void): void;
+
+    
+    remove(callback: AsyncCallback<boolean>): void;
+
+    
+    remove(): Promise<boolean>;
+
+    
+    pause(callback: AsyncCallback<void>): void;
+
+    
+    pause(): Promise<void>;
+
+    
+    resume(callback: AsyncCallback<void>): void;
+
+    
+    resume(): Promise<void>;
+
+    
+    query(callback: AsyncCallback<DownloadInfo>): void;
+
+    
+    query(): Promise<DownloadInfo>;
+
+    
+    queryMimeType(callback: AsyncCallback<string>): void;
+
+    
+    queryMimeType(): Promise<string>;
+  }</td><td>DownloadTask</td><td>20</td><td>0</td><td>1</td><tr><tr><td>DownloadTask</td><td>on(type: 'progress', callback: (receivedSize: number, totalSize: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>3383</td><tr><tr><td>DownloadTask</td><td>on(type: 'progress', callback: (receivedSize: number, totalSize: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>3383</td><tr><tr><td>DownloadTask</td><td>off(type: 'progress', callback?: (receivedSize: number, totalSize: number) => void): void;</td><td>off</td><td>21</td><td>4</td><td>53</td><tr><tr><td>DownloadTask</td><td>off(type: 'progress', callback?: (receivedSize: number, totalSize: number) => void): void;</td><td>off</td><td>21</td><td>4</td><td>53</td><tr><tr><td>DownloadTask</td><td>on(type: 'complete' | 'pause' | 'remove', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>3383</td><tr><tr><td>DownloadTask</td><td>on(type: 'complete' | 'pause' | 'remove', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>3383</td><tr><tr><td>DownloadTask</td><td>off(type: 'complete' | 'pause' | 'remove', callback?: () => void): void;</td><td>off</td><td>21</td><td>2</td><td>53</td><tr><tr><td>DownloadTask</td><td>off(type: 'complete' | 'pause' | 'remove', callback?: () => void): void;</td><td>off</td><td>21</td><td>2</td><td>53</td><tr><tr><td>DownloadTask</td><td>on(type: 'fail', callback: (err: number) => void): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>DownloadTask</td><td>on(type: 'fail', callback: (err: number) => void): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>DownloadTask</td><td>off(type: 'fail', callback?: (err: number) => void): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>DownloadTask</td><td>off(type: 'fail', callback?: (err: number) => void): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>DownloadTask</td><td>remove(callback: AsyncCallback<boolean>): void;</td><td>remove</td><td>21</td><td>1</td><td>35</td><tr><tr><td>DownloadTask</td><td>remove(): Promise<boolean>;</td><td>remove</td><td>21</td><td>0</td><td>1</td><tr><tr><td>DownloadTask</td><td>pause(callback: AsyncCallback<void>): void;</td><td>pause</td><td>21</td><td>1</td><td>5</td><tr><tr><td>DownloadTask</td><td>pause(): Promise<void>;</td><td>pause</td><td>21</td><td>0</td><td>0</td><tr><tr><td>DownloadTask</td><td>resume(callback: AsyncCallback<void>): void;</td><td>resume</td><td>21</td><td>1</td><td>0</td><tr><tr><td>DownloadTask</td><td>resume(): Promise<void>;</td><td>resume</td><td>21</td><td>0</td><td>0</td><tr><tr><td>DownloadTask</td><td>query(callback: AsyncCallback<DownloadInfo>): void;</td><td>query</td><td>21</td><td>1</td><td>5</td><tr><tr><td>DownloadTask</td><td>query(): Promise<DownloadInfo>;</td><td>query</td><td>21</td><td>0</td><td>0</td><tr><tr><td>DownloadTask</td><td>queryMimeType(callback: AsyncCallback<string>): void;</td><td>queryMimeType</td><td>21</td><td>1</td><td>2</td><tr><tr><td>DownloadTask</td><td>queryMimeType(): Promise<string>;</td><td>queryMimeType</td><td>21</td><td>0</td><td>0</td><tr><tr><td>File</td><td>interface File {
+    
+    filename: string;
+    
+    name: string;
+    
+    uri: string;
+    
+    type: string;
+  }</td><td>File</td><td>20</td><td>0</td><td>6</td><tr><tr><td>File</td><td>filename: string</td><td>filename</td><td>22</td><td>1</td><td>3</td><tr><tr><td>File</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>127</td><tr><tr><td>File</td><td>uri: string</td><td>uri</td><td>22</td><td>1</td><td>87</td><tr><tr><td>File</td><td>type: string</td><td>type</td><td>22</td><td>1</td><td>163</td><tr><tr><td>RequestData</td><td>interface RequestData {
+    
+    name: string;
+    
+    value: string;
+  }</td><td>RequestData</td><td>20</td><td>0</td><td>3</td><tr><tr><td>RequestData</td><td>name: string</td><td>name</td><td>22</td><td>1</td><td>127</td><tr><tr><td>RequestData</td><td>value: string</td><td>value</td><td>22</td><td>1</td><td>30</td><tr><tr><td>UploadConfig</td><td>interface UploadConfig {
+    
+    url: string;
+    
+    header: Object;
+    
+    method: string;
+    
+    files: Array<File>;
+    
+    data: Array<RequestData>;
+  }</td><td>UploadConfig</td><td>20</td><td>0</td><td>17</td><tr><tr><td>UploadConfig</td><td>url: string</td><td>url</td><td>22</td><td>1</td><td>10</td><tr><tr><td>UploadConfig</td><td>header: Object</td><td>header</td><td>22</td><td>1</td><td>12</td><tr><tr><td>UploadConfig</td><td>method: string</td><td>method</td><td>22</td><td>1</td><td>13</td><tr><tr><td>UploadConfig</td><td>files: Array<File></td><td>files</td><td>22</td><td>1</td><td>4</td><tr><tr><td>UploadConfig</td><td>data: Array<RequestData></td><td>data</td><td>22</td><td>1</td><td>151</td><tr><tr><td>UploadTask</td><td>interface UploadTask {
+    
+    on(type: 'progress', callback: (uploadedSize: number, totalSize: number) => void): void;
+
+    
+    off(type: 'progress', callback?: (uploadedSize: number, totalSize: number) => void): void;
+
+    
+    on(type: 'headerReceive', callback: (header: object) => void): void;
+
+    
+    off(type: 'headerReceive', callback?: (header: object) => void): void;
+
+    
+    remove(callback: AsyncCallback<boolean>): void;
+
+    
+    remove(): Promise<boolean>;
+  }</td><td>UploadTask</td><td>20</td><td>0</td><td>0</td><tr><tr><td>UploadTask</td><td>on(type: 'progress', callback: (uploadedSize: number, totalSize: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>3383</td><tr><tr><td>UploadTask</td><td>on(type: 'progress', callback: (uploadedSize: number, totalSize: number) => void): void;</td><td>on</td><td>21</td><td>4</td><td>3383</td><tr><tr><td>UploadTask</td><td>off(type: 'progress', callback?: (uploadedSize: number, totalSize: number) => void): void;</td><td>off</td><td>21</td><td>4</td><td>53</td><tr><tr><td>UploadTask</td><td>off(type: 'progress', callback?: (uploadedSize: number, totalSize: number) => void): void;</td><td>off</td><td>21</td><td>4</td><td>53</td><tr><tr><td>UploadTask</td><td>on(type: 'headerReceive', callback: (header: object) => void): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>UploadTask</td><td>on(type: 'headerReceive', callback: (header: object) => void): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>UploadTask</td><td>off(type: 'headerReceive', callback?: (header: object) => void): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>UploadTask</td><td>off(type: 'headerReceive', callback?: (header: object) => void): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>UploadTask</td><td>remove(callback: AsyncCallback<boolean>): void;</td><td>remove</td><td>21</td><td>1</td><td>35</td><tr><tr><td>UploadTask</td><td>remove(): Promise<boolean>;</td><td>remove</td><td>21</td><td>0</td><td>1</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

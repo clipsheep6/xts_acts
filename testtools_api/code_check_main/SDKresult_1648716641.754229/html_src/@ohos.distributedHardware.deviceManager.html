@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>分布式硬件子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>distributedhardware</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.distributedHardware.deviceManager</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>deviceManager</td><td>declare namespace deviceManager {
+  
+  interface DeviceInfo {
+    
+    deviceId: string;
+
+    
+    deviceName: string;
+
+    
+    deviceType: DeviceType;
+
+    
+    networkId: string;
+  }
+
+  
+  enum DeviceType {
+    
+    UNKNOWN_TYPE = 0,
+
+    
+    SPEAKER = 0x0A,
+
+    
+    PHONE = 0x0E,
+
+    
+    TABLET = 0x11,
+
+    
+    WEARABLE = 0x6D,
+
+    
+    CAR = 0x83,
+
+    
+    TV = 0x9C
+  }
+
+  
+  enum DeviceStateChangeAction {
+    
+    ONLINE = 0,
+
+    
+    READY = 1,
+
+    
+    OFFLINE = 2,
+
+    
+    CHANGE = 3
+  }
+
+  
+  interface SubscribeInfo {
+    
+    subscribeId: number;
+
+    
+    mode: DiscoverMode;
+
+    
+    medium: ExchangeMedium;
+
+    
+    freq: ExchangeFreq;
+
+    
+    isSameAccount: boolean;
+
+    
+    isWakeRemote: boolean;
+
+    
+    capability: SubscribeCap;
+  }
+
+  
+  enum DiscoverMode {
+    
+    DISCOVER_MODE_PASSIVE = 0x55,
+
+    
+    DISCOVER_MODE_ACTIVE = 0xAA
+  }
+
+  
+  enum ExchangeMedium {
+    
+    AUTO = 0,
+
+    
+    BLE = 1,
+
+    
+    COAP = 2,
+
+    
+    USB = 3
+  }
+
+  
+  enum ExchangeFreq {
+    
+    LOW = 0,
+
+    
+    MID = 1,
+
+    
+    HIGH = 2,
+
+    
+    SUPER_HIGH = 3
+  }
+
+  
+  enum SubscribeCap {
+    
+    SUBSCRIBE_CAPABILITY_DDMP = 0,
+
+    
+    SUBSCRIBE_CAPABILITY_OSD = 1
+  }
+
+  
+  interface AuthParam {
+    
+    authType: number;
+
+    
+    extraInfo: {[key:string] : any};
+  }
+
+  
+  interface AuthInfo {
+    
+    authType: number;
+
+    
+    token: number;
+    
+    
+    extraInfo: {[key:string] : any};
+  }
+
+  
+  function createDeviceManager(bundleName: string, callback: AsyncCallback<DeviceManager>): void;
+
+  
+  interface DeviceManager {
+    
+    release(): void;
+
+    
+    getTrustedDeviceListSync(): Array<DeviceInfo>;
+
+    
+    getTrustedDeviceList(callback:AsyncCallback<Array<DeviceInfo>>): void;
+
+    
+    getTrustedDeviceList(): Promise<Array<DeviceInfo>>;
+
+    
+    getLocalDeviceInfoSync(): DeviceInfo;
+
+    
+    getLocalDeviceInfo(callback:AsyncCallback<DeviceInfo>): void;
+
+    
+    getLocalDeviceInfo(): Promise<DeviceInfo>;
+
+    
+    startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
+
+    
+    stopDeviceDiscovery(subscribeId: number): void;
+
+    
+    authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback<{deviceId: string, pinTone ?: number}>): void;
+
+    
+    unAuthenticateDevice(deviceInfo: DeviceInfo): void
+
+     
+    verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, level: number}>): void;
+
+    
+    on(type: 'deviceStateChange', callback: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void;
+
+    
+    off(type: 'deviceStateChange', callback?: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void;
+
+    
+    on(type: 'deviceFound', callback: Callback<{ subscribeId: number, device: DeviceInfo }>): void;
+
+    
+    off(type: 'deviceFound', callback?: Callback<{ subscribeId: number, device: DeviceInfo }>): void;
+
+    
+    on(type: 'discoverFail', callback: Callback<{ subscribeId: number, reason: number }>): void;
+
+    
+    off(type: 'discoverFail', callback?: Callback<{ subscribeId: number, reason: number }>): void;
+
+    
+    on(type: 'serviceDie', callback: () => void): void;
+
+    
+    off(type: 'serviceDie', callback?: () => void): void;
+  }
+}</td><td>deviceManager</td><td>None</td><td>0</td><td>203</td><tr><tr><td>deviceManager</td><td>function createDeviceManager(bundleName: string, callback: AsyncCallback<DeviceManager>): void;</td><td>createDeviceManager</td><td>None</td><td>2</td><td>85</td><tr><tr><td>DeviceInfo</td><td>interface DeviceInfo {
+    
+    deviceId: string;
+
+    
+    deviceName: string;
+
+    
+    deviceType: DeviceType;
+
+    
+    networkId: string;
+  }</td><td>DeviceInfo</td><td>20</td><td>0</td><td>18</td><tr><tr><td>DeviceInfo</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>8</td><tr><tr><td>DeviceInfo</td><td>deviceName: string</td><td>deviceName</td><td>22</td><td>1</td><td>7</td><tr><tr><td>DeviceInfo</td><td>deviceType: DeviceType</td><td>deviceType</td><td>22</td><td>1</td><td>13</td><tr><tr><td>DeviceInfo</td><td>networkId: string</td><td>networkId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>DeviceType</td><td>enum DeviceType {
+    
+    UNKNOWN_TYPE = 0,
+
+    
+    SPEAKER = 0x0A,
+
+    
+    PHONE = 0x0E,
+
+    
+    TABLET = 0x11,
+
+    
+    WEARABLE = 0x6D,
+
+    
+    CAR = 0x83,
+
+    
+    TV = 0x9C
+  }</td><td>DeviceType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DeviceType</td><td>UNKNOWN_TYPE = 0,</td><td>UNKNOWN_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>DeviceType</td><td>SPEAKER = 0x0A,</td><td>SPEAKER</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>PHONE = 0x0E,</td><td>PHONE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>DeviceType</td><td>TABLET = 0x11,</td><td>TABLET</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>WEARABLE = 0x6D,</td><td>WEARABLE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>DeviceType</td><td>CAR = 0x83,</td><td>CAR</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceType</td><td>TV = 0x9C</td><td>TV</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceStateChangeAction</td><td>enum DeviceStateChangeAction {
+    
+    ONLINE = 0,
+
+    
+    READY = 1,
+
+    
+    OFFLINE = 2,
+
+    
+    CHANGE = 3
+  }</td><td>DeviceStateChangeAction</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DeviceStateChangeAction</td><td>ONLINE = 0,</td><td>ONLINE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceStateChangeAction</td><td>READY = 1,</td><td>READY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceStateChangeAction</td><td>OFFLINE = 2,</td><td>OFFLINE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DeviceStateChangeAction</td><td>CHANGE = 3</td><td>CHANGE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SubscribeInfo</td><td>interface SubscribeInfo {
+    
+    subscribeId: number;
+
+    
+    mode: DiscoverMode;
+
+    
+    medium: ExchangeMedium;
+
+    
+    freq: ExchangeFreq;
+
+    
+    isSameAccount: boolean;
+
+    
+    isWakeRemote: boolean;
+
+    
+    capability: SubscribeCap;
+  }</td><td>SubscribeInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SubscribeInfo</td><td>subscribeId: number</td><td>subscribeId</td><td>22</td><td>1</td><td>5</td><tr><tr><td>SubscribeInfo</td><td>mode: DiscoverMode</td><td>mode</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SubscribeInfo</td><td>medium: ExchangeMedium</td><td>medium</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SubscribeInfo</td><td>freq: ExchangeFreq</td><td>freq</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SubscribeInfo</td><td>isSameAccount: boolean</td><td>isSameAccount</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SubscribeInfo</td><td>isWakeRemote: boolean</td><td>isWakeRemote</td><td>22</td><td>1</td><td>3</td><tr><tr><td>SubscribeInfo</td><td>capability: SubscribeCap</td><td>capability</td><td>22</td><td>1</td><td>3</td><tr><tr><td>DiscoverMode</td><td>enum DiscoverMode {
+    
+    DISCOVER_MODE_PASSIVE = 0x55,
+
+    
+    DISCOVER_MODE_ACTIVE = 0xAA
+  }</td><td>DiscoverMode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>DiscoverMode</td><td>DISCOVER_MODE_PASSIVE = 0x55,</td><td>DISCOVER_MODE_PASSIVE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>DiscoverMode</td><td>DISCOVER_MODE_ACTIVE = 0xAA</td><td>DISCOVER_MODE_ACTIVE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExchangeMedium</td><td>enum ExchangeMedium {
+    
+    AUTO = 0,
+
+    
+    BLE = 1,
+
+    
+    COAP = 2,
+
+    
+    USB = 3
+  }</td><td>ExchangeMedium</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ExchangeMedium</td><td>AUTO = 0,</td><td>AUTO</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExchangeMedium</td><td>BLE = 1,</td><td>BLE</td><td>42</td><td>1</td><td>4</td><tr><tr><td>ExchangeMedium</td><td>COAP = 2,</td><td>COAP</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExchangeMedium</td><td>USB = 3</td><td>USB</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ExchangeFreq</td><td>enum ExchangeFreq {
+    
+    LOW = 0,
+
+    
+    MID = 1,
+
+    
+    HIGH = 2,
+
+    
+    SUPER_HIGH = 3
+  }</td><td>ExchangeFreq</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ExchangeFreq</td><td>LOW = 0,</td><td>LOW</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExchangeFreq</td><td>MID = 1,</td><td>MID</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExchangeFreq</td><td>HIGH = 2,</td><td>HIGH</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ExchangeFreq</td><td>SUPER_HIGH = 3</td><td>SUPER_HIGH</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SubscribeCap</td><td>enum SubscribeCap {
+    
+    SUBSCRIBE_CAPABILITY_DDMP = 0,
+
+    
+    SUBSCRIBE_CAPABILITY_OSD = 1
+  }</td><td>SubscribeCap</td><td>40</td><td>0</td><td>0</td><tr><tr><td>SubscribeCap</td><td>SUBSCRIBE_CAPABILITY_DDMP = 0,</td><td>SUBSCRIBE_CAPABILITY_DDMP</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SubscribeCap</td><td>SUBSCRIBE_CAPABILITY_OSD = 1</td><td>SUBSCRIBE_CAPABILITY_OSD</td><td>42</td><td>1</td><td>1</td><tr><tr><td>AuthParam</td><td>interface AuthParam {
+    
+    authType: number;
+
+    
+    extraInfo: {[key:string] : any};
+  }</td><td>AuthParam</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AuthParam</td><td>authType: number</td><td>authType</td><td>22</td><td>1</td><td>8</td><tr><tr><td>AuthParam</td><td>extraInfo: {[key:string] : any}</td><td>extraInfo</td><td>22</td><td>1</td><td>22</td><tr><tr><td>AuthInfo</td><td>interface AuthInfo {
+    
+    authType: number;
+
+    
+    token: number;
+    
+    
+    extraInfo: {[key:string] : any};
+  }</td><td>AuthInfo</td><td>20</td><td>0</td><td>3</td><tr><tr><td>AuthInfo</td><td>authType: number</td><td>authType</td><td>22</td><td>1</td><td>8</td><tr><tr><td>AuthInfo</td><td>token: number</td><td>token</td><td>22</td><td>1</td><td>13</td><tr><tr><td>AuthInfo</td><td>extraInfo: {[key:string] : any}</td><td>extraInfo</td><td>22</td><td>1</td><td>22</td><tr><tr><td>DeviceManager</td><td>interface DeviceManager {
+    
+    release(): void;
+
+    
+    getTrustedDeviceListSync(): Array<DeviceInfo>;
+
+    
+    getTrustedDeviceList(callback:AsyncCallback<Array<DeviceInfo>>): void;
+
+    
+    getTrustedDeviceList(): Promise<Array<DeviceInfo>>;
+
+    
+    getLocalDeviceInfoSync(): DeviceInfo;
+
+    
+    getLocalDeviceInfo(callback:AsyncCallback<DeviceInfo>): void;
+
+    
+    getLocalDeviceInfo(): Promise<DeviceInfo>;
+
+    
+    startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
+
+    
+    stopDeviceDiscovery(subscribeId: number): void;
+
+    
+    authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback<{deviceId: string, pinTone ?: number}>): void;
+
+    
+    unAuthenticateDevice(deviceInfo: DeviceInfo): void
+
+     
+    verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, level: number}>): void;
+
+    
+    on(type: 'deviceStateChange', callback: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void;
+
+    
+    off(type: 'deviceStateChange', callback?: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void;
+
+    
+    on(type: 'deviceFound', callback: Callback<{ subscribeId: number, device: DeviceInfo }>): void;
+
+    
+    off(type: 'deviceFound', callback?: Callback<{ subscribeId: number, device: DeviceInfo }>): void;
+
+    
+    on(type: 'discoverFail', callback: Callback<{ subscribeId: number, reason: number }>): void;
+
+    
+    off(type: 'discoverFail', callback?: Callback<{ subscribeId: number, reason: number }>): void;
+
+    
+    on(type: 'serviceDie', callback: () => void): void;
+
+    
+    off(type: 'serviceDie', callback?: () => void): void;
+  }</td><td>DeviceManager</td><td>20</td><td>0</td><td>85</td><tr><tr><td>DeviceManager</td><td>release(): void;</td><td>release</td><td>21</td><td>0</td><td>4</td><tr><tr><td>DeviceManager</td><td>getTrustedDeviceListSync(): Array<DeviceInfo>;</td><td>getTrustedDeviceListSync</td><td>21</td><td>0</td><td>4</td><tr><tr><td>DeviceManager</td><td>getTrustedDeviceList(callback:AsyncCallback<Array<DeviceInfo>>): void;</td><td>getTrustedDeviceList</td><td>21</td><td>1</td><td>4</td><tr><tr><td>DeviceManager</td><td>getTrustedDeviceList(): Promise<Array<DeviceInfo>>;</td><td>getTrustedDeviceList</td><td>21</td><td>0</td><td>0</td><tr><tr><td>DeviceManager</td><td>getLocalDeviceInfoSync(): DeviceInfo;</td><td>getLocalDeviceInfoSync</td><td>21</td><td>0</td><td>4</td><tr><tr><td>DeviceManager</td><td>getLocalDeviceInfo(callback:AsyncCallback<DeviceInfo>): void;</td><td>getLocalDeviceInfo</td><td>21</td><td>1</td><td>15</td><tr><tr><td>DeviceManager</td><td>getLocalDeviceInfo(): Promise<DeviceInfo>;</td><td>getLocalDeviceInfo</td><td>21</td><td>0</td><td>1</td><tr><tr><td>DeviceManager</td><td>startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;</td><td>startDeviceDiscovery</td><td>21</td><td>1</td><td>12</td><tr><tr><td>DeviceManager</td><td>stopDeviceDiscovery(subscribeId: number): void;</td><td>stopDeviceDiscovery</td><td>21</td><td>1</td><td>4</td><tr><tr><td>DeviceManager</td><td>authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback<{deviceId: string, pinTone ?: number}>): void;</td><td>authenticateDevice</td><td>21</td><td>3</td><td>0</td><tr><tr><td>DeviceManager</td><td>unAuthenticateDevice(deviceInfo: DeviceInfo): void
+
+     
+    verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, level: number}>): void;</td><td>unAuthenticateDevice</td><td>21</td><td>1</td><td>5</td><tr><tr><td>DeviceManager</td><td>verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, level: number}>): void;</td><td>verifyAuthInfo</td><td>21</td><td>2</td><td>3</td><tr><tr><td>DeviceManager</td><td>on(type: 'deviceStateChange', callback: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void;</td><td>on</td><td>21</td><td>2</td><td>324</td><tr><tr><td>DeviceManager</td><td>off(type: 'deviceStateChange', callback?: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void;</td><td>off</td><td>21</td><td>2</td><td>24</td><tr><tr><td>DeviceManager</td><td>on(type: 'deviceFound', callback: Callback<{ subscribeId: number, device: DeviceInfo }>): void;</td><td>on</td><td>21</td><td>2</td><td>324</td><tr><tr><td>DeviceManager</td><td>off(type: 'deviceFound', callback?: Callback<{ subscribeId: number, device: DeviceInfo }>): void;</td><td>off</td><td>21</td><td>2</td><td>24</td><tr><tr><td>DeviceManager</td><td>on(type: 'discoverFail', callback: Callback<{ subscribeId: number, reason: number }>): void;</td><td>on</td><td>21</td><td>2</td><td>324</td><tr><tr><td>DeviceManager</td><td>off(type: 'discoverFail', callback?: Callback<{ subscribeId: number, reason: number }>): void;</td><td>off</td><td>21</td><td>2</td><td>24</td><tr><tr><td>DeviceManager</td><td>on(type: 'serviceDie', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>324</td><tr><tr><td>DeviceManager</td><td>on(type: 'serviceDie', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>324</td><tr><tr><td>DeviceManager</td><td>off(type: 'serviceDie', callback?: () => void): void;</td><td>off</td><td>21</td><td>2</td><td>24</td><tr><tr><td>DeviceManager</td><td>off(type: 'serviceDie', callback?: () => void): void;</td><td>off</td><td>21</td><td>2</td><td>24</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

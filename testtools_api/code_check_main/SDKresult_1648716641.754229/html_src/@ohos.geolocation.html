@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>短距通信子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>communication</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.geolocation</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>geolocation</td><td>declare namespace geolocation {
+    
+    function on(type: 'locationChange', request: LocationRequest, callback: Callback<Location>) : void;
+
+    
+    function off(type: 'locationChange', callback?: Callback<Location>) : void;
+
+    
+    function on(type: 'locationServiceState', callback: Callback<boolean>) : void;
+
+    
+    function off(type: 'locationServiceState', callback?: Callback<boolean>) : void;
+
+    
+    function on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback<Array<Location>>) : void;
+
+    
+    function off(type: 'cachedGnssLocationsReporting', callback?: Callback<Array<Location>>) : void;
+
+    
+    function on(type: 'gnssStatusChange', callback: Callback<SatelliteStatusInfo>) : void;
+
+    
+    function off(type: 'gnssStatusChange', callback?: Callback<SatelliteStatusInfo>) : void;
+
+    
+    function on(type: 'nmeaMessageChange', callback: Callback<string>) : void;
+
+    
+    function off(type: 'nmeaMessageChange', callback?: Callback<string>) : void;
+
+    
+    function on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
+
+    
+    function off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
+
+    
+    function getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback<Location>) : void;
+    function getCurrentLocation(callback: AsyncCallback<Location>) : void;
+    function getCurrentLocation(request?: CurrentLocationRequest) : Promise<Location>;
+
+    
+    function getLastLocation(callback: AsyncCallback<Location>) : void;
+    function getLastLocation() : Promise<Location>;
+
+    
+    function isLocationEnabled(callback: AsyncCallback<boolean>) : void;
+    function isLocationEnabled() : Promise<boolean>;
+
+    
+    function requestEnableLocation(callback: AsyncCallback<boolean>) : void;
+    function requestEnableLocation() : Promise<boolean>;
+
+    
+    function enableLocation(callback: AsyncCallback<boolean>) : void;
+    function enableLocation() : Promise<boolean>;
+
+    
+    function disableLocation(callback: AsyncCallback<boolean>) : void;
+    function disableLocation() : Promise<boolean>;
+
+    
+    function getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;
+    function getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise<Array<GeoAddress>>;
+
+    
+    function getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;
+    function getAddressesFromLocationName(request: GeoCodeRequest) : Promise<Array<GeoAddress>>;
+
+    
+    function isGeoServiceAvailable(callback: AsyncCallback<boolean>) : void;
+    function isGeoServiceAvailable() : Promise<boolean>;
+
+    
+    function getCachedGnssLocationsSize(callback: AsyncCallback<number>) : void;
+    function getCachedGnssLocationsSize() : Promise<number>;
+
+    
+    function flushCachedGnssLocations(callback: AsyncCallback<boolean>) : void;
+    function flushCachedGnssLocations() : Promise<boolean>;
+
+    
+    function sendCommand(command: LocationCommand, callback: AsyncCallback<boolean>) : void;
+    function sendCommand(command: LocationCommand) : Promise<boolean>;
+
+    
+    export interface SatelliteStatusInfo {
+        satellitesNumber: number;
+        satelliteIds: Array<number>;
+        carrierToNoiseDensitys: Array<number>;
+        altitudes: Array<number>;
+        azimuths: Array<number>;
+        carrierFrequencies: Array<number>;
+    }
+
+    
+    export interface CachedGnssLocationsRequest {
+        reportingPeriodSec: number;
+        wakeUpCacheQueueFull: boolean;
+    }
+
+    
+    export interface GeofenceRequest {
+        priority: LocationRequestPriority;
+        scenario: LocationRequestScenario;
+        geofence: Geofence;
+    }
+
+    
+    export interface Geofence {
+        latitude: number;
+        longitude: number;
+        radius: number;
+        expiration: number;
+    }
+
+    
+    function isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback<boolean>) : void;
+    function isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise<boolean>;
+
+    
+    function setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean, callback: AsyncCallback<boolean>) : void;
+    function setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise<boolean>;
+
+    
+    export interface ReverseGeoCodeRequest {
+        locale?: string;
+        latitude: number;
+        longitude: number;
+        maxItems?: number;
+    }
+
+    
+    export interface GeoCodeRequest {
+        locale?: string;
+        description: string;
+        maxItems?: number;
+        minLatitude?: number;
+        minLongitude?: number;
+        maxLatitude?: number;
+        maxLongitude?: number;
+    }
+
+    
+    export interface GeoAddress {
+        latitude?: number;
+        longitude?: number;
+        locale?: string;
+        placeName?: string;
+        countryCode?: string;
+        countryName?: string;
+        administrativeArea?: string;
+        subAdministrativeArea?: string;
+        locality?: string;
+        subLocality?: string;
+        roadName?: string;
+        subRoadName?: string;
+        premises?: string;
+        postalCode?: string;
+        phoneNumber?: string;
+        addressUrl?: string;
+        descriptions?: Array<string>;
+        descriptionsSize?: number;
+    }
+
+    
+    export interface LocationRequest {
+        priority?: LocationRequestPriority;
+        scenario?: LocationRequestScenario;
+        timeInterval?: number;
+        distanceInterval?: number;
+        maxAccuracy?: number;
+    }
+
+    
+    export interface CurrentLocationRequest {
+        priority?: LocationRequestPriority;
+        scenario?: LocationRequestScenario;
+        maxAccuracy?: number;
+        timeoutMs?: number;
+    }
+
+    
+    export interface Location {
+        latitude: number;
+        longitude: number;
+        altitude: number;
+        accuracy: number;
+        speed: number;
+        timeStamp: number;
+        direction: number;
+        timeSinceBoot: number;
+        additions?: Array<string>;
+        additionSize?: number;
+    }
+
+    
+    export enum LocationRequestPriority {
+        UNSET = 0x200,
+        ACCURACY,
+        LOW_POWER,
+        FIRST_FIX,
+    }
+
+    
+    export enum LocationRequestScenario {
+        UNSET = 0x300,
+        NAVIGATION,
+        TRAJECTORY_TRACKING,
+        CAR_HAILING,
+        DAILY_LIFE_SERVICE,
+        NO_POWER,
+    }
+
+    
+    export enum GeoLocationErrorCode {
+        INPUT_PARAMS_ERROR = 101,
+        REVERSE_GEOCODE_ERROR,
+        GEOCODE_ERROR,
+        LOCATOR_ERROR,
+        LOCATION_SWITCH_ERROR,
+        LAST_KNOWN_LOCATION_ERROR,
+        LOCATION_REQUEST_TIMEOUT_ERROR,
+    }
+
+    
+    export enum LocationPrivacyType {
+        OTHERS = 0,
+        STARTUP,
+        CORE_LOCATION,
+    }
+
+    
+    export interface LocationCommand {
+        scenario: LocationRequestScenario;
+        command: string;
+    }
+}</td><td>geolocation</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function on(type: 'locationChange', request: LocationRequest, callback: Callback<Location>) : void;</td><td>on</td><td>None</td><td>3</td><td>3899</td><tr><tr><td>geolocation</td><td>function off(type: 'locationChange', callback?: Callback<Location>) : void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>geolocation</td><td>function on(type: 'locationServiceState', callback: Callback<boolean>) : void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>geolocation</td><td>function off(type: 'locationServiceState', callback?: Callback<boolean>) : void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>geolocation</td><td>function on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback<Array<Location>>) : void;</td><td>on</td><td>None</td><td>3</td><td>3899</td><tr><tr><td>geolocation</td><td>function off(type: 'cachedGnssLocationsReporting', callback?: Callback<Array<Location>>) : void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>geolocation</td><td>function on(type: 'gnssStatusChange', callback: Callback<SatelliteStatusInfo>) : void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>geolocation</td><td>function off(type: 'gnssStatusChange', callback?: Callback<SatelliteStatusInfo>) : void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>geolocation</td><td>function on(type: 'nmeaMessageChange', callback: Callback<string>) : void;</td><td>on</td><td>None</td><td>2</td><td>3899</td><tr><tr><td>geolocation</td><td>function off(type: 'nmeaMessageChange', callback?: Callback<string>) : void;</td><td>off</td><td>None</td><td>2</td><td>96</td><tr><tr><td>geolocation</td><td>function on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;</td><td>on</td><td>None</td><td>3</td><td>4002</td><tr><tr><td>geolocation</td><td>function off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;</td><td>off</td><td>None</td><td>3</td><td>96</td><tr><tr><td>geolocation</td><td>function getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback<Location>) : void;</td><td>getCurrentLocation</td><td>None</td><td>2</td><td>0</td><tr><tr><td>geolocation</td><td>function getCurrentLocation(callback: AsyncCallback<Location>) : void;</td><td>getCurrentLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function getCurrentLocation(request?: CurrentLocationRequest) : Promise<Location>;</td><td>getCurrentLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function getLastLocation(callback: AsyncCallback<Location>) : void;</td><td>getLastLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function getLastLocation() : Promise<Location>;</td><td>getLastLocation</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function isLocationEnabled(callback: AsyncCallback<boolean>) : void;</td><td>isLocationEnabled</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function isLocationEnabled() : Promise<boolean>;</td><td>isLocationEnabled</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function requestEnableLocation(callback: AsyncCallback<boolean>) : void;</td><td>requestEnableLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function requestEnableLocation() : Promise<boolean>;</td><td>requestEnableLocation</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function enableLocation(callback: AsyncCallback<boolean>) : void;</td><td>enableLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function enableLocation() : Promise<boolean>;</td><td>enableLocation</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function disableLocation(callback: AsyncCallback<boolean>) : void;</td><td>disableLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function disableLocation() : Promise<boolean>;</td><td>disableLocation</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;</td><td>getAddressesFromLocation</td><td>None</td><td>2</td><td>0</td><tr><tr><td>geolocation</td><td>function getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise<Array<GeoAddress>>;</td><td>getAddressesFromLocation</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;</td><td>getAddressesFromLocationName</td><td>None</td><td>2</td><td>0</td><tr><tr><td>geolocation</td><td>function getAddressesFromLocationName(request: GeoCodeRequest) : Promise<Array<GeoAddress>>;</td><td>getAddressesFromLocationName</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function isGeoServiceAvailable(callback: AsyncCallback<boolean>) : void;</td><td>isGeoServiceAvailable</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function isGeoServiceAvailable() : Promise<boolean>;</td><td>isGeoServiceAvailable</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function getCachedGnssLocationsSize(callback: AsyncCallback<number>) : void;</td><td>getCachedGnssLocationsSize</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function getCachedGnssLocationsSize() : Promise<number>;</td><td>getCachedGnssLocationsSize</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function flushCachedGnssLocations(callback: AsyncCallback<boolean>) : void;</td><td>flushCachedGnssLocations</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function flushCachedGnssLocations() : Promise<boolean>;</td><td>flushCachedGnssLocations</td><td>None</td><td>0</td><td>0</td><tr><tr><td>geolocation</td><td>function sendCommand(command: LocationCommand, callback: AsyncCallback<boolean>) : void;</td><td>sendCommand</td><td>None</td><td>2</td><td>0</td><tr><tr><td>geolocation</td><td>function sendCommand(command: LocationCommand) : Promise<boolean>;</td><td>sendCommand</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback<boolean>) : void;</td><td>isLocationPrivacyConfirmed</td><td>None</td><td>2</td><td>0</td><tr><tr><td>geolocation</td><td>function isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise<boolean>;</td><td>isLocationPrivacyConfirmed</td><td>None</td><td>1</td><td>0</td><tr><tr><td>geolocation</td><td>function setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean, callback: AsyncCallback<boolean>) : void;</td><td>setLocationPrivacyConfirmStatus</td><td>None</td><td>3</td><td>0</td><tr><tr><td>geolocation</td><td>function setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise<boolean>;</td><td>setLocationPrivacyConfirmStatus</td><td>None</td><td>2</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>export interface SatelliteStatusInfo {
+        satellitesNumber: number;
+        satelliteIds: Array<number>;
+        carrierToNoiseDensitys: Array<number>;
+        altitudes: Array<number>;
+        azimuths: Array<number>;
+        carrierFrequencies: Array<number>;
+    }</td><td>SatelliteStatusInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>satellitesNumber: number</td><td>satellitesNumber</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>satelliteIds: Array<number></td><td>satelliteIds</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>carrierToNoiseDensitys: Array<number></td><td>carrierToNoiseDensitys</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>altitudes: Array<number></td><td>altitudes</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>azimuths: Array<number></td><td>azimuths</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SatelliteStatusInfo</td><td>carrierFrequencies: Array<number></td><td>carrierFrequencies</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CachedGnssLocationsRequest</td><td>export interface CachedGnssLocationsRequest {
+        reportingPeriodSec: number;
+        wakeUpCacheQueueFull: boolean;
+    }</td><td>CachedGnssLocationsRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CachedGnssLocationsRequest</td><td>reportingPeriodSec: number</td><td>reportingPeriodSec</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CachedGnssLocationsRequest</td><td>wakeUpCacheQueueFull: boolean</td><td>wakeUpCacheQueueFull</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeofenceRequest</td><td>export interface GeofenceRequest {
+        priority: LocationRequestPriority;
+        scenario: LocationRequestScenario;
+        geofence: Geofence;
+    }</td><td>GeofenceRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GeofenceRequest</td><td>priority: LocationRequestPriority</td><td>priority</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeofenceRequest</td><td>scenario: LocationRequestScenario</td><td>scenario</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeofenceRequest</td><td>geofence: Geofence</td><td>geofence</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Geofence</td><td>export interface Geofence {
+        latitude: number;
+        longitude: number;
+        radius: number;
+        expiration: number;
+    }</td><td>Geofence</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Geofence</td><td>latitude: number</td><td>latitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Geofence</td><td>longitude: number</td><td>longitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Geofence</td><td>radius: number</td><td>radius</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Geofence</td><td>expiration: number</td><td>expiration</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ReverseGeoCodeRequest</td><td>export interface ReverseGeoCodeRequest {
+        locale?: string;
+        latitude: number;
+        longitude: number;
+        maxItems?: number;
+    }</td><td>ReverseGeoCodeRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ReverseGeoCodeRequest</td><td>locale?: string</td><td>locale</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ReverseGeoCodeRequest</td><td>latitude: number</td><td>latitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ReverseGeoCodeRequest</td><td>longitude: number</td><td>longitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ReverseGeoCodeRequest</td><td>maxItems?: number</td><td>maxItems</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>export interface GeoCodeRequest {
+        locale?: string;
+        description: string;
+        maxItems?: number;
+        minLatitude?: number;
+        minLongitude?: number;
+        maxLatitude?: number;
+        maxLongitude?: number;
+    }</td><td>GeoCodeRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>locale?: string</td><td>locale</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>description: string</td><td>description</td><td>22</td><td>1</td><td>3</td><tr><tr><td>GeoCodeRequest</td><td>maxItems?: number</td><td>maxItems</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>minLatitude?: number</td><td>minLatitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>minLongitude?: number</td><td>minLongitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>maxLatitude?: number</td><td>maxLatitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoCodeRequest</td><td>maxLongitude?: number</td><td>maxLongitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>export interface GeoAddress {
+        latitude?: number;
+        longitude?: number;
+        locale?: string;
+        placeName?: string;
+        countryCode?: string;
+        countryName?: string;
+        administrativeArea?: string;
+        subAdministrativeArea?: string;
+        locality?: string;
+        subLocality?: string;
+        roadName?: string;
+        subRoadName?: string;
+        premises?: string;
+        postalCode?: string;
+        phoneNumber?: string;
+        addressUrl?: string;
+        descriptions?: Array<string>;
+        descriptionsSize?: number;
+    }</td><td>GeoAddress</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GeoAddress</td><td>latitude?: number</td><td>latitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>longitude?: number</td><td>longitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>locale?: string</td><td>locale</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>placeName?: string</td><td>placeName</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>countryCode?: string</td><td>countryCode</td><td>22</td><td>1</td><td>3</td><tr><tr><td>GeoAddress</td><td>countryName?: string</td><td>countryName</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>administrativeArea?: string</td><td>administrativeArea</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>subAdministrativeArea?: string</td><td>subAdministrativeArea</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>locality?: string</td><td>locality</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>subLocality?: string</td><td>subLocality</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>roadName?: string</td><td>roadName</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>subRoadName?: string</td><td>subRoadName</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>premises?: string</td><td>premises</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>postalCode?: string</td><td>postalCode</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>phoneNumber?: string</td><td>phoneNumber</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>addressUrl?: string</td><td>addressUrl</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>descriptions?: Array<string></td><td>descriptions</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GeoAddress</td><td>descriptionsSize?: number</td><td>descriptionsSize</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationRequest</td><td>export interface LocationRequest {
+        priority?: LocationRequestPriority;
+        scenario?: LocationRequestScenario;
+        timeInterval?: number;
+        distanceInterval?: number;
+        maxAccuracy?: number;
+    }</td><td>LocationRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LocationRequest</td><td>priority?: LocationRequestPriority</td><td>priority</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationRequest</td><td>scenario?: LocationRequestScenario</td><td>scenario</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationRequest</td><td>timeInterval?: number</td><td>timeInterval</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationRequest</td><td>distanceInterval?: number</td><td>distanceInterval</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationRequest</td><td>maxAccuracy?: number</td><td>maxAccuracy</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CurrentLocationRequest</td><td>export interface CurrentLocationRequest {
+        priority?: LocationRequestPriority;
+        scenario?: LocationRequestScenario;
+        maxAccuracy?: number;
+        timeoutMs?: number;
+    }</td><td>CurrentLocationRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CurrentLocationRequest</td><td>priority?: LocationRequestPriority</td><td>priority</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CurrentLocationRequest</td><td>scenario?: LocationRequestScenario</td><td>scenario</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CurrentLocationRequest</td><td>maxAccuracy?: number</td><td>maxAccuracy</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CurrentLocationRequest</td><td>timeoutMs?: number</td><td>timeoutMs</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>export interface Location {
+        latitude: number;
+        longitude: number;
+        altitude: number;
+        accuracy: number;
+        speed: number;
+        timeStamp: number;
+        direction: number;
+        timeSinceBoot: number;
+        additions?: Array<string>;
+        additionSize?: number;
+    }</td><td>Location</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Location</td><td>latitude: number</td><td>latitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>longitude: number</td><td>longitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>altitude: number</td><td>altitude</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>accuracy: number</td><td>accuracy</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>speed: number</td><td>speed</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>timeStamp: number</td><td>timeStamp</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>direction: number</td><td>direction</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>timeSinceBoot: number</td><td>timeSinceBoot</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>additions?: Array<string></td><td>additions</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Location</td><td>additionSize?: number</td><td>additionSize</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationRequestPriority</td><td>export enum LocationRequestPriority {
+        UNSET = 0x200,
+        ACCURACY,
+        LOW_POWER,
+        FIRST_FIX,
+    }</td><td>LocationRequestPriority</td><td>40</td><td>0</td><td>0</td><tr><tr><td>LocationRequestPriority</td><td>UNSET = 0x200,</td><td>UNSET</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestPriority</td><td>ACCURACY,</td><td>ACCURACY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestPriority</td><td>LOW_POWER,</td><td>LOW_POWER</td><td>42</td><td>1</td><td>1</td><tr><tr><td>LocationRequestPriority</td><td>FIRST_FIX,</td><td>FIRST_FIX</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>export enum LocationRequestScenario {
+        UNSET = 0x300,
+        NAVIGATION,
+        TRAJECTORY_TRACKING,
+        CAR_HAILING,
+        DAILY_LIFE_SERVICE,
+        NO_POWER,
+    }</td><td>LocationRequestScenario</td><td>40</td><td>0</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>UNSET = 0x300,</td><td>UNSET</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>NAVIGATION,</td><td>NAVIGATION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>TRAJECTORY_TRACKING,</td><td>TRAJECTORY_TRACKING</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>CAR_HAILING,</td><td>CAR_HAILING</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>DAILY_LIFE_SERVICE,</td><td>DAILY_LIFE_SERVICE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationRequestScenario</td><td>NO_POWER,</td><td>NO_POWER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>export enum GeoLocationErrorCode {
+        INPUT_PARAMS_ERROR = 101,
+        REVERSE_GEOCODE_ERROR,
+        GEOCODE_ERROR,
+        LOCATOR_ERROR,
+        LOCATION_SWITCH_ERROR,
+        LAST_KNOWN_LOCATION_ERROR,
+        LOCATION_REQUEST_TIMEOUT_ERROR,
+    }</td><td>GeoLocationErrorCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>INPUT_PARAMS_ERROR = 101,</td><td>INPUT_PARAMS_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>REVERSE_GEOCODE_ERROR,</td><td>REVERSE_GEOCODE_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>GEOCODE_ERROR,</td><td>GEOCODE_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>LOCATOR_ERROR,</td><td>LOCATOR_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>LOCATION_SWITCH_ERROR,</td><td>LOCATION_SWITCH_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>LAST_KNOWN_LOCATION_ERROR,</td><td>LAST_KNOWN_LOCATION_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GeoLocationErrorCode</td><td>LOCATION_REQUEST_TIMEOUT_ERROR,</td><td>LOCATION_REQUEST_TIMEOUT_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationPrivacyType</td><td>export enum LocationPrivacyType {
+        OTHERS = 0,
+        STARTUP,
+        CORE_LOCATION,
+    }</td><td>LocationPrivacyType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>LocationPrivacyType</td><td>OTHERS = 0,</td><td>OTHERS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationPrivacyType</td><td>STARTUP,</td><td>STARTUP</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationPrivacyType</td><td>CORE_LOCATION,</td><td>CORE_LOCATION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>LocationCommand</td><td>export interface LocationCommand {
+        scenario: LocationRequestScenario;
+        command: string;
+    }</td><td>LocationCommand</td><td>20</td><td>0</td><td>0</td><tr><tr><td>LocationCommand</td><td>scenario: LocationRequestScenario</td><td>scenario</td><td>22</td><td>1</td><td>0</td><tr><tr><td>LocationCommand</td><td>command: string</td><td>command</td><td>22</td><td>1</td><td>1</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

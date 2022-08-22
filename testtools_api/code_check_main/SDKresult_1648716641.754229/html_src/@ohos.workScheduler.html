@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>全局资源调度管控子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>resourceschedule</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.workScheduler</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>workScheduler</td><td>declare namespace workScheduler {
+    
+    export interface WorkInfo {
+        
+        workId: number;
+        
+        bundleName: string;
+        
+        abilityName: string;
+        
+        isPersisted?: boolean;
+        
+        networkType?: NetworkType;
+        
+        isCharging?: boolean;
+        
+        chargerType?: ChargingType;
+        
+        batteryLevel?: number;
+        
+        batteryStatus?: BatteryStatus;
+        
+        storageRequest?: StorageRequest;
+        
+        repeatCycleTime?: number;
+        
+        isRepeat?: boolean;
+        
+        repeatCount?: number;
+        
+        isDeepIdle?: boolean;
+        
+        idleWaitTime?: number;
+    }
+
+    
+    function startWork(work: WorkInfo): boolean;
+
+    
+    function stopWork(work: WorkInfo, needCancel?: boolean): boolean;
+
+    
+    function getWorkStatus(workId: number, callback: AsyncCallback<WorkInfo>): void;
+    function getWorkStatus(workId: number): Promise<WorkInfo>;
+
+    
+    function obtainAllWorks(callback: AsyncCallback<void>): Array<WorkInfo>;
+    function obtainAllWorks(): Promise<Array<WorkInfo>>;
+
+    
+    function stopAndClearWorks(): boolean;
+
+    
+    function isLastWorkTimeOut(workId: number, callback: AsyncCallback<void>): boolean;
+    function isLastWorkTimeOut(workId: number): Promise<boolean>;
+
+    
+    export enum NetworkType {
+        
+        NETWORK_TYPE_ANY = 0,
+        
+        NETWORK_TYPE_MOBILE,
+        
+        NETWORK_TYPE_WIFI,
+        
+        NETWORK_TYPE_BLUETOOTH,
+        
+        NETWORK_TYPE_WIFI_P2P,
+        
+        NETWORK_TYPE_ETHERNET
+    }
+
+    
+    export enum ChargingType {
+        
+        CHARGING_PLUGGED_ANY = 0,
+        
+        CHARGING_PLUGGED_AC,
+        
+        CHARGING_PLUGGED_USB,
+        
+        CHARGING_PLUGGED_WIRELESS
+    }
+
+    
+    export enum BatteryStatus {
+        
+        BATTERY_STATUS_LOW = 0,
+        
+        BATTERY_STATUS_OKAY,
+        
+        BATTERY_STATUS_LOW_OR_OKAY
+    }
+
+    
+    export enum StorageRequest {
+        
+        STORAGE_LEVEL_LOW = 0,
+        
+        STORAGE_LEVEL_OKAY,
+        
+        STORAGE_LEVEL_LOW_OR_OKAY
+    }
+}</td><td>workScheduler</td><td>None</td><td>0</td><td>89</td><tr><tr><td>workScheduler</td><td>function startWork(work: WorkInfo): boolean;</td><td>startWork</td><td>None</td><td>1</td><td>32</td><tr><tr><td>workScheduler</td><td>function stopWork(work: WorkInfo, needCancel?: boolean): boolean;</td><td>stopWork</td><td>None</td><td>2</td><td>2</td><tr><tr><td>workScheduler</td><td>function getWorkStatus(workId: number, callback: AsyncCallback<WorkInfo>): void;</td><td>getWorkStatus</td><td>None</td><td>2</td><td>3</td><tr><tr><td>workScheduler</td><td>function getWorkStatus(workId: number): Promise<WorkInfo>;</td><td>getWorkStatus</td><td>None</td><td>1</td><td>1</td><tr><tr><td>workScheduler</td><td>function obtainAllWorks(callback: AsyncCallback<void>): Array<WorkInfo>;</td><td>obtainAllWorks</td><td>None</td><td>1</td><td>5</td><tr><tr><td>workScheduler</td><td>function obtainAllWorks(): Promise<Array<WorkInfo>>;</td><td>obtainAllWorks</td><td>None</td><td>0</td><td>1</td><tr><tr><td>workScheduler</td><td>function stopAndClearWorks(): boolean;</td><td>stopAndClearWorks</td><td>None</td><td>0</td><td>2</td><tr><tr><td>workScheduler</td><td>function isLastWorkTimeOut(workId: number, callback: AsyncCallback<void>): boolean;</td><td>isLastWorkTimeOut</td><td>None</td><td>2</td><td>5</td><tr><tr><td>workScheduler</td><td>function isLastWorkTimeOut(workId: number): Promise<boolean>;</td><td>isLastWorkTimeOut</td><td>None</td><td>1</td><td>1</td><tr><tr><td>WorkInfo</td><td>export interface WorkInfo {
+        
+        workId: number;
+        
+        bundleName: string;
+        
+        abilityName: string;
+        
+        isPersisted?: boolean;
+        
+        networkType?: NetworkType;
+        
+        isCharging?: boolean;
+        
+        chargerType?: ChargingType;
+        
+        batteryLevel?: number;
+        
+        batteryStatus?: BatteryStatus;
+        
+        storageRequest?: StorageRequest;
+        
+        repeatCycleTime?: number;
+        
+        isRepeat?: boolean;
+        
+        repeatCount?: number;
+        
+        isDeepIdle?: boolean;
+        
+        idleWaitTime?: number;
+    }</td><td>WorkInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WorkInfo</td><td>workId: number</td><td>workId</td><td>22</td><td>1</td><td>34</td><tr><tr><td>WorkInfo</td><td>bundleName: string</td><td>bundleName</td><td>22</td><td>1</td><td>60</td><tr><tr><td>WorkInfo</td><td>abilityName: string</td><td>abilityName</td><td>22</td><td>1</td><td>77</td><tr><tr><td>WorkInfo</td><td>isPersisted?: boolean</td><td>isPersisted</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WorkInfo</td><td>networkType?: NetworkType</td><td>networkType</td><td>22</td><td>1</td><td>4</td><tr><tr><td>WorkInfo</td><td>isCharging?: boolean</td><td>isCharging</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WorkInfo</td><td>chargerType?: ChargingType</td><td>chargerType</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkInfo</td><td>batteryLevel?: number</td><td>batteryLevel</td><td>22</td><td>1</td><td>5</td><tr><tr><td>WorkInfo</td><td>batteryStatus?: BatteryStatus</td><td>batteryStatus</td><td>22</td><td>1</td><td>1</td><tr><tr><td>WorkInfo</td><td>storageRequest?: StorageRequest</td><td>storageRequest</td><td>22</td><td>1</td><td>11</td><tr><tr><td>WorkInfo</td><td>repeatCycleTime?: number</td><td>repeatCycleTime</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WorkInfo</td><td>isRepeat?: boolean</td><td>isRepeat</td><td>22</td><td>1</td><td>4</td><tr><tr><td>WorkInfo</td><td>repeatCount?: number</td><td>repeatCount</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WorkInfo</td><td>isDeepIdle?: boolean</td><td>isDeepIdle</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WorkInfo</td><td>idleWaitTime?: number</td><td>idleWaitTime</td><td>22</td><td>1</td><td>1</td><tr><tr><td>NetworkType</td><td>export enum NetworkType {
+        
+        NETWORK_TYPE_ANY = 0,
+        
+        NETWORK_TYPE_MOBILE,
+        
+        NETWORK_TYPE_WIFI,
+        
+        NETWORK_TYPE_BLUETOOTH,
+        
+        NETWORK_TYPE_WIFI_P2P,
+        
+        NETWORK_TYPE_ETHERNET
+    }</td><td>NetworkType</td><td>40</td><td>0</td><td>7</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_ANY = 0,</td><td>NETWORK_TYPE_ANY</td><td>42</td><td>1</td><td>2</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_MOBILE,</td><td>NETWORK_TYPE_MOBILE</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_WIFI,</td><td>NETWORK_TYPE_WIFI</td><td>42</td><td>1</td><td>2</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_BLUETOOTH,</td><td>NETWORK_TYPE_BLUETOOTH</td><td>42</td><td>1</td><td>1</td><tr><tr><td>NetworkType</td><td>NETWORK_TYPE_WIFI_P2P,</td><td>NETWORK_TYPE_WIFI_P2P</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ChargingType</td><td>export enum ChargingType {
+        
+        CHARGING_PLUGGED_ANY = 0,
+        
+        CHARGING_PLUGGED_AC,
+        
+        CHARGING_PLUGGED_USB,
+        
+        CHARGING_PLUGGED_WIRELESS
+    }</td><td>ChargingType</td><td>40</td><td>0</td><td>8</td><tr><tr><td>ChargingType</td><td>CHARGING_PLUGGED_ANY = 0,</td><td>CHARGING_PLUGGED_ANY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ChargingType</td><td>CHARGING_PLUGGED_AC,</td><td>CHARGING_PLUGGED_AC</td><td>42</td><td>1</td><td>3</td><tr><tr><td>ChargingType</td><td>CHARGING_PLUGGED_USB,</td><td>CHARGING_PLUGGED_USB</td><td>42</td><td>1</td><td>1</td><tr><tr><td>BatteryStatus</td><td>export enum BatteryStatus {
+        
+        BATTERY_STATUS_LOW = 0,
+        
+        BATTERY_STATUS_OKAY,
+        
+        BATTERY_STATUS_LOW_OR_OKAY
+    }</td><td>BatteryStatus</td><td>40</td><td>0</td><td>7</td><tr><tr><td>BatteryStatus</td><td>BATTERY_STATUS_LOW = 0,</td><td>BATTERY_STATUS_LOW</td><td>42</td><td>1</td><td>4</td><tr><tr><td>BatteryStatus</td><td>BATTERY_STATUS_OKAY,</td><td>BATTERY_STATUS_OKAY</td><td>42</td><td>1</td><td>1</td><tr><tr><td>StorageRequest</td><td>export enum StorageRequest {
+        
+        STORAGE_LEVEL_LOW = 0,
+        
+        STORAGE_LEVEL_OKAY,
+        
+        STORAGE_LEVEL_LOW_OR_OKAY
+    }</td><td>StorageRequest</td><td>40</td><td>0</td><td>14</td><tr><tr><td>StorageRequest</td><td>STORAGE_LEVEL_LOW = 0,</td><td>STORAGE_LEVEL_LOW</td><td>42</td><td>1</td><td>2</td><tr><tr><td>StorageRequest</td><td>STORAGE_LEVEL_OKAY,</td><td>STORAGE_LEVEL_OKAY</td><td>42</td><td>1</td><td>12</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>slider</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>SliderStyle</td><td>declare enum SliderStyle {
+  
+  OutSet,
+
+  
+  InSet,
+}</td><td>SliderStyle</td><td>40</td><td>0</td><td>10</td><tr><tr><td>SliderStyle</td><td>OutSet,</td><td>OutSet</td><td>42</td><td>1</td><td>4</td><tr><tr><td>SliderStyle</td><td>InSet,</td><td>InSet</td><td>42</td><td>1</td><td>4</td><tr><tr><td>SliderChangeMode</td><td>declare enum SliderChangeMode {
+  
+  Begin,
+
+  
+  Moving,
+
+  
+  End,
+
+  
+  Click,
+}</td><td>SliderChangeMode</td><td>40</td><td>0</td><td>6</td><tr><tr><td>SliderChangeMode</td><td>Begin,</td><td>Begin</td><td>42</td><td>1</td><td>17</td><tr><tr><td>SliderChangeMode</td><td>Moving,</td><td>Moving</td><td>42</td><td>1</td><td>2</td><tr><tr><td>SliderChangeMode</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>SliderChangeMode</td><td>Click,</td><td>Click</td><td>42</td><td>1</td><td>971</td><tr><tr><td>SliderOptions</td><td>declare interface SliderOptions {
+  
+  value?: number;
+
+  
+  min?: number;
+
+  
+  max?: number;
+
+  
+  step?: number;
+
+  
+  style?: SliderStyle;
+
+  
+  direction?: Axis;
+
+  
+  reverse?: boolean;
+}</td><td>SliderOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SliderOptions</td><td>value?: number</td><td>value</td><td>22</td><td>1</td><td>14499</td><tr><tr><td>SliderOptions</td><td>min?: number</td><td>min</td><td>22</td><td>1</td><td>99</td><tr><tr><td>SliderOptions</td><td>max?: number</td><td>max</td><td>22</td><td>1</td><td>147</td><tr><tr><td>SliderOptions</td><td>step?: number</td><td>step</td><td>22</td><td>1</td><td>472</td><tr><tr><td>SliderOptions</td><td>style?: SliderStyle</td><td>style</td><td>22</td><td>1</td><td>1756</td><tr><tr><td>SliderOptions</td><td>direction?: Axis</td><td>direction</td><td>22</td><td>1</td><td>596</td><tr><tr><td>SliderOptions</td><td>reverse?: boolean</td><td>reverse</td><td>22</td><td>1</td><td>70</td><tr><tr><td>SliderInterface</td><td>interface SliderInterface {
+  
+  (options?: SliderOptions): SliderAttribute;
+}</td><td>SliderInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SliderInterface</td><td>(options?: SliderOptions): SliderAttribute</td><td>options</td><td>22</td><td>1</td><td>791</td><tr><tr><td>SliderAttribute</td><td>declare class SliderAttribute extends CommonMethod<SliderAttribute> {
+  
+  blockColor(value: ResourceColor): SliderAttribute;
+
+  
+  trackColor(value: ResourceColor): SliderAttribute;
+
+  
+  selectedColor(value: ResourceColor): SliderAttribute;
+
+  
+  minLabel(value: string): SliderAttribute;
+
+  
+  maxLabel(value: string): SliderAttribute;
+
+  
+  showSteps(value: boolean): SliderAttribute;
+
+  
+  showTips(value: boolean): SliderAttribute;
+
+  
+  trackThickness(value: Length): SliderAttribute;
+
+  
+  onChange(callback: (value: number, mode: SliderChangeMode) => void): SliderAttribute;
+}</td><td>SliderAttribute</td><td>None</td><td>0</td><td>0</td><tr><tr><td>SliderAttribute</td><td>blockColor(value: ResourceColor): SliderAttribute;</td><td>blockColor</td><td>None</td><td>1</td><td>6</td><tr><tr><td>SliderAttribute</td><td>trackColor(value: ResourceColor): SliderAttribute;</td><td>trackColor</td><td>None</td><td>1</td><td>6</td><tr><tr><td>SliderAttribute</td><td>selectedColor(value: ResourceColor): SliderAttribute;</td><td>selectedColor</td><td>None</td><td>1</td><td>36</td><tr><tr><td>SliderAttribute</td><td>minLabel(value: string): SliderAttribute;</td><td>minLabel</td><td>None</td><td>1</td><td>1</td><tr><tr><td>SliderAttribute</td><td>maxLabel(value: string): SliderAttribute;</td><td>maxLabel</td><td>None</td><td>1</td><td>1</td><tr><tr><td>SliderAttribute</td><td>showSteps(value: boolean): SliderAttribute;</td><td>showSteps</td><td>None</td><td>1</td><td>8</td><tr><tr><td>SliderAttribute</td><td>showTips(value: boolean): SliderAttribute;</td><td>showTips</td><td>None</td><td>1</td><td>8</td><tr><tr><td>SliderAttribute</td><td>trackThickness(value: Length): SliderAttribute;</td><td>trackThickness</td><td>None</td><td>1</td><td>1</td><tr><tr><td>SliderAttribute</td><td>onChange(callback: (value: number, mode: SliderChangeMode) => void): SliderAttribute;</td><td>onChangecallback</td><td>None</td><td>3</td><td>0</td><tr><tr><td>SliderAttribute</td><td>onChange(callback: (value: number, mode: SliderChangeMode) => void): SliderAttribute;</td><td>onChangecallback</td><td>None</td><td>3</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

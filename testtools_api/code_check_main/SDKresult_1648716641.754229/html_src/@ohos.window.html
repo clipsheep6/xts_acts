@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>窗口子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>graphic</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.window</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>window</td><td>declare namespace window {
+  
+  enum WindowType {
+    
+    TYPE_APP,
+    
+    TYPE_SYSTEM_ALERT
+  }
+
+  
+  enum AvoidAreaType {
+    
+    TYPE_SYSTEM,
+
+    
+    TYPE_CUTOUT
+  }
+  
+  enum WindowMode {
+    UNDEFINED = 1,
+    FULLSCREEN,
+    PRIMARY,
+    SECONDARY,
+    FLOATING
+  }
+
+  
+  interface SystemBarProperties {
+    
+    statusBarColor?: string;
+
+    
+    isStatusBarLightIcon?: boolean;
+
+    
+    statusBarContentColor?: string;
+
+    
+    navigationBarColor?: string;
+
+    
+    isNavigationBarLightIcon?: boolean;
+
+    
+     navigationBarContentColor?: string;
+  }
+
+  
+  interface SystemBarRegionTint {
+    
+    type: WindowType;
+
+    
+    isEnable?: boolean;
+
+    
+    region?: Rect;
+
+    
+    backgroundColor?: string;
+
+    
+    contentColor?: string
+  }
+
+  
+  interface SystemBarTintState {
+    
+    displayId: number;
+    
+    regionTint: Array<SystemBarRegionTint>;
+  }
+
+  
+  interface Rect {
+    left: number;
+
+    top: number;
+
+    width: number;
+
+    height: number;
+  }
+
+  
+  interface AvoidArea {
+    
+    leftRect: Rect;
+
+    
+    topRect: Rect;
+
+    
+    rightRect: Rect;
+
+    
+    bottomRect: Rect;
+  }
+
+  
+  interface Size {
+    
+    width: number;
+
+    
+    height: number;
+  }
+
+  
+  interface WindowProperties {
+    
+    windowRect: Rect;
+
+    
+    type: WindowType;
+
+    
+    isFullScreen: boolean
+
+    
+    isLayoutFullScreen: boolean
+
+    
+    focusable: boolean
+
+    
+    touchable: boolean
+
+    
+    brightness: number
+
+    
+    dimBehindValue: number
+
+    
+    isKeepScreenOn: boolean
+
+    
+    isPrivacyMode: boolean
+
+    
+    isRoundCorner: boolean
+
+    
+    isTransparent: boolean
+  }
+
+  
+  enum ColorSpace {
+    
+    DEFAULT,
+    
+    WIDE_GAMUT,
+  }
+
+  
+  function create(id: string, type: WindowType, callback: AsyncCallback<Window>): void;
+
+  
+  function create(id: string, type: WindowType): Promise<Window>;
+
+  
+  function create(ctx: Context, id: string, type: WindowType): Promise<Window>;
+
+  
+  function create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback<Window>): void;
+
+  
+  function find(id: string, callback: AsyncCallback<Window>): void;
+
+  
+  function find(id: string): Promise<Window>;
+
+  
+  function getTopWindow(callback: AsyncCallback<Window>): void;
+
+  
+  function getTopWindow(): Promise<Window>;
+
+  
+  function getTopWindow(ctx: Context): Promise<Window>;
+
+  
+  function getTopWindow(ctx: Context, callback: AsyncCallback<Window>): void;
+
+  
+  function on(type: 'systemBarTintChange', callback: Callback<SystemBarTintState>): void;
+
+  
+  function off(type: 'systemBarTintChange', callback?: Callback<SystemBarTintState>): void;
+
+  interface Window {
+    
+    hide (callback: AsyncCallback<void>): void;
+
+    
+    hide(): Promise<void>;
+
+    
+    show(callback: AsyncCallback<void>): void;
+
+    
+    show(): Promise<void>;
+
+    
+    destroy(callback: AsyncCallback<void>): void;
+
+    
+    destroy(): Promise<void>;
+
+    
+    moveTo(x: number, y: number): Promise<void>;
+
+    
+    moveTo(x: number, y: number, callback: AsyncCallback<void>): void;
+
+    
+    resetSize(width: number, height: number): Promise<void>;
+
+    
+    resetSize(width: number, height: number, callback: AsyncCallback<void>): void;
+
+    
+    setWindowType(type: WindowType): Promise<void>;
+
+    
+    setWindowType(type: WindowType, callback: AsyncCallback<void>): void;
+
+    
+    getProperties(callback: AsyncCallback<WindowProperties>): void;
+
+     
+    getProperties(): Promise<WindowProperties>;
+
+    
+    getAvoidArea(type: AvoidAreaType, callback: AsyncCallback<AvoidArea>): void;
+
+    
+    getAvoidArea(type: AvoidAreaType): Promise<AvoidArea>;
+
+    
+    setFullScreen(isFullScreen: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setFullScreen(isFullScreen: boolean): Promise<void>;
+
+    
+    setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setLayoutFullScreen(isLayoutFullScreen: boolean): Promise<void>;
+
+    
+    setSystemBarEnable(names: Array<'status'|'navigation'>, callback: AsyncCallback<void>): void;
+
+    
+    setSystemBarEnable(names: Array<'status'|'navigation'>): Promise<void>;
+
+    
+    setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback<void>): void;
+
+    
+    setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise<void>;
+
+    
+    loadContent(path: string, storage: ContentStorage, callback: AsyncCallback<void>): void;
+
+    
+    loadContent(path: string, storage: ContentStorage): Promise<void>;
+
+    
+    loadContent(path: string, callback: AsyncCallback<void>): void;
+
+      
+       loadContent(path: string): Promise<void>;
+
+    
+    isShowing(callback: AsyncCallback<boolean>): void;
+
+    
+    isShowing(): Promise<boolean>;
+
+    
+    on(type: 'windowSizeChange', callback: Callback<Size>): void;
+
+    
+    off(type: 'windowSizeChange', callback?: Callback<Size>): void;
+
+    
+    on(type: 'systemAvoidAreaChange', callback: Callback<AvoidArea>): void;
+
+    
+    off(type: 'systemAvoidAreaChange', callback?: Callback<AvoidArea>): void;
+
+    
+    on(type: 'keyboardHeightChange', callback: Callback<number>): void;
+
+    
+    off(type: 'keyboardHeightChange', callback?: Callback<number>): void;
+
+    
+    isSupportWideGamut(): Promise<boolean>;
+
+    
+    isSupportWideGamut(callback: AsyncCallback<boolean>): void;
+
+    
+    setColorSpace(colorSpace:ColorSpace): Promise<void>;
+
+    
+    setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void;
+
+    
+    getColorSpace(): Promise<ColorSpace>;
+
+    
+    getColorSpace(callback: AsyncCallback<ColorSpace>): void;
+
+    
+    setBackgroundColor(color: string): Promise<void>;
+
+    
+    setBackgroundColor(color: string, callback: AsyncCallback<void>): void;
+
+    
+    setBrightness(brightness: number): Promise<void>;
+
+    
+    setBrightness(brightness: number, callback: AsyncCallback<void>): void;
+
+    
+    setDimBehind(dimBehindValue: number, callback: AsyncCallback<void>): void;
+
+    
+    setDimBehind(dimBehindValue: number): Promise<void>;
+
+    
+    setFocusable(isFocusable: boolean): Promise<void>;
+
+    
+    setFocusable(isFocusable: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setKeepScreenOn(isKeepScreenOn: boolean): Promise<void>;
+
+    
+    setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setOutsideTouchable(touchable: boolean): Promise<void>;
+
+    
+    setOutsideTouchable(touchable: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setPrivacyMode(isPrivacyMode: boolean): Promise<void>;
+
+    
+    setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setTouchable(isTouchable: boolean): Promise<void>;
+
+    
+    setTouchable(isTouchable: boolean, callback: AsyncCallback<void>): void;
+  }
+  
+  enum WindowStageEventType {
+    FOREGROUND = 1,
+    ACTIVE,
+    INACTIVE,
+    BACKGROUND,
+  }
+  
+  interface WindowStage {
+    
+    getMainWindow(): Promise<Window>;
+    
+    getMainWindow(callback: AsyncCallback<Window>): void;
+    
+    createSubWindow(name: string): Promise<Window>;
+    
+    createSubWindow(name: string, callback: AsyncCallback<Window>): void;
+    
+    getSubWindow(): Promise<Array<Window>>;
+    
+    getSubWindow(callback: AsyncCallback<Array<Window>>): void;
+    
+    loadContent(path: string, storage: ContentStorage, callback: AsyncCallback<void>): void;
+    
+    loadContent(path: string, storage?: ContentStorage): Promise<void>;
+    
+    loadContent(path: string, callback: AsyncCallback<void>): void;
+    
+    on(eventType: 'windowStageEvent', callback: Callback<WindowStageEventType>): void;
+    
+    off(eventType: 'windowStageEvent', callback?: Callback<WindowStageEventType>): void;
+  }
+}</td><td>window</td><td>None</td><td>0</td><td>468</td><tr><tr><td>window</td><td>function create(id: string, type: WindowType, callback: AsyncCallback<Window>): void;</td><td>create</td><td>None</td><td>3</td><td>2040</td><tr><tr><td>window</td><td>function create(id: string, type: WindowType): Promise<Window>;</td><td>create</td><td>None</td><td>2</td><td>0</td><tr><tr><td>window</td><td>function create(ctx: Context, id: string, type: WindowType): Promise<Window>;</td><td>create</td><td>None</td><td>3</td><td>0</td><tr><tr><td>window</td><td>function create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback<Window>): void;</td><td>create</td><td>None</td><td>4</td><td>2040</td><tr><tr><td>window</td><td>function find(id: string, callback: AsyncCallback<Window>): void;</td><td>find</td><td>None</td><td>2</td><td>36</td><tr><tr><td>window</td><td>function find(id: string): Promise<Window>;</td><td>find</td><td>None</td><td>1</td><td>3</td><tr><tr><td>window</td><td>function getTopWindow(callback: AsyncCallback<Window>): void;</td><td>getTopWindow</td><td>None</td><td>1</td><td>86</td><tr><tr><td>window</td><td>function getTopWindow(): Promise<Window>;</td><td>getTopWindow</td><td>None</td><td>0</td><td>41</td><tr><tr><td>window</td><td>function getTopWindow(ctx: Context): Promise<Window>;</td><td>getTopWindow</td><td>None</td><td>1</td><td>41</td><tr><tr><td>window</td><td>function getTopWindow(ctx: Context, callback: AsyncCallback<Window>): void;</td><td>getTopWindow</td><td>None</td><td>2</td><td>86</td><tr><tr><td>window</td><td>function on(type: 'systemBarTintChange', callback: Callback<SystemBarTintState>): void;</td><td>on</td><td>None</td><td>2</td><td>27158</td><tr><tr><td>window</td><td>function off(type: 'systemBarTintChange', callback?: Callback<SystemBarTintState>): void;</td><td>off</td><td>None</td><td>2</td><td>5</td><tr><tr><td>WindowType</td><td>enum WindowType {
+    
+    TYPE_APP,
+    
+    TYPE_SYSTEM_ALERT
+  }</td><td>WindowType</td><td>40</td><td>0</td><td>6</td><tr><tr><td>WindowType</td><td>TYPE_APP,</td><td>TYPE_APP</td><td>42</td><td>1</td><td>6</td><tr><tr><td>AvoidAreaType</td><td>enum AvoidAreaType {
+    
+    TYPE_SYSTEM,
+
+    
+    TYPE_CUTOUT
+  }</td><td>AvoidAreaType</td><td>40</td><td>0</td><td>4</td><tr><tr><td>AvoidAreaType</td><td>TYPE_SYSTEM,</td><td>TYPE_SYSTEM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>WindowMode</td><td>enum WindowMode {
+    UNDEFINED = 1,
+    FULLSCREEN,
+    PRIMARY,
+    SECONDARY,
+    FLOATING
+  }</td><td>WindowMode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>WindowMode</td><td>UNDEFINED = 1,</td><td>UNDEFINED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>WindowMode</td><td>FULLSCREEN,</td><td>FULLSCREEN</td><td>42</td><td>1</td><td>3</td><tr><tr><td>WindowMode</td><td>PRIMARY,</td><td>PRIMARY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>WindowMode</td><td>SECONDARY,</td><td>SECONDARY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>SystemBarProperties</td><td>interface SystemBarProperties {
+    
+    statusBarColor?: string;
+
+    
+    isStatusBarLightIcon?: boolean;
+
+    
+    statusBarContentColor?: string;
+
+    
+    navigationBarColor?: string;
+
+    
+    isNavigationBarLightIcon?: boolean;
+
+    
+     navigationBarContentColor?: string;
+  }</td><td>SystemBarProperties</td><td>20</td><td>0</td><td>20</td><tr><tr><td>SystemBarProperties</td><td>statusBarColor?: string</td><td>statusBarColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SystemBarProperties</td><td>isStatusBarLightIcon?: boolean</td><td>isStatusBarLightIcon</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SystemBarProperties</td><td>statusBarContentColor?: string</td><td>statusBarContentColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SystemBarProperties</td><td>navigationBarColor?: string</td><td>navigationBarColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SystemBarProperties</td><td>isNavigationBarLightIcon?: boolean</td><td>isNavigationBarLightIcon</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SystemBarProperties</td><td>navigationBarContentColor?: string</td><td>navigationBarContentColor</td><td>22</td><td>1</td><td>2</td><tr><tr><td>SystemBarRegionTint</td><td>interface SystemBarRegionTint {
+    
+    type: WindowType;
+
+    
+    isEnable?: boolean;
+
+    
+    region?: Rect;
+
+    
+    backgroundColor?: string;
+
+    
+    contentColor?: string
+  }</td><td>SystemBarRegionTint</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SystemBarRegionTint</td><td>type: WindowType</td><td>type</td><td>22</td><td>1</td><td>277</td><tr><tr><td>SystemBarRegionTint</td><td>isEnable?: boolean</td><td>isEnable</td><td>22</td><td>1</td><td>412</td><tr><tr><td>SystemBarRegionTint</td><td>region?: Rect</td><td>region</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SystemBarRegionTint</td><td>backgroundColor?: string</td><td>backgroundColor</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SystemBarTintState</td><td>interface SystemBarTintState {
+    
+    displayId: number;
+    
+    regionTint: Array<SystemBarRegionTint>;
+  }</td><td>SystemBarTintState</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SystemBarTintState</td><td>displayId: number</td><td>displayId</td><td>22</td><td>1</td><td>11</td><tr><tr><td>SystemBarTintState</td><td>regionTint: Array<SystemBarRegionTint></td><td>regionTint</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Rect</td><td>interface Rect {
+    left: number;
+
+    top: number;
+
+    width: number;
+
+    height: number;
+  }</td><td>Rect</td><td>20</td><td>0</td><td>38</td><tr><tr><td>Rect</td><td>left: number</td><td>left</td><td>22</td><td>1</td><td>17</td><tr><tr><td>Rect</td><td>top: number</td><td>top</td><td>22</td><td>1</td><td>24</td><tr><tr><td>Rect</td><td>width: number</td><td>width</td><td>22</td><td>1</td><td>68</td><tr><tr><td>Rect</td><td>height: number</td><td>height</td><td>22</td><td>1</td><td>47</td><tr><tr><td>AvoidArea</td><td>interface AvoidArea {
+    
+    leftRect: Rect;
+
+    
+    topRect: Rect;
+
+    
+    rightRect: Rect;
+
+    
+    bottomRect: Rect;
+  }</td><td>AvoidArea</td><td>20</td><td>0</td><td>57</td><tr><tr><td>AvoidArea</td><td>leftRect: Rect</td><td>leftRect</td><td>22</td><td>1</td><td>6</td><tr><tr><td>AvoidArea</td><td>topRect: Rect</td><td>topRect</td><td>22</td><td>1</td><td>6</td><tr><tr><td>AvoidArea</td><td>rightRect: Rect</td><td>rightRect</td><td>22</td><td>1</td><td>6</td><tr><tr><td>AvoidArea</td><td>bottomRect: Rect</td><td>bottomRect</td><td>22</td><td>1</td><td>7</td><tr><tr><td>Size</td><td>interface Size {
+    
+    width: number;
+
+    
+    height: number;
+  }</td><td>Size</td><td>20</td><td>0</td><td>197</td><tr><tr><td>Size</td><td>width: number</td><td>width</td><td>22</td><td>1</td><td>68</td><tr><tr><td>Size</td><td>height: number</td><td>height</td><td>22</td><td>1</td><td>47</td><tr><tr><td>WindowProperties</td><td>interface WindowProperties {
+    
+    windowRect: Rect;
+
+    
+    type: WindowType;
+
+    
+    isFullScreen: boolean
+
+    
+    isLayoutFullScreen: boolean
+
+    
+    focusable: boolean
+
+    
+    touchable: boolean
+
+    
+    brightness: number
+
+    
+    dimBehindValue: number
+
+    
+    isKeepScreenOn: boolean
+
+    
+    isPrivacyMode: boolean
+
+    
+    isRoundCorner: boolean
+
+    
+    isTransparent: boolean
+  }</td><td>WindowProperties</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WindowProperties</td><td>windowRect: Rect</td><td>windowRect</td><td>22</td><td>1</td><td>2</td><tr><tr><td>WindowProperties</td><td>type: WindowType</td><td>type</td><td>22</td><td>1</td><td>277</td><tr><tr><td>ColorSpace</td><td>enum ColorSpace {
+    
+    DEFAULT,
+    
+    WIDE_GAMUT,
+  }</td><td>ColorSpace</td><td>40</td><td>0</td><td>53</td><tr><tr><td>ColorSpace</td><td>DEFAULT,</td><td>DEFAULT</td><td>42</td><td>1</td><td>3</td><tr><tr><td>ColorSpace</td><td>WIDE_GAMUT,</td><td>WIDE_GAMUT</td><td>42</td><td>1</td><td>6</td><tr><tr><td>Window</td><td>interface Window {
+    
+    hide (callback: AsyncCallback<void>): void;
+
+    
+    hide(): Promise<void>;
+
+    
+    show(callback: AsyncCallback<void>): void;
+
+    
+    show(): Promise<void>;
+
+    
+    destroy(callback: AsyncCallback<void>): void;
+
+    
+    destroy(): Promise<void>;
+
+    
+    moveTo(x: number, y: number): Promise<void>;
+
+    
+    moveTo(x: number, y: number, callback: AsyncCallback<void>): void;
+
+    
+    resetSize(width: number, height: number): Promise<void>;
+
+    
+    resetSize(width: number, height: number, callback: AsyncCallback<void>): void;
+
+    
+    setWindowType(type: WindowType): Promise<void>;
+
+    
+    setWindowType(type: WindowType, callback: AsyncCallback<void>): void;
+
+    
+    getProperties(callback: AsyncCallback<WindowProperties>): void;
+
+     
+    getProperties(): Promise<WindowProperties>;
+
+    
+    getAvoidArea(type: AvoidAreaType, callback: AsyncCallback<AvoidArea>): void;
+
+    
+    getAvoidArea(type: AvoidAreaType): Promise<AvoidArea>;
+
+    
+    setFullScreen(isFullScreen: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setFullScreen(isFullScreen: boolean): Promise<void>;
+
+    
+    setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setLayoutFullScreen(isLayoutFullScreen: boolean): Promise<void>;
+
+    
+    setSystemBarEnable(names: Array<'status'|'navigation'>, callback: AsyncCallback<void>): void;
+
+    
+    setSystemBarEnable(names: Array<'status'|'navigation'>): Promise<void>;
+
+    
+    setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback<void>): void;
+
+    
+    setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise<void>;
+
+    
+    loadContent(path: string, storage: ContentStorage, callback: AsyncCallback<void>): void;
+
+    
+    loadContent(path: string, storage: ContentStorage): Promise<void>;
+
+    
+    loadContent(path: string, callback: AsyncCallback<void>): void;
+
+      
+       loadContent(path: string): Promise<void>;
+
+    
+    isShowing(callback: AsyncCallback<boolean>): void;
+
+    
+    isShowing(): Promise<boolean>;
+
+    
+    on(type: 'windowSizeChange', callback: Callback<Size>): void;
+
+    
+    off(type: 'windowSizeChange', callback?: Callback<Size>): void;
+
+    
+    on(type: 'systemAvoidAreaChange', callback: Callback<AvoidArea>): void;
+
+    
+    off(type: 'systemAvoidAreaChange', callback?: Callback<AvoidArea>): void;
+
+    
+    on(type: 'keyboardHeightChange', callback: Callback<number>): void;
+
+    
+    off(type: 'keyboardHeightChange', callback?: Callback<number>): void;
+
+    
+    isSupportWideGamut(): Promise<boolean>;
+
+    
+    isSupportWideGamut(callback: AsyncCallback<boolean>): void;
+
+    
+    setColorSpace(colorSpace:ColorSpace): Promise<void>;
+
+    
+    setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void;
+
+    
+    getColorSpace(): Promise<ColorSpace>;
+
+    
+    getColorSpace(callback: AsyncCallback<ColorSpace>): void;
+
+    
+    setBackgroundColor(color: string): Promise<void>;
+
+    
+    setBackgroundColor(color: string, callback: AsyncCallback<void>): void;
+
+    
+    setBrightness(brightness: number): Promise<void>;
+
+    
+    setBrightness(brightness: number, callback: AsyncCallback<void>): void;
+
+    
+    setDimBehind(dimBehindValue: number, callback: AsyncCallback<void>): void;
+
+    
+    setDimBehind(dimBehindValue: number): Promise<void>;
+
+    
+    setFocusable(isFocusable: boolean): Promise<void>;
+
+    
+    setFocusable(isFocusable: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setKeepScreenOn(isKeepScreenOn: boolean): Promise<void>;
+
+    
+    setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setOutsideTouchable(touchable: boolean): Promise<void>;
+
+    
+    setOutsideTouchable(touchable: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setPrivacyMode(isPrivacyMode: boolean): Promise<void>;
+
+    
+    setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback<void>): void;
+
+    
+    setTouchable(isTouchable: boolean): Promise<void>;
+
+    
+    setTouchable(isTouchable: boolean, callback: AsyncCallback<void>): void;
+  }</td><td>Window</td><td>20</td><td>0</td><td>147</td><tr><tr><td>Window</td><td>hide (callback: AsyncCallback<void>): void;</td><td>hide</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>hide(): Promise<void>;</td><td>hide</td><td>21</td><td>0</td><td>0</td><tr><tr><td>Window</td><td>show(callback: AsyncCallback<void>): void;</td><td>show</td><td>21</td><td>1</td><td>6</td><tr><tr><td>Window</td><td>show(): Promise<void>;</td><td>show</td><td>21</td><td>0</td><td>2</td><tr><tr><td>Window</td><td>destroy(callback: AsyncCallback<void>): void;</td><td>destroy</td><td>21</td><td>1</td><td>8</td><tr><tr><td>Window</td><td>destroy(): Promise<void>;</td><td>destroy</td><td>21</td><td>0</td><td>1</td><tr><tr><td>Window</td><td>moveTo(x: number, y: number): Promise<void>;</td><td>moveTo</td><td>21</td><td>2</td><td>8</td><tr><tr><td>Window</td><td>moveTo(x: number, y: number, callback: AsyncCallback<void>): void;</td><td>moveTo</td><td>21</td><td>3</td><td>14</td><tr><tr><td>Window</td><td>resetSize(width: number, height: number): Promise<void>;</td><td>resetSize</td><td>21</td><td>2</td><td>6</td><tr><tr><td>Window</td><td>resetSize(width: number, height: number, callback: AsyncCallback<void>): void;</td><td>resetSize</td><td>21</td><td>3</td><td>60</td><tr><tr><td>Window</td><td>setWindowType(type: WindowType): Promise<void>;</td><td>setWindowType</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setWindowType(type: WindowType, callback: AsyncCallback<void>): void;</td><td>setWindowType</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>getProperties(callback: AsyncCallback<WindowProperties>): void;</td><td>getProperties</td><td>21</td><td>1</td><td>56</td><tr><tr><td>Window</td><td>getProperties(): Promise<WindowProperties>;</td><td>getProperties</td><td>21</td><td>0</td><td>12</td><tr><tr><td>Window</td><td>getAvoidArea(type: AvoidAreaType, callback: AsyncCallback<AvoidArea>): void;</td><td>getAvoidArea</td><td>21</td><td>2</td><td>46</td><tr><tr><td>Window</td><td>getAvoidArea(type: AvoidAreaType): Promise<AvoidArea>;</td><td>getAvoidArea</td><td>21</td><td>1</td><td>3</td><tr><tr><td>Window</td><td>setFullScreen(isFullScreen: boolean, callback: AsyncCallback<void>): void;</td><td>setFullScreen</td><td>21</td><td>2</td><td>35</td><tr><tr><td>Window</td><td>setFullScreen(isFullScreen: boolean): Promise<void>;</td><td>setFullScreen</td><td>21</td><td>1</td><td>7</td><tr><tr><td>Window</td><td>setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback<void>): void;</td><td>setLayoutFullScreen</td><td>21</td><td>2</td><td>67</td><tr><tr><td>Window</td><td>setLayoutFullScreen(isLayoutFullScreen: boolean): Promise<void>;</td><td>setLayoutFullScreen</td><td>21</td><td>1</td><td>5</td><tr><tr><td>Window</td><td>setSystemBarEnable(names: Array<'status'|'navigation'>, callback: AsyncCallback<void>): void;</td><td>setSystemBarEnable</td><td>21</td><td>2</td><td>8</td><tr><tr><td>Window</td><td>setSystemBarEnable(names: Array<'status'|'navigation'>): Promise<void>;</td><td>setSystemBarEnable</td><td>21</td><td>1</td><td>1</td><tr><tr><td>Window</td><td>setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback<void>): void;</td><td>setSystemBarProperties</td><td>21</td><td>2</td><td>8</td><tr><tr><td>Window</td><td>setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise<void>;</td><td>setSystemBarProperties</td><td>21</td><td>1</td><td>1</td><tr><tr><td>Window</td><td>loadContent(path: string, storage: ContentStorage, callback: AsyncCallback<void>): void;</td><td>loadContent</td><td>21</td><td>3</td><td>0</td><tr><tr><td>Window</td><td>loadContent(path: string, storage: ContentStorage): Promise<void>;</td><td>loadContent</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>loadContent(path: string, callback: AsyncCallback<void>): void;</td><td>loadContent</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>loadContent(path: string): Promise<void>;</td><td>loadContent</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>isShowing(callback: AsyncCallback<boolean>): void;</td><td>isShowing</td><td>21</td><td>1</td><td>10</td><tr><tr><td>Window</td><td>isShowing(): Promise<boolean>;</td><td>isShowing</td><td>21</td><td>0</td><td>2</td><tr><tr><td>Window</td><td>on(type: 'windowSizeChange', callback: Callback<Size>): void;</td><td>on</td><td>21</td><td>2</td><td>27158</td><tr><tr><td>Window</td><td>off(type: 'windowSizeChange', callback?: Callback<Size>): void;</td><td>off</td><td>21</td><td>2</td><td>5</td><tr><tr><td>Window</td><td>on(type: 'systemAvoidAreaChange', callback: Callback<AvoidArea>): void;</td><td>on</td><td>21</td><td>2</td><td>27158</td><tr><tr><td>Window</td><td>off(type: 'systemAvoidAreaChange', callback?: Callback<AvoidArea>): void;</td><td>off</td><td>21</td><td>2</td><td>5</td><tr><tr><td>Window</td><td>on(type: 'keyboardHeightChange', callback: Callback<number>): void;</td><td>on</td><td>21</td><td>2</td><td>27158</td><tr><tr><td>Window</td><td>off(type: 'keyboardHeightChange', callback?: Callback<number>): void;</td><td>off</td><td>21</td><td>2</td><td>5</td><tr><tr><td>Window</td><td>isSupportWideGamut(): Promise<boolean>;</td><td>isSupportWideGamut</td><td>21</td><td>0</td><td>1</td><tr><tr><td>Window</td><td>isSupportWideGamut(callback: AsyncCallback<boolean>): void;</td><td>isSupportWideGamut</td><td>21</td><td>1</td><td>2</td><tr><tr><td>Window</td><td>setColorSpace(colorSpace:ColorSpace): Promise<void>;</td><td>setColorSpace</td><td>21</td><td>1</td><td>2</td><tr><tr><td>Window</td><td>setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void;</td><td>setColorSpace</td><td>21</td><td>2</td><td>18</td><tr><tr><td>Window</td><td>getColorSpace(): Promise<ColorSpace>;</td><td>getColorSpace</td><td>21</td><td>0</td><td>1</td><tr><tr><td>Window</td><td>getColorSpace(callback: AsyncCallback<ColorSpace>): void;</td><td>getColorSpace</td><td>21</td><td>1</td><td>4</td><tr><tr><td>Window</td><td>setBackgroundColor(color: string): Promise<void>;</td><td>setBackgroundColor</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setBackgroundColor(color: string, callback: AsyncCallback<void>): void;</td><td>setBackgroundColor</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setBrightness(brightness: number): Promise<void>;</td><td>setBrightness</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setBrightness(brightness: number, callback: AsyncCallback<void>): void;</td><td>setBrightness</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setDimBehind(dimBehindValue: number, callback: AsyncCallback<void>): void;</td><td>setDimBehind</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setDimBehind(dimBehindValue: number): Promise<void>;</td><td>setDimBehind</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setFocusable(isFocusable: boolean): Promise<void>;</td><td>setFocusable</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setFocusable(isFocusable: boolean, callback: AsyncCallback<void>): void;</td><td>setFocusable</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setKeepScreenOn(isKeepScreenOn: boolean): Promise<void>;</td><td>setKeepScreenOn</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback<void>): void;</td><td>setKeepScreenOn</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setOutsideTouchable(touchable: boolean): Promise<void>;</td><td>setOutsideTouchable</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setOutsideTouchable(touchable: boolean, callback: AsyncCallback<void>): void;</td><td>setOutsideTouchable</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setPrivacyMode(isPrivacyMode: boolean): Promise<void>;</td><td>setPrivacyMode</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback<void>): void;</td><td>setPrivacyMode</td><td>21</td><td>2</td><td>0</td><tr><tr><td>Window</td><td>setTouchable(isTouchable: boolean): Promise<void>;</td><td>setTouchable</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Window</td><td>setTouchable(isTouchable: boolean, callback: AsyncCallback<void>): void;</td><td>setTouchable</td><td>21</td><td>2</td><td>0</td><tr><tr><td>WindowStageEventType</td><td>enum WindowStageEventType {
+    FOREGROUND = 1,
+    ACTIVE,
+    INACTIVE,
+    BACKGROUND,
+  }</td><td>WindowStageEventType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>WindowStageEventType</td><td>FOREGROUND = 1,</td><td>FOREGROUND</td><td>42</td><td>1</td><td>0</td><tr><tr><td>WindowStageEventType</td><td>ACTIVE,</td><td>ACTIVE</td><td>42</td><td>1</td><td>87</td><tr><tr><td>WindowStageEventType</td><td>INACTIVE,</td><td>INACTIVE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>WindowStageEventType</td><td>BACKGROUND,</td><td>BACKGROUND</td><td>42</td><td>1</td><td>0</td><tr><tr><td>WindowStage</td><td>interface WindowStage {
+    
+    getMainWindow(): Promise<Window>;
+    
+    getMainWindow(callback: AsyncCallback<Window>): void;
+    
+    createSubWindow(name: string): Promise<Window>;
+    
+    createSubWindow(name: string, callback: AsyncCallback<Window>): void;
+    
+    getSubWindow(): Promise<Array<Window>>;
+    
+    getSubWindow(callback: AsyncCallback<Array<Window>>): void;
+    
+    loadContent(path: string, storage: ContentStorage, callback: AsyncCallback<void>): void;
+    
+    loadContent(path: string, storage?: ContentStorage): Promise<void>;
+    
+    loadContent(path: string, callback: AsyncCallback<void>): void;
+    
+    on(eventType: 'windowStageEvent', callback: Callback<WindowStageEventType>): void;
+    
+    off(eventType: 'windowStageEvent', callback?: Callback<WindowStageEventType>): void;
+  }</td><td>WindowStage</td><td>20</td><td>0</td><td>0</td><tr><tr><td>WindowStage</td><td>getMainWindow(): Promise<Window>;</td><td>getMainWindow</td><td>21</td><td>0</td><td>0</td><tr><tr><td>WindowStage</td><td>getMainWindow(callback: AsyncCallback<Window>): void;</td><td>getMainWindow</td><td>21</td><td>1</td><td>0</td><tr><tr><td>WindowStage</td><td>createSubWindow(name: string): Promise<Window>;</td><td>createSubWindow</td><td>21</td><td>1</td><td>0</td><tr><tr><td>WindowStage</td><td>createSubWindow(name: string, callback: AsyncCallback<Window>): void;</td><td>createSubWindow</td><td>21</td><td>2</td><td>0</td><tr><tr><td>WindowStage</td><td>getSubWindow(): Promise<Array<Window>>;</td><td>getSubWindow</td><td>21</td><td>0</td><td>0</td><tr><tr><td>WindowStage</td><td>getSubWindow(callback: AsyncCallback<Array<Window>>): void;</td><td>getSubWindow</td><td>21</td><td>1</td><td>0</td><tr><tr><td>WindowStage</td><td>loadContent(path: string, storage: ContentStorage, callback: AsyncCallback<void>): void;</td><td>loadContent</td><td>21</td><td>3</td><td>0</td><tr><tr><td>WindowStage</td><td>loadContent(path: string, storage?: ContentStorage): Promise<void>;</td><td>loadContent</td><td>21</td><td>2</td><td>0</td><tr><tr><td>WindowStage</td><td>loadContent(path: string, callback: AsyncCallback<void>): void;</td><td>loadContent</td><td>21</td><td>2</td><td>0</td><tr><tr><td>WindowStage</td><td>on(eventType: 'windowStageEvent', callback: Callback<WindowStageEventType>): void;</td><td>on</td><td>21</td><td>2</td><td>27158</td><tr><tr><td>WindowStage</td><td>off(eventType: 'windowStageEvent', callback?: Callback<WindowStageEventType>): void;</td><td>off</td><td>21</td><td>2</td><td>5</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

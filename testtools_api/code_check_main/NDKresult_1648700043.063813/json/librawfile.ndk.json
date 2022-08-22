@@ -1,0 +1,156 @@
+[
+    {
+        "name": "OH_ResourceManager_InitNativeResourceManager",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_ReleaseNativeResourceManager",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_OpenRawDir",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_OpenRawFile",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_GetRawFileName",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_GetRawFileCount",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_CloseRawDir",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_ReadRawFile",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_SeekRawFile",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_GetRawFileSize",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_CloseRawFile",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_GetRawFileOffset",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_GetRawFileDescriptor",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_ResourceManager_ReleaseRawFileDescriptor",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "resource",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    }
+]

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>Misc软件服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>miscservices</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.inputmethodengine</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>inputMethodEngine</td><td>declare namespace inputMethodEngine {
+    const ENTER_KEY_TYPE_UNSPECIFIED: number;
+    const ENTER_KEY_TYPE_GO: number;
+    const ENTER_KEY_TYPE_SEARCH: number;
+    const ENTER_KEY_TYPE_SEND: number;
+    const ENTER_KEY_TYPE_NEXT: number;
+    const ENTER_KEY_TYPE_DONE: number;
+    const ENTER_KEY_TYPE_PREVIOUS: number;
+
+    const PATTERN_NULL: number;
+    const PATTERN_TEXT: number;
+    const PATTERN_NUMBER: number;
+    const PATTERN_PHONE: number;
+    const PATTERN_DATETIME: number;
+    const PATTERN_EMAIL: number;
+    const PATTERN_URI: number;
+    const PATTERN_PASSWORD: number;
+
+    const FLAG_SELECTING: number;
+    const FLAG_SINGLE_LINE: number;
+
+    const DISPLAY_MODE_PART: number;
+    const DISPLAY_MODE_FULL: number;
+
+    const OPTION_ASCII: number;
+    const OPTION_NONE: number;
+    const OPTION_AUTO_CAP_CHARACTERS: number;
+    const OPTION_AUTO_CAP_SENTENCES: number;
+    const OPTION_AUTO_WORDS: number;
+    const OPTION_MULTI_LINE: number;
+    const OPTION_NO_FULLSCREEN: number;
+
+    function getInputMethodEngine(): InputMethodEngine;
+
+    function createKeyboardDelegate(): KeyboardDelegate;
+
+    interface KeyboardController {
+        hideKeyboard(callback: AsyncCallback<void>): void;
+
+        hideKeyboard(): Promise<void>;
+    }
+
+    interface InputMethodEngine {
+        on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
+
+        off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
+
+        on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;
+
+        off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
+    }
+
+    interface TextInputClient {
+        sendKeyFunction(action: number, callback: AsyncCallback<boolean>): void;
+
+        sendKeyFunction(action: number): Promise<boolean>;
+
+        deleteForward(length: number, callback: AsyncCallback<boolean>): void;
+
+        deleteForward(length: number): Promise<boolean>;
+
+        deleteBackward(length: number, callback: AsyncCallback<boolean>): void;
+
+        deleteBackward(length: number): Promise<boolean>;
+
+        insertText(text: string, callback: AsyncCallback<boolean>): void;
+
+        insertText(text: string): Promise<boolean>;
+
+        getForward(length: number, callback: AsyncCallback<string>): void;
+
+        getForward(length: number): Promise<string>;
+
+        getBackward(length: number, callback: AsyncCallback<string>): void;
+
+        getBackward(length: number): Promise<string>;
+
+        getEditorAttribute(callback: AsyncCallback<EditorAttribute>): void;
+
+        getEditorAttribute(): Promise<EditorAttribute>;
+    }
+
+    interface KeyboardDelegate {
+        on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;
+
+        off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;
+
+        on(type: 'cursorContextChange', callback: (x: number, y: number, height: number) => void): void;
+
+        off(type: 'cursorContextChange', callback?: (x: number, y: number, height: number) => void): void;
+
+        on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
+
+        off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
+
+        on(type: 'textChange', callback: (text: string) => void): void;
+
+        off(type: 'textChange', callback?: (text: string) => void): void;
+    }
+
+    interface EditorAttribute {
+        readonly inputPattern: number;
+        readonly enterKeyType: number;
+    }
+
+    interface KeyEvent {
+        readonly keyCode: number;
+        readonly keyAction: number;
+    }
+}</td><td>inputMethodEngine</td><td>None</td><td>0</td><td>145</td><tr><tr><td>inputMethodEngine</td><td>function getInputMethodEngine(): InputMethodEngine;</td><td>getInputMethodEngine</td><td>None</td><td>0</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>function createKeyboardDelegate(): KeyboardDelegate;</td><td>createKeyboardDelegate</td><td>None</td><td>0</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_UNSPECIFIED: number</td><td>ENTER_KEY_TYPE_UNSPECIFIED</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_GO: number</td><td>ENTER_KEY_TYPE_GO</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_SEARCH: number</td><td>ENTER_KEY_TYPE_SEARCH</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_SEND: number</td><td>ENTER_KEY_TYPE_SEND</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_NEXT: number</td><td>ENTER_KEY_TYPE_NEXT</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_DONE: number</td><td>ENTER_KEY_TYPE_DONE</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const ENTER_KEY_TYPE_PREVIOUS: number</td><td>ENTER_KEY_TYPE_PREVIOUS</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_NULL: number</td><td>PATTERN_NULL</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_TEXT: number</td><td>PATTERN_TEXT</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_NUMBER: number</td><td>PATTERN_NUMBER</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_PHONE: number</td><td>PATTERN_PHONE</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_DATETIME: number</td><td>PATTERN_DATETIME</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_EMAIL: number</td><td>PATTERN_EMAIL</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_URI: number</td><td>PATTERN_URI</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const PATTERN_PASSWORD: number</td><td>PATTERN_PASSWORD</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const FLAG_SELECTING: number</td><td>FLAG_SELECTING</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const FLAG_SINGLE_LINE: number</td><td>FLAG_SINGLE_LINE</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const DISPLAY_MODE_PART: number</td><td>DISPLAY_MODE_PART</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const DISPLAY_MODE_FULL: number</td><td>DISPLAY_MODE_FULL</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_ASCII: number</td><td>OPTION_ASCII</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_NONE: number</td><td>OPTION_NONE</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_AUTO_CAP_CHARACTERS: number</td><td>OPTION_AUTO_CAP_CHARACTERS</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_AUTO_CAP_SENTENCES: number</td><td>OPTION_AUTO_CAP_SENTENCES</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_AUTO_WORDS: number</td><td>OPTION_AUTO_WORDS</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_MULTI_LINE: number</td><td>OPTION_MULTI_LINE</td><td>31</td><td>1</td><td>1</td><tr><tr><td>inputMethodEngine</td><td>const OPTION_NO_FULLSCREEN: number</td><td>OPTION_NO_FULLSCREEN</td><td>31</td><td>1</td><td>1</td><tr><tr><td>KeyboardController</td><td>interface KeyboardController {
+        hideKeyboard(callback: AsyncCallback<void>): void;
+
+        hideKeyboard(): Promise<void>;
+    }</td><td>KeyboardController</td><td>20</td><td>0</td><td>0</td><tr><tr><td>KeyboardController</td><td>hideKeyboard(callback: AsyncCallback<void>): void;</td><td>hideKeyboard</td><td>21</td><td>1</td><td>4</td><tr><tr><td>KeyboardController</td><td>hideKeyboard(): Promise<void>;</td><td>hideKeyboard</td><td>21</td><td>0</td><td>1</td><tr><tr><td>InputMethodEngine</td><td>interface InputMethodEngine {
+        on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
+
+        off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;
+
+        on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;
+
+        off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;
+    }</td><td>InputMethodEngine</td><td>20</td><td>0</td><td>1</td><tr><tr><td>InputMethodEngine</td><td>on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;</td><td>on</td><td>21</td><td>4</td><td>3383</td><tr><tr><td>InputMethodEngine</td><td>on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;</td><td>on</td><td>21</td><td>4</td><td>3383</td><tr><tr><td>InputMethodEngine</td><td>off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;</td><td>off</td><td>21</td><td>4</td><td>53</td><tr><tr><td>InputMethodEngine</td><td>off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void;</td><td>off</td><td>21</td><td>4</td><td>53</td><tr><tr><td>InputMethodEngine</td><td>on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>3383</td><tr><tr><td>InputMethodEngine</td><td>on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void;</td><td>on</td><td>21</td><td>2</td><td>3383</td><tr><tr><td>InputMethodEngine</td><td>off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;</td><td>off</td><td>21</td><td>2</td><td>53</td><tr><tr><td>InputMethodEngine</td><td>off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void;</td><td>off</td><td>21</td><td>2</td><td>53</td><tr><tr><td>TextInputClient</td><td>interface TextInputClient {
+        sendKeyFunction(action: number, callback: AsyncCallback<boolean>): void;
+
+        sendKeyFunction(action: number): Promise<boolean>;
+
+        deleteForward(length: number, callback: AsyncCallback<boolean>): void;
+
+        deleteForward(length: number): Promise<boolean>;
+
+        deleteBackward(length: number, callback: AsyncCallback<boolean>): void;
+
+        deleteBackward(length: number): Promise<boolean>;
+
+        insertText(text: string, callback: AsyncCallback<boolean>): void;
+
+        insertText(text: string): Promise<boolean>;
+
+        getForward(length: number, callback: AsyncCallback<string>): void;
+
+        getForward(length: number): Promise<string>;
+
+        getBackward(length: number, callback: AsyncCallback<string>): void;
+
+        getBackward(length: number): Promise<string>;
+
+        getEditorAttribute(callback: AsyncCallback<EditorAttribute>): void;
+
+        getEditorAttribute(): Promise<EditorAttribute>;
+    }</td><td>TextInputClient</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TextInputClient</td><td>sendKeyFunction(action: number, callback: AsyncCallback<boolean>): void;</td><td>sendKeyFunction</td><td>21</td><td>2</td><td>2</td><tr><tr><td>TextInputClient</td><td>sendKeyFunction(action: number): Promise<boolean>;</td><td>sendKeyFunction</td><td>21</td><td>1</td><td>1</td><tr><tr><td>TextInputClient</td><td>deleteForward(length: number, callback: AsyncCallback<boolean>): void;</td><td>deleteForward</td><td>21</td><td>2</td><td>4</td><tr><tr><td>TextInputClient</td><td>deleteForward(length: number): Promise<boolean>;</td><td>deleteForward</td><td>21</td><td>1</td><td>1</td><tr><tr><td>TextInputClient</td><td>deleteBackward(length: number, callback: AsyncCallback<boolean>): void;</td><td>deleteBackward</td><td>21</td><td>2</td><td>4</td><tr><tr><td>TextInputClient</td><td>deleteBackward(length: number): Promise<boolean>;</td><td>deleteBackward</td><td>21</td><td>1</td><td>1</td><tr><tr><td>TextInputClient</td><td>insertText(text: string, callback: AsyncCallback<boolean>): void;</td><td>insertText</td><td>21</td><td>2</td><td>0</td><tr><tr><td>TextInputClient</td><td>insertText(text: string): Promise<boolean>;</td><td>insertText</td><td>21</td><td>1</td><td>0</td><tr><tr><td>TextInputClient</td><td>getForward(length: number, callback: AsyncCallback<string>): void;</td><td>getForward</td><td>21</td><td>2</td><td>4</td><tr><tr><td>TextInputClient</td><td>getForward(length: number): Promise<string>;</td><td>getForward</td><td>21</td><td>1</td><td>1</td><tr><tr><td>TextInputClient</td><td>getBackward(length: number, callback: AsyncCallback<string>): void;</td><td>getBackward</td><td>21</td><td>2</td><td>0</td><tr><tr><td>TextInputClient</td><td>getBackward(length: number): Promise<string>;</td><td>getBackward</td><td>21</td><td>1</td><td>0</td><tr><tr><td>TextInputClient</td><td>getEditorAttribute(callback: AsyncCallback<EditorAttribute>): void;</td><td>getEditorAttribute</td><td>21</td><td>1</td><td>4</td><tr><tr><td>TextInputClient</td><td>getEditorAttribute(): Promise<EditorAttribute>;</td><td>getEditorAttribute</td><td>21</td><td>0</td><td>1</td><tr><tr><td>KeyboardDelegate</td><td>interface KeyboardDelegate {
+        on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;
+
+        off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;
+
+        on(type: 'cursorContextChange', callback: (x: number, y: number, height: number) => void): void;
+
+        off(type: 'cursorContextChange', callback?: (x: number, y: number, height: number) => void): void;
+
+        on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
+
+        off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;
+
+        on(type: 'textChange', callback: (text: string) => void): void;
+
+        off(type: 'textChange', callback?: (text: string) => void): void;
+    }</td><td>KeyboardDelegate</td><td>20</td><td>0</td><td>8</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'cursorContextChange', callback: (x: number, y: number, height: number) => void): void;</td><td>on</td><td>21</td><td>5</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'cursorContextChange', callback: (x: number, y: number, height: number) => void): void;</td><td>on</td><td>21</td><td>5</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'cursorContextChange', callback?: (x: number, y: number, height: number) => void): void;</td><td>off</td><td>21</td><td>5</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'cursorContextChange', callback?: (x: number, y: number, height: number) => void): void;</td><td>off</td><td>21</td><td>5</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;</td><td>on</td><td>21</td><td>6</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;</td><td>on</td><td>21</td><td>6</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;</td><td>off</td><td>21</td><td>6</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void;</td><td>off</td><td>21</td><td>6</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'textChange', callback: (text: string) => void): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>on(type: 'textChange', callback: (text: string) => void): void;</td><td>on</td><td>21</td><td>3</td><td>3383</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'textChange', callback?: (text: string) => void): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>KeyboardDelegate</td><td>off(type: 'textChange', callback?: (text: string) => void): void;</td><td>off</td><td>21</td><td>3</td><td>53</td><tr><tr><td>EditorAttribute</td><td>interface EditorAttribute {
+        readonly inputPattern: number;
+        readonly enterKeyType: number;
+    }</td><td>EditorAttribute</td><td>20</td><td>0</td><td>5</td><tr><tr><td>EditorAttribute</td><td>readonly inputPattern: number</td><td>inputPattern</td><td>22</td><td>1</td><td>2</td><tr><tr><td>EditorAttribute</td><td>readonly enterKeyType: number</td><td>enterKeyType</td><td>22</td><td>1</td><td>3</td><tr><tr><td>KeyEvent</td><td>interface KeyEvent {
+        readonly keyCode: number;
+        readonly keyAction: number;
+    }</td><td>KeyEvent</td><td>20</td><td>0</td><td>0</td><tr><tr><td>KeyEvent</td><td>readonly keyCode: number</td><td>keyCode</td><td>22</td><td>1</td><td>3</td><tr><tr><td>KeyEvent</td><td>readonly keyAction: number</td><td>keyAction</td><td>22</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

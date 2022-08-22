@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>分布式数据管理子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>distributeddatamgr</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.data.distributedData</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>distributedData</td><td>declare namespace distributedData {
+    
+    interface KVManagerConfig {
+        
+        userInfo: UserInfo;
+
+        
+        bundleName: string;
+    }
+
+    
+    interface UserInfo {
+        
+        userId?: string;
+
+        
+        userType?: UserType;
+    }
+
+    
+    enum UserType {
+        
+        SAME_USER_ID = 0
+    }
+
+    
+    namespace Constants {
+        
+        const MAX_KEY_LENGTH = 1024;
+
+        
+        const MAX_VALUE_LENGTH = 4194303;
+
+        
+        const MAX_KEY_LENGTH_DEVICE = 896;
+
+        
+        const MAX_STORE_ID_LENGTH = 128;
+
+        
+        const MAX_QUERY_LENGTH = 512000;
+
+        
+        const MAX_BATCH_SIZE = 128;
+    }
+
+    
+    enum ValueType {
+        
+        STRING = 0,
+
+        
+        INTEGER = 1,
+
+        
+        FLOAT = 2,
+
+        
+        BYTE_ARRAY = 3,
+
+        
+        BOOLEAN = 4,
+
+        
+        DOUBLE = 5
+    }
+
+    
+    interface Value {
+        
+        type: ValueType;
+        
+        value: Uint8Array | string | number | boolean;
+    }
+
+    
+    interface Entry {
+        
+        key: string;
+        
+        value: Value;
+    }
+
+    
+    interface ChangeNotification {
+        
+        insertEntries: Entry[];
+        
+        updateEntries: Entry[];
+        
+        deleteEntries: Entry[];
+        
+        deviceId: string;
+    }
+
+    
+    enum SyncMode {
+        
+        PULL_ONLY = 0,
+        
+        PUSH_ONLY = 1,
+        
+        PUSH_PULL = 2
+    }
+
+    
+    enum SubscribeType {
+        
+        SUBSCRIBE_TYPE_LOCAL = 0,
+
+        
+        SUBSCRIBE_TYPE_REMOTE = 1,
+
+        
+        SUBSCRIBE_TYPE_ALL = 2,
+    }
+
+    
+    enum KVStoreType {
+        
+        DEVICE_COLLABORATION = 0,
+
+        
+        SINGLE_VERSION = 1,
+
+        
+        MULTI_VERSION = 2,
+    }
+
+    
+    enum SecurityLevel {
+        
+        NO_LEVEL = 0,
+
+        
+        S0 = 1,
+
+        
+        S1 = 2,
+
+        
+        S2 = 3,
+
+        
+        S3 = 5,
+
+        
+        S4 = 6,
+    }
+
+    
+    interface Options {
+        
+        createIfMissing?: boolean;
+        
+        encrypt?: boolean;
+        
+        backup?: boolean;
+        
+        autoSync?: boolean;
+        
+        kvStoreType?: KVStoreType;
+        
+        securityLevel?: SecurityLevel;
+        
+        schema?: Schema;
+    }
+
+    
+    class Schema {
+        
+        constructor()
+        
+		root: FieldNode;  
+        
+        indexes: Array<string>;    
+        
+        mode: number;
+        
+        skip: number;
+    }
+
+    
+    class FieldNode {
+        
+        constructor(name: string)
+        
+        appendChild(child: FieldNode): boolean;
+        
+         default: string;
+         
+         nullable: boolean;
+         
+         type: number;
+    }
+
+    
+    interface KvStoreResultSet {
+        
+        getCount(): number;
+        
+        getPosition(): number;
+        
+        moveToFirst(): boolean;
+        
+        moveToLast(): boolean;
+        
+        moveToNext(): boolean;
+        
+        moveToPrevious(): boolean;
+        
+        move(offset: number): boolean;
+        
+        moveToPosition(position: number): boolean;
+        
+        isFirst(): boolean;
+        
+        isLast(): boolean;
+        
+        isBeforeFirst(): boolean;
+        
+        isAfterLast(): boolean;
+        
+        getEntry(): Entry;
+    }
+
+    
+    class Query {
+        
+        constructor()        
+        
+        reset(): Query;
+        
+        equalTo(field: string, value: number|string|boolean): Query;
+        
+        notEqualTo(field: string, value: number|string|boolean): Query;
+        
+        greaterThan(field: string, value: number|string|boolean): Query;
+        
+        lessThan(field: string, value: number|string): Query;
+        
+        greaterThanOrEqualTo(field: string, value: number|string): Query;
+        
+        lessThanOrEqualTo(field: string, value: number|string): Query;
+        
+        isNull(field: string): Query;
+        
+        inNumber(field: string, valueList: number[]): Query;
+        
+        inString(field: string, valueList: string[]): Query;
+        
+        notInNumber(field: string, valueList: number[]): Query;
+        
+        notInString(field: string, valueList: string[]): Query;
+        
+        like(field: string, value: string): Query;
+        
+        unlike(field: string, value: string): Query;
+        
+        and(): Query;
+        
+        or(): Query;
+        
+        orderByAsc(field: string): Query;
+        
+        orderByDesc(field: string): Query;
+        
+        limit(total: number, offset: number): Query;
+        
+        isNotNull(field: string): Query;
+        
+        beginGroup(): Query;
+        
+        endGroup(): Query;
+        
+        prefixKey(prefix: string): Query;
+        
+        setSuggestIndex(index: string): Query;
+		
+		deviceId(deviceId:string):Query;
+		
+		getSqlLike():string;
+    }
+
+    
+    interface KVStore {
+        
+        put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void>): void;
+        put(key: string, value: Uint8Array | string | number | boolean): Promise<void>;
+
+        
+        delete(key: string, callback: AsyncCallback<void>): void;
+        delete(key: string): Promise<void>;
+
+        
+        on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification>): void;
+
+        
+        on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+		
+        
+        off(event:'dataChange', observer?: Callback<ChangeNotification>): void;
+
+        
+        putBatch(entries: Entry[], callback: AsyncCallback<void>): void;
+        putBatch(entries: Entry[]): Promise<void>;
+
+        
+        deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
+        deleteBatch(keys: string[]): Promise<void>;
+
+        
+        startTransaction(callback: AsyncCallback<void>): void;
+        startTransaction(): Promise<void>;
+
+        
+        commit(callback: AsyncCallback<void>): void;
+        commit(): Promise<void>;
+
+        
+        rollback(callback: AsyncCallback<void>): void;
+        rollback(): Promise<void>;
+
+        
+        enableSync(enabled: boolean, callback: AsyncCallback<void>): void;
+        enableSync(enabled: boolean): Promise<void>;
+
+        
+        setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void>): void;
+        setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void>;
+    }
+
+    
+    interface SingleKVStore extends KVStore {
+        
+        get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>): void;
+        get(key: string): Promise<Uint8Array | string | boolean | number>;
+
+        
+        getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
+        getEntries(keyPrefix: string): Promise<Entry[]>;
+
+        
+        getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
+        getEntries(query: Query): Promise<Entry[]>;
+
+        
+        getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
+        getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
+
+        
+        getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+        getResultSet(query: Query): Promise<KvStoreResultSet>;
+
+        
+        closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
+        closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
+
+        
+        getResultSize(query: Query, callback: AsyncCallback<number>): void;
+        getResultSize(query: Query): Promise<number>;
+
+        
+        removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
+        removeDeviceData(deviceId: string): Promise<void>;
+
+        
+         sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
+
+         
+         on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+
+         
+         off(event: 'syncComplete', syncCallback?: Callback<Array<[string, number]>>): void;
+	 
+	 
+         
+         setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback<void>): void;
+         setSyncParam(defaultAllowedDelayMs: number): Promise<void>;
+
+         
+         getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;
+         getSecurityLevel(): Promise<SecurityLevel>;
+    }
+
+    
+    interface DeviceKVStore extends KVStore {
+        
+         get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array>): void;
+         get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
+
+         
+         getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
+         getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
+
+         
+         getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
+         getEntries(query: Query): Promise<Entry[]>;
+
+         
+         getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): void;
+         getEntries(deviceId: string, query: Query): Promise<Entry[]>;
+
+         
+         getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
+         getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;
+
+         
+         getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+         getResultSet(query: Query): Promise<KvStoreResultSet>;
+
+         
+         getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+         getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
+
+         
+         closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
+         closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
+
+         
+         getResultSize(query: Query, callback: AsyncCallback<number>): void;
+         getResultSize(query: Query): Promise<number>;
+
+         
+         getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): void;
+         getResultSize(deviceId: string, query: Query): Promise<number>;
+
+         
+         removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
+         removeDeviceData(deviceId: string): Promise<void>;
+         
+        
+        sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
+
+        
+        on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+
+        
+        off(event: 'syncComplete', syncCallback?: Callback<Array<[string, number]>>): void;
+    }
+    
+    
+    function createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): void;
+    function createKVManager(config: KVManagerConfig): Promise<KVManager>;
+
+    
+    interface KVManager {
+        
+        getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>;
+        getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback<T>): void;
+
+        
+        closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void>): void;
+        closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise<void>;
+
+        
+        deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void;
+        deleteKVStore(appId: string, storeId: string): Promise<void>;
+
+        
+        getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
+        getAllKVStoreId(appId: string): Promise<string[]>;
+
+        
+        on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
+
+        
+        off(event: 'distributedDataServiceDie', deathCallback?: Callback<void>): void;
+    }
+}</td><td>distributedData</td><td>None</td><td>0</td><td>32</td><tr><tr><td>distributedData</td><td>function createKVManager(config: KVManagerConfig, callback: AsyncCallback<KVManager>): void;</td><td>createKVManager</td><td>None</td><td>2</td><td>16</td><tr><tr><td>distributedData</td><td>function createKVManager(config: KVManagerConfig): Promise<KVManager>;</td><td>createKVManager</td><td>None</td><td>1</td><td>6</td><tr><tr><td>KVManagerConfig</td><td>interface KVManagerConfig {
+        
+        userInfo: UserInfo;
+
+        
+        bundleName: string;
+    }</td><td>KVManagerConfig</td><td>20</td><td>0</td><td>0</td><tr><tr><td>KVManagerConfig</td><td>userInfo: UserInfo</td><td>userInfo</td><td>22</td><td>1</td><td>8</td><tr><tr><td>KVManagerConfig</td><td>bundleName: string</td><td>bundleName</td><td>22</td><td>1</td><td>9</td><tr><tr><td>UserInfo</td><td>interface UserInfo {
+        
+        userId?: string;
+
+        
+        userType?: UserType;
+    }</td><td>UserInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>UserInfo</td><td>userId?: string</td><td>userId</td><td>22</td><td>1</td><td>27</td><tr><tr><td>UserInfo</td><td>userType?: UserType</td><td>userType</td><td>22</td><td>1</td><td>8</td><tr><tr><td>UserType</td><td>enum UserType {
+        
+        SAME_USER_ID = 0
+    }</td><td>UserType</td><td>40</td><td>0</td><td>9</td><tr><tr><td>UserType</td><td>SAME_USER_ID = 0</td><td>SAME_USER_ID</td><td>42</td><td>1</td><td>9</td><tr><tr><td>Constants</td><td>namespace Constants {
+        
+        const MAX_KEY_LENGTH = 1024;
+
+        
+        const MAX_VALUE_LENGTH = 4194303;
+
+        
+        const MAX_KEY_LENGTH_DEVICE = 896;
+
+        
+        const MAX_STORE_ID_LENGTH = 128;
+
+        
+        const MAX_QUERY_LENGTH = 512000;
+
+        
+        const MAX_BATCH_SIZE = 128;
+    }</td><td>Constants</td><td>35</td><td>0</td><td>16</td><tr><tr><td>ValueType</td><td>enum ValueType {
+        
+        STRING = 0,
+
+        
+        INTEGER = 1,
+
+        
+        FLOAT = 2,
+
+        
+        BYTE_ARRAY = 3,
+
+        
+        BOOLEAN = 4,
+
+        
+        DOUBLE = 5
+    }</td><td>ValueType</td><td>40</td><td>0</td><td>80</td><tr><tr><td>ValueType</td><td>STRING = 0,</td><td>STRING</td><td>42</td><td>1</td><td>198</td><tr><tr><td>ValueType</td><td>INTEGER = 1,</td><td>INTEGER</td><td>42</td><td>1</td><td>67</td><tr><tr><td>ValueType</td><td>FLOAT = 2,</td><td>FLOAT</td><td>42</td><td>1</td><td>132</td><tr><tr><td>ValueType</td><td>BYTE_ARRAY = 3,</td><td>BYTE_ARRAY</td><td>42</td><td>1</td><td>15</td><tr><tr><td>ValueType</td><td>BOOLEAN = 4,</td><td>BOOLEAN</td><td>42</td><td>1</td><td>70</td><tr><tr><td>ValueType</td><td>DOUBLE = 5</td><td>DOUBLE</td><td>42</td><td>1</td><td>28</td><tr><tr><td>Value</td><td>interface Value {
+        
+        type: ValueType;
+        
+        value: Uint8Array | string | number | boolean;
+    }</td><td>Value</td><td>20</td><td>0</td><td>570</td><tr><tr><td>Value</td><td>type: ValueType</td><td>type</td><td>22</td><td>1</td><td>155</td><tr><tr><td>Value</td><td>value: Uint8Array | string | number | boolean</td><td>value</td><td>22</td><td>1</td><td>460</td><tr><tr><td>Entry</td><td>interface Entry {
+        
+        key: string;
+        
+        value: Value;
+    }</td><td>Entry</td><td>20</td><td>0</td><td>31</td><tr><tr><td>Entry</td><td>key: string</td><td>key</td><td>22</td><td>1</td><td>586</td><tr><tr><td>Entry</td><td>value: Value</td><td>value</td><td>22</td><td>1</td><td>460</td><tr><tr><td>ChangeNotification</td><td>interface ChangeNotification {
+        
+        insertEntries: Entry[];
+        
+        updateEntries: Entry[];
+        
+        deleteEntries: Entry[];
+        
+        deviceId: string;
+    }</td><td>ChangeNotification</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ChangeNotification</td><td>insertEntries: Entry[]</td><td>insertEntries</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ChangeNotification</td><td>updateEntries: Entry[]</td><td>updateEntries</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ChangeNotification</td><td>deleteEntries: Entry[]</td><td>deleteEntries</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ChangeNotification</td><td>deviceId: string</td><td>deviceId</td><td>22</td><td>1</td><td>28</td><tr><tr><td>SyncMode</td><td>enum SyncMode {
+        
+        PULL_ONLY = 0,
+        
+        PUSH_ONLY = 1,
+        
+        PUSH_PULL = 2
+    }</td><td>SyncMode</td><td>40</td><td>0</td><td>17</td><tr><tr><td>SyncMode</td><td>PULL_ONLY = 0,</td><td>PULL_ONLY</td><td>42</td><td>1</td><td>5</td><tr><tr><td>SyncMode</td><td>PUSH_ONLY = 1,</td><td>PUSH_ONLY</td><td>42</td><td>1</td><td>7</td><tr><tr><td>SyncMode</td><td>PUSH_PULL = 2</td><td>PUSH_PULL</td><td>42</td><td>1</td><td>7</td><tr><tr><td>SubscribeType</td><td>enum SubscribeType {
+        
+        SUBSCRIBE_TYPE_LOCAL = 0,
+
+        
+        SUBSCRIBE_TYPE_REMOTE = 1,
+
+        
+        SUBSCRIBE_TYPE_ALL = 2,
+    }</td><td>SubscribeType</td><td>40</td><td>0</td><td>7</td><tr><tr><td>SubscribeType</td><td>SUBSCRIBE_TYPE_LOCAL = 0,</td><td>SUBSCRIBE_TYPE_LOCAL</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SubscribeType</td><td>SUBSCRIBE_TYPE_REMOTE = 1,</td><td>SUBSCRIBE_TYPE_REMOTE</td><td>42</td><td>1</td><td>3</td><tr><tr><td>SubscribeType</td><td>SUBSCRIBE_TYPE_ALL = 2,</td><td>SUBSCRIBE_TYPE_ALL</td><td>42</td><td>1</td><td>4</td><tr><tr><td>KVStoreType</td><td>enum KVStoreType {
+        
+        DEVICE_COLLABORATION = 0,
+
+        
+        SINGLE_VERSION = 1,
+
+        
+        MULTI_VERSION = 2,
+    }</td><td>KVStoreType</td><td>40</td><td>0</td><td>48</td><tr><tr><td>KVStoreType</td><td>DEVICE_COLLABORATION = 0,</td><td>DEVICE_COLLABORATION</td><td>42</td><td>1</td><td>9</td><tr><tr><td>KVStoreType</td><td>SINGLE_VERSION = 1,</td><td>SINGLE_VERSION</td><td>42</td><td>1</td><td>40</td><tr><tr><td>KVStoreType</td><td>MULTI_VERSION = 2,</td><td>MULTI_VERSION</td><td>42</td><td>1</td><td>5</td><tr><tr><td>SecurityLevel</td><td>enum SecurityLevel {
+        
+        NO_LEVEL = 0,
+
+        
+        S0 = 1,
+
+        
+        S1 = 2,
+
+        
+        S2 = 3,
+
+        
+        S3 = 5,
+
+        
+        S4 = 6,
+    }</td><td>SecurityLevel</td><td>40</td><td>0</td><td>128</td><tr><tr><td>SecurityLevel</td><td>NO_LEVEL = 0,</td><td>NO_LEVEL</td><td>42</td><td>1</td><td>6</td><tr><tr><td>SecurityLevel</td><td>S0 = 1,</td><td>S0</td><td>42</td><td>1</td><td>7</td><tr><tr><td>SecurityLevel</td><td>S1 = 2,</td><td>S1</td><td>42</td><td>1</td><td>7</td><tr><tr><td>SecurityLevel</td><td>S2 = 3,</td><td>S2</td><td>42</td><td>1</td><td>38</td><tr><tr><td>SecurityLevel</td><td>S3 = 5,</td><td>S3</td><td>42</td><td>1</td><td>7</td><tr><tr><td>SecurityLevel</td><td>S4 = 6,</td><td>S4</td><td>42</td><td>1</td><td>7</td><tr><tr><td>Options</td><td>interface Options {
+        
+        createIfMissing?: boolean;
+        
+        encrypt?: boolean;
+        
+        backup?: boolean;
+        
+        autoSync?: boolean;
+        
+        kvStoreType?: KVStoreType;
+        
+        securityLevel?: SecurityLevel;
+        
+        schema?: Schema;
+    }</td><td>Options</td><td>20</td><td>0</td><td>0</td><tr><tr><td>Options</td><td>createIfMissing?: boolean</td><td>createIfMissing</td><td>22</td><td>1</td><td>42</td><tr><tr><td>Options</td><td>encrypt?: boolean</td><td>encrypt</td><td>22</td><td>1</td><td>42</td><tr><tr><td>Options</td><td>backup?: boolean</td><td>backup</td><td>22</td><td>1</td><td>42</td><tr><tr><td>Options</td><td>autoSync?: boolean</td><td>autoSync</td><td>22</td><td>1</td><td>42</td><tr><tr><td>Options</td><td>kvStoreType?: KVStoreType</td><td>kvStoreType</td><td>22</td><td>1</td><td>45</td><tr><tr><td>Options</td><td>securityLevel?: SecurityLevel</td><td>securityLevel</td><td>22</td><td>1</td><td>42</td><tr><tr><td>Options</td><td>schema?: Schema</td><td>schema</td><td>22</td><td>1</td><td>87</td><tr><tr><td>Schema</td><td>class Schema {
+        
+        constructor()
+        
+		root: FieldNode;  
+        
+        indexes: Array<string>;    
+        
+        mode: number;
+        
+        skip: number;
+    }</td><td>Schema</td><td>10</td><td>0</td><td>11</td><tr><tr><td>Schema</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>8</td><tr><tr><td>Schema</td><td>root: FieldNode</td><td>root</td><td>12</td><td>1</td><td>11</td><tr><tr><td>Schema</td><td>indexes: Array<string></td><td>indexes</td><td>12</td><td>1</td><td>9</td><tr><tr><td>Schema</td><td>mode: number</td><td>mode</td><td>12</td><td>1</td><td>42</td><tr><tr><td>Schema</td><td>skip: number</td><td>skip</td><td>12</td><td>1</td><td>3</td><tr><tr><td>FieldNode</td><td>class FieldNode {
+        
+        constructor(name: string)
+        
+        appendChild(child: FieldNode): boolean;
+        
+         default: string;
+         
+         nullable: boolean;
+         
+         type: number;
+    }</td><td>FieldNode</td><td>10</td><td>0</td><td>34</td><tr><tr><td>FieldNode</td><td>constructor(name: string)</td><td>constructor</td><td>11</td><td>1</td><td>8</td><tr><tr><td>FieldNode</td><td>appendChild(child: FieldNode): boolean;</td><td>appendChild</td><td>11</td><td>1</td><td>16</td><tr><tr><td>FieldNode</td><td>default: string</td><td>default</td><td>12</td><td>1</td><td>50</td><tr><tr><td>FieldNode</td><td>nullable: boolean</td><td>nullable</td><td>12</td><td>1</td><td>11</td><tr><tr><td>FieldNode</td><td>type: number</td><td>type</td><td>12</td><td>1</td><td>155</td><tr><tr><td>KvStoreResultSet</td><td>interface KvStoreResultSet {
+        
+        getCount(): number;
+        
+        getPosition(): number;
+        
+        moveToFirst(): boolean;
+        
+        moveToLast(): boolean;
+        
+        moveToNext(): boolean;
+        
+        moveToPrevious(): boolean;
+        
+        move(offset: number): boolean;
+        
+        moveToPosition(position: number): boolean;
+        
+        isFirst(): boolean;
+        
+        isLast(): boolean;
+        
+        isBeforeFirst(): boolean;
+        
+        isAfterLast(): boolean;
+        
+        getEntry(): Entry;
+    }</td><td>KvStoreResultSet</td><td>20</td><td>0</td><td>254</td><tr><tr><td>KvStoreResultSet</td><td>getCount(): number;</td><td>getCount</td><td>21</td><td>0</td><td>23</td><tr><tr><td>KvStoreResultSet</td><td>getPosition(): number;</td><td>getPosition</td><td>21</td><td>0</td><td>31</td><tr><tr><td>KvStoreResultSet</td><td>moveToFirst(): boolean;</td><td>moveToFirst</td><td>21</td><td>0</td><td>13</td><tr><tr><td>KvStoreResultSet</td><td>moveToLast(): boolean;</td><td>moveToLast</td><td>21</td><td>0</td><td>13</td><tr><tr><td>KvStoreResultSet</td><td>moveToNext(): boolean;</td><td>moveToNext</td><td>21</td><td>0</td><td>16</td><tr><tr><td>KvStoreResultSet</td><td>moveToPrevious(): boolean;</td><td>moveToPrevious</td><td>21</td><td>0</td><td>10</td><tr><tr><td>KvStoreResultSet</td><td>move(offset: number): boolean;</td><td>move</td><td>21</td><td>1</td><td>348</td><tr><tr><td>KvStoreResultSet</td><td>moveToPosition(position: number): boolean;</td><td>moveToPosition</td><td>21</td><td>1</td><td>9</td><tr><tr><td>KvStoreResultSet</td><td>isFirst(): boolean;</td><td>isFirst</td><td>21</td><td>0</td><td>10</td><tr><tr><td>KvStoreResultSet</td><td>isLast(): boolean;</td><td>isLast</td><td>21</td><td>0</td><td>8</td><tr><tr><td>KvStoreResultSet</td><td>isBeforeFirst(): boolean;</td><td>isBeforeFirst</td><td>21</td><td>0</td><td>8</td><tr><tr><td>KvStoreResultSet</td><td>isAfterLast(): boolean;</td><td>isAfterLast</td><td>21</td><td>0</td><td>8</td><tr><tr><td>KvStoreResultSet</td><td>getEntry(): Entry;</td><td>getEntry</td><td>21</td><td>0</td><td>10</td><tr><tr><td>Query</td><td>class Query {
+        
+        constructor()        
+        
+        reset(): Query;
+        
+        equalTo(field: string, value: number|string|boolean): Query;
+        
+        notEqualTo(field: string, value: number|string|boolean): Query;
+        
+        greaterThan(field: string, value: number|string|boolean): Query;
+        
+        lessThan(field: string, value: number|string): Query;
+        
+        greaterThanOrEqualTo(field: string, value: number|string): Query;
+        
+        lessThanOrEqualTo(field: string, value: number|string): Query;
+        
+        isNull(field: string): Query;
+        
+        inNumber(field: string, valueList: number[]): Query;
+        
+        inString(field: string, valueList: string[]): Query;
+        
+        notInNumber(field: string, valueList: number[]): Query;
+        
+        notInString(field: string, valueList: string[]): Query;
+        
+        like(field: string, value: string): Query;
+        
+        unlike(field: string, value: string): Query;
+        
+        and(): Query;
+        
+        or(): Query;
+        
+        orderByAsc(field: string): Query;
+        
+        orderByDesc(field: string): Query;
+        
+        limit(total: number, offset: number): Query;
+        
+        isNotNull(field: string): Query;
+        
+        beginGroup(): Query;
+        
+        endGroup(): Query;
+        
+        prefixKey(prefix: string): Query;
+        
+        setSuggestIndex(index: string): Query;
+		
+		deviceId(deviceId:string):Query;
+		
+		getSqlLike():string;
+    }</td><td>Query</td><td>10</td><td>0</td><td>328</td><tr><tr><td>Query</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>8</td><tr><tr><td>Query</td><td>reset(): Query;</td><td>reset</td><td>11</td><td>0</td><td>31</td><tr><tr><td>Query</td><td>equalTo(field: string, value: number|string|boolean): Query;</td><td>equalTo</td><td>11</td><td>2</td><td>122</td><tr><tr><td>Query</td><td>notEqualTo(field: string, value: number|string|boolean): Query;</td><td>notEqualTo</td><td>11</td><td>2</td><td>59</td><tr><tr><td>Query</td><td>greaterThan(field: string, value: number|string|boolean): Query;</td><td>greaterThan</td><td>11</td><td>2</td><td>92</td><tr><tr><td>Query</td><td>lessThan(field: string, value: number|string): Query;</td><td>lessThan</td><td>11</td><td>2</td><td>92</td><tr><tr><td>Query</td><td>greaterThanOrEqualTo(field: string, value: number|string): Query;</td><td>greaterThanOrEqualTo</td><td>11</td><td>2</td><td>34</td><tr><tr><td>Query</td><td>lessThanOrEqualTo(field: string, value: number|string): Query;</td><td>lessThanOrEqualTo</td><td>11</td><td>2</td><td>34</td><tr><tr><td>Query</td><td>isNull(field: string): Query;</td><td>isNull</td><td>11</td><td>1</td><td>30</td><tr><tr><td>Query</td><td>inNumber(field: string, valueList: number[]): Query;</td><td>inNumber</td><td>11</td><td>2</td><td>40</td><tr><tr><td>Query</td><td>inString(field: string, valueList: string[]): Query;</td><td>inString</td><td>11</td><td>2</td><td>8</td><tr><tr><td>Query</td><td>notInNumber(field: string, valueList: number[]): Query;</td><td>notInNumber</td><td>11</td><td>2</td><td>8</td><tr><tr><td>Query</td><td>notInString(field: string, valueList: string[]): Query;</td><td>notInString</td><td>11</td><td>2</td><td>5</td><tr><tr><td>Query</td><td>like(field: string, value: string): Query;</td><td>like</td><td>11</td><td>2</td><td>78</td><tr><tr><td>Query</td><td>unlike(field: string, value: string): Query;</td><td>unlike</td><td>11</td><td>2</td><td>6</td><tr><tr><td>Query</td><td>and(): Query;</td><td>and</td><td>11</td><td>0</td><td>36</td><tr><tr><td>Query</td><td>or(): Query;</td><td>or</td><td>11</td><td>0</td><td>6347</td><tr><tr><td>Query</td><td>orderByAsc(field: string): Query;</td><td>orderByAsc</td><td>11</td><td>1</td><td>9</td><tr><tr><td>Query</td><td>orderByDesc(field: string): Query;</td><td>orderByDesc</td><td>11</td><td>1</td><td>9</td><tr><tr><td>Query</td><td>limit(total: number, offset: number): Query;</td><td>limit</td><td>11</td><td>2</td><td>50</td><tr><tr><td>Query</td><td>isNotNull(field: string): Query;</td><td>isNotNull</td><td>11</td><td>1</td><td>31</td><tr><tr><td>Query</td><td>beginGroup(): Query;</td><td>beginGroup</td><td>11</td><td>0</td><td>8</td><tr><tr><td>Query</td><td>endGroup(): Query;</td><td>endGroup</td><td>11</td><td>0</td><td>7</td><tr><tr><td>Query</td><td>prefixKey(prefix: string): Query;</td><td>prefixKey</td><td>11</td><td>1</td><td>33</td><tr><tr><td>Query</td><td>setSuggestIndex(index: string): Query;</td><td>setSuggestIndex</td><td>11</td><td>1</td><td>5</td><tr><tr><td>Query</td><td>deviceId(deviceId:string):Query;</td><td>deviceId</td><td>11</td><td>1</td><td>28</td><tr><tr><td>Query</td><td>getSqlLike():string;</td><td>getSqlLike</td><td>11</td><td>0</td><td>260</td><tr><tr><td>KVStore</td><td>interface KVStore {
+        
+        put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void>): void;
+        put(key: string, value: Uint8Array | string | number | boolean): Promise<void>;
+
+        
+        delete(key: string, callback: AsyncCallback<void>): void;
+        delete(key: string): Promise<void>;
+
+        
+        on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification>): void;
+
+        
+        on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+		
+        
+        off(event:'dataChange', observer?: Callback<ChangeNotification>): void;
+
+        
+        putBatch(entries: Entry[], callback: AsyncCallback<void>): void;
+        putBatch(entries: Entry[]): Promise<void>;
+
+        
+        deleteBatch(keys: string[], callback: AsyncCallback<void>): void;
+        deleteBatch(keys: string[]): Promise<void>;
+
+        
+        startTransaction(callback: AsyncCallback<void>): void;
+        startTransaction(): Promise<void>;
+
+        
+        commit(callback: AsyncCallback<void>): void;
+        commit(): Promise<void>;
+
+        
+        rollback(callback: AsyncCallback<void>): void;
+        rollback(): Promise<void>;
+
+        
+        enableSync(enabled: boolean, callback: AsyncCallback<void>): void;
+        enableSync(enabled: boolean): Promise<void>;
+
+        
+        setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void>): void;
+        setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void>;
+    }</td><td>KVStore</td><td>20</td><td>0</td><td>666</td><tr><tr><td>KVStore</td><td>put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback<void>): void;</td><td>put</td><td>21</td><td>3</td><td>578</td><tr><tr><td>KVStore</td><td>put(key: string, value: Uint8Array | string | number | boolean): Promise<void>;</td><td>put</td><td>21</td><td>2</td><td>54</td><tr><tr><td>KVStore</td><td>delete(key: string, callback: AsyncCallback<void>): void;</td><td>delete</td><td>21</td><td>2</td><td>224</td><tr><tr><td>KVStore</td><td>delete(key: string): Promise<void>;</td><td>delete</td><td>21</td><td>1</td><td>31</td><tr><tr><td>KVStore</td><td>on(event: 'dataChange', type: SubscribeType, observer: Callback<ChangeNotification>): void;</td><td>on</td><td>21</td><td>3</td><td>9171</td><tr><tr><td>KVStore</td><td>on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;</td><td>on</td><td>21</td><td>2</td><td>9171</td><tr><tr><td>KVStore</td><td>off(event:'dataChange', observer?: Callback<ChangeNotification>): void;</td><td>off</td><td>21</td><td>2</td><td>78</td><tr><tr><td>KVStore</td><td>putBatch(entries: Entry[], callback: AsyncCallback<void>): void;</td><td>putBatch</td><td>21</td><td>2</td><td>154</td><tr><tr><td>KVStore</td><td>putBatch(entries: Entry[]): Promise<void>;</td><td>putBatch</td><td>21</td><td>1</td><td>36</td><tr><tr><td>KVStore</td><td>deleteBatch(keys: string[], callback: AsyncCallback<void>): void;</td><td>deleteBatch</td><td>21</td><td>2</td><td>40</td><tr><tr><td>KVStore</td><td>deleteBatch(keys: string[]): Promise<void>;</td><td>deleteBatch</td><td>21</td><td>1</td><td>10</td><tr><tr><td>KVStore</td><td>startTransaction(callback: AsyncCallback<void>): void;</td><td>startTransaction</td><td>21</td><td>1</td><td>232</td><tr><tr><td>KVStore</td><td>startTransaction(): Promise<void>;</td><td>startTransaction</td><td>21</td><td>0</td><td>10</td><tr><tr><td>KVStore</td><td>commit(callback: AsyncCallback<void>): void;</td><td>commit</td><td>21</td><td>1</td><td>59</td><tr><tr><td>KVStore</td><td>commit(): Promise<void>;</td><td>commit</td><td>21</td><td>0</td><td>8</td><tr><tr><td>KVStore</td><td>rollback(callback: AsyncCallback<void>): void;</td><td>rollback</td><td>21</td><td>1</td><td>27</td><tr><tr><td>KVStore</td><td>rollback(): Promise<void>;</td><td>rollback</td><td>21</td><td>0</td><td>8</td><tr><tr><td>KVStore</td><td>enableSync(enabled: boolean, callback: AsyncCallback<void>): void;</td><td>enableSync</td><td>21</td><td>2</td><td>40</td><tr><tr><td>KVStore</td><td>enableSync(enabled: boolean): Promise<void>;</td><td>enableSync</td><td>21</td><td>1</td><td>8</td><tr><tr><td>KVStore</td><td>setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback<void>): void;</td><td>setSyncRange</td><td>21</td><td>3</td><td>12</td><tr><tr><td>KVStore</td><td>setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise<void>;</td><td>setSyncRange</td><td>21</td><td>2</td><td>6</td><tr><tr><td>SingleKVStore</td><td>interface SingleKVStore extends KVStore {
+        
+        get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>): void;
+        get(key: string): Promise<Uint8Array | string | boolean | number>;
+
+        
+        getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
+        getEntries(keyPrefix: string): Promise<Entry[]>;
+
+        
+        getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
+        getEntries(query: Query): Promise<Entry[]>;
+
+        
+        getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
+        getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;
+
+        
+        getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+        getResultSet(query: Query): Promise<KvStoreResultSet>;
+
+        
+        closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
+        closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
+
+        
+        getResultSize(query: Query, callback: AsyncCallback<number>): void;
+        getResultSize(query: Query): Promise<number>;
+
+        
+        removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
+        removeDeviceData(deviceId: string): Promise<void>;
+
+        
+         sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
+
+         
+         on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+
+         
+         off(event: 'syncComplete', syncCallback?: Callback<Array<[string, number]>>): void;
+	 
+	 
+         
+         setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback<void>): void;
+         setSyncParam(defaultAllowedDelayMs: number): Promise<void>;
+
+         
+         getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;
+         getSecurityLevel(): Promise<SecurityLevel>;
+    }</td><td>SingleKVStore</td><td>None</td><td>0</td><td>0</td><tr><tr><td>SingleKVStore</td><td>get(key: string, callback: AsyncCallback<Uint8Array | string | boolean | number>): void;</td><td>get</td><td>None</td><td>2</td><td>1110</td><tr><tr><td>SingleKVStore</td><td>get(key: string): Promise<Uint8Array | string | boolean | number>;</td><td>get</td><td>None</td><td>1</td><td>85</td><tr><tr><td>SingleKVStore</td><td>getEntries(keyPrefix: string, callback: AsyncCallback<Entry[]>): void;</td><td>getEntries</td><td>None</td><td>2</td><td>70</td><tr><tr><td>SingleKVStore</td><td>getEntries(keyPrefix: string): Promise<Entry[]>;</td><td>getEntries</td><td>None</td><td>1</td><td>12</td><tr><tr><td>SingleKVStore</td><td>getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;</td><td>getEntries</td><td>None</td><td>2</td><td>70</td><tr><tr><td>SingleKVStore</td><td>getEntries(query: Query): Promise<Entry[]>;</td><td>getEntries</td><td>None</td><td>1</td><td>12</td><tr><tr><td>SingleKVStore</td><td>getResultSet(keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;</td><td>getResultSet</td><td>None</td><td>2</td><td>87</td><tr><tr><td>SingleKVStore</td><td>getResultSet(keyPrefix: string): Promise<KvStoreResultSet>;</td><td>getResultSet</td><td>None</td><td>1</td><td>13</td><tr><tr><td>SingleKVStore</td><td>getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;</td><td>getResultSet</td><td>None</td><td>2</td><td>87</td><tr><tr><td>SingleKVStore</td><td>getResultSet(query: Query): Promise<KvStoreResultSet>;</td><td>getResultSet</td><td>None</td><td>1</td><td>13</td><tr><tr><td>SingleKVStore</td><td>closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;</td><td>closeResultSet</td><td>None</td><td>2</td><td>66</td><tr><tr><td>SingleKVStore</td><td>closeResultSet(resultSet: KvStoreResultSet): Promise<void>;</td><td>closeResultSet</td><td>None</td><td>1</td><td>16</td><tr><tr><td>SingleKVStore</td><td>getResultSize(query: Query, callback: AsyncCallback<number>): void;</td><td>getResultSize</td><td>None</td><td>2</td><td>4</td><tr><tr><td>SingleKVStore</td><td>getResultSize(query: Query): Promise<number>;</td><td>getResultSize</td><td>None</td><td>1</td><td>4</td><tr><tr><td>SingleKVStore</td><td>removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;</td><td>removeDeviceData</td><td>None</td><td>2</td><td>40</td><tr><tr><td>SingleKVStore</td><td>removeDeviceData(deviceId: string): Promise<void>;</td><td>removeDeviceData</td><td>None</td><td>1</td><td>8</td><tr><tr><td>SingleKVStore</td><td>sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;</td><td>sync</td><td>None</td><td>3</td><td>1452</td><tr><tr><td>SingleKVStore</td><td>on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;</td><td>on</td><td>None</td><td>2</td><td>9171</td><tr><tr><td>SingleKVStore</td><td>off(event: 'syncComplete', syncCallback?: Callback<Array<[string, number]>>): void;</td><td>off</td><td>None</td><td>2</td><td>78</td><tr><tr><td>SingleKVStore</td><td>setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback<void>): void;</td><td>setSyncParam</td><td>None</td><td>2</td><td>4</td><tr><tr><td>SingleKVStore</td><td>setSyncParam(defaultAllowedDelayMs: number): Promise<void>;</td><td>setSyncParam</td><td>None</td><td>1</td><td>4</td><tr><tr><td>SingleKVStore</td><td>getSecurityLevel(callback: AsyncCallback<SecurityLevel>): void;</td><td>getSecurityLevel</td><td>None</td><td>1</td><td>19</td><tr><tr><td>SingleKVStore</td><td>getSecurityLevel(): Promise<SecurityLevel>;</td><td>getSecurityLevel</td><td>None</td><td>0</td><td>4</td><tr><tr><td>DeviceKVStore</td><td>interface DeviceKVStore extends KVStore {
+        
+         get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array>): void;
+         get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;
+
+         
+         getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>): void;
+         getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;
+
+         
+         getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;
+         getEntries(query: Query): Promise<Entry[]>;
+
+         
+         getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): void;
+         getEntries(deviceId: string, query: Query): Promise<Entry[]>;
+
+         
+         getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;
+         getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;
+
+         
+         getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+         getResultSet(query: Query): Promise<KvStoreResultSet>;
+
+         
+         getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet>): void;
+         getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;
+
+         
+         closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;
+         closeResultSet(resultSet: KvStoreResultSet): Promise<void>;
+
+         
+         getResultSize(query: Query, callback: AsyncCallback<number>): void;
+         getResultSize(query: Query): Promise<number>;
+
+         
+         getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): void;
+         getResultSize(deviceId: string, query: Query): Promise<number>;
+
+         
+         removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;
+         removeDeviceData(deviceId: string): Promise<void>;
+         
+        
+        sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;
+
+        
+        on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;
+
+        
+        off(event: 'syncComplete', syncCallback?: Callback<Array<[string, number]>>): void;
+    }</td><td>DeviceKVStore</td><td>None</td><td>0</td><td>0</td><tr><tr><td>DeviceKVStore</td><td>get(deviceId: string, key: string, callback: AsyncCallback<boolean|string|number|Uint8Array>): void;</td><td>get</td><td>None</td><td>3</td><td>1110</td><tr><tr><td>DeviceKVStore</td><td>get(deviceId: string, key: string): Promise<boolean|string|number|Uint8Array>;</td><td>get</td><td>None</td><td>2</td><td>85</td><tr><tr><td>DeviceKVStore</td><td>getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback<Entry[]>): void;</td><td>getEntries</td><td>None</td><td>3</td><td>70</td><tr><tr><td>DeviceKVStore</td><td>getEntries(deviceId: string, keyPrefix: string): Promise<Entry[]>;</td><td>getEntries</td><td>None</td><td>2</td><td>12</td><tr><tr><td>DeviceKVStore</td><td>getEntries(query: Query, callback: AsyncCallback<Entry[]>): void;</td><td>getEntries</td><td>None</td><td>2</td><td>70</td><tr><tr><td>DeviceKVStore</td><td>getEntries(query: Query): Promise<Entry[]>;</td><td>getEntries</td><td>None</td><td>1</td><td>12</td><tr><tr><td>DeviceKVStore</td><td>getEntries(deviceId: string, query: Query, callback: AsyncCallback<Entry[]>): void;</td><td>getEntries</td><td>None</td><td>3</td><td>70</td><tr><tr><td>DeviceKVStore</td><td>getEntries(deviceId: string, query: Query): Promise<Entry[]>;</td><td>getEntries</td><td>None</td><td>2</td><td>12</td><tr><tr><td>DeviceKVStore</td><td>getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback<KvStoreResultSet>): void;</td><td>getResultSet</td><td>None</td><td>3</td><td>87</td><tr><tr><td>DeviceKVStore</td><td>getResultSet(deviceId: string, keyPrefix: string): Promise<KvStoreResultSet>;</td><td>getResultSet</td><td>None</td><td>2</td><td>13</td><tr><tr><td>DeviceKVStore</td><td>getResultSet(query: Query, callback: AsyncCallback<KvStoreResultSet>): void;</td><td>getResultSet</td><td>None</td><td>2</td><td>87</td><tr><tr><td>DeviceKVStore</td><td>getResultSet(query: Query): Promise<KvStoreResultSet>;</td><td>getResultSet</td><td>None</td><td>1</td><td>13</td><tr><tr><td>DeviceKVStore</td><td>getResultSet(deviceId: string, query: Query, callback: AsyncCallback<KvStoreResultSet>): void;</td><td>getResultSet</td><td>None</td><td>3</td><td>87</td><tr><tr><td>DeviceKVStore</td><td>getResultSet(deviceId: string, query: Query): Promise<KvStoreResultSet>;</td><td>getResultSet</td><td>None</td><td>2</td><td>13</td><tr><tr><td>DeviceKVStore</td><td>closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback<void>): void;</td><td>closeResultSet</td><td>None</td><td>2</td><td>66</td><tr><tr><td>DeviceKVStore</td><td>closeResultSet(resultSet: KvStoreResultSet): Promise<void>;</td><td>closeResultSet</td><td>None</td><td>1</td><td>16</td><tr><tr><td>DeviceKVStore</td><td>getResultSize(query: Query, callback: AsyncCallback<number>): void;</td><td>getResultSize</td><td>None</td><td>2</td><td>4</td><tr><tr><td>DeviceKVStore</td><td>getResultSize(query: Query): Promise<number>;</td><td>getResultSize</td><td>None</td><td>1</td><td>4</td><tr><tr><td>DeviceKVStore</td><td>getResultSize(deviceId: string, query: Query, callback: AsyncCallback<number>): void;</td><td>getResultSize</td><td>None</td><td>3</td><td>4</td><tr><tr><td>DeviceKVStore</td><td>getResultSize(deviceId: string, query: Query): Promise<number>;</td><td>getResultSize</td><td>None</td><td>2</td><td>4</td><tr><tr><td>DeviceKVStore</td><td>removeDeviceData(deviceId: string, callback: AsyncCallback<void>): void;</td><td>removeDeviceData</td><td>None</td><td>2</td><td>40</td><tr><tr><td>DeviceKVStore</td><td>removeDeviceData(deviceId: string): Promise<void>;</td><td>removeDeviceData</td><td>None</td><td>1</td><td>8</td><tr><tr><td>DeviceKVStore</td><td>sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void;</td><td>sync</td><td>None</td><td>3</td><td>1452</td><tr><tr><td>DeviceKVStore</td><td>on(event: 'syncComplete', syncCallback: Callback<Array<[string, number]>>): void;</td><td>on</td><td>None</td><td>2</td><td>9171</td><tr><tr><td>DeviceKVStore</td><td>off(event: 'syncComplete', syncCallback?: Callback<Array<[string, number]>>): void;</td><td>off</td><td>None</td><td>2</td><td>78</td><tr><tr><td>KVManager</td><td>interface KVManager {
+        
+        getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>;
+        getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback<T>): void;
+
+        
+        closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void>): void;
+        closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise<void>;
+
+        
+        deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void;
+        deleteKVStore(appId: string, storeId: string): Promise<void>;
+
+        
+        getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;
+        getAllKVStoreId(appId: string): Promise<string[]>;
+
+        
+        on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;
+
+        
+        off(event: 'distributedDataServiceDie', deathCallback?: Callback<void>): void;
+    }</td><td>KVManager</td><td>20</td><td>0</td><td>378</td><tr><tr><td>KVManager</td><td>getKVStore<T extends KVStore>(storeId: string, options: Options): Promise<T>;</td><td>getKVStore</td><td>21</td><td>2</td><td>32</td><tr><tr><td>KVManager</td><td>getKVStore<T extends KVStore>(storeId: string, options: Options, callback: AsyncCallback<T>): void;</td><td>getKVStore</td><td>21</td><td>3</td><td>150</td><tr><tr><td>KVManager</td><td>closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback<void>): void;</td><td>closeKVStore</td><td>21</td><td>4</td><td>52</td><tr><tr><td>KVManager</td><td>closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise<void>;</td><td>closeKVStore</td><td>21</td><td>3</td><td>2</td><tr><tr><td>KVManager</td><td>deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void;</td><td>deleteKVStore</td><td>21</td><td>3</td><td>37</td><tr><tr><td>KVManager</td><td>deleteKVStore(appId: string, storeId: string): Promise<void>;</td><td>deleteKVStore</td><td>21</td><td>2</td><td>9</td><tr><tr><td>KVManager</td><td>getAllKVStoreId(appId: string, callback: AsyncCallback<string[]>): void;</td><td>getAllKVStoreId</td><td>21</td><td>2</td><td>11</td><tr><tr><td>KVManager</td><td>getAllKVStoreId(appId: string): Promise<string[]>;</td><td>getAllKVStoreId</td><td>21</td><td>1</td><td>3</td><tr><tr><td>KVManager</td><td>on(event: 'distributedDataServiceDie', deathCallback: Callback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>9171</td><tr><tr><td>KVManager</td><td>off(event: 'distributedDataServiceDie', deathCallback?: Callback<void>): void;</td><td>off</td><td>21</td><td>2</td><td>78</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

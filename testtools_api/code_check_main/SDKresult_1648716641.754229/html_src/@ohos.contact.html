@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>电话服务子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>telephony</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.contact</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>contact</td><td>declare namespace contact {
+  
+  function addContact(contact: Contact, callback: AsyncCallback<number>): void;
+  function addContact(contact: Contact): Promise<number>;
+
+  
+  function selectContact(callback: AsyncCallback<Array<Contact>>): void;
+  function selectContact(): Promise<Array<Contact>>;
+
+  
+  function deleteContact(key: string, callback: AsyncCallback<void>): void;
+  function deleteContact(key: string): Promise<void>;
+
+  
+  function queryContact(key: string, callback: AsyncCallback<Contact>): void;
+  function queryContact(key: string, holder: Holder, callback: AsyncCallback<Contact>): void;
+  function queryContact(key: string, attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;
+  function queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;
+  function queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise<Contact>;
+
+  
+  function queryContacts(callback: AsyncCallback<Array<Contact>>): void;
+  function queryContacts(holder: Holder, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContacts(attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>;
+
+  
+  function queryContactsByEmail(email: string, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>;
+
+  
+  function queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;
+  function queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>;
+
+  
+  function queryGroups(callback: AsyncCallback<Array<Group>>): void;
+  function queryGroups(holder: Holder, callback: AsyncCallback<Array<Group>>): void;
+  function queryGroups(holder?: Holder): Promise<Array<Group>>;
+
+  
+  function queryHolders(callback: AsyncCallback<Array<Holder>>): void;
+  function queryHolders(): Promise<Array<Holder>>;
+
+  
+  function queryKey(id: number, callback: AsyncCallback<string>): void;
+  function queryKey(id: number, holder: Holder, callback: AsyncCallback<string>): void;
+  function queryKey(id: number, holder?: Holder): Promise<string>;
+
+  
+  function queryMyCard(callback: AsyncCallback<Contact>): void;
+  function queryMyCard(attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;
+  function queryMyCard(attrs?: ContactAttributes): Promise<Contact>;
+
+  
+  function updateContact(contact: Contact, callback: AsyncCallback<void>): void;
+  function updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback<void>): void;
+  function updateContact(contact: Contact, attrs?: ContactAttributes): Promise<void>;
+
+  
+  function isLocalContact(id: number, callback: AsyncCallback<boolean>): void;
+  function isLocalContact(id: number): Promise<boolean>;
+
+  
+  function isMyCard(id: number, callback: AsyncCallback<boolean>): void;
+  function isMyCard(id: number): Promise<boolean>;
+
+  
+  class Contact {
+    
+    static readonly INVALID_CONTACT_ID: -1
+
+    
+    readonly id: number
+
+    
+    readonly key: string
+
+    
+    contactAttributes: ContactAttributes
+
+    
+    emails: Email[]
+
+    
+    events: Event[]
+
+    
+    groups: Group[]
+
+    
+    imAddresses: ImAddress[]
+
+    
+    phoneNumbers: PhoneNumber[]
+
+    
+    portrait: Portrait
+
+    
+    postalAddresses: PostalAddress[]
+
+    
+    relations: Relation[]
+
+    
+    sipAddresses: SipAddress[]
+
+    
+    websites: Website[]
+
+    
+    name: Name
+
+    
+    nickName: NickName
+
+    
+    note: Note
+
+    
+    organization: Organization
+  }
+
+  
+  class ContactAttributes {
+    
+    attributes: Attribute[]
+  }
+
+  
+  enum Attribute {
+    
+    ATTR_CONTACT_EVENT,
+
+    
+    ATTR_EMAIL,
+
+    
+    ATTR_GROUP_MEMBERSHIP,
+
+    
+    ATTR_IM,
+
+    
+    ATTR_NAME,
+
+    
+    ATTR_NICKNAME,
+
+    
+    ATTR_NOTE,
+
+    
+    ATTR_ORGANIZATION,
+
+    
+    ATTR_PHONE,
+
+    
+    ATTR_PORTRAIT,
+
+    
+    ATTR_POSTAL_ADDRESS,
+
+    
+    ATTR_RELATION,
+
+    
+    ATTR_SIP_ADDRESS,
+
+    
+    ATTR_WEBSITE
+  }
+
+  
+  class Email {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly EMAIL_HOME: 1
+
+    
+    static readonly EMAIL_WORK: 2
+
+    
+    static readonly EMAIL_OTHER: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    email: string
+
+    
+    labelName: string
+
+    
+    displayName: string
+
+    
+    labelId: number
+  }
+
+  
+  class Event {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly EVENT_ANNIVERSARY: 1
+
+    
+    static readonly EVENT_OTHER: 2
+
+    
+    static readonly EVENT_BIRTHDAY: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    eventDate: string
+
+    
+    labelName: string
+
+    
+    labelId: number
+  }
+
+  
+  class Group {
+    
+    groupId: number
+
+    
+    title: string
+  }
+
+  
+  class Holder {
+    
+    readonly bundleName: string
+
+    
+    readonly displayName: string
+
+    
+    holderId: number
+  }
+
+  
+  class ImAddress {
+    
+    static readonly CUSTOM_LABEL: -1
+
+    
+    static readonly IM_AIM: 0
+
+    
+    static readonly IM_MSN: 1
+
+    
+    static readonly IM_YAHOO: 2
+
+    
+    static readonly IM_SKYPE: 3
+
+    
+    static readonly IM_QQ: 4
+
+    
+    static readonly IM_ICQ: 6
+
+    
+    static readonly IM_JABBER: 7
+
+    
+    static readonly INVALID_LABEL_ID: -2
+
+    
+    imAddress: string
+
+    
+    labelName: string
+
+    
+    labelId: number
+  }
+
+  
+  class Name {
+    
+    familyName: string
+
+    
+    familyNamePhonetic: string
+
+    
+    fullName: string
+
+    
+    givenName: string
+
+    
+    givenNamePhonetic: string
+
+    
+    middleName: string
+
+    
+    middleNamePhonetic: string
+
+    
+    namePrefix: string
+
+    
+    nameSuffix: string
+  }
+
+  
+  class NickName {
+    
+    nickName: string
+  }
+
+  
+  class Note {
+    
+    noteContent: string
+  }
+
+  
+  class Organization {
+    
+    name: string
+
+    
+    title: string
+  }
+
+  
+  class PhoneNumber {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly NUM_HOME: 1
+
+    
+    static readonly NUM_MOBILE: 2
+
+    
+    static readonly NUM_WORK: 3
+
+    
+    static readonly NUM_FAX_WORK: 4
+
+    
+    static readonly NUM_FAX_HOME: 5
+
+    
+    static readonly NUM_PAGER: 6
+
+    
+    static readonly NUM_OTHER: 7
+
+    
+    static readonly NUM_CALLBACK: 8
+
+    
+    static readonly NUM_CAR: 9
+
+    
+    static readonly NUM_COMPANY_MAIN: 10
+
+    
+    static readonly NUM_ISDN: 11
+
+    
+    static readonly NUM_MAIN: 12
+
+    
+    static readonly NUM_OTHER_FAX: 13
+
+    
+    static readonly NUM_RADIO: 14
+
+    
+    static readonly NUM_TELEX: 15
+
+    
+    static readonly NUM_TTY_TDD: 16
+
+    
+    static readonly NUM_WORK_MOBILE: 17
+
+    
+    static readonly NUM_WORK_PAGER: 18
+
+    
+    static readonly NUM_ASSISTANT: 19
+
+    
+    static readonly NUM_MMS: 20
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    labelName: string
+
+    
+    phoneNumber: string
+
+    
+    labelId: number
+  }
+
+  
+  class Portrait {
+    
+    uri: string
+  }
+
+  
+  class PostalAddress {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly ADDR_HOME: 1
+
+    
+    static readonly ADDR_WORK: 2
+
+    
+    static readonly ADDR_OTHER: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    city: string
+
+    
+    country: string
+
+    
+    labelName: string
+
+    
+    neighborhood: string
+
+    
+    pobox: string
+
+    
+    postalAddress: string
+
+    
+    postcode: string
+
+    
+    region: string
+
+    
+    street: string
+
+    
+    labelId: number
+  }
+
+  
+  class Relation {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly RELATION_ASSISTANT: 1
+
+    
+    static readonly RELATION_BROTHER: 2
+
+    
+    static readonly RELATION_CHILD: 3
+
+    
+    static readonly RELATION_DOMESTIC_PARTNER: 4
+
+    
+    static readonly RELATION_FATHER: 5
+
+    
+    static readonly RELATION_FRIEND: 6
+
+    
+    static readonly RELATION_MANAGER: 7
+
+    
+    static readonly RELATION_MOTHER: 8
+
+    
+    static readonly RELATION_PARENT: 9
+
+    
+    static readonly RELATION_PARTNER: 10
+
+    
+    static readonly RELATION_REFERRED_BY: 11
+
+    
+    static readonly RELATION_RELATIVE: 12
+
+    
+    static readonly RELATION_SISTER: 13
+
+    
+    static readonly RELATION_SPOUSE: 14
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    labelName: string
+
+    
+    relationName: string
+
+    
+    labelId: number
+  }
+
+  
+  class SipAddress {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly SIP_HOME: 1
+
+    
+    static readonly SIP_WORK: 2
+
+    
+    static readonly SIP_OTHER: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    labelName: string
+
+    
+    sipAddress: string
+
+    
+    labelId: number
+  }
+
+  
+  class Website {
+    
+    website: string
+  }
+}</td><td>contact</td><td>None</td><td>0</td><td>5360</td><tr><tr><td>contact</td><td>function addContact(contact: Contact, callback: AsyncCallback<number>): void;</td><td>addContact</td><td>None</td><td>2</td><td>3</td><tr><tr><td>contact</td><td>function addContact(contact: Contact): Promise<number>;</td><td>addContact</td><td>None</td><td>1</td><td>0</td><tr><tr><td>contact</td><td>function selectContact(callback: AsyncCallback<Array<Contact>>): void;</td><td>selectContact</td><td>None</td><td>1</td><td>0</td><tr><tr><td>contact</td><td>function selectContact(): Promise<Array<Contact>>;</td><td>selectContact</td><td>None</td><td>0</td><td>0</td><tr><tr><td>contact</td><td>function deleteContact(key: string, callback: AsyncCallback<void>): void;</td><td>deleteContact</td><td>None</td><td>2</td><td>1</td><tr><tr><td>contact</td><td>function deleteContact(key: string): Promise<void>;</td><td>deleteContact</td><td>None</td><td>1</td><td>0</td><tr><tr><td>contact</td><td>function queryContact(key: string, callback: AsyncCallback<Contact>): void;</td><td>queryContact</td><td>None</td><td>2</td><td>27</td><tr><tr><td>contact</td><td>function queryContact(key: string, holder: Holder, callback: AsyncCallback<Contact>): void;</td><td>queryContact</td><td>None</td><td>3</td><td>27</td><tr><tr><td>contact</td><td>function queryContact(key: string, attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;</td><td>queryContact</td><td>None</td><td>3</td><td>27</td><tr><tr><td>contact</td><td>function queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;</td><td>queryContact</td><td>None</td><td>4</td><td>27</td><tr><tr><td>contact</td><td>function queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise<Contact>;</td><td>queryContact</td><td>None</td><td>3</td><td>0</td><tr><tr><td>contact</td><td>function queryContacts(callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContacts</td><td>None</td><td>1</td><td>15</td><tr><tr><td>contact</td><td>function queryContacts(holder: Holder, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContacts</td><td>None</td><td>2</td><td>15</td><tr><tr><td>contact</td><td>function queryContacts(attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContacts</td><td>None</td><td>2</td><td>15</td><tr><tr><td>contact</td><td>function queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContacts</td><td>None</td><td>3</td><td>15</td><tr><tr><td>contact</td><td>function queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>;</td><td>queryContacts</td><td>None</td><td>2</td><td>0</td><tr><tr><td>contact</td><td>function queryContactsByEmail(email: string, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByEmail</td><td>None</td><td>2</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByEmail</td><td>None</td><td>3</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByEmail</td><td>None</td><td>3</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByEmail</td><td>None</td><td>4</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>;</td><td>queryContactsByEmail</td><td>None</td><td>3</td><td>0</td><tr><tr><td>contact</td><td>function queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByPhoneNumber</td><td>None</td><td>2</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByPhoneNumber</td><td>None</td><td>3</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByPhoneNumber</td><td>None</td><td>3</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;</td><td>queryContactsByPhoneNumber</td><td>None</td><td>4</td><td>5</td><tr><tr><td>contact</td><td>function queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>;</td><td>queryContactsByPhoneNumber</td><td>None</td><td>3</td><td>0</td><tr><tr><td>contact</td><td>function queryGroups(callback: AsyncCallback<Array<Group>>): void;</td><td>queryGroups</td><td>None</td><td>1</td><td>3</td><tr><tr><td>contact</td><td>function queryGroups(holder: Holder, callback: AsyncCallback<Array<Group>>): void;</td><td>queryGroups</td><td>None</td><td>2</td><td>3</td><tr><tr><td>contact</td><td>function queryGroups(holder?: Holder): Promise<Array<Group>>;</td><td>queryGroups</td><td>None</td><td>1</td><td>0</td><tr><tr><td>contact</td><td>function queryHolders(callback: AsyncCallback<Array<Holder>>): void;</td><td>queryHolders</td><td>None</td><td>1</td><td>1</td><tr><tr><td>contact</td><td>function queryHolders(): Promise<Array<Holder>>;</td><td>queryHolders</td><td>None</td><td>0</td><td>0</td><tr><tr><td>contact</td><td>function queryKey(id: number, callback: AsyncCallback<string>): void;</td><td>queryKey</td><td>None</td><td>2</td><td>3</td><tr><tr><td>contact</td><td>function queryKey(id: number, holder: Holder, callback: AsyncCallback<string>): void;</td><td>queryKey</td><td>None</td><td>3</td><td>3</td><tr><tr><td>contact</td><td>function queryKey(id: number, holder?: Holder): Promise<string>;</td><td>queryKey</td><td>None</td><td>2</td><td>0</td><tr><tr><td>contact</td><td>function queryMyCard(callback: AsyncCallback<Contact>): void;</td><td>queryMyCard</td><td>None</td><td>1</td><td>2</td><tr><tr><td>contact</td><td>function queryMyCard(attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;</td><td>queryMyCard</td><td>None</td><td>2</td><td>2</td><tr><tr><td>contact</td><td>function queryMyCard(attrs?: ContactAttributes): Promise<Contact>;</td><td>queryMyCard</td><td>None</td><td>1</td><td>0</td><tr><tr><td>contact</td><td>function updateContact(contact: Contact, callback: AsyncCallback<void>): void;</td><td>updateContact</td><td>None</td><td>2</td><td>6</td><tr><tr><td>contact</td><td>function updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback<void>): void;</td><td>updateContact</td><td>None</td><td>3</td><td>6</td><tr><tr><td>contact</td><td>function updateContact(contact: Contact, attrs?: ContactAttributes): Promise<void>;</td><td>updateContact</td><td>None</td><td>2</td><td>0</td><tr><tr><td>contact</td><td>function isLocalContact(id: number, callback: AsyncCallback<boolean>): void;</td><td>isLocalContact</td><td>None</td><td>2</td><td>12</td><tr><tr><td>contact</td><td>function isLocalContact(id: number): Promise<boolean>;</td><td>isLocalContact</td><td>None</td><td>1</td><td>0</td><tr><tr><td>contact</td><td>function isMyCard(id: number, callback: AsyncCallback<boolean>): void;</td><td>isMyCard</td><td>None</td><td>2</td><td>11</td><tr><tr><td>contact</td><td>function isMyCard(id: number): Promise<boolean>;</td><td>isMyCard</td><td>None</td><td>1</td><td>0</td><tr><tr><td>Contact</td><td>class Contact {
+    
+    static readonly INVALID_CONTACT_ID: -1
+
+    
+    readonly id: number
+
+    
+    readonly key: string
+
+    
+    contactAttributes: ContactAttributes
+
+    
+    emails: Email[]
+
+    
+    events: Event[]
+
+    
+    groups: Group[]
+
+    
+    imAddresses: ImAddress[]
+
+    
+    phoneNumbers: PhoneNumber[]
+
+    
+    portrait: Portrait
+
+    
+    postalAddresses: PostalAddress[]
+
+    
+    relations: Relation[]
+
+    
+    sipAddresses: SipAddress[]
+
+    
+    websites: Website[]
+
+    
+    name: Name
+
+    
+    nickName: NickName
+
+    
+    note: Note
+
+    
+    organization: Organization
+  }</td><td>Contact</td><td>10</td><td>0</td><td>4020</td><tr><tr><td>ContactAttributes</td><td>class ContactAttributes {
+    
+    attributes: Attribute[]
+  }</td><td>ContactAttributes</td><td>10</td><td>0</td><td>18</td><tr><tr><td>Attribute</td><td>enum Attribute {
+    
+    ATTR_CONTACT_EVENT,
+
+    
+    ATTR_EMAIL,
+
+    
+    ATTR_GROUP_MEMBERSHIP,
+
+    
+    ATTR_IM,
+
+    
+    ATTR_NAME,
+
+    
+    ATTR_NICKNAME,
+
+    
+    ATTR_NOTE,
+
+    
+    ATTR_ORGANIZATION,
+
+    
+    ATTR_PHONE,
+
+    
+    ATTR_PORTRAIT,
+
+    
+    ATTR_POSTAL_ADDRESS,
+
+    
+    ATTR_RELATION,
+
+    
+    ATTR_SIP_ADDRESS,
+
+    
+    ATTR_WEBSITE
+  }</td><td>Attribute</td><td>40</td><td>0</td><td>78</td><tr><tr><td>Attribute</td><td>ATTR_CONTACT_EVENT,</td><td>ATTR_CONTACT_EVENT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_EMAIL,</td><td>ATTR_EMAIL</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_GROUP_MEMBERSHIP,</td><td>ATTR_GROUP_MEMBERSHIP</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_IM,</td><td>ATTR_IM</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_NAME,</td><td>ATTR_NAME</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_NICKNAME,</td><td>ATTR_NICKNAME</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_NOTE,</td><td>ATTR_NOTE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_ORGANIZATION,</td><td>ATTR_ORGANIZATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_PHONE,</td><td>ATTR_PHONE</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_PORTRAIT,</td><td>ATTR_PORTRAIT</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_POSTAL_ADDRESS,</td><td>ATTR_POSTAL_ADDRESS</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_RELATION,</td><td>ATTR_RELATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Attribute</td><td>ATTR_SIP_ADDRESS,</td><td>ATTR_SIP_ADDRESS</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Email</td><td>class Email {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly EMAIL_HOME: 1
+
+    
+    static readonly EMAIL_WORK: 2
+
+    
+    static readonly EMAIL_OTHER: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    email: string
+
+    
+    labelName: string
+
+    
+    displayName: string
+
+    
+    labelId: number
+  }</td><td>Email</td><td>10</td><td>0</td><td>51</td><tr><tr><td>Event</td><td>class Event {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly EVENT_ANNIVERSARY: 1
+
+    
+    static readonly EVENT_OTHER: 2
+
+    
+    static readonly EVENT_BIRTHDAY: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    eventDate: string
+
+    
+    labelName: string
+
+    
+    labelId: number
+  }</td><td>Event</td><td>10</td><td>0</td><td>98</td><tr><tr><td>Group</td><td>class Group {
+    
+    groupId: number
+
+    
+    title: string
+  }</td><td>Group</td><td>10</td><td>0</td><td>128</td><tr><tr><td>Holder</td><td>class Holder {
+    
+    readonly bundleName: string
+
+    
+    readonly displayName: string
+
+    
+    holderId: number
+  }</td><td>Holder</td><td>10</td><td>0</td><td>1</td><tr><tr><td>ImAddress</td><td>class ImAddress {
+    
+    static readonly CUSTOM_LABEL: -1
+
+    
+    static readonly IM_AIM: 0
+
+    
+    static readonly IM_MSN: 1
+
+    
+    static readonly IM_YAHOO: 2
+
+    
+    static readonly IM_SKYPE: 3
+
+    
+    static readonly IM_QQ: 4
+
+    
+    static readonly IM_ICQ: 6
+
+    
+    static readonly IM_JABBER: 7
+
+    
+    static readonly INVALID_LABEL_ID: -2
+
+    
+    imAddress: string
+
+    
+    labelName: string
+
+    
+    labelId: number
+  }</td><td>ImAddress</td><td>10</td><td>0</td><td>28</td><tr><tr><td>Name</td><td>class Name {
+    
+    familyName: string
+
+    
+    familyNamePhonetic: string
+
+    
+    fullName: string
+
+    
+    givenName: string
+
+    
+    givenNamePhonetic: string
+
+    
+    middleName: string
+
+    
+    middleNamePhonetic: string
+
+    
+    namePrefix: string
+
+    
+    nameSuffix: string
+  }</td><td>Name</td><td>10</td><td>0</td><td>1376</td><tr><tr><td>NickName</td><td>class NickName {
+    
+    nickName: string
+  }</td><td>NickName</td><td>10</td><td>0</td><td>20</td><tr><tr><td>Note</td><td>class Note {
+    
+    noteContent: string
+  }</td><td>Note</td><td>10</td><td>0</td><td>20</td><tr><tr><td>Organization</td><td>class Organization {
+    
+    name: string
+
+    
+    title: string
+  }</td><td>Organization</td><td>10</td><td>0</td><td>0</td><tr><tr><td>PhoneNumber</td><td>class PhoneNumber {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly NUM_HOME: 1
+
+    
+    static readonly NUM_MOBILE: 2
+
+    
+    static readonly NUM_WORK: 3
+
+    
+    static readonly NUM_FAX_WORK: 4
+
+    
+    static readonly NUM_FAX_HOME: 5
+
+    
+    static readonly NUM_PAGER: 6
+
+    
+    static readonly NUM_OTHER: 7
+
+    
+    static readonly NUM_CALLBACK: 8
+
+    
+    static readonly NUM_CAR: 9
+
+    
+    static readonly NUM_COMPANY_MAIN: 10
+
+    
+    static readonly NUM_ISDN: 11
+
+    
+    static readonly NUM_MAIN: 12
+
+    
+    static readonly NUM_OTHER_FAX: 13
+
+    
+    static readonly NUM_RADIO: 14
+
+    
+    static readonly NUM_TELEX: 15
+
+    
+    static readonly NUM_TTY_TDD: 16
+
+    
+    static readonly NUM_WORK_MOBILE: 17
+
+    
+    static readonly NUM_WORK_PAGER: 18
+
+    
+    static readonly NUM_ASSISTANT: 19
+
+    
+    static readonly NUM_MMS: 20
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    labelName: string
+
+    
+    phoneNumber: string
+
+    
+    labelId: number
+  }</td><td>PhoneNumber</td><td>10</td><td>0</td><td>82</td><tr><tr><td>Portrait</td><td>class Portrait {
+    
+    uri: string
+  }</td><td>Portrait</td><td>10</td><td>0</td><td>0</td><tr><tr><td>PostalAddress</td><td>class PostalAddress {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly ADDR_HOME: 1
+
+    
+    static readonly ADDR_WORK: 2
+
+    
+    static readonly ADDR_OTHER: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    city: string
+
+    
+    country: string
+
+    
+    labelName: string
+
+    
+    neighborhood: string
+
+    
+    pobox: string
+
+    
+    postalAddress: string
+
+    
+    postcode: string
+
+    
+    region: string
+
+    
+    street: string
+
+    
+    labelId: number
+  }</td><td>PostalAddress</td><td>10</td><td>0</td><td>10</td><tr><tr><td>Relation</td><td>class Relation {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly RELATION_ASSISTANT: 1
+
+    
+    static readonly RELATION_BROTHER: 2
+
+    
+    static readonly RELATION_CHILD: 3
+
+    
+    static readonly RELATION_DOMESTIC_PARTNER: 4
+
+    
+    static readonly RELATION_FATHER: 5
+
+    
+    static readonly RELATION_FRIEND: 6
+
+    
+    static readonly RELATION_MANAGER: 7
+
+    
+    static readonly RELATION_MOTHER: 8
+
+    
+    static readonly RELATION_PARENT: 9
+
+    
+    static readonly RELATION_PARTNER: 10
+
+    
+    static readonly RELATION_REFERRED_BY: 11
+
+    
+    static readonly RELATION_RELATIVE: 12
+
+    
+    static readonly RELATION_SISTER: 13
+
+    
+    static readonly RELATION_SPOUSE: 14
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    labelName: string
+
+    
+    relationName: string
+
+    
+    labelId: number
+  }</td><td>Relation</td><td>10</td><td>0</td><td>33</td><tr><tr><td>SipAddress</td><td>class SipAddress {
+    
+    static readonly CUSTOM_LABEL: 0
+
+    
+    static readonly SIP_HOME: 1
+
+    
+    static readonly SIP_WORK: 2
+
+    
+    static readonly SIP_OTHER: 3
+
+    
+    static readonly INVALID_LABEL_ID: -1
+
+    
+    labelName: string
+
+    
+    sipAddress: string
+
+    
+    labelId: number
+  }</td><td>SipAddress</td><td>10</td><td>0</td><td>6</td><tr><tr><td>Website</td><td>class Website {
+    
+    website: string
+  }</td><td>Website</td><td>10</td><td>0</td><td>14</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

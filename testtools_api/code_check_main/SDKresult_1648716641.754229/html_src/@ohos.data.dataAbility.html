@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>分布式数据管理子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>distributeddatamgr</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.data.dataAbility</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>dataAbility</td><td>declare namespace dataAbility {
+    
+    function createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates;
+
+    
+    class DataAbilityPredicates {
+        
+        equalTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        notEqualTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        beginWrap(): DataAbilityPredicates;
+
+        
+        endWrap(): DataAbilityPredicates;
+
+        
+        or(): DataAbilityPredicates;
+
+        
+        and(): DataAbilityPredicates;
+
+        
+        contains(field: string, value: string): DataAbilityPredicates;
+
+        
+        beginsWith(field: string, value: string): DataAbilityPredicates;
+
+        
+        endsWith(field: string, value: string): DataAbilityPredicates;
+
+        
+        isNull(field: string): DataAbilityPredicates;
+
+        
+        isNotNull(field: string): DataAbilityPredicates;
+
+        
+        like(field: string, value: string): DataAbilityPredicates;
+
+        
+        glob(field: string, value: string): DataAbilityPredicates;
+
+        
+        between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates;
+
+        
+        notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicates;
+
+        
+        greaterThan(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        lessThan(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        orderByAsc(field: string): DataAbilityPredicates;
+
+        
+        orderByDesc(field: string): DataAbilityPredicates;
+
+        
+        distinct(): DataAbilityPredicates;
+
+        
+        limitAs(value: number): DataAbilityPredicates;
+
+        
+        offsetAs(rowOffset: number): DataAbilityPredicates;
+
+        
+        groupBy(fields: Array<string>): DataAbilityPredicates;
+
+        
+        indexedBy(field: string): DataAbilityPredicates;
+
+        
+        in(field: string, value: Array<ValueType>): DataAbilityPredicates;
+
+        
+        notIn(field: string, value: Array<ValueType>): DataAbilityPredicates;
+    }
+    
+    type ValueType = number | string | boolean;
+}</td><td>dataAbility</td><td>None</td><td>0</td><td>586</td><tr><tr><td>dataAbility</td><td>function createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates;</td><td>createRdbPredicates</td><td>None</td><td>2</td><td>114</td><tr><tr><td>DataAbilityPredicates</td><td>class DataAbilityPredicates {
+        
+        equalTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        notEqualTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        beginWrap(): DataAbilityPredicates;
+
+        
+        endWrap(): DataAbilityPredicates;
+
+        
+        or(): DataAbilityPredicates;
+
+        
+        and(): DataAbilityPredicates;
+
+        
+        contains(field: string, value: string): DataAbilityPredicates;
+
+        
+        beginsWith(field: string, value: string): DataAbilityPredicates;
+
+        
+        endsWith(field: string, value: string): DataAbilityPredicates;
+
+        
+        isNull(field: string): DataAbilityPredicates;
+
+        
+        isNotNull(field: string): DataAbilityPredicates;
+
+        
+        like(field: string, value: string): DataAbilityPredicates;
+
+        
+        glob(field: string, value: string): DataAbilityPredicates;
+
+        
+        between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates;
+
+        
+        notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicates;
+
+        
+        greaterThan(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        lessThan(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates;
+
+        
+        orderByAsc(field: string): DataAbilityPredicates;
+
+        
+        orderByDesc(field: string): DataAbilityPredicates;
+
+        
+        distinct(): DataAbilityPredicates;
+
+        
+        limitAs(value: number): DataAbilityPredicates;
+
+        
+        offsetAs(rowOffset: number): DataAbilityPredicates;
+
+        
+        groupBy(fields: Array<string>): DataAbilityPredicates;
+
+        
+        indexedBy(field: string): DataAbilityPredicates;
+
+        
+        in(field: string, value: Array<ValueType>): DataAbilityPredicates;
+
+        
+        notIn(field: string, value: Array<ValueType>): DataAbilityPredicates;
+    }</td><td>DataAbilityPredicates</td><td>10</td><td>0</td><td>213</td><tr><tr><td>DataAbilityPredicates</td><td>equalTo(field: string, value: ValueType): DataAbilityPredicates;</td><td>equalTo</td><td>11</td><td>2</td><td>122</td><tr><tr><td>DataAbilityPredicates</td><td>notEqualTo(field: string, value: ValueType): DataAbilityPredicates;</td><td>notEqualTo</td><td>11</td><td>2</td><td>59</td><tr><tr><td>DataAbilityPredicates</td><td>beginWrap(): DataAbilityPredicates;</td><td>beginWrap</td><td>11</td><td>0</td><td>30</td><tr><tr><td>DataAbilityPredicates</td><td>endWrap(): DataAbilityPredicates;</td><td>endWrap</td><td>11</td><td>0</td><td>10</td><tr><tr><td>DataAbilityPredicates</td><td>or(): DataAbilityPredicates;</td><td>or</td><td>11</td><td>0</td><td>6347</td><tr><tr><td>DataAbilityPredicates</td><td>and(): DataAbilityPredicates;</td><td>and</td><td>11</td><td>0</td><td>36</td><tr><tr><td>DataAbilityPredicates</td><td>contains(field: string, value: string): DataAbilityPredicates;</td><td>contains</td><td>11</td><td>2</td><td>24</td><tr><tr><td>DataAbilityPredicates</td><td>beginsWith(field: string, value: string): DataAbilityPredicates;</td><td>beginsWith</td><td>11</td><td>2</td><td>24</td><tr><tr><td>DataAbilityPredicates</td><td>endsWith(field: string, value: string): DataAbilityPredicates;</td><td>endsWith</td><td>11</td><td>2</td><td>24</td><tr><tr><td>DataAbilityPredicates</td><td>isNull(field: string): DataAbilityPredicates;</td><td>isNull</td><td>11</td><td>1</td><td>30</td><tr><tr><td>DataAbilityPredicates</td><td>isNotNull(field: string): DataAbilityPredicates;</td><td>isNotNull</td><td>11</td><td>1</td><td>31</td><tr><tr><td>DataAbilityPredicates</td><td>like(field: string, value: string): DataAbilityPredicates;</td><td>like</td><td>11</td><td>2</td><td>78</td><tr><tr><td>DataAbilityPredicates</td><td>glob(field: string, value: string): DataAbilityPredicates;</td><td>glob</td><td>11</td><td>2</td><td>30</td><tr><tr><td>DataAbilityPredicates</td><td>between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates;</td><td>between</td><td>11</td><td>3</td><td>48</td><tr><tr><td>DataAbilityPredicates</td><td>notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicates;</td><td>notBetween</td><td>11</td><td>3</td><td>16</td><tr><tr><td>DataAbilityPredicates</td><td>greaterThan(field: string, value: ValueType): DataAbilityPredicates;</td><td>greaterThan</td><td>11</td><td>2</td><td>92</td><tr><tr><td>DataAbilityPredicates</td><td>lessThan(field: string, value: ValueType): DataAbilityPredicates;</td><td>lessThan</td><td>11</td><td>2</td><td>92</td><tr><tr><td>DataAbilityPredicates</td><td>greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates;</td><td>greaterThanOrEqualTo</td><td>11</td><td>2</td><td>34</td><tr><tr><td>DataAbilityPredicates</td><td>lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates;</td><td>lessThanOrEqualTo</td><td>11</td><td>2</td><td>34</td><tr><tr><td>DataAbilityPredicates</td><td>orderByAsc(field: string): DataAbilityPredicates;</td><td>orderByAsc</td><td>11</td><td>1</td><td>9</td><tr><tr><td>DataAbilityPredicates</td><td>orderByDesc(field: string): DataAbilityPredicates;</td><td>orderByDesc</td><td>11</td><td>1</td><td>9</td><tr><tr><td>DataAbilityPredicates</td><td>distinct(): DataAbilityPredicates;</td><td>distinct</td><td>11</td><td>0</td><td>8</td><tr><tr><td>DataAbilityPredicates</td><td>limitAs(value: number): DataAbilityPredicates;</td><td>limitAs</td><td>11</td><td>1</td><td>20</td><tr><tr><td>DataAbilityPredicates</td><td>offsetAs(rowOffset: number): DataAbilityPredicates;</td><td>offsetAs</td><td>11</td><td>1</td><td>8</td><tr><tr><td>DataAbilityPredicates</td><td>groupBy(fields: Array<string>): DataAbilityPredicates;</td><td>groupBy</td><td>11</td><td>1</td><td>12</td><tr><tr><td>DataAbilityPredicates</td><td>indexedBy(field: string): DataAbilityPredicates;</td><td>indexedBy</td><td>11</td><td>1</td><td>12</td><tr><tr><td>DataAbilityPredicates</td><td>in(field: string, value: Array<ValueType>): DataAbilityPredicates;</td><td>in</td><td>11</td><td>2</td><td>3573</td><tr><tr><td>DataAbilityPredicates</td><td>notIn(field: string, value: Array<ValueType>): DataAbilityPredicates;</td><td>notIn</td><td>11</td><td>2</td><td>19</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

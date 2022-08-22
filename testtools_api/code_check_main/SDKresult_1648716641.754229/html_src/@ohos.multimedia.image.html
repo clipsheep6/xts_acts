@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>媒体子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>multimedia</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.multimedia.image</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>image</td><td>declare namespace image {
+
+  
+  enum PixelMapFormat {
+    
+    UNKNOWN = 0,
+
+    
+    RGB_565 = 2,
+
+    
+    RGBA_8888 = 3,
+  }
+
+  
+  interface Size {
+    
+    height: number;
+
+    
+    width: number;
+  }
+
+  
+  enum PropertyKey {
+    
+    BITS_PER_SAMPLE = "BitsPerSample",
+
+    
+    ORIENTATION = "Orientation",
+
+    
+    IMAGE_LENGTH = "ImageLength",
+
+    
+    IMAGE_WIDTH = "ImageWidth",
+
+    
+    GPS_LATITUDE = "GPSLatitude",
+
+    
+    GPS_LONGITUDE = "GPSLongitude",
+
+    
+    GPS_LATITUDE_REF = "GPSLatitudeRef",
+
+    
+    GPS_LONGITUDE_REF = "GPSLongitudeRef"
+  }
+
+  
+   enum ImageFormat {
+    
+    YCBCR_422_SP = 1000,
+
+    
+    JPEG = 2000
+  }
+
+  
+  enum ComponentType {
+    
+    YUV_Y = 1,
+
+    
+    YUV_U = 2,
+
+    
+    YUV_V = 3,
+
+    
+    JPEG = 4, 
+  }
+
+  
+  interface Region {
+    
+    size: Size;
+
+    
+    x: number;
+
+    
+    y: number;
+  }
+
+  
+  interface PositionArea {
+    
+    pixels: ArrayBuffer;
+
+    
+    offset: number;
+
+    
+    stride: number;
+
+    
+    region: Region;
+  }
+
+  
+  interface ImageInfo {
+    
+    size: Size;
+  }
+
+  
+  interface PackingOption {
+    
+    format: string;
+
+    
+    quality: number;
+  }
+
+  
+  interface GetImagePropertyOptions {
+    
+    index?: number;
+
+    
+    defaultValue?: string;
+  }
+
+  
+  interface DecodingOptions {
+    
+    index?: number;
+
+    
+    sampleSize?: number;
+
+    
+    rotate?: number;
+
+    
+    editable?: boolean;
+
+    
+    desiredSize?: Size;
+
+    
+    desiredRegion?: Region;
+
+    
+    desiredPixelFormat?: PixelMapFormat;
+  }
+
+  
+   interface Component {
+    
+    readonly componentType: ComponentType;
+
+    
+    readonly rowStride: number;
+
+    
+    readonly pixelStride: number;
+
+    
+    readonly byteBuffer: ArrayBuffer;
+  }
+
+  
+  interface InitializationOptions {
+    
+    size: Size;
+
+    
+    pixelFormat?: PixelMapFormat;
+
+    
+    editable?: boolean;
+  }
+
+  
+  function createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback<PixelMap>): void;
+
+  
+  function createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise<PixelMap>;
+
+  
+  function createImageSource(uri: string): ImageSource;
+
+  
+  function createImageSource(fd: number): ImageSource;
+
+  
+  function createImagePacker(): ImagePacker;
+
+  
+  function createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver;
+
+  
+  interface PixelMap {
+    
+    readonly isEditable: boolean;
+
+    
+    readPixelsToBuffer(dst: ArrayBuffer): Promise<void>;
+
+    
+    readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback<void>): void;
+
+    
+    readPixels(area: PositionArea): Promise<void>;
+
+    
+    readPixels(area: PositionArea, callback: AsyncCallback<void>): void;
+
+    
+    writePixels(area: PositionArea): Promise<void>;
+
+    
+    writePixels(area: PositionArea, callback: AsyncCallback<void>): void;
+
+    
+    writeBufferToPixels(src: ArrayBuffer): Promise<void>;
+
+    
+    writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback<void>): void;
+
+    
+    getImageInfo(): Promise<ImageInfo>;
+
+    
+    getImageInfo(callback: AsyncCallback<ImageInfo>): void;
+
+    
+    getBytesNumberPerRow(): number;
+
+    
+    getPixelBytesNumber(): number;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+  }
+
+  
+  interface ImageSource {
+    
+    getImageInfo(index: number, callback: AsyncCallback<ImageInfo>): void;
+
+    
+    getImageInfo(callback: AsyncCallback<ImageInfo>): void;
+
+    
+    getImageInfo(index?: number): Promise<ImageInfo>;
+
+    
+    createPixelMap(options?: DecodingOptions): Promise<PixelMap>;
+    
+    
+    createPixelMap(callback: AsyncCallback<PixelMap>): void;
+
+    
+    createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void;
+
+    
+    getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>;
+
+    
+    getImageProperty(key:string, callback: AsyncCallback<string>): void;
+	
+    
+    getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback<string>): void;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    readonly supportedFormats: Array<string>;
+  }
+
+  
+  interface ImagePacker {
+    
+    packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;
+
+    
+    packing(source: ImageSource, option: PackingOption): Promise<ArrayBuffer>;
+
+    
+     packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;
+
+     
+     packing(source: PixelMap, option: PackingOption): Promise<ArrayBuffer>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    readonly supportedFormats: Array<string>;
+  }
+
+  
+  interface Image {
+    
+    clipRect: Region;
+
+    
+    readonly size: Size;
+
+    
+    readonly format: number;
+
+    
+    getComponent(componentType: ComponentType, callback: AsyncCallback<Component>): void;
+
+    
+    getComponent(componentType: ComponentType): Promise<Component>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+  }
+
+  
+  interface ImageReceiver {
+    
+    readonly size: Size;
+
+    
+    readonly capacity: number;
+
+    
+    readonly format: ImageFormat;
+
+    
+    getReceivingSurfaceId(callback: AsyncCallback<string>): void;
+
+    
+    getReceivingSurfaceId(): Promise<string>;
+
+    
+    readLatestImage(callback: AsyncCallback<Image>): void;
+
+    
+    readLatestImage(): Promise<Image>;
+
+    
+    readNextImage(callback: AsyncCallback<Image>): void;
+
+    
+    readNextImage(): Promise<Image>;
+
+    
+    on(type: 'imageArrival', callback: AsyncCallback<void>): void;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+  }
+}</td><td>image</td><td>None</td><td>0</td><td>1441</td><tr><tr><td>image</td><td>function createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback<PixelMap>): void;</td><td>createPixelMap</td><td>None</td><td>3</td><td>173</td><tr><tr><td>image</td><td>function createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise<PixelMap>;</td><td>createPixelMap</td><td>None</td><td>2</td><td>14</td><tr><tr><td>image</td><td>function createImageSource(uri: string): ImageSource;</td><td>createImageSource</td><td>None</td><td>1</td><td>158</td><tr><tr><td>image</td><td>function createImageSource(fd: number): ImageSource;</td><td>createImageSource</td><td>None</td><td>1</td><td>158</td><tr><tr><td>image</td><td>function createImagePacker(): ImagePacker;</td><td>createImagePacker</td><td>None</td><td>0</td><td>14</td><tr><tr><td>image</td><td>function createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver;</td><td>createImageReceiver</td><td>None</td><td>4</td><td>8</td><tr><tr><td>PixelMapFormat</td><td>enum PixelMapFormat {
+    
+    UNKNOWN = 0,
+
+    
+    RGB_565 = 2,
+
+    
+    RGBA_8888 = 3,
+  }</td><td>PixelMapFormat</td><td>40</td><td>0</td><td>0</td><tr><tr><td>PixelMapFormat</td><td>UNKNOWN = 0,</td><td>UNKNOWN</td><td>42</td><td>1</td><td>44</td><tr><tr><td>PixelMapFormat</td><td>RGB_565 = 2,</td><td>RGB_565</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PixelMapFormat</td><td>RGBA_8888 = 3,</td><td>RGBA_8888</td><td>42</td><td>1</td><td>4</td><tr><tr><td>Size</td><td>interface Size {
+    
+    height: number;
+
+    
+    width: number;
+  }</td><td>Size</td><td>20</td><td>0</td><td>586</td><tr><tr><td>Size</td><td>height: number</td><td>height</td><td>22</td><td>1</td><td>771</td><tr><tr><td>Size</td><td>width: number</td><td>width</td><td>22</td><td>1</td><td>773</td><tr><tr><td>PropertyKey</td><td>enum PropertyKey {
+    
+    BITS_PER_SAMPLE = "BitsPerSample",
+
+    
+    ORIENTATION = "Orientation",
+
+    
+    IMAGE_LENGTH = "ImageLength",
+
+    
+    IMAGE_WIDTH = "ImageWidth",
+
+    
+    GPS_LATITUDE = "GPSLatitude",
+
+    
+    GPS_LONGITUDE = "GPSLongitude",
+
+    
+    GPS_LATITUDE_REF = "GPSLatitudeRef",
+
+    
+    GPS_LONGITUDE_REF = "GPSLongitudeRef"
+  }</td><td>PropertyKey</td><td>40</td><td>0</td><td>0</td><tr><tr><td>PropertyKey</td><td>BITS_PER_SAMPLE = "BitsPerSample",</td><td>BITS_PER_SAMPLE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PropertyKey</td><td>ORIENTATION = "Orientation",</td><td>ORIENTATION</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PropertyKey</td><td>IMAGE_LENGTH = "ImageLength",</td><td>IMAGE_LENGTH</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PropertyKey</td><td>IMAGE_WIDTH = "ImageWidth",</td><td>IMAGE_WIDTH</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PropertyKey</td><td>GPS_LATITUDE = "GPSLatitude",</td><td>GPS_LATITUDE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PropertyKey</td><td>GPS_LONGITUDE = "GPSLongitude",</td><td>GPS_LONGITUDE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PropertyKey</td><td>GPS_LATITUDE_REF = "GPSLatitudeRef",</td><td>GPS_LATITUDE_REF</td><td>42</td><td>1</td><td>0</td><tr><tr><td>PropertyKey</td><td>GPS_LONGITUDE_REF = "GPSLongitudeRef"</td><td>GPS_LONGITUDE_REF</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ImageFormat</td><td>enum ImageFormat {
+    
+    YCBCR_422_SP = 1000,
+
+    
+    JPEG = 2000
+  }</td><td>ImageFormat</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ImageFormat</td><td>YCBCR_422_SP = 1000,</td><td>YCBCR_422_SP</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ImageFormat</td><td>JPEG = 2000</td><td>JPEG</td><td>42</td><td>1</td><td>486</td><tr><tr><td>ComponentType</td><td>enum ComponentType {
+    
+    YUV_Y = 1,
+
+    
+    YUV_U = 2,
+
+    
+    YUV_V = 3,
+
+    
+    JPEG = 4, 
+  }</td><td>ComponentType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ComponentType</td><td>YUV_Y = 1,</td><td>YUV_Y</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ComponentType</td><td>YUV_U = 2,</td><td>YUV_U</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ComponentType</td><td>YUV_V = 3,</td><td>YUV_V</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ComponentType</td><td>JPEG = 4,</td><td>JPEG</td><td>42</td><td>1</td><td>486</td><tr><tr><td>Region</td><td>interface Region {
+    
+    size: Size;
+
+    
+    x: number;
+
+    
+    y: number;
+  }</td><td>Region</td><td>20</td><td>0</td><td>62</td><tr><tr><td>Region</td><td>size: Size</td><td>size</td><td>22</td><td>1</td><td>3487</td><tr><tr><td>Region</td><td>x: number</td><td>x</td><td>22</td><td>1</td><td>8861</td><tr><tr><td>Region</td><td>y: number</td><td>y</td><td>22</td><td>1</td><td>25768</td><tr><tr><td>PositionArea</td><td>interface PositionArea {
+    
+    pixels: ArrayBuffer;
+
+    
+    offset: number;
+
+    
+    stride: number;
+
+    
+    region: Region;
+  }</td><td>PositionArea</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PositionArea</td><td>pixels: ArrayBuffer</td><td>pixels</td><td>22</td><td>1</td><td>16</td><tr><tr><td>PositionArea</td><td>offset: number</td><td>offset</td><td>22</td><td>1</td><td>49</td><tr><tr><td>PositionArea</td><td>stride: number</td><td>stride</td><td>22</td><td>1</td><td>10</td><tr><tr><td>PositionArea</td><td>region: Region</td><td>region</td><td>22</td><td>1</td><td>12</td><tr><tr><td>ImageInfo</td><td>interface ImageInfo {
+    
+    size: Size;
+  }</td><td>ImageInfo</td><td>20</td><td>0</td><td>134</td><tr><tr><td>ImageInfo</td><td>size: Size</td><td>size</td><td>22</td><td>1</td><td>3487</td><tr><tr><td>PackingOption</td><td>interface PackingOption {
+    
+    format: string;
+
+    
+    quality: number;
+  }</td><td>PackingOption</td><td>20</td><td>0</td><td>0</td><tr><tr><td>PackingOption</td><td>format: string</td><td>format</td><td>22</td><td>1</td><td>645</td><tr><tr><td>PackingOption</td><td>quality: number</td><td>quality</td><td>22</td><td>1</td><td>26</td><tr><tr><td>GetImagePropertyOptions</td><td>interface GetImagePropertyOptions {
+    
+    index?: number;
+
+    
+    defaultValue?: string;
+  }</td><td>GetImagePropertyOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GetImagePropertyOptions</td><td>index?: number</td><td>index</td><td>22</td><td>1</td><td>350</td><tr><tr><td>GetImagePropertyOptions</td><td>defaultValue?: string</td><td>defaultValue</td><td>22</td><td>1</td><td>9</td><tr><tr><td>DecodingOptions</td><td>interface DecodingOptions {
+    
+    index?: number;
+
+    
+    sampleSize?: number;
+
+    
+    rotate?: number;
+
+    
+    editable?: boolean;
+
+    
+    desiredSize?: Size;
+
+    
+    desiredRegion?: Region;
+
+    
+    desiredPixelFormat?: PixelMapFormat;
+  }</td><td>DecodingOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DecodingOptions</td><td>index?: number</td><td>index</td><td>22</td><td>1</td><td>350</td><tr><tr><td>DecodingOptions</td><td>sampleSize?: number</td><td>sampleSize</td><td>22</td><td>1</td><td>64</td><tr><tr><td>DecodingOptions</td><td>rotate?: number</td><td>rotate</td><td>22</td><td>1</td><td>66</td><tr><tr><td>DecodingOptions</td><td>editable?: boolean</td><td>editable</td><td>22</td><td>1</td><td>92</td><tr><tr><td>DecodingOptions</td><td>desiredSize?: Size</td><td>desiredSize</td><td>22</td><td>1</td><td>62</td><tr><tr><td>DecodingOptions</td><td>desiredRegion?: Region</td><td>desiredRegion</td><td>22</td><td>1</td><td>62</td><tr><tr><td>DecodingOptions</td><td>desiredPixelFormat?: PixelMapFormat</td><td>desiredPixelFormat</td><td>22</td><td>1</td><td>58</td><tr><tr><td>Component</td><td>interface Component {
+    
+    readonly componentType: ComponentType;
+
+    
+    readonly rowStride: number;
+
+    
+    readonly pixelStride: number;
+
+    
+    readonly byteBuffer: ArrayBuffer;
+  }</td><td>Component</td><td>20</td><td>0</td><td>25</td><tr><tr><td>Component</td><td>readonly componentType: ComponentType</td><td>componentType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Component</td><td>readonly rowStride: number</td><td>rowStride</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Component</td><td>readonly pixelStride: number</td><td>pixelStride</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Component</td><td>readonly byteBuffer: ArrayBuffer</td><td>byteBuffer</td><td>22</td><td>1</td><td>0</td><tr><tr><td>InitializationOptions</td><td>interface InitializationOptions {
+    
+    size: Size;
+
+    
+    pixelFormat?: PixelMapFormat;
+
+    
+    editable?: boolean;
+  }</td><td>InitializationOptions</td><td>20</td><td>0</td><td>0</td><tr><tr><td>InitializationOptions</td><td>size: Size</td><td>size</td><td>22</td><td>1</td><td>3487</td><tr><tr><td>InitializationOptions</td><td>pixelFormat?: PixelMapFormat</td><td>pixelFormat</td><td>22</td><td>1</td><td>30</td><tr><tr><td>InitializationOptions</td><td>editable?: boolean</td><td>editable</td><td>22</td><td>1</td><td>92</td><tr><tr><td>PixelMap</td><td>interface PixelMap {
+    
+    readonly isEditable: boolean;
+
+    
+    readPixelsToBuffer(dst: ArrayBuffer): Promise<void>;
+
+    
+    readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback<void>): void;
+
+    
+    readPixels(area: PositionArea): Promise<void>;
+
+    
+    readPixels(area: PositionArea, callback: AsyncCallback<void>): void;
+
+    
+    writePixels(area: PositionArea): Promise<void>;
+
+    
+    writePixels(area: PositionArea, callback: AsyncCallback<void>): void;
+
+    
+    writeBufferToPixels(src: ArrayBuffer): Promise<void>;
+
+    
+    writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback<void>): void;
+
+    
+    getImageInfo(): Promise<ImageInfo>;
+
+    
+    getImageInfo(callback: AsyncCallback<ImageInfo>): void;
+
+    
+    getBytesNumberPerRow(): number;
+
+    
+    getPixelBytesNumber(): number;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+  }</td><td>PixelMap</td><td>20</td><td>0</td><td>258</td><tr><tr><td>PixelMap</td><td>readPixelsToBuffer(dst: ArrayBuffer): Promise<void>;</td><td>readPixelsToBuffer</td><td>21</td><td>1</td><td>2</td><tr><tr><td>PixelMap</td><td>readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback<void>): void;</td><td>readPixelsToBuffer</td><td>21</td><td>2</td><td>3</td><tr><tr><td>PixelMap</td><td>readPixels(area: PositionArea): Promise<void>;</td><td>readPixels</td><td>21</td><td>1</td><td>8</td><tr><tr><td>PixelMap</td><td>readPixels(area: PositionArea, callback: AsyncCallback<void>): void;</td><td>readPixels</td><td>21</td><td>2</td><td>13</td><tr><tr><td>PixelMap</td><td>writePixels(area: PositionArea): Promise<void>;</td><td>writePixels</td><td>21</td><td>1</td><td>1</td><tr><tr><td>PixelMap</td><td>writePixels(area: PositionArea, callback: AsyncCallback<void>): void;</td><td>writePixels</td><td>21</td><td>2</td><td>5</td><tr><tr><td>PixelMap</td><td>writeBufferToPixels(src: ArrayBuffer): Promise<void>;</td><td>writeBufferToPixels</td><td>21</td><td>1</td><td>1</td><tr><tr><td>PixelMap</td><td>writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback<void>): void;</td><td>writeBufferToPixels</td><td>21</td><td>2</td><td>5</td><tr><tr><td>PixelMap</td><td>getImageInfo(): Promise<ImageInfo>;</td><td>getImageInfo</td><td>21</td><td>0</td><td>7</td><tr><tr><td>PixelMap</td><td>getImageInfo(callback: AsyncCallback<ImageInfo>): void;</td><td>getImageInfo</td><td>21</td><td>1</td><td>92</td><tr><tr><td>PixelMap</td><td>getBytesNumberPerRow(): number;</td><td>getBytesNumberPerRow</td><td>21</td><td>0</td><td>3</td><tr><tr><td>PixelMap</td><td>getPixelBytesNumber(): number;</td><td>getPixelBytesNumber</td><td>21</td><td>0</td><td>3</td><tr><tr><td>PixelMap</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>PixelMap</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>PixelMap</td><td>readonly isEditable: boolean</td><td>isEditable</td><td>22</td><td>1</td><td>3</td><tr><tr><td>ImageSource</td><td>interface ImageSource {
+    
+    getImageInfo(index: number, callback: AsyncCallback<ImageInfo>): void;
+
+    
+    getImageInfo(callback: AsyncCallback<ImageInfo>): void;
+
+    
+    getImageInfo(index?: number): Promise<ImageInfo>;
+
+    
+    createPixelMap(options?: DecodingOptions): Promise<PixelMap>;
+    
+    
+    createPixelMap(callback: AsyncCallback<PixelMap>): void;
+
+    
+    createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void;
+
+    
+    getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>;
+
+    
+    getImageProperty(key:string, callback: AsyncCallback<string>): void;
+	
+    
+    getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback<string>): void;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    readonly supportedFormats: Array<string>;
+  }</td><td>ImageSource</td><td>20</td><td>0</td><td>191</td><tr><tr><td>ImageSource</td><td>getImageInfo(index: number, callback: AsyncCallback<ImageInfo>): void;</td><td>getImageInfo</td><td>21</td><td>2</td><td>92</td><tr><tr><td>ImageSource</td><td>getImageInfo(callback: AsyncCallback<ImageInfo>): void;</td><td>getImageInfo</td><td>21</td><td>1</td><td>92</td><tr><tr><td>ImageSource</td><td>getImageInfo(index?: number): Promise<ImageInfo>;</td><td>getImageInfo</td><td>21</td><td>1</td><td>7</td><tr><tr><td>ImageSource</td><td>createPixelMap(options?: DecodingOptions): Promise<PixelMap>;</td><td>createPixelMap</td><td>21</td><td>1</td><td>14</td><tr><tr><td>ImageSource</td><td>createPixelMap(callback: AsyncCallback<PixelMap>): void;</td><td>createPixelMap</td><td>21</td><td>1</td><td>173</td><tr><tr><td>ImageSource</td><td>createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void;</td><td>createPixelMap</td><td>21</td><td>2</td><td>173</td><tr><tr><td>ImageSource</td><td>getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>;</td><td>getImageProperty</td><td>21</td><td>2</td><td>9</td><tr><tr><td>ImageSource</td><td>getImageProperty(key:string, callback: AsyncCallback<string>): void;</td><td>getImageProperty</td><td>21</td><td>2</td><td>90</td><tr><tr><td>ImageSource</td><td>getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback<string>): void;</td><td>getImageProperty</td><td>21</td><td>3</td><td>90</td><tr><tr><td>ImageSource</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>ImageSource</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>ImageSource</td><td>readonly supportedFormats: Array<string></td><td>supportedFormats</td><td>22</td><td>1</td><td>20</td><tr><tr><td>ImagePacker</td><td>interface ImagePacker {
+    
+    packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;
+
+    
+    packing(source: ImageSource, option: PackingOption): Promise<ArrayBuffer>;
+
+    
+     packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;
+
+     
+     packing(source: PixelMap, option: PackingOption): Promise<ArrayBuffer>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+
+    
+    readonly supportedFormats: Array<string>;
+  }</td><td>ImagePacker</td><td>20</td><td>0</td><td>18</td><tr><tr><td>ImagePacker</td><td>packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;</td><td>packing</td><td>21</td><td>3</td><td>28</td><tr><tr><td>ImagePacker</td><td>packing(source: ImageSource, option: PackingOption): Promise<ArrayBuffer>;</td><td>packing</td><td>21</td><td>2</td><td>0</td><tr><tr><td>ImagePacker</td><td>packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;</td><td>packing</td><td>21</td><td>3</td><td>28</td><tr><tr><td>ImagePacker</td><td>packing(source: PixelMap, option: PackingOption): Promise<ArrayBuffer>;</td><td>packing</td><td>21</td><td>2</td><td>0</td><tr><tr><td>ImagePacker</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>ImagePacker</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>ImagePacker</td><td>readonly supportedFormats: Array<string></td><td>supportedFormats</td><td>22</td><td>1</td><td>20</td><tr><tr><td>Image</td><td>interface Image {
+    
+    clipRect: Region;
+
+    
+    readonly size: Size;
+
+    
+    readonly format: number;
+
+    
+    getComponent(componentType: ComponentType, callback: AsyncCallback<Component>): void;
+
+    
+    getComponent(componentType: ComponentType): Promise<Component>;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+  }</td><td>Image</td><td>20</td><td>0</td><td>553</td><tr><tr><td>Image</td><td>getComponent(componentType: ComponentType, callback: AsyncCallback<Component>): void;</td><td>getComponent</td><td>21</td><td>2</td><td>1</td><tr><tr><td>Image</td><td>getComponent(componentType: ComponentType): Promise<Component>;</td><td>getComponent</td><td>21</td><td>1</td><td>0</td><tr><tr><td>Image</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>Image</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>Image</td><td>clipRect: Region</td><td>clipRect</td><td>22</td><td>1</td><td>0</td><tr><tr><td>Image</td><td>readonly size: Size</td><td>size</td><td>22</td><td>1</td><td>3487</td><tr><tr><td>Image</td><td>readonly format: number</td><td>format</td><td>22</td><td>1</td><td>645</td><tr><tr><td>ImageReceiver</td><td>interface ImageReceiver {
+    
+    readonly size: Size;
+
+    
+    readonly capacity: number;
+
+    
+    readonly format: ImageFormat;
+
+    
+    getReceivingSurfaceId(callback: AsyncCallback<string>): void;
+
+    
+    getReceivingSurfaceId(): Promise<string>;
+
+    
+    readLatestImage(callback: AsyncCallback<Image>): void;
+
+    
+    readLatestImage(): Promise<Image>;
+
+    
+    readNextImage(callback: AsyncCallback<Image>): void;
+
+    
+    readNextImage(): Promise<Image>;
+
+    
+    on(type: 'imageArrival', callback: AsyncCallback<void>): void;
+
+    
+    release(callback: AsyncCallback<void>): void;
+
+    
+    release(): Promise<void>;
+  }</td><td>ImageReceiver</td><td>20</td><td>0</td><td>24</td><tr><tr><td>ImageReceiver</td><td>getReceivingSurfaceId(callback: AsyncCallback<string>): void;</td><td>getReceivingSurfaceId</td><td>21</td><td>1</td><td>8</td><tr><tr><td>ImageReceiver</td><td>getReceivingSurfaceId(): Promise<string>;</td><td>getReceivingSurfaceId</td><td>21</td><td>0</td><td>0</td><tr><tr><td>ImageReceiver</td><td>readLatestImage(callback: AsyncCallback<Image>): void;</td><td>readLatestImage</td><td>21</td><td>1</td><td>0</td><tr><tr><td>ImageReceiver</td><td>readLatestImage(): Promise<Image>;</td><td>readLatestImage</td><td>21</td><td>0</td><td>0</td><tr><tr><td>ImageReceiver</td><td>readNextImage(callback: AsyncCallback<Image>): void;</td><td>readNextImage</td><td>21</td><td>1</td><td>0</td><tr><tr><td>ImageReceiver</td><td>readNextImage(): Promise<Image>;</td><td>readNextImage</td><td>21</td><td>0</td><td>0</td><tr><tr><td>ImageReceiver</td><td>on(type: 'imageArrival', callback: AsyncCallback<void>): void;</td><td>on</td><td>21</td><td>2</td><td>41984</td><tr><tr><td>ImageReceiver</td><td>release(callback: AsyncCallback<void>): void;</td><td>release</td><td>21</td><td>1</td><td>799</td><tr><tr><td>ImageReceiver</td><td>release(): Promise<void>;</td><td>release</td><td>21</td><td>0</td><td>175</td><tr><tr><td>ImageReceiver</td><td>readonly size: Size</td><td>size</td><td>22</td><td>1</td><td>3487</td><tr><tr><td>ImageReceiver</td><td>readonly capacity: number</td><td>capacity</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ImageReceiver</td><td>readonly format: ImageFormat</td><td>format</td><td>22</td><td>1</td><td>645</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

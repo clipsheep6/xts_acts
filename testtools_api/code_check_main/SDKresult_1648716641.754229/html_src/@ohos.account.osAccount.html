@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>账号子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>account</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.account.osAccount</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>osAccount</td><td>declare namespace osAccount {
+    
+    function getAccountManager(): AccountManager;
+
+    
+    interface AccountManager {
+        
+        activateOsAccount(localId: number, callback: AsyncCallback<void>): void;
+        activateOsAccount(localId: number): Promise<void>;
+
+        
+        isMultiOsAccountEnable(callback: AsyncCallback<boolean>): void;
+        isMultiOsAccountEnable(): Promise<boolean>;
+
+        
+        isOsAccountActived(localId: number, callback: AsyncCallback<boolean>): void;
+        isOsAccountActived(localId: number): Promise<boolean>;
+
+        
+        isOsAccountConstraintEnable(localId: number, constraint: string, callback: AsyncCallback<boolean>): void;
+        isOsAccountConstraintEnable(localId: number, constraint: string): Promise<boolean>;
+
+        
+        isTestOsAccount(callback: AsyncCallback<boolean>): void;
+        isTestOsAccount(): Promise<boolean>;
+
+        
+        isOsAccountVerified(callback: AsyncCallback<boolean>): void;
+
+        
+        isOsAccountVerified(localId: number, callback: AsyncCallback<boolean>): void;
+        isOsAccountVerified(localId?: number): Promise<boolean>;
+
+        
+        removeOsAccount(localId: number, callback: AsyncCallback<void>): void;
+        removeOsAccount(localId: number): Promise<void>;
+
+        
+        setOsAccountConstraints(localId: number, constraints: Array<string>, enable: boolean,
+                                callback: AsyncCallback<void>): void;
+        setOsAccountConstraints(localId: number, constraints: Array<string>, enable: boolean): Promise<void>;
+
+        
+        setOsAccountName(localId: number, localName: string, callback: AsyncCallback<void>): void;
+        setOsAccountName(localId: number, localName: string): Promise<void>;
+
+        
+        getCreatedOsAccountsCount(callback: AsyncCallback<number>): void;
+        getCreatedOsAccountsCount(): Promise<number>;
+
+        
+        getOsAccountLocalIdFromProcess(callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdFromProcess(): Promise<number>;
+
+        
+        getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdFromUid(uid: number): Promise<number>;
+
+        
+        getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise<number>;
+
+        
+        queryMaxOsAccountNumber(callback: AsyncCallback<number>): void;
+        queryMaxOsAccountNumber(): Promise<number>;
+
+        
+        getOsAccountAllConstraints(localId: number, callback: AsyncCallback<Array<string>>): void;
+        getOsAccountAllConstraints(localId: number): Promise<Array<string>>;
+
+        
+        queryAllCreatedOsAccounts(callback: AsyncCallback<Array<OsAccountInfo>>): void;
+        queryAllCreatedOsAccounts(): Promise<Array<OsAccountInfo>>;
+
+        
+        queryActivatedOsAccountIds(callback: AsyncCallback<Array<number>>): void;
+        queryActivatedOsAccountIds(): Promise<Array<number>>;
+
+        
+        createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback<OsAccountInfo>): void;
+        createOsAccount(localName: string, type: OsAccountType): Promise<OsAccountInfo>;
+
+        
+        createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback<OsAccountInfo>): void;
+        createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise<OsAccountInfo>;
+
+        
+        queryCurrentOsAccount(callback: AsyncCallback<OsAccountInfo>): void;
+        queryCurrentOsAccount(): Promise<OsAccountInfo>;
+
+        
+        queryOsAccountById(localId: number, callback: AsyncCallback<OsAccountInfo>): void;
+        queryOsAccountById(localId: number): Promise<OsAccountInfo>;
+
+        
+        getOsAccountTypeFromProcess(callback: AsyncCallback<OsAccountType>): void;
+        getOsAccountTypeFromProcess(): Promise<OsAccountType>;
+
+        
+        getDistributedVirtualDeviceId(callback: AsyncCallback<string>): void;
+        getDistributedVirtualDeviceId(): Promise<string>;
+
+        
+        getOsAccountProfilePhoto(localId: number, callback: AsyncCallback<string>): void;
+        getOsAccountProfilePhoto(localId: number): Promise<string>;
+
+        
+        setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback<void>): void;
+        setOsAccountProfilePhoto(localId: number, photo: string): Promise<void>;
+
+        
+        getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise<number>;
+
+        
+        getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback<number>): void;
+        getSerialNumberByOsAccountLocalId(localId: number): Promise<number>;
+
+        
+        on(type: 'activate' | 'activating', name: string, callback: Callback<number>): void;
+
+        
+        off(type: 'activate' | 'activating', name: string, callback?: Callback<number>): void;
+    }
+
+    
+    interface OsAccountInfo {
+        
+        localId: number;
+
+        
+        localName: string;
+
+        
+        type: OsAccountType;
+
+        
+        constraints: Array<string>;
+
+        
+        isVerified: boolean;
+
+        
+        photo: string;
+
+        
+        createTime: number;
+
+        
+        lastLoginTime: number;
+
+        
+        serialNumber: number;
+
+        
+        isActived: boolean;
+
+        
+        isCreateCompleted: boolean;
+
+        
+        distributedInfo: distributedAccount.DistributedInfo;
+
+         
+         domainInfo: DomainAccountInfo;
+    }
+
+    interface DomainAccountInfo {
+        
+        domain: string;
+
+        
+        accountName: string;
+    }
+
+    
+    enum OsAccountType {
+        
+        ADMIN = 0,
+
+        
+        NORMAL,
+
+        
+        GUEST
+    }
+
+    
+    class UserAuth {
+        
+        constructor();
+
+        
+        getVersion(): number;
+
+        
+        getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
+
+        
+        getProperty(request: GetPropertyRequest, callback: AsyncCallback<ExecutorProperty>): void;
+        getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
+
+        
+        setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
+        setProperty(request: SetPropertyRequest): Promise<number>;
+
+        
+        auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+        
+        authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+        
+        cancelAuth(contextID: Uint8Array): number;
+    }
+
+    
+    class PINAuth {
+        
+        constructor();
+
+        
+        registerInputer(inputer: IInputer): boolean;
+
+        
+        unregisterInputer(): void;
+    }
+
+    
+    class UserIdentityManager {
+        
+        constructor();
+
+        
+        openSession(callback: AsyncCallback<Uint8Array>): void;
+        openSession(): Promise<Uint8Array>;
+
+        
+        addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+
+        
+        updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+
+        
+        closeSession(): void;
+
+        
+        cancel(challenge: Uint8Array): number;
+
+        
+        delUser(token: Uint8Array, callback: IIdmCallback): void;
+
+        
+        delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void;
+
+        
+        getAuthInfo(callback: AsyncCallback<Array<EnrolledCredInfo>>, authType?: AuthType): void;
+        getAuthInfo(authType?: AuthType): Promise<Array<EnrolledCredInfo>>;
+    }
+
+    
+    interface IInputData {
+        
+        onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+    }
+    
+    
+    interface IInputer {
+        
+        onGetData: (callback: IInputData) => void;
+    }
+
+    
+    interface IUserAuthCallback {
+        
+        onResult: (result: number, extraInfo: AuthResult) => void;
+
+        
+        onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+    }
+
+    
+    interface IIdmCallback {
+        
+        onResult: (result: number, extraInfo: RequestResult) => void;
+
+        
+        onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+    }
+
+    
+    interface GetPropertyRequest {
+        
+        authType: AuthType;
+
+        
+        keys: Array<GetPropertyType>;
+    }
+
+    
+    interface SetPropertyRequest {
+        
+        authType: AuthType;
+
+        
+        key: SetPropertyType;
+
+        
+        setInfo: Uint8Array;
+    }
+
+    
+    interface ExecutorProperty {
+        
+        result: number;
+
+        
+        authSubType: AuthSubType;
+
+        
+        remainTimes?: number;
+
+        
+        freezingTime?: number;
+    }
+ 
+    
+    interface AuthResult {
+        
+        token?: Uint8Array;
+
+        
+        remainTimes?: number;
+
+        
+        freezingTime?: number;
+    }
+
+    
+    interface CredentialInfo {
+        
+        credType: AuthType;
+
+        
+        credSubType: AuthSubType;
+
+        
+        token: Uint8Array;
+    }
+
+    
+    interface RequestResult {
+        
+        credentialId?: Uint8Array;
+    }
+
+    
+    interface EnrolledCredInfo {
+        
+        credentialId: Uint8Array;
+
+        
+        authType: AuthType;
+
+        
+        authSubType: AuthSubType;
+
+        
+        templateId: Uint8Array;
+    }
+
+    
+    enum GetPropertyType {
+        
+        AUTH_SUB_TYPE = 1,
+
+        
+        REMAIN_TIMES = 2,
+
+        
+        FREEZING_TIME = 3
+    }
+
+    
+    enum SetPropertyType {
+        
+        INIT_ALGORITHM = 1,
+    }
+
+    
+    enum AuthType {
+        
+        PIN = 1,
+
+        
+        FACE = 2
+    }
+
+    
+    enum AuthSubType {
+        
+        PIN_SIX = 10000,
+
+        
+        PIN_NUMBER = 10001,
+
+        
+        PIN_MIXED = 10002,
+    
+        
+        FACE_2D = 20000,
+
+        
+        FACE_3D = 20001
+    }
+
+    
+    enum AuthTrustLevel {
+        
+        ATL1 = 10000,
+
+        
+        ATL2 = 20000,
+
+        
+        ATL3 = 30000,
+
+        
+        ATL4 = 40000
+    }
+
+    
+    enum Module {
+        
+        FACE_AUTH = 1
+    }
+
+    
+    enum ResultCode {
+        
+        SUCCESS = 0,
+
+        
+        FAIL = 1,
+
+        
+        GENERAL_ERROR = 2,
+
+        
+        CANCELED = 3,
+
+        
+        TIMEOUT = 4,
+
+        
+        TYPE_NOT_SUPPORT = 5,
+
+        
+        TRUST_LEVEL_NOT_SUPPORT = 6,
+
+        
+        BUSY = 7,
+
+        
+        INVALID_PARAMETERS = 8,
+
+        
+        LOCKED = 9,
+
+        
+        NOT_ENROLLED = 10
+    }
+
+    
+    enum FaceTipsCode {
+        
+        FACE_AUTH_TIP_TOO_BRIGHT = 1,
+
+        
+        FACE_AUTH_TIP_TOO_DARK = 2,
+
+        
+        FACE_AUTH_TIP_TOO_CLOSE = 3,
+
+        
+        FACE_AUTH_TIP_TOO_FAR = 4,
+
+        
+        FACE_AUTH_TIP_TOO_HIGH = 5,
+
+        
+        FACE_AUTH_TIP_TOO_LOW = 6,
+
+        
+        FACE_AUTH_TIP_TOO_RIGHT = 7,
+
+        
+        FACE_AUTH_TIP_TOO_LEFT = 8,
+
+        
+        FACE_AUTH_TIP_TOO_MUCH_MOTION = 9,
+
+        
+        FACE_AUTH_TIP_POOR_GAZE = 10,
+
+        
+        FACE_AUTH_TIP_NOT_DETECTED = 11,
+    }
+
+    
+    enum FingerprintTips {
+        
+        FINGERPRINT_TIP_GOOD = 0,
+
+        
+        FINGERPRINT_TIP_IMAGER_DIRTY = 1,
+
+        
+        FINGERPRINT_TIP_INSUFFICIENT = 2,
+
+        
+        FINGERPRINT_TIP_PARTIAL = 3,
+
+        
+        FINGERPRINT_TIP_TOO_FAST = 4,
+
+        
+        FINGERPRINT_TIP_TOO_SLOW = 5
+    }
+}</td><td>osAccount</td><td>None</td><td>0</td><td>1084</td><tr><tr><td>osAccount</td><td>function getAccountManager(): AccountManager;</td><td>getAccountManager</td><td>None</td><td>0</td><td>272</td><tr><tr><td>AccountManager</td><td>interface AccountManager {
+        
+        activateOsAccount(localId: number, callback: AsyncCallback<void>): void;
+        activateOsAccount(localId: number): Promise<void>;
+
+        
+        isMultiOsAccountEnable(callback: AsyncCallback<boolean>): void;
+        isMultiOsAccountEnable(): Promise<boolean>;
+
+        
+        isOsAccountActived(localId: number, callback: AsyncCallback<boolean>): void;
+        isOsAccountActived(localId: number): Promise<boolean>;
+
+        
+        isOsAccountConstraintEnable(localId: number, constraint: string, callback: AsyncCallback<boolean>): void;
+        isOsAccountConstraintEnable(localId: number, constraint: string): Promise<boolean>;
+
+        
+        isTestOsAccount(callback: AsyncCallback<boolean>): void;
+        isTestOsAccount(): Promise<boolean>;
+
+        
+        isOsAccountVerified(callback: AsyncCallback<boolean>): void;
+
+        
+        isOsAccountVerified(localId: number, callback: AsyncCallback<boolean>): void;
+        isOsAccountVerified(localId?: number): Promise<boolean>;
+
+        
+        removeOsAccount(localId: number, callback: AsyncCallback<void>): void;
+        removeOsAccount(localId: number): Promise<void>;
+
+        
+        setOsAccountConstraints(localId: number, constraints: Array<string>, enable: boolean,
+                                callback: AsyncCallback<void>): void;
+        setOsAccountConstraints(localId: number, constraints: Array<string>, enable: boolean): Promise<void>;
+
+        
+        setOsAccountName(localId: number, localName: string, callback: AsyncCallback<void>): void;
+        setOsAccountName(localId: number, localName: string): Promise<void>;
+
+        
+        getCreatedOsAccountsCount(callback: AsyncCallback<number>): void;
+        getCreatedOsAccountsCount(): Promise<number>;
+
+        
+        getOsAccountLocalIdFromProcess(callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdFromProcess(): Promise<number>;
+
+        
+        getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdFromUid(uid: number): Promise<number>;
+
+        
+        getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise<number>;
+
+        
+        queryMaxOsAccountNumber(callback: AsyncCallback<number>): void;
+        queryMaxOsAccountNumber(): Promise<number>;
+
+        
+        getOsAccountAllConstraints(localId: number, callback: AsyncCallback<Array<string>>): void;
+        getOsAccountAllConstraints(localId: number): Promise<Array<string>>;
+
+        
+        queryAllCreatedOsAccounts(callback: AsyncCallback<Array<OsAccountInfo>>): void;
+        queryAllCreatedOsAccounts(): Promise<Array<OsAccountInfo>>;
+
+        
+        queryActivatedOsAccountIds(callback: AsyncCallback<Array<number>>): void;
+        queryActivatedOsAccountIds(): Promise<Array<number>>;
+
+        
+        createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback<OsAccountInfo>): void;
+        createOsAccount(localName: string, type: OsAccountType): Promise<OsAccountInfo>;
+
+        
+        createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback<OsAccountInfo>): void;
+        createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise<OsAccountInfo>;
+
+        
+        queryCurrentOsAccount(callback: AsyncCallback<OsAccountInfo>): void;
+        queryCurrentOsAccount(): Promise<OsAccountInfo>;
+
+        
+        queryOsAccountById(localId: number, callback: AsyncCallback<OsAccountInfo>): void;
+        queryOsAccountById(localId: number): Promise<OsAccountInfo>;
+
+        
+        getOsAccountTypeFromProcess(callback: AsyncCallback<OsAccountType>): void;
+        getOsAccountTypeFromProcess(): Promise<OsAccountType>;
+
+        
+        getDistributedVirtualDeviceId(callback: AsyncCallback<string>): void;
+        getDistributedVirtualDeviceId(): Promise<string>;
+
+        
+        getOsAccountProfilePhoto(localId: number, callback: AsyncCallback<string>): void;
+        getOsAccountProfilePhoto(localId: number): Promise<string>;
+
+        
+        setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback<void>): void;
+        setOsAccountProfilePhoto(localId: number, photo: string): Promise<void>;
+
+        
+        getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback<number>): void;
+        getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise<number>;
+
+        
+        getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback<number>): void;
+        getSerialNumberByOsAccountLocalId(localId: number): Promise<number>;
+
+        
+        on(type: 'activate' | 'activating', name: string, callback: Callback<number>): void;
+
+        
+        off(type: 'activate' | 'activating', name: string, callback?: Callback<number>): void;
+    }</td><td>AccountManager</td><td>20</td><td>0</td><td>3231</td><tr><tr><td>AccountManager</td><td>activateOsAccount(localId: number, callback: AsyncCallback<void>): void;</td><td>activateOsAccount</td><td>21</td><td>2</td><td>90</td><tr><tr><td>AccountManager</td><td>activateOsAccount(localId: number): Promise<void>;</td><td>activateOsAccount</td><td>21</td><td>1</td><td>1</td><tr><tr><td>AccountManager</td><td>isMultiOsAccountEnable(callback: AsyncCallback<boolean>): void;</td><td>isMultiOsAccountEnable</td><td>21</td><td>1</td><td>14</td><tr><tr><td>AccountManager</td><td>isMultiOsAccountEnable(): Promise<boolean>;</td><td>isMultiOsAccountEnable</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>isOsAccountActived(localId: number, callback: AsyncCallback<boolean>): void;</td><td>isOsAccountActived</td><td>21</td><td>2</td><td>77</td><tr><tr><td>AccountManager</td><td>isOsAccountActived(localId: number): Promise<boolean>;</td><td>isOsAccountActived</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>isOsAccountConstraintEnable(localId: number, constraint: string, callback: AsyncCallback<boolean>): void;</td><td>isOsAccountConstraintEnable</td><td>21</td><td>3</td><td>59</td><tr><tr><td>AccountManager</td><td>isOsAccountConstraintEnable(localId: number, constraint: string): Promise<boolean>;</td><td>isOsAccountConstraintEnable</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AccountManager</td><td>isTestOsAccount(callback: AsyncCallback<boolean>): void;</td><td>isTestOsAccount</td><td>21</td><td>1</td><td>12</td><tr><tr><td>AccountManager</td><td>isTestOsAccount(): Promise<boolean>;</td><td>isTestOsAccount</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>isOsAccountVerified(callback: AsyncCallback<boolean>): void;</td><td>isOsAccountVerified</td><td>21</td><td>1</td><td>62</td><tr><tr><td>AccountManager</td><td>isOsAccountVerified(localId: number, callback: AsyncCallback<boolean>): void;</td><td>isOsAccountVerified</td><td>21</td><td>2</td><td>62</td><tr><tr><td>AccountManager</td><td>isOsAccountVerified(localId?: number): Promise<boolean>;</td><td>isOsAccountVerified</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>removeOsAccount(localId: number, callback: AsyncCallback<void>): void;</td><td>removeOsAccount</td><td>21</td><td>2</td><td>143</td><tr><tr><td>AccountManager</td><td>removeOsAccount(localId: number): Promise<void>;</td><td>removeOsAccount</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>setOsAccountConstraints(localId: number, constraints: Array<string>, enable: boolean,
+                                callback: AsyncCallback<void>): void;</td><td>setOsAccountConstraints</td><td>21</td><td>4</td><td>64</td><tr><tr><td>AccountManager</td><td>setOsAccountConstraints(localId: number, constraints: Array<string>, enable: boolean): Promise<void>;</td><td>setOsAccountConstraints</td><td>21</td><td>3</td><td>0</td><tr><tr><td>AccountManager</td><td>setOsAccountName(localId: number, localName: string, callback: AsyncCallback<void>): void;</td><td>setOsAccountName</td><td>21</td><td>3</td><td>55</td><tr><tr><td>AccountManager</td><td>setOsAccountName(localId: number, localName: string): Promise<void>;</td><td>setOsAccountName</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AccountManager</td><td>getCreatedOsAccountsCount(callback: AsyncCallback<number>): void;</td><td>getCreatedOsAccountsCount</td><td>21</td><td>1</td><td>14</td><tr><tr><td>AccountManager</td><td>getCreatedOsAccountsCount(): Promise<number>;</td><td>getCreatedOsAccountsCount</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdFromProcess(callback: AsyncCallback<number>): void;</td><td>getOsAccountLocalIdFromProcess</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdFromProcess(): Promise<number>;</td><td>getOsAccountLocalIdFromProcess</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback<number>): void;</td><td>getOsAccountLocalIdFromUid</td><td>21</td><td>2</td><td>10</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdFromUid(uid: number): Promise<number>;</td><td>getOsAccountLocalIdFromUid</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback<number>): void;</td><td>getOsAccountLocalIdFromDomain</td><td>21</td><td>2</td><td>3</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise<number>;</td><td>getOsAccountLocalIdFromDomain</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>queryMaxOsAccountNumber(callback: AsyncCallback<number>): void;</td><td>queryMaxOsAccountNumber</td><td>21</td><td>1</td><td>13</td><tr><tr><td>AccountManager</td><td>queryMaxOsAccountNumber(): Promise<number>;</td><td>queryMaxOsAccountNumber</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountAllConstraints(localId: number, callback: AsyncCallback<Array<string>>): void;</td><td>getOsAccountAllConstraints</td><td>21</td><td>2</td><td>57</td><tr><tr><td>AccountManager</td><td>getOsAccountAllConstraints(localId: number): Promise<Array<string>>;</td><td>getOsAccountAllConstraints</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>queryAllCreatedOsAccounts(callback: AsyncCallback<Array<OsAccountInfo>>): void;</td><td>queryAllCreatedOsAccounts</td><td>21</td><td>1</td><td>34</td><tr><tr><td>AccountManager</td><td>queryAllCreatedOsAccounts(): Promise<Array<OsAccountInfo>>;</td><td>queryAllCreatedOsAccounts</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>queryActivatedOsAccountIds(callback: AsyncCallback<Array<number>>): void;</td><td>queryActivatedOsAccountIds</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>queryActivatedOsAccountIds(): Promise<Array<number>>;</td><td>queryActivatedOsAccountIds</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback<OsAccountInfo>): void;</td><td>createOsAccount</td><td>21</td><td>3</td><td>257</td><tr><tr><td>AccountManager</td><td>createOsAccount(localName: string, type: OsAccountType): Promise<OsAccountInfo>;</td><td>createOsAccount</td><td>21</td><td>2</td><td>4</td><tr><tr><td>AccountManager</td><td>createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback<OsAccountInfo>): void;</td><td>createOsAccountForDomain</td><td>21</td><td>3</td><td>3</td><tr><tr><td>AccountManager</td><td>createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise<OsAccountInfo>;</td><td>createOsAccountForDomain</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AccountManager</td><td>queryCurrentOsAccount(callback: AsyncCallback<OsAccountInfo>): void;</td><td>queryCurrentOsAccount</td><td>21</td><td>1</td><td>20</td><tr><tr><td>AccountManager</td><td>queryCurrentOsAccount(): Promise<OsAccountInfo>;</td><td>queryCurrentOsAccount</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>queryOsAccountById(localId: number, callback: AsyncCallback<OsAccountInfo>): void;</td><td>queryOsAccountById</td><td>21</td><td>2</td><td>66</td><tr><tr><td>AccountManager</td><td>queryOsAccountById(localId: number): Promise<OsAccountInfo>;</td><td>queryOsAccountById</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountTypeFromProcess(callback: AsyncCallback<OsAccountType>): void;</td><td>getOsAccountTypeFromProcess</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AccountManager</td><td>getOsAccountTypeFromProcess(): Promise<OsAccountType>;</td><td>getOsAccountTypeFromProcess</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>getDistributedVirtualDeviceId(callback: AsyncCallback<string>): void;</td><td>getDistributedVirtualDeviceId</td><td>21</td><td>1</td><td>6</td><tr><tr><td>AccountManager</td><td>getDistributedVirtualDeviceId(): Promise<string>;</td><td>getDistributedVirtualDeviceId</td><td>21</td><td>0</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountProfilePhoto(localId: number, callback: AsyncCallback<string>): void;</td><td>getOsAccountProfilePhoto</td><td>21</td><td>2</td><td>25</td><tr><tr><td>AccountManager</td><td>getOsAccountProfilePhoto(localId: number): Promise<string>;</td><td>getOsAccountProfilePhoto</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback<void>): void;</td><td>setOsAccountProfilePhoto</td><td>21</td><td>3</td><td>40</td><tr><tr><td>AccountManager</td><td>setOsAccountProfilePhoto(localId: number, photo: string): Promise<void>;</td><td>setOsAccountProfilePhoto</td><td>21</td><td>2</td><td>0</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback<number>): void;</td><td>getOsAccountLocalIdBySerialNumber</td><td>21</td><td>2</td><td>9</td><tr><tr><td>AccountManager</td><td>getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise<number>;</td><td>getOsAccountLocalIdBySerialNumber</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback<number>): void;</td><td>getSerialNumberByOsAccountLocalId</td><td>21</td><td>2</td><td>10</td><tr><tr><td>AccountManager</td><td>getSerialNumberByOsAccountLocalId(localId: number): Promise<number>;</td><td>getSerialNumberByOsAccountLocalId</td><td>21</td><td>1</td><td>0</td><tr><tr><td>AccountManager</td><td>on(type: 'activate' | 'activating', name: string, callback: Callback<number>): void;</td><td>on</td><td>21</td><td>3</td><td>8941</td><tr><tr><td>AccountManager</td><td>off(type: 'activate' | 'activating', name: string, callback?: Callback<number>): void;</td><td>off</td><td>21</td><td>3</td><td>202</td><tr><tr><td>OsAccountInfo</td><td>interface OsAccountInfo {
+        
+        localId: number;
+
+        
+        localName: string;
+
+        
+        type: OsAccountType;
+
+        
+        constraints: Array<string>;
+
+        
+        isVerified: boolean;
+
+        
+        photo: string;
+
+        
+        createTime: number;
+
+        
+        lastLoginTime: number;
+
+        
+        serialNumber: number;
+
+        
+        isActived: boolean;
+
+        
+        isCreateCompleted: boolean;
+
+        
+        distributedInfo: distributedAccount.DistributedInfo;
+
+         
+         domainInfo: DomainAccountInfo;
+    }</td><td>OsAccountInfo</td><td>20</td><td>0</td><td>56</td><tr><tr><td>OsAccountInfo</td><td>localId: number</td><td>localId</td><td>22</td><td>1</td><td>798</td><tr><tr><td>OsAccountInfo</td><td>localName: string</td><td>localName</td><td>22</td><td>1</td><td>132</td><tr><tr><td>OsAccountInfo</td><td>type: OsAccountType</td><td>type</td><td>22</td><td>1</td><td>60</td><tr><tr><td>OsAccountInfo</td><td>constraints: Array<string></td><td>constraints</td><td>22</td><td>1</td><td>99</td><tr><tr><td>OsAccountInfo</td><td>isVerified: boolean</td><td>isVerified</td><td>22</td><td>1</td><td>35</td><tr><tr><td>OsAccountInfo</td><td>photo: string</td><td>photo</td><td>22</td><td>1</td><td>69</td><tr><tr><td>OsAccountInfo</td><td>createTime: number</td><td>createTime</td><td>22</td><td>1</td><td>2</td><tr><tr><td>OsAccountInfo</td><td>lastLoginTime: number</td><td>lastLoginTime</td><td>22</td><td>1</td><td>2</td><tr><tr><td>OsAccountInfo</td><td>serialNumber: number</td><td>serialNumber</td><td>22</td><td>1</td><td>112</td><tr><tr><td>OsAccountInfo</td><td>isActived: boolean</td><td>isActived</td><td>22</td><td>1</td><td>63</td><tr><tr><td>OsAccountInfo</td><td>isCreateCompleted: boolean</td><td>isCreateCompleted</td><td>22</td><td>1</td><td>10</td><tr><tr><td>OsAccountInfo</td><td>distributedInfo: distributedAccount.DistributedInfo</td><td>distributedInfo</td><td>22</td><td>1</td><td>9</td><tr><tr><td>OsAccountInfo</td><td>domainInfo: DomainAccountInfo</td><td>domainInfo</td><td>22</td><td>1</td><td>2</td><tr><tr><td>DomainAccountInfo</td><td>interface DomainAccountInfo {
+        
+        domain: string;
+
+        
+        accountName: string;
+    }</td><td>DomainAccountInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>DomainAccountInfo</td><td>domain: string</td><td>domain</td><td>22</td><td>1</td><td>6</td><tr><tr><td>DomainAccountInfo</td><td>accountName: string</td><td>accountName</td><td>22</td><td>1</td><td>6</td><tr><tr><td>OsAccountType</td><td>enum OsAccountType {
+        
+        ADMIN = 0,
+
+        
+        NORMAL,
+
+        
+        GUEST
+    }</td><td>OsAccountType</td><td>40</td><td>0</td><td>80</td><tr><tr><td>OsAccountType</td><td>ADMIN = 0,</td><td>ADMIN</td><td>42</td><td>1</td><td>22</td><tr><tr><td>OsAccountType</td><td>NORMAL,</td><td>NORMAL</td><td>42</td><td>1</td><td>66</td><tr><tr><td>UserAuth</td><td>class UserAuth {
+        
+        constructor();
+
+        
+        getVersion(): number;
+
+        
+        getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
+
+        
+        getProperty(request: GetPropertyRequest, callback: AsyncCallback<ExecutorProperty>): void;
+        getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
+
+        
+        setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
+        setProperty(request: SetPropertyRequest): Promise<number>;
+
+        
+        auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+        
+        authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
+
+        
+        cancelAuth(contextID: Uint8Array): number;
+    }</td><td>UserAuth</td><td>10</td><td>0</td><td>0</td><tr><tr><td>UserAuth</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserAuth</td><td>getVersion(): number;</td><td>getVersion</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserAuth</td><td>getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;</td><td>getAvailableStatus</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserAuth</td><td>getProperty(request: GetPropertyRequest, callback: AsyncCallback<ExecutorProperty>): void;</td><td>getProperty</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserAuth</td><td>getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;</td><td>getProperty</td><td>11</td><td>1</td><td>0</td><tr><tr><td>UserAuth</td><td>setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;</td><td>setProperty</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserAuth</td><td>setProperty(request: SetPropertyRequest): Promise<number>;</td><td>setProperty</td><td>11</td><td>1</td><td>0</td><tr><tr><td>UserAuth</td><td>auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;</td><td>auth</td><td>11</td><td>4</td><td>355</td><tr><tr><td>UserAuth</td><td>authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;</td><td>authUser</td><td>11</td><td>5</td><td>0</td><tr><tr><td>UserAuth</td><td>cancelAuth(contextID: Uint8Array): number;</td><td>cancelAuth</td><td>11</td><td>1</td><td>0</td><tr><tr><td>PINAuth</td><td>class PINAuth {
+        
+        constructor();
+
+        
+        registerInputer(inputer: IInputer): boolean;
+
+        
+        unregisterInputer(): void;
+    }</td><td>PINAuth</td><td>10</td><td>0</td><td>0</td><tr><tr><td>PINAuth</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>PINAuth</td><td>registerInputer(inputer: IInputer): boolean;</td><td>registerInputer</td><td>11</td><td>1</td><td>0</td><tr><tr><td>PINAuth</td><td>unregisterInputer(): void;</td><td>unregisterInputer</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>class UserIdentityManager {
+        
+        constructor();
+
+        
+        openSession(callback: AsyncCallback<Uint8Array>): void;
+        openSession(): Promise<Uint8Array>;
+
+        
+        addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+
+        
+        updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+
+        
+        closeSession(): void;
+
+        
+        cancel(challenge: Uint8Array): number;
+
+        
+        delUser(token: Uint8Array, callback: IIdmCallback): void;
+
+        
+        delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void;
+
+        
+        getAuthInfo(callback: AsyncCallback<Array<EnrolledCredInfo>>, authType?: AuthType): void;
+        getAuthInfo(authType?: AuthType): Promise<Array<EnrolledCredInfo>>;
+    }</td><td>UserIdentityManager</td><td>10</td><td>0</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>openSession(callback: AsyncCallback<Uint8Array>): void;</td><td>openSession</td><td>11</td><td>1</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>openSession(): Promise<Uint8Array>;</td><td>openSession</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;</td><td>addCredential</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;</td><td>updateCredential</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>closeSession(): void;</td><td>closeSession</td><td>11</td><td>0</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>cancel(challenge: Uint8Array): number;</td><td>cancel</td><td>11</td><td>1</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>delUser(token: Uint8Array, callback: IIdmCallback): void;</td><td>delUser</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): void;</td><td>delCred</td><td>11</td><td>3</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>getAuthInfo(callback: AsyncCallback<Array<EnrolledCredInfo>>, authType?: AuthType): void;</td><td>getAuthInfo</td><td>11</td><td>2</td><td>0</td><tr><tr><td>UserIdentityManager</td><td>getAuthInfo(authType?: AuthType): Promise<Array<EnrolledCredInfo>>;</td><td>getAuthInfo</td><td>11</td><td>1</td><td>0</td><tr><tr><td>IInputData</td><td>interface IInputData {
+        
+        onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+    }</td><td>IInputData</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IInputData</td><td>onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;</td><td>onSetData</td><td>21</td><td>2</td><td>0</td><tr><tr><td>IInputer</td><td>interface IInputer {
+        
+        onGetData: (callback: IInputData) => void;
+    }</td><td>IInputer</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IInputer</td><td>onGetData: (callback: IInputData) => void;</td><td>onGetData</td><td>21</td><td>1</td><td>0</td><tr><tr><td>IUserAuthCallback</td><td>interface IUserAuthCallback {
+        
+        onResult: (result: number, extraInfo: AuthResult) => void;
+
+        
+        onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+    }</td><td>IUserAuthCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IUserAuthCallback</td><td>onResult: (result: number, extraInfo: AuthResult) => void;</td><td>onResult</td><td>21</td><td>2</td><td>3</td><tr><tr><td>IUserAuthCallback</td><td>onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;</td><td>onAcquireInfo</td><td>21</td><td>3</td><td>0</td><tr><tr><td>IIdmCallback</td><td>interface IIdmCallback {
+        
+        onResult: (result: number, extraInfo: RequestResult) => void;
+
+        
+        onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
+    }</td><td>IIdmCallback</td><td>20</td><td>0</td><td>0</td><tr><tr><td>IIdmCallback</td><td>onResult: (result: number, extraInfo: RequestResult) => void;</td><td>onResult</td><td>21</td><td>2</td><td>3</td><tr><tr><td>IIdmCallback</td><td>onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;</td><td>onAcquireInfo</td><td>21</td><td>3</td><td>0</td><tr><tr><td>GetPropertyRequest</td><td>interface GetPropertyRequest {
+        
+        authType: AuthType;
+
+        
+        keys: Array<GetPropertyType>;
+    }</td><td>GetPropertyRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>GetPropertyRequest</td><td>authType: AuthType</td><td>authType</td><td>22</td><td>1</td><td>349</td><tr><tr><td>GetPropertyRequest</td><td>keys: Array<GetPropertyType></td><td>keys</td><td>22</td><td>1</td><td>0</td><tr><tr><td>SetPropertyRequest</td><td>interface SetPropertyRequest {
+        
+        authType: AuthType;
+
+        
+        key: SetPropertyType;
+
+        
+        setInfo: Uint8Array;
+    }</td><td>SetPropertyRequest</td><td>20</td><td>0</td><td>0</td><tr><tr><td>SetPropertyRequest</td><td>authType: AuthType</td><td>authType</td><td>22</td><td>1</td><td>349</td><tr><tr><td>SetPropertyRequest</td><td>key: SetPropertyType</td><td>key</td><td>22</td><td>1</td><td>70</td><tr><tr><td>SetPropertyRequest</td><td>setInfo: Uint8Array</td><td>setInfo</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ExecutorProperty</td><td>interface ExecutorProperty {
+        
+        result: number;
+
+        
+        authSubType: AuthSubType;
+
+        
+        remainTimes?: number;
+
+        
+        freezingTime?: number;
+    }</td><td>ExecutorProperty</td><td>20</td><td>0</td><td>0</td><tr><tr><td>ExecutorProperty</td><td>result: number</td><td>result</td><td>22</td><td>1</td><td>54</td><tr><tr><td>ExecutorProperty</td><td>authSubType: AuthSubType</td><td>authSubType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ExecutorProperty</td><td>remainTimes?: number</td><td>remainTimes</td><td>22</td><td>1</td><td>0</td><tr><tr><td>ExecutorProperty</td><td>freezingTime?: number</td><td>freezingTime</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AuthResult</td><td>interface AuthResult {
+        
+        token?: Uint8Array;
+
+        
+        remainTimes?: number;
+
+        
+        freezingTime?: number;
+    }</td><td>AuthResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>AuthResult</td><td>token?: Uint8Array</td><td>token</td><td>22</td><td>1</td><td>237</td><tr><tr><td>AuthResult</td><td>remainTimes?: number</td><td>remainTimes</td><td>22</td><td>1</td><td>0</td><tr><tr><td>AuthResult</td><td>freezingTime?: number</td><td>freezingTime</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CredentialInfo</td><td>interface CredentialInfo {
+        
+        credType: AuthType;
+
+        
+        credSubType: AuthSubType;
+
+        
+        token: Uint8Array;
+    }</td><td>CredentialInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CredentialInfo</td><td>credType: AuthType</td><td>credType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CredentialInfo</td><td>credSubType: AuthSubType</td><td>credSubType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>CredentialInfo</td><td>token: Uint8Array</td><td>token</td><td>22</td><td>1</td><td>237</td><tr><tr><td>RequestResult</td><td>interface RequestResult {
+        
+        credentialId?: Uint8Array;
+    }</td><td>RequestResult</td><td>20</td><td>0</td><td>0</td><tr><tr><td>RequestResult</td><td>credentialId?: Uint8Array</td><td>credentialId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>EnrolledCredInfo</td><td>interface EnrolledCredInfo {
+        
+        credentialId: Uint8Array;
+
+        
+        authType: AuthType;
+
+        
+        authSubType: AuthSubType;
+
+        
+        templateId: Uint8Array;
+    }</td><td>EnrolledCredInfo</td><td>20</td><td>0</td><td>0</td><tr><tr><td>EnrolledCredInfo</td><td>credentialId: Uint8Array</td><td>credentialId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>EnrolledCredInfo</td><td>authType: AuthType</td><td>authType</td><td>22</td><td>1</td><td>349</td><tr><tr><td>EnrolledCredInfo</td><td>authSubType: AuthSubType</td><td>authSubType</td><td>22</td><td>1</td><td>0</td><tr><tr><td>EnrolledCredInfo</td><td>templateId: Uint8Array</td><td>templateId</td><td>22</td><td>1</td><td>0</td><tr><tr><td>GetPropertyType</td><td>enum GetPropertyType {
+        
+        AUTH_SUB_TYPE = 1,
+
+        
+        REMAIN_TIMES = 2,
+
+        
+        FREEZING_TIME = 3
+    }</td><td>GetPropertyType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>GetPropertyType</td><td>AUTH_SUB_TYPE = 1,</td><td>AUTH_SUB_TYPE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GetPropertyType</td><td>REMAIN_TIMES = 2,</td><td>REMAIN_TIMES</td><td>42</td><td>1</td><td>0</td><tr><tr><td>GetPropertyType</td><td>FREEZING_TIME = 3</td><td>FREEZING_TIME</td><td>42</td><td>1</td><td>0</td><tr><tr><td>SetPropertyType</td><td>enum SetPropertyType {
+        
+        INIT_ALGORITHM = 1,
+    }</td><td>SetPropertyType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>SetPropertyType</td><td>INIT_ALGORITHM = 1,</td><td>INIT_ALGORITHM</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthType</td><td>enum AuthType {
+        
+        PIN = 1,
+
+        
+        FACE = 2
+    }</td><td>AuthType</td><td>40</td><td>0</td><td>104</td><tr><tr><td>AuthType</td><td>PIN = 1,</td><td>PIN</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthType</td><td>FACE = 2</td><td>FACE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthSubType</td><td>enum AuthSubType {
+        
+        PIN_SIX = 10000,
+
+        
+        PIN_NUMBER = 10001,
+
+        
+        PIN_MIXED = 10002,
+    
+        
+        FACE_2D = 20000,
+
+        
+        FACE_3D = 20001
+    }</td><td>AuthSubType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>AuthSubType</td><td>PIN_SIX = 10000,</td><td>PIN_SIX</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthSubType</td><td>PIN_NUMBER = 10001,</td><td>PIN_NUMBER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthSubType</td><td>PIN_MIXED = 10002,</td><td>PIN_MIXED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthSubType</td><td>FACE_2D = 20000,</td><td>FACE_2D</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthSubType</td><td>FACE_3D = 20001</td><td>FACE_3D</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>enum AuthTrustLevel {
+        
+        ATL1 = 10000,
+
+        
+        ATL2 = 20000,
+
+        
+        ATL3 = 30000,
+
+        
+        ATL4 = 40000
+    }</td><td>AuthTrustLevel</td><td>40</td><td>0</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL1 = 10000,</td><td>ATL1</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL2 = 20000,</td><td>ATL2</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL3 = 30000,</td><td>ATL3</td><td>42</td><td>1</td><td>0</td><tr><tr><td>AuthTrustLevel</td><td>ATL4 = 40000</td><td>ATL4</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Module</td><td>enum Module {
+        
+        FACE_AUTH = 1
+    }</td><td>Module</td><td>40</td><td>0</td><td>0</td><tr><tr><td>Module</td><td>FACE_AUTH = 1</td><td>FACE_AUTH</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>enum ResultCode {
+        
+        SUCCESS = 0,
+
+        
+        FAIL = 1,
+
+        
+        GENERAL_ERROR = 2,
+
+        
+        CANCELED = 3,
+
+        
+        TIMEOUT = 4,
+
+        
+        TYPE_NOT_SUPPORT = 5,
+
+        
+        TRUST_LEVEL_NOT_SUPPORT = 6,
+
+        
+        BUSY = 7,
+
+        
+        INVALID_PARAMETERS = 8,
+
+        
+        LOCKED = 9,
+
+        
+        NOT_ENROLLED = 10
+    }</td><td>ResultCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>ResultCode</td><td>SUCCESS = 0,</td><td>SUCCESS</td><td>42</td><td>1</td><td>15</td><tr><tr><td>ResultCode</td><td>FAIL = 1,</td><td>FAIL</td><td>42</td><td>1</td><td>14</td><tr><tr><td>ResultCode</td><td>GENERAL_ERROR = 2,</td><td>GENERAL_ERROR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>CANCELED = 3,</td><td>CANCELED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>TIMEOUT = 4,</td><td>TIMEOUT</td><td>42</td><td>1</td><td>112</td><tr><tr><td>ResultCode</td><td>TYPE_NOT_SUPPORT = 5,</td><td>TYPE_NOT_SUPPORT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>TRUST_LEVEL_NOT_SUPPORT = 6,</td><td>TRUST_LEVEL_NOT_SUPPORT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>BUSY = 7,</td><td>BUSY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>INVALID_PARAMETERS = 8,</td><td>INVALID_PARAMETERS</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>LOCKED = 9,</td><td>LOCKED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>ResultCode</td><td>NOT_ENROLLED = 10</td><td>NOT_ENROLLED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>enum FaceTipsCode {
+        
+        FACE_AUTH_TIP_TOO_BRIGHT = 1,
+
+        
+        FACE_AUTH_TIP_TOO_DARK = 2,
+
+        
+        FACE_AUTH_TIP_TOO_CLOSE = 3,
+
+        
+        FACE_AUTH_TIP_TOO_FAR = 4,
+
+        
+        FACE_AUTH_TIP_TOO_HIGH = 5,
+
+        
+        FACE_AUTH_TIP_TOO_LOW = 6,
+
+        
+        FACE_AUTH_TIP_TOO_RIGHT = 7,
+
+        
+        FACE_AUTH_TIP_TOO_LEFT = 8,
+
+        
+        FACE_AUTH_TIP_TOO_MUCH_MOTION = 9,
+
+        
+        FACE_AUTH_TIP_POOR_GAZE = 10,
+
+        
+        FACE_AUTH_TIP_NOT_DETECTED = 11,
+    }</td><td>FaceTipsCode</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_BRIGHT = 1,</td><td>FACE_AUTH_TIP_TOO_BRIGHT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_DARK = 2,</td><td>FACE_AUTH_TIP_TOO_DARK</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_CLOSE = 3,</td><td>FACE_AUTH_TIP_TOO_CLOSE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_FAR = 4,</td><td>FACE_AUTH_TIP_TOO_FAR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_HIGH = 5,</td><td>FACE_AUTH_TIP_TOO_HIGH</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_LOW = 6,</td><td>FACE_AUTH_TIP_TOO_LOW</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_RIGHT = 7,</td><td>FACE_AUTH_TIP_TOO_RIGHT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_LEFT = 8,</td><td>FACE_AUTH_TIP_TOO_LEFT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_TOO_MUCH_MOTION = 9,</td><td>FACE_AUTH_TIP_TOO_MUCH_MOTION</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_POOR_GAZE = 10,</td><td>FACE_AUTH_TIP_POOR_GAZE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FaceTipsCode</td><td>FACE_AUTH_TIP_NOT_DETECTED = 11,</td><td>FACE_AUTH_TIP_NOT_DETECTED</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>enum FingerprintTips {
+        
+        FINGERPRINT_TIP_GOOD = 0,
+
+        
+        FINGERPRINT_TIP_IMAGER_DIRTY = 1,
+
+        
+        FINGERPRINT_TIP_INSUFFICIENT = 2,
+
+        
+        FINGERPRINT_TIP_PARTIAL = 3,
+
+        
+        FINGERPRINT_TIP_TOO_FAST = 4,
+
+        
+        FINGERPRINT_TIP_TOO_SLOW = 5
+    }</td><td>FingerprintTips</td><td>40</td><td>0</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_TIP_GOOD = 0,</td><td>FINGERPRINT_TIP_GOOD</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_TIP_IMAGER_DIRTY = 1,</td><td>FINGERPRINT_TIP_IMAGER_DIRTY</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_TIP_INSUFFICIENT = 2,</td><td>FINGERPRINT_TIP_INSUFFICIENT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_TIP_PARTIAL = 3,</td><td>FINGERPRINT_TIP_PARTIAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_TIP_TOO_FAST = 4,</td><td>FINGERPRINT_TIP_TOO_FAST</td><td>42</td><td>1</td><td>0</td><tr><tr><td>FingerprintTips</td><td>FINGERPRINT_TIP_TOO_SLOW = 5</td><td>FINGERPRINT_TIP_TOO_SLOW</td><td>42</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

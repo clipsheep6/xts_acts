@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>enums</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>Color</td><td>declare enum Color {
+  
+  White,
+
+  
+  Black,
+
+  
+  Blue,
+
+  
+  Brown,
+
+  
+  Gray,
+
+  
+  Green,
+
+  
+  Grey,
+
+  
+  Orange,
+
+  
+  Pink,
+
+  
+  Red,
+
+  
+  Yellow,
+}</td><td>Color</td><td>40</td><td>0</td><td>1601</td><tr><tr><td>Color</td><td>White,</td><td>White</td><td>42</td><td>1</td><td>12</td><tr><tr><td>Color</td><td>Black,</td><td>Black</td><td>42</td><td>1</td><td>40</td><tr><tr><td>Color</td><td>Blue,</td><td>Blue</td><td>42</td><td>1</td><td>56</td><tr><tr><td>Color</td><td>Brown,</td><td>Brown</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Color</td><td>Gray,</td><td>Gray</td><td>42</td><td>1</td><td>12</td><tr><tr><td>Color</td><td>Green,</td><td>Green</td><td>42</td><td>1</td><td>9</td><tr><tr><td>Color</td><td>Grey,</td><td>Grey</td><td>42</td><td>1</td><td>3</td><tr><tr><td>Color</td><td>Orange,</td><td>Orange</td><td>42</td><td>1</td><td>6</td><tr><tr><td>Color</td><td>Pink,</td><td>Pink</td><td>42</td><td>1</td><td>24</td><tr><tr><td>Color</td><td>Red,</td><td>Red</td><td>42</td><td>1</td><td>36</td><tr><tr><td>Color</td><td>Yellow,</td><td>Yellow</td><td>42</td><td>1</td><td>7</td><tr><tr><td>ImageFit</td><td>declare enum ImageFit {
+  
+  Contain,
+
+  
+  Cover,
+
+  
+  Auto,
+
+  
+  Fill,
+
+  
+  ScaleDown,
+
+  
+  None,
+}</td><td>ImageFit</td><td>40</td><td>0</td><td>14</td><tr><tr><td>ImageFit</td><td>Contain,</td><td>Contain</td><td>42</td><td>1</td><td>380</td><tr><tr><td>ImageFit</td><td>Cover,</td><td>Cover</td><td>42</td><td>1</td><td>9</td><tr><tr><td>ImageFit</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>ImageFit</td><td>Fill,</td><td>Fill</td><td>42</td><td>1</td><td>166</td><tr><tr><td>ImageFit</td><td>ScaleDown,</td><td>ScaleDown</td><td>42</td><td>1</td><td>2</td><tr><tr><td>ImageFit</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>BorderStyle</td><td>declare enum BorderStyle {
+  
+  Dotted,
+
+  
+  Dashed,
+
+  
+  Solid,
+}</td><td>BorderStyle</td><td>40</td><td>0</td><td>31</td><tr><tr><td>BorderStyle</td><td>Dotted,</td><td>Dotted</td><td>42</td><td>1</td><td>6</td><tr><tr><td>BorderStyle</td><td>Dashed,</td><td>Dashed</td><td>42</td><td>1</td><td>13</td><tr><tr><td>BorderStyle</td><td>Solid,</td><td>Solid</td><td>42</td><td>1</td><td>12</td><tr><tr><td>LineJoinStyle</td><td>declare enum LineJoinStyle {
+  
+  Miter,
+
+  
+  Round,
+
+  
+  Bevel,
+}</td><td>LineJoinStyle</td><td>40</td><td>0</td><td>13</td><tr><tr><td>LineJoinStyle</td><td>Miter,</td><td>Miter</td><td>42</td><td>1</td><td>120</td><tr><tr><td>LineJoinStyle</td><td>Round,</td><td>Round</td><td>42</td><td>1</td><td>22</td><tr><tr><td>LineJoinStyle</td><td>Bevel,</td><td>Bevel</td><td>42</td><td>1</td><td>2</td><tr><tr><td>TouchType</td><td>declare enum TouchType {
+  
+  Down,
+
+  
+  Up,
+
+  
+  Move,
+
+  
+  Cancel,
+}</td><td>TouchType</td><td>40</td><td>0</td><td>39</td><tr><tr><td>TouchType</td><td>Down,</td><td>Down</td><td>42</td><td>1</td><td>65</td><tr><tr><td>TouchType</td><td>Up,</td><td>Up</td><td>42</td><td>1</td><td>162</td><tr><tr><td>TouchType</td><td>Move,</td><td>Move</td><td>42</td><td>1</td><td>123</td><tr><tr><td>TouchType</td><td>Cancel,</td><td>Cancel</td><td>42</td><td>1</td><td>197</td><tr><tr><td>MouseButton</td><td>declare enum MouseButton {
+  
+  Left,
+
+  
+  Right,
+
+  
+  Middle,
+
+  
+  Back,
+
+  
+  Forward,
+
+  
+  None,
+}</td><td>MouseButton</td><td>40</td><td>0</td><td>2</td><tr><tr><td>MouseButton</td><td>Left,</td><td>Left</td><td>42</td><td>1</td><td>54</td><tr><tr><td>MouseButton</td><td>Right,</td><td>Right</td><td>42</td><td>1</td><td>60</td><tr><tr><td>MouseButton</td><td>Middle,</td><td>Middle</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MouseButton</td><td>Back,</td><td>Back</td><td>42</td><td>1</td><td>503</td><tr><tr><td>MouseButton</td><td>Forward,</td><td>Forward</td><td>42</td><td>1</td><td>18</td><tr><tr><td>MouseButton</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>MouseAction</td><td>declare enum MouseAction {
+  
+  Press,
+
+  
+  Release,
+
+  
+  Move,
+
+  
+  Hover
+}</td><td>MouseAction</td><td>40</td><td>0</td><td>3</td><tr><tr><td>MouseAction</td><td>Press,</td><td>Press</td><td>42</td><td>1</td><td>137</td><tr><tr><td>MouseAction</td><td>Release,</td><td>Release</td><td>42</td><td>1</td><td>2</td><tr><tr><td>MouseAction</td><td>Move,</td><td>Move</td><td>42</td><td>1</td><td>123</td><tr><tr><td>AnimationStatus</td><td>declare enum AnimationStatus {
+  
+  Initial,
+
+  
+  Running,
+
+  
+  Paused,
+
+  
+  Stopped,
+}</td><td>AnimationStatus</td><td>40</td><td>0</td><td>22</td><tr><tr><td>AnimationStatus</td><td>Initial,</td><td>Initial</td><td>42</td><td>1</td><td>4</td><tr><tr><td>AnimationStatus</td><td>Running,</td><td>Running</td><td>42</td><td>1</td><td>6</td><tr><tr><td>AnimationStatus</td><td>Paused,</td><td>Paused</td><td>42</td><td>1</td><td>5</td><tr><tr><td>AnimationStatus</td><td>Stopped,</td><td>Stopped</td><td>42</td><td>1</td><td>7</td><tr><tr><td>Curve</td><td>declare enum Curve {
+  
+  Linear,
+
+  
+  Ease,
+
+  
+  EaseIn,
+
+  
+  EaseOut,
+
+  
+  EaseInOut,
+
+  
+  FastOutSlowIn,
+
+  
+  LinearOutSlowIn,
+
+  
+  FastOutLinearIn,
+
+  
+  ExtremeDeceleration,
+
+  
+  Sharp,
+
+  
+  Rhythm,
+
+  
+  Smooth,
+
+  
+  Friction,
+}</td><td>Curve</td><td>40</td><td>0</td><td>38</td><tr><tr><td>Curve</td><td>Linear,</td><td>Linear</td><td>42</td><td>1</td><td>59</td><tr><tr><td>Curve</td><td>Ease,</td><td>Ease</td><td>42</td><td>1</td><td>7</td><tr><tr><td>Curve</td><td>EaseIn,</td><td>EaseIn</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Curve</td><td>EaseOut,</td><td>EaseOut</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>EaseInOut,</td><td>EaseInOut</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>FastOutSlowIn,</td><td>FastOutSlowIn</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>LinearOutSlowIn,</td><td>LinearOutSlowIn</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>FastOutLinearIn,</td><td>FastOutLinearIn</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>ExtremeDeceleration,</td><td>ExtremeDeceleration</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>Sharp,</td><td>Sharp</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>Rhythm,</td><td>Rhythm</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Curve</td><td>Smooth,</td><td>Smooth</td><td>42</td><td>1</td><td>10</td><tr><tr><td>Curve</td><td>Friction,</td><td>Friction</td><td>42</td><td>1</td><td>3</td><tr><tr><td>FillMode</td><td>declare enum FillMode {
+  
+  None,
+
+  
+  Forwards,
+
+  
+  Backwards,
+
+  
+  Both,
+}</td><td>FillMode</td><td>40</td><td>0</td><td>12</td><tr><tr><td>FillMode</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>FillMode</td><td>Forwards,</td><td>Forwards</td><td>42</td><td>1</td><td>9</td><tr><tr><td>FillMode</td><td>Backwards,</td><td>Backwards</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FillMode</td><td>Both,</td><td>Both</td><td>42</td><td>1</td><td>2</td><tr><tr><td>PlayMode</td><td>declare enum PlayMode {
+  
+  Normal,
+
+  
+  Reverse,
+
+  
+  Alternate,
+
+  
+  AlternateReverse,
+}</td><td>PlayMode</td><td>40</td><td>0</td><td>10</td><tr><tr><td>PlayMode</td><td>Normal,</td><td>Normal</td><td>42</td><td>1</td><td>102</td><tr><tr><td>PlayMode</td><td>Reverse,</td><td>Reverse</td><td>42</td><td>1</td><td>54</td><tr><tr><td>PlayMode</td><td>Alternate,</td><td>Alternate</td><td>42</td><td>1</td><td>3</td><tr><tr><td>PlayMode</td><td>AlternateReverse,</td><td>AlternateReverse</td><td>42</td><td>1</td><td>2</td><tr><tr><td>KeyType</td><td>declare enum KeyType {
+  
+  Down,
+
+  
+  Up,
+}</td><td>KeyType</td><td>40</td><td>0</td><td>81</td><tr><tr><td>KeyType</td><td>Down,</td><td>Down</td><td>42</td><td>1</td><td>65</td><tr><tr><td>KeyType</td><td>Up,</td><td>Up</td><td>42</td><td>1</td><td>162</td><tr><tr><td>KeySource</td><td>declare enum KeySource {
+  
+  Unknown,
+
+  
+  Keyboard,
+}</td><td>KeySource</td><td>40</td><td>0</td><td>0</td><tr><tr><td>KeySource</td><td>Unknown,</td><td>Unknown</td><td>42</td><td>1</td><td>5</td><tr><tr><td>KeySource</td><td>Keyboard,</td><td>Keyboard</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Edge</td><td>declare enum Edge {
+  
+  Top,
+
+  
+  Center,
+
+  
+  Bottom,
+
+  
+  Baseline,
+
+  
+  Start,
+
+  
+  Middle,
+
+  
+  End,
+}</td><td>Edge</td><td>40</td><td>0</td><td>26</td><tr><tr><td>Edge</td><td>Top,</td><td>Top</td><td>42</td><td>1</td><td>174</td><tr><tr><td>Edge</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>Edge</td><td>Bottom,</td><td>Bottom</td><td>42</td><td>1</td><td>119</td><tr><tr><td>Edge</td><td>Baseline,</td><td>Baseline</td><td>42</td><td>1</td><td>17</td><tr><tr><td>Edge</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>Edge</td><td>Middle,</td><td>Middle</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Edge</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>Week</td><td>declare enum Week {
+  
+  Mon,
+
+  
+  Tue,
+
+  
+  Wed,
+
+  
+  Thur,
+
+  
+  Fri,
+
+  
+  Sat,
+
+  
+  Sun,
+}</td><td>Week</td><td>40</td><td>0</td><td>9</td><tr><tr><td>Week</td><td>Mon,</td><td>Mon</td><td>42</td><td>1</td><td>58</td><tr><tr><td>Week</td><td>Tue,</td><td>Tue</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Week</td><td>Wed,</td><td>Wed</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Week</td><td>Thur,</td><td>Thur</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Week</td><td>Fri,</td><td>Fri</td><td>42</td><td>1</td><td>3</td><tr><tr><td>Week</td><td>Sat,</td><td>Sat</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Week</td><td>Sun,</td><td>Sun</td><td>42</td><td>1</td><td>1</td><tr><tr><td>Direction</td><td>declare enum Direction {
+  
+  Ltr,
+
+  
+  Rtl,
+
+  
+  Auto,
+}</td><td>Direction</td><td>40</td><td>0</td><td>422</td><tr><tr><td>Direction</td><td>Ltr,</td><td>Ltr</td><td>42</td><td>1</td><td>482</td><tr><tr><td>Direction</td><td>Rtl,</td><td>Rtl</td><td>42</td><td>1</td><td>481</td><tr><tr><td>Direction</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>BarState</td><td>declare enum BarState {
+  
+  Off,
+
+  
+  Auto,
+
+  
+  On,
+}</td><td>BarState</td><td>40</td><td>0</td><td>34</td><tr><tr><td>BarState</td><td>Off,</td><td>Off</td><td>42</td><td>1</td><td>501</td><tr><tr><td>BarState</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>BarState</td><td>On,</td><td>On</td><td>42</td><td>1</td><td>1543</td><tr><tr><td>EdgeEffect</td><td>declare enum EdgeEffect {
+  
+  Spring,
+
+  
+  Fade,
+
+  
+  None,
+}</td><td>EdgeEffect</td><td>40</td><td>0</td><td>14</td><tr><tr><td>EdgeEffect</td><td>Spring,</td><td>Spring</td><td>42</td><td>1</td><td>24</td><tr><tr><td>EdgeEffect</td><td>Fade,</td><td>Fade</td><td>42</td><td>1</td><td>20</td><tr><tr><td>EdgeEffect</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>Alignment</td><td>declare enum Alignment {
+  
+  TopStart,
+
+  
+  Top,
+
+  
+  TopEnd,
+
+  
+  Start,
+
+  
+  Center,
+
+  
+  End,
+
+  
+  BottomStart,
+
+  
+  Bottom,
+
+  
+  BottomEnd,
+}</td><td>Alignment</td><td>40</td><td>0</td><td>112</td><tr><tr><td>Alignment</td><td>TopStart,</td><td>TopStart</td><td>42</td><td>1</td><td>18</td><tr><tr><td>Alignment</td><td>Top,</td><td>Top</td><td>42</td><td>1</td><td>174</td><tr><tr><td>Alignment</td><td>TopEnd,</td><td>TopEnd</td><td>42</td><td>1</td><td>6</td><tr><tr><td>Alignment</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>Alignment</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>Alignment</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>Alignment</td><td>BottomStart,</td><td>BottomStart</td><td>42</td><td>1</td><td>7</td><tr><tr><td>Alignment</td><td>Bottom,</td><td>Bottom</td><td>42</td><td>1</td><td>119</td><tr><tr><td>Alignment</td><td>BottomEnd,</td><td>BottomEnd</td><td>42</td><td>1</td><td>8</td><tr><tr><td>TransitionType</td><td>declare enum TransitionType {
+  
+  All,
+
+  
+  Insert,
+
+  
+  Delete,
+}</td><td>TransitionType</td><td>40</td><td>0</td><td>6</td><tr><tr><td>TransitionType</td><td>All,</td><td>All</td><td>42</td><td>1</td><td>613</td><tr><tr><td>TransitionType</td><td>Insert,</td><td>Insert</td><td>42</td><td>1</td><td>1</td><tr><tr><td>TransitionType</td><td>Delete,</td><td>Delete</td><td>42</td><td>1</td><td>31</td><tr><tr><td>RelateType</td><td>declare enum RelateType {
+  
+  FILL,
+
+  
+  FIT,
+}</td><td>RelateType</td><td>40</td><td>0</td><td>0</td><tr><tr><td>RelateType</td><td>FILL,</td><td>FILL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>RelateType</td><td>FIT,</td><td>FIT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>Visibility</td><td>declare enum Visibility {
+  
+  Visible,
+
+  
+  Hidden,
+
+  
+  None,
+}</td><td>Visibility</td><td>40</td><td>0</td><td>102</td><tr><tr><td>Visibility</td><td>Visible,</td><td>Visible</td><td>42</td><td>1</td><td>207</td><tr><tr><td>Visibility</td><td>Hidden,</td><td>Hidden</td><td>42</td><td>1</td><td>15</td><tr><tr><td>Visibility</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>LineCapStyle</td><td>declare enum LineCapStyle {
+  
+  Butt,
+
+  
+  Round,
+
+  
+  Square,
+}</td><td>LineCapStyle</td><td>40</td><td>0</td><td>35</td><tr><tr><td>LineCapStyle</td><td>Butt,</td><td>Butt</td><td>42</td><td>1</td><td>676</td><tr><tr><td>LineCapStyle</td><td>Round,</td><td>Round</td><td>42</td><td>1</td><td>22</td><tr><tr><td>LineCapStyle</td><td>Square,</td><td>Square</td><td>42</td><td>1</td><td>3</td><tr><tr><td>Axis</td><td>declare enum Axis {
+  
+  Vertical,
+
+  
+  Horizontal,
+}</td><td>Axis</td><td>40</td><td>0</td><td>33</td><tr><tr><td>Axis</td><td>Vertical,</td><td>Vertical</td><td>42</td><td>1</td><td>99</td><tr><tr><td>Axis</td><td>Horizontal,</td><td>Horizontal</td><td>42</td><td>1</td><td>86</td><tr><tr><td>HorizontalAlign</td><td>declare enum HorizontalAlign {
+  
+  Start,
+
+  
+  Center,
+
+  
+  End,
+}</td><td>HorizontalAlign</td><td>40</td><td>0</td><td>47</td><tr><tr><td>HorizontalAlign</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>HorizontalAlign</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>HorizontalAlign</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>FlexAlign</td><td>declare enum FlexAlign {
+  
+  Start,
+
+  
+  Center,
+
+  
+  End,
+
+  
+  SpaceBetween,
+
+  
+  SpaceAround,
+
+  
+  SpaceEvenly,
+}</td><td>FlexAlign</td><td>40</td><td>0</td><td>133</td><tr><tr><td>FlexAlign</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>FlexAlign</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>FlexAlign</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>FlexAlign</td><td>SpaceBetween,</td><td>SpaceBetween</td><td>42</td><td>1</td><td>20</td><tr><tr><td>FlexAlign</td><td>SpaceAround,</td><td>SpaceAround</td><td>42</td><td>1</td><td>25</td><tr><tr><td>FlexAlign</td><td>SpaceEvenly,</td><td>SpaceEvenly</td><td>42</td><td>1</td><td>11</td><tr><tr><td>ItemAlign</td><td>declare enum ItemAlign {
+  
+  Auto,
+
+  
+  Start,
+
+  
+  Center,
+
+  
+  End,
+
+  
+  Baseline,
+
+  
+  Stretch,
+}</td><td>ItemAlign</td><td>40</td><td>0</td><td>134</td><tr><tr><td>ItemAlign</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>ItemAlign</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>ItemAlign</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>ItemAlign</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>ItemAlign</td><td>Baseline,</td><td>Baseline</td><td>42</td><td>1</td><td>17</td><tr><tr><td>ItemAlign</td><td>Stretch,</td><td>Stretch</td><td>42</td><td>1</td><td>16</td><tr><tr><td>FlexDirection</td><td>declare enum FlexDirection {
+  
+  Row,
+
+  
+  Column,
+
+  
+  RowReverse,
+
+  
+  ColumnReverse,
+}</td><td>FlexDirection</td><td>40</td><td>0</td><td>117</td><tr><tr><td>FlexDirection</td><td>Row,</td><td>Row</td><td>42</td><td>1</td><td>539</td><tr><tr><td>FlexDirection</td><td>Column,</td><td>Column</td><td>42</td><td>1</td><td>411</td><tr><tr><td>FlexDirection</td><td>RowReverse,</td><td>RowReverse</td><td>42</td><td>1</td><td>4</td><tr><tr><td>FlexDirection</td><td>ColumnReverse,</td><td>ColumnReverse</td><td>42</td><td>1</td><td>8</td><tr><tr><td>FlexWrap</td><td>declare enum FlexWrap {
+  
+  NoWrap,
+
+  
+  Wrap,
+
+  
+  WrapReverse,
+}</td><td>FlexWrap</td><td>40</td><td>0</td><td>16</td><tr><tr><td>FlexWrap</td><td>NoWrap,</td><td>NoWrap</td><td>42</td><td>1</td><td>4</td><tr><tr><td>FlexWrap</td><td>Wrap,</td><td>Wrap</td><td>42</td><td>1</td><td>61</td><tr><tr><td>FlexWrap</td><td>WrapReverse,</td><td>WrapReverse</td><td>42</td><td>1</td><td>6</td><tr><tr><td>VerticalAlign</td><td>declare enum VerticalAlign {
+  
+  Top,
+
+  
+  Center,
+
+  
+  Bottom,
+}</td><td>VerticalAlign</td><td>40</td><td>0</td><td>27</td><tr><tr><td>VerticalAlign</td><td>Top,</td><td>Top</td><td>42</td><td>1</td><td>174</td><tr><tr><td>VerticalAlign</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>VerticalAlign</td><td>Bottom,</td><td>Bottom</td><td>42</td><td>1</td><td>119</td><tr><tr><td>ImageRepeat</td><td>declare enum ImageRepeat {
+  
+  NoRepeat,
+
+  
+  X,
+
+  
+  Y,
+
+  
+  XY,
+}</td><td>ImageRepeat</td><td>40</td><td>0</td><td>20</td><tr><tr><td>ImageRepeat</td><td>NoRepeat,</td><td>NoRepeat</td><td>42</td><td>1</td><td>10</td><tr><tr><td>ImageRepeat</td><td>X,</td><td>X</td><td>42</td><td>1</td><td>5514</td><tr><tr><td>ImageRepeat</td><td>Y,</td><td>Y</td><td>42</td><td>1</td><td>5435</td><tr><tr><td>ImageRepeat</td><td>XY,</td><td>XY</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ImageSize</td><td>declare enum ImageSize {
+  
+  Auto,
+
+  
+  Cover,
+
+  
+  Contain,
+}</td><td>ImageSize</td><td>40</td><td>0</td><td>37</td><tr><tr><td>ImageSize</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>ImageSize</td><td>Cover,</td><td>Cover</td><td>42</td><td>1</td><td>9</td><tr><tr><td>ImageSize</td><td>Contain,</td><td>Contain</td><td>42</td><td>1</td><td>380</td><tr><tr><td>GradientDirection</td><td>declare enum GradientDirection {
+  
+  Left,
+
+  
+  Top,
+
+  
+  Right,
+
+  
+  Bottom,
+
+  
+  LeftTop,
+
+  
+  LeftBottom,
+
+  
+  RightTop,
+
+  
+  RightBottom,
+
+  
+  None,
+}</td><td>GradientDirection</td><td>40</td><td>0</td><td>53</td><tr><tr><td>GradientDirection</td><td>Left,</td><td>Left</td><td>42</td><td>1</td><td>54</td><tr><tr><td>GradientDirection</td><td>Top,</td><td>Top</td><td>42</td><td>1</td><td>174</td><tr><tr><td>GradientDirection</td><td>Right,</td><td>Right</td><td>42</td><td>1</td><td>60</td><tr><tr><td>GradientDirection</td><td>Bottom,</td><td>Bottom</td><td>42</td><td>1</td><td>119</td><tr><tr><td>GradientDirection</td><td>LeftTop,</td><td>LeftTop</td><td>42</td><td>1</td><td>2</td><tr><tr><td>GradientDirection</td><td>LeftBottom,</td><td>LeftBottom</td><td>42</td><td>1</td><td>2</td><tr><tr><td>GradientDirection</td><td>RightTop,</td><td>RightTop</td><td>42</td><td>1</td><td>14</td><tr><tr><td>GradientDirection</td><td>RightBottom,</td><td>RightBottom</td><td>42</td><td>1</td><td>2</td><tr><tr><td>GradientDirection</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>SharedTransitionEffectType</td><td>declare enum SharedTransitionEffectType {
+  
+  Static,
+
+  
+  Exchange,
+}</td><td>SharedTransitionEffectType</td><td>40</td><td>0</td><td>4</td><tr><tr><td>SharedTransitionEffectType</td><td>Static,</td><td>Static</td><td>42</td><td>1</td><td>1</td><tr><tr><td>SharedTransitionEffectType</td><td>Exchange,</td><td>Exchange</td><td>42</td><td>1</td><td>2</td><tr><tr><td>FontStyle</td><td>declare enum FontStyle {
+  
+  Normal,
+
+  
+  Italic,
+}</td><td>FontStyle</td><td>40</td><td>0</td><td>63</td><tr><tr><td>FontStyle</td><td>Normal,</td><td>Normal</td><td>42</td><td>1</td><td>102</td><tr><tr><td>FontStyle</td><td>Italic,</td><td>Italic</td><td>42</td><td>1</td><td>18</td><tr><tr><td>FontWeight</td><td>declare enum FontWeight {
+  
+  Lighter,
+
+  
+  Normal,
+
+  
+  Regular,
+
+  
+  Medium,
+
+  
+  Bold,
+
+  
+  Bolder,
+}</td><td>FontWeight</td><td>40</td><td>0</td><td>94</td><tr><tr><td>FontWeight</td><td>Lighter,</td><td>Lighter</td><td>42</td><td>1</td><td>4</td><tr><tr><td>FontWeight</td><td>Normal,</td><td>Normal</td><td>42</td><td>1</td><td>102</td><tr><tr><td>FontWeight</td><td>Regular,</td><td>Regular</td><td>42</td><td>1</td><td>4</td><tr><tr><td>FontWeight</td><td>Medium,</td><td>Medium</td><td>42</td><td>1</td><td>468</td><tr><tr><td>FontWeight</td><td>Bold,</td><td>Bold</td><td>42</td><td>1</td><td>72</td><tr><tr><td>FontWeight</td><td>Bolder,</td><td>Bolder</td><td>42</td><td>1</td><td>5</td><tr><tr><td>TextAlign</td><td>declare enum TextAlign {
+  
+  Center,
+
+  
+  Start,
+
+  
+  End,
+}</td><td>TextAlign</td><td>40</td><td>0</td><td>140</td><tr><tr><td>TextAlign</td><td>Center,</td><td>Center</td><td>42</td><td>1</td><td>1686</td><tr><tr><td>TextAlign</td><td>Start,</td><td>Start</td><td>42</td><td>1</td><td>671</td><tr><tr><td>TextAlign</td><td>End,</td><td>End</td><td>42</td><td>1</td><td>440</td><tr><tr><td>TextOverflow</td><td>declare enum TextOverflow {
+  
+
+  Clip,
+  
+
+  Ellipsis,
+
+  
+  None,
+}</td><td>TextOverflow</td><td>40</td><td>0</td><td>16</td><tr><tr><td>TextOverflow</td><td>Clip,</td><td>Clip</td><td>42</td><td>1</td><td>44</td><tr><tr><td>TextOverflow</td><td>Ellipsis,</td><td>Ellipsis</td><td>42</td><td>1</td><td>3</td><tr><tr><td>TextOverflow</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>TextDecorationType</td><td>declare enum TextDecorationType {
+  
+  None,
+
+  
+  Underline,
+
+  
+  Overline,
+
+  
+  LineThrough,
+}</td><td>TextDecorationType</td><td>40</td><td>0</td><td>25</td><tr><tr><td>TextDecorationType</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>TextDecorationType</td><td>Underline,</td><td>Underline</td><td>42</td><td>1</td><td>4</td><tr><tr><td>TextDecorationType</td><td>Overline,</td><td>Overline</td><td>42</td><td>1</td><td>3</td><tr><tr><td>TextDecorationType</td><td>LineThrough,</td><td>LineThrough</td><td>42</td><td>1</td><td>6</td><tr><tr><td>TextCase</td><td>declare enum TextCase {
+  
+  Normal,
+
+  
+  LowerCase,
+
+  
+  UpperCase,
+}</td><td>TextCase</td><td>40</td><td>0</td><td>21</td><tr><tr><td>TextCase</td><td>Normal,</td><td>Normal</td><td>42</td><td>1</td><td>102</td><tr><tr><td>TextCase</td><td>LowerCase,</td><td>LowerCase</td><td>42</td><td>1</td><td>3</td><tr><tr><td>TextCase</td><td>UpperCase,</td><td>UpperCase</td><td>42</td><td>1</td><td>8</td><tr><tr><td>ResponseType</td><td>declare enum ResponseType {
+  
+  RightClick,
+
+  
+  LongPress,
+}</td><td>ResponseType</td><td>40</td><td>0</td><td>1</td><tr><tr><td>ResponseType</td><td>RightClick,</td><td>RightClick</td><td>42</td><td>1</td><td>1</td><tr><tr><td>ResponseType</td><td>LongPress,</td><td>LongPress</td><td>42</td><td>1</td><td>32</td><tr><tr><td>HoverEffect</td><td>declare enum HoverEffect {
+  
+  Auto,
+
+  
+  Scale,
+
+  
+  Highlight,
+
+  
+  None,
+}</td><td>HoverEffect</td><td>40</td><td>0</td><td>0</td><tr><tr><td>HoverEffect</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>HoverEffect</td><td>Scale,</td><td>Scale</td><td>42</td><td>1</td><td>27</td><tr><tr><td>HoverEffect</td><td>Highlight,</td><td>Highlight</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HoverEffect</td><td>None,</td><td>None</td><td>42</td><td>1</td><td>5542</td><tr><tr><td>Placement</td><td>declare enum Placement {
+  
+  Left,
+
+  
+  Right,
+
+  
+  Top,
+
+  
+  Bottom,
+
+  
+  TopLeft,
+
+  
+  TopRight,
+
+  
+  BottomLeft,
+
+  
+  BottomRight,
+}</td><td>Placement</td><td>40</td><td>0</td><td>39</td><tr><tr><td>Placement</td><td>Left,</td><td>Left</td><td>42</td><td>1</td><td>54</td><tr><tr><td>Placement</td><td>Right,</td><td>Right</td><td>42</td><td>1</td><td>60</td><tr><tr><td>Placement</td><td>Top,</td><td>Top</td><td>42</td><td>1</td><td>174</td><tr><tr><td>Placement</td><td>Bottom,</td><td>Bottom</td><td>42</td><td>1</td><td>119</td><tr><tr><td>Placement</td><td>TopLeft,</td><td>TopLeft</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Placement</td><td>TopRight,</td><td>TopRight</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Placement</td><td>BottomLeft,</td><td>BottomLeft</td><td>42</td><td>1</td><td>2</td><tr><tr><td>Placement</td><td>BottomRight,</td><td>BottomRight</td><td>42</td><td>1</td><td>2</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

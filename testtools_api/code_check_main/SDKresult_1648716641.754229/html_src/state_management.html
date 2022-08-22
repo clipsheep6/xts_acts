@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>state_management</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>IPropertySubscriber</td><td>interface IPropertySubscriber {
+  
+  id(): number;
+
+  
+  aboutToBeDeleted(owningView?: IPropertySubscriber): void;
+}</td><td>IPropertySubscriber</td><td>20</td><td>0</td><td>10</td><tr><tr><td>IPropertySubscriber</td><td>id(): number;</td><td>id</td><td>21</td><td>0</td><td>8283</td><tr><tr><td>IPropertySubscriber</td><td>aboutToBeDeleted(owningView?: IPropertySubscriber): void;</td><td>aboutToBeDeleted</td><td>21</td><td>1</td><td>6</td><tr><tr><td>ISinglePropertyChangeSubscriber</td><td>interface ISinglePropertyChangeSubscriber<T> extends IPropertySubscriber {
+  
+  hasChanged(newValue: T): void;
+}</td><td>ISinglePropertyChangeSubscriber</td><td>None</td><td>0</td><td>4</td><tr><tr><td>ISinglePropertyChangeSubscriber</td><td>hasChanged(newValue: T): void;</td><td>hasChanged</td><td>None</td><td>1</td><td>5</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>declare abstract class SubscribedAbstractProperty<T> {
+  
+  protected subscribers_: Set<number>;
+
+  
+  private id_;
+
+  
+  private info_?;
+
+  
+  constructor(
+    
+    subscribeMe?: IPropertySubscriber,
+    
+    info?: string,
+  );
+
+  
+  id(): number;
+
+  
+  info(): string;
+
+  
+  abstract get(): T;
+
+  
+  abstract set(newValue: T): void;
+
+  
+  createTwoWaySync(subscribeMe?: IPropertySubscriber, info?: string): SyncedPropertyTwoWay<T>;
+
+  
+  createOneWaySync(subscribeMe?: IPropertySubscriber, info?: string): SyncedPropertyOneWay<T>;
+
+  
+  unlinkSuscriber(subscriberId: number): void;
+
+  
+  protected notifyHasChanged(newValue: T): void;
+
+  
+  protected notifyPropertyRead(): void;
+
+  
+  numberOfSubscrbers(): number;
+}</td><td>abstractSubscribedAbstractProperty</td><td>10</td><td>0</td><td>0</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>constructor(
+    
+    subscribeMe?: IPropertySubscriber,
+    
+    info?: string,
+  )</td><td>constructor</td><td>11</td><td>2</td><td>80</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>id(): number;</td><td>id</td><td>11</td><td>0</td><td>8283</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>info(): string;</td><td>info</td><td>11</td><td>0</td><td>16618</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>abstract get(): T;</td><td>abstract</td><td>11</td><td>0</td><td>6</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>abstract set(newValue: T): void;</td><td>abstract</td><td>11</td><td>1</td><td>6</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>createTwoWaySync(subscribeMe?: IPropertySubscriber, info?: string): SyncedPropertyTwoWay<T>;</td><td>createTwoWaySync</td><td>11</td><td>2</td><td>1</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>createOneWaySync(subscribeMe?: IPropertySubscriber, info?: string): SyncedPropertyOneWay<T>;</td><td>createOneWaySync</td><td>11</td><td>2</td><td>1</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>unlinkSuscriber(subscriberId: number): void;</td><td>unlinkSuscriber</td><td>11</td><td>1</td><td>1</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>protected notifyHasChanged(newValue: T): void;</td><td>protected</td><td>11</td><td>1</td><td>0</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>protected notifyPropertyRead(): void;</td><td>protected</td><td>11</td><td>0</td><td>0</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>numberOfSubscrbers(): number;</td><td>numberOfSubscrbers</td><td>11</td><td>0</td><td>1</td><tr><tr><td>abstractSubscribedAbstractProperty</td><td>protected subscribers_: Set<number></td><td>protected</td><td>12</td><td>1</td><td>0</td><tr><tr><td>AppStorage</td><td>declare class AppStorage {
+  
+  static Link(propName: string): any;
+
+  
+  static SetAndLink<T>(propName: string, defaultValue: T): SubscribedAbstractProperty<T>;
+
+  
+  static Prop(propName: string): any;
+
+  
+  static SetAndProp<S>(propName: string, defaultValue: S): SubscribedAbstractProperty<S>;
+
+  
+  static Has(propName: string): boolean;
+
+  
+  static Get<T>(propName: string): T | undefined;
+
+  
+  static Set<T>(propName: string, newValue: T): boolean;
+
+  
+  static SetOrCreate<T>(propName: string, newValue: T): void;
+
+  
+  static Delete(propName: string): boolean;
+
+  
+  static Keys(): IterableIterator<string>;
+
+  
+  static staticClear(): boolean;
+
+  
+  static IsMutable(propName: string): boolean;
+
+  
+  static Size(): number;
+}</td><td>AppStorage</td><td>10</td><td>0</td><td>77</td><tr><tr><td>AppStorage</td><td>static Link(propName: string): any;</td><td>Link</td><td>11</td><td>1</td><td>13</td><tr><tr><td>AppStorage</td><td>static SetAndLink<T>(propName: string, defaultValue: T): SubscribedAbstractProperty<T>;</td><td>SetAndLink</td><td>11</td><td>2</td><td>1</td><tr><tr><td>AppStorage</td><td>static Prop(propName: string): any;</td><td>Prop</td><td>11</td><td>1</td><td>28222</td><tr><tr><td>AppStorage</td><td>static SetAndProp<S>(propName: string, defaultValue: S): SubscribedAbstractProperty<S>;</td><td>SetAndProp</td><td>11</td><td>2</td><td>1</td><tr><tr><td>AppStorage</td><td>static Has(propName: string): boolean;</td><td>Has</td><td>11</td><td>1</td><td>3</td><tr><tr><td>AppStorage</td><td>static Get<T>(propName: string): T | undefined;</td><td>Get</td><td>11</td><td>1</td><td>141</td><tr><tr><td>AppStorage</td><td>static Set<T>(propName: string, newValue: T): boolean;</td><td>Set</td><td>11</td><td>2</td><td>393</td><tr><tr><td>AppStorage</td><td>static SetOrCreate<T>(propName: string, newValue: T): void;</td><td>SetOrCreate</td><td>11</td><td>2</td><td>5</td><tr><tr><td>AppStorage</td><td>static Delete(propName: string): boolean;</td><td>Delete</td><td>11</td><td>1</td><td>31</td><tr><tr><td>AppStorage</td><td>static Keys(): IterableIterator<string>;</td><td>Keys</td><td>11</td><td>0</td><td>1</td><tr><tr><td>AppStorage</td><td>static staticClear(): boolean;</td><td>Clear</td><td>11</td><td>0</td><td>14</td><tr><tr><td>AppStorage</td><td>static IsMutable(propName: string): boolean;</td><td>IsMutable</td><td>11</td><td>1</td><td>1</td><tr><tr><td>AppStorage</td><td>static Size(): number;</td><td>Size</td><td>11</td><td>0</td><td>1415</td><tr><tr><td>Environment</td><td>declare class Environment {
+  
+  constructor();
+
+  
+  static EnvProp<S>(key: string, value: S): boolean;
+
+  
+  static EnvProps(
+    props: {
+      key: string;
+      defaultValue: any;
+    }[],
+  ): void;
+
+  
+  static Keys(): Array<string>;
+}</td><td>Environment</td><td>10</td><td>0</td><td>22</td><tr><tr><td>Environment</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>Environment</td><td>static EnvProp<S>(key: string, value: S): boolean;</td><td>EnvProp</td><td>11</td><td>2</td><td>22</td><tr><tr><td>Environment</td><td>static EnvProps(
+    props: {
+      key: string;
+      defaultValue: any;
+    }[],
+  ): void;</td><td>EnvProps</td><td>11</td><td>1</td><td>7</td><tr><tr><td>Environment</td><td>static Keys(): Array<string>;</td><td>Keys</td><td>11</td><td>0</td><td>1</td><tr><tr><td>ColorMode</td><td>declare enum ColorMode {
+  
+  LIGHT = 0,
+
+  
+  DARK,
+}</td><td>ColorMode</td><td>40</td><td>0</td><td>7</td><tr><tr><td>ColorMode</td><td>LIGHT = 0,</td><td>LIGHT</td><td>42</td><td>1</td><td>5</td><tr><tr><td>ColorMode</td><td>DARK,</td><td>DARK</td><td>42</td><td>1</td><td>2</td><tr><tr><td>LayoutDirection</td><td>declare enum LayoutDirection {
+  
+  LTR,
+
+  
+  RTL,
+
+  
+  Auto,
+}</td><td>LayoutDirection</td><td>40</td><td>0</td><td>9</td><tr><tr><td>LayoutDirection</td><td>LTR,</td><td>LTR</td><td>42</td><td>1</td><td>4</td><tr><tr><td>LayoutDirection</td><td>RTL,</td><td>RTL</td><td>42</td><td>1</td><td>3</td><tr><tr><td>LayoutDirection</td><td>Auto,</td><td>Auto</td><td>42</td><td>1</td><td>581</td><tr><tr><td>PersistentStorage</td><td>declare class PersistentStorage {
+  
+  constructor(appStorage: AppStorage, storage: Storage);
+
+  
+  static PersistProp<T>(key: string, defaultValue: T): void;
+
+  
+  static DeleteProp(key: string): void;
+
+  
+  static PersistProps(
+    properties: {
+      key: string;
+      defaultValue: any;
+    }[],
+  ): void;
+
+  
+  static Keys(): Array<string>;
+}</td><td>PersistentStorage</td><td>10</td><td>0</td><td>4</td><tr><tr><td>PersistentStorage</td><td>constructor(appStorage: AppStorage, storage: Storage)</td><td>constructor</td><td>11</td><td>2</td><td>80</td><tr><tr><td>PersistentStorage</td><td>static PersistProp<T>(key: string, defaultValue: T): void;</td><td>PersistProp</td><td>11</td><td>2</td><td>2</td><tr><tr><td>PersistentStorage</td><td>static DeleteProp(key: string): void;</td><td>DeleteProp</td><td>11</td><td>1</td><td>1</td><tr><tr><td>PersistentStorage</td><td>static PersistProps(
+    properties: {
+      key: string;
+      defaultValue: any;
+    }[],
+  ): void;</td><td>PersistProps</td><td>11</td><td>1</td><td>1</td><tr><tr><td>PersistentStorage</td><td>static Keys(): Array<string>;</td><td>Keys</td><td>11</td><td>0</td><td>1</td><tr><tr><td>Storage</td><td>declare class Storage {
+  
+  constructor(needCrossThread?: boolean, file?: string);
+
+  
+  get(key: string): string | undefined;
+
+  
+  set(key: string, val: any): void;
+
+  
+  clear(): void;
+
+  
+  delete(key: string): void;
+}</td><td>Storage</td><td>10</td><td>0</td><td>199</td><tr><tr><td>Storage</td><td>constructor(needCrossThread?: boolean, file?: string)</td><td>constructor</td><td>11</td><td>2</td><td>80</td><tr><tr><td>Storage</td><td>get(key: string): string | undefined;</td><td>get</td><td>11</td><td>1</td><td>13929</td><tr><tr><td>Storage</td><td>set(key: string, val: any): void;</td><td>set</td><td>11</td><td>2</td><td>1392</td><tr><tr><td>Storage</td><td>clear(): void;</td><td>clear</td><td>11</td><td>0</td><td>392</td><tr><tr><td>Storage</td><td>delete(key: string): void;</td><td>delete</td><td>11</td><td>1</td><td>9</td><tr><tr><td>abstractSubscribaleAbstract</td><td>declare abstract class SubscribaleAbstract {
+  
+  private owningProperties_: Set<number>;
+
+  
+  constructor();
+
+  
+  protected notifyPropertyHasChanged(propName: string, newValue: any): void;
+
+  
+  public addOwningProperty(subscriber: IPropertySubscriber): void;
+
+  
+  public removeOwningProperty(property: IPropertySubscriber): void;
+
+  
+  public removeOwningPropertyById(subscriberId: number): void;
+}</td><td>abstractSubscribaleAbstract</td><td>10</td><td>0</td><td>0</td><tr><tr><td>abstractSubscribaleAbstract</td><td>constructor()</td><td>constructor</td><td>11</td><td>0</td><td>80</td><tr><tr><td>abstractSubscribaleAbstract</td><td>protected notifyPropertyHasChanged(propName: string, newValue: any): void;</td><td>protected</td><td>11</td><td>2</td><td>0</td><tr><tr><td>abstractSubscribaleAbstract</td><td>public addOwningProperty(subscriber: IPropertySubscriber): void;</td><td>public</td><td>11</td><td>1</td><td>6</td><tr><tr><td>abstractSubscribaleAbstract</td><td>public removeOwningProperty(property: IPropertySubscriber): void;</td><td>public</td><td>11</td><td>1</td><td>6</td><tr><tr><td>abstractSubscribaleAbstract</td><td>public removeOwningPropertyById(subscriberId: number): void;</td><td>public</td><td>11</td><td>1</td><td>6</td><tr><tr><td>abstractSubscribaleAbstract</td><td>private owningProperties_: Set<number></td><td>private</td><td>12</td><td>1</td><td>169</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

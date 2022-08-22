@@ -1,0 +1,134 @@
+[
+    {
+        "name": "OH_NativeWindow_CreateNativeWindow",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_DestroyNativeWindow",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_DestroyNativeWindowBuffer",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_NativeWindowRequestBuffer",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_NativeWindowFlushBuffer",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_NativeWindowAbortBuffer",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_NativeWindowHandleOpt",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_GetBufferHandleFromNative",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_NativeObjectReference",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_NativeObjectUnreference",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_NativeWindow_GetNativeObjectMagic",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "native_window",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    }
+]

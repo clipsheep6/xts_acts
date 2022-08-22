@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>DFX子系统</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>hiviewdfx</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>@ohos.hiTraceChain</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>hiTraceChain</td><td>declare namespace hiTraceChain {
+    
+    enum HiTraceFlag {
+        
+        DEFAULT           = 0,
+
+        
+        INCLUDE_ASYNC     = 1,
+
+        
+        DONOT_CREATE_SPAN = 1 << 1,
+
+        
+        TP_INFO           = 1 << 2,
+
+        
+        NO_BE_INFO        = 1 << 3,
+
+        
+        DISABLE_LOG  = 1 << 4,
+
+        
+        FAILURE_TRIGGER   = 1 << 5,
+
+        
+        D2D_TP_INFO       = 1 << 6,
+    }
+
+    
+    enum HiTraceTracepointType {
+        
+        CS = 0,
+
+        
+        CR = 1,
+
+        
+        SS = 2,
+
+        
+        SR = 3,
+
+        
+        GENERAL = 4,
+    }
+
+    
+    enum HiTraceCommunicationMode {
+        
+        DEFAULT = 0,
+
+        
+        THREAD  = 1,
+
+        
+        PROCESS = 2,
+
+        
+        DEVICE  = 3,
+    }
+
+    
+    interface HiTraceId {
+        chainId: bigint; 
+        spanId?: number;
+        parentSpanId?: number;
+        flags?: number;
+    }
+
+    
+    function begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId;
+
+    
+    function end(id: HiTraceId): void;
+
+    
+    function getId(): HiTraceId;
+
+    
+    function setId(id: HiTraceId): void;
+
+    
+    function clearId(): void;
+
+    
+    function createSpan(): HiTraceId;
+
+    
+    function tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void;
+
+    
+    function isValid(id: HiTraceId): boolean;
+
+    
+    function isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean;
+
+    
+    function enableFlag(id: HiTraceId, flag: HiTraceFlag): void;
+}</td><td>hiTraceChain</td><td>None</td><td>0</td><td>33</td><tr><tr><td>hiTraceChain</td><td>function begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId;</td><td>begin</td><td>None</td><td>2</td><td>0</td><tr><tr><td>hiTraceChain</td><td>function end(id: HiTraceId): void;</td><td>end</td><td>None</td><td>1</td><td>128</td><tr><tr><td>hiTraceChain</td><td>function getId(): HiTraceId;</td><td>getId</td><td>None</td><td>0</td><td>0</td><tr><tr><td>hiTraceChain</td><td>function setId(id: HiTraceId): void;</td><td>setId</td><td>None</td><td>1</td><td>6</td><tr><tr><td>hiTraceChain</td><td>function clearId(): void;</td><td>clearId</td><td>None</td><td>0</td><td>7</td><tr><tr><td>hiTraceChain</td><td>function createSpan(): HiTraceId;</td><td>createSpan</td><td>None</td><td>0</td><td>10</td><tr><tr><td>hiTraceChain</td><td>function tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void;</td><td>tracepoint</td><td>None</td><td>4</td><td>7</td><tr><tr><td>hiTraceChain</td><td>function isValid(id: HiTraceId): boolean;</td><td>isValid</td><td>None</td><td>1</td><td>12</td><tr><tr><td>hiTraceChain</td><td>function isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean;</td><td>isFlagEnabled</td><td>None</td><td>2</td><td>12</td><tr><tr><td>hiTraceChain</td><td>function enableFlag(id: HiTraceId, flag: HiTraceFlag): void;</td><td>enableFlag</td><td>None</td><td>2</td><td>8</td><tr><tr><td>HiTraceFlag</td><td>enum HiTraceFlag {
+        
+        DEFAULT           = 0,
+
+        
+        INCLUDE_ASYNC     = 1,
+
+        
+        DONOT_CREATE_SPAN = 1 << 1,
+
+        
+        TP_INFO           = 1 << 2,
+
+        
+        NO_BE_INFO        = 1 << 3,
+
+        
+        DISABLE_LOG  = 1 << 4,
+
+        
+        FAILURE_TRIGGER   = 1 << 5,
+
+        
+        D2D_TP_INFO       = 1 << 6,
+    }</td><td>HiTraceFlag</td><td>40</td><td>0</td><td>30</td><tr><tr><td>HiTraceFlag</td><td>DEFAULT           = 0,</td><td>DEFAULT</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceFlag</td><td>INCLUDE_ASYNC     = 1,</td><td>INCLUDE_ASYNC</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceFlag</td><td>DONOT_CREATE_SPAN = 1 << 1,</td><td>DONOT_CREATE_SPAN</td><td>42</td><td>1</td><td>4</td><tr><tr><td>HiTraceFlag</td><td>TP_INFO           = 1 << 2,</td><td>TP_INFO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceFlag</td><td>NO_BE_INFO        = 1 << 3,</td><td>NO_BE_INFO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceFlag</td><td>DISABLE_LOG  = 1 << 4,</td><td>DISABLE_LOG</td><td>42</td><td>1</td><td>4</td><tr><tr><td>HiTraceFlag</td><td>FAILURE_TRIGGER   = 1 << 5,</td><td>FAILURE_TRIGGER</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceFlag</td><td>D2D_TP_INFO       = 1 << 6,</td><td>D2D_TP_INFO</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceTracepointType</td><td>enum HiTraceTracepointType {
+        
+        CS = 0,
+
+        
+        CR = 1,
+
+        
+        SS = 2,
+
+        
+        SR = 3,
+
+        
+        GENERAL = 4,
+    }</td><td>HiTraceTracepointType</td><td>40</td><td>0</td><td>13</td><tr><tr><td>HiTraceTracepointType</td><td>CS = 0,</td><td>CS</td><td>42</td><td>1</td><td>5</td><tr><tr><td>HiTraceTracepointType</td><td>CR = 1,</td><td>CR</td><td>42</td><td>1</td><td>23</td><tr><tr><td>HiTraceTracepointType</td><td>SS = 2,</td><td>SS</td><td>42</td><td>1</td><td>18</td><tr><tr><td>HiTraceTracepointType</td><td>SR = 3,</td><td>SR</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceTracepointType</td><td>GENERAL = 4,</td><td>GENERAL</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceCommunicationMode</td><td>enum HiTraceCommunicationMode {
+        
+        DEFAULT = 0,
+
+        
+        THREAD  = 1,
+
+        
+        PROCESS = 2,
+
+        
+        DEVICE  = 3,
+    }</td><td>HiTraceCommunicationMode</td><td>40</td><td>0</td><td>1</td><tr><tr><td>HiTraceCommunicationMode</td><td>DEFAULT = 0,</td><td>DEFAULT</td><td>42</td><td>1</td><td>3</td><tr><tr><td>HiTraceCommunicationMode</td><td>THREAD  = 1,</td><td>THREAD</td><td>42</td><td>1</td><td>14</td><tr><tr><td>HiTraceCommunicationMode</td><td>PROCESS = 2,</td><td>PROCESS</td><td>42</td><td>1</td><td>14</td><tr><tr><td>HiTraceCommunicationMode</td><td>DEVICE  = 3,</td><td>DEVICE</td><td>42</td><td>1</td><td>0</td><tr><tr><td>HiTraceId</td><td>interface HiTraceId {
+        chainId: bigint; 
+        spanId?: number;
+        parentSpanId?: number;
+        flags?: number;
+    }</td><td>HiTraceId</td><td>20</td><td>0</td><td>0</td><tr><tr><td>HiTraceId</td><td>chainId: bigint</td><td>chainId</td><td>22</td><td>1</td><td>10</td><tr><tr><td>HiTraceId</td><td>spanId?: number</td><td>spanId</td><td>22</td><td>1</td><td>10</td><tr><tr><td>HiTraceId</td><td>parentSpanId?: number</td><td>parentSpanId</td><td>22</td><td>1</td><td>7</td><tr><tr><td>HiTraceId</td><td>flags?: number</td><td>flags</td><td>22</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                  <meta charset="UTF-8">
+                  <title>api coverage report</title>
+                  <style>
+                h1 {text-align:center} 
+                body,ol,ul,h1,h2,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {margin:0;padding:0}
+                body {
+                    font:16px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;
+                }
+                a {
+                    color:#2d374b;text-decoration:none
+                }
+                a:hover {
+                    color:#cd0200;text-decoration:underline
+                }
+                em {
+                    font-style:normal
+                }
+                li {
+                    list-style:none
+                }
+                img {
+                    border:0;vertical-align:middle
+                }
+                table {
+                    border-collapse:separate;border-spacing:3;
+                }
+                p {
+                    word-wrap:break-word
+                }
+                tr.tr_header {
+                    background-color:#F9F9FC;
+                    height:12px;
+                }
+                tr.tr_body {
+                    background-color:lightblue;
+                    height:12px;
+                }
+                td.td_font_style:{
+                    padding-left:3px;
+                }
+                table.main {
+                    width:90%;margin-left:5%
+                }
+                table.top{
+                    text-align:right;position:relative;right:10%;top:1px;margin-left:90%
+                }
+                div.line_01{ 
+                    height: 3px;margin-bottom:10px;margin-top:10px;border-top: 1px solid #ddd;text-align:center;background-color:#F9F9FC;
+                }
+        #desc {
+            /* float: left; */
+            /* display: ; */
+            position: absolute;
+            top: 100px;
+            left: 700px;
+            width: 700px;
+            height: 200px;
+            display: none;
+            /* text-align: center; */
+        }
+
+        #desc #textar {
+            width: 400px;
+            height: 100px;
+        }
+
+                  </style>
+            </head>
+
+            <body>
+            <meta http-equiv="Access-Control-Allow-Origin" content="*">
+                <h1>
+                    api coverage report
+                </h1>
+
+                <div class="line_01"></div>
+                <table class="main">
+                <tr class="">
+                        <td>subsystem_ch</td>
+                        <td>ACE开发框架</td>
+                    </tr>
+                <tr>
+                   <td>subsystem_en</td>
+                    <td>ace</td>
+                </tr>
+                <tr>
+                    <td>api_module_name</td>
+                    <td>canvas</td>
+                </tr>
+                <tr>
+                    <td>api</td>
+                    <td>
+                        <table>
+                            <tr>
+                              <td>api_class_name</td>  
+                              <td>api_method_all</td>  
+                              <td>api_method_name</td>
+                              <td>api_level</td>
+                              <td>api_args_count</td>
+                              <td>api_used_count</td>
+                            </tr>
+                            <tr><td>CanvasGradient</td><td>declare class CanvasGradient {
+  
+  addColorStop(offset: number, color: string): void;
+}</td><td>CanvasGradient</td><td>10</td><td>0</td><td>7</td><tr><tr><td>CanvasGradient</td><td>addColorStop(offset: number, color: string): void;</td><td>addColorStop</td><td>11</td><td>2</td><td>8</td><tr><tr><td>CanvasPath</td><td>declare class CanvasPath {
+  
+  arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void;
+
+  
+  arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void;
+
+  
+  bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void;
+
+  
+  closePath(): void;
+
+  
+  ellipse(
+    x: number,
+    y: number,
+    radiusX: number,
+    radiusY: number,
+    rotation: number,
+    startAngle: number,
+    endAngle: number,
+    counterclockwise?: boolean,
+  ): void;
+
+  
+  lineTo(x: number, y: number): void;
+
+  
+  moveTo(x: number, y: number): void;
+
+  
+  quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void;
+
+  
+  rect(x: number, y: number, w: number, h: number): void;
+}</td><td>CanvasPath</td><td>10</td><td>0</td><td>0</td><tr><tr><td>CanvasPath</td><td>arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void;</td><td>arc</td><td>11</td><td>6</td><td>393</td><tr><tr><td>CanvasPath</td><td>arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void;</td><td>arcTo</td><td>11</td><td>5</td><td>6</td><tr><tr><td>CanvasPath</td><td>bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void;</td><td>bezierCurveTo</td><td>11</td><td>6</td><td>6</td><tr><tr><td>CanvasPath</td><td>closePath(): void;</td><td>closePath</td><td>11</td><td>0</td><td>7</td><tr><tr><td>CanvasPath</td><td>ellipse(
+    x: number,
+    y: number,
+    radiusX: number,
+    radiusY: number,
+    rotation: number,
+    startAngle: number,
+    endAngle: number,
+    counterclockwise?: boolean,
+  ): void;</td><td>ellipse</td><td>11</td><td>8</td><td>421</td><tr><tr><td>CanvasPath</td><td>lineTo(x: number, y: number): void;</td><td>lineTo</td><td>11</td><td>2</td><td>39</td><tr><tr><td>CanvasPath</td><td>moveTo(x: number, y: number): void;</td><td>moveTo</td><td>11</td><td>2</td><td>36</td><tr><tr><td>CanvasPath</td><td>quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void;</td><td>quadraticCurveTo</td><td>11</td><td>4</td><td>6</td><tr><tr><td>CanvasPath</td><td>rect(x: number, y: number, w: number, h: number): void;</td><td>rect</td><td>11</td><td>4</td><td>1870</td><tr><tr><td>Path2D</td><td>declare class Path2D extends CanvasPath {
+  
+  addPath(path: Path2D, transform?: Matrix2D): void;
+
+  
+  constructor();
+
+  
+  constructor(path: Path2D);
+
+  
+  constructor(d: string);
+}</td><td>Path2D</td><td>None</td><td>0</td><td>19</td><tr><tr><td>Path2D</td><td>addPath(path: Path2D, transform?: Matrix2D)</td><td>addPath</td><td>None</td><td>2</td><td>4</td><tr><tr><td>Path2D</td><td>constructor()</td><td>constructor</td><td>None</td><td>0</td><td>80</td><tr><tr><td>Path2D</td><td>constructor(path: Path2D)</td><td>constructor</td><td>None</td><td>1</td><td>80</td><tr><tr><td>Path2D</td><td>constructor(d: string)</td><td>constructor</td><td>None</td><td>1</td><td>80</td><tr><tr><td>CanvasPattern</td><td>declare interface CanvasPattern {
+  
+  setTransform(transform?: Matrix2D): void;
+}</td><td>CanvasPattern</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CanvasPattern</td><td>setTransform(transform?: Matrix2D): void;</td><td>setTransform</td><td>21</td><td>1</td><td>8</td><tr><tr><td>TextMetrics</td><td>declare interface TextMetrics {
+  
+  readonly actualBoundingBoxAscent: number;
+
+  
+  readonly actualBoundingBoxDescent: number;
+
+  
+  readonly actualBoundingBoxLeft: number;
+
+  
+  readonly actualBoundingBoxRight: number;
+
+  
+  readonly alphabeticBaseline: number;
+
+  
+  readonly emHeightAscent: number;
+
+  
+  readonly emHeightDescent: number;
+
+  
+  readonly fontBoundingBoxAscent: number;
+
+  
+  readonly fontBoundingBoxDescent: number;
+
+  
+  readonly hangingBaseline: number;
+
+  
+  readonly ideographicBaseline: number;
+
+  
+  readonly width: number;
+
+  
+  readonly height: number;
+}</td><td>TextMetrics</td><td>20</td><td>0</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly actualBoundingBoxAscent: number</td><td>actualBoundingBoxAscent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly actualBoundingBoxDescent: number</td><td>actualBoundingBoxDescent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly actualBoundingBoxLeft: number</td><td>actualBoundingBoxLeft</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly actualBoundingBoxRight: number</td><td>actualBoundingBoxRight</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly alphabeticBaseline: number</td><td>alphabeticBaseline</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly emHeightAscent: number</td><td>emHeightAscent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly emHeightDescent: number</td><td>emHeightDescent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly fontBoundingBoxAscent: number</td><td>fontBoundingBoxAscent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly fontBoundingBoxDescent: number</td><td>fontBoundingBoxDescent</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly hangingBaseline: number</td><td>hangingBaseline</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly ideographicBaseline: number</td><td>ideographicBaseline</td><td>22</td><td>1</td><td>0</td><tr><tr><td>TextMetrics</td><td>readonly width: number</td><td>width</td><td>22</td><td>1</td><td>1772</td><tr><tr><td>TextMetrics</td><td>readonly height: number</td><td>height</td><td>22</td><td>1</td><td>1455</td><tr><tr><td>ImageBitmap</td><td>declare class ImageBitmap {
+  
+  readonly height: number;
+
+  
+  readonly width: number;
+
+  
+  close(): void;
+
+  
+  constructor(src: string);
+
+  
+  constructor(data: PixelMap);
+}</td><td>ImageBitmap</td><td>10</td><td>0</td><td>49</td><tr><tr><td>ImageBitmap</td><td>close()</td><td>close</td><td>11</td><td>0</td><td>83</td><tr><tr><td>ImageBitmap</td><td>constructor(src: string)</td><td>constructor</td><td>11</td><td>1</td><td>80</td><tr><tr><td>ImageBitmap</td><td>constructor(data: PixelMap)</td><td>constructor</td><td>11</td><td>1</td><td>80</td><tr><tr><td>ImageBitmap</td><td>readonly height: number</td><td>height</td><td>12</td><td>1</td><td>1455</td><tr><tr><td>ImageBitmap</td><td>readonly width: number</td><td>width</td><td>12</td><td>1</td><td>1772</td><tr><tr><td>ImageData</td><td>declare class ImageData {
+  
+  readonly data: Uint8ClampedArray;
+
+  
+  readonly height: number;
+
+  
+  readonly width: number;
+
+  
+  constructor(width: number, height: number, data?: Uint8ClampedArray);
+}</td><td>ImageData</td><td>10</td><td>0</td><td>36</td><tr><tr><td>ImageData</td><td>constructor(width: number, height: number, data?: Uint8ClampedArray)</td><td>constructor</td><td>11</td><td>3</td><td>80</td><tr><tr><td>ImageData</td><td>readonly data: Uint8ClampedArray</td><td>data</td><td>12</td><td>1</td><td>2739</td><tr><tr><td>ImageData</td><td>readonly height: number</td><td>height</td><td>12</td><td>1</td><td>1455</td><tr><tr><td>ImageData</td><td>readonly width: number</td><td>width</td><td>12</td><td>1</td><td>1772</td><tr><tr><td>RenderingContextSettings</td><td>declare class RenderingContextSettings {
+  
+  antialias?: boolean;
+
+  
+  constructor(antialias?: boolean);
+}</td><td>RenderingContextSettings</td><td>10</td><td>0</td><td>4</td><tr><tr><td>RenderingContextSettings</td><td>constructor(antialias?: boolean)</td><td>constructor</td><td>11</td><td>1</td><td>80</td><tr><tr><td>RenderingContextSettings</td><td>antialias?: boolean</td><td>antialias</td><td>12</td><td>1</td><td>1</td><tr><tr><td>CanvasRenderer</td><td>declare class CanvasRenderer extends CanvasPath {
+  
+  globalAlpha: number;
+
+  
+  globalCompositeOperation: string;
+
+  
+  drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void;
+
+  
+  drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void;
+
+  
+  drawImage(
+    image: ImageBitmap | PixelMap,
+    sx: number,
+    sy: number,
+    sw: number,
+    sh: number,
+    dx: number,
+    dy: number,
+    dw: number,
+    dh: number,
+  ): void;
+
+  
+  beginPath(): void;
+
+  
+  clip(fillRule?: CanvasFillRule): void;
+
+  
+  clip(path: Path2D, fillRule?: CanvasFillRule): void;
+
+  
+  fill(fillRule?: CanvasFillRule): void;
+
+  
+  fill(path: Path2D, fillRule?: CanvasFillRule): void;
+
+  
+  stroke(): void;
+
+  
+  stroke(path: Path2D): void;
+
+  
+  fillStyle: string | CanvasGradient | CanvasPattern;
+
+  
+  strokeStyle: string | CanvasGradient | CanvasPattern;
+
+  
+  createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGradient;
+
+  
+  createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | null;
+
+  
+  createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): CanvasGradient;
+
+  
+  filter(filter: string): void;
+
+  
+  createImageData(sw: number, sh: number): ImageData;
+
+  
+  createImageData(imagedata: ImageData): ImageData;
+
+  
+  getImageData(sx: number, sy: number, sw: number, sh: number): ImageData;
+
+  
+  getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap;
+
+  
+  putImageData(imagedata: ImageData, dx: number, dy: number): void;
+
+  
+  putImageData(
+    imagedata: ImageData,
+    dx: number,
+    dy: number,
+    dirtyX: number,
+    dirtyY: number,
+    dirtyWidth: number,
+    dirtyHeight: number,
+  ): void;
+
+  
+  imageSmoothingEnabled: boolean;
+
+  
+  imageSmoothingQuality(quality: ImageSmoothingQuality): void;
+
+  
+  lineCap: CanvasLineCap;
+
+  
+  lineDashOffset: number;
+
+  
+  lineJoin: CanvasLineJoin;
+
+  
+  lineWidth: number;
+
+  
+  miterLimit: number;
+
+  
+  getLineDash(): number[];
+
+  
+  setLineDash(segments: number[]): void;
+
+  
+  clearRect(x: number, y: number, w: number, h: number): void;
+
+  
+  fillRect(x: number, y: number, w: number, h: number): void;
+
+  
+  strokeRect(x: number, y: number, w: number, h: number): void;
+
+  
+  shadowBlur: number;
+
+  
+  shadowColor: string;
+
+  
+  shadowOffsetX: number;
+
+  
+  shadowOffsetY: number;
+
+  
+  restore(): void;
+
+  
+  save(): void;
+
+  
+  fillText(text: string, x: number, y: number, maxWidth?: number): void;
+
+  
+  measureText(text: string): TextMetrics;
+
+  
+  strokeText(text: string, x: number, y: number, maxWidth?: number): void;
+
+  
+  direction(direction: CanvasDirection): void;
+
+  
+  font: string;
+
+  
+  textAlign: CanvasTextAlign;
+
+  
+  textBaseline: CanvasTextBaseline;
+
+  
+  getTransform(): Matrix2D;
+
+  
+  resetTransform(): void;
+
+  
+  rotate(angle: number): void;
+
+  
+  scale(x: number, y: number): void;
+
+  
+  setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void;
+
+  
+  setTransform(transform?: Matrix2D): void;
+
+  
+  transform(a: number, b: number, c: number, d: number, e: number, f: number): void;
+
+  
+  translate(x: number, y: number): void;
+
+  
+  setPixelMap(value?: PixelMap): void;
+
+  
+  transferFromImageBitmap(bitmap: ImageBitmap): void;
+}</td><td>CanvasRenderer</td><td>None</td><td>0</td><td>0</td><tr><tr><td>CanvasRenderer</td><td>drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void;</td><td>drawImage</td><td>None</td><td>3</td><td>43</td><tr><tr><td>CanvasRenderer</td><td>drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void;</td><td>drawImage</td><td>None</td><td>5</td><td>43</td><tr><tr><td>CanvasRenderer</td><td>drawImage(
+    image: ImageBitmap | PixelMap,
+    sx: number,
+    sy: number,
+    sw: number,
+    sh: number,
+    dx: number,
+    dy: number,
+    dw: number,
+    dh: number,
+  ): void;</td><td>drawImage</td><td>None</td><td>9</td><td>43</td><tr><tr><td>CanvasRenderer</td><td>beginPath(): void;</td><td>beginPath</td><td>None</td><td>0</td><td>29</td><tr><tr><td>CanvasRenderer</td><td>clip(fillRule?: CanvasFillRule): void;</td><td>clip</td><td>None</td><td>1</td><td>50</td><tr><tr><td>CanvasRenderer</td><td>clip(path: Path2D, fillRule?: CanvasFillRule): void;</td><td>clip</td><td>None</td><td>2</td><td>50</td><tr><tr><td>CanvasRenderer</td><td>fill(fillRule?: CanvasFillRule): void;</td><td>fill</td><td>None</td><td>1</td><td>1166</td><tr><tr><td>CanvasRenderer</td><td>fill(path: Path2D, fillRule?: CanvasFillRule): void;</td><td>fill</td><td>None</td><td>2</td><td>1166</td><tr><tr><td>CanvasRenderer</td><td>stroke(): void;</td><td>stroke</td><td>None</td><td>0</td><td>1910</td><tr><tr><td>CanvasRenderer</td><td>stroke(path: Path2D): void;</td><td>stroke</td><td>None</td><td>1</td><td>1910</td><tr><tr><td>CanvasRenderer</td><td>createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGradient;</td><td>createLinearGradient</td><td>None</td><td>4</td><td>4</td><tr><tr><td>CanvasRenderer</td><td>createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | null;</td><td>createPattern</td><td>None</td><td>2</td><td>5</td><tr><tr><td>CanvasRenderer</td><td>createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): CanvasGradient;</td><td>createRadialGradient</td><td>None</td><td>6</td><td>3</td><tr><tr><td>CanvasRenderer</td><td>filter(filter: string): void;</td><td>filter</td><td>None</td><td>1</td><td>22</td><tr><tr><td>CanvasRenderer</td><td>createImageData(sw: number, sh: number): ImageData;</td><td>createImageData</td><td>None</td><td>2</td><td>13</td><tr><tr><td>CanvasRenderer</td><td>createImageData(imagedata: ImageData): ImageData;</td><td>createImageData</td><td>None</td><td>1</td><td>13</td><tr><tr><td>CanvasRenderer</td><td>getImageData(sx: number, sy: number, sw: number, sh: number): ImageData;</td><td>getImageData</td><td>None</td><td>4</td><td>5</td><tr><tr><td>CanvasRenderer</td><td>getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap;</td><td>getPixelMap</td><td>None</td><td>4</td><td>4</td><tr><tr><td>CanvasRenderer</td><td>putImageData(imagedata: ImageData, dx: number, dy: number): void;</td><td>putImageData</td><td>None</td><td>3</td><td>3</td><tr><tr><td>CanvasRenderer</td><td>putImageData(
+    imagedata: ImageData,
+    dx: number,
+    dy: number,
+    dirtyX: number,
+    dirtyY: number,
+    dirtyWidth: number,
+    dirtyHeight: number,
+  ): void;</td><td>putImageData</td><td>None</td><td>7</td><td>3</td><tr><tr><td>CanvasRenderer</td><td>imageSmoothingQuality(quality: ImageSmoothingQuality): void;</td><td>imageSmoothingQuality</td><td>None</td><td>1</td><td>2</td><tr><tr><td>CanvasRenderer</td><td>getLineDash(): number[];</td><td>getLineDash</td><td>None</td><td>0</td><td>2</td><tr><tr><td>CanvasRenderer</td><td>setLineDash(segments: number[]): void;</td><td>setLineDash</td><td>None</td><td>1</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>clearRect(x: number, y: number, w: number, h: number): void;</td><td>clearRect</td><td>None</td><td>4</td><td>5</td><tr><tr><td>CanvasRenderer</td><td>fillRect(x: number, y: number, w: number, h: number): void;</td><td>fillRect</td><td>None</td><td>4</td><td>89</td><tr><tr><td>CanvasRenderer</td><td>strokeRect(x: number, y: number, w: number, h: number): void;</td><td>strokeRect</td><td>None</td><td>4</td><td>13</td><tr><tr><td>CanvasRenderer</td><td>restore(): void;</td><td>restore</td><td>None</td><td>0</td><td>4</td><tr><tr><td>CanvasRenderer</td><td>save(): void;</td><td>save</td><td>None</td><td>0</td><td>4</td><tr><tr><td>CanvasRenderer</td><td>fillText(text: string, x: number, y: number, maxWidth?: number): void;</td><td>fillText</td><td>None</td><td>4</td><td>35</td><tr><tr><td>CanvasRenderer</td><td>measureText(text: string): TextMetrics;</td><td>measureText</td><td>None</td><td>1</td><td>6</td><tr><tr><td>CanvasRenderer</td><td>strokeText(text: string, x: number, y: number, maxWidth?: number): void;</td><td>strokeText</td><td>None</td><td>4</td><td>5</td><tr><tr><td>CanvasRenderer</td><td>direction(direction: CanvasDirection): void;</td><td>direction</td><td>None</td><td>1</td><td>596</td><tr><tr><td>CanvasRenderer</td><td>getTransform(): Matrix2D;</td><td>getTransform</td><td>None</td><td>0</td><td>2</td><tr><tr><td>CanvasRenderer</td><td>resetTransform(): void;</td><td>resetTransform</td><td>None</td><td>0</td><td>3</td><tr><tr><td>CanvasRenderer</td><td>rotate(angle: number): void;</td><td>rotate</td><td>None</td><td>1</td><td>392</td><tr><tr><td>CanvasRenderer</td><td>scale(x: number, y: number): void;</td><td>scale</td><td>None</td><td>2</td><td>1026</td><tr><tr><td>CanvasRenderer</td><td>setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void;</td><td>setTransform</td><td>None</td><td>6</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>setTransform(transform?: Matrix2D): void;</td><td>setTransform</td><td>None</td><td>1</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>transform(a: number, b: number, c: number, d: number, e: number, f: number): void;</td><td>transform</td><td>None</td><td>6</td><td>353</td><tr><tr><td>CanvasRenderer</td><td>translate(x: number, y: number): void;</td><td>translate</td><td>None</td><td>2</td><td>280</td><tr><tr><td>CanvasRenderer</td><td>setPixelMap(value?: PixelMap): void;</td><td>setPixelMap</td><td>None</td><td>1</td><td>2</td><tr><tr><td>CanvasRenderer</td><td>transferFromImageBitmap(bitmap: ImageBitmap): void;</td><td>transferFromImageBitmap</td><td>None</td><td>1</td><td>16</td><tr><tr><td>CanvasRenderer</td><td>globalAlpha: number</td><td>globalAlpha</td><td>12</td><td>1</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>globalCompositeOperation: string</td><td>globalCompositeOperation</td><td>12</td><td>1</td><td>13</td><tr><tr><td>CanvasRenderer</td><td>fillStyle: string | CanvasGradient | CanvasPattern</td><td>fillStyle</td><td>12</td><td>1</td><td>75</td><tr><tr><td>CanvasRenderer</td><td>strokeStyle: string | CanvasGradient | CanvasPattern</td><td>strokeStyle</td><td>12</td><td>1</td><td>12</td><tr><tr><td>CanvasRenderer</td><td>imageSmoothingEnabled: boolean</td><td>imageSmoothingEnabled</td><td>12</td><td>1</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>lineCap: CanvasLineCap</td><td>lineCap</td><td>12</td><td>1</td><td>49</td><tr><tr><td>CanvasRenderer</td><td>lineDashOffset: number</td><td>lineDashOffset</td><td>12</td><td>1</td><td>6</td><tr><tr><td>CanvasRenderer</td><td>lineJoin: CanvasLineJoin</td><td>lineJoin</td><td>12</td><td>1</td><td>12</td><tr><tr><td>CanvasRenderer</td><td>lineWidth: number</td><td>lineWidth</td><td>12</td><td>1</td><td>26</td><tr><tr><td>CanvasRenderer</td><td>miterLimit: number</td><td>miterLimit</td><td>12</td><td>1</td><td>7</td><tr><tr><td>CanvasRenderer</td><td>shadowBlur: number</td><td>shadowBlur</td><td>12</td><td>1</td><td>19</td><tr><tr><td>CanvasRenderer</td><td>shadowColor: string</td><td>shadowColor</td><td>12</td><td>1</td><td>18</td><tr><tr><td>CanvasRenderer</td><td>shadowOffsetX: number</td><td>shadowOffsetX</td><td>12</td><td>1</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>shadowOffsetY: number</td><td>shadowOffsetY</td><td>12</td><td>1</td><td>8</td><tr><tr><td>CanvasRenderer</td><td>font: string</td><td>font</td><td>12</td><td>1</td><td>1278</td><tr><tr><td>CanvasRenderer</td><td>textAlign: CanvasTextAlign</td><td>textAlign</td><td>12</td><td>1</td><td>199</td><tr><tr><td>CanvasRenderer</td><td>textBaseline: CanvasTextBaseline</td><td>textBaseline</td><td>12</td><td>1</td><td>12</td><tr><tr><td>CanvasRenderingContext2D</td><td>declare class CanvasRenderingContext2D extends CanvasRenderer {
+  
+  readonly height: number;
+
+  
+  readonly width: number;
+
+  
+  toDataURL(type?: string, quality?: any): string;
+
+  
+  constructor(settings?: RenderingContextSettings);
+}</td><td>CanvasRenderingContext2D</td><td>None</td><td>0</td><td>18</td><tr><tr><td>CanvasRenderingContext2D</td><td>toDataURL(type?: string, quality?: any)</td><td>toDataURL</td><td>None</td><td>2</td><td>8</td><tr><tr><td>CanvasRenderingContext2D</td><td>constructor(settings?: RenderingContextSettings)</td><td>constructor</td><td>None</td><td>1</td><td>80</td><tr><tr><td>CanvasRenderingContext2D</td><td>readonly height: number</td><td>height</td><td>12</td><td>1</td><td>1455</td><tr><tr><td>CanvasRenderingContext2D</td><td>readonly width: number</td><td>width</td><td>12</td><td>1</td><td>1772</td><tr><tr><td>OffscreenCanvasRenderingContext2D</td><td>declare class OffscreenCanvasRenderingContext2D extends CanvasRenderer {
+  
+  toDataURL(type?: string, quality?: any): string;
+
+  
+  transferToImageBitmap(): ImageBitmap;
+
+  
+  constructor(width: number, height: number, settings?: RenderingContextSettings);
+}</td><td>OffscreenCanvasRenderingContext2D</td><td>None</td><td>0</td><td>7</td><tr><tr><td>OffscreenCanvasRenderingContext2D</td><td>toDataURL(type?: string, quality?: any)</td><td>toDataURL</td><td>None</td><td>2</td><td>8</td><tr><tr><td>OffscreenCanvasRenderingContext2D</td><td>transferToImageBitmap()</td><td>transferToImageBitmap</td><td>None</td><td>0</td><td>14</td><tr><tr><td>OffscreenCanvasRenderingContext2D</td><td>constructor(width: number, height: number, settings?: RenderingContextSettings)</td><td>constructor</td><td>None</td><td>3</td><td>80</td><tr><tr><td>OffscreenCanvas</td><td>declare class OffscreenCanvas extends CanvasRenderer {
+  
+  height: number;
+
+  
+  width: number;
+
+  
+  transferToImageBitmap(): ImageBitmap;
+
+  
+  constructor(width: number, height: number);
+}</td><td>OffscreenCanvas</td><td>None</td><td>0</td><td>36</td><tr><tr><td>OffscreenCanvas</td><td>transferToImageBitmap()</td><td>transferToImageBitmap</td><td>None</td><td>0</td><td>14</td><tr><tr><td>OffscreenCanvas</td><td>constructor(width: number, height: number)</td><td>constructor</td><td>None</td><td>2</td><td>80</td><tr><tr><td>OffscreenCanvas</td><td>height: number</td><td>height</td><td>12</td><td>1</td><td>1455</td><tr><tr><td>OffscreenCanvas</td><td>width: number</td><td>width</td><td>12</td><td>1</td><td>1772</td><tr><tr><td>CanvasInterface</td><td>interface CanvasInterface {
+  
+  (context?: CanvasRenderingContext2D): CanvasAttribute;
+}</td><td>CanvasInterface</td><td>20</td><td>0</td><td>0</td><tr><tr><td>CanvasInterface</td><td>(context?: CanvasRenderingContext2D): CanvasAttribute</td><td>context</td><td>22</td><td>1</td><td>223</td><tr><tr><td>CanvasAttribute</td><td>declare class CanvasAttribute extends CommonMethod<CanvasAttribute> {
+  
+  onReady(event: () => void): CanvasAttribute;
+}</td><td>CanvasAttribute</td><td>None</td><td>0</td><td>0</td><tr><tr><td>CanvasAttribute</td><td>onReady(event: () => void): CanvasAttribute;</td><td>onReadyevent</td><td>None</td><td>1</td><td>0</td><tr><tr><td>CanvasAttribute</td><td>onReady(event: () => void): CanvasAttribute;</td><td>onReadyevent</td><td>None</td><td>1</td><td>0</td><tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+
+                <div id="desc">
+                    <div class="desc-body">
+                        <input type="textareas" value="" id="textar">
+                    </div>
+                        <div class="desc-footer">
+                            <button id="submit">确认</button>
+                            <button id="cancel">取消</button>
+                        </div>
+                </div>
+            <script>
+        var btn = document.querySelectorAll("#btn")
+        var desc = document.getElementById("desc")
+        var submit = document.getElementById("submit")
+        var cancel = document.getElementById("cancel")
+        console.log(btn)
+        for (var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function() {
+                btnValues = this.value
+                desc.style.display = 'block';
+            }
+            submit.onclick = function() {
+                var text = document.getElementById("textar")
+                var xmlHttp = new XMLHttpRequest
+                xmlHttp.open('POST', 'http://127.0.0.1:53669/configuration/')
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                console.log(text.value)
+                desc.style.display = 'none';
+                let obj = {package: btnValues.split('|')[0],classs: btnValues.split('|')[1],function: btnValues.split('|')[2],desc:text.value}
+                var stringData = JSON.stringify(obj);
+                xmlHttp.send(stringData);
+                alert("xmlHttp.responseText");
+                text.value = ""
+            }
+            cancel.onclick = function() {
+                desc.style.display = 'none';
+            }
+        }
+        </script>
+            </body>
+            </html>

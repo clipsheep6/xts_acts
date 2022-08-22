@@ -1,0 +1,24 @@
+[
+    {
+        "name": "OH_LOG_Print",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "kits",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    },
+    {
+        "name": "OH_LOG_IsLoggable",
+        "is_white": "",
+        "desc": "",
+        "ApiLevel": "100",
+        "Count": 0,
+        "Used": "否",
+        "api_module_name": "kits",
+        "subsystem_en": "appexecfwk",
+        "subsystem_ch": "包管理子系统"
+    }
+]
