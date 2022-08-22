@@ -124,7 +124,7 @@ private:
     struct OH_AVCodec* aenc_;
     void InputFuncEnc();
     void OutputFuncEnc();
-    bool WriteToFile();
+    int32_t WriteToFile();
     std::atomic<bool> isEncRunning_ = false;
     std::unique_ptr<std::thread> inputLoopEnc_;
     std::unique_ptr<std::thread> outputLoopEnc_;

@@ -113,7 +113,7 @@ private:
     struct OH_AVCodec* vdec_;
     void InputFuncDec();
     void OutputFuncDec();
-    bool WriteToFile();
+    int32_t WriteToFile();
     std::atomic<bool> isDecRunning_ = false;
     std::unique_ptr<std::ifstream> testFile_;
     std::unique_ptr<std::thread> inputLoopDec_;

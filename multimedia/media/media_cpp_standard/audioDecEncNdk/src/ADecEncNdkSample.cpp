@@ -638,24 +638,22 @@ void ADecEncNdkSample::PopOutqueueEnc()
     acodecSignal_->outBufferQueueEnc_.pop();
 }
 
-bool ADecEncNdkSample::WriteToFile()
+int32_t ADecEncNdkSample::WriteToFile()
 {
     auto buffer = acodecSignal_->outBufferQueueEnc_.front();
     if (buffer == nullptr) {
         cout << "getOutPut Buffer fail" << endl;
-        return false;
+        return AV_ERR_INVALID_VAL;
     }
     uint32_t size = acodecSignal_->sizeQueueEnc_.front();
-    FILE *outFile;
-    outFile = fopen(OUT_FILE, "a");
+    FILE *outFile = fopen(OUT_FILE, "a");
     if (outFile == nullptr) {
         cout << "dump data fail" << endl;
-        return false;
+        return AV_ERR_INVALID_VAL;
     } else {
         fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
     }
-    fclose(outFile);
-    return true;
+    return fclose(outFile);
 }
 
 void ADecEncNdkSample::OutputFuncEnc()
@@ -679,28 +677,9 @@ void ADecEncNdkSample::OutputFuncEnc()
             cout << "ENC get output EOS" << endl;
             isEncOutputEOS = true;
         } else {
-            // if (!WriteToFile()) {
-            //     PopOutqueueEnc();
-            //     continue;
-            // }
-            auto buffer = acodecSignal_->outBufferQueueEnc_.front();
-            if (buffer == nullptr) {
-                cout << "getOutPut Buffer fail" << endl;
+            if (WriteToFile() != 0) {
                 PopOutqueueEnc();
                 continue;
-            }
-            uint32_t size = acodecSignal_->sizeQueueEnc_.front();
-            if (needDump) {
-                FILE *outFile;
-                outFile = fopen(OUT_FILE, "a");
-                if (outFile == nullptr) {
-                    cout << "dump data fail" << endl;
-                    PopOutqueueEnc();
-                    continue;
-                } else {
-                    fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
-                }
-                fclose(outFile);
             }
             if (OH_AudioEncoder_FreeOutputData(aenc_, index) != AV_ERR_OK) {
                 cout << "Fatal: ReleaseOutputBuffer fail" << endl;
