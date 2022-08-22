@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,16 @@
  * limitations under the License.
  */
 
-export default {
-    data: {
-        title: ""
-    },
-    onInit() {
-        this.title = this.$t('strings.world');
+package ohos.acts.multimedia.image;
+
+import ohos.aafwk.ability.AbilityPackage;
+
+/*
+ * java MyApplication
+ */
+public class MyApplication extends AbilityPackage {
+    @Override
+    public void onInitialize() {
+        super.onInitialize();
     }
 }
-
-
-

@@ -13,17 +13,11 @@
  * limitations under the License.
  */
 
-
 export default {
-    data: {
-        title: ""
+    onCreate() {
+        console.info('AceApplication onCreate');
     },
-    onInit() {
-        this.title = this.$t('strings.world');
-    },
-    onShow() {
-        console.info('onShow finish')
-    },
-    onReady() {
-    },
-}
+    onDestroy() {
+        console.info('AceApplication onDestroy');
+    }
+};
