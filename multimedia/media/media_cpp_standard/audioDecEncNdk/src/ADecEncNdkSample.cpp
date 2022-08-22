@@ -638,6 +638,26 @@ void ADecEncNdkSample::PopOutqueueEnc()
     acodecSignal_->outBufferQueueEnc_.pop();
 }
 
+bool ADecEncNdkSample::WriteToFile()
+{
+    auto buffer = acodecSignal_->outBufferQueueEnc_.front();
+    if (buffer == nullptr) {
+        cout << "getOutPut Buffer fail" << endl;
+        return false;
+    }
+    uint32_t size = acodecSignal_->sizeQueueEnc_.front();
+    FILE *outFile;
+    outFile = fopen(OUT_FILE, "a");
+    if (outFile == nullptr) {
+        cout << "dump data fail" << endl;
+        return false;
+    } else {
+        fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+    }
+    fclose(outFile);
+    return true;
+}
+
 void ADecEncNdkSample::OutputFuncEnc()
 {
     while (true) {
@@ -654,21 +674,15 @@ void ADecEncNdkSample::OutputFuncEnc()
             continue;
         }
         uint32_t index = acodecSignal_->outQueueEnc_.front();
-        auto buffer = acodecSignal_->outBufferQueueEnc_.front();
-        uint32_t size = acodecSignal_->sizeQueueEnc_.front();
         uint32_t encOutflag = acodecSignal_->flagQueueEnc_.front();
         if (encOutflag == 1) {
             cout << "ENC get output EOS" << endl;
             isEncOutputEOS = true;
         } else {
-            FILE *outFile;
-            outFile = fopen(OUT_FILE, "a");
-            if (outFile == nullptr) {
-                cout << "dump data fail" << endl;
-            } else {
-                fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+            if (!WriteToFile()) {
+                PopOutqueueEnc();
+                continue;
             }
-            fclose(outFile);
             if (OH_AudioEncoder_FreeOutputData(aenc_, index) != AV_ERR_OK) {
                 cout << "Fatal: ReleaseOutputBuffer fail" << endl;
                 acodecSignal_->errorNum_ += 1;

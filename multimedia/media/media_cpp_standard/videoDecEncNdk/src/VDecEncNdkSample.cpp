@@ -657,6 +657,26 @@ void VDecEncNdkSample::PopOutqueueEnc()
     vcodecSignal_->outBufferQueueEnc_.pop();
 }
 
+bool VDecEncNdkSample::WriteToFile()
+{
+    auto buffer = vcodecSignal_->outBufferQueueEnc_.front();
+    uint32_t size = vcodecSignal_->sizeQueueEnc_.front();
+    if (buffer == nullptr) {
+        cout << "getOutPut Buffer fail" << endl;
+        return false;
+    }
+    FILE *outFile;
+    outFile = fopen(outFile_.c_str(), "a");
+    if (outFile == nullptr) {
+        cout << "dump data fail" << endl;
+        return false;
+    } else {
+        fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+    }
+    fclose(outFile);
+    return true;
+}
+
 void VDecEncNdkSample::OutputFuncEnc()
 {
     while (true) {
@@ -675,7 +695,7 @@ void VDecEncNdkSample::OutputFuncEnc()
 
         uint32_t index = vcodecSignal_->outQueueEnc_.front();
         uint32_t encOutflag = vcodecSignal_->flagQueueEnc_.front();
-        uint32_t size = vcodecSignal_->sizeQueueEnc_.front();
+
         if (encOutflag == 1) {
             cout << "ENC get output EOS" << endl;
             isEncOutputEOS = true;
@@ -686,14 +706,10 @@ void VDecEncNdkSample::OutputFuncEnc()
                 cout << "getOutPut Buffer fail" << endl;
                 continue;
             }
-            FILE *outFile;
-            outFile = fopen(outFile_.c_str(), "a");
-            if (outFile == nullptr) {
-                cout << "dump data fail" << endl;
-            } else {
-                fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+            if (!WriteToFile()) {
+                PopOutqueueEnc();
+                continue;
             }
-            fclose(outFile);
             uint32_t ret = OH_VideoEncoder_FreeOutputData(venc_, index);
             if (ret != 0) {
                 cout << "Fatal: ReleaseOutputBuffer fail" << endl;
