@@ -16,7 +16,7 @@
 const injectRef = Object.getPrototypeOf(global) || global
 injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
 
-let once = true
+let once = true;
 export default {
     data: {
         title: ''
