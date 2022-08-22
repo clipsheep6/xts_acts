@@ -53,7 +53,7 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
   }
 
   async function applyPermission() {
-    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameratest', 0, 100);
+    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.camerawarktest', 0, 100);
     let atManager = abilityAccessCtrl.createAtManager();
     if (atManager != null) {
       let tokenID = appInfo.accessTokenId;

@@ -62,7 +62,7 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
   }
 
   async function applyPermission() {
-    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameratest', 0, 100);
+    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameraewatest', 0, 100);
     let atManager = abilityAccessCtrl.createAtManager();
     if (atManager != null) {
       let tokenID = appInfo.accessTokenId;
@@ -859,26 +859,26 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
     })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200
       * @tc.name      : Create camerainput from camera-1 cameraId promise api
       * @tc.desc      : Create camerainput from camera-1 cameraId promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100--------------");
+    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200', 0, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200--------------");
       camera1InputPromise = await cameraManager.createCameraInput(camerasArray[1].cameraId);
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 camera1InputPromise: " + JSON.stringify(camera1InputPromise));
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200 camera1InputPromise: " + JSON.stringify(camera1InputPromise));
       if (camera1InputPromise != null && camera1InputPromise != undefined) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 camera1InputPromise is not null || undefined");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200 camera1InputPromise is not null || undefined");
         expect(true).assertTrue();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 PASSED");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200 PASSED");
       } else {
         expect().assertFail();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 FAILED");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200 FAILED");
       }
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 ends here");
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0200 ends here");
       await sleep(1000);
       done();
     })
@@ -1454,26 +1454,26 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
     })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300
       * @tc.name      : Create camerainput from camera-2 cameraId promise api
       * @tc.desc      : Create camerainput from camera-2 cameraId promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100--------------");
+    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300', 0, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300--------------");
       camera2InputPromise = await cameraManager.createCameraInput(camerasArray[2].cameraId);
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 camera2InputPromise: " + JSON.stringify(camera2InputPromise));
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300 camera2InputPromise: " + JSON.stringify(camera2InputPromise));
       if (camera2InputPromise != null && camera2InputPromise != undefined) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 camera2InputPromise is not null || undefined");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300 camera2InputPromise is not null || undefined");
         expect(true).assertTrue();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 PASSED");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300 PASSED");
       } else {
         expect().assertFail();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 FAILED");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300 FAILED");
       }
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 ends here");
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0300 ends here");
       await sleep(1000);
       done();
     })
@@ -2049,26 +2049,26 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
     })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400
       * @tc.name      : Create camerainput from camera-3 cameraId promise api
       * @tc.desc      : Create camerainput from camera-3 cameraId promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100--------------");
+    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400', 0, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400--------------");
       camera3InputPromise = await cameraManager.createCameraInput(camerasArray[3].cameraId);
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 camera3InputPromise: " + JSON.stringify(camera3InputPromise));
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400 camera3InputPromise: " + JSON.stringify(camera3InputPromise));
       if (camera3InputPromise != null && camera3InputPromise != undefined) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 camera3InputPromise is not null || undefined");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400 camera3InputPromise is not null || undefined");
         expect(true).assertTrue();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 PASSED");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400 PASSED");
       } else {
         expect().assertFail();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 FAILED");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400 FAILED");
       }
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0100 ends here");
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_PROMISE_0400 ends here");
       await sleep(1000);
       done();
     })
