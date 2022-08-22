@@ -106,6 +106,7 @@ public:
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
     bool setEos = true;
+    bool needDump = true;
 
 private:
     sptr<Surface> surface_ = nullptr;

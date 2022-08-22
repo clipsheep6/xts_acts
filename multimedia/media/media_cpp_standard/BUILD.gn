@@ -18,8 +18,8 @@ module_output_path = "hits/ActsAvcodecNdkTest"
 ohos_moduletest_suite("ActsAvcodecNdkTest") {
   module_out_path = module_output_path
   sources = [
-    "audioDecEncNdk/src/ActsAudioDecEncNdkTest.cpp",
     "audioDecEncNdk/src/ADecEncNdkSample.cpp",
+    "audioDecEncNdk/src/ActsAudioDecEncNdkTest.cpp",
     "videoDecEncNdk/src/ActsVideoDecEncNdkTest.cpp",
     "videoDecEncNdk/src/VDecEncNdkSample.cpp",
   ]
@@ -52,8 +52,8 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
   ]
 
   deps = [
-    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media",
     "//foundation/graphic/graphic_2d/frameworks/surface:surface",
+    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media",
     "//utils/native/base:utils",
   ]
 

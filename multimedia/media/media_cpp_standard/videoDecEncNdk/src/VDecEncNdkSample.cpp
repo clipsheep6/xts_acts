@@ -665,15 +665,17 @@ bool VDecEncNdkSample::WriteToFile()
         cout << "getOutPut Buffer fail" << endl;
         return false;
     }
-    FILE *outFile;
-    outFile = fopen(outFile_.c_str(), "a");
-    if (outFile == nullptr) {
-        cout << "dump data fail" << endl;
-        return false;
-    } else {
-        fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+    if (needDump) {
+        FILE *outFile;
+        outFile = fopen(outFile_.c_str(), "a");
+        if (outFile == nullptr) {
+            cout << "dump data fail" << endl;
+            return false;
+        } else {
+            fwrite(OH_AVMemory_GetAddr(buffer), 1, size, outFile);
+        }
+        fclose(outFile);
     }
-    fclose(outFile);
     return true;
 }
 
@@ -700,12 +702,6 @@ void VDecEncNdkSample::OutputFuncEnc()
             cout << "ENC get output EOS" << endl;
             isEncOutputEOS = true;
         } else {
-            auto buffer = vcodecSignal_->outBufferQueueEnc_.front();
-            if (buffer == nullptr) {
-                PopOutqueueEnc();
-                cout << "getOutPut Buffer fail" << endl;
-                continue;
-            }
             if (!WriteToFile()) {
                 PopOutqueueEnc();
                 continue;

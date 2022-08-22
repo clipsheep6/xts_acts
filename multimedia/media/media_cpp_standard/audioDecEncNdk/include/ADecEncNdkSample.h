@@ -110,6 +110,7 @@ public:
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
     bool setEos = true;
+    bool needDump = true;
 
 private:
     struct OH_AVCodec* adec_;
