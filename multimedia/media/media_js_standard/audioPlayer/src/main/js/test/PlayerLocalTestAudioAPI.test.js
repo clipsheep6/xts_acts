@@ -712,8 +712,8 @@ describe('PlayerLocalTestAudioAPI', function () {
     it('SUB_MEDIA_PLAYER_AudioPlayer_Time_API_0100', 0, async function (done) {
         mediaTestBase.isFileOpen(fileDescriptor, done);
         initAudioPlayer();
-        expect(audioPlayer.src).assertEqual(undefined);
-        expect(audioPlayer.duration).assertEqual(undefined);
+        expect(audioPlayer.src).assertEqual('');
+        expect(audioPlayer.duration).assertEqual(0);
         expect(audioPlayer.currentTime).assertEqual(0);
         expect(audioPlayer.state).assertEqual('idle');
         expect(audioPlayer.loop).assertEqual(false);
