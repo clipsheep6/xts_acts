@@ -19,7 +19,7 @@ import * as videoRecorderBase from '../../../../../VideoRecorderTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('RecorderLocalTestAudioFUNC', function () {
-    let audioRecorder = media.createAudioRecorder();
+    let audioRecorder = undefined;
     const END_STATE = 0;
     const PRE_STATE = 1;
     const START_STATE = 2;
