@@ -548,249 +548,249 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
 
     /*GET_SUPPORTED_PREVIEW_PHOTO_FORMATS_SIZE_TC*/
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200
       * @tc.name      : Get supported preview formats from camera-0 camerainput async api
       * @tc.desc      : Get supported preview formats from camera-0 camerainput async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100--------------");
-      camera0InputPromisePosBack.getSupportedPreviewFormats(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 success");
-          if (data != null || data.length > 0) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 data is not null || undefined");
-            for (var i = 0; i < data.length; i++) {
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 cameraFormat: " + data[i]);
-              expect(data[i]).assertEqual(1003);
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 PASSED");
-            }
-          }
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 FAILED: " + err.message);
-          expect().assertFail();
-        }
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 ends here");
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200--------------");
+    //   camera0InputPromisePosBack.getSupportedPreviewFormats(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200 success");
+    //       if (data != null || data.length > 0) {
+    //         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200 data is not null || undefined");
+    //         for (var i = 0; i < data.length; i++) {
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200 cameraFormat: " + data[i]);
+    //           expect(data[i]).assertEqual(1003);
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200 PASSED");
+    //         }
+    //       }
+    //     } else {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200 FAILED: " + err.message);
+    //       expect().assertFail();
+    //     }
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0200 ends here");
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200
       * @tc.name      : Get supported preview formats from camera-0 camerainput promise api
       * @tc.desc      : Get supported preview formats from camera-0 camerainput promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100--------------");
-      var cam0FormatPromisePosBack = await camera0InputPromisePosBack.getSupportedPreviewFormats();
-      console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100: " + JSON.stringify(cam0FormatPromisePosBack));
-      if (cam0FormatPromisePosBack != null && cam0FormatPromisePosBack.length > 0) {
-        console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 is not null || undefined");
-        for (var i = 0; i < cam0FormatPromisePosBack.length; i++) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 cam0FormatPromisePosBack: " + cam0FormatPromisePosBack[i]);
-          expect(cam0FormatPromisePosBack[i]).assertEqual(1003);
-          console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 PASSED");
-        }
-      } else {
-        console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 FAILED");
-        expect().assertFail();
-      }
-      console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 ends here");
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200--------------");
+    //   var cam0FormatPromisePosBack = await camera0InputPromisePosBack.getSupportedPreviewFormats();
+    //   console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200: " + JSON.stringify(cam0FormatPromisePosBack));
+    //   if (cam0FormatPromisePosBack != null && cam0FormatPromisePosBack.length > 0) {
+    //     console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200 is not null || undefined");
+    //     for (var i = 0; i < cam0FormatPromisePosBack.length; i++) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200 cam0FormatPromisePosBack: " + cam0FormatPromisePosBack[i]);
+    //       expect(cam0FormatPromisePosBack[i]).assertEqual(1003);
+    //       console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200 PASSED");
+    //     }
+    //   } else {
+    //     console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200 FAILED");
+    //     expect().assertFail();
+    //   }
+    //   console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0200 ends here");
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200
       * @tc.name      : Get supported photo format from camera-0 camerainput async api
       * @tc.desc      : Get supported photo format from camera-0 camerainput async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100--------------");
-      camera0InputPromisePosBack.getSupportedPhotoFormats(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 success");
-          if (data != null || data != undefined) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 data is not null || undefined");
-            for (var i = 0; i < data.length; i++) {
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 cameraFormat: " + data[i]);
-              expect(data[i]).assertEqual(2000);
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 PASSED");
-            }
-          }
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 FAILED: " + err.message);
-          expect().assertFail();
-        }
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 ends here");
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200--------------");
+    //   camera0InputPromisePosBack.getSupportedPhotoFormats(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200 success");
+    //       if (data != null || data != undefined) {
+    //         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200 data is not null || undefined");
+    //         for (var i = 0; i < data.length; i++) {
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200 cameraFormat: " + data[i]);
+    //           expect(data[i]).assertEqual(2000);
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200 PASSED");
+    //         }
+    //       }
+    //     } else {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200 FAILED: " + err.message);
+    //       expect().assertFail();
+    //     }
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0200 ends here");
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200
       * @tc.name      : Get supported photo format from camera-0 camerainput promise api
       * @tc.desc      : Get supported photo format from camera-0 camerainput promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100--------------");
-      var cam0FormatPromisePosBack = await camera0InputPromisePosBack.getSupportedPhotoFormats();
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100: " + JSON.stringify(cam0FormatPromisePosBack));
-      if (cam0FormatPromisePosBack != null && cam0FormatPromisePosBack.length > 0) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 is not null || undefined");
-        for (var i = 0; i < cam0FormatPromisePosBack.length; i++) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 cam0FormatPromisePosBack: " + cam0FormatPromisePosBack[i]);
-          expect(cam0FormatPromisePosBack[i]).assertEqual(2000);
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 PASSED");
-        }
-      } else {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 FAILED");
-        expect().assertFail();
-      }
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 ends here");
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200--------------");
+    //   var cam0FormatPromisePosBack = await camera0InputPromisePosBack.getSupportedPhotoFormats();
+    //   console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200: " + JSON.stringify(cam0FormatPromisePosBack));
+    //   if (cam0FormatPromisePosBack != null && cam0FormatPromisePosBack.length > 0) {
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200 is not null || undefined");
+    //     for (var i = 0; i < cam0FormatPromisePosBack.length; i++) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200 cam0FormatPromisePosBack: " + cam0FormatPromisePosBack[i]);
+    //       expect(cam0FormatPromisePosBack[i]).assertEqual(2000);
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200 PASSED");
+    //     }
+    //   } else {
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200 FAILED");
+    //     expect().assertFail();
+    //   }
+    //   console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0200 ends here");
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /*GET_SUPPORTED_PREVIEW_PHOTO_FORMATS_SIZE_TC*/
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300
       * @tc.name      : Get supported preview formats from camera-0 camerainput async api
       * @tc.desc      : Get supported preview formats from camera-0 camerainput async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100--------------");
-      camera0InputPromisePosFront.getSupportedPreviewFormats(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 success");
-          if (data != null || data.length > 0) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 data is not null || undefined");
-            for (var i = 0; i < data.length; i++) {
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 cameraFormat: " + data[i]);
-              expect(data[i]).assertEqual(1003);
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 PASSED");
-            }
-          }
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 FAILED: " + err.message);
-          expect().assertFail();
-        }
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 ends here");
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300--------------");
+    //   camera0InputPromisePosFront.getSupportedPreviewFormats(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300 success");
+    //       if (data != null || data.length > 0) {
+    //         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300 data is not null || undefined");
+    //         for (var i = 0; i < data.length; i++) {
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300 cameraFormat: " + data[i]);
+    //           expect(data[i]).assertEqual(1003);
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300 PASSED");
+    //         }
+    //       }
+    //     } else {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300 FAILED: " + err.message);
+    //       expect().assertFail();
+    //     }
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0300 ends here");
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300
       * @tc.name      : Get supported preview formats from camera-0 camerainput promise api
       * @tc.desc      : Get supported preview formats from camera-0 camerainput promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100--------------");
-      var cam0FormatPromisePosFront = await camera0InputPromisePosFront.getSupportedPreviewFormats();
-      console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100: " + JSON.stringify(cam0FormatPromisePosFront));
-      if (cam0FormatPromisePosFront != null && cam0FormatPromisePosFront.length > 0) {
-        console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 is not null || undefined");
-        for (var i = 0; i < cam0FormatPromisePosFront.length; i++) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 cam0FormatPromisePosFront: " + cam0FormatPromisePosFront[i]);
-          expect(cam0FormatPromisePosFront[i]).assertEqual(1003);
-          console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 PASSED");
-        }
-      } else {
-        console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 FAILED");
-        expect().assertFail();
-      }
-      console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0100 ends here");
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300--------------");
+    //   var cam0FormatPromisePosFront = await camera0InputPromisePosFront.getSupportedPreviewFormats();
+    //   console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300: " + JSON.stringify(cam0FormatPromisePosFront));
+    //   if (cam0FormatPromisePosFront != null && cam0FormatPromisePosFront.length > 0) {
+    //     console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300 is not null || undefined");
+    //     for (var i = 0; i < cam0FormatPromisePosFront.length; i++) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300 cam0FormatPromisePosFront: " + cam0FormatPromisePosFront[i]);
+    //       expect(cam0FormatPromisePosFront[i]).assertEqual(1003);
+    //       console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300 PASSED");
+    //     }
+    //   } else {
+    //     console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300 FAILED");
+    //     expect().assertFail();
+    //   }
+    //   console.info("CameraModuleTest: Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_PROMISE_0300 ends here");
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300
       * @tc.name      : Get supported photo format from camera-0 camerainput async api
       * @tc.desc      : Get supported photo format from camera-0 camerainput async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100--------------");
-      camera0InputPromisePosFront.getSupportedPhotoFormats(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 success");
-          if (data != null || data != undefined) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 data is not null || undefined");
-            for (var i = 0; i < data.length; i++) {
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 cameraFormat: " + data[i]);
-              expect(data[i]).assertEqual(2000);
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 PASSED");
-            }
-          }
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 FAILED: " + err.message);
-          expect().assertFail();
-        }
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 ends here");
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300--------------");
+    //   camera0InputPromisePosFront.getSupportedPhotoFormats(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300 success");
+    //       if (data != null || data != undefined) {
+    //         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300 data is not null || undefined");
+    //         for (var i = 0; i < data.length; i++) {
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300 cameraFormat: " + data[i]);
+    //           expect(data[i]).assertEqual(2000);
+    //           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300 PASSED");
+    //         }
+    //       }
+    //     } else {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300 FAILED: " + err.message);
+    //       expect().assertFail();
+    //     }
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0300 ends here");
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300
       * @tc.name      : Get supported photo format from camera-0 camerainput promise api
       * @tc.desc      : Get supported photo format from camera-0 camerainput promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100', 0, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100--------------");
-      var cam0FormatPromisePosFront = await camera0InputPromisePosFront.getSupportedPhotoFormats();
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100: " + JSON.stringify(cam0FormatPromisePosFront));
-      if (cam0FormatPromisePosFront != null && cam0FormatPromisePosFront.length > 0) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 is not null || undefined");
-        for (var i = 0; i < cam0FormatPromisePosFront.length; i++) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 cam0FormatPromisePosFront: " + cam0FormatPromisePosFront[i]);
-          expect(cam0FormatPromisePosFront[i]).assertEqual(2000);
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 PASSED");
-        }
-      } else {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 FAILED");
-        expect().assertFail();
-      }
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0100 ends here");
-      await sleep(1000);
-      done();
-    })
+    // it('SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300', 0, async function (done) {
+    //   console.info("--------------SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300--------------");
+    //   var cam0FormatPromisePosFront = await camera0InputPromisePosFront.getSupportedPhotoFormats();
+    //   console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300: " + JSON.stringify(cam0FormatPromisePosFront));
+    //   if (cam0FormatPromisePosFront != null && cam0FormatPromisePosFront.length > 0) {
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300 is not null || undefined");
+    //     for (var i = 0; i < cam0FormatPromisePosFront.length; i++) {
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300 cam0FormatPromisePosFront: " + cam0FormatPromisePosFront[i]);
+    //       expect(cam0FormatPromisePosFront[i]).assertEqual(2000);
+    //       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300 PASSED");
+    //     }
+    //   } else {
+    //     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300 FAILED");
+    //     expect().assertFail();
+    //   }
+    //   console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_PROMISE_0300 ends here");
+    //   await sleep(1000);
+    //   done();
+    // })
 
 
     it('SUB_MULTIMEDIA_CAMERA_FOCUSSTATECHANGE_CALLBACK_ON_CAMERAINPUT_0100', 0, async function (done) {
@@ -833,11 +833,11 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 success");
           var camInput = data;
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 camInput: " + JSON.stringify(camInput));
-          expect().assertFail();
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 FAILED");
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 PASSED: " + err.message);
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 PASSED");
           expect(true).assertTrue();
+        } else {
+          expect().assertFail();
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 FAILED: " + err.message);
         }
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_CALLBACK_0100 ends here");
         await sleep(1000);
@@ -859,12 +859,12 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_PROMISE_CALLBACK_0100--------------");
       await cameraManager.createCameraInput(cameraObj.CameraPosition.CAMERA_POSITION_FRONT, cameraObj.CameraType.CAMERA_TYPE_WIDE_ANGLE)
         .then(function () {
-          expect().assertFail();
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_PROMISE_CALLBACK_0100 FAILED");
+          expect(true).assertTrue();
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_PROMISE_CALLBACK_0100 PASSED");
         })
         .catch((err) => {
-          expect(true).assertTrue();
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_PROMISE_CALLBACK_0100 PASSED : " + err.message);
+          expect().assertFail();
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_PROMISE_CALLBACK_0100 FAILED : " + err.message);
         });
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_POS_FRONT_TYPE_WIDE_ANGLE_PROMISE_CALLBACK_0100 ends here");
       await sleep(1000);
