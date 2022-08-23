@@ -81,7 +81,7 @@ describe('fileTest', function () {
         });
       },
       fail: function (data, code) {
-        console.info('File_Delete_002 call mkdir fail, code: ' + code + ', data: ' + data);
+        console.info('123456  File_Delete_002 call mkdir fail, code: ' + code + ', data: ' + data);
         expect(null).assertFail();
       },
     });
