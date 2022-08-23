@@ -37,6 +37,37 @@ describe('audioManager', function () {
     var highVol = 14;
     var outOfRangeVol = 28;
     var longValue = '28374837458743875804735081439085918459801437584738967509184509813904850914375904790589104801843';
+    let volumeGroupInfos;
+    let audioGroupManager;
+    let volNetworkId = null;
+    let volGroupId = null;
+    let volMappingId = null;
+    let volGroupName = null;
+    let volConnectType = null;
+    getGroupManager();
+    function displayVolumeGroupProp(value, index, array) {
+        console.info('AudioFrameworkTest: volume group networkId:' + value.networkId);
+        volNetworkId = value.networkId;
+        console.info('AudioFrameworkTest: volume group id:' + value.groupId);
+        volGroupId = value.groupId;
+        console.info('AudioFrameworkTest: volume group mappingId:' + value.mappingId);
+        volMappingId = value.mappingId;
+        console.info('AudioFrameworkTest: volume group name:' + value.groupName);
+        volGroupName = value.groupName;
+        console.info('AudioFrameworkTest: volume group connect type:' + value.ConnectType);
+        volConnectType = value.ConnectType;
+    }
+
+    async function getGroupManager(){
+        try{
+            let volumeGroupInfos = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+            let groupId_ = volumeGroupInfos[0].groupId
+            audioGroupManager = await audioManager.getGroupManager(groupId_)
+            console.info('AudioFrameworkTest: first getGroupManager  :  PASS');
+        }catch(err){
+            console.info('AudioFrameworkTest: first getGroupManager: err:'+ err.message);
+        }
+    }
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -4685,6 +4716,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : MEDIA');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: MEDIA CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
@@ -4694,6 +4727,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : ' + VolumeEvent.volumeType);
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     expect(false).assertTrue();
                     break;
             }
@@ -4721,6 +4756,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : RINGTONE');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: RINGTONE CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
@@ -4730,6 +4767,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : ' + VolumeEvent.volumeType);
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     expect(false).assertTrue();
                     break;
             }
@@ -4757,6 +4796,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : VOICE_CALL');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: VOICE_CALL CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
@@ -4766,6 +4807,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : ' + VolumeEvent.volumeType);
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     expect(false).assertTrue();
                     break;
             }
@@ -4793,6 +4836,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : VOICE_ASSISTANT');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: VOICE_ASSISTANT CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
@@ -4802,6 +4847,8 @@ describe('audioManager', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : ' + VolumeEvent.volumeType);
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
+                    console.info('AudioFrameworkTest: Audio Volume volumeGroup Id : ' + VolumeEvent.volumeGroupId);
+                    console.info('AudioFrameworkTest: Audio Volume network Id : ' + VolumeEvent.networkId);
                     expect(false).assertTrue();
                     break;
             }
@@ -5539,4 +5586,746 @@ describe('audioManager', function () {
         await sleep(50);
         done();
     })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_getVolumeGroups_001
+        * @tc.name      : getVolumeGroups - Output device - Callback
+        * @tc.desc      : getVolumeGroups - Output device
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+        */
+    it('SUB_AUDIO_MANAGER_getVolumeGroups_001', 1, async function (done) {
+
+        audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID,(err,volumeGroupInfos1)=>{
+            console.info('AudioFrameworkTest: Callback: getVolumeGroups ');
+
+            if (err) {
+                console.error(`AudioFrameworkTest: Callback: getVolumeGroups : failed to get devices ${err.message}`);
+                expect().assertFail();
+            }
+            else {
+                console.info(`AudioFrameworkTest: Callback: getVolumeGroups length:${volumeGroupInfos1.length}:PASS`);
+                if (volumeGroupInfos1.length == 0) {
+                    console.info('AudioFrameworkTest: Callback: getVolumeGroups :  PASS');
+                    expect(false).assertTrue();
+                } else {
+                    volumeGroupInfos1.forEach(displayVolumeGroupProp);
+                    if (volNetworkId != null && volGroupId != null && volMappingId != null && volGroupName != null &&
+                         volConnectType != null) {
+                        console.info('AudioFrameworkTest: Callback: getVolumeGroups :  PASS');
+                        expect(true).assertTrue();
+                    }
+                    else{
+                        console.info('AudioFrameworkTest: Callback: getVolumeGroups :  FAIL');
+                        expect(false).assertTrue();
+                    }
+                } 
+            }
+            done();
+        })
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_getVolumeGroups_002
+        * @tc.name      : getVolumeGroups - VolumeGroupInfos - Promise
+        * @tc.desc      : getVolumeGroups - VolumeGroupInfos
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+        */
+    it('SUB_AUDIO_MANAGER_getVolumeGroups_002', 1, async function (done) {
+        try{
+            let volumeGroupInfos2 = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+            console.info(`AudioFrameworkTest: Promise: getVolumeGroups length : ${volumeGroupInfos2.length}:  PASS`);
+            if (volumeGroupInfos2.length == 0) {
+                console.info('AudioFrameworkTest: Promise: getVolumeGroups :  PASS');
+                expect(false).assertTrue();
+            } else {
+                volumeGroupInfos2.forEach(displayVolumeGroupProp);
+                if (volNetworkId != null && volGroupId != null && volMappingId != null && volGroupName != null &&
+                        volConnectType != null) {
+                    console.info('AudioFrameworkTest: Promise: getVolumeGroups :  PASS');
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: Promise: getVolumeGroups :  FAIL');
+                    expect(false).assertTrue();
+                }
+            }
+        }catch(err){
+            console.info('AudioFrameworkTest: first getVolumeGroups: parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_getGroupManager_001
+        * @tc.name      : getGroupManager - Multiple instance
+        * @tc.desc      : multiple times with different instance
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+        */
+    it('SUB_AUDIO_MANAGER_getGroupManager_001', 3, async function (done) {
+        try{
+            const volumeGroupInfos = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+            let groupId_ = volumeGroupInfos[0].groupId
+            const audioGroupManager1 = await audioManager.getGroupManager(groupId_);
+            const audioGroupManager2 = await audioManager.getGroupManager(groupId_);
+            const audioGroupManager3 = await audioManager.getGroupManager(groupId_);
+            const audioGroupManager4 = await audioManager.getGroupManager(groupId_);
+            const audioGroupManager5 = await audioManager.getGroupManager(groupId_);
+            const audioGroupManager6 = await audioManager.getGroupManager(groupId_);
+            const promise = audioGroupManager1.setVolume(audio.AudioVolumeType.MEDIA, lowVol);
+            promise.then(async function () {
+                console.info('AudioFrameworkTest: Media setVolume promise: successful');
+                await audioGroupManager2.setVolume(audio.AudioVolumeType.MEDIA, highVol);
+                console.info('AudioFrameworkTest:audioGroupManager2 : Media setVolume promise: successful');
+                await audioGroupManager3.setVolume(audio.AudioVolumeType.MEDIA, highVol);
+                console.info('AudioFrameworkTest:audioGroupManager3 : Media setVolume promise: successful');
+                await audioGroupManager4.setVolume(audio.AudioVolumeType.MEDIA, highVol);
+                console.info('AudioFrameworkTest:audioGroupManager4 : Media setVolume promise: successful');
+                await audioGroupManager5.setVolume(audio.AudioVolumeType.MEDIA, lowVol);
+                console.info('AudioFrameworkTest:audioGroupManager5 : Media setVolume promise: successful');
+                await audioGroupManager6.setVolume(audio.AudioVolumeType.MEDIA, highVol);
+                console.info('AudioFrameworkTest:audioGroupManager6 : Media setVolume promise: successful');
+                audioGroupManager1.getVolume(audio.AudioVolumeType.MEDIA).then(function (data) {
+                    if (data == highVol) {
+                        console.info('AudioFrameworkTest: Media getVolume Promise: PASS :' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info('AudioFrameworkTest: Media getVolume Promise: FAIL :' + data);
+                        expect(false).assertTrue();
+                    }
+                }).catch((err) => {
+                    console.info('AudioFrameworkTest: Media getVolume Promise: Error :' + err.message);
+                    expect(false).assertTrue();
+                });
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager: parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_getGroupManager_002
+        * @tc.name      : getGroupManager - callback
+        * @tc.desc      : multiple times with different instance
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 3
+        */
+    it('SUB_AUDIO_MANAGER_getGroupManager_002', 3, async function (done) {
+        try{
+            let volumeGroupInfos2 = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+            if (volumeGroupInfos2.length >= 1) {
+                let groupId_ = volumeGroupInfos2[0].groupId
+                audioManager.getGroupManager(groupId_,(err,groupManager)=>{
+                    if (err) {
+                        console.error(`AudioFrameworkTest: failed to getGroupManager: Callback:  ${err.message}`);
+                        expect(false).assertTrue();
+                    } else {
+                        if((typeof groupManager) == 'object'){
+                            console.info('AudioFrameworkTest: Promise: getGroupManager  :  PASS');
+                            expect(true).assertTrue();
+                        }
+                        else{
+                            console.info('AudioFrameworkTest: Promise: getGroupManager  :  FAIL');
+                            expect(false).assertTrue();
+                        }
+                    }
+                })
+            } else {
+                console.info('AudioFrameworkTest: Promise: getGroupManager  :  FAIL');
+                expect(false).assertTrue();
+            }
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager: parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_SetVolume_001
+        * @tc.name      : setVolume - RINGTONE - Promise
+        * @tc.desc      : Setvol to 1
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_SetVolume_001', 2, async function (done) {
+        audioGroupManager.setVolume(audio.AudioVolumeType.RINGTONE, highVol, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: failed to set volume: Callback:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info(`AudioFrameworkTest: callback :  Ringtone setVolume successful `);
+                audioGroupManager.getVolume(audio.AudioVolumeType.RINGTONE, (err, value) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: callback : Ringtone: failed to get volume ${err.message}`);
+                        expect(false).assertTrue();
+                    }
+                    else if (value == highVol) {
+                        console.info('AudioFrameworkTest: callback : Ringtone getVolume: PASS :' + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info('AudioFrameworkTest: callback : Ringtone getVolume: FAIL :' + value);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_SetVolume_002
+        * @tc.name      : setVolume - VOICE_ASSISTANT - Callback
+        * @tc.desc      : Setvol to 14
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_SetVolume_002', 2, async function (done) {
+        audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, highVol, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: failed to set volume: Callback:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.info(`AudioFrameworkTest: callback :  VOICE_ASSISTANT setVolume successful `);
+                audioGroupManager.getVolume(audio.AudioVolumeType.VOICE_ASSISTANT, (err, value) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: callback : VOICE_ASSISTANT:
+                            failed to get volume ${err.message}`);
+                        expect(false).assertTrue();
+                    }
+                    else if (value == highVol) {
+                        console.info('AudioFrameworkTest: callback : VOICE_ASSISTANT getVolume: PASS :' + value);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info('AudioFrameworkTest: callback : VOICE_ASSISTANT getVolume: FAIL :' + value);
+                        expect(false).assertTrue();
+                    }
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_SetVolume_003
+        * @tc.name      : setVolume - Media - Promise - MAX Volume
+        * @tc.desc      : Setvol to 15
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_SetVolume_003', 2, async function (done) {
+        try{
+            const promise = audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, maxVol);
+            promise.then(function () {
+                console.info('AudioFrameworkTest: Media setVolume promise: successful');
+                audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then(function (data) {
+                    if (data == maxVol) {
+                        console.info('AudioFrameworkTest: Media getVolume Promise: PASS :' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info('AudioFrameworkTest: Media getVolume Promise: FAIL :' + data);
+                        expect(false).assertTrue();
+                    }
+                });
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager SetVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_MANAGER_SetVolume_004
+        * @tc.name      : setVolume - VOICE_CALL - Promise - Mute Volume
+        * @tc.desc      : Setvol to 0
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_SetVolume_004', 2, async function (done) {
+        try{
+            const promise = audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_CALL, minVol);
+            promise.then(function () {
+                console.info('AudioFrameworkTest: VOICE_CALL setVolume promise: successful');
+
+                audioGroupManager.getVolume(audio.AudioVolumeType.VOICE_CALL).then(function (data) {
+                    if (data == minVol) {
+                        console.info('AudioFrameworkTest: VOICE_CALL getVolume Promise: PASS :' + data);
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info('AudioFrameworkTest: VOICE_CALL getVolume Promise: FAIL :' + data);
+                        expect(false).assertTrue();
+                    }
+                });
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager SetVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+    
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMinVolume_001
+        * @tc.name      : getMinVolume - Ringtone - Callback - Change Ringtone Volume and check
+        * @tc.desc      : getMinVolume for Ringtone
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMinVolume_001', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.RINGTONE, lowVol);
+            audioGroupManager.getMinVolume(audio.AudioVolumeType.RINGTONE, (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: callback : RINGTONE :
+                        failed to getGroupManager getMinVolume ${err.message}`);
+                    expect().assertFail();
+                }
+                else if (value==minVol){
+                    console.info('AudioFrameworkTest: callback: RINGTONE: getGroupManager getMinVolume: PASS:'+value);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: callback : RINGTONE:  getMinVolume : FAIL: ' + value);
+                    expect(false).assertTrue();
+                }
+            });
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager SetVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMinVolume_002
+        * @tc.name      : getMinVolume - VOICE_ASSISTANT - Callback - Change VOICE_ASSISTANT Volume and check
+        * @tc.desc      : getMinVolume for VOICE_ASSISTANT
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMinVolume_002', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+            audioGroupManager.getMinVolume(audio.AudioVolumeType.VOICE_ASSISTANT, (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: callback : VOICE_ASSISTANT :
+                        failed to getGroupManager getMinVolume ${err.message}`);
+                    expect().assertFail();
+                }
+                else if (value==minVol){
+                    console.info(`AudioFrameworkTest: callback : VOICE_ASSISTANT:
+                        getGroupManager  getMinVolume : PASS:` + value);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: callback : VOICE_ASSISTANT:  getMinVolume : FAIL: ' + value);
+                    expect(false).assertTrue();
+                }
+            });
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager SetVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMinVolume_003
+        * @tc.name      : getGroupManager_getMinVolume - Media - Promise - Change Ringtone Volume and check
+        * @tc.desc      : getGroupManager_getMinVolume for Ringtone
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMinVolume_003', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+            const promise = audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA)
+            promise.then(function (data) {
+                if (data==minVol){
+                    console.info('AudioFrameworkTest: Media getGroupManager getMinVolume promise : PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: Media getGroupManager getMinVolume promise : FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager getMinVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMinVolume_004
+        * @tc.name      : getGroupManager_getMinVolume - VOICE_CALL - Promise - Change VOICE_CALL Volume and check
+        * @tc.desc      : getGroupManager_getMinVolume for VOICE_CALL
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMinVolume_004', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+            const promise = audioGroupManager.getMinVolume(audio.AudioVolumeType.VOICE_CALL)
+            promise.then(function (data) {
+                if (data==minVol){
+                    console.info('AudioFrameworkTest: VOICE_CALL getGroupManager getMinVolume promise :PASS:'+ data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: VOICE_CALL getGroupManager getMinVolume promise :FAIL: '+ data);
+                    expect(false).assertTrue();
+                }
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager getMinVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMaxVolume_001
+        * @tc.name      : getMaxVolume - Ringtone - Callback - Change Ringtone Volume and check
+        * @tc.desc      : getMaxVolume for Ringtone
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMaxVolume_001', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.RINGTONE, lowVol);
+            audioGroupManager.getMaxVolume(audio.AudioVolumeType.RINGTONE, (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: callback : Ringtone :
+                        failed to getGroupManager getMaxVolume ${err.message}`);
+                    expect().assertFail();
+                }
+                else if (value==maxVol){
+                    console.info('AudioFrameworkTest: callback: Ringtone: getGroupManager getMaxVolume: PASS:'+value);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: callback: Ringtone: getGroupManager getMaxVolume: FAIL:'+value);
+                    expect(false).assertTrue();
+                }
+            });
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager getMinVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMaxVolume_002
+        * @tc.name      : getMaxVolume - VOICE_ASSISTANT - Callback - Change VOICE_ASSISTANT Volume and check
+        * @tc.desc      : getMaxVolume for VOICE_ASSISTANT
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMaxVolume_002', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
+            audioGroupManager.getMaxVolume(audio.AudioVolumeType.VOICE_ASSISTANT, (err, value) => {
+                if (err) {
+                    console.error(`AudioFrameworkTest: callback : VOICE_ASSISTANT :
+                        failed to getGroupManager getMaxVolume ${err.message}`);
+                    expect().assertFail();
+                }
+                else if (value==maxVol){
+                    console.info(`AudioFrameworkTest: callback : VOICE_ASSISTANT:
+                        getGroupManager getMaxVolume: PASS:` + value);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info(`AudioFrameworkTest: callback : VOICE_ASSISTANT:
+                        getGroupManager getMaxVolume: FAIL: ` + value);
+                    expect(false).assertTrue();
+                }
+            });
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager getMinVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMaxVolume_003
+        * @tc.name      : getGroupManager_getMaxVolume - VOICE_CALL - Promise - Change VOICE_CALL Volume and check
+        * @tc.desc      : getGroupManager_getMaxVolume for VOICE_CALL
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMaxVolume_003', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.VOICE_CALL, lowVol);
+            const promise = audioGroupManager.getMaxVolume(audio.AudioVolumeType.VOICE_CALL)
+            promise.then(function (data) {
+                if (data==maxVol){
+                    console.info('AudioFrameworkTest: VOICE_CALL getGroupManager getMinVolume promise: PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: VOICE_CALL getGroupManager getMinVolume promise: FAIL:' + data);
+                    expect(false).assertTrue();
+                }
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager getMaxVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_getMaxVolume_004
+        * @tc.name      : getGroupManager_getMinVolume - MEDIA - Promise - Change MEDIA Volume and check
+        * @tc.desc      : getGroupManager_getMinVolume for MEDIA
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_getMaxVolume_004', 2, async function (done) {
+        try{
+            await audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, lowVol);
+            const promise = audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA)
+            promise.then(function (data) {
+                if (data==maxVol){
+                    console.info('AudioFrameworkTest: MEDIA getGroupManager getMinVolume promise : PASS:' + data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('AudioFrameworkTest: MEDIA getGroupManager getMinVolume promise : FAIL: ' + data);
+                    expect(false).assertTrue();
+                }
+            });
+            await promise;
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager getMaxVolume : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_mute_001
+        * @tc.name      : mute - Media - callback
+        * @tc.desc      : mute - Media - callback - Disable mute
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_mute_001', 2, async function (done) {
+        audioGroupManager.mute(audio.AudioVolumeType.MEDIA,false, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Set Stream GroupManager Mute:
+                 Media: Callback: Error :  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.log('AudioFrameworkTest: Set Stream GroupManager Mute: Media: Callback : FALSE');
+                audioGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: Media :
+                         failed to get GroupManager Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if(data==false){
+                        console.log(`AudioFrameworkTest: Callback :
+                         Is Stream GroupManager Mute Media: FALSE: PASS: `+data);
+                        expect(true).assertTrue();
+                    }
+                    else{
+                        console.log(`AudioFrameworkTest: Callback :
+                         Is Stream GroupManager Mute Media: FALSE: FAIL: `+data);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_mute_002
+        * @tc.name      : mute - RINGTONE - Promise
+        * @tc.desc      : mute - RINGTONE - Promise - Disable mute
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_mute_002', 2, async function (done) {
+        try{
+            await audioGroupManager.mute(audio.AudioVolumeType.RINGTONE,false).then(function () {
+                console.log('AudioFrameworkTest: Set Stream GroupManager Mute: RINGTONE: Promise: FALSE');
+                audioGroupManager.isMute(audio.AudioVolumeType.RINGTONE).then(function (data) {
+                    if(data==false){
+                            console.log(`AudioFrameworkTest: Promise:
+                            Is Stream GroupManager Mute RINGTONE: FALSE: PASS:`+data);
+                            expect(true).assertTrue();
+                    }
+                    else{
+                            console.log(`AudioFrameworkTest: Promise:
+                            Is Stream GroupManager Mute RINGTONE: FALSE: FAIL: `+data);
+                            expect(false).assertTrue();
+                    }
+                });
+            }).catch((err) => {
+                console.info(`AudioFrameworkTest: Promise:
+                Is Stream GroupManager Mute RINGTONE: FALSE: ERROR:` + err.message);
+                expect(false).assertTrue();
+            });
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager mute : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_mute_003
+        * @tc.name      : mute - VOICE_CALL - callback
+        * @tc.desc      : mute - VOICE_CALL - callback - Disable mute
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_mute_003', 2, async function (done) {
+        audioGroupManager.mute(audio.AudioVolumeType.VOICE_CALL,true, (err) => {
+            if (err) {
+                console.error(`AudioFrameworkTest: Set Stream GroupManager Mute:
+                VOICE_CALL: Callback: Error :  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.log('AudioFrameworkTest: Set Stream GroupManager Mute: VOICE_CALL: Callback : FALSE');
+                audioGroupManager.isMute(audio.AudioVolumeType.VOICE_CALL, (err, data) => {
+                    if (err) {
+                        console.error(`AudioFrameworkTest: Callback : FALSE: VOICE_CALL :
+                         failed to get GroupManager Mute Status ${err.message}`);
+                        expect().assertFail();
+                    }
+                    else if(data==true){
+                        console.log(`AudioFrameworkTest: Callback :
+                         Is Stream GroupManager Mute VOICE_CALL: FALSE: PASS: `+data);
+                        expect(true).assertTrue();
+                    }
+                    else{
+                        console.log(`AudioFrameworkTest: Callback :
+                         Is Stream GroupManager Mute VOICE_CALL: FALSE: FAIL: `+data);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                });
+            }
+            done();
+        });
+    })
+
+    /* *
+        * @tc.number    : SUB_AUDIO_GROUP_MANAGER_mute_004
+        * @tc.name      : mute - VOICE_ASSISTANT - Promise
+        * @tc.desc      : mute - VOICE_ASSISTANT - Promise - Disable mute
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+    it('SUB_AUDIO_GROUP_MANAGER_mute_004', 2, async function (done) {
+        try{
+            await audioGroupManager.mute(audio.AudioVolumeType.VOICE_ASSISTANT,true).then(function () {
+                console.log('AudioFrameworkTest: Set Stream GroupManager Mute: VOICE_ASSISTANT: Promise: FALSE');
+                audioGroupManager.isMute(audio.AudioVolumeType.VOICE_ASSISTANT).then(function (data) {
+                    if(data==true){
+                            console.log(`AudioFrameworkTest: Promise:
+                            Is Stream GroupManager Mute VOICE_ASSISTANT: FALSE: PASS:`+data);
+                            expect(true).assertTrue();
+                    }
+                    else{
+                            console.log(`AudioFrameworkTest: Promise:
+                            Is Stream GroupManager Mute VOICE_ASSISTANT: FALSE: FAIL: `+data);
+                            expect(false).assertTrue();
+                    }
+                });
+            }).catch((err) => {
+                console.info(`AudioFrameworkTest: Promise:
+                Is Stream GroupManager Mute VOICE_ASSISTANT: FALSE: ERROR:` + err.message);
+                expect(false).assertTrue();
+            });
+        }catch(err){
+            console.info('AudioFrameworkTest: getGroupManager mute : parameter err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /* *
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_CONNECTTYPE_0100
+        * @tc.name      : ConnectType
+        * @tc.desc      : ConnectType enum
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+        */
+    it('SUB_MULTIMEDIA_AUDIO_CONNECTTYPE_0100', 0, async function (done) {
+        expect(audio.ConnectType.CONNECT_TYPE_LOCAL).assertEqual(0);
+        expect(audio.ConnectType.CONNECT_TYPE_DISTRIBUTED).assertEqual(1);
+        await sleep(50);
+        done();
+    })
+
+        /* *
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUMETYPE_0100
+        * @tc.name      : AudioVolumeType
+        * @tc.desc      : AudioVolumeType enum
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_VOLUMETYPE_0100', 0, async function (done) {
+            expect(audio.AudioVolumeType.VOICE_CALL).assertEqual(0);
+            expect(audio.AudioVolumeType.RINGTONE).assertEqual(2);
+            expect(audio.AudioVolumeType.MEDIA).assertEqual(3);
+            expect(audio.AudioVolumeType.VOICE_ASSISTANT).assertEqual(9);
+            await sleep(50);
+            done();
+        })
+
 })
