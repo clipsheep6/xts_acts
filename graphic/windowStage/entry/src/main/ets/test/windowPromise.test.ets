@@ -1540,7 +1540,7 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       let tempWnd = await ohosWindow.create(context,wndId, baseType).catch((err) => {
         unexpectedError(err, caseName, 'ohosWindow.create ' + baseType, done);
       });
-      console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWnd);
+      console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + JSON.stringify(tempWnd));
       expect(!!tempWnd).assertTrue();
       let findWnd = await ohosWindow.find(wndId).catch((err) => {
         expectedError(err, caseName, 'ohosWindow.find', done);
