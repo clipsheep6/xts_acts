@@ -1,16 +1,16 @@
 {
-    "description": "Configuration for aceJsOne Tests",
+    "description": "Configuration for acejsapiandattr Tests",
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "1000000",
         "shell-timeout": "1000000",
-        "bundle-name": "com.example.aceJsOne",
-        "package-name": "com.example.aceJsOne"
+        "bundle-name": "com.example.acejsapi",
+        "package-name": "com.example.acejsapi"
     },
     "kits": [
         {
             "test-file-name": [
-                "ActsAceJsAttributeOneTest.hap"
+                "ActsAceJsAttrTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

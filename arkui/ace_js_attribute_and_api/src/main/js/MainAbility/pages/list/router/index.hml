@@ -1,0 +1,8 @@
+<div class="container">
+    <text class="title" onclick="click">默认列表</text>
+    <list class="list" id="list">
+        <list-item for="{{array}}" class="listItem">
+            <text class="text">{{$item.value}}</text>
+        </list-item>
+    </list>
+</div>

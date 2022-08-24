@@ -17,8 +17,8 @@ import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
 
 
-export default function aceJsTest() {
-describe('aceJsTest', function () {
+export default function aceJsApiAndAttr() {
+describe('aceJsApiAndAttr', function () {
 
     async function sleep(time) {
         return new Promise((resolve, reject) => {
@@ -81,6 +81,11 @@ describe('aceJsTest', function () {
         done();
     });
 
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0200
+      * @tc.name      testAnimateComponent
+      * @tc.desc      ACE
+      */
     it('testAnimateComponent', 0, async function (done) {
         let result;
         let options = {
@@ -99,6 +104,12 @@ describe('aceJsTest', function () {
         done();
     });
 
+
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0300
+      * @tc.name      testCameraComponent
+      * @tc.desc      ACE
+      */
     it('testCameraComponent', 0, async function (done) {
         let result;
         let options = {
@@ -117,6 +128,12 @@ describe('aceJsTest', function () {
         done();
     });
 
+
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0400
+      * @tc.name      testCanvasComponent
+      * @tc.desc      ACE
+      */
     it('testCanvasComponent', 0, async function (done) {
         let result;
         let options = {
@@ -135,6 +152,12 @@ describe('aceJsTest', function () {
         done();
     });
 
+
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0500
+      * @tc.name      testDivComponent
+      * @tc.desc      ACE
+      */
     it('testDivComponent', 0, async function (done) {
         let result;
         let options = {
@@ -153,6 +176,12 @@ describe('aceJsTest', function () {
         done();
     });
 
+
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0600
+      * @tc.name      testInputComponent
+      * @tc.desc      ACE
+      */
     it('testInputComponent', 0, async function (done) {
         let result;
         let options = {
@@ -168,6 +197,52 @@ describe('aceJsTest', function () {
         let pages = router.getState();
         console.info("[router.input] getState" + JSON.stringify(pages));
         expect("pages/input/router/").assertEqual(pages.path);
+        done();
+    });
+
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0700
+      * @tc.name      testListComponent
+      * @tc.desc      ACE
+      */
+    it('testListComponent', 0, async function (done) {
+        let result;
+        let options = {
+            uri: 'pages/list/router/index'
+        }
+        try {
+            result = router.push(options)
+            console.info("push list page success " + JSON.stringify(result));
+        } catch (err) {
+            console.error("push list page error " + JSON.stringify(result));
+        }
+        await sleep(5000)
+        let pages = router.getState();
+        console.info("[router.list] getState" + JSON.stringify(pages));
+        expect("pages/list/router/").assertEqual(pages.path);
+        done();
+    });
+
+    /**
+      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0800
+      * @tc.name      testTextComponent
+      * @tc.desc      ACE
+      */
+    it('testTextComponent', 0, async function (done) {
+        let result;
+        let options = {
+            uri: 'pages/text/router/index'
+        }
+        try {
+            result = router.push(options)
+            console.info("push text page success " + JSON.stringify(result));
+        } catch (err) {
+            console.error("push text page error " + JSON.stringify(result));
+        }
+        await sleep(5000)
+        let pages = router.getState();
+        console.info("[router.text] getState" + JSON.stringify(pages));
+        expect("pages/text/router/").assertEqual(pages.path);
         done();
     });
 });

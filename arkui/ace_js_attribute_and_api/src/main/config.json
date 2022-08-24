@@ -1,6 +1,6 @@
 {
     "app": {
-        "bundleName": "com.example.aceJsOne",
+        "bundleName": "com.example.acejsapi",
         "vendor": "example",
         "version": {
             "code": 1000000,
@@ -13,7 +13,7 @@
     },
     "deviceConfig": {},
     "module": {
-        "package": "com.example.aceJsOne",
+        "package": "com.example.acejsapi",
         "name": ".entry",
         "mainAbility": ".MainAbility",
         "deviceType": [
@@ -80,7 +80,8 @@
                     "pages/viewModel/parent/parent",
                     "pages/viewModel/root/root",
                     "pages/viewModel1/index/index",
-                    "pages/viewModel1/comp/comp"
+                    "pages/viewModel1/comp/comp",
+                    "pages/list/router/index"
                 ],
                 "name": "default",
                 "window": {

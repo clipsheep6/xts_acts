@@ -13,7 +13,7 @@
  * limitations under the License.
  */-->
 
- <div style="justify-content: center;align-items: center;">
+<div style="justify-content: center;align-items: center;">
     <video id='videoId' src="/common/images/video.mp4" muted='false' autoplay='false' poster='/common/images/example.jpg'
            controls="true"  onprepared='preparedCallback' onstart='startCallback' onpause='pauseCallback'
            onfinish='finishCallback' onerror='errorCallback' onseeking='seekingCallback' onseeked='seekedCallback'
