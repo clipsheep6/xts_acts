@@ -1406,10 +1406,10 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       done();
     })
     /**
-* @tc.number     SUB_WINDOW_SNAPSHOT_JSAPI_001
-* @tc.name       Test snapshotTest1
-* @tc.desc       Scenario of screenshot of verification window
-*/
+	* @tc.number    SUB_WINDOW_SNAPSHOT_JSAPI_001
+	* @tc.name      Test snapshotTest1
+	* @tc.desc      Scenario of screenshot of verification window
+	*/
     it('snapshotTest1', 0, async function (done) {
       let caseName = 'snapshotTest1';
       let msgStr = 'jsunittest ' + caseName + ' ';
