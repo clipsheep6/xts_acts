@@ -14,10 +14,10 @@
  */
 
 import basicabilityapi from './basicabilityapi.test.js'
-import mediaquery_vioTest from './mediaquery.test.js'
+import mediaQuery_vioTest from './mediaquery.test.js'
 import aceJsApiAndAttr from './commonComponentJsApi.test.js'
 export default function testsuite() {
 basicabilityapi()
-mediaquery_vioTest()
+mediaQuery_vioTest()
 aceJsApiAndAttr()
 }

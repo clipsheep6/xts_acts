@@ -174,7 +174,6 @@ describe('basicabilityapi', function () {
      * @tc.desc      Replace the current page with a page in the application, and destroy the replaced page.
      */
     it('testRouterReplace', 0, async function (done) {
-        //测试框架不允许index页面直接替换，需要先跳转到其他页面再替换
         console.info('testRouterReplace START');
         let options = {
             uri : 'pages/routerPush/index'
