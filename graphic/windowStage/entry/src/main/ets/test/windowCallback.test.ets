@@ -1632,6 +1632,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
     })
     /**
     * @tc.number     SUB_WINDOW_HIDEWITHANIMATION_JSAPI_002
+	*
     * @tc.name       Test hideWithAnimationTest2
     * @tc.desc       Hide the current window and play an animation in the process
     */
