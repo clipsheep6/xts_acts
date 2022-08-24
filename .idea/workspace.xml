@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c37679bf-e7a5-469a-a56c-a332d8def882" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/arkui/BUILD.gn" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/BUILD.gn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/BUILD.gn" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/BUILD.gn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/Test.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/Test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/signature/openharmony_sx.p7b" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/signature/openharmony_sx.p7b" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/common/images/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/common/images/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/common/images/video.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/common/images/video.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/i18n/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/i18n/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/i18n/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/i18n/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/animate/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/animate/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/animate/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/animate/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/animate/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/animate/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/camera/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/camera/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/camera/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/camera/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/camera/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/camera/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/canvas/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/canvas/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/canvas/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/canvas/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/canvas/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/canvas/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/div/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/div/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/div/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/div/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/div/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/div/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/index/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/index/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/index/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/input/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/input/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/input/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/input/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/input/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/input/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/list/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/list/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/list/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/list/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/list/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/list/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/routerPush/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/routerPush/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/routerPush/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/routerPush/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/routerPush/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/routerPush/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/routerReplace/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/routerReplace/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/routerReplace/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/routerReplace/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/routerReplace/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/routerReplace/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/text/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/text/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/text/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/text/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/text/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/text/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/video/router/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/video/router/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/video/router/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/video/router/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/video/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/video/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/child/child.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/child/child.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/child/child.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/child/child.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/child/child.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/child/child.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/parent/parent.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/parent/parent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/parent/parent.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/parent/parent.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/parent/parent.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/parent/parent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/root/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/root/root.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/root/root.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/root/root.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel/root/root.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel/root/root.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel1/comp/comp.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel1/comp/comp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel1/comp/comp.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel1/comp/comp.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel1/comp/comp.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel1/comp/comp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel1/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel1/index/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel1/index/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel1/index/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/MainAbility/pages/viewModel1/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/MainAbility/pages/viewModel1/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestAbility/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestAbility/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestAbility/i18n/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestAbility/i18n/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestAbility/i18n/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestAbility/i18n/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestAbility/pages/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestAbility/pages/index/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestAbility/pages/index/index.hml" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestAbility/pages/index/index.hml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestAbility/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestAbility/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/TestRunner/OpenHarmonyTestRunner.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/TestRunner/OpenHarmonyTestRunner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/test/List.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/test/List.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/test/basicabilityapi.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/test/basicabilityapi.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/test/commonComponentJsApi.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/test/commonComponentJsApi.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/js/test/mediaquery.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/js/test/mediaquery.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/resources/base/media/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/resources/base/media/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arkui/ace_js_attribute_and_api/src/main/resources/base/media/icon_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/arkui/ace_js_attribute_api/src/main/resources/base/media/icon_small.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="monthly_20220816" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2DmjnO78c9XzAmeo3zwWBjpK206" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/arkui" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\xts0824\xts_acts_20220824\arkui" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
+</project>
