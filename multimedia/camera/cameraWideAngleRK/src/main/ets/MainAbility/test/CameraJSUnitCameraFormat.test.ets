@@ -383,6 +383,9 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
               expect(data[i]).assertEqual(1003);
               console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 PASSED");
             }
+          } else {
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 FAILED");
+            expect().assertFail();
           }
         } else {
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PREVIEW_FORMATS_CALLBACK_0100 FAILED: " + err.message);
@@ -444,6 +447,9 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
               expect(data[i]).assertEqual(1003);
               console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_VIDEO_FORMATS_CALLBACK_0100 PASSED");
             }
+          } else {
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_VIDEO_FORMATS_CALLBACK_0100 FAILED");
+            expect().assertFail();
           }
         } else {
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_VIDEO_FORMATS_CALLBACK_0100 FAILED: " + err.message);
@@ -505,6 +511,9 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
               expect(data[i]).assertEqual(2000);
               console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 PASSED");
             }
+          } else {
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 FAILED");
+            expect().assertFail();
           }
         } else {
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_SUPPORTED_PHOTO_FORMATS_CALLBACK_0100 FAILED: " + err.message);
@@ -804,6 +813,9 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
             if (data != null || data != undefined) {
               console.info(TAG + "Current FocusState is: " + data);
               expect(true).assertTrue();
+            } else {
+              expect().assertFail();
+              console.info(TAG + "SUB_MULTIMEDIA_CAMERA_FOCUSSTATECHANGE_CALLBACK_ON_CAMERAINPUT_0100 FAILED");
             }
           } else {
             expect().assertFail();
