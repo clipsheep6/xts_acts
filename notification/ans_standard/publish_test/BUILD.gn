@@ -42,6 +42,7 @@ group("publish_test") {
       "unsubscribe:ActsAnsUnSubscriberTest",
       "publishremovalwantagent:ActsAnsPublishRemovalWantAgentTest",
       "wantagent:wantagent",
+      "anssecondarydirectory:ActsAnsSecondaryDirectoryTest",
     ]
   }
 }
