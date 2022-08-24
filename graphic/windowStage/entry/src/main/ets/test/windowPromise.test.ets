@@ -1353,11 +1353,11 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
     })
     /**
     * @tc.number     SUB_WINDOW_SETPREFERREDORIENTATION_JSAPI_001
-    * @tc.name       Test setPreferredOrientation
+    * @tc.name       Test setPreferredOrientationTest1
     * @tc.desc       Sets the display direction property of the window
     */
-    it('setPreferredOrientation', 0, async function (done) {
-      let caseName = 'setPreferredOrientation';
+    it('setPreferredOrientationTest1', 0, async function (done) {
+      let caseName = 'setPreferredOrientationTest1';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let mainWin = await windowStage.getMainWindow().catch(err => {
@@ -1380,11 +1380,11 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
     })
     /**
     * @tc.number     SUB_WINDOW_SETFORBIDSPLITMOVE_JSAPI_001
-    * @tc.name       Test setForbidSplitMove
+    * @tc.name       Test setForbidSplitMoveTest1
     * @tc.desc       Sets whether Windows are forbidden to move in split screen mode
     */
-    it('setForbidSplitMove', 0, async function (done) {
-      let caseName = 'setForbidSplitMove';
+    it('setForbidSplitMoveTest1', 0, async function (done) {
+      let caseName = 'setForbidSplitMoveTest1';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let mainWin = await windowStage.getMainWindow().catch(err => {
@@ -1545,7 +1545,7 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       let findWnd = await ohosWindow.find(wndId).catch((err) => {
         expectedError(err, caseName, 'ohosWindow.find', done);
       });
-      console.log(msgStr + 'find findWnd: ' + typeof(findWnd));
+      console.log(msgStr + 'find findWnd: ' + JSON.stringify(findWnd));
       expect(!!findWnd).assertTrue();
       console.info('hideWithAnimationTest1 ****' + Reflect.has(findWnd,'hideWithAnimation'))
       console.info('hideWithAnimationTest1 ****' + Reflect.has(findWnd,'destroy'))

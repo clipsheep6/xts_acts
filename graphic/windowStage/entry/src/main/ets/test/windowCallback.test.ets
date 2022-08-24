@@ -1446,12 +1446,12 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       done();
     })
     /**
-    * @tc.number     SUB_WINDOW_SETFORBIDSPLITMOVE_JSAPI_001
-    * @tc.name       Test setForbidSplitMove
+    * @tc.number     SUB_WINDOW_SETFORBIDSPLITMOVE_JSAPI_002
+    * @tc.name       Test setForbidSplitMoveTest2
     * @tc.desc       Sets whether Windows are forbidden to move in split screen mode
     */
-    it('setForbidSplitMove', 0, async function (done) {
-      let caseName = 'setForbidSplitMove';
+    it('setForbidSplitMoveTest2', 0, async function (done) {
+      let caseName = 'setForbidSplitMoveTest2';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let mainWin = await windowStage.getMainWindow().catch(err => {
