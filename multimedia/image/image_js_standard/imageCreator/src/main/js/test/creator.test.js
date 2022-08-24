@@ -18,7 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 describe('ImageCreator', function () {
 
-    const JPEG = 4;
+    const JPEG = image.ComponentType.JPEG;
     const WIDTH = 8192;
     const HEIGHT = 8;
     const FORMAT = 4;

@@ -32,7 +32,7 @@
             "push": [
                 "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry/files",
                 "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry/files",
-                "./resource/image/test.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry/files",
+                "./resource/image/test.txt ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry/files",
                 "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry/files",
                 "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry/files"
             ]
