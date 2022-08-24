@@ -1,0 +1,5 @@
+<div class="container" id="div1">
+    <text id="function1" class="title" ontouchstart="functionTest1">
+        AnimationResult测试
+    </text>
+</div>
