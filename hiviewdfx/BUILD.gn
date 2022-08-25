@@ -18,7 +18,7 @@ group("hiviewdfxtestacts") {
       "bytracetest:ActsBytraceJsTest",
       "hiappeventtest/hiappeventcpptest:ActsHiAppEventCPPTest",
       "hiappeventtest/hiappeventjstest:ActsHiAppeventTest",
-      "hiappeventtest/hiappeventsubtest:ActsHiAppeventSubTest",
+      "hiappeventtest/hiappeventsubjstest:ActsHiAppeventSubTest",
       "hicheckertest/hicheckerjstest:hicheckerjstest",
       "hidebugtest/hidebugtestjstest:ActsHiDebugTest",
       "hilogtest/hilogjstest:ActsHilogJsTest",
