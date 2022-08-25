@@ -1,17 +1,15 @@
 {
     "description": "Configuration for bluetooth js api Tests",
     "driver": {
-        "type": "OHJSUnitTest",
+        "type": "JSUnitTest",
         "test-timeout": "600000",
         "shell-timeout": "600000",
-        "bundle-name": "ohos.acts.communication.bluetooth.bluetoothhost",
         "package-name": "ohos.acts.communication.bluetooth.bluetoothhost",
-        "testcase-timeout": 70000
     },
     "kits": [
         {
             "test-file-name": [
-                "ActsBluetoothOnHapTest.hap"
+                "ActsBluetoothBleHapTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

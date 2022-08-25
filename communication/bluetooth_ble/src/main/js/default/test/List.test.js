@@ -13,11 +13,8 @@
  * limitations under the License.
  */
 
-import bluetoothBLETest from './BleGattManager.test.js'
-import bluetoothBLETest1 from './BleService.test.js'
-import bluetoothBLETest2 from './BleAdvertiser.test.js'
-export default function testsuite() {
-bluetoothBLETest()
-bluetoothBLETest1()
-bluetoothBLETest2()
-}
+require('./BluetoothBle.test.js') 
+require('./BleAdvertiser.test.js')
+require('./BleGattManager.test.js')
+require('./BleService.test')
+ 

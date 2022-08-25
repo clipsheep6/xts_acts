@@ -15,7 +15,7 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 let BluetoothState=
     {
@@ -38,7 +38,6 @@ let ScanMode =
         SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE : 5,
     }
 
-export default function bluetoothTEST() {
 describe('bluetoothTEST', function() {
     beforeAll(function () {
         console.info('beforeAll called')
@@ -1769,4 +1768,4 @@ describe('bluetoothTEST', function() {
         done();
     })
   })
-}
+

@@ -14,7 +14,7 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 let Btname = {
     NUM_TEST :'012345678901234567890123456789012345678901234567890123'+
     '45678901234567890123456789012345678901234567890123456789012345678901234567',
@@ -38,7 +38,7 @@ let Btname = {
     +'345678901234567890123456789012345678901234567890123456789012367890123456789012345568'
     +'012345678901234567890123456789123'
 }
-export default function bluetoothhostTest1() {
+
 describe('bluetoothhostTest1', function() {
     function sleep(delay) {
         return new Promise(resovle => setTimeout(resovle, delay))
@@ -424,5 +424,5 @@ describe('bluetoothhostTest1', function() {
     })
 
 })
-}
+
 

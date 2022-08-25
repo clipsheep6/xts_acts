@@ -14,10 +14,9 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 
-export default function bluetoothhostTest2() {
 describe('bluetoothhostTest2', function() {
     function sleep(delay) {
         return new Promise(resovle => setTimeout(resovle, delay))
@@ -254,5 +253,5 @@ describe('bluetoothhostTest2', function() {
     })
 
 })
-}
+
 

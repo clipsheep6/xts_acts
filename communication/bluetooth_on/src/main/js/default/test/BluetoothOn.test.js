@@ -14,7 +14,7 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 let MajorMinorClass = {
     COMPUTER_UNCATEGORIZED : 0x0100,
@@ -120,7 +120,6 @@ let MatchMode=
 	};
 
 
-export default function bluetoothTEST() {
 describe('bluetoothTEST', function() {
 
     let gattServer = null;
@@ -496,5 +495,5 @@ describe('bluetoothTEST', function() {
 
 })
 
-}
+
 

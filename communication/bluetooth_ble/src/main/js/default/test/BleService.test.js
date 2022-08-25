@@ -14,9 +14,8 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
-export default function bluetoothBLETest1() {
 describe('bluetoothBLETest1', function() {
 
     let gattServer = null;
@@ -1250,4 +1249,3 @@ describe('bluetoothBLETest1', function() {
     })
 
 })
-}

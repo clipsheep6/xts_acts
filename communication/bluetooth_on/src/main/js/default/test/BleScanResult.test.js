@@ -14,7 +14,7 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 let ScanDuty=
     {
         SCAN_MODE_LOW_POWER : 0,
@@ -28,7 +28,6 @@ let MatchMode=
         MATCH_MODE_STICKY : 2,
     };
 
-export default function bluetoothhostTest() {
 describe('bluetoothhostTest', function() {
     function sleep(delay) {
         return new Promise(resovle => setTimeout(resovle, delay))
@@ -625,5 +624,5 @@ describe('bluetoothhostTest', function() {
 
 
 })
-}
+
 
