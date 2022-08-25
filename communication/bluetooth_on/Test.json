@@ -4,12 +4,12 @@
         "type": "JSUnitTest",
         "test-timeout": "600000",
         "shell-timeout": "600000",
-        "package-name": "ohos.acts.communication.bluetooth.bluetoothhost",
+        "package": "ohos.acts.communication.bluetooth.bluetoothhost",
     },
     "kits": [
         {
             "test-file-name": [
-                "ActsBluetoothBleHapTest.hap"
+                "ActsBluetoothOnHapTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

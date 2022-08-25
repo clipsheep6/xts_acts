@@ -14,7 +14,6 @@
  */
 
 require('./BleScanResult.test.js')
-require('./BluetoothADD.test.js')
 require('./BluetoothOn.test.js')
 require('./BluetoothPair.test.js')
 require('./bluetoothProfileAdd.test.js')
