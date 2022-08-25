@@ -225,7 +225,7 @@ describe('bluetoothhostTest2', function() {
         bluetooth.BLE.on('pinRequired', PinRequiredParam);
         let result = bluetooth.pairDevice("00:00:00:00:00:00");
         console.info("[bluetooth_js] onStartpair007 -> " + JSON.stringify(result));
-        expect(result).assertTrue();
+        expect(result).assertFalse();
         bluetooth.BLE.off('pinRequired', PinRequiredParam);
         done()
     })
@@ -247,7 +247,7 @@ describe('bluetoothhostTest2', function() {
         bluetooth.BLE.on('pinRequired', PinRequiredParam);
         let result = bluetooth.pairDevice("00:00:00:00:00:00");
         console.info("[bluetooth_js] onStartpair008 -> " + JSON.stringify(result));
-        expect(result).assertTrue();
+        expect(result).assertFalse();
         bluetooth.BLE.off('pinRequired', PinRequiredParam);
         done()
     })
