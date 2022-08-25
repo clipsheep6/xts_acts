@@ -16,8 +16,8 @@ import HiAppEvent from '@ohos.hiAppEvent'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import Constant from 'deccjsunit/src/Constant'
 
-export default function HiAppEventApiTest() {
-describe('HiAppEventApiTest', function () {
+export default function Hiappeventsubtest() {
+describe('Hiappeventsubtest', function () {
 
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0100
@@ -120,10 +120,13 @@ describe('HiAppEventApiTest', function () {
      */
     it('HiAppEventSub02', 3, async function (done) {
         console.info('testHiAppEventSub02 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let holder = HiAppEvent.addWatcher({
@@ -590,6 +593,7 @@ describe('HiAppEventApiTest', function () {
             console.info('HiAppEventSub07 end')
         }, 1000)
     })
+    
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0800
      * @tc.name 验证调用hiAppEvent.addWatcher，domain为无效，事件订阅失败
@@ -643,6 +647,7 @@ describe('HiAppEventApiTest', function () {
             console.info('HiAppEventSub08 end')
         }, 1000)
     })
+    
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0900
      * @tc.name 验证调用hiAppEvent.addWatcher，设置domain，eventType为FAULT，事件订阅成功
@@ -1251,10 +1256,13 @@ describe('HiAppEventApiTest', function () {
      */
     it('HiAppEventSub16', 3, async function (done) {
         console.info('testHiAppEventSub16 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let result = HiAppEvent.addWatcher({
@@ -1331,10 +1339,13 @@ describe('HiAppEventApiTest', function () {
      */
     it('HiAppEventSub17', 3, async function (done) {
         console.info('testHiAppEventSub17 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let result = HiAppEvent.addWatcher({
@@ -1614,6 +1625,7 @@ describe('HiAppEventApiTest', function () {
             console.info('HiAppEventSub21 end')
         }, 1000)
     })
+    
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_2200
      * @tc.name 验证调用hiAppEvent.addWatcher，timeout=1，事件订阅成功
@@ -1621,10 +1633,13 @@ describe('HiAppEventApiTest', function () {
      */
     it('HiAppEventSub22', 3, async function (done) {
         console.info('testHiAppEventSub22 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let result = HiAppEvent.addWatcher({
@@ -1680,10 +1695,13 @@ describe('HiAppEventApiTest', function () {
      */
     it('HiAppEventSub23', 3, async function (done) {
         console.info('testHiAppEventSub23 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let result = HiAppEvent.addWatcher({
@@ -1739,10 +1757,13 @@ describe('HiAppEventApiTest', function () {
      */
     it('HiAppEventSub24', 3, async function (done) {
         console.info('testHiAppEventSub24 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let result = HiAppEvent.addWatcher({
@@ -1792,12 +1813,13 @@ describe('HiAppEventApiTest', function () {
      * @tc.name 验证调用hiAppEvent.addWatcher，触发条件仅timeout有效，事件订阅成功
      * @tc.desc HiAppEvent write interface test.
      */
-    it('HiAppEventSub28', 3, async function (done) {
-        console.info('testHiAppEventSub28 start')
-        function sleep(delay) {
-            var start = (new Date()).getTime();
-            while ((new Date()).getTime() - start < delay) {
-                continue;
+        function sleep(numberMillis){
+            var now = new Date();
+            var exitTime = now.getTime() +numberMillis;
+            while (true){
+                now = new Date();
+                if(now.getTime() > exitTime)
+                return;
             }
         }
         let result = HiAppEvent.addWatcher({
@@ -1974,8 +1996,8 @@ describe('HiAppEventApiTest', function () {
             done()
             console.info('HiAppEventSub26 end')
         }, 2000)
-
     })
+    
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_2700
      * @tc.name 验证清理接口功能
