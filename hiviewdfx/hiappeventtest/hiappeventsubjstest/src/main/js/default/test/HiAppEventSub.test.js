@@ -590,6 +590,7 @@ describe('HiAppEventApiTest', function () {
             console.info('HiAppEventSub07 end')
         }, 1000)
     })
+
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0800
      * @tc.name 验证调用hiAppEvent.addWatcher，domain为无效，事件订阅失败
@@ -643,6 +644,7 @@ describe('HiAppEventApiTest', function () {
             console.info('HiAppEventSub08 end')
         }, 1000)
     })
+
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0900
      * @tc.name 验证调用hiAppEvent.addWatcher，设置domain，eventType为FAULT，事件订阅成功
@@ -998,7 +1000,8 @@ describe('HiAppEventApiTest', function () {
             appEventFilters: [
                 {
                     domain: "default",
-                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
+                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,
+			    HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
                 }
             ],
             triggerCondition: {
@@ -1084,7 +1087,8 @@ describe('HiAppEventApiTest', function () {
             name: "watcher1",
             appEventFilters: [
                 {
-                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
+                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,
+			    HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
                 }
             ],
             triggerCondition: {
@@ -1614,6 +1618,7 @@ describe('HiAppEventApiTest', function () {
             console.info('HiAppEventSub21 end')
         }, 1000)
     })
+
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_2200
      * @tc.name 验证调用hiAppEvent.addWatcher，timeout=1，事件订阅成功
@@ -1976,6 +1981,7 @@ describe('HiAppEventApiTest', function () {
         }, 2000)
 
     })
+
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_2700
      * @tc.name 验证清理接口功能
