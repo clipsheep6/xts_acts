@@ -14,5 +14,5 @@
  */
 import Hiappeventsubtest from './HiAppEventSub.test.js'
 export default function testsuite() {
-Hiappeventsubtest()
+HiAppEventSubTest()
 }

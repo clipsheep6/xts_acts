@@ -16,8 +16,8 @@ import HiAppEvent from '@ohos.hiAppEvent'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import Constant from 'deccjsunit/src/Constant'
 
-export default function Hiappeventsubtest() {
-describe('Hiappeventsubtest', function () {
+export default function HiAppEventSubTest() {
+describe('HiAppEventSubTest', function () {
 
     /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0100
@@ -1003,7 +1003,8 @@ describe('Hiappeventsubtest', function () {
             appEventFilters: [
                 {
                     domain: "default",
-                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
+                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,
+                    HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
                 }
             ],
             triggerCondition: {
@@ -1089,7 +1090,8 @@ describe('Hiappeventsubtest', function () {
             name: "watcher1",
             appEventFilters: [
                 {
-                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
+                    eventTypes: [HiAppEvent.EventType.FAULT,HiAppEvent.EventType.STATISTIC,
+                    HiAppEvent.EventType.SECURITY,HiAppEvent.EventType.BEHAVIOR]
                 }
             ],
             triggerCondition: {
