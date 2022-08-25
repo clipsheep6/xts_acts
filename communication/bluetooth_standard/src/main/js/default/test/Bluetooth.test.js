@@ -14,7 +14,7 @@
  */
 
 import bluetooth from '@ohos.bluetooth';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 
 let Btname = {
@@ -38,7 +38,8 @@ let Btname = {
     +'345678901234567890123456789012345678901234567890123456789012367890123456789012345568'
 }
 
-describe('bluetoothhostTest_standard1', function() {
+export default function bluetoothhostTest() {
+describe('bluetoothhostTest', function() {
 
     beforeAll(function () {
         console.info('beforeAll called')
@@ -96,14 +97,24 @@ describe('bluetoothhostTest_standard1', function() {
         console.info('[bluetooth_js] getState start');
         await tryToEnableBt();
         let state = bluetooth.getState();
-        console.info('[bluetooth_js] get bluetooth state result = '+ JSON.stringify(state));
+        let BluetoothState=
+        {
+            STATE_OFF : 0,
+            STATE_TURNING_ON : 1,
+            STATE_ON : 2,
+            STATE_TURNING_OFF : 3,
+            STATE_BLE_TURNING_ON : 4,
+            STATE_BLE_ON : 5,
+            STATE_BLE_TURNING_OFF : 6,
+		} ;
+		console.info('[bluetooth_js] get bluetooth state result = '+ JSON.stringify(state));
         expect(state).assertEqual(bluetooth.BluetoothState.STATE_ON);
-        expect(bluetooth.BluetoothState.STATE_OFF != state).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_TURNING_ON != state).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_TURNING_OFF != state).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_BLE_TURNING_ON != state).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_BLE_ON != state).assertTrue();
-        expect(bluetooth.BluetoothState.STATE_BLE_TURNING_OFF != state).assertTrue();
+        expect(BluetoothState.STATE_OFF != state).assertTrue();
+        expect(BluetoothState.STATE_TURNING_ON != state).assertTrue();
+        expect(BluetoothState.STATE_TURNING_OFF != state).assertTrue();
+        expect(BluetoothState.STATE_BLE_TURNING_ON != state).assertTrue();
+        expect(BluetoothState.STATE_BLE_ON != state).assertTrue();
+        expect(BluetoothState.STATE_BLE_TURNING_OFF != state).assertTrue();
         done();
     })
 
@@ -171,9 +182,15 @@ describe('bluetoothhostTest_standard1', function() {
         console.info('[bluetooth_js] set scan mode start');
         await tryToEnableBt();
         let result = bluetooth.setBluetoothScanMode(1,10000);
-        expect(true).assertTrue(JSON.stringify(bluetooth.ScanDuty.SCAN_MODE_LOW_POWER) !=result );
-        expect(true).assertTrue(JSON.stringify(bluetooth.ScanDuty.SCAN_MODE_BALANCED) != result);
-        expect(true).assertTrue(JSON.stringify(bluetooth.ScanDuty.SCAN_MODE_BALANCED) != result );
+        let ScanDuty=
+        {
+            SCAN_MODE_LOW_POWER : 0,
+            SCAN_MODE_BALANCED : 1,
+            SCAN_MODE_BALANCED : 2,
+        };
+		expect(true).assertTrue(JSON.stringify(ScanDuty.SCAN_MODE_LOW_POWER) !=result );
+        expect(true).assertTrue(JSON.stringify(ScanDuty.SCAN_MODE_BALANCED) != result);
+        expect(true).assertTrue(JSON.stringify(ScanDuty.SCAN_MODE_BALANCED) != result );
         expect(result).assertEqual(true);
         done();
     })
@@ -191,15 +208,24 @@ describe('bluetoothhostTest_standard1', function() {
         await tryToEnableBt();
         let result = bluetooth.setBluetoothScanMode(1,10000);
         expect(result).assertEqual(true);
-        let scanMode = bluetooth.getBluetoothScanMode();
-        console.info('[bluetooth_js] get scan mode result2 = ' + JSON.stringify(scanMode));
-        expect(scanMode).assertEqual(1);
-        expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_NONE != scanMode);
-        expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE != scanMode);
-        expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_GENERAL_DISCOVERABLE != scanMode);
-        expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_LIMITED_DISCOVERABLE != scanMode);
-        expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE != scanMode);
-        expect(true).assertTrue(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE != scanMode);
+        let ScanMode=
+        {
+            SCAN_MODE_NONE : 0,
+            SCAN_MODE_CONNECTABLE : 1,
+            SCAN_MODE_GENERAL_DISCOVERABLE : 2,
+            SCAN_MODE_LIMITED_DISCOVERABLE : 3,
+            SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE : 4,
+            SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE : 5,
+		};
+        let scanModeResult = bluetooth.getBluetoothScanMode();
+        console.info('[bluetooth_js] get scan mode result2 = ' + JSON.stringify(scanModeResult));
+        expect(scanModeResult).assertEqual(1);
+        expect(true).assertTrue(ScanMode.SCAN_MODE_NONE != scanModeResult);
+        expect(true).assertTrue(ScanMode.SCAN_MODE_CONNECTABLE != scanModeResult);
+        expect(true).assertTrue(ScanMode.SCAN_MODE_GENERAL_DISCOVERABLE != scanModeResult);
+        expect(true).assertTrue(ScanMode.SCAN_MODE_LIMITED_DISCOVERABLE != scanModeResult);
+        expect(true).assertTrue(ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE != scanModeResult);
+        expect(true).assertTrue(ScanMode.SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE != scanModeResult);
         done();
     })
 
@@ -214,12 +240,19 @@ describe('bluetoothhostTest_standard1', function() {
     it('SUB_COMMUNACATION_bluetooth_GET_BT_CONNECT_STATE_0001', 0, async function (done) {
         console.info('[bluetooth_js] get connection state start');
         await tryToEnableBt();
+        let ProfileConnectionState=
+        {
+            STATE_CONNECTING : 1,
+            STATE_CONNECTED : 2,
+            STATE_DISCONNECTED : 0,
+            STATE_DISCONNECTING : 3,
+        };
         let connState = bluetooth.getBtConnectionState();
         console.info('[bluetooth_js] get bt connection state result' + JSON.stringify(connState));
-        expect(connState).assertEqual(bluetooth.ProfileConnectionState.STATE_DISCONNECTED);
-        expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_CONNECTING!= connState );
-        expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_CONNECTED!= connState );
-        expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_DISCONNECTING!= connState );
+        expect(connState).assertEqual(ProfileConnectionState.STATE_DISCONNECTED);
+        expect(true).assertTrue(ProfileConnectionState.STATE_CONNECTING!= connState );
+        expect(true).assertTrue(ProfileConnectionState.STATE_CONNECTED!= connState );
+        expect(true).assertTrue(ProfileConnectionState.STATE_DISCONNECTING!= connState );
         done();
     })
 
@@ -339,7 +372,6 @@ describe('bluetoothhostTest_standard1', function() {
         done();
     })
 
-
     /**
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_CONNECT_0001
      * @tc.name testSppConnect
@@ -384,7 +416,6 @@ describe('bluetoothhostTest_standard1', function() {
         done();
     })
 
-
     /**
      * @tc.number SUB_COMMUNACATION_bluetooth_SPP_CLOSE_CLIENT_SOCKET_0001
      * @tc.name testSppCloseClientSocket
@@ -401,6 +432,7 @@ describe('bluetoothhostTest_standard1', function() {
         },3000);
         done();
     })
+
 
 
     /**
@@ -473,7 +505,7 @@ describe('bluetoothhostTest_standard1', function() {
         let name = bluetooth.setLocalName();
         console.info('[bluetooth_js] getName result2 = '+ JSON.stringify(localName) +
         'setName result2 =' + JSON.stringify(name));
-        expect(name).assertNull();
+        expect(name).assertFalse();
         done();
     })
 
@@ -715,3 +747,4 @@ describe('bluetoothhostTest_standard1', function() {
 
 })
 
+}
