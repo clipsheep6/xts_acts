@@ -823,7 +823,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_01_016
-     * @tc.name      : modifyImageProperty()-promise
+     * @tc.name      : modifyImageProperty(Orientation)-promise
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -837,7 +837,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_01_017
-     * @tc.name      : modifyImageProperty()-promise
+     * @tc.name      : modifyImageProperty(GPSLatitude)-promise
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -851,7 +851,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_01_018
-     * @tc.name      : modifyImageProperty()-promise
+     * @tc.name      : modifyImageProperty(GPSLongitude)-promise
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -865,7 +865,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_01_019
-     * @tc.name      : modifyImageProperty()-promise
+     * @tc.name      : modifyImageProperty(GPSLatitudeRef)-promise
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -879,7 +879,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_01_020
-     * @tc.name      : modifyImageProperty()-promise
+     * @tc.name      : modifyImageProperty(GPSLongitudeRef)-promise
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -893,7 +893,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_011
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(Orientation)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -907,7 +907,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_012
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLatitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -921,7 +921,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_013
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLongitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -935,7 +935,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_014
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLongitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -949,7 +949,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_015
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLatitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -963,7 +963,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_016
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(Orientation)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -977,7 +977,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_017
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLatitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -991,7 +991,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_018
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLongitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1005,7 +1005,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_019
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLongitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1019,7 +1019,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_02_020
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLatitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1033,7 +1033,7 @@ describe('imageModifyProperty', function () {
     
     /**
      * @tc.number    : modify_03_011
-     * @tc.name      : modifyImageProperty()-callback
+     * @tc.name      : modifyImageProperty(Orientation)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1047,7 +1047,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_012
-     * @tc.name      : modifyImageProperty()-callback
+     * @tc.name      : modifyImageProperty(GPSLatitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1061,7 +1061,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_013
-     * @tc.name      : modifyImageProperty()-callback
+     * @tc.name      : modifyImageProperty(GPSLongitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1075,7 +1075,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_014
-     * @tc.name      : modifyImageProperty()-callback
+     * @tc.name      : modifyImageProperty(GPSLatitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1089,7 +1089,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_015
-     * @tc.name      : modifyImageProperty()-callback
+     * @tc.name      : modifyImageProperty(GPSLongitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1103,7 +1103,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_016
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(Orientation)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1117,7 +1117,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_017
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLatitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1131,7 +1131,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_018
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLongitude)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1145,7 +1145,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_019
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLatitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
@@ -1159,7 +1159,7 @@ describe('imageModifyProperty', function () {
 
     /**
      * @tc.number    : modify_03_020
-     * @tc.name      : modifyImageProperty-callback
+     * @tc.name      : modifyImageProperty(GPSLongitudeRef)-callback
      * @tc.desc      : 1.create imagesource
      *                 2.call modifyImageProperty(key,value)
      *                 3.return undefined
