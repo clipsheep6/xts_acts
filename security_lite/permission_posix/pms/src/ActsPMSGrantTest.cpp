@@ -66,7 +66,7 @@ static PermissionTrans g_systemPers[] = {
         INUSE,
     },
 };
-static PermissionTrans g_unDefPer = {
+static PermissionTrans g_unDefPers = {
     PERMISSION_UNDEFINED,
     "for undefined use",
     INUSE,
@@ -238,7 +238,7 @@ HWTEST_F(ActsPMSGrantTest, testSecPMPMS_1100, Function | MediumTest | Level1)
 {
     int ret = SaveOrUpdatePermissions(TEST_APP_ID, g_systemPers, SYS_PERM_NUM, FIRST_INSTALL);
     EXPECT_EQ(ret, PERM_ERRORCODE_SUCCESS) << "save ret = " << ret << endl;
-    ret = g_interface->GrantPermission(TEST_APP_ID, g_unDefPer.name);
+    ret = g_interface->GrantPermission(TEST_APP_ID, g_unDefPers.name);
     EXPECT_EQ(ret, PERM_ERRORCODE_SUCCESS) << "grant ret = " << ret << endl;
     DeletePermissions(TEST_APP_ID);
 }

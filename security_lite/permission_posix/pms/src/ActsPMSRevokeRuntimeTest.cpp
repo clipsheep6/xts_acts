@@ -114,7 +114,7 @@ HWTEST_F(ActsPMSRevokeRuntimeTest, testSecPMPMS_126, Function | MediumTest | Lev
 
 /*
  * @tc.name: testSecPMPMS_127
- * @tc.desc: revoke permissions while not load permiossion
+ * @tc.desc: revoke permissions while not load permission
  * @tc.type: FUNC
  * @tc.require: AR000F4FSI
  */

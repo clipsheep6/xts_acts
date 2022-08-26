@@ -66,7 +66,7 @@ static PermissionTrans g_systemPers[] = {
         INUSE,
     },
 };
-static PermissionTrans g_unDefPer = {
+static PermissionTrans g_unDefPers = {
     PERMISSION_UNDEFINED,
     "for undefined use",
     INUSE,
@@ -95,7 +95,7 @@ protected:
 
 /**
  * @tc.number     SUB_SEC_AppSEC_PermissionMgmt_PMS_1110
- * @tc.name       revoke permissions while not load permiossion
+ * @tc.name       revoke permissions while not load permission
  * @tc.desc       [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1110, Function | MediumTest | Level2)
@@ -119,7 +119,7 @@ HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1110, Function | MediumTest | Level2)
 
 /**
  * @tc.number     SUB_SEC_AppSEC_PermissionMgmt_PMS_1120
- * @tc.name       revoke closed permissions while load permiossion
+ * @tc.name       revoke closed permissions while load permission
  * @tc.desc       [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1120, Function | MediumTest | Level1)
@@ -141,7 +141,7 @@ HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1120, Function | MediumTest | Level1)
 
 /**
  * @tc.number     SUB_SEC_AppSEC_PermissionMgmt_PMS_1130
- * @tc.name       revoke permissions while load permiossion
+ * @tc.name       revoke permissions while load permission
  * @tc.desc       [C- SECURITY -0500]
  */
 HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1130, Function | MediumTest | Level0)
@@ -164,7 +164,7 @@ HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1130, Function | MediumTest | Level0)
 
 /**
  * @tc.number     SUB_SEC_AppSEC_PermissionMgmt_PMS_1140
- * @tc.name       revoke unapplied permissions while load permiossion
+ * @tc.name       revoke unapplied permissions while load permission
  * @tc.desc       [C- SOFTWARE -0200]
  */
 HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1140, Function | MediumTest | Level2)
@@ -246,7 +246,7 @@ HWTEST_F(ActsPMSRevokeTest, testSecPMPMS_1170, Function | MediumTest | Level1)
 {
     int ret = SaveOrUpdatePermissions(TEST_APP_ID, g_systemPers, SYS_PERM_NUM, FIRST_INSTALL);
     EXPECT_EQ(ret, PERM_ERRORCODE_SUCCESS) << "save ret = " << ret << endl;
-    ret = g_interface->GrantPermission(TEST_APP_ID, g_unDefPer.name);
+    ret = g_interface->GrantPermission(TEST_APP_ID, g_unDefPers.name);
     EXPECT_EQ(ret, PERM_ERRORCODE_SUCCESS) << "grant ret = " << ret << endl;
     DeletePermissions(TEST_APP_ID);
 }
