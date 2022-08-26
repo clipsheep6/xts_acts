@@ -1899,26 +1899,26 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_ZOOM_RATIO', 0, async function (done) {
-      console.info("--------------GET_ZOOM_RATIO--------------");
-      camera0Input.getZoomRatioRange(async (err, data) => {
-        if (!err) {
-          if (data != null && data != undefined) {
-            console.info(TAG + "Entering GET_ZOOM_RATIO data is not null || undefined");
-            expect(true).assertTrue();
-            console.info(TAG + "Entering GET_ZOOM_RATIO Success " + data)
-          }
-        } else {
-          expect().assertFail();
-          console.info(TAG + "Entering GET_ZOOM_RATIO FAILED: " + err.message);
-        }
-        console.info(TAG + "Entering GET_ZOOM_RATIO ends here");
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('GET_ZOOM_RATIO', 0, async function (done) {
+    //   console.info("--------------GET_ZOOM_RATIO--------------");
+    //   camera0Input.getZoomRatioRange(async (err, data) => {
+    //     if (!err) {
+    //       if (data != null && data != undefined) {
+    //         console.info(TAG + "Entering GET_ZOOM_RATIO data is not null || undefined");
+    //         expect(true).assertTrue();
+    //         console.info(TAG + "Entering GET_ZOOM_RATIO Success " + data)
+    //       }
+    //     } else {
+    //       expect().assertFail();
+    //       console.info(TAG + "Entering GET_ZOOM_RATIO FAILED: " + err.message);
+    //     }
+    //     console.info(TAG + "Entering GET_ZOOM_RATIO ends here");
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_1_ASYNC
@@ -1928,30 +1928,30 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_1_ASYNC', 0, async function (done) {
-      camera0Input.setZoomRatio(1, (err, data) => {
-        if (!err) {
-          console.info(TAG + "setZoomRatio success: 1");
-          console.info(TAG + "getZoomRatio called")
-          camera0Input.getZoomRatio((err, data1) => {
-            if (!err) {
-              console.info(TAG + "getZoomRatio success : " + data1);
-              expect(data1).assertEqual(1);
-              console.info(TAG + "SET_GET_ZOOM_1_ASYNC PASSED ");
-            }
-            else {
-              console.info(TAG + "GET_ZOOM_1_ASYNC FAILED" + err.message);
-              expect().assertFail();
-            }
-          })
-        } else {
-          console.info(TAG + "SET_ZOOM_1_ASYNC FAILED" + err.message);
-          expect().assertFail();
-        }
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_GET_ZOOM_1_ASYNC', 0, async function (done) {
+    //   camera0Input.setZoomRatio(1, (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "setZoomRatio success: 1");
+    //       console.info(TAG + "getZoomRatio called")
+    //       camera0Input.getZoomRatio((err, data1) => {
+    //         if (!err) {
+    //           console.info(TAG + "getZoomRatio success : " + data1);
+    //           expect(data1).assertEqual(1);
+    //           console.info(TAG + "SET_GET_ZOOM_1_ASYNC PASSED ");
+    //         }
+    //         else {
+    //           console.info(TAG + "GET_ZOOM_1_ASYNC FAILED" + err.message);
+    //           expect().assertFail();
+    //         }
+    //       })
+    //     } else {
+    //       console.info(TAG + "SET_ZOOM_1_ASYNC FAILED" + err.message);
+    //       expect().assertFail();
+    //     }
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_2_ASYNC
@@ -1961,30 +1961,30 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_2_ASYNC', 0, async function (done) {
-      camera0Input.setZoomRatio(2, (err, data) => {
-        if (!err) {
-          console.info(TAG + "setZoomRatio success: 2");
-          console.info(TAG + "getZoomRatio called")
-          camera0Input.getZoomRatio((err, data1) => {
-            if (!err) {
-              console.info(TAG + "getZoomRatio success : " + data1);
-              expect(data1).assertEqual(2);
-              console.info(TAG + "SET_GET_ZOOM_2_ASYNC PASSED ");
-            }
-            else {
-              expect().assertFail();
-              console.info(TAG + "GET_ZOOM_2_ASYNC FAILED" + err.message);
-            }
-          })
-        } else {
-          expect().assertFail();
-          console.info(TAG + "SET_ZOOM_2_ASYNC FAILED" + err.message);
-        }
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_GET_ZOOM_2_ASYNC', 0, async function (done) {
+    //   camera0Input.setZoomRatio(2, (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "setZoomRatio success: 2");
+    //       console.info(TAG + "getZoomRatio called")
+    //       camera0Input.getZoomRatio((err, data1) => {
+    //         if (!err) {
+    //           console.info(TAG + "getZoomRatio success : " + data1);
+    //           expect(data1).assertEqual(2);
+    //           console.info(TAG + "SET_GET_ZOOM_2_ASYNC PASSED ");
+    //         }
+    //         else {
+    //           expect().assertFail();
+    //           console.info(TAG + "GET_ZOOM_2_ASYNC FAILED" + err.message);
+    //         }
+    //       })
+    //     } else {
+    //       expect().assertFail();
+    //       console.info(TAG + "SET_ZOOM_2_ASYNC FAILED" + err.message);
+    //     }
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_3_ASYNC
@@ -1994,30 +1994,30 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_3_ASYNC', 0, async function (done) {
-      camera0Input.setZoomRatio(3, (err, data) => {
-        if (!err) {
-          console.info(TAG + "setZoomRatio success: 3");
-          console.info(TAG + "getZoomRatio called")
-          camera0Input.getZoomRatio((err, data1) => {
-            if (!err) {
-              console.info(TAG + "getZoomRatio success : " + data1);
-              expect(data1).assertEqual(3);
-              console.info(TAG + "SET_GET_ZOOM_3_ASYNC PASSED ");
-            }
-            else {
-              console.info(TAG + "GET_ZOOM_3_ASYNC FAILED" + err.message);
-              expect().assertFail();
-            }
-          })
-        } else {
-          console.info(TAG + "SET_ZOOM_3_ASYNC FAILED" + err.message);
-          expect().assertFail();
-        }
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_GET_ZOOM_3_ASYNC', 0, async function (done) {
+    //   camera0Input.setZoomRatio(3, (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "setZoomRatio success: 3");
+    //       console.info(TAG + "getZoomRatio called")
+    //       camera0Input.getZoomRatio((err, data1) => {
+    //         if (!err) {
+    //           console.info(TAG + "getZoomRatio success : " + data1);
+    //           expect(data1).assertEqual(3);
+    //           console.info(TAG + "SET_GET_ZOOM_3_ASYNC PASSED ");
+    //         }
+    //         else {
+    //           console.info(TAG + "GET_ZOOM_3_ASYNC FAILED" + err.message);
+    //           expect().assertFail();
+    //         }
+    //       })
+    //     } else {
+    //       console.info(TAG + "SET_ZOOM_3_ASYNC FAILED" + err.message);
+    //       expect().assertFail();
+    //     }
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_4_ASYNC
@@ -2027,30 +2027,30 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_4_ASYNC', 0, async function (done) {
-      camera0Input.setZoomRatio(4, (err, data) => {
-        if (!err) {
-          console.info(TAG + "setZoomRatio success: 4");
-          console.info(TAG + "getZoomRatio called")
-          camera0Input.getZoomRatio((err, data1) => {
-            if (!err) {
-              console.info(TAG + "getZoomRatio success : " + data1);
-              expect(data1).assertEqual(4);
-              console.info(TAG + "SET_GET_ZOOM_4_ASYNC PASSED ");
-            }
-            else {
-              console.info(TAG + "GET_ZOOM_4_ASYNC FAILED" + err.message);
-              expect().assertFail();
-            }
-          })
-        } else {
-          console.info(TAG + "SET_ZOOM_4_ASYNC FAILED" + err.message);
-          expect().assertFail();
-        }
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_GET_ZOOM_4_ASYNC', 0, async function (done) {
+    //   camera0Input.setZoomRatio(4, (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "setZoomRatio success: 4");
+    //       console.info(TAG + "getZoomRatio called")
+    //       camera0Input.getZoomRatio((err, data1) => {
+    //         if (!err) {
+    //           console.info(TAG + "getZoomRatio success : " + data1);
+    //           expect(data1).assertEqual(4);
+    //           console.info(TAG + "SET_GET_ZOOM_4_ASYNC PASSED ");
+    //         }
+    //         else {
+    //           console.info(TAG + "GET_ZOOM_4_ASYNC FAILED" + err.message);
+    //           expect().assertFail();
+    //         }
+    //       })
+    //     } else {
+    //       console.info(TAG + "SET_ZOOM_4_ASYNC FAILED" + err.message);
+    //       expect().assertFail();
+    //     }
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_5_ASYNC
@@ -2060,30 +2060,30 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_5_ASYNC', 0, async function (done) {
-      camera0Input.setZoomRatio(5, (err, data) => {
-        if (!err) {
-          console.info(TAG + "setZoomRatio success: 5");
-          console.info(TAG + "getZoomRatio called")
-          camera0Input.getZoomRatio((err, data1) => {
-            if (!err) {
-              console.info(TAG + "getZoomRatio success : " + data1);
-              expect(data1).assertEqual(5);
-              console.info(TAG + "SET_GET_ZOOM_5_ASYNC PASSED ");
-            }
-            else {
-              console.info(TAG + "GET_ZOOM_5_ASYNC FAILED" + err.message);
-              expect().assertFail();
-            }
-          })
-        } else {
-          console.info(TAG + "SET_ZOOM_5_ASYNC FAILED" + err.message);
-          expect().assertFail();
-        }
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_GET_ZOOM_5_ASYNC', 0, async function (done) {
+    //   camera0Input.setZoomRatio(5, (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "setZoomRatio success: 5");
+    //       console.info(TAG + "getZoomRatio called")
+    //       camera0Input.getZoomRatio((err, data1) => {
+    //         if (!err) {
+    //           console.info(TAG + "getZoomRatio success : " + data1);
+    //           expect(data1).assertEqual(5);
+    //           console.info(TAG + "SET_GET_ZOOM_5_ASYNC PASSED ");
+    //         }
+    //         else {
+    //           console.info(TAG + "GET_ZOOM_5_ASYNC FAILED" + err.message);
+    //           expect().assertFail();
+    //         }
+    //       })
+    //     } else {
+    //       console.info(TAG + "SET_ZOOM_5_ASYNC FAILED" + err.message);
+    //       expect().assertFail();
+    //     }
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_6_ASYNC
@@ -2093,30 +2093,30 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_6_ASYNC', 0, async function (done) {
-      camera0Input.setZoomRatio(6, (err, data) => {
-        if (!err) {
-          console.info(TAG + "setZoomRatio success: 6");
-          console.info(TAG + "getZoomRatio called")
-          camera0Input.getZoomRatio((err, data1) => {
-            if (!err) {
-              console.info(TAG + "getZoomRatio success : " + data1);
-              expect(data1).assertEqual(6);
-              console.info(TAG + "SET_GET_ZOOM_6_ASYNC PASSED ");
-            }
-            else {
-              console.info(TAG + "GET_ZOOM_6_ASYNC FAILED" + err.message);
-              expect().assertFail();
-            }
-          })
-        } else {
-          console.info(TAG + "SET_ZOOM_6_ASYNC FAILED" + err.message);
-          expect().assertFail();
-        }
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_GET_ZOOM_6_ASYNC', 0, async function (done) {
+    //   camera0Input.setZoomRatio(6, (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "setZoomRatio success: 6");
+    //       console.info(TAG + "getZoomRatio called")
+    //       camera0Input.getZoomRatio((err, data1) => {
+    //         if (!err) {
+    //           console.info(TAG + "getZoomRatio success : " + data1);
+    //           expect(data1).assertEqual(6);
+    //           console.info(TAG + "SET_GET_ZOOM_6_ASYNC PASSED ");
+    //         }
+    //         else {
+    //           console.info(TAG + "GET_ZOOM_6_ASYNC FAILED" + err.message);
+    //           expect().assertFail();
+    //         }
+    //       })
+    //     } else {
+    //       console.info(TAG + "SET_ZOOM_6_ASYNC FAILED" + err.message);
+    //       expect().assertFail();
+    //     }
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : IS_FOCUS_MODE_LOCKED_SUPPORTED
@@ -2126,28 +2126,28 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('IS_FOCUS_MODE_LOCKED_SUPPORTED', 0, async function (done) {
-      console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED to operate");
-      camera0Input.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_LOCKED, async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering Is Focus Mode Locked Supported SUCCESS: " + data);
-          if (data != null || data != undefined) {
-            console.info(TAG + "Entering Is Focus Mode Locked Supported data is not null || undefined");
-            console.info(TAG + "FOCUS_MODE_LOCKED_SUPPORTED is: " + data);
-            expect(data).assertEqual(false);
-            console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED PASSED: ");
-          }
-        } else {
-          console.info(TAG + "IS_FOCUS_MODE_LOCKED_SUPPORTED FAILED :" + err.message);
-          expect().assertFail()
-          console.info(TAG + "IS_FOCUS_MODE_LOCKED_SUPPORTED ends here");
-        }
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('IS_FOCUS_MODE_LOCKED_SUPPORTED', 0, async function (done) {
+    //   console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED to operate");
+    //   camera0Input.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_LOCKED, async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering Is Focus Mode Locked Supported SUCCESS: " + data);
+    //       if (data != null || data != undefined) {
+    //         console.info(TAG + "Entering Is Focus Mode Locked Supported data is not null || undefined");
+    //         console.info(TAG + "FOCUS_MODE_LOCKED_SUPPORTED is: " + data);
+    //         expect(data).assertEqual(false);
+    //         console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED PASSED: ");
+    //       }
+    //     } else {
+    //       console.info(TAG + "IS_FOCUS_MODE_LOCKED_SUPPORTED FAILED :" + err.message);
+    //       expect().assertFail()
+    //       console.info(TAG + "IS_FOCUS_MODE_LOCKED_SUPPORTED ends here");
+    //     }
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FOCUS_MODE_LOCKED
@@ -2157,24 +2157,24 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FOCUS_MODE_LOCKED', 0, async function (done) {
-      console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED to operate");
-      camera0Input.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_LOCKED, async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering SetFocus Mode Locked SUCCESS, current FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_LOCKED);
-          console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED FAILED : ")
-          expect().assertFail();
-        } else {
-          console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED PASSED : " + err.message);
-          expect(true).assertTrue();
-          console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED ends here");
-        }
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('SET_FOCUS_MODE_LOCKED', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED to operate");
+    //   camera0Input.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_LOCKED, async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering SetFocus Mode Locked SUCCESS, current FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_LOCKED);
+    //       console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED FAILED : ")
+    //       expect().assertFail();
+    //     } else {
+    //       console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED PASSED : " + err.message);
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED ends here");
+    //     }
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_FOCUS_MODE_LOCKED
@@ -2184,27 +2184,27 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_FOCUS_MODE_LOCKED', 0, async function (done) {
-      console.info(TAG + "Entering GET_FOCUS_MODE_LOCKED to operate");
-      camera0Input.getFocusMode(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering Get Focus Mode Locked SUCCESS: " + data);
-          console.info(TAG + "Get Focus Mode Locked data is not null || undefined: ");
-          console.info(TAG + "Current FocusMode is: " + data);
-          expect(data).assertEqual(0);
-          console.info(TAG + "GET_FOCUS_MODE_LOCKED PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "GET_FOCUS_MODE_LOCKED FAILED : " + err.message);
-          console.info(TAG + "GET_FOCUS_MODE_LOCKED ends here");
-        }
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('GET_FOCUS_MODE_LOCKED', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_FOCUS_MODE_LOCKED to operate");
+    //   camera0Input.getFocusMode(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering Get Focus Mode Locked SUCCESS: " + data);
+    //       console.info(TAG + "Get Focus Mode Locked data is not null || undefined: ");
+    //       console.info(TAG + "Current FocusMode is: " + data);
+    //       expect(data).assertEqual(0);
+    //       console.info(TAG + "GET_FOCUS_MODE_LOCKED PASSED");
+    //     }
+    //     else {
+    //       expect().assertFail();
+    //       console.info(TAG + "GET_FOCUS_MODE_LOCKED FAILED : " + err.message);
+    //       console.info(TAG + "GET_FOCUS_MODE_LOCKED ends here");
+    //     }
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_FOCAL_LENGTH
@@ -2781,7 +2781,6 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    /* EXPOSUREMODE Interface will be change
     it('IS_EXPOSURE_MODE_LOCKED_SUPPORTED', 0, async function (done) {
       console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED to operate");
       camera0Input.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED, async (err, data) => {
@@ -2804,7 +2803,6 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       await sleep(1000);
       done();
     })
-    */
 
     /**
       * @tc.number    : SET_EXPOSURE_MODE_LOCKED
@@ -2814,7 +2812,6 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    /* EXPOSUREMODE Interface will be change
     it('SET_EXPOSURE_MODE_LOCKED', 0, async function (done) {
       console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED to operate");
       camera0Input.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED, async (err, data) => {
@@ -2833,7 +2830,6 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       await sleep(1000);
       done();
     })
-    */
 
     /**
       * @tc.number    : GET_EXPOSURE_MODE_LOCKED
@@ -2933,25 +2929,25 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_EXPOSURE_MODE_CONTINUOUS_AUTO', 0, async function (done) {
-      console.info(TAG + "Entering GET_EXPOSURE_MODE_CONTINUOUS_AUTO to operate");
-      camera0Input.getExposureMode(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Current ExposureMode is: " + data);
-          expect(true).assertTrue();
-          console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO FAILED : " + err.message);
-          console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO ends here");
-        }
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('GET_EXPOSURE_MODE_CONTINUOUS_AUTO', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_EXPOSURE_MODE_CONTINUOUS_AUTO to operate");
+    //   camera0Input.getExposureMode(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Current ExposureMode is: " + data);
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO PASSED");
+    //     }
+    //     else {
+    //       expect().assertFail();
+    //       console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO FAILED : " + err.message);
+    //       console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO ends here");
+    //     }
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_EXPOSURE_BIASRANGE
@@ -3166,27 +3162,27 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_EXPOSURE_MODE_AUTO', 0, async function (done) {
-      console.info(TAG + "Entering GET_EXPOSURE_MODE_AUTO to operate");
-      camera0Input.getExposureMode(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering Get Exposure Mode SUCCESS");
-          console.info(TAG + "Get Exposure Mode data is not null || undefined: ");
-          console.info(TAG + "Current ExposureMode is: " + data);
-          expect(data).assertEqual(1);
-          console.info(TAG + "GET_EXPOSURE_MODE_AUTO PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "GET_EXPOSURE_MODE_AUTO FAILED : " + err.message);
-          console.info(TAG + "GET_EXPOSURE_MODE_AUTO ends here");
-        }
-        await sleep(1000);
-        done();
-      })
-      await sleep(1000);
-      done();
-    })
+    // it('GET_EXPOSURE_MODE_AUTO', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_EXPOSURE_MODE_AUTO to operate");
+    //   camera0Input.getExposureMode(async (err, data) => {
+    //     if (!err) {
+    //       console.info(TAG + "Entering Get Exposure Mode SUCCESS");
+    //       console.info(TAG + "Get Exposure Mode data is not null || undefined: ");
+    //       console.info(TAG + "Current ExposureMode is: " + data);
+    //       expect(data).assertEqual(1);
+    //       console.info(TAG + "GET_EXPOSURE_MODE_AUTO PASSED");
+    //     }
+    //     else {
+    //       expect().assertFail();
+    //       console.info(TAG + "GET_EXPOSURE_MODE_AUTO FAILED : " + err.message);
+    //       console.info(TAG + "GET_EXPOSURE_MODE_AUTO ends here");
+    //     }
+    //     await sleep(1000);
+    //     done();
+    //   })
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : PHOTOOUTPUT_CAPTURE
