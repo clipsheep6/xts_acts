@@ -93,8 +93,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -241,8 +241,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -371,8 +371,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -498,8 +498,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -572,6 +572,7 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: Renderer drained : SUCCESS');
         }).catch((err) => {
             console.error('AudioFrameworkRenderLog: Renderer drain: ERROR : ' + err.message);
+            resultFlag = false;
         });
 
         console.info('AudioFrameworkRenderLog: AudioRenderer : STATE : ' + audioRen.state);
@@ -580,35 +581,17 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: Renderer stopped : SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: Renderer stop:ERROR : ' + err.message);
+            resultFlag = false;
         });
 
         await audioRen.getAudioTime().then(async function (data) {
             audioTimeStart = data / 1000000000;
             console.info('AudioFrameworkRenderLog: getAudioTime : After Start : Converted: ' + audioTimeStart);
+            resultFlag = false;
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: getAudioTime : ERROR : ' + err.message);
-            resultFlag = false;
-        });
-
-        if (audioTimeStart != 0) {
-            console.info('AudioFrameworkRenderLog: getAudioTime : PASS : ' + audioTimeStart);
-        }
-        else {
-            console.info('AudioFrameworkRenderLog: getAudioTime : FAIL : ' + audioTimeStart);
-            resultFlag = false;
-        }
-
-        console.info('AudioFrameworkRenderLog: AudioRenderer : STATE : ' + audioRen.state);
-
-        await audioRen.release().then(async function () {
-            console.info('AudioFrameworkRenderLog: Renderer release : SUCCESS');
-        }).catch((err) => {
-            console.info('AudioFrameworkRenderLog: Renderer release :ERROR : ' + err.message);
-        });
-
-        console.info('AudioFrameworkRenderLog: AudioRenderer : STATE : ' + audioRen.state);
-
-        console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
+            resultFlag = true;
+        })
         return resultFlag;
     }
 
@@ -621,8 +604,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -715,8 +698,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -810,8 +793,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -905,8 +888,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -997,8 +980,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -1095,8 +1078,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -1536,6 +1519,74 @@ describe('audioRenderer', function () {
 
         return resultFlag;
 
+    }
+	
+	async function playbackPromise_115(AudioRendererOptions, pathName) {
+        var resultFlag = false;
+        var audioRen;
+        let isPass = false;
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+            audioRen = data;
+            console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
+        }).catch((err) => {
+            console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
+            if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
+                isPass = true;
+                return;
+            }
+            resultFlag = false;
+        });
+        console.log("isPass:" + isPass);
+        if (isPass) {
+            resultFlag = true;
+            return resultFlag;
+        }
+		try{
+			audioRen.on('markReach', 'string', (position) => {
+				console.log(`AudioFrameworkTest: markReach Event is called : ${position}`);
+				resultFlag = false;
+		}catch(err){
+			console.log(`AudioFrameworkTest: markReach Event is called : string : err : ${err.message}`);
+			resultFlag = true;
+		}
+        return resultFlag;
+    }
+	
+	async function playbackPromise_116(AudioRendererOptions, pathName) {
+        var resultFlag = false;
+        var audioRen;
+        let isPass = false;
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+            audioRen = data;
+            console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
+        }).catch((err) => {
+            console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
+            if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
+                isPass = true;
+                return;
+            }
+            resultFlag = false;
+        });
+        console.log("isPass:" + isPass);
+        if (isPass) {
+            resultFlag = true;
+            return resultFlag;
+        }
+		try{
+			audioRen.on('periodReach', 'string', (position) => {
+				console.log('AudioFrameworkTest: periodReach Event is called : ' + position);
+				resultFlag = false;
+		}catch(err){
+			console.log(`AudioFrameworkTest: periodReach Event is called : string : err: ${err.message}`);
+			resultFlag = true;
+		}
+        return resultFlag;
     }
 
     /* *
@@ -3353,8 +3404,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3441,8 +3492,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3531,8 +3582,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3621,8 +3672,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3711,8 +3762,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3801,8 +3852,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3891,8 +3942,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -3981,8 +4032,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4071,8 +4122,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4161,8 +4212,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4251,8 +4302,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4341,8 +4392,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4431,8 +4482,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4521,8 +4572,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4611,8 +4662,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4701,8 +4752,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4791,8 +4842,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4881,8 +4932,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -4971,8 +5022,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5061,8 +5112,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5151,8 +5202,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5241,8 +5292,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5331,8 +5382,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5421,8 +5472,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5510,8 +5561,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5582,8 +5633,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5669,8 +5720,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5758,8 +5809,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5848,8 +5899,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -5954,8 +6005,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -6133,8 +6184,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -6467,8 +6518,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -6678,8 +6729,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -6762,8 +6813,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -6841,8 +6892,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -6936,8 +6987,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -7033,8 +7084,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -7130,8 +7181,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -7206,6 +7257,7 @@ describe('audioRenderer', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_RENDERER_Play_audio_108', 0, async function (done) {
+
         expect(audio.AudioState.STATE_INVALID).assertEqual(-1);
         await sleep(50);
         done();
@@ -7220,6 +7272,7 @@ describe('audioRenderer', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_RENDERER_Play_audio_109', 0, async function (done) {
+
         expect(audio.AudioState.STATE_NEW).assertEqual(0);
         await sleep(50);
         done();
@@ -7234,6 +7287,7 @@ describe('audioRenderer', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_RENDERER_Play_audio_110', 0, async function (done) {
+
         expect(audio.AudioSampleFormat.SAMPLE_FORMAT_INVALID).assertEqual(-1);
         await sleep(50);
         done();
@@ -7248,6 +7302,7 @@ describe('audioRenderer', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_RENDERER_Play_audio_111', 0, async function (done) {
+
         expect(audio.SourceType.SOURCE_TYPE_INVALID).assertEqual(-1);
         await sleep(50);
         done();
@@ -7288,8 +7343,8 @@ describe('audioRenderer', function () {
             console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
-            LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
-            LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+            let LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+            let LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
             let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
             if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
                 isPass = true;
@@ -7367,11 +7422,89 @@ describe('audioRenderer', function () {
                 * @tc.level     : Level 0
             */
     it('SUB_AUDIO_RENDERER_Play_audio_114', 0, async function (done) {
+
         expect(audio.AudioEncodingType.ENCODING_TYPE_INVALID).assertEqual(-1);
         await sleep(50);
         done();
     })
+	
+	/* *
+    * @tc.number    : SUB_AUDIO_RENDERER_Play_audio_115
+    * @tc.name      : AudioRenderer - markReach - String
+    * @tc.desc      : AudioRenderer - markReach - String
+    * @tc.size      : MEDIUM
+    * @tc.type      : Function
+    * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_RENDERER_Play_audio_115', 0, async function (done) {
+        var AudioStreamInfo = {
+            samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+            channels: audio.AudioChannel.CHANNEL_2,
+            sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+            encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+        }
 
+        var AudioRendererInfo = {
+            content: audio.ContentType.CONTENT_TYPE_RINGTONE,
+            usage: audio.StreamUsage.STREAM_USAGE_NOTIFICATION_RINGTONE,
+            rendererFlags: 0
+        }
+
+        var AudioRendererOptions = {
+            streamInfo: AudioStreamInfo,
+            rendererInfo: AudioRendererInfo
+        }
+
+        //var fpath = mediaDir+'/StarWars10s-2C-48000-4SW.wav';
+        readPath = 'StarWars10s-2C-48000-4SW.wav'
+        await getFdRead(readPath, done);
+        var resultFlag = await playbackPromise_115(AudioRendererOptions, filePath);
+        await sleep(100);
+        console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
+        expect(resultFlag).assertTrue();
+        await closeFileDescriptor(readPath);
+        done();  
+    })
+
+	/* *
+    * @tc.number    : SUB_AUDIO_RENDERER_Play_audio_116
+    * @tc.name      : AudioRenderer - periodReach - String
+    * @tc.desc      : AudioRenderer - periodReach - String
+    * @tc.size      : MEDIUM
+    * @tc.type      : Function
+    * @tc.level     : Level 0
+    */
+    it('SUB_AUDIO_RENDERER_Play_audio_116', 0, async function (done) {
+        var AudioStreamInfo = {
+            samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+            channels: audio.AudioChannel.CHANNEL_2,
+            sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+            encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+        }
+
+        var AudioRendererInfo = {
+            content: audio.ContentType.CONTENT_TYPE_RINGTONE,
+            usage: audio.StreamUsage.STREAM_USAGE_NOTIFICATION_RINGTONE,
+            rendererFlags: 0
+        }
+
+        var AudioRendererOptions = {
+            streamInfo: AudioStreamInfo,
+            rendererInfo: AudioRendererInfo
+        }
+
+        //var fpath = mediaDir+'/StarWars10s-2C-48000-4SW.wav';
+        readPath = 'StarWars10s-2C-48000-4SW.wav';
+        await getFdRead(readPath, done);
+        var resultFlag = await playbackPromise_116(AudioRendererOptions, filePath);
+        await sleep(100)
+        console.info('AudioFrameworkRenderLog: resultFlag : ' + resultFlag);
+        expect(resultFlag).assertTrue();
+        await closeFileDescriptor(readPath);
+        done();
+
+    })
+	
     /*
     * @tc.name:SUB_AUDIO_SetInterruptMode_001
     * @tc.desc:SetInterruptMode mode 0 callback,is public share mode
