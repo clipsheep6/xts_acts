@@ -2553,21 +2553,21 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('IS_EXPOSURE_MODE_LOCKED_SUPPORTED', 0, async function (done) {
-      console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED to operate");
-      await camera0InputPromise.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
-        .then(function (data) {
-          console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED PASSED: " + data);
-          expect(data).assertEqual(false);
-        })
-        .catch((err) => {
-          console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED FAILED : " + err.message);
-          expect().assertFail();
-        });
-      console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED ends here");
-      await sleep(1000);
-      done();
-    })
+    // it('IS_EXPOSURE_MODE_LOCKED_SUPPORTED', 0, async function (done) {
+    //   console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED to operate");
+    //   await camera0InputPromise.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED PASSED: " + data);
+    //       expect(data).assertEqual(false);
+    //     })
+    //     .catch((err) => {
+    //       console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED FAILED : " + err.message);
+    //       expect().assertFail();
+    //     });
+    //   console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED ends here");
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_EXPOSURE_MODE_LOCKED
@@ -2577,22 +2577,22 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_EXPOSURE_MODE_LOCKED', 0, async function (done) {
-      console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked to operate");
-      await camera0InputPromise.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
-        .then(function () {
-          console.info(TAG + "Entering set exposure mode auto SUCCESS, current ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
-          console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked FAILED")
-          expect().assertFail()
-        })
-        .catch((err) => {
-          console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED PASSED : " + err.message);
-          expect(true).assertTrue();
-        });
-      console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED ends here");
-      await sleep(1000);
-      done();
-    })
+    // it('SET_EXPOSURE_MODE_LOCKED', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked to operate");
+    //   await camera0InputPromise.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
+    //     .then(function () {
+    //       console.info(TAG + "Entering set exposure mode auto SUCCESS, current ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
+    //       console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked FAILED")
+    //       expect().assertFail()
+    //     })
+    //     .catch((err) => {
+    //       console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED PASSED : " + err.message);
+    //       expect(true).assertTrue();
+    //     });
+    //   console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED ends here");
+    //   await sleep(1000);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_EXPOSURE_MODE_LOCKED
