@@ -5639,7 +5639,6 @@ describe('audioCapturer', function () {
                * @tc.level     : Level 0*/
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_STRING_REACH_0100', 0, async function (done) {
-        var stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5670,13 +5669,12 @@ describe('audioCapturer', function () {
         try {
             audioCapCallBack.on('markReach', 'string', (position) => {
                 console.info(`AudioRenderLog: mark reached: ${position}`);
-                stateFlag = false;
+                expect(false).assertTrue();
 
             }catch (err) {
                 console.info(`AudioRenderLog: mark reached: string : err: ${err.message}`);
-                stateFlag = true;
+                expect(true).assertTrue();
             }
-            await sleep(1000);
         })
 
     /*     *
@@ -6153,7 +6151,6 @@ describe('audioCapturer', function () {
                * @tc.level     : Level 0*/
 
     it('SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_STRING_0100', 0, async function (done) {
-        var stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         var AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -6184,12 +6181,11 @@ describe('audioCapturer', function () {
         try {
             audioCapCallBack.on('periodReach', 'string', (position) => {
                 console.info(`AudioRenderLog: periodReach: ${position}`);
-                stateFlag = false;
+                expect(false).assertTrue();
             }catch (err) {
                 console.info(`AudioRenderLog: periodReach: string: err: ${err.message}`);
-                stateFlag = true;
+                expect(true).assertTrue();
             }
-            await sleep(1000);
         })
 
     /*     *
