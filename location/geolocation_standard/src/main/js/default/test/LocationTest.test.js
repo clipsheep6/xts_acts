@@ -168,41 +168,6 @@ describe('geolocationTest_geo3', function () {
     })
 
     /**
-     * @tc.number SUB_HSS_LocationSystem_SingleLoc_0001
-     * @tc.name Test getCurrentLocation
-     * @tc.desc Initiate a single location request in a specified scenario and set the navigation scenario..
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_HSS_LocationSystem_SingleLoc_0001', 0, async function (done) {
-        let currentLocationRequest = { "priority": 0x200, "scenario": 0x301, "timeoutMs": 1000, "maxAccuracy": 0 };
-        function getCurrentLocationCallback() {
-            return new Promise((resolve, reject) => {
-                geolocation.getCurrentLocation(currentLocationRequest, (err, result) => {
-                    if (err) {
-                        console.info("getCurrentLocation callback err:  " + JSON.stringify(err));
-                        expect(true).assertEqual(err != null);
-                        console.info('getCurrentLocationCallback reject after')
-                    } else {
-                        console.info("getCurrentLocation callback, result:  " + JSON.stringify(result));
-                        expect(true).assertEqual(result != null);
-                        resolve();
-                    }
-                });
-            })
-        }
-        console.info('getCurrentLocationCallback  start');
-        await getCurrentLocationCallback().then(() => {
-            console.info('getCurrentLocationCallback  resolve');
-        }, () => {
-            console.info('getCurrentLocationCallback  reject');
-        });
-        console.info('getCurrentLocationCallback  end');
-        done();
-    })
-
-    /**
      * @tc.number SUB_HSS_LocationSystem_SingleLoc_0002
      * @tc.name Test getCurrentLocation
      * @tc.desc Initiate a single location request in a specified scenario and set the navigation scenario..
@@ -219,41 +184,6 @@ describe('geolocationTest_geo3', function () {
             expect(true).assertEqual(JSON.stringify(error) != null);
             done();
         })
-        done();
-    })
-
-    /**
-     * @tc.number SUB_HSS_LocationSystem_SingleLoc_0003
-     * @tc.name Test getCurrentLocation
-     * @tc.desc Initiate a single location request in a specified scenario and set the track tracing scenario.
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_HSS_LocationSystem_SingleLoc_0003', 0, async function (done) {
-        let currentLocationRequest = { "priority": 0x200, "scenario": 0x302, "timeoutMs": 1000, "maxAccuracy": 10 };
-        function getCurrentLocationCallback() {
-            return new Promise((resolve, reject) => {
-                geolocation.getCurrentLocation(currentLocationRequest, (err, result) => {
-                    if (err) {
-                        console.info("getCurrentLocation callback_0003 err:  " + JSON.stringify(err));
-                        expect(true).assertEqual(err != null);
-                        console.info('getCurrentLocationCallback reject after')
-                    } else {
-                        console.info("getCurrentLocation callback_0003, result:  " + JSON.stringify(result));
-                        expect(true).assertEqual(result != null);
-                        resolve();
-                    }
-                });
-            })
-        }
-        console.info('getCurrentLocationCallback  start');
-        await getCurrentLocationCallback().then(() => {
-            console.info('getCurrentLocationCallback  resolve');
-        }, () => {
-            console.info('getCurrentLocationCallback  reject');
-        });
-        console.info('getCurrentLocationCallback  end');
         done();
     })
 
