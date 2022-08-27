@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-require('./BluetoothBle.test.js') 
 require('./BleAdvertiser.test.js')
 require('./BleGattManager.test.js')
 require('./BleService.test')
