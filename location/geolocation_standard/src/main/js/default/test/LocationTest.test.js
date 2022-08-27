@@ -859,38 +859,6 @@ describe('geolocationTest_geo3', function () {
     })
 
     /**
-     * @tc.number SUB_HSS_LocationSystem_Gnss_0001
-     * @tc.name Test gnssStatusChange
-     * @tc.desc Monitoring Satellite Information Reporting
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_HSS_LocationSystem_Gnss_0001', 0, async function (done) {
-        await changedLocationMode();
-        var gnssStatusCb = (satelliteStatusInfo) => {
-            console.info('gnssStatusChange: ' + satelliteStatusInfo);
-            expect(true).assertEqual(satelliteStatusInfo != null)
-            console.info('[lbs_js] SatelliteStatusInfo satellitesNumber: ' + data[0].satellitesNumber +
-            'satelliteIds' + data[0].satelliteIds +'carrierToNoiseDensitys'+ data[0].carrierToNoiseDensitys
-            +'altitudes' + data[0].altitudes+' azimuths: ' + data[0].azimuths +
-            'carrierFrequencies: ' + data[0].carrierFrequencies);
-        }
-        geolocation.on('gnssStatusChange', gnssStatusCb);
-        enableLocationSwitch();
-        let requestInfo = {"priority":0x200, "scenario":0x301, "timeInterval":0,
-            "distanceInterval": 0, "maxAccuracy": 0};
-        var locationChange = (location) => {
-            console.log('locationChanger: data: ' + JSON.stringify(location));
-            expect(true).assertEqual(locationChange !=null);
-        };
-        geolocation.on('locationChange', requestInfo, locationChange);
-        geolocation.off('gnssStatusChange', gnssStatusCb);
-        geolocation.off('locationChange', locationChange);
-        done();
-    })
-
-    /**
      * @tc.number SUB_HSS_LocationSystem_Gnss_0002
      * @tc.name Test nmeaMessageChange
      * @tc.desc Monitoring NMEA Information Reporting
