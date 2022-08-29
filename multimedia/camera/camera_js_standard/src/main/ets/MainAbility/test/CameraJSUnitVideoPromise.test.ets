@@ -540,23 +540,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('CREATE_VIDEO_OUTPUT_PROMISE', 0, async function (done) {
-      console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE to operate')
-      await getvideosurface()
-      await sleep(2)
-      videoOutputPromise = await cameraObj.createVideoOutput(videoId)
-      console.info(TAG + 'Entering Create videoOutputPromise: ' + videoOutputPromise)
-      if (videoOutputPromise != null && videoOutputPromise != undefined) {
-        expect(true).assertTrue()
-        console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE PASSED')
-      } else {
-        expect().assertFail();
-        console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE FAILED')
-      }
-      console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE ends here');
-      await sleep(1);
-      done();
-    })
+    // it('CREATE_VIDEO_OUTPUT_PROMISE', 0, async function (done) {
+    //   console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE to operate')
+    //   await getvideosurface()
+    //   await sleep(2)
+    //   videoOutputPromise = await cameraObj.createVideoOutput(videoId)
+    //   console.info(TAG + 'Entering Create videoOutputPromise: ' + videoOutputPromise)
+    //   if (videoOutputPromise != null && videoOutputPromise != undefined) {
+    //     expect(true).assertTrue()
+    //     console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE PASSED')
+    //   } else {
+    //     expect().assertFail();
+    //     console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE FAILED')
+    //   }
+    //   console.info(TAG + 'Entering CREATE_VIDEO_OUTPUT_PROMISE ends here');
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : VIDEO_OUTPUT_CALLBACK_ON_ERROR
@@ -566,30 +566,30 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('VIDEO_OUTPUT_CALLBACK_ON_ERROR', 0, async function (done) {
-      if (videoOutputPromise == null || videoOutputPromise == undefined) {
-        console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_ERROR videoOutputPromise == null || undefined')
-      } else {
-        console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_ERROR to operate')
-        await sleep(1)
-        videoOutputPromise.on('error', async (err, data) => {
-          if (!err) {
-            console.info(TAG + 'VideoOutput Errorcallback is success')
-            if (data != null || data != undefined) {
-              console.info(TAG + "VIDEO_OUTPUT_CALLBACK_ON_ERROR with ErrorCode: " + data.code);
-              expect(true).assertTrue()
-            }
-          } else {
-            expect().assertFail()
-            console.info(TAG + "VIDEO_OUTPUT_CALLBACK_ON_ERROR FAILED: " + err.message);
-          }
-          await sleep(1)
-          done()
-        })
-        await sleep(1)
-        done();
-      }
-    })
+    // it('VIDEO_OUTPUT_CALLBACK_ON_ERROR', 0, async function (done) {
+    //   if (videoOutputPromise == null || videoOutputPromise == undefined) {
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_ERROR videoOutputPromise == null || undefined')
+    //   } else {
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_ERROR to operate')
+    //     await sleep(1)
+    //     videoOutputPromise.on('error', async (err, data) => {
+    //       if (!err) {
+    //         console.info(TAG + 'VideoOutput Errorcallback is success')
+    //         if (data != null || data != undefined) {
+    //           console.info(TAG + "VIDEO_OUTPUT_CALLBACK_ON_ERROR with ErrorCode: " + data.code);
+    //           expect(true).assertTrue()
+    //         }
+    //       } else {
+    //         expect().assertFail()
+    //         console.info(TAG + "VIDEO_OUTPUT_CALLBACK_ON_ERROR FAILED: " + err.message);
+    //       }
+    //       await sleep(1)
+    //       done()
+    //     })
+    //     await sleep(1)
+    //     done();
+    //   }
+    // })
 
     /*PhotoOutput APIs test script*/
     /**
@@ -809,28 +809,28 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('ADD_OUTPUT_VIDEO_SUCCESS', 0, async function (done) {
-      if (captureSessionPromise == null || captureSessionPromise == undefined) {
-        console.info(TAG + "Entering Add video output captureSession == null || undefined");
-      } else {
-        console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS to operate");
-        const promise = await captureSessionPromise.addOutput(videoOutputPromise);
-        console.info(TAG + "Entering Add video output  success");
-        if (promise == undefined) {
-          expect(true).assertTrue();
-          console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS FAILED: ");
-        }
-        console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS ends here");
-        await sleep(1);
-        done();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('ADD_OUTPUT_VIDEO_SUCCESS', 0, async function (done) {
+    //   if (captureSessionPromise == null || captureSessionPromise == undefined) {
+    //     console.info(TAG + "Entering Add video output captureSession == null || undefined");
+    //   } else {
+    //     console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS to operate");
+    //     const promise = await captureSessionPromise.addOutput(videoOutputPromise);
+    //     console.info(TAG + "Entering Add video output  success");
+    //     if (promise == undefined) {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS PASSED");
+    //     }
+    //     else {
+    //       expect().assertFail();
+    //       console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS FAILED: ");
+    //     }
+    //     console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS ends here");
+    //     await sleep(1);
+    //     done();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : ADD_OUTPUT_PHOTO
@@ -964,28 +964,28 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('REMOVE_VIDEO_OUTPUT_SUCCESS', 0, async function (done) {
-      if (captureSessionPromise == null || captureSessionPromise == undefined) {
-        console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS captureSession == null || undefined");
-      } else {
-        console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS to operate");
-        const Promise = await captureSessionPromise.removeOutput(videoOutputPromise);
-        console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS success " + Promise);
-        if (Promise == undefined) {
-          expect(true).assertTrue();
-          console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS FAILED: ");
-        }
-        console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS ends here");
-        await sleep(1);
-        done();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('REMOVE_VIDEO_OUTPUT_SUCCESS', 0, async function (done) {
+    //   if (captureSessionPromise == null || captureSessionPromise == undefined) {
+    //     console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS captureSession == null || undefined");
+    //   } else {
+    //     console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS to operate");
+    //     const Promise = await captureSessionPromise.removeOutput(videoOutputPromise);
+    //     console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS success " + Promise);
+    //     if (Promise == undefined) {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS PASSED");
+    //     }
+    //     else {
+    //       expect().assertFail();
+    //       console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS FAILED: ");
+    //     }
+    //     console.info(TAG + "Entering REMOVE_VIDEO_OUTPUT_SUCCESS ends here");
+    //     await sleep(1);
+    //     done();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : ADD_INPUT_SUCCESS_PROMISE
@@ -1088,28 +1088,28 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('ADD_OUTPUT_VIDEO_SUCCESS', 0, async function (done) {
-      if (captureSessionPromise == null || captureSessionPromise == undefined) {
-        console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS captureSession == null || undefined");
-      } else {
-        console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS to operate");
-        const promise = await captureSessionPromise.addOutput(videoOutputPromise);
-        console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS  success");
-        if (promise == undefined) {
-          expect(true).assertTrue();
-          console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS FAILED: ");
-        }
-        console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS ends here");
-        await sleep(1);
-        done();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('ADD_OUTPUT_VIDEO_SUCCESS', 0, async function (done) {
+    //   if (captureSessionPromise == null || captureSessionPromise == undefined) {
+    //     console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS captureSession == null || undefined");
+    //   } else {
+    //     console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS to operate");
+    //     const promise = await captureSessionPromise.addOutput(videoOutputPromise);
+    //     console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS  success");
+    //     if (promise == undefined) {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS PASSED");
+    //     }
+    //     else {
+    //       expect().assertFail();
+    //       console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS FAILED: ");
+    //     }
+    //     console.info(TAG + "Entering ADD_OUTPUT_VIDEO_SUCCESS ends here");
+    //     await sleep(1);
+    //     done();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_FRAME_RATE_RANGE
@@ -1119,22 +1119,22 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_FRAME_RATE_RANGE', 0, async function (done) {
-      console.info(TAG + "Entering GET_FRAME_RATE_RANGE to operate");
-      await videoOutputPromise.getFrameRateRange()
-        .then(function (data) {
-          console.info(TAG + "Entering get frame rate range SUCCESS ");
-          console.info(TAG + "Entering GET_FRAME_RATE_RANGE PASSED : " + JSON.stringify(data))
-          expect(true).assertTrue();
-        })
-        .catch((err) => {
-          console.info(TAG + "Entering GET_FRAME_RATE_RANGE FAILED : " + err.message);
-          expect().assertFail();
-        });
-      console.info(TAG + "Entering GET_FRAME_RATE_RANGE ends here");
-      await sleep(1);
-      done();
-    })
+    // it('GET_FRAME_RATE_RANGE', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_FRAME_RATE_RANGE to operate");
+    //   await videoOutputPromise.getFrameRateRange()
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering get frame rate range SUCCESS ");
+    //       console.info(TAG + "Entering GET_FRAME_RATE_RANGE PASSED : " + JSON.stringify(data))
+    //       expect(true).assertTrue();
+    //     })
+    //     .catch((err) => {
+    //       console.info(TAG + "Entering GET_FRAME_RATE_RANGE FAILED : " + err.message);
+    //       expect().assertFail();
+    //     });
+    //   console.info(TAG + "Entering GET_FRAME_RATE_RANGE ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FRAME_RATE_RANGE_Grp0
@@ -1144,23 +1144,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FRAME_RATE_RANGE_Grp0', 0, async function (done) {
-      console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Grp0 to operate");
-      await videoOutputPromise.setFrameRateRange(minFrameRate_Grp0,maxFrameRate_Grp0)
-        .then(function (data) {
-          console.info(TAG + "Entering setFrameRateRange SUCCESS");
-          console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
-          expect(true).assertTrue();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Grp0 PASSED");
-        })
-        .catch((err) => {
-          expect().assertFail();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Grp0 FAILED: " + err.message);
-        });
-      console.info(TAG + "SET_FRAME_RATE_RANGE_Grp0 ends here");
-      await sleep(1);
-      done();
-    })
+    // it('SET_FRAME_RATE_RANGE_Grp0', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Grp0 to operate");
+    //   await videoOutputPromise.setFrameRateRange(minFrameRate_Grp0,maxFrameRate_Grp0)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering setFrameRateRange SUCCESS");
+    //       console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Grp0 PASSED");
+    //     })
+    //     .catch((err) => {
+    //       expect().assertFail();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Grp0 FAILED: " + err.message);
+    //     });
+    //   console.info(TAG + "SET_FRAME_RATE_RANGE_Grp0 ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FRAME_RATE_RANGE_MIX
@@ -1170,23 +1170,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FRAME_RATE_RANGE_MIX', 0, async function (done) {
-      console.info(TAG + "Entering SET_FRAME_RATE_RANGE_MIX to operate");
-      await videoOutputPromise.setFrameRateRange(minFrameRate_Mix,maxFrameRate_Mix)
-        .then(function (data) {
-          console.info(TAG + "Entering setFrameRateRange");
-          console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
-         expect().assertFail();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_MIX FAILED");
-        })
-        .catch((err) => {
-          expect(true).assertTrue();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_MIX PASSED: " + err.message);
-        });
-      console.info(TAG + "SET_FRAME_RATE_RANGE_MIX ends here");
-      await sleep(1);
-      done();
-    })
+    // it('SET_FRAME_RATE_RANGE_MIX', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FRAME_RATE_RANGE_MIX to operate");
+    //   await videoOutputPromise.setFrameRateRange(minFrameRate_Mix,maxFrameRate_Mix)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering setFrameRateRange");
+    //       console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
+    //      expect().assertFail();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_MIX FAILED");
+    //     })
+    //     .catch((err) => {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_MIX PASSED: " + err.message);
+    //     });
+    //   console.info(TAG + "SET_FRAME_RATE_RANGE_MIX ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FRAME_RATE_RANGE_Err1
@@ -1196,23 +1196,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FRAME_RATE_RANGE_Err1', 0, async function (done) {
-      console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Err1 to operate");
-      await videoOutputPromise.setFrameRateRange(minFrameRate_Err1,maxFrameRate_Err1)
-        .then(function (data) {
-          console.info(TAG + "Entering setFrameRateRange");
-          console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
-          expect().assertFail();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Err1 FAILED");
-        })
-        .catch((err) => {
-          expect(true).assertTrue();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Err1 PASSED: " + err.message);
-        });
-      console.info(TAG + "SET_FRAME_RATE_RANGE_Err1 ends here");
-      await sleep(1);
-      done();
-    })
+    // it('SET_FRAME_RATE_RANGE_Err1', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Err1 to operate");
+    //   await videoOutputPromise.setFrameRateRange(minFrameRate_Err1,maxFrameRate_Err1)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering setFrameRateRange");
+    //       console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
+    //       expect().assertFail();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Err1 FAILED");
+    //     })
+    //     .catch((err) => {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Err1 PASSED: " + err.message);
+    //     });
+    //   console.info(TAG + "SET_FRAME_RATE_RANGE_Err1 ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FRAME_RATE_RANGE_Err2
@@ -1222,23 +1222,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FRAME_RATE_RANGE_Err2', 0, async function (done) {
-      console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Err2 to operate");
-      await videoOutputPromise.setFrameRateRange(minFrameRate_Err2,maxFrameRate_Err2)
-        .then(function (data) {
-          console.info(TAG + "Entering setFrameRateRange SUCCESS");
-          console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
-          expect().assertFail();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Err2 FAILED");
-        })
-        .catch((err) => {
-          expect(true).assertTrue();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Err2 PASSED: " + err.message);
-        });
-      console.info(TAG + "SET_FRAME_RATE_RANGE_Err2 ends here");
-      await sleep(1);
-      done();
-    })
+    // it('SET_FRAME_RATE_RANGE_Err2', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Err2 to operate");
+    //   await videoOutputPromise.setFrameRateRange(minFrameRate_Err2,maxFrameRate_Err2)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering setFrameRateRange SUCCESS");
+    //       console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
+    //       expect().assertFail();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Err2 FAILED");
+    //     })
+    //     .catch((err) => {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Err2 PASSED: " + err.message);
+    //     });
+    //   console.info(TAG + "SET_FRAME_RATE_RANGE_Err2 ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FRAME_RATE_RANGE_Err3
@@ -1248,23 +1248,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FRAME_RATE_RANGE_Err3', 0, async function (done) {
-      console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Err3 to operate");
-      await videoOutputPromise.setFrameRateRange(minFrameRate_Err3,maxFrameRate_Err3)
-        .then(function (data) {
-          console.info(TAG + "Entering setFrameRateRange SUCCESS");
-          console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
-          expect().assertFail();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Err3 FAILED");
-        })
-        .catch((err) => {
-          expect(true).assertTrue();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Err3 PASSED: " + err.message);
-        });
-      console.info(TAG + "SET_FRAME_RATE_RANGE_Err3 ends here");
-      await sleep(1);
-      done();
-    })
+    // it('SET_FRAME_RATE_RANGE_Err3', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Err3 to operate");
+    //   await videoOutputPromise.setFrameRateRange(minFrameRate_Err3,maxFrameRate_Err3)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering setFrameRateRange SUCCESS");
+    //       console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
+    //       expect().assertFail();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Err3 FAILED");
+    //     })
+    //     .catch((err) => {
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Err3 PASSED: " + err.message);
+    //     });
+    //   console.info(TAG + "SET_FRAME_RATE_RANGE_Err3 ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FRAME_RATE_RANGE_Grp20
@@ -1274,23 +1274,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FRAME_RATE_RANGE_Grp20', 0, async function (done) {
-      console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Grp20 to operate");
-      await videoOutputPromise.setFrameRateRange(minFrameRate_Grp20,maxFrameRate_Grp20)
-        .then(function (data) {
-          console.info(TAG + "Entering setFrameRateRange SUCCESS");
-          console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
-          expect(true).assertTrue();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Grp20 PASSED");
-        })
-        .catch((err) => {
-          expect().assertFail();
-          console.info(TAG + "SET_FRAME_RATE_RANGE_Grp20 FAILED: " + err.message);
-        });
-      console.info(TAG + "SET_FRAME_RATE_RANGE_Grp20 ends here");
-      await sleep(1);
-      done();
-    })
+    // it('SET_FRAME_RATE_RANGE_Grp20', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_FRAME_RATE_RANGE_Grp20 to operate");
+    //   await videoOutputPromise.setFrameRateRange(minFrameRate_Grp20,maxFrameRate_Grp20)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering setFrameRateRange SUCCESS");
+    //       console.info(TAG + "Current FrameRateRange is: " + JSON.stringify(data));
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Grp20 PASSED");
+    //     })
+    //     .catch((err) => {
+    //       expect().assertFail();
+    //       console.info(TAG + "SET_FRAME_RATE_RANGE_Grp20 FAILED: " + err.message);
+    //     });
+    //   console.info(TAG + "SET_FRAME_RATE_RANGE_Grp20 ends here");
+    //   await sleep(1);
+    //   done();
+    // })
  
     /**
       * @tc.number    : ISVIDEOSTABILIZATIONMODESUPPORTEDOFF
@@ -1436,23 +1436,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_VIDEOSTABILIZATIONMODELOW', 0, async function (done) {
-      console.info(TAG + "Entering GET_VIDEOSTABILIZATIONMODELOW to operate");
-      await captureSessionPromise.getActiveVideoStabilizationMode()
-      .then(function (data){
-      console.info(TAG + "Entering getVideoStabilizationModeLow SUCCESS");
-        console.info(TAG + "Current VideoStabilizationMode is: " + data);
-        expect(data).assertEqual(1);
-        console.info(TAG + "GET_VIDEOSTABILIZATIONMODELOW PASSED");
-      })
-        .catch((err) => {
-        expect().assertFail();
-        console.info(TAG + "GET_VIDEOSTABILIZATIONMODELOW FAILED : " + err.message);
-        });
-        console.info(TAG + "GET_VIDEOSTABILIZATIONMODELOW ends here");
-      await sleep(1);
-      done();
-    })
+    // it('GET_VIDEOSTABILIZATIONMODELOW', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_VIDEOSTABILIZATIONMODELOW to operate");
+    //   await captureSessionPromise.getActiveVideoStabilizationMode()
+    //   .then(function (data){
+    //   console.info(TAG + "Entering getVideoStabilizationModeLow SUCCESS");
+    //     console.info(TAG + "Current VideoStabilizationMode is: " + data);
+    //     expect(data).assertEqual(1);
+    //     console.info(TAG + "GET_VIDEOSTABILIZATIONMODELOW PASSED");
+    //   })
+    //     .catch((err) => {
+    //     expect().assertFail();
+    //     console.info(TAG + "GET_VIDEOSTABILIZATIONMODELOW FAILED : " + err.message);
+    //     });
+    //     console.info(TAG + "GET_VIDEOSTABILIZATIONMODELOW ends here");
+    //   await sleep(1);
+    //   done();
+    // })
  
     /**
       * @tc.number    : ISVIDEOSTABILIZATIONMODESUPPORTED_MIDDLE
@@ -1799,29 +1799,29 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('VIDEO_OUTPUT_CALLBACK_ON_FRAME_START', 0, async function (done) {
-      if (videoOutputPromise == null || videoOutputPromise == undefined) {
-        console.info(TAG + 'Entering Video frameStart Callback videoOutputPromise == null || undefined')
-      } else {
-        console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_START to operate')
-        await sleep(1)
-        videoOutputPromise.on('frameStart', async (err, data) => {
-          if (!err) {
-            console.info(TAG + "Video frameStart Callback is success");
-            if (data != null || data != undefined) {
-              expect(true).assertTrue();
-            }
-          } else {
-            expect().assertFail()
-            console.info(TAG + "VIDEO_OUTPUT_CALLBACK_ON_FRAME_START is FAILED : " + err.message);
-          }
-          await sleep(1);
-          done();
-        })
-        await sleep(1);
-        done();
-      }
-    })
+    // it('VIDEO_OUTPUT_CALLBACK_ON_FRAME_START', 0, async function (done) {
+    //   if (videoOutputPromise == null || videoOutputPromise == undefined) {
+    //     console.info(TAG + 'Entering Video frameStart Callback videoOutputPromise == null || undefined')
+    //   } else {
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_START to operate')
+    //     await sleep(1)
+    //     videoOutputPromise.on('frameStart', async (err, data) => {
+    //       if (!err) {
+    //         console.info(TAG + "Video frameStart Callback is success");
+    //         if (data != null || data != undefined) {
+    //           expect(true).assertTrue();
+    //         }
+    //       } else {
+    //         expect().assertFail()
+    //         console.info(TAG + "VIDEO_OUTPUT_CALLBACK_ON_FRAME_START is FAILED : " + err.message);
+    //       }
+    //       await sleep(1);
+    //       done();
+    //     })
+    //     await sleep(1);
+    //     done();
+    //   }
+    // })
 
     /**
       * @tc.number    : VIDEO_OUTPUT_CALLBACK_ON_FRAME_END
@@ -1831,29 +1831,29 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('VIDEO_OUTPUT_CALLBACK_ON_FRAME_END', 0, async function (done) {
-      if (videoOutputPromise == null || videoOutputPromise == undefined) {
-        console.info(TAG + 'Entering Video frameEnd callback videoOutputPromise == null || undefined')
-      } else {
-        console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_END to operate')
-        await sleep(1)
-        videoOutputPromise.on('frameEnd', async (err, data) => {
-          if (!err) {
-            console.info(TAG + 'VIDEO_OUTPUT_CALLBACK_ON_FRAME_END is success')
-            if (data != null || data != undefined) {
-              expect(true).assertTrue()
-            }
-          } else {
-            expect().assertFail()
-            console.info(TAG + 'VIDEO_OUTPUT_CALLBACK_ON_FRAME_END FAILED' + err.message)
-          }
-          await sleep(1);
-          done();
-        })
-        await sleep(1);
-        done();
-      }
-    })
+    // it('VIDEO_OUTPUT_CALLBACK_ON_FRAME_END', 0, async function (done) {
+    //   if (videoOutputPromise == null || videoOutputPromise == undefined) {
+    //     console.info(TAG + 'Entering Video frameEnd callback videoOutputPromise == null || undefined')
+    //   } else {
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_END to operate')
+    //     await sleep(1)
+    //     videoOutputPromise.on('frameEnd', async (err, data) => {
+    //       if (!err) {
+    //         console.info(TAG + 'VIDEO_OUTPUT_CALLBACK_ON_FRAME_END is success')
+    //         if (data != null || data != undefined) {
+    //           expect(true).assertTrue()
+    //         }
+    //       } else {
+    //         expect().assertFail()
+    //         console.info(TAG + 'VIDEO_OUTPUT_CALLBACK_ON_FRAME_END FAILED' + err.message)
+    //       }
+    //       await sleep(1);
+    //       done();
+    //     })
+    //     await sleep(1);
+    //     done();
+    //   }
+    // })
 
     //Capture callback
     /**
@@ -2392,23 +2392,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_ZOOM_RATIO_PROMISE', 0, async function (done) {
-      console.info("--------------GET_ZOOM_RATIO_PROMISE--------------");
-      var getZoomRatioPromise = await camera0InputPromise.getZoomRatioRange();
-      console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE getZoomRatioPromise: " + JSON.stringify(getZoomRatioPromise));
-      if (getZoomRatioPromise != null && getZoomRatioPromise != undefined) {
-        console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE setZoomRatioPromise is not null || undefined");
-        expect(true).assertTrue();
-        console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE success: " + JSON.stringify(getZoomRatioPromise));
-        console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE PASSED");
-      } else {
-        console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE FAILED");
-        expect().assertFail();
-      }
-      console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE ends here");
-      await sleep(1);
-      done();
-    })
+    // it('GET_ZOOM_RATIO_PROMISE', 0, async function (done) {
+    //   console.info("--------------GET_ZOOM_RATIO_PROMISE--------------");
+    //   var getZoomRatioPromise = await camera0InputPromise.getZoomRatioRange();
+    //   console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE getZoomRatioPromise: " + JSON.stringify(getZoomRatioPromise));
+    //   if (getZoomRatioPromise != null && getZoomRatioPromise != undefined) {
+    //     console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE setZoomRatioPromise is not null || undefined");
+    //     expect(true).assertTrue();
+    //     console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE success: " + JSON.stringify(getZoomRatioPromise));
+    //     console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE PASSED");
+    //   } else {
+    //     console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   console.info(TAG + "Entering GET_ZOOM_RATIO_PROMISE ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_1_PROMISE
@@ -2418,23 +2418,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_1_PROMISE', 0, async function (done) {
-      var setpromise = await camera0InputPromise.setZoomRatio(1);
-      console.info(TAG + "setZoomRatio success: 1");
-      console.info(TAG + "getZoomRatio called")
-      var getpromise1 = await camera0InputPromise.getZoomRatio();
-      console.info(TAG + "getZoomRatio success: " + getpromise1);
-      if (getpromise1 != null && getpromise1 != undefined) {
-        expect(getpromise1).assertEqual(1);
-        console.info(TAG + "SET_GET_ZOOM_1_PROMISE PASSED ");
-      }
-      else {
-        console.info(TAG + "SET_GET_ZOOM_1_PROMISE FAILED");
-        expect().assertFail();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('SET_GET_ZOOM_1_PROMISE', 0, async function (done) {
+    //   var setpromise = await camera0InputPromise.setZoomRatio(1);
+    //   console.info(TAG + "setZoomRatio success: 1");
+    //   console.info(TAG + "getZoomRatio called")
+    //   var getpromise1 = await camera0InputPromise.getZoomRatio();
+    //   console.info(TAG + "getZoomRatio success: " + getpromise1);
+    //   if (getpromise1 != null && getpromise1 != undefined) {
+    //     expect(getpromise1).assertEqual(1);
+    //     console.info(TAG + "SET_GET_ZOOM_1_PROMISE PASSED ");
+    //   }
+    //   else {
+    //     console.info(TAG + "SET_GET_ZOOM_1_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_2_PROMISE
@@ -2444,23 +2444,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_2_PROMISE', 0, async function (done) {
-      var setpromise = await camera0InputPromise.setZoomRatio(2);
-      console.info(TAG + "setZoomRatio success: 2");
-      console.info(TAG + "getZoomRatio called")
-      var getpromise2 = await camera0InputPromise.getZoomRatio();
-      console.info(TAG + "getZoomRatio success: " + getpromise2);
-      if (getpromise2 != null && getpromise2 != undefined) {
-        expect(getpromise2).assertEqual(2);
-        console.info(TAG + "SET_GET_ZOOM_2_PROMISE PASSED ");
-      }
-      else {
-        console.info(TAG + "SET_GET_ZOOM_2_PROMISE FAILED");
-        expect().assertFail();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('SET_GET_ZOOM_2_PROMISE', 0, async function (done) {
+    //   var setpromise = await camera0InputPromise.setZoomRatio(2);
+    //   console.info(TAG + "setZoomRatio success: 2");
+    //   console.info(TAG + "getZoomRatio called")
+    //   var getpromise2 = await camera0InputPromise.getZoomRatio();
+    //   console.info(TAG + "getZoomRatio success: " + getpromise2);
+    //   if (getpromise2 != null && getpromise2 != undefined) {
+    //     expect(getpromise2).assertEqual(2);
+    //     console.info(TAG + "SET_GET_ZOOM_2_PROMISE PASSED ");
+    //   }
+    //   else {
+    //     console.info(TAG + "SET_GET_ZOOM_2_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_3_PROMISE
@@ -2470,23 +2470,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_3_PROMISE', 0, async function (done) {
-      var setpromise = await camera0InputPromise.setZoomRatio(3);
-      console.info(TAG + "setZoomRatio success: 3");
-      console.info(TAG + "getZoomRatio called")
-      var getpromise3 = await camera0InputPromise.getZoomRatio();
-      console.info(TAG + "getZoomRatio success: " + getpromise3);
-      if (getpromise3 != null && getpromise3 != undefined) {
-        expect(getpromise3).assertEqual(3);
-        console.info(TAG + "SET_GET_ZOOM_3_PROMISE PASSED ");
-      }
-      else {
-        console.info(TAG + "SET_GET_ZOOM_3_PROMISE FAILED");
-        expect().assertFail();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('SET_GET_ZOOM_3_PROMISE', 0, async function (done) {
+    //   var setpromise = await camera0InputPromise.setZoomRatio(3);
+    //   console.info(TAG + "setZoomRatio success: 3");
+    //   console.info(TAG + "getZoomRatio called")
+    //   var getpromise3 = await camera0InputPromise.getZoomRatio();
+    //   console.info(TAG + "getZoomRatio success: " + getpromise3);
+    //   if (getpromise3 != null && getpromise3 != undefined) {
+    //     expect(getpromise3).assertEqual(3);
+    //     console.info(TAG + "SET_GET_ZOOM_3_PROMISE PASSED ");
+    //   }
+    //   else {
+    //     console.info(TAG + "SET_GET_ZOOM_3_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_4_PROMISE
@@ -2496,23 +2496,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_4_PROMISE', 0, async function (done) {
-      var setpromise = await camera0InputPromise.setZoomRatio(4);
-      console.info(TAG + "setZoomRatio success: 4");
-      console.info(TAG + "getZoomRatio called")
-      var getpromise4 = await camera0InputPromise.getZoomRatio();
-      console.info(TAG + "getZoomRatio success: " + getpromise4);
-      if (getpromise4 != null && getpromise4 != undefined) {
-        expect(getpromise4).assertEqual(4);
-        console.info(TAG + "SET_GET_ZOOM_4_PROMISE PASSED ");
-      }
-      else {
-        console.info(TAG + "SET_GET_ZOOM_4_PROMISE FAILED");
-        expect().assertFail();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('SET_GET_ZOOM_4_PROMISE', 0, async function (done) {
+    //   var setpromise = await camera0InputPromise.setZoomRatio(4);
+    //   console.info(TAG + "setZoomRatio success: 4");
+    //   console.info(TAG + "getZoomRatio called")
+    //   var getpromise4 = await camera0InputPromise.getZoomRatio();
+    //   console.info(TAG + "getZoomRatio success: " + getpromise4);
+    //   if (getpromise4 != null && getpromise4 != undefined) {
+    //     expect(getpromise4).assertEqual(4);
+    //     console.info(TAG + "SET_GET_ZOOM_4_PROMISE PASSED ");
+    //   }
+    //   else {
+    //     console.info(TAG + "SET_GET_ZOOM_4_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_5_PROMISE
@@ -2522,23 +2522,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_5_PROMISE', 0, async function (done) {
-      var setpromise = await camera0InputPromise.setZoomRatio(5);
-      console.info(TAG + "setZoomRatio success: 5");
-      console.info(TAG + "getZoomRatio called")
-      var getpromise5 = await camera0InputPromise.getZoomRatio();
-      console.info(TAG + "getZoomRatio success: " + getpromise5);
-      if (getpromise5 != null && getpromise5 != undefined) {
-        expect(getpromise5).assertEqual(5);
-        console.info(TAG + "SET_GET_ZOOM_5_PROMISE PASSED ");
-      }
-      else {
-        console.info(TAG + "SET_GET_ZOOM_5_PROMISE FAILED");
-        expect().assertFail();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('SET_GET_ZOOM_5_PROMISE', 0, async function (done) {
+    //   var setpromise = await camera0InputPromise.setZoomRatio(5);
+    //   console.info(TAG + "setZoomRatio success: 5");
+    //   console.info(TAG + "getZoomRatio called")
+    //   var getpromise5 = await camera0InputPromise.getZoomRatio();
+    //   console.info(TAG + "getZoomRatio success: " + getpromise5);
+    //   if (getpromise5 != null && getpromise5 != undefined) {
+    //     expect(getpromise5).assertEqual(5);
+    //     console.info(TAG + "SET_GET_ZOOM_5_PROMISE PASSED ");
+    //   }
+    //   else {
+    //     console.info(TAG + "SET_GET_ZOOM_5_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_GET_ZOOM_6_PROMISE
@@ -2548,23 +2548,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_GET_ZOOM_6_PROMISE', 0, async function (done) {
-      var setpromise = await camera0InputPromise.setZoomRatio(6);
-      console.info(TAG + "setZoomRatio success: 6");
-      console.info(TAG + "getZoomRatio called")
-      var getpromise6 = await camera0InputPromise.getZoomRatio();
-      console.info(TAG + "getZoomRatio success: " + getpromise6);
-      if (getpromise6 != null && getpromise6 != undefined) {
-        expect(getpromise6).assertEqual(6);
-        console.info(TAG + "SET_GET_ZOOM_6_PROMISE PASSED ");
-      }
-      else {
-        console.info(TAG + "SET_GET_ZOOM_6_PROMISE FAILED");
-        expect().assertFail();
-      }
-      await sleep(1);
-      done();
-    })
+    // it('SET_GET_ZOOM_6_PROMISE', 0, async function (done) {
+    //   var setpromise = await camera0InputPromise.setZoomRatio(6);
+    //   console.info(TAG + "setZoomRatio success: 6");
+    //   console.info(TAG + "getZoomRatio called")
+    //   var getpromise6 = await camera0InputPromise.getZoomRatio();
+    //   console.info(TAG + "getZoomRatio success: " + getpromise6);
+    //   if (getpromise6 != null && getpromise6 != undefined) {
+    //     expect(getpromise6).assertEqual(6);
+    //     console.info(TAG + "SET_GET_ZOOM_6_PROMISE PASSED ");
+    //   }
+    //   else {
+    //     console.info(TAG + "SET_GET_ZOOM_6_PROMISE FAILED");
+    //     expect().assertFail();
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     // FOCUS promise API's
     /**
@@ -2575,24 +2575,24 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('IS_FOCUS_MODE_LOCKED_SUPPORTED', 0, async function (done) {
-      console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED to operate");
-      var isFMLockedSupported = await camera0InputPromise.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_LOCKED);
-      console.info(TAG + "Entering is focus mode locked supported SUCCESS ");
-      if (isFMLockedSupported != null || isFMLockedSupported != undefined) {
-        console.info(TAG + "Entering is focus mode locked supported data is not null || undefined");
-        console.info(TAG + "is focus mode locked supported : " + isFMLockedSupported);
-        expect(isFMLockedSupported).assertEqual(false);
-        console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED PASSED");
-      }
-      else {
-        console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED FAILED : ");
-        expect().assertFail();
-        console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED ends here");
-      }
-      await sleep(1);
-      done();
-    })
+    // it('IS_FOCUS_MODE_LOCKED_SUPPORTED', 0, async function (done) {
+    //   console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED to operate");
+    //   var isFMLockedSupported = await camera0InputPromise.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_LOCKED);
+    //   console.info(TAG + "Entering is focus mode locked supported SUCCESS ");
+    //   if (isFMLockedSupported != null || isFMLockedSupported != undefined) {
+    //     console.info(TAG + "Entering is focus mode locked supported data is not null || undefined");
+    //     console.info(TAG + "is focus mode locked supported : " + isFMLockedSupported);
+    //     expect(isFMLockedSupported).assertEqual(false);
+    //     console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED PASSED");
+    //   }
+    //   else {
+    //     console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED FAILED : ");
+    //     expect().assertFail();
+    //     console.info(TAG + "Entering IS_FOCUS_MODE_LOCKED_SUPPORTED ends here");
+    //   }
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_FOCUS_MODE_LOCKED
@@ -2602,23 +2602,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SET_FOCUS_MODE_LOCKED', 0, async function (done) {
-      console.info(TAG + "Entering set focus mode locked to operate");
-      await camera0InputPromise.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_LOCKED)
-        .then(function (data) {
-          console.info(TAG + "SetFMLocked: " + JSON.stringify(data))
-          console.info(TAG + "Entering set focus mode locked SUCCESS, current focusmode is: " + cameraObj.FocusMode.FOCUS_MODE_LOCKED);
-          console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED FAILED : ")
-          expect().assertFail();
-        })
-        .catch((err) => {
-          console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED PASSED : " + err.message);
-          expect(true).assertTrue();
-          console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED ends here");
-        });
-      await sleep(1);
-      done();
-    })
+    // it('SET_FOCUS_MODE_LOCKED', 0, async function (done) {
+    //   console.info(TAG + "Entering set focus mode locked to operate");
+    //   await camera0InputPromise.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_LOCKED)
+    //     .then(function (data) {
+    //       console.info(TAG + "SetFMLocked: " + JSON.stringify(data))
+    //       console.info(TAG + "Entering set focus mode locked SUCCESS, current focusmode is: " + cameraObj.FocusMode.FOCUS_MODE_LOCKED);
+    //       console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED FAILED : ")
+    //       expect().assertFail();
+    //     })
+    //     .catch((err) => {
+    //       console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED PASSED : " + err.message);
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "Entering SET_FOCUS_MODE_LOCKED ends here");
+    //     });
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_FOCUS_MODE_LOCKED
@@ -2628,25 +2628,25 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_FOCUS_MODE_LOCKED', 0, async function (done) {
-      console.info(TAG + "Entering GET_FOCUS_MODE_LOCKED to operate");
-      await camera0InputPromise.getFocusMode()
-        .then(function (data) {
-          console.info(TAG + "Entering get focus mode locked success: ");
-          if (data == 0) {
-            console.info(TAG + "Current focusmode is: " + JSON.stringify(data));
-            expect(true).assertTrue();
-            console.info(TAG + "GET_FOCUS_MODE_LOCKED PASSED");
-          }
-        })
-        .catch((err) => {
-          expect().assertFail();
-          console.info(TAG + "GET_FOCUS_MODE_LOCKED FAILED : " + err.message);
-          console.info(TAG + "GET_FOCUS_MODE_LOCKED ends here");
-        });
-      await sleep(1);
-      done();
-    })
+    // it('GET_FOCUS_MODE_LOCKED', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_FOCUS_MODE_LOCKED to operate");
+    //   await camera0InputPromise.getFocusMode()
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering get focus mode locked success: ");
+    //       if (data == 0) {
+    //         console.info(TAG + "Current focusmode is: " + JSON.stringify(data));
+    //         expect(true).assertTrue();
+    //         console.info(TAG + "GET_FOCUS_MODE_LOCKED PASSED");
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       expect().assertFail();
+    //       console.info(TAG + "GET_FOCUS_MODE_LOCKED FAILED : " + err.message);
+    //       console.info(TAG + "GET_FOCUS_MODE_LOCKED ends here");
+    //     });
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_FOCAL_LENGTH
@@ -3069,23 +3069,21 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    /* EXPOSUREMODE Interface will be change
-    it('IS_EXPOSURE_MODE_LOCKED_SUPPORTED', 0, async function (done) {
-      console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED to operate");
-      await camera0InputPromise.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
-        .then(function (data) {
-          console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED PASSED: " + data);
-          expect(data).assertEqual(false);
-        })
-        .catch((err) => {
-          console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED FAILED : " + err.message);
-          expect().assertFail();
-        });
-      console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED ends here");
-      await sleep(1);
-      done();
-    })
-    */
+    // it('IS_EXPOSURE_MODE_LOCKED_SUPPORTED', 0, async function (done) {
+    //   console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED to operate");
+    //   await camera0InputPromise.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering IS_EXPOSURE_MODE_LOCKED_SUPPORTED PASSED: " + data);
+    //       expect(data).assertEqual(false);
+    //     })
+    //     .catch((err) => {
+    //       console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED FAILED : " + err.message);
+    //       expect().assertFail();
+    //     });
+    //   console.info(TAG + "IS_EXPOSURE_MODE_LOCKED_SUPPORTED ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_EXPOSURE_MODE_LOCKED
@@ -3095,24 +3093,22 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    /* EXPOSUREMODE Interface will be change
-    it('SET_EXPOSURE_MODE_LOCKED', 0, async function (done) {
-      console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked to operate");
-      await camera0InputPromise.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
-        .then(function () {
-          console.info(TAG + "Entering set exposure mode auto SUCCESS, current ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
-          console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked FAILED")
-          expect().assertFail()
-        })
-        .catch((err) => {
-          console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED PASSED : " + err.message);
-          expect(true).assertTrue();
-        });
-      console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED ends here");
-      await sleep(1);
-      done();
-    })
-    */
+    // it('SET_EXPOSURE_MODE_LOCKED', 0, async function (done) {
+    //   console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked to operate");
+    //   await camera0InputPromise.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED)
+    //     .then(function () {
+    //       console.info(TAG + "Entering set exposure mode auto SUCCESS, current ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
+    //       console.info(TAG + "Entering SET_EXPOSURE_MODE_Locked FAILED")
+    //       expect().assertFail()
+    //     })
+    //     .catch((err) => {
+    //       console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED PASSED : " + err.message);
+    //       expect(true).assertTrue();
+    //     });
+    //   console.info(TAG + "Entering SET_EXPOSURE_MODE_LOCKED ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : GET_EXPOSURE_MODE_LOCKED
@@ -3329,23 +3325,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_EXPOSURE_MODE_AUTO', 0, async function (done) {
-      console.info(TAG + "Entering GET_EXPOSURE_MODE_AUTO to operate");
-      await camera0InputPromise.getExposureMode()
-        .then(function (data) {
-          console.info(TAG + "Entering get exposure mode auto SUCCESS");
-          console.info(TAG + "Current exposureMode is: " + data);
-          expect(data).assertEqual(1);
-          console.info(TAG + "GET_EXPOSURE_MODE_AUTO PASSED");
-        })
-        .catch((err) => {
-          expect().assertFail();
-          console.info(TAG + "GET_EXPOSURE_MODE_AUTO FAILED: " + err.message);
-        });
-      console.info(TAG + "GET_EXPOSURE_MODE_AUTO ends here");
-      await sleep(1);
-      done();
-    })
+    // it('GET_EXPOSURE_MODE_AUTO', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_EXPOSURE_MODE_AUTO to operate");
+    //   await camera0InputPromise.getExposureMode()
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering get exposure mode auto SUCCESS");
+    //       console.info(TAG + "Current exposureMode is: " + data);
+    //       expect(data).assertEqual(1);
+    //       console.info(TAG + "GET_EXPOSURE_MODE_AUTO PASSED");
+    //     })
+    //     .catch((err) => {
+    //       expect().assertFail();
+    //       console.info(TAG + "GET_EXPOSURE_MODE_AUTO FAILED: " + err.message);
+    //     });
+    //   console.info(TAG + "GET_EXPOSURE_MODE_AUTO ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_EXPOSURE_POINT_exposure mode auto
@@ -3510,23 +3506,23 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('GET_EXPOSURE_MODE_CONTINUOUS_AUTO', 0, async function (done) {
-      console.info(TAG + "Entering GET_EXPOSURE_MODE_CONTINUOUS_AUTO to operate");
-      await camera0InputPromise.getExposureMode()
-        .then(function (data) {
-          console.info(TAG + "Entering get exposure mode auto SUCCESS");
-          console.info(TAG + "Current exposureMode is: " + data);
-          expect(true).assertTrue();
-          console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO PASSED");
-        })
-        .catch((err) => {
-          expect().assertFail();
-          console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO FAILED : " + err.message);
-        });
-      console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO ends here");
-      await sleep(1);
-      done();
-    })
+    // it('GET_EXPOSURE_MODE_CONTINUOUS_AUTO', 0, async function (done) {
+    //   console.info(TAG + "Entering GET_EXPOSURE_MODE_CONTINUOUS_AUTO to operate");
+    //   await camera0InputPromise.getExposureMode()
+    //     .then(function (data) {
+    //       console.info(TAG + "Entering get exposure mode auto SUCCESS");
+    //       console.info(TAG + "Current exposureMode is: " + data);
+    //       expect(true).assertTrue();
+    //       console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO PASSED");
+    //     })
+    //     .catch((err) => {
+    //       expect().assertFail();
+    //       console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO FAILED : " + err.message);
+    //     });
+    //   console.info(TAG + "GET_EXPOSURE_MODE_CONTINUOUS_AUTO ends here");
+    //   await sleep(1);
+    //   done();
+    // })
 
     /**
       * @tc.number    : SET_EXPOSURE_POINT
@@ -3638,21 +3634,21 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('VIDEO_OUTPUT_START_PROMISE', 0, async function (done) {
-      if (videoOutputPromise == null || videoOutputPromise == undefined) {
-        console.info(TAG + 'Entering Video Output start videoOutputPromise == null || undefined')
-      } else {
-        console.info(TAG + 'Entering VIDEO_OUTPUT_START_PROMISE to operate')
-        await videoOutputPromise.start()
-        expect(true).assertTrue()
-        console.info(TAG + 'Entering VIDEO_OUTPUT_START_PROMISE PASSED')
-        console.info(TAG + 'Entering VIDEO_OUTPUT_START_PROMISE ends here')
-        await sleep(1)
-        done()
-      }
-      await sleep(1)
-      done()
-    })
+    // it('VIDEO_OUTPUT_START_PROMISE', 0, async function (done) {
+    //   if (videoOutputPromise == null || videoOutputPromise == undefined) {
+    //     console.info(TAG + 'Entering Video Output start videoOutputPromise == null || undefined')
+    //   } else {
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_START_PROMISE to operate')
+    //     await videoOutputPromise.start()
+    //     expect(true).assertTrue()
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_START_PROMISE PASSED')
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_START_PROMISE ends here')
+    //     await sleep(1)
+    //     done()
+    //   }
+    //   await sleep(1)
+    //   done()
+    // })
 
     /**
       * @tc.number    : VIDEO_OUTPUT_STOP_PROMISE
@@ -3662,21 +3658,21 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('VIDEO_OUTPUT_STOP_PROMISE', 0, async function (done) {
-      if (videoOutputPromise == null || videoOutputPromise == undefined) {
-        console.info(TAG + 'Entering Video Output Stop videoOutputPromise == null || undefined')
-      } else {
-        console.info(TAG + 'Entering VIDEO_OUTPUT_STOP_PROMISE to operate')
-        await videoOutputPromise.stop()
-        expect(true).assertTrue()
-        console.info(TAG + 'Entering VIDEO_OUTPUT_STOP_PROMISE PASSED')
-        console.info(TAG + 'Entering VIDEO_OUTPUT_STOP_PROMISE ends here')
-        await sleep(1)
-        done()
-      }
-      await sleep(1)
-      done()
-    })
+    // it('VIDEO_OUTPUT_STOP_PROMISE', 0, async function (done) {
+    //   if (videoOutputPromise == null || videoOutputPromise == undefined) {
+    //     console.info(TAG + 'Entering Video Output Stop videoOutputPromise == null || undefined')
+    //   } else {
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_STOP_PROMISE to operate')
+    //     await videoOutputPromise.stop()
+    //     expect(true).assertTrue()
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_STOP_PROMISE PASSED')
+    //     console.info(TAG + 'Entering VIDEO_OUTPUT_STOP_PROMISE ends here')
+    //     await sleep(1)
+    //     done()
+    //   }
+    //   await sleep(1)
+    //   done()
+    // })
 
     /**
       * @tc.number    : CAPTURE_SESSION_STOP_PROMISE
@@ -3734,21 +3730,21 @@ export default function cameraJSUnitVideoPromise(surfaceId: any) {
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE', 0, async function (done) {
-      if (videoOutputPromise == null || videoOutputPromise == undefined) {
-        console.info(TAG + "Entering Video Output release previewOutputPromise == null || undefined");
-      } else {
-        console.info(TAG + "Entering VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE to operate");
-        await videoOutputPromise.release();
-        expect(true).assertTrue();
-        console.info(TAG + "Entering VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE PASSED");
-        console.info(TAG + "Entering VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE ends here");
-        await sleep(1);
-        done();
-      }
-      await sleep(1)
-      done()
-    })
+    // it('VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE', 0, async function (done) {
+    //   if (videoOutputPromise == null || videoOutputPromise == undefined) {
+    //     console.info(TAG + "Entering Video Output release previewOutputPromise == null || undefined");
+    //   } else {
+    //     console.info(TAG + "Entering VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE to operate");
+    //     await videoOutputPromise.release();
+    //     expect(true).assertTrue();
+    //     console.info(TAG + "Entering VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE PASSED");
+    //     console.info(TAG + "Entering VIDEOOUTPUT_RELEASE_SUCCESS_PROMISE ends here");
+    //     await sleep(1);
+    //     done();
+    //   }
+    //   await sleep(1)
+    //   done()
+    // })
 
     /**
       * @tc.number    : PREVIEWOUTPUT_RELEASE_SUCCESS_PROMISE
