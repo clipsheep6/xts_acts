@@ -111,7 +111,7 @@ describe('bluetoothBLETest', function() {
      * @ since 7
      * @tc.type Function
      * @tc.level Level 2
-     */
+     
     it('SUB_COMMUNICATION_BLUETOOTH_BLE_GetRssiValue_0100', 0, async function (done) {
         let gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
         let ret = gattClient.connect();
@@ -130,7 +130,7 @@ describe('bluetoothBLETest', function() {
         expect(disconnect).assertEqual(false);
         done();
     })
-
+*/
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_BLE_GetRssiValue_0200
      * @tc.name testgetRssiValue
@@ -139,7 +139,7 @@ describe('bluetoothBLETest', function() {
      * @ since 7
      * @tc.type Function
      * @tc.level Level 2
-     */
+     
     it('SUB_COMMUNICATION_BLUETOOTH_BLE_GetRssiValue_0200', 0, async function (done) {
         let gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
         let ret = gattClient.connect();
@@ -157,7 +157,7 @@ describe('bluetoothBLETest', function() {
         })
         await promise.then(done)
     })
-
+*/
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_BLE_GetDeviceName_0100
      * @tc.name testGetDeviceName
