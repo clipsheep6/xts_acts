@@ -512,7 +512,7 @@ describe('ImageCreator', function () {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_NULL_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0400
      * @tc.name      : queueImage-promise-null
      * @tc.desc      : 1.create ImageCreator
      *                 2.call queueImage
@@ -520,12 +520,12 @@ describe('ImageCreator', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_NULL_0100', 0, async function (done) {
-        queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_NULL_0100', null);
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0400', 0, async function (done) {
+        queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0400', null);
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_A_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0500
      * @tc.name      : queueImage-promise-'a'
      * @tc.desc      : 1.create ImageCreator
      *                 2.call queueImage
@@ -533,12 +533,12 @@ describe('ImageCreator', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_A_0100', 0, async function (done) {
-        queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_A_0100', 'a');
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0500', 0, async function (done) {
+        queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0500', 'a');
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_A1_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0600
      * @tc.name      : on-{a : 1}
      * @tc.desc      : 1.create ImageCreator
      *                 2.call queueImage
@@ -546,8 +546,8 @@ describe('ImageCreator', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_A1_0100', 0, async function (done) {
-        queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_A1_0100', { a: 1 });
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0600', 0, async function (done) {
+        queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0600', { a: 1 });
     })
 
     /**
@@ -750,7 +750,7 @@ describe('ImageCreator', function () {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_ON_NULL_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0300
      * @tc.name      : on-null
      * @tc.desc      : 1.create ImageCreator
      *                 2.call on
@@ -758,12 +758,12 @@ describe('ImageCreator', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_CREATOR_ON_NULL_0100', 0, async function (done) {
-        onErr(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_ON_NULL_0100', null);
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0300', 0, async function (done) {
+        onErr(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0300', null);
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_ON_A1_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0400
      * @tc.name      : on-{a : 1}
      * @tc.desc      : 1.create ImageCreator
      *                 2.call on
@@ -771,12 +771,12 @@ describe('ImageCreator', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_CREATOR_ON_A1_0100', 0, async function (done) {
-        onErr(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_ON_A1_0100', { a: 1 });
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0400', 0, async function (done) {
+        onErr(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0400', { a: 1 });
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_ON_A_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0500
      * @tc.name      : on-'a'
      * @tc.desc      : 1.create ImageCreator
      *                 2.call on
@@ -784,7 +784,7 @@ describe('ImageCreator', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_CREATOR_ON_A_0100', 0, async function (done) {
-        onErr(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_ON_A_0100', 'a');
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0500', 0, async function (done) {
+        onErr(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_ON_0500', 'a');
     })
 })

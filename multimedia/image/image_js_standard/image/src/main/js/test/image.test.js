@@ -1218,7 +1218,7 @@ export default function imageJsTest() {
 
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_JPG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0100
          * @tc.name      : createImageSource(uri)-jpg
          * @tc.desc      : 1.set uri
          *                 2.call createImageSource(uri)
@@ -1227,23 +1227,23 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_JPG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0100', 0, async function (done) {
             try {
                 await getFd('test.jpg');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 expect(imageSourceApi != undefined).assertTrue();
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_JPG_0100 success');
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0100 success');
                 fileio.closeSync(fdNumber);
                 done();
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_JPG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0100 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0200
          * @tc.name      : createImageSource(uri)-bmp
          * @tc.desc      : 1.seturi
          *                 2.call createImageSource(uri)
@@ -1252,22 +1252,22 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0200', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 expect(imageSourceApi != undefined).assertTrue();
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_BMP_0100 success');
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_UR_0200 success');
                 done();
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0200 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0300
          * @tc.name      : createImageSource(uri)-gif
          * @tc.desc      : 1.seturi
          *                 2.call createImageSource(uri)
@@ -1276,15 +1276,15 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0300', 0, async function (done) {
             try {
                 await getFd('test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 expect(imageSourceApi != undefined).assertTrue();
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_GIF_0100 success');
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0300 success');
                 done();
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0300 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
@@ -1292,7 +1292,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0400
          * @tc.name      : createImageSource(uri)-png
          * @tc.desc      : 1.seturi
          *                 2.call createImageSource(uri)
@@ -1301,15 +1301,15 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0400', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 expect(imageSourceApi != undefined).assertTrue();
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_PNG_0100 success');
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0400 success');
                 done();
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_URI_0400 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
@@ -1357,7 +1357,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0100
          * @tc.name      : createImageSource(fd)
          * @tc.desc      : 1.call createImageSource
          *                 2.set fd
@@ -1366,19 +1366,19 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0100', 0, async function (done) {
             try {
                 await getFd('test.jpg');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0100 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo((err, imageInfo) => {
                         if (err) {
                             expect(false).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0100 err: ' + err);
+                            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0100 err: ' + err);
                             done();
                             return
                         }
@@ -1387,7 +1387,7 @@ export default function imageJsTest() {
                             fileio.closeSync(fdNumber);
                             done();
                         } else {
-                            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0100 failed');
+                            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0100 failed');
                             expect(false).assertTrue();
                             done();
                         }
@@ -1402,7 +1402,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0200
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0200
          * @tc.name      : createImageSource(fd) fd<0
          * @tc.desc      : 1.call createImageSource
          *                 2.set wrong fd
@@ -1411,15 +1411,15 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0200', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0200', 0, async function (done) {
             const imageSourceApi = image.createImageSource(-2);
             expect(imageSourceApi == undefined).assertTrue();
-            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_FD_0200 success');
+            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0200 success');
             done();
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0300
          * @tc.name      : createImageSource(data)
          * @tc.desc      : 1.setdata
          *                 2.createImageSource
@@ -1428,16 +1428,16 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0300', 0, async function (done) {
             const data = testJpg.buffer;
             const imageSourceApi = image.createImageSource(data);
             if (imageSourceApi == undefined) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0100 create image source failed');
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0300 create image source failed');
                 expect(false).assertTrue();
                 done();
             } else {
                 imageSourceApi.getImageInfo((err, imageInfo) => {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0100 imageInfo');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0300 imageInfo');
                     expect(imageInfo != undefined).assertTrue();
                     done();
                 })
@@ -1445,7 +1445,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0200
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0400
          * @tc.name      : createImageSource(data) buffer:0
          * @tc.desc      : 1.setdata
          *                 2.createImageSource
@@ -1454,11 +1454,11 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0200', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0400', 0, async function (done) {
             const data = new ArrayBuffer(0);
             const imageSourceApi = image.createImageSource(data);
             expect(imageSourceApi == undefined).assertTrue();
-            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_DATA_0200 success');
+            console.info('SUB_MULTIMEDIA_IMAGE_CREATEIMAGESOURCE_0400 success');
             done();
         })
 
@@ -1531,7 +1531,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100
          * @tc.name      : getImageInfo(callback: AsyncCallback<ImageInfo>)-jpg
          * @tc.desc      : 1.create imageSource
          *                 2.imageSourcecall getImageInfo(ImageInfo)
@@ -1541,37 +1541,37 @@ export default function imageJsTest() {
          * @tc.level     : Level 1
          */
 
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100', 0, async function (done) {
             try {
                 await getFd('test.jpg');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo((err, imageInfo) => {
                         if (err) {
                             expect(false).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100 err:' + err);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100 err:' + err);
                             done();
                             return
                         }
                         if (imageInfo != undefined) {
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100 imageInfo.size.height:' + imageInfo.size.height);
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100 imageInfo.size.width:' + imageInfo.size.width);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100 imageInfo.size.height:' + imageInfo.size.height);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100 imageInfo.size.width:' + imageInfo.size.width);
                             expect(true).assertTrue();
                             fileio.closeSync(fdNumber);
                             done();
                         } else {
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100 failed');
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100 failed');
                             expect(false).assertTrue();
                             done();
                         }
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0100 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
@@ -1579,7 +1579,7 @@ export default function imageJsTest() {
 
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0200
          * @tc.name      : getImageInfo(callback: AsyncCallback<ImageInfo>)-bmp
          * @tc.desc      : 1.create imageSource
          *                 2.imageSourcecall getImageInfo(ImageInfo)
@@ -1588,31 +1588,31 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0200', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0200 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo((err, imageInfo) => {
                         expect(imageInfo != undefined).assertTrue();
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0100 imageInfo.size.height:' + imageInfo.size.height);
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0100 imageInfo.size.width:' + imageInfo.size.width);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0200 imageInfo.size.height:' + imageInfo.size.height);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0200 imageInfo.size.width:' + imageInfo.size.width);
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0200 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0300
          * @tc.name      : getImageInfo(callback: AsyncCallback<ImageInfo>)-png
          * @tc.desc      : 1.create imageSource
          *                 2.imageSourcecall getImageInfo(ImageInfo)
@@ -1621,31 +1621,31 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0300', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0300 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo((err, imageInfo) => {
                         expect(imageInfo != undefined).assertTrue();
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0100 imageInfo.size.height:' + imageInfo.size.height);
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0100 imageInfo.size.width:' + imageInfo.size.width);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0300 imageInfo.size.height:' + imageInfo.size.height);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0300 imageInfo.size.width:' + imageInfo.size.width);
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0300 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400
          * @tc.name      : getImageInfo(callback: AsyncCallback<ImageInfo>)-gif
          * @tc.desc      : 1.create ImageInfo
          *                 2.call getImageInfo(index, ImageInfo)
@@ -1654,44 +1654,44 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400', 0, async function (done) {
             try {
                 await getFd('test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo((err, imageInfo) => {
                         if (err) {
                             expect(false).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 error' + err);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 error' + err);
                             done();
                             return
                         }
                         if (imageInfo != undefined && imageInfo != null) {
                             expect(true).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 imageInfo.size.height:' + imageInfo.size.height);
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 imageInfo.size.width:' + imageInfo.size.width);
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 success')
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 imageInfo.size.height:' + imageInfo.size.height);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 imageInfo.size.width:' + imageInfo.size.width);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 success')
                             done();
                         } else {
                             expect(false).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 failed')
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 failed')
                             done();
                         }
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0400 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0200
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0500
          * @tc.name      : getImageInfo(index: number, callback: AsyncCallback<ImageInfo>)-jpg
          * @tc.desc      : 1.create ImageInfo
          *                 2.call getImageInfo(index, ImageInfo)
@@ -1700,31 +1700,31 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0200', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0500', 0, async function (done) {
             try {
                 await getFd('test.jpg');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0200 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0500 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0, (err, imageInfo) => {
                         expect(imageInfo != undefined).assertTrue();
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0200 imageInfo.size.height:' + imageInfo.size.height);
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0200 imageInfo.size.width:' + imageInfo.size.width);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0500 imageInfo.size.height:' + imageInfo.size.height);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0500 imageInfo.size.width:' + imageInfo.size.width);
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_JPG_0200 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0500 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0200
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0600
          * @tc.name      : getImageInfo(index: number, callback: AsyncCallback<ImageInfo>)-bmp
          * @tc.desc      : 1.create ImageInfo
          *                 2.call getImageInfo(index, ImageInfo)
@@ -1733,31 +1733,31 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0200', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0600', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0200 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0600 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0, (err, imageInfo) => {
                         expect(imageInfo != undefined).assertTrue();
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0200 imageInfo.size.height:' + imageInfo.size.height);
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0200 imageInfo.size.width:' + imageInfo.size.width);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0600 imageInfo.size.height:' + imageInfo.size.height);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0600 imageInfo.size.width:' + imageInfo.size.width);
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_BMP_0200 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0600 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number: SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0200
+         * @tc.number: SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0700
          * @tc.name  : getImageInfo(index: number, callback: AsyncCallback<ImageInfo>)-png
          * @tc.desc  : 1.create ImageInfo
          *             2.call getImageInfo(index, ImageInfo)
@@ -1766,24 +1766,24 @@ export default function imageJsTest() {
          * @tc.type  : Functional
          * @tc.level : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0200', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0700', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0200 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0700 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0, (err, imageInfo) => {
                         expect(imageInfo != undefined).assertTrue();
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0200 imageInfo.size.height:' + imageInfo.size.height);
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0200 imageInfo.size.width:' + imageInfo.size.width);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0700 imageInfo.size.height:' + imageInfo.size.height);
+                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0700 imageInfo.size.width:' + imageInfo.size.width);
                         done();
                     })
                 }
             } catch {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_PNG_0200 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0700 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
@@ -1791,7 +1791,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number: SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200
+         * @tc.number: SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800
          * @tc.name  : getImageInfo(index: number, callback: AsyncCallback<ImageInfo>)-gif
          * @tc.desc  : 1.create ImageInfo
          *             2.call getImageInfo(index, ImageInfo)
@@ -1800,37 +1800,37 @@ export default function imageJsTest() {
          * @tc.type  : Functional
          * @tc.level : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800', 0, async function (done) {
             try {
                 await getFd('test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0, (err, imageInfo) => {
                         if (err) {
                             expect(false).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 error' + err);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 error' + err);
                             done();
                             return
                         }
                         if (imageInfo != undefined && imageInfo != null) {
                             expect(true).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 imageInfo.size.height:' + imageInfo.size.height);
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 imageInfo.size.width:' + imageInfo.size.width);
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 success')
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 imageInfo.size.height:' + imageInfo.size.height);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 imageInfo.size.width:' + imageInfo.size.width);
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 success')
                             done();
                         } else {
                             expect(false).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 failed')
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 failed')
                             done();
                         }
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_GIF_0200 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_CALLBACK_0800 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
@@ -1904,7 +1904,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_JPG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0100
          * @tc.name      : getImageInfo(index?: number): Promise<ImageInfo>-jpg
          * @tc.desc      : 1.create imagesource
          *                 2.call getImageInfo(index)
@@ -1913,37 +1913,37 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_JPG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0100', 0, async function (done) {
             try {
                 await getFd('test.jpg');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_JPG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0100 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0)
                         .then(imageInfo => {
                             expect(imageInfo != undefined).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_JPG_0100 imageInfo');
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0100 imageInfo');
                             console.info('imageInfo.size.height:' + imageInfo.size.height);
                             console.info('imageInfo.size.width:' + imageInfo.size.width);
                             done();
                         }).catch(error => {
-                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_JPG_0100 error: ' + error);
+                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0100 error: ' + error);
                             expect().assertFail();
                             done();
                         })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_JPG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0100 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0200
          * @tc.name      : getImageInfo(index?: number): Promise<ImageInfo>-bmp
          * @tc.desc      : 1.create imagesource
          *                 2.call getImageInfo(index)
@@ -1952,37 +1952,37 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0200', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_BMP_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0200 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0)
                         .then(imageInfo => {
                             expect(imageInfo != undefined).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_BMP_0100 imageInfo');
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0200 imageInfo');
                             console.info('imageInfo.size.height:' + imageInfo.size.height);
                             console.info('imageInfo.size.width:' + imageInfo.size.width);
                             done();
                         }).catch(error => {
-                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_BMP_0100 error: ' + error);
+                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0200 error: ' + error);
                             expect().assertFail();
                             done();
                         })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0200 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0300
          * @tc.name      : getImageInfo(index?: number): Promise<ImageInfo>-png
          * @tc.desc      : 1.create imagesource
          *                 2.call getImageInfo(index)
@@ -1991,37 +1991,37 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0300', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_PNG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0300 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.getImageInfo(0)
                         .then(imageInfo => {
                             expect(imageInfo != undefined).assertTrue();
-                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_PNG_0100 imageInfo');
+                            console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0300 imageInfo');
                             console.info('imageInfo.size.height:' + imageInfo.size.height);
                             console.info('imageInfo.size.width:' + imageInfo.size.width);
                             done();
                         }).catch(error => {
-                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_PNG_0100 error: ' + error);
+                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0300 error: ' + error);
                             expect().assertFail();
                             done();
                         })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0300 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400
          * @tc.name      : getImageInfo(index?: number): Promise<ImageInfo>-gif
          * @tc.desc      : 1.create imagesource
          *                 2.call getImageInfo(index)
@@ -2030,12 +2030,12 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400', 0, async function (done) {
             try {
                 await getFd('test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
@@ -2043,22 +2043,22 @@ export default function imageJsTest() {
                         .then(imageInfo => {
                             if (imageInfo != undefined && imageInfo != null) {
                                 expect(true).assertTrue();
-                                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100 imageInfo.size.height:' + imageInfo.size.height);
-                                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100 imageInfo.size.width:' + imageInfo.size.width);
+                                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400 imageInfo.size.height:' + imageInfo.size.height);
+                                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400 imageInfo.size.width:' + imageInfo.size.width);
                                 done();
                             } else {
                                 expect(false).assertTrue();
-                                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100 failed');
+                                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400 failed');
                                 done();
                             }
                         }).catch(error => {
-                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100 error: ' + error);
+                            console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400 error: ' + error);
                             expect().assertFail();
                             done();
                         })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFO_PROMISE_0400 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
@@ -2211,7 +2211,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100
          * @tc.name      : createIncrementalSource-updateData-png
          * @tc.desc      : 1.create imagesource
          *                 2.update data
@@ -2220,38 +2220,38 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100', 0, async function (done) {
             try {
                 let testimagebuffer = testPng;
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 0003 ' + testimagebuffer.length);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 0003 ' + testimagebuffer.length);
                 let bufferSize = testimagebuffer.length;
                 let offset = 0;
                 const incSouce = image.createIncrementalSource(new ArrayBuffer(1));
                 let ret;
                 let isFinished = false;
                 while (offset < testimagebuffer.length) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 0006 ' + testimagebuffer.length);
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 0006 ' + testimagebuffer.length);
                     var oneStep = testimagebuffer.slice(offset, offset + bufferSize);
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 0007 ' + oneStep.length);
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 0007 ' + oneStep.length);
                     if (oneStep.length < bufferSize) {
                         isFinished = true;
                     }
                     ret = await incSouce.updateData(oneStep, isFinished, 0, oneStep.length);
                     if (!ret) {
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 updateData failed');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 updateData failed');
                         expect(ret).assertTrue();
                         break;
                     }
                     offset = offset + oneStep.length;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 0011 ' + offset);
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 0011 ' + offset);
                 }
                 if (ret) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 updateData success ');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 updateData success ');
                     let decodingOptions = {
                         sampleSize: 1
                     };
                     incSouce.createPixelMap(decodingOptions, (err, pixelmap) => {
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 0014' + pixelmap);
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 0014' + pixelmap);
                         expect(pixelmap != undefined).assertTrue();
                         done();
                     })
@@ -2259,12 +2259,12 @@ export default function imageJsTest() {
                     done();
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_0100 updateData failed ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0100 updateData failed ' + error);
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200
          * @tc.name      : createIncrementalSource-updateData-jpg
          * @tc.desc      : 1.create imagesource
          *                 2.update data
@@ -2273,33 +2273,33 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200', 0, async function (done) {
             try {
                 let testimagebuffer = testJpg;
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 0003 ' + testimagebuffer.length);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 0003 ' + testimagebuffer.length);
                 let bufferSize = testimagebuffer.length;
                 let offset = 0;
                 const incSouce = image.createIncrementalSource(new ArrayBuffer(1));
                 let isFinished = false;
                 let ret;
                 while (offset < testimagebuffer.length) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 0006 ' + testimagebuffer.length);
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 0006 ' + testimagebuffer.length);
                     var oneStep = testimagebuffer.slice(offset, offset + bufferSize);
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 0007 ' + oneStep.length);
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 0007 ' + oneStep.length);
                     if (oneStep.length < bufferSize) {
                         isFinished = true;
                     }
                     ret = await incSouce.updateData(oneStep, isFinished, 0, oneStep.length);
                     if (!ret) {
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 updateData failed');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 updateData failed');
                         expect(ret).assertTrue();
                         break;
                     }
                     offset = offset + oneStep.length;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 0011 ' + offset);
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 0011 ' + offset);
                 }
                 if (ret) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 updateData success ');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 updateData success ');
                     let decodingOptions = {
                         sampleSize: 1
                     };
@@ -2311,12 +2311,12 @@ export default function imageJsTest() {
                     done();
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_JPG_0100 updateData failed ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_0200 updateData failed ' + error);
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0100
          * @tc.name      : release ImageSource - promise - png  
          * @tc.desc      : 1.create ImageSource
          *                 2.call release()
@@ -2325,34 +2325,34 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0100', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_PNG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0100 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.release().then(() => {
-                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_PNG_0100 success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0100 success');
                         expect(true).assertTrue();
                         done();
                     }).catch(error => {
-                        console.log('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_PNG_0100 error: ' + error);
+                        console.log('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0100 error: ' + error);
                         expect().assertFail();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0100 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0100
          * @tc.name      : release ImageSource - callback - png 
          * @tc.desc      : 1.create ImageSource
          *                 2.call release()
@@ -2361,37 +2361,37 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0100', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_PNG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0100 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.release(async (err) => {
                         if (err) {
-                            console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_PNG_0100 err:' + err);
+                            console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0100 err:' + err);
                             expect(false).assertTrue();
                             done();
                             return
                         }
-                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_PNG_0100 Success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0100 Success');
                         expect(true).assertTrue();
                         expect(true).assertTrue();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0100 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0200
          * @tc.name      : release ImageSource - promise - bmp 
          * @tc.desc      : 1.create ImageSource
          *                 2.call release()
@@ -2400,34 +2400,34 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0200', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_BMP_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0200 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.release().then(() => {
-                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_BMP_0100 success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0200 success');
                         expect(true).assertTrue();
                         done();
                     }).catch(error => {
-                        console.log('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_BMP_0100 error: ' + error);
+                        console.log('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0200 error: ' + error);
                         expect().assertFail();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0200 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0200
          * @tc.name      : release ImageSource - callback - bmp 
          * @tc.desc      : 1.create ImageSource
          *                 2.create SourceStream
@@ -2436,30 +2436,30 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0200', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_BMP_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0200 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.release(async () => {
-                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_BMP_0100 Success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0200 Success');
                         expect(true).assertTrue();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0200 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0300
          * @tc.name      : release ImageSource - promise - gif
          * @tc.desc      : 1.create ImageSource
          *                 2.call release()
@@ -2468,34 +2468,34 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0300', 0, async function (done) {
             try {
                 await getFd('test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_GIF_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0300 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.release().then(() => {
-                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_GIF_0100 success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0300 success');
                         expect(true).assertTrue();
                         done();
                     }).catch(error => {
-                        console.log('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_GIF_0100 error: ' + error);
+                        console.log('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0300 error: ' + error);
                         expect().assertFail();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_PROMISE_0300 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0300
          * @tc.name      : release ImageSource - callback - gif
          * @tc.desc      : 1.create ImageSource
          *                 2.call release()
@@ -2504,30 +2504,30 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0300', 0, async function (done) {
             try {
                 await getFd('test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_GIF_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0300 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.release(() => {
-                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_GIF_0100 Success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0300 Success');
                         expect(true).assertTrue();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_RELEASE_IMAGESOURCE_CALLBACK_0300 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0800
          * @tc.name      : createPixelMap-promise-gif
          * @tc.desc      : 1.create imagesource
          *                 2.set index and DecodeOptions
@@ -2537,35 +2537,35 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXMAP_PROMISE_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0800', 0, async function (done) {
             try {
                 await getFd('moving_test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXMAP_PROMISE_GIF_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0800 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.createPixelMap().then(pixelmap => {
                         globalpixelmap = pixelmap;
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXMAP_PROMISE_GIF_0100 success ');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0800 success ');
                         expect(pixelmap !== undefined).assertTrue();
                         done();
                     }).catch(error => {
-                        console.log('SUB_MULTIMEDIA_IMAGE_CREATEPIXMAP_PROMISE_GIF_0100 error: ' + error);
+                        console.log('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0800 error: ' + error);
                         expect().assertFail();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXMAP_PROMISE_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0800 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_GIF_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1200
          * @tc.name      : createPixelMap-callback-gif
          * @tc.desc      : 1.create imagesource
          *                 2.set index and DecodeOptions
@@ -2575,31 +2575,31 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_GIF_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1200', 0, async function (done) {
             try {
                 await getFd('moving_test.gif');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_GIF_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1200 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.createPixelMap((err, pixelmap) => {
                         globalpixelmap = pixelmap;
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_GIF_0100 success ');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1200 success ');
                         expect(pixelmap !== undefined).assertTrue();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_GIF_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1200 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0900
          * @tc.name      : createPixelMap-promise-bmp
          * @tc.desc      : 1.create imagesource
          *                 2.set index and DecodeOptions
@@ -2609,35 +2609,35 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0900', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_BMP_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0900 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.createPixelMap().then(pixelmap => {
                         globalpixelmap = pixelmap;
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_BMP_0100 success ');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0900 success ');
                         expect(pixelmap != undefined).assertTrue();
                         done();
                     }).catch(error => {
-                        console.log('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_BMP_0100 error: ' + error);
+                        console.log('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0900 error: ' + error);
                         expect().assertFail();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_0900 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_BMP_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1300
          * @tc.name      : createPixelMap-callback-bmp
          * @tc.desc      : 1.create imagesource
          *                 2.set index and DecodeOptions
@@ -2647,31 +2647,31 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_BMP_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1300', 0, async function (done) {
             try {
                 await getFd('test.bmp');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_BMP_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1300 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.createPixelMap((err, pixelmap) => {
                         globalpixelmap = pixelmap;
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_BMP_0100 success ');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1300 success ');
                         expect(pixelmap != undefined).assertTrue();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_BMP_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1300 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_1000
          * @tc.name      : createPixelMap-promise-png
          * @tc.desc      : 1.create imagesource
          *                 2.set index and DecodeOptions
@@ -2681,35 +2681,35 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_1000', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_PNG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_1000 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.createPixelMap().then(pixelmap => {
                         globalpixelmap = pixelmap;
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_PNG_0100 success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_1000 success');
                         expect(pixelmap != undefined).assertTrue();
                         done();
                     }).catch(error => {
-                        console.log('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_PNG_0100 error: ' + error);
+                        console.log('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_1000 error: ' + error);
                         expect().assertFail();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_PROMISE_1000 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_PNG_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1400
          * @tc.name      : createPixelMap-callback-png
          * @tc.desc      : 1.create imagesource
          *                 2.set index and DecodeOptions
@@ -2719,24 +2719,24 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_PNG_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1400', 0, async function (done) {
             try {
                 await getFd('test.png');
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_PNG_0100 create image source failed');
+                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1400 create image source failed');
                     expect(false).assertTrue();
                     done();
                 } else {
                     imageSourceApi.createPixelMap((err, pixelmap) => {
                         globalpixelmap = pixelmap;
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_PNG_0100 success');
+                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1400 success');
                         expect(pixelmap != undefined).assertTrue();
                         done();
                     })
                 }
             } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_PNG_0100 error: ' + error);
+                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_1400 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }
