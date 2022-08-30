@@ -5670,12 +5670,12 @@ describe('audioCapturer', function () {
             audioCapCallBack.on('markReach', 'string', (position) => {
                 console.info(`AudioRenderLog: mark reached: ${position}`);
                 expect(false).assertTrue();
-
-            }catch (err) {
-                console.info(`AudioRenderLog: mark reached: string : err: ${err.message}`);
-                expect(true).assertTrue();
-            }
-        })
+			})
+		}catch (err) {
+			console.info(`AudioRenderLog: mark reached: string : err: ${err.message}`);
+			expect(true).assertTrue();
+		}
+    })
 
     /*     *
                * @tc.number    : SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_1000_084

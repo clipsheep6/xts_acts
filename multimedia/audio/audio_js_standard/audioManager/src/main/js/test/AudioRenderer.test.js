@@ -1548,12 +1548,13 @@ describe('audioRenderer', function () {
             audioRen.on('markReach', 'string', (position) => {
                 console.log(`AudioFrameworkTest: markReach Event is called : ${position}`);
                 resultFlag = false;
-            }catch (err) {
-                console.log(`AudioFrameworkTest: markReach Event is called : string : err : ${err.message}`);
-                resultFlag = true;
-            }
-            return resultFlag;
-        }
+			})
+		}catch (err) {
+			console.log(`AudioFrameworkTest: markReach Event is called : string : err : ${err.message}`);
+			resultFlag = true;
+		}
+		return resultFlag;
+    }
 	
 	async function playbackPromise_116(AudioRendererOptions, pathName) {
             var resultFlag = false;
@@ -1582,12 +1583,13 @@ describe('audioRenderer', function () {
                 audioRen.on('periodReach', 'string', (position) => {
                     console.log('AudioFrameworkTest: periodReach Event is called : ' + position);
                     resultFlag = false;
-                }catch (err) {
+				})
+            }catch (err) {
                     console.log(`AudioFrameworkTest: periodReach Event is called : string : err: ${err.message}`);
                     resultFlag = true;
-                }
-                return resultFlag;
-            }
+			}
+			return resultFlag;
+    }
 
     /* *
            * @tc.number    : SUB_AUDIO_RENDERER_Play_audio_001
