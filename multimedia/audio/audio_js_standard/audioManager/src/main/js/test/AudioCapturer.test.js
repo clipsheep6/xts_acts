@@ -6182,11 +6182,12 @@ describe('audioCapturer', function () {
             audioCapCallBack.on('periodReach', 'string', (position) => {
                 console.info(`AudioRenderLog: periodReach: ${position}`);
                 expect(false).assertTrue();
-            }catch (err) {
-                console.info(`AudioRenderLog: periodReach: string: err: ${err.message}`);
-                expect(true).assertTrue();
-            }
-        })
+			})
+		}catch (err) {
+			console.info(`AudioRenderLog: periodReach: string: err: ${err.message}`);
+			expect(true).assertTrue();
+		}
+    })
 
     /*     *
                * @tc.number    : SUB_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_223750_087
