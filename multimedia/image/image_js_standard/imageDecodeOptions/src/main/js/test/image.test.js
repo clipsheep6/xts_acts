@@ -1289,7 +1289,7 @@ export default function imageDecodeOptions() {
                     index: 0
                 };
                 imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
-                    if (err) {0200
+                    if (err) {
                         console.info('SUB_GRAPHIC_IMAGE_DECODEOPTIONS_CREATEPIXELMAP_DESIRED_0400 createPixelMap error ' + JSON.stringify(err));
                         expect(false).assertTrue();
                         done();
