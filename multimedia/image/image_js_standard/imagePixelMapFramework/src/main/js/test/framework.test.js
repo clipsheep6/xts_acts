@@ -708,7 +708,7 @@ describe('imagePixelMapFramework', function () {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_JPG_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0100
      * @tc.name      : createAlphaPixelmap-Jpg
      * @tc.desc      : 1.create imagesource
      *               : 2.create pixelmap
@@ -718,24 +718,8 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_JPG_0100', 0, async function (done) {
-        var imageData = testJpg.buffer;
-        await createAlphaPixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_JPG_0100', 'promise', imageData);
-    })
-
-    /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0100
-     * @tc.name      : createAlphaPixelmap
-     * @tc.desc      : 1.create imagesource
-     *               : 2.create pixelmap
-     *               : 3.create AlphaPixelmap
-     *               : 4.call getImageInfo
-     * @tc.size      : MEDIUM 
-     * @tc.type      : Functional
-     * @tc.level     : Level 0
-     */
     it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0100', 0, async function (done) {
-        var imageData = testBmp.buffer;
+        var imageData = testJpg.buffer;
         await createAlphaPixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0100', 'promise', imageData);
     })
 
@@ -751,8 +735,24 @@ describe('imagePixelMapFramework', function () {
      * @tc.level     : Level 0
      */
     it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0200', 0, async function (done) {
-        var imageData = testGif.buffer;
+        var imageData = testBmp.buffer;
         await createAlphaPixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0200', 'promise', imageData);
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0300
+     * @tc.name      : createAlphaPixelmap
+     * @tc.desc      : 1.create imagesource
+     *               : 2.create pixelmap
+     *               : 3.create AlphaPixelmap
+     *               : 4.call getImageInfo
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0300', 0, async function (done) {
+        var imageData = testGif.buffer;
+        await createAlphaPixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATEALPHAPIXELMAP_0300', 'promise', imageData);
     })
 
     /**
@@ -937,7 +937,7 @@ describe('imagePixelMapFramework', function () {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_JPG_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0300
      * @tc.name      : fitDensity-JPG
      * @tc.desc      : 1.create ImageSource
      *               : 2.create PixelMap with fitDensity
@@ -946,14 +946,14 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_JPG_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0300', 0, async function (done) {
         var imageData = testJpg.buffer;
         let decodingOptions = { fitDensity: 240 };
-        await getDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_JPG_0100', imageData, decodingOptions)
+        await getDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0300', imageData, decodingOptions)
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_BMP_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0400
      * @tc.name      : fitDensity-bmp
      * @tc.desc      : 1.create ImageSource
      *               : 2.create PixelMap with fitDensity
@@ -962,14 +962,14 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_BMP_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0400', 0, async function (done) {
         var imageData = testBmp.buffer;
         let decodingOptions = { fitDensity: 240 };
-        await getDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_BMP_0100', imageData, decodingOptions)
+        await getDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0400', imageData, decodingOptions)
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_GIF_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0500
      * @tc.name      : fitDensity-gif
      * @tc.desc      : 1.create ImageSource
      *               : 2.create PixelMap with fitDensity
@@ -978,14 +978,14 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_GIF_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0500', 0, async function (done) {
         var imageData = testGif.buffer;
         let decodingOptions = { fitDensity: 240 };
-        await getDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_GIF_0100', imageData, decodingOptions)
+        await getDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_FITDENSITY_0500', imageData, decodingOptions)
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_JPG_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0100
      * @tc.name      : setDensity-Jpg
      * @tc.desc      : 1.create ImageSource
      *               : 2.create PixelMap
@@ -995,13 +995,13 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_JPG_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0100', 0, async function (done) {
         var imageData = testJpg.buffer;
-        await setDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_JPG_0100', imageData)
+        await setDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0100', imageData)
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_BMP_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0200
      * @tc.name      : setDensity-bmp
      * @tc.desc      : 1.create ImageSource
      *               : 2.create PixelMap
@@ -1011,13 +1011,13 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_BMP_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0200', 0, async function (done) {
         var imageData = testBmp.buffer;
-        await setDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_BMP_0100', imageData)
+        await setDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0200', imageData)
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_GIF_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0300
      * @tc.name      : setDensity-gif
      * @tc.desc      : 1.create ImageSource
      *               : 2.create PixelMap
@@ -1027,9 +1027,9 @@ describe('imagePixelMapFramework', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_GIF_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0300', 0, async function (done) {
         var imageData = testGif.buffer;
-        await setDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_GIF_0100', imageData)
+        await setDensityTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SETDENSITY_0300', imageData)
     })
 
     /**
