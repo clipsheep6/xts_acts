@@ -92,6 +92,7 @@ export default function getThumbnailPromise(abilityContext) {
             }
         }
 
+
         // ------------------------------ image type start -----------------------
         /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_PROMISE_001_01
