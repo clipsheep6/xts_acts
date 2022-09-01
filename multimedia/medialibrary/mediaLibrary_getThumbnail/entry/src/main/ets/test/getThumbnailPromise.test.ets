@@ -140,15 +140,15 @@ export default function getThumbnailPromise(abilityContext) {
             }
         }
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_AUTO_CREATE_THUMBNAIL_PROMISE_001_01
          * @tc.name      : auto create thumbnail
          * @tc.desc      : Automatically create thumbnails after newly generated resources
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01', 0, async function (done) {
-            let testNum = 'SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01';
+        it('SUB_MEDIA_MEDIALIBRARY_AUTO_CREATE_THUMBNAIL_PROMISE_001_01', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_AUTO_CREATE_THUMBNAIL_PROMISE_001_01';
             let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
             let path = 'Pictures/Thumbnail/';
             await autoCreateThumbnailTest(done, testNum, dOp, path)
