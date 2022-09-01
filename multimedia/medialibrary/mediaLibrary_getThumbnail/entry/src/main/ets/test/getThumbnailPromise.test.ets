@@ -16,6 +16,7 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 import image from '@ohos.multimedia.image';
+import fileio from '@ohos.fileio';
 import {
     sleep,
     IMAGE_TYPE,
@@ -91,6 +92,68 @@ export default function getThumbnailPromise(abilityContext) {
                 done();
             }
         }
+		function fetchThumbnailOps(id){
+            return{
+                selections: FILEKEY.ID + '= ? AND ' + 'lcd is not null' + ' AND ' + 'thumbnail is not null',
+                selectionArgs: [id + ''],
+            };
+        }
+
+        async function copyFile(fd1, fd2){
+            let stat = await fileio.fstat(fd1);
+            let buf = new ArrayBuffer(stat.size);
+            await fileio.read(fd1, buf);
+            await fileio.write(fd2, buf);
+        }
+
+		async function autoCreateThumbnailTest(done, testNum, dOps, path){
+            try{
+                let fetchFileResult = await media.getFileAssets(dOps);
+                let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, 1);
+                if (!checkAssetCountPass) return;
+                let asset = await fetchFileResult.getFileObject();
+                let createAsset = await media.createAsset(
+                    IMAGE_TYPE,
+                    `${new Date().getTime()}.jpg`,
+                    path
+                );
+                const assetFd = await asset.open('rw');
+                const createAssetFd = await createAsset.open('rw');
+                await copyFile(assetFd, createAssetFd);
+
+                let newFetchFileResult = await media.getFileAssets(fetchThumbnailOps(createAsset.id));
+                let lcdCount = newFetchFileResult.getCount();
+                console.info(`${testNum}:: lcdCount ${lcdCount}`);
+                expect(lcdCount == 0).assertTrue();
+
+                await createAsset.close(createAssetFd);
+                await asset.close(assetFd);
+                newFetchFileResult = await media.getFileAssets(fetchThumbnailOps(createAsset.id));
+                lcdCount = newFetchFileResult.getCount();
+                console.info(`${testNum}:: lcdCount ${lcdCount}`);
+                expect(lcdCount == 1).assertTrue();
+                done();
+            }catch(error){
+                console.info(`${testNum}:: error ${error}`);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+		
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01
+         * @tc.name      : auto create thumbnail
+         * @tc.desc      : Automatically create thumbnails after newly generated resources
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let path = 'Pictures/Thumbnail/';
+            await testGetThumbnail(done, testNum, dOp, path)
+        });
 
 
         // ------------------------------ image type start -----------------------

@@ -219,7 +219,7 @@ export default function getThumbnailCallback(abilityContext) {
             await testGetThumbnail(done, testNum, dOp, size,);
         });
 		
-		/**
+        /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_08
          * @tc.name      : getThumbnail
          * @tc.desc      : getThumbnail(image) by 1
