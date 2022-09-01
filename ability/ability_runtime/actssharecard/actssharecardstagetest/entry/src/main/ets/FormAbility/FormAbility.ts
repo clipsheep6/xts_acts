@@ -32,6 +32,7 @@ function upDateForm(formId) {
     newFormInfo.imageSrc = "/common/hot.png";
 
     formInfoMap.set(formId, newFormInfo);
+    //    formInfoMap[formId] = newFormInfo;
     for( let key of formInfoMap.keys()){
         console.log(`FormMgrService FormAbility formInfoMap key ：`+ JSON.stringify(key));
     }
@@ -78,12 +79,6 @@ export default class FormAbility extends FormExtension {
             obj.temperature = want.parameters["temperature"];
             obj.time = want.parameters["time"]
             obj.imageSrc = want.parameters["imageSrc"]
-        }
-
-        if(Number(obj.temperature) > TEMPORARY_NUMBER){
-            obj.imageSrc = "/common/hot.png";
-        }else{
-            obj.imageSrc = "/common/cold.png";
         }
 
         let formInfo = new formDate();
