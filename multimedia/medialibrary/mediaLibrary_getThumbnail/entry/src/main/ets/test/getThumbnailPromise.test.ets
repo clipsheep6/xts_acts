@@ -151,7 +151,7 @@ export default function getThumbnailPromise(abilityContext) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_AUTO_CREAT_THUMBNAIL_PROMISE_001_01';
             let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
             let path = 'Pictures/Thumbnail/';
-            await testGetThumbnail(done, testNum, dOp, path)
+            await autoCreateThumbnailTest(done, testNum, dOp, path)
         });
 
 
