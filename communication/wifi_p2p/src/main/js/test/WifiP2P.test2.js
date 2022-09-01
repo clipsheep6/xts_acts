@@ -26,11 +26,25 @@ function checkWifiPowerOn(){
 
 export default function actsWifiTestNew() {
     describe('actsWifiTestNew', function () {
-        beforeEach(function () {
-            checkWifiPowerOn();
-        })
-        afterEach(function () {
-        })
+  beforeAll(function () {
+    console.info("*************[wifi_test] WiFiP2P test2 start*************");
+  })
+
+    afterEach(async function () {
+        console.info("afterEach start");
+    })
+  beforeEach(function () {
+    console.info("beforeEach start");
+    checkWifiPowerOn();
+  })
+
+  afterEach(function () {
+    console.info('afterEach start');
+  })
+
+  afterAll(function () {
+    console.info("*************[wifi_test] WiFiP2P test2 end*************");
+  })
 
         /**
         * @tc.number     P2P_0009

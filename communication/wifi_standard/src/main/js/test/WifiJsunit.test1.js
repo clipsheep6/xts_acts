@@ -58,11 +58,26 @@ let WifiChannelWidth = {
 
 export default function actsWifiTestNew() {
     describe('actsWifiTestNew', function () {
-        beforeEach(function () {
-            checkWifiPowerOn();
-        })
-        afterEach(function () {
-        })
+  beforeAll(function () {
+    console.info("*************[wifi_test] WifiJsunit test1 start*************");
+  })
+
+    beforeEach(function() {
+        checkWifiPowerOn();
+    })
+  beforeEach(function () {
+    console.info("beforeEach start");
+    checkWifiPowerOn();
+  })
+
+    afterEach(function() {})
+  afterEach(function () {
+    console.info('afterEach start');
+  })
+
+  afterAll(function () {
+    console.info("*************[wifi_test] WifiJsunit test1 end*************");
+  })
 
         /**
         * @tc.number     CandidateNetWork_0001
