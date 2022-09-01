@@ -31,259 +31,173 @@ const PROFILE_JSON_STRING = "{\"src\":[\"MainAbility/pages/index/index\",\"MainA
 
 export default function getProfileByExtensionAbility() {
   describe('getProfileByExtensionAbility', function () {
-   /*
-    * @tc.number: getProfileByExtensionAbility_0400
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid moduleName (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_0400', 0, async function (done) {
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERYMETAFILE_0021
+     * @tc.name: GetProfileByExtensionInvalidModuleName
+     * @tc.desc: Check the invalid moduleName
+     * @tc.level   0
+     */
+    it('GetProfileByExtensionInvalidModuleName', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME_TEST, ABILITY_NAME, METADATA_NAME).then(data => {
         console.info("getProfileByExtensionAbility_0400 success" + JSON.stringify(data))
         expect(data).assertFail()
-        done()
       }).catch(err => {
         console.info("getProfileByExtensionAbility_0400 failed" + JSON.stringify(err))
         expect(err).assertEqual(1)
-        done()
       })
+      await bundle.getProfileByExtensionAbility(MODULE_NAME_TEST, ABILITY_NAME).then(data => {
+        console.info("getProfileByExtensionAbility_0400 success" + JSON.stringify(data))
+        expect(data).assertFail()
+      }).catch(err => {
+        console.info("getProfileByExtensionAbility_0400 failed" + JSON.stringify(err))
+        expect(err).assertEqual(1)
+      })
+      bundle.getProfileByExtensionAbility(MODULE_NAME_TEST, ABILITY_NAME, METADATA_NAME, (err, data) => {
+        console.error('[getProfileByExtensionAbility_0600]Operation failed. Cause: ' + JSON.stringify(err));
+        console.info('[getProfileByExtensionAbility_0600] getApplicationInfo callback data is: ' + JSON.stringify(data));
+        expect(typeof data).assertEqual("string");
+        expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
+        done();
+      });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_0500
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid moduleName (by promise)
-    * @tc.level   0
-    */
+    /*
+     * @tc.number: getProfileByExtensionAbility_0500
+     * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
+     * @tc.desc: Check the invalid moduleName (by promise)
+     * @tc.level   0
+     */
     it('getProfileByExtensionAbility_0500', 0, async function (done) {
       await bundle.getProfileByExtensionAbility('', ABILITY_NAME, METADATA_NAME).then(data => {
         console.info("getProfileByExtensionAbility_0500 success" + JSON.stringify(data))
         expect(data).assertFail()
-        done()
       }).catch(err => {
         console.info("getProfileByExtensionAbility_0500 failed" + JSON.stringify(err))
         expect(err).assertEqual(1)
-        done()
       })
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_0600
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid moduleName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_0600', 0, async function (done) {
-      bundle.getProfileByExtensionAbility(MODULE_NAME_TEST, ABILITY_NAME, METADATA_NAME, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_0600]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
-        console.info('[getProfileByExtensionAbility_0600] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
-        done();
-      });
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_0700
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid moduleName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_0700', 0, async function (done) {
       bundle.getProfileByExtensionAbility('', ABILITY_NAME, METADATA_NAME, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_0700]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
+        console.error('[getProfileByExtensionAbility_0700]Operation failed. Cause: ' + JSON.stringify(err));
         console.info('[getProfileByExtensionAbility_0700] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(typeof data).assertEqual("string");
         expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
         done();
       });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_0800
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid abilityName (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_0800', 0, async function (done) {
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERYMETAFILE_0013
+     * @tc.name: GetProfileByExtensionInvalidAbilityName
+     * @tc.desc: Check the invalid abilityName
+     * @tc.level   0
+     */
+    it('GetProfileByExtensionInvalidAbilityName', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME_TEST, METADATA_NAME).then(data => {
         console.info("getProfileByExtensionAbility_0800 success" + JSON.stringify(data))
         expect(data).assertFail()
-        done()
       }).catch(err => {
         console.info("getProfileByExtensionAbility_0800 failed" + JSON.stringify(err))
         expect(err).assertEqual(1)
-        done()
       })
+      await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME_TEST).then(data => {
+        console.info("getProfileByExtensionAbility_0800 success" + JSON.stringify(data))
+        expect(data).assertFail()
+      }).catch(err => {
+        console.info("getProfileByExtensionAbility_0800 failed" + JSON.stringify(err))
+        expect(err).assertEqual(1)
+      })
+      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME_TEST, METADATA_NAME, (err, data) => {
+        console.error('[getProfileByExtensionAbility_1000]Operation failed. Cause: ' + JSON.stringify(err));
+        console.info('[getProfileByExtensionAbility_1000] getApplicationInfo callback data is: ' + JSON.stringify(data));
+        expect(typeof data).assertEqual("string");
+        expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
+        done();
+      });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_0900
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid abilityName (by promise)
-    * @tc.level   0
-    */
+    /*
+     * @tc.number: getProfileByExtensionAbility_0900
+     * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
+     * @tc.desc: Check the invalid abilityName
+     * @tc.level   0
+     */
     it('getProfileByExtensionAbility_0900', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, '', METADATA_NAME).then(data => {
         console.info("getProfileByExtensionAbility_0900 success" + JSON.stringify(data))
         expect(data).assertFail()
-        done()
       }).catch(err => {
         console.info("getProfileByExtensionAbility_0900 failed" + JSON.stringify(err))
         expect(err).assertEqual(1)
-        done()
       })
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_1000
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid abilityName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1000', 0, async function (done) {
-      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME_TEST, METADATA_NAME, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_1000]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
-        console.info('[getProfileByExtensionAbility_1000] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
-        done();
-      });
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_1100
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid abilityName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1100', 0, async function (done) {
       bundle.getProfileByExtensionAbility(MODULE_NAME, '', METADATA_NAME, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_1100]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
+        console.error('[getProfileByExtensionAbility_1100]Operation failed. Cause: ' + JSON.stringify(err));
         console.info('[getProfileByExtensionAbility_1100] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(typeof data).assertEqual("string");
         expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
         done();
       });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_1200
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the valid metadataName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1200', 0, async function (done) {
-      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_1200]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
-        console.info('[getProfileByExtensionAbility_1200] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(Array.isArray(data)).assertTrue();
-        expect(typeof data[0]).assertEqual("string");
-        expect(data[0]).assertEqual(PROFILE_JSON_STRING);
-        done();
-      });
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_1300
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid metadataName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1300', 0, async function (done) {
-      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME_TEST, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_1300]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
-        console.info('[getProfileByExtensionAbility_1300] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
-        done();
-      });
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_1400
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the empty metadataName (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1400', 0, async function (done) {
-      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, '', (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_1400]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
-        console.info('[getProfileByExtensionAbility_1400] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(Array.isArray(data)).assertTrue();
-        expect(typeof data[0]).assertEqual("string");
-        expect(data[0]).assertEqual(PROFILE_JSON_STRING);
-        expect(typeof data[1]).assertEqual("string");
-        expect(data[1]).assertEqual(PROFILE_JSON_STRING);
-        done();
-      });
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_1500
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the valid metadataName (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1500', 0, async function (done) {
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERYMETAFILE_0003
+     * @tc.name: TestGetProfileByExtensionAbility
+     * @tc.desc: Check the valid metadataName
+     * @tc.level   0
+     */
+    it('TestGetProfileByExtensionAbility', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME).then(data => {
         console.info('[getProfileByExtensionAbility_1500] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(Array.isArray(data)).assertTrue();
         expect(typeof data[0]).assertEqual("string");
         expect(data[0]).assertEqual(PROFILE_JSON_STRING);
-        done();
       }).catch(err => {
         console.error('[getProfileByExtensionAbility_1500]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
-        done();
+        expect(err).assertFail();
       })
+      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME, (err, data) => {
+        console.error('[getProfileByExtensionAbility_1200]Operation failed. Cause: ' + JSON.stringify(err));
+        console.info('[getProfileByExtensionAbility_1200] getApplicationInfo callback data is: ' + JSON.stringify(data));
+        expect(Array.isArray(data)).assertTrue();
+        expect(typeof data[0]).assertEqual("string");
+        expect(data[0]).assertEqual(PROFILE_JSON_STRING);
+        expect(err).assertEqual(0);
+        done();
+      });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_1600
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the invalid metadataName (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1600', 0, async function (done) {
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERYMETAFILE_0016
+     * @tc.name: GetProfileByExtensionInvalidMetadataName
+     * @tc.desc: Check the invalid metadataName
+     * @tc.level   0
+     */
+    it('GetProfileByExtensionInvalidMetadataName', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME_TEST).then(data => {
         console.info('[getProfileByExtensionAbility_1600] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(data).assertFail()
-        done()
       }).catch(err => {
         console.error('[getProfileByExtensionAbility_1600]Operation failed. Cause: ' + JSON.stringify(err));
         expect(err).assertEqual(1);
-        done();
       })
+      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME_TEST, (err, data) => {
+        console.error('[getProfileByExtensionAbility_1300]Operation failed. Cause: ' + JSON.stringify(err));
+        console.info('[getProfileByExtensionAbility_1300] getApplicationInfo callback data is: ' + JSON.stringify(data));
+        expect(typeof data).assertEqual("string");
+        expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
+        done();
+      });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_1700
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: Check the empty metadataName (by promise)
-    * @tc.level   0
-    */
+    /*
+     * @tc.number: getProfileByExtensionAbility_1700
+     * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
+     * @tc.desc: Check the empty metadataName (by promise)
+     * @tc.level   0
+     */
     it('getProfileByExtensionAbility_1700', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, '').then(data => {
         console.info('[getProfileByExtensionAbility_1700] getApplicationInfo callback data is: ' + JSON.stringify(data));
@@ -292,21 +206,30 @@ export default function getProfileByExtensionAbility() {
         expect(data[0]).assertEqual(PROFILE_JSON_STRING);
         expect(typeof data[1]).assertEqual("string");
         expect(data[1]).assertEqual(PROFILE_JSON_STRING);
-        done();
       }).catch(err => {
         console.error('[getProfileByExtensionAbility_1700]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
-        done();
+        expect(err).assertFail();
       })
+      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, '', (err, data) => {
+        console.error('[getProfileByExtensionAbility_1400]Operation failed. Cause: ' + JSON.stringify(err));
+        console.info('[getProfileByExtensionAbility_1400] getApplicationInfo callback data is: ' + JSON.stringify(data));
+        expect(Array.isArray(data)).assertTrue();
+        expect(typeof data[0]).assertEqual("string");
+        expect(data[0]).assertEqual(PROFILE_JSON_STRING);
+        expect(typeof data[1]).assertEqual("string");
+        expect(data[1]).assertEqual(PROFILE_JSON_STRING);
+        expect(err).assertEqual(0);
+        done();
+      });
     })
-  
-   /*
-    * @tc.number: getProfileByExtensionAbility_1800
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: without metadataName (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_1800', 0, async function (done) {
+
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERYMETAFILE_0010
+     * @tc.name: GetProfileByExtensionWithoutMetadataName
+     * @tc.desc: without metadataName (by promise)
+     * @tc.level   0
+     */
+    it('GetProfileByExtensionWithoutMetadataName', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME).then(data => {
         console.info('[getProfileByExtensionAbility_1800] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(Array.isArray(data)).assertTrue();
@@ -317,17 +240,17 @@ export default function getProfileByExtensionAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByExtensionAbility_1800]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err).assertFail();
         done();
       })
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_1900
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: no profile configured under the ability (by promise)
-    * @tc.level   0
-    */
+    /*
+     * @tc.number: getProfileByExtensionAbility_1900
+     * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
+     * @tc.desc: no profile configured under the ability (by promise)
+     * @tc.level   0
+     */
     it('getProfileByExtensionAbility_1900', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME1).then(data => {
         console.info('[getProfileByExtensionAbility_1900] getApplicationInfo callback data is: ' + JSON.stringify(data));
@@ -340,114 +263,53 @@ export default function getProfileByExtensionAbility() {
       })
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_2000
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: resource has no prefix '$profile:' (by promise)
-    * @tc.level   0
-    */
+    /*
+     * @tc.number: getProfileByExtensionAbility_2000
+     * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
+     * @tc.desc: resource has no prefix '$profile
+     * @tc.level   0
+     */
     it('getProfileByExtensionAbility_2000', 0, async function (done) {
       await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME2).then(data => {
         console.info('[getProfileByExtensionAbility_2000] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(data).assertFail()
-        done();
       }).catch(err => {
         console.error('[getProfileByExtensionAbility_2000]Operation failed. Cause: ' + JSON.stringify(err));
         expect(err).assertEqual(1);
-        done();
       })
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_2100
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: resource has no prefix '$profile:' (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_2100', 0, async function (done) {
       bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME2, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_2100]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
-        }
+        console.error('[getProfileByExtensionAbility_2100]Operation failed. Cause: ' + JSON.stringify(err));
         console.info('[getProfileByExtensionAbility_2100] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(typeof data).assertEqual("string");
         expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
         done();
       });
     })
 
-   /*
-    * @tc.number: getProfileByExtensionAbility_2200
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: profile is .txt suffix (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_2200', 0, async function (done) {
-      await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME3).then(data => {
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERYMETAFILE_0020
+     * @tc.name: GetProfileByExtensionNotFormat
+     * @tc.desc: profile is not json-format
+     * @tc.level   0
+     */
+    it('GetProfileByExtensionNotFormat', 0, async function (done) {
+      await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME4).then(data => {
         console.info('[getProfileByExtensionAbility_2200] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(Array.isArray(data)).assertTrue();
-        expect(typeof data[0]).assertEqual("string");
-        done();
+        expect(data).assertFail()
       }).catch(err => {
         console.error('[getProfileByExtensionAbility_2200]Operation failed. Cause: ' + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      })
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_2300
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: profile is invalid json format (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_2300', 0, async function (done) {
-      bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME3, (err, data) => {
-        if (err) {
-          console.error('[getProfileByExtensionAbility_2300]Operation failed. Cause: ' + JSON.stringify(err));
-          expect().assertFail();
-        }
-        console.info('[getProfileByExtensionAbility_2300] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(Array.isArray(data)).assertTrue();
-        expect(typeof data[0]).assertEqual("string");
-        done();
-      });
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_2400
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: profile is invalid json format (by promise)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_2400', 0, async function (done) {
-      await bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME4).then(data => {
-        console.info('[getProfileByExtensionAbility_2400] data is: ' + JSON.stringify(data));
-        expect().assertFail();
-        done();
-      }).catch(err => {
-        console.error('[getProfileByExtensionAbility_2400] Operation failed. Cause: ' + JSON.stringify(err));
         expect(err).assertEqual(1);
-        done();
       })
-    })
-
-   /*
-    * @tc.number: getProfileByExtensionAbility_2500
-    * @tc.name: getProfileByExtensionAbility : The profile is obtained by specified ability
-    * @tc.desc: profile is invalid json format (by callback)
-    * @tc.level   0
-    */
-    it('getProfileByExtensionAbility_2500', 0, async function (done) {
       bundle.getProfileByExtensionAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME4, (err, data) => {
-        console.info('[getProfileByExtensionAbility_2500] err: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
-        console.info('[getProfileByExtensionAbility_2500] data is: ' + JSON.stringify(data));
+        console.error('[getProfileByExtensionAbility_2300]Operation failed. Cause: ' + JSON.stringify(err));
+        console.info('[getProfileByExtensionAbility_2300] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(typeof data).assertEqual("string");
         expect(data).assertEqual("GetProfile failed");
+        expect(err).assertEqual(1);
         done();
       });
     })
+
   })
 }
