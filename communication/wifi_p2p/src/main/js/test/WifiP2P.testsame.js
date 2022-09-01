@@ -74,7 +74,7 @@ export default function actsWifiTest() {
                     let removeConfig = wifi.removeGroup();
                     expect(removeConfig).assertTrue();
                 });
-            done()
+            done();
         })
 
         /**
@@ -154,7 +154,7 @@ export default function actsWifiTest() {
                     let removeConfig = wifi.removeGroup();
                     expect(removeConfig).assertTrue();
                 });
-            done()
+            done();
         })
 
         /**
@@ -217,7 +217,7 @@ export default function actsWifiTest() {
             expect(connConfig).assertTrue();
             let stopScan = wifi.stopDiscoverDevices();
             console.info("[wifi_test] test stopDiscoverDevices result." + stopScan);
-            done()
+            done();
         })
 
         /**
@@ -234,7 +234,7 @@ export default function actsWifiTest() {
                     let resultLength = Object.keys(data).length;
                     console.info("[wifi_test] getP2pLinkedInfo  [promise] result -> " + JSON.stringify(data));
                     expect(true).assertEqual(resultLength!=0);
-                    done()
+                    done();
                 });
         })
 
