@@ -197,22 +197,22 @@ describe('PowerManagerPowerTest', function () {
     /**
      * @tc.number SUB_PowerSystem_PowerManager_JSTest_0090
      * @tc.name Power_Device_pPower_Mode_MODEPERFORMANCE_JSTest0090
-     * @tc.desc Get device power mode MODE_PERFORMANCE
+     * @tc.desc Get device power mode MODE_EXTREME
      */
      it('Power_Device_pPower_Mode_MODEPERFORMANCE_JSTest0090', 0, function () {
-        let devicePowerMode = power.DevicePowerMode.MODE_PERFORMANCE;
-        console.info('MODE_PERFORMANCE = ' + devicePowerMode);
+        let devicePowerMode = power.DevicePowerMode.MODE_EXTREME;
+        console.info('MODE_EXTREME = ' + devicePowerMode);
         expect(devicePowerMode === 602).assertTrue();
       })
 
     /**
      * @tc.number SUB_PowerSystem_PowerManager_JSTest_0100
-     * @tc.name Power_Device_Power_Mode_MODE_EXTREME_POWER_SAVE_JSTest0100
-     * @tc.desc Get device power mode MODE_EXTREME_POWER_SAVE
+     * @tc.name Power_Device_Power_Mode_MODE_LOWPOWER_JSTest0100
+     * @tc.desc Get device power mode MODE_LOWPOWER
      */
-     it('Power_Device_Power_Mode_MODE_EXTREME_POWER_SAVE_JSTest0100', 0, function () {
-        let devicePowerMode = power.DevicePowerMode.MODE_EXTREME_POWER_SAVE;
-        console.info('MODE_EXTREME_POWER_SAVE = ' + devicePowerMode);
+     it('Power_Device_Power_Mode_MODE_LOWPOWER_JSTest0100', 0, function () {
+        let devicePowerMode = power.DevicePowerMode.MODE_LOWPOWER;
+        console.info('MODE_LOWPOWER = ' + devicePowerMode);
         expect(devicePowerMode === 603).assertTrue();
       })
 })
