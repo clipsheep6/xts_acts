@@ -1,0 +1,81 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+import("//test/xts/acts/security/deviceauth/common/deviceauthtest.gni")
+########################################################
+# config("module_private_config") {
+#   visibility = [ ":*" ]
+#   include_dirs = [
+#     "//utils/native/base/include",
+#   ]
+# }
+
+########################################################
+# ohos_moduletest_suite("ActsDevAuthNoAccountTest") {
+#   # configs = [ ":module_private_config" ]
+#   cflags_cc = [ "-DHILOG_ENABLE" ]
+#   defines = [ "_STANDARD_SYSTEM_" ]
+
+#   sources = [
+#     "src/test_group_manage.cpp",
+#     "src/test_group_query.cpp",
+#     "src/test_noaccount_auth.cpp"
+#   ]
+
+#   include_dirs = [
+#     "//third_party/json/include",
+#     "//utils/native/base/include",
+#     "//base/security/device_auth/common_lib/interfaces/",
+#     "//test/xts/acts/security/deviceauth/common/inc",
+#     "//base/security/device_auth/interfaces/innerkits",
+#     "//base/security/device_auth/services/frameworks/inc/",
+#     "//base/security/device_auth/deps_adapter/os_adapter/interfaces/linux/",
+#     "//base/security/device_auth/deps_adapter/os_adapter/interfaces",
+#     "//base/security/access_token/interfaces/innerkits/nativetoken/include",
+#     "//base/security/access_token/interfaces/innerkits/token_setproc/include",
+#   ]
+
+#   deps = [
+#     # "//base/security/device_auth/services:deviceauth",
+#     "//base/security/device_auth/services:deviceauth_service",
+#     "//test/xts/acts/security/deviceauth/common:DevAuthCommon",
+#     "//base/security/access_token/interfaces/innerkits/nativetoken:libnativetoken",
+#     "//base/security/access_token/interfaces/innerkits/token_setproc:libtoken_setproc",
+#     "//third_party/cJSON:cjson_static",
+#     # "//third_party/googletest:gmock_main",
+#     "//third_party/googletest:gtest_main",
+#     # "//third_party/openssl:libcrypto_static",
+#     "//utils/native/base:utils",
+#   ]
+
+#   external_deps = [
+#     "hiviewdfx_hilog_native:libhilog",
+#   ]
+# }
+
+ohos_moduletest_suite("ActsDevAuthNoAccountTest") {
+  cflags_cc = [ "-DHILOG_ENABLE" ]
+  defines = [ "_STANDARD_SYSTEM_" ]
+
+  sources = [
+    "src/test_group_manage.cpp",
+    "src/test_group_query.cpp",
+    "src/test_noaccount_auth.cpp"
+  ]
+  include_dirs = testcase_include_dirs
+  deps = testcase_deps
+  deps += [
+    "//third_party/googletest:gtest_main",
+  ]
+}

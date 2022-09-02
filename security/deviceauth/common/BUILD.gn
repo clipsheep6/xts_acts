@@ -1,0 +1,78 @@
+#
+# Copyright (c) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+import("//test/xts/acts/security/deviceauth/common/deviceauthtest.gni")
+# include_dirs = [
+#     "inc",
+#     "//third_party/json/include",
+#     "//utils/native/base/include",
+#     "//base/security/device_auth/common_lib/interfaces/",
+#     "//base/security/device_auth/interfaces/innerkits",
+#     "//base/security/device_auth/services/frameworks/inc/",
+#     "//base/hiviewdfx/hilog_lite/interfaces/native/innerkits/hilog",
+#     "//base/security/device_auth/services/authenticators/inc/account_related/",
+#     "//base/security/device_auth/deps_adapter/os_adapter/interfaces",
+#     "//base/security/device_auth/deps_adapter/key_management_adapter/interfaces/",
+#   ]
+# if(os_level == "standard"){
+#   static_library("DevAuthCommon") {
+#     testonly = true
+#     sources = [
+#       "src/device_auth_func.c",
+#       "src/device_auth_socket.c",
+#       # "src/device_auth_log.c"
+#     ]
+#     include_dirs += [
+#       "inc/linux",
+#       "//base/security/device_auth/deps_adapter/os_adapter/interfaces/linux/",
+#       "//base/security/access_token/interfaces/innerkits/nativetoken/include",
+#       "//base/security/access_token/interfaces/innerkits/token_setproc/include",
+#       # "//base/hiviewdfx/hilog/interfaces/native/innerkits/include/",
+#     ]
+#     cflags = [ "-DHILOG_ENABLE" ]
+#     deps = [
+#       "//base/security/device_auth/services:deviceauth_sdk",
+#       "//base/security/device_auth/services:deviceauth_service",
+#       "//base/hiviewdfx/hilog/frameworks/hilog_ndk:hilog_ndk",
+#       "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog_base",
+#       "//base/hiviewdfx/hilog/frameworks/libhilog:libhilog_base_source",
+#       "//base/security/access_token/interfaces/innerkits/nativetoken:libnativetoken",
+#       "//base/security/access_token/interfaces/innerkits/token_setproc:libtoken_setproc",
+#       # "//base/hiviewdfx/hilog_lite/frameworks/featured:hilog_shared",
+#       # "//base/hiviewdfx/hilog:hilog_target",
+#       # "//third_party/cJSON:cjson_static",
+#       "//utils/native/base:utils",
+#     ]
+#     # external_deps = [ "hiviewdfx_hilog_native:libhilog" ]
+# }
+# }
+
+if(os_level == "standard"){
+  static_library("DevAuthCommon") {
+    testonly = true
+    cflags = [ "-DHILOG_ENABLE" ]
+    sources = [
+      "src/device_auth_func.c",
+      "src/device_auth_socket.c",
+      # "src/device_auth_log.c"
+    ]
+    include_dirs = [
+      "inc",
+      "inc/linux",
+    ]
+    include_dirs += common_include_dirs + devauth_serice_include_dirs + devauth_sdk_include_dirs + hilog_include_dirs
+    
+    deps = common_standard_deps + devauth_serice_deps + devauth_sdk_deps + hilog_deps
+}
+}

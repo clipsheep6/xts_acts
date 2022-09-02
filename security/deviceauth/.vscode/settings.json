@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "device_auth_func.h": "c",
+        "device_auth_callback.h": "c"
+    }
+}

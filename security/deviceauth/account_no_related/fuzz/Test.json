@@ -1,0 +1,18 @@
+{
+    "kits": [
+        {
+            "push": [
+                "ActDevAuthNoAccountclient->/data/local/tmp/ActDevAuthNoAccountclient"
+            ],
+            "type": "PushKit"
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "120000",
+        "type": "CppTest",
+        "module-name": "ActDevAuthNoAccountclient",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration for ActDevAuthNoAccountclient Tests"
+}
