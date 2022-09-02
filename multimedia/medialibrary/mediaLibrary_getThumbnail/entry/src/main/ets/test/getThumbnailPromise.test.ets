@@ -111,7 +111,7 @@ export default function getThumbnailPromise(abilityContext) {
                 let fetchFileResult = await media.getFileAssets(dOps);
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, 1);
                 if (!checkAssetCountPass) return;
-                let asset = await fetchFileResult.getFileObject();
+                let asset = await fetchFileResult.getFirstObject();
                 let createAsset = await media.createAsset(
                     IMAGE_TYPE,
                     `${new Date().getTime()}.jpg`,
