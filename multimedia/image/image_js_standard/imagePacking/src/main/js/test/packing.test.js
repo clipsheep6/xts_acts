@@ -20,6 +20,8 @@ import fileio from '@ohos.fileio'
 
 export default function imagePacking() {
     describe('imagePacking', function () {
+        const RGB_565 = image.PixelMapFormat.RGB_565;
+        const RGB_888 = image.PixelMapFormat.RGB_888;
         let filePath;
         let fdNumber;
         async function getFd(fileName) {
@@ -58,9 +60,9 @@ export default function imagePacking() {
             let opts;
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: RGB_565, size: { height: 4, width: 6 } }
             } else {
-                opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: RGB_888, size: { height: 4, width: 6 } }
             }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
@@ -104,9 +106,9 @@ export default function imagePacking() {
             let opts;
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: RGB_565, size: { height: 4, width: 6 } }
             } else {
-                opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                opts = { editable: true, pixelFormat: RGB_888, size: { height: 4, width: 6 } }
             }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
@@ -149,9 +151,9 @@ export default function imagePacking() {
         function packingCbFail(done, testNum, pixFormat, arg) {
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                var opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: RGB_565, size: { height: 4, width: 6 } }
             } else {
-                var opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: RGB_888, size: { height: 4, width: 6 } }
             }
 
             image.createPixelMap(Color, opts)
@@ -182,9 +184,9 @@ export default function imagePacking() {
         function packingPromiseFail(done, testNum, pixFormat, arg) {
             const Color = new ArrayBuffer(96);
             if (pixFormat == 2) {
-                var opts = { editable: true, pixelFormat: 2, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: RGB_565, size: { height: 4, width: 6 } }
             } else {
-                var opts = { editable: true, pixelFormat: 5, size: { height: 4, width: 6 } }
+                var opts = { editable: true, pixelFormat: RGB_888, size: { height: 4, width: 6 } }
             }
             image.createPixelMap(Color, opts)
                 .then(pixelmap => {
