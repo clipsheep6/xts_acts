@@ -426,7 +426,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_08', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_08';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', VIDEO_TYPE);
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
             let size = 1;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -441,7 +441,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_09', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_09';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', VIDEO_TYPE);
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
             let size = 'str';
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -456,7 +456,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_10', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_10';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', VIDEO_TYPE);
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
             let size = true;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -471,7 +471,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_11', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_11';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', VIDEO_TYPE);
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
             let size = false;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -486,7 +486,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_12', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_12';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', VIDEO_TYPE);
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
             let size = null;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -501,7 +501,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_13', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_13';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', VIDEO_TYPE);
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
             let size = { width: 99999, height: 99999 };
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -623,7 +623,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_08', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_08';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', AUDIO_TYPE);
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = 1;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -638,7 +638,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_09', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_09';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', AUDIO_TYPE);
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = 'str';
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -653,7 +653,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_10', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_10';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', AUDIO_TYPE);
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = true;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -668,7 +668,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_11', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_11';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', AUDIO_TYPE);
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = false;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -683,7 +683,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_12', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_12';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', AUDIO_TYPE);
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = null;
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
@@ -698,7 +698,7 @@ export default function getThumbnailCallback(abilityContext) {
          */
          it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_13', 0, async function (done) {
             let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_13';
-            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', AUDIO_TYPE);
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = { width: 99999, height: 99999 };
             await testGetThumbnailError(done, testNum, dOp, size,);
         });
