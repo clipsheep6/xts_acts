@@ -119,7 +119,7 @@ describe('SimManagerTest', function () {
     *             can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getISOCountryCodeForSim_Async_0200', 0, async function (done) {
+  it('Telephony_Sim_GetISOCountryCodeForSim_Async_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getISOCountryCodeForSim_Async_0200';
     sim.getISOCountryCodeForSim(env.SLOTID2, (err, data) => {
       if (err) {
@@ -140,7 +140,7 @@ describe('SimManagerTest', function () {
     *             can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getISOCountryCodeForSim_Promise_0200', 0, async function (done) {
+  it('Telephony_Sim_GetISOCountryCodeForSim_Promise_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getISOCountryCodeForSim_Promise_0200';
     try {
       var data = await sim.getISOCountryCodeForSim(env.SLOTID2);
@@ -161,7 +161,7 @@ describe('SimManagerTest', function () {
     *             can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getSimOperatorNumeric_Async_0200', 0, async function (done) {
+  it('Telephony_Sim_GetSimOperatorNumeric_Async_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getSimOperatorNumeric_Async_0200';
     sim.getSimOperatorNumeric(env.SLOTID2, (err, data) => {
       if (err) {
@@ -182,7 +182,7 @@ describe('SimManagerTest', function () {
     *             can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getSimOperatorNumeric_Promise_0200', 0, async function (done) {
+  it('Telephony_Sim_GetSimOperatorNumeric_Promise_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getSimOperatorNumeric_Promise_0200';
     try {
       var data = await sim.getSimOperatorNumeric(env.SLOTID2);
@@ -202,7 +202,7 @@ describe('SimManagerTest', function () {
     * @tc.name    Enter exception parameters to test whether the getSimSpn interface function can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getSimSpn_Async_0200', 0, async function (done) {
+  it('Telephony_Sim_GetSimSpn_Async_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getSimSpn_Async_0200';
     sim.getSimSpn(env.SLOTID2, (err, data) => {
       if (err) {
@@ -222,7 +222,7 @@ describe('SimManagerTest', function () {
     * @tc.name    Enter exception parameters to test whether the getSimSpn interface function can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getSimSpn_Promise_0200', 0, async function (done) {
+  it('Telephony_Sim_GetSimSpn_Promise_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getSimSpn_Promise_0200';
     try {
       var data = await sim.getSimSpn(env.SLOTID2);
@@ -242,7 +242,7 @@ describe('SimManagerTest', function () {
     * @tc.name    Enter exception parameters to test whether the getSimState interface function can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getSimState_Async_0200', 0, async function (done) {
+  it('Telephony_Sim_GetSimState_Async_0200', 0, async function (done) {
     sim.getSimState(env.SLOTID2, (err, data) => {
       const CASE_NAME = 'Telephony_Sim_getSimState_Async_0200';
       if (err) {
@@ -262,7 +262,7 @@ describe('SimManagerTest', function () {
     * @tc.name    Enter exception parameters to test whether the getSimState interface function can execute normally.
     * @tc.desc    Function test
     */
-  it('Telephony_Sim_getSimState_Promise_0200', 0, async function (done) {
+  it('Telephony_Sim_GetSimState_Promise_0200', 0, async function (done) {
     const CASE_NAME = 'Telephony_Sim_getSimState_Promise_0200';
     try {
       var data = await sim.getSimState(env.SLOTID2);
