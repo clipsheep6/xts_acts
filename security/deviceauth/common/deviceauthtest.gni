@@ -1,0 +1,72 @@
+# Copyright (C) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+common_include_dirs = [
+    "//utils/native/base/include",
+    "//third_party/json/include",
+    "//base/security/access_token/interfaces/innerkits/nativetoken/include",
+    "//base/security/access_token/interfaces/innerkits/token_setproc/include",
+]
+
+common_standard_deps = [
+    "//utils/native/base:utils",
+    "//third_party/cJSON:cjson_static",
+    "//base/security/access_token/interfaces/innerkits/nativetoken:libnativetoken",
+    "//base/security/access_token/interfaces/innerkits/token_setproc:libtoken_setproc",
+]
+devauth_common_include_dirs = [
+    "//test/xts/acts/security/deviceauth/common/inc",
+]
+
+devauth_common_deps = [
+    "//test/xts/acts/security/deviceauth/common:DevAuthCommon",
+]
+
+devauth_include_dirs = []
+devauth_deps = []
+
+devauth_serice_include_dirs = [
+    "//base/security/device_auth/common_lib/interfaces/",
+    "//base/security/device_auth/services/frameworks/inc/",
+    "//base/security/device_auth/services/authenticators/inc/account_related/",
+    "//base/security/device_auth/deps_adapter/os_adapter/interfaces",
+    "//base/security/device_auth/deps_adapter/os_adapter/interfaces/linux/",
+    "//base/security/device_auth/deps_adapter/key_management_adapter/interfaces/",
+]
+
+devauth_serice_deps = [
+    "//base/security/device_auth/services:deviceauth_service",
+]
+
+devauth_sdk_include_dirs = [
+    "//base/security/device_auth/interfaces/innerkits",
+]
+devauth_sdk_deps = [
+    "//base/security/device_auth/services:deviceauth_sdk",
+]
+
+hilog_include_dirs = [
+    "//base/hiviewdfx/hilog_lite/interfaces/native/innerkits/hilog",]
+hilog_deps = [
+    "//base/hiviewdfx/hilog/frameworks/hilog_ndk:hilog_ndk",
+    "//base/hiviewdfx/hilog/interfaces/native/innerkits:libhilog_base",
+    "//base/hiviewdfx/hilog/frameworks/libhilog:libhilog_base_source",
+]
+
+testcase_include_dirs = common_include_dirs + devauth_common_include_dirs + devauth_serice_include_dirs + devauth_sdk_include_dirs + hilog_include_dirs
+testcase_deps = common_standard_deps + devauth_common_deps + devauth_serice_deps + devauth_sdk_deps + hilog_deps
+
+
+
+
+
