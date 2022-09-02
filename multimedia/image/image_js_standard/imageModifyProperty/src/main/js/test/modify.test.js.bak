@@ -29,8 +29,14 @@ describe('imageModifyProperty', function () {
             filePath = data + '/' + fileName;
             console.info('image case filePath is ' + filePath);
         })
-	fdNumber = fileio.openSync(fileName);
-        console.info('fdNumber is ' + fdNumber);
+        await fileio.open(filePath, 0o2 | 0o100, 0o777).then((data) => {
+            fdNumber = data;
+            console.info("image case open fd success " + fdNumber);
+        }, (err) => {
+            console.info("image cese open fd fail" + err)
+        }).catch((err) => {
+            console.info("image case open fd err " + err);
+        })
     }
     beforeAll(async function () {
         console.info('beforeAll case');
@@ -245,12 +251,6 @@ describe('imageModifyProperty', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('modify_01_001', 0, async function (done) {
-        function checkProps(result){
-            expect(result == 'Top-right').assertTrue();
-        }
-        modifyPromise(done, 'modify_01_001', 'buffer', "Orientation", "2", checkProps);
-    }) 
 
     /**
      * @tc.number    : modify_01_002
@@ -262,12 +262,6 @@ describe('imageModifyProperty', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('modify_01_002', 0, async function (done) {
-        function checkProps(result){
-            expect(result.search("38") != -1).assertTrue();
-        }
-        modifyPromise(done, 'modify_01_002', 'buffer', "GPSLatitude", "114,3", checkProps);
-    })
 
     /**
      * @tc.number    : modify_01_003
@@ -279,12 +273,6 @@ describe('imageModifyProperty', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('modify_01_003', 0, async function (done) {
-        function checkProps(result){
-            expect(result.search("9") != -1).assertTrue();
-        }
-        modifyPromise(done, 'modify_01_003', 'buffer', "GPSLongitude", "18,2", checkProps);
-    })
 
     /**
      * @tc.number    : modify_01_004
@@ -296,12 +284,6 @@ describe('imageModifyProperty', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('modify_01_004', 0, async function (done) {
-        function checkProps(result){
-            expect(result == 'N').assertTrue();
-        }
-        modifyPromise(done, 'modify_01_004', 'buffer', "GPSLatitudeRef", "N", checkProps);
-    })
 
     /**
      * @tc.number    : modify_01_005
@@ -313,12 +295,6 @@ describe('imageModifyProperty', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('modify_01_005', 0, async function (done) {
-        function checkProps(result){
-            expect(result == 'W').assertTrue();
-        }
-        modifyPromise(done, 'modify_01_005', 'buffer', "GPSLongitudeRef", "W", checkProps);
-    })
 
     /**
      * @tc.number    : modify_01_006
