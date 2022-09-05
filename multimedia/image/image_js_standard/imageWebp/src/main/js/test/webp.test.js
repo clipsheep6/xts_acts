@@ -949,7 +949,7 @@ describe('imageWebp', function () {
     })
 
     /**
-     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_WRONG_0100
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0100
      * @tc.name      : packing - promise-webp-wrong quality
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -958,9 +958,9 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_WRONG_0100', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0100', 0, async function (done) {
         let packOpts = { format: ["image/webp"], quality: 123 }
-        packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_WRONG_0100', packOpts)
+        packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0100', packOpts)
     })
 
     /**
@@ -1009,7 +1009,7 @@ describe('imageWebp', function () {
     })
 
     /**
-     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_WRONG_0100
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100
      * @tc.name      : packing - callback-webp-wrong format
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1018,13 +1018,13 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_WRONG_0100', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100', 0, async function (done) {
         let packOpts = { format: ["image/gif"], quality: 100 }
-        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_WRONG_0100', packOpts)
+        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100', packOpts)
     })
 
     /**
-     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_WRONG_0200
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0200
      * @tc.name      : packing - callback-webp-wrong quality
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1033,9 +1033,9 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_WRONG_0200', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0200', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 112 }
-        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_WRONG_0200', packOpts)
+        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0200', packOpts)
     })
 
     /**

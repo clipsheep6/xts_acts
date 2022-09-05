@@ -1317,7 +1317,7 @@ export default function imageJsTest() {
         })
 
         /**
-         * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_SUFFIXFILE_0100
+         * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_SUFFIXFILE_0100
          * @tc.name      : createImageSource(uri)-wrong suffix file 
          * @tc.desc      : 1.call createImageSource(uri)
          *                 2.Incoming wrong suffix file 
@@ -1326,15 +1326,15 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_SUFFIXFILE_0100', 0, async function (done) {
+        it('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_SUFFIXFILE_0100', 0, async function (done) {
             const imageSourceApi = image.createImageSource('file:///data/local/tmp/test.123');
             expect(imageSourceApi == undefined).assertTrue();
-            console.info('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_SUFFIXFILE_0100 success');
+            console.info('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_SUFFIXFILE_0100 success');
             done();
         })
 
         /**
-         * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_URI_0100
+         * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_URI_0100
          * @tc.name      : createImageSource(uri)-wrong uri
          * @tc.desc      : 1.call createImageSource(uri)
          *                 2.set wrong uri
@@ -1343,14 +1343,14 @@ export default function imageJsTest() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_URI_0100', 0, async function (done) {
+        it('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_URI_0100', 0, async function (done) {
             try {
                 const imageSourceApi = image.createImageSource('file:///multimedia/test.jpg');
                 expect(imageSourceApi == undefined).assertTrue();
-                console.info('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_URI_0100 success');
+                console.info('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_URI_0100 success');
                 done();
             } catch (error) {
-                console.info('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_WRONG_URI_0100 error: ' + error);
+                console.info('SUB_GRAPHIC_IMAGE_CREATEIMAGESOURCE_URI_ERROR_URI_0100 error: ' + error);
                 expect(false).assertTrue();
                 done();
             }

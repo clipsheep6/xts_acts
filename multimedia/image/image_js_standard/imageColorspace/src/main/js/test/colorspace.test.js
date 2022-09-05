@@ -283,7 +283,7 @@ describe('imageColorSpace', function () {
     })
 
     /**
-     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_WRONG_FORMAT_0100
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_ERROR_FORMAT_0100
      * @tc.name      : Encode -callback-wrong format
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -292,9 +292,9 @@ describe('imageColorSpace', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_WRONG_FORMAT_0100', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_ERROR_FORMAT_0100', 0, async function (done) {
         let packOpts = { format:["image/jpeg"], quality:200 }
-        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_WRONG_FORMAT_0100', packOpts)     
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_ERROR_FORMAT_0100', packOpts)     
     })
 
     /**
