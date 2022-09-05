@@ -326,32 +326,53 @@ describe('imageExif', function () {
     })
 
     /**
+<<<<<<< HEAD
      * @tc.number    : SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_DATETIMEORIGINAL_0100
      * @tc.name      : getImageProperty(DateTimeOriginal)
+=======
+     * @tc.number    : SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_PROMISE_0900
+     * @tc.name      : getImageProperty(DateTimeOriginal)-promise
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.desc      : 1.create imagesource
      *                 2.set property
-     *                 3.call getImageProperty(ImageLength)
+     *                 3.call getImageProperty(DateTimeOriginal)
      *                 4.The return value is not empty
      * @tc.size      : MEDIUM 
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_DATETIMEORIGINAL_0100', 0, async function (done) {
         await getFd('test_exif.jpg');
         const imageSourceApi = image.createImageSource(fdNumber);
         if (imageSourceApi == undefined) {
             console.info('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_DATETIMEORIGINAL_0100 create image source failed');
+=======
+    it('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_PROMISE_0900', 0, async function (done) {
+        await getFd('test_exif.jpg');
+        const imageSourceApi = image.createImageSource(fdNumber);
+        if (imageSourceApi == undefined) {
+            console.info('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_PROMISE_0900 create image source failed');
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
             expect(false).assertTrue();
             done();
         } else {
             imageSourceApi.getImageProperty("DateTimeOriginal")
                 .then(data => {
+<<<<<<< HEAD
                     console.info('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_DATETIMEORIGINAL_0100 DateTimeOriginal ' + data);
+=======
+                    console.info('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_PROMISE_0900 DateTimeOriginal ' + data);
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
                     expect(data != undefined && data != '').assertTrue();
                     done();
                 })
                 .catch(error => {
+<<<<<<< HEAD
                     console.log('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_DATETIMEORIGINAL_0100 error: ' + error);
+=======
+                    console.log('SUB_GRAPHIC_IMAGE_EXIF_GETIMAGEPROPERTY_PROMISE_0900 error: ' + error);
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
                     expect(false).assertFail();
                     done();
                 })

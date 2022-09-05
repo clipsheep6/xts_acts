@@ -964,7 +964,11 @@ describe('imageWebp', function () {
     })
 
     /**
+<<<<<<< HEAD
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0200
+=======
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - promise-webp
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -973,6 +977,7 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0200', 0, async function (done) {
         let packOpts = { format: ["image/gif"], quality: 90 }
         packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0200', packOpts)
@@ -980,6 +985,15 @@ describe('imageWebp', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_NO_0100
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200', 0, async function (done) {
+        let packOpts = { format: ["image/gif"], quality: 90 }
+        packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200', packOpts)
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0300
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - promise-webp-no format
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -988,6 +1002,7 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_NO_0100', 0, async function (done) {
         let packOpts = { quality: 90 }
         packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_NO_0100', packOpts)
@@ -995,6 +1010,15 @@ describe('imageWebp', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_NO_0200
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0300', 0, async function (done) {
+        let packOpts = { quality: 90 }
+        packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0300', packOpts)
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0400
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - promise-webp-no format
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1003,9 +1027,15 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_NO_0200', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"] }
         packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_NO_0200', packOpts)
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0400', 0, async function (done) {
+        let packOpts = { format: ["image/jpeg"] }
+        packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0400', packOpts)
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     })
 
     /**
@@ -1039,7 +1069,11 @@ describe('imageWebp', function () {
     })
 
     /**
+<<<<<<< HEAD
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_NO_0100
+=======
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0300
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - callback-webp-no quality
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1048,6 +1082,7 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_NO_0100', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"] }
         packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_NO_0100', packOpts)
@@ -1055,6 +1090,15 @@ describe('imageWebp', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_NO_0200
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0300', 0, async function (done) {
+        let packOpts = { format: ["image/jpeg"] }
+        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0300', packOpts)
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0400
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - callback-webp-no format
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1063,6 +1107,7 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_NO_0200', 0, async function (done) {
         let packOpts = { quality: 90 }
         packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_NO_0200', packOpts)
@@ -1070,6 +1115,15 @@ describe('imageWebp', function () {
 
     /**
     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0200
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0400', 0, async function (done) {
+        let packOpts = { quality: 90 }
+        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0400', packOpts)
+    })
+
+    /**
+    * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0500
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     * @tc.name      : packing - callback-webp-quality -1
     * @tc.desc      : 1.create ImageSource
     *                 2.call packing
@@ -1078,6 +1132,7 @@ describe('imageWebp', function () {
     * @tc.type      : Functional
     * @tc.level     : Level 1
     */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0200', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: -1 }
         packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0200', packOpts)
@@ -1085,6 +1140,15 @@ describe('imageWebp', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0300
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0500', 0, async function (done) {
+        let packOpts = { format: ["image/jpeg"], quality: -1 }
+        packingCbErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0500', packOpts)
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0500
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - promise-webp-quality -1
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1093,14 +1157,24 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0300', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: -1 }
         packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0300', packOpts)
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0500', 0, async function (done) {
+        let packOpts = { format: ["image/jpeg"], quality: -1 }
+        packingPromiseErr(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_ERROR_0500', packOpts)
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     })
 
 
     /**
+<<<<<<< HEAD
     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0300
+=======
+    * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0200
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     * @tc.name      : packing - callback-webp-quality 0
     * @tc.desc      : 1.create ImageSource
     *                 2.call packing
@@ -1109,6 +1183,7 @@ describe('imageWebp', function () {
     * @tc.type      : Functional
     * @tc.level     : Level 1
     */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0300', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 0 }
         packingPromise(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0300', packOpts)
@@ -1116,6 +1191,15 @@ describe('imageWebp', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0400
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0200', 0, async function (done) {
+        let packOpts = { format: ["image/jpeg"], quality: 0 }
+        packingCb(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_CALLBACK_0200', packOpts)
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0200
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : packing - promise-webp-quality 0
      * @tc.desc      : 1.create ImageSource
      *                 2.call packing
@@ -1124,8 +1208,14 @@ describe('imageWebp', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0400', 0, async function (done) {
         let packOpts = { format: ["image/jpeg"], quality: 0 }
         packingPromise(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0400', packOpts)
+=======
+    it('SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0200', 0, async function (done) {
+        let packOpts = { format: ["image/jpeg"], quality: 0 }
+        packingPromise(done, 'SUB_GRAPHIC_IMAGE_WEBP_PACKING_PROMISE_0200', packOpts)
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     })
 })}

@@ -298,7 +298,11 @@ describe('imageColorSpace', function () {
     })
 
     /**
+<<<<<<< HEAD
      * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_0100
+=======
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_QUALITY_0100
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : Encode -callback-no quality
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -307,6 +311,7 @@ describe('imageColorSpace', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_0100', 0, async function (done) {
         let packOpts = { format:["image/jpeg"] }
         packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_0100', packOpts)     
@@ -314,6 +319,15 @@ describe('imageColorSpace', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_0200
+=======
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_QUALITY_0100', 0, async function (done) {
+        let packOpts = { format:["image/jpeg"] }
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_QUALITY_0100', packOpts)     
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_FORMAT_0100
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : Encode -callback-no format
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -322,9 +336,15 @@ describe('imageColorSpace', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_0200', 0, async function (done) {
         let packOpts = {  quality:50 }
         packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_0200', packOpts)      
+=======
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_FORMAT_0100', 0, async function (done) {
+        let packOpts = {  quality:50 }
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_FORMAT_0100', packOpts)      
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     })
     
     /**
@@ -358,7 +378,11 @@ describe('imageColorSpace', function () {
     })   
 
     /**
+<<<<<<< HEAD
      * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_0100
+=======
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_QUALITY_0100
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : Encode -promise -no quality
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -367,6 +391,7 @@ describe('imageColorSpace', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_0100', 0, async function (done) {
         let packOpts = { format:["image/jpeg"] }
         packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_0100', packOpts)        
@@ -374,6 +399,15 @@ describe('imageColorSpace', function () {
 
     /**
      * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_0200
+=======
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_QUALITY_0100', 0, async function (done) {
+        let packOpts = { format:["image/jpeg"] }
+        packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_QUALITY_0100', packOpts)        
+    })
+
+    /**
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_FORMAT_0100
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
      * @tc.name      : Encode -promise -no format
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -382,9 +416,15 @@ describe('imageColorSpace', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
+<<<<<<< HEAD
     it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_0200', 0, async function (done) {
        let packOpts = { quality:100 }
        packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_0200', packOpts)        
+=======
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_FORMAT_0100', 0, async function (done) {
+       let packOpts = { quality:100 }
+       packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_FORMAT_0100', packOpts)        
+>>>>>>> 7179160eddf4ae230b8c253de1c28b41549ed62e
     })
 
 })
