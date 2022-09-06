@@ -790,7 +790,7 @@ describe('imageModifyProperty', function () {
      * @tc.level     : Level 1
      */
     it('SUB_GRAPHIC_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0300', 0, async function (done) {
-        modifyImageErrPromise(SUB_GRAPHIC_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0300)
+        modifyImageErrPromise(done, 'SUB_GRAPHIC_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0300', 'fd', "GPSLongitude", "abc,2")
     })
 
     /**
