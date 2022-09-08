@@ -19,6 +19,7 @@ import cameraJSUnitPhotoAsync from './CameraJSUnitPhotoAsync.test.ets'
 import cameraJSUnitPhotoPromise from './CameraJSUnitPhotoPromise.test.ets'
 import cameraJSUnitVideoAsync from './CameraJSUnitVideoAsync.test.ets'
 import cameraJSUnitVideoPromise from './CameraJSUnitVideoPromise.test.ets'
+import cameraManagerTest from './CameraManagerTest.test.ets'
 
 let TAG = 'CameraModuleTest: '
 
@@ -26,10 +27,11 @@ export default function cameraKit(surfaceId: any) {
   console.info(TAG + 'Entering cameraKit')
   console.info(TAG + 'surfaceId: ' + surfaceId)
 
-  cameraJSUnitEnum(surfaceId)
-  cameraJSUnitCameraFormat(surfaceId)
-  cameraJSUnitPhotoAsync(surfaceId)
-  cameraJSUnitPhotoPromise(surfaceId)
-  cameraJSUnitVideoAsync(surfaceId)
-  cameraJSUnitVideoPromise(surfaceId)
+  // cameraJSUnitEnum(surfaceId)
+  // cameraJSUnitCameraFormat(surfaceId)
+  // cameraJSUnitPhotoAsync(surfaceId)
+  // cameraJSUnitPhotoPromise(surfaceId)
+  // cameraJSUnitVideoAsync(surfaceId)
+  // cameraJSUnitVideoPromise(surfaceId)
+  cameraManagerTest(surfaceId)
 }
