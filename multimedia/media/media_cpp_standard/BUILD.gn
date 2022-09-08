@@ -53,10 +53,10 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
 
   deps = [
     "//foundation/graphic/graphic_2d/frameworks/surface:surface",
-    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_core",
-    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_codecbase",
     "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_adec",
     "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_aenc",
+    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_codecbase",
+    "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_core",
     "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_vdec",
     "//foundation/multimedia/player_framework/interfaces/kits/c:native_media_venc",
     "//utils/native/base:utils",
