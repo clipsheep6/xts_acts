@@ -1,0 +1,36 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "6000000",
+        "bundle-name": "com.example.anroptimizationtest",
+        "module-name": "entry",
+        "shell-timeout": "6000000",
+        "testcase-timeout":"200000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "setenforce 0",
+                "power-shell setmode 602",
+                "param set persist.ace.testmode.enabled 1",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsANROptimizationTest.hap",
+                "ActsANRLongNameRelyHap.hap",
+                "ActsANROptimizationEntryRelyHap.hap",
+                "ActsANROptimizationFARelyHap.hap",
+                "ActsANROptimizationFeatureRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

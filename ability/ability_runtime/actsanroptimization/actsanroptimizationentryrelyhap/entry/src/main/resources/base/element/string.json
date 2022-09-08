@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "app_name",
+      "value": "actsstartrunnertest"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+  }
+  ]
+}

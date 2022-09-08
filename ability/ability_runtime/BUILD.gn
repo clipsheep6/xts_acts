@@ -25,6 +25,7 @@ group("ability_runtime") {
       "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
       "actsabilityusertest:ActsAbilityuserTest",
+      "actsanroptimization:actsanroptimization",
       "actscalldataabilitytest:ActsCallDataAbilityTest",
       "actscalldataabilitytest:ActsCallDataAbilityTest",
       "actscalltest:actscalltest",

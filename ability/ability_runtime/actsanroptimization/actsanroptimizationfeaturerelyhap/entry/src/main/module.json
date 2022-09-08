@@ -1,0 +1,45 @@
+{
+  "module": {
+    "name": "feature",
+    "process": "stageb",
+    "type": "feature",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:second_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "abilities": [
+      {
+        "name": "MainAbility1",
+        "srcEntrance": "./ets/MainAbility1/MainAbility1.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SecondAbility1",
+        "srcEntrance": "./ets/SecondAbility1/SecondAbility1.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label"
+      }
+    ]
+  }
+}
