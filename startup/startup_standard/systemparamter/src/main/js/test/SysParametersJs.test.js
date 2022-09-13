@@ -102,17 +102,17 @@ describe('SystemParameterTest', function () {
     it('testWaitPromise03', 0, async function (done) {
         console.info('testWaitPromise03 start');
         let ret = false;
-        SetParameter("test.wait_param.103", "103");
+        SetParameter("xts.test.wait_param.103", "103");
         try {
-            var parameterInfo = systemparameter.wait("test.wait_param.103", "103", 1);
+            var parameterInfo = systemparameter.wait("xts.test.wait_param.103", "103", 1);
             parameterInfo.then(function (result) { // ok
                 ret = true;
-                console.info("testWaitPromise03 test.wait_param.103 success: ");
+                console.info("testWaitPromise03 xts.test.wait_param.103 success: ");
                 expect(ret).assertTrue();
                 done();
             }).catch(function (err) {
                 expect(ret).assertTrue();
-                console.info("testWaitPromise03 test.wait_param.103 error: " + err.code);
+                console.info("testWaitPromise03 xts.test.wait_param.103 error: " + err.code);
             });
         } catch (e) {
             expect(ret).assertTrue();
@@ -129,16 +129,16 @@ describe('SystemParameterTest', function () {
     it('testWaitPromise04', 0, async function (done) {
         console.info('testWaitPromise04 start');
         let ret = false;
-        SetParameter("test.wait_param.104", "104");
+        SetParameter("xts.test.wait_param.104", "104");
         try {
-            var parameterInfo = systemparameter.wait("test.wait_param.104", "*", 1);
+            var parameterInfo = systemparameter.wait("xts.test.wait_param.104", "*", 1);
             parameterInfo.then(function (result) { // ok
                 ret = true;
-                console.info("testWaitPromise04 test.wait_param.104 success");
+                console.info("testWaitPromise04 xts.test.wait_param.104 success");
                 expect(ret).assertTrue();
                 done();
             }).catch(function (err) {
-                console.info("testWaitPromise04 test.wait_param.104 error: " + err.code);
+                console.info("testWaitPromise04 xts.test.wait_param.104 error: " + err.code);
                 expect(ret).assertTrue();
             });
         } catch (e) {
@@ -156,16 +156,16 @@ describe('SystemParameterTest', function () {
     it('testWaitPromise05', 0, async function (done) {
         console.info('testWaitPromise05 start');
         let ret = false;
-        SetParameter("test.wait_param.105", "105");
+        SetParameter("xts.test.wait_param.105", "105");
         try {
-            var parameterInfo = systemparameter.wait("test.wait_param.105", "*", -1);
+            var parameterInfo = systemparameter.wait("xts.test.wait_param.105", "*", -1);
             parameterInfo.then(function (result) {
                 ret = true;
-                console.info("testWaitPromise05 test.wait_param.105 success");
+                console.info("testWaitPromise05 xts.test.wait_param.105 success");
                 expect(ret).assertTrue();
                 done();
             }).catch(function (err) {
-                console.info("testWaitPromise05 test.wait_param.105 error: " + err.code);
+                console.info("testWaitPromise05 xts.test.wait_param.105 error: " + err.code);
                 expect(ret).assertTrue();
             });
         } catch (e) {
@@ -240,14 +240,14 @@ describe('SystemParameterTest', function () {
     it('testWait03', 0, async function (done) {
         console.info('testWait03 start');
         let ret = false;
-        SetParameter("test.wait_param.203", "103");
+        SetParameter("xts.test.wait_param.203", "103");
         try {
-            systemparameter.wait("test.wait_param.203", "103", 1, function (err, data) {
+            systemparameter.wait("xts.test.wait_param.203", "103", 1, function (err, data) {
                 if (err == undefined || err.code === 0) {
                     ret = true;
-                    console.info("testWait03 test.wait_param.203 success")
+                    console.info("testWait03 xts.test.wait_param.203 success")
                 } else {
-                    console.info("testWait03 test.wait_param.203 err:" + err.code)
+                    console.info("testWait03 xts.test.wait_param.203 err:" + err.code)
                 }
                 expect(ret).assertTrue();
             });
@@ -270,15 +270,15 @@ describe('SystemParameterTest', function () {
     it('testWait04', 0, async function (done) {
         console.info('testWait04 start');
         let ret = false;
-        SetParameter("test.wait_param.204", "104");
+        SetParameter("xts.test.wait_param.204", "104");
         try {
-            systemparameter.wait("test.wait_param.204", "*", 1, function (err, data) {
+            systemparameter.wait("xts.test.wait_param.204", "*", 1, function (err, data) {
                 if (err == undefined || err.code === 0) {
                     ret = true;
-                    console.info("testWait04 test.wait_param.204 success")
+                    console.info("testWait04 xts.test.wait_param.204 success")
                 } else {
                     ret = false;
-                    console.info("testWait04 callback test.wait_param.204 err:" + err.code)
+                    console.info("testWait04 callback xts.test.wait_param.204 err:" + err.code)
                 }
                 expect(ret).assertTrue();
             });
@@ -301,14 +301,14 @@ describe('SystemParameterTest', function () {
     it('testWait05', 0, async function (done) {
         console.info('testWait05 start');
         let ret = false;
-        SetParameter("test.wait_param.205", "105");
+        SetParameter("xts.test.wait_param.205", "105");
         try {
-            systemparameter.wait("test.wait_param.205", "*", 1, function (err, data) {
+            systemparameter.wait("xts.test.wait_param.205", "*", 1, function (err, data) {
                 if (err == undefined || err.code === 0) {
                     ret = true;
-                    console.info("testWait05 test.wait_param.205 success:" + data)
+                    console.info("testWait05 xts.test.wait_param.205 success:" + data)
                 } else {
-                    console.info("testWait05 test.wait_param.205 err:" + err.code)
+                    console.info("testWait05 xts.test.wait_param.205 err:" + err.code)
                 }
                 expect(ret).assertTrue();
             });
