@@ -2901,7 +2901,7 @@ describe('window_test', function () {
 	  * @tc.name       Test loadContentTest7
 	  * @tc.desc       Verify the scenario of loading an existing page
 	  */
-    it('loadContentTest7', 0, function (done) {
+    it('loadContentTest7', 0, async function (done) {
         let caseName = 'loadContentTest7';
         let msgStr = 'jsunittest ' + caseName + ' ';
         let baseWndType = 0;
@@ -2915,7 +2915,7 @@ describe('window_test', function () {
             if (!!data) {
                 tempWnd = data
                 expect(!!tempWnd).assertTrue();
-                tempWnd.loadContent('pages/two', (err, data) => {
+                tempWnd.loadContent('pages/two/two', (err, data) => {
                     console.log(msgStr + 'tempWnd.loadContent err' + JSON.stringify(err));
                     console.log(msgStr + 'tempWnd.loadContent data' + JSON.stringify(data));
                     console.log(msgStr + 'tempWnd.loadContent !!data' + !!data);
@@ -2937,7 +2937,7 @@ describe('window_test', function () {
     * @tc.name       Test loadContentTest8
     * @tc.desc       Verify the scenario of loading a page that does not exist
     */
-    it('loadContentTest8', 0, function (done) {
+    it('loadContentTest8', 0, async function (done) {
         let caseName = 'loadContentTest8';
         let msgStr = 'jsunittest ' + caseName + ' ';
         let baseWndType = 0;
