@@ -18,7 +18,15 @@ group("context") {
   if (is_standard_system) {
     deps = [
       "actscontexttest:ActsContextTest",
+      "actsfa8contexttest/entry/src/main:ActsFa8ContextEntry",
+      "actsfa8contexttest/entry/src/ohosTest:ActsFa8ContextTest",
+      "actsfacontexttest/entry/src/main:ActsFaContextEntry",
+      "actsfacontexttest/entry/src/ohosTest:ActsFaContextTest",
+      "actsstagecontexttest/entry/src/main:ActsStageContextEntry",
+      "actsstagecontexttest/entry/src/ohosTest:ActsStageContextTest",
+      "scene/contextapp:ContextApp",
       "scene/defpermission:DefPermission",
+      "scene/fa8app:Fa8App",
     ]
   }
 }
