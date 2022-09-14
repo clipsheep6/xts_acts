@@ -184,17 +184,17 @@ export default function killProcessWithAccountTest() {
      */
     it('ACTS_KillProcessWithAccount_0400', 0, async function (done) {
       console.debug("====>ACTS_KillProcessWithAccount_0400 start startAbility====>");
+      setTimeout(async ()=>{
+        var getinfo = await appManager.getProcessRunningInfos()
+        console.log('ACTS_KillProcessWithAccount_0400 getProcessRunningInfos =1= ======> ' + JSON.stringify(getinfo));
+        var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
+        console.log("====>ACTS_KillProcessWithAccount_0400====>res = " + res)
+        expect(res).assertEqual(true);
 
-      var getinfo = await appManager.getProcessRunningInfos()
-      console.log('ACTS_KillProcessWithAccount_0400 getProcessRunningInfos =1= ======> ' + JSON.stringify(getinfo));
-      var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
-      console.log("====>ACTS_KillProcessWithAccount_0400====>res = " + res)
-      expect(res).assertEqual(true);
-
-      appManager.killProcessWithAccount(BUNDLE_NAME, NULL_ACCOUNT_ID).then(() => {
-        console.log('ACTS_KillProcessWithAccount_0400 killProcess ======> start');
-      })
-
+        appManager.killProcessWithAccount(BUNDLE_NAME, NULL_ACCOUNT_ID).then(() => {
+            console.log('ACTS_KillProcessWithAccount_0400 killProcess ======> start');
+        })
+      },1000);
       setTimeout(async() => {
         var procrssinfo = await appManager.getProcessRunningInfos()
         console.log('ACTS_KillProcessWithAccount_0400 ==1== getProcessRunningInfos ======> '
@@ -225,18 +225,18 @@ export default function killProcessWithAccountTest() {
      */
     it('ACTS_KillProcessWithAccount_0500', 0, async function (done) {
       console.debug("====>ACTS_KillProcessWithAccount_0500 start startAbility====>");
+      setTimeout(async ()=>{
+        var procrssinfo = await appManager.getProcessRunningInfos()
+        console.log('ACTS_KillProcessWithAccount_0500 ==1== getProcessRunningInfos ======> '
+        + JSON.stringify(procrssinfo));
+        var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
+        console.log("====>ACTS_KillProcessWithAccount_0500====>infores = " + infores)
+        expect(infores).assertEqual(true);
 
-      var procrssinfo = await appManager.getProcessRunningInfos()
-      console.log('ACTS_KillProcessWithAccount_0500 ==1== getProcessRunningInfos ======> '
-      + JSON.stringify(procrssinfo));
-      var infores = checkRunningProcess('com.acts.killprocesswithaccountpackage', procrssinfo)
-      console.log("====>ACTS_KillProcessWithAccount_0500====>infores = " + infores)
-      expect(infores).assertEqual(true);
-
-      await appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID,(async() => {
-        console.log('ACTS_KillProcessWithAccount_0500 killProcess ======> start');
-      }))
-
+        await appManager.killProcessWithAccount(BUNDLE_NAME, ACCOUNT_ID,(async() => {
+            console.log('ACTS_KillProcessWithAccount_0500 killProcess ======> start');
+        }))
+      },1000);
       setTimeout(async() => {
         var copyprocrssinfo = await appManager.getProcessRunningInfos()
         console.log('ACTS_KillProcessWithAccount_0500 getProcessRunningInfos ======> '
@@ -296,18 +296,18 @@ export default function killProcessWithAccountTest() {
      */
     it('ACTS_KillProcessWithAccount_0800', 0, async function (done) {
       console.debug("====>ACTS_KillProcessWithAccount_0800 start startAbility====>");
+      setTimeout(async ()=>{
+        var getinfo = await appManager.getProcessRunningInfos()
+        console.log('ACTS_KillProcessWithAccount_0800 getProcessRunningInfos =1= ======> '
+        + JSON.stringify(getinfo));
+        var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
+        console.log("====>ACTS_KillProcessWithAccount_0800====>res = " + res)
+        expect(res).assertEqual(true);
 
-      var getinfo = await appManager.getProcessRunningInfos()
-      console.log('ACTS_KillProcessWithAccount_0800 getProcessRunningInfos =1= ======> '
-      + JSON.stringify(getinfo));
-      var res = checkRunningProcess('com.acts.killprocesswithaccountpackage', getinfo)
-      console.log("====>ACTS_KillProcessWithAccount_0800====>res = " + res)
-      expect(res).assertEqual(true);
-
-      appManager.killProcessWithAccount(BUNDLE_NAME, NULL_ACCOUNT_ID,(() => {
-        console.log('ACTS_KillProcessWithAccount_0800 killProcess ======> start');
-      }))
-
+        appManager.killProcessWithAccount(BUNDLE_NAME, NULL_ACCOUNT_ID,(() => {
+            console.log('ACTS_KillProcessWithAccount_0800 killProcess ======> start');
+        }))
+      },1000);
       setTimeout(async() => {
         var procrssinfo = await appManager.getProcessRunningInfos()
         console.log('ACTS_KillProcessWithAccount_0800 ==1== getProcessRunningInfos ======> '
