@@ -15,7 +15,6 @@
 
 import cameraObj from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
-import fileio from '@ohos.fileio';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
@@ -24,7 +23,6 @@ const TAG = "CameraModuleTest: ";
 
 // Define global variables
 var camera0Input;
-var camera1Input;
 var cameraManager;
 var previewOutputAsync;
 var photoOutputAsync;
@@ -93,7 +91,7 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
   }
 
   async function applyPermission() {
-    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameratest', 0, 100);
+    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.camerawarktest', 0, 100);
     let atManager = abilityAccessCtrl.createAtManager();
     if (atManager != null) {
       let tokenID = appInfo.accessTokenId;
@@ -2499,7 +2497,7 @@ export default function cameraJSUnitPhotoAsync(surfaceId: any) {
     })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_SET_FOCUS_POINT_0200
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_SET_FOCUS_POINT_0100
       * @tc.name      : set focus Point camera0 api
       * @tc.desc      : set focus Point camera0 api
       * @tc.size      : MEDIUM

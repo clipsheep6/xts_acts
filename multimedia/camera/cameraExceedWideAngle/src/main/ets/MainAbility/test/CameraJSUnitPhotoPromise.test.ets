@@ -93,7 +93,7 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
   }
 
   async function applyPermission() {
-    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameratest', 0, 100);
+    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameraewatest', 0, 100);
     let atManager = abilityAccessCtrl.createAtManager();
     if (atManager != null) {
       let tokenID = appInfo.accessTokenId;
@@ -1661,27 +1661,27 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
     })
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200
       * @tc.name      : get flash mode auto camera0 api
       * @tc.desc      : get flash mode auto camera0 api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
       * @tc.level     : Level 0
     */
-    it('SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100', 0, async function (done) {
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100 to operate");
+    it('SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200', 0, async function (done) {
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200 to operate");
       var GetFMAuto = await camera0InputPromise.getFlashMode();
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100 success");
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200 success");
       if (GetFMAuto == 2) {
-        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100 data is not null || undefined: ");
+        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200 data is not null || undefined: ");
         console.info(TAG + "Current FlashMode is: " + GetFMAuto);
         expect(true).assertTrue();
-        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100 PASSED");
+        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200 PASSED");
       }
       else {
         expect().assertFail();
-        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100 FAILED : ");
-        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0100 ends here");
+        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200 FAILED : ");
+        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_SET_FLASH_MODE_AUTO_0200 ends here");
       }
       await sleep(1000);
       done();

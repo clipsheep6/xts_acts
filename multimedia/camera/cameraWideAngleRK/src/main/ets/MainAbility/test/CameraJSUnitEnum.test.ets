@@ -15,7 +15,6 @@
 
 import cameraObj from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
-import fileio from '@ohos.fileio';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
@@ -51,7 +50,7 @@ export default function cameraJSUnitEnum(surfaceId: any) {
   }
 
   async function applyPermission() {
-    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.cameratest', 0, 100);
+    let appInfo = await bundle.getApplicationInfo('com.open.harmony.multimedia.camerawarktest', 0, 100);
     let atManager = abilityAccessCtrl.createAtManager();
     if (atManager != null) {
       let tokenID = appInfo.accessTokenId;
