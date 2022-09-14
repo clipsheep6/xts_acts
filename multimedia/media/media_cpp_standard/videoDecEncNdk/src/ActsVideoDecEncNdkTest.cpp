@@ -19,7 +19,7 @@
 #include "native_avcodec_videoencoder.h"
 #include "native_avcodec_base.h"
 #include "native_avformat.h"
-#include "ActsVideoDecEncNdkTest.h"
+#include "VDecEncNdkSample.h"
 
 using namespace std;
 using namespace testing::ext;
@@ -27,59 +27,70 @@ using namespace OHOS;
 using namespace OHOS::Media;
 
 namespace {
-    const string MIME_TYPE_AVC = "video/avc";
-    const string MIME_TYPE_MPEG4 = "video/mp4v-es";
-    constexpr uint32_t DEFAULT_WIDTH = 320;
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
-    constexpr uint32_t DEFAULT_PIXELFORMAT = 2;
-    constexpr uint32_t DEFAULT_FRAMERATE = 60;
-    const char* READPATH = "/data/media/out_320_240_10s.h264";
+class ActsVideoDecEncNdkTest : public testing::Test {
+public:
+    static void SetUpTestCase();
+    static void TearDownTestCase();
+    void SetUp() override;
+    void TearDown() override;
+};
 
+void ActsVideoDecEncNdkTest::SetUpTestCase() {}
+void ActsVideoDecEncNdkTest::TearDownTestCase() {}
+void ActsVideoDecEncNdkTest::SetUp() {}
+void ActsVideoDecEncNdkTest::TearDown() {}
+const string MIME_TYPE_AVC = "video/avc";
+const string MIME_TYPE_MPEG4 = "video/mp4v-es";
+constexpr uint32_t DEFAULT_WIDTH = 320;
+constexpr uint32_t DEFAULT_HEIGHT = 240;
+constexpr uint32_t DEFAULT_PIXELFORMAT = 2;
+constexpr uint32_t DEFAULT_FRAMERATE = 60;
+const char* READPATH = "/data/media/out_320_240_10s.h264";
 
-    bool CheckDecDesc(map<string, int> InDesc, OH_AVFormat* OutDesc)
-    {
-        int32_t out ;
-        for (const auto& t: InDesc) {
-            bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
-            cout << "key: " << t.first << "; out: " << out <<endl;
-            if (!res) {
-                cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
-                return false;
-            }
-            if (out != t.second) {
-                cout << "OH_AVFormat_GetIntValue error. key: " << t.first
-                << "; expect: "<< t.second
-                << ", actual: "<< out << endl;
-                return false;
-            }
-            out = 0;
+bool CheckDecDesc(map<string, int> InDesc, OH_AVFormat* OutDesc)
+{
+    int32_t out ;
+    for (const auto& t: InDesc) {
+        bool res = OH_AVFormat_GetIntValue(OutDesc, t.first.c_str(), &out);
+        cout << "key: " << t.first << "; out: " << out <<endl;
+        if (!res) {
+            cout << "OH_AVFormat_GetIntValue Fail. key:" << t.first << endl;
+            return false;
         }
-        return true;
-    }
-
-    bool SetFormat(struct OH_AVFormat *format, map<string, int> mediaDescription)
-    {
-        const char *key;
-        for (const auto& t: mediaDescription) {
-            key = t.first.c_str();
-            if (not OH_AVFormat_SetIntValue(format, key, t.second)) {
-                cout << "OH_AV_FormatPutIntValue Fail. format key: " << t.first
-                << ", value: "<< t.second << endl;
-                return false;
-            }
+        if (out != t.second) {
+            cout << "OH_AVFormat_GetIntValue error. key: " << t.first
+            << "; expect: "<< t.second
+            << ", actual: "<< out << endl;
+            return false;
         }
-        return true;
+        out = 0;
     }
+    return true;
+}
 
-    struct OH_AVFormat* createFormat()
-    {
-        OH_AVFormat *DefaultFormat = OH_AVFormat_Create();
-        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
-        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
-        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
-        OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_FRAME_RATE, DEFAULT_FRAMERATE);
-        return DefaultFormat;
+bool SetFormat(struct OH_AVFormat *format, map<string, int> mediaDescription)
+{
+    const char *key;
+    for (const auto& t: mediaDescription) {
+        key = t.first.c_str();
+        if (not OH_AVFormat_SetIntValue(format, key, t.second)) {
+            cout << "OH_AV_FormatPutIntValue Fail. format key: " << t.first
+            << ", value: "<< t.second << endl;
+            return false;
+        }
     }
+    return true;
+}
+
+struct OH_AVFormat* createFormat()
+{
+    OH_AVFormat *DefaultFormat = OH_AVFormat_Create();
+    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(DefaultFormat, OH_MD_KEY_FRAME_RATE, DEFAULT_FRAMERATE);
+    return DefaultFormat;
+}
 }
 
 /**
