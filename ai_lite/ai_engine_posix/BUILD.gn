@@ -15,8 +15,9 @@ import("//test/xts/tools/lite/build/suite_lite.gni")
 
 lite_component("test_plugin_manager_so") {
   target_type = "shared_library"
-  features =
-      [ "//foundation/ai/ai_engine/services/server/plugin_manager:plugin_manager" ]
+  features = [
+    "//foundation/ai/ai_engine/services/server/plugin_manager:plugin_manager",
+  ]
   deps = [
     "//base/hiviewdfx/hilog_lite/frameworks/featured:hilog_shared",
     "//foundation/ai/ai_engine/services/common/platform/dl_operation:dlOperation",
