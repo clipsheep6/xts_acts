@@ -21,7 +21,7 @@ import formHost from '@ohos.application.formHost';
 import errorManager from '@ohos.application.errorManager';
 import abilityConstant from '@ohos.application.AbilityConstant'
 import appManager from '@ohos.application.appManager'
-import appContext from '@ohos.application.context'
+import applicationContext from '@ohos.application.context'
 import commonEvent from '@ohos.commonEvent';
 import ability from '@ohos.ability.ability'
 FormDimension
@@ -34,6 +34,12 @@ function sleep(time) {
 }
 export default function ApiCoverTest() {
   describe('ApiCoverTestTest', function () {
+
+    afterEach(async (done) => {
+      setTimeout(function () {
+        done();
+      }, 2000);
+    })
 
     /*
      * @tc.number  SUB_AA_ABILITY_Extension_API_001
@@ -505,7 +511,7 @@ export default function ApiCoverTest() {
         }
         function SubscribeInfoCallback(err, data) {
           console.info("SUB_AA_FMS_AbilityStage_0200===SubscribeInfoCallback===" + JSON.stringify(data))
-            expect(data.parameters["config"]).assertEqual(0)
+            expect(data.parameters["config"]).assertLess(2)
             expect(data.parameters["poniterDevices"]).assertFalse()
             expect(data.parameters["AbilityInfo"]).assertEqual("com.example.apicoverhaptest")
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
@@ -539,22 +545,22 @@ export default function ApiCoverTest() {
      */
      it('SUB_AA_FMS_AcquireForm_0100', 0, async function (done) {
       let subscriber = null
-      let formExtensionContext:appContext.FormExtensionContext
+      let formExtensionContext:applicationContext.FormExtensionContext
       let pacMap:ability.PacMap
         let subscribeInfo = {
           events: ["Form_StartAbility"]
         }
         function UnSubscribeInfoCallback(err, data) {
-          console.info("SUB_AA_FMS_AcquireFormState_0700 ===UnSubscribeInfoCallback===")
+          console.info("SUB_AA_FMS_AcquireForm_0100 ===UnSubscribeInfoCallback===")
         }
         function SubscribeInfoCallback(err, data) {
-          console.info("SUB_AA_FMS_AcquireFormState_0700 ===SubscribeInfoCallback===" + JSON.stringify(data))
+          console.info("SUB_AA_FMS_AcquireForm_0100 ===SubscribeInfoCallback===" + JSON.stringify(data))
             expect(data.parameters["Life"]).assertEqual("onForeground")
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
             done()
         }
         commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-          console.info("SUB_AA_FMS_AcquireFormState_0700 ===CreateSubscriberCallback===")
+          console.info("SUB_AA_FMS_AcquireForm_0100 ===CreateSubscriberCallback===")
           subscriber = data
           commonEvent.subscribe(subscriber, SubscribeInfoCallback)
         })
@@ -568,13 +574,12 @@ export default function ApiCoverTest() {
       }
       globalThis.abilityContext.startAbility(formWant, (err, data)=>{
         if(err.code == 0){
-           console.info("SUB_AA_FMS_AcquireFormState_0700 ===acquireFormState=== " + JSON.stringify(data))
+           console.info("SUB_AA_FMS_AcquireForm_0100 ===acquireFormState=== " + JSON.stringify(data))
         }else{
           expect().assertFail()
           done()
         }
       })
     })
-
   })
 }
