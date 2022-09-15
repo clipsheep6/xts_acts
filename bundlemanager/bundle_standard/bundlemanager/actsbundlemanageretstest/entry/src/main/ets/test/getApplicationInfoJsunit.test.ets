@@ -424,6 +424,128 @@ export default function applicationBundleJsunit() {
             });
          })
 
+        /**
+         * @tc.number: getApplicationInfoSync_0100
+         * @tc.name: Test getApplicationInfoSync
+         * @tc.desc: Test indicates the right bundleName, bundleFlags and userId
+         *           returns the ApplicationInfo object
+         */
+         it('getApplicationInfoSync_0100', 0, async function (done) {
+            var applicationInfo = Bundle.getApplicationInfoSync(BUNDLE_NAME,
+                Bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION, userId)
+            getApplicationInfoSuccess("getApplicationInfoSync_0100", applicationInfo);
+            expect(typeof (applicationInfo)).assertEqual("object");
+            getApplicationInfoSuccess("getApplicationInfoSync_0100", applicationInfo);
+            done();
+         })
+
+        /**
+         * @tc.number: getApplicationInfoSync_0200
+         * @tc.name: Test getApplicationInfoSync
+         * @tc.desc: Test indicates the wrong bundleName, bundleFlags and userId
+         *           returns the ApplicationInfo undefined
+         */
+         it('getApplicationInfoSync_0200', 0, async function (done) {
+            let bundleName = "wrong";
+            var applicationInfo = Bundle.getApplicationInfoSync(bundleName,
+                Bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION, userId);
+            expect(JSON.stringify(applicationInfo)).assertEqual(undefined);
+            done();
+         })
+
+        /**
+         * @tc.number: getApplicationInfoSync_0300
+         * @tc.name: Test getApplicationInfoSync
+         * @tc.desc: Test indicates the right bundleName, bundleFlags
+         *           returns the ApplicationInfo object
+         */
+         it('getApplicationInfoSync_0300', 0, async function (done) {
+            let applicationInfo = Bundle.getApplicationInfoSync(BUNDLE_NAME,
+                Bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION)
+            getApplicationInfoSuccess("getApplicationInfoSync_0300", applicationInfo);
+            expect(typeof (applicationInfo)).assertEqual("object");
+            getApplicationInfoSuccess("getApplicationInfoSync_0300", applicationInfo);
+            done();
+         })
+
+        /**
+         * @tc.number: getApplicationInfoSync_0400
+         * @tc.name: Test getApplicationInfo
+         * @tc.desc: Test indicates the wrong bundleName, bundleFlags
+         *           returns the ApplicationInfo undefined
+         */
+         it('getApplicationInfoSync_0400', 0, async function (done) {
+            let bundleName = "wrong";
+            let applicationInfo = Bundle.getApplicationInfoSync(bundleName,
+                Bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION);
+            expect(JSON.stringify(applicationInfo)).assertEqual(undefined);
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0100
+         * @tc.name: Test getBundleInfoSync
+         * @tc.desc: Test indicates the right bundleName, bundleFlags, options
+         *           returns the BundleInfo object
+         */
+         it('getBundleInfoSync_0100', 0, async function (done) {
+            let options = {userId : 100};
+            let bundleInfo = Bundle.getBundleInfoSync(BUNDLE_NAME,
+                Bundle.BundleFlag.GET_BUNDLE_DEFAULT, options);
+            expect(typeof (bundleInfo)).assertEqual("object");
+            expect(bundleInfo.name).assertEqual(BUNDLE_NAME);
+            expect(bundleInfo.vendor).assertEqual("ohos");
+            expect(bundleInfo.appInfo.codePath).assertEqual(PATH + '/' + BUNDLE_NAME);
+            expect(bundleInfo.appInfo.icon).assertEqual('$media:icon');
+            expect(bundleInfo.appInfo.label).assertEqual('$string:entry_MainAbility');
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0200
+         * @tc.name: Test getBundleInfoSync
+         * @tc.desc: Test indicates the right bundleName, bundleFlags, options
+         *           returns the BundleInfo undefined
+         */
+         it('getBundleInfoSync_0200', 0, async function (done) {
+            let options = {userId : 100};
+            let bundleName = "wrong";
+            let bundleInfo = Bundle.getBundleInfoSync(bundleName,
+                Bundle.BundleFlag.GET_BUNDLE_DEFAULT, options);
+            expect(JSON.stringify(bundleInfo)).assertEqual(undefined);
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0300
+         * @tc.name: Test getBundleInfoSync
+         * @tc.desc: Test indicates the right bundleName, bundleFlags
+         *           returns the BundleInfo object
+         */
+         it('getBundleInfoSync_0300', 0, async function (done) {
+            let info = Bundle.getBundleInfoSync(BUNDLE_NAME, Bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(typeof (info)).assertEqual("object");
+            expect(info.name).assertEqual(BUNDLE_NAME);
+            expect(info.vendor).assertEqual("ohos");
+            expect(info.appInfo.codePath).assertEqual(PATH + '/' + BUNDLE_NAME);
+            expect(info.appInfo.icon).assertEqual('$media:icon');
+            expect(info.appInfo.label).assertEqual('$string:entry_MainAbility');
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0400
+         * @tc.name: Test getBundleInfoSync
+         * @tc.desc: Test indicates the right bundleName, bundleFlags
+         *           returns the BundleInfo undefined
+         */
+         it('getBundleInfoSync_0400', 0, async function (done) {
+            let bundleName = "wrong";
+            let info = Bundle.getBundleInfoSync(bundleName, Bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(JSON.stringify(info)).assertEqual(undefined);
+            done();
+         })
+
         function expectData(msg, data) {
             expect(typeof (data)).assertEqual('object');
             expect(typeof (data.name)).assertEqual('string');

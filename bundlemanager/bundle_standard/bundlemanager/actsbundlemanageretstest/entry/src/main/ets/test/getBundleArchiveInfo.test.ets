@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import account from '@ohos.account.osAccount';
 import bundle from '@ohos.bundle';
 import { describe, beforeAll, it, expect } from 'hypium/index';
 
@@ -31,10 +32,22 @@ const NAME4 = "com.example.myapplication5"
 const NAME5 = "com.example.myapplication6"
 const DESCRIPTION = "$string:mainability_description"
 const APPLICATION_DESCRIPTION = "$string:entry_description"
+let userId = 0;
 
 export default function getBundleArchiveInfo() {
 
   describe('getBundleArchiveInfo', function () {
+
+      beforeAll(async function (done) {
+          await account.getAccountManager().getOsAccountLocalIdFromProcess().then(account => {
+              console.info("getOsAccountLocalIdFromProcess userid  ==========" + account);
+              userId = account;
+              done();
+            }).catch(err=>{
+              console.info("getOsAccountLocalIdFromProcess err ==========" + JSON.stringify(err));
+              done();
+            })
+      });
 
     /**
      * @tc.number getBundleArchiveInfo_0100
@@ -338,6 +351,67 @@ export default function getBundleArchiveInfo() {
       }
     })
 
+        /**
+         * @tc.number: getBundleInfoSync_0100
+         * @tc.name: getBundleInfoSync : Obtains based on a right bundle name.
+         * @tc.desc: Test indicates the right bundleName, bundleFlags, options
+         *           returns the BundleInfo object
+         */
+         it('getBundleInfoSync_0100', 0, async function (done) {
+            let options = {userId : userId};
+            let bundleInfo = bundle.getBundleInfoSync(NAME1,
+                bundle.BundleFlag.GET_BUNDLE_DEFAULT, options);
+            expect(typeof (bundleInfo)).assertEqual("object");
+            expect(bundleInfo.name).assertEqual(NAME1);
+            expect(bundleInfo.vendor).assertEqual("example");
+            expect(bundleInfo.appInfo.icon).assertEqual('$media:icon');
+            expect(bundleInfo.appInfo.label).assertEqual('$string:app_name');
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0200
+         * @tc.name: getBundleInfoSync : Obtains based on a wrong bundle name.
+         * @tc.desc: Test indicates the right bundleName, bundleFlags, options
+         *           returns the BundleInfo undefined
+         */
+         it('getBundleInfoSync_0200', 0, async function (done) {
+            let options = {userId : userId};
+            let bundleName = "wrong";
+            let bundleInfo = bundle.getBundleInfoSync(bundleName,
+                bundle.BundleFlag.GET_BUNDLE_DEFAULT, options);
+            expect(JSON.stringify(bundleInfo)).assertEqual(undefined);
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0300
+         * @tc.name: getBundleInfoSync : Obtains based on a right bundle name.
+         * @tc.desc: Test indicates the right bundleName, bundleFlags
+         *           returns the BundleInfo object
+         */
+         it('getBundleInfoSync_0300', 0, async function (done) {
+            let info = bundle.getBundleInfoSync(NAME1, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(typeof (info)).assertEqual("object");
+            expect(info.name).assertEqual(NAME1);
+            expect(info.vendor).assertEqual("example");
+            expect(info.appInfo.icon).assertEqual('$media:icon');
+            expect(info.appInfo.label).assertEqual('$string:app_name');
+            done();
+         })
+
+        /**
+         * @tc.number: getBundleInfoSync_0400
+         * @tc.name: getBundleInfoSync : Obtains based on a wrong bundle name.
+         * @tc.desc: Test indicates the right bundleName, bundleFlags
+         *           returns the BundleInfo undefined
+         */
+         it('getBundleInfoSync_0400', 0, async function (done) {
+            let bundleName = "wrong";
+            let info = bundle.getBundleInfoSync(bundleName, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            expect(JSON.stringify(info)).assertEqual(undefined);
+            done();
+         })
 
   })
 }
