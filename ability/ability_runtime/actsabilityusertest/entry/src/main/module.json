@@ -45,7 +45,20 @@
         "description": "$string:MainAbility3_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility3_label"
+      },
+      {
+        "name": "MainAbility4",
+        "srcEntrance": "./ets/MainAbility4/MainAbility4.ts",
+        "description": "$string:MainAbility4_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility4_label"
       }
+    ],
+    "requestPermissions": [
+        {
+          "name":"ohos.permission.MANAGE_MISSIONS",
+          "reason":"need use ohos.permission.MANAGE_MISSIONS"
+        }
     ]
   }
 }

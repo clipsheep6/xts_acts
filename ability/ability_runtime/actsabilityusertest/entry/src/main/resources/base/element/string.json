@@ -29,6 +29,14 @@
       "value": "label"
     },
     {
+        "name": "MainAbility4_desc",
+        "value": "description4"
+    },
+    {
+        "name": "MainAbility4_label",
+        "value": "label4"
+    },
+    {
       "name": "app_name",
       "value": "actsabilityusertest"
     },
