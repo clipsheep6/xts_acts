@@ -16,6 +16,10 @@
 import Ability from '@ohos.application.Ability'
 import commonEvent from '@ohos.commonEvent'
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export default class SecondAbility extends Ability {
 
     onCreate(want, launchParam) {
@@ -47,7 +51,8 @@ export default class SecondAbility extends Ability {
         console.log("ACTS_NewWant SecondAbility onWindowStageDestroy")
     }
 
-    onForeground() {
+    async onForeground() {
+        await sleep(1000)
         // Ability has brought to foreground
         var connId;
         console.log("ACTS_NewWant SecondAbility onForeground")
