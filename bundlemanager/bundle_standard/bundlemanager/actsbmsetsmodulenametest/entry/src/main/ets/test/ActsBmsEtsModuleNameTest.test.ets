@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
+// @ts-nocheck
 import bundle from '@ohos.bundle'
+import bundleManager from '@ohos.bundle.bundleManager'
 import image from '@ohos.multimedia.image'
 import account from '@ohos.account.osAccount'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
@@ -25,6 +27,7 @@ const MODULE_NAME2 = 'noModule';
 const MODULE_NAME3 = 'entry';
 const MODULE_NAME4 = undefined;
 const DEFAULT_FLAG = bundle.BundleFlag.GET_BUNDLE_DEFAULT;
+const QUERY_DEFAULT_FLAG = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 const SUCCESS_CODE = 0;
 const INVALID_CODE = 1;
 const INVALID_PARAM = 2;
@@ -413,6 +416,51 @@ export default function actsBmsJsModuleNameTest() {
         });
 
         /*
+        * @tc.number: SUB_BMS_APPINFO_QUERYMODULE_0033_1
+        * @tc.name: queryAbilityInfoEmptyModule
+        * @tc.desc: test empty moduleName
+        */
+        it('queryAbilityInfoEmptyModule', 0, async function (done) {
+            try {
+                await bundleManager.queryAbilityInfo({
+                    bundleName: BUNDLE_NAME,
+                    abilityName: ABILITY_NAME,
+                    moduleName: MODULE_NAME1
+                }, QUERY_DEFAULT_FLAG, userId).then(data => {
+                    checkDataInfo(data[0]);
+                    console.info("[queryAbilityInfoEmptyModule]Return data : " + JSON.stringify(data));
+                }).catch(err => {
+                    console.info("[queryAbilityInfoEmptyModule]Operation failed. Err: " + JSON.stringify(err));
+                    expect(err).assertFail();
+                });
+            } catch (error) {
+                console.log('jun queryAbilityInfo e ' + error);
+                console.log('jun 111111 e ');
+                expect().assertFail();
+                done();
+            }
+
+            try {
+                bundleManager.queryAbilityInfo({
+                    bundleName: BUNDLE_NAME,
+                    abilityName: ABILITY_NAME,
+                    moduleName: MODULE_NAME1
+                }, QUERY_DEFAULT_FLAG, userId, (err, data) => {
+                    expect(err).assertEqual(SUCCESS_CODE);
+                    if (err) {
+                        console.error('Operation failed. Err: ' + JSON.stringify(err));
+                    }
+                    checkDataInfo(data[0]);
+                    console.info("[queryAbilityInfoEmptyModule]Return data : " + JSON.stringify(data));
+                    done();
+                });
+            } catch (error) {
+                console.log('queryAbilityInfoEmptyModule e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: SUB_BMS_APPINFO_QUERYMODULE_0002
         * @tc.name: queryAbilityByWantInvalidModule
         * @tc.desc: test non-existent moduleName
@@ -439,6 +487,46 @@ export default function actsBmsJsModuleNameTest() {
                 expect(err).assertEqual(INVALID_CODE);
                 done();
             });
+        });
+
+        /*
+        * @tc.number: SUB_BMS_APPINFO_QUERYMODULE_0002_1
+        * @tc.name: queryAbilityInfoInvalidModule
+        * @tc.desc: test non-existent moduleName
+        */
+        it('queryAbilityInfoInvalidModule', 0, async function (done) {
+            try {
+                await bundleManager.queryAbilityInfo({
+                bundleName: BUNDLE_NAME,
+                abilityName: ABILITY_NAME,
+                moduleName: MODULE_NAME2
+            }, QUERY_DEFAULT_FLAG, userId).then(data => {
+                expect(data).assertFail();
+            }).catch(err => {
+                console.error('[queryAbilityInfoInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
+                expect(err).assertEqual(INVALID_CODE);
+            });
+            } catch (error) {
+                console.log('queryAbilityInfoInvalidModule e ' + error);
+                done();
+            }
+
+            try {
+                bundleManager.queryAbilityInfo({
+                bundleName: BUNDLE_NAME,
+                abilityName: ABILITY_NAME,
+                moduleName: MODULE_NAME2
+            }, QUERY_DEFAULT_FLAG, userId, (err, data) => {
+                console.info("'[queryAbilityInfoInvalidModule]Return data " + JSON.stringify(data));
+                expect(data).assertEqual("QueryAbilityInfos failed");
+                console.error('[queryAbilityInfoInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
+                expect(err).assertEqual(INVALID_CODE);
+                done();
+            });
+            } catch (error) {
+                console.log('queryAbilityInfoInvalidModule e ' + error);
+                done();
+            }
         });
 
         /*
@@ -471,6 +559,49 @@ export default function actsBmsJsModuleNameTest() {
                 console.info("'[queryAbilityByWantHasModule]Return data : " + JSON.stringify(data));
                 done();
             });
+        });
+
+        /*
+        * @tc.number: SUB_BMS_APPINFO_QUERYMODULE_0001_1
+        * @tc.name: queryAbilityInfoHasModule
+        * @tc.desc: test existent moduleName
+        */
+        it('queryAbilityInfoHasModule', 0, async function (done) {
+            try {
+                await bundleManager.queryAbilityInfo({
+                    bundleName: BUNDLE_NAME,
+                    abilityName: ABILITY_NAME,
+                    moduleName: MODULE_NAME3
+                }, QUERY_DEFAULT_FLAG, userId).then(data => {
+                    checkDataInfo(data[0]);
+                    console.info("'[queryAbilityInfoHasModule]Return data : " + JSON.stringify(data));
+                }).catch(err => {
+                    console.info("[queryAbilityInfoHasModule]Operation failed. Err: " + JSON.stringify(err));
+                    expect(err).assertFail();
+                });
+            } catch (error) {
+                console.log('queryAbilityInfoHasModule e ' + error);
+                done();
+            }
+
+            try {
+                bundleManager.queryAbilityInfo({
+                    bundleName: BUNDLE_NAME,
+                    abilityName: ABILITY_NAME,
+                    moduleName: MODULE_NAME3
+                }, QUERY_DEFAULT_FLAG, userId, (err, data) => {
+                    expect(err).assertEqual(SUCCESS_CODE);
+                    if (err) {
+                        console.error('[queryAbilityInfoHasModule]Operation failed. Err: ' + JSON.stringify(err));
+                    }
+                    checkDataInfo(data[0]);
+                    console.info("'[queryAbilityInfoHasModule]Return data : " + JSON.stringify(data));
+                    done();
+                });
+            } catch (error) {
+                console.log('queryAbilityInfoHasModule e ' + error);
+                done();
+            }
         });
 
         function checkDataInfo(data) {

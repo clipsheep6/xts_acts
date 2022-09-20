@@ -12,13 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// @ts-nocheck
 import bundle from '@ohos.bundle'
+import bundleManager from '@ohos.bundle.bundleManager'
 import account from '@ohos.account.osAccount'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
 
 const BUNDLE_NAME1 = 'com.example.third1';
 const SYSTEM_NAME = 'com.example.system2';
 const ABILITIY_NAME8 = 'com.example.system2.MainAbility';
+const QUERY_DEFAULT_FLAG = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId: number = 0;
 const INVALID_CODE: number = 1;
 
@@ -55,6 +58,29 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_0100
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0100', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": ""
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0100 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_0200
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -68,6 +94,27 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(err).assertEqual(INVALID_CODE)
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_0200
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0200', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {}, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0200 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -93,6 +140,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_0300
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0300', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        action: "action_a"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_0300'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.actionSingleString')
+                        expect(res[0].description).assertEqual('actionSingleString')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0300' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0300 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_0400
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -111,6 +184,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_0400
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0400', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "action_b2"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_0400'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.actionDoubleString')
+                        expect(res[0].description).assertEqual('actionDoubleString')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0400' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0400 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -135,6 +234,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_0500
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0500', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "action_c1"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_0500'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.actionDoubleSkill')
+                        expect(res[0].description).assertEqual('actionDoubleSkill')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0500' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0500 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_0600
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third appl
@@ -155,6 +280,31 @@ export default function ActsBmsQueryAbilityByWant() {
                 })
         });
 
+        /*
+        * @tc.number: bms_queryAbilityInfo_0600
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third appl
+        */
+        it('bms_queryAbilityInfo_0600', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "action_d2"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_0600'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.actionDoubleSkill')
+                        expect(res[0].description).assertEqual('actionDoubleSkill')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0600' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0600 e ' + error);
+                done();
+            }
+        });
 
         /*
         * @tc.number: bms_queryAbilityByWant_0700
@@ -173,6 +323,30 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(err).assertEqual(INVALID_CODE)
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_0700
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0700', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "action_not_exist"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0700' + JSON.stringify(err))
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0700 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -202,6 +376,37 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_0800
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0800', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": []
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_0800 '+ JSON.stringify(res))
+                        const list = ['entityDoubleSkill','entityDoubleString','entitySingleString','entityEmpty']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0800 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0800 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_0900
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -219,6 +424,31 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(err).assertEqual(INVALID_CODE)
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_0900
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_0900', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": [""]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_0900' + JSON.stringify(err))
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_0900 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -244,6 +474,33 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_1000
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1000', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_a"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_1000'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.entitySingleString')
+                        expect(res[0].description).assertEqual('entitySingleString')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1000' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1000 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_1100
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -263,6 +520,33 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_1100
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1100', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_b2"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_1100'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.entityDoubleString')
+                        expect(res[0].description).assertEqual('entityDoubleString')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1100' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1100 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -288,6 +572,33 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_1200
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1200', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_d1"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_1200'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.entityDoubleSkill')
+                        expect(res[0].description).assertEqual('entityDoubleSkill')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1200' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1200 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_1300
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -307,6 +618,33 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_1300
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1300', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_c1", "entity_c2"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityByWant_1300'+ JSON.stringify(res))
+                        expect(res[0].name).assertEqual('com.example.third7.entityDoubleSkill')
+                        expect(res[0].description).assertEqual('entityDoubleSkill')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityByWant_1300' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityByWant_1300 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -330,6 +668,31 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_1400
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1400', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_b1", "entity_not_exist"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1400' + JSON.stringify(err))
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1400 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_1500
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -350,6 +713,31 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_1500
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1500', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_b1", "entity_b2", "entity_not_exist"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1500' + JSON.stringify(err))
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1500 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_1600
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -367,6 +755,31 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(err).assertEqual(INVALID_CODE)
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_1600
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1600', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                        "entities": ["entity_not_exist"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1600' + JSON.stringify(err))
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1600 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -392,6 +805,36 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_1700
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1700', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "entity_reserved",
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_1700 '+ JSON.stringify(res))
+                        const list = ['entityDoubleSkill','entityDoubleString','entitySingleString','entityEmpty']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1700 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1700 e ' + error);
+                done();
+            }
         });
 
         /*
@@ -421,6 +864,37 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_1800
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1800', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": ""
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_1800 '+ JSON.stringify(res))
+                        const list = ['uriEmpty','uriSchemeEmpty']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1800 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1800 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_1900
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -447,6 +921,37 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_1900
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_1900', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_1900 '+ JSON.stringify(res))
+                        const list = ['uriHostEmpty','uriScheme']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_1900 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_1900 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_2000
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -468,6 +973,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_2000
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2000', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://www.test.com"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2000 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('uriSchemeHost')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2000 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_2000 e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_2100
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -486,6 +1017,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_2100
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2100', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://www.test.com:8080"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2100 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('uriSchemeHostPort')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2100 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -515,6 +1072,37 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_2200
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2200', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://www.test.com:8080/query/student/name"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2200 '+ JSON.stringify(res))
+                        const list = ['uriSchemeHostPortPath','uriSchemeHostPortPathStartWith','uriSchemeHostPortPathRegx']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2200 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_2300
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -541,6 +1129,37 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_2300
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2300', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://www.test.com/query/student/name"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityByWant_2300 '+ JSON.stringify(res))
+                        const list = ['uriPortEmptyWithPath','uriPortEmptyWithPathStartWith','uriPortEmptyWithPathRegx']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityByWant_2300 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_2400
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -559,6 +1178,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_2400
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2400', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://www.test.com:8080/query/teacher/name"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2400 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('uriSchemeHostPortPathRegx')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2400 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -583,6 +1228,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_2500
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2500', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://www.test.com:8080/query/student/jack"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2500 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('uriSchemeHostPortPathStartWith')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2500 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_2600
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -601,6 +1272,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_2600
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2600', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "file://www.test.com:8080/query/student/name"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2600 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('uriMultiPath')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2600 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -625,6 +1322,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_2700
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2700', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "file://www.test.com:8080/query/teacher/hello"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2700 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('uriMultiPath')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2700 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_2800
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -642,6 +1365,31 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(err).assertEqual(INVALID_CODE)
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_2800
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2800', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "uri_reserved",
+                        "uri": "content://abc"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        expect(res).assertFail()
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2800' + JSON.stringify(err))
+                        expect(err).assertEqual(INVALID_CODE)
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -674,6 +1422,40 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_2900
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_2900', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "type": "*/*"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_2900 '+ JSON.stringify(res))
+                        const list = ['TypeDoubleWildCard','TypeSingleWildCard','TypeString', 'TypeStringExt']
+                        let cnt = 0;
+                        if (res && res.length) {
+                            for (let i = 0; i < res.length; i++) {
+                                if (list.includes(res[i].description)) {
+                                    cnt++;
+                                }
+                            }
+                        }
+                        expect(cnt).assertEqual(list.length)
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_2900' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_3000
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -696,6 +1478,36 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_3000
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3000', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "type": "prefixType/*"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3000 '+ JSON.stringify(res))
+                        const list = ['TypeDoubleWildCard','TypeSingleWildCard','TypeString']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3000 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -724,6 +1536,36 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_3100
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3100', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "type": "prefixType/suffixType"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3100 '+ JSON.stringify(res))
+                        const list = ['TypeDoubleWildCard','TypeSingleWildCard','TypeString']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3100' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_3200
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -749,6 +1591,36 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_3200
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3200', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "type": "prefixTypeExt/suffixTypeExt"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3200 '+ JSON.stringify(res))
+                        const list = ['TypeStringExt','TypeDoubleWildCard']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3200' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_3300
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -771,6 +1643,36 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_3300
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3300', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "type_reserved"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3300 '+ JSON.stringify(res))
+                        const list = ['TypeEmpty','TypeEmptyExt']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3300 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -800,6 +1702,37 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_3400
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3400', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "type_reserved",
+                        "type": ""
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3400 '+ JSON.stringify(res))
+                        const list = ['TypeEmpty','TypeEmptyExt']
+                        if(res && res.length) {
+                            for(let i = 0; i < res.length; i++) {
+                                expect(list.includes(res[i].description)).assertEqual(true)
+                            }
+                        }
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3400 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_3500
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -817,6 +1750,31 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_3500
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3500', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "type": "none/none"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3500'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('TypeDoubleWildCard')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3500' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -841,6 +1799,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_3600
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3600', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "all_action_a",
+                        "entities":["all_entity_a"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3600'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allAE')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3600' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_3700
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -859,6 +1843,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_3700
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3700', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action": "all_action_b",
+                        "entities":["all_entity_b1", "all_entity_b2"]
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3700'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allAEs')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3700' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -883,6 +1893,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_3800
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3800', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "uri" :"http://www.test.com:8080/query/student/name",
+                        "type":"text/plain"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3800'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3800' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_3900
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -901,6 +1937,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_3900
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_3900', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "uri" :"http://www.test.com:8080/query/student/name",
+                        "type":"text/*"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_3900'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_3900' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -925,6 +1987,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_4000
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_4000', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "uri" :"http://www.test.com:8080/query/teacher",
+                        "type":"text/plain"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_4000'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_4000' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_4100
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -946,6 +2034,32 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_4100
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_4100', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "uri" :"http://www.test.com:8080/query/teacher/hello",
+                        "type":"text/plain"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_4100'+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_4100' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_4200
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -964,6 +2078,32 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_4200
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_4200', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "uri" :"http://www.test.com:8080/update/hello/world/name",
+                        "type":"text/plain"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_4200 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_4200 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
 
         /*
@@ -990,6 +2130,34 @@ export default function ActsBmsQueryAbilityByWant() {
         });
 
         /*
+        * @tc.number: bms_queryAbilityInfo_4300
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_4300', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action":"all_action_c",
+                        "entities":["all_entity_c1"],
+                        "uri" :"https://www.test.com:8080/query/student/name",
+                        "type":"text/plain"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_4300 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allAEUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_4300 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
+        });
+
+        /*
         * @tc.number: bms_queryAbilityByWant_4400
         * @tc.name: Use the implicit query method in queryAbilityByWant to get abilityInfos
         * @tc.desc: queryAbilityByWant for third app
@@ -1010,6 +2178,34 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect().assertFail()
                     done()
                 })
+        });
+
+        /*
+        * @tc.number: bms_queryAbilityInfo_4400
+        * @tc.name: Use the implicit query method in queryAbilityInfo to get abilityInfos
+        * @tc.desc: queryAbilityInfo for third app
+        */
+        it('bms_queryAbilityInfo_4400', 0, async function (done) {
+            try {
+                bundleManager.queryAbilityInfo(
+                    {
+                        "action":"all_action_c",
+                        "entities":["all_entity_c1", "all_entity_c2"],
+                        "uri" :"https://www.test.com:8080/query/student/name",
+                        "type":"text/*"
+                    }, QUERY_DEFAULT_FLAG, userId).then(res => {
+                        console.info(' success bms_queryAbilityInfo_4400 '+ JSON.stringify(res))
+                        expect(res[0].description).assertEqual('allAEUT')
+                        done()
+                    }).catch(err => {
+                        console.error(' fail bms_queryAbilityInfo_4400 ' + JSON.stringify(err))
+                        expect().assertFail()
+                        done()
+                    })
+            } catch (error) {
+                console.log('bms_queryAbilityInfo_ e ' + error);
+                done();
+            }
         });
     })
 }
