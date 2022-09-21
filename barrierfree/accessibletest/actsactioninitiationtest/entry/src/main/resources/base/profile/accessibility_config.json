@@ -1,0 +1,10 @@
+{
+  "accessibilityCapabilities": [
+    "retrieve",
+    "touchGuide",
+    "keyEventObserver",
+    "gesture"
+  ],
+  "accessibilityCapabilityRationale": "a11y_rationale",
+  "settingsAbility": "com.example.myapplication.accessibilitySetting"
+}

@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "ActionInitiationTest entry"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "ActionInitiationTest MainAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "ActionInitiationTest"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "Action后台服务"
+    },
+    {
+      "name": "form_description",
+      "value": "Action辅助应用"
+    }
+  ]
+}
