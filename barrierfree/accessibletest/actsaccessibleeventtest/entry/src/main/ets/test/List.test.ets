@@ -14,7 +14,6 @@
  */
 import abilityTest from './AccessibleEvent.test'
 import abilityTouchTest from './AccessibleTouchEvent.test'
-import abilityComplexTest from './AccessibleComplexEvent.test'
 import abilityElementTest from './AccessibleEventElement.test'
 
 export default function testsuite() {
