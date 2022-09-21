@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "AccessControlTest entry"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "AccessControlTest MainAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AccessControlTest"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "AccessControl后台服务"
+    },
+    {
+      "name": "form_description",
+      "value": "AccessControl辅助应用"
+    }
+  ]
+}
