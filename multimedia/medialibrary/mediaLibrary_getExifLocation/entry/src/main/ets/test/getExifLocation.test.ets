@@ -15,26 +15,34 @@
 import image from "@ohos.multimedia.image";
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
+import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
+import bundle from "@ohos.bundle";
 
-import {
-    getPermission,
-} from '../../../../../../common';
-
-export default function fileAssetTestPromiseTest(abilityContext) {
-    describe("redaction", function () {
+export default function getExifLocation(abilityContext) {
+    describe("getExifLocation", function () {
         beforeAll(async function () {
-            console.info('beforeAll case');
-            await getPermission();
+            console.info("beforeAll case");
+            let appInfo = await bundle.getApplicationInfo("ohos.acts.multimedia.mediaLibrary", 0, 100);
+            let tokenID = appInfo.accessTokenId;
+            let atManager = abilityAccessCtrl.createAtManager();
+            let result1 = await atManager.grantUserGrantedPermission(tokenID, "ohos.permission.MEDIA_LOCATION", 1);
+            let result2 = await atManager.grantUserGrantedPermission(tokenID, "ohos.permission.READ_MEDIA", 1);
+            let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
+            let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
+            if (!(result1 == 0 && result2 == 0 && isGranted1 == 0 && isGranted2 == 0)) {
+                console.info("getpermission failed");
+            }
         });
         beforeEach(function () {
-            console.info('beforeEach case');
+            console.info("beforeEach case");
         });
         afterEach(async function () {
-            console.info('afterEach case');
+            console.info("afterEach case");
         });
         afterAll(function () {
-            console.info('afterAll case');
+            console.info("afterAll case");
         });
+
         var media = mediaLibrary.getMediaLibrary(abilityContext);
         const fileKeyObj = mediaLibrary.FileKey;
         let imageType = mediaLibrary.MediaType.IMAGE;

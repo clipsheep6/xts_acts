@@ -15,27 +15,31 @@
 import image from "@ohos.multimedia.image";
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
+import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
+import bundle from "@ohos.bundle";
 
-import {
-    getPermission,
-} from '../../../../../../common';
-
-export default function fileAssetTestPromiseTest(abilityContext) {
-    describe("redaction", function () {
+export default function getExifNoLocation(abilityContext) {
+    describe("getExifNoLocation", function () {
         beforeAll(async function () {
-            console.info('beforeAll case');
-            await getPermission();
+            console.info("beforeAll case");
+            let appInfo = await bundle.getApplicationInfo("ohos.acts.multimedia.mediaLibrary", 0, 100);
+            let tokenID = appInfo.accessTokenId;
+            let atManager = abilityAccessCtrl.createAtManager();
+            let result = await atManager.grantUserGrantedPermission(tokenID, "ohos.permission.READ_MEDIA", 1);
+            let isGranted = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
+            if (!(result == 0 && isGranted == 0)) {
+                console.info("getpermission failed");
+            }
         });
         beforeEach(function () {
-            console.info('beforeEach case');
+            console.info("beforeEach case");
         });
         afterEach(async function () {
-            console.info('afterEach case');
+            console.info("afterEach case");
         });
         afterAll(function () {
-            console.info('afterAll case');
+            console.info("afterAll case");
         });
-
         let redactionGpsValue = "0/0, 0/0, 0/0, 0/0, 0/0, 0/0, 0/0, 0/0";
         let redactionRefValue = "";
         var media = mediaLibrary.getMediaLibrary(abilityContext);
