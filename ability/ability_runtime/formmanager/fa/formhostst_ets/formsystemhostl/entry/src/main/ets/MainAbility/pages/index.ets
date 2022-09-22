@@ -42,11 +42,11 @@ struct Index {
   private formOnRequestEvent = `FMS_FormOnRequest_commonEvent`;
   private formOnDeletedEvent = "FMS_FormOnDeleted_commonEvent";
 
-  private onAcquiredCallback() {
+  private onAcquiredCallback = () => {
     console.info(`====>${this.TAG} onAcquiredCallback====>`);
   }
 
-  private onRequestCallback() {
+  private onRequestCallback = () => {
     console.info(`====>${this.TAG} onRequestCallback====>`);
   }
 
@@ -54,7 +54,7 @@ struct Index {
     console.info(`${this.TAG} unSubscribeDeleteCallback====>`);
   }
 
-  private async aboutToAppear() {
+  async aboutToAppear() {
     const onDeleteEventSubscriber = await commonEvent.createSubscriber(this.subscriberFormDeleteEvent);
     commonEvent.subscribe(onDeleteEventSubscriber, async (err, data) => {
       console.info(`${this.TAG} deleteCallBack start:====> ${JSON.stringify(data)}`);

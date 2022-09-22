@@ -16,7 +16,6 @@
 import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
@@ -45,18 +44,14 @@ describe('AudioEncoderFuncPromise', function () {
     let fdWrite;
     let fileAsset;
     const context = featureAbility.getContext();
-    const mediaTest = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
+    let outputCnt = 0;
+    let inputCnt = 0;
+    let frameThreshold = 10;
+    let lockFlag = false;
+
 
     beforeAll(async function() {
         console.info('beforeAll case 1');
-        let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
-        let permissionName2 = 'ohos.permission.READ_MEDIA';
-        let permissionName3 = 'ohos.permission.WRITE_MEDIA';
-        let permissionNameList = [permissionName1, permissionName2, permissionName3];
-        let appName = 'ohos.acts.multimedia.audio.audioencoder';
-        await mediaTestBase.applyPermission(appName, permissionNameList);
-        console.info('beforeAll case after get permission');
     })
 
     beforeEach(function() {
@@ -77,6 +72,9 @@ describe('AudioEncoderFuncPromise', function () {
         inputQueue = [];
         outputQueue = [];
         ES_LENGTH = 1500;
+        outputCnt = 0;
+        inputCnt = 0;
+        lockFlag = false;
     })
 
     afterEach(async function() {
@@ -118,6 +116,9 @@ describe('AudioEncoderFuncPromise', function () {
         sawOutputEOS = false;
         inputQueue = [];
         outputQueue = [];
+        outputCnt = 0;
+        inputCnt = 0;
+        lockFlag = false;
     }
 
     async function getFdRead(readPath, done) {
@@ -125,68 +126,12 @@ describe('AudioEncoderFuncPromise', function () {
             fdRead = fdNumber;
         })
     }
-
-    async function getFdWrite(pathName) {
-        console.info('[mediaLibrary] case start getFdWrite');
-        console.info('[mediaLibrary] case getFdWrite pathName is ' + pathName);
-        let mediaType = mediaLibrary.MediaType.AUDIO;
-        console.info('[mediaLibrary] case mediaType is ' + mediaType);
-        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
-        console.info('[mediaLibrary] case getFdWrite publicPath is ' + publicPath);
-        let dataUri = await mediaTest.createAsset(mediaType, pathName, publicPath);
-        if (dataUri != undefined) {
-            let args = dataUri.id.toString();
-            let fetchOp = {
-                selections : fileKeyObj.ID + "=?",
-                selectionArgs : [args],
-            }
-            let fetchWriteFileResult = await mediaTest.getFileAssets(fetchOp);
-            console.info('[mediaLibrary] case getFdWrite getFileAssets() success');
-            fileAsset = await fetchWriteFileResult.getAllObject();
-            console.info('[mediaLibrary] case getFdWrite getAllObject() success');
-            fdWrite = await fileAsset[0].open('rw');
-            console.info('[mediaLibrary] case getFdWrite fdWrite is ' + fdWrite);
-        }
-    }
-
-    async function closeFdWrite() {
-        if (fileAsset != null) {
-            await fileAsset[0].close(fdWrite).then(() => {
-                console.info('[mediaLibrary] case close fdWrite success, fd is ' + fdWrite);
-            }).catch((err) => {
-                console.info('[mediaLibrary] case close fdWrite failed');
-            });
-        } else {
-            console.info('[mediaLibrary] case fileAsset is null');
-        }
-    }
-    
-    function readFile(path) {
-        console.info('read file start execution');
-        try{
-            console.info('filepath: ' + path);
-            readStreamSync = fileio.fdopenStreamSync(fdRead, 'rb');
-        }catch(e) {
-            console.info(e);
-        }
-    }
-
+   
     function getContent(buf, len) {
         console.info("case start get content");
         let lengthreal = -1;
         lengthreal = fileio.readSync(fdRead, buf, {length:len});
         console.info('case lengthreal is :' + lengthreal);
-    }
-
-    function writeHead(path, len) {
-        try{
-            let head = new ArrayBuffer(7);
-            addADTStoPacket(head, len);
-            let res = fileio.writeSync(fdWrite, head, {length: 7});
-            console.info('case fileio.write head success');
-        } catch(e) {
-            console.info('case fileio.write head error is ' + e);
-        }
     }
 
     function writeFile(path, buf, len) {
@@ -196,22 +141,6 @@ describe('AudioEncoderFuncPromise', function () {
         } catch(e) {
             console.info('case fileio.write buffer error is ' + e);
         }
-    }
-
-    function addADTStoPacket(head, len) {
-        let view = new Uint8Array(head);
-        console.info("start add ADTS to Packet");
-        let packetLen = len + 7; // 7: head length
-        let profile = 2; // 2: AAC LC  
-        let freqIdx = 4; // 4: 44100HZ 
-        let chanCfg = 2; // 2: 2 channel
-        view[0] = 0xFF;
-        view[1] = 0xF9;
-        view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
-        view[3] = ((chanCfg & 3) << 6) + (packetLen >> 11);
-        view[4] = (packetLen & 0x7FF) >> 3;
-        view[5] = ((packetLen & 7) << 5) + 0x1F;
-        view[6] = 0xFC;
     }
 
     async function stopWork() {
@@ -234,6 +163,7 @@ describe('AudioEncoderFuncPromise', function () {
     }
 
     async function flushWork(done) {
+        lockFlag = true;
         inputQueue = [];
         outputQueue = [];
         await getFdRead(readpath, done);
@@ -241,6 +171,10 @@ describe('AudioEncoderFuncPromise', function () {
             console.info("case flush at inputeos success");
             resetParam();
             workdoneAtEOS =true;
+            lockFlag = false;
+        }, failCallback).catch(failCatch);
+        await audioEncodeProcessor.start().then(() => {
+            console.info("case start after flush success");
         }, failCallback).catch(failCatch);
     }
 
@@ -286,9 +220,12 @@ describe('AudioEncoderFuncPromise', function () {
             }
             timestamp += 23;
             frameCnt += 1;
-            audioEncodeProcessor.pushInputData(inputobject).then(() => {
-                console.info('case queueInput success');
-            });
+            if (!lockFlag) {
+                await audioEncodeProcessor.pushInputData(inputobject).then(() => {
+                    console.info('case queueInput success');
+                    inputCnt += 1;
+                });
+            }
         }
     }
 
@@ -304,21 +241,22 @@ describe('AudioEncoderFuncPromise', function () {
                 } else if (flushAtEOS) {
                     await flushWork(done);
                 } else if (workdoneAtEOS) {
+                    expect(outputCnt).assertClose(inputCnt, frameThreshold);
                     await doneWork();
                     await fileio.close(fdRead);
-                    await closeFdWrite();
                     done();
                 } else {
                     console.info('sawOutputEOS = true');
                 }
             }
             else{
-                writeFile(savepath, outputobject.data, outputobject.length);
                 console.info("write to file success");
             }
-            audioEncodeProcessor.freeOutputBuffer(outputobject).then(() => {
-                console.info('release output success');
-            });
+            if (!lockFlag) {
+                await audioEncodeProcessor.freeOutputBuffer(outputobject).then(() => {
+                    console.info('release output success');
+                });
+            }
         }
     }
 
@@ -331,6 +269,11 @@ describe('AudioEncoderFuncPromise', function () {
         });
         audioEncodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('outputBufferAvailable');
+            outputCnt += 1;
+            if (outputCnt == 1 && outBuffer.flags == 1) {
+                console.info("case error occurs! first output is EOS");
+                expect().assertFail();
+            }
             if (needgetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription().then((MediaDescription) => {
                     console.info("get OutputMediaDescription success");
@@ -350,14 +293,14 @@ describe('AudioEncoderFuncPromise', function () {
     }
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0100
         * @tc.name      : 000.test set EOS after last frame and reset
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0100', 0, async function (done) {
         console.info("case test set EOS after last frame and reset");
         let mediaDescription = {
             "channel_count": 2,
@@ -369,7 +312,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_00.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         needgetMediaDes = true;
         workdoneAtEOS = true;
@@ -417,14 +359,14 @@ describe('AudioEncoderFuncPromise', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0200
         * @tc.name      : 001.test set EOS manually before last frame and reset
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0200', 0, async function (done) {
         console.info("case test set EOS manually before last frame and reset");
         let mediaDescription = {
             "channel_count": 2,
@@ -433,7 +375,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_01.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 500;
         workdoneAtEOS = true;
@@ -458,14 +399,14 @@ describe('AudioEncoderFuncPromise', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0200
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0300
         * @tc.name      : 002.test flush at running state
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0200', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0300', 0, async function (done) {
         console.info("case test flush at running state");
         let mediaDescription = {
             "channel_count": 2,
@@ -474,7 +415,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_02.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         workdoneAtEOS = true;
         await media.createAudioEncoderByMime('audio/mp4a-latm').then((processor) => {
@@ -495,24 +435,29 @@ describe('AudioEncoderFuncPromise', function () {
         await audioEncodeProcessor.start().then(() => {
             console.info("case start success")
         }, failCallback).catch(failCatch);
-        await sleep(500).then(() => {
+        await sleep(500).then(async() => {
+            lockFlag = true;
             inputQueue = [];
             outputQueue = [];
-            audioEncodeProcessor.flush().then(() => {
-                console.info("case flush after 5s")
+            await audioEncodeProcessor.flush().then(() => {
+                console.info("case flush after 5s");
+                lockFlag = false;
+            }, failCallback).catch(failCatch);
+            await audioEncodeProcessor.start().then(() => {
+                console.info("case start after flush success");
             }, failCallback).catch(failCatch);
         });
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0300
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0400
         * @tc.name      : 003.test flush at EOS state
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0300', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0400', 0, async function (done) {
         console.info("case test flush at EOS state");
         let mediaDescription = {
             "channel_count": 2,
@@ -521,7 +466,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_03.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 500;
         flushAtEOS = true;
@@ -546,14 +490,14 @@ describe('AudioEncoderFuncPromise', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0400
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0500
         * @tc.name      : 004.test stop at running state and reset
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0400', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0500', 0, async function (done) {
         console.info("case test stop at running state and reset");
         let mediaDescription = {
             "channel_count": 2,
@@ -562,7 +506,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_04.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         await media.createAudioEncoderByMime('audio/mp4a-latm').then((processor) => {
             console.info("case create createAudioEncoder success");
@@ -595,19 +538,18 @@ describe('AudioEncoderFuncPromise', function () {
         }, failCallback).catch(failCatch);
         audioEncodeProcessor = null;
         await fileio.close(fdRead);
-        await closeFdWrite();
         done();
     })
 
      /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0500
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0600
         * @tc.name      : 005.test stop and restart
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0500', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0600', 0, async function (done) {
         console.info("case test stop and restart");
         let mediaDescription = {
             "channel_count": 2,
@@ -616,7 +558,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_05.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 100;
         await media.createAudioEncoderByMime('audio/mp4a-latm').then((processor) => {
@@ -656,14 +597,14 @@ describe('AudioEncoderFuncPromise', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0600
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0700
         * @tc.name      : 006.test reconfigure for new file with the same format
         * @tc.desc      : basic encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_01_0600', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_PROMISE_0700', 0, async function (done) {
         console.info("case test reconfigure for new file with the same format");
         let mediaDescription = {
             "channel_count": 2,
@@ -672,7 +613,6 @@ describe('AudioEncoderFuncPromise', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_06.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 100;
         resetAtEOS = true;
@@ -704,14 +644,12 @@ describe('AudioEncoderFuncPromise', function () {
         });
         resetParam();
         await fileio.close(fdRead);
-        await closeFdWrite();
         await audioEncodeProcessor.configure(mediaDescription2).then(() => {
             console.info("configure 2 success");
             resetParam();
         }, failCallback).catch(failCatch);
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_promise_06_2.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         workdoneAtEOS = true;
         setCallback(savepath, done);

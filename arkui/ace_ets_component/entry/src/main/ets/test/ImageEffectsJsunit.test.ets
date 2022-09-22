@@ -405,7 +405,7 @@ export default function imageEffectsJsunit() {
       let strJsonNew = getInspectorByKey('centerRow5');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testImageEffects015] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.brightness).assertEqual(0.0000019999999949504854);
+      expect(objNew.$attrs.brightness).assertEqual(0);
       done();
     });
 
@@ -520,7 +520,7 @@ export default function imageEffectsJsunit() {
       let strJsonNew = getInspectorByKey('centerRow6');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testImageEffects020] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.saturate).assertEqual(0.0000019999999949504854);
+      expect(objNew.$attrs.saturate).assertEqual(0);
       done();
     });
 
@@ -634,7 +634,7 @@ export default function imageEffectsJsunit() {
       let strJsonNew = getInspectorByKey('centerRow7');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testImageEffects025] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.contrast).assertEqual(0.0000019999999949504854);
+      expect(objNew.$attrs.contrast).assertEqual(0);
       done();
     });
 
@@ -811,7 +811,7 @@ export default function imageEffectsJsunit() {
       let strJsonNew = getInspectorByKey('centerRow9');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testImageEffects033] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.hueRotate).assertEqual(-2147483648);
+      expect(objNew.$attrs.hueRotate).assertEqual(232);
       done();
     });
 
@@ -837,7 +837,7 @@ export default function imageEffectsJsunit() {
       let strJsonNew = getInspectorByKey('centerRow9');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testImageEffects034] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.hueRotate).assertEqual(2147483648);
+      expect(objNew.$attrs.hueRotate).assertEqual(128);
       done();
     });
 

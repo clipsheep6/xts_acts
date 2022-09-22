@@ -14,10 +14,11 @@
  */
 
 import image from '@ohos.multimedia.image'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { iccbuf } from './testImg2'
 
-describe('Image', function () {
+export default function imageColorSpace() {
+describe('imageColorSpace', function () {
     beforeAll(async function () {
         console.info('beforeAll case');
     })
@@ -111,7 +112,7 @@ describe('Image', function () {
     } 
 
     /**
-     * @tc.number    : decodeP3_001
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_DECODE_0100
      * @tc.name      : Decode 
      * @tc.desc      : 1.create imagesource
      *                 2.create pixelmap
@@ -119,8 +120,8 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('decodeP3_001', 0, async function (done) {
-        let logger = loger('decodeP3_001')
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_DECODE_0100', 0, async function (done) {
+        let logger = loger('SUB_GRAPHIC_IMAGE_COLORSPACE_DECODE_0100')
         try {
             let imageSource = genPicSource();
             logger.log("ImageSource " + (imageSource != undefined));
@@ -140,7 +141,7 @@ describe('Image', function () {
     })
 
     /**
-     * @tc.number    : decodeP3_002
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_DECODE_CALLBACK_0100
      * @tc.name      : Decode -callback
      * @tc.desc      : 1.create imagesource
      *                 2.create pixelmap
@@ -148,8 +149,8 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('decodeP3_002', 0, async function (done) {
-        let logger = loger('decodeP3_002')
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_DECODE_CALLBACK_0100', 0, async function (done) {
+        let logger = loger('SUB_GRAPHIC_IMAGE_COLORSPACE_DECODE_CALLBACK_0100')
         try {
             let imageSource = genPicSource();
             logger.log("ImageSource " + (imageSource != undefined));
@@ -169,7 +170,7 @@ describe('Image', function () {
     })
 
     /**
-     * @tc.number    : encodeP3_001
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0100
      * @tc.name      : Encode -callback
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -178,9 +179,9 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_001', 0, async function (done) {
-        let logger = loger('encodeP3_001')
-        let testNum = 'encodeP3_001'
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0100', 0, async function (done) {
+        let logger = loger('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0100')
+        let testNum = 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0100'
         try {
             let imageSource = genPicSource();
             logger.log("ImageSource " + (imageSource != undefined));
@@ -216,7 +217,7 @@ describe('Image', function () {
     })
 
     /**
-     * @tc.number    : encodeP3_002
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0100
      * @tc.name      : Encode -promise
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -225,9 +226,9 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_002', 0, async function (done) {
-        let logger = loger('encodeP3_002')
-        let testNum = 'encodeP3_002'
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0100', 0, async function (done) {
+        let logger = loger('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0100')
+        let testNum = 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0100'
         try {
             let imageSource = genPicSource();
             logger.log("ImageSource " + (imageSource != undefined));
@@ -253,7 +254,7 @@ describe('Image', function () {
                     
                     done();
                 }).catch(error => {
-                    console.log('encodeP3_002 error: ' + error);
+                    console.log('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0100 error: ' + error);
                     expect(false).assertTrue();
                     done();
                 })
@@ -267,7 +268,7 @@ describe('Image', function () {
     })
 
     /**
-     * @tc.number    : encodeP3_003
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0200
      * @tc.name      : Encode -callback-
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -276,13 +277,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_003', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0200', 0, async function (done) {
         let packOpts = { format:["image/gif"], quality:90 }
-        packingCbFail(done, 'encodeP3_003', packOpts)
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_0200', packOpts)
     })
 
     /**
-     * @tc.number    : encodeP3_004
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_ERROR_FORMAT_0100
      * @tc.name      : Encode -callback-wrong format
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -291,13 +292,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_004', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_ERROR_FORMAT_0100', 0, async function (done) {
         let packOpts = { format:["image/jpeg"], quality:200 }
-        packingCbFail(done, 'encodeP3_004', packOpts)     
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_ERROR_FORMAT_0100', packOpts)     
     })
 
     /**
-     * @tc.number    : encodeP3_005
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_QUALITY_0100
      * @tc.name      : Encode -callback-no quality
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -306,13 +307,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_005', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_QUALITY_0100', 0, async function (done) {
         let packOpts = { format:["image/jpeg"] }
-        packingCbFail(done, 'encodeP3_005', packOpts)     
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_QUALITY_0100', packOpts)     
     })
 
     /**
-     * @tc.number    : encodeP3_006
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_FORMAT_0100
      * @tc.name      : Encode -callback-no format
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -321,13 +322,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_006', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_FORMAT_0100', 0, async function (done) {
         let packOpts = {  quality:50 }
-        packingCbFail(done, 'encodeP3_006', packOpts)      
+        packingCbFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_CALLBACK_NO_FORMAT_0100', packOpts)      
     })
     
     /**
-     * @tc.number    : encodeP3_007
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0200
      * @tc.name      : Encode -promise
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -336,13 +337,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_007', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0200', 0, async function (done) {
         let packOpts = { format:["image/gif"], quality:90 }
-        packingPromiseFail(done, 'encodeP3_007', packOpts)       
+        packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0200', packOpts)       
     })
 
     /**
-     * @tc.number    : encodeP3_008
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0300
      * @tc.name      : Encode -promise
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -351,13 +352,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_008', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0300', 0, async function (done) {
         let packOpts = { format:["image/jpeg"], quality:101 }
-        packingPromiseFail(done, 'encodeP3_008', packOpts)           
+        packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_0300', packOpts)           
     })   
 
     /**
-     * @tc.number    : encodeP3_009
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_QUALITY_0100
      * @tc.name      : Encode -promise -no quality
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -366,13 +367,13 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_009', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_QUALITY_0100', 0, async function (done) {
         let packOpts = { format:["image/jpeg"] }
-        packingPromiseFail(done, 'encodeP3_009', packOpts)        
+        packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_QUALITY_0100', packOpts)        
     })
 
     /**
-     * @tc.number    : encodeP3_010
+     * @tc.number    : SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_FORMAT_0100
      * @tc.name      : Encode -promise -no format
      * @tc.desc      : 1.create imagesource
      *                 2.createImagePacker
@@ -381,9 +382,10 @@ describe('Image', function () {
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
-    it('encodeP3_010', 0, async function (done) {
+    it('SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_FORMAT_0100', 0, async function (done) {
        let packOpts = { quality:100 }
-       packingPromiseFail(done, 'encodeP3_010', packOpts)        
+       packingPromiseFail(done, 'SUB_GRAPHIC_IMAGE_COLORSPACE_ENCODE_PROMISE_NO_FORMAT_0100', packOpts)        
     })
 
 })
+}

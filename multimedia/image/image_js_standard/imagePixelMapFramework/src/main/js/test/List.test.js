@@ -14,4 +14,7 @@
  */
 
 
-require('./framework.test.js')
+import imagePixelMapFramework from './framework.test.js'
+export default function testsuite() {
+    imagePixelMapFramework()
+}

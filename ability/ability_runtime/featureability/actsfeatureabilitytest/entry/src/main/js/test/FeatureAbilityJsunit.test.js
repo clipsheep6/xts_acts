@@ -14,51 +14,50 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import wantconstant from '@ohos.ability.wantConstant'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
-import notification from '@ohos.notification';
-import wantAgent from '@ohos.wantAgent';
 import particleAbility from '@ohos.ability.particleAbility'
 import backgroundTaskManager from '@ohos.backgroundTaskManager'
 
-const CREATELOCALDIR = "/data/storage/el2/base/haps/entry";
 const START_ABILITY_TIMEOUT = 4000;
-const TERMINATE_ABILITY_TIMEOUT = 1000;
-const TIMEOUT = 1000;
-var subscriberInfoActsStartAbility0100 = {
+let subscriberInfoActsStartAbility0100 = {
     events: ["ACTS_StartAbility_0100_CommonEvent"],
 };
-var subscriberInfoActsStartAbility0200 = {
+let subscriberInfoActsStartAbility0200 = {
     events: ["ACTS_StartAbility_0200_CommonEvent"],
 };
-var subscriberInfoActsStartAbility0300 = {
+let subscriberInfoActsStartAbility0300 = {
     events: ["ACTS_StartAbility_0300_CommonEvent"],
 };
-var subscriberInfoActsStartAbility0400 = {
+let subscriberInfoActsStartAbility0400 = {
     events: ["ACTS_StartAbility_0400_CommonEvent"],
 };
-var subscriberInfoActsStartAbility0500 = {
+let subscriberInfoActsStartAbility0500 = {
     events: ["ACTS_StartAbility_0500_CommonEvent"],
 };
-var subscriberInfoActsStartAbility0600 = {
+let subscriberInfoActsStartAbility0600 = {
     events: ["ACTS_StartAbility_0600_CommonEvent"],
 };
-var subscriberInfoStartAbilityTen = {
+let subscriberInfoStartAbilityTen = {
     events: ["ACTS_StartAbility_1000_CommonEvent"],
 };
-var subscriberInfoStartAbilityThirteen = {
+let subscriberInfoStartAbilityThirteen = {
     events: ["ACTS_StartAbility_1300_CommonEvent"],
 };
-var subscriberInfoTerminateAbilityTwo = {
+let subscriberInfoTerminateAbilityTwo = {
     events: ["ACTS_TerminateAbility_0200_CommonEvent",
         "ACTS_TerminateAbility_0200_Return"],
 };
-var subscriberInfoActsGetCallingBundle0100 = {
+let subscriberInfoActsGetCallingBundle0100 = {
     events: ["ACTS_GetCallingBundle_0100_CommonEvent",
         "com.example.actsfeatureabilitytest.promise",
         "com.example.actsfeatureabilitytest.callback"],
 };
 
+function sleep(time) {
+    return new Promise((resolve)=>setTimeout(resolve,time));
+}
+export default function actsFeatureAbilityTest() {
 describe('ActsFeatureAbilityTest', function () {
 
     beforeAll(function() {
@@ -85,7 +84,7 @@ describe('ActsFeatureAbilityTest', function () {
          console.info('beforeEach called')
     })
 
-    afterEach(function() {
+    afterEach(async function(done) {
 
         /*
          * @tc.teardown: teardown invoked after each testcases
@@ -95,344 +94,22 @@ describe('ActsFeatureAbilityTest', function () {
          setTimeout(() => {}, 500);
          backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext());
          setTimeout(() => {}, 500);
-    })
 
-    /*
-     * @tc.name:Acts_ContinuousTask_0100
-     * @tc.desc:verify new startBackgroundrunning interface promise mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT7U AR000GH6ER AR000GH6EM AR000GH6EN AR000GH6EO
-     */
-    it("Acts_ContinuousTask_0100", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0100 start");
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data).then(() => {
-                console.log("Acts_ContinuousTask_0100 startBackgroundRunning success");
-                expect(true).assertTrue();
-                setTimeout(() => {
-                    done();
-                }, 500);
-            }).catch((err) => {
-                expect(false).assertTrue();
-                console.log("Acts_ContinuousTask_0100 startBackgroundRunning failure");
-                setTimeout(() => {
-                    done();
-                }, 500);
-            });
-        });
-    })
-
-    /*
-     * @tc.name:Acts_ContinuousTask_0200
-     * @tc.desc:verify new startBackgroundrunning interface callback mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT7T AR000GH6ER AR000GH6EP AR000GJ9PR AR000GH6G8
-     */
-    it("Acts_ContinuousTask_0200", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0200 start");
-        function conTaskCallback(err, data) {
-            if (err) {
-                console.info('Acts_ContinuousTask_0200 startBackgroundRunning failed');
-                expect(false).assertTrue();
-            } else {
-                console.info('Acts_ContinuousTask_0200 startBackgroundRunning succeed');
-                expect(true).assertTrue();
+        let wantInfo = {
+            want: {
+                bundleName: "com.example.actsfeatureabilitytest",
+                abilityName: "com.example.actsfeatureabilitytest.TestAbility"
             }
-            setTimeout(()=>{
-                done();
-            }, 500);
         }
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data, conTaskCallback);
-        });
-    })
-
-    /*
-     * @tc.name:Acts_ContinuousTask_0300
-     * @tc.desc:verify old startBackgroundrunning interface promise mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT7V AR000GH6ER AR000GH6EM AR000GH6G9 AR000GH56K
-     */
-    it("Acts_ContinuousTask_0300", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0300 start");
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            let basicContent = {
-                title: "title",
-                text: "text"
-            };
-
-            let notificationContent = {
-                contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-                normal: basicContent
-            };
-
-            let request = {
-                content: notificationContent,
-                wantAgent: data
-            }
-
-            let id = 1;
-
-            particleAbility.startBackgroundRunning(id, request).then((data) => {
-                console.log("Acts_ContinuousTask_0300 startBackgroundRunning success");
-                expect(true).assertTrue();
-                setTimeout(() => {
-                    done();
-                }, 500);
-            }).catch((err) => {
-                expect(false).assertTrue();
-                console.log("Acts_ContinuousTask_0300 startBackgroundRunning failure");
-                setTimeout(() => {
-                    done();
-                }, 500);
-            });
-        });
-    })
-
-    /*
-     * @tc.name:Acts_ContinuousTask_0400
-     * @tc.desc:verify old startBackgroundrunning interface callback mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT81 AR000GH6ER AR000GH6EM AR000GH6G9 AR000GH6ET
-     */
-    it("Acts_ContinuousTask_0400", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0400 start");
-        function conTaskCallback(err, data) {
-            if (err) {
-                console.info('Acts_ContinuousTask_0400 startBackgroundRunning failure');
-                expect(false).assertTrue();
-            } else {
-                console.info('Acts_ContinuousTask_0400 startBackgroundRunning success');
-                expect(true).assertTrue();
-            }
-            setTimeout(()=>{
-                done();
-            }, 500);
-        }
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            let basicContent = {
-                title: "title",
-                text: "text"
-            };
-
-            let notificationContent = {
-                contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-                normal: basicContent
-            };
-
-            let request = {
-                content: notificationContent,
-                wantAgent: data
-            }
-
-            let id = 1;
-
-            particleAbility.startBackgroundRunning(id, request, conTaskCallback);
-        });
-    })
-
-    /*
-     * @tc.name:Acts_ContinuousTask_0500
-     * @tc.desc:verify new api stopBackgroundrunning interface promise mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT7U AR000GH6ES AR000GH6EM AR000GH6EN AR000GH6EO
-     */
-    it("Acts_ContinuousTask_0500", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0500 start");
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data).then((data) => {
-                backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then((data) => {
-                    console.log("Acts_ContinuousTask_0500 cancelBackgroundRunning success");
-                    expect(true).assertTrue();
-                    setTimeout(() => {
-                        done();
-                    }, 500);
-                }).catch((err) => {
-                    expect(false).assertTrue();
-                    console.log("Acts_ContinuousTask_0500 cancelBackgroundRunning failure");
-                    setTimeout(() => {
-                        done();
-                    }, 500);
-                });
-            })
-        });
-    })
-
-    /*
-        * @tc.name:Acts_ContinuousTask_0600
-        * @tc.desc:verify new api stopBackgroundrunning interface callback mode work properly
-        * @tc.type: FUNC
-        * @tc.require: SR000GGT7T AR000GH6ES AR000GH6EP AR000GJ9PR AR000GH6G8
-        */
-    it("Acts_ContinuousTask_0600", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0600 start");
-        function conTaskCallback(err, data) {
-            if (err) {
-                console.info('Acts_ContinuousTask_0600 startBackgroundRunning failure');
-                expect(false).assertTrue();
-            } else {
-                console.info('Acts_ContinuousTask_0600 startBackgroundRunning success');
-                expect(true).assertTrue();
-            }
-            setTimeout(()=>{
-                done();
-            }, 500);
-        }
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, data).then((data) => {
-                backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), conTaskCallback);
-            })
-        });
-    })
-
-    /*
-     * @tc.name:Acts_ContinuousTask_0700
-     * @tc.desc:verify old api cancelBackgroundrunning interface promise mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT7V AR000GH6ES AR000GH6EM AR000GH6G9 AR000GH56K
-     */
-    it("Acts_ContinuousTask_0700", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0700 start");
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        await wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            particleAbility.startBackgroundRunning(data);
-            setTimeout(()=>{
-            }, 500);
-        });
-
-        particleAbility.cancelBackgroundRunning().then(() => {
-            console.log("Acts_ContinuousTask_0700 cancelBackgroundRunning success");
-            expect(true).assertTrue();
-            setTimeout(() => {
-                done();
-            }, 500);
-        }).catch( (err) => {
-            expect(false).assertTrue();
-            console.log("Acts_ContinuousTask_0700 cancelBackgroundRunning failure");
-            setTimeout(() => {
-                done();
-            }, 500);
-        });
-    })
-
-    /*
-     * @tc.name:Acts_ContinuousTask_0800
-     * @tc.desc:verify old cancelBackgroundrunning interface callback mode work properly
-     * @tc.type: FUNC
-     * @tc.require: SR000GGT81 AR000GH6ES AR000GH6EM AR000GH6G9 AR000GH6ET
-     */
-    it("Acts_ContinuousTask_0800", 0, async function (done) {
-        console.log("Acts_ContinuousTask_0800 start");
-        function conTaskCallback(err, data) {
-            if (err) {
-                console.info('Acts_ContinuousTask_0800 startBackgroundRunning failure');
-                expect(false).assertTrue();
-            } else {
-                console.info('Acts_ContinuousTask_0800 startBackgroundRunning success');
-                expect(true).assertTrue();
-            }
-            setTimeout(()=>{
-                done();
-            }, 500);
-        }
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.actsfeatureabilitytest",
-                    abilityName: "com.example.actsfeatureabilitytest.MainAbility"
-                }
-            ],
-            operationType: 2,
-            requestCode: 0,
-            wantAgentFlags: [3]
-        };
-        await wantAgent.getWantAgent(wantAgentInfo).then((data) => {
-            particleAbility.startBackgroundRunning(data);
-            setTimeout(()=>{
-            }, 500);
-        });
-
-        particleAbility.cancelBackgroundRunning(conTaskCallback);
+        await featureAbility.startAbility(wantInfo).then((data) => {
+          console.log("ACTS_wantConstant startAbility data : " + JSON.stringify(data));
+        }).catch((err) => {
+          console.log("ACTS_wantConstant startAbility err : " + JSON.stringify(err));
+        })
+        setTimeout(function () {
+            console.log("ACTS_wantConstant afterEach end");
+            done();
+        }, 500);
     })
 
     /**
@@ -481,7 +158,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by Promise)
      */
     it('ACTS_GetContext_0100', 0, async function (done) {
-        var promise = await featureAbility.getContext()
+        let promise = await featureAbility.getContext()
         expect(typeof (promise)).assertEqual("object");
         done();
     })
@@ -492,14 +169,10 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by Promise)
      */
     it('ACTS_HasWindowFocus_0100', 0, async function (done) {
-        var promise = featureAbility.hasWindowFocus();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await featureAbility.hasWindowFocus();
+        let info = await featureAbility.hasWindowFocus();
         expect(info).assertEqual(true);
+        console.info('====> ACTS_HasWindowFocus_0100 end=====>')
         done();
-        setTimeout(function () {
-            console.info('====> ACTS_HasWindowFocus_0100 =====>')
-        }, TIMEOUT)
     })
 
     /**
@@ -508,18 +181,14 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_HasWindowFocus_0300', 0, async function (done) {
-        var result = featureAbility.hasWindowFocus(
+        let result = featureAbility.hasWindowFocus(
             (err, data) => {
-                console.log("hasWindowFocus asyncCallback code: " + err.code + " data: " + data);
-                expect(err.code).assertEqual(0);
+                console.info("hasWindowFocus asyncCallback code data: " + data);
                 expect(data).assertTrue();
                 done()
             }
         );
         console.info('AceApplication : hasWindowFocus : ' + result);
-        setTimeout(function () {
-            console.info('====> ACTS_HasWindowFocus_0300 =====>')
-        }, TIMEOUT)
     })
 
     /*
@@ -531,7 +200,7 @@ describe('ActsFeatureAbilityTest', function () {
     it("ACTS_StartAbility_1000",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1000-------------------");
         try{
-            var Subscriber;
+            let Subscriber;
             let id;
 
             function SubscribeCallBack(err, data) {
@@ -566,17 +235,17 @@ describe('ActsFeatureAbilityTest', function () {
                 abilityName: "com.example.startability.MainAbility",
                 uri: "xxxxx",
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1000 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_1000 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
                 expect(err.code == 0).assertTrue();
             });
         }catch(error){
-            console.log("ACTS_StartAbility_1000 : error = " + error);
+            console.info("ACTS_StartAbility_1000 : error = " + error);
         }
     })
 
@@ -586,7 +255,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by Promise)
      */
     it('ACTS_StartAbility_0100', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
 
         function SubscribeCallBack(err, data) {
@@ -616,7 +285,7 @@ describe('ActsFeatureAbilityTest', function () {
         }
 
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var promise = await featureAbility.startAbility(
+        let promise = await featureAbility.startAbility(
             {
                 want:
                 {
@@ -668,18 +337,18 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Pass the parameters, Check the return value of the interface (by Promise)
      */
     it('ACTS_StartAbility_0200', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
 
         function SubscribeCallBack(err, data) {
             clearTimeout(id);
+            expect(promise).assertEqual(0);
             expect(data.event).assertEqual("ACTS_StartAbility_0200_CommonEvent");
             console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
             commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
-            done();
         }
 
-        commonEvent.createSubscriber(subscriberInfoActsStartAbility0200).then(async (data) => {
+        await commonEvent.createSubscriber(subscriberInfoActsStartAbility0200).then(async (data) => {
             console.debug("====>Create Subscriber====>");
             Subscriber = data;
             await commonEvent.subscribe(Subscriber, SubscribeCallBack);
@@ -699,7 +368,7 @@ describe('ActsFeatureAbilityTest', function () {
 
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
         console.debug('=======wait id======');
-        var promise = await featureAbility.startAbility(
+        let promise = await featureAbility.startAbility(
             {
                 want:
                 {
@@ -753,7 +422,6 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             }
         );
-        expect(promise).assertEqual(0);
     })
 
     /**
@@ -762,7 +430,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Passing null, Check the return value of the interface (by Promise)
      */
     it('ACTS_StartAbility_0300', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
 
         function SubscribeCallBack(err, data) {
@@ -792,7 +460,7 @@ describe('ActsFeatureAbilityTest', function () {
         }
 
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var promise = await featureAbility.startAbility(
+        let promise = await featureAbility.startAbility(
             {
                 want:
                 {
@@ -844,7 +512,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_StartAbility_0400', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
 
         function SubscribeCallBack(err, data) {
@@ -874,7 +542,7 @@ describe('ActsFeatureAbilityTest', function () {
         }
 
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var result = featureAbility.startAbility(
+        let result = featureAbility.startAbility(
             {
                 want:
                 {
@@ -917,7 +585,7 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
-                console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
+                console.info('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
         );
@@ -929,7 +597,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Pass the parameters, Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_StartAbility_0500', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
 
         function SubscribeCallBack(err, data) {
@@ -959,7 +627,7 @@ describe('ActsFeatureAbilityTest', function () {
         }
 
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var result = featureAbility.startAbility(
+        let result = featureAbility.startAbility(
             {
                 want:
                 {
@@ -1013,7 +681,7 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
-                console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
+                console.info('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
         );
@@ -1025,7 +693,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Passing null, Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_StartAbility_0600', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
 
         function SubscribeCallBack(err, data) {
@@ -1033,7 +701,6 @@ describe('ActsFeatureAbilityTest', function () {
             expect(data.event).assertEqual("ACTS_StartAbility_0600_CommonEvent");
             console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
             commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
-            done();
         }
 
         commonEvent.createSubscriber(subscriberInfoActsStartAbility0600).then(async (data) => {
@@ -1055,7 +722,7 @@ describe('ActsFeatureAbilityTest', function () {
         }
 
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var result = featureAbility.startAbility(
+        let result = featureAbility.startAbility(
             {
                 want:
                 {
@@ -1098,7 +765,7 @@ describe('ActsFeatureAbilityTest', function () {
                 },
             },
             (error, data) => {
-                console.log('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
+                console.info('featureAbilityTest startAbility asyncCallback errCode : ' + error + " data: " + data)
 
             },
         );
@@ -1110,7 +777,7 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by promise)
      */
     it('ACTS_TerminateAbility_0200', 0, async function (done) {
-        var Subscriber;
+        let Subscriber;
         let id;
         let events = new Map();
 
@@ -1146,9 +813,9 @@ describe('ActsFeatureAbilityTest', function () {
             commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
             done();
         }
-        console.log('=====start ability=====');
+        console.info('=====start ability=====');
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var promise = featureAbility.startAbility(
+        let promise = featureAbility.startAbility(
             {
                 want:
                 {
@@ -1166,76 +833,9 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (promise)).assertEqual("object");
     })
 
-    // checkAbilityName
-    function checkAbilityName(info) {
-        console.log("AbilityName name : " + info);
-        expect(typeof (info)).assertEqual("string");
-        expect(info).assertEqual("com.example.actsfeatureabilitytest.MainAbility");
-    }
-
-    /**
-     * @tc.number: ACTS_GetAbilityName_0100
-     * @tc.name: GetAbilityName : Obtains the class name in this ability name, without the prefixed bundle name.
-     * @tc.desc: Check the return type of the interface (by Promise)
-     */
-    it('ACTS_GetAbilityName_0100', 0, async function (done) {
-        var promise = featureAbility.getAbilityName();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await featureAbility.getAbilityName();
-        checkAbilityName(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetAbilityName_0100 =====>')
-        }, TIMEOUT)
-    })
-
-    /**
-     * @tc.number: ACTS_GetAbilityName_0200
-     * @tc.name: GetAbilityName : Obtains the class name in this ability name, without the prefixed bundle name.
-     * @tc.desc: Check the return type of the interface (by AsyncCallback)
-     */
-    it('ACTS_GetAbilityName_0200', 0, async function (done) {
-        var result = featureAbility.getAbilityName(
-            (err, data) => {
-                checkAbilityName(data);
-                done()
-            }
-        );
-        setTimeout(function () {
-            console.info('====> ACTS_GetAbilityName_0200 =====>')
-        }, TIMEOUT)
-    })
-
     // checkApplicationInfo
     function checkApplicationInfo(info) {
-        console.log("getApplicationInfo : " + info)
-        console.log("name : " + info.name);
-        console.log("description : " + info.description);
-        console.log("descriptionId : " + info.descriptionId);
-        console.log("systemApp : " + info.systemApp);
-        console.log("enabled : " + info.enabled);
-        console.log("label : " + info.label);
-        console.log("labelId : " + info.labelId);
-        console.log("icon : " + info.icon);
-        console.log("iconId : " + info.iconId);
-        console.log("process : " + info.process);
-        console.log("supportedModes : " + info.supportedModes);
-
-        console.log("moduleSourceDirs length : " + info.moduleSourceDirs.length);
-        for (var j = 0; j < info.moduleSourceDirs.length; j++) {
-            console.log("info.moduleSourceDirs[" + j + "] : " + info.moduleSourceDirs[j]);
-        }
-        console.log("permissions length : " + info.permissions.length);
-        for (var j = 0; j < info.permissions.length; j++) {
-            console.log("info.permissions[" + j + "] : " + info.permissions[j]);
-        }
-        console.log("moduleInfos length : " + info.moduleInfos.length);
-        for (var j = 0; j < info.moduleInfos.length; j++) {
-            console.log("info.moduleInfos[" + j + "].moduleName : " + info.moduleInfos[j].moduleName);
-            console.log("info.moduleInfos[" + j + "].moduleSourceDir : " + info.moduleInfos[j].moduleSourceDir);
-        }
-        console.log("entryDir : " + info.entryDir);
-
+        console.info("getApplicationInfo : " + info)
         expect(typeof (info)).assertEqual("object");
         expect(typeof (info.name)).assertEqual("string");
         expect(typeof (info.description)).assertEqual("string");
@@ -1254,7 +854,7 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (info.entryDir)).assertEqual("string");
 
         expect(info.name).assertEqual("com.example.actsfeatureabilitytest");
-        expect(info.description).assertEqual("$string:mainability_description");
+        expect(info.description).assertEqual("descriptionTest");
         //            expect(info.descriptionId).assertEqual(0);    //create by DevEco when building HAP.
         expect(info.systemApp).assertEqual(true);
         expect(info.enabled).assertEqual(true);
@@ -1262,7 +862,7 @@ describe('ActsFeatureAbilityTest', function () {
         //            expect(info.labelId).assertEqual(0);  //create by DevEco when building HAP.
         expect(info.icon).assertEqual("$media:icon");
         //            expect(info.iconId).assertEqual(0);   //create by DevEco when building HAP.
-        expect(info.process).assertEqual("processTest");
+        expect(info.process).assertEqual("processTestAbility");
         expect(info.supportedModes).assertEqual(0);
         expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/" +
             "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
@@ -1271,6 +871,7 @@ describe('ActsFeatureAbilityTest', function () {
             "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
         expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/" +
             "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
+        console.info("getApplicationInfo : end")
     }
 
     /**
@@ -1279,15 +880,17 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return type of the interface (by Promise)
      */
     it('ACTS_GetApplicationInfo_0100', 0, async function (done) {
-        var context = featureAbility.getContext();
-        var promise = context.getApplicationInfo();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await context.getApplicationInfo();
-        checkApplicationInfo(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetApplicationInfo_0100 =====>')
-        }, TIMEOUT)
+        let context = featureAbility.getContext();
+        await context.getApplicationInfo().then((data)=>{
+            checkApplicationInfo(data);
+            console.info("ACTS_GetApplicationInfo_0100  info :" + JSON.stringify(data))
+            console.info('====> ACTS_GetApplicationInfo_0100 end=====>')
+            done();
+        }).catch((err)=>{
+            console.info('====> ACTS_GetApplicationInfo_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        });
     })
 
     /**
@@ -1296,24 +899,26 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_GetApplicationInfo_0200', 0, async function (done) {
-        var context = featureAbility.getContext()
-        var result = context.getApplicationInfo(
+        let context = featureAbility.getContext()
+        context.getApplicationInfo(
             (err, data) => {
-                checkApplicationInfo(data);
-                done()
+                if(err.code != 0){
+                    console.info('====> ACTS_GetApplicationInfo_0200 err=====>' + JSON.stringify(err))
+                    expect().assertFail()
+                    done()
+                }else{
+                    console.info('====> ACTS_GetApplicationInfo_0200 data=====>' + JSON.stringify(data))
+                    checkApplicationInfo(data);
+                    done()
+                }
             }
         );
-        setTimeout(function () {
-            console.info('====> ACTS_GetApplicationInfo_0200 =====>')
-        }, TIMEOUT)
+        await sleep(1000)
     })
 
     // checkProcessInfo
     function checkProcessInfo(info) {
-        console.log("checkProcessInfo ProcessInfo: " + info);
-        console.log("checkProcessInfo processName : " + info.processName);
-        console.log("checkProcessInfo pid : " + info.pid);
-
+        console.info("checkProcessInfo ProcessInfo: " + info);
         expect(typeof (info)).assertEqual("object");
         expect(typeof (info.processName)).assertEqual("string");
         expect(typeof (info.pid)).assertEqual("number");
@@ -1326,15 +931,17 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return type of the interface (by promise)
      */
     it('ACTS_GetProcessInfo_0100', 0, async function (done) {
-        var context = featureAbility.getContext()
-        var promise = context.getProcessInfo();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await context.getProcessInfo();
-        checkProcessInfo(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetProcessInfo_0100 =====>')
-        }, TIMEOUT)
+        let context = featureAbility.getContext()
+        await context.getProcessInfo().then((data)=>{
+            checkProcessInfo(data);
+            console.info("ACTS_GetProcessInfo_0100  info :" + JSON.stringify(data))
+            console.info('====> ACTS_GetProcessInfo_0100 end=====>')
+            done();
+        }).catch((err)=>{
+            console.info('====> ACTS_GetProcessInfo_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        });
     })
 
     /**
@@ -1343,27 +950,26 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return type of the interface (by AsyncCallback)
      */
     it('ACTS_GetProcessInfo_0200', 0, async function (done) {
-        var context = featureAbility.getContext()
-        var result = context.getProcessInfo(
+        let context = featureAbility.getContext()
+        context.getProcessInfo(
             (err, data) => {
-                checkProcessInfo(data);
-                done()
+                if(err.code != 0){
+                    console.info('====> ACTS_GetProcessInfo_0200 err=====>' + JSON.stringify(err))
+                    expect().assertFail()
+                    done()
+                }else{
+                    console.info('====> ACTS_GetProcessInfo_0200 data=====>' + JSON.stringify(data))
+                    checkProcessInfo(data);
+                    done()
+                }
             }
         );
-        setTimeout(function () {
-            console.info('====> ACTS_GetProcessInfo_0200 =====>')
-        }, TIMEOUT)
+        await sleep(1000)
     })
 
     // checkElementName
     function checkElementName(info) {
-        console.log("getElementName : " + info);
-        console.log("deviceId : " + info.deviceId);
-        console.log("bundleName : " + info.bundleName);
-        console.log("abilityName : " + info.abilityName);
-        console.log("uri : " + info.uri);
-        console.log("shortName : " + info.shortName);
-
+        console.info("getElementName : " + info);
         expect(typeof (info)).assertEqual("object");
         expect(typeof (info.deviceId)).assertEqual("string");
         expect(typeof (info.bundleName)).assertEqual("string");
@@ -1373,9 +979,10 @@ describe('ActsFeatureAbilityTest', function () {
 
         expect(info.deviceId).assertEqual("");
         expect(info.bundleName).assertEqual("com.example.actsfeatureabilitytest");
-        expect(info.abilityName).assertEqual("com.example.actsfeatureabilitytest.MainAbility");
+        expect(info.abilityName).assertEqual("com.example.actsfeatureabilitytest.TestAbility");
         expect(info.uri).assertEqual("");
         expect(info.shortName).assertEqual("");
+        console.info("getElementName : end");
     }
 
     /**
@@ -1384,15 +991,17 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by promise)
      */
     it('ACTS_GetElementName_0100', 0, async function (done) {
-        var context = featureAbility.getContext()
-        var promise = context.getElementName();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await context.getElementName();
-        checkElementName(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetElementName_0100 =====>')
-        }, TIMEOUT)
+        let context = featureAbility.getContext()
+        await context.getElementName().then((data)=>{
+            checkElementName(data);
+            console.info("ACTS_GetElementName_0100  info :" + JSON.stringify(data))
+            console.info('====> ACTS_GetElementName_0100 end=====>')
+            done()
+        }).catch((err)=>{
+            console.info('====> ACTS_GetElementName_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        });
     })
 
     /**
@@ -1401,21 +1010,25 @@ describe('ActsFeatureAbilityTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_GetElementName_0200', 0, async function (done) {
-        var context = featureAbility.getContext()
-        var result = context.getElementName(
+        let context = featureAbility.getContext()
+        context.getElementName(
             (err, data) => {
-                checkElementName(data);
-                done()
+                if(err.code != 0){
+                    console.info('====> ACTS_GetProcessInfo_0200 err=====>' + JSON.stringify(err))
+                    expect().assertFail()
+                    done()
+                }else{
+                    console.info('====> ACTS_GetProcessInfo_0200 data=====>' + JSON.stringify(data))
+                    checkElementName(data);
+                    done()
+                }
             }
         );
-        setTimeout(function () {
-            console.info('====> ACTS_GetElementName_0200 =====>')
-        }, TIMEOUT)
+        await sleep(1000)
     })
 
-    // checkAppType
     function checkAppType(info) {
-        console.log("AppType : " + info);
+        console.info("AppType : " + info);
         expect(typeof (info)).assertEqual("string");
         expect(info).assertEqual("system");
     }
@@ -1426,14 +1039,16 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by promise)
      */
     it('ACTS_GetAppType_0100', 0, async function (done) {
-        var promise = featureAbility.getAppType();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await featureAbility.getAppType();
-        checkAppType(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetAppType_0100 =====>')
-        }, TIMEOUT)
+        await featureAbility.getContext().getAppType().then((data)=>{
+            console.info("ACTS_GetAppType_0100 getAppType info :" + JSON.stringify(data))
+            checkAppType(data);
+            console.info('====> ACTS_GetAppType_0100 end=====>')
+            done()
+        }).catch((err)=>{
+            console.info('====> ACTS_GetAppType_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        });
     })
 
     /**
@@ -1442,59 +1057,23 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_GetAppType_0200', 0, async function (done) {
-        var result = featureAbility.getAppType(
-            (err, data) => {
-                checkAppType(data);
+        featureAbility.getContext().getAppType((err, data) => {
+            if(err.code != 0){
+                console.info("ACTS_GetAppType_0200 getAppType callback err :" + JSON.stringify(err))
+                expect().assertFail()
                 done()
-            }
-        );
-        setTimeout(function () {
-            console.info('====> ACTS_GetAppType_0200 =====>')
-        }, TIMEOUT)
+            }else{
+                console.info("ACTS_GetAppType_0200 getAppType callback data :" + JSON.stringify(data))
+                checkAppType(data)
+                done()
+                }
+        });
+        await sleep(1000)
     })
 
     // checkAbilityInfo
     function checkAbilityInfo(data) {
-        console.log("checkAbilityInfo start  " + data);
-        console.log("checkAbilityInfo bundleName : " + data.bundleName);
-        console.log("checkAbilityInfo name : " + data.name);
-        console.log("checkAbilityInfo label : " + data.label);
-        console.log("checkAbilityInfo description : " + data.description);
-        console.log("checkAbilityInfo icon : " + data.icon);
-        console.log("checkAbilityInfo labelId : " + data.labelId);
-        console.log("checkAbilityInfo descriptionId : " + data.descriptionId);
-        console.log("checkAbilityInfo iconId : " + data.iconId);
-        console.log("checkAbilityInfo moduleName : " + data.moduleName);
-        console.log("checkAbilityInfo process : " + data.process);
-        console.log("checkAbilityInfo isVisible : " + data.isVisible);
-        console.log("checkAbilityInfo type : " + data.type)
-        console.log("checkAbilityInfo orientation : " + data.orientation);
-        console.log("checkAbilityInfo launchMode : " + data.launchMode);
-        console.log("checkAbilityInfo uri : " + data.uri);
-        console.log("checkAbilityInfo promise readPermission : " + data.readPermission);
-        console.log("checkAbilityInfo writePermission : " + data.writePermission);
-        console.log("checkAbilityInfo formEntity : " + data.formEntity);
-        console.log("checkAbilityInfo minFormHeight : " + data.minFormHeight);
-        console.log("checkAbilityInfo defaultFormHeight : " + data.defaultFormHeight);
-        console.log("checkAbilityInfo minFormWidth : " + data.minFormWidth);
-        console.log("checkAbilityInfo defaultFormWidth : " + data.defaultFormWidth);
-        console.log("checkAbilityInfo targetAbility : " + data.targetAbility);
-        console.log("checkAbilityInfo backgroundModes : " + data.backgroundModes);
-        console.log("checkAbilityInfo subType : " + data.subType);
-        console.log("checkAbilityInfo formEnabled : " + data.formEnabled);
-
-        console.log("checkAbilityInfo permissions length : " + data.permissions.length);
-        for (var j = 0; j < data.permissions.length; j++) {
-            console.log("getAbilityInfo data.permissions[" + j + "] : " + data.permissions[j]);
-        }
-        console.log("checkAbilityInfo deviceTypes length : " + data.deviceTypes.length);
-        for (var j = 0; j < data.deviceTypes.length; j++) {
-            console.log("getAbilityInfo data.deviceTypes[" + j + "] : " + data.deviceTypes[j]);
-        }
-        console.log("checkAbilityInfo deviceCapabilities length : " + data.deviceCapabilities.length);
-        for (var j = 0; j < data.deviceCapabilities.length; j++) {
-            console.log("getAbilityInfo data.deviceCapabilities[" + j + "] : " + data.deviceCapabilities[j]);
-        }
+        console.info("checkAbilityInfo start  " + data);
 
         expect(typeof (data)).assertEqual("object");
         expect(typeof (data.bundleName)).assertEqual("string");
@@ -1530,9 +1109,9 @@ describe('ActsFeatureAbilityTest', function () {
 
 
         expect(data.bundleName).assertEqual("com.example.actsfeatureabilitytest");
-        expect(data.name).assertEqual("com.example.actsfeatureabilitytest.MainAbility");
-        expect(data.label).assertEqual("$string:app_name");
-        expect(data.description).assertEqual("$string:mainability_description");
+        expect(data.name).assertEqual("com.example.actsfeatureabilitytest.TestAbility");
+        expect(data.label).assertEqual("$string:TestAbility_label");
+        expect(data.description).assertEqual("$string:TestAbility_desc");
         expect(data.icon).assertEqual("$media:icon");
 
         expect(data.moduleName).assertEqual("entry");
@@ -1547,9 +1126,8 @@ describe('ActsFeatureAbilityTest', function () {
         expect(data.launchMode).assertEqual(0);
 
         expect(data.permissions[0]).assertEqual("ohos.permission.ACCELEROMETER");
-        expect(data.deviceTypes[0]).assertEqual("phone");
-        expect(data.deviceCapabilities[0]).assertEqual("ability_base");
-        expect(data.deviceCapabilities[1]).assertEqual("ability_runtime");
+        expect(data.deviceTypes[0]).assertEqual("default");
+        expect(data.deviceCapabilities[0]).assertEqual("SystemCapability.Ability.AbilityBase");
 
         expect(data.readPermission).assertEqual("");
         expect(data.writePermission).assertEqual("");
@@ -1560,7 +1138,7 @@ describe('ActsFeatureAbilityTest', function () {
         expect(data.defaultFormWidth).assertEqual(0);
         expect(data.uri).assertEqual("uriTest");
 
-        console.log("checkAbilityInfo end  " + data);
+        console.info("checkAbilityInfo end  " + data);
     }
 
     /**
@@ -1569,15 +1147,15 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by promise)
      */
     it('ACTS_GetAbilityInfo_0100', 0, async function (done) {
-        var promise = featureAbility.getAbilityInfo();
-        expect(typeof (promise)).assertEqual("object");
-
-        var info = await featureAbility.getAbilityInfo();
-        checkAbilityInfo(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetAbilityInfo_0100 =====>')
-        }, TIMEOUT)
+        await featureAbility.getContext().getAbilityInfo().then((data)=>{
+            checkAbilityInfo(data);
+            console.info('====> ACTS_GetAbilityInfo_0100 data=====>' + JSON.stringify(data))
+            done()
+        }).catch((err)=>{
+            console.info('====> ACTS_GetAbilityInfo_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        });
     })
 
     /**
@@ -1586,42 +1164,24 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_GetAbilityInfo_0200', 0, async function (done) {
-        var result = featureAbility.getAbilityInfo(
+        featureAbility.getContext().getAbilityInfo(
             (err, data) => {
-                checkAbilityInfo(data);
-                done()
+                if(err.code != 0){
+                    expect().assertFail()
+                    done()
+                }else{
+                    console.info('====> ACTS_GetAbilityInfo_0200 =====>' + JSON.stringify(data))
+                    checkAbilityInfo(data);
+                    done()
+                }
             }
         );
-        setTimeout(function () {
-            console.info('====> ACTS_GetAbilityInfo_0200 =====>')
-        }, TIMEOUT)
+        await sleep(1000)
     })
 
     // checkHapModuleInfo
     function checkHapModuleInfo(data) {
-        console.log("checkHapModuleInfo start  " + data);
-        console.log("checkHapModuleInfo name : " + data.name);
-        console.log("checkHapModuleInfo description : " + data.description);
-        console.log("checkHapModuleInfo descriptionId : " + data.descriptionId);
-        console.log("checkHapModuleInfo icon : " + data.icon);
-        console.log("checkHapModuleInfo label : " + data.label);
-        console.log("checkHapModuleInfo labelId : " + data.labelId);
-        console.log("checkHapModuleInfo iconId : " + data.iconId);
-        console.log("checkHapModuleInfo backgroundImg : " + data.backgroundImg);
-        console.log("checkHapModuleInfo supportedModes : " + data.supportedModes);
-        console.log("checkHapModuleInfo  reqCapabilities length : " + data.reqCapabilities.length);
-        for (var j = 0; j < data.reqCapabilities.length; j++) {
-            console.log("getHapModuleInfo data.reqCapabilities[" + j + "] : " + data.reqCapabilities[j]);
-        }
-        console.log("checkHapModuleInfo  deviceTypes length : " + data.deviceTypes.length);
-        for (var j = 0; j < data.deviceTypes.length; j++) {
-            console.log("getHapModuleInfo data.deviceTypes[" + j + "] : " + data.deviceTypes[j]);
-        }
-        console.log("checkHapModuleInfo abilityInfos length : " + data.abilityInfos.length);
-        console.log("checkHapModuleInfo moduleName : " + data.moduleName);
-        console.log("checkHapModuleInfo mainAbilityName : " + data.mainAbilityName);
-        console.log("checkHapModuleInfo installationFree : " + data.installationFree);
-
+        console.info("checkHapModuleInfo start  " + JSON.stringify(data));
         expect(typeof (data)).assertEqual("object");
         expect(typeof (data.name)).assertEqual("string");
         expect(typeof (data.description)).assertEqual("string");
@@ -1634,29 +1194,26 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (data.supportedModes)).assertEqual("number");
         expect(Array.isArray(data.reqCapabilities)).assertEqual(true);
         expect(Array.isArray(data.deviceTypes)).assertEqual(true);
-        expect(Array.isArray(data.abilityInfos)).assertEqual(true);
+        expect(Array.isArray(data.abilityInfo)).assertEqual(true);
         expect(typeof (data.moduleName)).assertEqual("string");
         expect(typeof (data.mainAbilityName)).assertEqual("string");
         expect(typeof (data.installationFree)).assertEqual("boolean");
-
-        expect(data.name).assertEqual("com.example.actsfeatureabilitytest");
+        expect(data.name).assertEqual("com.example.actsfeatureabilitytest.MyApplication");
         expect(data.description).assertEqual("descriptionTest");
         expect(data.descriptionId).assertEqual(0);
         expect(data.icon).assertEqual("$media:icon");
         expect(data.label).assertEqual("$string:app_name");
-        expect(data.labelId).assertEqual(0);
-        expect(data.iconId).assertEqual(0);
+        expect(data.labelId).assertEqual(16777218);
+        expect(data.iconId).assertEqual(16777221);
         expect(data.backgroundImg).assertEqual("");
         expect(data.supportedModes).assertEqual(0);
-
         expect(data.reqCapabilities[0]).assertEqual("reqCapabilitiesTest1");
         expect(data.reqCapabilities[1]).assertEqual("reqCapabilitiesTest2");
-        expect(data.deviceTypes[0]).assertEqual("phone");
+        expect(data.deviceTypes[0]).assertEqual("default");
         expect(data.moduleName).assertEqual("entry")
-        expect(data.mainAbilityName).assertEqual("");
+        expect(data.mainAbilityName).assertEqual("com.example.actsfeatureabilitytest.MainAbility");
         expect(data.installationFree).assertEqual(false);
-
-        console.log("checkHapModuleInfo end  " + data);
+        console.info("checkHapModuleInfo end  " + data);
     }
 
     /**
@@ -1665,14 +1222,16 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by promise)
      */
     it('ACTS_GetHapModuleInfo_0100', 0, async function (done) {
-        var promise = featureAbility.getHapModuleInfo();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await featureAbility.getHapModuleInfo();
-        checkHapModuleInfo(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetHapModuleInfo_0100 =====>')
-        }, TIMEOUT)
+        await featureAbility.getContext().getHapModuleInfo().then((data)=>{
+            checkHapModuleInfo(data);
+            console.info('====> ACTS_GetHapModuleInfo_0100 data=====>' + JSON.stringify(data))
+            done();
+        }).catch((err)=>{
+            console.info('====> ACTS_GetHapModuleInfo_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        });
+
     })
 
     /**
@@ -1681,20 +1240,26 @@ describe('ActsFeatureAbilityTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_GetHapModuleInfo_0200', 0, async function (done) {
-        var result = featureAbility.getHapModuleInfo(
+        let tempInfo
+        featureAbility.getContext().getHapModuleInfo(
             (err, data) => {
-                checkHapModuleInfo(data);
-                done()
+                if(err.code != 0){
+                    expect().assertFail()
+                    done()
+                }else{
+                    console.info('====> ACTS_GetHapModuleInfo_0200 =====>' + JSON.stringify(tempInfo))
+                    tempInfo = data
+                    checkHapModuleInfo(tempInfo);
+                    done()
+                }
             }
         );
-        setTimeout(function () {
-            console.info('====> ACTS_GetHapModuleInfo_0200 =====>')
-        }, TIMEOUT)
+        await sleep(1000)
     })
 
     // checkProcessName
     function checkProcessName(info) {
-        console.log("checkProcessName processName : " + info);
+        console.info("checkProcessName processName : " + info);
         expect(typeof (info)).assertEqual("string");
         expect(info).assertEqual("processTestAbility");
     }
@@ -1705,15 +1270,16 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by promise)
      */
     it('ACTS_GetProcessName_0100', 0, async function (done) {
-        var context = featureAbility.getContext();
-        var promise = context.getProcessName();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await context.getProcessName();
-        checkProcessName(info);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetProcessName_0100 =====>')
-        }, TIMEOUT)
+        let context = featureAbility.getContext();
+        await context.getProcessName().then((data)=>{
+            console.info('====> ACTS_GetProcessName_0100 data=====>' + JSON.stringify(data))
+            checkProcessName(data);
+            done()
+        }).catch((err)=>{
+            console.info('====> ACTS_GetProcessName_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done();
+        });
     })
 
     /**
@@ -1722,16 +1288,22 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.desc: Check the return value of the interface (by AsyncCallback)
      */
     it('ACTS_GetProcessName_0200', 0, async function (done) {
-        var context = featureAbility.getContext();
-        var result = context.getProcessName(
+        let tempInfo
+        let context = featureAbility.getContext();
+        context.getProcessName(
             (err, data) => {
-                checkProcessName(data);
-                done()
+                if(err.code!= 0){
+                    expect().assertFail()
+                    done()
+                }else{
+                    tempInfo = data
+                    checkProcessName(tempInfo);
+                    console.info('====> ACTS_GetProcessName_0200 =====>' + JSON.stringify(tempInfo))
+                    done()
+                }
             }
         );
-        setTimeout(function () {
-            console.info('====> ACTS_GetProcessName_0200 =====>')
-        }, TIMEOUT)
+        await sleep(1000)
     })
 
     /**
@@ -1739,8 +1311,8 @@ describe('ActsFeatureAbilityTest', function () {
      * @tc.name: GetCallingBundle : Obtains the bundle name of the ability that called the current ability.
      * @tc.desc: Check the return type of the interface (by AsyncCallback)
      */
-    it('ACTS_GetCallingBundle_0100', 0, async function (done) {
-        var Subscriber;
+     it('ACTS_GetCallingBundle_0100', 0, async function (done) {
+        let Subscriber;
         let id;
         let events = new Map();
 
@@ -1782,7 +1354,7 @@ describe('ActsFeatureAbilityTest', function () {
             done();
         }
         id = setTimeout(timeout, START_ABILITY_TIMEOUT);
-        var result = await featureAbility.startAbility(
+        await featureAbility.startAbility(
             {
                 want:
                 {
@@ -1793,35 +1365,46 @@ describe('ActsFeatureAbilityTest', function () {
         );
     })
 
+    // checkGetOrCreateLocalDir
+    function checkGetOrCreateLocalDir(info) {
+        console.info("checkGetOrCreateLocalDir root dir : " + info);
+        expect(info).assertEqual("/data/storage/el2/base/haps/entry");
+    }
+
     // @tc.number: ACTS_GetOrCreateLocalDir_0100
     // @tc.name: GetProcessName : Obtains the name of the current process.
     // @tc.desc: Check the return value of the interface (by promise)
     it('ACTS_GetOrCreateLocalDir_0100', 0, async function (done) {
-        var context = featureAbility.getContext();
-        var promise = context.getOrCreateLocalDir();
-        expect(typeof (promise)).assertEqual("object");
-        var info = await context.getOrCreateLocalDir();
-        expect(info).assertEqual(CREATELOCALDIR);
-        done();
-        setTimeout(function () {
-            console.info('====> ACTS_GetOrCreateLocalDir_0100 =====>')
-        }, TIMEOUT)
+        let context = featureAbility.getContext();
+        await context.getOrCreateLocalDir().then((data)=>{
+            checkGetOrCreateLocalDir(data);
+            console.info('====> ACTS_GetOrCreateLocalDir_0100 data=====>' + JSON.stringify(data))
+            done();
+        }).catch((err)=>{
+            console.info('====> ACTS_GetOrCreateLocalDir_0100 err=====>' + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        })
     })
 
     // @tc.number: ACTS_GetOrCreateLocalDir_0200
     // @tc.name: GetProcessName : Obtains the name of the current process.
     // @tc.desc: Check the return value of the interface (by AsyncCallback)
     it('ACTS_GetOrCreateLocalDir_0200', 0, async function (done) {
-        var context = featureAbility.getContext();
-        var result = context.getOrCreateLocalDir(
+        let context = featureAbility.getContext();
+        context.getOrCreateLocalDir(
             (err, data) => {
-                expect(data).assertEqual(CREATELOCALDIR);
-                done()
-            }
-        );
-        setTimeout(function () {
-            console.info('====> ACTS_GetOrCreateLocalDir_0200 =====>')
-        }, TIMEOUT)
+                if(err.code != 0){
+                    console.info('====> ACTS_GetOrCreateLocalDir_0200 err=====>' + JSON.stringify(err))
+                    expect().assertFail()
+                    done()
+                }else{
+                    console.info('====> ACTS_GetOrCreateLocalDir_0200 data=====>' + JSON.stringify(data))
+                    checkGetOrCreateLocalDir(data);
+                    done()
+                }
+         });
+         await sleep(1000)
     })
 
     /*
@@ -1838,18 +1421,23 @@ describe('ActsFeatureAbilityTest', function () {
                 bundleName: "com.example.startability",
                 abilityName: "com.example.startability.MainAbilityXXXXX",
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_0700 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_0700 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code == 2097152).assertTrue();
-                done();
+                if(err.code != 0){
+                    expect(err.code).assertEqual(1);
+                    done();
+                }else{
+                   expect().assertFail()
+                   done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_0700 : error = " + error);
+            console.info("ACTS_StartAbility_0700 : error = " + error);
         }
     });
 
@@ -1867,18 +1455,23 @@ describe('ActsFeatureAbilityTest', function () {
                 bundleName: "com.example.startabilityxxxxx",
                 abilityName: "com.example.startability.MainAbility",
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_0800 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_0800 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code != 0).assertTrue();
-                done();
+                if(err.code != 0){
+                    expect(err.code).assertEqual(1);
+                    done();
+                }else{
+                   expect().assertFail()
+                   done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_0800 : error = " + error);
+            console.info("ACTS_StartAbility_0800 : error = " + error);
         }
     });
 
@@ -1896,18 +1489,23 @@ describe('ActsFeatureAbilityTest', function () {
                 bundleName: "com.example.startability",
                 abilityName: "com.example.startability.MainAbility",
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_0900 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_0900 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data) + "err.code: " + err.code);
-                expect(err.code != 0).assertTrue();
-                done();
+                if(err.code != 0){
+                    expect(err.code != 0).assertTrue();
+                    done();
+                }else{
+                   expect().assertFail()
+                   done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_0900 : error = " + error);
+            console.info("ACTS_StartAbility_0900 : error = " + error);
         }
     });
 
@@ -1923,18 +1521,23 @@ describe('ActsFeatureAbilityTest', function () {
             let Want = {
                 action: "action.sysxxxtem.homexxxx"
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1100 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_1100 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code != 0).assertTrue();
-                done();
+                if(err.code != 0){
+                    expect(err.code).assertEqual(1);
+                    done();
+                }else{
+                   expect().assertFail()
+                   done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_1100 : error = " + error);
+            console.info("ACTS_StartAbility_1100 : error = " + error);
         }
     });
 
@@ -1951,18 +1554,23 @@ describe('ActsFeatureAbilityTest', function () {
                 action: "action.system.home",
                 entities: ["entity.system.homexxxxxxxxx"]
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1200 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_1200 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code != 0).assertTrue();
-                done();
+                if(err.code != 0){
+                    expect(err.code).assertEqual(1);
+                    done();
+                }else{
+                   expect().assertFail()
+                   done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_1200 : error = " + error);
+            console.info("ACTS_StartAbility_1200 : error = " + error);
         }
     });
 
@@ -1975,7 +1583,7 @@ describe('ActsFeatureAbilityTest', function () {
     it("ACTS_StartAbility_1300",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1300-------------------");
         try{
-            var Subscriber;
+            let Subscriber;
             let id;
 
             function SubscribeCallBack(err, data) {
@@ -1983,7 +1591,6 @@ describe('ActsFeatureAbilityTest', function () {
                 expect(data.event).assertEqual("ACTS_StartAbility_1300_CommonEvent");
                 console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
                 commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-                done();
             }
 
             commonEvent.createSubscriber(subscriberInfoStartAbilityThirteen).then(async (data) => {
@@ -2009,17 +1616,20 @@ describe('ActsFeatureAbilityTest', function () {
                 action: "action.system.homeability",
                 entities: []
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1300 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_1300 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(err.code == 0).assertTrue();
+                if(err.code != 0){
+                    expect().assertFail()
+                    done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_1300 : error = " + error);
+            console.info("ACTS_StartAbility_1300 : error = " + error);
         }
     });
 
@@ -2036,17 +1646,25 @@ describe('ActsFeatureAbilityTest', function () {
                 action: "action.system.home",
                 entities: 'asdfghj'
             }
-            var StartAbilityParameter = {
+            let StartAbilityParameter = {
                 want:Want
             }
 
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
-                console.log('ACTS_StartAbility_1400 asyncCallback errCode : ' + JSON.stringify(err) 
+                console.info('ACTS_StartAbility_1400 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                done();
+                if(err.code != 0){
+                    expect().assertFail()
+                    done()
+                }else{
+                    expect(err.code).assertEqual(0)
+                    done()
+                }
             });
         }catch(error){
-            console.log("ACTS_StartAbility_1400 : error = " + error);
+            console.info("ACTS_StartAbility_1400 : error = " + error);
+            expect().assertFail()
+            done()
         }
     });
 
@@ -2059,22 +1677,22 @@ describe('ActsFeatureAbilityTest', function () {
     it("ACTS_StartAbility_1600",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1600-------------------");
         let Want = {}
-        var StartAbilityParameter = {
+        let StartAbilityParameter = {
             want:Want
         }
 
-        var promise = featureAbility.startAbility(StartAbilityParameter);
+        let promise = featureAbility.startAbility(StartAbilityParameter);
         if (promise) {
             promise.then((data) => {
-                console.log('ACTS_StartAbility_1600 errCode : ' + " data: " + JSON.stringify(data));
+                console.info('ACTS_StartAbility_1600 errCode : ' + " data: " + JSON.stringify(data));
                 expect().assertFail();
                 done();
             }).catch((err)=>{
-                expect(err.code != 0).assertTrue();
+                expect(err.code).assertEqual(1);
                 done();
             });
         } else {
-            expect(promise == undefined).assertTrue();
+            expect().assertFail()
             done();
         }
     });
@@ -2087,19 +1705,19 @@ describe('ActsFeatureAbilityTest', function () {
      */
     it("ACTS_StartAbility_1700",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1700-------------------");
-        var StartAbilityParameter = {}
-        var promise = featureAbility.startAbility(StartAbilityParameter)
+        let StartAbilityParameter = {}
+        let promise = featureAbility.startAbility(StartAbilityParameter)
         if (promise) {
             promise.then((data) => {
-                console.log('ACTS_StartAbility_1700  data: '  + JSON.stringify(data));
+                console.info('ACTS_StartAbility_1700  data: '  + JSON.stringify(data));
                 expect().assertFail();
                 done();
             }).catch((err)=>{
-                expect(err.code != 0).assertTrue();
+                expect(err.code).assertEqual(202);
                 done();
             });
         } else {
-            expect(promise == undefined).assertTrue();
+            expect().assertFail()
             done();
         } 
     });
@@ -2112,19 +1730,20 @@ describe('ActsFeatureAbilityTest', function () {
      */
     it("ACTS_StartAbility_1800",0, async function(done){
         console.info("------------------logMessage ACTS_StartAbility_1800-------------------");
-        var promise = featureAbility.startAbility(undefined);
+        let promise = featureAbility.startAbility(undefined);
         if (promise) {
             promise.then((data) => {
-                console.log('ACTS_StartAbility_1800 asyncCallback data: ' + JSON.stringify(data));
+                console.info('ACTS_StartAbility_1800 asyncCallback data: ' + JSON.stringify(data));
                 expect().assertFail();
                 done();
             }).catch((err)=>{
-                expect(err.code != 0).assertTrue();
+                expect(err.code).assertEqual(202);
                 done();
             });
         } else {
-            expect(promise == undefined).assertTrue();
+            expect().assertFail()
             done();
         }
     });
 })
+}

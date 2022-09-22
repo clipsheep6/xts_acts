@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,41 +25,50 @@ export default class MainAbility6 extends Ability {
         let AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityCreate")
-                listKey.push(abilityName+" onAbilityCreate");
+                console.log(abilityName + " onAbilityCreate")
+                listKey.push(abilityName + " onAbilityCreate");
             },
-            onAbilityWindowStageCreate(ability) {
+            onWindowStageCreate(ability, windowStage) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityWindowStageCreate")
-                listKey.push(abilityName+" onAbilityWindowStageCreate");
+                console.log(abilityName + " onWindowStageCreate")
+                listKey.push(abilityName + " onWindowStageCreate");
+            },
+            onWindowStageActive(ability, windowStage) {
+                abilityName = ability.context.abilityInfo.name;
+                console.log(abilityName + " onWindowStageActive")
+            },
+            onWindowStageInactive(ability, windowStage) {
+                abilityName = ability.context.abilityInfo.name;
+                console.log(abilityName + " onWindowStageInactive")
             },
             onAbilityForeground(ability) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityForeground")
-                listKey.push(abilityName+" onAbilityForeground");
+                console.log(abilityName + " onAbilityForeground")
+                listKey.push(abilityName + " onAbilityForeground");
             },
             onAbilityBackground(ability) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityBackground")
-                listKey.push(abilityName+" onAbilityBackground");
+                console.log(abilityName + " onAbilityBackground")
+                listKey.push(abilityName + " onAbilityBackground");
             },
-            onAbilityWindowStageDestroy(ability) {
+            onWindowStageDestroy(ability, windowStage) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityWindowStageDestroy")
-                listKey.push(abilityName+" onAbilityWindowStageDestroy");
+                console.log(abilityName + " onWindowStageDestroy")
+                listKey.push(abilityName + " onWindowStageDestroy");
             },
             onAbilityDestroy(ability) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityDestroy")
-                listKey.push(abilityName+" onAbilityDestroy");
+                console.log(abilityName + " onAbilityDestroy")
+                listKey.push(abilityName + " onAbilityDestroy");
             },
             onAbilityContinue(ability) {
                 abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName+" onAbilityContinue")
-                listKey.push(abilityName+" onAbilityContinue");
+                console.log(abilityName + " onAbilityContinue")
+                listKey.push(abilityName + " onAbilityContinue");
             }
         }
-        var callBackId = this.context.getApplicationContext().registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+        globalThis.ApplicationContext6 = this.context.getApplicationContext();
+        var callBackId = globalThis.ApplicationContext6.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
         console.log("callBackId is aaa :" + callBackId);
         setTimeout(() => {
             globalThis.mainAbility6ListKey = listKey
@@ -77,7 +86,7 @@ export default class MainAbility6 extends Ability {
         // Main window is created, set main page for this ability
         console.log("[Demo] MainAbility6 onWindowStageCreate")
 
-        windowStage.setUIContent(this.context, "pages/MainAbility6_pages", null)
+        windowStage.setUIContent(this.context, "MainAbility/pages/MainAbility6_pages", null)
     }
 
     onWindowStageDestroy() {

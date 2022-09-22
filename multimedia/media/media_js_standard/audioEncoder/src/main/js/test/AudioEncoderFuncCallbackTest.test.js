@@ -16,7 +16,6 @@
 import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
@@ -45,18 +44,13 @@ describe('AudioEncoderFuncCallback', function () {
     let fdWrite;
     let fileAsset;
     const context = featureAbility.getContext();
-    const mediaTest = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
+    let outputCnt = 0;
+    let inputCnt = 0;
+    let frameThreshold = 10;
+    let lockFlag = false;
 
     beforeAll(async function() {
         console.info('beforeAll case 1');
-        let permissionName1 = 'ohos.permission.MEDIA_LOCATION';
-        let permissionName2 = 'ohos.permission.READ_MEDIA';
-        let permissionName3 = 'ohos.permission.WRITE_MEDIA';
-        let permissionNameList = [permissionName1, permissionName2, permissionName3];
-        let appName = 'ohos.acts.multimedia.audio.audioencoder';
-        await mediaTestBase.applyPermission(appName, permissionNameList);
-        console.info('beforeAll case after get permission');
     })
 
     beforeEach(function() {
@@ -77,6 +71,9 @@ describe('AudioEncoderFuncCallback', function () {
         inputQueue = [];
         outputQueue = [];
         ES_LENGTH = 1500;
+        outputCnt = 0;
+        inputCnt = 0;
+        lockFlag = false;
     })
 
     afterEach(async function() {
@@ -108,47 +105,15 @@ describe('AudioEncoderFuncCallback', function () {
         sawOutputEOS = false;
         inputQueue = [];
         outputQueue = [];
+        outputCnt = 0;
+        inputCnt = 0;
+        lockFlag = false;
     }
 
     async function getFdRead(readPath, done) {
         await mediaTestBase.getFdRead(readPath, done).then((fdNumber) => {
             fdRead = fdNumber;
         })
-    }
-
-    async function getFdWrite(pathName) {
-        console.info('[mediaLibrary] case start getFdWrite');
-        console.info('[mediaLibrary] case getFdWrite pathName is ' + pathName);
-        let mediaType = mediaLibrary.MediaType.AUDIO;
-        console.info('[mediaLibrary] case mediaType is ' + mediaType);
-        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
-        console.info('[mediaLibrary] case getFdWrite publicPath is ' + publicPath);
-        let dataUri = await mediaTest.createAsset(mediaType, pathName, publicPath);
-        if (dataUri != undefined) {
-            let args = dataUri.id.toString();
-            let fetchOp = {
-                selections : fileKeyObj.ID + "=?",
-                selectionArgs : [args],
-            }
-            let fetchWriteFileResult = await mediaTest.getFileAssets(fetchOp);
-            console.info('[mediaLibrary] case getFdWrite getFileAssets() success');
-            fileAsset = await fetchWriteFileResult.getAllObject();
-            console.info('[mediaLibrary] case getFdWrite getAllObject() success');
-            fdWrite = await fileAsset[0].open('rw');
-            console.info('[mediaLibrary] case getFdWrite fdWrite is ' + fdWrite);
-        }
-    }
-
-    async function closeFdWrite() {
-        if (fileAsset != null) {
-            await fileAsset[0].close(fdWrite).then(() => {
-                console.info('[mediaLibrary] case close fdWrite success, fd is ' + fdWrite);
-            }).catch((err) => {
-                console.info('[mediaLibrary] case close fdWrite failed');
-            });
-        } else {
-            console.info('[mediaLibrary] case fileAsset is null');
-        }
     }
 
     function readFile(path) {
@@ -168,18 +133,6 @@ describe('AudioEncoderFuncCallback', function () {
         console.info('case lengthreal is :' + lengthreal);
     }
 
-    function writeHead(path, len) {
-        console.info('case writeFile buffer.length is: ' + len);
-        try{
-            let head = new ArrayBuffer(7);
-            addADTStoPacket(head, len);
-            let res = fileio.writeSync(fdWrite, head, {length: 7});
-            console.info('case fileio.write head success');
-        } catch(e) {
-            console.info('case fileio.write head error is ' + e);
-        }
-    }
-
     function writeFile(path, buf, len) {
         try{
             let res = fileio.writeSync(fdWrite, buf, {length: len});
@@ -187,22 +140,6 @@ describe('AudioEncoderFuncCallback', function () {
         } catch(e) {
             console.info('case fileio.write buffer error is ' + e);
         }
-    }
-
-    function addADTStoPacket(head, len) {
-        let view = new Uint8Array(head);
-        console.info("start add ADTS to Packet");
-        let packetLen = len + 7; // 7: head length
-        let profile = 2; // 2: AAC LC  
-        let freqIdx = 4; // 4: 44100HZ 
-        let chanCfg = 2; // 2: 2 channel
-        view[0] = 0xFF;
-        view[1] = 0xF9;
-        view[2] = ((profile - 1) << 6) + (freqIdx << 2) + (chanCfg >> 2);
-        view[3] = ((chanCfg & 3) << 6) + (packetLen >> 11);
-        view[4] = (packetLen & 0x7FF) >> 3;
-        view[5] = ((packetLen & 7) << 5) + 0x1F;
-        view[6] = 0xFC;
     }
 
     async function stopWork() {
@@ -228,6 +165,7 @@ describe('AudioEncoderFuncCallback', function () {
     }
 
     async function flushWork(done) {
+        lockFlag = true;
         inputQueue = [];
         outputQueue = [];
         await getFdRead(readpath, done);
@@ -236,6 +174,11 @@ describe('AudioEncoderFuncCallback', function () {
             console.info("case flush at inputeos success");
             resetParam();
             workdoneAtEOS =true;
+            lockFlag = false;
+            audioEncodeProcessor.start((err) => {
+                expect(err).assertUndefined();
+                console.info("case start after flush success");
+            })
         })
     }
 
@@ -251,7 +194,6 @@ describe('AudioEncoderFuncCallback', function () {
                     console.log("case release success");
                     audioEncodeProcessor = null;
                     await fileio.close(fdRead);
-                    await closeFdWrite();
                     done();
                 })
             })
@@ -285,9 +227,12 @@ describe('AudioEncoderFuncCallback', function () {
             }
             timestamp += 23;
             frameCnt += 1;
-            audioEncodeProcessor.pushInputData(inputobject, () => {
-                console.info('queueInput success');
-            })
+            if (!lockFlag) {
+                audioEncodeProcessor.pushInputData(inputobject, () => {
+                    console.info('queueInput success');
+                    inputCnt += 1;
+                })
+            }
         }
     }
 
@@ -303,18 +248,20 @@ describe('AudioEncoderFuncCallback', function () {
                 } else if (flushAtEOS) {
                     await flushWork(done);
                 } else if (workdoneAtEOS) {
+                    expect(outputCnt).assertClose(inputCnt, frameThreshold);
                     await doneWork(done);
                 } else {
                     console.info("sawOutputEOS = true");
                 }
             }
             else{
-                writeFile(savepath, outputobject.data, outputobject.length);
                 console.info("write to file success");
             }
-            audioEncodeProcessor.freeOutputBuffer(outputobject, () => {
-                console.info('release output success');
-            })
+            if (!lockFlag) {
+                audioEncodeProcessor.freeOutputBuffer(outputobject, () => {
+                    console.info('release output success');
+                })
+            }
         }
     }
 
@@ -327,6 +274,11 @@ describe('AudioEncoderFuncCallback', function () {
         });
         audioEncodeProcessor.on('newOutputData', async(outBuffer) => {
             console.info('case outputBufferAvailable');
+            outputCnt += 1;
+            if (outputCnt == 1 && outBuffer.flags == 1) {
+                console.info("case error occurs! first output is EOS");
+                expect().assertFail();
+            }
             if (needGetMediaDes) {
                 audioEncodeProcessor.getOutputMediaDescription((err, MediaDescription) => {
                     expect(err).assertUndefined();
@@ -347,14 +299,14 @@ describe('AudioEncoderFuncCallback', function () {
     }
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0100
         * @tc.name      : 000.test set EOS after last frame and reset
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0100', 0, async function (done) {
         console.info("test set EOS after last frame and reset");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -368,7 +320,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_00.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         needGetMediaDes = true;
         workdoneAtEOS = true;
@@ -432,14 +383,14 @@ describe('AudioEncoderFuncCallback', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0200
         * @tc.name      : 001.test set EOS manually before last frame and reset
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0200', 0, async function (done) {
         console.info("case test set EOS manually before last frame and reset");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -450,7 +401,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_01.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 500;
         workdoneAtEOS = true;
@@ -492,14 +442,14 @@ describe('AudioEncoderFuncCallback', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0200
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0300
         * @tc.name      : 002.test flush at running state
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0200', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0300', 0, async function (done) {
         console.info("case test flush at running state");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -510,7 +460,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_02.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         workdoneAtEOS = true;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -545,11 +494,17 @@ describe('AudioEncoderFuncCallback', function () {
             })
         });
         eventEmitter.on('flush', () => {
+            lockFlag = true;
             inputQueue = [];
             outputQueue = [];
             audioEncodeProcessor.flush((err) => {
                 expect(err).assertUndefined();
                 console.info(`case flush after 2s success`);
+                lockFlag = false;
+                audioEncodeProcessor.start((err) => {
+                    expect(err).assertUndefined();
+                    console.info(`case start after flush success`);
+                })
             })
         });
         media.createAudioEncoderByMime('audio/mp4a-latm', (err, processor) => {
@@ -561,14 +516,14 @@ describe('AudioEncoderFuncCallback', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0300
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0400
         * @tc.name      : 003. test flush at EOS state
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0300', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0400', 0, async function (done) {
         console.info("case test flush at EOS state");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -579,7 +534,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_03.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 500;
         flushAtEOS = true;
@@ -621,14 +575,14 @@ describe('AudioEncoderFuncCallback', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0400
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0500
         * @tc.name      : 004.test stop at running state and reset
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0400', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0500', 0, async function (done) {
         console.info("case test stop at running state and reset");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -639,7 +593,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_04.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eventEmitter.on('getAudioEncoderCaps', () => {
             audioEncodeProcessor.getAudioEncoderCaps((err, Audiocaps) => {
@@ -694,7 +647,6 @@ describe('AudioEncoderFuncCallback', function () {
                 console.info(`case release 1`);
                 audioEncodeProcessor = null;
                 await fileio.close(fdRead);
-                await closeFdWrite();
                 done();
             })
         });
@@ -707,14 +659,14 @@ describe('AudioEncoderFuncCallback', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0500
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0600
         * @tc.name      : 005.test stop and restart
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0500', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0600', 0, async function (done) {
         console.info("case test stop and restart");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -725,7 +677,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_05.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 100;
         eventEmitter.on('getAudioEncoderCaps', () => {
@@ -789,14 +740,14 @@ describe('AudioEncoderFuncCallback', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0600
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0700
         * @tc.name      : 006.test reconfigure for new file with the same format
         * @tc.desc      : basic Encode function
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_01_0600', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_ENCODER_FUNCTION_CALLBACK_0700', 0, async function (done) {
         console.info("case test reconfigure for new file with the same format");
         let events = require('events');
         let eventEmitter = new events.EventEmitter();
@@ -807,7 +758,6 @@ describe('AudioEncoderFuncCallback', function () {
         }
         readpath = AUDIOPATH;
         savepath = 'audioEncode_function_callback_06.aac';
-        await getFdWrite(savepath);
         await getFdRead(readpath, done);
         eosframenum = 100;
         resetAtEOS = true;
@@ -853,14 +803,12 @@ describe('AudioEncoderFuncCallback', function () {
             sleep(10000).then(async() => {
                 resetParam();
                 await fileio.close(fdRead);
-                await closeFdWrite();
                 audioEncodeProcessor.configure(mediaDescription2, async(err) => {
                     expect(err).assertUndefined();
                     console.info(`case configure 2`);
                     resetParam();
                     readpath = AUDIOPATH;
                     savepath = 'audioEncode_function_callback_06_2.aac';
-                    await getFdWrite(savepath);
                     await getFdRead(readpath, done);
                     workdoneAtEOS = true;
                     hasreconfigured = true;

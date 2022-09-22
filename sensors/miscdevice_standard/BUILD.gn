@@ -21,9 +21,13 @@ ohos_js_hap_suite("miscdevice_js_test") {
   ]
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsmiscdeviceJSApiTest"
+  subsystem_name = "sensors"
+  part_name = "miscdevice"
 }
 ohos_js_assets("miscdevice_js_assets") {
-  source_dir = "./src/main/js/default"
+  js2abc = true
+  hap_profile = "./src/main/config.json"
+  source_dir = "./src/main/js"
 }
 ohos_resources("miscdevice_js_resources") {
   sources = [ "./src/main/resources" ]

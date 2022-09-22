@@ -14,4 +14,7 @@
  */
 
 
-require('./colorspace.test.js')
+import imageColorSpace from './colorspace.test.js'
+export default function testsuite() {
+    imageColorSpace()
+}

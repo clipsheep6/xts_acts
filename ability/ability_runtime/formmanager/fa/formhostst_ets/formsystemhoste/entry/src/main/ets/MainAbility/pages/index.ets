@@ -55,27 +55,27 @@ struct Index {
     events: ["FMS_FormDelete_commonEvent"],
   };
 
-  private publishOnErrorCallBack() {
+  private publishOnErrorCallBack = () => {
     this.canCreateForm = false;
     console.debug("====>formsystemhostc formOnErrorEventCallBack ====>");
   }
-  private publishOnDeletedCallBack() {
+  private publishOnDeletedCallBack = () => {
     this.canCreateForm = false;
     console.debug("====>formsystemhostc publishOnDeletedCallBack ====>");
   }
-  private formOnDynamicRefreshCallBack() {
+  private formOnDynamicRefreshCallBack = () => {
     this.canCreateForm = false;
     console.debug("====>formsystemhostc formOnDynamicRefreshEventk ====>");
   }
-  private formOnRequestCallBack() {
+  private formOnRequestCallBack = () => {
     this.canCreateForm = false;
     console.debug("====>formsystemhostc formOnRequestCallBack ====>");
   }
-  private publishOnAcquiredCallBack() {
+  private publishOnAcquiredCallBack = () => {
     console.debug("====>formsystemhostc formOnAcquiredEventCallBack ====>");
   }
 
-  private deleteCallBack(err, data) {
+  private deleteCallBack = (err, data) => {
     console.info("!!!====>formsystemhost deleteCallBack start:====>" + JSON.stringify(data));
     if (data.bundleName && data.bundleName != "com.ohos.st.formsystemhost") {
       return;
@@ -89,7 +89,7 @@ struct Index {
     console.info("!!!====>formsystemhost deleteCallBack end ====>");
   }
 
-  private aboutToAppear() {
+  aboutToAppear() {
     commonEvent.createSubscriber(this.subscriberFormDeleteEvent).then(async (data) => {
       console.info("====>formsystemhost Subscriber FormDelete data:====>", JSON.stringify(data));
       this.subscriberDel = data;
@@ -191,7 +191,7 @@ struct Index {
               commonEvent.publish(this.formOnDynamicRefreshEvent, commonEventPublishData, this.formOnDynamicRefreshCallBack);
             })
             .catch((error) => {
-              console.info('formsystemhost refreshForm error:' + error);
+              console.info('formsystemhost refreshForm error:' + JSON.stringify(error));
               let commonEventPublishData = {
                 data: error.code.toString(),
                 parameters: {

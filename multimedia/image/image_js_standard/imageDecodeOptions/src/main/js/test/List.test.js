@@ -13,4 +13,7 @@
  * limitations under the License.
  */
 
-require('./image.test.js')
+import imageDecodeOptions from './image.test.js'
+export default function testsuite() {
+    imageDecodeOptions()
+}

@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "hypium/index"
-
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
 import display from '@ohos.display';
+import screenManager from '@ohos.screen';
 
 export default function windowCallbackTest(context, windowStage, abilityStorage) {
   console.log('testets context: ' + JSON.stringify(context))
@@ -46,7 +46,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       'TYPE_KEYGUARD': 5,
       'TYPE_VOLUME_OVERLAY': 6,
       'TYPE_NAVIGATION_BAR': 7,
-      'TYPE_FLOAT': 8
+      'TYPE_FLOAT': 8,
+      'TYPE_FLOAT_CAMERA':9
     }
     var windowLayoutModeArr = [];
     var windowLayoutModeDic = {
@@ -63,14 +64,15 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       on: false,
       typeStr: '',
     };
+    var newWindowObj = null;
     beforeAll(function () {
       appWindowTypeArr = Object.keys(appWindowTypeDic);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
-      for (i in ohosWindow.WindowType) {
+      for (var i in ohosWindow.WindowType) {
         windowTypeArr.push(ohosWindow.WindowType[i]);
       }
       console.log('jsunittest beforeall');
-      console.log(msgStr + 'beforeall ohosWindow.windowType' + JSON.stringify(ohosWindow.windowType))
+      console.log('beforeall ohosWindow.windowType' + JSON.stringify(ohosWindow.WindowType))
     })
     beforeEach(function () {
     })
@@ -534,6 +536,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         NCC: JSON.parse(JSON.stringify(commonNUMBERColorArr))
       };
       let compareCount = 0;
+      let endNum = 0;
       let listenerFlag = listenerStatus.ready;
       console.log(msgStr + 'begin');
       listenerData.on = true;
@@ -547,18 +550,22 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           for (let i = 0; i < arrLength; i++) {
             let tempData = systemBarData.regionTint[i];
             if (tempData.type === ohosWindow.WindowType.TYPE_STATUS_BAR) {
-              console.log(msgStr + 'systemBarTintChange compare start! arrLength= '+ arrLength);
+              console.log(msgStr + 'systemBarTintChange compare start! arrLength= ' + arrLength);
               compareCount++;
               let backgroundIndex = cloneColorArr.SBC.indexOf(tempData.backgroundColor);
               let contentColorIndex = cloneColorArr.SCC.indexOf(tempData.contentColor);
               if (backgroundIndex >= 0) {
                 cloneColorArr.SBC.splice(backgroundIndex, 1);
+              }else{
+                console.log(msgStr + 'SBC tempData.backgroundColor:' + JSON.stringify(tempData.backgroundColor));
               }
               if (contentColorIndex >= 0) {
                 cloneColorArr.SCC.splice(contentColorIndex, 1);
+              }else{
+                console.log(msgStr + 'SCC tempData.contentColor:' + JSON.stringify(tempData.contentColor));
               }
-              console.log(msgStr+'compareCount: '+compareCount +' ,length: '+JSON.stringify(cloneColorArr.SCC.length)+ '   ,cloneColorArr.SBC:'+JSON.stringify(cloneColorArr.SBC));
-              console.log(msgStr+'compareCount: '+compareCount +' ,length: '+JSON.stringify(cloneColorArr.SCC.length)+'    ,cloneColorArr.SCC'+JSON.stringify(cloneColorArr.SCC));
+              console.log(msgStr + 'compareCount: ' + compareCount + ' ,length: ' + JSON.stringify(cloneColorArr.SCC.length) + '   ,cloneColorArr.SBC:' + JSON.stringify(cloneColorArr.SBC));
+              console.log(msgStr + 'compareCount: ' + compareCount + ' ,length: ' + JSON.stringify(cloneColorArr.SCC.length) + '    ,cloneColorArr.SCC' + JSON.stringify(cloneColorArr.SCC));
             } else if (tempData.type === ohosWindow.WindowType.TYPE_NAVIGATION_BAR) {
               console.log(msgStr + 'systemBarTintChange compare start!');
               compareCount++;
@@ -566,21 +573,26 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               let contentColorIndex = cloneColorArr.NCC.indexOf(tempData.contentColor);
               if (backgroundIndex >= 0) {
                 cloneColorArr.NBC.splice(backgroundIndex, 1);
+              } else {
+                console.log(msgStr + 'NBC tempData.backgroundColor:' + JSON.stringify(tempData.backgroundColor));
               }
               if (contentColorIndex >= 0) {
                 cloneColorArr.NCC.splice(contentColorIndex, 1);
+              } else {
+                console.log(msgStr + 'NCC tempData.contentColor:' + JSON.stringify(tempData.contentColor));
               }
               let ca = cloneColorArr;
               let flag = ca.NCC.length || ca.NBC.length || ca.SBC.length || ca.SCC.length
-              if(compareCount===18&&!flag){
-                console.log(msgStr + 'compareCount: '+compareCount +' ,true flag:'+flag);
+              if (compareCount === 18 && !flag) {
+                console.log(msgStr + 'compareCount: ' + compareCount + ' ,true flag:' + flag);
                 expect(true).assertTrue();
                 done();
-              }else{
-                console.log(msgStr + 'compareCount: '+compareCount +' ,flag:'+flag);
+              } else {
+                console.log(msgStr + 'compareCount: ' + compareCount + ' ,flag:' + flag);
               }
-              console.log(msgStr+'compareCount: '+compareCount +' ,length: '+JSON.stringify(cloneColorArr.NBC.length)+ '   ,cloneColorArr.SBC:'+JSON.stringify(cloneColorArr.NBC));
-              console.log(msgStr+'compareCount: '+compareCount +' ,length: '+JSON.stringify(cloneColorArr.NCC.length)+'    ,cloneColorArr.SCC'+JSON.stringify(cloneColorArr.NCC));
+              console.log(msgStr + 'compareCount: ' + endNum + ' ,compareCount: ' + compareCount + ' ,length: ' + JSON.stringify(cloneColorArr.NBC.length) + '   ,cloneColorArr.SBC:' + JSON.stringify(cloneColorArr.NBC));
+              console.log(msgStr + 'compareCount: ' + endNum + ' ,compareCount: ' + compareCount + ' ,length: ' + JSON.stringify(cloneColorArr.NCC.length) + '    ,cloneColorArr.SCC' + JSON.stringify(cloneColorArr.NCC));
+              endNum = compareCount
             }
           }
         }
@@ -752,7 +764,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               done();
             }
           } else {
-            expectedError(err, caseName, 'ohosWindow.create ' + tempType, done);
+            unexpectedError(err, caseName, 'ohosWindow.create ' + tempType, done);
           }
         })
       }
@@ -817,7 +829,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           done();
           return;
         }
-        expectedError(err, caseName, 'ohosWindow.create', done);
+        unexpectedError(err, caseName, 'ohosWindow.create', done);
       })
     })
 
@@ -1002,7 +1014,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
             console.log(msgStr + 'tempWnd.setWindowType data' + JSON.stringify(data));
             console.log(msgStr + 'tempWnd.setWindowType !!data' + !!data);
             if (!!data) {
-              expectedError(err, caseName, 'tempWnd.setWindowType', done);
+              unexpectedError(err, caseName, 'tempWnd.setWindowType', done);
             } else {
               expect(err.code == 1003).assertTrue();
               done();
@@ -1048,7 +1060,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
                   expect(err.code == 1001).assertTrue();
                   done();
                 } else {
-                  expectedError(err, caseName, 'tempWnd.setWindowType', done);
+                  unexpectedError(err, caseName, 'tempWnd.setWindowType', done);
                 }
               })
             }
@@ -1082,7 +1094,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
             console.log(msgStr + 'tempWnd.loadContent data' + JSON.stringify(data));
             console.log(msgStr + 'tempWnd.loadContent !data' + !data);
             if (err && err.code) {
-              expectedError(err, caseName, 'tempWnd.loadContent', done);
+              unexpectedError(err, caseName, 'tempWnd.loadContent', done);
             } else {
               expect(!data).assertTrue();
               done();
@@ -1120,7 +1132,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               expect(err.code === 1003).assertTrue();
               done();
             } else {
-              expectedError(err, caseName, 'tempWnd.loadContent', done);
+              unexpectedError(err, caseName, 'tempWnd.loadContent', done);
             }
           })
         } else {
@@ -1403,6 +1415,251 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
             }
           })
         }
+      })
+    })
+    /**
+    * @tc.number     SUB_WINDOW_SETPREFERREDORIENTATION_JSAPI_002
+    * @tc.name       Test setPreferredOrientationTest2
+    * @tc.desc       Sets the display direction property of the window
+    */
+    it('setPreferredOrientationTest2', 0, async function (done) {
+      let caseName = 'setPreferredOrientationTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWin = await windowStage.getMainWindow().catch(err => {
+        unexpectedError(err, caseName, 'windowStage.getMainWindow', done);
+      });
+      console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
+      expect(!!mainWin).assertTrue();
+      let orientationItem = ['UNSPECIFIED','LOCKED','PORTRAIT_UNSPECIFIED','PORTRAIT','LANDSCAPE','PORTRAIT_INVERTED','LANDSCAPE_INVERTED','AUTO_ROTATION','AUTO_ROTATION_PORTRAIT','AUTO_ROTATION_LANDSCAPE','AUTO_ROTATION_RESTRICTED','AUTO_ROTATION_PORTRAIT_RESTRICTED','AUTO_ROTATION_LANDSCAPE_RESTRICTED'];
+      for (let i = 0;i < orientationItem.length; i++) {
+        await sleep(1000);
+        let orientation=ohosWindow.Orientation[orientationItem[i]]
+        await mainWin.setPreferredOrientation(orientation,(err,data) => {
+          if(err.code){
+            console.log(msgStr + 'window.setPreferredOrientation failed set error' + orientation);
+          }
+          console.log(msgStr + 'success set window.setPreferredOrientation ' + orientation+JSON.stringify(data));
+        })
+      }
+      console.log(msgStr + 'done ');
+      done();
+    })
+    /**
+    * @tc.number     SUB_WINDOW_SETFORBIDSPLITMOVE_JSAPI_002
+    * @tc.name       Test setForbidSplitMoveTest2
+    * @tc.desc       Sets whether Windows are forbidden to move in split screen mode
+    */
+    it('setForbidSplitMoveTest2', 0, async function (done) {
+      let caseName = 'setForbidSplitMoveTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWin = await windowStage.getMainWindow().catch(err => {
+        unexpectedError(err, caseName, 'windowStage.getMainWindow', done);
+      });
+      console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
+      expect(!!mainWin).assertTrue();
+      await mainWin.setForbidSplitMove(true,(err,data) => {
+        if(err.code){
+          console.log(msgStr + 'failed set window.setForbidSplitMove drag is prohibited');
+          return;
+        }
+        console.log(msgStr + 'success set window.setForbidSplitMove drag is prohibited'+JSON.stringify(data));
+      })
+      await mainWin.setForbidSplitMove(false,(err,data) => {
+        if(err.code){
+          console.log(msgStr + 'failed set window.setForbidSplitMove you can drag it now');
+          return;
+        }
+        console.log(msgStr + 'success set window.setForbidSplitMove you can drag it now'+JSON.stringify(data));
+      })
+      console.log(msgStr + 'done ');
+      done();
+    })
+    /**
+    * @tc.number     SUB_WINDOW_SNAPSHOT_JSAPI_002
+    * @tc.name       Test snapshotTest2
+    * @tc.desc       Scenario of screenshot of verification window
+    */
+    it('snapshotTest2', 0, async function (done) {
+      let caseName = 'snapshotTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWin = await windowStage.getMainWindow().catch(err => {
+        unexpectedError(err, caseName, 'windowStage.getMainWindow', done);
+      });
+      console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
+      expect(!!mainWin).assertTrue();
+      await mainWin.snapshot((err, data) => {
+        if (err && err.code) {
+          console.log(msgStr + 'snapshot err.code:' + JSON.stringify(err.code));
+          return;
+        }
+        console.log(msgStr + 'snapshot success data:' + JSON.stringify(data));
+        mainWin.on('snapshot', (err, data) => {
+          if (err && err.code) {
+            console.log(msgStr + 'mainWin.on(snapshot)  err.code:' + JSON.stringify(err.code));
+            return;
+          }
+          mainWin.off('snapshot', (err, data) => {
+            if (err && err.code) {
+              console.log(msgStr + 'mainWin.off(snapshot) err.code:' + JSON.stringify(err.code));
+              return;
+            }
+          })
+        })
+      })
+      done();
+    })
+    /**
+     * @tc.number     SUB_WINDOW_DIALOGTARGETTOUCH_JSAPI_002
+     * @tc.name       Test dialogTargetTouchTest2
+     * @tc.desc       Verify the scenario of opening modal window
+     */
+    it('dialogTargetTouchTest2', 0, done => {
+      let caseName = 'dialogTargetTouchTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin context==' + JSON.stringify(context));
+      let tempType = ohosWindow.WindowType.TYPE_DIALOG
+      ohosWindow.create(context, 'dialogTargetTouchTest2', tempType, (err, data) => {
+        console.log(msgStr + 'ohosWindow.create err' + JSON.stringify(err));
+        console.log(msgStr + 'ohosWindow.create data' + JSON.stringify(data));
+        if (err && err.code) {
+          unexpectedError(err, caseName, 'ohosWindow.create', done);
+        } else {
+          let dialogTargetTouchTest2Win = data
+          expect(!!dialogTargetTouchTest2Win).assertTrue();
+          dialogTargetTouchTest2Win.destroy();
+          done();
+        }
+      })
+    })
+    /**
+    * @tc.number     SUB_WINDOW_ANIMATIONFORSHOWN_JSAPI_002
+    * @tc.name       Test animationForShownTest2
+    * @tc.desc       Verify window custom animation configuration of the scene
+    */
+    it('animationForShownTest2', 0, async function (done) {
+      let caseName = 'animationForShownTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin context==' + JSON.stringify(context));
+      console.log(msgStr + 'begin ohosWindow==' + JSON.stringify(ohosWindow));
+      let wndId = 'animationForShownTest2';
+      let baseType = ohosWindow.WindowType.TYPE_SYSTEM_ALERT;
+      let tempWnd = null;
+      ohosWindow.create(context, wndId, baseType, (err, data) => {
+        if (err && err.code) {
+          unexpectedError(err, caseName, 'ohosWindow.create ' + baseType, done);
+        } else {
+          tempWnd = data
+          expect(!!tempWnd).assertTrue();
+          console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWnd);
+          let controller = tempWnd.getTransitionController();
+          controller.animationForShown = (context: ohosWindow.TransitionContext) => {
+            let toWindow = context.toWindow
+            animateTo({
+              duration: 1000,
+              tempo: 0.5,
+              curve: Curve.EaseInOut,
+              delay: 0,
+              iterations: 1,
+              playMode: PlayMode.Normal,
+            }, () => {
+              var obj: ohosWindow.TranslateOptions;
+              obj.x = 100.0;
+              obj.y = 0.0;
+              obj.z = 0.0;
+              toWindow.translate(obj);
+              console.info(msgStr + 'toWindow translate end');
+            }
+            )
+            context.completeTransition(true)
+            console.info(msgStr + 'complete transition end');
+          }
+          done();
+        }
+      });
+
+    })
+    /**
+    * @tc.number     SUB_WINDOW_GETCUTOUTINFO_JSAPI_002
+    * @tc.name       Test getCutoutInfoTest2
+    * @tc.desc       Obtain information about unavailable screen areas such as the hole screen, fringe screen, and waterfall screen
+    */
+    it('getCutoutInfoTest2', 0, async function (done) {
+      let caseName = 'getCutoutInfoTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin context==' + JSON.stringify(context));
+      let dpClass = display.getDefaultDisplaySync();
+      expect(!!dpClass).assertTrue();
+      dpClass.getCutoutInfo((err, data) => {
+        if (err && err.code) {
+          unexpectedError(err, caseName, 'displayClass.getCutoutInfo', done);
+        }else{
+          console.info(msgStr+'Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+          done();
+        }
+      })
+    })
+    /**
+    * @tc.number     SUB_WINDOW_SHOWWITHANIMATION_JSAPI_002
+    * @tc.name       Test showWithAnimationTest2
+    * @tc.desc       Displays the current window, playing an animation in the process
+    */
+    it('showWithAnimationTest2', 0, async function (done) {
+      let caseName = 'showWithAnimationTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin context==' + JSON.stringify(context));
+      let wndId = 'showWithAnimationTest2';
+      let baseType = ohosWindow.WindowType.TYPE_FLOAT;
+      ohosWindow.create(context, wndId, baseType, (err, data) => {
+        if (err && err.code) {
+          unexpectedError(err, caseName, 'ohosWindow.create ' + baseType, done);
+        } else {
+          let tempWnd=data;
+          console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + JSON.stringify(tempWnd));
+          expect(!!tempWnd).assertTrue();
+          tempWnd.showWithAnimation((error, animationData) => {
+            if (error && error.code) {
+              unexpectedError(error, caseName, 'Failed to show the window with animation', done);
+            }else {
+              console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(animationData));
+              done();
+            }
+          })
+        }
+      })
+    })
+    /**
+    * @tc.number     SUB_WINDOW_HIDEWITHANIMATION_JSAPI_002
+    * @tc.name       Test hideWithAnimationTest2
+    * @tc.desc       Hide the current window and play an animation in the process
+    */
+    it('hideWithAnimationTest2', 0, async function (done) {
+      let caseName = 'hideWithAnimationTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin context==' + JSON.stringify(context));
+      let wndId = 'hideWithAnimationTest2';
+      let baseType = ohosWindow.WindowType.TYPE_FLOAT;
+      ohosWindow.create(context, wndId, baseType, (creare_err, tempWnd) => {
+        if (creare_err && creare_err.code) {
+          unexpectedError(creare_err, caseName, 'ohosWindow.create ' + baseType, done);
+        }
+        expect(!!tempWnd).assertTrue();
+        ohosWindow.find(wndId, (findErr, findWnd) => {
+          if (findErr && findErr.code) {
+            unexpectedError(findErr, caseName, 'Failed to hide the window with animation', done);
+          }else {
+            findWnd.hideWithAnimation((err, data) => {
+              if (err && err.code) {
+                unexpectedError(err, caseName, 'Failed to hide the window with animation', done);
+              }else {
+                console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
+                done();
+              }
+            })
+          }
+        })
       })
     })
   })

@@ -71,10 +71,10 @@ describe('VideoPlayerHLSBitrateTest.test', function () {
                 releaseVideoPlayer(done);
             }
         });
-        videoPlayer.on('availableBitrateCollected', (bitrates) => {
+        videoPlayer.on('availableBitratesCollect', (bitrates) => {
             bitrateArray = bitrates;
             for (let i = 0; i < bitrateArray.length; i++) { 
-                console.info('case availableBitrateCollected bitrates: '  + bitrateArray[i]);
+                console.info('case availableBitratesCollect bitrates: '  + bitrateArray[i]);
             }
         });
         videoPlayer.on('error', (err) => {
@@ -134,7 +134,7 @@ describe('VideoPlayerHLSBitrateTest.test', function () {
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('testHlsVideoPlayerSelectBitrate_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_HLS_SelectBitrate_0100', 0, async function (done) {
         await initVideoPlayer(done);
         await setVideoUrl(HTTP_PATH + '05.hls/hls_variant/index.m3u8');
         await playAndSetLoop(PLAY_TIME * 2);
@@ -156,7 +156,7 @@ describe('VideoPlayerHLSBitrateTest.test', function () {
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('testHlsVideoPlayerSelectBitrate_0200', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_HLS_SelectBitrate_0200', 0, async function (done) {
         await initVideoPlayer(done);
         await setVideoUrl(HTTP_PATH + '05.hls/hls_variant/index.m3u8');
         await playAndSetLoop(PLAY_TIME);

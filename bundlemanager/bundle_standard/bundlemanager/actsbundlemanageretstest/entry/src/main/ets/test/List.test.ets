@@ -24,6 +24,9 @@ import getNameForUid from "./GetNameForUid.test.ets";
 import queryExtensionAbilityInfos from "./QueryExtensionAbilityInfos.test.ets";
 import getBundleArchiveInfo from "./getBundleArchiveInfo.test.ets";
 import getQueryAbilityByWant from './GetQueryAbilityByWant.test.ets';
+import isDefaultApplicationTest from './IsDefaultApplication.test.ets';
+import getWindowPorperties from './getWindowProperties.test.ets';
+import GetSecondModuleTest from './GetSecondModule.test.ets';
 
 export default function testsuite() {
   getBundleArchiveInfo();
@@ -32,6 +35,7 @@ export default function testsuite() {
   getLaunchWantForBundle();
   getNameForUid();
   getQueryAbilityByWant();
+  isDefaultApplicationTest();
   //RM.007
   getApplicationInfoJsunit();
   getAllAppInfoJsunit();
@@ -42,4 +46,6 @@ export default function testsuite() {
   //RM.017
   isAbilityEnableETSUnit();
   isApplicationEnabledETSUnit();
+  getWindowPorperties();
+  GetSecondModuleTest();
 }

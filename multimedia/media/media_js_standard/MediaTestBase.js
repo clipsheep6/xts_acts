@@ -71,6 +71,10 @@ export async function getFdRead(pathName, done) {
     return fdReturn;
 }
 
+export async function closeFdNumber(fdNumber) {
+    await fileio.close(fdNumber);
+}
+
 // wait synchronously 
 export function msleep(time) {
     for(let t = Date.now();Date.now() - t <= time;);
@@ -159,7 +163,32 @@ export async function getFd(pathName) {
         }
         let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
         fdObject.fileAsset = await fetchFileResult.getAllObject();
-        fdObject.fdNumber = await fdObject.fileAsset[0].open('Rw');
+        fdObject.fdNumber = await fdObject.fileAsset[0].open('rw');
+        console.info('case getFd number is: ' + fdObject.fdNumber);
+    }
+    return fdObject;
+}
+
+export async function getAudioFd(pathName) {
+    let fdObject = {
+        fileAsset : null,
+        fdNumber : null
+    }
+    let displayName = pathName;
+    const mediaTest = mediaLibrary.getMediaLibrary();
+    let fileKeyObj = mediaLibrary.FileKey;
+    let mediaType = mediaLibrary.MediaType.AUDIO;
+    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
+    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
+    if (dataUri != undefined) {
+        let args = dataUri.id.toString();
+        let fetchOp = {
+            selections : fileKeyObj.ID + "=?",
+            selectionArgs : [args],
+        }
+        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+        fdObject.fileAsset = await fetchFileResult.getAllObject();
+        fdObject.fdNumber = await fdObject.fileAsset[0].open('rw');
         console.info('case getFd number is: ' + fdObject.fdNumber);
     }
     return fdObject;

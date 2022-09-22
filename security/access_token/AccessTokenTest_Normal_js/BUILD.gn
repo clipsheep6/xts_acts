@@ -19,11 +19,15 @@ ohos_js_hap_suite("ActsAccessTokenApiJSNormalTest") {
     ":accesstoken_js_assets",
     ":accesstoken_resources",
   ]
+  subsystem_name = "security"
+  part_name = "access_token"
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsAccessTokenApiJSNormalTest"
 }
 ohos_js_assets("accesstoken_js_assets") {
-  source_dir = "./src/main/js/default"
+  js2abc = true
+  hap_profile = "./src/main/config.json"
+  source_dir = "./src/main/js"
 }
 ohos_resources("accesstoken_resources") {
   sources = [ "./src/main/resources" ]

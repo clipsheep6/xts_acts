@@ -6,7 +6,7 @@
         "description": "$string:phone_entry_dsc",
         "mainElement": "MainAbility",
         "deviceTypes": [
-            "phone"
+            "default"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -31,7 +31,94 @@
                         ]
                     }
                 ]
-            }
+            },
+            {
+                "name": "MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon"
+			},
+            {
+                "name": "MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "unspecified",
+				"supportWindowMode": ["fullscreen"]
+			},
+			{
+                "name": "MainAbility2",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "landscape",
+				"supportWindowMode": ["split"]
+			},
+			{
+                "name": "MainAbility3",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "portrait",
+				"supportWindowMode": ["floating"]
+			},
+			{
+                "name": "MainAbility4",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "landscape_inverted",
+				"supportWindowMode": ["fullscreen", "split", "floating"]
+			},
+			{
+                "name": "MainAbility5",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "portrait_inverted",
+				"maxWindowRatio": 3.5
+			},
+			{
+                "name": "MainAbility6",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "auto_rotation",
+				"minWindowRatio": 0.5
+			},
+			{
+                "name": "MainAbility7",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "auto_rotation_landscape",
+				"maxWindowWidth": 2560
+			},
+			{
+                "name": "MainAbility8",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+				"orientation": "auto_rotation_portrait",
+				"minWindowWidth": 1400
+			},
+			{
+				"name": "MainAbility9",
+				"srcEntrance": "./ets/MainAbility/MainAbility.ts",
+				"startWindowIcon": "$media:icon",
+				"orientation": "auto_rotation_restricted",
+				"maxWindowHeight": 300
+			},
+			{
+				"name": "MainAbility10",
+				"srcEntrance": "./ets/MainAbility/MainAbility.ts",
+				"startWindowIcon": "$media:icon",
+				"orientation": "auto_rotation_landscape_restricted",
+				"minWindowHeight": 200
+			},
+			{
+				"name": "MainAbility11",
+				"srcEntrance": "./ets/MainAbility/MainAbility.ts",
+				"startWindowIcon": "$media:icon",
+				"orientation": "auto_rotation_portrait_restricted"
+			},
+			{
+				"name": "MainAbility12",
+				"srcEntrance": "./ets/MainAbility/MainAbility.ts",
+				"startWindowIcon": "$media:icon",
+				"orientation": "locked"
+			}
         ],
         "extensionAbilities": [
             {
@@ -132,8 +219,46 @@
                         "resource": "$profile:form_config"
                     }
                 ]
+            },
+            {
+                "name": "EnterpriseAdminAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "enterpriseAdmin",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "ThumbnailAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "thumbnail",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "PreviewAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "preview",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
             }
         ]
-
     }
 }

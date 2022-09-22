@@ -14,8 +14,9 @@
  */
 
 import media from '@ohos.multimedia.media'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export default function VideoPlayerEnumTest() {
 describe('VideoPlayerEnumTest', function () {
     beforeAll(function() {
         console.info('beforeAll case');
@@ -34,14 +35,14 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_0100
         * @tc.name      : SeekMode
         * @tc.desc      : SeekMode Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_0100', 0, async function (done) {
         expect(media.SeekMode.SEEK_NEXT_SYNC).assertEqual(0);
         expect(media.SeekMode.SEEK_PREV_SYNC).assertEqual(1);
         expect(media.SeekMode.SEEK_CLOSEST_SYNC).assertEqual(2);
@@ -50,14 +51,14 @@ describe('VideoPlayerEnumTest', function () {
     })
 
      /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_0100
         * @tc.name      : MediaErrorCode
         * @tc.desc      : MediaErrorCode Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-     it('SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_00_0100', 0, async function (done) {
+     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_0100', 0, async function (done) {
         expect(media.MediaErrorCode.MSERR_OK).assertEqual(0);
         expect(media.MediaErrorCode.MSERR_NO_MEMORY).assertEqual(1);
         expect(media.MediaErrorCode.MSERR_OPERATION_NOT_PERMIT).assertEqual(2);
@@ -72,28 +73,28 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_0100
         * @tc.name      : AVDataSourceError
         * @tc.desc      : AVDataSourceError Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_0100', 0, async function (done) {
         expect(media.AVDataSourceError.SOURCE_ERROR_IO).assertEqual(-2);
         expect(media.AVDataSourceError.SOURCE_ERROR_EOF).assertEqual(-1);
         done();
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_0100
         * @tc.name      : BufferingInfoType
         * @tc.desc      : BufferingInfoType Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_0100', 0, async function (done) {
         expect(media.BufferingInfoType.BUFFERING_START).assertEqual(1);
         expect(media.BufferingInfoType.BUFFERING_END).assertEqual(2);
         expect(media.BufferingInfoType.BUFFERING_PERCENT).assertEqual(3);
@@ -102,14 +103,14 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_0100
         * @tc.name      : PlaybackSpeed
         * @tc.desc      : PlaybackSpeed Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_0100', 0, async function (done) {
         expect(media.PlaybackSpeed.SPEED_FORWARD_0_75_X).assertEqual(0);
         expect(media.PlaybackSpeed.SPEED_FORWARD_1_00_X).assertEqual(1);
         expect(media.PlaybackSpeed.SPEED_FORWARD_1_25_X).assertEqual(2);
@@ -119,28 +120,28 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_0100
         * @tc.name      : ContainerFormatType
         * @tc.desc      : ContainerFormatType Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_0100', 0, async function (done) {
         expect(media.ContainerFormatType.CFT_MPEG_4).assertEqual("mp4");
         expect(media.ContainerFormatType.CFT_MPEG_4A).assertEqual("m4a");
         done();
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_0100
         * @tc.name      : MediaType
         * @tc.desc      : MediaType Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_0100', 0, async function (done) {
         expect(media.MediaType.MEDIA_TYPE_AUD).assertEqual(0);
         expect(media.MediaType.MEDIA_TYPE_VID).assertEqual(1);
         expect(media.MediaType.MEDIA_TYPE_SUBTITLE).assertEqual(2);
@@ -148,14 +149,14 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_00_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_0100
         * @tc.name      : MediaDescriptionKey
         * @tc.desc      : MediaDescriptionKey Enumeration test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_00_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_0100', 0, async function (done) {
         expect(media.MediaDescriptionKey.MD_KEY_TRACK_INDEX).assertEqual("track_index");
         expect(media.MediaDescriptionKey.MD_KEY_TRACK_TYPE).assertEqual("track_type");
         expect(media.MediaDescriptionKey.MD_KEY_CODEC_MIME).assertEqual("codec_mime");
@@ -167,4 +168,18 @@ describe('VideoPlayerEnumTest', function () {
         expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_RATE).assertEqual("sample_rate");
         done();
     })
-})
+
+    /* *
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_SCALE_TYPE_00_0100
+        * @tc.name      : MediaType
+        * @tc.desc      : MediaType Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
+    */
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_0100', 0, async function (done) {
+        expect(media.VideoScaleType.VIDEO_SCALE_TYPE_FIT).assertEqual(0);
+        expect(media.VideoScaleType.VIDEO_SCALE_TYPE_FIT_CROP).assertEqual(1);
+        done();
+    })
+})}

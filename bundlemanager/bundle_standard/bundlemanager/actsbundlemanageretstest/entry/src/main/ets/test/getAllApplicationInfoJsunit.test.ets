@@ -230,28 +230,6 @@ export default function getAllApplicationBundleTest() {
         });
 
         /**
-         * @tc.number: bundle_getApplicationInfo_test_0500_0010
-         * @tc.name: getApplicationInfo : Obtains based on a given bundle name.
-         * @tc.desc: Check the return value of the interface (by promise)
-         * @tc.level   0
-         */
-        it(TAG_TEST_0500_002, 0, async function (done) {
-            let errors;
-            let startTime = await Utils.getNowTime();
-            await Bundle.getAllApplicationInfo('Bundle.BundleFlag.GET_BUNDLE_DEFAULT', userId).then((data) => {
-                console.info(TAG_TEST_0500_002 + 'noUserId promise data is: ' + data);
-                expect(data).assertFail();
-            }).catch((error) => {
-                console.info(TAG_TEST_0500_002 + 'UserId promise error is: ' + error);
-                errors = error;
-                expect(errors).assertEqual(1);
-            });
-            let endTime = Utils.getNowTime();
-            Utils.getDurationTime(TAG_TEST_0500_002, startTime, endTime);
-            done();
-        });
-
-        /**
          * @tc.number: getApplicationInfos_1000
          * @tc.name: getApplicationInfo : Obtains based on a given bundle name.
          * @tc.desc: Check the return value of the interface
@@ -291,11 +269,6 @@ export default function getAllApplicationBundleTest() {
          * @tc.desc: Check the return value of the interface
          */
         it('getApplicationInfos_1200', 0, async function (done) {
-            await Bundle.getAllApplicationInfo('Bundle.BundleFlag.GET_BUNDLE_DEFAULT').then((data) => {
-                expect(data).assertFail();
-            }).catch((error) => {
-                expect(error).assertEqual(1);
-            });
             await Bundle.getAllApplicationInfo(null).then((data) => {
                 expect(data).assertFail();
             }).catch((error) => {
@@ -309,14 +282,10 @@ export default function getAllApplicationBundleTest() {
             Bundle.getAllApplicationInfo(undefined, (err, data) => {
                 expect(err).assertEqual(1);
                 expect(data).assertEqual("type mismatch");
-                Bundle.getAllApplicationInfo('Bundle.BundleFlag.GET_BUNDLE_DEFAULT', (err, data) => {
+                Bundle.getAllApplicationInfo(null, (err, data) => {
                     expect(err).assertEqual(1);
                     expect(data).assertEqual("type mismatch");
-                    Bundle.getAllApplicationInfo(null, (err, data) => {
-                        expect(err).assertEqual(1);
-                        expect(data).assertEqual("type mismatch");
-                        done();
-                    });
+                    done();
                 });
             });
         });
@@ -332,8 +301,12 @@ export default function getAllApplicationBundleTest() {
                 expect(typeof (data[i].descriptionId)).assertEqual('number');
                 expect(typeof (data[i].icon)).assertEqual('string');
                 expect(typeof (data[i].iconId)).assertEqual('number');
+                expect(typeof (data[i].iconIndex)).assertEqual('number');
+                expect(data[i].iconIndex).assertEqual(data[i].iconId);
                 expect(typeof (data[i].label)).assertEqual('string');
                 expect(typeof (data[i].labelId)).assertEqual('number');
+                expect(typeof (data[i].labelIndex)).assertEqual('number');
+                expect(data[i].labelIndex).assertEqual(data[i].labelId);
                 expect(typeof (data[i].systemApp)).assertEqual('boolean')
                 expect(typeof (data[i].supportedModes)).assertEqual('number');
                 expect(typeof (data[i].process)).assertEqual('string');
@@ -370,7 +343,7 @@ export default function getAllApplicationBundleTest() {
                     if (data[i].uid !== 0) {
                         expect(data[i].uid > 0).assertEqual(true);
                     };
-                    expect(data[i].systemApp).assertEqual(true);
+                    expect(data[i].systemApp).assertEqual(false);
                     expect(data[i].supportedModes).assertEqual(0);
                     expect(data[i].process).assertEqual('com.open.harmony.packagemag');
                     expect(data[i].entryDir).assertEqual('/data/app/el1/bundle/public/com.open.harmony.packagemag' +
@@ -395,8 +368,12 @@ export default function getAllApplicationBundleTest() {
             expect(data.descriptionId).assertLarger(0);
             expect(data.icon).assertEqual('$media:icon');
             expect(data.iconId).assertLarger(0);
+            expect(data.iconIndex).assertLarger(0);
+            expect(data.iconIndex).assertEqual(data.iconId);
             expect(data.label).assertEqual('$string:app_name');
             expect(data.labelId).assertLarger(0);
+            expect(data.labelIndex).assertLarger(0);
+            expect(data.labelIndex).assertEqual(data.labelId);
             expect(data.systemApp).assertFalse();
             expect(data.supportedModes).assertEqual(0);
             expect(data.process).assertEqual(BUNDLE_OTHER);

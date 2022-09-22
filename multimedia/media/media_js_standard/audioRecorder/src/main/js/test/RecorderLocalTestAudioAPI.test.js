@@ -18,7 +18,7 @@ import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 
 describe('RecorderLocalTestAudioAPI', function () {
-    let audioRecorder = media.createAudioRecorder();
+    let audioRecorder = null;
     const END_STATE = 0;
     const PRE_STATE = 1;
     const START_STATE = 2;
@@ -42,9 +42,9 @@ describe('RecorderLocalTestAudioAPI', function () {
         fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
     }
     function initAudioRecorder() {
-        if (typeof (audioRecorder) != 'undefined') {
+        if (audioRecorder != null) {
             audioRecorder.release();
-            audioRecorder = undefined;
+            audioRecorder = null;
         }
         audioRecorder = media.createAudioRecorder();
     }
@@ -83,7 +83,7 @@ describe('RecorderLocalTestAudioAPI', function () {
             case RELEASE_STATE:
                 console.info('case to release');
                 audioRecorder.release();
-                audioRecorder = undefined;
+                audioRecorder = null;
                 break;
             case ERROR_STATE:
                 console.info('case to wait error callback');
@@ -138,9 +138,7 @@ describe('RecorderLocalTestAudioAPI', function () {
             nextStep(mySteps,done);
         });
         audioRecorder.on('error', (err) => {
-            console.info(`case error called,errName is ${err.name}`);
             console.info(`case error called,errCode is ${err.code}`);
-            console.info(`case error called,errMessage is ${err.message}`);
             mySteps.shift();
             expect(mySteps[0]).assertEqual(ERROR_STATE);
             mySteps.shift();
@@ -169,44 +167,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_createAudioRecorder_API_0100
-        * @tc.name      : Create an AudioRecoder Object by function of createAudioRecorder
-        * @tc.desc      : Reliability Test
-        * @tc.size      : MediumTest
-        * @tc.type      : Reliability
-        * @tc.level     : Level2
-    */
-    it('SUB_MEDIA_RECORDER_createAudioRecorder_API_0100', 0, async function (done) {
-        let testAudioRecorder = undefined;
-        testAudioRecorder= media.createAudioRecorder();
-        expect(testAudioRecorder != undefined).assertTrue();
-        done();
-    })
-
-    /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0100
-        * @tc.name      : 01.creatAudioRecorder->prepare
-        * @tc.desc      : Reliability Test
-        * @tc.size      : MediumTest
-        * @tc.type      : Reliability
-        * @tc.level     : Level2
-    */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0100', 0, async function (done) {
-        let testAudioRecorder= media.createAudioRecorder();
-        expect(testAudioRecorder != null).assertTrue();
-        testAudioRecorder.prepare(audioConfig);
-        done();
-    })
-
-    /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0200
         * @tc.name      : 02.start->prepare
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(START_STATE, ERROR_STATE, PRE_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -214,14 +182,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0300
         * @tc.name      : 03.pause->prepare
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0300', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE,
             PRE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
@@ -230,14 +198,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0400
         * @tc.name      : 04.resume->prepare
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0400', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE,
             PRE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
@@ -246,14 +214,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0500
         * @tc.name      : 05.stop->prepare
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RESET_STATE, PRE_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -261,14 +229,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0600
         * @tc.name      : 06.reset->prepare
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0600', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0600', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, PRE_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -276,14 +244,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0800
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0800
         * @tc.name      : 08.all steps->prepare
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0800', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0800', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PRE_STATE, ERROR_STATE, STOP_STATE,
             PRE_STATE, RESET_STATE, PRE_STATE, RELEASE_STATE, END_STATE);
@@ -292,14 +260,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0900
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0900
         * @tc.name      : 09.prepare called three times
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_0900', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_0900', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, PRE_STATE, ERROR_STATE, PRE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -307,14 +275,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_1000
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_1000
         * @tc.name      : 10.channel:-1
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_1000', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_1000', 0, async function (done) {
         audioConfig.numberOfChannels = -1;
         audioConfig.audioSampleRate = 22050;
         audioConfig.audioEncodeBitRate = 22050;
@@ -325,14 +293,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_1100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_1100
         * @tc.name      : 11.channel:-1
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_1100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_1100', 0, async function (done) {
         audioConfig.numberOfChannels = CHANNEL_TWO;
         audioConfig.audioSampleRate = -1;
         audioConfig.audioEncodeBitRate = 22050;
@@ -343,14 +311,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_1200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_1200
         * @tc.name      : 12.channel:-1
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Prepare_API_1200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_Prepare_API_1200', 0, async function (done) {
         audioConfig.numberOfChannels = CHANNEL_TWO;
         audioConfig.audioSampleRate = 22050;
         audioConfig.audioEncodeBitRate = -1;
@@ -361,14 +329,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0100
         * @tc.name      : 01.creatAudioRecorder->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0100', 0, async function (done) {
         audioConfig.numberOfChannels = CHANNEL_TWO;
         audioConfig.audioSampleRate = 22050;
         audioConfig.audioEncodeBitRate = 22050;
@@ -379,14 +347,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0200
         * @tc.name      : 02.prepare->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -394,14 +362,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0300
         * @tc.name      : 03.pause->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0300', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, START_STATE,
             ERROR_STATE, RELEASE_STATE, END_STATE);
@@ -410,30 +378,30 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0400
         * @tc.name      : 04.resume->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0400', 0, async function (done) {
         initAudioRecorder();
-        let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, START_STATE,
+        let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, START_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0500
         * @tc.name      : 05.stop->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, START_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -442,14 +410,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0600
         * @tc.name      : 06.reset->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0600', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0600', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, START_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -458,14 +426,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0800
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0800
         * @tc.name      : 08.all steps->start
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0800', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0800', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, START_STATE, ERROR_STATE,
             PRE_STATE, START_STATE, RESET_STATE, START_STATE, ERROR_STATE, PRE_STATE, START_STATE,
@@ -475,29 +443,30 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0900
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0900
         * @tc.name      : 09.start called three times
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Start_API_0900', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_START_API_0900', 0, async function (done) {
         initAudioRecorder();
-        let mySteps = new Array(PRE_STATE, START_STATE, START_STATE, START_STATE, RELEASE_STATE, END_STATE);
+        let mySteps = new Array(PRE_STATE, START_STATE, START_STATE, ERROR_STATE,
+            START_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0100
         * @tc.name      : 01.creatAudioRecorder->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0100', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PAUSE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -505,14 +474,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0200
         * @tc.name      : 02.prepare->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, PAUSE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -520,14 +489,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0300
         * @tc.name      : 03.start->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0300', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -535,14 +504,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0400
         * @tc.name      : 04.resume->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0400', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, PAUSE_STATE,
             RELEASE_STATE, END_STATE);
@@ -551,14 +520,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0500
         * @tc.name      : 05.stop->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, PAUSE_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -567,14 +536,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0600
         * @tc.name      : 06.reset->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, PAUSE_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -583,14 +552,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0800
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0800
         * @tc.name      : 08.all step->pause
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0800', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0800', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, PAUSE_STATE, 
             STOP_STATE, PAUSE_STATE, ERROR_STATE, RESET_STATE, PAUSE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
@@ -599,30 +568,30 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0900
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0900
         * @tc.name      : 09.pause three times
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Pause_API_0900', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_PAUSE_API_0900', 0, async function (done) {
         initAudioRecorder();
-        let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, PAUSE_STATE, PAUSE_STATE,
-            RELEASE_STATE, END_STATE);
+        let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, PAUSE_STATE, ERROR_STATE,
+            PAUSE_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0100
         * @tc.name      : 01.creatAudioRecorder->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0100', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(RESUME_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -630,14 +599,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0200
         * @tc.name      : 02.prepare->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, RESUME_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -645,29 +614,29 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0300
         * @tc.name      : 03.start->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0300', 0, async function (done) {
         initAudioRecorder();
-        let mySteps = new Array(PRE_STATE, START_STATE, RESUME_STATE, RELEASE_STATE, END_STATE);
+        let mySteps = new Array(PRE_STATE, START_STATE, RESUME_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0400
         * @tc.name      : 04.pause->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0400', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -675,14 +644,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0500
         * @tc.name      : 05.stop->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RESUME_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -691,14 +660,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0600
         * @tc.name      : 06.reset->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0600', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0600', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, RESUME_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -707,46 +676,47 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0800
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0800
         * @tc.name      : 08.all->resume
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0800', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0800', 0, async function (done) {
         initAudioRecorder();
-        let mySteps = new Array(PRE_STATE, START_STATE, RESUME_STATE, PAUSE_STATE, RESUME_STATE, STOP_STATE,
-            RESUME_STATE, ERROR_STATE, RESET_STATE, RESUME_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
+        let mySteps = new Array(PRE_STATE, START_STATE, RESUME_STATE, ERROR_STATE,
+            PAUSE_STATE, RESUME_STATE, STOP_STATE, RESUME_STATE, ERROR_STATE,
+            RESET_STATE, RESUME_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0900
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0900
         * @tc.name      : 09.resume threee times
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Resume_API_0900', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESUME_API_0900', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE,
-            RESUME_STATE, RESUME_STATE, RESUME_STATE, RELEASE_STATE, END_STATE);
+            RESUME_STATE, RESUME_STATE, ERROR_STATE, RESUME_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0100
         * @tc.name      : 01.creatAudioRecorder->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0100', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(STOP_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -754,14 +724,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0200
         * @tc.name      : 02.prepare->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */ 
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, STOP_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -769,14 +739,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0300
         * @tc.name      : 03.start->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0300', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -784,14 +754,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0400
         * @tc.name      : 04.pause->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0400', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, STOP_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -799,14 +769,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0500
         * @tc.name      : 05.resume->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, STOP_STATE,
             RELEASE_STATE, END_STATE);
@@ -815,14 +785,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0600
         * @tc.name      : 06.reset->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0600', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0600', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, STOP_STATE, ERROR_STATE,
             RELEASE_STATE, END_STATE);
@@ -831,14 +801,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0800
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0800
         * @tc.name      : 08.all steps->stop
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0800', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0800', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, STOP_STATE, ERROR_STATE, RESET_STATE, PRE_STATE, START_STATE, STOP_STATE,
             RESET_STATE, PRE_STATE, RESET_STATE, STOP_STATE, ERROR_STATE, PRE_STATE, RELEASE_STATE, END_STATE);
@@ -847,14 +817,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0900
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0900
         * @tc.name      : 09.stop called three times
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Stop_API_0900', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_STOP_API_0900', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, STOP_STATE, ERROR_STATE,
             STOP_STATE, ERROR_STATE, RELEASE_STATE, END_STATE);
@@ -863,14 +833,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0100
         * @tc.name      : 01.creatAudioRecorder->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0100', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -878,14 +848,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0200
         * @tc.name      : 02.prepare->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -893,14 +863,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0300
         * @tc.name      : 03.start->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0300', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -908,14 +878,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0400
         * @tc.name      : 04.pause->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0400', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -923,14 +893,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0500
         * @tc.name      : 05.resume->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, RESET_STATE,
             RELEASE_STATE, END_STATE);
@@ -939,14 +909,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0600
         * @tc.name      : 06.stop->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0600', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0600', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -954,14 +924,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0800
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0800
         * @tc.name      : 08.all steps->reset
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0800', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0800', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, RESET_STATE, PRE_STATE, START_STATE, RESET_STATE, PRE_STATE, START_STATE,
             STOP_STATE, RESET_STATE, PRE_STATE, START_STATE, RELEASE_STATE, END_STATE);
@@ -970,46 +940,46 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0900
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0900
         * @tc.name      : 09.reset callend three times
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Reset_API_0900', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RESET_API_0900', 0, async function (done) {
         initAudioRecorder();
-        let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, RESET_STATE, RESET_STATE,
-            RELEASE_STATE, END_STATE);
+        let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE,
+            RESET_STATE, RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.prepare(audioConfig);
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0100
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0100
         * @tc.name      : 01.creatAudioRecorder->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0100', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0100', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
         audioRecorder.release();
-        audioRecorder = undefined;
+        audioRecorder = null;
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0200
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0200
         * @tc.name      : 02.prepare->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0200', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0200', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -1017,14 +987,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0300
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0300
         * @tc.name      : 03.start->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0300', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0300', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -1032,14 +1002,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0400
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0400
         * @tc.name      : 04.pause->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0400', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0400', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -1047,14 +1017,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0500
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0500
         * @tc.name      : 05.resume->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0500', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0500', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, PAUSE_STATE, RESUME_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -1062,14 +1032,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0600
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0600
         * @tc.name      : 06.stop->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */ 
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0600', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0600', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);
@@ -1077,14 +1047,14 @@ describe('RecorderLocalTestAudioAPI', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0700
+        * @tc.number    : SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0700
         * @tc.name      : 07.reset->release
         * @tc.desc      : Reliability Test
         * @tc.size      : MediumTest
         * @tc.type      : Reliability
         * @tc.level     : Level2
     */
-    it('SUB_MEDIA_RECORDER_AudioRecorder_Release_API_0700', 0, async function (done) {
+    it('SUB_MEDIA_RECORDER_AUDIORECORDER_RELEASE_API_0700', 0, async function (done) {
         initAudioRecorder();
         let mySteps = new Array(PRE_STATE, START_STATE, RESET_STATE, RELEASE_STATE, END_STATE);
         setCallback(mySteps, done);

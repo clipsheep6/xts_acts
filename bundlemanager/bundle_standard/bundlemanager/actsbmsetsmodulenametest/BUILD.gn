@@ -18,13 +18,19 @@ ohos_js_hap_suite("ActsBmsEtsModuleNameTest") {
   deps = [
     ":bms_ets_assets",
     ":bms_ets_resources",
+    ":bms_ets_test_assets",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsBmsEtsModuleNameTest"
+  subsystem_name = "bundlemanager"
+  part_name = "bundle_framework"
 }
 ohos_js_assets("bms_ets_assets") {
   source_dir = "./entry/src/main/ets/MainAbility"
+}
+ohos_js_assets("bms_ets_test_assets") {
+  source_dir = "./entry/src/main/ets/TestAbility"
 }
 ohos_resources("bms_ets_resources") {
   sources = [ "./entry/src/main/resources" ]

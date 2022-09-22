@@ -14,8 +14,11 @@
  */
 import featureAbility from '@ohos.ability.featureAbility'
 import commonEvent from '@ohos.commonEvent'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+
+const errCode = 1;
+export default function actsStServiceAbilityTest() {
 describe('ActsStServiceAbilityTest', function () {
     let bundleName = "com.amsst.stserviceabilityserver";
     let abilityName = "com.amsst.stserviceabilityserver.ServiceAbility";
@@ -98,7 +101,7 @@ describe('ActsStServiceAbilityTest', function () {
             featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
                 console.log('ACTS_AAbilityStartSetting_0100 asyncCallback errCode : ' + JSON.stringify(err) 
                 + " data: " + JSON.stringify(data));
-                expect(2097152).assertEqual(err.code);
+                expect(errCode).assertEqual(err.code);
                 done();
             });
         }catch(error){
@@ -136,7 +139,7 @@ describe('ActsStServiceAbilityTest', function () {
         featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
             console.log('ACTS_AAbilityStartSettingNew_0200 asyncCallback errCode : ' + JSON.stringify(err) 
             + " data: " + JSON.stringify(data));
-            expect(2097152).assertEqual(err.code);
+            expect(errCode).assertEqual(err.code);
             done();
         });
     }catch(error){
@@ -174,7 +177,7 @@ it("ACTS_AAbilityStartSettingNew_0300",0, async function(done){
         featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
             console.log('ACTS_AAbilityStartSettingNew_0300 asyncCallback errCode : ' + JSON.stringify(err) 
             + " data: " + JSON.stringify(data));
-            expect(2097152).assertEqual(err.code);
+            expect(errCode).assertEqual(err.code);
             done();
         });
     }catch(error){
@@ -212,7 +215,7 @@ it("ACTS_AAbilityStartSettingNew_0400",0, async function(done){
         featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
             console.log('ACTS_AAbilityStartSettingNew_0400 asyncCallback errCode : ' + JSON.stringify(err) 
             + " data: " + JSON.stringify(data));
-            expect(2097152).assertEqual(err.code);
+            expect(errCode).assertEqual(err.code);
             done();
         });
     }catch(error){
@@ -250,7 +253,7 @@ it("ACTS_AAbilityStartSettingNew_0500",0, async function(done){
         featureAbility.startAbility(StartAbilityParameter,(err,data)=>{
             console.log('ACTS_AAbilityStartSettingNew_0500 asyncCallback errCode : ' + JSON.stringify(err) 
             + " data: " + JSON.stringify(data));
-            expect(2097152).assertEqual(err.code);
+            expect(errCode).assertEqual(err.code);
             done();
         });
     }catch(error){
@@ -268,6 +271,7 @@ it("ACTS_AAbilityStartSettingNew_0500",0, async function(done){
         console.log('ACTS_AJsServiceAbility_0600====<begin');
         try {
             var mConnIdJsAsyncCallback;
+            var currentAlertTimeout;
             commonEvent.createSubscriber(CommonEventSubscribeInfo0600).then(async (data) => {
                 console.debug("=ACTS_AJsServiceAbility_0600 createSubscriber .then(data)=======>"
                     + ("json data【") + JSON.stringify(data) + (" 】")
@@ -428,3 +432,4 @@ it("ACTS_AAbilityStartSettingNew_0500",0, async function(done){
         }
     })
 })
+}

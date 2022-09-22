@@ -17,8 +17,9 @@ import media from '@ohos.multimedia.media'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import bundle from '@ohos.bundle'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
+export default function AudioRecorderFormatCompatibilityTest() {
 describe('AudioRecorderFormatCompatibilityTest', function () {
     const END_STATE = 0;
     const PRE_STATE = 1;
@@ -41,7 +42,7 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
         audioSampleRate : 22050,
         numberOfChannels : 2,
         format : media.AudioOutputFormat.AAC_ADTS,
-        uri : 'file:///data/accounts/account_0/appdata/appdata/recorder/test.m4a',
+        uri : 'fd://',
         location : { latitude : 1, longitude : 1 },
     }
 
@@ -114,8 +115,8 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
         let displayName = pathName;
         const mediaTest = mediaLibrary.getMediaLibrary();
         let fileKeyObj = mediaLibrary.FileKey;
-        let mediaType = mediaLibrary.MediaType.VIDEO;
-        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+        let mediaType = mediaLibrary.MediaType.AUDIO;
+        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
         let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
         if (dataUri != undefined) {
             let args = dataUri.id.toString();
@@ -246,14 +247,14 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     }
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0100
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0100
         * @tc.name      : location: {latitude: -90, longitude: -180}
         * @tc.desc      : location test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0100', 0, async function (done) {
         await getFd('COMPATIBILITY_0100.m4a');
         audioConfig.uri = fdPath;
         audioConfig.location.latitude = -90;
@@ -265,14 +266,14 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0200
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0200
         * @tc.name      : location: {latitude: 90, longitude: 180}
         * @tc.desc      : location test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0200', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0200', 0, async function (done) {
         await getFd('COMPATIBILITY_0200.m4a');
         audioConfig.uri = fdPath;
         audioConfig.location.latitude = 90;
@@ -284,14 +285,14 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0300
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0300
         * @tc.name      : location: {latitude: 0, longitude: 0}
         * @tc.desc      : location test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0300', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0300', 0, async function (done) {
         await getFd('COMPATIBILITY_0300.m4a');
         audioConfig.uri = fdPath;
         audioConfig.location.latitude = 0;
@@ -303,14 +304,14 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0400
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0400
         * @tc.name      : location: {latitude: 0, longitude: 180}
         * @tc.desc      : location test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0400', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0400', 0, async function (done) {
         await getFd('COMPATIBILITY_0400.m4a');
         audioConfig.uri = fdPath;
         audioConfig.location.latitude = 0;
@@ -322,14 +323,14 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0500
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0500
         * @tc.name      : location: {latitude: -30, longitude: 60}
         * @tc.desc      : location test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0500', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0500', 0, async function (done) {
         await getFd('COMPATIBILITY_0500.m4a');
         audioConfig.uri = fdPath;
         audioConfig.location.latitude = -30;
@@ -341,14 +342,14 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0600
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0600
         * @tc.name      : location: {latitude: 60, longitude: -90}
         * @tc.desc      : location test
         * @tc.size      : MediumTest
         * @tc.type      : Function
         * @tc.level     : Level1
     */
-    it('SUB_MEDIA_AUDIO_RECORDER_FORMAT_COMPATIBILITY_0600', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_FORMAT_0600', 0, async function (done) {
         await getFd('COMPATIBILITY_0600.m4a');
         audioConfig.uri = fdPath;
         audioConfig.location.latitude = 60;
@@ -359,3 +360,4 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
         audioRecorder.prepare(audioConfig);
     })
 })
+}

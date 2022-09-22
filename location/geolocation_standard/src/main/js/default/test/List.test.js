@@ -14,5 +14,6 @@
  */
 
 require('./GeocoderTest.test.js')
+require('./GetCountryCode.test.js')
+require('./SystemLocation.test.js')
 require('./LocationTest.test.js')
-require('./Geolocation.test.js')

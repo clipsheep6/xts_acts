@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import app from '@system.app'
-import Context from '@ohos.napi_context'
 
 import {
 	describe,
@@ -1759,10 +1758,11 @@ describe('webgl1Test_webgl5', function() {
 		const vertices = [1, 2];
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.BLEND_SRC_ALPHA);
 		var arrBuffer = new ArrayBuffer(vertices.length * Float32Array.BYTES_PER_ELEMENT);
-		gl2.getBufferSubData(gl.ARRAY_BUFFER, false, new Int32Array(arrBuffer), 0, 0);
+		gl2.getBufferSubData(gl.ARRAY_BUFFER, 0, new Int32Array(arrBuffer), 0, 0);
 		const getBufferSubDataError = gl.getError();
 		console.info("getBufferSubDataError: " + getBufferSubDataError);
-		expect(getBufferSubDataError).assertEqual(gl.INVALID_VALUE);
+		expect(getBufferSubDataError).assertEqual(gl.NO_ERROR);
+		for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 		done();
 	})
 

@@ -17,61 +17,16 @@
 #include <gtest/gtest.h>
 #include "../Khrgles3BaseFunc.h"
 #include "../ActsKhrgles30004TestSuite.h"
+#include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003707, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003707 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.near"
-        "est_edge.offset_left",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003707 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003707 end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003707,
+        "KHR-GLES3.core.near",
+        "est_edge.offset_left");
 
-static HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003708, Function | MediumTest | Level2)
-{
-    GTEST_LOG_(INFO) << "TestCase_003708 start";
-    int argc = 3;
-    const char *argv[3] = {
-        ".",
-        "--deqp-case="
-        "KHR-GLES3.core.neare"
-        "st_edge.offset_right",
-        "--deqp-archive-dir=/data/local/tmp/"
-    };
-    
-    FuncRunResult result = RunTestKHRGLES(argc, argv);
-    ActsKhrgles30004TestSuite::runResult.numPassed += result.numPassed;
-    ActsKhrgles30004TestSuite::runResult.numFailed += result.numFailed;
-    ActsKhrgles30004TestSuite::runResult.numNotSupported += result.numNotSupported;
-    ActsKhrgles30004TestSuite::runResult.numWarnings += result.numWarnings;
-    ActsKhrgles30004TestSuite::runResult.numWaived += result.numWaived;
-    if (result.numNotSupported == 1) {
-        GTEST_LOG_(INFO) << "TestCase_003708 notsupport!";
-    } else if (result.isComplete) {
-        EXPECT_TRUE(result.isComplete);
-        EXPECT_TRUE(result.numPassed == 1);
-    };
-    GTEST_LOG_(INFO) << "TestCase_003708 end";
-}
+static SHRINK_HWTEST_F(ActsKhrgles30004TestSuite, TestCase_003708,
+        "KHR-GLES3.core.neare",
+        "st_edge.offset_right");

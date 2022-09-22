@@ -88,5 +88,12 @@ export default class MainAbility extends Ability {
         commonEvent.publish("onNewWantMain_To_Test_CommonEvent", publishData, () => {
             console.log("ACTS_NewWant Publish CallBack onNewWantMain_To_Test_CommonEvent")
         });
+        switch (want.action) {
+            case 'restartHapC':
+                commonEvent.publish("onNewWantMain2_To_Test_CommonEvent", publishData, () => {
+                    console.log("ACTS_NewWant Publish CallBack onNewWantMain2_To_Test_CommonEvent")
+                });
+                break;
+          }
     }
 };
