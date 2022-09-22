@@ -1225,13 +1225,13 @@ describe('VideoPlayerFuncPromiseTest', function () {
             expect(videoPlayer.height).assertEqual(HEIGHT_VALUE);
             console.info('case prepare called!!');
         }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-        startTime = videoPlayer.currentTime;
         await videoPlayer.play().then(() => {
             expect(videoPlayer.loop).assertEqual(false);
             console.info('case play called!!');
-            mediaTestBase.msleep(PLAY_TIME);
             expect(videoPlayer.state).assertEqual('playing');
         }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+        startTime = videoPlayer.currentTime;
+        mediaTestBase.msleep(PLAY_TIME);
         endTime = videoPlayer.currentTime;
         checkTime(PLAY_TIME * 2, (endTime - startTime), DELTA_TIME);
     })
