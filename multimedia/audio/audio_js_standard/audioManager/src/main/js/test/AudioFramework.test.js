@@ -4402,7 +4402,7 @@ describe('audioFramework', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : MEDIA');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
-                    if (VolumeEvent.volume == 0) {
+                    if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: MEDIA CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
                     }
@@ -4417,8 +4417,7 @@ describe('audioFramework', function () {
             done();
         });
         try {
-            await audioManager.setVolume(audioMedia, 0);
-            await audioManager.setVolume(audioMedia, 2);
+            await audioManager.setVolume(audioMedia, lowVol);
             console.info('setVolume success')
         } catch (err) {
             console.log('err :' + JSON.stringify(err))
@@ -4444,7 +4443,7 @@ describe('audioFramework', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : RINGTONE');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
-                    if (VolumeEvent.volume == 1) {
+                    if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: RINGTONE CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
                     }
@@ -4459,8 +4458,7 @@ describe('audioFramework', function () {
             done();
         });
         try {
-            await audioManager.setVolume(audioRingtone, 1);
-            await audioManager.setVolume(audioRingtone, 6);
+            await audioManager.setVolume(audioRingtone, lowVol);
             console.info('setVolume success')
         } catch (err) {
             console.log('err :' + JSON.stringify(err))
@@ -4486,7 +4484,7 @@ describe('audioFramework', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : VOICE_CALL');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
-                    if (VolumeEvent.volume == 14) {
+                    if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: VOICE_CALL CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
                     }
@@ -4501,8 +4499,7 @@ describe('audioFramework', function () {
             done();
         });
         try {
-            await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, 9);
-            await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, 14);
+            await audioManager.setVolume(audio.AudioVolumeType.VOICE_CALL, lowVol);
             console.info('setVolume success')
         } catch (err) {
             console.log('err :' + JSON.stringify(err))
@@ -4528,7 +4525,7 @@ describe('audioFramework', function () {
                     console.info('AudioFrameworkTest: Audio Volume Type : VOICE_ASSISTANT');
                     console.info('AudioFrameworkTest: Audio Volume Number : ' + VolumeEvent.volume);
                     console.info('AudioFrameworkTest: Audio Volume Update UI : ' + VolumeEvent.updateUi);
-                    if (VolumeEvent.volume == 10) {
+                    if (VolumeEvent.volume == lowVol) {
                         console.info('AudioFrameworkTest: VOICE_ASSISTANT CallBack : PASS :' + VolumeEvent.volume);
                         expect(true).assertTrue();
                     }
@@ -4544,8 +4541,7 @@ describe('audioFramework', function () {
         });
 
         try {
-            await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, 7);
-            await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, 11);
+            await audioManager.setVolume(audio.AudioVolumeType.VOICE_ASSISTANT, lowVol);
             console.info('setVolume success')
         } catch (err) {
             console.log('err :' + JSON.stringify(err))
