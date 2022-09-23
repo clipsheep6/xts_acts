@@ -353,6 +353,30 @@ export default function addImage() {
         });
 
         /**
+         * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_PROMISE_0300
+         * @tc.name      : createIncrementalSource-updateData-png-promise
+         * @tc.desc      : 1.create imagesource
+         *                 2.update data
+         *                 3.create pixelmap
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+        it('SUB_GRAPHIC_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_PROMISE_0300', 0, async function (done) {
+            let opts = {
+                sourceDensity: 240,
+                pixelFormat: 3,
+                size: { height: 4, width: 6 }
+            };
+            createIncrementalSourcePromise(
+                done,
+                'SUB_GRAPHIC_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_PROMISE_0300',
+                'sourceOpts',
+                opts
+            );
+        })
+
+        /**
          * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEINCREMENTALSOURCE_UPDATEDATA_PNG_CALLBACK_0200
          * @tc.name      : createIncrementalSource-updateData-png-callback
          * @tc.desc      : 1.create imagesource
