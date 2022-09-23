@@ -220,8 +220,38 @@ export default function webJsunit() {
      *tc.desic delete credentials
      */
     it('deleteHttpAuthCredentials',0,async function(done){
-      emitKey="emitOnConsole";
+      emitKey="emitGetOriginUsagePromise";
       Utils.registerEvent("deleteHttpAuthCredentials",false,446,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_090                                                                                                                                                                
+     *tc.name getOriginUsagePromise                                                                                                                                                                                                              
+     *tc.desic promise method
+     */
+    it('getOriginUsagePromise',0,async function(done){
+      emitKey="emitGetOriginQuotaPromise";
+      Utils.registerEvent("getOriginUsagePromise",'24576',447,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_091                                                                                                                                                                
+     *tc.name getOriginQuotaPromise                                                                                                                                                                                                              
+     *tc.desic promise method
+     */
+    it('getOriginQuotaPromise',0,async function(done){
+      emitKey="emitGetOriginsPromise";
+      Utils.registerEvent("getOriginQuotaPromise",'2575722086',448,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_092                                                                                                                                                                
+     *tc.name getOriginsPromise                                                                                                                                                                                                              
+     *tc.desic promise method
+     */
+    it('getOriginsPromise',0,async function(done){
+      emitKey="emitOnConsole";
+      Utils.registerEvent("getOriginsPromise",'file:///',449,done);
       sendEventByKey('webcomponent',10,'');
     })
     /* 

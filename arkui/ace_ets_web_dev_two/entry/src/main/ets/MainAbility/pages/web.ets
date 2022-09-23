@@ -77,18 +77,17 @@ struct Index {
             .zoomAccess(this.zoomAccessValue)
             .textZoomRatio(this.textRatio)
             .onConsole((event) => {
-                this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
                 let level = event.message.getMessageLevel()
                 let msg = event.message.getMessage()
                 let lineNumber = event.message.getLineNumber().toString()
-                let sourceId = event.message.getSourceId()
                 console.log("lineNumber:" + lineNumber)
                 setTimeout(()=>{ 
                     Utils.emitEvent(lineNumber,420)
                 },3000)
                 setTimeout(()=>{ 
+                    let sourceId = event.message.getSourceId()
                     Utils.emitEvent(sourceId,422)
-                },3000)
+                },5000)
                 return false
             })
             .onSearchResultReceive(ret=>{
@@ -234,6 +233,22 @@ struct Index {
                             },3000)                                                                             
                             break;
                         }
+                        case "emitGetOriginUsagePromise":{ 
+                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html"})
+                            setTimeout(()=>{
+                                web_webview.WebStorage.getOriginUsage("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html")
+                                    .then(usage=>{
+                                        console.log('usage: '+usage)
+                                        setTimeout(()=>{
+                                            Utils.emitEvent(usage.toString(),447)
+                                        },3000) 
+                                    })
+                                    .catch(error=>{
+                                        console.log('error: '+error)
+                                    })
+                            },3000)                                                                             
+                            break;
+                        }
                         case "emitGetOriginQuota":{ 
                             web_webview.WebStorage.getOriginQuota("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html",(error,result)=>{
                                 if (error) {
@@ -246,6 +261,21 @@ struct Index {
                             setTimeout(()=>{
                                 Utils.emitEvent(this.text,434)
                             },3000)                                                                              
+                            break;
+                        }
+                        case "emitGetOriginQuotaPromise":{ 
+                            setTimeout(()=>{
+                                web_webview.WebStorage.getOriginQuota("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html")
+                                    .then(quota=>{
+                                        console.log('usage: '+quota)
+                                        setTimeout(()=>{
+                                            Utils.emitEvent(quota.toString(),448)
+                                        },3000) 
+                                    })
+                                    .catch(error=>{
+                                        console.log('error: '+error)
+                                    })
+                            },3000)                                                                            
                             break;
                         }
                         case "emitGetOrigins":{ 
@@ -262,6 +292,26 @@ struct Index {
                             setTimeout(()=>{
                                 Utils.emitEvent(this.text,436)
                             },3000)                                                                               
+                            break;
+                        }
+                        case "emitGetOriginsPromise":{ 
+                            setTimeout(()=>{
+                                web_webview.WebStorage.getOrigins()
+                                    .then(origins=>{
+                                        for (let i = 0; i < origins.length; i++) {
+                                            console.log('origin: ' + origins[i].origin);
+                                            console.log('usage: ' + origins[i].usage);
+                                            console.log('quota: ' + origins[i].quota);
+                                        }
+                                        setTimeout(()=>{
+                                            Utils.emitEvent(origins[0].origin,449)
+                                        },3000) 
+                                    })
+                                    .catch(error=>{
+                                        console.log('error: '+error)
+                                    })
+                            },3000)
+                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})                                                                            
                             break;
                         }
                         case "emitDeleteOrigin":{ 
