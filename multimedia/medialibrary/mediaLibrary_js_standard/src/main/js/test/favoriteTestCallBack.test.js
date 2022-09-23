@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
@@ -23,20 +23,20 @@ const imageType = mediaLibrary.MediaType.IMAGE;
 const videoType = mediaLibrary.MediaType.VIDEO;
 const audioType = mediaLibrary.MediaType.AUDIO;
 const fileFetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND relative_path = ?',
-    selectionArgs: [fileType.toString(), 'Documents/'],
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
 };
 const imageFetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
 const videoFetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [videoType.toString()],
 };
 const audioFetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND bucket_display_name = ?',
-    selectionArgs: [audioType.toString(), 'Camera'],
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [audioType.toString()],
 };
 
 describe('favoriteTestCallBack.test.js', function () {

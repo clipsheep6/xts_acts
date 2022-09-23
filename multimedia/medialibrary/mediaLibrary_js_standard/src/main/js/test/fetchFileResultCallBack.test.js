@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
@@ -24,71 +24,71 @@ let videoType = mediaLibrary.MediaType.VIDEO;
 let audioType = mediaLibrary.MediaType.AUDIO;
 
 let getFileCountOneOp = {
-    selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections : fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs : [ fileType.toString() ],
-    order : mediaLibrary.FileKey.DATE_ADDED + " DESC LIMIT 0,1",
-    extendArgs: "",
+    order : fileKeyObj.DATE_ADDED + " DESC LIMIT 0,1",
+    extendArgs : "",
 };
 
 let getFileCountTwoOp = {
-    selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections : fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs : [ fileType.toString() ],
-    order : mediaLibrary.FileKey.DATE_ADDED + " DESC LIMIT 0,2",
-    extendArgs: "",
+    order : fileKeyObj.DATE_ADDED + " DESC LIMIT 0,2",
+    extendArgs : "",
 };
 
 let getFileCountTenOp = {
-    selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections : fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs : [ fileType.toString() ],
-    order : mediaLibrary.FileKey.DATE_ADDED + " DESC LIMIT 0,10",
-    extendArgs: "",
+    order : fileKeyObj.DATE_ADDED + " DESC LIMIT 0,10",
+    extendArgs : "",
 };
 
 let getFileCountOneHundredOp = {
-    selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections : fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs : [ fileType.toString() ],
-    order : mediaLibrary.FileKey.DATE_ADDED + " DESC LIMIT 0,100",
-    extendArgs: "",
+    order : fileKeyObj.DATE_ADDED + " DESC LIMIT 0,100",
+    extendArgs : "",
 };
 
 let getFirstObjectOp = {
-    selections : mediaLibrary.FileKey.RELATIVE_PATH + '= ?',
+    selections : fileKeyObj.RELATIVE_PATH + '= ?',
     selectionArgs : [ 'Camera/' ],
-    order : mediaLibrary.FileKey.ID + " DESC LIMIT 0,5",
-    extendArgs: "",
+    order : fileKeyObj.ID + " DESC LIMIT 0,5",
+    extendArgs : "",
 }
 
 let getAllObjectLimitOneOp = {
-    selections : mediaLibrary.FileKey.RELATIVE_PATH + '= ?',
+    selections : fileKeyObj.RELATIVE_PATH + '= ?',
     selectionArgs : [ 'Camera/' ],
-    order : mediaLibrary.FileKey.ID + " DESC LIMIT 0,1",
-    extendArgs: "",
+    order : fileKeyObj.ID + " DESC LIMIT 0,1",
+    extendArgs : "",
 }
 
 let getAllObjectLimitTwoOp = {
-    selections : mediaLibrary.FileKey.RELATIVE_PATH + '= ?',
+    selections : fileKeyObj.RELATIVE_PATH + '= ?',
     selectionArgs : [ 'Camera/' ],
-    order : mediaLibrary.FileKey.ID + " DESC LIMIT 0,1",
-    extendArgs: "",
+    order : fileKeyObj.ID + " DESC LIMIT 0,1",
+    extendArgs : "",
 }
 
 let getAllObjectLimitOneHundredOp = {
-    selections : mediaLibrary.FileKey.RELATIVE_PATH + '= ?',
+    selections : fileKeyObj.RELATIVE_PATH + '= ?',
     selectionArgs : [ 'Camera/' ],
-    order : mediaLibrary.FileKey.ID + " DESC LIMIT 0,100",
-    extendArgs: "",
+    order : fileKeyObj.ID + " DESC LIMIT 0,100",
+    extendArgs : "",
 }
 
 let getFileCountZeroOp = {
-    selections : mediaLibrary.FileKey.DISPLAY_NAME + '=?',
+    selections : fileKeyObj.DISPLAY_NAME + '=?',
     selectionArgs : [ 'The world has kissed my soul with its pain, asking for its return in songs.' ],
 };
 
 let getFileOp = {
-    selections : mediaLibrary.FileKey.DISPLAY_NAME + '= ? AND ' + mediaLibrary.FileKey.RELATIVE_PATH + '= ?',
+    selections : fileKeyObj.DISPLAY_NAME + '= ? AND ' + fileKeyObj.RELATIVE_PATH + '= ?',
     selectionArgs : [ '01.jpg', 'Camera/' ],
-    order : mediaLibrary.FileKey.ID + " DESC LIMIT 0,100",
-    extendArgs: "",
+    order : fileKeyObj.ID + " DESC LIMIT 0,100",
+    extendArgs : "",
 }
 
 describe('fetchFileResultCallback.test.js', async function() {
@@ -466,11 +466,11 @@ describe('fetchFileResultCallback.test.js', async function() {
                     if (firstObject.uri == undefined) {
                         console.info('MediaLibraryTest :firstObject.uri === undefined');
                     }
-					
-		    expect(firstObject.mimeType.startsWith('image/')).assertTrue();
-                    if (!firstObject.mimeType.startsWith('image/')) {
-			console.info('Test MediaLibraryTest :firstObject.mimeType:' + firstObject.mimeType);
-		    }
+
+                    expect(firstObject.mimeType == 'image/*').assertTrue();
+                    if (firstObject.mimeType != 'image/*') {
+                        console.info('MediaLibraryTest :firstObject.mimeType:' + firstObject.mimeType);
+                    }
 
                     expect(firstObject.mediaType == imageType).assertTrue();
                     if (firstObject.mediaType != imageType) {

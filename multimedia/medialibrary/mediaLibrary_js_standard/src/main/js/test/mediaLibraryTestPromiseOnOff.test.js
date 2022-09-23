@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
@@ -31,19 +31,19 @@ describe('mediaLibraryTestPromiseOnOff.test.js', async function () {
     let fileType = mediaLibrary.MediaType.FILE;
 
     let imagesfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [imageType.toString()],
     };
     let videosfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [videoType.toString()],
     };
     let audiosfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [audioType.toString()],
     };
     let filesfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     

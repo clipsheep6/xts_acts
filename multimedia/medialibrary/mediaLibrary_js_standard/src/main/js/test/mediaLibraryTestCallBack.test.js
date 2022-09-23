@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 let fileKeyObj = mediaLibrary.FileKey;
 let fetchOp = {
-    selections: mediaLibrary.FileKey.PATH + ' LIKE ? ',
+    selections: fileKeyObj.PATH + ' LIKE ? ',
     selectionArgs: ['/data/media/%'],
-    order: mediaLibrary.FileKey.PATH,
+    order: fileKeyObj.PATH,
 };
 // let directoryTypeObj = mediaLibrary.DirectoryType;
 
@@ -36,45 +36,45 @@ let audioType = mediaLibrary.MediaType.AUDIO;
 let fileType = mediaLibrary.MediaType.FILE;
 
 let imagesfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
 let videosfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [videoType.toString()],
 };
 let audiosfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND bucket_display_name = ?',
-    selectionArgs: [audioType.toString(), 'Camera'],
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [audioType.toString()],
 };
 let filesfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND relative_path = ?',
-    selectionArgs: [fileType.toString(), 'Documents/'],
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
 };
 
 let imageAndVideofetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString(), videoType.toString()],
 };
 let imageAndVideoAndfilefetchOp = {
     selections:
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ? or ' +
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ? or ' +
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ?',
     selectionArgs: [imageType.toString(), videoType.toString(), fileType.toString()],
 };
 let imageAndVideoAndfileAndAudiofetchOp = {
     selections:
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ? or ' +
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ? or ' +
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ? or ' +
-        mediaLibrary.FileKey.MEDIA_TYPE +
+        fileKeyObj.MEDIA_TYPE +
         '= ?',
     selectionArgs: [
         imageType.toString(),
@@ -265,14 +265,14 @@ describe('mediaLibraryTestCallBack.test.js', function () {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-     it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_GETFILEASSETS_008', 0, async function (done) {
+    it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_GETFILEASSETS_008', 0, async function (done) {
         let fetchOp = {
-            selections: mediaLibrary.FileKey.MEDIA_TYPE + 'abc= ?',
+            selections: fileKeyObj.MEDIA_TYPE + 'abc= ?',
             selectionArgs: ['abc'],
         };
         try {
             media.getFileAssets(fetchOp, (err, fetchFileResult) => {
-                expect(err != undefined).assertTrue();
+                expect(fetchFileResult == undefined).assertTrue();
                 done();
             });
         } catch (error) {
@@ -292,12 +292,12 @@ describe('mediaLibraryTestCallBack.test.js', function () {
      */
     it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_GETFILEASSETS_009', 0, async function (done) {
         let fetchOp = {
-            selections: mediaLibrary.FileKey.MEDIA_TYPE + 'abc= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+            selections: fileKeyObj.MEDIA_TYPE + 'abc= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
             selectionArgs: ['abc', audioType.toString()],
         };
         try {
             media.getFileAssets(fetchOp, (err, fetchFileResult) => {
-                expect(err != undefined).assertTrue();
+                expect(fetchFileResult == undefined).assertTrue();
                 done();
             });
         } catch (error) {
@@ -318,17 +318,17 @@ describe('mediaLibraryTestCallBack.test.js', function () {
     it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_GETFILEASSETS_010', 0, async function (done) {
         let fetchOp = {
             selections:
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 'abc= ? or ' +
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 '= ? or ' +
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 '= ?',
             selectionArgs: ['abc', videoType.toString(), fileType.toString()],
         };
         try {
             media.getFileAssets(fetchOp, (err, fetchFileResult) => {
-                expect(err != undefined).assertTrue();
+                expect(fetchFileResult == undefined).assertTrue();
                 done();
             });
         } catch (error) {
@@ -349,19 +349,19 @@ describe('mediaLibraryTestCallBack.test.js', function () {
     it('SUB__MEDIA_MIDIALIBRARY_CALLBACK_GETFILEASSETS_011', 0, async function (done) {
         let fetchOp = {
             selections:
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 'abc= ? or ' +
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 '= ? or ' +
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 '= ? or ' +
-                mediaLibrary.FileKey.MEDIA_TYPE +
+                fileKeyObj.MEDIA_TYPE +
                 '= ?',
             selectionArgs: ['abc', videoType.toString(), fileType.toString(), audioType.toString()],
         };
         try {
             media.getFileAssets(fetchOp, (err, fetchFileResult) => {
-                expect(err != undefined).assertTrue();
+                expect(fetchFileResult == undefined).assertTrue();
                 done();
             });
         } catch (error) {

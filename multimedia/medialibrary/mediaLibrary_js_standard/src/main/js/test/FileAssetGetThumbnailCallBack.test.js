@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import image from '@ohos.multimedia.image';
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -29,19 +29,19 @@ describe('FileAssetGetThumbnailCallBack.test.js', function () {
     let videoType = mediaLibrary.MediaType.VIDEO;
     let audioType = mediaLibrary.MediaType.AUDIO;
     let imageFetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '=?',
+        selections: fileKeyObj.MEDIA_TYPE + '=?',
         selectionArgs: [imagetype.toString()],
-        order: mediaLibrary.FileKey.DATE_ADDED,
+        order: fileKeyObj.DATE_ADDED,
     };
     let videoFetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '=?',
+        selections: fileKeyObj.MEDIA_TYPE + '=?',
         selectionArgs: [videoType.toString()],
-        order: mediaLibrary.FileKey.DATE_ADDED,
+        order: fileKeyObj.DATE_ADDED,
     };
     let audioFetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '=?',
+        selections: fileKeyObj.MEDIA_TYPE + '=?',
         selectionArgs: [audioType.toString()],
-        order: mediaLibrary.FileKey.DATE_ADDED,
+        order: fileKeyObj.DATE_ADDED,
     };
     beforeAll(function () {});
     beforeEach(function () {});

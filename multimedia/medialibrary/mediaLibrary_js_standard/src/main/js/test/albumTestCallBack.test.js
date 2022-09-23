@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
@@ -27,35 +27,35 @@ let allTypefetchOp = {
     selectionArgs: [],
 };
 let albumDeletefetchOp = {
-    selections: mediaLibrary.FileKey.RELATIVE_PATH + '= ? AND ' + mediaLibrary.FileKey.ALBUM_NAME + '= ?',
-    selectionArgs: ['Pictures/', 'DeleteAlbumCallback'],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.ALBUM_NAME + '= ?',
+    selectionArgs: ['Pictures/','DeleteAlbumCallback'],
 };
 let albumCoverUrifetchOp = {
-    selections: mediaLibrary.FileKey.RELATIVE_PATH + '= ? AND ' + mediaLibrary.FileKey.ALBUM_NAME + '= ?',
-    selectionArgs: ['Pictures/', 'weixin'],
+    selections: fileKeyObj.RELATIVE_PATH + '= ? AND ' + fileKeyObj.ALBUM_NAME + '= ?',
+    selectionArgs: ['Pictures/','weixin'],
 };
 let imageAlbumfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
 let videoAlbumfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [videoType.toString()],
 };
 let audioAlbumfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [audioType.toString()],
 };
 let imageAndVideoAlbumfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString(), videoType.toString()],
 };
 let imageAndAudioAlbumfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString(), audioType.toString()],
 };
 let videoAndAudioAlbumfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [videoType.toString(), audioType.toString()],
 };
 function printAlbumMessage(testNum, album) {
@@ -476,7 +476,7 @@ describe('albumTestCallBack.test.js', async function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_GETALBUMASSETS_CALLBACK_002_06', 0, async function (done) {
         let fileHasArgsfetchOp3 = {
-            selections: mediaLibrary.FileKey.MEDIA_TYPE + ' = ?',
+            selections: fileKeyObj.MEDIA_TYPE + ' = ?',
             selectionArgs: ['666'],
         };
         try {
@@ -803,7 +803,7 @@ describe('albumTestCallBack.test.js', async function () {
                 selectionArgs: [],
                 order: 'date_added DESC LIMIT 0,1',
             };
-            media.getAlbums(albumCoverUrifetchOp, async (err, albumList) => {
+            media.getAlbums(albumCoverUrifetchOp, async(err, albumList) => {
                 if (albumList == undefined) {
                     expect(false).assertTrue();
                     done();
@@ -821,7 +821,7 @@ describe('albumTestCallBack.test.js', async function () {
                         console.info('ALBUM_CALLBACK getAlbum 004_01 asset.uri = ' + asset.uri);
                         expect(asset.uri == album.coverUri).assertTrue();
                         done();
-                    }
+                    }            
                 }
             });
         } catch (error) {

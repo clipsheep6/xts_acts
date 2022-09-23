@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
@@ -25,17 +25,17 @@ let videoType = mediaLibrary.MediaType.VIDEO;
 let audioType = mediaLibrary.MediaType.AUDIO;
 
 let imagesfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
 
 let videosfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [videoType.toString()],
 };
 
 let audiosfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [audioType.toString()],
 };
 let allsfetchOp = {
@@ -46,49 +46,20 @@ let allsfetchOp = {
 const context = featureAbility.getContext();
 const media = mediaLibrary.getMediaLibrary(context);
 
-const filekeys = {
-    parent: 'PARENT',
-    mimeType: 'MIME_TYPE',
-    size: 'SIZE',
-    dateAdded: 'DATE_ADDED',
-    title: 'TITLE',
-    duration: 'DURATION',
-    width: 'WIDTH',
-    height: 'HEIGHT',
-    orientation: 'ORIENTATION',
-    albumId: 'ALBUM_ID',
-    albumName: 'ALBUM_NAME',
-    artist: 'ARTIST',
-    audioAlbum: 'AUDIOALBUM',
-    dateModified: 'DATE_MODIFIED',
-    dateTaken: 'DATE_TAKEN',
-}
-
-async function getFileAssetsBy(done, type) {
-    let assetOp = imagesfetchOp
-    if(type == 'audioAlbum' || type == 'artist' || type == 'duration') {
-        assetOp = audiosfetchOp
-    }
-    const fetchFileResult = await media.getFileAssets(assetOp);
-    const asset = await fetchFileResult.getFirstObject();
-    let Op = {
-        selections: mediaLibrary.FileKey[filekeys[type]] + '= ?',
-        selectionArgs: [asset[type] + ''],
-    };
-
+async function getFileAssetsBy(done, op) {
+    console.info("ycy 33 " + op);
     try {
-        media.getFileAssets(Op, async(err, fetchFileResult) => {
+        media.getFileAssets(op, async(err, fetchFileResult) => {
             if (fetchFileResult == undefined) {
                 expect(false).assertTrue();
                 done();
             } else {
                 try {
                     const fetchCount = await fetchFileResult.getCount();
-                    console.log('getFileAssetsBy ' + type + 'fetchCount = ' + fetchCount);
                     expect(fetchCount > 0).assertTrue();
                     done();
                 } catch (error) {
-                    console.log('getFileAssetsBy ' + type + ' failed error message = ' + error);
+                    console.log('getFileAssetsByKey failed error message = ' + error);
                 }
             }
         });
@@ -100,7 +71,7 @@ async function getFileAssetsBy(done, type) {
 function printAttr (done, asset, tNum) {
 
 }
-describe('filekeyTestPromise.test.js', async function () {
+describe('filekeyTestCallBack.test.js', async function () {
     beforeAll(function () {});
     beforeEach(function () {});
     afterEach(function () {});
@@ -116,7 +87,16 @@ describe('filekeyTestPromise.test.js', async function () {
      */
 
     it('test_fileKey_001', 0, async function (done) {
-        getFileAssetsBy(done, 'parent');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        console.info("ycy 11 " + fetchFileResult.getCount());
+        const asset = await fetchFileResult.getFirstObject();
+        console.info("ycy 22 " + asset.parent);
+        let op = {
+            selections: mediaLibrary.FileKey.PARENT + '= ?',
+            selectionArgs: [asset.parent + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -128,7 +108,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_002', 0, async function (done) {
-        getFileAssetsBy(done, 'mimeType');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.MIME_TYPE + '= ?',
+            selectionArgs: [asset.mimeType + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -140,7 +127,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_003', 0, async function (done) {
-        getFileAssetsBy(done, 'size');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.SIZE + '= ?',
+            selectionArgs: [asset.size + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -152,8 +146,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_004', 0, async function (done) {
-        
-        getFileAssetsBy(done, 'dateAdded');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.DATE_ADDED + '= ?',
+            selectionArgs: [asset.dateAdded + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -165,7 +165,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_005', 0, async function (done) {
-        getFileAssetsBy(done, 'dateModified');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.DATE_MODIFIED + '= ?',
+            selectionArgs: [asset.dateModified + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -177,7 +184,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_006', 0, async function (done) {
-        getFileAssetsBy(done, 'dateTaken');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.DATE_TAKEN + '= ?',
+            selectionArgs: [asset.dateTaken + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -189,7 +203,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_007', 0, async function (done) {
-        getFileAssetsBy(done, 'title');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.TITLE + '= ?',
+            selectionArgs: [asset.title + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -201,7 +222,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_008', 0, async function (done) {
-        getFileAssetsBy(done, 'duration');
+        let assetOp = audiosfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.DURATION + '= ?',
+            selectionArgs: [asset.duration + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -213,7 +241,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_009', 0, async function (done) {
-        getFileAssetsBy(done, 'width');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.WIDTH + '= ?',
+            selectionArgs: [asset.width + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -225,7 +260,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_010', 0, async function (done) {
-        getFileAssetsBy(done, 'height');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.HEIGHT + '= ?',
+            selectionArgs: [asset.height + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -237,7 +279,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_011', 0, async function (done) {
-        getFileAssetsBy(done, 'orientation');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.ORIENTATION + '= ?',
+            selectionArgs: [asset.orientation + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -249,7 +298,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_012', 0, async function (done) {
-        getFileAssetsBy(done, 'albumId');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.ALBUM_ID + '= ?',
+            selectionArgs: [asset.albumId + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -261,7 +317,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_0013', 0, async function (done) {
-        getFileAssetsBy(done, 'albumName');
+        let assetOp = imagesfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+            selectionArgs: [asset.albumName + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -273,7 +336,14 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_0014', 0, async function (done) {
-        getFileAssetsBy(done, 'artist');
+        let assetOp = audiosfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.ARTIST + '= ?',
+            selectionArgs: [asset.artist + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 
     /**
@@ -285,6 +355,13 @@ describe('filekeyTestPromise.test.js', async function () {
      * @tc.level     : Level 0
      */
     it('test_fileKey_0015', 0, async function (done) {
-        getFileAssetsBy(done, 'audioAlbum');
+        let assetOp = audiosfetchOp
+        const fetchFileResult = await media.getFileAssets(assetOp);
+        const asset = await fetchFileResult.getFirstObject();
+        let op = {
+            selections: mediaLibrary.FileKey.AUDIOALBUM + '= ?',
+            selectionArgs: [asset.audioAlbum + ''],
+        };
+        getFileAssetsBy(done, op);
     });
 });

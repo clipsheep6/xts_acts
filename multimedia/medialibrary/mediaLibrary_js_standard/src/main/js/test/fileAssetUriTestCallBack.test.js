@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility'
 import fileio from '@ohos.fileio';
 import {describe, it, expect} from 'deccjsunit/index';
@@ -41,7 +41,7 @@ describe('fileAssetUriTestCallback.test.js', async function() {
         try {
             let type = mediaLibrary.MediaType.IMAGE;
             let fetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ type.toString() ],
             };
             const fetchFileResult = await media.getFileAssets(fetchOp);
@@ -51,24 +51,24 @@ describe('fileAssetUriTestCallback.test.js', async function() {
             const uri = firstObject.uri;
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  uri:'
                          + uri);
-            const searchUri = uri.substr(0, uri.lastIndexOf('/') + 1) + id;
-            console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  searchUri:'
-                         + searchUri);
+            const serachUri = 'dataability:///media/image/' + id;
+            console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  serachUri:'
+                         + serachUri);
 
             let serchfetchOp = {
-                uri:searchUri.toString(),
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                uri:serachUri.toString(),
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ type.toString()],
             };
 
             const result = await media.getFileAssets(serchfetchOp);
             console.info(
                 'MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  getFileAssets by uri:'
-                + searchUri + ",result.getCount():" + result.getCount());
+                + serachUri + ",result.getCount():" + result.getCount());
             asset = await result.getFirstObject();
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  asset.uri:'
                          + asset.uri);
-            expect(asset.uri == searchUri).assertTrue();
+            expect(asset.uri == serachUri).assertTrue();
             fd = await asset.open('r');
             expect(fd > 0).assertTrue();
             console.info('MediaLibraryTest : SUB_MEDIA_MEDIALIBRARY_OPENANDCLOSE_ASSET_URI_CALLBACK_005_35  fd:' + fd);
