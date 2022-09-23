@@ -27,6 +27,7 @@ struct Index {
     responseweb: WebResourceResponse = new WebResourceResponse()
     @State str:string="emitStoreWebArchive"
     @State text:string=""
+    @State num:number=0
     @State textRatio:number=100
     @State zoomAccessValue:boolean=true
     host: string = "www.spincast.org"
@@ -76,6 +77,7 @@ struct Index {
             .zoomAccess(this.zoomAccessValue)
             .textZoomRatio(this.textRatio)
             .onConsole((event) => {
+                this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
                 let level = event.message.getMessageLevel()
                 let msg = event.message.getMessage()
                 let lineNumber = event.message.getLineNumber().toString()
@@ -214,6 +216,88 @@ struct Index {
                                 Utils.emitEvent(zoomInCalled,428);                                                                                 
                             },3000);                                                                                  
                             break ;
+                        }
+                        case "emitGetOriginUsage":{ 
+                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html"})
+                            setTimeout(()=>{
+                                web_webview.WebStorage.getOriginUsage("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html",(error,result)=>{
+                                    if (error) {
+                                        console.log('error:' + error);
+                                        return;
+                                    }
+                                    this.text = result.toString();
+                                    console.log("usage is:" + this.text)
+                                })
+                                setTimeout(()=>{
+                                    Utils.emitEvent(this.text,432)
+                                },3000) 
+                            },3000)                                                                             
+                            break;
+                        }
+                        case "emitGetOriginQuota":{ 
+                            web_webview.WebStorage.getOriginQuota("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html",(error,result)=>{
+                                if (error) {
+                                    console.log('error:' + error);
+                                    return;
+                                }
+                                this.text = result.toString();
+                                console.log("usage is:" + this.text)
+                            })
+                            setTimeout(()=>{
+                                Utils.emitEvent(this.text,434)
+                            },3000)                                                                              
+                            break;
+                        }
+                        case "emitGetOrigins":{ 
+                            web_webview.WebStorage.getOrigins((error, origins) => {
+                                if (error) {
+                                    console.log('error: ' + error);
+                                    return;
+                                }
+                                this.text = origins[0].origin.toString();
+                                var us = origins[0].usage;
+                                var qu = origins[0].quota;
+                                console.log("usage is:" + this.text)
+                            })
+                            setTimeout(()=>{
+                                Utils.emitEvent(this.text,436)
+                            },3000)                                                                               
+                            break;
+                        }
+                        case "emitDeleteOrigin":{ 
+                            web_webview.WebStorage.deleteOrigin("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html")
+                            setTimeout(()=>{
+                                web_webview.WebStorage.getOriginUsage("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html",(error, usage) => {
+                                    if (error) {
+                                        console.log('error: ' + error);
+                                        return;
+                                    }
+                                    this.num = usage
+                                    console.log("usage is:" + this.num)
+                                    setTimeout(()=>{
+                                        Utils.emitEvent(this.num,438)
+                                    },4000)   
+                                })
+                            },3000)  
+                                                                                                        
+                            break;
+                        }
+                        case "emitDeleteAllData":{ 
+                            web_webview.WebStorage.deleteAllData()
+                            setTimeout(()=>{
+                                web_webview.WebStorage.getOriginUsage("file:///data/storage/el1/bundle/phone/resources/rawfile/webstorage.html",(error, usage) => {
+                                    if (error) {
+                                        console.log('error: ' + error);
+                                        return;
+                                    }
+                                    this.num = usage
+                                    console.log("usage is:" + this.num)
+                                    setTimeout(()=>{
+                                        Utils.emitEvent(this.num,440)
+                                    },4000)   
+                                })      
+                            },3000)                                                                     
+                            break;
                         }
                         case "emitSaveHttpAuthCredentials":{ 
                             web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
