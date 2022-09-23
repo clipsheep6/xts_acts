@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index';
 
@@ -70,7 +70,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_02', 0, async function(done) {
         try {
             let imageAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ imageType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -96,7 +96,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_03', 0, async function(done) {
         try {
             let audioAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ audioType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -122,7 +122,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_04', 0, async function(done) {
         try {
             let videoAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ videoType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -148,7 +148,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_05', 0, async function(done) {
         try {
             let imageAndVideoAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ imageType.toString(), videoType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -174,7 +174,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_06', 0, async function(done) {
         try {
             let imageAndAudioAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ imageType.toString(), audioType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -200,7 +200,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_07', 0, async function(done) {
         try {
             let videoAndAudioAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ videoType.toString(), audioType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -226,8 +226,8 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_08', 0, async function(done) {
         try {
             let imgAndVideoAndAudioAlbumfetchOp = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? or ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ? or '
-                                 + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? or ' + fileKeyObj.MEDIA_TYPE + '= ? or '
+                                 + fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ imageType.toString(), videoType.toString(), audioType.toString() ],
                 order : 'date_added DESC LIMIT 0,3',
             };
@@ -253,7 +253,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_09', 0, async function(done) {
         try {
             let albumfetchOpOne = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ imageType.toString() ],
                 order : 'date_added DESC LIMIT 0,1',
             };
@@ -279,7 +279,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_10', 0, async function(done) {
         try {
             let albumfetchOpOne = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ audioType.toString() ],
                 order : 'date_added DESC LIMIT 0,1',
             };
@@ -305,7 +305,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_11', 0, async function(done) {
         try {
             let albumfetchOpOne = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+                selections : fileKeyObj.MEDIA_TYPE + '= ?',
                 selectionArgs : [ videoType.toString() ],
                 order : 'date_added DESC LIMIT 0,1',
             };
@@ -331,7 +331,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_12', 0, async function(done) {
         try {
             let albumfetchOpNone = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND date_added < 0',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? AND date_added < 0',
                 selectionArgs : [ imageType.toString() ],
                 order : 'date_added DESC LIMIT 0,1',
             };
@@ -359,7 +359,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_13', 0, async function(done) {
         try {
             let albumfetchOpNone = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND date_added < 0',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? AND date_added < 0',
                 selectionArgs : [ audioType.toString() ],
                 order : 'date_added DESC LIMIT 0,1',
             };
@@ -387,7 +387,7 @@ describe('albumGetFileAssetsPromise.test.js', async function() {
     it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_14', 0, async function(done) {
         try {
             let albumfetchOpNone = {
-                selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND date_added < 0',
+                selections : fileKeyObj.MEDIA_TYPE + '= ? AND date_added < 0',
                 selectionArgs : [ videoType.toString() ],
                 order : 'date_added DESC LIMIT 0,1',
             };

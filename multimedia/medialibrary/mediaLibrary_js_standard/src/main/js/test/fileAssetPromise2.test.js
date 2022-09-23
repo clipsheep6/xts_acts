@@ -13,35 +13,49 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 function printAttr(asset) {
-    for (const key in asset) {
-        console.info(`${key}: asset[key]`);
-    }
+    console.info("id: " + asset.id);
+    console.info("uri: " + asset.uri);
+    console.info("mimeType: " + asset.mimeType);
+    console.info("mediaType: " + asset.mediaType.toString());
+    console.info("displayName: " + asset.displayName);
+    console.info("title: " + asset.title);
+    console.info("relativePath: " + asset.relativePath);
+    console.info("parent: " + asset.parent);
+    console.info("size: " + asset.size);
+    console.info("dateAdded: " + asset.dateAdded);
+    console.info("dateModified: " + asset.dateModified);
+    console.info("dateTaken: " + asset.dateTaken);
+    console.info("artist: " + asset.artist);
+    console.info("audioAlbum: " + asset.audioAlbum);
+    console.info("width: " + asset.width);
+    console.info("height: " + asset.height);
+    console.info("orientation: " + asset.orientation);
+    console.info("duration: " + asset.duration);
+    console.info("albumId: " + asset.albumId);
+    console.info("albumUri: " + asset.albumUri);
+    console.info("albumName: " + asset.albumName);
 }
 function checkAttrs(done, asset, tNum) {
-    let passed = true;
-    for (const key in asset) {
-        if (asset[key] == undefined) {
-            passed = false;
-            break;
-        }
-    }
-    if (passed) {
-        console.info(`FileAsset checkAttrs ${tNum} passed`);
-        expect(true).assertTrue();
-        done();
-    } else {
+    if (asset.id == undefined || asset.uri == undefined || asset.mimeType == undefined || asset.mediaType == undefined
+        || asset.displayName == undefined || asset.title == undefined || asset.relativePath == undefined
+        || asset.parent == undefined || asset.size == undefined || asset.dateAdded == undefined
+        || asset.dateModified == undefined || asset.dateTaken == undefined || asset.artist == undefined
+        || asset.audioAlbum == undefined || asset.width == undefined || asset.height == undefined
+        || asset.orientation == undefined || asset.duration == undefined || asset.albumId == undefined
+        || asset.albumUri == undefined || asset.albumName == undefined) {
         console.info(`FileAsset checkAttrs ${tNum} failed`);
         expect(false).assertTrue();
         done();
+        return;
     }
-}
-function sleep(time){
-	for (let t = Date.now(); Date.now() - t <= time;);
+    console.info(`FileAsset checkAttrs ${tNum} passed`);
+    expect(true).assertTrue();
+    done();
 }
 describe('fileAssetPromise2.test.js', async function () {
     let fileKeyObj = mediaLibrary.FileKey;
@@ -50,16 +64,16 @@ describe('fileAssetPromise2.test.js', async function () {
     let videoType = mediaLibrary.MediaType.VIDEO;
     let audioType = mediaLibrary.MediaType.AUDIO;
     let imagesfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [imageType.toString()],
     };
 
     let videosfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [videoType.toString()],
     };
     let audiosfetchOp = {
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [audioType.toString()],
     };
 
@@ -69,10 +83,10 @@ describe('fileAssetPromise2.test.js', async function () {
     };
     const context = featureAbility.getContext();
     const media = mediaLibrary.getMediaLibrary(context);
-    beforeAll(function () { });
-    beforeEach(function () { });
-    afterEach(function () { });
-    afterAll(function () { });
+    beforeAll(function () {});
+    beforeEach(function () {});
+    afterEach(function () {});
+    afterAll(function () {});
 
     /**
      * @tc.number    : SUB_MEDIA_FILEASSET_commitModify_promise_001
@@ -86,7 +100,7 @@ describe('fileAssetPromise2.test.js', async function () {
         try {
             const fetchFileResult = await media.getFileAssets(imagesfetchOp);
             const asset = await fetchFileResult.getFirstObject();
-            const newName = 'newName' + new Date().getTime() + '.jpg';
+            const newName = 'newName';
             asset.displayName = newName;
             const id = asset.id;
             await asset.commitModify();
@@ -203,14 +217,14 @@ describe('fileAssetPromise2.test.js', async function () {
         try {
             const fetchFileResult = await media.getFileAssets(imagesfetchOp);
             const asset = await fetchFileResult.getFirstObject();
-            let neworientation = 90;
-            if (asset.orientation == 90) {
+            let neworientation = 1;
+            if (asset.orientation == 1) {
                 neworientation = 0;
             }
             asset.orientation = neworientation;
             const id = asset.id;
             await asset.commitModify();
-	    sleep(1000);
+
             const fetchFileResult2 = await media.getFileAssets(imagesfetchOp);
             const dataList = await fetchFileResult2.getAllObject();
             let passed = false;

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 
@@ -25,33 +25,21 @@ let videoType = mediaLibrary.MediaType.VIDEO;
 let audioType = mediaLibrary.MediaType.AUDIO;
 
 let imagesfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
 let videosfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [videoType.toString()],
 };
 let audiosfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND bucket_display_name = ?',
-    selectionArgs: [audioType.toString(), 'Camera'],
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [audioType.toString()],
 };
 let filesfetchOp = {
-    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? AND relative_path = ?',
-    selectionArgs: [fileType.toString(), 'Documents/'],
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
 };
-
-function checkAssetAttr(done, attr, testNum, asset, checkType) {
-    if (checkType && asset[attr] != checkType) {
-        console.info(`ASSET_PROMISE getFileAssets ${testNum} failed`);
-        expect(false).assertTrue();
-        done();
-    } else if (asset[attr] == undefined) {
-        console.info(`ASSET_PROMISE getFileAssets ${testNum} failed`);
-        expect(false).assertTrue();
-        done();
-    }
-}
 
 let path;
 let presetAsset;
@@ -131,7 +119,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_02', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
 
@@ -152,7 +140,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_03', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.relativePath == path).assertTrue();
@@ -178,7 +166,7 @@ describe('fileTestPromise.test.js', function () {
             asset.title = `title_${new Date().getTime()}`;
             await asset.commitModify();
             const id = asset.id;
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const newAssets = await media.getFileAssets(idOP);
             const newdataList = await newAssets.getAllObject();
             const newAsset = newdataList[0];
@@ -217,7 +205,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_08', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.mediaType == mediaType).assertTrue();
@@ -237,7 +225,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_001_11', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.orientation == orientation).assertTrue();
@@ -304,7 +292,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_02', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
 
@@ -325,7 +313,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_03', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
 
@@ -352,7 +340,7 @@ describe('fileTestPromise.test.js', function () {
             asset.title = `title_${new Date().getTime()}`;
             await asset.commitModify();
             const id = asset.id;
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const newAssets = await media.getFileAssets(idOP);
             const newdataList = await newAssets.getAllObject();
             const newAsset = newdataList[0];
@@ -391,7 +379,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_08', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.mediaType == mediaType).assertTrue();
@@ -411,7 +399,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_002_11', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.orientation == orientation).assertTrue();
@@ -476,7 +464,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_02', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.displayName == displayName).assertTrue();
@@ -497,7 +485,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_03', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.relativePath == path).assertTrue();
@@ -524,7 +512,7 @@ describe('fileTestPromise.test.js', function () {
             await asset.commitModify();
 
             const id = asset.id;
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const newAssets = await media.getFileAssets(idOP);
             const newdataList = await newAssets.getAllObject();
             const newAsset = newdataList[0];
@@ -563,7 +551,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_003_08', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.mediaType == mediaType).assertTrue();
@@ -629,7 +617,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_02', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.displayName == displayName).assertTrue();
@@ -649,7 +637,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_03', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.relativePath == path).assertTrue();
@@ -675,7 +663,7 @@ describe('fileTestPromise.test.js', function () {
             asset.title = `title_${new Date().getTime()}`;
             await asset.commitModify();
             const id = asset.id;
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const newAssets = await media.getFileAssets(idOP);
             const newdataList = await newAssets.getAllObject();
             const newAsset = newdataList[0];
@@ -714,7 +702,7 @@ describe('fileTestPromise.test.js', function () {
      */
     it('SUB_MEDIA_MEDIALIBRARY_CREATEASSET_PROMISE_004_08', 0, async function (done) {
         try {
-            const idOP = { selections: mediaLibrary.FileKey.ID + '= ?', selectionArgs: ['' + id] };
+            const idOP = { selections: fileKeyObj.ID + '= ?', selectionArgs: ['' + id] };
             const fileAssets = await media.getFileAssets(idOP);
             const asset = await fileAssets.getFirstObject();
             expect(asset.mediaType == mediaType).assertTrue();
