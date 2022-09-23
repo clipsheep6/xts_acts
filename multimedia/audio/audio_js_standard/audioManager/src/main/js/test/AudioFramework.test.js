@@ -4394,6 +4394,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_AUDIO_MANAGER_ONVOLUMECHANGE_0100', 1, async function (done) {
+        audioManager = audio.getAudioManager();
         audioManager.on('volumeChange', (VolumeEvent) => {
             console.log('AudioFrameworkTest: Volume Change Event is called');
             switch (VolumeEvent.volumeType) {
@@ -4435,6 +4436,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_AUDIO_MANAGER_ONVOLUMECHANGE_0200', 1, async function (done) {
+        audioManager = audio.getAudioManager();
         audioManager.on('volumeChange', (VolumeEvent) => {
             console.log('AudioFrameworkTest: Volume Change Event is called');
             switch (VolumeEvent.volumeType) {
@@ -4476,6 +4478,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_MANAGER_ONVOLUMECHANGE_0300', 2, async function (done) {
+        audioManager = audio.getAudioManager();
         audioManager.on('volumeChange', (VolumeEvent) => {
             console.log('AudioFrameworkTest: Volume Change Event is called');
             switch (VolumeEvent.volumeType) {
@@ -4517,6 +4520,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_MANAGER_ONVOLUMECHANGE_0400', 2, async function (done) {
+        audioManager = audio.getAudioManager();
         audioManager.on('volumeChange', (VolumeEvent) => {
             console.log('AudioFrameworkTest: Volume Change Event is called');
             switch (VolumeEvent.volumeType) {
