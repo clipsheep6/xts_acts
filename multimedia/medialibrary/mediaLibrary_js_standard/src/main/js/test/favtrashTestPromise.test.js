@@ -18,7 +18,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
-describe('file.promise.test.js', function () {
+describe('favtrashTestPromise.test.js', function () {
     var context = featureAbility.getContext();
     console.info('MediaLibraryTest : getMediaLibrary IN');
     var media = mediaLibrary.getMediaLibrary(context);
