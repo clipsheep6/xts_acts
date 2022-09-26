@@ -31,7 +31,7 @@ export default function webJsunit() {
                 data: {
                     "ACTION": emitKey
                 }
-            }
+            }  
             let backEvent = {
                 eventId:10,
                 priority:events_emitter.EventPriority.LOW
