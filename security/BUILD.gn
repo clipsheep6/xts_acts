@@ -20,6 +20,7 @@ group("security") {
       "access_token/AccessTokenTest_Normal_js:ActsAccessTokenApiJSNormalTest",
       "cipher/datacipher:datacipher",
       "security_huks_basic",
+      "cryptoFramework:ActsCryptoFrameworkJSNormalTest",
     ]
   }
 }
