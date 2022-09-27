@@ -79,17 +79,15 @@ export default function radioJsunit() {
      * @tc.desc    Function test
      */
     it('Telephony_NetworkSearch_isNrSupported_Promise_0400', 0, async function (done) {
-      if(utils.notCheck){
-        done();
-        return;
-      }
       try {
         await radio.isNrSupported(SLOT_0);
-        console.log('radio.isNrSupported(SLOT_0) = ' + radio.isNrSupported(SLOT_0));
-        console.log('Telephony_NetworkSearch_isNrSupported_Promise_0400 success');
+        console.info('radio.isNrSupported(SLOT_0) = ' + radio.isNrSupported(SLOT_0));
+        console.info('Telephony_NetworkSearch_isNrSupported_Promise_0400 success');
+        expect(radio.isNrSupported(SLOT_0)).assertTrue();
         done();
       } catch (err) {
-        console.log(`Telephony_NetworkSearch_isNrSupported_Promise_0400 fail ${err}`);
+        console.info(`Telephony_NetworkSearch_isNrSupported_Promise_0400 fail ${err}`);
+        expect().assertFail();
         done();
       }
     });

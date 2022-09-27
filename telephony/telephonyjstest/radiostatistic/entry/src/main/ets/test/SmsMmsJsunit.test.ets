@@ -53,7 +53,7 @@ export default function smsUiJsunit() {
       sms.createMessage(rawArray, '3gpp', (err, shortMessage) => {
         if (err) {
           expect().assertFail();
-          console.log('Telephony_SmsMms_createMessage_Async_0100 fail');
+          console.log('Telephony_SmsMms_CreateMessage_Async_0100 fail');
           done();
           return;
         }
@@ -80,7 +80,7 @@ export default function smsUiJsunit() {
    *             pass in the PDU(rawArray) in line with the coding specification, the specification is 3GPP,
    *             shortMessage Don't empty
    */
-    it('Telephony_SmsMms_createMessage_Promise_0100', 0, async function (done) {
+    it('Telephony_SmsMms_CreateMessage_Promise_0100', 0, async function (done) {
       if (true) {
         expect(true).assertTrue();
         done();

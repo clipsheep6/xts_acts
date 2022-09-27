@@ -304,7 +304,7 @@ export default function radioSecondJsunit() {
      * @tc.name    testGetISOCountryCodeForNetwork_0600
      * @tc.desc    SlotId parameter input is 0, test getISOCountryCodeForNetwork() api by promise.
      */
-    it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500', 0, async function (done) {
+    it('Telephony_NetworkSearch_GetISOCountryCodeForNetwork_Promise_0500', 0, async function (done) {
       if (utils.notCheck) {
         expect(true).assertTrue();
         done();

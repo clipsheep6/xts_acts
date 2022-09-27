@@ -533,6 +533,8 @@ describe('CallManageImsCall', function () {
         try {
             await call.setPausePicture(IMAGE_LOCAL_ERROR_PATH);
             console.log(`${caseName} success,case failed`);
+            expect().assertFail();
+            done();
         } catch (error) {
             console.log(`${caseName} case success,error:${toString(error)}`);
         }

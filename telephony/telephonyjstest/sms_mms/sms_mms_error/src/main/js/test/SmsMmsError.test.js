@@ -39,7 +39,7 @@ describe('SmsMmsErrorTest', function () {
    *             shortMessage isn't empty
    * @tc.desc    Function test
    */
-  it('Telephony_SmsMms_createMessage_Async_0200', 0, async function (done) {
+  it('Telephony_SmsMms_CreateMessage_Async_0200', 0, async function (done) {
     sms.createMessage(rawArrayNull, '3gpp', (err, shortMessage) => {
       if (err) {
         console.log('Telephony_SmsMms_createMessage_Async_0200 finish');
@@ -70,7 +70,7 @@ describe('SmsMmsErrorTest', function () {
    *             promise returns the result Don't empty
    * @tc.desc    Function test
    */
-  it('Telephony_SmsMms_createMessage_Promise_0200', 0, async function (done) {
+  it('Telephony_SmsMms_CreateMessage_Promise_0200', 0, async function (done) {
     try {
       await sms.createMessage(rawArrayNull, '3gpp');
       expect().assertFail();
@@ -89,7 +89,7 @@ describe('SmsMmsErrorTest', function () {
    * @tc.name    Check whether the Ims SMS function is supported
    * @tc.desc    Function test
    */
-  it('Telephony_SmsMms_hasSmsCapability_0100', 0, async function (done) {
+  it('Telephony_SmsMms_HasSmsCapability_0100', 0, async function (done) {
     let result = sms.hasSmsCapability();
     console.log('Telephony_SmsMms_hasSmsCapability_0100 result : ' + result);
     expect(result === false || result === true).assertTrue();
@@ -106,6 +106,7 @@ describe('SmsMmsErrorTest', function () {
     sms.getDefaultSmsSlotId((getErr, getResult) => {
       if (getErr) {
         console.log('Telephony_SmsMms_getDefaultSmsSlotId_Async_0100 finish');
+        expect().assertFail();
         done();
         return;
       }
@@ -126,6 +127,7 @@ describe('SmsMmsErrorTest', function () {
       done();
     } catch (err) {
       console.log('Telephony_SmsMms_getDefaultSmsSlotId_Promise_0100 finish');
+      expect().assertFail();
       done();
     }
   });
