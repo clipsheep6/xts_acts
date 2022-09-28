@@ -94,7 +94,7 @@ export default function testsuite() {
   selectOnSelectJsunit()
   sideBarShowSideBarJsunit()
   stackAlignContentJsunit()
-  stateManagementGetSharedJsunit()
+  //stateManagementGetSharedJsunit()
   swiperCurveJsunit()
   tabsBarPositionJsunit()
   textMinFontSizeJsunit()
