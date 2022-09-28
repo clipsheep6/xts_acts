@@ -229,7 +229,6 @@ struct Index {
                                     } else {
                                         this.text = "false"
                                     }
-                                    this.text = result.toString();
                                     console.log("usage is:" + this.text)
                                 })
                                 setTimeout(()=>{
