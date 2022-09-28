@@ -1,0 +1,17 @@
+{
+    "data": {
+        "imageSrc": "/common/share.png",
+        "location": "浑南E(Stage)",
+        "temperature": "0",
+        "time": "00:00:00"
+    },
+    "actions": {
+        "routerEvent": {
+            "action": "router",
+            "abilityName": "MainAbility111",
+            "params": {
+                "message": "add detail4"
+            }
+        }
+    }
+}

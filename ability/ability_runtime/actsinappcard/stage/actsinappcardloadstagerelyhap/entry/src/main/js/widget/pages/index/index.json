@@ -1,0 +1,11 @@
+{
+    "data": {
+        "string": {
+            "temperature": "温度："
+        },
+        "imageSrc": "/common/share.png",
+        "location": "浑南(Stage)",
+        "temperature": "0",
+        "time": "00:00:00"
+    }
+}

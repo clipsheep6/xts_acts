@@ -1,0 +1,17 @@
+{
+    "data": {
+        "imageSrc": "/common/share.png",
+        "location": "浑南A(FA)",
+        "temperature": "0",
+        "time": "00:00:00"
+    },
+    "actions": {
+        "routerEvent": {
+            "action": "router",
+            "abilityName": "com.example.entry.MainAbility1",
+            "params": {
+                "message": "add detail"
+            }
+        }
+    }
+}

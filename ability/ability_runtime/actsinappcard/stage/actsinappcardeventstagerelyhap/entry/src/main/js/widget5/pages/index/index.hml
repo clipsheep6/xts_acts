@@ -1,0 +1,12 @@
+<div class="container" onclick="routerEvent">
+    <stack>
+        <div class="container-img">
+            <image src={{imageSrc}} class="bg-img"></image>
+        </div>
+        <div class="container-inner">
+            <text class="location_title">{{location}}</text>
+            <text class="title">{{ $t('strings.temperature') }}{{temperature}} ℃</text>
+            <text class="detail_text">{{ $t('strings.time') }} {{time}}</text>
+        </div>
+    </stack>
+</div>

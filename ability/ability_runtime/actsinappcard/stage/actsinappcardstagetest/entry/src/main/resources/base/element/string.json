@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the tv entry test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "tvBase"
+    }
+  ]
+}
