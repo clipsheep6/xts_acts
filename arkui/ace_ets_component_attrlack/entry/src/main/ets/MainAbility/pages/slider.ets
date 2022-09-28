@@ -86,7 +86,7 @@ export default struct SliderMoving {
           }
         })
         .onClick(() => {
-          this.slide()
+          //this.slide()
         })
 
     }.width("100%").height("100%")
