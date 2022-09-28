@@ -99,7 +99,7 @@ describe('audioCapturerChange', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) => {
+        audioStreamManager.on('audioCapturerChange', async (AudioCapturerChangeInfoArray) => {
             for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
                 console.info(Tag + ' ## CapChange on is called for element ' + i + ' ##');
                 console.info(Tag + 'StrId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
@@ -120,16 +120,16 @@ describe('audioCapturerChange', function () {
                 }
                 if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
                     audioStreamManager.off('audioCapturerChange');
+                    await audioCap.release();
                     expect(true).assertTrue();
                     done();
                 }
             }
         });
-        try{
+        try {
             audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
-            await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -143,7 +143,7 @@ describe('audioCapturerChange', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-     it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0200', 2, async function (done) {
+    it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0200', 2, async function (done) {
 
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -173,9 +173,7 @@ describe('audioCapturerChange', function () {
             console.info(Tag + 'AudioCapturer Created : ERROR : ' + err.message);
         });
 
-        await sleep(100);
-
-        audioStreamManagerCB.on('audioCapturerChange', (AudioCapturerChangeInfoArray) => {
+        audioStreamManagerCB.on('audioCapturerChange', async (AudioCapturerChangeInfoArray) => {
             for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
                 console.info(Tag + ' ## CapChange on is called for element ' + i + ' ##');
                 console.info(Tag + 'StrId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
@@ -197,31 +195,24 @@ describe('audioCapturerChange', function () {
                 if (AudioCapturerChangeInfoArray[i].capturerState == 2 && devDescriptor != null) {
                     resultFlag = true;
                     console.info(Tag + '[CAPTURER-CHANGE-ON-002] ResultFlag for element ' + i + ' is: ' + resultFlag);
+                    audioStreamManagerCB.off('audioCapturerChange');
+                    console.info(Tag + '[CAPTURER-CHANGE-ON-002] ######### CapturerChange Off is called #########');
+
+                    await audioCap.release().then(async function () {
+                        console.info(Tag + 'Capturer release : SUCCESS');
+                        done();
+                    }).catch((err) => {
+                        console.info(Tag + 'Capturer release :ERROR : ' + err.message);
+                    });
                 }
             }
         });
 
-        await sleep(100);
         await audioCap.start().then(async function () {
             console.info(Tag + 'Capturer started :SUCCESS ');
         }).catch((err) => {
             console.info(Tag + 'Capturer start :ERROR : ' + err.message);
         });
-
-        await sleep(100);
-        audioStreamManagerCB.off('audioCapturerChange');
-        await sleep(100);
-        console.info(Tag + '[CAPTURER-CHANGE-ON-002] ######### CapturerChange Off is called #########');
-
-        await audioCap.release().then(async function () {
-            console.info(Tag + 'Capturer release : SUCCESS');
-        }).catch((err) => {
-            console.info(Tag + 'Capturer release :ERROR : ' + err.message);
-        });
-
-        expect(resultFlag).assertTrue();
-        done();
-
     })
 
     /**
@@ -232,7 +223,7 @@ describe('audioCapturerChange', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-     it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0300', 2, async function (done) {
+    it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0300', 2, async function (done) {
 
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -329,7 +320,7 @@ describe('audioCapturerChange', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-     it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0400', 2, async function (done) {
+    it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0400', 2, async function (done) {
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -470,11 +461,11 @@ describe('audioCapturerChange', function () {
                 }
             }
         });
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -488,7 +479,7 @@ describe('audioCapturerChange', function () {
      *@tc.type      : Function
      *@tc.level     : Level 0
      */
-     it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0600', 0, async function (done) {
+    it('SUB_MULTIMEDIA_AUDIO_ON_CAPTURER_CHANGE_0600', 0, async function (done) {
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -614,11 +605,11 @@ describe('audioCapturerChange', function () {
                 }
             }
         });
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -679,11 +670,11 @@ describe('audioCapturerChange', function () {
                 }
             }
         });
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -746,11 +737,11 @@ describe('audioCapturerChange', function () {
                 }
             }
         });
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -810,11 +801,11 @@ describe('audioCapturerChange', function () {
             }
         });
 
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -846,13 +837,13 @@ describe('audioCapturerChange', function () {
             streamInfo: AudioStreamInfo,
             capturerInfo: AudioCapturerInfo
         }
-        
+
         let audioCap;
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.start();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -917,12 +908,12 @@ describe('audioCapturerChange', function () {
 
         let audioCap;
 
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.start();
             await audioCap.stop();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -988,12 +979,12 @@ describe('audioCapturerChange', function () {
 
         let audioCap;
 
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.start();
             await audioCap.stop();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -1016,9 +1007,9 @@ describe('audioCapturerChange', function () {
                     console.info(Tag + 'C' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
                     console.info(Tag + 'CM:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
                 }
-               audioStreamManager.off('audioCapturerChange');
-               expect(true).assertTrue();
-               done();
+                audioStreamManager.off('audioCapturerChange');
+                expect(true).assertTrue();
+                done();
             }
         });
         await sleep(100);
@@ -1089,11 +1080,11 @@ describe('audioCapturerChange', function () {
                 }
             }
         });
-        try{
-            audioCap=await audio.createAudioCapturer(AudioCapturerOptions);
+        try {
+            audioCap = await audio.createAudioCapturer(AudioCapturerOptions);
             await audioCap.release();
-        }catch(err){
-            console.log('err :'+JSON.stringify(err));
+        } catch (err) {
+            console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         }
@@ -1187,7 +1178,7 @@ describe('audioCapturerChange', function () {
                 }
             }
         }).catch((err) => {
-            console.info('err : '+JSON.stringify(err));
+            console.info('err : ' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         });
@@ -1298,7 +1289,7 @@ describe('audioCapturerChange', function () {
                 }
             }
         }).catch((err) => {
-            console.info('err : '+JSON.stringify(err));
+            console.info('err : ' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         });
@@ -1415,7 +1406,7 @@ describe('audioCapturerChange', function () {
                 }
             }
         }).catch((err) => {
-            console.info('err : '+JSON.stringify(err));
+            console.info('err : ' + JSON.stringify(err));
             expect(false).assertTrue();
             done();
         });
@@ -1855,14 +1846,14 @@ describe('audioCapturerChange', function () {
                         }
                         if (AudioCapturerChangeInfoArray[i].capturerState == 3 && devDescriptor != null) {
                             audioStreamManager.off('audioCapturerChange');
-                                await audioCap.release().then(async function () {
-                                    console.info(Tag + 'Capturer release : SUCCESS');
-                                    done();
-                                }).catch((err) => {
-                                    console.info(Tag + 'Capturer release :ERROR : ' + err.message);
-                                    expect(false).assertTrue();
-                                    done();
-                                });
+                            await audioCap.release().then(async function () {
+                                console.info(Tag + 'Capturer release : SUCCESS');
+                                done();
+                            }).catch((err) => {
+                                console.info(Tag + 'Capturer release :ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            });
                         }
                     }
                 }

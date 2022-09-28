@@ -3558,15 +3558,32 @@ describe('audioFramework', function () {
      */
     it('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100', 1, async function (done) {
         try {
-            await audioManager.setDeviceActive(2, false);
-            let value = await audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER);
-            if (value == false) {
-                console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : PASS :' + value);
-                expect(true).assertTrue();
-            } else {
-                console.info('AudioFrameworkTest: Device Test: Promise : isDeviceActive : SPEAKER: Deactivate : FAIL :' + value);
-                expect(false).assertTrue();
+            let flag = true;
+            let outputDeviceDescription = await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+            console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 outputDeviceDescription is ' + JSON.stringify(outputDeviceDescription));
+            if (outputDeviceDescription.length == 1 && outputDeviceDescription[0].deviceType == audio.DeviceType.SPEAKER) {
+                flag = false;
             }
+            await audioManager.setDeviceActive(2, false).then(() => {
+                console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 Promise returned to indicate that the device is set to the active status.');
+            });
+            await audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then(function (value) {
+                if (flag == true && value == false) {
+                    console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 isDeviceActive : SPEAKER: Deactivate : PASS :' + value + 'flag is ' + flag);
+                    expect(true).assertTrue();
+                }
+                else if (flag == false && value == true) {
+                    console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 isDeviceActive : SPEAKER: Deactivate : PASS :' + value + 'flag is ' + flag);
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 isDeviceActive : SPEAKER: Deactivate : fail :' + value + 'flag is ' + flag);
+                    expect(false).assertTrue();
+                }
+            }).catch((err) => {
+                console.log('err :' + JSON.stringify(err));
+                expect(false).assertTrue();
+            });
         } catch (err) {
             console.log('err :' + JSON.stringify(err));
             expect(false).assertTrue();
@@ -3610,6 +3627,12 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0300', 2, async function (done) {
+        let flag = true
+        let outputDeviceDescription = await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
+        console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0300 outputDeviceDescription is ' + JSON.stringify(outputDeviceDescription));
+        if (outputDeviceDescription.length == 1 && outputDeviceDescription[0].deviceType == audio.DeviceType.SPEAKER) {
+            flag = false;
+        }
         audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, false, (err) => {
             if (err) {
                 console.error(`AudioFrameworkTest: Device Test: Callback : setDeviceActive : SPEAKER: Deactivate: Error: ${err.message}`);
@@ -3621,11 +3644,15 @@ describe('audioFramework', function () {
                     if (err) {
                         console.error(`AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate: Error: ${err.message}`);
                         expect(false).assertTrue();
-                    } else if (value == false) {
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' + value);
+                    } else if (value == false && flag == true) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' + value + 'flag is ' + flag);
                         expect(true).assertTrue();
-                    } else {
-                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : FAIL :' + value);
+                    } else if (value == true && flag == false) {
+                        console.info('AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : PASS :' + value + 'flag is ' + flag);//1�?
+                        expect(true).assertTrue();
+                    }
+                    else {
+                        console.info('SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0300 AudioFrameworkTest: Device Test: Callback : isDeviceActive : SPEAKER: Deactivate : FAIL :value' + value + 'flag is ' + flag);
                         expect(false).assertTrue();
                     }
                     done();
