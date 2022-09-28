@@ -224,6 +224,11 @@ struct Index {
                                         console.log('error:' + error);
                                         return;
                                     }
+                                    if (result > 20000) {
+                                        this.text = "true"
+                                    } else {
+                                        this.text = "false"
+                                    }
                                     this.text = result.toString();
                                     console.log("usage is:" + this.text)
                                 })
@@ -240,7 +245,12 @@ struct Index {
                                     .then(usage=>{
                                         console.log('usage: '+usage)
                                         setTimeout(()=>{
-                                            Utils.emitEvent(usage.toString(),447)
+                                            if (usage > 20000) {
+                                                this.text = "true"
+                                            } else {
+                                                this.text = "false"
+                                            }
+                                            Utils.emitEvent(this.text,447)
                                         },3000) 
                                     })
                                     .catch(error=>{
