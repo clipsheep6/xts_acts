@@ -75,7 +75,7 @@ export default function list_itemOnSelectJsunit() {
       console.info("[testlist_itemOnSelect0002] component border strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$type).assertEqual('ListItem');
-      expect(obj.$attrs.selectable).assertEqual(false);
+      expect(obj.$attrs.selectable).assertEqual('false');
       console.info("[testlist_itemOnSelect0002] selectable value :" + obj.$attrs.selectable);
       done();
     });
