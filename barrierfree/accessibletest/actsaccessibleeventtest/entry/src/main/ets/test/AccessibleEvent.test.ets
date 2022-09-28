@@ -487,15 +487,15 @@ export default function abilityTest() {
        * @tc.name    SendEventClickFocusLongClick_0010
        * @tc.desc    Send the click, focus and longClick events in the form of callback to verify that the event can be received.
        */
-//      it('SendEventClickFocusLongClick_0010', 1, async function (done) {
-//        caseName = "SendEventClickFocusLongClick_0010";
-//        publishCase(caseName);
+      it('SendEventClickFocusLongClick_0010', 1, async function (done) {
+        caseName = "SendEventClickFocusLongClick_0010";
+        publishCase(caseName);
 
-//        setTimeout(() => {
-//          expect(isSucceed).assertEqual(true);
-//          done();
-//        }, EXPECT_TIMEOUT);
-//      })
+        setTimeout(() => {
+          expect(isSucceed).assertEqual(true);
+          done();
+        }, EXPECT_TIMEOUT + 3000);
+      })
 
       /**
        * @tc.number  SendEventClickFocusLongClick_0020

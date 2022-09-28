@@ -16,6 +16,7 @@ import commonEvent from '@ohos.commonEvent'
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 
 const ASSIST_CODE = 2;
+var countClick = 0;
 const excuteMethod = (context, data) => {
     if (data) {
         switch (data) {
@@ -58,8 +59,11 @@ const excuteMethod = (context, data) => {
                 executePerformActionPromise(data, context, data, 'delete');
                 break;
             case 'SendEventClickFocusLongClick_0010':
+                countClick = 0;
                 executePerformActionPromise(data, context, data, 'click');
-                executePerformActionPromise(data, context, data, 'click');
+                setTimeout(() => {
+                    executePerformActionPromise(data, context, data, 'click');
+                }, 3000);
                 break;
             case 'SendEventClickFocusLongClick_0020':
                 executePerformActionPromise(data, context, data, 'focus');
@@ -142,12 +146,15 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
             }
             return;
         }
-        if (subscriber.data == "SendEventClick_0080") {
+        if (subscriber.data == "SendEventClickFocusLongClick_0010") {
             if (accessibilityEvent.eventType == 'click') {
-                commonEvent.publish("on_assist_change_extra", {data: "SendEventClick_0080_on_assist_change_extra_success"}, 
-                (err, data) => {
-                    console.info(logTag + " publish on_assist_change_extra event result: " + JSON.stringify(data));
-                });
+                countClick = countClick + 1;
+                if (countClick == 2) { 
+		    commonEvent.publish("on_assist_change_extra", {data: "SendEventClickFocusLongClick_0010_on_assist_change_extra_success"}, 
+		    (err, data) => {
+		        console.info(logTag + " publish on_assist_change_extra event result: " + JSON.stringify(data));
+		    });
+                }
             }
             return;
         }
@@ -360,6 +367,14 @@ const commonEventPublishOnAssistChange = (currentCase, eventType) => {
             commonEvent.publish("on_assist_change_extra", {data: currentCase + "_on_assist_change_extra_success"}, (err, data) => {
                 console.info("AccessibilityAll onAccessibilityEvent: publish on_assist_change_extra event result: " + JSON.stringify(data));
             });
+            break;
+        case "SendEventClickFocusLongClick_0010":
+            countClick = countClick + 1;
+            if (countClick == 2) {
+                commonEvent.publish("on_assist_change_extra", {data: currentCase + "_on_assist_change_extra_success"}, (err, data) => {
+                    console.info("AccessibilityAll onAccessibilityEvent: publish on_assist_change_extra event result: " + JSON.stringify(data));
+                });
+            } 
             break;
         default:
             break;
