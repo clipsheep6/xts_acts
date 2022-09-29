@@ -1101,6 +1101,39 @@ export default function cameraJSUnitVideoAsync(surfaceId: any) {
       }
     })
 
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100
+      * @tc.name      : CommitConfig async api
+      * @tc.desc      : CommitConfig async api
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 0
+    */
+   it('SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100', 0, async function (done) {
+    if (captureSession == null || captureSession == undefined) {
+      console.info(TAG + 'Entering CommitConfig captureSession == null || undefined')
+    } else {
+      console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 to operate')
+      await sleep(1)
+      captureSession.commitConfig(async (err, data) => {
+        if (!err) {
+          console.info(TAG + 'Entering CommitConfig success')
+          console.info(TAG + 'Entering CommitConfig data is not null || undefined')
+          expect(true).assertTrue()
+          console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 PASSED')
+        } else {
+          console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 FAILED: ' + err.message)
+          expect().assertFail();
+        }
+        console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 ends here')
+        await sleep(1)
+        done()
+      })
+      await sleep(1)
+      done()
+    }
+  })
+
     //framerate
     /**
       * @tc.number    : GET_FRAME_RATE_RANGE
@@ -1728,19 +1761,7 @@ export default function cameraJSUnitVideoAsync(surfaceId: any) {
       await captureSession.addOutput(photoOutput);
 
       // 提交会话配置
-      // await captureSession.commitConfig();
-
-      captureSession.commitConfig(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP commitConfig success");
-        } else {
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP FAILED : " + err.message);
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP ends here");
-        }
-        expect(true).assertTrue();
-        await sleep(1);
-        done();
-      })
+      await captureSession.commitConfig();
 
       // 启动会话
       console.info(TAG + "Entering CAPTURE_SESSION_START to operate")
@@ -1813,18 +1834,7 @@ export default function cameraJSUnitVideoAsync(surfaceId: any) {
       await captureSession.addOutput(photoOutput);
 
       // 提交会话配置
-      // await captureSession.commitConfig();
-      captureSession.commitConfig(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP commitConfig success");
-        } else {
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP FAILED : " + err.message);
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP ends here");
-        }
-        expect(true).assertTrue();
-        await sleep(1);
-        done();
-      })
+      await captureSession.commitConfig();
 
 
       console.info(TAG + "Entering PHOTOOUTPUT_CAPTURE_WITHOUT_PHOTOSETTINGS to operate");
@@ -3419,28 +3429,17 @@ export default function cameraJSUnitVideoAsync(surfaceId: any) {
       await captureSession.addOutput(photoOutput);
 
       // 提交会话配置
-      // await captureSession.commitConfig();
-      captureSession.commitConfig(async (err, data) => {
-        if (!err) {
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP commitConfig success");
-        } else {
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP FAILED : " + err.message);
-          console.info(TAG + "Entering CAPTURE_SESSION_STOP ends here");
-        }
-        expect(true).assertTrue();
-        await sleep(1);
-        done();
-      })
+      await captureSession.commitConfig();
 
       // 启动会话
-      console.info(TAG + "Entering CAPTURE_SESSION_STOP to operate")
+      console.info(TAG + "Entering CAPTURE_SESSION_START to operate")
       await sleep(1)
       await captureSession.start();
 
       //停止会话
       captureSession.stop((err, data) => {
         if (!err) {
-          console.info(TAG + 'Entering CAPTURE_SESSION_STOP success')
+          console.info(TAG + 'Entering CaptureSession stop success')
           expect(true).assertTrue()
           console.info(TAG + 'Entering CAPTURE_SESSION_STOP PASSED')
         } else {
