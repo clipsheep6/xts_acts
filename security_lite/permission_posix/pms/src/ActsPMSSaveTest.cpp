@@ -83,7 +83,7 @@ static PermissionTrans g_systemPers[] = {
         INUSE,
     },
 };
-static PermissionTrans g_unDefPer = {
+static PermissionTrans g_unDefPers = {
     PERMISSION_UNDEFINED,
     "for undefined use",
     INUSE,
@@ -281,7 +281,7 @@ HWTEST_F(ActsPMSSaveTest, testSecPMPMS_0030, Function | MediumTest | Level2)
  */
 HWTEST_F(ActsPMSSaveTest, testSecPMPMS_0040, Function | MediumTest | Level3)
 {
-    PermissionTrans pt[] = {g_unDefPer};
+    PermissionTrans pt[] = {g_unDefPers};
     int ret = SaveOrUpdatePermissions(TEST_APP_ID, pt, 1, FIRST_INSTALL);
     EXPECT_EQ(ret, PERM_ERRORCODE_SUCCESS) << "save ret = " << ret << endl;
     CheckAppPermission(TEST_APP_ID, PERM_ERRORCODE_SUCCESS, 1, pt);
@@ -320,9 +320,9 @@ HWTEST_F(ActsPMSSaveTest, testSecPMPMS_0060, Function | MediumTest | Level2)
         pt[i] = g_systemPers[i];
         exp[i] = g_systemPers[i];
     }
-    exp[SYS_PERM_NUM] = g_unDefPer;
+    exp[SYS_PERM_NUM] = g_unDefPers;
     for (i = SYS_PERM_NUM; i < MAX_PERM_NUM; i++) {
-        pt[i] = g_unDefPer;
+        pt[i] = g_unDefPers;
     }
     int ret = SaveOrUpdatePermissions(TEST_APP_ID, pt, MAX_PERM_NUM, FIRST_INSTALL);
     EXPECT_EQ(ret, PERM_ERRORCODE_SUCCESS) << "save ret = " << ret << endl;
