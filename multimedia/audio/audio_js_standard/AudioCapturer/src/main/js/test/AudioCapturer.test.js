@@ -354,9 +354,8 @@ describe('audioCapturer', function () {
      *@tc.size      : MEDIUM
      *@tc.type      : Function
      *@tc.level     : Level 1
-     */    
+     */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_PREPARED_STATE_0100', 1, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -377,6 +376,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -389,8 +390,7 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: RUNNING:' + audio.AudioState.STATE_RUNNING);
                 if ((audioCapCallBack.state == audio.AudioState.STATE_PREPARED)) {
                     console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO PREPARED STATE : PASS---------');
-                    stateFlag = true;
-                    expect(stateFlag).assertTrue();
+                    expect(true).assertTrue();
                     done();
                 }
             }
@@ -406,7 +406,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 0
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_PREPARED_STATE_EUNM_0100', 0, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -427,19 +426,18 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                if ((audioCapCallBack.state == 1)) {
+                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO PREPARED STATE : PASS---------');
+                    expect(true).assertTrue();
+                    done();
+                }
             }
         });
-
-        if ((audioCapCallBack.state == 1)) {
-            console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO PREPARED STATE : PASS---------');
-            stateFlag = true;
-            expect(stateFlag).assertTrue();
-            done();
-        }
-
     })
 
     /**
@@ -451,7 +449,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_RUNNING_STATE_0100', 1, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -469,48 +466,43 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
+        audio.createAudioCapturer(AudioCapturerOptions, (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                audioCapCallBack.start((err, value) => {
+                    console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
+                    console.info('AudioFrameworkRecLog: ---------START---------');
+                    if (err) {
+                        console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RUNNING STATE---------');
+                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                        console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                        audioCapCallBack.release((err, value) => {
+                            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
+                            if (err) {
+                                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
+                                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                                done();
+                            }
+                        });
+                    }
+                });
             }
         });
-        await audioCapCallBack.start(async (err, value) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
-            console.info('AudioFrameworkRecLog: ---------START---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RUNNING STATE---------');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                await sleep(1000);
-                if ((audioCapCallBack.state == audio.AudioState.STATE_RUNNING)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RUNNING STATE : PASS---------');
-                    stateFlag = true;
-                }
-            }
-        });
-        await sleep(1000);
-        await audioCapCallBack.release(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
-                done();
-                //return resultFlag;
-            }
-        });
-        await sleep(1000);
     })
 
     /**
@@ -522,7 +514,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_RUNNING_STATE_EUNM_0100', 1, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -540,49 +531,43 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
+        audio.createAudioCapturer(AudioCapturerOptions, (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                audioCapCallBack.start((err, value) => {
+                    console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
+                    console.info('AudioFrameworkRecLog: ---------START---------');
+                    if (err) {
+                        console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RUNNING STATE---------');
+                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                        console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                        audioCapCallBack.release((err, value) => {
+                            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
+                            if (err) {
+                                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
+                                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                                done();
+                            }
+                        });
+                    }
+                });
             }
         });
-        await sleep(1000);
-        await audioCapCallBack.start(async (err, value) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
-            console.info('AudioFrameworkRecLog: ---------START---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RUNNING STATE---------');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                await sleep(1000);
-                if ((audioCapCallBack.state == 2)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RUNNING STATE : PASS---------');
-                    stateFlag == true;
-                }
-            }
-        });
-        await sleep(1000);
-        await audioCapCallBack.release(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
-                done();
-                //return resultFlag;
-            }
-        });
-        await sleep(1000);
     })
 
     /**
@@ -593,8 +578,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_STOPPED_STATE_0100', 1, async function (done) {
-        let stateFlag;
+    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_STOPPED_STATE_0100', 1, function (done) {
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -612,65 +596,52 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
+        audio.createAudioCapturer(AudioCapturerOptions, (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                audioCapCallBack.start((err, value) => {
+                    console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
+                    console.info('AudioFrameworkRecLog: ---------START---------');
+                    if (err) {
+                        console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                        console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                        audioCapCallBack.stop((err, value) => {
+                            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+                            if (err) {
+                                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_STOPPED);
+                                audioCapCallBack.release((err, value) => {
+                                    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
+                                    if (err) {
+                                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                                        expect(false).assertTrue();
+                                        done();
+                                    } else {
+                                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                                        done();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
-
-        await sleep(1000);
-        audioCapCallBack.start(async (err, value) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
-            console.info('AudioFrameworkRecLog: ---------START---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                await sleep(1000);
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.stop(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO STOPPED STATE---------');
-                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == audio.AudioState.STATE_STOPPED)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO STOPPED STATE---------');
-                    stateFlag = true;
-                }
-                console.info('AudioFrameworkRecLog: stateFlag : ' + stateFlag);
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.release(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
-                done();
-                //return resultFlag;
-            }
-        });
-        await sleep(1000);
     })
 
     /**
@@ -681,8 +652,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_STOPPED_STATE_EUNM_0100', 1, async function (done) {
-        let stateFlag;
+    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_STOPPED_STATE_EUNM_0100', 1, function (done) {
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -700,60 +670,54 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
+        audio.createAudioCapturer(AudioCapturerOptions, (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                audioCapCallBack.start((err, value) => {
+                    console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
+                    console.info('AudioFrameworkRecLog: ---------START---------');
+                    if (err) {
+                        console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                        console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+                        audioCapCallBack.stop((err, value) => {
+                            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+                            if (err) {
+                                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO STOPPED STATE---------');
+                                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
+                                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_STOPPED);
+                                audioCapCallBack.release((err, value) => {
+                                    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
+                                    if (err) {
+                                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                                        expect(false).assertTrue();
+                                        done();
+                                    } else {
+                                        console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
+                                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                                        done();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
-        audioCapCallBack.start(async (err, value) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
-            console.info('AudioFrameworkRecLog: ---------START---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                stateFlag == true;
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.stop(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO STOPPED STATE---------');
-                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 3)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO STOPPED STATE---------');
-                    stateFlag = true;
-                }
-                console.info('AudioFrameworkRecLog: stateFlag : ' + stateFlag);
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.release(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
-                done();
-                //return resultFlag;
-            }
-        });
-        await sleep(1000);
     })
 
     /**
@@ -764,8 +728,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_RELEASED_STATE_0100', 2, async function (done) {
-        let stateFlag;
+    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_RELEASED_STATE_0100', 2, function (done) {
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -783,65 +746,55 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
+        audio.createAudioCapturer(AudioCapturerOptions, (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                audioCapCallBack.start((err, value) => {
+                    console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
+                    console.info('AudioFrameworkRecLog: ---------START---------');
+                    if (err) {
+                        console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                        console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                        audioCapCallBack.stop((err, value) => {
+                            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+                            if (err) {
+                                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
+                                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_STOPPED);
+                                audioCapCallBack.release((err, value) => {
+                                    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
+                                    if (err) {
+                                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                                        expect(false).assertTrue();
+                                        done();
+                                    } else {
+                                        console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
+                                        console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
+                                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                                        done();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
-        await sleep(1000);
-        audioCapCallBack.start(async (err, value) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
-            console.info('AudioFrameworkRecLog: ---------START---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                await sleep(1000);
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.stop(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 3)) {
-                    stateFlag = true;
-                }
-                console.info('AudioFrameworkRecLog: stateFlag : ' + stateFlag);
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.release(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == audio.AudioState.STATE_RELEASED)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
-            }
-        });
-        await sleep(1000);
     })
 
     /**
@@ -852,8 +805,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_RELEASED_STATE_EUNM_0100', 1, async function (done) {
-        let stateFlag;
+    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_RELEASED_STATE_EUNM_0100', 1, function (done) {
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -874,63 +826,52 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
+                audioCapCallBack.start(async (err, value) => {
+                    console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
+                    console.info('AudioFrameworkRecLog: ---------START---------');
+                    if (err) {
+                        console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                        console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                        audioCapCallBack.stop(async (err, value) => {
+                            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+                            if (err) {
+                                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
+                                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_STOPPED);
+                                audioCapCallBack.release(async (err, value) => {
+                                    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
+                                    if (err) {
+                                        console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
+                                        expect(false).assertTrue();
+                                        done();
+                                    } else {
+                                        console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
+                                        console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
+                                        console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
+                                        expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                                        done();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
-
-        await sleep(1000);
-        audioCapCallBack.start(async (err, value) => {
-            console.info('AudioFrameworkRecLog: AudioCapturer : START SUCCESS');
-            console.info('AudioFrameworkRecLog: ---------START---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                await sleep(1000);
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.stop(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 3)) {
-                    stateFlag = true;
-                }
-                console.info('AudioFrameworkRecLog: stateFlag : ' + stateFlag);
-            }
-        });
-        await sleep(1000);
-        audioCapCallBack.release(async (err, value) => {
-            console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-            if (err) {
-                console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
-            } else {
-                console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
-                console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
-                console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
-            }
-        });
-        await sleep(1000);
     })
 
     /**
@@ -941,7 +882,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_GET_BUFFER_SIZE_0100', 1, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_GET_BUFFER_SIZE_0100', 1, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1026,7 +967,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_0100', 1, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_0100', 1, async function (done) {
         let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
@@ -1146,7 +1087,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 0
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMOISE_PREPARED_STATE_0100', 0, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMOISE_PREPARED_STATE_0100', 0, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1190,7 +1131,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 0
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMOISE_PREPARED_STATE_ENUM_0100', 0, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -1208,21 +1148,20 @@ describe('audioCapturer', function () {
             capturerInfo: AudioCapturerInfo
         }
 
-        await audio.createAudioCapturer(AudioCapturerOptions).then(async function (data) {
+        audio.createAudioCapturer(AudioCapturerOptions).then(async function (data) {
             audioCapPromise = data;
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-            return stateFlag;
+            expect(false).assertTrue();
+            done();
         });
 
         if ((audioCapPromise.state == 1)) {
             console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO PREPARED STATE : PASS---------');
-            stateFlag = true;
-            expect(stateFlag).assertTrue();
+            expect(true).assertTrue();
             done();
         }
-
     })
 
     /**
@@ -1234,7 +1173,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 0
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RUNNING_STATE_0100', 0, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -1257,20 +1195,20 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-            return stateFlag;
+            expect(false).assertTrue();
+            done();
         });
 
         await audioCapPromise.start().then(async function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
             console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
-            console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-            if ((audioCapPromise.state == audio.AudioState.STATE_RUNNING)) {
-                stateFlag = true;
-            }
+            expect(audioCapPromise.state).assertEqual(audio.AudioState.STATE_RUNNING);
+            done();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
 
@@ -1278,14 +1216,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
             console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
-            stateFlag = true;
-            console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-            expect(stateFlag).assertTrue();
+            expect(audioCapPromise.state).assertEqual(audio.AudioState.STATE_RELEASED);
             done();
-            //return resultFlag;
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
     })
@@ -1299,7 +1235,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 0
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RUNNING_STATE_ENUM_0100', 0, async function (done) {
-        let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -1322,20 +1257,19 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-            return stateFlag;
+            expect(false).assertTrue();
+            done();
         });
 
         await audioCapPromise.start().then(async function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
             console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
-            console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-            if ((audioCapPromise.state == 2)) {
-                stateFlag = true;
-            }
+            expect(audioCapPromise.state).assertEqual(audio.AudioState.STATE_RUNNING);
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
 
@@ -1343,14 +1277,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
             console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
-            stateFlag = true;
-            console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-            expect(stateFlag).assertTrue();
+            expect(audioCapPromise.state).assertEqual(audio.AudioState.STATE_RELEASED);
             done();
-            //return resultFlag;
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
     })
@@ -1363,7 +1295,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_STOPPED_STATE_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_STOPPED_STATE_0100', 2, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1439,7 +1371,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_STOPPED_STATE_ENUM_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_STOPPED_STATE_ENUM_0100', 2, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1516,7 +1448,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RELEASED_STATE_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RELEASED_STATE_0100', 2, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1590,7 +1522,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RELEASED_STATE_ENUM_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RELEASED_STATE_ENUM_0100', 2, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1665,7 +1597,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_GET_BUFFER_SIZE_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_GET_BUFFER_SIZE_0100', 2, async function (done) {
         let stateFlag;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1740,7 +1672,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_READ_BUFFER_0100', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkpromisereadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -1764,7 +1695,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
-            return stateFlag;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         await audioCapPromise.start().then(async function () {
@@ -1772,19 +1704,20 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
             console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
             console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-            if ((audioCapPromise.state == 2)) {
-                stateFlag = true;
-            }
+            expect(audioCapPromise.state).assertEqual(audio.AudioState.STATE_RUNNING);
+            done();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
 
         console.info('AudioFrameworkRecLog: ---------GET BUFFER SIZE---------');
         let bufferSize = await audioCapPromise.getBufferSize();
         console.info('AudioFrameworkRecLog: buffer size: ' + bufferSize);
-        stateFlag = true;
+        expect(true).assertTrue();
+        done();
 
         console.info('AudioFrameworkRecLog: ---------OPEN FILE---------');
         let fd = fileio.openSync(dirPath, 0o102, 0o777);
@@ -1792,7 +1725,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -1800,9 +1734,9 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
-        //await sleep(1000);
         let numBuffersToCapture = 45;
         while (numBuffersToCapture) {
             console.info('AudioFrameworkRecLog: ---------BEFORE PROMISE READ ---------');
@@ -1823,16 +1757,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
             console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
             console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapPromise.state);
-            if ((audioCapPromise.state == 4)) {
-                console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
-                done();
-            }
+            expect(audioCapPromise.state).assertEqual(audio.AudioState.STATE_RELEASED);
+            done();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
     })
@@ -1846,7 +1776,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_REC_VOICE_CHAT_CB_0100', 2, async function (done) {
-
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
             channels: audio.AudioChannel.CHANNEL_2,
@@ -1881,7 +1810,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_REC_VOICE_CHAT_CB_ENUM_0100', 2, async function (done) {
-
         let AudioStreamInfo = {
             samplingRate: 44100,
             channels: 1,
@@ -2813,7 +2741,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_START_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_START_0100', 2, async function (done) {
         let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
@@ -2913,7 +2841,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_READ_WRITE_0100', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -2935,6 +2862,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -2946,22 +2875,24 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
         await audioCapCallBack.getAudioTime().then(async function (audioTime) {
             console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime);
             if (audioTime != 0) {
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
@@ -2977,7 +2908,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -2985,7 +2917,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -2995,26 +2928,30 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
                         await audioCapCallBack.getAudioTime().then(async function (audioTime1) {
                             console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime1);
                             if (audioTime1 != 0) {
-                                stateFlag = true;
+                                expect(true).assertTrue();
+                                done();
                             } else {
-                                stateFlag = false;
+                                expect(false).assertTrue();
+                                done();
                             }
                         }).catch((err) => {
                             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
+                            expect(false).assertTrue();
+                            done();
                         });
                         await sleep(50);
                         console.info('AudioFrameworkRecLog: ---------WRITE BUFFER---------');
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -3026,30 +2963,29 @@ describe('audioCapturer', function () {
         await audioCapCallBack.getAudioTime().then(async function (audioTime2) {
             console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime2);
             if (audioTime2 != 0) {
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         audioCapCallBack.release(async (err, value) => {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
             }
         });
         await sleep(1000);
@@ -3064,7 +3000,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_GET_AUDIO_TIME_AFTER_STOP_0100', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -3086,6 +3021,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -3097,25 +3034,28 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
             }
         });
         await sleep(1000);
         await audioCapCallBack.getAudioTime().then(async function (audioTime) {
             console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime);
             if (audioTime != 0) {
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         console.info('AudioFrameworkRecLog: ---------GET BUFFER SIZE---------');
@@ -3128,7 +3068,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -3136,7 +3077,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -3146,16 +3088,18 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
                         await audioCapCallBack.getAudioTime().then(async function (audioTime1) {
                             console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime1);
                             if (audioTime1 != 0) {
-                                stateFlag = true;
+                                expect(true).assertTrue();
+                                done();
                             } else {
-                                stateFlag = false;
+                                expect(false).assertTrue();
+                                done();
                             }
                         }).catch((err) => {
                             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
@@ -3165,7 +3109,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -3177,26 +3121,25 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO STOP STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 3)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO STOP STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_STOPPED);
+                done();
             }
         });
         await sleep(1000);
         await audioCapCallBack.getAudioTime().then(async function (audioTime2) {
             console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime AFTER WRITE : Success' + audioTime2);
             if (audioTime2 != 0) {
-                stateFlag == true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag == false;
+                expect(false).assertTrue();
+                done();
             }
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
@@ -3206,21 +3149,17 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                if ((audioCapCallBack.state == STATE_RELEASED)) {
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
                     done();
                 } else {
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                    expect(false).assertTrue();
                     done();
                 }
             }
@@ -3238,7 +3177,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_GET_AUDIO_TIME_0100', 2, async function (done) {
-        let stateFlag;
         let audioCapCallBack;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -3260,6 +3198,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -3270,7 +3210,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         await audioCapCallBack.getAudioTime(async (err, audioTime) => {
@@ -3279,9 +3220,11 @@ describe('audioCapturer', function () {
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer getAudioTime : Success' + audioTime);
                 if (audioTime != 0) {
-                    stateFlag = true;
+                    expect(true).assertTrue();
+                    done();
                 } else {
-                    stateFlag = false;
+                    expect(false).assertTrue();
+                    done();
                 }
             }
         });
@@ -3290,27 +3233,22 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
+                if ((audioCapCallBack.state == STATE_RELEASED)) {
                     console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
                     done();
                 } else {
-                    stateFlag = false;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                    expect(false).assertTrue();
                     done();
                 }
             }
         });
-
-
     })
 
     /**
@@ -3322,7 +3260,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_STOP_BEFORE_START_0100', 2, async function (done) {
-        let stateFlag;
         let audioCapPromise;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -3346,37 +3283,42 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS');
             console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO NEW STATE---------');
             console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
-            stateFlag == true;
+            expect(true).assertTrue();
+            done();
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : ' + err.message);
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         await audioCapPromise.stop().then(async function () {
             console.info('AudioFrameworkRecLog: AudioCapturer STOPED : UNSUCCESS' + audioCapCallBack.state);
-            if (audioCapCallBack.state == 1) {
-                stateFlag = true;
+            if (audioCapCallBack.state == STATE_PREPARED) {
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_PREPARED);
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         }).catch((err) => {
             console.info('AudioFrameworkRecLog: Capturer stop :ERROR : ' + err.message);
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         audioCapPromise.release(async (err, value) => {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
+                if ((audioCapCallBack.state == STATE_RELEASED)) {
                     console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    expect(false).assertTrue();
                     done();
                 }
             }
@@ -3392,7 +3334,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RELEASE_BEFORE_START_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_PROMISE_RELEASE_BEFORE_START_0100', 2, async function (done) {
         let stateFlag;
         let audioCapPromise;
         let AudioStreamInfo = {
@@ -3504,14 +3446,16 @@ describe('audioCapturer', function () {
             }
         }).catch((err) => {
             console.log('AudioFrameworkRecLog: getStreamInfo :ERROR: ' + err.message);
-            setFlag = false
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         audioCapGetgetStreamInfo.release(async (err, value) => {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -3537,7 +3481,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_REC_PR_VOICE_CHAT_GET_STREAM_INFO_ENUM_0100', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_REC_PR_VOICE_CHAT_GET_STREAM_INFO_ENUM_0100', 2, async function (done) {
         let audioCapGetgetStreamInfo;
         let setFlag;
         let audioStreamInfo44100 = {
@@ -3614,7 +3558,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_REC_CB_VOICE_CHAT_GET_STREAM_INFO_0200', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_REC_CB_VOICE_CHAT_GET_STREAM_INFO_0200', 2, async function (done) {
         let audioCapGetgetStreamInfo;
         let setFlag;
         let audioStreamInfo44100 = {
@@ -3728,7 +3672,8 @@ describe('audioCapturer', function () {
             console.log('AudioFrameworkRecLog: Entered getStreamInfo');
             if (err) {
                 console.log('AudioFrameworkRecLog: getStreamInfo :ERROR: ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: Capturer getStreamInfo:');
                 console.info('AudioFrameworkRecLog: Capturer sampleFormat:' + audioParamsGet.sampleFormat);
@@ -3744,7 +3689,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -3810,14 +3756,16 @@ describe('audioCapturer', function () {
             setFlag = true;
         }).catch((err) => {
             console.log('AudioFrameworkRecLog: CapturerInfo :ERROR: ' + err.message);
-            setFlag = false;
+            expect(false).assertTrue();
+            done();
         });
         await sleep(1000);
         audioCapGetgetCapturerInfo.release(async (err, value) => {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -3880,7 +3828,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: Capturer capturerFlags:' + audioParamsGet.capturerFlags);
             setFlag = true;
         }).catch((err) => {
-            setFlag = false;
+            expect(false).assertTrue();
+            done();
             console.log('AudioFrameworkRecLog: CapturerInfo :ERROR: ' + err.message);
         });
         await sleep(1000);
@@ -3888,7 +3837,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -3950,7 +3900,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------GET CAPTURER INFO---------');
             if (err) {
                 console.log('AudioFrameworkRecLog: CapturerInfo :ERROR: ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: Capturer CapturerInfo:');
                 console.info('AudioFrameworkRecLog: Capturer SourceType:' + audioParamsGet.source);
@@ -3965,7 +3916,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -4025,7 +3977,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------GET CAPTURER INFO---------');
             if (err) {
                 console.log('AudioFrameworkRecLog: CapturerInfo :ERROR: ' + err.message);
-                setFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: Capturer CapturerInfo:');
                 console.info('AudioFrameworkRecLog: Capturer SourceType:' + audioParamsGet.source);
@@ -4143,7 +4096,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_ON_0100', 2, async function (done) {
-        let stateFlag;
         let audioCapCallBack;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -4203,14 +4155,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                await sleep(1000);
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag == true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -4219,16 +4170,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer stop:ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO STOPPED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == audio.AudioState.STATE_STOPPED)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO STOPPED STATE---------');
-                    stateFlag == true;
-                }
-                console.info('AudioFrameworkRecLog: stateFlag : ' + stateFlag);
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_STOPPED);
+                done();
             }
         });
         await sleep(1000);
@@ -4236,13 +4185,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
                 done();
             }
         });
@@ -4258,7 +4206,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_ON_0200', 2, async function (done) {
-        let stateFlag;
         let audioCapCallBack;
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -4277,6 +4224,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -4317,13 +4266,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                stateFlag = true;
-                console.info('AudioFrameworkRenderLog: stateFlag : ' + stateFlag);
-                expect(stateFlag).assertTrue();
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
                 done();
             }
         });
@@ -4338,7 +4286,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_ON_0300', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_ON_0300', 2, async function (done) {
         let stateFlag;
         let audioCapCallBack;
         let AudioStreamInfo = {
@@ -4435,7 +4383,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_ON_0400', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_ON_0400', 2, async function (done) {
         let stateFlag;
         let audioCapCallBack;
         let AudioStreamInfo = {
@@ -4543,6 +4491,7 @@ describe('audioCapturer', function () {
         await sleep(1000);
     })
 
+
     /**
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0100
      *@tc.name      : AudioCapturer-Check-READ_BUFFER
@@ -4552,7 +4501,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0100', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -4574,6 +4522,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -4584,10 +4534,9 @@ describe('audioCapturer', function () {
             if (position == 5000) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -4597,13 +4546,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -4617,7 +4566,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -4625,7 +4575,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -4635,7 +4586,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -4645,7 +4596,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -4659,21 +4610,18 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
+                if ((audioCapCallBack.state == STATE_RELEASED)) {
                     console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                    expect(true).assertTrue();
                     done();
                 } else {
-                    stateFlag = false;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
+                    expect(false).assertTrue();
                     done();
                 }
             }
@@ -4690,7 +4638,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0200', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -4722,10 +4669,10 @@ describe('audioCapturer', function () {
             if (position == 1000) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -4735,13 +4682,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
             }
         });
         await sleep(1000);
@@ -4755,7 +4701,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -4763,7 +4710,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -4773,7 +4721,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -4783,7 +4731,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -4797,17 +4745,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -4822,7 +4767,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0300', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -4854,10 +4798,10 @@ describe('audioCapturer', function () {
             if (position == 10000) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -4867,13 +4811,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -4887,7 +4831,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -4895,7 +4840,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -4905,7 +4851,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -4915,7 +4861,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -4929,18 +4875,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -4955,7 +4897,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0400', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -4987,10 +4928,10 @@ describe('audioCapturer', function () {
             if (position == 100) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -5000,13 +4941,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5020,7 +4961,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5028,7 +4970,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5038,7 +4981,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5048,7 +4991,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -5062,18 +5005,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -5088,7 +5027,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0500', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5110,6 +5048,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -5120,10 +5060,10 @@ describe('audioCapturer', function () {
             if (position == 1) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -5133,13 +5073,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5153,7 +5093,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5161,7 +5102,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5171,7 +5113,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5181,7 +5123,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -5195,18 +5137,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -5222,7 +5160,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0600', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5254,10 +5191,10 @@ describe('audioCapturer', function () {
             if (position == 0) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -5267,13 +5204,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5287,7 +5224,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5295,7 +5233,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5305,7 +5244,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5315,7 +5254,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -5329,18 +5268,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -5356,7 +5291,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0700', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5378,6 +5312,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -5388,10 +5324,10 @@ describe('audioCapturer', function () {
             if (position == 1234567890) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -5401,13 +5337,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5421,7 +5357,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5429,7 +5366,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5439,7 +5377,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5449,7 +5387,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -5463,18 +5401,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -5489,7 +5423,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_MARK_REACH_0800', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5521,10 +5454,10 @@ describe('audioCapturer', function () {
             if (position == -2) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
-                expect(stateFlag).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -5534,13 +5467,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5554,7 +5487,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5562,7 +5496,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5572,7 +5507,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5582,7 +5517,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -5596,18 +5531,14 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                 console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                if ((audioCapCallBack.state == 4)) {
-                    console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                    stateFlag = true;
-                    console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                    expect(stateFlag).assertTrue();
-                    done();
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                done();
             }
         });
         await sleep(1000);
@@ -5622,7 +5553,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_0100', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5654,9 +5584,11 @@ describe('audioCapturer', function () {
             if (position == 1000) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         });
         await sleep(1000);
@@ -5665,13 +5597,12 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
             }
         });
         await sleep(1000);
@@ -5685,7 +5616,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5693,7 +5625,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5703,7 +5636,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5713,7 +5646,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(true).assertTrue();
                         resolve();
                     }
                 });
@@ -5728,18 +5661,14 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
                 if (err) {
                     console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                    stateFlag = false;
+                    expect(false).assertTrue();
+                    done();
                 } else {
                     console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                    if ((audioCapCallBack.state == 4)) {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                        stateFlag = true;
-                        console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                        expect(stateFlag).assertTrue();
-                        done();
-                    }
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    done();
                 }
             });
             await sleep(1000);
@@ -5748,19 +5677,14 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
                 if (err) {
                     console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                    stateFlag = false;
-                    expect(stateFlag).assertTrue();
+                    expect(false).assertTrue();
+                    done();
                 } else {
                     console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                    if ((audioCapCallBack.state == 4)) {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                        console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                        stateFlag = false;
-                        expect(stateFlag).assertTrue();
-                        done();
-                    }
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    done();
                 }
             });
             await sleep(1000);
@@ -5777,7 +5701,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_0200', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5799,6 +5722,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -5809,9 +5734,11 @@ describe('audioCapturer', function () {
             if (position == 1) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         });
         await sleep(1000);
@@ -5820,13 +5747,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5840,7 +5767,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -5848,7 +5776,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -5858,7 +5787,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -5868,7 +5797,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(false).assertTrue();
                         resolve();
                     }
                 });
@@ -5883,18 +5812,14 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
                 if (err) {
                     console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                    stateFlag = false;
+                    expect(false).assertTrue();
+                    done();
                 } else {
                     console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                    if ((audioCapCallBack.state == 4)) {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                        stateFlag = true;
-                        console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                        expect(stateFlag).assertTrue();
-                        done();
-                    }
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    done();
                 }
             });
             await sleep(1000);
@@ -5903,19 +5828,14 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
                 if (err) {
                     console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                    stateFlag = false;
-                    expect(stateFlag).assertTrue();
+                    expect(false).assertTrue();
+                    done();
                 } else {
                     console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                    if ((audioCapCallBack.state == 4)) {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                        console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                        stateFlag = false;
-                        expect(stateFlag).assertTrue();
-                        done();
-                    }
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    done();
                 }
             });
             await sleep(1000);
@@ -5932,7 +5852,6 @@ describe('audioCapturer', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_0300', 2, async function (done) {
-        let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
             samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
@@ -5954,6 +5873,8 @@ describe('audioCapturer', function () {
         audio.createAudioCapturer(AudioCapturerOptions, async (err, value) => {
             if (err) {
                 console.info('AudioFrameworkRecLog: AudioCapturer Not Created : Fail : Stream Type: FAIL');
+                expect(false).assertTrue();
+                done();
             } else {
                 audioCapCallBack = value;
                 console.info('AudioFrameworkRecLog: AudioCapturer Created : Success : Stream Type: SUCCESS' + audioCapCallBack.state);
@@ -5964,9 +5885,11 @@ describe('audioCapturer', function () {
             if (position == -2) {
                 console.info('AudioFrameworkRecLog: ---------ON TRIGGERED SUCCESSFULLY---------');
                 console.info('AudioRenderLog: mark reached: ' + position);
-                stateFlag = true;
+                expect(true).assertTrue();
+                done();
             } else {
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             }
         });
         await sleep(1000);
@@ -5975,13 +5898,13 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: ---------START---------');
             if (err) {
                 console.info('AudioFrameworkRecLog: Capturer start :ERROR : ' + err.message);
-                stateFlag = false;
+                expect(false).assertTrue();
+                done();
             } else {
                 console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
                 console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-                if ((audioCapCallBack.state == 2)) {
-                    stateFlag = true;
-                }
+                expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RUNNING);
+                done();
             }
         });
         await sleep(1000);
@@ -5995,7 +5918,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd created');
         } else {
             console.info('AudioFrameworkRecLog: Capturer start :ERROR : ');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         console.info('AudioFrameworkRecLog: ---------OPEN FILE IN APPEND MODE---------');
         fd = fileio.openSync(dirPath, 0o2002, 0o666);
@@ -6003,7 +5927,8 @@ describe('audioCapturer', function () {
             console.info('AudioFrameworkRecLog: file fd opened : Append Mode :PASS');
         } else {
             console.info('AudioFrameworkRecLog: file fd Open: Append Mode : FAILED');
-            stateFlag = false;
+            expect(false).assertTrue();
+            done();
         }
         await sleep(1000);
         let numBuffersToCapture = 45;
@@ -6013,7 +5938,7 @@ describe('audioCapturer', function () {
                 audioCapCallBack.read(bufferSize, true, async (err, buffer) => {
                     if (err) {
                         console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                        stateFlag = false;
+                        expect(false).assertTrue();
                         reject(err);
                     } else {
                         console.info('AudioFrameworkRecLog: ---------AFTER CHECK CB READ BUFFER---------');
@@ -6023,7 +5948,7 @@ describe('audioCapturer', function () {
                         let number = fileio.writeSync(fd, buffer);
                         console.info('AudioFrameworkRecLog:BufferRecLog: data written: ' + number);
                         await sleep(100);
-                        stateFlag = true;
+                        expect(false).assertTrue();
                         resolve();
                     }
                 });
@@ -6038,18 +5963,14 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
                 if (err) {
                     console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                    stateFlag = false;
+                    expect(false).assertTrue();
+                    done();
                 } else {
                     console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                    if ((audioCapCallBack.state == 4)) {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                        stateFlag = true;
-                        console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                        expect(stateFlag).assertTrue();
-                        done();
-                    }
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    done();
                 }
             });
             await sleep(1000);
@@ -6058,19 +5979,14 @@ describe('audioCapturer', function () {
                 console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
                 if (err) {
                     console.info('AudioFrameworkRecLog: Capturer release :ERROR : ' + err.message);
-                    stateFlag = false;
-                    expect(stateFlag).assertTrue();
+                    expect(false).assertTrue();
+                    done();
                 } else {
                     console.info('AudioFrameworkRecLog: ---------BEFORE CHECK AUDIO RELASED STATE---------');
                     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
                     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : ' + audioCapCallBack.state);
-                    if ((audioCapCallBack.state == 4)) {
-                        console.info('AudioFrameworkRecLog: ---------AFTER CHECK AUDIO RELEASED STATE---------');
-                        console.info('AudioFrameworkRenderLog: resultFlag : ' + stateFlag);
-                        stateFlag = false;
-                        expect(stateFlag).assertTrue();
-                        done();
-                    }
+                    expect(audioCapCallBack.state).assertEqual(audio.AudioState.STATE_RELEASED);
+                    done();
                 }
             });
             await sleep(1000);
@@ -6087,7 +6003,7 @@ describe('audioCapturer', function () {
      *@tc.type      : Function
      *@tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_0400', 2, async function (done) {
+     it('SUB_MULTIMEDIA_AUDIO_VOIP_CAP_CB_READ_BUFFER_PERIOD_REACH_0400', 2, async function (done) {
         let stateFlag;
         await getFd("capture_CB_js-44100-2C-S16LE-checkcbreadbuffer.pcm");
         let AudioStreamInfo = {
