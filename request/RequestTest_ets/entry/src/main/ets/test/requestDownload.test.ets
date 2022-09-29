@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,9 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import request from "@ohos.request";
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
 
 export default function requestDownloadJSUnit() {
   describe('requestDownloadTest', function () {
@@ -52,7 +51,7 @@ export default function requestDownloadJSUnit() {
 
     let downloadTask;
     let downloadConfig = {
-      url: 'http://download.ci.openharmony.cn/version/Daily_Version/',
+      url: 'http://127.0.0.1',
       header: {
         headers: 'http'
       },
@@ -60,7 +59,7 @@ export default function requestDownloadJSUnit() {
       enableRoaming: false,
       description: 'XTS download test!',
       networkType: request.NETWORK_WIFI,
-      filePath: 'internal://cache/test.txt',
+      filePath: 'test.txt',
       title: 'XTS download test!',
       background: true
     }
@@ -89,31 +88,6 @@ export default function requestDownloadJSUnit() {
     });
 
     /**
-     * @tc.number    SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002
-     * @tc.desc      Starts a download session.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002', 0, async function (done) {
-      console.info("-----------------------SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002 is starting-----------------------");
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      let context = abilityDelegator.getAppContext();
-      try {
-        request.download(context, downloadConfig, (data)=>{
-          downloadTask = data;
-          console.info("SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002 downloadTask: " + downloadTask);
-          expect(downloadTask != undefined).assertEqual(true);
-        });
-      } catch (err) {
-        console.error("SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002 error: " + err);
-        expect().assertFail();
-      }
-      console.info("-----------------------SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002 end-----------------------");
-      done();
-    });
-
-    /**
      * @tc.number    SUB_REQUEST_DOWNLOAD_API_PROMISE_0001
      * @tc.desc      Starts a download session.
      * @tc.size      : MEDIUM
@@ -135,29 +109,6 @@ export default function requestDownloadJSUnit() {
     });
 
     /**
-     * @tc.number    SUB_REQUEST_DOWNLOAD_API_PROMISE_0002
-     * @tc.desc      Starts a download session.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('SUB_REQUEST_DOWNLOAD_API_PROMISE_0002', 0, async function (done) {
-      console.info("-----------------------SUB_REQUEST_DOWNLOAD_API_PROMISE_0002 is starting-----------------------");
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      let context = abilityDelegator.getAppContext();
-      request.download(context, downloadConfig).then(data => {
-        downloadTask = data;
-        console.info("SUB_REQUEST_DOWNLOAD_API_PROMISE_0002 downloadTask: " + downloadTask);
-        expect(downloadTask != undefined).assertEqual(true);
-      }).catch(err => {
-        console.error("SUB_REQUEST_DOWNLOAD_API_PROMISE_0002 error: " + err);
-        expect().assertFail();
-      })
-      console.info("-----------------------SUB_REQUEST_DOWNLOAD_API_PROMISE_0002 end-----------------------");
-      done();
-    });
-
-    /**
      * @tc.number    SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0001
      * @tc.desc      alled when the current download session is in process.
      * @tc.size      : MEDIUM
@@ -169,12 +120,12 @@ export default function requestDownloadJSUnit() {
         request.download( downloadConfig, (data)=>{
         downloadTask = data;
         console.info("SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0001 downloadTask: " + downloadTask);
-        expect(downloadTask != undefined).assertEqual(true);
+        expect(true).assertEqual(downloadTask != undefined);
         downloadTask.on('progress', (data1, data2) => {
           console.info("SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0001 on data1 =" + data1);
           console.info("SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0001 on data2 =" + data2);
-          expect(data1 != undefined).assertEqual(true);
-          expect(data2 != undefined).assertEqual(true);
+          expect(true).assertEqual(data1 != undefined);
+          expect(true).assertEqual(data2 != undefined);
         });
       });
 
@@ -194,7 +145,7 @@ export default function requestDownloadJSUnit() {
         request.download( downloadConfig, (data)=>{
         downloadTask = data;
         console.info("SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002 downloadTask: " + downloadTask);
-        expect(downloadTask != undefined).assertEqual(true);
+        expect(true).assertEqual(downloadTask != undefined);
         try{
           downloadTask.on('complete', () => {
             console.info('SUB_REQUEST_DOWNLOAD_API_CALLBACK_0002 task completed.')
@@ -220,7 +171,7 @@ export default function requestDownloadJSUnit() {
         request.download( downloadConfig, (data)=>{
         downloadTask = data;
         console.info("SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003 downloadTask: " + downloadTask);
-        expect(downloadTask != undefined).assertEqual(true);
+        expect(true).assertEqual(downloadTask != undefined);
         try{
           downloadTask.on('pause', () => {
             console.info('SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003 task pause.')
