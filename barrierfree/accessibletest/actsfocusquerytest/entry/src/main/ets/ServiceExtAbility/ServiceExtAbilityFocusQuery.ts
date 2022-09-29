@@ -410,7 +410,8 @@ const AccessibleFocusQueryCallBackAccessibilityFocus = (context, searchText, des
         }
         res.findElement('content',searchText).then((AccessibilityElement) => {
             if (AccessibilityElement.length > 0) {
-                let ele = AccessibilityElement[0];
+                console.info(logTag + " AccessibilityElement.length: " + AccessibilityElement.length);
+                let ele = AccessibilityElement[AccessibilityElement.length - 1];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
                     setTimeout(() => {
@@ -448,7 +449,7 @@ const AccessibleFocusQueryIsAccessibilityFocus = (context, searchText, descripti
         }
         res.findElement('content',searchText).then((AccessibilityElement) => {
             if (AccessibilityElement.length > 0) {
-                let ele = AccessibilityElement[0];
+                let ele = AccessibilityElement[AccessibilityElement.length - 1];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
                     setTimeout(() => {
@@ -491,7 +492,7 @@ const AccessibleFocusQueryPromiseIsAccessibilityFocus = (context, searchText, de
         }
         res.findElement('content',searchText).then((AccessibilityElement) => {
             if (AccessibilityElement.length > 0) {
-                let ele = AccessibilityElement[0];
+                let ele = AccessibilityElement[AccessibilityElement.length -1];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
                     setTimeout(() => {
@@ -811,7 +812,7 @@ const AccessibleFocusQueryCallBackGetElementFocus = (context, searchText, descri
         }
         res.findElement('content',searchText).then((AccessibilityElement) => {
             if (AccessibilityElement.length > 0) {
-                let ele = AccessibilityElement[0];
+                let ele = AccessibilityElement[AccessibilityElement.length - 1];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
                     setTimeout(() => {
@@ -859,7 +860,7 @@ const AccessibleFocusQueryCallBackGetElement = (context, searchText, description
         }
         res.findElement('content',searchText).then((AccessibilityElement) => {
             if (AccessibilityElement.length > 0) {
-                let ele = AccessibilityElement[0];
+                let ele = AccessibilityElement[AccessibilityElement.length -1 ];
                 ele.performAction(focusType).then((res) => {
                     console.info(logTag + " performAction accessibilityFocus res:" + res);
                     setTimeout(() => {
@@ -906,47 +907,54 @@ const AccessibleFocusQueryCallBackGetSlider = (context, description, focusType, 
             return;
         }
         res.attributeValue("children").then((values) => {
-            values[0].attributeValue("children").then((values1) => {
-                values1[0].attributeValue("children").then((values2) => {
-                    console.info(logTag + " children length:" + values2.length)
-                    values2[values2.length-1].attributeValue("componentType").then((componentType) => {
-                        if (componentType == 'Slider') {
-                            values2[values2.length-1].performAction(focusType).then((res) => {
-                                console.info(logTag + " performAction accessibilityFocus res:" + res);
-                                setTimeout(() => {
-                                    context.getFocusElement(true, (err, ele) => {
-                                        if (err?.code) {
-                                            console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
-                                            return;
-                                        }
-                                        ele.attributeValue(attributeName).then((element) => {
-                                            console.info(logTag + " attributeValue " + attributeName + ":" + JSON.stringify(element))
-                                            if (element == 10 || element == 50 || element == 100) {
-                                                var commonEventPublishData = {
-                                                    data: "on_assist_change_extra_success"
-                                                }
-                                                commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+         for (let index0 = 0; index0 < values.length; index0++) {
+            values[index0].attributeValue("children").then((values1) => {
+                for (let index1 = 0; index1 < values1.length; index1++) {
+                values1[index1].attributeValue("children").then((values2) => {
+                    console.info(logTag + " children length: " + values2.length);
+                    for (let index = 0; index < values2.length; index++) {
+                        values2[index].attributeValue("componentType").then((componentType) => {
+                            console.info(logTag + " attributeValue componentType: " + componentType);
+                            if (componentType == 'Slider') {
+                                values2[index].performAction(focusType).then((res) => {
+                                    console.info(logTag + " performAction accessibilityFocus res:" + res);
+                                    setTimeout(() => {
+                                        context.getFocusElement(true, (err, ele) => {
+                                            if (err?.code) {
+                                                console.info(logTag + " getFocusElement execute err=" + JSON.stringify(err));
+                                                return;
                                             }
-                                        }).catch((err) => {
-                                            console.info(logTag + " attributeValue " + attributeName + " err=" + JSON.stringify(err));
+                                            ele.attributeValue(attributeName).then((element) => {
+                                                console.info(logTag + " attributeValue " + attributeName + ":" + JSON.stringify(element))
+                                                if (element == 10 || element == 50 || element == 100) {
+                                                    var commonEventPublishData = {
+                                                        data: "on_assist_change_extra_success"
+                                                    }
+                                                    commonEvent.publish("on_assist_change_extra", commonEventPublishData, publishCallback);
+                                                }
+                                            }).catch((err) => {
+                                                console.info(logTag + " attributeValue " + attributeName + " err=" + JSON.stringify(err));
+                                            })
+                                            ele.performAction('clearAccessibilityFocus').then((performActionBack) => {
+                                                console.info(logTag + " performActionBack Promise success=" + JSON.stringify(performActionBack));
+                                            }).catch((actionNamesErr) => {
+                                                console.info(logTag + " performActionBack Promise err=" + JSON.stringify(actionNamesErr));
+                                            });
                                         })
-                                        ele.performAction('clearAccessibilityFocus').then((performActionBack) => {
-                                            console.info(logTag + " performActionBack Promise success=" + JSON.stringify(performActionBack));
-                                        }).catch((actionNamesErr) => {
-                                            console.info(logTag + " performActionBack Promise err=" + JSON.stringify(actionNamesErr));
-                                        });
-                                    })
-                                }, 2000);
-                            }).catch((err) => {
-                                console.info(logTag + " performAction execute err=" + JSON.stringify(err));
-                            });
-                        }
-                    }).catch((err) => {
-                        console.info(logTag + " attributeValue componentType err=" + JSON.stringify(err));
-                    });
-                })
-            })
+                                    }, 2000);
+                                }).catch((err) => {
+                                    console.info(logTag + " performAction execute err=" + JSON.stringify(err));
+                                });
+                            }
+                        }).catch((err) => {
+                            console.info(logTag + " attributeValue componentType err=" + JSON.stringify(err));
+                        });
+                    }
 
+                })
+                }
+            })
+         }
         })
     });
 }
