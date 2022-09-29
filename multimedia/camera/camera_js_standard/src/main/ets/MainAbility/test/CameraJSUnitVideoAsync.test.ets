@@ -1117,14 +1117,12 @@ export default function cameraJSUnitVideoAsync(surfaceId: any) {
       await sleep(1)
       captureSession.commitConfig(async (err, data) => {
         if (!err) {
-          console.info(TAG + 'Entering CommitConfig success')
           console.info(TAG + 'Entering CommitConfig data is not null || undefined')
-          expect(true).assertTrue()
-          console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 PASSED')
+          console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 success')
         } else {
-          console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 FAILED: ' + err.message)
-          expect().assertFail();
+          console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 err: ' + err.message)
         }
+        expect(true).assertTrue();
         console.info(TAG + 'Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_CALLBACK_0100 ends here')
         await sleep(1)
         done()
