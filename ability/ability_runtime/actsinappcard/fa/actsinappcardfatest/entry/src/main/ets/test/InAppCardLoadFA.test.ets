@@ -69,7 +69,7 @@ export default function abilityTest() {
           formId = data.parameters.formId;
           console.debug("ACTS_InAppCardLoadCard_1000 ====>" + formId);
           setTimeout(async () => {
-            let cmd = "fm query -i " + formId
+            let cmd = "hidumper -s FormMgr -a '-i " + formId + "'"
             console.debug("ACTS_InAppCardLoadCard_1000 ====> cmd " + cmd);
             abilityDelegator.executeShellCommand(cmd,
               (err, data) => {
@@ -135,7 +135,7 @@ export default function abilityTest() {
           formId = data.parameters.formId;
           console.debug("ACTS_InAppCardLoadCard_1100 ====>" + formId);
           setTimeout(async () => {
-            let cmd = "fm query -i " + formId
+            let cmd = "hidumper -s FormMgr -a '-i " + formId + "'"
             console.debug("ACTS_InAppCardLoadCard_1100 ====> cmd " + cmd);
             abilityDelegator.executeShellCommand(cmd,
               (err, data) => {
@@ -200,7 +200,7 @@ export default function abilityTest() {
           formId = data.parameters.formId;
           console.debug("ACTS_InAppCardLoadCard_1200 ====>" + formId);
           setTimeout(async () => {
-            let cmd = "fm query -i " + formId
+            let cmd = "hidumper -s FormMgr -a '-i " + formId + "'"
             console.debug("ACTS_InAppCardLoadCard_1200 ====> cmd " + cmd);
             abilityDelegator.executeShellCommand(cmd,
               (err, data) => {
