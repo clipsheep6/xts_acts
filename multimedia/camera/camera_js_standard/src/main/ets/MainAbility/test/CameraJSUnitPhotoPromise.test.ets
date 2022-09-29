@@ -3001,7 +3001,7 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       // 创建拍照输出流
       let photoOutput = await cameraObj.createPhotoOutput((photoSurfaceId));
       // 向会话中添加预览输入流
-      await captureSession.addOutput(previewOutput);
+      await CaptureSessionPromise.addOutput(previewOutput);
       // 向会话中添加拍照输出流
       await CaptureSessionPromise.addOutput(photoOutput);
 
