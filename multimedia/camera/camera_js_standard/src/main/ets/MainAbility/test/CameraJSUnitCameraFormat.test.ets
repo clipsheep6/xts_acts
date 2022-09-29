@@ -24,9 +24,10 @@ const TAG = "CameraModuleTest: ";
 
 // Define global variables
 
-var cameraManager;
+let cameraManager;
 var surfaceId1;
-var camerasArray;
+let camerasArray;
+let supportedCamerasArray;
 
 // CAMERA-0 Variables
 var camera0Input, camera0InputPosBack, camera0InputPosFront;
@@ -102,11 +103,31 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
     }
   }
 
+  function getSupportedCameras() {
+    supportedCamerasArray = await cameraManager.getCameras();
+    console.info(TAG + "get supported cameras: " + JSON.stringify(supportedCamerasArray));
+    if (supportedCamerasArray != null && supportedCamerasArray.length > 0) {
+      expect(true).assertTrue();
+      console.info(TAG + "get supported cameras PASSED");
+    } else {
+      expect().assertFail();
+      console.info(TAG + "get supported cameras FAILED");
+    }
+  }
+
+  function isEmpty(data) {
+    if (data == null || data == undefined) {
+      return true;
+    }
+    return false;
+  }
+
   describe('CameraJsUnitCameraFormat', function () {
     console.info(TAG + '----------CameraJsUnitCameraFormat--------------')
 
     beforeAll(async function () {
       await applyPermission();
+      getSupportedCameras();
       console.info('beforeAll case');
     })
 
@@ -273,22 +294,19 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
     it('CREATE_CAMERA_INPUT_TC_005', 0, async function (done) {
       console.info("--------------CAMERA-0 STARTS HERE--------------");
       console.info("--------------CREATE_CAMERA_INPUT_TC_005--------------");
-      cameraManager.createCameraInput(camerasArray[0].cameraId, async (err, data) => {
-        if (!err) {
-          if (data != null && data != undefined) {
-            console.info(TAG + "Entering CREATE_CAMERA_INPUT_TC_005 data is not null || undefined");
-            camera0Input = data;
-            expect(true).assertTrue();
+      for (var i = 0; i < supportedCamerasArray.length; i++) {
+        cameraManager.createCameraInput(supportedCamerasArray[i].cameraId, async (err, data) => {
+          if (!err) {
+            expect(isEmpty(data)).assertFalse();
             console.info(TAG + "Entering CREATE_CAMERA_INPUT_TC_005 PASSED with CameraID :" + camerasArray[0].cameraId);
+          } else {
+            expect().assertFail();
+            console.info(TAG + "Entering CREATE_CAMERA_INPUT_TC_005 FAILED: " + err.message);
           }
-        } else {
-          expect().assertFail();
-          console.info(TAG + "Entering CREATE_CAMERA_INPUT_TC_005 FAILED: " + err.message);
-        }
-        console.info(TAG + "Entering CREATE_CAMERA_INPUT_TC_005 ends here");
-        await sleep(1000);
-        done();
-      })
+          console.info(TAG + "Entering CREATE_CAMERA_INPUT_TC_005 ends here");
+          await sleep(100);
+        })
+      }
       await sleep(1000);
       done();
     })
@@ -303,17 +321,12 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
     */
     it('CREATE_CAMERA_INPUT_PROMISE_TC_006', 0, async function (done) {
       console.info("--------------CREATE_CAMERA_INPUT_PROMISE_TC_006--------------");
-      camera0InputPromise = await cameraManager.createCameraInput(camerasArray[0].cameraId);
-      console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE_TC_006 camera0InputPromise: " + JSON.stringify(camera0InputPromise));
-      if (camera0InputPromise != null && camera0InputPromise != undefined) {
-        console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE_TC_006 camera0InputPromise is not null || undefined");
-        expect(true).assertTrue();
-        console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE_TC_006 PASSED");
-      } else {
-        expect().assertFail();
-        console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE_TC_006 FAILED");
+      for (var i = 0; i < supportedCamerasArray.length; i++) {
+        let cameraInput = await cameraManager.createCameraInput(supportedCamerasArray[i].cameraId);
+        expect(isEmpty(cameraInput)).assertFalse();
+        await sleep(100);
       }
-      console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE_TC_006 ends here");
+      console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE_TC_006 PASSED");
       await sleep(1000);
       done();
     })
@@ -327,22 +340,21 @@ export default function cameraJSUnitCameraFormat(surfaceId: any) {
       * @tc.level     : Level 0
     */
     it('GET_CAMERA_ID_TC_007', 0, async function (done) {
-      camera0Input.getCameraId(async (err, data) => {
-        if (!err) {
-          if (data != null && data != undefined) {
-            console.info(TAG + "Entering GET_CAMERA_ID_TC_007 data is not null || undefined");
-            var CameraId0 = data;
-            expect(true).assertTrue();
-            console.info(TAG + "Entering GET_CAMERA_ID_TC_007 PASSED with CameraID :" + CameraId0);
+      for (var i = 0; i < supportedCamerasArray.length; i++) {
+        let cameraInput = await cameraManager.createCameraInput(supportedCamerasArray[i].cameraId);
+        expect(isEmpty(cameraInput)).assertFalse();
+        cameraInput.getCameraId(async (err, data) => {
+          if (!err) {
+            expect(isEmpty(data)).assertFalse();
+            console.info(TAG + "Entering GET_CAMERA_ID_TC_007 PASSED with CameraID :" + data);
+          } else {
+            expect().assertFail();
+            console.info(TAG + "Entering GET_CAMERA_ID_TC_007 FAILED: " + err.message);
           }
-        } else {
-          expect().assertFail();
-          console.info(TAG + "Entering GET_CAMERA_ID_TC_007 FAILED: " + err.message);
-        }
-        console.info(TAG + "Entering GET_CAMERA_ID_TC_007 ends here");
-        await sleep(1000);
-        done();
-      })
+        })
+        await sleep(100);
+      }
+      console.info(TAG + "Entering GET_CAMERA_ID_TC_007 ends here");
       await sleep(1000);
       done();
     })
