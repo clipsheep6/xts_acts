@@ -209,8 +209,8 @@ export default function remoteWindowJsunit() {
       let strJson = getInspectorByKey('formComponentFormDimensionWindowBoundsText');
       console.info("[testRemoteWindow0011] component textAlign strJson:" + strJson);
       let obj = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('Swiper');
-      expect(obj.$attrs.indicatorStyle).assertEqual({ mask: false });
+      expect(obj.$type).assertEqual('Text');
+      expect(obj.$attrs.indicatorStyle).assertEqual(undefined);
       console.info("[testRemoteWindow0011] indicatorStyle value :" + obj.$attrs.indicatorStyle);
       done();
     });
