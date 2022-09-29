@@ -36,7 +36,7 @@ async function getMissionId(abilityName, state,bundleName) {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsCardLinkageStageTest', function () {
     beforeAll(async (done) => {
       driver = await UiDriver.create()
       done();
@@ -60,16 +60,6 @@ export default function abilityTest() {
       }
       async function unsubscribeCallback() {
         console.log("ACTS_InAppCardLinkage_0100 unsubscribeCallback");
-        await formHost.deleteForm(formId_main.toString()).then((data)=>{
-          console.debug("ACTS_InAppCardLinkage_0100 ====> deleteForm data"+data)
-        }).catch((err)=>{
-          console.debug("ACTS_InAppCardLinkage_0100 ====> deleteForm err"+err)
-        })
-        await formHost.deleteForm(formId_c.toString()).then((data)=>{
-          console.debug("ACTS_InAppCardLinkage_0100 ====> deleteForm data"+data)
-        }).catch((err)=>{
-          console.debug("ACTS_InAppCardLinkage_0100 ====> deleteForm err"+err)
-        })
         done()
       }
       async function updateForm() {
@@ -101,7 +91,7 @@ export default function abilityTest() {
           updateForm()
         }else if(data.event == subscribeInfo.events[2]){
           let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          let cmdA ="fm query -i " + formId_main;
+          let cmdA ="hidumper -s FormMgr -a '-i " + formId_main + "'";
           await abilityDelegator.executeShellCommand(cmdA).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
@@ -110,7 +100,7 @@ export default function abilityTest() {
           }).catch((err)=>{
             console.info(`ACTS_InAppCardLinkage_0100 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
-          let cmdB ="fm query -i " + formId_c;
+          let cmdB ="hidumper -s FormMgr -a '-i " + formId_c + "'";
           await abilityDelegator.executeShellCommand(cmdB).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
@@ -158,16 +148,6 @@ export default function abilityTest() {
 
       async function unsubscribeCallback() {
         console.log("ACTS_InAppCardLinkage_0200 ====> unsubscribeCallback");
-        await formHost.deleteForm(formId_main.toString()).then((data)=>{
-          console.debug("ACTS_InAppCardLinkage_0200 ====> deleteForm data"+data)
-        }).catch((err)=>{
-          console.debug("ACTS_InAppCardLinkage_0200 ====> deleteForm err"+err)
-        })
-        await formHost.deleteForm(formId_c.toString()).then((data)=>{
-          console.debug("ACTS_InAppCardLinkage_0200 ====> deleteForm data"+data)
-        }).catch((err)=>{
-          console.debug("ACTS_InAppCardLinkage_0200 ====> deleteForm err"+err)
-        })
         done()
       }
 
@@ -202,7 +182,7 @@ export default function abilityTest() {
           updateForm()
         }else if(data.event == subscribeInfo.events[2]){
           let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          let cmdA ="fm query -i " + formId_main;
+          let cmdA ="hidumper -s FormMgr -a '-i " + formId_main + "'";
           await abilityDelegator.executeShellCommand(cmdA).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
@@ -211,7 +191,7 @@ export default function abilityTest() {
           }).catch((err)=>{
             console.info(`ACTS_InAppCardLinkage_0200 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
-          let cmdB ="fm query -i " + formId_c;
+          let cmdB ="hidumper -s FormMgr -a '-i " + formId_c + "'";
           await abilityDelegator.executeShellCommand(cmdB).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
@@ -258,16 +238,6 @@ export default function abilityTest() {
 
       async function unsubscribeCallback() {
         console.log("ACTS_InAppCardLinkage_0300 unsubscribeCallback");
-        await formHost.deleteForm(formId_main.toString()).then((data)=>{
-          console.debug("ACTS_InAppCardLinkage_0300 ====> deleteForm data"+data)
-        }).catch((err)=>{
-          console.debug("ACTS_InAppCardLinkage_0300 ====> deleteForm err"+err)
-        })
-        await formHost.deleteForm(formId_c.toString()).then((data)=>{
-          console.debug("ACTS_InAppCardLinkage_0300 ====> deleteForm data"+data)
-        }).catch((err)=>{
-          console.debug("ACTS_InAppCardLinkage_0300 ====> deleteForm err"+err)
-        })
         done()
       }
 
@@ -301,7 +271,7 @@ export default function abilityTest() {
           updateForm()
         }else if(data.event == subscribeInfo.events[2]){
           let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          let cmdA ="fm query -i " + formId_main;
+          let cmdA ="hidumper -s FormMgr -a '-i " + formId_main + "'";
           await abilityDelegator.executeShellCommand(cmdA).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
@@ -310,7 +280,7 @@ export default function abilityTest() {
           }).catch((err)=>{
             console.info(`ACTS_InAppCardLinkage_0300 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
-          let cmdB ="fm query -i " + formId_c;
+          let cmdB ="hidumper -s FormMgr -a '-i " + formId_c + "'";
           await abilityDelegator.executeShellCommand(cmdB).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp

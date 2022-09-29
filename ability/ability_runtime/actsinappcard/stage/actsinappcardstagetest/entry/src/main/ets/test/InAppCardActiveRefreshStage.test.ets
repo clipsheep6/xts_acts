@@ -20,7 +20,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 async function getFormData(formId) {
   let fromData;
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-  let cmd = "fm query -i " + formId;
+  let cmd = "hidumper -s FormMgr -a '-i " + formId + "'";
   await abilityDelegator.executeShellCommand(cmd).then((data) => {
     console.info(`getFormData data : + ${JSON.stringify(data)}`)
     fromData = data;
@@ -31,7 +31,7 @@ async function getFormData(formId) {
 }
 
 export default function InAppcardActiveRefreshStageTest() {
-  describe('ActsActiveRefreshStageTest', function () {
+  describe('ActsCardActiveRefreshStageTest', function () {
 
     /**
      * @tc.number: ACTS_InAppCardActiveRefresh_0100

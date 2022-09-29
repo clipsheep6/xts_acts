@@ -24,7 +24,7 @@ var ACTS_CARD = {
 };
 export default function abilityTest() {
 
-  describe('ActsAbilityTest', function () {
+  describe('ActsCardEventStageTest', function () {
     beforeAll(async (done) => {
       driver = await UiDriver.create()
       done();

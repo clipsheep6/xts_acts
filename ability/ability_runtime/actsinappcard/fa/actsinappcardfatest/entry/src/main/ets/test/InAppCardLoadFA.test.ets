@@ -25,7 +25,7 @@ var ACTS_CARD = {
 };
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsCardLoadFATest', function () {
 
     afterEach(async (done) => {
       setTimeout(() => {

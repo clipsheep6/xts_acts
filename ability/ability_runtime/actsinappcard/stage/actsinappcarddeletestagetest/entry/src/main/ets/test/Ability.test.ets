@@ -21,7 +21,7 @@ import commonEvent from '@ohos.commonEvent'
 async function getFormData(formId) {
   let fromData;
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-  let cmd ="fm query -i " + formId;
+  let cmd =" hidumper -s FormMgr -a ' -i " + formId+"'";
   await abilityDelegator.executeShellCommand(cmd).then((data) => {
     console.info(`getFormData data : + ${JSON.stringify(data)}`)
     fromData = data;
@@ -33,7 +33,7 @@ async function getFormData(formId) {
 
 export default function abilityTest() {
 
-  describe('ActsAppCardDeleteTest', function () {
+  describe('ActsAppCardDeleteStageTest', function () {
 
     /*
     * @tc.number: ACTS_InAppCardDelete Card_0100

@@ -21,7 +21,7 @@ var ACTS_CARD = {
 };
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsCardForceRefreshStageTest', function () {
     /**
      * @tc.number: ACTS_InAppCardForceRefresh_0100
      * @tc.name: The main process forcibly refreshes the card(stage)

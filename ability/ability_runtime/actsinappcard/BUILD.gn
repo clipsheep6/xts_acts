@@ -21,6 +21,8 @@ group("actsinappcard") {
       "fa/actsinappcarddeletefatest:ActsInAppCardDeleteFaTest",
       "fa/actsinappcardeventfarelyhap:ActsInAppCardEventFARelyHap",
       "fa/actsinappcardfatest:ActsInAppCardFATest",
+      "fa/actsinappcardforcerefreshfarelyhap:ActsInAppCardForceRefreshFaRelyHap",
+      "fa/actsinappcardforcerefreshfatest:ActsInAppCardForceRefreshFaTest",
       "fa/actsinappcardlinkagefaarelyhap:ActsInAppCardLinkageFAA",
       "fa/actsinappcardlinkagefabrelyhap:ActsInAppCardLinkageFAB",
       "fa/actsinappcardlinkagefarelyhap:ActsInAppCardLinkageFARelyHap",
