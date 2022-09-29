@@ -18,6 +18,7 @@
     "name": ".MyApplication",
     "mainAbility": "com.acts.requesttest.MainAbility",
     "deviceType": ["phone"],
+      "default",
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
