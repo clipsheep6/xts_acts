@@ -30,7 +30,7 @@ var photoOutputPromise;
 var CaptureSessionPromise;
 var surfaceId1;
 var camerasArrayPromise
-var camera1InputPromise;
+var camera0InputPromise;
 
 var Point1 = { x: 1, y: 1 }
 var Point2 = { x: 2, y: 2 }
@@ -299,11 +299,11 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       }
 
       // 创建相机输入流
-      camera1InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
+      camera0InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
 
-      console.info(TAG + "Entering Create camerainput camera1InputPromise: " + JSON.stringify(camera1InputPromise));
-      if (camera1InputPromise != null && camera1InputPromise != undefined) {
-        console.info(TAG + "Entering Create camerainput camera1InputPromise is not null || undefined");
+      console.info(TAG + "Entering Create camerainput camera0InputPromise: " + JSON.stringify(camera0InputPromise));
+      if (camera0InputPromise != null && camera0InputPromise != undefined) {
+        console.info(TAG + "Entering Create camerainput camera0InputPromise is not null || undefined");
         expect(true).assertTrue();
         console.info(TAG + "Entering CREATE_CAMERA_INPUT_PROMISE PASSED");
       } else {
@@ -526,36 +526,6 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       }
     })
 
-    /*CaptureSession APIs*/
-    /**
-      * @tc.number    : CREATE_BEGIN_CONFIG_PROMISE
-      * @tc.name      : CaptureSession_Begin config promise api
-      * @tc.desc      : CaptureSession_Begin config promise api
-      * @tc.size      : MEDIUM
-      * @tc.type      : Function
-      * @tc.level     : Level 0
-    */
-    it('PP_CREATE_BEGIN_CONFIG_PROMISE', 0, async function (done) {
-      if (CaptureSessionPromise == null || CaptureSessionPromise == undefined) {
-        console.info(TAG + "Entering CaptureSession_Begin config captureSession == null || undefined");
-      } else {
-        console.info(TAG + "Entering CREATE_BEGIN_CONFIG_PROMISE to operate");
-        const promise = await CaptureSessionPromise.beginConfig();
-        console.info(TAG + "Entering beginConfig success:");
-        if (promise == undefined) {
-          expect(true).assertTrue();
-          console.info(TAG + "Entering CREATE_BEGIN_CONFIG_PROMISE beginConfig PASSED");
-        }
-        else {
-          expect().assertFail();
-          console.info(TAG + "Entering CREATE_BEGIN_CONFIG_PROMISE FAILED : ");
-        }
-        console.info(TAG + "Entering CREATE_BEGIN_CONFIG_PROMISE ends here");
-      }
-      await sleep(1000);
-      done();
-    })
-
     /**
       * @tc.number    : ADD_INPUT_PROMISE
       * @tc.name      : Add Input with camera0Input api
@@ -579,7 +549,7 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       }
 
       // 创建相机输入流
-      camera1InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
+      camera0InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
 
       let CaptureSessionPromise = await cameraObj.createCaptureSession(null);
 
@@ -587,7 +557,7 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
 
       console.info(TAG + "Entering ADD_INPUT_PROMISE to operate");
       try {
-        await CaptureSessionPromise.addInput(camera1InputPromise);
+        await CaptureSessionPromise.addInput(camera0InputPromise);
         console.info(TAG + "Entering Add Input addInput success");
         expect(true).assertTrue();
         console.info(TAG + "Entering ADD_INPUT_PROMISE addInput PASSED");
@@ -694,6 +664,37 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       await sleep(1000);
       done();
     })
+  
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100
+      * @tc.name      : commit config api
+      * @tc.desc      : commit config api
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 0
+    */
+   it('SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100', 0, async function (done) {
+    if (CaptureSessionPromise == null || CaptureSessionPromise == undefined) {
+      console.info(TAG + "Entering commit config captureSession == null || undefined");
+    } else {
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 to operate");
+      const promise = await CaptureSessionPromise.commitConfig();
+      console.info(TAG + "Entering commit config commitConfig success");
+      if (promise == undefined) {
+        expect(true).assertTrue();
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 commitConfig PASSED");
+      }
+      else {
+        expect().assertFail();
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 commitConfig FAILED : ");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 commitConfig ends here");
+      }
+      await sleep(1000);
+      done();
+    }
+    await sleep(1000);
+    done();
+  })
 
     /**
       * @tc.number    : isMirrorSupported_PHOTO_OUTPUT
@@ -785,33 +786,6 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
     })
 
     /**
-      * @tc.number    : CREATE_BEGIN_CONFIG_SUCCESS_PROMISE
-      * @tc.name      : CaptureSession_Begin config promise api
-      * @tc.desc      : CaptureSession_Begin config promise api
-      * @tc.size      : MEDIUM
-      * @tc.type      : Function
-      * @tc.level     : Level 0
-    */
-    it('PP_CREATE_BEGIN_CONFIG_SUCCESS_PROMISE', 0, async function (done) {
-      //创建会话
-      let CaptureSessionPromise = await cameraObj.createCaptureSession(null);
-
-      try {
-        console.info(TAG + "Entering CREATE_BEGIN_CONFIG_SUCCESS_PROMISE to operate");
-        await CaptureSessionPromise.beginConfig()
-        console.info(TAG + "Entering beginConfig success:");
-        expect(true).assertTrue();
-        console.info(TAG + "Entering CREATE_BEGIN_CONFIG_SUCCESS_PROMISE beginConfig PASSED");
-      } catch(err) {
-        expect().assertFail();
-        console.info(TAG + "Entering beginConfig FAILED");
-      }
-      console.info(TAG + "Entering beginConfig ends here");
-      await sleep(1000);
-      done();
-    })
-
-    /**
       * @tc.number    : REMOVE_INPUT_SUCCESS
       * @tc.name      : remove input api
       * @tc.desc      : remove input api
@@ -833,17 +807,17 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       }
 
       // 创建相机输入流
-      camera1InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
+      camera0InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
 
       let CaptureSessionPromise = await cameraObj.createCaptureSession(null);
 
       await CaptureSessionPromise.beginConfig();
 
-      await CaptureSessionPromise.addInput(camera1InputPromise);
+      await CaptureSessionPromise.addInput(camera0InputPromise);
 
       try {
         console.info(TAG + "Entering REMOVE_INPUT_SUCCESS to operate");
-        await CaptureSessionPromise.removeInput(camera1InputPromise);
+        await CaptureSessionPromise.removeInput(camera0InputPromise);
         console.info(TAG + "Entering REMOVE_INPUT_SUCCESS  success ");
         expect(true).assertTrue();
         console.info(TAG + "Entering REMOVE_INPUT_SUCCESS  PASSED");
@@ -886,6 +860,37 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       await sleep(1000);
       done();
     })
+
+    /**
+      * @tc.number    : ADD_OUTPUT_PREVIEW_PROMISE
+      * @tc.name      : Add output with camera0Input api
+      * @tc.desc      : Add output with camera0Input api
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 0
+    */
+   it('PP_ADD_OUTPUT_PREVIEW_PROMISE', 0, async function (done) {
+    if (CaptureSessionPromise == null || CaptureSessionPromise == undefined) {
+      console.info(TAG + "Entering Add preview Output captureSession == null || undefined");
+    } else {
+      console.info(TAG + "Entering ADD_OUTPUT_PREVIEW_PROMISE to operate");
+      const promise = await CaptureSessionPromise.addOutput(previewOutputPromise);
+      console.info(TAG + "Entering Add preview Output : Success");
+      if (promise == undefined) {
+        expect(true).assertTrue();
+        console.info(TAG + "Entering ADD_OUTPUT_PREVIEW_PROMISE PASSED");
+      }
+      else {
+        expect().assertFail();
+        console.info(TAG + "Entering ADD_OUTPUT_PREVIEW_PROMISE FAILED : ");
+      }
+      console.info(TAG + "Entering ADD_OUTPUT_PREVIEW_PROMISE ends here");
+      await sleep(1000);
+      done();
+    }
+    await sleep(1000);
+    done();
+  })
 
     /**
       * @tc.number    : ADD_OUTPUT_PHOTO_SUCCESS
@@ -979,6 +984,37 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       await sleep(1000);
       done();
     })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100
+      * @tc.name      : commit config api
+      * @tc.desc      : commit config api
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 0
+    */
+   it('SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100', 0, async function (done) {
+    if (CaptureSessionPromise == null || CaptureSessionPromise == undefined) {
+      console.info(TAG + "Entering commit config captureSession == null || undefined");
+    } else {
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 to operate");
+      const promise = await CaptureSessionPromise.commitConfig();
+      console.info(TAG + "Entering commit config commitConfig success");
+      if (promise == undefined) {
+        expect(true).assertTrue();
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 commitConfig PASSED");
+      }
+      else {
+        expect().assertFail();
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 commitConfig FAILED : ");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_COMMIT_CONFIG_SUCCESS_0100 commitConfig ends here");
+      }
+      await sleep(1000);
+      done();
+    }
+    await sleep(1000);
+    done();
+  })
 
     /**
       * @tc.number    : FOCUSSTATECHANGE_CALLBACK_ON_CAMERAINPUT
@@ -2983,15 +3019,16 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       }
 
       // 创建相机输入流
-      camera1InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
+      camera0InputPromise = await cameraManager.createCameraInput(cameraArray[0].cameraId);
 
       let CaptureSessionPromise = await cameraObj.createCaptureSession(null);
 
       await CaptureSessionPromise.beginConfig();
 
-      await CaptureSessionPromise.addInput(camera1InputPromise);
+      await CaptureSessionPromise.addInput(camera0InputPromise);
 
-
+      // 创建预览输出流
+      let previewOutput = await cameraObj.createPreviewOutput(surfaceId);
 
       // 创建ImageReceiver对象，并设置照片参数
       let imageReceiver = await image.createImageReceiver(640, 480, 4, 8);
@@ -2999,6 +3036,8 @@ export default function cameraJSUnitPhotoPromise(surfaceId: any) {
       let photoSurfaceId = await imageReceiver.getReceivingSurfaceId();
       // 创建拍照输出流
       let photoOutput = await cameraObj.createPhotoOutput((photoSurfaceId));
+      // 向会话中添加预览输入流
+      await CaptureSessionPromise.addOutput(previewOutput);
       // 向会话中添加拍照输出流
       await CaptureSessionPromise.addOutput(photoOutput);
 
