@@ -255,7 +255,7 @@ describe('audioVoip', function () {
             return resultFlag;
         });
 
-        // console.info(`${TagRec}: AudioCapturer : Path : ${fpath}`);
+        console.info(`${TagRec}: AudioCapturer : Path : ${fpath}`);
 
         console.info(`${TagRec}: AudioCapturer : STATE : ${audioCap.state}`);
 
