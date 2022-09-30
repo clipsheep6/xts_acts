@@ -15,10 +15,17 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import commonEvent from '@ohos.commonEvent'
+import missionManager from '@ohos.application.missionManager'
+
 var subscriberInfo_MainAbility = {
     events: ["ACTS_StartAbility_CommonEvent"]
 };
+
+var subscriberInfo_Ability4 = {
+    events: ["ACTS_StartAbility_Ability4"]
+};
 const START_ABILITY_TIMEOUT = 4000;
+const MISSION_CLOSED_TIMEOUT = 8000;
 export default function abilityTest() {
     describe('ACTS_StartAbility_Test', function () {
 
@@ -221,5 +228,103 @@ export default function abilityTest() {
 
             setTimeout(timeout, START_ABILITY_TIMEOUT);
         })
+
+        /*
+       * @tc.number    : ACTS_MissionClosed_0100
+       * @tc.name      : onMissionClosed callback.
+       * @tc.desc      : Starting ability4 and terminate self.
+       */
+        it('ACTS_MissionClosed_0100', 0, async function (done) {
+            console.log("====>ACTS_MissionClosed_0100 begin====>");
+
+            var Subscriber
+            var flag = true
+            var startresult = false
+            var missionClosed = false
+
+            function onMissionCreateCallback(missionId) {
+                console.log("====>onMissionCreateCallback====>");
+            }
+
+            function onMissionSnapshotChangedCallback(missionId) {
+                console.log("====>onMissionSnapshotChangedCallback====>");
+            }
+
+            function onMissionDestroyedCallback(missionId) {
+                console.log("====>onMissionDestroyedCallback====>");
+            }
+
+            function onMissionMoveToForegroundCallback(missionId) {
+                console.log("====>onMissionMoveToForegroundCallback====>");
+            }
+
+            function onMissionIconChangedCallback(missionId, icon) {
+                console.log("====>onMissionIconChangedCallback====>");
+            }
+
+            function onMissionClosedCallback(missionId) {
+                console.log("====>onMissionClosedCallback====>");
+                missionClosed = true;
+                commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+            }
+
+            function SubscribeCallBack(err, data) {
+                console.log("====>ACTS_MissionClosed_0100 SubscribeCallBack ====>");
+                expect(data.event == "ACTS_StartAbility_Ability4").assertTrue();
+                console.log("====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
+                if (data.event == "ACTS_StartAbility_Ability4") {
+                    startresult = true
+                }
+                globalThis.missionContext.terminateSelf();
+            }
+
+            function UnSubscribeCallback() {
+                console.log("====>UnSubscribeCallback====>");
+                flag = false
+                expect(startresult).assertEqual(true);
+                expect(missionClosed).assertEqual(true);
+                done();
+            }
+
+            var listener = {
+                onMissionCreated: onMissionCreateCallback,
+                onMissionDestroyed: onMissionDestroyedCallback,
+                onMissionSnapshotChanged: onMissionSnapshotChangedCallback,
+                onMissionMovedToFront: onMissionMoveToForegroundCallback,
+                onMissionIconUpdated: onMissionIconChangedCallback,
+                onMissionClosed: onMissionClosedCallback
+            };
+
+            var id = missionManager.registerMissionListener(listener);
+            console.log("====>registerMissionListener result:" + id);
+
+            await commonEvent.createSubscriber(subscriberInfo_Ability4).then((data) => {
+                console.log("====>Create Subscriber====>");
+                data.getSubscribeInfo().then(async (SubscribeInfo) => {
+                    console.log("====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+                    Subscriber = data;
+                    commonEvent.subscribe(Subscriber, SubscribeCallBack);
+                    console.log("====>start startAbility====>");
+                    globalThis.abilityContext.startAbility(
+                        {
+                            bundleName: 'com.example.actsabilityusertest',
+                            abilityName: 'MainAbility4'
+                        }, () => {
+                        console.log("====>startAbility end====>");
+                    })
+                })
+            })
+
+            function timeout() {
+                if (flag == true) {
+                    expect().assertFail();
+                    console.log('ACTS_MissionClosed_0100 - timeout')
+                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
+                }
+            }
+
+            setTimeout(timeout, MISSION_CLOSED_TIMEOUT);
+        })
+
     })
 }
