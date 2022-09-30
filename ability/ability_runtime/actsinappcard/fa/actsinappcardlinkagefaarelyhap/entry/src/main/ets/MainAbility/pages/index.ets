@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import formHost from '@ohos.application.formHost';
 import prompt from '@ohos.prompt';
 import featureAbility from '@ohos.ability.featureAbility'
@@ -72,9 +72,6 @@ struct Index {
                 }
               }
               await featureAbility.startAbility(parameter_b)
-//              setTimeout(async()=> {
-//                await featureAbility.terminateSelf()
-//              },TIMEOUT_START_TIME)
             })
             .onError((err) => {
               console.error(`InAppCardUserFAA failed to add form, err: ${JSON.stringify(err)}`)

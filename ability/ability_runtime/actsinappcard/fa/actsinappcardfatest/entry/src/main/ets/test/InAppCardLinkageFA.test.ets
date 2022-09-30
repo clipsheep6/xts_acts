@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 import featureAbility from '@ohos.ability.featureAbility'
 import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import missionManager from '@ohos.application.missionManager'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import formHost from '@ohos.application.formHost';
+
 var driver;
 const MAX_MISSION_NUM = 1024;
-const CLICK_TIME=500;
-async function getMissionId(abilityName,state,bundleName) {
-  let missionId : number = -1;
+const CLICK_TIME = 500;
+async function getMissionId(abilityName, state, bundleName) {
+  let missionId: number = -1;
   let missionInfos = await missionManager.getMissionInfos('', MAX_MISSION_NUM);
   for (let i = 0; i < missionInfos.length; i++) {
     if ((missionInfos[i].want.abilityName == abilityName)
-      && (missionInfos[i].runningState == state)&&(missionInfos[i].want.bundleName==bundleName)) {
+      && (missionInfos[i].runningState == state) && (missionInfos[i].want.bundleName == bundleName)) {
       missionId = missionInfos[i].missionId;
       break;
     }
@@ -57,21 +57,21 @@ export default function abilityTest() {
       let formId_c = null;
       let subscribeInfo = {
         events: ["form_id_from_linkagefatest_main",
-        "form_id_from_userfa_c","form_userfa"],
+          "form_id_from_userfa_c", "form_userfa"],
       }
       async function unsubscribeCallback() {
         console.log("ACTS_InAppCardLinkage_0700 unsubscribeCallback");
         done()
       }
       async function updateForm() {
-        let testMissionId = await getMissionId("com.example.entry.MainAbility", 0,"com.inappcard.linkagefatest");
-        console.log("ACTS_InAppCardLinkage_0700 ====> updateForm testMissionId :"+testMissionId);
-        await missionManager.moveMissionToFront(testMissionId).then((data)=>{
-          console.log("ACTS_InAppCardLinkage_0700 ====> moveMissionToFront data:"+data);
-        }).catch((err)=>{
-          console.log("ACTS_InAppCardLinkage_0700 ====> moveMissionToFront err:"+err);
+        let testMissionId = await getMissionId("com.example.entry.MainAbility", 0, "com.inappcard.linkagefatest");
+        console.log("ACTS_InAppCardLinkage_0700 ====> updateForm testMissionId :" + testMissionId);
+        await missionManager.moveMissionToFront(testMissionId).then((data) => {
+          console.log("ACTS_InAppCardLinkage_0700 ====> moveMissionToFront data:" + data);
+        }).catch((err) => {
+          console.log("ACTS_InAppCardLinkage_0700 ====> moveMissionToFront err:" + err);
         })
-        setTimeout(async()=> {
+        setTimeout(async () => {
           try {
             await driver.click(100, 200)
           } catch (err) {
@@ -80,7 +80,7 @@ export default function abilityTest() {
             expect("").assertFail();
             done();
           }
-        },CLICK_TIME)
+        }, CLICK_TIME)
       }
 
       async function subscribeCallback(err, data) {
@@ -90,24 +90,27 @@ export default function abilityTest() {
         } else if (data.event == subscribeInfo.events[1]) {
           formId_c = data.parameters['formId']
           updateForm()
-        }else if(data.event == subscribeInfo.events[2]){
+        } else if (data.event == subscribeInfo.events[2]) {
           let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          let cmdA ="hidumper -s FormMgr -a '-i " + formId_main + "'";
+          let cmdA = "hidumper -s FormMgr -a '-i " + formId_main + "'";
           await abilityDelegator.executeShellCommand(cmdA).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":1") >= 0).assertTrue()
-          }).catch((err)=>{
+            expect(temp.indexOf("hostBundleName [com.inappcard.linkagefatest]") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.faa]") >= 0).assertTrue()
+          }).catch((err) => {
             console.info(`ACTS_InAppCardLinkage_0700 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
-          let cmdB ="hidumper -s FormMgr -a '-i " + formId_c + "'";
+          let cmdB = "hidumper -s FormMgr -a '-i " + formId_c + "'";
           await abilityDelegator.executeShellCommand(cmdB).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":0") >= 0).assertTrue()
-          }).catch((err)=>{
+            expect(temp.indexOf("hostBundleName [com.inappcard.fab]") >= 0).assertTrue()
+          }).catch((err) => {
             console.info(`ACTS_InAppCardLinkage_0700 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
           commonEvent.unsubscribe(subscriber, unsubscribeCallback);
@@ -146,7 +149,7 @@ export default function abilityTest() {
       let formId_c = null;
       let subscribeInfo = {
         events: ["form_id_from_linkagefatest_main",
-        "form_id_from_userfa_c","form_userfa"],
+          "form_id_from_userfa_c", "form_userfa"],
       }
 
       async function unsubscribeCallback() {
@@ -155,23 +158,23 @@ export default function abilityTest() {
       }
 
       async function updateForm() {
-        let testMissionId = await getMissionId("com.example.entry.MainAbility", 0,"com.inappcard.faa");
-        console.log("ACTS_InAppCardLinkage_0800 ====> updateForm testMissionId :"+testMissionId);
-        await missionManager.moveMissionToFront(testMissionId).then((data)=>{
-          console.log("ACTS_InAppCardLinkage_0800 ====> moveMissionToFront data:"+data);
-        }).catch((err)=>{
-          console.log("ACTS_InAppCardLinkage_0800 ====> moveMissionToFront err:"+err);
+        let testMissionId = await getMissionId("com.example.entry.MainAbility", 0, "com.inappcard.faa");
+        console.log("ACTS_InAppCardLinkage_0800 ====> updateForm testMissionId :" + testMissionId);
+        await missionManager.moveMissionToFront(testMissionId).then((data) => {
+          console.log("ACTS_InAppCardLinkage_0800 ====> moveMissionToFront data:" + data);
+        }).catch((err) => {
+          console.log("ACTS_InAppCardLinkage_0800 ====> moveMissionToFront err:" + err);
         })
-        setTimeout(async()=>{
+        setTimeout(async () => {
           try {
-            await driver.click(100,200)
+            await driver.click(100, 200)
           } catch (err) {
             console.debug("ACTS_InAppCardLinkage_0800 ====> catch err: " + JSON.stringify(err));
             console.debug("ACTS_InAppCardLinkage_0800 ====> catch err: " + err);
             expect("").assertFail();
             done();
           }
-        },CLICK_TIME)
+        }, CLICK_TIME)
 
       }
 
@@ -183,24 +186,27 @@ export default function abilityTest() {
         } else if (data.event == subscribeInfo.events[1]) {
           formId_c = data.parameters['formId']
           updateForm()
-        }else if(data.event == subscribeInfo.events[2]){
+        } else if (data.event == subscribeInfo.events[2]) {
           let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          let cmdA ="hidumper -s FormMgr -a '-i " + formId_main + "'";
+          let cmdA = "hidumper -s FormMgr -a '-i " + formId_main + "'";
           await abilityDelegator.executeShellCommand(cmdA).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":1") >= 0).assertTrue()
-          }).catch((err)=>{
+            expect(temp.indexOf("hostBundleName [com.inappcard.linkagefatest]") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.faa]") >= 0).assertTrue()
+          }).catch((err) => {
             console.info(`ACTS_InAppCardLinkage_0800 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
-          let cmdB ="hidumper -s FormMgr -a '-i " + formId_c + "'";
+          let cmdB = "hidumper -s FormMgr -a '-i " + formId_c + "'";
           await abilityDelegator.executeShellCommand(cmdB).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":0") >= 0).assertTrue()
-          }).catch((err)=>{
+            expect(temp.indexOf("hostBundleName [com.inappcard.fab]") >= 0).assertTrue()
+          }).catch((err) => {
             console.info(`ACTS_InAppCardLinkage_0800 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
           commonEvent.unsubscribe(subscriber, unsubscribeCallback);
@@ -237,7 +243,7 @@ export default function abilityTest() {
       let formId_c = null;
       let subscribeInfo = {
         events: ["form_id_from_linkagefatest_main",
-        "form_id_from_userfa_c","form_userfa"],
+          "form_id_from_userfa_c", "form_userfa"],
       }
 
       async function unsubscribeCallback() {
@@ -246,23 +252,23 @@ export default function abilityTest() {
       }
 
       async function updateForm() {
-        let testMissionId = await getMissionId("com.example.entry.MainAbility", 0,"com.inappcard.fab");
-        console.log("ACTS_InAppCardLinkage_0900 ====> updateForm testMissionId :"+testMissionId);
-        await missionManager.moveMissionToFront(testMissionId).then((data)=>{
-          console.log("ACTS_InAppCardLinkage_0900 ====> moveMissionToFront data:"+data);
-        }).catch((err)=>{
-          console.log("ACTS_InAppCardLinkage_0900 ====> moveMissionToFront err:"+err);
+        let testMissionId = await getMissionId("com.example.entry.MainAbility", 0, "com.inappcard.fab");
+        console.log("ACTS_InAppCardLinkage_0900 ====> updateForm testMissionId :" + testMissionId);
+        await missionManager.moveMissionToFront(testMissionId).then((data) => {
+          console.log("ACTS_InAppCardLinkage_0900 ====> moveMissionToFront data:" + data);
+        }).catch((err) => {
+          console.log("ACTS_InAppCardLinkage_0900 ====> moveMissionToFront err:" + err);
         })
-        setTimeout(async()=> {
+        setTimeout(async () => {
           try {
-            await driver.click(100,200)
+            await driver.click(100, 200)
           } catch (err) {
             console.debug("ACTS_InAppCardLinkage_0900 ====> catch err: " + JSON.stringify(err));
             console.debug("ACTS_InAppCardLinkage_0900 ====> catch err: " + err);
             expect("").assertFail();
             done();
           }
-        },CLICK_TIME)
+        }, CLICK_TIME)
       }
 
       async function subscribeCallback(err, data) {
@@ -273,24 +279,27 @@ export default function abilityTest() {
         } else if (data.event == subscribeInfo.events[1]) {
           formId_c = data.parameters['formId']
           updateForm()
-        }else if(data.event == subscribeInfo.events[2]){
+        } else if (data.event == subscribeInfo.events[2]) {
           let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          let cmdA ="hidumper -s FormMgr -a '-i " + formId_main + "'";
+          let cmdA = "hidumper -s FormMgr -a '-i " + formId_main + "'";
           await abilityDelegator.executeShellCommand(cmdA).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":0") >= 0).assertTrue()
-          }).catch((err)=>{
+            expect(temp.indexOf("hostBundleName [com.inappcard.linkagefatest]") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.faa]") >= 0).assertTrue()
+          }).catch((err) => {
             console.info(`ACTS_InAppCardLinkage_0900 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
-          let cmdB ="hidumper -s FormMgr -a '-i " + formId_c + "'";
+          let cmdB = "hidumper -s FormMgr -a '-i " + formId_c + "'";
           await abilityDelegator.executeShellCommand(cmdB).then((data) => {
             console.info(`getFormData data : + ${JSON.stringify(data)}`)
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":1") >= 0).assertTrue()
-          }).catch((err)=>{
+            expect(temp.indexOf("hostBundleName [com.inappcard.fab]") >= 0).assertTrue()
+          }).catch((err) => {
             console.info(`ACTS_InAppCardLinkage_0900 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
           commonEvent.unsubscribe(subscriber, unsubscribeCallback);
@@ -312,7 +321,6 @@ export default function abilityTest() {
           expect(0).assertEqual(err.code)
         })
       });
-
     })
   })
 }

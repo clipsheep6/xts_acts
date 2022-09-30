@@ -74,9 +74,6 @@ struct Index {
               commonEvent.publish('form_id_from_userfa_c', commonEventData, (err) => {
                 console.info(`InAppCardUserFAB Main publish event: ${JSON.stringify(err)}`);
               })
-//              setTimeout(async()=> {
-//                await featureAbility.terminateSelf()
-//              },TIMEOUT_START_TIME)
             })
             .onError((err) => {
               console.error(`InAppCardUserFAB failed to add form, err: ${JSON.stringify(err)}`)

@@ -72,9 +72,6 @@ struct Index {
               console.error("ACTS_InAppCardLinkage ====>  startAbility, err: "+JSON.stringify(err))
               console.error("ACTS_InAppCardLinkage ====>  startAbility, data:"+JSON.stringify(data))
             }))
-            //              setTimeout(async()=> {
-            //                await featureAbility.terminateSelf()
-            //              },TIMEOUT_START_TIME)
           })
           .onError((err) => {
             console.error(`InAppCardUserFAA failed to add form, err: ${JSON.stringify(err)}`)

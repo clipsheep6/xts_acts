@@ -38,7 +38,6 @@ function upDateForm(formId) {
     newFormInfo.imageSrc = "/common/hot.png";
 
     formInfoMap.set(formId, newFormInfo);
-    //    formInfoMap[formId] = newFormInfo;
     for( let key of formInfoMap.keys()){
         console.log(`FormMgrService FormAbility formInfoMap key ：`+ JSON.stringify(key));
     }

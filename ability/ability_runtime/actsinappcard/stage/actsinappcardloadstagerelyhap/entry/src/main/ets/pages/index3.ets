@@ -54,9 +54,6 @@ struct Index3 {
                 commonEvent.publish("ACTS_FORM_ID", commonEventData, (err, data) => {
                   console.log('ACTS_InAppLoadCard ====>publish:data:' + JSON.stringify(data));
                   console.log('ACTS_InAppLoadCard ====>publish:err:' + JSON.stringify(err));
-//                  setTimeout(()=> {
-//                    globalThis.ability1Context().terminateSelf()
-//                  },500)
                 })
               })
               .onError((err) => {
@@ -69,9 +66,6 @@ struct Index3 {
                 commonEvent.publish("ERR_CODE", commonEventData, (err, data) => {
                   console.log('ACTS_InAppLoadCard ====>publish:errdata:' + JSON.stringify(data));
                   console.log('ACTS_InAppLoadCard ====>publish:errcode:' + JSON.stringify(err));
-//                  setTimeout(()=> {
-//                    globalThis.ability1Context().terminateSelf()
-//                  },500)
                 })
               })
 

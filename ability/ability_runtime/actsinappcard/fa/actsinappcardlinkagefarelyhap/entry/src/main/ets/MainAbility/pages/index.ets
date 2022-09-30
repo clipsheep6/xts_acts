@@ -86,9 +86,6 @@ struct Index {
                   console.error("ACTS_InAppCardLinkage ====> featureAbility startAbility, err: "+JSON.stringify(err))
                   console.error("ACTS_InAppCardLinkage ====> featureAbility startAbility, data:"+JSON.stringify(data))
                 }))
-//                setTimeout(async()=> {
-//                  await featureAbility.terminateSelf()
-//                },TIMEOUT_START_TIME)
               },START_TIME)
             })
             .onError((err) => {

@@ -199,7 +199,7 @@ export default function abilityTest() {
             expect(formData["stdResult"].indexOf("\"temperature\":\"11\"") >= 0).assertTrue()
             expect(formData["stdResult"].indexOf("\"imageSrc\":\"/common/cold.png\"") >= 0).assertTrue()
             expect(formData["stdResult"].indexOf("\"time\":\"12:11:00\"") >= 0).assertTrue()
-            expect(formData["stdResult"].indexOf("hostBundleName") >= 0).assertTrue()
+            expect(formData["stdResult"].indexOf("hostBundleName [com.example.actsinappcard]") >= 0).assertTrue()
 
             await formHost.releaseForm(formId.toString())
             setTimeout(async () => {
@@ -208,7 +208,7 @@ export default function abilityTest() {
               expect(formData["stdResult"].indexOf("\"temperature\":\"11\"") >= 0).assertTrue()
               expect(formData["stdResult"].indexOf("\"imageSrc\":\"/common/cold.png\"") >= 0).assertTrue()
               expect(formData["stdResult"].indexOf("\"time\":\"12:11:00\"") >= 0).assertTrue()
-              expect(formData["stdResult"].indexOf("hostBundleName") < 0).assertTrue()
+              expect(formData["stdResult"].indexOf("hostBundleName [com.example.actsinappcard]") < 0).assertTrue()
               commonEvent.unsubscribe(subscriber, unsubscribeCallback);
             }, 1000)
           }, 1000)
@@ -256,7 +256,7 @@ export default function abilityTest() {
           expect(formData["stdResult"].indexOf("\"temperature\":\"11\"") >= 0).assertTrue()
           expect(formData["stdResult"].indexOf("\"imageSrc\":\"/common/cold.png\"") >= 0).assertTrue()
           expect(formData["stdResult"].indexOf("\"time\":\"12:11:00\"") >= 0).assertTrue()
-          expect(formData["stdResult"].indexOf("hostBundleName") < 0).assertTrue()
+          expect(formData["stdResult"].indexOf("hostBundleName [com.example.actsinappcard]") < 0).assertTrue()
           commonEvent.unsubscribe(subscriber, unsubscribeCallback);
         }, 1000)
       }
@@ -274,7 +274,7 @@ export default function abilityTest() {
             expect(formData["stdResult"].indexOf("\"temperature\":\"11\"") >= 0).assertTrue()
             expect(formData["stdResult"].indexOf("\"imageSrc\":\"/common/cold.png\"") >= 0).assertTrue()
             expect(formData["stdResult"].indexOf("\"time\":\"12:11:00\"") >= 0).assertTrue()
-            expect(formData["stdResult"].indexOf("hostBundleName") >= 0).assertTrue()
+            expect(formData["stdResult"].indexOf("hostBundleName [com.example.actsinappcard]") >= 0).assertTrue()
             await releaseForm()
           }, 1000)
         }
@@ -321,7 +321,7 @@ export default function abilityTest() {
           expect(formData["stdResult"].indexOf("\"temperature\":\"11\"") < 0).assertTrue()
           expect(formData["stdResult"].indexOf("\"imageSrc\":\"/common/cold.png\"") < 0).assertTrue()
           expect(formData["stdResult"].indexOf("\"time\":\"12:11:00\"") < 0).assertTrue()
-          expect(formData["stdResult"].indexOf("hostBundleName") < 0).assertTrue()
+          expect(formData["stdResult"].indexOf("hostBundleName [com.example.actsinappcard]") < 0).assertTrue()
           commonEvent.unsubscribe(subscriber, unsubscribeCallback);
         }, 1000)
       }
@@ -339,7 +339,7 @@ export default function abilityTest() {
             expect(formData["stdResult"].indexOf("\"temperature\":\"11\"") >= 0).assertTrue()
             expect(formData["stdResult"].indexOf("\"imageSrc\":\"/common/cold.png\"") >= 0).assertTrue()
             expect(formData["stdResult"].indexOf("\"time\":\"12:11:00\"") >= 0).assertTrue()
-            expect(formData["stdResult"].indexOf("hostBundleName") >= 0).assertTrue()
+            expect(formData["stdResult"].indexOf("hostBundleName [com.example.actsinappcard]") >= 0).assertTrue()
             await releaseForm()
           }, 1000)
         }
