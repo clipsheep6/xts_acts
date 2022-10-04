@@ -174,13 +174,13 @@ export default function actsBmsEtsFreeInstallTest() {
     */
     it('isHapModuleRemovableInvalidBundleName', 0, async function (done) {
       try {
-        freeInstall.isHapModuleRemovable(BUNDLE_NAME_1, MODULE_NAME_1, (err, data) {
+        freeInstall.isHapModuleRemovable(BUNDLE_NAME_1, MODULE_NAME_1, (err, data) => {
           if (err) {
             expect(err).assertFail();
           }
           expect(data).assertFalse();
           done();
-        }
+        });
       } catch (err) {
         expect(err).assertFail();
       }
