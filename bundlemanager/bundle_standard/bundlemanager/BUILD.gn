@@ -20,6 +20,7 @@ group("bundlemanager") {
       "actsbmsaccesstokentest:ActsBmsAccessTokenTest",
       "actsbmsetsmodulenametest:ActsBmsEtsModuleNameTest",
       "actsbmsetsunpermissiontest:ActsBmsEtsUnPermissionTest",
+      "actsbmsfreeinstalltest:ActsBmsEtsFreeInstallTest",
       "actsbmsgetinfostest:ActsBmsGetInfosTest",
       "actsbmshapmoduletest:ActsBmsHapModuleTest",
       "actsbmsjstest:ActsBmsJsTest",
