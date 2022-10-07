@@ -1723,7 +1723,7 @@ describe('ActsBundleManagerTest', function () {
                 done();
             }).catch(err => {
                 console.info("testQueryAbilityByWantNotExistHapPromise err : ===========" + err);
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             })
     })
@@ -1741,7 +1741,7 @@ describe('ActsBundleManagerTest', function () {
             }, demo.BundleFlag.GET_BUNDLE_DEFAULT, userId, (err, datainfo) => {
                 if (err) {
                     console.info("testQueryAbilityByWantNotExistHapCallback err : ===========" + err);
-                    expect(err).assertEqual(1);
+                    expect(err.code).assertEqual(1);
                     done();
                     return;
                 }
@@ -1767,7 +1767,7 @@ describe('ActsBundleManagerTest', function () {
                 done();
             }).catch(err => {
                 console.info("testQueryAbilityByWantSystemHapPromise err : ===========" + err);
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             })
     })
@@ -1787,7 +1787,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             console.info("testQueryAbilityByWantSystemHapCallback err : ===========" + err);
             console.info("testQueryAbilityByWantSystemHapCallback dataInfo : ===========" + datainfo);
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             expect(datainfo.length).assertLarger(0);
             done();
         }

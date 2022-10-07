@@ -52,7 +52,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
             userId).then(data => {
                 expect(data).assertFail();
             }).catch(err => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
         bundle.queryAbilityByWant({
             action: ACTION_NAME,
@@ -60,7 +60,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
             bundleName: BUNDLE_NAME1
         }, bundle.BundleFlag.GET_ABILITY_INFO_WITH_APPLICATION | bundle.BundleFlag.GET_ABILITY_INFO_SYSTEMAPP_ONLY,
             userId, (err, data) => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 expect(data).assertEqual("QueryAbilityInfos failed");
                 done();
             });
@@ -86,7 +86,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
                 }
             }
             ).catch(err => {
-                expect(err).assertFail();
+                expect(err.code).assertFail();
             });
         bundle.queryAbilityByWant(
             {
@@ -96,7 +96,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
             bundle.BundleFlag.GET_ABILITY_INFO_WITH_APPLICATION | bundle.BundleFlag.GET_ABILITY_INFO_SYSTEMAPP_ONLY,
             userId, (err, data) => {
                 if (err) {
-                    expect(err).assertFail();
+                    expect(err.code).assertFail();
                 }
                 expect(data.length).assertLarger(0);
                 for (let i = 0; i < data.length; ++i) {

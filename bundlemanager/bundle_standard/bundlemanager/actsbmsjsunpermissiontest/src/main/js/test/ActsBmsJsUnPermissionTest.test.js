@@ -121,14 +121,14 @@ describe('ActsBmsJsUnPermissionTest', function () {
         }, DEFAULT_FLAG, userId).then(data => {
             expect().assertFail();
         }).catch(err => {
-            expect(err).assertEqual(INVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
         });
         bundle.queryAbilityByWant({
             bundleName: LAUNCHER_BUNDLE_NAME,
             abilityName: LAUNCHER_MAIN_ABILITY
         }, DEFAULT_FLAG, userId, (err, data) => {
             console.info("data ===================:" + data);
-            expect(err).assertEqual(INVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
             expect(data).assertEqual("QueryAbilityInfos failed");
             done();
         });
@@ -164,10 +164,10 @@ describe('ActsBmsJsUnPermissionTest', function () {
                 expect().assertFail();
             })
             .catch((error) => {
-                expect(error).assertEqual(INVALID_CODE);
+                expect(error.code).assertEqual(INVALID_CODE);
             });
         bundle.getAbilityLabel(LAUNCHER_BUNDLE_NAME, LAUNCHER_MAIN_ABILITY, (err, data) => {
-            expect(err).assertEqual(INVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
             expect(data).assertEqual(undefined);
             done();
         });
