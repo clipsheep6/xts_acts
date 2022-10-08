@@ -946,8 +946,8 @@ export default function QueryExtensionAbilityInfos() {
         expect(err).assertFail();
       });
       bundle.getBundleInfo(BUNDLE_NAME1, bundle.BundleFlag.GET_BUNDLE_WITH_EXTENSION_ABILITY, (err, data) => {
-        if (err.code != 0) {
-          expect(err).assertFail();
+        if (err) {
+          expect(err).assertEqual(1);
           done();
           return;
         }
@@ -976,12 +976,11 @@ export default function QueryExtensionAbilityInfos() {
         expect(data.extensionAbilityInfo.length).assertEqual(0);
       }).catch(err => {
         console.info("SUB_BMS_APPINFO_EXTENSION_0021 err ==========" + JSON.stringify(err));
-        expect(err.code).assertEqual(1);
+        expect(err).assertEqual(1);
       });
       bundle.getBundleInfo(BUNDLE_NAME3, bundle.BundleFlag.GET_BUNDLE_WITH_EXTENSION_ABILITY, (err, data) => {
-        if (err.code != 0) {
-          console.info("SUB_BMS_APPINFO_EXTENSION_0021 err callback==========" + JSON.stringify(err));
-          expect(err.code).assertEqual(1);
+         if (err) {
+          expect(err).assertEqual(1);;
           done();
           return;
         }
