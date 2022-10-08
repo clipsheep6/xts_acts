@@ -364,10 +364,10 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_1600' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
-        });
+        })
 
         /*
         * @tc.number: bms_queryAbilityByWant_1700

@@ -129,7 +129,7 @@ describe('ActsBmsJsUnPermissionTest', function () {
         }, DEFAULT_FLAG, userId, (err, data) => {
             console.info("data ===================:" + data);
             expect(err.code).assertEqual(INVALID_CODE);
-            expect(data).assertEqual("QueryAbilityInfos failed");
+            expect(err.message).assertEqual("QueryAbilityInfos failed");
             done();
         });
     });

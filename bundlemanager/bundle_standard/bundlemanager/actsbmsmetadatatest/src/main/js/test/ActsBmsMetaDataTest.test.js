@@ -159,7 +159,7 @@ describe('ActsBmsMetaDataTest', function () {
                 "abilityName": ABILITY_NAME3
             }, bundle.BundleFlag.GET_ABILITY_INFO_WITH_METADATA, userId, (err, dataInfos) => {
             expect(err.code).assertEqual(1);
-            expect(dataInfos).assertEqual("QueryAbilityInfos failed");
+            expect(err.message).assertEqual("QueryAbilityInfos failed");
             done();
         });
     });

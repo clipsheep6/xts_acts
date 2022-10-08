@@ -50,8 +50,10 @@ describe('ActsBmsQueryAbilityByWant', function () {
             bundleName: BUNDLE_NAME1
         }, bundle.BundleFlag.GET_ABILITY_INFO_WITH_APPLICATION | bundle.BundleFlag.GET_ABILITY_INFO_SYSTEMAPP_ONLY,
             userId).then(data => {
+                console.info("queryAbilityByWant =0=========" + JSON.stringify(data));
                 expect(data).assertFail();
             }).catch(err => {
+                console.info("queryAbilityByWant =1=========" + JSON.stringify(err.code));
                 expect(err.code).assertEqual(1);
             });
         bundle.queryAbilityByWant({
@@ -60,8 +62,9 @@ describe('ActsBmsQueryAbilityByWant', function () {
             bundleName: BUNDLE_NAME1
         }, bundle.BundleFlag.GET_ABILITY_INFO_WITH_APPLICATION | bundle.BundleFlag.GET_ABILITY_INFO_SYSTEMAPP_ONLY,
             userId, (err, data) => {
+                console.info("queryAbilityByWant =3=========" + JSON.stringify(data));
+                console.info("queryAbilityByWant =4=========" + JSON.stringify(err.code));
                 expect(err.code).assertEqual(1);
-                expect(data).assertEqual("QueryAbilityInfos failed");
                 done();
             });
     });
@@ -86,7 +89,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
                 }
             }
             ).catch(err => {
-                expect(err.code).assertFail();
+                expect(err).assertFail();
             });
         bundle.queryAbilityByWant(
             {
@@ -95,8 +98,8 @@ describe('ActsBmsQueryAbilityByWant', function () {
             },
             bundle.BundleFlag.GET_ABILITY_INFO_WITH_APPLICATION | bundle.BundleFlag.GET_ABILITY_INFO_SYSTEMAPP_ONLY,
             userId, (err, data) => {
-                if (err) {
-                    expect(err.code).assertFail();
+                if (err.code != 0) {
+                    expect(err).assertFail();
                 }
                 expect(data.length).assertLarger(0);
                 for (let i = 0; i < data.length; ++i) {

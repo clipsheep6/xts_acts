@@ -419,27 +419,28 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test non-existent moduleName
     */
     it('queryAbilityByWantInvalidModule', 0, async function (done) {
-      await bundle.queryAbilityByWant({
-        bundleName: BUNDLE_NAME,
-        abilityName: ABILITY_NAME,
-        moduleName: MODULE_NAME2
-      }, DEFAULT_FLAG, userId).then(data => {
-        expect(data).assertFail();
-      }).catch(err => {
-        console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-        expect(err.code).assertEqual(INVALID_CODE);
-      });
-      bundle.queryAbilityByWant({
-        bundleName: BUNDLE_NAME,
-        abilityName: ABILITY_NAME,
-        moduleName: MODULE_NAME2
-      }, DEFAULT_FLAG, userId, (err, data) => {
-        console.info("'[queryAbilityByWantInvalidModule]Return data " + JSON.stringify(data));
-        expect(data).assertEqual("QueryAbilityInfos failed");
-        console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-        expect(err.code).assertEqual(INVALID_CODE);
-        done();
-      });
+        await bundle.queryAbilityByWant({
+            bundleName: BUNDLE_NAME,
+            abilityName: ABILITY_NAME,
+            moduleName: MODULE_NAME2
+        }, DEFAULT_FLAG, userId).then(data => {
+            expect(data).assertFail();
+        }).catch(err => {
+            console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
+            expect(err.code).assertEqual(I
+            NVALID_CODE);
+        });
+        bundle.queryAbilityByWant({
+            bundleName: BUNDLE_NAME,
+            abilityName: ABILITY_NAME,
+            moduleName: MODULE_NAME2
+        }, DEFAULT_FLAG, userId, (err, data) => {
+            console.info("'[queryAbilityByWantInvalidModule]Return data " + JSON.stringify(err));
+            expect(err.message).assertEqual("QueryAbilityInfos failed");
+            console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
+            expect(err.code).assertEqual(INVALID_CODE);
+            done();
+        });
     });
 
     /*

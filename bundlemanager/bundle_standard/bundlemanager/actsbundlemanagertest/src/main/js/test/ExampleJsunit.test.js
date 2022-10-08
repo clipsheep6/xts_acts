@@ -1452,7 +1452,7 @@ describe('ActsBundleManagerTest', function () {
             demo.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION |
         demo.BundleFlag.GET_ABILITY_INFO_WITH_METADATA,
             userId, (err, data) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info("testQueryAbilityByWantCallback err" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();
@@ -1652,7 +1652,7 @@ describe('ActsBundleManagerTest', function () {
             {
                 entities: ['entity.system.home', 'entitiesentities']
             }, 4, userId, (err, data) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info("testQueryAbilityByWantThereHapCallback err" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();
@@ -1788,7 +1788,7 @@ describe('ActsBundleManagerTest', function () {
             console.info("testQueryAbilityByWantSystemHapCallback err : ===========" + err);
             console.info("testQueryAbilityByWantSystemHapCallback dataInfo : ===========" + datainfo);
             expect(err.code).assertEqual(1);
-            expect(datainfo.length).assertLarger(0);
+            expect(datainfo.length).assertEqual(undefined);
             done();
         }
     })
