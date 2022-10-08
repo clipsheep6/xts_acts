@@ -214,21 +214,21 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test empty moduleName
     */
     it('getAbilityLabelEmptyModule', 0, async function (done) {
-      await bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME)
-        .then(data => {
-          expect(data).assertFail();
-        }).catch((err.code) => {
-          console.error('[getAbilityLabelEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(INVALID_CODE);
+        await bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME)
+            .then(data => {
+                expect(data).assertFail();
+            }).catch((err) => {
+                console.error('[getAbilityLabelEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
+                expect(err.code).assertEqual(INVALID_CODE);
+            });
+        bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME, (err, data) => {
+            expect(err.code).assertEqual(INVALID_CODE);
+            if (err) {
+                console.error('[getAbilityLabelEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
+            }
+            console.info("'[getAbilityLabelEmptyModule]Return data: " + JSON.stringify(data));
+            done();
         });
-      bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME, (err, data) => {
-        expect(err).assertEqual(INVALID_CODE);
-        if (err) {
-          console.error('[getAbilityLabelEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
-        }
-        console.info("'[getAbilityLabelEmptyModule]Return data: " + JSON.stringify(data));
-        done();
-      });
     });
 
     /*
