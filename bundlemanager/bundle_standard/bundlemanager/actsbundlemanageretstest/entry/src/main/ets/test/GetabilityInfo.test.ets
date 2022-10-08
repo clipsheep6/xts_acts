@@ -67,7 +67,7 @@ export default function GetabilityInfo() {
             bundleManager.getAbilityInfo(BUNDLE_NAME1, ABILITY_NAME1, (err, data) => {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('bundle_GetabilityInfo_test_0200', timeOldStamp, timeNewStamp);
-                if (err) {
+                if (err.code != 0) {
                     console.error('[bundle_GetabilityInfo_test_0200]Operation failed. Cause: ' + JSON.stringify(err));
                     expect(err).assertFail();
                 }
@@ -94,7 +94,7 @@ export default function GetabilityInfo() {
                 expect().assertFail();
             });
             bundleManager.getAbilityInfo(BUNDLE_NAME4, ABILITY_NAME3, (err, res) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info('actwsBundleManager getAbilityInfo callback err:' + JSON.stringify(err));
                     expect().assertFail();
                     done();
