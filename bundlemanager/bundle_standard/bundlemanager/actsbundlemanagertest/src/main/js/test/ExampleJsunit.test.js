@@ -1788,7 +1788,7 @@ describe('ActsBundleManagerTest', function () {
             console.info("testQueryAbilityByWantSystemHapCallback err : ===========" + err);
             console.info("testQueryAbilityByWantSystemHapCallback dataInfo : ===========" + datainfo);
             expect(err.code).assertEqual(1);
-            expect(datainfo.length).assertEqual(undefined);
+            expect(datainfo).assertEqual(undefined);
             done();
         }
     })

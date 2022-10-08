@@ -143,21 +143,21 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test empty moduleName
     */
     it('getAbilityIconEmptyModule', 0, async function (done) {
-      await bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME)
-        .then(data => {
-          expect(data).assertFail();
-        }).catch((err) => {
-          console.error('[getAbilityIconEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
-          expect(err).assertEqual(INVALID_CODE);
+        await bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME)
+            .then(data => {
+                expect(data).assertFail();
+            }).catch((err) => {
+                console.error('[getAbilityIconEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
+                expect(err.code).assertEqual(INVALID_CODE);
+            });
+        bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME, (err, data) => {
+            expect(err.code).assertEqual(INVALID_CODE);
+            if (err) {
+                console.error('[getAbilityIconEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
+            }
+            console.info("'[getAbilityIconEmptyModule]Return data: " + JSON.stringify(data));
+            done();
         });
-      bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME, (err, data) => {
-        expect(err).assertEqual(INVALID_CODE);
-        if (err) {
-          console.error('[getAbilityIconEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
-        }
-        console.info("'[getAbilityIconEmptyModule]Return data: " + JSON.stringify(data));
-        done();
-      });
     });
 
     /*
@@ -168,15 +168,15 @@ export default function actsBmsJsModuleNameTest() {
     it('getAbilityIconInvalidModule', 0, async function (done) {
       await bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME2, ABILITY_NAME)
         .then(data => {
-          expect(data).assertFail();
+            expect(data).assertFail();
         }).catch((err) => {
-          console.error('[getAbilityIconInvalidModule]Operation successful. Err: ' + JSON.stringify(err));
-          expect(err).assertEqual(INVALID_CODE);
+            console.error('[getAbilityIconInvalidModule]Operation successful. Err: ' + JSON.stringify(err));
+            expect(err.code).assertEqual(INVALID_CODE);
         });
       bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME2, ABILITY_NAME, (err, data) => {
-        expect(err).assertEqual(INVALID_CODE);
+        expect(err.code).assertEqual(INVALID_CODE);
         if (err) {
-          console.error('[getAbilityIconInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
+            console.error('[getAbilityIconInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
         }
         console.info("'[getAbilityIconInvalidModule]Return data: " + JSON.stringify(data));
         done();
@@ -198,7 +198,7 @@ export default function actsBmsJsModuleNameTest() {
           expect(err).assertFail();
         });
       bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME3, ABILITY_NAME, (err, data) => {
-        expect(err).assertEqual(SUCCESS_CODE);
+        expect(err.code).assertEqual(SUCCESS_CODE);
         expect(data.getBytesNumberPerRow()).assertLarger(0);
         if (err) {
           console.error('[getAbilityIconHasModule]Operation failed. Err: ' + JSON.stringify(err));
@@ -219,10 +219,10 @@ export default function actsBmsJsModuleNameTest() {
           expect(data).assertFail();
         }).catch((err) => {
           console.error('[getAbilityLabelEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(INVALID_CODE);
+          expect(err).assertEqual(INVALID_CODE);
         });
       bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME, (err, data) => {
-        expect(err.code).assertEqual(INVALID_CODE);
+        expect(err).assertEqual(INVALID_CODE);
         if (err) {
           console.error('[getAbilityLabelEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
         }
@@ -242,10 +242,10 @@ export default function actsBmsJsModuleNameTest() {
           expect(data).assertFail();
         }).catch((err) => {
           console.error('[getAbilityLabelInvalidModule]Operation . Err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(INVALID_CODE);
+          expect(err).assertEqual(INVALID_CODE);
         });
       bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME2, ABILITY_NAME, (err, data) => {
-        expect(err.code).assertEqual(INVALID_CODE);
+        expect(err).assertEqual(INVALID_CODE);
         if (err) {
           console.error('[getAbilityLabelInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
         }
@@ -513,9 +513,9 @@ export default function actsBmsJsModuleNameTest() {
         .then(data => {
           expect(data).assertFail();
         }).catch((err) => {
-          expect(err).assertEqual(INVALID_PARAM);
+          expect(err.code).assertEqual(INVALID_PARAM);
           bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME4, ABILITY_NAME, (error, data) => {
-            expect(error).assertEqual(INVALID_PARAM);
+            expect(error.code).assertEqual(INVALID_PARAM);
           });
         });
       await bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME5, ABILITY_NAME)
@@ -523,9 +523,9 @@ export default function actsBmsJsModuleNameTest() {
           expect(data).assertFail();
           done();
         }).catch((err) => {
-          expect(err).assertEqual(INVALID_PARAM);
+          expect(err.code).assertEqual(INVALID_PARAM);
           bundle.getAbilityIcon(BUNDLE_NAME, MODULE_NAME5, ABILITY_NAME, (error, data) => {
-            expect(error).assertEqual(INVALID_PARAM);
+            expect(error.code).assertEqual(INVALID_PARAM);
             done();
           });
         });
@@ -541,9 +541,9 @@ export default function actsBmsJsModuleNameTest() {
         .then(data => {
           expect(data).assertFail();
         }).catch((err) => {
-          expect(err.code).assertEqual(INVALID_PARAM);
+          expect(err).assertEqual(INVALID_PARAM);
           bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME4, ABILITY_NAME, (error, data) => {
-            expect(error.code).assertEqual(INVALID_PARAM);
+            expect(error).assertEqual(INVALID_PARAM);
           });
         });
       await bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME5, ABILITY_NAME)
@@ -551,9 +551,9 @@ export default function actsBmsJsModuleNameTest() {
           expect(data).assertFail();
           done();
         }).catch((err) => {
-          expect(err.code).assertEqual(INVALID_PARAM);
+          expect(err).assertEqual(INVALID_PARAM);
           bundle.getAbilityLabel(BUNDLE_NAME, MODULE_NAME5, ABILITY_NAME, (error, data) => {
-            expect(error.code).assertEqual(INVALID_PARAM);
+            expect(error).assertEqual(INVALID_PARAM);
             done();
           });
         });

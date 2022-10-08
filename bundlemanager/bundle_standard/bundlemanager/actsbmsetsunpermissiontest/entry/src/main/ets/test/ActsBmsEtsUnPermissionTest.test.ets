@@ -157,10 +157,10 @@ export default function actsBmsJsUnPermissionTest() {
             await bundle.getAbilityIcon(BUNDLE_NAME_OTHER, ABILITIY_NAME_OTHER).then(pixelmap => {
                 expect(pixelmap).assertFail();
             }).catch(err => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             bundle.getAbilityIcon(BUNDLE_NAME_OTHER, ABILITIY_NAME_OTHER, (err, pixelmap) => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             });
         });
