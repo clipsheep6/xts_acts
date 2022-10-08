@@ -598,18 +598,8 @@ export default function webJsunit() {
      *tc.desic Delete all cookies
      */
     it('deleteEntireCookie',0,async function(done){
-      emitKey="emitSaveCookieSync";
-      Utils.registerEvent("deleteEntireCookie","",80,done);
-      sendEventByKey('webcomponent',10,'');
-    })
-    /* 
-     *tc.number SUB_ACE_BASIC_ETS_API_057                                                                                                                                                                      
-     *tc.name saveCookieSync                                                                                                                                                                                                                 
-     *tc.desic  Saves the cookies
-     */
-    it('saveCookieSync',0,async function(done){
       emitKey="emitClearHistory";
-      Utils.registerEvent("saveCookieSync",true,81,done);
+      Utils.registerEvent("deleteEntireCookie","",80,done);
       sendEventByKey('webcomponent',10,'');
     })
     /* 
