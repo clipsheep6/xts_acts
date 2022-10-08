@@ -80,7 +80,7 @@ export default function actsBmsJsModuleNameTest() {
           expect(err.code).assertEqual(INVALID_CODE);
         });
       bundle.getAbilityInfo(BUNDLE_NAME, MODULE_NAME1, ABILITY_NAME, (err, data) => {
-        eexpect(err.code).assertEqual(INVALID_CODE);
+        expect(err.code).assertEqual(INVALID_CODE);
         if (err) {
           console.error('[getAbilityInfoEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
         }
