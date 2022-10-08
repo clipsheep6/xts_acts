@@ -124,7 +124,7 @@ export default function GetResourceTest() {
         } else {
           expect().assertFail();
         }
-        expect(err).assertEqual(0)
+        expect(err.code).assertEqual(0)
         done();
       })
     });
