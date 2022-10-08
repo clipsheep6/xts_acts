@@ -32,7 +32,6 @@ class ServiceExtAbility extends AccessibilityExtensionAbility {
             console.info(LOG_PREFIX + 'createSubscriber success')
             subscriber = data
             commonEvent.subscribe(subscriber, (error, commonEventData) => {
-                console.info(LOG_PREFIX + 'subscribeTest error : ' + JSON.stringify(error) + 'data' + JSON.stringify(commonEventData))
                 if (error.code != 0) {
                     console.info(LOG_PREFIX + 'subscribe failed. Cause:' + JSON.stringify(error))
                     return
@@ -136,13 +135,13 @@ function selectCode(context, caseName) {
             getWindowRootElementCallBack2(context, caseName, 'Test2', 'select', { selectTextBegin: 1, selectTextEnd: 3 })
             break
         case 'ActionInitiation_0070':
-            getRootElement(context, caseName, 3, 'scrollForward')
+            getRootElement(context, caseName, 'scrollForward')
             break
         case 'ActionInitiation_0071':
-            getRootElementCallBack1(context, caseName, 3, 'scrollForward')
+            getRootElementCallBack1(context, caseName, 'scrollForward')
             break
         case 'ActionInitiation_0072':
-            getRootElementCallBack2(context, caseName, 3, 'scrollForward')
+            getRootElementCallBack2(context, caseName, 'scrollForward')
             break
         case 'ActionInitiation_0080':
             getWindowRootElement(context, caseName, 'Test2', 'clearSelection')
@@ -154,13 +153,13 @@ function selectCode(context, caseName) {
             getWindowRootElementCallBack2(context, caseName, 'Test2', 'clearSelection')
             break
         case 'ActionInitiation_0090':
-            getRootElement(context, caseName, 3, 'scrollBackward')
+            getRootElement(context, caseName, 'scrollBackward')
             break
         case 'ActionInitiation_0091':
-            getRootElementCallBack1(context, caseName, 3, 'scrollBackward')
+            getRootElementCallBack1(context, caseName, 'scrollBackward')
             break
         case 'ActionInitiation_0092':
-            getRootElementCallBack2(context, caseName, 3, 'scrollBackward')
+            getRootElementCallBack2(context, caseName, 'scrollBackward')
             break
         case 'ActionInitiation_0100':
             getWindowRootElement(context, caseName, 'Test2', 'copy')
@@ -210,7 +209,7 @@ function selectCode(context, caseName) {
     }
 }
 
-function getRootElement(context, caseName, index, actionName, args?){
+function getRootElement(context, caseName, actionName, args?){
     let logTag = LOG_PREFIX + ' CASE ' + caseName
     context.getWindowRootElement((err, elements) => {
         if (err?.code) {
@@ -218,23 +217,30 @@ function getRootElement(context, caseName, index, actionName, args?){
         }
         printElementsLength(logTag + " getWindowRootElement elements length: ", elements)
         elements.attributeValue("children").then((res) => {
-            console.info(logTag + " attributeValue 0 children: " + JSON.stringify(res))
-            res[0].attributeValue("children").then((res) => {
-                console.info(logTag + " attributeValue 1 children: " + JSON.stringify(res))
-                res[index].performAction(actionName, args)
-                    .then((res) => {
-                        console.info(logTag + " performAction data: " + JSON.stringify(res))
-                        var commonEventPublishData = { data: caseName, parameters: {res: res} }
-                        publishEvent(commonEventPublishData)
-                    })
-                    .catch((error) => {
-                        console.info(logTag + ' performAction failed. Cause: ' + JSON.stringify(error))
-                        return
-                    })
-            }).catch((error) => {
-                console.info(logTag + "attributeValue 1 children error:" + JSON.stringify(error))
-                return
-            })
+            for (let index = 0; index < res.length; index++) {
+		console.info(logTag + " attributeValue children: " + index);
+		res[index].attributeValue("children").then((res) => {
+		    for (let index2 = 0; index2 < res.length; index2++) {
+		        res[index2].attributeValue("componentType").then((typeVal) => {
+	                    console.info(logTag + " attributeValue componentType: " + typeVal)
+		            if (typeVal == 'Scroll') {
+		                res[index2].performAction(actionName, args).then((res) => {
+	                            console.info(logTag + " performAction data: " + JSON.stringify(res))
+			             var commonEventPublishData = { data: caseName, parameters: {res: res} }
+			             publishEvent(commonEventPublishData)
+			         }).catch((error) => {
+			             console.info(logTag + ' performAction failed. Cause: ' + JSON.stringify(error))
+			             return
+			         })
+		             }
+		        }).catch((err) => {
+			     console.info(logTag + " attributeValue componentType err=" + JSON.stringify(err));
+		        });
+		    }
+		}).catch((error) => {
+	           console.info(logTag + "attributeValue children" + index + " error:" + JSON.stringify(error))
+		})
+            }
         }).catch((error) => {
             console.info(logTag + "attributeValue 0 children error:" + JSON.stringify(error))
             return
@@ -242,7 +248,7 @@ function getRootElement(context, caseName, index, actionName, args?){
     })
 }
 
-function getRootElementCallBack1(context, caseName, index, actionName){
+function getRootElementCallBack1(context, caseName, actionName){
     let logTag = LOG_PREFIX + ' CASE ' + caseName
     context.getWindowRootElement((err, elements) => {
         if (err?.code) {
@@ -250,21 +256,31 @@ function getRootElementCallBack1(context, caseName, index, actionName){
         }
         printElementsLength(logTag + " getWindowRootElement elements length: ", elements)
         elements.attributeValue("children").then((res) => {
+        for (let index1 = 0; index1 < res.length; index1++) {
             console.info(logTag + " attributeValue 0 children: " + JSON.stringify(res))
-            res[0].attributeValue("children").then((res) => {
-                console.info(logTag + " attributeValue 1 children: " + JSON.stringify(res))
-                res[index].performAction(actionName, (err, res) => {
-                    if (err?.code) {
-                        console.info(logTag + " performAction failed. Cause: " + JSON.stringify(err))
-                    }
-                    console.info(logTag + " performAction data: " + JSON.stringify(res))
-                    var commonEventPublishData = { data: caseName, parameters: {res: res} }
-                    publishEvent(commonEventPublishData)
-                })
+            res[index1].attributeValue("children").then((res) => {
+                for (let index = 0; index < res.length; index++) {
+                    res[index].attributeValue("componentType").then((typeVal) => {
+                        console.info(logTag + " attributeValue componentType: " + typeVal)
+                        if (typeVal == 'Scroll') {
+                            res[index].performAction(actionName, (err, res) => {
+                                if (err?.code) {
+                                    console.info(logTag + " performAction failed. Cause: " + JSON.stringify(err))
+                                }
+                                console.info(logTag + " performAction data: " + JSON.stringify(res))
+                                var commonEventPublishData = { data: caseName, parameters: {res: res} }
+                                publishEvent(commonEventPublishData)
+                            })
+                        }
+                    }).catch((err) => {
+                        console.info(logTag + " attributeValue componentType err=" + JSON.stringify(err));
+                    });
+                }
             }).catch((error) => {
                 console.info(logTag + "attributeValue 1 children error:" + JSON.stringify(error))
                 return
             })
+        }
         }).catch((error) => {
             console.info(logTag + "attributeValue 0 children error:" + JSON.stringify(error))
             return
@@ -272,7 +288,7 @@ function getRootElementCallBack1(context, caseName, index, actionName){
     })
 }
 
-function getRootElementCallBack2(context, caseName, index, actionName, args?){
+function getRootElementCallBack2(context, caseName, actionName, args?){
     let logTag = LOG_PREFIX + ' CASE ' + caseName
     context.getWindowRootElement((err, elements) => {
         if (err?.code) {
@@ -280,21 +296,31 @@ function getRootElementCallBack2(context, caseName, index, actionName, args?){
         }
         printElementsLength(logTag + " getWindowRootElement elements length: ", elements)
         elements.attributeValue("children").then((res) => {
+        for (let index1 = 0; index1 < res.length; index1++) {
             console.info(logTag + " attributeValue 0 children: " + JSON.stringify(res))
-            res[0].attributeValue("children").then((res) => {
-                console.info(logTag + " attributeValue 1 children: " + JSON.stringify(res))
-                res[index].performAction(actionName, args, (err, res) => {
-                    if (err?.code) {
-                        console.info(logTag + " performAction failed. Cause: " + JSON.stringify(err))
-                    }
-                    console.info(logTag + " performAction data: " + JSON.stringify(res))
-                    var commonEventPublishData = { data: caseName, parameters: {res: res} }
-                    publishEvent(commonEventPublishData)
-                })
+            res[index1].attributeValue("children").then((res) => {
+                for (let index = 0; index < res.length; index++) {
+                    res[index].attributeValue("componentType").then((typeVal) => {
+                        console.info(logTag + " attributeValue componentType: " + typeVal)
+                        if (typeVal == 'Scroll') {
+                            res[index].performAction(actionName, args, (err, res) => {
+                                if (err?.code) {
+                                    console.info(logTag + " performAction failed. Cause: " + JSON.stringify(err))
+                                }
+                                console.info(logTag + " performAction data: " + JSON.stringify(res))
+                                var commonEventPublishData = { data: caseName, parameters: {res: res} }
+                                publishEvent(commonEventPublishData)
+                            })
+                        }
+                    }).catch((err) => {
+                        console.info(logTag + " attributeValue componentType err=" + JSON.stringify(err));
+                    });
+                }
             }).catch((error) => {
                 console.info(logTag + "attributeValue 1 children error:" + JSON.stringify(error))
                 return
             })
+        }
         }).catch((error) => {
             console.info(logTag + "attributeValue 0 children error:" + JSON.stringify(error))
             return
