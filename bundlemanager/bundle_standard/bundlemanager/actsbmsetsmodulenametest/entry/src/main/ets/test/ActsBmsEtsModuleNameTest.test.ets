@@ -427,8 +427,7 @@ export default function actsBmsJsModuleNameTest() {
             expect(data).assertFail();
         }).catch(err => {
             console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(I
-            NVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
         });
         bundle.queryAbilityByWant({
             bundleName: BUNDLE_NAME,
