@@ -179,10 +179,9 @@ describe('AccessTokenTest', function () {
     it('Test_verifyAccessTokenSync_002', 0, function(){
         console.info("Test_verifyAccessTokenSync_002 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        try{
+        try {
             atManager.verifyAccessTokenSync(0, permissionNameUser);
-        }
-        catch (error) {
+        } catch (error) {
             expect(error.code).assertEqual(ERR_PARAM_INVALID);
         }
     })
@@ -195,10 +194,9 @@ describe('AccessTokenTest', function () {
     it('Test_verifyAccessTokenSync_003', 0, function(){
         console.info("Test_verifyAccessTokenSync_003 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        try{
+        try {
             atManager.verifyAccessTokenSync(tokenID, "");
-        }
-        catch (error) {
+        } catch (error) {
             expect(error.code).assertEqual(ERR_PARAM_INVALID);
         }
     })
@@ -215,10 +213,9 @@ describe('AccessTokenTest', function () {
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
 
-        try{
+        try {
             atManager.verifyAccessTokenSync(tokenID, permissionName);
-        }
-        catch (error) {
+        } catch (error) {
             expect(error.code).assertEqual(ERR_PARAM_INVALID);
         }
     })
@@ -339,10 +336,9 @@ describe('AccessTokenTest', function () {
     it('Test_checkAccessTokenSync_002', 0, function(){
         console.info("Test_checkAccessTokenSync_002 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        try{
+        try {
             atManager.checkAccessTokenSync(0, permissionNameUser);
-        }
-        catch (error) {
+        } catch (error) {
             expect(error.code).assertEqual(ERR_PARAM_INVALID);
         }
     })
@@ -355,10 +351,9 @@ describe('AccessTokenTest', function () {
     it('Test_checkAccessTokenSync_003', 0, function(){
         console.info("Test_checkAccessTokenSync_003 start");
         var atManager = abilityAccessCtrl.createAtManager();
-        try{
+        try {
             atManager.checkAccessTokenSync(tokenID, "");
-        }
-        catch (error) {
+        } catch (error) {
             expect(error.code).assertEqual(ERR_PARAM_INVALID);
         }
     })
@@ -375,10 +370,9 @@ describe('AccessTokenTest', function () {
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
             + "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest";
 
-        try{
+        try {
             atManager.checkAccessTokenSync(tokenID, permissionName);
-        }
-        catch (error) {
+        } catch (error) {
             expect(error.code).assertEqual(ERR_PARAM_INVALID);
         }
     })
