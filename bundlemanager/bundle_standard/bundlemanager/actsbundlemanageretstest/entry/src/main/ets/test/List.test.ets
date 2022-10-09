@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import getLaunchWantForBundle from './GetLaunchWantForBundle.test.ets';
+import getLaunchWantForBundleV9 from './GetLaunchWantForBundleV9.test.ets';
 import getabilityInfo from './GetabilityInfo.test.ets';
 import getApplicationInfoJsunit from './getApplicationInfoJsunit.test.ets';
 import getAllAppInfoJsunit from './getAllApplicationInfoJsunit.test.ets';
@@ -35,6 +36,7 @@ export default function testsuite() {
   queryExtensionAbilityInfos();
   getAbilityIcon();
   getLaunchWantForBundle();
+  getLaunchWantForBundleV9();
   getNameForUid();
   getQueryAbilityByWant();
   isDefaultApplicationTest();
