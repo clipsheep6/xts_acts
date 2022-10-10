@@ -48,13 +48,28 @@ let wantAgentInfo = {
 };
 
 function callback(err, data) {
-    if (err) {
-        console.error(TAG + " Operation failed");
+    if (err.code) {
+        console.info(TAG + " Operation failed " + JSON.stringify(err));
     } else {
-        console.info(TAG + " Operation succeed");
+        console.info(TAG + " Operation succeed" + JSON.stringify(err));
         commonEvent.publish(event, (err) => {
             if (err.code) {
-                console.error(TAG + "PublishCallBack failed");
+                console.error(TAG + "PublishCallBack failed" + JSON.stringify(err));
+            } else {
+                console.info(TAG + "Publish succeed");
+            }
+        })
+    }
+}
+
+function callback1(err, data) {
+    if (err) {
+        console.info(TAG + " Operation failed " + JSON.stringify(err));
+    } else {
+        console.info(TAG + " Operation succeed" + JSON.stringify(err));
+        commonEvent.publish(event, (err) => {
+            if (err.code) {
+                console.error(TAG + "PublishCallBack failed" + JSON.stringify(err));
             } else {
                 console.info(TAG + "Publish succeed");
             }
@@ -78,7 +93,7 @@ function startContinuousTaskUseApi8Callback() {
     event = "startTaskUseApi8Callback";
     wantAgent.getWantAgent(wantAgentInfo).then((data) => {
         backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-            backgroundTaskManager.BackgroundMode.LOCATION, data, callback);
+            backgroundTaskManager.BackgroundMode.LOCATION, data, callback1);
     });
 }
 
@@ -88,7 +103,7 @@ function stopContinuousTaskUseApi8Callback() {
         return backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
             backgroundTaskManager.BackgroundMode.LOCATION, data);
     }).then(() => {
-        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
+        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback1);
     });
 }
 
