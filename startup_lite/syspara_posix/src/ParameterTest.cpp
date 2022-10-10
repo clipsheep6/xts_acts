@@ -16,6 +16,7 @@
 #include <cstdio>
 #include "gtest/gtest.h"
 #include "parameter.h"
+#include "sysparam_errno.h"
 using namespace std;
 using namespace testing::ext;
 
@@ -114,11 +115,11 @@ HWTEST_F(ParameterTest, SUB_START_Para_Setting_ilLegal_0010, Function | MediumTe
 
     char value[] = "test with null";
     ret = SetParameter(nullptr, value);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 
     char key[] = "rw.sys.version";
     ret = SetParameter(key, nullptr);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
@@ -129,7 +130,7 @@ HWTEST_F(ParameterTest, SUB_START_Para_Setting_ilLegal_0010, Function | MediumTe
 HWTEST_F(ParameterTest, SUB_START_Para_Setting_ilLegal_0020, Function | MediumTest | Level2)
 {
     int ret = SetParameter("\0", "\0");
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
@@ -144,12 +145,12 @@ HWTEST_F(ParameterTest, SUB_START_Para_Setting_ilLegal_key_0010, Function | Medi
     char key1[] = "rw.sys.version.version.version.version.version.version.version.version.version.version.version.v";
     char value1[] = "set with key = 96";
     ret = SetParameter(key1, value1);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 
     char key2[] = "rw.sys.version.version.version.version.version.version.version.version.version.version.version.v1";
     char value2[] = "set with key > 96";
     ret = SetParameter(key2, value2);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
@@ -164,7 +165,7 @@ HWTEST_F(ParameterTest, SUB_START_Para_Setting_ilLegal_key_0030, Function | Medi
     char key[] = "rw.sys.version*%version";
     char value[] = "set value with illegal key";
     ret = SetParameter(key, value);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
@@ -179,12 +180,12 @@ HWTEST_F(ParameterTest, SUB_START_Para_Setting_ilLegal_value_0010, Function | Me
     char key1[] = "rw.sys.version.version";
     char value1[] = "abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuv11";
     ret = SetParameter(key1, value1);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_VALUE);
 
     char key2[] = "rw.sys.version.version";
     char value2[] = "abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuv222";
     ret = SetParameter(key2, value2);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_VALUE);
 }
 
 /**
@@ -261,7 +262,7 @@ HWTEST_F(ParameterTest, SUB_START_Para_Getting_ilLegal_0010, Function | MediumTe
     char key[] = "rw.sys.version";
     char value[StartUpLite::WRONG_LEN] = {0};
     ret = GetParameter(key, defSysParam.c_str(), value, StartUpLite::WRONG_LEN);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_SYSTEM_ERROR);
 }
 
 /**
@@ -275,7 +276,7 @@ HWTEST_F(ParameterTest, SUB_START_Para_Getting_ilLegal_0020, Function | MediumTe
 
     char key[] = "rw.sys.version";
     ret = GetParameter(key, defSysParam.c_str(), nullptr, StartUpLite::MAX_LEN);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
@@ -296,7 +297,7 @@ HWTEST_F(ParameterTest, SUB_START_Para_Getting_ilLegal_0030, Function | MediumTe
 
     char value2[StartUpLite::WRONG_LEN] = {0};
     ret = GetParameter(key1, defSysParam.c_str(), value2, StartUpLite::WRONG_LEN);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
@@ -325,7 +326,7 @@ HWTEST_F(ParameterTest, SUB_START_Para_Getting_ilLegal_0050, Function | MediumTe
 
     char value[StartUpLite::MAX_LEN] = {0};
     ret = GetParameter(nullptr, defSysParam.c_str(), value, StartUpLite::MAX_LEN);
-    EXPECT_EQ(ret, -9);
+    EXPECT_EQ(ret, SYSPARAM_INVALID_INPUT);
 }
 
 /**
