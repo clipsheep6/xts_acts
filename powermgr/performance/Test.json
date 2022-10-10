@@ -1,0 +1,26 @@
+{
+    "description": "power performance test",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.mypowerperformanceapp",
+        "package-name": "com.example.mypowerperformanceapp",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsPowerMgrPerformanceTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
