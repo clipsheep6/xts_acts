@@ -18,6 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 const BUNDLE_NAME = 'com.example.actsbmsdistributedmanager';
 const ABILITY_NAME = 'com.example.actsbmsdistributedmanager.MainAbility';
+const DEVICE_ID = '111';
 const ERROR_PARAM_CHECK_ERROR = 401;
 const ERROR_DISTRIBUTED_SERVICE_NOT_RUNNING = 17700027;
 
@@ -26,22 +27,22 @@ export default function actsBmsDistributedManagerTest() {
   describe('actsBmsDistributedManagerTest', function () {
     /*
     * @tc.number: SUB_BMS_DISTRIBUTED_MANAGER_0010
-    * @tc.name: getRemoteAbilityInfoInvalidType
-    * @tc.desc: test invalid type bundleName
+    * @tc.name: getRemoteAbilityInfoNoDeviceId
+    * @tc.desc: test no deviceId
     */
-    it('getRemoteAbilityInfoInvalidType', 0, async function (done) {
+    it('getRemoteAbilityInfoNoDeviceId', 0, async function (done) {
       try {
         distributedMgr.getRemoteAbilityInfo({
-          deviceId: "",
-          bundleName: 111,
+          bundleName: BUNDLE_NAME,
           abilityName: ABILITY_NAME
-        }).then(data => {
-            expect(data).assertFail();
-          }).catch((err) => {
+        }, (err, data) => {
+          if (err) {
             expect(err).assertFail();
-          });
+          }
+          expect(data).assertFail();
+        });
       } catch (err) {
-        expect(err.code).assertFail(ERROR_PARAM_CHECK_ERROR);
+        expect(err.code).assertEqual(ERROR_PARAM_CHECK_ERROR);
         console.error('[getRemoteAbilityInfo]Operation failed:' + err.message);
         done();
       }
@@ -49,16 +50,15 @@ export default function actsBmsDistributedManagerTest() {
 
     /*
     * @tc.number: SUB_BMS_DISTRIBUTED_MANAGER_0020
-    * @tc.name: getRemoteAbilityInfoInvalidTypeCallback
+    * @tc.name: getRemoteAbilityInfoNoDeviceIdWithLocale
     * @tc.desc: test getRemoteAbilityInfo callback
     */
-    it('getRemoteAbilityInfoInvalidTypeCallback', 0, async function (done) {
+    it('getRemoteAbilityInfoNoDeviceIdWithLocale', 0, async function (done) {
       try {
         distributedMgr.getRemoteAbilityInfo({
-          deviceId: "",
-          bundleName: 111,
+          bundleName: BUNDLE_NAME,
           abilityName: ABILITY_NAME
-        }, (err, data) => {
+        }, "English", (err, data) => {
           if (err) {
             expect(err).assertFail();
           }
@@ -79,16 +79,17 @@ export default function actsBmsDistributedManagerTest() {
     it('getRemoteAbilityInfoDistributeNotRunning', 0, async function (done) {
       try {
         distributedMgr.getRemoteAbilityInfo({
-          deviceId: "111",
+          deviceId: DEVICE_ID,
           bundleName: BUNDLE_NAME,
           abilityName: ABILITY_NAME
         }, (err, data) => {
           if (err) {
             expect(err.code).assertEqual(ERROR_DISTRIBUTED_SERVICE_NOT_RUNNING);
             console.error('[getRemoteAbilityInfo]Operation failed:' + err.message);
-            done();
+          } else {
+            expect(data).assertFail();
           }
-          expect(err).assertFail();
+          done();
         });
       } catch (err) {
         expect(err).assertFail();
@@ -103,16 +104,17 @@ export default function actsBmsDistributedManagerTest() {
     it('getRemoteAbilityInfoWithLocale', 0, async function (done) {
       try {
         distributedMgr.getRemoteAbilityInfo({
-          deviceId: "111",
+          deviceId: DEVICE_ID,
           bundleName: BUNDLE_NAME,
           abilityName: ABILITY_NAME
         }, "English", (err, data) => {
           if (err) {
             expect(err.code).assertEqual(ERROR_DISTRIBUTED_SERVICE_NOT_RUNNING);
             console.error('[getRemoteAbilityInfo]Operation failed:' + err.message);
-            done();
+          } else {
+            expect(data).assertFail();
           }
-          expect(err).assertFail();
+          done();
         });
       } catch (err) {
         expect(err).assertFail();
@@ -121,20 +123,21 @@ export default function actsBmsDistributedManagerTest() {
 
     /*
     * @tc.number: SUB_BMS_DISTRIBUTED_MANAGER_0050
-    * @tc.name: getRemoteAbilityInfoDistributeNotRunning with invalid type locale
+    * @tc.name: getRemoteAbilityInfoDistributeNotRunning with array
     * @tc.desc: test getRemoteAbilityInfo distributed service not running
     */
-    it('getRemoteAbilityInfoWithLocale', 0, async function (done) {
+    it('getRemoteAbilityInfoWithArray', 0, async function (done) {
       try {
-        distributedMgr.getRemoteAbilityInfo({
-          deviceId: "111",
-          bundleName: BUNDLE_NAME,
-          abilityName: ABILITY_NAME
-        }, 111, (err, data) => {
-          if (err) {
-            expect(err).assertFail();
-          }
-          expect(err).assertFail();
+        distributedMgr.getRemoteAbilityInfo(
+          [{
+            bundleName: BUNDLE_NAME,
+            abilityName: ABILITY_NAME
+          }], (err, data) => {
+            if (err) {
+              expect(err).assertFail();
+            } else {
+              expect(data).assertFail();
+            }
         });
       } catch (err) {
         expect(err.code).assertEqual(ERROR_PARAM_CHECK_ERROR);
@@ -145,63 +148,26 @@ export default function actsBmsDistributedManagerTest() {
 
     /*
     * @tc.number: SUB_BMS_DISTRIBUTED_MANAGER_0060
-    * @tc.name: getRemoteAbilityInfoDistributeNotRunning with array
-    * @tc.desc: test getRemoteAbilityInfo distributed service not running
-    */
-    it('getRemoteAbilityInfoWithLocale', 0, async function (done) {
-      try {
-        distributedMgr.getRemoteAbilityInfo([
-          {
-            deviceId: "111",
-            bundleName: BUNDLE_NAME,
-            abilityName: ABILITY_NAME
-          },
-          {
-            deviceId: "111",
-            bundleName: 111,
-            abilityName: ABILITY_NAME
-          }
-        ], (err, data) => {
-          if (err) {
-            expect(err).assertFail();
-          }
-          expect(err).assertFail();
-        });
-      } catch (err) {
-        expect(err.code).assertEqual(ERROR_PARAM_CHECK_ERROR);
-        console.error('[getRemoteAbilityInfo]Operation failed:' + err.message);
-        done();
-      }
-    });
-
-    /*
-    * @tc.number: SUB_BMS_DISTRIBUTED_MANAGER_0070
     * @tc.name: getRemoteAbilityInfo with array
     * @tc.desc: test getRemoteAbilityInfo distributed service not running
     */
-    it('getRemoteAbilityInfoWithLocale', 0, async function (done) {
+    it('getRemoteAbilityInfoWithLocaleAndArray', 0, async function (done) {
       try {
-        distributedMgr.getRemoteAbilityInfo([
-          {
-            deviceId: "111",
+        distributedMgr.getRemoteAbilityInfo([{
+            deviceId: DEVICE_ID,
             bundleName: BUNDLE_NAME,
             abilityName: ABILITY_NAME
-          },
-          {
-            deviceId: "111",
-            bundleName: BUNDLE_NAME,
-            abilityName: ABILITY_NAME
-          }
-        ], "English", (err, data) => {
+          }], "English", (err, data) => {
           if (err) {
             expect(err.code).assertEqual(ERROR_DISTRIBUTED_SERVICE_NOT_RUNNING);
             console.error('[getRemoteAbilityInfo]Operation failed:' + err.message);
-            done();
+          } else {
+            expect(data).assertFail();
           }
-          expect(data).assertFail();
+          done();
         });
       } catch (err) {
-        expect(data).assertFail();
+        expect(err).assertFail();
       }
     });
   });
