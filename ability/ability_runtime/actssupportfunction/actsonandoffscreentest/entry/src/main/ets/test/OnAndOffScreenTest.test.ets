@@ -17,21 +17,48 @@ import { BY,UiDriver,UiComponent } from '@ohos.uitest';
 import commonEvent from '@ohos.commonEvent';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import power from '@ohos.power';
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 export default function OnAndOffScreenTest() {
 
   describe('OnAndOffScreenTest', function () {
 
     let TAG = "";
-    let TAG1 = "SUB_AA_OpenHarmony == ";
+    let TAG1 = "SUB_AA_OpenHarmony == OnAndOffScreenTest : ";
     let sleepTimeOne = 1000;
     let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let id = undefined;
+    beforeAll(async (done) => {
+        console.log(TAG1 + "beforeAll called");
+        let myReason = 'test FaShowOnLockTest';
+        let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+            console.log(TAG1 + "Request suspension delay will time out.");
+        })
+        id = delayInfo.requestId;
+        console.log(TAG1 + "requestId is : " + id);
+        setTimeout(function () {
+            console.log(TAG1 + "beforeAll end");
+            done();
+        }, sleepTimeOne);
+    })
+        
+    afterAll(async (done) => {
+        console.log(TAG1 + "afterAll called");
+        backgroundTaskManager.cancelSuspendDelay(id);
+        setTimeout(function () {
+            console.log(TAG1 + "afterAll end");
+            done();
+        }, sleepTimeOne);
+    })
 
     async function slideScreen(TAG) {
       console.log(TAG + "slideScreen start");
       var driver = UiDriver.create();
-      await driver.swipe(1000, 3000, 1000, 500, 1200);
-      await driver.delayMs(500);
+      await driver.swipe(1000, 3000, 1000, 500, 1200).then((data) => {
+        console.log(TAG + "swipe : " + JSON.stringify(data));
+      }).catch((error) => {
+        console.log(TAG + "swipe error = " + JSON.stringify(error));
+      })
       console.log(TAG + "slideScreen end");
     }
 

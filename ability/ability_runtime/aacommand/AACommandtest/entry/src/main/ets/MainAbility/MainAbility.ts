@@ -18,8 +18,21 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 
+async function startAbilityTest(TAG, context) {
+    let wantInfo = {
+        bundleName: "com.example.aacommandtest",
+        abilityName: "MainAbility"
+    }
+    await context.startAbility(wantInfo).then((data) => {
+        console.log(TAG + "startAbility data : " + JSON.stringify(data));
+    }).catch((err) => {
+        console.log(TAG + "startAbility err : " + JSON.stringify(err));
+    })
+}
+
 export default class MainAbility extends Ability {
     async onCreate(want, launchParam) {
+        globalThis.abilityContext = this.context;
         console.log('MainAbility onCreate')
         let cmd: any
         let abilityDelegatorArguments: any
@@ -32,18 +45,18 @@ export default class MainAbility extends Ability {
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
 
-        await sleep(500)
-
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
             'class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0700 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0700 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0700 stdResult = ' + data.stdResult)
             globalThis.stdResult1 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_0700 - executeShellCommand: end ')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0700', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -55,113 +68,19 @@ export default class MainAbility extends Ability {
 
         await sleep(2000)
 
-        cmd = 'aa test -b com.example.aacommandrelyhap -m entry_test  -s class ACTS_AACommand_01_3#ACTS_AACo' +
-            'mmand_print_01_0100 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0100 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0100 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0100 stdResult = ' + data.stdResult)
-            globalThis.stdResult3 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0100 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ACTS_AACommand_01_3#ACTS_AAComm' +
-            'and_print_01_0200 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0200 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0200 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0200 stdResult = ' + data.stdResult)
-            globalThis.stdResult4 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0200 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ACTS_AACommand_01_3#ACTS_' +
-            'AACommand_print_01_0300 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0300 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0300 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0300 stdResult = ' + data.stdResult)
-            globalThis.stdResult5 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0300 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ACTS_AACommand_01_3#ACTS_AAComma' +
-            'nd_print_01_0400 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0400 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0400 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0400 stdResult = ' + data.stdResult)
-            globalThis.stdResult6 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0400 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ACTS_AACommand_01_3#ACTS_AAComm' +
-            'and_print_01_0500 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0500 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0500 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0500 stdResult = ' + data.stdResult)
-            globalThis.stdResult7 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0500 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ACTS_AACommand_01_3#ACTS_AA' +
-            'Command_print_01_0600 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0600 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0600 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0600 stdResult = ' + data.stdResult)
-            globalThis.stdResult8 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0600 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ' +
-            'ACTS_AACommand_01_3#ACTS_AACommand_print_01_0700 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0700 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0700 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0700 stdResult = ' + data.stdResult)
-            globalThis.stdResult9 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0700 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
-            'class ACTS_AACommand_01_3#ACTS_AACommand_print_01_0800 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_print_01_0800 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_print_01_0800 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_print_01_0800 stdResult = ' + data.stdResult)
-            globalThis.stdResult10 = data.stdResult;
-            console.log('ACTS_AACommand_print_01_0800 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ' +
             'ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0400 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0400 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_0400 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0400 stdResult = ' + data.stdResult)
             globalThis.stdResult11 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_0400 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0400', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -175,15 +94,17 @@ export default class MainAbility extends Ability {
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
             'class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0100 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0100 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_0100 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0100 stdResult = ' + data.stdResult)
             globalThis.stdResult13 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_0100 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0100', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -197,15 +118,17 @@ export default class MainAbility extends Ability {
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s class ' +
             'ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0500 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0500 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_0500 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0500 stdResult = ' + data.stdResult)
             globalThis.stdResult15 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_0500 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0500', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -219,15 +142,17 @@ export default class MainAbility extends Ability {
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
             'class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0600 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0600 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_0600 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0600 stdResult = ' + data.stdResult)
             globalThis.stdResult17 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_0600 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0600', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -241,15 +166,17 @@ export default class MainAbility extends Ability {
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
             'class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0900 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0900 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_0900 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0900 stdResult = ' + data.stdResult)
             globalThis.stdResult19 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_0900 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0900', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -261,39 +188,19 @@ export default class MainAbility extends Ability {
 
         await sleep(2000)
 
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap' +
-            ' -s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1200 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_finish_01_1200 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_finish_01_1200 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_finish_01_1200 stdResult = ' + data.stdResult)
-            globalThis.stdResult21 = data.stdResult;
-            console.log('ACTS_AACommand_finish_01_1200 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa dump -a'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.info('ACTS_AACommand_finish_01_1200 : err : ' + JSON.stringify(err));
-            console.info('ACTS_AACommand_finish_01_1200 : data : ' + JSON.stringify(data));
-            globalThis.stdResult22 = data["stdResult"];
-            console.info('ACTS_AACommand_finish_01_1200 end');
-        })
-
-        await sleep(2000)
-
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap ' +
             '-s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1300 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_1300 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_1300 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_1300 stdResult = ' + data.stdResult)
             globalThis.stdResult23 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_1300 - executeShellCommand: end')
+            
+            await startAbilityTest('ACTS_AACommand_finish_01_1300', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -307,15 +214,17 @@ export default class MainAbility extends Ability {
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap ' +
             '-s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1400 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_1400 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_1400 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_1400 stdResult = ' + data.stdResult)
             globalThis.stdResult25 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_1400 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_1400', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -329,15 +238,17 @@ export default class MainAbility extends Ability {
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap ' +
             '-s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1500 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_1500 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_1500 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_1500 stdResult = ' + data.stdResult)
             globalThis.stdResult27 = data.stdResult;
             console.log('ACTS_AACommand_finish_01_1500 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_1500', this.context);
         })
 
-        await sleep(3000)
+        await sleep(4000)
 
         cmd = 'aa dump -a'
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -350,33 +261,14 @@ export default class MainAbility extends Ability {
         await sleep(2000)
 
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap ' +
-            '-s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0200 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_finish_01_0200 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_finish_01_0200 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_finish_01_0200 stdResult = ' + data.stdResult)
-            console.log('ACTS_AACommand_finish_01_0200 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa dump -a'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.info('ACTS_AACommand_finish_01_0200 : err : ' + JSON.stringify(err));
-            console.info('ACTS_AACommand_finish_01_0200 : data : ' + JSON.stringify(data));
-            globalThis.stdResult29 = data["stdResult"];
-            console.info('ACTS_AACommand_finish_01_0200 end');
-        })
-
-        await sleep(2000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap ' +
             '-s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0300 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_0300 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_0300 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0300 stdResult = ' + data.stdResult)
             console.log('ACTS_AACommand_finish_01_0300 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_0300', this.context);
         })
 
         await sleep(3000)
@@ -391,76 +283,15 @@ export default class MainAbility extends Ability {
 
         await sleep(2000)
 
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
-            'class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_0800 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_finish_01_0800 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_finish_01_0800 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_finish_01_0800 stdResult = ' + data.stdResult)
-            console.log('ACTS_AACommand_finish_01_0800 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa dump -a'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.info('ACTS_AACommand_finish_01_0800 : err : ' + JSON.stringify(err));
-            console.info('ACTS_AACommand_finish_01_0800 : data : ' + JSON.stringify(data));
-            globalThis.stdResult31 = data["stdResult"];
-            console.info('ACTS_AACommand_finish_01_0800 end');
-        })
-
-        await sleep(2000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap -s ' +
-            'class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1000 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_finish_01_1000 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_finish_01_1000 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_finish_01_1000 stdResult = ' + data.stdResult)
-            console.log('ACTS_AACommand_finish_01_1000 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa dump -a'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.info('ACTS_AACommand_finish_01_1000 : err : ' + JSON.stringify(err));
-            console.info('ACTS_AACommand_finish_01_1000 : data : ' + JSON.stringify(data));
-            globalThis.stdResult32 = data["stdResult"];
-            console.info('ACTS_AACommand_finish_01_1000 end');
-        })
-
-        await sleep(2000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap ' +
-            '-s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1100 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.log('ACTS_AACommand_finish_01_1100 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_finish_01_1100 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_finish_01_1100 stdResult = ' + data.stdResult)
-            console.log('ACTS_AACommand_finish_01_1100 - executeShellCommand: end')
-        })
-
-        await sleep(3000)
-
-        cmd = 'aa dump -a'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            console.info('ACTS_AACommand_finish_01_1100 : err : ' + JSON.stringify(err));
-            console.info('ACTS_AACommand_finish_01_1100 : data : ' + JSON.stringify(data));
-            globalThis.stdResult33 = data["stdResult"];
-            console.info('ACTS_AACommand_finish_01_1100 end');
-        })
-
-        await sleep(2000)
-
         cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap' +
             ' -s class ACTS_AACommand_01_3#ACTS_AACommand_finish_01_1600 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.log('ACTS_AACommand_finish_01_1600 - executeShellCommand: start ')
             console.log('ACTS_AACommand_finish_01_1600 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_1600 stdResult = ' + data.stdResult)
             console.log('ACTS_AACommand_finish_01_1600 - executeShellCommand: end')
+
+            await startAbilityTest('ACTS_AACommand_finish_01_1600', this.context);
         })
 
         await sleep(3000)
@@ -485,8 +316,6 @@ export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('MainAbility onWindowStageCreate')
         windowStage.setUIContent(this.context, 'pages/index', null)
-
-        globalThis.abilityContext = this.context;
     }
 
     onWindowStageDestroy() {

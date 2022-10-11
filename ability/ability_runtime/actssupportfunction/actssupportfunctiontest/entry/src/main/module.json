@@ -6,6 +6,7 @@
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
+      "default",
       "phone"
     ],
     "deliveryWithInstall": true,
@@ -22,6 +23,7 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
         "visible": true,
+        "launchType": "singleton",
         "skills": [
           {
             "entities": [
@@ -32,6 +34,16 @@
             ]
           }
         ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "reason":"need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name":"ohos.permission.START_INVISIBLE_ABILITY",
+        "reason":"need use ohos.permission.START_INVISIBLE_ABILITY"
       }
     ]
   }
