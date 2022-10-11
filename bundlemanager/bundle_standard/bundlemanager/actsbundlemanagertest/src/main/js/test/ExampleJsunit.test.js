@@ -447,7 +447,7 @@ describe('ActsBundleManagerTest', function () {
         };
         demo.getBundleInfo(NAME1, demo.BundleFlag.GET_BUNDLE_WITH_ABILITIES,
             bundleOptions, (err, datainfo) => {
-                if (err) {
+                if (err != 0) {
                     console.info("testGetBundleInfoSystemAppCallback fail:" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();

@@ -435,7 +435,7 @@ export default function actsBmsJsModuleNameTest() {
             moduleName: MODULE_NAME2
         }, DEFAULT_FLAG, userId, (err, data) => {
             console.info("'[queryAbilityByWantInvalidModule]Return data " + JSON.stringify(err));
-            expect(err.message).assertEqual("QueryAbilityInfos failed");
+            expect(data).assertEqual("QueryAbilityInfos failed");
             console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
             expect(err).assertEqual(INVALID_CODE);
             done();

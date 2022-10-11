@@ -905,7 +905,7 @@ export default function QueryExtensionAbilityInfos() {
         expect(err).assertFail();
       });
       bundle.getBundleInfo(BUNDLE_NAME1, bundle.BundleFlag.GET_BUNDLE_WITH_EXTENSION_ABILITY, (err, data) => {
-        if (err) {
+        if (err.code != 0) {
           expect(err).assertFail();
           done();
           return;
@@ -937,7 +937,7 @@ export default function QueryExtensionAbilityInfos() {
         expect(err.code).assertEqual(1);
       });
       bundle.getBundleInfo(BUNDLE_NAME3, bundle.BundleFlag.GET_BUNDLE_WITH_EXTENSION_ABILITY, (err, data) => {
-        if (err) {
+        if (err.code != 0) {
           expect(err.code).assertEqual(1);
           done();
           return;
