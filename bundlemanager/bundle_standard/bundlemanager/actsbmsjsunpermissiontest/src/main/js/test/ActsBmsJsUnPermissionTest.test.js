@@ -121,15 +121,15 @@ describe('ActsBmsJsUnPermissionTest', function () {
         }, DEFAULT_FLAG, userId).then(data => {
             expect().assertFail();
         }).catch(err => {
-            expect(err.code).assertEqual(INVALID_CODE);
+            expect(err).assertEqual(INVALID_CODE);
         });
         bundle.queryAbilityByWant({
             bundleName: LAUNCHER_BUNDLE_NAME,
             abilityName: LAUNCHER_MAIN_ABILITY
         }, DEFAULT_FLAG, userId, (err, data) => {
             console.info("data ===================:" + data);
-            expect(err.code).assertEqual(INVALID_CODE);
-            expect(err.message).assertEqual("QueryAbilityInfos failed");
+            expect(data).assertEqual("QueryAbilityInfos failed");
+            expect(err).assertEqual(INVALID_CODE);
             done();
         });
     });

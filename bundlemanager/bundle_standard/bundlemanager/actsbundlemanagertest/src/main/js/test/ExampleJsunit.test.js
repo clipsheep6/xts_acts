@@ -1652,7 +1652,7 @@ describe('ActsBundleManagerTest', function () {
             {
                 entities: ['entity.system.home', 'entitiesentities']
             }, 4, userId, (err, data) => {
-                if (err.code != 0) {
+                if (err) {
                     console.info("testQueryAbilityByWantThereHapCallback err" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();
@@ -1723,7 +1723,7 @@ describe('ActsBundleManagerTest', function () {
                 done();
             }).catch(err => {
                 console.info("testQueryAbilityByWantNotExistHapPromise err : ===========" + err);
-                expect(err.code).assertEqual(1);
+                expect(err).assertEqual(1);
                 done();
             })
     })
@@ -1741,7 +1741,7 @@ describe('ActsBundleManagerTest', function () {
             }, demo.BundleFlag.GET_BUNDLE_DEFAULT, userId, (err, datainfo) => {
                 if (err) {
                     console.info("testQueryAbilityByWantNotExistHapCallback err : ===========" + err);
-                    expect(err.code).assertEqual(1);
+                    expect(err).assertEqual(1);
                     done();
                     return;
                 }
@@ -1767,7 +1767,7 @@ describe('ActsBundleManagerTest', function () {
                 done();
             }).catch(err => {
                 console.info("testQueryAbilityByWantSystemHapPromise err : ===========" + err);
-                expect(err.code).assertEqual(1);
+                expect(err).assertEqual(1);
                 done();
             })
     })
@@ -1787,7 +1787,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             console.info("testQueryAbilityByWantSystemHapCallback err : ===========" + err);
             console.info("testQueryAbilityByWantSystemHapCallback dataInfo : ===========" + datainfo);
-            expect(err.code).assertEqual(1);
+            expect(err).assertEqual(1);
             expect(datainfo).assertEqual(undefined);
             done();
         }

@@ -255,7 +255,7 @@ export default function GetResourceTest() {
         expect(applicationInfo.descriptionResource.bundleName).assertEqual(BUNDLE_NAME)
         expect(applicationInfo.descriptionResource.moduleName).assertEqual(MODULE_NAME)
         expect(applicationInfo.descriptionResource.id).assertLarger(0)
-        expect(err.code).assertEqual(0)
+        expect(err).assertEqual(0)
         done();
       })
     });

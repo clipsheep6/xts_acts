@@ -403,7 +403,7 @@ export default function actsBmsJsModuleNameTest() {
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME1
       }, DEFAULT_FLAG, userId, (err, data) => {
-        expect(err.code).assertEqual(SUCCESS_CODE);
+        expect(err).assertEqual(SUCCESS_CODE);
         if (err) {
           console.error('[queryAbilityByWantEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
         }
@@ -427,7 +427,7 @@ export default function actsBmsJsModuleNameTest() {
             expect(data).assertFail();
         }).catch(err => {
             console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(INVALID_CODE);
+            expect(err).assertEqual(INVALID_CODE);
         });
         bundle.queryAbilityByWant({
             bundleName: BUNDLE_NAME,
@@ -437,7 +437,7 @@ export default function actsBmsJsModuleNameTest() {
             console.info("'[queryAbilityByWantInvalidModule]Return data " + JSON.stringify(err));
             expect(err.message).assertEqual("QueryAbilityInfos failed");
             console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(INVALID_CODE);
+            expect(err).assertEqual(INVALID_CODE);
             done();
         });
     });
@@ -464,7 +464,7 @@ export default function actsBmsJsModuleNameTest() {
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME3
       }, DEFAULT_FLAG, userId, (err, data) => {
-        expect(err.code).assertEqual(SUCCESS_CODE);
+        expect(err).assertEqual(SUCCESS_CODE);
         if (err) {
           console.error('[queryAbilityByWantHasModule]Operation failed. Err: ' + JSON.stringify(err));
         }
@@ -577,7 +577,7 @@ export default function actsBmsJsModuleNameTest() {
           moduleName: MODULE_NAME4
         }, DEFAULT_FLAG, userId, (err1, data1) => {
           checkDataInfo(data1[0]);
-          expect(err1.code).assertEqual(SUCCESS_CODE);
+          expect(err1).assertEqual(SUCCESS_CODE);
         });
       }).catch(err => {
         expect().assertFail();
@@ -594,7 +594,7 @@ export default function actsBmsJsModuleNameTest() {
           moduleName: MODULE_NAME5
         }, DEFAULT_FLAG, userId, (err1, data1) => {
           checkDataInfo(data1[0]);
-          expect(err1.code).assertEqual(SUCCESS_CODE);
+          expect(err1).assertEqual(SUCCESS_CODE);
           done();
         });
       }).catch(err => {
