@@ -16,7 +16,6 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 import image from '@ohos.multimedia.image';
-import fileio from '@ohos.fileio';
 import {
     sleep,
     IMAGE_TYPE,
