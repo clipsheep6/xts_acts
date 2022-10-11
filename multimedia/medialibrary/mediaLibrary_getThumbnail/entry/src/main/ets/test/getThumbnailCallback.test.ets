@@ -218,6 +218,96 @@ export default function getThumbnailCallback(abilityContext) {
             let size = { width: 1024, height: 1024 };
             await testGetThumbnail(done, testNum, dOp, size,);
         });
+		
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_08
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(image) by 1
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_08', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_08';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let size = 1;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_09
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(image) by 'str'
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_09', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_09';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let size = 'str';
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_10
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(image) by true
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_10', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_10';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let size = true;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_11
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(image) by false
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_11', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_11';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let size = false;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_12
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(image) by null
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_12', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_12';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let size = null;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_13
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(image) by { width: 99999, height: 99999 }
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_13', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_001_13';
+            let dOp = fetchOps(testNum, 'Pictures/Thumbnail/', IMAGE_TYPE);
+            let size = { width: 99999, height: 99999 };
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
         // ------------------------------image type end--------------------------
 
         // ------------------------------video type start -----------------------
@@ -325,6 +415,96 @@ export default function getThumbnailCallback(abilityContext) {
             let size = { width: 1024, height: 1024 };
             await testGetThumbnail(done, testNum, dOp, size,);
         });
+		
+		/**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_08
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(video) by 1
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_08', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_08';
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
+            let size = 1;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_09
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(video) by 'str'
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_09', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_09';
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
+            let size = 'str';
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_10
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(video) by true
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_10', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_10';
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
+            let size = true;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_11
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(video) by false
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_11', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_11';
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
+            let size = false;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_12
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(video) by null
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_12', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_12';
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
+            let size = null;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_13
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(video) by { width: 99999, height: 99999 }
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_13', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_002_13';
+            let dOp = fetchOps(testNum, 'Videos/Thumbnail/', VIDEO_TYPE);
+            let size = { width: 99999, height: 99999 };
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
         // ------------------------------video type end--------------------------
 
         // ------------------------------audio type start -----------------------
@@ -431,6 +611,96 @@ export default function getThumbnailCallback(abilityContext) {
             let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
             let size = { width: 1024, height: 1024 };
             await testGetThumbnail(done, testNum, dOp, size,);
+        });
+		
+		/**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_08
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(audio) by 1
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_08', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_08';
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
+            let size = 1;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_09
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(audio) by 'str'
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_09', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_09';
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
+            let size = 'str';
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_10
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(audio) by true
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_10', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_10';
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
+            let size = true;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_11
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(audio) by false
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_11', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_11';
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
+            let size = false;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_12
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(audio) by null
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_12', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_12';
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
+            let size = null;
+            await testGetThumbnailError(done, testNum, dOp, size,);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_13
+         * @tc.name      : getThumbnail
+         * @tc.desc      : getThumbnail(audio) by { width: 99999, height: 99999 }
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_13', 0, async function (done) {
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_CALLBACK_003_13';
+            let dOp = fetchOps(testNum, 'Audios/Thumbnail/', AUDIO_TYPE);
+            let size = { width: 99999, height: 99999 };
+            await testGetThumbnailError(done, testNum, dOp, size,);
         });
         // ------------------------------audio type end--------------------------
     });
