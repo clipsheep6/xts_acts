@@ -316,7 +316,7 @@ describe('ActsBundleManagerTest', function () {
             done();
         }).catch(err => {
             console.info("testGetBundleInfoNotExistPromise err:" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done();
         });
     })
@@ -331,7 +331,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             if (err) {
                 console.info("testGetBundleInfoNotExistCallback err" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
                 return;
             }
@@ -353,7 +353,7 @@ describe('ActsBundleManagerTest', function () {
             done();
         }).catch(err => {
             console.info("testGetBundleInfoInvalidParamPromise fail" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done();
         });
     })
@@ -368,7 +368,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             if (err) {
                 console.info("testGetBundleInfoInvalidParamCallback err" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
                 return;
             }
@@ -580,7 +580,7 @@ describe('ActsBundleManagerTest', function () {
             done();
         }).catch(err => {
             console.info("testGetBundleInfoOtherUserIdPromise err" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done();
         });
     })
@@ -596,7 +596,7 @@ describe('ActsBundleManagerTest', function () {
         }, (err, dataInfo) => {
             if (err) {
                 console.info("testGetBundleInfoOtherUserIdCallback err" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
                 return;
             }
