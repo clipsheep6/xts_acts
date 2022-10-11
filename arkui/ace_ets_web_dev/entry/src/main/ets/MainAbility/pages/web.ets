@@ -677,11 +677,6 @@ struct Index {
                             },3000)
                             break;
                         }
-                        case "emitSaveCookieSync":{                                                       
-                            let saveCookieSyncCalled = this.controller.getCookieManager().saveCookieSync()
-                            Utils.emitEvent(saveCookieSyncCalled,81)                                                                                                           
-                            break;
-                        }
                         case "emitClearHistory":{                           
                             this.controller.loadUrl({url:"http://www.baidu.com/"})
                             setTimeout(()=>{    
