@@ -32,7 +32,7 @@ export default function isDefaultApplicationTest() {
                   console.info("isDefaultApplication_0100 data--- " + data)
                   console.info("isDefaultApplication_0100 err--- " + err)
                   expect(data).assertFalse()
-                  expect(err.code).assertEqual(0)
+                  expect(err).assertEqual(0)
                   done()
               })
           });
