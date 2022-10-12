@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "hypium/index"
 import bundle from '@ohos.bundle'
+import bundle9 from '@ohos.bundle.bundleManager'
 import pkg from '@system.package'
 import account from '@ohos.account.osAccount'
 
@@ -25,7 +26,9 @@ const SELF_ABILITYNAME = "com.example.actsbmsetsunpermissiontest.MainAbility";
 const BUNDLE_NAME_OTHER = "com.example.myapplication1";
 const ABILITIY_NAME_OTHER = "com.example.myapplication1.MainAbility";
 const BUNDLE_NAME1 = "ohos.acts.bundle.stage";
+const HAP_PATH = "/data/test/ActsBmsEtsUnPermissionTest.hap"
 const ABILITY_NAME1 = "ExtensionAbility1";
+const PERMISSION_DENIED_ERROR = 201;
 let userId = 0;
 
 export default function actsBmsJsUnPermissionTest() {
@@ -227,6 +230,64 @@ export default function actsBmsJsUnPermissionTest() {
                     expect(data).assertFail();
                     done();
                 })
+        })
+
+        /*
+        * @tc.number: 
+        * @tc.name: getBundleNameByUidUnPermission
+        * @tc.desc: test getBundleNameByUid no permission
+        */
+        it('getBundleNameByUidUnPermission', 0, async function (done) {
+            let dataInfo = await bundle.getBundleInfo(SELF_BUNDLENAME, bundle.BundleFlag.GET_BUNDLE_DEFAULT);
+            await bundle9.getBundleNameByUid(dataInfo.uid).then(data => {
+                expect().assertFail();
+            }).catch(err => {
+                expect(err.code).assertEqual(PERMISSION_DENIED_ERROR);
+            });
+            bundle9.getBundleNameByUid(dataInfo.uid, (err, data) => {
+                expect(err.code).assertEqual(PERMISSION_DENIED_ERROR);
+                done();
+            });
+        })
+
+       /*
+        * @tc.number: 
+        * @tc.name: getBundleArchiveInfoUnPermission
+        * @tc.desc: test getBundleArchiveInfo no permission
+        */
+        it('getBundleArchiveInfoUnPermission', 0, async function (done) {
+            await bundle9.getBundleArchiveInfo(HAP_PATH, bundle9.BundleFlag.GET_BUNDLE_INFO_DEFAULT).then(data => {
+                expect().assertFail();
+            }).catch(err => {
+                expect(err.code).assertEqual(PERMISSION_DENIED_ERROR);
+            });
+            bundle9.getBundleArchiveInfo(HAP_PATH, bundle9.BundleFlag.GET_BUNDLE_INFO_DEFAULT, (err, data) => {
+                expect(err.code).assertEqual(PERMISSION_DENIED_ERROR);
+                done();
+            });
+        })
+
+        /*
+        * @tc.number: 
+        * @tc.name: queryAbilityInfo
+        * @tc.desc: test queryAbilityInfo no permission
+        */
+        it('queryAbilityInfo', 0, async function (done) {
+            await bundle9.queryAbilityInfo(
+                {
+                    "action": "action.system.home"
+                }, bundle9.AbilityFlag.GET_ABILITY_INFO_DEFAULT, userId).then(data => {
+                expect().assertFail();
+            }).catch(err => {
+                expect(err.code).assertEqual(PERMISSION_DENIED_ERROR);
+            });
+            bundle9.queryAbilityInfo(
+                {
+                    "action": "action.system.home"
+                }, bundle9.AbilityFlag.GET_ABILITY_INFO_DEFAULT, userId, (err, data) => {
+                expect(err.code).assertEqual(PERMISSION_DENIED_ERROR);
+                done();
+            });
         })
 
         async function checkAbilityInfo(data) {

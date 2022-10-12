@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, it, expect, beforeAll, beforeEach, afterEach, afterAll } from 'hypium/index';
 import bundleManager from '@ohos.bundle';
+import bundle9 from '@ohos.bundle.bundleManager'
 import account from '@ohos.account.osAccount'
 
 const BUNDLE_NAME = 'com.example.myapplication1';
@@ -224,10 +225,10 @@ export default function GetResourceTest() {
      * @tc.desc:  get Resource by queryAbilityByWant
      */
     it('queryAbilityByWantForResource', 0, async function (done) {
-      await bundleManager.queryAbilityByWant({
+      await bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME
-      }, FLAG3, userId).then((data) => {
+      }, bundle9.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION, userId).then((data) => {
         let applicationInfo = data[0].applicationInfo;
         expect(applicationInfo.iconResource.bundleName).assertEqual(BUNDLE_NAME)
         expect(applicationInfo.iconResource.moduleName).assertEqual(MODULE_NAME)
@@ -241,10 +242,10 @@ export default function GetResourceTest() {
       }).catch((error) => {
         expect().assertFail();
       });
-      bundleManager.queryAbilityByWant({
+      bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME
-      }, FLAG3, userId, (err, data) => {
+      }, bundle9.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION, userId, (err, data) => {
         let applicationInfo = data[0].applicationInfo;
         expect(applicationInfo.iconResource.bundleName).assertEqual(BUNDLE_NAME)
         expect(applicationInfo.iconResource.moduleName).assertEqual(MODULE_NAME)
@@ -255,7 +256,7 @@ export default function GetResourceTest() {
         expect(applicationInfo.descriptionResource.bundleName).assertEqual(BUNDLE_NAME)
         expect(applicationInfo.descriptionResource.moduleName).assertEqual(MODULE_NAME)
         expect(applicationInfo.descriptionResource.id).assertLarger(0)
-        expect(err).assertEqual(0)
+        expect(err).assertEqual(null)
         done();
       })
     });
@@ -292,6 +293,42 @@ export default function GetResourceTest() {
         expect(applicationInfo.descriptionResource.moduleName).assertEqual(MODULE_NAME)
         expect(applicationInfo.descriptionResource.id).assertLarger(0)
         expect(err).assertEqual(0)
+        done();
+      })
+    });
+
+        /*
+     * @tc.number: SUB_BMS_APPINFO_GETAPPICON_0008
+     * @tc.name: getBundleArchiveInfoForResource
+     * @tc.desc: get Resource by getBundleArchiveInfo
+     */
+    it('getBundleArchiveInfoV9ForResource', 0, async function (done) {
+      await bundle9.getBundleArchiveInfo(PATH, bundle9.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then((data) => {
+        let applicationInfo = data.appInfo;
+        expect(applicationInfo.iconResource.bundleName).assertEqual(BUNDLE_NAME)
+        expect(applicationInfo.iconResource.moduleName).assertEqual(MODULE_NAME)
+        expect(applicationInfo.iconResource.id).assertLarger(0)
+        expect(applicationInfo.labelResource.bundleName).assertEqual(BUNDLE_NAME)
+        expect(applicationInfo.labelResource.moduleName).assertEqual(MODULE_NAME)
+        expect(applicationInfo.labelResource.id).assertLarger(0)
+        expect(applicationInfo.descriptionResource.bundleName).assertEqual(BUNDLE_NAME)
+        expect(applicationInfo.descriptionResource.moduleName).assertEqual(MODULE_NAME)
+        expect(applicationInfo.descriptionResource.id).assertLarger(0)
+      }).catch((err) => {
+        expect().assertFail();
+      })
+      bundle9.getBundleArchiveInfo(PATH, bundle9.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION, (err, data) => {
+        let applicationInfo = data.appInfo;
+        expect(applicationInfo.iconResource.bundleName).assertEqual(BUNDLE_NAME)
+        expect(applicationInfo.iconResource.moduleName).assertEqual(MODULE_NAME)
+        expect(applicationInfo.iconResource.id).assertLarger(0)
+        expect(applicationInfo.labelResource.bundleName).assertEqual(BUNDLE_NAME)
+        expect(applicationInfo.labelResource.moduleName).assertEqual(MODULE_NAME)
+        expect(applicationInfo.labelResource.id).assertLarger(0)
+        expect(applicationInfo.descriptionResource.bundleName).assertEqual(BUNDLE_NAME)
+        expect(applicationInfo.descriptionResource.moduleName).assertEqual(MODULE_NAME)
+        expect(applicationInfo.descriptionResource.id).assertLarger(0)
+        expect(err).assertEqual(null)
         done();
       })
     });

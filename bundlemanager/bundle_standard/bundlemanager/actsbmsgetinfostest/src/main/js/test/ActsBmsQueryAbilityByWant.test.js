@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// @ts-nocheck
+// @ts-ignore
 import bundle from '@ohos.bundle'
+import bundle9 from '@ohos.bundle.bundleManager'
 import account from '@ohos.account.osAccount'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit'
 

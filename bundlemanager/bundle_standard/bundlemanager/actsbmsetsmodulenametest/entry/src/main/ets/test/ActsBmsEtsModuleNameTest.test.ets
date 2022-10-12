@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ // @ts-nocheck
 import bundle from '@ohos.bundle'
+import bundle9 from '@ohos.bundle.bundleManager'
 import image from '@ohos.multimedia.image'
 import account from '@ohos.account.osAccount'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
@@ -28,7 +29,7 @@ const MODULE_NAME3 = 'entry';
 const MODULE_NAME4 = undefined;
 const MODULE_NAME5 = null;
 const MODULE_NAME6 = 'feature';
-const DEFAULT_FLAG = bundle.BundleFlag.GET_BUNDLE_DEFAULT;
+const BUNDLE9_FLAG = bundle9.AbilityFlag.GET_ABILITY_INFO_WITH_APPLICATION;
 const SUCCESS_CODE = 0;
 const INVALID_CODE = 1;
 const INVALID_PARAM = 2;
@@ -53,6 +54,7 @@ const ABILITY_INFO_FOUR = {
   name: ABILITY_NAME
 };
 let userId = 0;
+const ABILITY_NOT_EXIST_ERROR = 17700003;
 
 export default function actsBmsJsModuleNameTest() {
 
@@ -390,23 +392,23 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test empty moduleName
     */
     it('queryAbilityByWantEmptyModule', 0, async function (done) {
-      await bundle.queryAbilityByWant({
+      await bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME1
-      }, DEFAULT_FLAG, userId).then(data => {
+      }, BUNDLE9_FLAG, userId).then(data => {
         checkDataInfo(data[0]);
         console.info("'[queryAbilityByWantEmptyModule]Return data : " + JSON.stringify(data));
       }).catch(err => {
         console.info("[queryAbilityByWantEmptyModule]Operation failed. Err: " + JSON.stringify(err));
         expect(err).assertFail();
       });
-      bundle.queryAbilityByWant({
+      bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME1
-      }, DEFAULT_FLAG, userId, (err, data) => {
-        expect(err).assertEqual(SUCCESS_CODE);
+      }, BUNDLE9_FLAG, userId, (err, data) => {
+        expect(err).assertEqual(null);
         if (err) {
           console.error('[queryAbilityByWantEmptyModule]Operation failed. Err: ' + JSON.stringify(err));
         }
@@ -422,25 +424,25 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test non-existent moduleName
     */
     it('queryAbilityByWantInvalidModule', 0, async function (done) {
-      await bundle.queryAbilityByWant({
+      await bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME2
-      }, DEFAULT_FLAG, userId).then(data => {
+      }, BUNDLE9_FLAG, userId).then(data => {
         expect(data).assertFail();
       }).catch(err => {
         console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-        expect(err).assertEqual(INVALID_CODE);
+        expect(err.code).assertEqual(ABILITY_NOT_EXIST_ERROR)
       });
-      bundle.queryAbilityByWant({
+      bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME2
-      }, DEFAULT_FLAG, userId, (err, data) => {
+      }, BUNDLE9_FLAG, userId, (err, data) => {
         console.info("'[queryAbilityByWantInvalidModule]Return data " + JSON.stringify(data));
-        expect(data).assertEqual("QueryAbilityInfos failed");
+        expect(data).assertEqual(undefined);
         console.error('[queryAbilityByWantInvalidModule]Operation failed. Err: ' + JSON.stringify(err));
-        expect(err).assertEqual(INVALID_CODE);
+        expect(err.code).assertEqual(ABILITY_NOT_EXIST_ERROR)
         done();
       });
     });
@@ -451,23 +453,23 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test existent moduleName
     */
     it('queryAbilityByWantHasModule', 0, async function (done) {
-      await bundle.queryAbilityByWant({
+      await bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME3
-      }, DEFAULT_FLAG, userId).then(data => {
+      }, BUNDLE9_FLAG, userId).then(data => {
         checkDataInfo(data[0]);
         console.info("'[queryAbilityByWantHasModule]Return data : " + JSON.stringify(data));
       }).catch(err => {
         console.info("[queryAbilityByWantHasModule]Operation failed. Err: " + JSON.stringify(err));
         expect(err).assertFail();
       });
-      bundle.queryAbilityByWant({
+      bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME3
-      }, DEFAULT_FLAG, userId, (err, data) => {
-        expect(err).assertEqual(SUCCESS_CODE);
+      }, BUNDLE9_FLAG, userId, (err, data) => {
+        expect(err).assertEqual(null);
         if (err) {
           console.error('[queryAbilityByWantHasModule]Operation failed. Err: ' + JSON.stringify(err));
         }
@@ -568,36 +570,36 @@ export default function actsBmsJsModuleNameTest() {
     * @tc.desc: test undefined moduleName
     */
     it('queryAbilityByWantUndefinedModule', 0, async function (done) {
-      await bundle.queryAbilityByWant({
+      await bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME4
-      }, DEFAULT_FLAG, userId).then(data => {
+      }, BUNDLE9_FLAG, userId).then(data => {
         checkDataInfo(data[0]);
-        bundle.queryAbilityByWant({
+        bundle9.queryAbilityInfo({
           bundleName: BUNDLE_NAME,
           abilityName: ABILITY_NAME,
           moduleName: MODULE_NAME4
-        }, DEFAULT_FLAG, userId, (err1, data1) => {
+        }, BUNDLE9_FLAG, userId, (err1, data1) => {
           checkDataInfo(data1[0]);
-          expect(err1).assertEqual(SUCCESS_CODE);
+          expect(err1).assertEqual(null);
         });
       }).catch(err => {
         expect().assertFail();
       });
-      await bundle.queryAbilityByWant({
+      await bundle9.queryAbilityInfo({
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME,
         moduleName: MODULE_NAME5
-      }, DEFAULT_FLAG, userId).then(data => {
+      }, BUNDLE9_FLAG, userId).then(data => {
         checkDataInfo(data[0]);
-        bundle.queryAbilityByWant({
+        bundle9.queryAbilityInfo({
           bundleName: BUNDLE_NAME,
           abilityName: ABILITY_NAME,
           moduleName: MODULE_NAME5
-        }, DEFAULT_FLAG, userId, (err1, data1) => {
+        }, BUNDLE9_FLAG, userId, (err1, data1) => {
           checkDataInfo(data1[0]);
-          expect(err1).assertEqual(SUCCESS_CODE);
+          expect(err1).assertEqual(null);
           done();
         });
       }).catch(err => {
@@ -705,7 +707,6 @@ export default function actsBmsJsModuleNameTest() {
       expect(info.label).assertEqual("$string:app_name");
       expect(typeof (info.labelId)).assertEqual("number");
       expect(info.labelId > 0).assertTrue();
-      expect(info.systemApp).assertEqual(false);
       expect(typeof (info.entryDir)).assertEqual("string");
       expect(info.entryDir)
         .assertEqual("/data/app/el1/bundle/public/com.example.bmsmodulename/com.example.bmsmodulenamedentry");
@@ -799,7 +800,7 @@ export default function actsBmsJsModuleNameTest() {
                 launchMode: 0,
                 permissions: [], deviceTypes: [], deviceCapabilities: [], readPermission: "", writePermission: "",
                 applicationInfo: {
-                    name: "", description: "", descriptionId: 0, systemApp: true, enabled: true, label: "",
+                    name: "", description: "", descriptionId: 0, enabled: true, label: "",
                     labelId: "", labelIndex: 0, icon: "", iconId: "", iconIndex: 0, process: "", supportedModes: 0, moduleSourceDirs: [],
                     permissions: [], moduleInfos: [], entryDir: "", codePath: "", metaData: map1, metadata: map2,
                     removable: true, accessTokenId: 0, uid: 0, entityType: "", fingerprint: "",
