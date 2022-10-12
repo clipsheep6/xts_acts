@@ -13,26 +13,23 @@
  * limitations under the License.
  */
 
-import userfile_manager from '@ohos.filemanagement.userfile_manager';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
 import {
     sleep,
-    IMAGE_TYPE,
-    VIDEO_TYPE,
-    AUDIO_TYPE,
-    allFetchOp,
+    THROW_ERROR_CODE,
     albumFetchOps,
     checkPresetsAssets,
-    checkAlbumsCount,
+    checkAssetsCount,
 } from '../../../../../../common';
 
-export default function getAlbumsPromise(abilityContext) {
-    describe('getAlbumsPromise', function () {
-        const userfile_mgr = userfile_manager.getUserFileMgr(abilityContext);
+export default function getAlbumsPromiseTest(abilityContext) {
+    describe('getAlbumsPromiseTest', function () {
+        const userfilemgr = userFileManager.getUserFileMgr(abilityContext);
         beforeAll(async function () {
             console.info('beforeAll case');
-            await checkPresetsAssets(userfile_mgr, 'ActsUserFileMgrAlbumJsTest');
+            await checkPresetsAssets(userfilemgr, 'ActsUserFileMgrAlbumJsTest');
         });
         beforeEach(function () {
             console.info('beforeEach case');
@@ -56,8 +53,8 @@ export default function getAlbumsPromise(abilityContext) {
         }
 
         const props = {
-            albumName: 'Static',
-            albumUri: 'datashare:///userfile_mgr/album/',
+            albumName: 'myAlbum',
+            albumUri: 'datashare:///userfilemgr/album/',
             count: 1
         }
         const checkProps = async function (done, testNum, album, relativePaths) {
@@ -82,13 +79,14 @@ export default function getAlbumsPromise(abilityContext) {
                 expect(album.relativePath).assertEqual(relativePaths);
             }
         }
-        const checkAlbumInfo = async function (done, testNum, media_type, fetchOp, relativePaths, expectAlbumCount = 1) {
+        const checkAlbumInfo = async function (done, testNum, fetchOp, relativePaths, expectAlbumCount = 1) {
             try {
-                const albumList = await userfile_mgr.getAlbums(media_type, fetchOp);
-                const albumCountPass = await checkAlbumsCount(done, testNum, albumList, expectAlbumCount);
+                const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOp);
+                const albumCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumCount);
                 if (!albumCountPass) return;
-                const album = albumList[0];
+                const album = await fetchAlbumResult.getFirstObject();
                 checkProps(done, testNum, album, relativePaths);
+                fetchAlbumResult.close();
                 done();
             } catch (error) {
                 console.info(`${testNum}, failed: ${error}`);
@@ -97,81 +95,46 @@ export default function getAlbumsPromise(abilityContext) {
             }
         }
 
-        /**
-         * @tc.number    : SUB_USERFILE_MGR_GETALBUMS_PROMISE_01
-         * @tc.name      : getAlbums
-         * @tc.desc      : Image type getAlbums by relativePath && albumName, print all album info
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-        it('SUB_USERFILE_MGR_GETALBUMS_PROMISE_01', 0, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_GETALBUMS_PROMISE_01';
-            let media_type = [IMAGE_TYPE];
-            let currentFetchOp = albumFetchOps(testNum, 'Pictures/', 'Static');
-            let relativePaths = 'Pictures/';
-            await checkAlbumInfo(done, testNum, media_type, currentFetchOp, relativePaths);
-        });
-
-        /**
-         * @tc.number    : SUB_USERFILE_MGR_GETALBUMS_PROMISE_02
-         * @tc.name      : getAlbums
-         * @tc.desc      : Image type getAlbums by relativePath && albumName, print all album info
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-        it('SUB_USERFILE_MGR_GETALBUMS_PROMISE_02', 0, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_GETALBUMS_PROMISE_02';
-            let media_type = [AUDIO_TYPE];
-            let currentFetchOp = albumFetchOps(testNum, 'Audios/', 'Static');
-            let relativePaths = 'Audios/';
-            await checkAlbumInfo(done, testNum, media_type, currentFetchOp, relativePaths);
-        });
-
-        /**
-         * @tc.number    : SUB_USERFILE_MGR_GETALBUMS_PROMISE_03
-         * @tc.name      : getAlbums
-         * @tc.desc      : Image type getAlbums by relativePath && albumName, print all album info
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-        it('SUB_USERFILE_MGR_GETALBUMS_PROMISE_03', 0, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_GETALBUMS_PROMISE_03';
-            let media_type = [VIDEO_TYPE];
-            let currentFetchOp = albumFetchOps(testNum, 'Videos/', 'Static');
-            let relativePaths = 'Videos/';
-            await checkAlbumInfo(done, testNum, media_type, currentFetchOp, relativePaths);
-        });
-
-        /**
-         * @tc.number    : SUB_USERFILE_MGR_GETALBUMS_PROMISE_04
-         * @tc.name      : getAlbums
-         * @tc.desc      : getAlbums by abnormal
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-        it('SUB_USERFILE_MGR_GETALBUMS_PROMISE_04', 0, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_GETALBUMS_PROMISE_04';
+        const getPhotoAlbumsErrCodeTest = async function (done, testNum) {
             try {
-                let media_type = [-1];
-                let currentFetchOp = allFetchOp();
-                try {
-                    await userfile_mgr.getAlbums(media_type, currentFetchOp);
-                    expect(false).assertTrue();
-                    done();
-                } catch (error) {
-                    console.info(`${testNum}, error1: ${error}`);
-                    expect(true).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info(`${testNum}, error2: ${error}`);
+                let invalidOps : userFileManager.FetchOptions;
+                let fetchAlbumResult = await userfilemgr.getPhotoAlbums(invalidOps);
                 expect(false).assertTrue();
+                fetchAlbumResult.close();
+                done();
+            } catch (error) {
+                console.info(`${testNum}, errCode :${JSON.stringify(error)}`);
+                expect(error.code).assertEqual(THROW_ERROR_CODE.toString());
                 done();
             }
+        }
+
+        /**
+         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOALBUMS_PROMISE_01
+         * @tc.name      : getPhotoAlbums
+         * @tc.desc      : getPhotoAlbums by relativePath && albumName, print all album info
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('SUB_USERFILE_MGR_GETPHOTOALBUMS_PROMISE_01', 0, async function (done) {
+            let testNum = 'SUB_USERFILE_MGR_GETPHOTOALBUMS_PROMISE_01';
+            let currentFetchOp = albumFetchOps(testNum, 'Pictures/', 'myAlbum');
+            let relativePaths = 'Pictures/';
+            await checkAlbumInfo(done, testNum, currentFetchOp, relativePaths);
+        });
+
+        /**
+         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOALBUMS_ERRCODE_PROMISE_01
+         * @tc.name      : getPhotoAlbums
+         * @tc.desc      : getPhotoAlbums by invalid
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+         it('SUB_USERFILE_MGR_GETPHOTOALBUMS_ERRCODE_PROMISE_01', 0, async function (done) {
+            let testNum = 'SUB_USERFILE_MGR_GETPHOTOALBUMS_ERRCODE_PROMISE_01';
+            await getPhotoAlbumsErrCodeTest(done, testNum);
         });
     });
 }
