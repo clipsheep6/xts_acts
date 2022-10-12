@@ -64,10 +64,10 @@ export default function getThumbnailCallback(abilityContext) {
                         });
                     })
                 } else {
-					console.info(`${testNum}:: size : ${JSON.stringify(size)}`);
+                    console.info(`${testNum}:: size : ${JSON.stringify(size)}`);
                     asset.getThumbnail(size, async (err, pixelmap) => {
                         await pixelmap.getImageInfo((err, info) => {
-							console.info(`${testNum}:: infosize : ${JSON.stringify(info.size)}`);
+                            console.info(`${testNum}:: infosize : ${JSON.stringify(info.size)}`);
                             expect(info.size.width).assertEqual(size.width);
                             expect(info.size.height).assertEqual(size.height);
                             done();
