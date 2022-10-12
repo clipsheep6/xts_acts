@@ -639,7 +639,7 @@ export default function actsBmsJsModuleNameTest() {
         });
       bundle.getAbilityInfo(BUNDLE_NAME1, MODULE_NAME6, ABILITY_NAME1, (err, data) => {
         checkAbilityInfo(data);
-	expect(err).assertEqual(SUCCESS_CODE);
+        expect(err.code).assertEqual(SUCCESS_CODE);
         done();
       });
     });
@@ -658,7 +658,7 @@ export default function actsBmsJsModuleNameTest() {
         });
       bundle.getAbilityLabel(BUNDLE_NAME1, MODULE_NAME6, ABILITY_NAME1, (err, data) => {
         expect(data).assertEqual("bmsscenethree");
-        expect(err).assertNull();
+        expect(err.code).assertEqual(SUCCESS_CODE);
         done();
       });
     });

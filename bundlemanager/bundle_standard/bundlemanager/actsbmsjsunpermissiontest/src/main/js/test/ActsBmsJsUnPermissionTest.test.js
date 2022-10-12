@@ -100,10 +100,10 @@ describe('ActsBmsJsUnPermissionTest', function () {
         await bundle.getAllBundleInfo(DEFAULT_FLAG).then(data => {
             expect().assertFail();
         }).catch(err => {
-            expect(err.code).assertEqual(INVALID_CODE);
+            expect(err).assertEqual(INVALID_CODE);
         });
         bundle.getAllBundleInfo(DEFAULT_FLAG, (err, data) => {
-            expect(err.code).assertEqual(INVALID_CODE);
+            expect(err).assertEqual(INVALID_CODE);
             expect(data).assertEqual(undefined);
             done();
         });
