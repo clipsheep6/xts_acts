@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
-import cameraJSUnitEnum from './CameraJSUnitEnum.test.ets'
-import cameraJSUnitCameraFormat from './CameraJSUnitCameraFormat.test.ets'
-import cameraJSUnitPhotoAsync from './CameraJSUnitPhotoAsync.test.ets'
-import cameraJSUnitPhotoPromise from './CameraJSUnitPhotoPromise.test.ets'
-import cameraJSUnitVideoAsync from './CameraJSUnitVideoAsync.test.ets'
-import cameraJSUnitVideoPromise from './CameraJSUnitVideoPromise.test.ets'
+import cameraJSUnitOutput from './CameraJSUnitOutput.test'
+import cameraSessionFlashTest from './CameraSessionFlashTest.test'
+import cameraSessionExposureTest from './CameraSessionExposureTest.test'
+import cameraSessionFocusTest from './CameraSessionFocusTest.test'
+import cameraSessionZoomRatioTest from './CameraSessionZoomRatioTest.test'
+import cameraSessionVideoStabilizationTest from './CameraSessionVideoStabilizationTest.test'
+import cameraSessionBaseTest from './CameraSessionBaseTest.test'
+import cameraInputTest from './CameraInputTest.test'
 
 let TAG = 'CameraModuleTest: '
 
@@ -26,10 +28,12 @@ export default function cameraKit(surfaceId: any) {
   console.info(TAG + 'Entering cameraKit')
   console.info(TAG + 'surfaceId: ' + surfaceId)
 
-  cameraJSUnitEnum(surfaceId)
-  cameraJSUnitCameraFormat(surfaceId)
-  cameraJSUnitPhotoAsync(surfaceId)
-  cameraJSUnitPhotoPromise(surfaceId)
-  cameraJSUnitVideoAsync(surfaceId)
-  cameraJSUnitVideoPromise(surfaceId)
+  // cameraJSUnitOutput(surfaceId)
+  // cameraSessionFlashTest(surfaceId)
+  // cameraSessionExposureTest(surfaceId)
+  // cameraSessionFocusTest(surfaceId)
+  // cameraSessionZoomRatioTest(surfaceId)
+  // cameraSessionVideoStabilizationTest(surfaceId)
+  // cameraSessionBaseTest(surfaceId)
+  cameraInputTest(surfaceId)
 }
