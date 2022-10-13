@@ -35,7 +35,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestT
         pointer.isPointerVisible().then(data => {
             console.info(`MultimodalInput_Pointer_test::PointerVisibleTest_001 success, data=${JSON.stringify(data)}`);
             expect(data == false).assertTrue();
-        }, err => {
+        }).catch((err) => {
             console.info(`MultimodalInput_Pointer_test::PointerVisibleTest_001 failed, err=${JSON.stringify(err)}`);
             expect(false).assertTrue();
         });
@@ -47,7 +47,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestT
         pointer.setPointerVisible(true).then(data => {
             console.info(`MultimodalInput_Pointer_test::PointerVisibleTest_002 success, data=${JSON.stringify(data)}`);
             expect(true).assertTrue();
-        }, err => {
+        }).catch((err) => {
             console.info(`MultimodalInput_Pointer_test::PointerVisibleTest_002 failed, err=${JSON.stringify(err)}`);
             expect(false).assertTrue();
         });
