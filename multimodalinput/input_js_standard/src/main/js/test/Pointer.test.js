@@ -84,7 +84,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestT
                     console.info(`SetPointerStyle_001 success`);
                 }).catch((err) => {
                     expect(false).assertTrue();
-                    console.info("promise::catch", err);
+                    console.info(`SetPointerStyle_001 failed, err=${JSON.stringify(err)}`);
                 });
             })
         })
@@ -135,7 +135,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestT
                     console.info(`GetPointerStyle_001 success, data=${JSON.stringify(data)}`);
                     expect(data).assertTrue('Number');
                 }).catch((err) => {
-                    console.info("promise::catch", err);
+                    console.info(`GetPointerStyle_001 failed, err=${JSON.stringify(err)}`);
                     expect(false).assertTrue();
                 });
             })

@@ -197,7 +197,7 @@ describe('MultimodalInput_Device_test', function () {
           inputDevice.getKeyboardType(data[i]).then((res) => {
             expect(res).assertInstanceOf('Number');
           }).catch((err) => {
-            console.info("inputDevice::getKeyboardType_test-03 catch", err);
+            console.info(`inputDevice::getKeyboardType_test-03 failed, err=${JSON.stringify(err)}`);
             expect(false).assertTrue();
         });
         }
@@ -283,13 +283,13 @@ describe('MultimodalInput_Device_test', function () {
         inputDevice.supportKeys(data[i], [17, 22, 2055]).then(res => {
           expect(res).assertInstanceOf('Array');
         }).catch((err) => {
-          console.info("MultimodalInputDevice_getDeviceIds_Promise_test catch", err);
+          console.info(`MultimodalInputDevice_getDeviceIds_Promise_test failed, err=${JSON.stringify(err)}`);
           expect(false).assertTrue();
         });
         done();
       }
     }).catch((err) => {
-      console.info("MultimodalInputDevice_getDeviceIds_Promise_test catch", err);
+      console.info(`MultimodalInputDevice_getDeviceIds_Promise_test failed, err=${JSON.stringify(err)}`);
       expect(false).assertTrue();
       done();
     });
@@ -309,7 +309,7 @@ describe('MultimodalInput_Device_test', function () {
     }).catch((err) => {
       console.info(`MultimodalInputDevice_getDevice_Promise_test err`);
       expect(false).assertTrue();
-      console.info(`MultimodalInputDevice_getDevice_Promise_test ${JSON.stringify(err)}`);
+      console.info(`MultimodalInputDevice_getDevice_Promise_test failed, err=${JSON.stringify(err)}`);
     });
     console.info(`MultimodalInputDevice_getDevice_Promise_test exit`);
   })
