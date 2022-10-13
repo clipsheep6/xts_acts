@@ -620,7 +620,7 @@ export default function actsBmsJsModuleNameTest() {
           expect(err).assertFail();
         });
       bundle.getAbilityIcon(BUNDLE_NAME1, MODULE_NAME6, ABILITY_NAME1, (err, data) => {
-        expect(err).assertEqual(SUCCESS_CODE);
+        expect(err.code).assertEqual(SUCCESS_CODE);
         expect(data.getBytesNumberPerRow()).assertLarger(0);
         done();
       });
