@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import userfile_manager from '@ohos.filemanagement.userfile_manager';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 import { sleep } from '../../../../../../common';
 
-export default function getUserFileMgr(abilityContext) {
-    describe('getUserFileMgr', function () {
-        const userfile_mgr = userfile_manager.getUserFileMgr(abilityContext);
+export default function getUserFileMgrTest(abilityContext) {
+    describe('getUserFileMgrTest', function () {
+        const userfilemgr = userFileManager.getUserFileMgr(abilityContext);
         beforeAll(async function () {
             console.info('beforeAll case');
         });
@@ -44,7 +44,7 @@ export default function getUserFileMgr(abilityContext) {
          */
         it('SUB_USERFILE_MGR_GETUSERFILEMGR_00', 0, async function (done) {
             try {
-                expect(userfile_mgr != undefined).assertTrue();
+                expect(userfilemgr != undefined).assertTrue();
                 done();
             } catch (error) {
                 console.info(`SUB_USERFILE_MGR_GETUSERFILEMGR_00 failed, error: ${error}`);

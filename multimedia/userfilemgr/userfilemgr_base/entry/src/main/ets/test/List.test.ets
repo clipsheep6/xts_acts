@@ -13,15 +13,17 @@
  * limitations under the License.
  */
 
-import getAlbumsCallback from './getAlbumsCallback.test.ets'
-import getAlbumsPromise from './getAlbumsPromise.test.ets'
-import getFileAssetsCallback from './getFileAssetsCallback.test.ets'
-import getFileAssetsPromise from './getFileAssetsPromise.test.ets'
-import getUserFileMgr from './getUserFileMgr.test.ets'
+import getAlbumsCallbackTest from './getAlbumsCallback.test.ets'
+import getAlbumsPromiseTest from './getAlbumsPromise.test.ets'
+import getFileAssetsCallbackTest from './getFileAssetsCallback.test.ets'
+import getFileAssetsPromiseTest from './getFileAssetsPromise.test.ets'
+import getUserFileMgrTest from './getUserFileMgr.test.ets'
+import onOffReleasePromiseTest from './onOffReleasePromise.test.ets'
 export default function testsuite(abilityContext) {
-  getAlbumsCallback(abilityContext)
-  getAlbumsPromise(abilityContext)
-  getFileAssetsCallback(abilityContext)
-  getFileAssetsPromise(abilityContext)
-  getUserFileMgr(abilityContext)
+  getAlbumsCallbackTest(abilityContext)
+  getAlbumsPromiseTest(abilityContext)
+  getFileAssetsCallbackTest(abilityContext)
+  getFileAssetsPromiseTest(abilityContext)
+  getUserFileMgrTest(abilityContext)
+  onOffReleasePromiseTest(abilityContext)
 }
