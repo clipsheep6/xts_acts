@@ -15,12 +15,8 @@
 
 import getProfileByAbility from './GetProfileByAbility.test.ets';
 import getProfileByExtensionAbility from './GetProfileByExtensionAbility.test.ets';
-import getProfileByAbilityV9 from ./GetProfileByAbilityV9.test.ets"
-import getProfileByExtensionAbilityV9 from './GetProfileByExtensionAbilityV9.test.ets';
 
 export default function testsuite() {
   getProfileByAbility();
   getProfileByExtensionAbility();
-  getProfileByAbilityV9();
-  getProfileByExtensionAbilityV9();
 }
