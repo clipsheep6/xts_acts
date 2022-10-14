@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,7 +45,7 @@ describe("FaultlogJsTest", function () {
      * test
      *
      * @tc.name: DFX_DFR_Faultlogger_Interface_0200
-     * @tc.desc: 检验函数参数输入错误时程序是否会崩溃
+     * @tc.desc: API8 检验函数参数输入错误时程序是否会崩溃
      * @tc.require: AR000GICT2
      */
     it('DFX_DFR_Faultlogger_Interface_0200', 0, async function (done) {
@@ -76,7 +76,7 @@ describe("FaultlogJsTest", function () {
      * test
      *
      * @tc.name: DFX_DFR_Faultlogger_Interface_0400
-     * @tc.desc: 检验promise同步方式获取faultlog CPP_CRASH日志
+     * @tc.desc: API8 检验promise同步方式获取faultlog CPP_CRASH日志
      * @tc.require: AR000GICT2
      */
     it('DFX_DFR_Faultlogger_Interface_0400', 0, async function (done) {
@@ -134,7 +134,7 @@ describe("FaultlogJsTest", function () {
      * test
      *
      * @tc.name: DFX_DFR_Faultlogger_Interface_0500
-     * @tc.desc: 检验promise同步方式获取faultlog JS_CRASH日志
+     * @tc.desc: API8 检验promise同步方式获取faultlog JS_CRASH日志
      * @tc.require: AR000GICT2
      */
      it('DFX_DFR_Faultlogger_Interface_0500', 0, async function (done) {
@@ -185,7 +185,7 @@ describe("FaultlogJsTest", function () {
      * test
      *
      * @tc.name: DFX_DFR_Faultlogger_Interface_0300
-     * @tc.desc: 检验promise同步方式获取faultlog APP_FREEZE日志
+     * @tc.desc: API8 检验promise同步方式获取faultlog APP_FREEZE日志
      * @tc.require: AR000GICT2
      */
      it('DFX_DFR_Faultlogger_Interface_0300', 0, async function (done) {
@@ -230,7 +230,7 @@ describe("FaultlogJsTest", function () {
      * test
      *
      * @tc.name: DFX_DFR_Faultlogger_Interface_0100
-     * @tc.desc: 检验通过回调方式获取faultlog日志
+     * @tc.desc: API8 检验通过回调方式获取faultlog日志
      * @tc.require: AR000GICT2
      */
     it('DFX_DFR_Faultlogger_Interface_0100', 0, async function (done) {
@@ -273,6 +273,247 @@ describe("FaultlogJsTest", function () {
             console.info(err);
         }
         console.info("DFX_DFR_Faultlogger_Interface_0100 error");
+        expect(false).assertTrue();
+        done();
+    })
+
+    /**
+     * test
+     *
+     * @tc.name: DFX_DFR_Faultlogger_Interface_0201
+     * @tc.desc: API9 检验函数参数输入错误时程序是否会崩溃并校验错误码
+     * @tc.require: AR000HHOCH
+     */
+     it('DFX_DFR_Faultlogger_Interface_0201', 0, async function (done) {
+        console.info("---------------------------DFX_DFR_Faultlogger_Interface_0201----------------------------------");
+        try {
+            let ret1 = faultlogger.query("faultloggertestsummary01");
+            console.info("DFX_DFR_Faultlogger_Interface_0201 ret1 == " + ret1);
+            expect(ret1).assertEqual(undefined);
+
+            let ret2 = faultlogger.query(faultlogger.FaultType.JS_CRASH, "faultloggertestsummary01");
+            console.info("DFX_DFR_Faultlogger_Interface_0201 ret2 == " + ret2);
+            expect(ret2).assertEqual(undefined);
+
+            let ret3 = faultlogger.query();
+            console.info("DFX_DFR_Faultlogger_Interface_0201 ret3 == " + ret3);
+            expect(ret3).assertEqual(undefined);
+            done();
+            return;
+        } catch(err) {
+            console.info("errno = " + err.code);
+            console.info(err);
+            expect(err.code.assertEqual("401"));
+        }
+        expect(false).assertTrue();
+        done();
+    })
+
+    /**
+     * test
+     *
+     * @tc.name: DFX_DFR_Faultlogger_Interface_0401
+     * @tc.desc: API9 检验promise同步方式获取faultlog CPP_CRASH日志
+     * @tc.require: AR000HHOCH
+     */
+    it('DFX_DFR_Faultlogger_Interface_0401', 0, async function (done) {
+        console.info("---------------------------DFX_DFR_Faultlogger_Interface_0401----------------------------------");
+        try {
+            let now = Date.now();
+            console.info("DFX_DFR_Faultlogger_Interface_0401 2 + " + now);
+            let module = "ohos.faultloggerjs.test";
+            const loopTimes = 10;
+            for (let i = 0; i < loopTimes; i++) {
+                console.info("--------DFX_DFR_Faultlogger_Interface_0401 3 + " + i + "----------");
+                faultlogger.add(i - 400, 
+                    faultlogger.FaultType.CPP_CRASH, module, "faultloggertestsummary02 " + i);
+                await msleep(300);
+            }
+            await msleep(1000);
+
+            console.info("--------DFX_DFR_Faultlogger_Interface_0401 4" + "----------");
+            let ret = await faultlogger.query(faultlogger.FaultType.CPP_CRASH);
+            console.info("DFX_DFR_Faultlogger_Interface_0401 ret == " + ret.length);
+            expect(ret.length).assertEqual(loopTimes);
+            for (let i = 0; i < loopTimes; i++) {
+                console.info("faultloggertestsummary02 " + i + " fullLog.length " + ret[i].fullLog.length);
+                if (ret[i].fullLog.indexOf("faultloggertestsummary02 " + (loopTimes - 1 - i)) != -1) {
+                    console.info("DFX_DFR_Faultlogger_Interface_0401 " + ret[i].fullLog.length);
+                    expect(typeof(ret[i].pid) == "number").assertTrue();
+                    expect(typeof(ret[i].uid) == "number").assertTrue();
+                    expect(typeof(ret[i].type) == "number").assertTrue();
+                    expect(typeof(ret[i].timestamp) == "number").assertTrue();
+                    expect(typeof(ret[i].reason) == "string").assertTrue();
+                    expect(typeof(ret[i].module) == "string").assertTrue();
+                    expect(typeof(ret[i].summary) == "string").assertTrue();
+                    expect(typeof(ret[i].fullLog) == "string").assertTrue();
+                    expect(true).assertTrue();
+                } else {
+                    expect(false).assertTrue();
+                }
+            }
+
+            console.info("--------DFX_DFR_Faultlogger_Interface_0401 5" + "----------");
+            ret = await faultlogger.query(faultlogger.FaultType.NO_SPECIFIC);
+            console.info("DFX_DFR_Faultlogger_Interface_0401 ret == " + ret.length);
+            expect(ret.length).assertEqual(loopTimes);
+            done();
+            return;
+        } catch (err) {
+            console.info("errno = " + err.code);
+            console.info("catch (err) == " + err);
+        }
+        console.info("DFX_DFR_Faultlogger_Interface_0401 error");
+        expect(false).assertTrue();
+        done();
+    })
+
+    /**
+     * test
+     *
+     * @tc.name: DFX_DFR_Faultlogger_Interface_0501
+     * @tc.desc: API9 检验promise同步方式获取faultlog JS_CRASH日志
+     * @tc.require: AR000HHOCH
+     */
+     it('DFX_DFR_Faultlogger_Interface_0501', 0, async function (done) {
+        console.info("---------------------------DFX_DFR_Faultlogger_Interface_0501----------------------------------");
+        try {
+            let now = Date.now();
+            console.info("DFX_DFR_Faultlogger_Interface_0501 2 + " + now);
+            hiSysEvent.write({
+                domain: "ACE",
+                name: "JS_ERROR",
+                eventType: hiSysEvent.EventType.FAULT,
+                params: {
+                    PID: 487,
+                    UID:103,
+                    PACKAGE_NAME: "com.ohos.faultlogger.test",
+                    PROCESS_NAME: "com.ohos.faultlogger.test",
+                    MSG: "faultlogger testcase test.",
+                    REASON: "faultlogger testcase test."
+                }
+            }).then(
+                (value) => {
+                    console.log(`HiSysEvent json-callback-success value=${value}`);
+                })
+            await msleep(1000);
+
+            console.info("--------DFX_DFR_Faultlogger_Interface_0501 4" + "----------");
+            let ret = await faultlogger.query(faultlogger.FaultType.JS_CRASH);
+            console.info("DFX_DFR_Faultlogger_Interface_0501 ret == " + ret.length);
+            if (ret.length > 0) {
+                expect(true).assertTrue();
+            } else {
+                expect(false).assertTrue();
+            }
+            for (let i = 0; i < ret.length; i++) {
+                console.info("faultloggertestsummary03 " + i + " fullLog.length " + ret[i].fullLog.length);
+            }
+            done();
+            return;
+        } catch (err) {
+            console.info("errno = " + err.code);
+            console.info("catch (err) == " + err);
+        }
+        console.info("DFX_DFR_Faultlogger_Interface_0501 error");
+        expect(false).assertTrue();
+        done();
+    })
+
+    /**
+     * test
+     *
+     * @tc.name: DFX_DFR_Faultlogger_Interface_0301
+     * @tc.desc: API8 检验promise同步方式获取faultlog APP_FREEZE日志
+     * @tc.require: AR000HHOCH
+     */
+     it('DFX_DFR_Faultlogger_Interface_0301', 0, async function (done) {
+        console.info("---------------------------DFX_DFR_Faultlogger_Interface_0301----------------------------------");
+        try {
+            let now = Date.now();
+            console.info("DFX_DFR_Faultlogger_Interface_0301 2 + " + now);
+            let module = "ohos.faultloggerjs.test";
+            const loopTimes = 10;
+            for (let i = 0; i < loopTimes; i++) {
+                console.info("--------DFX_DFR_Faultlogger_Interface_0301 3 + " + i + "----------");
+                faultlogger.add(i - 200, 
+                    faultlogger.FaultType.APP_FREEZE, module, "faultloggertestsummary04 " + i);
+                await msleep(300);
+            }
+            await msleep(1000);
+
+            console.info("--------DFX_DFR_Faultlogger_Interface_0301 4" + "----------");
+            let ret = await faultlogger.query(faultlogger.FaultType.APP_FREEZE);
+            console.info("DFX_DFR_Faultlogger_Interface_0301 ret == " + ret.length);
+            expect(ret.length).assertEqual(loopTimes);
+            for (let i = 0; i < loopTimes; i++) {
+                console.info("faultloggertestsummary04 " + i + " fullLog.length " + ret[i].fullLog.length);
+                if (ret[i].fullLog.indexOf("faultloggertestsummary04 " + (loopTimes - 1 - i)) != -1) {
+                    console.info("DFX_DFR_Faultlogger_Interface_0301 " + ret[i].fullLog.length);
+                    expect(true).assertTrue();
+                } else {
+                    expect(false).assertTrue();
+                }
+            }
+            done();
+            return;
+        } catch (err) {
+            console.info("errno = " + err.code);
+            console.info("catch (err) == " + err);
+        }
+        console.info("DFX_DFR_Faultlogger_Interface_0301 error");
+        expect(false).assertTrue();
+        done();
+    })
+
+    /**
+     * test
+     *
+     * @tc.name: DFX_DFR_Faultlogger_Interface_0101
+     * @tc.desc: API8 检验通过回调方式获取faultlog日志
+     * @tc.require: AR000HHOCH
+     */
+    it('DFX_DFR_Faultlogger_Interface_0101', 0, async function (done) {
+        console.info("---------------------------DFX_DFR_Faultlogger_Interface_0101----------------------------------");
+        try {
+            let now = Date.now();
+            console.info("DFX_DFR_Faultlogger_Interface_0101 start + " + now);
+            let module = "ohos.faultloggerjs.test";
+            const loopTimes = 10;
+            for (let i = 0; i < loopTimes; i++) {
+                console.info("--------DFX_DFR_Faultlogger_Interface_0101 + " + i + "----------");
+                faultlogger.addF(i - 100,
+                    faultlogger.FaultType.CPP_CRASH, module, "faultloggertestsummary05 " + i);
+                await msleep(300);
+            }
+            await msleep(1000);
+
+            console.info("--------DFX_DFR_Faultlogger_Interface_0101 4----------");
+            function queryFaultLogCallback(error, ret) {
+                if (error) {
+                    console.info('DFX_DFR_Faultlogger_Interface_0101  once error is ' + error);
+                } else {
+                    console.info("DFX_DFR_Faultlogger_Interface_0101 ret == " + ret.length);
+                    expect(ret.length).assertEqual(loopTimes);
+                    for (let i = 0; i < loopTimes; i++) {
+                        console.info("faultloggertestsummary05 " + i + " fullLog.length " + ret[i].fullLog.length);
+                        if (ret[i].fullLog.indexOf("faultloggertestsummary05 " + (loopTimes - 1 - i)) != -1) {
+                            console.info("DFX_DFR_Faultlogger_Interface_0101 " + ret[i].fullLog.length);
+                            expect(true).assertTrue();
+                        } else {
+                            expect(false).assertTrue();
+                        }
+                    }
+                }
+                done();
+            }
+            faultlogger.query(faultlogger.FaultType.CPP_CRASH, queryFaultLogCallback);
+            return;
+        } catch (err) {
+            console.info("errno = " + err.code);
+            console.info(err);
+        }
+        console.info("DFX_DFR_Faultlogger_Interface_0101 error");
         expect(false).assertTrue();
         done();
     })
