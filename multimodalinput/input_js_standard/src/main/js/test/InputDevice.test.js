@@ -192,7 +192,7 @@ export default function MultimodalInput_Device_test() {
             expect(false).assertTrue();
           } else {
             for (let i = 0; i < data.length; ++i) {
-              inputDevice.getKeyboardType(data[i], (res, err) => {
+              inputDevice.getKeyboardType(data[i], (err, res) => {
                 expect(res).assertInstanceOf('Number');
               });
             }
@@ -230,7 +230,7 @@ export default function MultimodalInput_Device_test() {
               }).catch((err) => {
                 console.info(`inputDevice::getKeyboardType_test-03 failed, err=${JSON.stringify(err)}`);
                 expect(false).assertTrue();
-            });
+              });
             }
           }
           console.info(`inputDevice::getKeyboardType_test-03 exit`);
@@ -317,6 +317,7 @@ export default function MultimodalInput_Device_test() {
           console.info(`MultimodalInputDevice_getDeviceIds_Promise_test data`);
           for (let i = 0; i < data.length; ++i) {
             inputDevice.supportKeys(data[i], [17, 22, 2055]).then(res => {
+              console.info(`MultimodalInputDevice_getDeviceIds_Promise_test res`);
               expect(res).assertInstanceOf('Array');
             }).catch((err) => {
               console.info(`MultimodalInputDevice_getDeviceIds_Promise_test failed, err=${JSON.stringify(err)}`);
