@@ -24,7 +24,8 @@ export default class FormAbility extends FormExtension {
         console.info(`Stage FormAbility onCreate, want: ${JSON.stringify(want)}`)
         updateCount = 0;
         let obj = {
-            "updateCount": updateCount
+            "temperature": "08",
+            "imageSrc": "/common/widget.png"
         };
         return formBindingData.createFormBindingData(obj);
     }

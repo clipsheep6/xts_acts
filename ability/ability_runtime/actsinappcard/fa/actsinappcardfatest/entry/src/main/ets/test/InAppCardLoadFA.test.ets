@@ -21,7 +21,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 const TIME_OUT = 2000;
 
 var ACTS_CARD = {
-  events: ["ACTS_FormIdA","ACTS_FormIdB","ACTS_FormIdC", "ERR_CODE"]
+  events: ["ACTS_FormIdA","ACTS_FormIdB","ACTS_FormIdC", "ERR_CODE", "onCreate_want_count"]
 };
 
 export default function abilityTest() {
@@ -108,6 +108,7 @@ export default function abilityTest() {
       let subscriber;
       let abilityDelegator = undefined;
       let temp;
+      let countcard = 0;
       abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
@@ -156,13 +157,24 @@ export default function abilityTest() {
               })
           }, TIME_OUT)
         }
-      }
-
-      function unSubscribeCallback() {
-        console.debug("ACTS_InAppCardLoadCard_1100 ====> unSubscribeCallback")
-        done();
-      }
-    })
+        setTimeout(async () => {
+               if (data.event == "onCreate_want_count") {
+          		   countcard ++;
+          			  if(countcard == 2) {
+          				expect(countcard ==2 ).assertTrue()
+          			  }
+          			  if(countcard > 2) {
+                          expect("").assertFail()
+          			  }
+          			  commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+          		}
+          }, 1000)
+          	}
+          		function unSubscribeCallback() {
+          			console.debug("ACTS_InAppCardLoadCard_0200 ====> unSubscribeCallback")
+          			done();
+          		}
+          	})
 
     /*
     * @tc.number: ACTS_InAppCardLoadCard_1200
@@ -520,5 +532,5 @@ export default function abilityTest() {
         done()
       }
     })
-  })
-}
+   })
+ }

@@ -16,12 +16,16 @@
 import FormExtension from '@ohos.application.FormExtension';
 import formBindingData from '@ohos.application.formBindingData';
 import formInfo from '@ohos.application.formInfo';
+import commonEvent from '@ohos.commonEvent'
+var count = 0;
 
 export default class FormAbility extends FormExtension {
     onCreate(want) {
-        console.info(`ACTS_InAppLoadCard FormAbility onCreate, want: ${JSON.stringify(want)}`)
-        console.info(`ACTS_InAppLoadCard FormAbility onCreate, want: ${want}`)
-        console.info(`ACTS_InAppLoadCard FormAbility onCreate, want: ${want.bundleName}`)
+        count ++;
+        console.debug(`ACTS_InAppLoadCard FormAbility onCreate, want:${count} ${JSON.stringify(want)}`)
+        console.debug(`ACTS_InAppLoadCard FormAbility onCreate, want:${count} ${want}`)
+        console.debug(`ACTS_InAppLoadCard FormAbility onCreate, want:${count} ${want.bundleName}`)
+        console.debug(`ACTS_InAppLoadCard FormAbility onCreate, count: ${count}`)
         let obj = {
             "bundleName": want.bundleName,
             "abilityName": want.abilityName,
@@ -31,9 +35,13 @@ export default class FormAbility extends FormExtension {
         };
 
         let formData = formBindingData.createFormBindingData(obj);
+        console.debug(`ACTS_InAppLoadCard FormAbility onCreate, want.parameters: ${JSON.stringify(want.parameters)}`)
+        commonEvent.publish("onCreate_want_count",  (err, data) => {
+                console.log('ACTS_InAppCardLoadCard_0200 ====>publish: errdata:' + JSON.stringify(data));
+                console.log('ACTS_InAppCardLoadCard_0200 ====>publish: errcode:' + JSON.stringify(err));
+            });
         return formData;
-    }
-
+}
     onCastToNormal(formId) {
         // Called when the form provider is notified that a temporary form is successfully
         // converted to a normal form.

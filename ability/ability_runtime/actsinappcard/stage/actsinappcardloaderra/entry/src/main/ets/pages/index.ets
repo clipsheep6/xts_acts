@@ -17,7 +17,7 @@ import commonEvent from '@ohos.commonEvent'
 @Entry
 @Component
 struct Index {
-  @State message: string = 'InAppCardLinkageStageErrTest'
+  @State message: string = 'LoadCardErrTest'
   @StorageLink('formId') formId: number = 0;
   @StorageLink('bundleName') bundleName: string = "com.example.inappcardloadcarderr";
   @StorageLink('abilityName') abilityName: string = "FormAbility";

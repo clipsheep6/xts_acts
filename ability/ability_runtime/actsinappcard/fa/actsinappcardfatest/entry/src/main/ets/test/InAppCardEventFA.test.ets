@@ -45,6 +45,7 @@ export default function abilityTest() {
      */
     it('ACTS_InAppCardRouterEvent_0700',0, async function (done) {
       let subscriber;
+      let id;
       let flag=false
       console.info("ACTS_InAppCardRouterEvent_0700====>");
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
@@ -79,6 +80,7 @@ export default function abilityTest() {
       })
 
       function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0700====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0700====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID") {
@@ -92,9 +94,10 @@ export default function abilityTest() {
         console.debug("ACTS_InAppCardRouterEvent_0700====> unSubscribeCallback");
         done();
       }
-      setTimeout(()=>{
+      id = setTimeout(()=>{
         if(flag==false){
           expect().assertFail();
+          console.debug('ACTS_InAppCardRouterEvent_0700====> timeout');
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       },CASE_TIME_OUT)

@@ -18,7 +18,6 @@ import { UiDriver, BY, UiComponent, MatchPattern } from '@ohos.uitest'
 import missionManager
 from '@ohos.application.missionManager';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import formHost from '@ohos.application.formHost';
 var driver;
 const CLICK_TIME=500;
 const MAX_MISSION_NUM = 1024;
@@ -97,6 +96,8 @@ export default function abilityTest() {
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":1") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.linkagestagetest]") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.userstagea]") >= 0).assertTrue()
           }).catch((err)=>{
             console.info(`ACTS_InAppCardLinkage_0100 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
@@ -188,6 +189,8 @@ export default function abilityTest() {
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":1") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.linkagestagetest]") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.userstagea]") >= 0).assertTrue()
           }).catch((err)=>{
             console.info(`ACTS_InAppCardLinkage_0200 ====> getFormData err : + ${JSON.stringify(err)}`)
           })
@@ -277,6 +280,8 @@ export default function abilityTest() {
             let temp
             temp = data["stdResult"].toString()
             expect(temp.indexOf("\"updateCount\":0") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.linkagestagetest]") >= 0).assertTrue()
+            expect(temp.indexOf("hostBundleName [com.inappcard.userstagea]") >= 0).assertTrue()
           }).catch((err)=>{
             console.info(`ACTS_InAppCardLinkage_0300 ====> getFormData err : + ${JSON.stringify(err)}`)
           })

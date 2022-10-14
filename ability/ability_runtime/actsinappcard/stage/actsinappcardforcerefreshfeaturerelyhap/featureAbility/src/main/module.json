@@ -4,7 +4,7 @@
     "type": "feature",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:featureAbility_desc",
-    "mainElement": "MainAbility",
+    "mainElement": "MainAbility3",
     "deviceTypes": [
       "phone",
       "tablet"
@@ -15,8 +15,8 @@
     "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "name": "MainAbility3",
+        "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
@@ -49,24 +49,6 @@
       }
     ],
     "requestPermissions": [
-      {
-        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
-      },
-      {
-        "name": "ohos.permission.GET_BUNDLE_INFO"
-      },
-      {
-        "name": "ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
-      },
-      {
-        "name": "ohos.permission.REMOVE_CACHE_FILES"
-      },
-      {
-        "name": "ohos.permission.LISTEN_BUNDLE_CHANGE"
-      },
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-      },
       {
         "name": "ohos.permission.REQUIRE_FORM"
       }

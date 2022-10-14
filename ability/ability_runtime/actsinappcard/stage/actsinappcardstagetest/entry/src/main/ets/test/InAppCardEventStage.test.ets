@@ -16,11 +16,11 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { BY, UiDriver, UiComponent, MatchPattern } from '@ohos.uitest'
 import commonEvent from '@ohos.commonEvent'
 var driver;
-const CASE_TIME_OUT=5000;
+const CASE_TIME_OUT = 5000;
 const TIME_OUT = 4000;
 var ACTS_CARD = {
   events: ["ACTS_FORM_ID", "ACTS_FORM_ID2", "ACTS_FORM_ID3", "ACTS_FORM_ID4",
-          "ACTS_FORM_ID5", "ACTS_FORM_ID6", "ACTS_MESSAGE_ID1", "ACTS_MESSAGE_ID2", "ACTS_MESSAGE_ID3"]
+    "ACTS_FORM_ID5", "ACTS_FORM_ID6", "ACTS_MESSAGE_ID1", "ACTS_MESSAGE_ID2", "ACTS_MESSAGE_ID3"]
 };
 export default function abilityTest() {
 
@@ -31,9 +31,9 @@ export default function abilityTest() {
     })
 
     afterEach(async (done) => {
-      setTimeout(async() => {
+      setTimeout(async () => {
         done();
-      },5000)
+      }, 5000)
     })
 
     /*
@@ -41,9 +41,10 @@ export default function abilityTest() {
      * @tc.name: Handle in-app card click events
      * @tc.desc: ability to handle in-app card click router events in the background (stage)
      */
-    it('ACTS_InAppCardRouterEvent_0100',0, async function (done) {
+    it('ACTS_InAppCardRouterEvent_0100', 0, async function (done) {
       let subscriber;
-      let flag=false
+      let id;
+      let flag = false
       console.info("ACTS_InAppCardRouterEvent_0100====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardRouterEvent_0100====> Create Subscribe");
@@ -51,37 +52,38 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardRouterEvent_0100====> startAbility err:"+JSON.stringify(err))
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardRouterEvent_0100====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardRouterEvent_0100====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardRouterEvent_0100====> startAbility err:" + JSON.stringify(err))
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardRouterEvent_0100====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardRouterEvent_0100====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
-      function subscribeCallBack(err, data) {
+      async function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0100====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0100====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID") {
           console.debug("ACTS_InAppCardRouterEvent_0100====> data:" + JSON.stringify(data.parameters.message));
           expect(data.parameters.message).assertEqual('add detail');
-          flag=true
+          flag = true
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -89,12 +91,14 @@ export default function abilityTest() {
         console.debug("ACTS_InAppCardRouterEvent_0100====> unSubscribeCallback")
         done()
       }
-      setTimeout(()=>{
-        if(flag==false){
+
+      id = setTimeout(() => {
+        if (flag == false) {
           expect().assertFail();
+          console.debug('ACTS_InAppCardRouterEvent_0100  ====> timeout');
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
-      },CASE_TIME_OUT)
+      }, CASE_TIME_OUT)
     })
 
     /*
@@ -103,9 +107,10 @@ export default function abilityTest() {
      * @tc.desc: The ability is in the foreground and the abilitylaunch type is standard,
                  processing the in-app card click router event (stage)
      */
-    it('ACTS_InAppCardRouterEvent_0200',0, async function (done) {
+    it('ACTS_InAppCardRouterEvent_0200', 0, async function (done) {
       let subscriber;
-      let flag=false
+      let id;
+      let flag = false
       console.info("ACTS_InAppCardRouterEvent_0200====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardRouterEvent_0200====> Create Subscribe");
@@ -113,38 +118,39 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility2",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget2",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility2",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget2",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardRouterEvent_0200====> startAbility err:"+JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardRouterEvent_0200====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardRouterEvent_0200====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardRouterEvent_0200====> startAbility err:" + JSON.stringify(err));
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardRouterEvent_0200====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardRouterEvent_0200====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
-      function subscribeCallBack(err, data) {
+      async function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0200====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0200====> subscribeCallBack data:" + JSON.stringify(data))
         if (data.event == "ACTS_FORM_ID2") {
           console.debug("ACTS_InAppCardRouterEvent_0200====> subscribeCallBack data:" +
-          JSON.stringify(data.parameters.message))
+            JSON.stringify(data.parameters.message))
           expect(data.parameters.message).assertEqual('add detail2');
-          flag=true
+          flag = true
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -152,12 +158,14 @@ export default function abilityTest() {
         console.debug("ACTS_InAppCardRouterEvent_0200====> unSubscribeCallback")
         done()
       }
-      setTimeout(()=>{
-        if(flag==false){
+
+      id = setTimeout(async () => {
+        if (flag == false) {
           expect().assertFail();
+          console.debug('ACTS_InAppCardRouterEvent_0200====> timeout');
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
-      },CASE_TIME_OUT)
+      }, CASE_TIME_OUT)
     })
 
     /*
@@ -166,7 +174,7 @@ export default function abilityTest() {
      * @tc.desc: The ability is in the foreground and the abilitylaunch type is singleton,
                  processing the in-app card click router event (stage)
      */
-    it('ACTS_InAppCardRouterEvent_0300',0, async function (done) {
+    it('ACTS_InAppCardRouterEvent_0300', 0, async function (done) {
       let subscriber;
       console.info("ACTS_InAppCardRouterEvent_0300====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
@@ -175,28 +183,28 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility3",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget3",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility3",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget3",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardRouterEvent_0300====> startAbility err:"+JSON.stringify(err))
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardRouterEvent_0300====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardRouterEvent_0300====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardRouterEvent_0300====> startAbility err:" + JSON.stringify(err))
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardRouterEvent_0300====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardRouterEvent_0300====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
@@ -213,9 +221,9 @@ export default function abilityTest() {
         done();
       }
 
-      setTimeout(()=>{
+      setTimeout(async () => {
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-      },TIME_OUT)
+      }, TIME_OUT)
     })
 
     /*
@@ -223,7 +231,7 @@ export default function abilityTest() {
      * @tc.name: Handle in-app card click events
      * @tc.desc: Handle in-app card click router event, configuration ability does not exist(stage)
      */
-    it('ACTS_InAppCardRouterEvent_0400',0, async function (done) {
+    it('ACTS_InAppCardRouterEvent_0400', 0, async function (done) {
       let subscriber;
       console.info("ACTS_InAppCardRouterEvent_0400====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
@@ -232,29 +240,29 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility4",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget4",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility4",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget4",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardRouterEvent_0400====> startAbility err:"+JSON.stringify(err))
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardRouterEvent_0400====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardRouterEvent_0400====> catch err: " + JSON.stringify(err));
-              console.debug("ACTS_InAppCardRouterEvent_0400====> catch err: " + err);
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardRouterEvent_0400====> startAbility err:" + JSON.stringify(err))
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardRouterEvent_0400====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardRouterEvent_0400====> catch err: " + JSON.stringify(err));
+                console.debug("ACTS_InAppCardRouterEvent_0400====> catch err: " + err);
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
@@ -271,19 +279,21 @@ export default function abilityTest() {
         done();
       }
 
-      setTimeout(()=>{
+      setTimeout(async () => {
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-      },TIME_OUT)
+      }, TIME_OUT)
     })
+
 
     /*
      * @tc.number: ACTS_InAppCardRouterEvent_0500
      * @tc.name: Handle in-app card click events
      * @tc.desc: Handle the in-app card click router event, configure the params parameter to be empty(stage)
      */
-    it('ACTS_InAppCardRouterEvent_0500',0, async function (done) {
+    it('ACTS_InAppCardRouterEvent_0500', 0, async function (done) {
       let subscriber;
-      let flag=false;
+      let id;
+      let flag = false;
       console.info("ACTS_InAppCardRouterEvent_0500====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardRouterEvent_0500====> Create Subscribe");
@@ -291,36 +301,37 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility5",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget5",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility5",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget5",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardRouterEvent_0500====> startAbility err:"+JSON.stringify(err))
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardRouterEvent_0500====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardRouterEvent_0500====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardRouterEvent_0500====> startAbility err:" + JSON.stringify(err))
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardRouterEvent_0500====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardRouterEvent_0500====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0500====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0500====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID5") {
           expect(data.parameters.message).assertEqual(undefined);
-          flag=true;
+          flag = true;
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -330,12 +341,11 @@ export default function abilityTest() {
         done()
       }
 
-      setTimeout(()=>{
-        if(flag==false){
-          expect().assertFail();
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-        }
-      },CASE_TIME_OUT)
+      id = setTimeout(async () => {
+        expect().assertFail();
+        console.debug('ACTS_InAppCardRouterEvent_0500====> timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }, CASE_TIME_OUT)
     })
 
     /*
@@ -344,9 +354,10 @@ export default function abilityTest() {
      * @tc.desc: Handle the in-app card click router event, and configure the params parameter
                  to be an empty string(stage)
      */
-    it('ACTS_InAppCardRouterEvent_0600',0, async function (done) {
+    it('ACTS_InAppCardRouterEvent_0600', 0, async function (done) {
       let subscriber;
-      let flag=false;
+      let id;
+      let flag = false;
       console.info("ACTS_InAppCardRouterEvent_0600====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardRouterEvent_0600====> Create Subscribe");
@@ -354,37 +365,38 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility6",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget6",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility6",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget6",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardRouterEvent_0600====> startAbility err:"+JSON.stringify(err))
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardRouterEvent_0600====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardRouterEvent_0600====> catch err: " + JSON.stringify(err));
-              console.debug("ACTS_InAppCardRouterEvent_0600====> catch err: " + err);
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardRouterEvent_0600====> startAbility err:" + JSON.stringify(err))
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardRouterEvent_0600====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardRouterEvent_0600====> catch err: " + JSON.stringify(err));
+                console.debug("ACTS_InAppCardRouterEvent_0600====> catch err: " + err);
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0600====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0600====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID6") {
           expect(data.parameters.message).assertEqual(0);
-          flag=true;
+          flag = true;
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -394,23 +406,22 @@ export default function abilityTest() {
         done()
       }
 
-      setTimeout(()=>{
-        if(flag==false){
-          expect().assertFail();
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-        }
-      },CASE_TIME_OUT)
+      id = setTimeout(async () => {
+        expect().assertFail();
+        console.debug('ACTS_InAppCardRouterEvent_0600====> timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }, CASE_TIME_OUT)
     })
-
 
     /*
      * @tc.number: ACTS_InAppCardMessageEvent_0100
      * @tc.name: Handle in-app card click events
      * @tc.desc: Handling in-app card click message event(stage)
      */
-    it('ACTS_InAppCardMessageEvent_0100',0, async function (done) {
+    it('ACTS_InAppCardMessageEvent_0100', 0, async function (done) {
       let subscriber;
-      let flag=false;
+      let id;
+      let flag = false;
       console.info("ACTS_InAppCardMessageEvent_0100====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardMessageEvent_0100====> Create Subscribe");
@@ -418,36 +429,37 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility7",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget7",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility7",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget7",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardMessageEvent_0100====>  startAbility err:"+JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardMessageEvent_0100====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardMessageEvent_0100====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardMessageEvent_0100====>  startAbility err:" + JSON.stringify(err));
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardMessageEvent_0100====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardMessageEvent_0100====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardMessageEvent_0100====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardMessageEvent_0100====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_MESSAGE_ID1") {
           expect(data.parameters.message).assertEqual('{"action":"message","params":{"message":"MessageEvent_0100"}}');
-          flag=true
+          flag = true
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -455,12 +467,12 @@ export default function abilityTest() {
         console.debug("ACTS_InAppCardMessageEvent_0100====> unSubscribeCallback")
         done()
       }
-      setTimeout(()=>{
-        if(flag==false){
-          expect().assertFail();
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-        }
-      },CASE_TIME_OUT)
+
+      id = setTimeout(async () => {
+        expect().assertFail();
+        console.debug('ACTS_InAppCardMessageEvent_0100====> timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }, CASE_TIME_OUT)
     })
 
     /*
@@ -468,9 +480,10 @@ export default function abilityTest() {
      * @tc.name: Handle in-app card click events
      * @tc.desc: Handle the in-app card click message event, configure the params parameter to be empty (stage)
      */
-    it('ACTS_InAppCardMessageEvent_0200',0, async function (done) {
+    it('ACTS_InAppCardMessageEvent_0200', 0, async function (done) {
       let subscriber;
-      let flag=false;
+      let id;
+      let flag = false;
       console.info("ACTS_InAppCardMessageEvent_0200====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardMessageEvent_0200====> Create Subscribe");
@@ -478,36 +491,37 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility8",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget8",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility8",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget8",
             }
-          },(err,data)=>{
-          console.info("ACTS_InAppCardMessageEvent_0200====>  startAbility err:"+JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardMessageEvent_0200====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardMessageEvent_0200====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err, data) => {
+            console.info("ACTS_InAppCardMessageEvent_0200====>  startAbility err:" + JSON.stringify(err));
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardMessageEvent_0200====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardMessageEvent_0200====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardMessageEvent_0200====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardMessageEvent_0200====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_MESSAGE_ID2") {
           expect(data.parameters.message).assertEqual('{"action":"message","params":{}}');
-          flag=true
+          flag = true
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -515,12 +529,12 @@ export default function abilityTest() {
         console.debug("ACTS_InAppCardMessageEvent_0200====> unSubscribeCallback")
         done()
       }
-      setTimeout(()=>{
-        if(flag==false){
-          expect().assertFail();
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-        }
-      },CASE_TIME_OUT)
+
+      id = setTimeout(async () => {
+        expect().assertFail();
+        console.debug('ACTS_InAppCardMessageEvent_0200====> timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }, CASE_TIME_OUT)
     })
 
     /*
@@ -529,9 +543,10 @@ export default function abilityTest() {
      * @tc.desc: Handle the in-app card click message event, and configure the params parameter to be an
                  empty string (stage)
      */
-    it('ACTS_InAppCardMessageEvent_0300',0, async function (done) {
+    it('ACTS_InAppCardMessageEvent_0300', 0, async function (done) {
       let subscriber;
-      let flag=false;
+      let id;
+      let flag = false;
       console.info("ACTS_InAppCardMessageEvent_0300====>")
       commonEvent.createSubscriber(ACTS_CARD).then(async (data) => {
         console.debug("ACTS_InAppCardMessageEvent_0300====> Create Subscribe");
@@ -539,36 +554,37 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilityContext.startAbility(
           {
-            bundleName:"com.example.actsinappcardroutereventstagetest",
-            abilityName:"MainAbility9",
-            parameters:{
-              abilityName:"FormAbility",
-              bundleName:"com.example.actsinappcardroutereventstagetest",
-              moduleName:"entry",
-              formName:"widget9",
+            bundleName: "com.example.actsinappcardroutereventstagetest",
+            abilityName: "MainAbility9",
+            parameters: {
+              abilityName: "FormAbility",
+              bundleName: "com.example.actsinappcardroutereventstagetest",
+              moduleName: "entry",
+              formName: "widget9",
             }
-          },(err)=>{
-          console.info("ACTS_InAppCardMessageEvent_0300====> startAbility err:"+JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-          setTimeout(async()=>{
-            try {
-              console.debug("ACTS_InAppCardMessageEvent_0300====> click");
-              await driver.click(200,100)
-            } catch (err) {
-              console.debug("ACTS_InAppCardMessageEvent_0300====> catch err: " + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            }
-          },3000)
-        })
+          }, (err) => {
+            console.info("ACTS_InAppCardMessageEvent_0300====> startAbility err:" + JSON.stringify(err));
+            expect(err.code).assertEqual(0);
+            setTimeout(async () => {
+              try {
+                console.debug("ACTS_InAppCardMessageEvent_0300====> click");
+                await driver.click(200, 100)
+              } catch (err) {
+                console.debug("ACTS_InAppCardMessageEvent_0300====> catch err: " + JSON.stringify(err));
+                expect().assertFail();
+                done();
+              }
+            }, 3000)
+          })
       })
 
       function subscribeCallBack(err, data) {
+        clearTimeout(id);
         console.debug("ACTS_InAppCardMessageEvent_0300====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardMessageEvent_0300====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_MESSAGE_ID3") {
           expect(data.parameters.message).assertEqual('{"action":"message","params":{"message":""}}');
-          flag=true
+          flag = true
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
@@ -576,12 +592,12 @@ export default function abilityTest() {
         console.debug("ACTS_InAppCardMessageEvent_0300====> unSubscribeCallback")
         done()
       }
-      setTimeout(()=>{
-        if(flag==false){
-          expect().assertFail();
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-        }
-      },CASE_TIME_OUT)
+
+      id = setTimeout(async () => {
+        expect().assertFail();
+        console.debug('ACTS_InAppCardMessageEvent_0300====> timeout');
+        commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+      }, CASE_TIME_OUT)
     })
 
   })
