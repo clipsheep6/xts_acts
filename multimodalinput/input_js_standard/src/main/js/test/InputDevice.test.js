@@ -352,7 +352,6 @@ export default function MultimodalInput_Device_test() {
         }).catch((err) => {
           console.info(`MultimodalInputDevice_getDevice_Promise_test err`);
           expect(false).assertTrue();
-          console.info(`MultimodalInputDevice_getDevice_Promise_test failed, err=${JSON.stringify(err)}`);
         });
       } catch (error) {
         console.info(`MultimodalInputDevice_getDeviceIds_Promise_test error`);
