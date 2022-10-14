@@ -2008,18 +2008,6 @@ LITE_TEST_CASE(CmsisTaskFuncTestSuite, testOsThreadGetName010, Function | Medium
 };
 
 /**
- * @tc.number    : SUB_KERNEL_CMSIS_TASK_OPERATION_2880
- * @tc.name      : thread operation for get state input exception
- * @tc.desc      : [C- SOFTWARE -0200]
- */
-LITE_TEST_CASE(CmsisTaskFuncTestSuite, testOsThreadGetState002, Function | MediumTest | Level1)
-{
-    osStatus_t uwRet;
-    uwRet = osThreadGetState(NULL);
-    TEST_ASSERT_EQUAL_INT(osThreadError, uwRet);
-};
-
-/**
  * @tc.number    : SUB_KERNEL_CMSIS_TASK_OPERATION_2920
  * @tc.name      : thread operation for get state when priority = osPriorityLow1
  * @tc.desc      : [C- SOFTWARE -0200]
