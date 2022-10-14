@@ -127,17 +127,17 @@ describe('CameraInputTest', function () {
     });
 
     /**
-          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_CALLBACK_0100
+          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_ON_PROMISE_0100
           * @tc.name      : callback Camera with cameraInput on api
           * @tc.desc      : callback Camera with cameraInput on api
           * @tc.size      : MEDIUM
           * @tc.type      : Function
-          * @tc.level     : Level 0
+          * @tc.level     : Level 2
         */
-     it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_CALLBACK_0100', 0, async function (done) {
-        console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_CALLBACK_0100--------------");
+     it('SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_ON_PROMISE_0100', 0, async function (done) {
+        console.info("--------------SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_ON_PROMISE_0100--------------");
         if (isEmpty(mCameraManager)) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_CALLBACK_0100 cameraManager == null || undefined");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_ON_PROMISE_0100 cameraManager == null || undefined");
             expect().assertFail();
         } else {
             let camerasArray = mCameraDevicesArray;
@@ -155,22 +155,22 @@ describe('CameraInputTest', function () {
                 });
             }
         }
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_CALLBACK_0100 ends here");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_ON_PROMISE_0100 ends here");
         await sleep(1000);
         done();
     });
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100
       * @tc.name      : open/close/release Camera with cameraInput callback api
       * @tc.desc      : open/close/release Camera with cameraInput callback api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 2
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100', 0, async function (done) {
-        console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100--------------");
+    it('SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100', 0, async function (done) {
+        console.info("--------------SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100--------------");
         if (isEmpty(mCameraManager)) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100 cameraManager == null || undefined");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100 cameraManager == null || undefined");
             expect().assertFail();
         } else {
             let camerasArray = mCameraDevicesArray;
@@ -212,23 +212,23 @@ describe('CameraInputTest', function () {
                 });
             }
         }
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100 ends here");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100 ends here");
         await sleep(1000);
         done();
     });
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100
       * @tc.name      : open/close/release Camera with cameraInput promise api
       * @tc.desc      : open/close/release Camera with cameraInput promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 2
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100', 0, async function (done) {
-        let functionTag = "SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100";
+    it('SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100', 0, async function (done) {
+        let functionTag = "SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100";
         console.info(functionTag);
         if (isEmpty(mCameraManager)) {
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100 cameraManager == null || undefined");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100 cameraManager == null || undefined");
             expect().assertFail();
         } else {
             let camerasArray = mCameraDevicesArray;
@@ -268,7 +268,7 @@ describe('CameraInputTest', function () {
             }
             await sleep(400 * camerasArray.length);
         }
-        console.info(TAG + functionTag + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100 ends here");
+        console.info(TAG + functionTag + "Entering SUB_MULTIMEDIA_CAMERA_CI_CAMERA_INPUT_OPEN_CLOSE_RELEASE_Promise_0100 ends here");
         done();
     });
 })

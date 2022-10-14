@@ -214,7 +214,7 @@ export default function cameraJSUnitOutput(surfaceId: any) {
 
   function getSupportedOutputCapabilityInPromise(cameraDevice) {
     if (isEmpty(cameraManager)) {
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_CAMERAS_PROMISE_0100 cameraManager == null || undefined")
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CO_GET_CAMERAS_PROMISE_0100 cameraManager == null || undefined")
       expect().assertFail();
       return undefined;
     }
@@ -252,15 +252,15 @@ export default function cameraJSUnitOutput(surfaceId: any) {
 
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_CAMERA_MANAGER_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CO_GET_CAMERA_MANAGER_CALLBACK_0100
       * @tc.name      : Create CameraManager instance async api
       * @tc.desc      : Create CameraManager instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_CAMERA_MANAGER_0100', 0, async function (done) {
-      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_GET_CAMERA_MANAGER_0100--------------");
+    it('SUB_MULTIMEDIA_CAMERA_CO_GET_CAMERA_MANAGER_CALLBACK_0100', 0, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_CO_GET_CAMERA_MANAGER_CALLBACK_0100--------------");
       if (isEmpty(cameraObj)) {
         console.info(TAG + "Entering GET_CAMERA_MANAGER cameraManager == null || undefined")
         expect().assertFail();
@@ -285,14 +285,14 @@ export default function cameraJSUnitOutput(surfaceId: any) {
 
 
     /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_CAMERAS_CALLBACK_0100
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CO_GET_CAMERAS_CALLBACK_0100
       * @tc.name      : Get camera from cameramanager to get array of camera async api
       * @tc.desc      : Get camera from cameramanager to get array of camera async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_GET_CAMERAS_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_GET_CAMERAS_CALLBACK_0100', 0, async function (done) {
       console.info("--------------GET_CAMERAS--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering GET_CAMERAS cameraManager == null || undefined")
@@ -347,9 +347,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create previewOutput instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 2
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAMERA_INPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CREATE_CAMERA_INPUT_PROMISE_0100', 0, async function (done) {
       console.info(TAG + " --------------CREATE_CAMERA_INPUT--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering CREATE_CAMERA_INPUT cameraManager == null || undefined")
@@ -379,9 +379,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create previewOutput instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_PREVIEW_OUTPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CREATE_PREVIEW_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CREATE_PREVIEW_OUTPUT--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering CREATE_PREVIEW_OUTPUT cameraManager == null || undefined")
@@ -421,9 +421,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create photoOutput instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_PHOTO_OUTPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CREATE_PHOTO_OUTPUT_PROMISE_0100', 0, async function (done) {
       console.info(TAG + " --------------CREATE_PHOTO_OUTPUT--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering CREATE_PHOTO_OUTPUT cameraManager == null || undefined")
@@ -453,9 +453,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create previewOutput instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_VIDEO_OUTPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CREATE_VIDEO_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CREATE_VIDEO_OUTPUT--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering CREATE_VIDEO_OUTPUT cameraManager == null || undefined")
@@ -494,9 +494,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create CaptureSession instance api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CREATE_CAPTURE_SESSION_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CREATE_CAPTURE_SESSION_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + "--------------CREATE_CAPTURE_SESSION--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering CREATE_CAPTURE_SESSION cameraManager == null || undefined")
@@ -529,9 +529,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession beginConfig
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_BEGIN_CONFIG_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_BEGIN_CONFIG_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_BEGIN_CONFIG--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_BEGIN_CONFIG captureSession == null || undefined")
@@ -562,9 +562,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession addInput
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_INPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_ADD_INPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_ADD_INPUT--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_ADD_INPUT captureSession == null || undefined")
@@ -595,9 +595,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession add previewOutput
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_PREVIEW_OUTPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_ADD_PREVIEW_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_ADD_PREVIEW_OUTPUT--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_ADD_PREVIEW_OUTPUT captureSession == null || undefined")
@@ -631,9 +631,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession add photoOutput
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_PHOTO_OUTPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_ADD_PHOTO_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_ADD_PHOTO_OUTPUT--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_ADD_PHOTO_OUTPUT captureSession == null || undefined")
@@ -668,9 +668,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession remove photoOutput
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_ADD_VIDEO_OUTPUT--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_ADD_VIDEO_OUTPUT captureSession == null || undefined")
@@ -701,9 +701,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession commitConfig
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_COMMIT_CONFIG_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_COMMIT_CONFIG_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_COMMIT_CONFIG--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_COMMIT_CONFIG captureSession == null || undefined")
@@ -734,9 +734,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession start
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_START_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_CAPTURE_SESSION_START_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_START--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering CAPTURE_SESSION_START captureSession == null || undefined")
@@ -767,9 +767,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
        * @tc.desc      : Create previewOutput instance promise api
        * @tc.size      : MEDIUM
        * @tc.type      : Function
-       * @tc.level     : Level 0
+       * @tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_CAMERA_START_PREVIEW_OUTPUT_PROMISE_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_START_PREVIEW_OUTPUT_PROMISE_0100', 0, async function (done) {
       console.info(TAG + " --------------START_PREVIEW_OUTPUT_PROMISE--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering START_PREVIEW_OUTPUT_PROMISE previewOutput == null || undefined")
@@ -790,9 +790,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create previewOutput instance promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_STOP_PREVIEW_OUTPUT_PROMISE_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_STOP_PREVIEW_OUTPUT_PROMISE_0100', 0, async function (done) {
       console.info(TAG + " --------------STOP_PREVIEW_OUTPUT_PROMISE--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering STOP_PREVIEW_OUTPUT_PROMISE previewOutput == null || undefined")
@@ -815,9 +815,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
        * @tc.desc      : Create previewOutput instance async api
        * @tc.size      : MEDIUM
        * @tc.type      : Function
-       * @tc.level     : Level 0
+       * @tc.level     : Level 1
      */
-    it('SUB_MULTIMEDIA_CAMERA_START_PREVIEW_OUTPUT_ASYNC_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_START_PREVIEW_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------START_PREVIEW_OUTPUT_ASYNC--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering START_PREVIEW_OUTPUT_ASYNC previewOutput == null || undefined")
@@ -847,9 +847,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create previewOutput instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_STOP_PREVIEW_OUTPUT_ASYNC_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_STOP_PREVIEW_OUTPUT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------STOP_PREVIEW_OUTPUT_ASYNC--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering STOP_PREVIEW_OUTPUT_ASYNC previewOutput == null || undefined")
@@ -879,9 +879,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : preview output callback on frameStart api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START_0100', 0, async function (done) {
       console.info("--------------PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START previewOutput == null || undefined")
@@ -912,9 +912,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : preview output callback on frameEnd api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END_0100', 0, async function (done) {
       console.info("--------------PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END previewOutput == null || undefined")
@@ -944,9 +944,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : preview output callback on frameEnd api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_ERROR_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PREVIEW_OUTPUT_CALLBACK_ON_ERROR_0100', 0, async function (done) {
       console.info("--------------PREVIEW_OUTPUT_CALLBACK_ON_ERROR--------------");
       if (isEmpty(previewOutput)) {
         console.info(TAG + "Entering PREVIEW_OUTPUT_CALLBACK_ON_ERROR previewOutput == null || undefined")
@@ -976,9 +976,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession commitConfig
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_DEFAULT_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_CAPTURE_DEFAULT_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------CAPTURE_SESSION_COMMIT_CONFIG--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PHOTO_OUTPUT_CAPTURE_DEFAULT photoOutput == null || undefined")
@@ -1009,9 +1009,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : captureSession commitConfig
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_CAPTURE_SETTING_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------PHOTO_OUTPUT_CAPTURE_SETTING--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PHOTO_OUTPUT_CAPTURE_SETTING photoOutput == null || undefined")
@@ -1041,9 +1041,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : photo output callback on captureStart
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_START_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_START_0100', 0, async function (done) {
       console.info("--------------PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_START--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START previewOutput == null || undefined")
@@ -1074,9 +1074,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : photo output callback on frameShutter
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_FRAME_SHUTTER_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_CALLBACK_ON_FRAME_SHUTTER_0100', 0, async function (done) {
       console.info("--------------PHOTO_OUTPUT_CALLBACK_ON_FRAME_SHUTTER--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PHOTO_OUTPUT_CALLBACK_ON_FRAME_SHUTTER previewOutput == null || undefined")
@@ -1107,9 +1107,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : photo output callback on captureEnd
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100', 0, async function (done) {
       console.info("--------------PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END previewOutput == null || undefined")
@@ -1139,9 +1139,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : photo output callback on error
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_ERROR_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_CALLBACK_ON_ERROR_0100', 0, async function (done) {
       console.info("--------------PHOTO_OUTPUT_CALLBACK_ON_ERROR--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PHOTO_OUTPUT_CALLBACK_ON_ERROR previewOutput == null || undefined")
@@ -1174,9 +1174,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : Create previewOutput instance async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_RELEASE_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_PHOTO_OUTPUT_RELEASE_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------PHOTO_OUTPUT_RELEASE--------------");
       if (isEmpty(photoOutput)) {
         console.info(TAG + "Entering PHOTO_OUTPUT_RELEASE photoOutput == null || undefined")
@@ -1209,9 +1209,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : videoOutput start promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_START_PROMISE_0100', 0, async function (done) {
       console.info(TAG + " --------------VIDEO_OUTPUT_START_PROMISE--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_START_PROMISE videoOutput == null || undefined")
@@ -1232,9 +1232,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : videoOutput stop promise api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_STOP_PROMISE_0100', 0, async function (done) {
       console.info(TAG + " --------------VIDEO_OUTPUT_STOP_PROMISE--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_STOP_PROMISE videoOutput == null || undefined")
@@ -1256,9 +1256,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : videoOutput start async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_ASYNC_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_START_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------VIDEO_OUTPUT_START_ASYNC--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_START_ASYNC videoOutput == null || undefined")
@@ -1288,9 +1288,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : videoOutput stop async api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_ASYNC_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_STOP_CALLBACK_0100', 0, async function (done) {
       console.info(TAG + " --------------VIDEO_OUTPUT_STOP_ASYNC--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_STOP_ASYNC videoOutput == null || undefined")
@@ -1321,9 +1321,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : video output callback on frameStart api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ON_FRAME_START_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_CALLBACK_ON_FRAME_START_0100', 0, async function (done) {
       console.info("--------------VIDEO_OUTPUT_CALLBACK_ON_FRAME_START--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_START videoOutput == null || undefined")
@@ -1346,48 +1346,16 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       done();
     })
 
-
-    /**
-      * @tc.number    : VIDEO_OUTPUT_CALLBACK_ON_FRAME_START
-      * @tc.name      : video output callback on frameStart api
-      * @tc.desc      : video output callback on frameStart api
-      * @tc.size      : MEDIUM
-      * @tc.type      : Function
-      * @tc.level     : Level 0
-    */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ON_FRAME_START_0100', 0, async function (done) {
-      console.info("--------------VIDEO_OUTPUT_CALLBACK_ON_FRAME_START--------------");
-      if (isEmpty(videoOutput)) {
-        console.info(TAG + "Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_START videoOutput == null || undefined")
-        expect().assertFail();
-      } else {
-        console.info(TAG + "Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_START to operate");
-        videoOutput.on('frameStart', async (err, data) => {
-          if (!err) {
-            expect(true).assertTrue();
-            console.info(TAG + "Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_START success");
-          } else {
-            expect().assertFail();
-            console.info(TAG + "Error in VIDEO_OUTPUT_CALLBACK_ON_FRAME_START FAILED: " + err.message);
-          }
-          await sleep(1000);
-          done();
-        })
-      }
-      await sleep(1000);
-      done();
-    })
-
-
+    
     /**
       * @tc.number    : VIDEO_OUTPUT_CALLBACK_ON_FRAME_END
       * @tc.name      : video output callback on frameEnd api
       * @tc.desc      : video output callback on frameEnd api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ON_FRAME_END_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_CALLBACK_ON_FRAME_END_0100', 0, async function (done) {
       console.info("--------------VIDEO_OUTPUT_CALLBACK_ON_FRAME_END--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_END videoOutput == null || undefined")
@@ -1418,9 +1386,9 @@ export default function cameraJSUnitOutput(surfaceId: any) {
       * @tc.desc      : video output callback on error api
       * @tc.size      : MEDIUM
       * @tc.type      : Function
-      * @tc.level     : Level 0
+      * @tc.level     : Level 1
     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ON_FRAME_ERROR_0100', 0, async function (done) {
+    it('SUB_MULTIMEDIA_CAMERA_CO_VIDEO_OUTPUT_CALLBACK_ON_FRAME_ERROR_0100', 0, async function (done) {
       console.info("--------------VIDEO_OUTPUT_CALLBACK_ON_FRAME_ERROR--------------");
       if (isEmpty(videoOutput)) {
         console.info(TAG + "Entering VIDEO_OUTPUT_CALLBACK_ON_FRAME_ERROR videoOutput == null || undefined")
