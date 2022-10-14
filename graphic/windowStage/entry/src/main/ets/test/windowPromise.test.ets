@@ -1386,16 +1386,18 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       let mainWin = await windowStage.getMainWindow().catch(err => {
         unexpectedError(err, caseName, 'windowStage.getMainWindow', done);
       });
-      console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
+      console.log(msgStr + 'windowStage.getMainWindow :' + JSON.stringify(mainWin));
       expect(!!mainWin).assertTrue();
-      let orientationItem = ['UNSPECIFIED', 'LOCKED', 'PORTRAIT_UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED', 'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE', 'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED'];
+      let orientationItem = ['UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED', 'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE', 'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED'];
       for (let i = 0;i < orientationItem.length; i++) {
         await sleep(1000);
         let orientation = ohosWindow.Orientation[orientationItem[i]]
+        console.log(msgStr + 'i : ' + i + ' ,orientation : ' + orientation);
+        console.log(msgStr + 'i : ' + i + ' ,ohosWindow.Orientation : ' + JSON.stringify(ohosWindow.Orientation));
         await mainWin.setPreferredOrientation(orientation).then(() => {
-          console.log(msgStr + 'success set window.setPreferredOrientation ' + orientation);
+          console.log(msgStr + 'success set window.setPreferredOrientation : ' + orientation);
         }).catch(err => {
-          console.log(msgStr + 'window.setPreferredOrientation failed set error' + orientation);
+          console.log(msgStr + 'window.setPreferredOrientation failed set error:' + orientation);
         });
       }
       console.log(msgStr + 'done ');
