@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
+// @ts-nocheck
 import bundle from '@ohos.bundle'
+import bundleManager from '@ohos.bundle.bundleManager'
 import image from '@ohos.multimedia.image'
 import account from '@ohos.account.osAccount'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
@@ -29,6 +31,7 @@ const MODULE_NAME4 = undefined;
 const MODULE_NAME5 = null;
 const MODULE_NAME6 = 'feature';
 const DEFAULT_FLAG = bundle.BundleFlag.GET_BUNDLE_DEFAULT;
+const QUERY_DEFAULT_FLAG = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 const SUCCESS_CODE = 0;
 const INVALID_CODE = 1;
 const INVALID_PARAM = 2;
