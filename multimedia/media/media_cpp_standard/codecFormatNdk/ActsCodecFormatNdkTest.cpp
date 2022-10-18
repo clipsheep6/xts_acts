@@ -37,17 +37,17 @@ void ActsCodecFormatNdkTest::TearDownTestCase() {}
 void ActsCodecFormatNdkTest::SetUp() {}
 void ActsCodecFormatNdkTest::TearDown() {}
 
-const int32_t INTVALUE =1;
+const int32_t INTVALUE = 1;
 const int64_t LONGVALUE = 1;
 const float FLOATVALUE = 1.0;
 const double DOUBLEVALUE = 1.0;
 const char *STRINGVALUE = "string_value";
-const char *KEY_INT_VALUE = "int value key";
-const char *KEY_LONG_VALUE = "long value key";
-const char *KEY_FLOAT_VALUE = "float value key";
-const char *KEY_DOUBLE_VALUE = "double value key";
-const char *KEY_STRING_VALUE = "string value key";
-const char *KEY_BUFFER_VALUE = "buffer value key";
+const char *intKey = "int value key";
+const char *longKey = "long value key";
+const char *floatKey = "float value key";
+const char *doubleKey = "double value key";
+const char *stringKey = "string value key";
+const char *bufferKey = "buffer value key";
 
 bool CheckDecDesc(map<string, int> InDesc, OH_AVFormat* OutDesc)
 {
@@ -92,10 +92,10 @@ bool SetFormat(struct OH_AVFormat *format, map<string, int> mediaDescription)
  */
 HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0100, TestSize.Level1)
 {
-    OH_AVFormat *CodecFormatIn = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, CodecFormatIn);
-    OH_AVFormat *CodecFormatOut = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, CodecFormatOut);
+    OH_AVFormat *codecFormatIn = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, codecFormatIn);
+    OH_AVFormat *codecFormatOut = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, codecFormatOut);
     map<string, int> CodecParam = {
         {OH_ED_KEY_TIME_STAMP, 200}, // set timestamp 200ms
         {OH_ED_KEY_EOS, 1}, // set end of stream
@@ -108,15 +108,15 @@ HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0100, TestSiz
         {OH_MD_KEY_I_FRAME_INTERVAL, 1}, // set key i frame 1ms
         {OH_MD_KEY_ROTATION, 90}, // set key rotation 0 degree
     };
-    ASSERT_EQ(true, SetFormat(CodecFormatIn, CodecParam));
-    OH_AVFormat_Copy(CodecFormatOut, CodecFormatIn);
-    ASSERT_EQ(true, CheckDecDesc(CodecParam, CodecFormatOut));
-    ASSERT_NE(nullptr, OH_AVFormat_DumpInfo(CodecFormatOut));
-    cout << OH_AVFormat_DumpInfo(CodecFormatIn) << endl;
-    OH_AVFormat_Destroy(CodecFormatIn);
-    CodecFormatIn = nullptr;
-    OH_AVFormat_Destroy(CodecFormatOut);
-    CodecFormatIn = nullptr;
+    ASSERT_EQ(true, SetFormat(codecFormatIn, CodecParam));
+    OH_AVFormat_Copy(codecFormatOut, codecFormatIn);
+    ASSERT_EQ(true, CheckDecDesc(CodecParam, codecFormatOut));
+    ASSERT_NE(nullptr, OH_AVFormat_DumpInfo(codecFormatOut));
+    cout << OH_AVFormat_DumpInfo(codecFormatIn) << endl;
+    OH_AVFormat_Destroy(codecFormatIn);
+    codecFormatIn = nullptr;
+    OH_AVFormat_Destroy(codecFormatOut);
+    codecFormatIn = nullptr;
 }
 
 /**
@@ -126,37 +126,37 @@ HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0100, TestSiz
  */
 HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0200, TestSize.Level1)
 {
-    OH_AVFormat *CodecFormatIn = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, CodecFormatIn);
-    OH_AVFormat *CodecFormatOut = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, CodecFormatOut);
-    OH_AVFormat_SetIntValue(CodecFormatIn, KEY_INT_VALUE, INTVALUE);
-    OH_AVFormat_SetLongValue(CodecFormatIn, KEY_LONG_VALUE, LONGVALUE);
-    OH_AVFormat_SetFloatValue(CodecFormatIn, KEY_FLOAT_VALUE, FLOATVALUE);
-    OH_AVFormat_SetDoubleValue(CodecFormatIn, KEY_DOUBLE_VALUE, DOUBLEVALUE);
-    OH_AVFormat_SetStringValue(CodecFormatIn, KEY_STRING_VALUE, STRINGVALUE);
+    OH_AVFormat *codecFormatIn = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, codecFormatIn);
+    OH_AVFormat *codecFormatOut = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, codecFormatOut);
+    OH_AVFormat_SetIntValue(codecFormatIn, intKey, INTVALUE);
+    OH_AVFormat_SetLongValue(codecFormatIn, longKey, LONGVALUE);
+    OH_AVFormat_SetFloatValue(codecFormatIn, floatKey, FLOATVALUE);
+    OH_AVFormat_SetDoubleValue(codecFormatIn, doubleKey, DOUBLEVALUE);
+    OH_AVFormat_SetStringValue(codecFormatIn, stringKey, STRINGVALUE);
 
-    OH_AVFormat_Copy(CodecFormatOut, CodecFormatIn);
+    OH_AVFormat_Copy(codecFormatOut, codecFormatIn);
     int32_t intValueOut;
-    OH_AVFormat_GetIntValue(CodecFormatOut, KEY_INT_VALUE, &intValueOut);
+    OH_AVFormat_GetIntValue(codecFormatOut, intKey, &intValueOut);
     ASSERT_EQ(intValueOut, INTVALUE);
     int64_t longValueOut;
-    OH_AVFormat_GetLongValue(CodecFormatOut, KEY_LONG_VALUE, &longValueOut);
+    OH_AVFormat_GetLongValue(codecFormatOut, longKey, &longValueOut);
     ASSERT_EQ(longValueOut, LONGVALUE);
     float floatValueOut;
-    OH_AVFormat_GetFloatValue(CodecFormatOut, KEY_FLOAT_VALUE, &floatValueOut);
+    OH_AVFormat_GetFloatValue(codecFormatOut, floatKey, &floatValueOut);
     ASSERT_EQ(floatValueOut, FLOATVALUE);
     double doubleValueOut;
-    OH_AVFormat_GetDoubleValue(CodecFormatOut, KEY_DOUBLE_VALUE, &doubleValueOut);
+    OH_AVFormat_GetDoubleValue(codecFormatOut, doubleKey, &doubleValueOut);
     ASSERT_EQ(doubleValueOut, DOUBLEVALUE);
     const char *stringValueOut;
-    OH_AVFormat_GetStringValue(CodecFormatOut, KEY_STRING_VALUE, &stringValueOut);
+    OH_AVFormat_GetStringValue(codecFormatOut, stringKey, &stringValueOut);
     ASSERT_EQ(*stringValueOut, *STRINGVALUE);
 
-    OH_AVFormat_Destroy(CodecFormatIn);
-    CodecFormatIn = nullptr;
-    OH_AVFormat_Destroy(CodecFormatOut);
-    CodecFormatOut = nullptr;
+    OH_AVFormat_Destroy(codecFormatIn);
+    codecFormatIn = nullptr;
+    OH_AVFormat_Destroy(codecFormatOut);
+    codecFormatOut = nullptr;
 }
 
 /**
@@ -166,26 +166,26 @@ HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0200, TestSiz
  */
 HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0300, TestSize.Level1)
 {
-    OH_AVFormat *CodecFormatIn = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, CodecFormatIn);
-    OH_AVFormat *CodecFormatOut = OH_AVFormat_Create();
-    ASSERT_NE(nullptr, CodecFormatOut);
+    OH_AVFormat *codecFormatIn = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, codecFormatIn);
+    OH_AVFormat *codecFormatOut = OH_AVFormat_Create();
+    ASSERT_NE(nullptr, codecFormatOut);
     int32_t buffernum = 10;
     size_t sizeIn = buffernum * sizeof(uint8_t);
     uint8_t *buffer = reinterpret_cast<uint8_t *>(malloc(sizeIn));
     (void)memset_s(buffer, sizeIn, 1, sizeIn);
-    OH_AVFormat_SetBuffer(CodecFormatIn, KEY_BUFFER_VALUE, buffer, sizeIn);
+    OH_AVFormat_SetBuffer(codecFormatIn, bufferKey, buffer, sizeIn);
 
-    OH_AVFormat_Copy(CodecFormatOut, CodecFormatIn);
+    OH_AVFormat_Copy(codecFormatOut, codecFormatIn);
     uint8_t *addrout;
     size_t sizeOut;
-    OH_AVFormat_GetBuffer(CodecFormatOut, KEY_BUFFER_VALUE, &addrout, &sizeOut);
+    OH_AVFormat_GetBuffer(codecFormatOut, bufferKey, &addrout, &sizeOut);
     ASSERT_EQ(sizeIn, sizeOut);
     for (int32_t i = 0; i < buffernum; i++) {
         ASSERT_EQ(buffer[i], addrout[i]);
     }
-    OH_AVFormat_Destroy(CodecFormatIn);
-    CodecFormatIn = nullptr;
-    OH_AVFormat_Destroy(CodecFormatOut);
-    CodecFormatOut = nullptr;
+    OH_AVFormat_Destroy(codecFormatIn);
+    codecFormatIn = nullptr;
+    OH_AVFormat_Destroy(codecFormatOut);
+    codecFormatOut = nullptr;
 }
