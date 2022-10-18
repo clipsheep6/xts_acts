@@ -56,7 +56,7 @@ describe('userauthTest', function () {
             AvailabeStatus = UserAuthKit.getAvailableStatus(userAuthNorth.UserAuthType.FACE,
                 userAuthNorth.AuthTrustLevel.ATL1);
             console.info('testFace publicgetAvailableStatus result = ' + JSON.stringify(AvailabeStatus));
-            expect(6).assertEqual(AvailabeStatus);
+            expect(10).assertEqual(AvailabeStatus);
             done();
         } catch (e) {
             console.log("GetAvailabeStatusTest0101 fail " + e);
@@ -73,7 +73,7 @@ describe('userauthTest', function () {
     */
     it('Security_IAM_PIN_Kit_Func_0103', 0, async function (done) {
         let contextID1 = null
-        let challenge = [253, 19, 58, 160, 67, 200, 247, 37]
+        let challenge = new Uint8Array([253, 19, 58, 160, 67, 200, 247, 37])
         let onresult = {
             authresult: null,
             authextr: null,
@@ -90,7 +90,7 @@ describe('userauthTest', function () {
                 console.log("testFace faceDemo auth extraInfo = " + JSON.stringify(extraInfo));
                 onresult.authextr = extraInfo;
                 console.info('testFace publicauth auth onResult = ' + JSON.stringify(onresult));
-                expect(1).assertEqual(result);
+                expect(10).assertEqual(result);
                 console.info('testFace publicauth auth contextID1 = ' + contextID1);
                 let cancelResult = UserAuthKit.cancelAuth(contextID1);
                 console.info('testFace publicauth cancelResult = ' + cancelResult);
@@ -106,62 +106,6 @@ describe('userauthTest', function () {
             }
         });
 
-    })
-
-    /*
-        * @tc.number    : Security_IAM_PIN_Kit_Func_0104
-        * @tc.name      : Kit interface enum AuthTrustLevel
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level 0
-    */
-    it('Security_IAM_PIN_Kit_Func_0104', 0, async function (done) {
-        console.info('testFace Security_IAM_PIN_Kit_Func_0104 start');
-        expect(10000).assertEqual(userAuthNorth.AuthTrustLevel.ATL1);
-        expect(20000).assertEqual(userAuthNorth.AuthTrustLevel.ATL2);
-        expect(30000).assertEqual(userAuthNorth.AuthTrustLevel.ATL3);
-        expect(40000).assertEqual(userAuthNorth.AuthTrustLevel.ATL4);
-        console.info('testFace Security_IAM_PIN_Kit_Func_0104 end');
-        done();
-    })
-
-    /*
-        * @tc.number    : Security_IAM_PIN_Kit_Func_0105
-        * @tc.name      : Kit interface enum FaceTips
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level 0
-    */
-    it('Security_IAM_PIN_Kit_Func_0105', 0, async function (done) {
-        console.info('testFace Security_IAM_PIN_Kit_Func_0105 start');
-        expect(1).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT);
-        expect(2).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_DARK);
-        expect(3).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_CLOSE);
-        expect(4).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_FAR);
-        expect(5).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_HIGH);
-        expect(6).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_LOW);
-        expect(7).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_RIGHT);
-        expect(8).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_LEFT);
-        expect(9).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_TOO_MUCH_MOTION);
-        expect(10).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_POOR_GAZE);
-        expect(11).assertEqual(userAuthNorth.FaceTips.FACE_AUTH_TIP_NOT_DETECTED);
-        console.info('testFace Security_IAM_PIN_Kit_Func_0105 end');
-        done();
-    })
-
-    /*
-        * @tc.number    : Security_IAM_PIN_Kit_Func_0106
-        * @tc.name      : Kit interface enum UserAuthType
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level 0
-    */
-    it('Security_IAM_PIN_Kit_Func_0106', 0, async function (done) {
-        console.info('testFace Security_IAM_PIN_Kit_Func_0106 start');
-        expect(2).assertEqual(userAuthNorth.UserAuthType.FACE);
-        expect(4).assertEqual(userAuthNorth.UserAuthType.FINGERPRINT);
-        console.info('testFace Security_IAM_PIN_Kit_Func_0106 end');
-        done();
     })
 
     /*
@@ -188,25 +132,7 @@ describe('userauthTest', function () {
         done();
     })
 
-    /*
-        * @tc.number    : Security_IAM_PIN_Kit_Func_0108
-        * @tc.name      : Kit interface enum FingerprintTips
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level 0
-    */
-    it('Security_IAM_PIN_Kit_Func_0108', 0, async function (done) {
-        console.info('testFace Security_IAM_PIN_Kit_Func_0108 start');
-        expect(0).assertEqual(userAuthNorth.FingerprintTips.FINGERPRINT_AUTH_TIP_GOOD);
-        expect(1).assertEqual(userAuthNorth.FingerprintTips.FINGERPRINT_AUTH_TIP_DIRTY);
-        expect(2).assertEqual(userAuthNorth.FingerprintTips.FINGERPRINT_AUTH_TIP_INSUFFICIENT);
-        expect(3).assertEqual(userAuthNorth.FingerprintTips.FINGERPRINT_AUTH_TIP_PARTIAL);
-        expect(4).assertEqual(userAuthNorth.FingerprintTips.FINGERPRINT_AUTH_TIP_TOO_FAST);
-        expect(5).assertEqual(userAuthNorth.FingerprintTips.FINGERPRINT_AUTH_TIP_TOO_SLOW);
-        console.info('testFace Security_IAM_PIN_Kit_Func_0108 end');
-        done();
-    })
-
 })
 
 }
+
