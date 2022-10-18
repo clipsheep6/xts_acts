@@ -37,11 +37,11 @@ void ActsCodecFormatNdkTest::TearDownTestCase() {}
 void ActsCodecFormatNdkTest::SetUp() {}
 void ActsCodecFormatNdkTest::TearDown() {}
 
-const int32_t INTVALUE = 1;
-const int64_t LONGVALUE = 1;
-const float FLOATVALUE = 1.0;
-const double DOUBLEVALUE = 1.0;
-const char *STRINGVALUE = "string_value";
+const int32_t intValue = 1;
+const int64_t longValue = 1;
+const float floatValue = 1.0;
+const double doubleValue = 1.0;
+const char *stringValue = "string_value";
 const char *intKey = "int value key";
 const char *longKey = "long value key";
 const char *floatKey = "float value key";
@@ -130,28 +130,28 @@ HWTEST_F(ActsCodecFormatNdkTest, SUB_MULTIMEDIA_MEDIA_CODEC_FORMAT_0200, TestSiz
     ASSERT_NE(nullptr, codecFormatIn);
     OH_AVFormat *codecFormatOut = OH_AVFormat_Create();
     ASSERT_NE(nullptr, codecFormatOut);
-    OH_AVFormat_SetIntValue(codecFormatIn, intKey, INTVALUE);
-    OH_AVFormat_SetLongValue(codecFormatIn, longKey, LONGVALUE);
-    OH_AVFormat_SetFloatValue(codecFormatIn, floatKey, FLOATVALUE);
-    OH_AVFormat_SetDoubleValue(codecFormatIn, doubleKey, DOUBLEVALUE);
-    OH_AVFormat_SetStringValue(codecFormatIn, stringKey, STRINGVALUE);
+    OH_AVFormat_SetIntValue(codecFormatIn, intKey, intValue);
+    OH_AVFormat_SetLongValue(codecFormatIn, longKey, longValue);
+    OH_AVFormat_SetFloatValue(codecFormatIn, floatKey, floatValue);
+    OH_AVFormat_SetDoubleValue(codecFormatIn, doubleKey, doubleValue);
+    OH_AVFormat_SetStringValue(codecFormatIn, stringKey, stringValue);
 
     OH_AVFormat_Copy(codecFormatOut, codecFormatIn);
     int32_t intValueOut;
     OH_AVFormat_GetIntValue(codecFormatOut, intKey, &intValueOut);
-    ASSERT_EQ(intValueOut, INTVALUE);
+    ASSERT_EQ(intValueOut, intValue);
     int64_t longValueOut;
     OH_AVFormat_GetLongValue(codecFormatOut, longKey, &longValueOut);
-    ASSERT_EQ(longValueOut, LONGVALUE);
+    ASSERT_EQ(longValueOut, longValue);
     float floatValueOut;
     OH_AVFormat_GetFloatValue(codecFormatOut, floatKey, &floatValueOut);
-    ASSERT_EQ(floatValueOut, FLOATVALUE);
+    ASSERT_EQ(floatValueOut, floatValue);
     double doubleValueOut;
     OH_AVFormat_GetDoubleValue(codecFormatOut, doubleKey, &doubleValueOut);
-    ASSERT_EQ(doubleValueOut, DOUBLEVALUE);
+    ASSERT_EQ(doubleValueOut, doubleValue);
     const char *stringValueOut;
     OH_AVFormat_GetStringValue(codecFormatOut, stringKey, &stringValueOut);
-    ASSERT_EQ(*stringValueOut, *STRINGVALUE);
+    ASSERT_EQ(*stringValueOut, *stringValue);
 
     OH_AVFormat_Destroy(codecFormatIn);
     codecFormatIn = nullptr;
