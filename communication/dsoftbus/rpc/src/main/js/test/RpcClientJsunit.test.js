@@ -176,7 +176,7 @@ export default function actsRpcClientJsTest() {
                         let tmp8 = data.readChar()
                         let tmp9 = data.readString()
                         let s = new MySequenceable(null, null)
-                        data.readSequenceable(s)
+                        data.readParcelable(s)
                         reply.writeNoException()
                         reply.writeByte(tmp1)
                         reply.writeShort(tmp2)
@@ -187,7 +187,7 @@ export default function actsRpcClientJsTest() {
                         reply.writeBoolean(tmp7)
                         reply.writeChar(tmp8)
                         reply.writeString(tmp9)
-                        reply.writeSequenceable(s)
+                        reply.writeParcelable(s)
                         return true
                     }
                     default:
