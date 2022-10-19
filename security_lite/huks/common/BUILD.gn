@@ -43,7 +43,7 @@ static_library("huks_test_common") {
     "hks_test_mem.c",
   ]
 
-  deps = ["//base/security/huks:huks_components" ]
+  deps = [ "//base/security/huks:huks_components" ]
 
   include_dirs = [
     "//commonlibrary/c_utils/base/include",
