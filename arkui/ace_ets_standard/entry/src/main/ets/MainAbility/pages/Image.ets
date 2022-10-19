@@ -20,11 +20,11 @@ struct image_textcase {
   @State myHeight: number = 0
 
   onPageShow() {
-    console.info('Image page show called');
+    console.info('Image page show called')
   }
 
   onBuildDone() {
-    console.info('Image page build done called');
+    console.info('Image page build done called')
   }
 
   build() {
@@ -33,7 +33,7 @@ struct image_textcase {
         Text(`Image page`)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Image("/resources/rawfile/hand.png")
+        Image('/resources/rawfile/hand.png')
           .matchTextDirection(false)
           .fitOriginalSize(false)
           .fillColor(0xCCCCCC)
@@ -44,9 +44,9 @@ struct image_textcase {
           .autoResize(false)
           .syncLoad(false)
           .sourceSize({ width: 200, height: 100 })
-          .alt("/resources/rawfile/person.png")
+          .alt('/resources/rawfile/person.png')
           .key('image1')
-        Image("/resources/rawfile/hand.png")
+        Image('/resources/rawfile/hand.png')
           .objectFit(ImageFit.Contain)
           .objectRepeat(ImageRepeat.X)
           .interpolation(ImageInterpolation.High)
@@ -66,17 +66,17 @@ struct image_textcase {
           .onError(() => {
             console.info('load image fail')
           })
-        Image("/resources/rawfile/hand.png")
+        Image('/resources/rawfile/hand.png')
           .objectFit(ImageFit.Fill)
           .objectRepeat(ImageRepeat.Y)
           .interpolation(ImageInterpolation.Low)
           .key('image3')
-        Image("/resources/rawfile/hand.png")
+        Image('/resources/rawfile/hand.png')
           .objectFit(ImageFit.None)
           .objectRepeat(ImageRepeat.XY)
           .interpolation(ImageInterpolation.Medium)
           .key('image4')
-        Image("/resources/rawfile/hand.png")
+        Image('/resources/rawfile/hand.png')
           .objectFit(ImageFit.ScaleDown)
           .key('image5')
       }.width(300)
