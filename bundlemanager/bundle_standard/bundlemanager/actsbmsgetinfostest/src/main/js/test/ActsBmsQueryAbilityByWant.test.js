@@ -54,7 +54,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
                 expect(data).assertFail();
             }).catch(err => {
                 console.info("queryAbilityByWant =1=========" + JSON.stringify(err.code));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
         bundle.queryAbilityByWant({
             action: ACTION_NAME,
@@ -64,7 +64,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
             userId, (err, data) => {
                 console.info("queryAbilityByWant =3=========" + JSON.stringify(data));
                 console.info("queryAbilityByWant =4=========" + JSON.stringify(err.code));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             });
     });
@@ -98,7 +98,7 @@ describe('ActsBmsQueryAbilityByWant', function () {
             },
             bundle.BundleFlag.GET_ABILITY_INFO_WITH_APPLICATION | bundle.BundleFlag.GET_ABILITY_INFO_SYSTEMAPP_ONLY,
             userId, (err, data) => {
-                if (err) {
+                if (err.code != 0) {
                     expect(err).assertFail();
                 }
                 expect(data.length).assertLarger(0);

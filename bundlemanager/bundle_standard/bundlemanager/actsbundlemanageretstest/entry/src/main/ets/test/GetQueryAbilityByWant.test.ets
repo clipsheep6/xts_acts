@@ -49,7 +49,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(res).assertFail()
                     done()
                 }).catch(err => {
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
@@ -65,7 +65,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     expect(res).assertFail()
                     done()
                 }).catch(err => {
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
@@ -170,7 +170,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_0700' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
@@ -216,7 +216,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_0900' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
@@ -324,7 +324,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_1400' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
@@ -364,7 +364,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_1600' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         })
@@ -639,7 +639,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_2800' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
