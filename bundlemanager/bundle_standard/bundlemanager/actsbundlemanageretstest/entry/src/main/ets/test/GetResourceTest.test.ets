@@ -82,7 +82,7 @@ export default function GetResourceTest() {
      * @tc.name: getAllBundleInfoForResource
      * @tc.desc: get Resource by getAllBundleInfo
      */
-    it('', 0, async function (done) {
+    it('getAllBundleInfoForResource', 0, async function (done) {
       await bundleManager.getAllBundleInfo(FLAG1).then(data => {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
