@@ -82,7 +82,7 @@ export default function GetResourceTest() {
      * @tc.name: getAllBundleInfoForResource
      * @tc.desc: get Resource by getAllBundleInfo
      */
-    it('getAllBundleInfoForResource', 0, async function (done) {
+    it('', 0, async function (done) {
       await bundleManager.getAllBundleInfo(FLAG1).then(data => {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
@@ -124,7 +124,7 @@ export default function GetResourceTest() {
         } else {
           expect().assertFail();
         }
-        expect(err.code).assertEqual(0)
+        expect(err).assertEqual(0)
         done();
       })
     });
