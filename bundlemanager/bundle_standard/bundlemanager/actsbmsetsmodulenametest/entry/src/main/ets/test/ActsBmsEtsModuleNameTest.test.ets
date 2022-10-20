@@ -597,7 +597,7 @@ export default function actsBmsJsModuleNameTest() {
           moduleName: MODULE_NAME5
         }, DEFAULT_FLAG, userId, (err1, data1) => {
           checkDataInfo(data1[0]);
-          expect(err1).assertEqual(SUCCESS_CODE);
+          expect(err1.code).assertEqual(SUCCESS_CODE);
           done();
         });
       }).catch(err => {

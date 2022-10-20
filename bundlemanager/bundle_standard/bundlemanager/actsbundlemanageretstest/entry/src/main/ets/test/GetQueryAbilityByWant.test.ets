@@ -344,7 +344,7 @@ export default function ActsBmsQueryAbilityByWant() {
                     done()
                 }).catch(err => {
                     console.error(' fail bms_queryAbilityByWant_1500' + JSON.stringify(err))
-                    expect(err).assertEqual(INVALID_CODE)
+                    expect(err.code).assertEqual(INVALID_CODE)
                     done()
                 })
         });
