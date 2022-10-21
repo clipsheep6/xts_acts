@@ -62,6 +62,21 @@ function callback(err, data) {
     }
 }
 
+function oldApiCallback(err, data) {
+    if (err && err.code === 0) {
+        console.info(TAG + " Operation succeed");
+        commonEvent.publish(event, (err) => {
+            if (err.code) {
+                console.error(TAG + "PublishCallBack failed");
+            } else {
+                console.info(TAG + "Publish succeed");
+            }
+        })
+    } else {
+        console.info(TAG + " Operation failed");
+    }
+}
+
 function startContinuousTaskUseApi7Callback() {
     event = "startTaskUseApi7Callback";
     particleAbility.startBackgroundRunning(1, request, callback);
@@ -70,7 +85,7 @@ function startContinuousTaskUseApi7Callback() {
 function stopContinuousTaskUseApi7Callback() {
     event = "stopTaskUseApi7Callback";
     particleAbility.startBackgroundRunning(1, request).then(() => {
-        particleAbility.cancelBackgroundRunning(callback);
+        particleAbility.cancelBackgroundRunning(oldApiCallback);
     });
 }
 
