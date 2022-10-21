@@ -1112,15 +1112,14 @@ export default function ActsAccountAssociatedData() {
             console.debug("====>creat finish====");
             appAccountManager.addAccount(" ", (err)=>{
                 console.debug("====>add account ActsAccountAssociatedData_2900 err:" + JSON.stringify(err));
-                expect(err.code != 0).assertEqual(true);
+                expect(err).assertEqual(null);
                 appAccountManager.setAssociatedData(" ", "key29", "value29", (err)=>{
                     console.debug("====>setAssociatedData ActsAccountAssociatedData_2900 err:" + JSON.stringify(err));
-                    expect(err.code != 0).assertEqual(true);
+                    expect(err).assertEqual(null);
                     appAccountManager.getAssociatedData(" ", "key29", (err, data)=>{
                         console.debug("====>getAssociatedData 2900 err:" + JSON.stringify(err));
                         console.debug("====>getAssociatedData 2900 data:" + JSON.stringify(data));
-                        expect(err.code != 0).assertEqual(true);
-                        expect(data).assertEqual(null);
+                        expect(err).assertEqual(null);
                         console.debug("====>ActsAccountAssociatedData_2900 end====");
                         done();
                     });

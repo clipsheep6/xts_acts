@@ -14,7 +14,7 @@
  */
 
 // @ts-nocheck
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, done } from '@ohos/hypium'
 
 import account from '@ohos.account.distributedAccount'
 export default function AccountTest() {
@@ -29,8 +29,8 @@ export default function AccountTest() {
         * @tc.name       Test query the distribruted id by callback.
         * @tc.desc       Test distributedAccount.queryOsAccountDistributedInfo API functionality by callback.
         */
-    it('ActsDistributedAccountDeviceId_0100', 0, async function(done){
-            console.log("test query distribtued id start");
+        it('ActsDistributedAccountDeviceId_0100', 0, async function(done){
+            console.log("====>test query distribtued id start");
             const distributedId = '5994471ABB01112AFCC18159F6CC74B4F511B99806DA59B3CAF5A9C173CACFC5';
             const accountAbility = account.getDistributedAccountAbility();
             accountAbility.updateOsAccountDistributedInfo(
@@ -39,13 +39,13 @@ export default function AccountTest() {
                 id: '12345',
                 event: "Ohos.account.event.LOGIN"
             }, (err)=>{
-                console.log("update distributedInfo err:" + JSON.stringify(err));
+                console.log("====>update distributedInfo err:" + JSON.stringify(err));
                 accountAbility.queryOsAccountDistributedInfo((err, distributedInfo)=>{
-                    console.log("query distributedInfo err:" + JSON.stringify(err));
-                    console.log("query distributedInfo:" + JSON.stringify(distributedInfo));
+                    console.log("====>query distributedInfo err:" + JSON.stringify(err));
+                    console.log("====>query distributedInfo:" + JSON.stringify(distributedInfo));
                     expect(distributedInfo.name).assertEqual('ZhangSan');
                     expect(distributedInfo.id).assertEqual(distributedId);
-                    console.log("test query distribtued id end");
+                    console.log("====>test query distribtued id end");
                     done();
                 })
             })
@@ -63,6 +63,7 @@ export default function AccountTest() {
                 ret = true;
             }
             expect(ret).assertTrue()
+            done();
         })
 
         /**
@@ -74,6 +75,7 @@ export default function AccountTest() {
             const accountAbility = account.getDistributedAccountAbility()
             accountAbility.queryOsAccountDistributedInfo().then(function (data) {
                 expect(data.name).assertEqual('anonymous')
+                done();
             });
         })
 
@@ -86,6 +88,7 @@ export default function AccountTest() {
             const accountAbility = account.getDistributedAccountAbility()
             accountAbility.queryOsAccountDistributedInfo(function (data) {
                 expect(data.name).assertEqual('anonymous')
+                done();
             });
         })
 
@@ -120,6 +123,7 @@ export default function AccountTest() {
             });
             accountAbility.queryOsAccountDistributedInfo(function (data) {
                 execpt(data).assertNull()
+                done();
             })
         })
 
@@ -151,6 +155,7 @@ export default function AccountTest() {
                     };
                     accountAbility.updateOsAccountDistributedInfo(obj).then(function (result) {
                         expect(result).assertTrue()
+                        done();
                     });
                 });
             });
@@ -174,6 +179,7 @@ export default function AccountTest() {
                 expect(result).assertTrue()
                 accountAbility.queryOsAccountDistributedInfo(obj).then(function (data) {
                     except(data.name).assertNull()
+                    done();
                 })
             });
         })
@@ -185,7 +191,7 @@ export default function AccountTest() {
         */
         it('account_updateOsAccountDistributedInfo_test004', 0, function () {
             const accountAbility = account.getDistributedAccountAbility()
-        let data = null
+            let data = null
             let obj = {
                 id: '12345',
                 name: 'ZhangSan',
@@ -206,6 +212,7 @@ export default function AccountTest() {
                     };
                     accountAbility.updateOsAccountDistributedInfo(obj).then(function (result) {
                         expect(result).assertNull()
+                        done();
                     });
                 });
             });

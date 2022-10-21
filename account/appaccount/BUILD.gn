@@ -22,6 +22,10 @@ group("appaccount_hap") {
       "actsgetallaccounts:ActsGetAllAccountsTest",
       "actssetchecksyncenable:ActsSetCheckSyncEnableTest",
       "getallaccessibleaccounts:accessibleaccounts",
+      "actsaccountoperatetest:ActsAccountOperateTest",
+      "actsgetaccountsbyowner:ActsGetAccountsByOwnerTest",
+      "actssetcheckdatasyncenable:ActsSetCheckDataSyncEnableTest",
+      "getallaccounts:getallaccounts",
       "sceneProject:appaccount_scene",
     ]
   }
