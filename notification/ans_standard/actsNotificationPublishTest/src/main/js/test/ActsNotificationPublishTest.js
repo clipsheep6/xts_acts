@@ -176,6 +176,9 @@ export default function ActsNotificationPublishTest() {
      */
     it('SUB_NOTIFICATION_ANS_REQUEST_ENABLE_TEST_0100', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_REQUEST_ENABLE_TEST_0100 START`)
+      notification.requestEnableNotification((err) => {
+        console.info(`${TAG} pop dialog first`)
+      })
       await notification.requestEnableNotification((err) => {
         if (err.code) {
           console.info(`${TAG} requestEnableNotification AsyncCallback err: ${err.code}`)
