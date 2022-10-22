@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 import sensor from '@ohos.sensor'
 
@@ -37,12 +35,11 @@ describe('SystemParameterTest', function () {
     })
 
     let testNullSensorId = -1;
-
     let errCode = 401
     let errMessage = 'The parameter invalid.'
 
    /**
-   * @tc.number SUB_SENSORS_Sensor_JSTest_0020
+   * @tc.number SUB_SENSORS_Sensor_JSTest_0010
    * @tc.name   testRegisterSensortest001
    * @tc.desc   test get sensor data by wrong sensor id.
    */
@@ -54,7 +51,6 @@ describe('SystemParameterTest', function () {
             expect(false).assertTrue();
             done();
         }
-
         try {
             sensor.on(testNullSensorId, onSensorCallback);
         } catch (error) {
