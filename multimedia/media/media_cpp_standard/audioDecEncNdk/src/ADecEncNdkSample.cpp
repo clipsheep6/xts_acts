@@ -27,7 +27,6 @@ using namespace std;
 namespace {
     constexpr uint32_t SAMPLE_DURATION_US = 23000;
     constexpr uint32_t STOPNUM = 10000;
-    double frameThreshold = 0.1;
 
     void AdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -775,6 +774,7 @@ void ADecEncNdkSample::SetSavePath(const char * outp_path)
 
 void ADecEncNdkSample::CalcuError()
 {
+    double frameThreshold = 0.1;
     cout << "errorNum_ is :" << errorNum_ << endl;
     cout << "decInCnt_ is :" << decInCnt_ << endl;
     cout << "decOutCnt_ is :" << decOutCnt_ << endl;

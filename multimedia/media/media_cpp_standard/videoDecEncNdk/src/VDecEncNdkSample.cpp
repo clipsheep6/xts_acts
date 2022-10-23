@@ -37,7 +37,6 @@ namespace {
         160, 1927, 161, 184, 119, 1973, 218, 210, 129, 1962, 196, 127, 154, 2308, 173, 127, 1572, 142, 122};
     constexpr uint32_t ES_LENGTH = sizeof(ES) / sizeof(uint32_t);
     constexpr int32_t STOPNUM = 10000;
-    double frameThreshold = 0.1;
 
     void VdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -754,6 +753,7 @@ void VDecEncNdkSample::OutputFuncEnc()
 
 void VDecEncNdkSample::CalcuError()
 {
+    double frameThreshold = 0.1;
     cout << "errorNum_ is :" << errorNum_ << endl;
     cout << "decInCnt_ is :" << decInCnt_ << endl;
     cout << "decOutCnt_ is :" << decOutCnt_ << endl;

@@ -137,7 +137,6 @@ private:
     const char* OUT_FILE;
     uint32_t* ES;
     uint32_t ES_LENGTH = 0;
-
 };
 }
 }
