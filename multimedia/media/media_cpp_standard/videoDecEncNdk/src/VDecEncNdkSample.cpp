@@ -16,6 +16,7 @@
 #include "gtest/gtest.h"
 #include "audio_info.h"
 #include "av_common.h"
+#include "native_avcodec_base.h"
 #include "avcodec_video_encoder.h"
 #include "avcodec_video_decoder.h"
 #include "native_avmemory.h"
@@ -36,12 +37,12 @@ namespace {
         160, 1927, 161, 184, 119, 1973, 218, 210, 129, 1962, 196, 127, 154, 2308, 173, 127, 1572, 142, 122};
     constexpr uint32_t ES_LENGTH = sizeof(ES) / sizeof(uint32_t);
     constexpr int32_t STOPNUM = 10000;
+    double frameThreshold = 0.1;
 
     void VdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         cout << "DEC Error errorCode=" << errorCode << endl;
-        VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
-        vcodecSignal_->errorNum_ += 1;
+        ASSERT_EQ(AV_ERR_OK, errorCode);
     }
 
     void VdecAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
@@ -79,8 +80,7 @@ namespace {
     void VencAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         cout << "ENC Error errorCode=" << errorCode << endl;
-        VDecEncSignal* vcodecSignal_ = static_cast<VDecEncSignal *>(userData);
-        vcodecSignal_->errorNum_ += 1;
+        ASSERT_EQ(AV_ERR_OK, errorCode);
     }
 
     void VencAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
@@ -196,7 +196,12 @@ void VDecEncNdkSample::ResetEncParam()
 
 struct OH_AVCodec* VDecEncNdkSample::CreateVideoDecoderByMime(std::string mimetype)
 {
-    vdec_ = OH_VideoDecoder_CreateByMime(mimetype.c_str());
+    if (mimetype == "video/avc") {
+        cout << "mimetype == 'video/avc'" << endl;
+        vdec_ = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+    } else {
+        vdec_ = OH_VideoDecoder_CreateByMime(mimetype.c_str());
+    }
     NDK_CHECK_AND_RETURN_RET_LOG(vdec_ != nullptr, nullptr, "Fatal: OH_VideoDecoder_CreateByMime");
     if (vcodecSignal_ == nullptr) {
         vcodecSignal_ = new VDecEncSignal();
@@ -231,6 +236,11 @@ struct OH_AVCodec* VDecEncNdkSample::CreateVideoDecoderByName(std::string name)
 int32_t VDecEncNdkSample::ConfigureDec(struct OH_AVFormat *format)
 {
     return OH_VideoDecoder_Configure(vdec_, format);
+}
+
+int32_t VDecEncNdkSample::SetParameterDec(struct OH_AVFormat *format)
+{
+    return OH_VideoDecoder_SetParameter(vdec_, format);
 }
 
 int32_t VDecEncNdkSample::PrepareDec()
@@ -431,7 +441,7 @@ void VDecEncNdkSample::InputFuncDec()
         }
         if (PushInbufferDec(index, bufferSize) != AV_ERR_OK) {
             cout << "Fatal: OH_VideoDecoder_PushInputData fail, exit" << endl;
-            vcodecSignal_->errorNum_ += 1;
+            errorNum_ += 1;
         } else {
             decInCnt_++;
         }
@@ -461,7 +471,7 @@ void VDecEncNdkSample::SendEncEos()
             isEncInputEOS = true;
         } else {
             cout << "ENC IN: input EOS fail" << endl;
-            vcodecSignal_->errorNum_ += 1;
+            errorNum_ += 1;
         }
     }
 }
@@ -485,13 +495,18 @@ void VDecEncNdkSample::OutputFuncDec()
         uint32_t index = vcodecSignal_->outQueueDec_.front();
         uint32_t outflag = vcodecSignal_->flagQueueDec_.front();
         if (outflag == 0) {
-            uint32_t ret = OH_VideoDecoder_RenderOutputData(vdec_, index);
+            uint32_t ret;
+            if (needRender) {
+                ret = OH_VideoDecoder_RenderOutputData(vdec_, index);
+            } else {
+                ret = OH_VideoDecoder_FreeOutputData(vdec_, index);
+            }
             if (ret == 0) {
                 decOutCnt_ += 1;
                 cout << "DEC OUT.: render output success, decOutCnt_ is " << decOutCnt_ << endl;
             } else {
                 cout << "DEC OUT. Fatal: ReleaseOutputBuffer fail" << endl;
-                vcodecSignal_->errorNum_ += 1;
+                errorNum_ += 1;
                 break;
             }
         } else {
@@ -505,7 +520,11 @@ void VDecEncNdkSample::OutputFuncDec()
 
 struct OH_AVCodec* VDecEncNdkSample::CreateVideoEncoderByMime(std::string mimetype)
 {
-    venc_ = OH_VideoEncoder_CreateByMime(mimetype.c_str());
+    if (mimetype == "video/avc") {
+        venc_ = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+    } else {
+        venc_ = OH_VideoEncoder_CreateByMime(mimetype.c_str());
+    }
     NDK_CHECK_AND_RETURN_RET_LOG(venc_ != nullptr, nullptr, "Fatal: OH_VideoEncoder_CreateByMime");
     
     if (vcodecSignal_ == nullptr) {
@@ -540,6 +559,11 @@ struct OH_AVCodec* VDecEncNdkSample::CreateVideoEncoderByName(std::string name)
 int32_t VDecEncNdkSample::ConfigureEnc(struct OH_AVFormat *format)
 {
     return OH_VideoEncoder_Configure(venc_, format);
+}
+
+int32_t VDecEncNdkSample::SetParameterEnc(struct OH_AVFormat *format)
+{
+    return OH_VideoEncoder_SetParameter(venc_, format);
 }
 
 struct VEncObject : public OH_AVCodec {
@@ -718,7 +742,7 @@ void VDecEncNdkSample::OutputFuncEnc()
             uint32_t ret = OH_VideoEncoder_FreeOutputData(venc_, index);
             if (ret != 0) {
                 cout << "Fatal: ReleaseOutputBuffer fail" << endl;
-                vcodecSignal_->errorNum_ += 1;
+                errorNum_ += 1;
             } else {
                 encOutCnt_ += 1;
                 cout << "ENC OUT.: output success, encOutCnt_ is " << encOutCnt_ << endl;
@@ -728,9 +752,9 @@ void VDecEncNdkSample::OutputFuncEnc()
     }
 }
 
-int32_t VDecEncNdkSample::CalcuError()
+void VDecEncNdkSample::CalcuError()
 {
-    cout << "errorNum_ is :" << vcodecSignal_->errorNum_ << endl;
+    cout << "errorNum_ is :" << errorNum_ << endl;
     cout << "decInCnt_ is :" << decInCnt_ << endl;
     cout << "decOutCnt_ is :" << decOutCnt_ << endl;
     cout << "encOutCnt_ is :" << encOutCnt_ << endl;
@@ -738,7 +762,9 @@ int32_t VDecEncNdkSample::CalcuError()
     cout << "DEC outQueueDec_.size() is " << vcodecSignal_->outQueueDec_.size() << endl;
     cout << "DEC outBufferQueueDec_.size() is " << vcodecSignal_->outBufferQueueDec_.size() << endl;
     cout << "DEC outQueueEnc_.size() is " << vcodecSignal_->outQueueEnc_.size() << endl;
-    return vcodecSignal_->errorNum_ ;
+    ASSERT_EQ(errorNum_, 0);
+    ASSERT_LT(fabs(decOutCnt_ - decInCnt_), (int32_t)(ES_LENGTH * frameThreshold));
+    ASSERT_LT(fabs(encOutCnt_ - decOutCnt_), (int32_t)(decOutCnt_ * frameThreshold));
 }
 
 int32_t VDecEncNdkSample::GetFrameCount()

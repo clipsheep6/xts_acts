@@ -55,7 +55,6 @@ public:
     std::queue<uint32_t>  flagQueueEnc_;
     std::queue<OH_AVMemory *> inBufferQueueEnc_;
     std::queue<OH_AVMemory *> outBufferQueueEnc_;
-    int32_t errorNum_ = 0;
     std::atomic<bool> isFlushing_ = false;
 };
 
@@ -64,8 +63,10 @@ public:
     ADecEncNdkSample() = default;
     ~ADecEncNdkSample();
 
-    struct OH_AVCodec* CreateAudioDecoder(std::string mimetype);
+    struct OH_AVCodec* CreateAudioDecoderByMime(std::string mimetype);
+    struct OH_AVCodec* CreateAudioDecoderByName(std::string name);
     int32_t ConfigureDec(struct OH_AVFormat *format);
+    int32_t SetParameterDec(struct OH_AVFormat *format);
     int32_t PrepareDec();
     int32_t StartDec();
     int32_t StopDec();
@@ -73,15 +74,17 @@ public:
     int32_t ResetDec();
     int32_t ReleaseDec();
 
-    struct OH_AVCodec* CreateAudioEncoder(std::string mimetype);
+    struct OH_AVCodec* CreateAudioEncoderByMime(std::string mimetype);
+    struct OH_AVCodec* CreateAudioEncoderByName(std::string name);
     int32_t ConfigureEnc(struct OH_AVFormat *format);
+    int32_t SetParameterEnc(struct OH_AVFormat *format);
     int32_t PrepareEnc();
     int32_t StartEnc();
     int32_t StopEnc();
     int32_t FlushEnc();
     int32_t ResetEnc();
     int32_t ReleaseEnc();
-    int32_t CalcuError();
+    void CalcuError();
 
     void SetReadPath(const char* inp_path, uint32_t es[], uint32_t length);
     void SetEosState(bool needSetEos);
@@ -100,15 +103,16 @@ public:
     int32_t PushInbufferEnc();
 
     ADecEncSignal* acodecSignal_ = nullptr;
-    uint32_t decInCnt_ = 0;
-    uint32_t decOutCnt_ = 0;
-    uint32_t encInCnt_ = 0;
-    uint32_t encOutCnt_ = 0;
+    int32_t decInCnt_ = 0;
+    int32_t decOutCnt_ = 0;
+    int32_t encInCnt_ = 0;
+    int32_t encOutCnt_ = 0;
     bool isDecInputEOS = false;
     bool isEncInputEOS = false;
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
     bool setEos = true;
+    int32_t errorNum_ = 0;
 
 private:
     struct OH_AVCodec* adec_;
@@ -133,6 +137,7 @@ private:
     const char* OUT_FILE;
     uint32_t* ES;
     uint32_t ES_LENGTH = 0;
+
 };
 }
 }
