@@ -13,9 +13,13 @@
  * limitations under the License.
  */
 
+#include <cmath>
+#include "gtest/gtest.h"
 #include "ADecEncNdkSample.h"
 #include "native_avmemory.h"
 #include "native_averrors.h"
+#include "native_avcodec_base.h"
+
 using namespace OHOS;
 using namespace OHOS::Media;
 using namespace std;
@@ -26,9 +30,8 @@ namespace {
 
     void AdecAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
-        ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
         cout << "DEC Error errorCode=" << errorCode << endl;
-        acodecSignal_->errorNum_ += 1;
+        ASSERT_EQ(AV_ERR_OK, errorCode);
     }
 
     void AdecAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
@@ -66,9 +69,8 @@ namespace {
 
     void AencAsyncError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
-        ADecEncSignal* acodecSignal_ = static_cast<ADecEncSignal *>(userData);
         cout << "ENC Error errorCode=" << errorCode << endl;
-        acodecSignal_->errorNum_ += 1;
+        ASSERT_EQ(AV_ERR_OK, errorCode);
     }
 
     void AencAsyncStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
@@ -124,10 +126,31 @@ ADecEncNdkSample::~ADecEncNdkSample()
     acodecSignal_ = nullptr;
 }
 
-struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
+struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoderByMime(std::string mimetype)
 {
-    adec_ = OH_AudioDecoder_CreateByMime(mimetype.c_str());
+    if (mimetype == "audio/mp4a-latm") {
+        adec_ = OH_AudioDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC);
+    } else {
+        adec_ = OH_AudioDecoder_CreateByMime(mimetype.c_str());
+    }
     NDK_CHECK_AND_RETURN_RET_LOG(adec_ != nullptr, nullptr, "Fatal: OH_AudioDecoder_CreateByMime");
+
+    acodecSignal_ = new ADecEncSignal();
+    NDK_CHECK_AND_RETURN_RET_LOG(acodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
+
+    cbDec_.onError = AdecAsyncError;
+    cbDec_.onStreamChanged = AdecAsyncStreamChanged;
+    cbDec_.onNeedInputData = AdecAsyncNeedInputData;
+    cbDec_.onNeedOutputData = AdecAsyncNewOutputData;
+    int32_t ret = OH_AudioDecoder_SetCallback(adec_, cbDec_, static_cast<void *>(acodecSignal_));
+    NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioDecoder_SetCallback");
+    return adec_;
+}
+
+struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoderByName(std::string name)
+{
+    adec_ = OH_AudioDecoder_CreateByName(name.c_str());
+    NDK_CHECK_AND_RETURN_RET_LOG(adec_ != nullptr, nullptr, "Fatal: OH_AudioDecoder_CreateByName");
 
     acodecSignal_ = new ADecEncSignal();
     NDK_CHECK_AND_RETURN_RET_LOG(acodecSignal_ != nullptr, nullptr, "Fatal: No Memory");
@@ -144,6 +167,11 @@ struct OH_AVCodec* ADecEncNdkSample::CreateAudioDecoder(std::string mimetype)
 int32_t ADecEncNdkSample::ConfigureDec(struct OH_AVFormat *format)
 {
     return OH_AudioDecoder_Configure(adec_, format);
+}
+
+int32_t ADecEncNdkSample::SetParameterDec(struct OH_AVFormat *format)
+{
+    return OH_AudioDecoder_SetParameter(adec_, format);
 }
 
 int32_t ADecEncNdkSample::PrepareDec()
@@ -376,7 +404,7 @@ void ADecEncNdkSample::InputFuncDec()
         }
         if (PushInbufferDec(index, bufferSize) != AV_ERR_OK) {
             cout << "Fatal: OH_AudioDecoder_PushInputData fail" << endl;
-            acodecSignal_->errorNum_ += 1;
+            errorNum_ += 1;
         } else {
             decInCnt_++;
         }
@@ -385,10 +413,27 @@ void ADecEncNdkSample::InputFuncDec()
     }
 }
 
-struct OH_AVCodec* ADecEncNdkSample::CreateAudioEncoder(std::string mimetype)
+struct OH_AVCodec* ADecEncNdkSample::CreateAudioEncoderByMime(std::string mimetype)
 {
-    aenc_ = OH_AudioEncoder_CreateByMime(mimetype.c_str());
+    if (mimetype == "audio/mp4a-latm") {
+        aenc_ = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC);
+    } else {
+        aenc_ = OH_AudioEncoder_CreateByMime(mimetype.c_str());
+    }
     NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AudioEncoder_CreateByMime");
+    cbEnc_.onError = AencAsyncError;
+    cbEnc_.onStreamChanged = AencAsyncStreamChanged;
+    cbEnc_.onNeedInputData = AencAsyncNeedInputData;
+    cbEnc_.onNeedOutputData = AencAsyncNewOutputData;
+    int32_t ret = OH_AudioEncoder_SetCallback(aenc_, cbEnc_, static_cast<void *>(acodecSignal_));
+    NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioEncoder_SetCallback");
+    return aenc_;
+}
+
+struct OH_AVCodec* ADecEncNdkSample::CreateAudioEncoderByName(std::string name)
+{
+    aenc_ = OH_AudioEncoder_CreateByName(name.c_str());
+    NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AudioEncoder_CreateByName");
     cbEnc_.onError = AencAsyncError;
     cbEnc_.onStreamChanged = AencAsyncStreamChanged;
     cbEnc_.onNeedInputData = AencAsyncNeedInputData;
@@ -403,6 +448,10 @@ int32_t ADecEncNdkSample::ConfigureEnc(struct OH_AVFormat *format)
     return OH_AudioEncoder_Configure(aenc_, format);
 }
 
+int32_t ADecEncNdkSample::SetParameterEnc(struct OH_AVFormat *format)
+{
+    return OH_AudioEncoder_SetParameter(aenc_, format);
+}
 
 int32_t ADecEncNdkSample::PrepareEnc()
 {
@@ -586,7 +635,7 @@ int32_t ADecEncNdkSample::PushInbufferEnc()
         }
         if (OH_AudioDecoder_FreeOutputData(adec_, indexDec) != AV_ERR_OK) {
             cout << "Fatal: DEC ReleaseDecOutputBuffer fail" << endl;
-            acodecSignal_->errorNum_ += 1;
+            errorNum_ += 1;
         } else {
             decOutCnt_ += 1;
         }
@@ -616,7 +665,7 @@ void ADecEncNdkSample::InputFuncEnc()
         }
         if (PushInbufferEnc() != AV_ERR_OK) {
             cout << "Fatal error, exit" << endl;
-            acodecSignal_->errorNum_ += 1;
+            errorNum_ += 1;
         } else {
             encInCnt_++;
         }
@@ -682,7 +731,7 @@ void ADecEncNdkSample::OutputFuncEnc()
             }
             if (OH_AudioEncoder_FreeOutputData(aenc_, index) != AV_ERR_OK) {
                 cout << "Fatal: ReleaseOutputBuffer fail" << endl;
-                acodecSignal_->errorNum_ += 1;
+                errorNum_ += 1;
             } else {
                 encOutCnt_ += 1;
                 cout << "ENC output cnt: " << encOutCnt_ << endl;
@@ -723,9 +772,10 @@ void ADecEncNdkSample::SetSavePath(const char * outp_path)
     OUT_FILE = outp_path;
 }
 
-int32_t ADecEncNdkSample::CalcuError()
+void ADecEncNdkSample::CalcuError()
 {
-    cout << "errorNum_ is :" << acodecSignal_->errorNum_ << endl;
+    double frameThreshold = 0.1;
+    cout << "errorNum_ is :" << errorNum_ << endl;
     cout << "decInCnt_ is :" << decInCnt_ << endl;
     cout << "decOutCnt_ is :" << decOutCnt_ << endl;
     cout << "encInCnt_ is :" << encInCnt_ << endl;
@@ -734,10 +784,13 @@ int32_t ADecEncNdkSample::CalcuError()
     cout << "acodecSignal_->outQueueDec_.size() is :" << acodecSignal_->outQueueDec_.size() << endl;
     cout << "acodecSignal_->inQueueEnc_.size() is :" << acodecSignal_->inQueueEnc_.size() << endl;
     cout << "acodecSignal_->outQueueEnc_.size() is :" << acodecSignal_->outQueueEnc_.size() << endl;
-    return acodecSignal_->errorNum_ ;
+    ASSERT_EQ(errorNum_, 0);
+    ASSERT_LT(fabs(decOutCnt_ - decInCnt_), (int32_t)(ES_LENGTH * frameThreshold));
+    ASSERT_LT(fabs(encOutCnt_ - decOutCnt_), (int32_t)(decOutCnt_ * frameThreshold));
 }
 
 int32_t ADecEncNdkSample::GetFrameCount()
+
 {
     return encOutCnt_;
 }

@@ -30,6 +30,7 @@
 #include "ndktest_log.h"
 #include "native_avmagic.h"
 #include "surface.h"
+#include "native_avcodec_base.h"
 #include "native_avcodec_videodecoder.h"
 #include "native_avcodec_videoencoder.h"
 
@@ -55,7 +56,6 @@ public:
     std::queue<uint32_t> flagQueueEnc_;
     std::queue<OH_AVMemory *> inBufferQueueEnc_;
     std::queue<OH_AVMemory *> outBufferQueueEnc_;
-    int32_t errorNum_ = 0;
     std::atomic<bool> isVdecFlushing_ = false;
     std::atomic<bool> isVencFlushing_ = false;
 };
@@ -69,6 +69,7 @@ public:
     struct OH_AVCodec* CreateVideoDecoderByMime(std::string mimetype);
     struct OH_AVCodec* CreateVideoDecoderByName(std::string name);
     int32_t ConfigureDec(struct OH_AVFormat *format);
+    int32_t SetParameterDec(struct OH_AVFormat *format);
     int32_t SetOutputSurface();
     int32_t PrepareDec();
     int32_t StartDec();
@@ -80,6 +81,7 @@ public:
     struct OH_AVCodec* CreateVideoEncoderByMime(std::string mimetype);
     struct OH_AVCodec* CreateVideoEncoderByName(std::string name);
     int32_t ConfigureEnc(struct OH_AVFormat *format);
+    int32_t SetParameterEnc(struct OH_AVFormat *format);
     int32_t GetSurface();
     int32_t PrepareEnc();
     int32_t StartEnc();
@@ -88,7 +90,7 @@ public:
     int32_t ResetEnc();
     int32_t ReleaseEnc();
     
-    int32_t CalcuError();
+    void CalcuError();
     void SetReadPath(std::string filepath);
     void SetSavePath(std::string filepath);
     void ReRead();
@@ -108,6 +110,7 @@ public:
     bool isDecOutputEOS = false;
     bool isEncOutputEOS = false;
     bool setEos = true;
+    bool needRender = true;
 
 private:
     OHNativeWindow *nativeWindow_;
@@ -121,8 +124,9 @@ private:
     std::unique_ptr<std::thread> outputLoopDec_;
     struct OH_AVCodecAsyncCallback cbDec_;
     int64_t timeStampDec_ = 0;
-    uint32_t decInCnt_ = 0;
-    uint32_t decOutCnt_ = 0;
+    int32_t decInCnt_ = 0;
+    int32_t decOutCnt_ = 0;
+    int32_t errorNum_ = 0;
 
     struct OH_AVCodec* venc_;
     void OutputFuncEnc();
@@ -130,7 +134,7 @@ private:
     std::unique_ptr<std::thread> outputLoopEnc_;
     struct OH_AVCodecAsyncCallback cbEnc_;
     bool isFirstDecFrame_ = true;
-    uint32_t encOutCnt_ = 0;
+    int32_t encOutCnt_ = 0;
     std::string inFile_ = "/data/media/out_320_240_10s.h264";
     std::string outFile_ = "/data/media/video_out.es";
 };
