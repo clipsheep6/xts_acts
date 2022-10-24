@@ -1372,25 +1372,34 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
-            await driver.delayMs(waitUiReadyMs)
             await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
             let rotation1 = await driver.getDisplayRotation()
-            expect(rotation1 == DisplayRotation.ROTATION_90).assertTrue()
+            console.info("rotation1: %d", rotation1)
+            expect(rotation1 == DisplayRotation.ROTATION_90 || rotation1 == DisplayRotation.ROTATION_0).assertTrue()
             await driver.delayMs(waitUiReadyMs)
 
             await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
             let rotation2 = await driver.getDisplayRotation()
-            expect(rotation2 == DisplayRotation.ROTATION_180).assertTrue()
+            console.info("rotation2: %d", rotation2)
+            expect(rotation2 == DisplayRotation.ROTATION_180 || rotation2 == DisplayRotation.ROTATION_270).assertTrue()
             await driver.delayMs(waitUiReadyMs)
 
             await driver.setDisplayRotation(DisplayRotation.ROTATION_270)
             let rotation3 = await driver.getDisplayRotation()
-            expect(rotation3 == DisplayRotation.ROTATION_270).assertTrue()
+            console.info("rotation3: %d", rotation3)
+            expect(rotation3 == DisplayRotation.ROTATION_270 || rotation3 == DisplayRotation.ROTATION_180).assertTrue()
             await driver.delayMs(waitUiReadyMs)
 
             await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
             let rotation4 = await driver.getDisplayRotation()
-            expect(rotation4== DisplayRotation.ROTATION_0).assertTrue()
+            console.info("rotation4: %d", rotation4)
+            expect(rotation4 == DisplayRotation.ROTATION_0 || rotation4 == DisplayRotation.ROTATION_90).assertTrue()
+            await driver.delayMs(waitUiReadyMs)
+            if (rotation4 == DisplayRotation.ROTATION_90 ) {
+                await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+            } else {
+                await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+            }
             await stopApplication('com.uitestScene.acts')
         })
 
@@ -1408,8 +1417,13 @@ export default function UiTest() {
             await driver.setDisplayRotationEnabled(true)
             await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
             let rotation2 = await driver.getDisplayRotation()
-            expect(rotation2 == DisplayRotation.ROTATION_90).assertTrue()
-            await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+            expect(rotation2 == DisplayRotation.ROTATION_90 || rotation2 == DisplayRotation.ROTATION_0).assertTrue()
+            await driver.delayMs(waitUiReadyMs)
+            if (rotation2 == DisplayRotation.ROTATION_0 ) {
+                await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+            } else {
+                await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+            }
             await stopApplication('com.uitestScene.acts')
         })
 
