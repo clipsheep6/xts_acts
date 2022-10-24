@@ -18,7 +18,7 @@ import bundle from '@ohos.bundle'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
-const TAG = "CameraUnitTest: ";
+const TAG = "CameraManagerSuteTest: ";
 
 // Define global variables
 let mCameraManager;
@@ -112,7 +112,7 @@ export default function cameraManagerSuteTest(surfaceId: any) {
         }
     }
 
-    describe('CameraManagerTest', function () {
+    describe('CameraManagerSuteTest', function () {
         console.info(TAG + '----------CameraManagerTest--------------')
 
         beforeAll(async function () {
