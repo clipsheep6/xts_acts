@@ -162,8 +162,8 @@ class PatternLockExample extends View {
             if (this.passwords.length > 0) {
                 if (this.passwords.toString() == input.toString()) {
                     this.passwords = input;
-                    this.message = 'Set password successfully: ' + this.passwords.toString();
-                    console.log('Set password successfully: ' + this.passwords.toString());
+                    this.message = 'Set password successfully';
+                    console.log('Set password successfully');
                 }
                 else {
                     this.message = 'Inconsistent passwords, please enter again.';
