@@ -5,7 +5,7 @@ var __webpack_exports__ = {};
   \********************************************************************************************************************************************/
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ class PanGestureExample extends View {
             console.info("[PanGesture] ChangCallBack stateChangCallBack");
             if (eventData != null) {
                 console.info("[PanGesture] ChangCallBack state change called:" + JSON.stringify(eventData));
-                if (eventData.data.touchable != null) {
+                if (eventData.data && eventData.data.touchable != null) {
                     this.touchable = eventData.data.touchable;
                 }
             }
