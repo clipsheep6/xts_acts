@@ -18,8 +18,12 @@ import windowRefactorInterfaceTest from './windowRefactorInterface.test'
 import displayAndWindowRefactorInterfaceTest from './displayAndWindowRefactorInterface.test'
 
 export default function testsuite() {
-  windowCallbackTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   windowPromiseTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
+  windowCallbackTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   windowRefactorInterfaceTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   displayAndWindowRefactorInterfaceTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 98b1ed515ad9425c23711fbb7f512155179fbb27
 }
