@@ -396,10 +396,6 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let caseName = 'getWindowAvoidAreaTest2';
       let msgStr = 'jsunittest ' + caseName + ' ';
       try{
-//        let tempWnd = await ohosWindow.getLastWindow(context).catch((err)=>{
-//          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-//          unexpectedError(err, caseName, 'ohosWindow.getLastWindow', done);
-//        })
         let tempWnd = windowStage.getMainWindowSync();
         expect(tempWnd != null).assertTrue();
         try {
