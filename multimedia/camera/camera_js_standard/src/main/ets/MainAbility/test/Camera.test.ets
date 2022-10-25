@@ -30,7 +30,7 @@ let TAG = 'CameraModuleTest: '
 export default function cameraKit(surfaceId: any) {
   console.info(TAG + 'Entering cameraKit')
   console.info(TAG + 'surfaceId: ' + surfaceId)
-
+  cameraManagerSuteTest(surfaceId)
   cameraInputTest(surfaceId)
   cameraJSUnitOutput(surfaceId)
   cameraSessionFlashTest(surfaceId)
@@ -40,5 +40,4 @@ export default function cameraKit(surfaceId: any) {
   cameraSessionVideoStabilizationTest(surfaceId)
   cameraSessionBaseTest(surfaceId)
   cameraManagerTest(surfaceId)
-  cameraManagerSuteTest(surfaceId)
 }
