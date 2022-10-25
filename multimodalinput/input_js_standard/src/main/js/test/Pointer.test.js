@@ -94,49 +94,49 @@ export default function MultimodalInput_Pointer_test() {
     })
 
     it('MultimodalInput_Pointer_test::PointerSpeedTest_001', 0, function () {
-        console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_001 enter`);
-        var callback = function (err, data) {
-            if (err) {
-                console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_001 failed, err=${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-            } else {
-                console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_001 success`);
-                expect(true).assertTrue();
-            }
-        };
-        pointer.setPointerSpeed(10, callback);
-
-        pointer.getPointerSpeed().then((data) => {
-            console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_001 success, data=${JSON.stringify(data)}`);
-            expect(data == 10).assertTrue();
-        }, (err) => {
-            console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_001 failed, err=${JSON.stringify(err)}`);
-            expect(false).assertTrue();
-        });
-        console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_001 exit`);
+      console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_001 enter`);
+      var callback = function (err, data) {
+        if (err) {
+          console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_001 failed, err=${JSON.stringify(err)}`);
+          expect(false).assertTrue();
+        } else {
+          console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_001 success`);
+          expect(true).assertTrue();
+        }
+      };
+      pointer.setPointerSpeed(10, callback);
+    
+      pointer.getPointerSpeed().then((data) => {
+        console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_001 success, data=${JSON.stringify(data)}`);
+        expect(data == 10).assertTrue();
+      }, (err) => {
+        console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_001 failed, err=${JSON.stringify(err)}`);
+        expect(false).assertTrue();
+      });
+      console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_001 exit`);
     })
-
+    
     it('MultimodalInput_Pointer_test::PointerSpeedTest_002', 0, function () {
-        console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_002 enter`);
-        pointer.setPointerSpeed(10).then(data => {
-            console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_002 success, data=${JSON.stringify(data)}`);
-            expect(true).assertTrue();
-        }, (err) => {
-            console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_002 failed, err=${JSON.stringify(err)}`);
-            expect(false).assertTrue();
-        });
-
-        var callback = function (err, data) {
-            if (err) {
-                console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_002 failed, err=${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-            } else {
-                console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_002 success, data=${JSON.stringify(data)}`);
-                expect(data == 10).assertTrue();
-            }
-        };
-        pointer.getPointerSpeed(callback);
-        console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_002 exit`);
+      console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_002 enter`);
+      pointer.setPointerSpeed(10).then(data => {
+        console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_002 success, data=${JSON.stringify(data)}`);
+        expect(true).assertTrue();
+      }, (err) => {
+        console.info(`MultimodalInput_Pointer_test::SetPointerSpeedTest_002 failed, err=${JSON.stringify(err)}`);
+        expect(false).assertTrue();
+      });
+    
+      var callback = function (err, data) {
+        if (err) {
+          console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_002 failed, err=${JSON.stringify(err)}`);
+          expect(false).assertTrue();
+        } else {
+          console.info(`MultimodalInput_Pointer_test::GetPointerSpeedTest_002 success, data=${JSON.stringify(data)}`);
+          expect(data == 10).assertTrue();
+        }
+      };
+      pointer.getPointerSpeed(callback);
+      console.info(`MultimodalInput_Pointer_test::PointerSpeedTest_002 exit`);
     })
 
     it('MultimodalInput_Pointer_test::SetPointerStyle_001', 0, function () {
