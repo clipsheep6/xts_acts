@@ -23,13 +23,14 @@ struct ClipAndMaskExample {
   @State isClipCircle:boolean = true;
   @State maskType: CommonShapeMethod= new Rect({ width: 280, height: 280 });
   @State clipType: CommonShapeMethod= new Circle({ width: 280, height: 280 });
-  @State shape_Type: CommonShapeMethod= new elliptical({ width: 200, height: 280 });
-  @State lengthType: CommonShapeMethod= new line({ width: 0, height: 10 }); 
-  @State pathType: CommonShapeMethod= new path({ width: 10, height: 10 });
-  @State shape_2_Type: CommonShapeMethod= new polygon({ width: 5, height: 10 });
-  @State shape_3_Type: CommonShapeMethod= new polyine({ width: 5, height: 10 });
-  @State shape_4_Type: CommonShapeMethod= new rect_({ width: 5, height: 10 ,radius : 5});
-
+  polygonInterface:PolygonInterface = Polygon
+  circle : CircleInterface = Circle
+  line: LineInterface = Line
+  ellsple :EllipseInterface = Ellipse
+  pathInterface : PathInterface = Path
+  shape:ShapeInterface = Shape
+  rect: RectInterface = Rect
+  polylineInterface:PolylineInterface = Polyline
 
   private stateChangCallBack = (eventData) => {
     if (eventData != null) {
@@ -39,57 +40,6 @@ struct ClipAndMaskExample {
       }
     }
   }
-
-  private stateChangCallBack = (eventData) => {
-    if (eventData != null) {
-      console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
-        this.shape_Type = new elliptical({ width: 200, height: 280 });
-      }
-    }
-  }
-
-  private stateChangCallBack = (eventData) => {
-    if (eventData != null) {
-      console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
-        this.lengthType = new line({ width: 200, height: 280 });
-      }
-    }
-  }
-  private stateChangCallBack = (eventData) => {
-    if (eventData != null) {
-      console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
-        this.shape_4_Type = new rect_({ width: 200, height: 280 });
-      }
-    }
-  }
-  private stateChangCallBack = (eventData) => {
-    if (eventData != null) {
-      console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
-        this.pathType = new path({ width: 200, height: 280 });
-      }
-    }
-  }
-  private stateChangCallBack = (eventData) => {
-    if (eventData != null) {
-      console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
-        this.shape_2_Type = new polygon({ width: 200, height: 280 });
-      }
-    }
-  }
-  private stateChangCallBack = (eventData) => {
-    if (eventData != null) {
-      console.info("shapeClipping page state change called:" + JSON.stringify(eventData));
-      if(eventData.data.maskValue != null) {
-        this.shape_3_Type = new polyine({ width: 200, height: 280 });
-      }
-    }
-  }
-
   private shapeChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("shapeClipping page shape change called:" + JSON.stringify(eventData));
