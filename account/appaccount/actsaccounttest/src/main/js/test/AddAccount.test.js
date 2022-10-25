@@ -335,9 +335,12 @@ export default function ActsAccountAddAccount() {
             var specialStr = " ";
             appAccountManager.addAccount(specialStr, "account_extraInfo_callback_eight", (err)=>{
                 console.debug("====>add account ActsAccountAddAccount_1500 err:" + JSON.stringify(err));
-                expect(err.code != 0).assertEqual(true);
-                console.debug("====>ActsAccountAddAccount_1500 end====");
-                done();
+                expect(err).assertEqual(true);
+                appAccountManager.deleteAccount(specialStr, (err)=>{
+                    expect(err).assertEqual(true)
+                    console.debug("====>ActsAccountAddAccount_1500 end====");
+                    done();
+                });                
             });
         });
 
@@ -352,11 +355,13 @@ export default function ActsAccountAddAccount() {
             var specialStr = " ";
             try{
                 await appAccountManager.addAccount(specialStr, "account_extraInfo_promise_eighth");
+                await appAccountManager.deleteAccount(specialStr)
+                expect().assertTrue();
+                done();
             }
             catch(err){
-                console.debug("====>add Account ActsAccountAddAccount_1600 err:" + JSON.stringify(err));
-                expect(err.code != 0).assertEqual(true);
-                console.debug("====>ActsAccountAddAccount_1600 end====");
+                console.debug("====>add Account ActsAccountAddAccount_1600 throw_err:" + JSON.stringify(err));
+                expect().assertFail();
                 done();
             }
         });
