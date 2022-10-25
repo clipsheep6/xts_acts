@@ -14,6 +14,7 @@
  */
 
 import bundle from '@ohos.bundle.bundleManager';
+import util from "./Utils";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 
 const BUNDLE_NAME = "ohos.acts.bundle.stage.test";
@@ -25,6 +26,7 @@ const ABILITY_NAME1 = "ohos.acts.bundle.stage.test.MainAbility1";
 const APPID = "ohos.acts.bundle.stage.test_BNtg4JBClbl92Rgc3jm/RfcAdrHXaM8F0QO" +
 "iwVEhnV5ebE5jNIYnAx+weFRT3QTyUjRNdhmc2aAzWyi+5t5CoBM=";
 const FINGERPRINT = "8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5";
+const PARAM_ERROR_CODE = 401;
 
 export default function getBundleInfoForSelf() {
   describe('getBundleInfoForSelf', function () {
@@ -186,24 +188,25 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with hapModuleInfo flag(by promise).
      */
     it('getBundleInfoForSelfModulePro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE).then(data => {
+      await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE).then(data => {
         console.info("ModulePro" + JSON.stringify(data.hapModulesInfo[0]));
         checkCommonBundleInfo(data);
         expect(data.appInfo).assertEqual(null);
         expect(data.hapModulesInfo.length).assertEqual(1);
         expect(data.hapModulesInfo[0].name).assertEqual("testModule");
-        //        expect(data.hapModulesInfo[0].icon).assertEqual("");
-        //        expect(data.hapModulesInfo[0].iconId).assertEqual(0);
+        expect(data.hapModulesInfo[0].icon).assertEqual("$media:icon");
+        expect(data.hapModulesInfo[0].iconId).assertLarger(0);
         expect(data.hapModulesInfo[0].label).assertEqual("$string:entry_label");
         expect(data.hapModulesInfo[0].labelId).assertLarger(0);
         expect(data.hapModulesInfo[0].description).assertEqual("$string:testModule_entry_dsc");
         expect(data.hapModulesInfo[0].descriptionId).assertLarger(0);
-        expect(data.hapModulesInfo[0].mainElementName).assertEqual("MainAbility");
+        expect(data.hapModulesInfo[0].mainElementName).assertEqual(ABILITY_NAME);
         expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
         expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
-        expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(1);
+        expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(2);
         expect(data.hapModulesInfo[0].deviceTypes[0]).assertEqual("default");
+        expect(data.hapModulesInfo[0].deviceTypes[1]).assertEqual("tablet");
         expect(data.hapModulesInfo[0].installationFree).assertFalse();
         expect(data.hapModulesInfo[0].hashValue).assertEqual("");
         expect(data.hapModulesInfo[0].moduleSourceDir).assertEqual(SOURCE_DIR);
@@ -230,18 +233,19 @@ export default function getBundleInfoForSelf() {
         expect(data.appInfo).assertEqual(null);
         expect(data.hapModulesInfo.length).assertEqual(1);
         expect(data.hapModulesInfo[0].name).assertEqual("testModule");
-        //        expect(data.hapModulesInfo[0].icon).assertEqual("");
-        //        expect(data.hapModulesInfo[0].iconId).assertEqual(0);
+        expect(data.hapModulesInfo[0].icon).assertEqual("$media:icon");
+        expect(data.hapModulesInfo[0].iconId).assertLarger(0);
         expect(data.hapModulesInfo[0].label).assertEqual("$string:entry_label");
         expect(data.hapModulesInfo[0].labelId).assertLarger(0);
         expect(data.hapModulesInfo[0].description).assertEqual("$string:testModule_entry_dsc");
         expect(data.hapModulesInfo[0].descriptionId).assertLarger(0);
-        expect(data.hapModulesInfo[0].mainElementName).assertEqual("MainAbility");
+        expect(data.hapModulesInfo[0].mainElementName).assertEqual(ABILITY_NAME);
         expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
         expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
-        expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(1);
+        expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(2);
         expect(data.hapModulesInfo[0].deviceTypes[0]).assertEqual("default");
+        expect(data.hapModulesInfo[0].deviceTypes[1]).assertEqual("tablet");
         expect(data.hapModulesInfo[0].installationFree).assertFalse();
         expect(data.hapModulesInfo[0].hashValue).assertEqual("");
         expect(data.hapModulesInfo[0].moduleSourceDir).assertEqual(SOURCE_DIR);
@@ -259,14 +263,14 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with ability flag(by promise).
      */
     it('getBundleInfoForSelfAbilityPro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(
+      await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY
       ).then(data => {
         console.info("AbilityPro" + JSON.stringify(data.hapModulesInfo[0].abilitiesInfo[0]));
         checkCommonBundleInfo(data);
         checkCommonHapModuleInfo(data);
         expect(data.appInfo).assertEqual(null);
-        expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(2);
+        expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(3);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].bundleName).assertEqual(BUNDLE_NAME);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].moduleName).assertEqual("testModule");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility");
@@ -285,8 +289,9 @@ export default function getBundleInfoForSelf() {
         expect(data.hapModulesInfo[0].abilitiesInfo[0].readPermission).assertEqual("");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].writePermission).assertEqual("");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].uri).assertEqual("");
-        expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes.length).assertEqual(1);
+        expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes.length).assertEqual(2);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes[0]).assertEqual("default");
+        expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes[1]).assertEqual("tablet");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].applicationInfo).assertEqual(null);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].metadata.length).assertEqual(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].enabled).assertTrue();
@@ -301,7 +306,11 @@ export default function getBundleInfoForSelf() {
         expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.maxWindowHeight).assertEqual(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.minWindowHeight).assertEqual(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[1].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility1");
+        expect(data.hapModulesInfo[0].abilitiesInfo[1].launchType).assertEqual(1);
+        expect(data.hapModulesInfo[0].abilitiesInfo[2].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility2");
+        expect(data.hapModulesInfo[0].abilitiesInfo[2].launchType).assertEqual(2);
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[1])
+        checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[2])
         expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
         expect(data.reqPermissionDetails.length).assertEqual(0);
@@ -329,7 +338,7 @@ export default function getBundleInfoForSelf() {
           checkCommonBundleInfo(data);
           checkCommonHapModuleInfo(data);
           expect(data.appInfo).assertEqual(null);
-          expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(2);
+          expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(3);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].bundleName).assertEqual(BUNDLE_NAME);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].moduleName).assertEqual("testModule");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility");
@@ -348,8 +357,9 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo[0].readPermission).assertEqual("");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].writePermission).assertEqual("");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].uri).assertEqual("");
-          expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes.length).assertEqual(1);
+          expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes.length).assertEqual(2);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes[0]).assertEqual("default");
+          expect(data.hapModulesInfo[0].abilitiesInfo[0].deviceTypes[1]).assertEqual("tablet");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].applicationInfo).assertEqual(null);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].metadata.length).assertEqual(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].enabled).assertTrue();
@@ -364,7 +374,11 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.maxWindowHeight).assertEqual(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.minWindowHeight).assertEqual(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[1].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility1");
+          expect(data.hapModulesInfo[0].abilitiesInfo[1].launchType).assertEqual(1);
+          expect(data.hapModulesInfo[0].abilitiesInfo[2].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility2");
+          expect(data.hapModulesInfo[0].abilitiesInfo[2].launchType).assertEqual(2);
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[1])
+          checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[2])
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
           expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
           expect(data.reqPermissionDetails.length).assertEqual(0);
@@ -381,7 +395,7 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with extensionAbility flag(by promise).
      */
     it('getBundleInfoForSelfExtensionPro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(
+      await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
       ).then(data => {
         console.info("ExtensionPro" + JSON.stringify(data.hapModulesInfo[0].extensionAbilitiesInfo));
@@ -450,7 +464,7 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].bundleName).assertEqual(BUNDLE_NAME);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].moduleName).assertEqual("testModule");
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].name).assertEqual("Form");
-                  expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].labelId).assertLarger(0);
+          expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].labelId).assertLarger(0);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].descriptionId).assertLarger(0);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].iconId).assertLarger(0);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[0].isVisible).assertTrue();
@@ -464,7 +478,7 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].bundleName).assertEqual(BUNDLE_NAME);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].moduleName).assertEqual("testModule");
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].name).assertEqual("Form1");
-                  expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].labelId).assertLarger(0);
+          expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].labelId).assertLarger(0);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].descriptionId).assertLarger(0);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].iconId).assertLarger(0);
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo[1].isVisible).assertTrue();
@@ -490,8 +504,8 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with permission flag(by promise).
      */
     it('getBundleInfoForSelfPermissionPro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(
-        bundle.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION).then(data => {
+      await bundle.getBundleInfoForSelf(
+    	bundle.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION).then(data => {
         console.info("PermissionPro" + JSON.stringify(data.reqPermissionDetails));
         console.info("PermissionPro" + JSON.stringify(data.permissionGrantStates));
         checkCommonBundleInfo(data);
@@ -547,7 +561,7 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with metadata flag(by promise).
      */
     it('getBundleInfoForSelfMetaPro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(
+      await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA)
         .then(data => {
           console.info("MetaPro" + JSON.stringify(data.hapModulesInfo[0].metadata));
@@ -605,7 +619,7 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with signatureInfo flag(by promise).
      */
     it('getBundleInfoForSelfSigPro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(
+      await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO).then(data => {
         console.info("SigPro" + JSON.stringify(data.signatureInfo));
         checkCommonBundleInfo(data);
@@ -650,7 +664,7 @@ export default function getBundleInfoForSelf() {
      * @tc.desc: Test getBundleInfoForSelf with disable flag(by promise).
      */
     it('getBundleInfoForSelfDisPro', 0, async function (done) {
-      bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_DISABLE).then(data => {
+      await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_DISABLE).then(data => {
         console.info("DisPro" + JSON.stringify(data));
         checkCommonBundleInfo(data);
         expect(data.appInfo).assertEqual(null);
@@ -684,6 +698,69 @@ export default function getBundleInfoForSelf() {
         expect(err).assertEqual(null);
         done();
       })
+    })
+
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERY_0136
+     * @tc.name: getBundleInfoForSelfParamErrPro
+     * @tc.desc: Test getBundleInfoForSelf with error param(by promise).
+     */
+    it('getBundleInfoForSelfParamErrPro', 0, async function (done) {
+      try {
+        await bundle.getBundleInfoForSelf(null).then(data => {
+          console.info("ParamErrPro null success " + JSON.stringify(data));
+          expect(data).assertFail();
+        }).catch(err => {
+          console.info("ParamErrPro null fail1 " + JSON.stringify(err));
+          expect(err).assertFail();
+        })
+      } catch (err) {
+        console.info("ParamErrPro null fail2 " + JSON.stringify(err));
+        expect(err.code).assertEqual(PARAM_ERROR_CODE);
+      }
+      try {
+        await bundle.getBundleInfoForSelf(undefined).then(data => {
+          console.info("ParamErrPro undefined success " + JSON.stringify(data));
+          expect(data).assertFail();
+        }).catch(err => {
+          console.info("ParamErrPro undefined fail1 " + JSON.stringify(err));
+          expect(err).assertFail();
+        })
+      } catch (err) {
+        console.info("ParamErrPro undefined fail2 " + JSON.stringify(err));
+        expect(err.code).assertEqual(PARAM_ERROR_CODE);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number: SUB_BMS_APPINFO_QUERY_0137
+     * @tc.name: getBundleInfoForSelfParamErrCal
+     * @tc.desc: Test getBundleInfoForSelf with error param(by callback).
+     */
+    it('getBundleInfoForSelfParamErrCal', 0, async function (done) {
+      try {
+        bundle.getBundleInfoForSelf(null, (err, data) => {
+          console.info("ParamErrCal null success " + JSON.stringify(data));
+          console.info("ParamErrCal null success " + JSON.stringify(err));
+          expect(data).assertFail();
+        })
+      } catch (err) {
+        console.info("ParamErrCal null fail2 " + JSON.stringify(err));
+        expect(err.code).assertEqual(PARAM_ERROR_CODE);
+      }
+      await util.sleep(200);
+      try {
+        bundle.getBundleInfoForSelf(undefined, (err, data) => {
+          console.info("ParamErrCal undefined success " + JSON.stringify(data));
+          console.info("ParamErrCal undefined success " + JSON.stringify(err));
+          expect(data).assertFail();
+        })
+      } catch (err) {
+        console.info("ParamErrCal undefined fail2 " + JSON.stringify(err));
+        expect(err.code).assertEqual(PARAM_ERROR_CODE);
+        done();
+      }
     })
 
     function checkCommonBundleInfo(data) {
@@ -731,15 +808,16 @@ export default function getBundleInfoForSelf() {
     function checkCommonHapModuleInfo(data) {
       expect(data.hapModulesInfo.length).assertEqual(1);
       expect(data.hapModulesInfo[0].name).assertEqual("testModule");
-      //        expect(data.hapModulesInfo[0].icon).assertEqual("");
-      //        expect(data.hapModulesInfo[0].iconId).assertEqual(0);
+      expect(data.hapModulesInfo[0].icon).assertEqual("$media:icon");
+      expect(data.hapModulesInfo[0].iconId).assertLarger(0);
       expect(data.hapModulesInfo[0].label).assertEqual("$string:entry_label");
       expect(data.hapModulesInfo[0].labelId).assertLarger(0);
       expect(data.hapModulesInfo[0].description).assertEqual("$string:testModule_entry_dsc");
       expect(data.hapModulesInfo[0].descriptionId).assertLarger(0);
-      expect(data.hapModulesInfo[0].mainElementName).assertEqual("MainAbility");
-      expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(1);
+      expect(data.hapModulesInfo[0].mainElementName).assertEqual(ABILITY_NAME);
+      expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(2);
       expect(data.hapModulesInfo[0].deviceTypes[0]).assertEqual("default");
+      expect(data.hapModulesInfo[0].deviceTypes[1]).assertEqual("tablet");
       expect(data.hapModulesInfo[0].installationFree).assertFalse();
       expect(data.hapModulesInfo[0].hashValue).assertEqual("");
       expect(data.hapModulesInfo[0].moduleSourceDir).assertEqual(SOURCE_DIR);
@@ -759,13 +837,13 @@ export default function getBundleInfoForSelf() {
       expect(data.isVisible).assertTrue();
       expect(data.type).assertEqual(1);
       expect(data.orientation).assertEqual(2);
-      expect(data.launchType).assertEqual(0);
       expect(data.permissions.length).assertEqual(0);
       expect(data.readPermission).assertEqual("");
       expect(data.writePermission).assertEqual("");
       expect(data.uri).assertEqual("");
-      expect(data.deviceTypes.length).assertEqual(1);
+      expect(data.deviceTypes.length).assertEqual(2);
       expect(data.deviceTypes[0]).assertEqual("default");
+      expect(data.deviceTypes[1]).assertEqual("tablet");
       expect(data.applicationInfo).assertEqual(null);
       expect(data.metadata.length).assertEqual(0);
       expect(data.enabled).assertTrue();
