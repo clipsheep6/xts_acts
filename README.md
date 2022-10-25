@@ -12,11 +12,7 @@ XTS移植跟向对应平台上移植应用时一样的，需要将xts 工程编�
 ```
 ├── OAT.xml             #OAT文件
 └── android             #Android平台xts用例目录
-|    └── xts_2.0        #声明式范式XTS用例
-|    └── xts_1.0        #类Web式XTS用例，待补充
-└── IOS                 #IOS平台xts用例目录，待补充
-     └── xts_2.0
-     └── xts_1.0
+     └── xts_2.0        #声明式范式XTS用例
 ```
 
 ## 执行
