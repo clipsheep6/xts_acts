@@ -216,37 +216,14 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0080
    * @tc.name fileIO_open_sync_008
-   * @tc.desc Test openSync() interfaces. mode=0o200000. Invalid filepath.
-   * @tc.size MEDIUM
-   * @tc.type Functoin
-   * @tc.level Level 0
-   * @tc.require
-   */
-  it('fileIO_open_sync_008', 0, async function () {
-    let dpath = await nextFileName('fileIO_open_sync_008') + 'aaa';
-    fileio.mkdirSync(dpath);
-
-    try {
-      fileIO.openSync(dpath, fileIO.OpenMode.DIR);
-      expect(null).assertFail();
-    } catch (e) {
-      console.log('fileIO_open_sync_008 has failed for ' + e.message + ', code: ' + e.code);
-      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue;
-      fileio.rmdirSync(dpath);
-    }
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0090
-   * @tc.name fileIO_open_sync_009
    * @tc.desc Test openSync() interfaces. mode=0o400002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_009', 0, async function () {
-    let fpath = await nextFileName('fileIO_open_sync_009');
+  it('fileIO_open_sync_008', 0, async function () {
+    let fpath = await nextFileName('fileIO_open_sync_008');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -255,22 +232,22 @@ import {
       expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
     } catch (e) {
-      console.log('fileIO_open_sync_009 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_sync_008 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0100
-   * @tc.name fileIO_open_sync_010
+   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0090
+   * @tc.name fileIO_open_sync_009
    * @tc.desc Test openSync() interfaces. mode=0o400002. Symbolic link loop.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-   it('fileIO_open_sync_010', 0, async function () {
-    let fpath = await nextFileName('fileIO_open_sync_010');
+   it('fileIO_open_sync_009', 0, async function () {
+    let fpath = await nextFileName('fileIO_open_sync_009');
     let ffpath = fpath + 'aaaa';
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
@@ -279,7 +256,7 @@ import {
       fileIO.openSync(ffpath, fileIO.OpenMode.NOFOLLOW | fileIO.OpenMode.READ_WRITE);
       expect(null).assertFail();
     } catch (e) {
-      console.log('fileIO_open_sync_010 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_sync_009 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900033 && e.message == 'Too many symbolic links encountered').assertTrue;
       fileio.unlinkSync(fpath);
       fileio.unlinkSync(ffpath);
@@ -287,16 +264,16 @@ import {
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0110
-   * @tc.name fileIO_open_sync_011
+   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0100
+   * @tc.name fileIO_open_sync_010
    * @tc.desc Test openSync() interfaces. mode=0o4010002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_011', 0, async function () {
-    let fpath = await nextFileName('fileIO_open_sync_011');
+  it('fileIO_open_sync_010', 0, async function () {
+    let fpath = await nextFileName('fileIO_open_sync_010');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -305,7 +282,7 @@ import {
       expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
     } catch (e) {
-      console.log('fileIO_open_sync_011 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_sync_010 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
     }
   });
@@ -510,37 +487,14 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0080
    * @tc.name fileIO_open_async_008
-   * @tc.desc Test open() interfaces. mode=0o200000. Invalid filepath.
-   * @tc.size MEDIUM
-   * @tc.type Functoin
-   * @tc.level Level 0
-   * @tc.require
-   */
- it('fileIO_open_async_008', 0, async function (done) {
-  let dpath = await nextFileName('fileIO_open_async_008') + 'bbb';
-  fileio.mkdirSync(dpath);
-
-  try {
-    fileIO.openSync(dpath, fileIO.OpenMode.DIR);
-  } catch (e) {
-    console.log('fileIO_open_async_008 has failed for ' + e.message + ', code: ' + e.code);
-    expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue;
-    fileio.rmdirSync(dpath);
-    done();
-  }
-});
-
-  /**
-   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0090
-   * @tc.name fileIO_open_async_009
    * @tc.desc Test open() interfaces. mode=0o400002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_async_009', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_open_async_009');
+  it('fileIO_open_async_008', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_open_async_008');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -550,22 +504,22 @@ import {
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
     } catch (e) {
-      console.log('fileIO_open_async_009 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_async_008 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0100
-   * @tc.name fileIO_open_async_010
+   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0090
+   * @tc.name fileIO_open_async_009
    * @tc.desc Test open() interfaces. mode=0o400002. Symbolic link loop.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-   it('fileIO_open_async_010', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_open_async_010');
+   it('fileIO_open_async_009', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_open_async_009');
     let ffpath = fpath + 'aaaa';
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
@@ -573,7 +527,7 @@ import {
       fileio.symlinkSync(fpath, ffpath);
       await fileIO.open(ffpath, fileIO.OpenMode.NOFOLLOW | fileIO.OpenMode.READ_WRITE);
     } catch (e) {
-      console.log('fileIO_open_async_010 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_async_009 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900033 && e.message == 'Too many symbolic links encountered').assertTrue;
       fileio.unlinkSync(fpath);
       fileio.unlinkSync(ffpath);
@@ -582,16 +536,16 @@ import {
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0110
-   * @tc.name fileIO_open_async_011
+   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0100
+   * @tc.name fileIO_open_async_010
    * @tc.desc Test open() interfaces. mode=0o4010002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_async_011', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_open_async_011');
+  it('fileIO_open_async_010', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_open_async_010');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -602,22 +556,22 @@ import {
         done();
       });
     } catch (err) {
-      console.log('fileIO_open_async_011 has failed for ' + err.message + ', code: ' + err.code);
+      console.log('fileIO_open_async_010 has failed for ' + err.message + ', code: ' + err.code);
       expect(null).assertFail();
     }
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_OPENIO_ASYNC_0120
-   * @tc.name fileIO_open_async_012
+   * @tc.number SUB_DF_FILEIO_OPENIO_ASYNC_0110
+   * @tc.name fileIO_open_async_011
    * @tc.desc Test open() interfaces. mode=0o102. Callback.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_async_012', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_open_async_012');
+  it('fileIO_open_async_011', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_open_async_011');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -628,7 +582,7 @@ import {
         done();
       });
     } catch (e) {
-      console.log('fileIO_open_async_012 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_async_011 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
     }
   });

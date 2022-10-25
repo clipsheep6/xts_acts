@@ -65,11 +65,11 @@ import fileioSymlink from './module_fileio/members/symlink.test.js'
 import fileioTruncate from './module_fileio/members/truncate.test.js'
 import fileioUnlink from './module_fileio/members/unlink.test.js'
 import fileioWrite from './module_fileio/members/write.test.js'
-import fileIOOpen from './module_fileio_V9/members/openV9.test.js'
-import fileIORead from './module_fileio_V9/members/readV9.test.js'
-import fileIOStat from './module_fileio_V9/members/statV9.test.js'
-import fileIOTruncate from './module_fileio_V9/members/truncateV9.test.js'
-import fileIOWrite from './module_fileio_V9/members/writeV9.test.js'
+import fileIOOpen from './module_fileio_V9/members/open.test.js'
+import fileIORead from './module_fileio_V9/members/read.test.js'
+import fileIOStat from './module_fileio_V9/members/stat.test.js'
+import fileIOTruncate from './module_fileio_V9/members/truncate.test.js'
+import fileIOWrite from './module_fileio_V9/members/write.test.js'
 export default function testsuite() {
     fileIOTest()
     fileIOTestDir()
