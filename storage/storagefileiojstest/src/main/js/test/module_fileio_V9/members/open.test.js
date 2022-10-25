@@ -18,27 +18,26 @@ import {
     describe, it, expect,
   } from '../../Common';
   
-  export default function fileIOOpenFile() {
+  export default function fileIOOpen() {
   describe('fileIO_fs_open_file', function () {
 
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0000
    * @tc.name fileIO_open_sync_000
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o2.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_000', 0, async function (done) {
+  it('fileIO_open_sync_000', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_000');
 
       try {
-        let file = fileIO.openSync(fpath, 0o102);
-        console.info('fileIO_open_sync_000, fd: ' + file.fd);
+        let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_WRITE);
         expect(isIntNum(file.fd)).assertTrue();
+        expect(fileio.closeSync(file.fd) == null).assertTrue();
         expect(fileio.unlinkSync(fpath) == null).assertTrue();
-        done();
       } catch (e) {
         console.log('fileIO_open_sync_000 has failed for ' + e.message + ', code: ' + e.code);
         expect(null).assertFail();
@@ -48,7 +47,7 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0010
    * @tc.name fileIO_open_sync_001
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. Missing Parameter.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -67,22 +66,21 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0020
    * @tc.name fileIO_open_sync_002
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o102.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_002', 0, async function (done) {
+  it('fileIO_open_sync_002', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_002');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = fileIO.openSync(fpath, 0o202);
-      console.info('fileIO_open_sync_002, fd: ' + file.fd);
+      let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
     } catch (e) {
       console.log('fileIO_open_sync_002 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
@@ -92,22 +90,24 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0030
    * @tc.name fileIO_open_sync_003
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o1002.
+   * If the file exists and the file is opened for write-only or read-write, trim its length to zero.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_003', 0, async function (done) {
+  it('fileIO_open_sync_003', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_003');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = fileIO.openSync(fpath, 0o1002);
-      console.info('fileIO_open_sync_003, fd: ' + file.fd);
+      let file = fileIO.openSync(fpath, fileIO.OpenMode.TRUNC | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      let number = fileio.readSync(file.fd, new ArrayBuffer(4096));
+      expect(number == 0).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
     } catch (e) {
       console.log('fileIO_open_sync_003 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
@@ -117,25 +117,27 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0040
    * @tc.name fileIO_open_sync_004
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o2002.
+   * Open as append, subsequent writes will append to the end of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_004', 0, async function (done) {
+  it('fileIO_open_sync_004', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_004');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = fileIO.openSync(fpath, 0o2002);
-      console.info('fileIO_open_sync_004, fd: ' + file.fd);
+      let file = fileIO.openSync(fpath, fileIO.OpenMode.APPEND | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
       let length = 100;
       let num = fileIO.writeSync(file.fd, new ArrayBuffer(length));
       expect(num == length).assertTrue();
+      let number = fileio.readSync(file.fd, new ArrayBuffer(4096), { position: 0 });
+      expect(number == length + FILE_CONTENT.length).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
     } catch (e) {
       console.log('fileIO_open_sync_004 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
@@ -145,22 +147,21 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0050
    * @tc.name fileIO_open_sync_005
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o4002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_005', 0, async function (done) {
+  it('fileIO_open_sync_005', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_005');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = fileIO.openSync(fpath, 0o4002);
-      console.info('fileIO_open_sync_005, fd: ' + file.fd);
+      let file = fileIO.openSync(fpath, fileIO.OpenMode.NONBLOCK | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
     } catch (e) {
       console.log('fileIO_open_sync_005 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
@@ -170,22 +171,20 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0060
    * @tc.name fileIO_open_sync_006
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o200000.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_006', 0, async function (done) {
+  it('fileIO_open_sync_006', 0, async function () {
     let dpath = await nextFileName('fileIO_open_sync_006');
     fileio.mkdirSync(dpath);
 
     try {
-      let file = fileIO.openSync(dpath, 0o200000);
-      console.info('fileIO_open_sync_006, fd: ' + file.fd);
-      fileio.rmdirSync(dpath);
+      let file = fileIO.openSync(dpath, fileIO.OpenMode.DIR);
       expect(isIntNum(file.fd)).assertTrue();
-      done();
+      fileio.rmdirSync(dpath);
     } catch (e) {
       console.log('fileIO_open_sync_006 has failed for ' + e.message + ', code: ' + e.code);
     }
@@ -194,47 +193,44 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0070
    * @tc.name fileIO_open_sync_007
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o200000. Not a directory.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_007', 0, async function (done) {
+   it('fileIO_open_sync_007', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_007');
-    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath, '')).assertTrue();
 
     try {
-      let file = fileIO.openSync(fpath, 0o400002);
-      console.info('fileIO_open_sync_007, fd: ' + file.fd);
-      expect(isIntNum(file.fd)).assertTrue();
-      expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
+      fileIO.openSync(fpath, fileIO.OpenMode.DIR);
+      expect(null).assertFail();
     } catch (e) {
       console.log('fileIO_open_sync_007 has failed for ' + e.message + ', code: ' + e.code);
-      expect(null).assertFail();
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue;
+      fileio.unlinkSync(fpath);
     }
   });
 
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0080
    * @tc.name fileIO_open_sync_008
-   * @tc.desc Test openSync() interfaces.
+   * @tc.desc Test openSync() interfaces. mode=0o400002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_sync_008', 0, async function (done) {
+  it('fileIO_open_sync_008', 0, async function () {
     let fpath = await nextFileName('fileIO_open_sync_008');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = fileIO.openSync(fpath, 0o4010002);
-      console.info('fileIO_open_sync_008, fd: ' + file.fd);
+      let file = fileIO.openSync(fpath, fileIO.OpenMode.NOFOLLOW | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
     } catch (e) {
       console.log('fileIO_open_sync_008 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
@@ -242,9 +238,59 @@ import {
   });
 
   /**
+   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0090
+   * @tc.name fileIO_open_sync_009
+   * @tc.desc Test openSync() interfaces. mode=0o400002. Symbolic link loop.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+   it('fileIO_open_sync_009', 0, async function () {
+    let fpath = await nextFileName('fileIO_open_sync_009');
+    let ffpath = fpath + 'aaaa';
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileio.symlinkSync(fpath, ffpath);
+      fileIO.openSync(ffpath, fileIO.OpenMode.NOFOLLOW | fileIO.OpenMode.READ_WRITE);
+      expect(null).assertFail();
+    } catch (e) {
+      console.log('fileIO_open_sync_009 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900033 && e.message == 'Too many symbolic links encountered').assertTrue;
+      fileio.unlinkSync(fpath);
+      fileio.unlinkSync(ffpath);
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_OPENIO_SYNC_0100
+   * @tc.name fileIO_open_sync_010
+   * @tc.desc Test openSync() interfaces. mode=0o4010002.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_open_sync_010', 0, async function () {
+    let fpath = await nextFileName('fileIO_open_sync_010');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let file = fileIO.openSync(fpath, fileIO.OpenMode.SYNC | fileIO.OpenMode.READ_WRITE);
+      expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+    } catch (e) {
+      console.log('fileIO_open_sync_010 has failed for ' + e.message + ', code: ' + e.code);
+      expect(null).assertFail();
+    }
+  });
+
+  /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0000
    * @tc.name fileIO_open_async_000
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o102. Promise.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -256,8 +302,8 @@ import {
 
     try {
       let file = await fileIO.open(fpath, 0o102);
-      console.info('fileIO_open_async_000, fd: ' + file.fd);
       expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
     } catch (e) {
@@ -269,26 +315,26 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPENIO_ASYNC_0010
    * @tc.name fileIO_open_async_001
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. Invalid fp.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_async_001', 0, function () {
+  it('fileIO_open_async_001', 0, function (done) {
     try {
-      fileIO.open();
-      expect(null).assertFail();
+      fileIO.open(-1, fileIO.OpenMode.READ_ONLY);
     } catch (e) {
       console.log('fileIO_open_async_001 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue;
+      done();
     }
   });
 
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0020
    * @tc.name fileIO_open_async_002
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o2. No such file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -296,24 +342,22 @@ import {
    */
   it('fileIO_open_async_002', 0, async function (done) {
     let fpath = await nextFileName('fileIO_open_async_002');
-    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = await fileIO.open(fpath, 0o202);
-      console.info('fileIO_open_async_002, fd: ' + file.fd);
-      expect(isIntNum(file.fd)).assertTrue();
-      expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
+      await fileIO.open(fpath, 0o2);
     } catch (e) {
       console.log('fileIO_open_async_002 has failed for ' + e.message + ', code: ' + e.code);
-      expect(null).assertFail();
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue;
+      expect(fileio.unlinkSync(fpath) == null).assertTrue();
+      done();
     }
   });
 
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0030
    * @tc.name fileIO_open_async_003
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o1002.
+   * If the file exists and the file is opened for write-only or read-write, trim its length to zero.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -324,9 +368,11 @@ import {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = await fileIO.open(fpath, 0o1002);
-      console.info('fileIO_open_async_003, fd: ' + file.fd);
+      let file = await fileIO.open(fpath, fileIO.OpenMode.TRUNC | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      let number = fileio.readSync(file.fd, new ArrayBuffer(4096));
+      expect(number == 0).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
     } catch (e) {
@@ -338,7 +384,8 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0040
    * @tc.name fileIO_open_async_004
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o2002.
+   * Open as append, subsequent writes will append to the end of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -349,12 +396,14 @@ import {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = await fileIO.open(fpath, 0o2002);
-      console.info('fileIO_open_async_004, fd: ' + file.fd);
+      let file = await fileIO.open(fpath, fileIO.OpenMode.APPEND | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
       let length = 100;
-      let num = fileIO.writeSync(file.fd,new ArrayBuffer(length));
+      let num = fileIO.writeSync(file.fd, new ArrayBuffer(length));
       expect(num == length).assertTrue();
+      let number = fileio.readSync(file.fd, new ArrayBuffer(4096), { position: 0 });
+      expect(number == length + FILE_CONTENT.length).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
     } catch (e) {
@@ -366,7 +415,7 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_ASYNC_0050
    * @tc.name fileIO_open_async_005
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o4002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -377,9 +426,9 @@ import {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = await fileIO.open(fpath, 0o4002);
-      console.info('fileIO_open_async_005, fd: ' + file.fd);
+      let file = await fileIO.open(fpath, fileIO.OpenMode.NONBLOCK | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
     } catch (e) {
@@ -391,7 +440,7 @@ import {
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0060
    * @tc.name fileIO_open_async_006
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o200000.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -402,45 +451,43 @@ import {
     fileio.mkdirSync(dpath);
 
     try {
-      let file = await fileIO.open(dpath, 0o200000);
-      console.info('fileIO_open_async_006, fd: ' + file.fd);
-      fileio.rmdirSync(dpath);
+      let file = await fileIO.open(dpath, fileIO.OpenMode.DIR | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      fileio.rmdirSync(dpath);
       done();
     } catch (e) {
       console.log('fileIO_open_async_006 has failed for ' + e.message + ', code: ' + e.code);
     }
   });
 
+
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0070
    * @tc.name fileIO_open_async_007
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o200000. Not a directory.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_async_007', 0, async function (done) {
+   it('fileIO_open_async_007', 0, async function (done) {
     let fpath = await nextFileName('fileIO_open_async_007');
-    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath, '')).assertTrue();
 
     try {
-      let file = await fileIO.open(fpath, 0o400002);
-      console.info('fileIO_open_async_007, fd: ' + file.fd);
-      expect(isIntNum(file.fd)).assertTrue();
-      expect(fileio.unlinkSync(fpath) == null).assertTrue();
-      done();
+      await fileIO.open(fpath, fileIO.OpenMode.DIR | fileIO.OpenMode.READ_WRITE);
     } catch (e) {
       console.log('fileIO_open_async_007 has failed for ' + e.message + ', code: ' + e.code);
-      expect(null).assertFail();
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue;
+      fileio.unlinkSync(fpath);
+      done();
     }
   });
 
   /**
    * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0080
-   * @tc.name fileIO_open_async_007
-   * @tc.desc Test open() interfaces.
+   * @tc.name fileIO_open_async_008
+   * @tc.desc Test open() interfaces. mode=0o400002.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -451,9 +498,9 @@ import {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let file = await fileIO.open(fpath, 0o4010002);
-      console.info('fileIO_open_async_008, fd: ' + file.fd);
+      let file = await fileIO.open(fpath, fileIO.OpenMode.NOFOLLOW | fileIO.OpenMode.READ_WRITE);
       expect(isIntNum(file.fd)).assertTrue();
+      expect(fileio.closeSync(file.fd) == null).assertTrue();
       expect(fileio.unlinkSync(fpath) == null).assertTrue();
       done();
     } catch (e) {
@@ -463,27 +510,79 @@ import {
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_OPENIO_ASYNC_0090
+   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0090
    * @tc.name fileIO_open_async_009
-   * @tc.desc Test open() interfaces.
+   * @tc.desc Test open() interfaces. mode=0o400002. Symbolic link loop.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
    * @tc.require
    */
-  it('fileIO_open_async_009', 0, async function (done) {
+   it('fileIO_open_async_009', 0, async function (done) {
     let fpath = await nextFileName('fileIO_open_async_009');
+    let ffpath = fpath + 'aaaa';
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      fileIO.open(fpath, 0o102, function (err, file) {
-        console.info('fileIO_open_async_009, fd: ' + file.fd);
+      fileio.symlinkSync(fpath, ffpath);
+      await fileIO.open(ffpath, fileIO.OpenMode.NOFOLLOW | fileIO.OpenMode.READ_WRITE);
+    } catch (e) {
+      console.log('fileIO_open_async_009 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900033 && e.message == 'Too many symbolic links encountered').assertTrue;
+      fileio.unlinkSync(fpath);
+      fileio.unlinkSync(ffpath);
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_OPEN_FILE_ASYNC_0100
+   * @tc.name fileIO_open_async_010
+   * @tc.desc Test open() interfaces. mode=0o4010002.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_open_async_010', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_open_async_010');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.open(fpath, fileIO.OpenMode.SYNC | fileIO.OpenMode.READ_WRITE, function(err, file) {
         expect(isIntNum(file.fd)).assertTrue();
+        expect(fileio.closeSync(file.fd) == null).assertTrue();
+        expect(fileio.unlinkSync(fpath) == null).assertTrue();
+        done();
+      });
+    } catch (err) {
+      console.log('fileIO_open_async_010 has failed for ' + err.message + ', code: ' + err.code);
+      expect(null).assertFail();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_OPENIO_ASYNC_0110
+   * @tc.name fileIO_open_async_011
+   * @tc.desc Test open() interfaces. mode=0o102. Callback.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_open_async_011', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_open_async_011');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.open(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE, function (err, file) {
+        expect(isIntNum(file.fd)).assertTrue();
+        expect(fileio.closeSync(file.fd) == null).assertTrue();
         expect(fileio.unlinkSync(fpath) == null).assertTrue();
         done();
       });
     } catch (e) {
-      console.log('fileIO_open_async_009 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_open_async_011 has failed for ' + e.message + ', code: ' + e.code);
       expect(null).assertFail();
     }
   });
