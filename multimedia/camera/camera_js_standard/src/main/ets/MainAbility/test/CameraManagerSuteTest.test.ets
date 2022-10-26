@@ -51,8 +51,8 @@ export default function cameraManagerSuteTest(surfaceId: any) {
             mCameraManager.on('cameraMute', async (data) => {
                 count++;
                 console.info("mute state: " + data);
+                expect(count > 0).assertTrue();
             })
-            expect(count > 0).assertTrue();
         }
         await sleep(500);
         console.info('Exit getCameraManagerInstance');
@@ -200,14 +200,14 @@ export default function cameraManagerSuteTest(surfaceId: any) {
                 expect().assertFail();
             }
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera true");
-            let isCameraMuted = mCameraManager.isCameraMuted();
             mCameraManager.muteCamera(true);
-            expect(isCameraMuted).asserTrue();
+            let isCameraMuted = mCameraManager.isCameraMuted();
+            expect(isCameraMuted).assertTrue();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera false");
             mCameraManager.muteCamera(false);
             isCameraMuted = mCameraManager.isCameraMuted();
-            expect(isCameraMuted).asserFalse();
+            expect(isCameraMuted).assertFalse();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
             await sleep(1000);
             done();
