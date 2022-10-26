@@ -22,6 +22,7 @@ const TAG = "CameraManagerSuteTest: ";
 
 // Define global variables
 let mCameraManager;
+let count = 0;
 
 
 export default function cameraManagerSuteTest(surfaceId: any) {
@@ -137,6 +138,32 @@ export default function cameraManagerSuteTest(surfaceId: any) {
 
 
         /**
+  * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100
+  * @tc.name      : camera mute callback on CameraManager async api
+  * @tc.desc      : camera mute callback on CameraManager async api
+  * @tc.size      : MEDIUM
+  * @tc.type      : Function
+  * @tc.level     : Level 2
+*/
+        it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
+            if (isEmpty(mCameraManager)) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
+                expect().assertFail();
+            } else {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 to operate")
+                mCameraManager.on('cameraMute', async (data) => {
+                    count++;
+                    console.info("mute state: " + data);
+                    await sleep(1000);
+                    done();
+                })
+            }
+            await sleep(1000);
+            done();
+        })
+
+
+        /**
           * @tc.number    : SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100
           * @tc.name      : Get camera mute 
           * @tc.desc      : Get camera mute
@@ -194,50 +221,15 @@ export default function cameraManagerSuteTest(surfaceId: any) {
             }
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera true");
             mCameraManager.muteCamera(true);
+            console.log("count: " + count)
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + mCameraManager.isCameraMuted());
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera false");
             mCameraManager.muteCamera(false);
+            console.log("count: " + count)
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + mCameraManager.isCameraMuted());
             await sleep(1000);
             done();
         })
-
-
-        /**
-          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100
-          * @tc.name      : camera mute callback on CameraManager async api
-          * @tc.desc      : camera mute callback on CameraManager async api
-          * @tc.size      : MEDIUM
-          * @tc.type      : Function
-          * @tc.level     : Level 2
-        */
-        it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
-                expect().assertFail();
-            } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 to operate")
-                mCameraManager.on('cameraMute', async (err, data) => {
-                    if (!err) {
-                        console.info(TAG + "Camera mute Callback on cameraManager is success");
-                        if (isEmpty(data)) {
-                            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 data == null || undefined")
-                            expect().assertFail();
-                        }
-                        console.info(TAG + "Camera status Callback Camera mute: " + data);
-
-                    } else {
-                        expect().assertFail();
-                        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 FAILED: " + err.message);
-                    }
-                    await sleep(1000);
-                    done();
-                })
-            }
-            await sleep(1000);
-            done();
-        })
-        
 
     })
 }
