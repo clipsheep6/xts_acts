@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index",
+    "MainAbility/pages/WindowInfoParent",
+    "MainAbility/pages/WindowInfoChild"
+  ]
+}

@@ -15,7 +15,6 @@
 import file from '@system.file'
 import config from '@ohos.accessibility.config'
 import accessibility from '@ohos.accessibility'
-import prompt from '@ohos.prompt'
 
 const AUDIBLE_BUNDLE_NAME = 'com.example.accessibleaudibleability.hmservice/ServiceExtAbility'
 const GENERIC_BUNDLE_NAME = 'com.example.accessiblegenericability.hmservice/ServiceExtAbility'
@@ -97,10 +96,8 @@ struct Index {
     for (let bundleName of bundleNameArr) {
       config.enableAbility(bundleName, ['retrieve']).then((data) => {
         console.error(logTag + 'enableAbility ' + bundleName + ' success. data: ' + JSON.stringify(data))
-        prompt.showToast({ message: '启动应用成功'})
       }).catch((error) => {
         console.error(logTag + 'enableAbility ' + bundleName + ' failed. Cause: ' + JSON.stringify(error))
-        prompt.showToast({ message: '启动应用异常'})
         return
       })
     }
@@ -110,10 +107,8 @@ struct Index {
     for (let bundleName of bundleNameArr) {
       config.disableAbility(bundleName).then((data) => {
         console.error(logTag + 'disableAbility ' + bundleName + ' success. data: ' + JSON.stringify(data))
-        prompt.showToast({ message: '关闭应用成功'})
       }).catch((error) => {
         console.error(logTag + 'disableAbility ' + bundleName + ' failed. Cause: ' + JSON.stringify(error))
-        prompt.showToast({ message: '关闭应用异常'})
         return
       })
     }
