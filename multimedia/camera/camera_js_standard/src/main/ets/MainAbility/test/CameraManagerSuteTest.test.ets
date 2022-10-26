@@ -215,19 +215,27 @@ export default function cameraManagerSuteTest(surfaceId: any) {
 
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100
-         * @tc.name      : camera mute callback on CameraManager async api
-         * @tc.desc      : camera mute callback on CameraManager async api
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
+          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100
+          * @tc.name      : camera mute callback on CameraManager async api
+          * @tc.desc      : camera mute callback on CameraManager async api
+          * @tc.size      : MEDIUM
+          * @tc.type      : Function
+          * @tc.level     : Level 2
         */
-        it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
+         it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
             if (isEmpty(mCameraManager)) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
                 expect().assertFail();
             } else {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 to operate")
+                mCameraManager.on('cameraMute', async (data) => {
+                    console.info(TAG + "Camera mute Callback on cameraManager is success");
+                    if (isEmpty(data)) {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 data == null || undefined")
+                        expect().assertFail();
+                    }
+                    console.info(TAG + "Camera status Callback Camera mute: " + data);
+                })
             }
             await sleep(1000);
             done();
