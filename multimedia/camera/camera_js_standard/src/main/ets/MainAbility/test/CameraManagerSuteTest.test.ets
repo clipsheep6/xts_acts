@@ -46,12 +46,18 @@ export default function cameraManagerSuteTest(surfaceId: any) {
         if (isEmpty(mCameraManager)) {
             console.info(TAG + "getCameraManager FAILED");
             return false;
+        } else {
+            console.info('start add listener');
+            mCameraManager.on('cameraMute', async (data) => {
+                count++;
+                console.info("mute state: " + data);
+            })
+            expect(count > 0).assertTrue();
         }
         await sleep(500);
         console.info('Exit getCameraManagerInstance');
         return true;
     }
-
 
 
     async function applyPermission() {
@@ -138,32 +144,6 @@ export default function cameraManagerSuteTest(surfaceId: any) {
 
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100
-         * @tc.name      : camera mute callback on CameraManager async api
-         * @tc.desc      : camera mute callback on CameraManager async api
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
-        */
-        it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
-                expect().assertFail();
-            } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 to operate")
-                mCameraManager.on('cameraMute', async (data) => {
-                    count++;
-                    console.info("mute state: " + data);
-                    await sleep(1000);
-                    done();
-                })
-            }
-            await sleep(1000);
-            done();
-        })
-
-
-        /**
           * @tc.number    : SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100
           * @tc.name      : Get camera mute 
           * @tc.desc      : Get camera mute
@@ -220,13 +200,35 @@ export default function cameraManagerSuteTest(surfaceId: any) {
                 expect().assertFail();
             }
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera true");
+            let isCameraMuted = mCameraManager.isCameraMuted();
             mCameraManager.muteCamera(true);
-            console.log("count: " + count)
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + mCameraManager.isCameraMuted());
+            expect(isCameraMuted).asserTrue();
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera false");
             mCameraManager.muteCamera(false);
-            console.log("count: " + count)
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + mCameraManager.isCameraMuted());
+            isCameraMuted = mCameraManager.isCameraMuted();
+            expect(isCameraMuted).asserFalse();
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
+            await sleep(1000);
+            done();
+        })
+
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100
+         * @tc.name      : camera mute callback on CameraManager async api
+         * @tc.desc      : camera mute callback on CameraManager async api
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+        */
+        it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
+            if (isEmpty(mCameraManager)) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
+                expect().assertFail();
+            } else {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 to operate")
+            }
             await sleep(1000);
             done();
         })
