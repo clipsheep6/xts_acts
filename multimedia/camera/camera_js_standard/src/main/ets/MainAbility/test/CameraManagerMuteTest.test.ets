@@ -112,7 +112,7 @@ export default function cameraManagerMuteTest(surfaceId: any) {
         }
     }
 
-    describe('CameraManagerSuteTest', function () {
+    describe('CameraManagerMuteTest', function () {
         console.info(TAG + '----------CameraManagerMuteTest--------------')
 
         beforeAll(async function () {
