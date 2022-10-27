@@ -152,7 +152,7 @@ export default function cameraManagerMuteTest(surfaceId: any) {
             try {
                 isCameraMuteSupported = mCameraManager.isCameraMuteSupported();
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100 isCameraMuteSupported : " + isCameraMuteSupported);
-                expect(isEmpty(isCameraMuteSupported)).assertTrue();
+                expect(isEmpty(isCameraMuteSupported)).assertFalse();
             } catch (err) {
                 console.log("isCameraMuteSupported has failed for " + err.message);
                 expect().assertFail();
@@ -186,7 +186,7 @@ export default function cameraManagerMuteTest(surfaceId: any) {
                 try {
                     let isCameraMuted = mCameraManager.isCameraMuted();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 isCameraMuted : " + isCameraMuted);
-                    expect(isEmpty(isCameraMuted)).assertTrue();
+                    expect(isEmpty(isCameraMuted)).assertFalse();
                 } catch (err) {
                     console.log("isCameraMuteSupported has failed for " + err.message);
                     expect().assertFail();
