@@ -37,7 +37,7 @@ static int ONE = 1;
 static int FOUR = 4;
 static int SIX = 6;
 static int EIGHT = 8;
-static int GARBAGE_LEN = strlen(GARBAGE);
+static int GARBAGE_LEN = strlen(GARBAGE) + 1;
 static unsigned BUFFER_SIZE = 8192;
 std::mutex gzMutex_;
 std::mutex puMutex_;
@@ -120,7 +120,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestCompress, Function | MediumTest | Level2)
     fprintf(stderr, "*********ActsZlibTestCompress Z_SOLO**********\n");
 #else
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -172,7 +172,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzio, Function | MediumTest | Level2)
     ASSERT_TRUE(file != NULL);
 
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -204,7 +204,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzio, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestDeflate, Function | MediumTest | Level2)
 {
     Byte *compr;
-    uLong comprLen = 10000 * sizeof(int);
+    uLong comprLen = 100 * sizeof(int);
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     ASSERT_TRUE(compr != Z_NULL);
 
@@ -252,7 +252,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestDeflate, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestInflate, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -294,7 +294,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflate, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestLargeDeflate, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -355,7 +355,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestLargeDeflate, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestLargeInflate, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -396,7 +396,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestLargeInflate, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestFlush, Function | MediumTest | Level2)
 {
     Byte *compr;
-    uLong comprLen = 10000 * sizeof(int);
+    uLong comprLen = 100 * sizeof(int);
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     ASSERT_TRUE(compr != Z_NULL);
 
@@ -437,7 +437,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestFlush, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestSync, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -475,7 +475,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestSync, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestDictDeflate, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -514,7 +514,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestDictDeflate, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestDictInflate, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -570,7 +570,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestCompress2, Function | MediumTest | Level2)
     fprintf(stderr, "*********ActsZlibTestCompress2 Z_BEST_COMPRESSION Z_SOLO**********\n");
 #else
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -634,7 +634,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestDeflateState, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
     int *bits = nullptr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -812,7 +812,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzBuffer, Function | MediumTest | Level2)
     int res = gzdirect(file);
     fprintf(stderr, "gzdirect result: %d\n", res);
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -960,7 +960,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzGets, Function | MediumTest | Level2)
     file = gzopen(TESTFILE, "wb");
     ASSERT_TRUE(file != NULL);
     Byte *uncompr;
-    uLong uncomprLen = 10000 * sizeof(int);
+    uLong uncomprLen = 100 * sizeof(int);
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
     strcpy_s(reinterpret_cast<char *>(uncompr), GARBAGE_LEN, GARBAGE);
     fprintf(stderr, "gzgets\n");
@@ -1126,7 +1126,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzRead, Function | MediumTest | Level2)
     ASSERT_TRUE(file != NULL);
 
     Byte *uncompr;
-    uLong uncomprLen = 10000 * sizeof(int);
+    uLong uncomprLen = 100 * sizeof(int);
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
     ASSERT_TRUE(uncompr != Z_NULL);
 
@@ -1310,7 +1310,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzInflateBack, Function | MediumTest | Level2
     z_stream strm;
     unsigned char match[65280 + 2]; /* buffer for reversed match or gzip 32K sliding window */
     Byte *uncompr;
-    uLong uncomprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong uncomprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
     /* initialize inflateBack state for repeated use */
     window = match; /* reuse match buffer */
@@ -1341,7 +1341,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzInflateBack, Function | MediumTest | Level2
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateCodesUsed, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -1385,7 +1385,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateCopy_END, Function | MediumTest | Leve
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateGetDictionary, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -1556,7 +1556,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflatePrime, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateReset, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -1594,7 +1594,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateReset, Function | MediumTest | Level2)
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateSetDictionary, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -1628,7 +1628,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateSetDictionary, Function | MediumTest |
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateSyncPoint, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -1660,7 +1660,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateSyncPoint, Function | MediumTest | Lev
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateUndermine, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
@@ -1692,7 +1692,7 @@ HWTEST_F(ActsZlibTest, ActsZlibTestInflateUndermine, Function | MediumTest | Lev
 HWTEST_F(ActsZlibTest, ActsZlibTestInflateValidate, Function | MediumTest | Level2)
 {
     Byte *compr, *uncompr;
-    uLong comprLen = 10000 * sizeof(int); /* don't overflow on MSDOS */
+    uLong comprLen = 100 * sizeof(int); /* don't overflow on MSDOS */
     uLong uncomprLen = comprLen;
     compr = static_cast<Byte*>(calloc(static_cast<uInt>(comprLen), CALLOC_SIZE));
     uncompr = static_cast<Byte*>(calloc(static_cast<uInt>(uncomprLen), CALLOC_SIZE));
