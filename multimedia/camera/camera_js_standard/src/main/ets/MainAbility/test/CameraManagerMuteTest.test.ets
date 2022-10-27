@@ -18,14 +18,14 @@ import bundle from '@ohos.bundle'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
-const TAG = "CameraManagerSuteTest: ";
+const TAG = "CameraManagerMuteTest: ";
 
 // Define global variables
 let mCameraManager;
-let count = 0;
+let isCameraMuteSupported;
 
 
-export default function cameraManagerSuteTest(surfaceId: any) {
+export default function cameraManagerMuteTest(surfaceId: any) {
 
 
     function sleep(ms) {
@@ -46,13 +46,6 @@ export default function cameraManagerSuteTest(surfaceId: any) {
         if (isEmpty(mCameraManager)) {
             console.info(TAG + "getCameraManager FAILED");
             return false;
-        } else {
-            console.info('start add listener');
-            mCameraManager.on('cameraMute', async (data) => {
-                count++;
-                console.info("mute state: " + data);
-                expect(count > 0).assertTrue();
-            })
         }
         await sleep(500);
         console.info('Exit getCameraManagerInstance');
@@ -120,7 +113,7 @@ export default function cameraManagerSuteTest(surfaceId: any) {
     }
 
     describe('CameraManagerSuteTest', function () {
-        console.info(TAG + '----------CameraManagerTest--------------')
+        console.info(TAG + '----------CameraManagerMuteTest--------------')
 
         beforeAll(async function () {
             await applyPermission();
@@ -142,6 +135,32 @@ export default function cameraManagerSuteTest(surfaceId: any) {
             console.info('afterAll case');
         })
 
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100
+         * @tc.name      : Get the support of camera mute 
+         * @tc.desc      : Get the support of camera mute 
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+        */
+        it('SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100--------------");
+            if (isEmpty(mCameraManager)) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100 cameraManager == null || undefined")
+                expect().assertFail();
+            }
+            try {
+                isCameraMuteSupported = mCameraManager.isCameraMuteSupported();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100 isCameraMuteSupported : " + isCameraMuteSupported);
+                expect().assertTrue();
+            } catch (err) {
+                console.log("isCameraMuteSupported has failed for " + err.message);
+                expect().assertFail();
+            }
+            await sleep(1000);
+            done();
+        })
+
 
         /**
           * @tc.number    : SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100
@@ -153,33 +172,26 @@ export default function cameraManagerSuteTest(surfaceId: any) {
         */
         it('SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100--------------");
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 cameraManager == null || undefined")
+            if (isEmpty(isCameraMuteSupported)) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 isCameraMuteSupported == null || undefined")
                 expect().assertFail();
             }
-            let isCameraMuted = mCameraManager.isCameraMuted();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 isCameraMuted : " + isCameraMuted);
-            await sleep(1000);
-            done();
-        })
-
-
-        /**
-          * @tc.number    : SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100
-          * @tc.name      : Get the support of camera mute 
-          * @tc.desc      : Get the support of camera mute 
-          * @tc.size      : MEDIUM
-          * @tc.type      : Function
-          * @tc.level     : Level 2
-        */
-        it('SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100--------------");
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100 cameraManager == null || undefined")
-                expect().assertFail();
+            if (!isCameraMuteSupported) {
+                expect().assertTrue();
+            } else {
+                if (isEmpty(mCameraManager)) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 cameraManager == null || undefined")
+                    expect().assertFail();
+                }
+                try {
+                    let isCameraMuted = mCameraManager.isCameraMuted();
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 isCameraMuted : " + isCameraMuted);
+                    expect().assertTrue();
+                } catch (err) {
+                    console.log("isCameraMuteSupported has failed for " + err.message);
+                    expect().assertFail();
+                }
             }
-            let isCameraMuteSupported = mCameraManager.isCameraMuteSupported();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTE_SUPPORTED_0100 isCameraMuteSupported : " + isCameraMuteSupported);
             await sleep(1000);
             done();
         })
@@ -195,20 +207,39 @@ export default function cameraManagerSuteTest(surfaceId: any) {
         */
         it('SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100--------------");
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 cameraManager == null || undefined")
+            if (isEmpty(isCameraMuteSupported)) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_IS_CAMERA_MUTED_0100 isCameraMuteSupported == null || undefined")
                 expect().assertFail();
             }
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera true");
-            mCameraManager.muteCamera(true);
-            let isCameraMuted = mCameraManager.isCameraMuted();
-            expect(isCameraMuted).assertTrue();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera false");
-            mCameraManager.muteCamera(false);
-            isCameraMuted = mCameraManager.isCameraMuted();
-            expect(isCameraMuted).assertFalse();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
+            if (!isCameraMuteSupported) {
+                expect().assertTrue();
+            } else {
+                if (isEmpty(mCameraManager)) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 cameraManager == null || undefined")
+                    expect().assertFail();
+                }
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera true");
+                try {
+                    mCameraManager.muteCamera(true);
+                    let isCameraMuted = mCameraManager.isCameraMuted();
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
+                    expect(isCameraMuted).assertTrue();
+                } catch (err) {
+                    console.log("SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 has failed for " + err.message);
+                    expect().assertFail();
+                }
+
+                try {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 muteCamera false");
+                    mCameraManager.muteCamera(false);
+                    let isCameraMuted = mCameraManager.isCameraMuted();
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 mute status: " + isCameraMuted);
+                    expect(isCameraMuted).assertFalse();
+                } catch (err) {
+                    console.log("SUB_MULTIMEDIA_CAMERA_MUTE_CAMERA_0100 has failed for " + err.message);
+                    expect().assertFail();
+                }
+            }
             await sleep(1000);
             done();
         })
@@ -222,20 +253,26 @@ export default function cameraManagerSuteTest(surfaceId: any) {
           * @tc.type      : Function
           * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
-                expect().assertFail();
-            } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 to operate")
-                mCameraManager.on('cameraMute', async (data) => {
-                    console.info(TAG + "Camera mute Callback on cameraManager is success");
-                    if (isEmpty(data)) {
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 data == null || undefined")
-                        expect().assertFail();
-                    }
-                    console.info(TAG + "Camera status Callback Camera mute: " + data);
-                })
+        it('SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100', 2, async function (done) {
+            let count = 0
+            mCameraManager.on('cameraMute', async (err, data) => {
+                if (err) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 data == null || undefined")
+                    expect().assertFail();
+                    done();
+                    return
+                }
+                count = count + 1
+                console.info(TAG + "Camera mute Callback on cameraManager is success");
+                console.info(TAG + "Camera status Callback Camera mute: " + data);
+            })
+            let isCameraMuteSupported = mCameraManager.isCameraMuteSupported();
+            if (isCameraMuteSupported) {
+                let isCameraMuted = mCameraManager.isCameraMuted();
+                mCameraManager.muteCamera(!isCameraMuted);
+                mCameraManager.muteCamera(isCameraMuted);
+                expect(count == 2).assertTrue();
+                done();
             }
             await sleep(1000);
             done();
