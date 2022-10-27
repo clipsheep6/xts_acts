@@ -266,20 +266,20 @@ export default function cameraManagerMuteTest(surfaceId: any) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 cameraManager == null || undefined")
                     expect().assertFail();
                 }
-                mCameraManager.on('cameraMute', async (err, data) => {
-                    if (err) {
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 FAILED: " + err.message);
-                        expect().assertFail();
-                        done();
-                        return
-                    }
-                    count = count + 1
-                    console.info(TAG + "Camera mute Callback on cameraManager is success");
-                    console.info(TAG + "Camera status Callback Camera mute: " + data);
-                })
-                let isCameraMuted = mCameraManager.isCameraMuted();
-                mCameraManager.muteCamera(!isCameraMuted);
-                mCameraManager.muteCamera(isCameraMuted);
+                try {
+                    mCameraManager.on('cameraMute', async (data) => {
+                        count = count + 1
+                        console.info(TAG + "Camera mute Callback on cameraManager is success");
+                        console.info(TAG + "Camera status Callback Camera mute: " + data);
+                    })
+                    let isCameraMuted = mCameraManager.isCameraMuted();
+                    mCameraManager.muteCamera(!isCameraMuted);
+                    mCameraManager.muteCamera(isCameraMuted);
+                } catch (err) {
+                    console.log("SUB_MULTIMEDIA_CAMERA_CAMERA_MUTE_CALLBACK_0100 has failed for " + err.message);
+                    expect().assertFail();
+                }
+
                 expect(count == 2).assertTrue();
                 done();
             }
