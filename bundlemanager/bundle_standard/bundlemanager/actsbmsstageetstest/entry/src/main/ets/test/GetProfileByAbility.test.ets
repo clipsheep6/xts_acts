@@ -44,7 +44,7 @@ export default function getProfileByAbility() {
         done()
       }).catch(err => {
         console.info("getProfileByAbilityInvalidModulePro failed" + JSON.stringify(err))
-        expect(err).assertEqual(1)
+        expect(err.code).assertEqual(1)
         done()
       })
     })
@@ -62,7 +62,7 @@ export default function getProfileByAbility() {
         done()
       }).catch(err => {
         console.info("getProfileByAbilityEmptyModulePro failed" + JSON.stringify(err))
-        expect(err).assertEqual(1)
+        expect(err.code).assertEqual(1)
         done()
       })
     })
@@ -75,13 +75,14 @@ export default function getProfileByAbility() {
     */
     it('getProfileByAbilityInvalidModuleCall', 0, async function (done) {
       bundle.getProfileByAbility(MODULE_NAME_TEST, ABILITY_NAME, METADATA_NAME, (err, data) => {
+        console.error('[getProfileByAbilityInvalidModuleCall]Operation Cause: ' + JSON.stringify(err));
         if (err) {
           console.error('[getProfileByAbilityInvalidModuleCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
-        console.info('[getProfileByAbilityInvalidModuleCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        console.info('[getProfileByAbilityInvalidModuleCall] getApplicationInfo callback data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })
@@ -96,11 +97,11 @@ export default function getProfileByAbility() {
       bundle.getProfileByAbility('', ABILITY_NAME, METADATA_NAME, (err, data) => {
         if (err) {
           console.error('[getProfileByAbilityEmptyModuleCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
-        console.info('[getProfileByAbilityEmptyModuleCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        console.info('[getProfileByAbilityEmptyModuleCall] getApplicationInfo callback data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })
@@ -118,7 +119,7 @@ export default function getProfileByAbility() {
         done()
       }).catch(err => {
         console.info("getProfileByAbilityInvalidAbilityPro failed" + JSON.stringify(err))
-        expect(err).assertEqual(1)
+        expect(err.code).assertEqual(1)
         done()
       })
     })
@@ -136,7 +137,7 @@ export default function getProfileByAbility() {
         done()
       }).catch(err => {
         console.info("getProfileByAbilityEmptyAbilityPro failed" + JSON.stringify(err))
-        expect(err).assertEqual(1)
+        expect(err.code).assertEqual(1)
         done()
       })
     })
@@ -151,11 +152,11 @@ export default function getProfileByAbility() {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME_TEST, METADATA_NAME, (err, data) => {
         if (err) {
           console.error('[getProfileByAbilityInvalidAbilityCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
-        console.info('[getProfileByAbilityInvalidAbilityCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        console.info('[getProfileByAbilityInvalidAbilityCall] getApplicationInfo callback data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })
@@ -170,11 +171,11 @@ export default function getProfileByAbility() {
       bundle.getProfileByAbility(MODULE_NAME, '', METADATA_NAME, (err, data) => {
         if (err) {
           console.error('[getProfileByAbilityEmptyAbilityCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
-        console.info('[getProfileByAbilityEmptyAbilityCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        console.info('[getProfileByAbilityEmptyAbilityCall] getApplicationInfo callback data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })
@@ -187,9 +188,9 @@ export default function getProfileByAbility() {
     */
     it('getProfileByAbilityCallback', 0, async function (done) {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME, (err, data) => {
-        if (err) {
+        if (err.code != 0) {
           console.error('[getProfileByAbilityCallback]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
         console.info('[getProfileByAbilityCallback] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(Array.isArray(data)).assertTrue();
@@ -209,11 +210,11 @@ export default function getProfileByAbility() {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME_TEST, (err, data) => {
         if (err) {
           console.error('[getProfileByAbilityInvalidMetaDataCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
-        console.info('[getProfileByAbilityInvalidMetaDataCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        console.info('[getProfileByAbilityInvalidMetaDataCall] getApplicationInfo callback data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })
@@ -226,9 +227,9 @@ export default function getProfileByAbility() {
     */
     it('getProfileByAbilityEmptyMetaDataCall', 0, async function (done) {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME, '', (err, data) => {
-        if (err) {
+        if (err.code != 0) {
           console.error('[getProfileByAbilityEmptyMetaDataCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
         console.info('[getProfileByAbilityEmptyMetaDataCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
         expect(Array.isArray(data)).assertTrue();
@@ -255,7 +256,7 @@ export default function getProfileByAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByAbilityPromise]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -273,7 +274,7 @@ export default function getProfileByAbility() {
         done()
       }).catch(err => {
         console.error('[getProfileByAbilityInvalidMetaDataPro]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -295,7 +296,7 @@ export default function getProfileByAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByAbilityEmptyMetaDataPro]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -317,7 +318,7 @@ export default function getProfileByAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByAbilityNoMetaDataPro]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -335,7 +336,7 @@ export default function getProfileByAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByAbilityNoProfilePro]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -353,7 +354,7 @@ export default function getProfileByAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByAbilityNotPrefixPro]Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -368,11 +369,11 @@ export default function getProfileByAbility() {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME2, (err, data) => {
         if (err) {
           console.error('[getProfileByAbilityNotPrefixCall]Operation failed. Cause: ' + JSON.stringify(err));
-          expect(err).assertEqual(1);
+          expect(err.code).assertEqual(1);
         }
-        console.info('[getProfileByAbilityNotPrefixCall] getApplicationInfo callback data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        console.info('[getProfileByAbilityNotPrefixCall] getApplicationInfo callback data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })
@@ -404,7 +405,7 @@ export default function getProfileByAbility() {
     */
     it('getProfileByAbilityNotSuffixCall', 0, async function (done) {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME3, (err, data) => {
-        if (err) {
+        if (err.code != 0) {
           console.error('[getProfileByAbilityNotSuffixCall]Operation failed. Cause: ' + JSON.stringify(err));
           expect().assertFail();
         }
@@ -428,7 +429,7 @@ export default function getProfileByAbility() {
         done();
       }).catch(err => {
         console.error('[getProfileByAbilityNoJsonPro] Operation failed. Cause: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
+        expect(err.code).assertEqual(1);
         done();
       })
     })
@@ -442,10 +443,10 @@ export default function getProfileByAbility() {
     it('getProfileByAbilityNoJsonCall', 0, async function (done) {
       bundle.getProfileByAbility(MODULE_NAME, ABILITY_NAME, METADATA_NAME4, (err, data) => {
         console.info('[getProfileByAbilityNoJsonCall] err: ' + JSON.stringify(err));
-        expect(err).assertEqual(1);
-        console.info('[getProfileByAbilityNoJsonCall] data is: ' + JSON.stringify(data));
-        expect(typeof data).assertEqual("string");
-        expect(data).assertEqual("GetProfile failed");
+        expect(err.code).assertEqual(1);
+        console.info('[getProfileByAbilityNoJsonCall] data is: ' + JSON.stringify(err.message));
+        expect(typeof err.message).assertEqual("string");
+        expect(err.message).assertEqual("GetProfile failed");
         done();
       });
     })

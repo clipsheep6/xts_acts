@@ -316,7 +316,7 @@ describe('ActsBundleManagerTest', function () {
             done();
         }).catch(err => {
             console.info("testGetBundleInfoNotExistPromise err:" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done();
         });
     })
@@ -331,7 +331,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             if (err) {
                 console.info("testGetBundleInfoNotExistCallback err" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
                 return;
             }
@@ -353,7 +353,7 @@ describe('ActsBundleManagerTest', function () {
             done();
         }).catch(err => {
             console.info("testGetBundleInfoInvalidParamPromise fail" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done();
         });
     })
@@ -368,7 +368,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             if (err) {
                 console.info("testGetBundleInfoInvalidParamCallback err" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
                 return;
             }
@@ -447,7 +447,7 @@ describe('ActsBundleManagerTest', function () {
         };
         demo.getBundleInfo(NAME1, demo.BundleFlag.GET_BUNDLE_WITH_ABILITIES,
             bundleOptions, (err, datainfo) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info("testGetBundleInfoSystemAppCallback fail:" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();
@@ -580,7 +580,7 @@ describe('ActsBundleManagerTest', function () {
             done();
         }).catch(err => {
             console.info("testGetBundleInfoOtherUserIdPromise err" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done();
         });
     })
@@ -596,7 +596,7 @@ describe('ActsBundleManagerTest', function () {
         }, (err, dataInfo) => {
             if (err) {
                 console.info("testGetBundleInfoOtherUserIdCallback err" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
                 return;
             }
@@ -1452,7 +1452,7 @@ describe('ActsBundleManagerTest', function () {
             demo.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION |
         demo.BundleFlag.GET_ABILITY_INFO_WITH_METADATA,
             userId, (err, data) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info("testQueryAbilityByWantCallback err" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();
@@ -1652,7 +1652,7 @@ describe('ActsBundleManagerTest', function () {
             {
                 entities: ['entity.system.home', 'entitiesentities']
             }, 4, userId, (err, data) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info("testQueryAbilityByWantThereHapCallback err" + JSON.stringify(err));
                     expect(err).assertFail();
                     done();
@@ -1723,7 +1723,7 @@ describe('ActsBundleManagerTest', function () {
                 done();
             }).catch(err => {
                 console.info("testQueryAbilityByWantNotExistHapPromise err : ===========" + err);
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             })
     })
@@ -1739,9 +1739,9 @@ describe('ActsBundleManagerTest', function () {
                 "bundleName": "wrong name",
                 "abilityName": "com.example.myapplication1.MainAbility"
             }, demo.BundleFlag.GET_BUNDLE_DEFAULT, userId, (err, datainfo) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info("testQueryAbilityByWantNotExistHapCallback err : ===========" + err);
-                    expect(err).assertEqual(1);
+                    expect(err.code).assertEqual(1);
                     done();
                     return;
                 }
@@ -1767,7 +1767,7 @@ describe('ActsBundleManagerTest', function () {
                 done();
             }).catch(err => {
                 console.info("testQueryAbilityByWantSystemHapPromise err : ===========" + err);
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             })
     })
@@ -1787,8 +1787,7 @@ describe('ActsBundleManagerTest', function () {
         function OnReceiveEvent(err, datainfo) {
             console.info("testQueryAbilityByWantSystemHapCallback err : ===========" + err);
             console.info("testQueryAbilityByWantSystemHapCallback dataInfo : ===========" + datainfo);
-            expect(err).assertEqual(1);
-            expect(datainfo.length).assertLarger(0);
+            expect(err.code).assertEqual(1);
             done();
         }
     })

@@ -42,7 +42,7 @@ export default function getAbilityIcon() {
                 expect(err).assertFail();
             });
             bundle.getAbilityIcon(BUNDLE_NAME_OTHER, ABILITIY_NAME_OTHER, (err, pixelmap) => {
-                expect(err).assertEqual(0);
+                expect(err.code).assertEqual(0);
                 expect(pixelmap.getBytesNumberPerRow()).assertLarger(0);
                 done();
             });
@@ -62,7 +62,7 @@ export default function getAbilityIcon() {
                 expect(err).assertFail();
             });
             bundle.getAbilityIcon(BUNDLE_NAME, ABILITIY_NAME, (err, pixelmap) => {
-                expect(err).assertEqual(0);
+                expect(err.code).assertEqual(0);
                 expect(pixelmap.getBytesNumberPerRow()).assertLarger(0);
                 done();
             });
@@ -78,10 +78,10 @@ export default function getAbilityIcon() {
                 expect().assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err));
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             bundle.getAbilityIcon(BUNDLE_NAME, SERVICE_NAME, (err, pixelmap) => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 done();
             });
         });
@@ -96,27 +96,27 @@ export default function getAbilityIcon() {
                 expect(pixelmap !== null).assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err))
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             await bundle.getAbilityIcon(BUNDLE_NAME_ERROR, ABILITIY_NAME).then(pixelmap => {
                 expect().assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err))
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             await bundle.getAbilityIcon("", "").then(pixelmap => {
                 expect().assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err))
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             bundle.getAbilityIcon(BUNDLE_NAME, ABILITIY_NAME_ERROR, (err, pixelmap) => {
                 console.log('bms_getAbilityIcon_0100 success: ' + pixelmap);
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
                 bundle.getAbilityIcon(BUNDLE_NAME_ERROR, ABILITIY_NAME, (err, pixelmap) => {
-                    expect(err).assertEqual(1);
+                    expect(err.code).assertEqual(1);
                     bundle.getAbilityIcon("", "", (err, pixelmap) => {
-                        expect(err).assertEqual(1);
+                        expect(err.code).assertEqual(1);
                         done();
                     });
                 });
@@ -133,27 +133,30 @@ export default function getAbilityIcon() {
                 expect(pixelmap).assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err));
-                expect(err).assertEqual(2);
+                expect(err.code).assertEqual(2);
             });
             await bundle.getAbilityIcon(undefined, ABILITIY_NAME).then(pixelmap => {
                 expect(pixelmap).assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err));
-                expect(err).assertEqual(2);
+                expect(err.code).assertEqual(2);
             });
             await bundle.getAbilityIcon(undefined, undefined).then(pixelmap => {
                 expect(pixelmap).assertFail();
             }).catch(err => {
                 console.info("getAbilityIcon fail:" + JSON.stringify(err));
-                expect(err).assertEqual(2);
+                expect(err.code).assertEqual(2);
             });
             bundle.getAbilityIcon(BUNDLE_NAME, undefined, (err, pixelmap) => {
-                console.log('bms_getAbilityIcon_0100 success: ' + pixelmap);
-                expect(err).assertEqual(2);
+                console.log('bms_getAbilityIcon_0500 success: ' + pixelmap);
+                console.log('bms_getAbilityIcon_0500 getAbilityIcon 1 err.code: ' + err.code);
+                expect(err.code).assertEqual(2);
                 bundle.getAbilityIcon(undefined, ABILITIY_NAME, (err, pixelmap) => {
-                    expect(err).assertEqual(2);
+                    console.log('bms_getAbilityIcon_0500 getAbilityIcon 2 err.code: ' + err.code);
+                    expect(err.code).assertEqual(2);
                     bundle.getAbilityIcon(undefined, undefined, (err, pixelmap) => {
-                        expect(err).assertEqual(2);
+                        console.log('bms_getAbilityIcon_0500 getAbilityIcon 3 err.code: ' + err.code);
+                        expect(err.code).assertEqual(2);
                         done();
                     });
                 });
