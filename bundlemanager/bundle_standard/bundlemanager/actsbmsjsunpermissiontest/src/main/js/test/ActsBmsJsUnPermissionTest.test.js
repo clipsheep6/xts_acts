@@ -164,10 +164,10 @@ describe('ActsBmsJsUnPermissionTest', function () {
                 expect().assertFail();
             })
             .catch((error) => {
-                expect(error).assertEqual(INVALID_CODE);
+                expect(error.code).assertEqual(INVALID_CODE);
             });
         bundle.getAbilityLabel(LAUNCHER_BUNDLE_NAME, LAUNCHER_MAIN_ABILITY, (err, data) => {
-            expect(err).assertEqual(INVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
             expect(data).assertEqual(undefined);
             done();
         });
@@ -182,10 +182,10 @@ describe('ActsBmsJsUnPermissionTest', function () {
         await bundle.getAbilityInfo(LAUNCHER_BUNDLE_NAME, LAUNCHER_MAIN_ABILITY).then(data => {
             expect().assertFail();
         }).catch(err => {
-            expect(err).assertEqual(INVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
         });
         bundle.getAbilityInfo(LAUNCHER_BUNDLE_NAME, LAUNCHER_MAIN_ABILITY, (err, data) => {
-            expect(err).assertEqual(INVALID_CODE);
+            expect(err.code).assertEqual(INVALID_CODE);
             expect(data).assertEqual(undefined);
             done();
         });

@@ -67,7 +67,7 @@ export default function GetabilityInfo() {
             bundleManager.getAbilityInfo(BUNDLE_NAME1, ABILITY_NAME1, (err, data) => {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('bundle_GetabilityInfo_test_0200', timeOldStamp, timeNewStamp);
-                if (err) {
+                if (err.code != 0) {
                     console.error('[bundle_GetabilityInfo_test_0200]Operation failed. Cause: ' + JSON.stringify(err));
                     expect(err).assertFail();
                 }
@@ -94,7 +94,7 @@ export default function GetabilityInfo() {
                 expect().assertFail();
             });
             bundleManager.getAbilityInfo(BUNDLE_NAME4, ABILITY_NAME3, (err, res) => {
-                if (err) {
+                if (err.code != 0) {
                     console.info('actwsBundleManager getAbilityInfo callback err:' + JSON.stringify(err));
                     expect().assertFail();
                     done();
@@ -121,7 +121,7 @@ export default function GetabilityInfo() {
                 expect(data).assertFail();
             }).catch((error) => {
                 console.error('[bundle_GetabilityInfo_test_0300]Operation failed. Cause: ' + JSON.stringify(error));
-                expect(error).assertEqual(1);
+                expect(error.code).assertEqual(1);
             });
             done();
         });
@@ -145,7 +145,7 @@ export default function GetabilityInfo() {
                 error1 = error;
             });
             await Utils.sleep(1000);
-            await expect(error1).assertEqual(1);
+            await expect(error1.code).assertEqual(1);
             done();
         });
 
@@ -163,7 +163,7 @@ export default function GetabilityInfo() {
                 console.info('[bundle_GetabilityInfo_test_0500] err = ' + JSON.stringify(err));
                 error = err;
             })
-            expect(error).assertEqual(1);
+            expect(error.code).assertEqual(1);
             done();
             console.info('[bundle_GetabilityInfo_test_0500] END');
         });
@@ -187,7 +187,7 @@ export default function GetabilityInfo() {
                 error1 = error;
             })
             await Utils.sleep(1000);
-            await expect(error1).assertEqual(1);
+            await expect(error1.code).assertEqual(1);
             done();
         });
 
@@ -202,11 +202,11 @@ export default function GetabilityInfo() {
                 console.info('actwsBundleManager getAbilityInfo promise success res:' + JSON.stringify(res));
                 expect().assertFail();
             }).catch(err => {
-                expect(err).assertEqual(2);
+                expect(err.code).assertEqual(2);
             });
             bundleManager.getAbilityInfo(null, null, (err, res) => {
                 if (err) {
-                    expect(err).assertEqual(2);
+                    expect(err.code).assertEqual(2);
                     done();
                     return;
                 }

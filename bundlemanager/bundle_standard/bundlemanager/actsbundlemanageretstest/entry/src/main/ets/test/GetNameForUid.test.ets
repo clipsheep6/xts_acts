@@ -38,7 +38,7 @@ export default function getNameForUid() {
         bundle.getNameForUid(dataInfo.uid, (err, data) => {
             console.info("getNameForUid result:" + JSON.stringify(data));
             expect(data).assertEqual(BUNDLE_NAME1);
-            expect(err).assertEqual(0);
+            expect(err.code).assertEqual(0);
             done();
         });
     });
@@ -59,7 +59,7 @@ export default function getNameForUid() {
         bundle.getNameForUid(dataInfo.uid, (err, data) => {
             console.info("getNameForUid result:" + JSON.stringify(data));
             expect(data).assertEqual(BUNDLE_NAME2);
-            expect(err).assertEqual(0);
+            expect(err.code).assertEqual(0);
             done();
         });
     });
@@ -74,11 +74,11 @@ export default function getNameForUid() {
             expect(data).assertFail();
         }).catch(err => {
             console.info("getNameForUid fail:" + JSON.stringify(err));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
         });
         bundle.getNameForUid(123456, (err, data) => {
             console.info("getNameForUid result:" + JSON.stringify(data));
-            expect(err).assertEqual(1);
+            expect(err.code).assertEqual(1);
             done()
         });
     });
@@ -93,11 +93,11 @@ export default function getNameForUid() {
             expect(data).assertFail();
         }).catch(err => {
             console.info("getNameForUid fail:" + JSON.stringify(err));
-            expect(err).assertEqual(2);
+            expect(err.code).assertEqual(2);
         });
         bundle.getNameForUid(undefined, (err, data) => {
             console.info("getNameForUid result:" + JSON.stringify(data));
-            expect(err).assertEqual(2);
+            expect(err.code).assertEqual(2);
             done()
         });
     });

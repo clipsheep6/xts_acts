@@ -182,7 +182,7 @@ export default function actsBmsJsUnPermissionTest() {
                 expect(err).assertFail();
             });
             bundle.getAbilityInfo(SELF_BUNDLENAME, SELF_ABILITYNAME, (err, res) => {
-                if (err) {
+                if (err.code != 0) {
                     expect(err).assertFail();
                     done();
                     return;
@@ -211,7 +211,7 @@ export default function actsBmsJsUnPermissionTest() {
                 userId).then(data => {
                     expect(data).assertFail();
                 }).catch(err => {
-                    expect(err).assertEqual(1);
+                    expect(err.code).assertEqual(1);
                 });
             bundle.queryExtensionAbilityInfos(
                 {
@@ -220,7 +220,7 @@ export default function actsBmsJsUnPermissionTest() {
                 }, bundle.ExtensionAbilityType.FORM, bundle.ExtensionFlag.GET_EXTENSION_INFO_DEFAULT,
                 userId, (err, data) => {
                     if (err) {
-                        expect(err).assertEqual(1);
+                        expect(err.code).assertEqual(1);
                         done();
                         return;
                     }

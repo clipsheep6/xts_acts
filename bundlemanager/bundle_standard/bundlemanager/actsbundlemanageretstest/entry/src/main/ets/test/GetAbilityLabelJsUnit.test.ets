@@ -41,7 +41,7 @@ export default function getAbilityLabel() {
                 expect(error).assertFail();
             });
             Bundle.getAbilityLabel(BUNDLE_NAME, ABILITY_NAME, (error, data) => {
-                expect(error).assertNull();
+                expect(error.code).assertEqual(0);
                 expect(data).assertEqual("entry_MainAbility");
                 done();
             });
@@ -66,7 +66,7 @@ export default function getAbilityLabel() {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('[context_getAbilityLabel_test_0200]', timeOldStamp, timeNewStamp);
                 expect(data).assertEqual("bmsfirstright");
-                expect(error).assertNull();
+                expect(error.code).assertEqual(0);
                 done();
             });
         });
@@ -80,10 +80,10 @@ export default function getAbilityLabel() {
             await Bundle.getAbilityLabel(BUNDLE_NAME, SERVICE_ABILITY_NAME).then((data) => {
                 expect(data).assertFail();
             }).catch((error) => {
-                expect(error).assertEqual(1);
+                expect(error.code).assertEqual(1);
             });
             Bundle.getAbilityLabel(BUNDLE_NAME, SERVICE_ABILITY_NAME, (error, data) => {
-                expect(error).assertEqual(1);
+                expect(error.code).assertEqual(1);
                 expect(data).assertEqual(undefined);
                 done();
             });
@@ -101,21 +101,21 @@ export default function getAbilityLabel() {
             }).catch((error) => {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('[getAbilityLabel_test_0400]', timeOldStamp, timeNewStamp);
-                expect(error).assertEqual(1);
+                expect(error.code).assertEqual(1);
             });
             await Bundle.getAbilityLabel("", "").then((data) => {
                 expect(data).assertFail();
             }).catch((error) => {
-                expect(error).assertEqual(1);
+                expect(error.code).assertEqual(1);
             });
             timeOldStamp = await Utils.getNowTime();
             Bundle.getAbilityLabel(BUNDLE_NAME_ERROR, ABILITY_NAME_ERROR, (error, data) => {
                 let timeNewStamp = Utils.getNowTime();
                 Utils.getDurationTime('[getAbilityLabel_test_0400]', timeOldStamp, timeNewStamp);
-                expect(error).assertEqual(1);
+                expect(error.code).assertEqual(1);
                 expect(data).assertEqual(undefined);
                 Bundle.getAbilityLabel("", "", (error, data) => {
-                    expect(error).assertEqual(1);
+                    expect(error.code).assertEqual(1);
                     expect(data).assertEqual(undefined);
                     done();
                 });
@@ -131,26 +131,32 @@ export default function getAbilityLabel() {
             await Bundle.getAbilityLabel(undefined, OTHER_ABILITY_NAME).then((data) => {
                 expect(data).assertFail();
             }).catch((error) => {
-                expect(error).assertEqual(2);
+                expect(error.code).assertEqual(2);
             });
             await Bundle.getAbilityLabel(OTHER_BUNDLE_NAME, undefined).then((data) => {
                 expect(data).assertFail();
             }).catch((error) => {
-                expect(error).assertEqual(2);
+                expect(error.code).assertEqual(2);
             });
             await Bundle.getAbilityLabel(undefined, undefined).then((data) => {
                 expect(data).assertFail();
             }).catch((error) => {
-                expect(error).assertEqual(2);
+                expect(error.code).assertEqual(2);
             });
             Bundle.getAbilityLabel(undefined, OTHER_ABILITY_NAME, (error, data) => {
-                expect(error).assertEqual(2);
+                console.log('getAbilityLabel_test_0500 getAbilityIcon 1 err.code: ' + error.code);
+                console.log('getAbilityLabel_test_0500 getAbilityIcon 1 data: ' + data);
+                expect(error.code).assertEqual(2);
                 expect(data).assertEqual(undefined);
                 Bundle.getAbilityLabel(OTHER_BUNDLE_NAME, undefined, (error, data) => {
-                    expect(error).assertEqual(2);
+                    console.log('getAbilityLabel_test_0500 getAbilityIcon 2 err.code: ' + error.code);
+                    console.log('getAbilityLabel_test_0500 getAbilityIcon 2 data: ' + data);
+                    expect(error.code).assertEqual(2);
                     expect(data).assertEqual(undefined);
                     Bundle.getAbilityLabel(undefined, undefined, (error, data) => {
-                        expect(error).assertEqual(2);
+                        console.log('getAbilityLabel_test_0500 getAbilityIcon 3 err.code: ' + error.code);
+                        console.log('getAbilityLabel_test_0500 getAbilityIcon 3 data: ' + data);
+                        expect(error.code).assertEqual(2);
                         expect(data).assertEqual(undefined);
                         done();
                     });
