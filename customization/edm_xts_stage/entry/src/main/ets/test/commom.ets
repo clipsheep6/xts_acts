@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
+import adminManager from '@ohos.enterprise.adminManager'
 
 const WANT1 = {
     bundleName: "com.example.extensionzerotest",
@@ -41,9 +41,9 @@ const DEFAULT_USER_ID = 100;
 const TEST_USER_ID = 101;
 const ERR_USER_ID = 102;
 
-const SUBSCRIBE_EVENTS: Array<enterpriseDeviceManager.ManagedEvent> = [
-    enterpriseDeviceManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-    enterpriseDeviceManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED
+const SUBSCRIBE_EVENTS: Array<adminManager.ManagedEvent> = [
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED
 ];
 const SUBSCRIBE_INVALID_EVENTS: Array<number> = [20,21];
 
