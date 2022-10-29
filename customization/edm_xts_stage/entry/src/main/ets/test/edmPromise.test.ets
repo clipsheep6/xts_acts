@@ -17,7 +17,8 @@ import {
     WANT1, ENTINFO1, SELFWANT, SELFHAPNAME, COMPANYNAME2, DESCRIPTION2, ENTINFO2,
     DEFAULT_USER_ID, TEST_USER_ID, ERR_USER_ID, SUBSCRIBE_EVENTS, SUBSCRIBE_INVALID_EVENTS
 } from "./commom.ets";
-import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
+import adminManager from '@ohos.enterprise.adminManager';
+import datetimeManager from '@ohos.enterprise.datetimeManager';
 
 export default function edmPromiseTest() {
   describe('edmPromise_test', function () {
@@ -27,19 +28,19 @@ export default function edmPromiseTest() {
      * @tc.desc enable admin in promise mode
      */
     it('enableAdmin_test_001', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
 
-        var isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        var isEnabled = await adminManager.isAdminEnabled(WANT1);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertTrue();
 
-        await enterpriseDeviceManager.disableAdmin(WANT1);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(WANT1);
+        console.log('adminManager.disableAdmin.');
 
-        isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        isEnabled = await adminManager.isAdminEnabled(WANT1);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertFalse();
         done();
     })
@@ -50,20 +51,20 @@ export default function edmPromiseTest() {
      * @tc.desc enable super admin in promise mode
      */
     it('enableAdmin_test_003', 0, async function (done) {
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_SUPER');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_SUPER.');
+        console.log('adminManager.enableAdmin ADMIN_TYPE_SUPER');
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_SUPER.');
 
-        var isEnabled = await enterpriseDeviceManager.isSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.isSuperAdmin :' + isEnabled);
+        var isEnabled = await adminManager.isSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.isSuperAdmin :' + isEnabled);
         expect(isEnabled).assertTrue();
 
-        await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.disableSuperAdmin.');
+        await adminManager.disableSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.disableSuperAdmin.');
 
-        isEnabled = await enterpriseDeviceManager.isSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.isSuperAdmin : ' + isEnabled);
+        isEnabled = await adminManager.isSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.isSuperAdmin : ' + isEnabled);
         expect(isEnabled).assertFalse();
         done();
     })
@@ -74,20 +75,20 @@ export default function edmPromiseTest() {
      * @tc.desc enable admin in multi-user
      */
     it('enableAdmin_test_007', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
 
-        var isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        var isEnabled = await adminManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertTrue();
 
 
-        await enterpriseDeviceManager.disableAdmin(WANT1, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(WANT1, DEFAULT_USER_ID);
+        console.log('adminManager.disableAdmin.');
 
-        isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        isEnabled = await adminManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertFalse();
         done();
     })
@@ -98,8 +99,8 @@ export default function edmPromiseTest() {
      * @tc.desc enable admin in multi-user
      */
     it('enableAdmin_test_009', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER, TEST_USER_ID, OnReceiveEvent);
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER, TEST_USER_ID, OnReceiveEvent);
         async function OnReceiveEvent(err) {
             expect(err != null).assertTrue();
             if (err) {
@@ -116,8 +117,8 @@ export default function edmPromiseTest() {
      * @tc.desc enable admin in multi-user
      */
     it('enableAdmin_test_010', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER, ERR_USER_ID, OnReceiveEvent);
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER, ERR_USER_ID, OnReceiveEvent);
         async function OnReceiveEvent(err) {
             expect(err != null).assertTrue();
             if (err) {
@@ -134,20 +135,20 @@ export default function edmPromiseTest() {
      * @tc.desc enable admin in multi-user
      */
     it('enableAdmin_test_011', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, TEST_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, TEST_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
 
-        var isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, TEST_USER_ID);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        var isEnabled = await adminManager.isAdminEnabled(WANT1, TEST_USER_ID);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertTrue();
 
 
-        await enterpriseDeviceManager.disableAdmin(WANT1, TEST_USER_ID);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(WANT1, TEST_USER_ID);
+        console.log('adminManager.disableAdmin.');
 
-        isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, TEST_USER_ID);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        isEnabled = await adminManager.isAdminEnabled(WANT1, TEST_USER_ID);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertFalse();
         done();
     })
@@ -158,38 +159,38 @@ export default function edmPromiseTest() {
      * @tc.desc enable admin in multi-user
      */
     it('enableAdmin_test_015', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        await enterpriseDeviceManager.enableAdmin(WANT1, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, TEST_USER_ID, OnReceiveEvent);
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        await adminManager.enableAdmin(WANT1, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, TEST_USER_ID, OnReceiveEvent);
         async function OnReceiveEvent(err) {
-            console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
+            console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
             expect(err == null).assertTrue();
 
-            var isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
-            console.log('enterpriseDeviceManager.isAdminEnabled :' + isEnabled);
+            var isEnabled = await adminManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
+            console.log('adminManager.isAdminEnabled :' + isEnabled);
             expect(isEnabled).assertTrue();
 
-            isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, TEST_USER_ID);
-            console.log('enterpriseDeviceManager.isAdminEnabled :' + isEnabled);
+            isEnabled = await adminManager.isAdminEnabled(WANT1, TEST_USER_ID);
+            console.log('adminManager.isAdminEnabled :' + isEnabled);
             expect(isEnabled).assertTrue();
 
-            await enterpriseDeviceManager.disableAdmin(WANT1, DEFAULT_USER_ID);
-            console.log('enterpriseDeviceManager.disableAdmin.');
+            await adminManager.disableAdmin(WANT1, DEFAULT_USER_ID);
+            console.log('adminManager.disableAdmin.');
 
-            isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
-            console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+            isEnabled = await adminManager.isAdminEnabled(WANT1, DEFAULT_USER_ID);
+            console.log('adminManager.isAdminEnabled : ' + isEnabled);
             expect(isEnabled).assertFalse();
 
-            isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, TEST_USER_ID);
-            console.log('enterpriseDeviceManager.isAdminEnabled :' + isEnabled);
+            isEnabled = await adminManager.isAdminEnabled(WANT1, TEST_USER_ID);
+            console.log('adminManager.isAdminEnabled :' + isEnabled);
             expect(isEnabled).assertTrue();
 
-            await enterpriseDeviceManager.disableAdmin(WANT1, TEST_USER_ID);
-            console.log('enterpriseDeviceManager.disableAdmin.');
+            await adminManager.disableAdmin(WANT1, TEST_USER_ID);
+            console.log('adminManager.disableAdmin.');
 
-            isEnabled = await enterpriseDeviceManager.isAdminEnabled(WANT1, TEST_USER_ID);
-            console.log('enterpriseDeviceManager.isAdminEnabled :' + isEnabled);
+            isEnabled = await adminManager.isAdminEnabled(WANT1, TEST_USER_ID);
+            console.log('adminManager.isAdminEnabled :' + isEnabled);
             expect(isEnabled).assertFalse();
             done();
         }
@@ -201,31 +202,31 @@ export default function edmPromiseTest() {
      * @tc.desc enable and disable admin in multi-user
      */
     it('enableAdmin_test_0016', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_SUPER.');
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_SUPER.');
 
-        var isEnabled = await enterpriseDeviceManager.isSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.isSuperAdmin :' + isEnabled);
+        var isEnabled = await adminManager.isSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.isSuperAdmin :' + isEnabled);
         expect(isEnabled).assertTrue();
 
         try {
-            await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-                enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, TEST_USER_ID);
+            await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+                adminManager.AdminType.ADMIN_TYPE_NORMAL, TEST_USER_ID);
         } catch (error) {
             expect(error != null).assertTrue();
             console.log("enableAdmin_test_016 throw error code : " + error.code + "message :" + error.message);
         }
 
-        isEnabled = await enterpriseDeviceManager.isAdminEnabled(SELFWANT, TEST_USER_ID);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        isEnabled = await adminManager.isAdminEnabled(SELFWANT, TEST_USER_ID);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertFalse();
 
-        await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.disableSuperAdmin.');
+        await adminManager.disableSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.disableSuperAdmin.');
 
-        isEnabled = await enterpriseDeviceManager.isSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.isSuperAdmin : ' + isEnabled);
+        isEnabled = await adminManager.isSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.isSuperAdmin : ' + isEnabled);
         expect(isEnabled).assertFalse();
         done();
     })
@@ -236,40 +237,27 @@ export default function edmPromiseTest() {
      * @tc.desc set enterprise info in promise mode
      */
     it('setEnterpriseInfo_test_001', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
 
-        var isEnabled = await enterpriseDeviceManager.isAdminEnabled(SELFWANT);
+        var isEnabled = await adminManager.isAdminEnabled(SELFWANT);
         expect(isEnabled).assertTrue();
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
 
-        await enterpriseDeviceManager.setEnterpriseInfo(SELFWANT, ENTINFO2);
-        console.log('enterpriseDeviceManager.setEnterpriseInfo.');
+        await adminManager.setEnterpriseInfo(SELFWANT, ENTINFO2);
+        console.log('adminManager.setEnterpriseInfo.');
 
-        var entInfo = await enterpriseDeviceManager.getEnterpriseInfo(SELFWANT);
+        var entInfo = await adminManager.getEnterpriseInfo(SELFWANT);
         expect(entInfo.name).assertEqual(COMPANYNAME2);
         expect(entInfo.description).assertEqual(DESCRIPTION2);
 
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
 
-        isEnabled = await enterpriseDeviceManager.isAdminEnabled(SELFWANT);
-        console.log('enterpriseDeviceManager.isAdminEnabled : ' + isEnabled);
+        isEnabled = await adminManager.isAdminEnabled(SELFWANT);
+        console.log('adminManager.isAdminEnabled : ' + isEnabled);
         expect(isEnabled).assertFalse();
-        done();
-    })
-
-    /**
-     * @tc.number SUB_CUSTOMIZATION_ENTERPRISE_DEVICE_MANAGER_JS_0019
-     * @tc.name test getDeviceSettingsManager method in promise mode
-     * @tc.desc get the device settings manager in promise mode
-     */
-    it('getDeviceSettingsManager_test_002', 0, async function (done) {
-        enterpriseDeviceManager.getDeviceSettingsManager().then(mgr => {
-            expect(mgr !== null).assertTrue();
-        })
-        console.log('getDeviceSettingsManager_test_002 done');
         done();
     })
 
@@ -279,13 +267,11 @@ export default function edmPromiseTest() {
      * @tc.desc set system date time in promise mode
      */
     it('setDateTime_test_001', 0, async function (done) {
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER);
-        let dsmgr = await enterpriseDeviceManager.getDeviceSettingsManager();
-        expect(dsmgr !== null).assertTrue();
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER);
         console.log('before setDateTime');
-        await dsmgr.setDateTime(SELFWANT, 1526003846000);
-        await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
+        await datetimeManager.setDateTime(SELFWANT, 1526003846000);
+        await adminManager.disableSuperAdmin(SELFHAPNAME);
         done();
     })
 
@@ -298,15 +284,15 @@ export default function edmPromiseTest() {
      */
     it('subscribeManagedEvent_test_002', 0, async function (done) {
         console.info('-----------subscribeManagedEvent_test_002 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
-        await enterpriseDeviceManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
         }).catch((error) => {
             expect(error == null).assertTrue();
         });
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
         done();
     })
 
@@ -319,15 +305,15 @@ export default function edmPromiseTest() {
      */
     it('subscribeManagedEvent_test_004', 0, async function (done) {
         console.info('-----------subscribeManagedEvent_test_004 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
-        await enterpriseDeviceManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_INVALID_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_INVALID_EVENTS).then(() => {
         }).catch((error) => {
             expect(error.code == 9200008).assertTrue();
         });
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
         done();
     })
 
@@ -340,12 +326,12 @@ export default function edmPromiseTest() {
      */
     it('subscribeManagedEvent_test_006', 0, async function (done) {
         console.info('-----------subscribeManagedEvent_test_006 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
-        await enterpriseDeviceManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
+        await adminManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
         }).catch((error) => {
             expect(error.code == 9200001).assertTrue();
         });
@@ -361,15 +347,15 @@ export default function edmPromiseTest() {
      */
     it('subscribeManagedEvent_test_008', 0, async function (done) {
         console.info('-----------subscribeManagedEvent_test_008 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_SUPER.');
-        await enterpriseDeviceManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_SUPER.');
+        await adminManager.subscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
         }).catch((error) => {
             expect(error == null).assertTrue();
         });
-        await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.disableSuperAdmin ADMIN_TYPE_SUPER.');
+        await adminManager.disableSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.disableSuperAdmin ADMIN_TYPE_SUPER.');
         done();
     })
   
@@ -382,16 +368,16 @@ export default function edmPromiseTest() {
        */
     it('unsubscribeManagedEvent_test_002', 0, async function (done) {
         console.info('-----------unsubscribeManagedEvent_test_002 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
         
-        await enterpriseDeviceManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
+        await adminManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
         }).catch((error) => {
             expect(error == null).assertTrue();
         });
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
         done();
     })
 
@@ -404,15 +390,15 @@ export default function edmPromiseTest() {
        */
     it('unsubscribeManagedEvent_test_004', 0, async function (done) {
         console.info('-----------unsubscribeManagedEvent_test_004 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
-        await enterpriseDeviceManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_INVALID_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_INVALID_EVENTS).then(() => {
         }).catch((error) => {
                 expect(error.code == 9200008).assertTrue();
         });
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
         done();
     })
 
@@ -425,12 +411,12 @@ export default function edmPromiseTest() {
        */
     it('unsubscribeManagedEvent_test_006', 0, async function (done) {
         console.info('-----------unsubscribeManagedEvent_test_006 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_NORMAL.');
-        await enterpriseDeviceManager.disableAdmin(SELFWANT);
-        console.log('enterpriseDeviceManager.disableAdmin.');
-        await enterpriseDeviceManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_NORMAL, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_NORMAL.');
+        await adminManager.disableAdmin(SELFWANT);
+        console.log('adminManager.disableAdmin.');
+        await adminManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
         }).catch((error) => {
             expect(error.code == 9200001).assertTrue();
         });
@@ -446,15 +432,15 @@ export default function edmPromiseTest() {
        */
     it('unsubscribeManagedEvent_test_008', 0, async function (done) {
         console.info('-----------unsubscribeManagedEvent_test_008 start-------------');
-        await enterpriseDeviceManager.enableAdmin(SELFWANT, ENTINFO1,
-            enterpriseDeviceManager.AdminType.ADMIN_TYPE_SUPER, DEFAULT_USER_ID);
-        console.log('enterpriseDeviceManager.enableAdmin ADMIN_TYPE_SUPER.');
-        await enterpriseDeviceManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
+        await adminManager.enableAdmin(SELFWANT, ENTINFO1,
+            adminManager.AdminType.ADMIN_TYPE_SUPER, DEFAULT_USER_ID);
+        console.log('adminManager.enableAdmin ADMIN_TYPE_SUPER.');
+        await adminManager.unsubscribeManagedEvent(SELFWANT, SUBSCRIBE_EVENTS).then(() => {
         }).catch((error) => {
             expect(error == null).assertTrue();
         });
-        await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
-        console.log('enterpriseDeviceManager.disableSuperAdmin ADMIN_TYPE_SUPER.');
+        await adminManager.disableSuperAdmin(SELFHAPNAME);
+        console.log('adminManager.disableSuperAdmin ADMIN_TYPE_SUPER.');
         done();
     })
   })
