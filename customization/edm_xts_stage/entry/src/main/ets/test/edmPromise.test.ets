@@ -18,6 +18,7 @@ import {
     DEFAULT_USER_ID, TEST_USER_ID, ERR_USER_ID, SUBSCRIBE_EVENTS, SUBSCRIBE_INVALID_EVENTS
 } from "./commom.ets";
 import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
+import systemTime from "@ohos.systemTime";
 
 export default function edmPromiseTest() {
   describe('edmPromise_test', function () {
@@ -284,7 +285,15 @@ export default function edmPromiseTest() {
         let dsmgr = await enterpriseDeviceManager.getDeviceSettingsManager();
         expect(dsmgr !== null).assertTrue();
         console.log('before setDateTime');
-        await dsmgr.setDateTime(SELFWANT, 1526003846000);
+        let currentTime = new Date().getTime();
+        await dsmgr.setDateTime(SELFWANT, 1526003846000).catch((error)=>{
+            expect(error === null).assertTrue();
+        })
+        await systemTime.setTime(currentTime).then((data)=>{
+            console.log('systemTime.setTime success data :' + JSON.stringify(data));
+        }).catch((error)=>{
+            console.error('failed to systemTime.setTime because ' + JSON.stringify(error));
+        });
         await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
         done();
     })

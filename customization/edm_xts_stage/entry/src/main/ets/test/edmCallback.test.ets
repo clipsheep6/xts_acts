@@ -19,6 +19,7 @@ import {
     ENTINFO2, DEFAULT_USER_ID, TEST_USER_ID, ERR_USER_ID, SUBSCRIBE_EVENTS, SUBSCRIBE_INVALID_EVENTS
 } from "./commom.ets";
 import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
+import systemTime from "@ohos.systemTime";
 
 export default function edmCallbackTest() {
 
@@ -170,7 +171,7 @@ export default function edmCallbackTest() {
             expect(isEnabled).assertTrue();
 
             try {
-                var retValue = await enterpriseDeviceManager.disableAdmin(WANT1, DEFAULT_USER_ID);
+                await enterpriseDeviceManager.disableAdmin(WANT1, DEFAULT_USER_ID);
                 console.log('enterpriseDeviceManager.disableAdmin over');
             } catch (error) {
                 expect(error != null).assertTrue();
@@ -247,9 +248,16 @@ export default function edmCallbackTest() {
         let dsmgr = await enterpriseDeviceManager.getDeviceSettingsManager();
         expect(dsmgr !== null).assertTrue();
         console.log('before setDateTime');
+        let currentTime = new Date().getTime();
         await dsmgr.setDateTime(SELFWANT, 1526003846000, OnReceiveEvent);
-        async function OnReceiveEvent() {
+        await systemTime.setTime(currentTime).then((data)=>{
+            console.log('systemTime.setTime success data :' + JSON.stringify(data));
+        }).catch((error)=>{
+            console.error('failed to systemTime.setTime because ' + JSON.stringify(error));
+        });
+        async function OnReceiveEvent(error) {
             await enterpriseDeviceManager.disableSuperAdmin(SELFHAPNAME);
+            expect(error === null).assertTrue();
             done();
         }
     })
