@@ -84,9 +84,12 @@ struct CheckBoxGroupPart {
             console.info("Part emit action state err: " + JSON.stringify(err.message))
           }
           Utils.sleep(1000);
+          /**
           if(itemName.status === SelectStatus.Part){
             console.info("CheckboxGroup SelectStatus.Part")
-          }
+          } 
+          */
+          
         })
       Text('select all').fontSize(20)
       Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
