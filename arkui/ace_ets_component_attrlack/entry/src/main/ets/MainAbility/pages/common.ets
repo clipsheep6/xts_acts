@@ -92,7 +92,7 @@ export default struct CommonColorMode {
         .bindPopup(true,{
              message:"23",
              showInSubWindow:true
-        }).
+        })
 
       Text("common-OnFinish")
         .width(320)
@@ -187,6 +187,7 @@ export default struct CommonColorMode {
             console.info("areaValue emit action state err: " + JSON.stringify(err.message))
           }
         })
+      
       Text("common-Repeat")
         .width(320)
         .height(40)
