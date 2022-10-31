@@ -213,6 +213,39 @@ export default function requestUploadJSUnit() {
       console.info("-----------------------SUB_REQUEST_UPLOAD_API_0005 end-----------------------");
       done();
     });
+    
+    /**
+     * @tc.number    SUB_REQUEST_UPLOAD_API_0006
+     * @tc.name      Test requestUploadTest type = TIMER_TYPE_REALTIME
+     * @tc.desc      Test requestUploadTest API functionality.
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_REQUEST_UPLOAD_API_0006', 0, async function (done) {
+      console.info("-----------------------SUB_REQUEST_UPLOAD_API_0006 is starting-----------------------");
+      try {
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_PERMISSION:" + request.EXCEPTION_PERMISSION);
+        expect(request.SESSION_PAUSED).assertEqual(201);
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_PARAMCHECK:" + request.EXCEPTION_PARAMCHECK);
+        expect(request.SESSION_PENDING).assertEqual(401);
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_UNSUPPORTED:" + request.EXCEPTION_UNSUPPORTED);
+        expect(request.SESSION_RUNNING).assertEqual(801);
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_FILEIO:" + request.EXCEPTION_FILEIO);
+        expect(request.SESSION_SUCCESSFUL).assertEqual(13400001);
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_FILEPATH:" + request.EXCEPTION_FILEPATH);
+        expect(request.SESSION_SUCCESSFUL).assertEqual(13400002);
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_SERVICE:" + request.EXCEPTION_SERVICE);
+        expect(request.SESSION_SUCCESSFUL).assertEqual(13400003);
+        console.info("SUB_REQUEST_UPLOAD_API_0006 request.EXCEPTION_OTHERS:" + request.EXCEPTION_OTHERS);
+        expect(request.SESSION_SUCCESSFUL).assertEqual(13499999);
+      } catch (err) {
+        expect(true).assertEqual(true);
+        console.error("SUB_REQUEST_UPLOAD_API_0006 error: " + err);
+      }
+      console.info("-----------------------SUB_REQUEST_UPLOAD_API_0006 end-----------------------");
+      done();
+    });
 
     /**
      * @tc.number    SUB_REQUEST_UPLOAD_API_CALLBACK_0001
