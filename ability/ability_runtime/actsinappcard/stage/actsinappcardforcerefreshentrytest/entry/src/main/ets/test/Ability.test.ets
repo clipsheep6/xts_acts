@@ -14,7 +14,7 @@
  */
  
 import formHost from '@ohos.application.formHost';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 var ACTS_CARD = {
   events: ["ACTS_FORM_ID","ACTS_FORM_DATA"]

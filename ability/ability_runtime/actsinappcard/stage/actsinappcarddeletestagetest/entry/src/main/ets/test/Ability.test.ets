@@ -36,7 +36,7 @@ export default function abilityTest() {
   describe('ActsAppCardDeleteStageTest', function () {
 
     /*
-    * @tc.number: ACTS_InAppCardDelete Card_0100
+    * @tc.number: ACTS_InAppCardDeleteCard_0100
     * @tc.name: The main process deletes the in-app card（deleteForm）
     * @tc.desc: Verify that the deleted card A data query cannot enter the onDestroy life cycle
     */

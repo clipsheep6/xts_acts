@@ -71,7 +71,9 @@ export default function abilityTest() {
         })
         setTimeout(async()=> {
           try {
-            await driver.click(100, 200)
+            let button = await driver.findComponent(BY.text('updateForm').enabled(true))
+
+            await button.click()
           } catch (err) {
             console.debug("ACTS_InAppCardLinkage_0100 ====> catch err: " + JSON.stringify(err));
             console.debug("ACTS_InAppCardLinkage_0100 ====> catch err: " + err);

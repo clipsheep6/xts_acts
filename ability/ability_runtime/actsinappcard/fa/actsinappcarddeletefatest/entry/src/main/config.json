@@ -182,6 +182,12 @@
     "reqPermissions": [
       {
         "name": "ohos.permission.REQUIRE_FORM"
+      },
+      {
+        "name":"ohos.permission.START_INVISIBLE_ABILITY"
+      },
+      {
+        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
       }
     ]
   }

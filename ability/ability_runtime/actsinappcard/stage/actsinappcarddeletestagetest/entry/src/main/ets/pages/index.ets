@@ -53,6 +53,10 @@ struct Index {
             console.log(`InAppCardDeleteStage MainAbility formId: ${JSON.stringify(formId)}`)
           })
           .onError((err) => {
+            console.log(`InAppCardDeleteStage MainAbility failed to add form, err: ${this.formName}`)
+            console.log(`InAppCardDeleteStage MainAbility failed to add form, err: ${this.bundleName}`)
+            console.log(`InAppCardDeleteStage MainAbility failed to add form, err: ${this.abilityName}`)
+            console.log(`InAppCardDeleteStage MainAbility failed to add form, err: ${this.moduleName}`)
             console.log(`InAppCardDeleteStage MainAbility failed to add form, err: ${JSON.stringify(err)}`)
           })
           .size({ width: 400, height: 200 })
