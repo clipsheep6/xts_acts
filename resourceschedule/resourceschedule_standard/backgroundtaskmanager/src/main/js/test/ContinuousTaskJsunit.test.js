@@ -73,31 +73,28 @@ describe("ContinuousTaskJsTest", function () {
                     }
                     done();
                 })
+                console.info(TAG + "Start ability with option:" + option + " begin");
+                featureAbility.startAbility(
+                    {
+                    want: {
+                        bundleName: "com.example.continuoustaskserver",
+                        abilityName: "com.example.continuoustaskserver.ServiceAbility",
+                        parameters: {
+                            option: option
+                        }
+                    }
+                    }
+                ).catch(() => {
+                    console.error(TAG + "Start ability failed");
+                    expect(false).assertTrue();
+                    done();
+                });
             } else {
                 console.error(TAG + "createSubscriber failed");
                 expect(false).assertTrue();
                 done();
             }
         })
-
-        setTimeout(() => {
-            console.info(TAG + "Start ability with option:" + option + " begin");
-            featureAbility.startAbility(
-                {
-                want: {
-                    bundleName: "com.example.continuoustaskserver",
-                    abilityName: "com.example.continuoustaskserver.ServiceAbility",
-                    parameters: {
-                        option: option
-                    }
-                }
-                }
-            ).catch(() => {
-                console.error(TAG + "Start ability failed");
-                expect(false).assertTrue();
-                done();
-            });
-        }, 1000);
     }
 
     /*
