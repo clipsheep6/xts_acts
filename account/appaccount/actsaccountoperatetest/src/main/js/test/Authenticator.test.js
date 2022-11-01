@@ -33,9 +33,35 @@ export default function ActsAccountAppAccess() {
                 console.info(`sleep #{time} over ...`)
             })
         }
-        beforeAll(async function (done) {            
+        beforeAll(async function (done) {       
+            await featureAbility.startAbility(
+                {
+                    want:
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.accountauthenticator",
+                        abilityName: "com.example.accountauthenticator.MainAbility",
+                        action: "action1",
+                        parameters:
+                        {},
+                    },
+                },
+            )          
+            await sleep(1500)     
             done();
         });
+        beforeEach(async (done)=>{
+            console.debug("====>afterEach start====");
+            var appAccountManager = account.getAccountManager();
+            var accounts = await appAccountManager.getAllAccountByOwner(owner)
+            for (i=0;i<accounts.length;i++){
+                var localName = accounts[i].name
+                if(localName == 'zhangsan'){
+                    await appAccountManager.removeAccount(localName)
+                }
+            }
+            done();
+        })
         /*
         * @tc.number    : ActsAccountCheckAccountLabels_0100
         * @tc.name      : Check Account Labels callback form
@@ -333,37 +359,37 @@ export default function ActsAccountAppAccess() {
 
 
         /*
-        * @tc.number    : ActsAccountDeleteAccountCredential_0100
+        * @tc.number    : ActsAccountDeleteCredential_0100
         * @tc.name      : Delete Account Credential callback form
         * @tc.desc      : 
         */
 
-        it('ActsAccountDeleteAccountCredential_0100', 0, async function (done) {
-            console.debug("====>ActsAccountDeleteAccountCredential_0100 start====");
+        it('ActsAccountDeleteCredential_0100', 0, async function (done) {
+            console.debug("====>ActsAccountDeleteCredential_0100 start====");
             var appAccountManager = account.createAppAccountManager();
             console.debug("====>start finish====");
             appAccountManager.createAccount(name, (err)=>{
-                console.debug("====>ActsAccountDeleteAccountCredential_0100 add_account_err:" + JSON.stringify(err));
+                console.debug("====>ActsAccountDeleteCredential_0100 add_account_err:" + JSON.stringify(err));
                 expect(err).assertEqual(null);
                 appAccountManager.setCredential(name, "PIN", "credential1", (err)=>{
-                    console.debug("====>ActsAccountDeleteAccountCredential_0100 setAccountCredential_err:" + JSON.stringify(err));
+                    console.debug("====>ActsAccountDeleteCredential_0100 setAccountCredential_err:" + JSON.stringify(err));
                     expect(err).assertEqual(null);
                     appAccountManager.getCredential(name, "PIN", (err, data) =>{
-                        console.debug("====>ActsAccountDeleteAccountCredential_0100 getAccountCredential_err:" + JSON.stringify(err))
+                        console.debug("====>ActsAccountDeleteCredential_0100 getAccountCredential_err:" + JSON.stringify(err))
                         expect(err).assertEqual(null);
-                        console.debug("====>ActsAccountDeleteAccountCredential_0100 getAccountCredential_success:" + JSON.stringify(data));
-                        appAccountManager.deleteAccountCredential(name, "PIN", (err, data)=>{
-                            console.debug("====>ActsAccountDeleteAccountCredential_0100 deleteAccountCredential_err:" + JSON.stringify(err));
+                        console.debug("====>ActsAccountDeleteCredential_0100 getAccountCredential_success:" + JSON.stringify(data));
+                        appAccountManager.deleteCredential(name, "PIN", (err, data)=>{
+                            console.debug("====>ActsAccountDeleteCredential_0100 deleteCredential_err:" + JSON.stringify(err));
                             expect(err).assertEqual(null);
-                            expect(data).assertEqual(undefined);
-                            console.debug("====>ActsAccountDeleteAccountCredential_0100 deleteAccountCredential_data:" + JSON.stringify(data));   
+                            console.debug("====>ActsAccountDeleteCredential_0100 deleteCredential_data:" + JSON.stringify(data));                             
+                            expect(data).assertEqual(null);  
                             try{
                                 appAccountManager.removeAccount(name)  
-                                console.debug('====>ActsAccountDeleteAccountCredential_0100 removeAccount_success')                          
+                                console.debug('====>ActsAccountDeleteCredential_0100 removeAccount_success')                          
                                 done(); 
                             }
                             catch{
-                                console.debug('====>ActsAccountDeleteAccountCredential_0100 removeAccount_err')
+                                console.debug('====>ActsAccountDeleteCredential_0100 removeAccount_err')
                                 expect().assertFail()
                                 done();
                             }
@@ -374,48 +400,48 @@ export default function ActsAccountAppAccess() {
         });
 
         /*
-        * @tc.number    : ActsAccountDeleteAccountCredential_0200
+        * @tc.number    : ActsAccountDeleteCredential_0200
         * @tc.name      : Delete Account Credential promise form
         * @tc.desc      : 
         */
 
-        it('ActsAccountDeleteAccountCredential_0200', 0, async function (done) {
-            console.debug("====>ActsAccountDeleteAccountCredential_0200 start====");
+        it('ActsAccountDeleteCredential_0200', 0, async function (done) {
+            console.debug("====>ActsAccountDeleteCredential_0200 start====");
             var appAccountManager = account.createAppAccountManager();
             appAccountManager.createAccount(name, createAccountOptions).then((data) =>{
-                console.debug("====>ActsAccountDeleteAccountCredential_0200 add_account_success");
+                console.debug("====>ActsAccountDeleteCredential_0200 add_account_success");
                 appAccountManager.setCredential(name, "PIN", "credential2").then(() =>{
-                    console.debug("====>ActsAccountDeleteAccountCredential_0200 setAccountCredential_success");
+                    console.debug("====>ActsAccountDeleteCredential_0200 setAccountCredential_success");
                     appAccountManager.getCredential(name,  "PIN").then((data) =>{
-                        console.debug("====>ActsAccountDeleteAccountCredential_0200 getAccountCredential_data:" + JSON.stringify(data));
-                        appAccountManager.deleteAccountCredential(name,  "PIN").then((data) =>{
-                            console.debug("====>ActsAccountDeleteAccountCredential_0200 data:" + JSON.stringify(data));                
+                        console.debug("====>ActsAccountDeleteCredential_0200 getAccountCredential_data:" + JSON.stringify(data));
+                        appAccountManager.deleteCredential(name,  "PIN").then((data) =>{
+                            console.debug("====>ActsAccountDeleteCredential_0200 data:" + JSON.stringify(data));                
                             try{
                                 appAccountManager.removeAccount(name)
-                                console.debug('====>ActsAccountDeleteAccountCredential_0200 removeAccount_success')
+                                console.debug('====>ActsAccountDeleteCredential_0200 removeAccount_success')
                                 done();
                             }                               
                             catch{
-                                console.debug('====>ActsAccountDeleteAccountCredential_0200 removeAccount_err')
+                                console.debug('====>ActsAccountDeleteCredential_0200 removeAccount_err')
                                 expect().assertFail()
                             }                          
                         }).catch((err) =>{
-                            console.debug("====>ActsAccountDeleteAccountCredential_0200 err:" + JSON.stringify(err));
+                            console.debug("====>ActsAccountDeleteCredential_0200 err:" + JSON.stringify(err));
                             expect().assertFail();
                             done();
                         })
                     }).catch((err)=>{
-                        console.debug("====>ActsAccountDeleteAccountCredential_0200 getAccountCredential_err:" + JSON.stringify(err));
+                        console.debug("====>ActsAccountDeleteCredential_0200 getAccountCredential_err:" + JSON.stringify(err));
                         expect().assertFail();
                         done();
                     })
                 }).catch((err) =>{
-                    console.debug("====>ActsAccountDeleteAccountCredential_0200 setAccountCredential_err:" + JSON.stringify(err));
+                    console.debug("====>ActsAccountDeleteCredential_0200 setAccountCredential_err:" + JSON.stringify(err));
                     expect().assertFail();
                     done();
                 })
             }).catch((err) => {
-                console.debug("====>ActsAccountDeleteAccountCredential_0200 createAccount_err:" + JSON.stringify(err));
+                console.debug("====>ActsAccountDeleteCredential_0200 createAccount_err:" + JSON.stringify(err));
                 expect().assertFail();
                 done();
             })            
@@ -575,25 +601,11 @@ export default function ActsAccountAppAccess() {
 
         /*
         * @tc.number    : ActsAccountSelectAccountByOptions_0100
-        * @tc.name      : Verify Credential callback form
+        * @tc.name      : selectAccountsByOptions callback form
         * @tc.desc      : 
         */
 
         it('ActsAccountSelectAccountByOptions_0100', 0, async function (done) {  
-            await featureAbility.startAbility(
-                {
-                    want:
-                    {
-                        deviceId: "",
-                        bundleName: "com.example.accountauthenticator",
-                        abilityName: "com.example.accountauthenticator.MainAbility",
-                        action: "action1",
-                        parameters:
-                        {},
-                    },
-                },
-            )          
-            await sleep(1000)
             console.debug("====>ActsAccountSelectAccountByOptions_0100 start====");
             var appAccountManager = account.createAppAccountManager();
             var select_options = {allowedAccounts:[{"name":name,"owner":owner}]}
@@ -624,25 +636,11 @@ export default function ActsAccountAppAccess() {
 
         /*
         * @tc.number    : ActsAccountSelectAccountByOptions_0100
-        * @tc.name      : Verify Credential callback form
+        * @tc.name      : selectAccountsByOptions callback form
         * @tc.desc      : 
         */
 
         it('ActsAccountSelectAccountByOptions_0200', 0, async function (done) {
-            await featureAbility.startAbility(
-                {
-                    want:
-                    {
-                        deviceId: "",
-                        bundleName: "com.example.accountauthenticator",
-                        abilityName: "com.example.accountauthenticator.MainAbility",
-                        action: "action1",
-                        parameters:
-                        {},
-                    },
-                },
-            )
-            await sleep(1000)
             console.debug("====>ActsAccountSelectAccountByOptions_0200 start====");
             var appAccountManager = account.createAppAccountManager();
             var select_options = {allowedOwners: [owner]}
@@ -674,25 +672,11 @@ export default function ActsAccountAppAccess() {
 
         /*
         * @tc.number    : ActsAccountSelectAccountByOptions_0100
-        * @tc.name      : Verify Credential callback form
+        * @tc.name      : selectAccountsByOptions callback form
         * @tc.desc      : 
         */
 
         it('ActsAccountSelectAccountByOptions_0300', 0, async function (done) {
-            await featureAbility.startAbility(
-                {
-                    want:
-                    {
-                        deviceId: "",
-                        bundleName: "com.example.accountauthenticator",
-                        abilityName: "com.example.accountauthenticator.MainAbility",
-                        action: "action1",
-                        parameters:
-                        {},
-                    },
-                },
-            )
-            await sleep(1500)
             console.debug("====>ActsAccountSelectAccountByOptions_0300 start====");
             var appAccountManager = account.createAppAccountManager();
             var options = {requiredLabels: ["male", "30-40"]}
@@ -721,5 +705,57 @@ export default function ActsAccountAppAccess() {
             });        
         }); 
         
+        /*
+        * @tc.number    : ActsAccountCreateAccountImplicitly_0100
+        * @tc.name      : createAccountImplicitly callback form, options
+        * @tc.desc      : 
+        */
+
+        it('ActsAccountCreateAccountImplicitly_0100', 0, async function (done) {
+            console.debug("====>ActsAccountCreateAccountImplicitly_0100 start====");
+            var appAccountManager = account.createAppAccountManager();
+            var options = {authType: "PIN", requiredLabels:['male', '30-40'], parameters: ['sex', 'age']}
+            console.debug("====>start finish====");
+            appAccountManager.createAccountImplicitly("com.example.accountauthenticator", options, {
+                onResult: async (resultCode, resultData)=>{
+                    console.debug("====>ActsAccountCreateAccountImplicitly_0100 resultcode:" + JSON.stringify(resultCode));
+                    expect(resultCode).assertEqual(0)
+                    console.debug("====>ActsAccountCreateAccountImplicitly_0100 resultData:" + JSON.stringify(resultData));
+                    expect(resultData.account.name).assertEqual("createNewAccountName") 
+                    expect(resultData.account.owner).assertEqual("com.example.accountauthenticator")
+                    done();
+                    },
+                onRequestRedirected:null,
+                onRequestContinued: function(){ 
+                    console.debug("====>ActsAccountCreateAccountImplicitly_0100 onRequestContinued")
+                    }  
+            });            
+        });
+
+        /*
+        * @tc.number    : ActsAccountCreateAccountImplicitly_0200
+        * @tc.name      : createAccountImplicitly callback form, options
+        * @tc.desc      : 
+        */
+
+        it('ActsAccountCreateAccountImplicitly_0200', 0, async function (done) {
+            console.debug("====>ActsAccountCreateAccountImplicitly_0100 start====");
+            var appAccountManager = account.createAppAccountManager();
+            console.debug("====>start finish====");
+            appAccountManager.createAccountImplicitly("com.example.accountauthenticator", {
+                onResult: async (resultCode, resultData)=>{
+                    console.debug("====>ActsAccountCreateAccountImplicitly_0200 resultcode:" + JSON.stringify(resultCode));
+                    expect(resultCode).assertEqual(0)
+                    console.debug("====>ActsAccountCreateAccountImplicitly_0200 resultData:" + JSON.stringify(resultData));
+                    expect(resultData.account.name).assertEqual("createNewAccountName") 
+                    expect(resultData.account.owner).assertEqual("com.example.accountauthenticator")
+                    done();
+                    },
+                onRequestRedirected:null,
+                onRequestContinued: function(){ 
+                    console.debug("====>ActsAccountCreateAccountImplicitly_0200 onRequestContinued")
+                    }  
+            });            
+        });
     })
 }
