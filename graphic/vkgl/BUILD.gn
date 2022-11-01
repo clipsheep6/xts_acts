@@ -131,3 +131,8 @@ group("VKGLCTSTest") {
     "src/khrglesext/build0001:ActsKhrglesextTestSuite0001",
   ]
 }
+
+action("cpvkgl") {
+  script = "cpvkgl.sh"
+  outputs = [ "${target_out_dir}/cpvkgl.log" ]
+}
