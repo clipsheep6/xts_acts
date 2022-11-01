@@ -23,7 +23,7 @@ group("graphic") {
       "webGL:webGL_hap_test",
       "windowStage:ActsWindowStageTest",
       "windowstandard:window_hap_test",
-      "vkgl:VKGLCTSTest",
+      #"vkgl:VKGLCTSTest",
       "//third_party/VK-GL-CTS/framework/platform:glcts",
       "vkgl:cpvkgl",
     ]
