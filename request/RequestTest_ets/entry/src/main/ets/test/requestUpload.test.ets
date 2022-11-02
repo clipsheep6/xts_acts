@@ -213,7 +213,7 @@ export default function requestUploadJSUnit() {
       console.info("-----------------------SUB_REQUEST_UPLOAD_API_0005 end-----------------------");
       done();
     });
-    
+
     /**
      * @tc.number    SUB_REQUEST_UPLOAD_API_0006
      * @tc.name      Test requestUploadTest type = TIMER_TYPE_REALTIME
@@ -244,8 +244,8 @@ export default function requestUploadJSUnit() {
         console.info("SUB_REQUEST_UPLOAD_API_0006 request.ERROR_UNSUPPORTED_NETWORK_TYPE:" + request.ERROR_UNSUPPORTED_NETWORK_TYPE);
         expect(request.ERROR_UNSUPPORTED_NETWORK_TYPE).assertEqual(10);
       } catch (err) {
-        expect(true).assertEqual(true);
         console.error("SUB_REQUEST_UPLOAD_API_0006 error: " + err);
+        expect().assertFail();
       }
       console.info("-----------------------SUB_REQUEST_UPLOAD_API_0006 end-----------------------");
       done();
@@ -266,7 +266,11 @@ export default function requestUploadJSUnit() {
         request.upload(uploadConfig, (data) => {
           uploadTask = data;
           console.info("SUB_REQUEST_UPLOAD_API_CALLBACK_0001 progress uploadTask =" + JSON.stringify(uploadTask));
-          expect(uploadTask != undefined).assertEqual(true);
+          try{
+            expect(uploadTask != undefined).assertEqual(true);
+          }catch(e){
+            console.info("SUB_REQUEST_UPLOAD_API_CALLBACK_0001 except error: " + e);
+          }
 
           uploadTask.on('progress', function (data1, data2) {
             console.info("SUB_REQUEST_UPLOAD_API_CALLBACK_0001 on data1 =" + data1);
@@ -306,21 +310,37 @@ export default function requestUploadJSUnit() {
         request.upload(uploadConfig).then((data) => {
           uploadTask = data;
           console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 uploadTask = " + uploadTask);
-          expect(true).assertEqual((uploadTask != undefined) || (uploadTask != "") || (uploadTask != {}));
+          try{
+            expect(true).assertEqual((uploadTask != undefined) || (uploadTask != "") || (uploadTask != {}));
+          }catch(e){
+            console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 except error: " + e);
+          }
 
           uploadTask.on('headerReceive', (header) => {
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 header = " + header);
-            expect(true).assertEqual((header != undefined) || (header != "") || (header != {}));
+            try{
+              expect(true).assertEqual((header != undefined) || (header != "") || (header != {}));
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 except 1 error: " + e);
+            }
           });
 
           uploadTask.off('headerReceive', (header) => {
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 header = " + header);
-            expect(true).assertEqual((header != undefined) || (header != "") || (header != {}));
+            try{
+              expect(true).assertEqual((header != undefined) || (header != "") || (header != {}));
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 except 2 error: " + e);
+            }
           });
 
           uploadTask.remove().then((result)=>{
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 remove result = " + result);
-            expect(result).assertEqual(true);
+            try{
+              expect(result).assertEqual(true);
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0001 except 3 error: " + e);
+            }
           });
         });
       } catch (e) {
@@ -347,25 +367,37 @@ export default function requestUploadJSUnit() {
         request.upload(uploadConfig).then((data) => {
           uploadTask = data;
           console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 uploadTask = " + uploadTask);
-          expect(true).assertEqual((uploadTask != undefined) || (uploadTask != "") || (uploadTask != {}));
+          try{
+            expect(true).assertEqual((uploadTask != undefined) || (uploadTask != "") || (uploadTask != {}));
+          }catch(e){
+            console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 except error: " + e);
+          }
 
           uploadTask.on('complete', (TaskState) => {
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 TaskState.path = " + TaskState.path);
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 TaskState.responseCode" + TaskState.responseCode);
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 TaskState.TaskState.message" + TaskState.message);
-            expect(typeof(TaskState.path) == "string").assertEqual(true);
-            expect(typeof(TaskState.responseCode) == "number").assertEqual(true);
-            expect(typeof(TaskState.message) == "string").assertEqual(true);
+            try{
+              expect(typeof(TaskState.path) == "string").assertEqual(true);
+              expect(typeof(TaskState.responseCode) == "number").assertEqual(true);
+              expect(typeof(TaskState.message) == "string").assertEqual(true);
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 except 3 error: " + e);
+            }
           });
 
           uploadTask.on('fail', (TaskState) => {
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 TaskState.path = " + TaskState.path);
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 TaskState.responseCode" + TaskState.responseCode);
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 TaskState.TaskState.message" + TaskState.message);
-            expect(typeof(TaskState.path) == "string").assertEqual(true);
-            expect(typeof(TaskState.responseCode) == "number").assertEqual(true);
-            expect(typeof(TaskState.message) == "string").assertEqual(true);
-            expect(true).assertEqual(true);
+            try{
+              expect(typeof(TaskState.path) == "string").assertEqual(true);
+              expect(typeof(TaskState.responseCode) == "number").assertEqual(true);
+              expect(typeof(TaskState.message) == "string").assertEqual(true);
+              expect(true).assertEqual(true);
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0002 except 4 error: " + e);
+            }
           });
         });
       } catch (e) {
@@ -392,16 +424,28 @@ export default function requestUploadJSUnit() {
         request.upload(uploadConfig).then((data) => {
           uploadTask = data;
           console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0003 uploadTask = " + uploadTask);
-          expect(true).assertEqual((uploadTask != undefined) || (uploadTask != "") || (uploadTask != {}));
+          try{
+            expect(true).assertEqual((uploadTask != undefined) || (uploadTask != "") || (uploadTask != {}));
+          }catch(e){
+            console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0003 except error: " + e);
+          }
 
           uploadTask.off('complete', () => {
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0003 TaskState success");
-            expect(true).assertEqual(true);
+            try{
+              expect(true).assertEqual(true);
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0003 except assertEqual error: " + e);
+            }
           });
 
           uploadTask.off('fail', () => {
             console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0003 TaskState success");
-            expect(true).assertEqual(true);
+            try{
+              expect(true).assertEqual(true);
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_PROMISE_0003 except assertEqual 2 error: " + e);
+            }
           });
         });
       } catch (e) {
@@ -426,14 +470,27 @@ export default function requestUploadJSUnit() {
         request.upload(uploadConfig, (data) => {
           uploadTask = data;
           console.info("SUB_REQUEST_UPLOAD_API_DELETE_0001 uploadTask: " + uploadTask);
-          expect(uploadTask != undefined).assertEqual(true);
+          try{
+            expect(uploadTask != undefined).assertEqual(true);
+          }catch(e){
+            console.info("SUB_REQUEST_UPLOAD_API_DELETE_0001 except error: " + e);
+          }
+
           uploadTask.delete((err, data) => {
             if (err) {
               console.error('SUB_REQUEST_UPLOAD_API_DELETE_0001 Failed to delete the uploadTask task.');
-              expect().assertFail();
+              try{
+                expect().assertFail();
+              }catch(e){
+                console.info("SUB_REQUEST_UPLOAD_API_DELETE_0001 except 2 error: " + e);
+              }
             }
             console.info('SUB_REQUEST_UPLOAD_API_DELETE_0001 uploadTask task delete success.');
-            expect(typeof data == "boolean").assertTrue();
+            try{
+              expect(typeof data == "boolean").assertTrue();
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_DELETE_0001 except 3 error: " + e);
+            }
           });
         })
       } catch (error) {
@@ -457,10 +514,18 @@ export default function requestUploadJSUnit() {
         request.upload(uploadConfig, (data) => {
           uploadTask = data;
           console.info("SUB_REQUEST_UPLOAD_API_DELETE_0002 uploadTask: " + uploadTask);
-          expect(uploadTask != undefined).assertEqual(true);
+          try{
+            expect(uploadTask != undefined).assertEqual(true);
+          }catch(e){
+            console.info("SUB_REQUEST_UPLOAD_API_DELETE_0002 except error: " + e);
+          }
           uploadTask.delete().then(data => {
             console.info('SUB_REQUEST_UPLOAD_API_DELETE_0002 uploadTask task delete success.');
-            expect(data == true).assertTrue();
+            try{
+              expect(data == true).assertTrue();
+            }catch(e){
+              console.info("SUB_REQUEST_UPLOAD_API_DELETE_0002 except 1 error: " + e);
+            }
           }).catch((err) => {
             console.info('SUB_REQUEST_UPLOAD_API_DELETE_0002 Failed to delete the uploadTask task.');
             expect().assertFail();
