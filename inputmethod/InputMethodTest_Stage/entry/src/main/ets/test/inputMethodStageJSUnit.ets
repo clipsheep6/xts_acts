@@ -530,34 +530,6 @@ export default function inputMethodStageJSUnit() {
     });
 
     /*
-     * @tc.number  inputMethod_test_stopInputSession_002
-     * @tc.name   Stop input
-     * @tc.desc    Function test
-     * @tc.level   2
-     */
-    it('inputMethod_test_stopInputSession_002', 0, async function (done) {
-      console.info("-----------------inputMethod_test_stopInputSession_002 start---------------------");
-      try{
-        let inputMethodCtrl = inputMethod.getController();
-        console.info("inputMethod_test_stopInputSession_002 result:" + typeof inputMethodCtrl);
-        inputMethodCtrl.stopInputSession().then((data) => {
-          console.info("inputMethod_test_stopInputSession_002 stopInputSession data: " + data);
-          expect(data == true).assertTrue();
-          done();
-        }).catch(err => {
-          console.info("inputMethod_test_stopInputSession_002 faild: " + JSON.stringify(err));
-          expect().assertFail();
-          done();
-        });
-      }catch(error){
-        console.info("inputMethod_test_stopInputSession_002 catch error" + JSON.stringify(error));
-        expect().assertFail();
-        done();
-      };
-      console.info("-----------------inputMethod_test_stopInputSession_002 end---------------------");
-    });
-
-    /*
      * @tc.number  inputMethod_test_stopInputSession_001
      * @tc.name   Stop input
      * @tc.desc    Function test
@@ -565,25 +537,54 @@ export default function inputMethodStageJSUnit() {
      */
     it('inputMethod_test_stopInputSession_001', 0, async function (done) {
       console.info("-----------------inputMethod_test_stopInputSession_001 start---------------------");
+      let inputMethodCtrl = inputMethod.getController();
+      console.info("inputMethod_test_stopInputSession_001 result: " + typeof inputMethodCtrl);
       try{
-        let inputMethodCtrl = inputMethod.getController();
-        console.info("inputMethod_test_stopInputSession_001 result: " + typeof inputMethodCtrl);
         inputMethodCtrl.stopInputSession((err, data) => {
           if(err){
             console.info("inputMethod_test_stopInputSession_001 faild: " + JSON.stringify(err));
-            expect().assertFail();
+            expect(err.code).assertEqual(12800003)
             done();
-          };
-          console.info("inputMethod_test_stopInputSession_001 stopInputSession data: " + data);
-          expect(data == true).assertTrue();
-          done();
+          }else{
+            console.info("inputMethod_test_stopInputSession_001 stopInputSession data: " + data);
+            expect(typeof data == "boolean").assertTrue();
+            done();
+          }
         });
       }catch(error){
         console.info("inputMethod_test_stopInputSession_001 catch error" + JSON.stringify(error));
         expect().assertFail();
         done();
-      };
+      }
       console.info("-----------------inputMethod_test_stopInputSession_001 end---------------------");
+    });
+
+    /*
+     * @tc.number  inputMethod_test_stopInputSession_002
+     * @tc.name   Stop input
+     * @tc.desc    Function test
+     * @tc.level   2
+     */
+    it('inputMethod_test_stopInputSession_002', 0, async function (done) {
+      console.info("-----------------inputMethod_test_stopInputSession_002 start---------------------");
+      let inputMethodCtrl = inputMethod.getController();
+      console.info("inputMethod_test_stopInputSession_002 result:" + typeof inputMethodCtrl);
+      try{
+        inputMethodCtrl.stopInputSession().then((data) => {
+          console.info("inputMethod_test_stopInputSession_002 stopInputSession data: " + data);
+          expect(typeof data == "boolean").assertTrue();
+          done();
+        }).catch(err => {
+          console.info("inputMethod_test_stopInputSession_002 faild: " + JSON.stringify(err));
+          expect(err.code).assertEqual(12800003)
+          done();
+        });
+      }catch(error){
+        console.info("inputMethod_test_stopInputSession_002 catch error" + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
+      console.info("-----------------inputMethod_test_stopInputSession_002 end---------------------");
     });
     
     /*
