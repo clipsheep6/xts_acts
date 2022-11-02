@@ -42,7 +42,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       'TYPE_VOLUME_OVERLAY': 6,
       'TYPE_NAVIGATION_BAR': 7,
       'TYPE_FLOAT': 8,
-//      'TYPE_FLOAT_CAMERA': 9
+//    'TYPE_FLOAT_CAMERA': 9
     }
     var windowLayoutModeArr = [];
     var windowLayoutModeDic = {
