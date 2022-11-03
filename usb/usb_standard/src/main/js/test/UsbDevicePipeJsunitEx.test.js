@@ -337,7 +337,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
       }
       for (var k = 0; k < gDeviceList[0].configs[j].interfaces.length; k++) {
         var TmpInterface = gDeviceList[0].configs[j].interfaces[k]
-        console.info("******************************" + JSON.stringify(TmpInterface));
         TmpInterface.id = 123
         var isClaim = usb.claimInterface(gPipe, TmpInterface, true)
         console.info('usb case claimInterface function return: ' + isClaim);
@@ -860,7 +859,7 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
     gPipe = usb.connectDevice(gDeviceList[0])
     for (var j = 0; j < gDeviceList[0].configs.length; j++) {
-      var isClaim = usb.claimInterface(gPipe, gDeviceList[0].configs[j].interfaces[0], true);
+      var isClaimed = usb.claimInterface(gPipe, gDeviceList[0].configs[j].interfaces[0], true);
 
       var tmpInterface = gDeviceList[0].configs[j].interfaces[0]
       tmpInterface.protocol = 482

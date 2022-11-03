@@ -108,15 +108,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var powerRole = usb.SINK;
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
+      console.info('usb 0030 case setPortRoles return: ' + data);
       expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0030 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      
     })
-    console.info('usb SUB_USB_JS_0030:  PASS');
     CheckEmptyUtils.sleep(8000)
+    console.info('usb SUB_USB_JS_0030:  PASS');
   })
 
   /**
@@ -129,14 +128,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var powerRole = usb.NONE - 1;
     var dataRole = usb.DEVICE;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
+      console.info('usb 0040 case setPortRoles return: ' + data);
       expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0040 case setPortRoles error : ' + error);
       expect(error).assertFalse();
     })
-    console.info('usb SUB_USB_JS_0040:  PASS');
     CheckEmptyUtils.sleep(8000)
+    console.info('usb SUB_USB_JS_0040:  PASS');
   })
 
   /**
@@ -149,14 +148,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var powerRole = usb.SINK;
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
+      console.info('usb 0050 case setPortRoles return: ' + data);
       expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0050 case setPortRoles error : ' + error);
       expect(error).assertFalse();
     })
-    console.info('usb SUB_USB_JS_0050:  PASS');
     CheckEmptyUtils.sleep(8000)
+    console.info('usb SUB_USB_JS_0050:  PASS');
   })
 
   /**
@@ -169,14 +168,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var powerRole = usb.NONE - 1;
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
+      console.info('usb 0060 case setPortRoles return: ' + data);
       expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0060 case setPortRoles error : ' + error);
       expect(error).assertFalse();
     })
-    console.info('usb SUB_USB_JS_0060:  PASS');
     CheckEmptyUtils.sleep(8000)
+    console.info('usb SUB_USB_JS_0060:  PASS');
   })
 
   /**
@@ -189,14 +188,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var dataRole = usb.NONE - 1;
     var powerRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
+      console.info('usb 0070 case setPortRoles return: ' + data);
       expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0070 case setPortRoles error : ' + error);
       expect(error).assertFalse();
     })
-    console.info('usb SUB_USB_JS_0070:  PASS');
     CheckEmptyUtils.sleep(8000)
+    console.info('usb SUB_USB_JS_0070:  PASS');
   })
 
   /**
@@ -209,14 +208,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var powerRole = 1;
     var dataRole = 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
+      console.info('usb 0080 case setPortRoles return: ' + data);
       expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0080 case setPortRoles error : ' + error);
       expect(error).assertFalse();
     })
-    console.info('usb SUB_USB_JS_0080:  PASS');
     CheckEmptyUtils.sleep(8000)
+    console.info('usb SUB_USB_JS_0080:  PASS');
   })
 
   /**

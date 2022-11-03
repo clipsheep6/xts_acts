@@ -380,7 +380,6 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     }
 
     console.info('usb SUB_USB_JS_0800 :  PASS');
-    // expect(true).assertTrue();
   })
 
   /**
