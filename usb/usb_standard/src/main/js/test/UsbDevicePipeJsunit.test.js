@@ -74,10 +74,10 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
       var endpoint = testParam.config.interfaces[j].endpoints[k];
       if (endpoint.type == EventConstants.USB_ENDPOINT_XFER_BULK) {
         bfind = true
-        if (endpoint.direction == usb.USB_REQUEST_DIR_TO_DEVICE << 7) {
+        if (endpoint.direction == usb.USB_REQUEST_DIR_TO_DEVICE) {
           testParam.maxOutSize = endpoint.maxPacketSize;
           testParam.outEndpoint = endpoint;
-        } else if (endpoint.direction == usb.USB_REQUEST_DIR_FROM_DEVICE) {
+        } else if (endpoint.direction == usb.USB_REQUEST_DIR_FROM_DEVICE << 7) {
           testParam.maxInSize = endpoint.maxPacketSize;
           testParam.inEndpoint = endpoint
         }
