@@ -167,8 +167,8 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     TmpTestParam.outEndpoint.address = 123
     usb.bulkTransfer(TmpTestParam.pip, TmpTestParam.outEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case SUB_USB_JS_0650 ret: ' + data);
-      console.info('usb case SUB_USB_JS_0650 :  PASS');
       expect(data).assertEqual(-1);
+      console.info('usb case SUB_USB_JS_0650 :  PASS');
     }).catch(error => {
       console.info('usb 03 write error : ' + JSON.stringify(error));
       expect(false).assertFalse();
@@ -204,8 +204,8 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     TmpTestParam.outEndpoint.number = 123
     usb.bulkTransfer(TmpTestParam.pip, TmpTestParam.outEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case SUB_USB_JS_0660 ret: ' + data);
-      console.info('usb case SUB_USB_JS_0660 :  PASS');
       expect(data).assertEqual(-1);
+      console.info('usb case SUB_USB_JS_0660 :  PASS');
     }).catch(error => {
       console.info('usb 04 write error : ' + JSON.stringify(error));
       expect(false).assertFalse();
@@ -241,8 +241,8 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     TmpTestParam.outEndpoint.type = 123
     usb.bulkTransfer(TmpTestParam.pip, TmpTestParam.outEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case SUB_USB_JS_0670 ret: ' + data);
-      console.info('usb case SUB_USB_JS_0670 :  PASS');
       expect(data).assertEqual(-1);
+      console.info('usb case SUB_USB_JS_0670 :  PASS');
     }).catch(error => {
       console.info('usb 05 write error : ' + JSON.stringify(error));
       expect(false).assertFalse();
@@ -337,6 +337,7 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
       }
       for (var k = 0; k < gDeviceList[0].configs[j].interfaces.length; k++) {
         var TmpInterface = gDeviceList[0].configs[j].interfaces[k]
+        console.info("******************************" + JSON.stringify(TmpInterface));
         TmpInterface.id = 123
         var isClaim = usb.claimInterface(gPipe, TmpInterface, true)
         console.info('usb case claimInterface function return: ' + isClaim);
@@ -345,7 +346,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0430 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -386,7 +386,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0440 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -427,7 +426,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0450 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -468,7 +466,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0460 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -509,7 +506,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0470 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -568,7 +564,7 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.claimInterface("invalid");
+      var maskCode = usb.claimInterface();
       console.info('usb 1320 case claimInterface return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -616,7 +612,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0280 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -657,7 +652,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0290 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -698,7 +692,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0300 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -739,7 +732,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0310 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -780,7 +772,6 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
 
     console.info('usb SUB_USB_JS_0320 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -820,7 +811,7 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
   /**
    * @tc.number    : SUB_USB_JS_1330
    * @tc.name      : releaseInterface
-   * @tc.desc      : 反向测试 释放接口 参数类型错误
+   * @tc.desc      : 反向测试 释放接口 参数个数错误，必要参数未传入
    */
    it('SUB_USB_JS_1330', 0, function () {
     console.info('usb SUB_USB_JS_1330 begin');
@@ -869,17 +860,16 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
     }
     gPipe = usb.connectDevice(gDeviceList[0])
     for (var j = 0; j < gDeviceList[0].configs.length; j++) {
-      var isClaimed = usb.claimInterface(gPipe, gDeviceList[0].configs[j].interfaces[0], true);
+      var isClaim = usb.claimInterface(gPipe, gDeviceList[0].configs[j].interfaces[0], true);
 
       var tmpInterface = gDeviceList[0].configs[j].interfaces[0]
       tmpInterface.protocol = 482
       var ret = usb.setInterface(gPipe, tmpInterface)
-      expect(ret).assertLess(0)
       console.info('usb case setInterface return : ' + ret)
+      expect(ret).assertLess(0);
     }
 
     console.info('usb SUB_USB_JS_0820 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -906,13 +896,12 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
       var tmpInterface = gDeviceList[0].configs[j].interfaces[0]
       tmpInterface.clazz = 482
       var ret = usb.setInterface(gPipe, tmpInterface)
-      expect(ret).assertLess(0)
       console.info('usb case setInterface return : ' + ret)
+      expect(ret).assertLess(0);
 
     }
 
     console.info('usb SUB_USB_JS_0830 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -939,13 +928,12 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
       var tmpInterface = gDeviceList[0].configs[j].interfaces[0]
       tmpInterface.subClass = 482
       var ret = usb.setInterface(gPipe, tmpInterface)
-      expect(ret).assertLess(0)
       console.info('usb case setInterface return : ' + ret)
+      expect(ret).assertLess(0);
 
     }
 
     console.info('usb SUB_USB_JS_0840 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -972,12 +960,11 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
       var tmpInterface = gDeviceList[0].configs[j].interfaces[0]
       tmpInterface.name = 'wer32'
       var ret = usb.setInterface(gPipe, tmpInterface)
-      expect(ret).assertLess(0)
       console.info('usb case setInterface return : ' + ret)
+      expect(ret).assertLess(0);
     }
 
     console.info('usb SUB_USB_JS_0850 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -1011,7 +998,7 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
   /**
    * @tc.number    : SUB_USB_JS_1340
    * @tc.name      : setInterface
-   * @tc.desc      : 反向测试 设置设备接口 参数类型错误
+   * @tc.desc      : 反向测试 设置设备接口 参数个数错误，必要参数未传入
    */
    it('SUB_USB_JS_1340', 0, function () {
     console.info('usb SUB_USB_JS_1340 begin');

@@ -180,7 +180,6 @@ describe('UsbPortAndFunctionsJsFunctionsTest', function () {
     }
 
     console.info('usb SUB_USB_JS_0010 device 2 2:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -200,8 +199,8 @@ describe('UsbPortAndFunctionsJsFunctionsTest', function () {
     for (var i = 0; i < usbPortList.length; i++) {
       console.info('usb case set data role 1, data role 1');
       usb.setPortRoles(usbPortList[i].id, usb.SOURCE, usb.HOST).then(data => {
-        expect(data).assertTrue();
         console.info('usb case setPortRoles return: ' + data);
+        expect(data).assertTrue();
       }).catch(error => {
         console.info('usb case setPortRoles error : ' + error);
         expect(false).assertTrue();
@@ -210,7 +209,6 @@ describe('UsbPortAndFunctionsJsFunctionsTest', function () {
     }
 
     console.info('usb SUB_USB_JS_0020 host 1 1:  PASS');
-    expect(true).assertTrue();
   })
 })
 }

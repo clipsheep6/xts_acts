@@ -60,7 +60,6 @@ describe('UsbPortJsFunctionsTestEx', function () {
     expect(maskCode).assertEqual(usb.NONE);
 
     console.info('usb SUB_USB_JS_0230 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -110,16 +109,14 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
       console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      expect(data).assertFalse();
     }).catch(error => {
       console.info('usb case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0030:  PASS');
+      
     })
-    CheckEmptyUtils.sleep(8000)
-
     console.info('usb SUB_USB_JS_0030:  PASS');
-    expect(true).assertTrue();
+    CheckEmptyUtils.sleep(8000)
   })
 
   /**
@@ -133,15 +130,13 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var dataRole = usb.DEVICE;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
       console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      expect(data).assertFalse();
     }).catch(error => {
       console.info('usb case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0040:  PASS');
     })
-    CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0040:  PASS');
-    expect(true).assertTrue();
+    CheckEmptyUtils.sleep(8000)
   })
 
   /**
@@ -155,15 +150,13 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
       console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      expect(data).assertFalse();
     }).catch(error => {
       console.info('usb case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0050:  PASS');
     })
-    CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0050:  PASS');
-    expect(true).assertTrue();
+    CheckEmptyUtils.sleep(8000)
   })
 
   /**
@@ -177,15 +170,13 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
       console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      expect(data).assertFalse();
     }).catch(error => {
       console.info('usb case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0060:  PASS');
     })
-    CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0060:  PASS');
-    expect(true).assertTrue();
+    CheckEmptyUtils.sleep(8000)
   })
 
   /**
@@ -199,15 +190,13 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var powerRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
       console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      expect(data).assertFalse();
     }).catch(error => {
       console.info('usb case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0070:  PASS');
     })
-    CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0070:  PASS');
-    expect(true).assertTrue();
+    CheckEmptyUtils.sleep(8000)
   })
 
   /**
@@ -221,15 +210,13 @@ describe('UsbPortJsFunctionsTestEx', function () {
     var dataRole = 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
       console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      expect(data).assertFalse();
     }).catch(error => {
       console.info('usb case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0080:  PASS');
     })
-    CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0080:  PASS');
-    expect(true).assertTrue();
+    CheckEmptyUtils.sleep(8000)
   })
 
   /**

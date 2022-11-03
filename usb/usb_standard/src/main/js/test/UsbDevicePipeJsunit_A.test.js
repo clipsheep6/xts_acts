@@ -172,8 +172,8 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     usb.bulkTransfer(testParam.pip, testParam.inEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case readData tmpUint8Array buffer : ' + CheckEmptyUtils.ab2str(tmpUint8Array));
       console.info('usb case readData ret: ' + data);
+      expect(data > 0).assertTrue();
       console.info('usb case SUB_USB_JS_0630 :  PASS');
-      expect(data >= 0).assertTrue();
     }).catch(error => {
       console.info('usb case readData error : ' + JSON.stringify(error));
       expect(false).assertTrue();
@@ -214,8 +214,8 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     usb.bulkTransfer(testParam.pip, testParam.outEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case SUB_USB_JS_0640 ret: ' + data);
       console.info('usb case SUB_USB_JS_0640 send data: ' + testParam.sendData);
+      expect(data > 0).assertTrue();
       console.info('usb case SUB_USB_JS_0640 :  PASS');
-      expect(true).assertTrue();
     }).catch(error => {
       console.info('usb write error : ' + JSON.stringify(error));
       expect(false).assertTrue();
@@ -270,7 +270,6 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     }
 
     console.info('usb SUB_USB_JS_0420 :  PASS');
-    expect(true).assertTrue();
   })
 
   function getTransferParam(iCmd, iReqType, iValue, iIndex) {
@@ -321,7 +320,6 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     }
 
     console.info('usb SUB_USB_JS_0740 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -382,7 +380,7 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     }
 
     console.info('usb SUB_USB_JS_0800 :  PASS');
-    expect(true).assertTrue();
+    // expect(true).assertTrue();
   })
 
   /**
@@ -416,15 +414,14 @@ describe('UsbDevicePipeJsFunctionsTestA', function () {
     }
 
     console.info('usb SUB_USB_JS_0810 :  PASS');
-    expect(true).assertTrue();
   })
 
   function callControlTransfer(pip, controlParam, timeout, caseName) {
     usb.controlTransfer(pip, controlParam, timeout).then(data => {
       console.info('usb controlTransfer ret data : ' + data + ' ' + caseName);
       console.info('usb controlTransfer controlParam.data buffer : ' + controlParam.data + ' ' + caseName);
+      expect(data >= 0).assertTrue();
       console.info('usb' + caseName + ':  PASS');
-      expect(true).assertTrue();
     }).catch(error => {
       console.info('usb controlTransfer error : ' + JSON.stringify(error));
       console.info('usb' + caseName + ':  FAILED');
