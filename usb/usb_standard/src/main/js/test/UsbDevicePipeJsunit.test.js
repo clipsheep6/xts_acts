@@ -74,10 +74,10 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
       var endpoint = testParam.config.interfaces[j].endpoints[k];
       if (endpoint.type == EventConstants.USB_ENDPOINT_XFER_BULK) {
         bfind = true
-        if (endpoint.direction == usb.USB_REQUEST_DIR_TO_DEVICE) {
+        if (endpoint.direction == usb.USB_REQUEST_DIR_TO_DEVICE << 7) {
           testParam.maxOutSize = endpoint.maxPacketSize;
           testParam.outEndpoint = endpoint;
-        } else if (endpoint.direction == (usb.USB_REQUEST_DIR_FROM_DEVICE << 7)) {
+        } else if (endpoint.direction == usb.USB_REQUEST_DIR_FROM_DEVICE) {
           testParam.maxInSize = endpoint.maxPacketSize;
           testParam.inEndpoint = endpoint
         }
@@ -166,8 +166,8 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
     usb.bulkTransfer(testParam.pip, testParam.inEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case readData tmpUint8Array buffer : ' + CheckEmptyUtils.ab2str(tmpUint8Array));
       console.info('usb case readData ret: ' + data);
-      console.info('usb case SUB_USB_JS_0630 :  PASS');
       expect(data >= 0).assertTrue();
+      console.info('usb case SUB_USB_JS_0630 :  PASS');
     }).catch(error => {
       console.info('usb case readData error : ' + JSON.stringify(error));
       expect(false).assertTrue();
@@ -208,8 +208,8 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
     usb.bulkTransfer(testParam.pip, testParam.outEndpoint, tmpUint8Array, 5000).then(data => {
       console.info('usb case SUB_USB_JS_0640 ret: ' + data);
       console.info('usb case SUB_USB_JS_0640 send data: ' + testParam.sendData);
+      expect(data > 0).assertTrue();
       console.info('usb case SUB_USB_JS_0640 :  PASS');
-      expect(true).assertTrue();
     }).catch(error => {
       console.info('usb write error : ' + JSON.stringify(error));
       expect(false).assertTrue();
@@ -259,7 +259,6 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
     }
 
     console.info('usb SUB_USB_JS_0420 :  PASS');
-    expect(true).assertTrue();
   })
 
   function getTransferParam(iCmd, iReqTarType, iReqType, iValue, iIndex) {
@@ -306,7 +305,6 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
     }
 
     console.info('usb SUB_USB_JS_0740 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -361,13 +359,12 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
       expect(isClaim).assertEqual(0)
       if (isClaim == 0) {
         var ret = usb.setInterface(gPipe, gDeviceList[0].configs[j].interfaces[0])
-        expect(ret).assertEqual(0);
         console.info('usb case setInterface return : ' + ret);
+        expect(ret).assertEqual(0);
       }
     }
 
     console.info('usb SUB_USB_JS_0800 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -395,21 +392,20 @@ describe('UsbDevicePipeJsFunctionsTest', function () {
         var tmpInterface = JSON.parse(JSON.stringify(gDeviceList[0].configs[j].interfaces[0]));
         tmpInterface.id = 234
         var ret = usb.setInterface(gPipe, tmpInterface)
-        expect(ret).assertLess(0)
         console.info('usb case setInterface return : ' + ret)
+        expect(ret).assertLess(0)
       }
     }
 
     console.info('usb SUB_USB_JS_0810 :  PASS');
-    expect(true).assertTrue();
   })
 
   function callControlTransfer(pip, controlParam, timeout, caseName) {
     usb.controlTransfer(pip, controlParam, timeout).then(data => {
       console.info('usb controlTransfer ret data : ' + data + ' ' + caseName);
       console.info('usb controlTransfer controlParam.data buffer : ' + controlParam.data + ' ' + caseName);
+      expect(data >= 0).assertTrue();
       console.info('usb' + caseName + ':  PASS');
-      expect(true).assertTrue();
     }).catch(error => {
       console.info('usb controlTransfer error : ' + JSON.stringify(error));
       console.info('usb' + caseName + ':  FAILED');

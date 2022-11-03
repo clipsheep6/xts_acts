@@ -65,7 +65,6 @@ describe('UsbFunctionsJsFunctionsTest', function () {
     console.info('usb case strMaskCode usbFunctionsFromString return int: ' + nMaskCode);
     expect(nMaskCode).assertEqual(maskCode);
     console.info('usb SUB_USB_JS_0330 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -90,10 +89,9 @@ describe('UsbFunctionsJsFunctionsTest', function () {
 
     var errStrMaskCode = 'none'
     var nMaskCode = usb.usbFunctionsFromString(errStrMaskCode)
-    expect(nMaskCode).assertEqual(usb.NONE);
     console.info('usb case errStrMaskCode ' + errStrMaskCode +
       ' usbFunctionsFromString return int: ' + nMaskCode);
-
+    expect(nMaskCode).assertEqual(usb.NONE);
     console.info('usb SUB_USB_JS_0340 :  PASS');
   })
 
