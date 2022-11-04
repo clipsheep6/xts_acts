@@ -20,6 +20,15 @@ import systemTime from "@ohos.systemTime";
 export default function systemTimeJsunit() {
   describe('systemTimeTest', function () {
     console.info('--------------------systemTimeTest start-----------------------');
+    let nowTimeZone;
+
+    beforeAll(async function () {
+        nowTimeZone = await systemTime.getTimezone();
+    })
+
+    afterEach(async function () {
+        await systemTime.setTimezone(nowTimeZone);
+    })
     /**
      * @tc.number    SUB_systemTime_getCurrentTime_JS_API_0001
      * @tc.name      Test systemTime.getCurrentTime
@@ -162,9 +171,11 @@ export default function systemTimeJsunit() {
    */
     it('SUB_systemTime_setTime_JS_API_0100', 0, async function (done) {
       console.info("SUB_systemTime_setTime_JS_API_0100 start");
+      let nowTime = new Date();
       systemTime.setTime(1526003846000)
         .then(data =>{
           console.info("setTime ===data " + data);
+          systemTime.setDate(nowTime);
           expect(data).assertEqual(true)
         }).catch(error => {
         console.info("setTime ===error " + error);
@@ -184,9 +195,11 @@ export default function systemTimeJsunit() {
        */
     it('SUB_systemTime_setTime_JS_API_0200', 0, async function (done) {
       console.info("SUB_systemTime_setTime_JS_API_0200 start");
+      let nowTime = new Date();
       systemTime.setTime(15222)
         .then(data => {
           console.info("setTime ===data " + data);
+          systemTime.setDate(nowTime);
           expect(true).assertTrue();
         }).catch(error => {
         console.info("setTime ===error " + error);
@@ -206,9 +219,11 @@ export default function systemTimeJsunit() {
        */
     it('SUB_systemTime_setTime_JS_API_0300', 0, async function (done) {
       console.info("SUB_systemTime_setTime_JS_API_0300 start");
+      let nowTime = new Date();
       systemTime.setTime(1597156246000, (err, data) => {
         if (err) {
           console.info("setTime ===error: " + err);
+          systemTime.setDate(nowTime);
           expect().assertFail()
         }else{
           console.info("setTime ===data: " + data);
@@ -230,9 +245,11 @@ export default function systemTimeJsunit() {
     it('SUB_systemTime_setTime_JS_API_0400', 0, async function (done) {
       console.info("SUB_systemTime_setTime_JS_API_0400 start");
       try{
+        let nowTime = new Date();
         systemTime.setTime(18, (err, data) => {
           console.info("setTime ===data: " + data);
           console.info("setTime ===error: " + err);
+          systemTime.setDate(nowTime);
           expect(true).assertTrue();
         })}catch(error) {error => {
         expect(1).assertLarger(0);
@@ -253,8 +270,10 @@ export default function systemTimeJsunit() {
     it('SUB_systemTime_setDate_JS_API_0100', 0, async function (done) {
       console.info("SUB_systemTime_setDate_JS_API_0100 start");
       var data = new Date("October 13, 2020 11:13:00");
+      let nowTime = new Date();
       systemTime.setDate(1).then(data => {
         console.info("setTime ===data " + data);
+          systemTime.setDate(nowTime);
         expect(true).assertTrue();
       }).catch(error => {
         console.info("setTime ===error " + error);
@@ -273,8 +292,10 @@ export default function systemTimeJsunit() {
       */
     it('SUB_systemTime_setDate_JS_API_0200', 0, async function (done) {
       console.info("SUB_systemTime_setDate_JS_API_0200 start");
+      let nowTime = new Date();
       systemTime.setDate(0).then(data => {
         console.info("setTime ===data " + data);
+        systemTime.setDate(nowTime);
         expect(true).assertTrue();
       }).catch(error => {
         console.info("setTime ===error " + error);
@@ -294,9 +315,11 @@ export default function systemTimeJsunit() {
     it('SUB_systemTime_setDate_JS_API_0300', 0, async function (done) {
       console.info("SUB_systemTime_setDate_JS_API_0300 start");
       var data = new Date("October 13, 2020 11:13:00");
+      let nowTime = new Date();
       systemTime.setDate(data, (error, data) => {
         if(error){
           console.info("setTime ===error " + error);
+          systemTime.setDate(nowTime);
           expect().assertFail();
         }else{
           console.info("setTime ===data " + data);
