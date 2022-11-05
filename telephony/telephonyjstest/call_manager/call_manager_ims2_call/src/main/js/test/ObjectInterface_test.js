@@ -445,8 +445,8 @@ export default function ObjectInterfaceTest() {
       expect(holder.displayName === null).assertFalse();
       expect(holder.holderId != 0).assertTrue();
       try {
-        var querykey = contactsapi.queryKey(queryId);
-        var resultSet = await contactsapi.queryContact(querykey, holder);
+        var findKey = contactsapi.queryKey(queryId);
+        var resultSet = await contactsapi.queryContact(findKey, holder);
         console.info("contactsApi_query_contact_test_500 : query resultSet = " + JSON.stringify(resultSet));
         expect(resultSet === null).assertFalse();
         done();
@@ -476,8 +476,8 @@ export default function ObjectInterfaceTest() {
         attributes: [1, 5, 6]
       }
       try {
-        var querykey = contactsapi.queryKey(queryId);
-        var resultSet = await contactsapi.queryContact(querykey, holder, ContactAttributes);
+        var findKey = contactsapi.queryKey(queryId);
+        var resultSet = await contactsapi.queryContact(findKey, holder, ContactAttributes);
         console.info("contactsApi_query_contact_test_600 : query resultSet = " + JSON.stringify(resultSet));
         expect(resultSet === null).assertFalse();
         done();
