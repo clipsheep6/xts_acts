@@ -517,6 +517,8 @@ LITE_TEST_CASE(LwipFuncTestSuite, testTcp, Function | MediumTest | Level2)
     timeout = TIMEOUT;
     g_serverWait = 1;
     g_clientWait = 1;
+    g_clientWaitOver = 0;
+    g_serverWaitOver = 0;
     while (timeout > 0) {
         if (g_serverWaitOver == 1 && g_clientWaitOver == 1) {
             printf("[testTcp] wait success[2]!\n");
@@ -531,6 +533,8 @@ LITE_TEST_CASE(LwipFuncTestSuite, testTcp, Function | MediumTest | Level2)
     timeout = TIMEOUT;
     g_serverWait = 1;
     g_clientWait = 1;
+    g_clientWaitOver = 0;
+    g_serverWaitOver = 0;
     while (timeout > 0) {
         if (g_serverWaitOver == 1 && g_clientWaitOver == 1) {
             printf("[testTcp] wait success[3]!\n");
@@ -544,6 +548,8 @@ LITE_TEST_CASE(LwipFuncTestSuite, testTcp, Function | MediumTest | Level2)
     timeout = TIMEOUT;
     g_serverWait = 1;
     g_clientWait = 1;
+    g_clientWaitOver = 0;
+    g_serverWaitOver = 0;
     while (timeout > 0) {
         if (g_serverWaitOver == 1 && g_clientWaitOver == 1) {
             printf("[testTcp] wait success[4]!\n");
