@@ -62,6 +62,14 @@
       {
         "name":"ohos.permission.GET_NETWORK_INFO",
         "reason":"need use ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name":"ohos.permission.SET_WIFI_INFO",
+        "reason":"need use ohos.permission.SET_WIFI_INFO"
+      },
+      {
+        "name":"ohos.permission.MANAGE_WIFI_CONNECTION",
+        "reason":"need use ohos.permission.MANAGE_WIFI_CONNECTION"
       }
     ],
     "distro": {
