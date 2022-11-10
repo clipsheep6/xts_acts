@@ -46,6 +46,7 @@ describe('audioFramework', function () {
             console.info(`${TagFrmwk}: getAudioManger : FAIL`);
         }
     }
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }

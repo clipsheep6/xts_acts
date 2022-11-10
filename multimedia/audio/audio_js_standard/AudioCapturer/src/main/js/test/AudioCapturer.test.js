@@ -463,9 +463,6 @@ describe('audioCapturer', function () {
         console.info(`${Tag} AudioFrameworkTest: afterAll: Test suite-level cleanup condition`);
     })
 
-
-
-
     async function recPromise(AudioCapturerOptions, done) {
         let audioCap;
         try {
@@ -2124,8 +2121,16 @@ describe('audioCapturer', function () {
         }
 
         try {
+            await audioCapPromise.start();
+            console.log(`${Tag} start ok`);
+        } catch (err) {
+            console.log(`${Tag} start err: ${JSON.stringify(err)}`);
+            expect(false).assertTrue();
+        }
+        try {
             await audioCapPromise.stop();
             console.log(`${Tag} stop ok`);
+            expect(true).assertTrue();
         } catch (err) {
             console.log(`${Tag} stop err: ${JSON.stringify(err)}`);
             expect(true).assertTrue();
