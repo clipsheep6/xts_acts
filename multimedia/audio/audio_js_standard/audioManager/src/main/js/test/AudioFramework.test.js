@@ -4903,7 +4903,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0100', 2,async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(1, (err, value) => {
             // Getting all Output devices Enumb 1 = OUTPUT_DEVICES_FLAG
             console.info(`${TagFrmwk}: Callback: getDevices OUTPUT_DEVICES_FLAG`);
@@ -4937,7 +4937,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0200', 2,async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(2, (err, value) => {
             // Getting all Input Devices ENUM 2 = INPUT_DEVICES_FLAG
             console.info(`${TagFrmwk}: Callback: getDevices INPUT_DEVICES_FLAG`);
@@ -4970,7 +4970,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0300', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(3, (err, value) => {
             // Getting all devies connected 3 = ALL_DEVICES_FLAG
             console.info(`${TagFrmwk}: Callback: getDevices ALL_DEVICES_FLAG`);
@@ -5003,7 +5003,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0400', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
             console.info(`${TagFrmwk}: Callback: getDevices OUTPUT_DEVICES_FLAG`);
             if (err) {
@@ -5035,7 +5035,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0500', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG, (err, value) => {
             console.info(`${TagFrmwk}: Callback: getDevices INPUT_DEVICES_FLAG`);
             if (err) {
@@ -5066,7 +5066,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0600', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(audio.DeviceFlag.ALL_DEVICES_FLAG, (err, value) => {
             console.info(`${TagFrmwk}: Callback: getDevices ALL_DEVICES_FLAG`);
             if (err) {
@@ -5097,7 +5097,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0700', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         let value = await AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
         console.info(`${TagFrmwk}: Promise: getDevices OUTPUT_DEVICES_FLAG`);
         value.forEach(displayDeviceProp);
