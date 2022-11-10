@@ -14,10 +14,29 @@
  */
 
 import network from '@system.network';
+import WifiManager from '@ohos.wifiManager'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 export default function Telephony_NetManager_NetWorkTest() {
 
 describe("Telephony_NetManager_NetWorkTest", function () {
+    
+    function sleep(timeout) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+            }, timeout);
+        })
+    }
+
+    beforeAll(async function () {
+        WifiManager.disableWifi();
+        sleep(3000);
+    })
+
+    afterAll(async function(){
+        WifiManager.enableWifi();
+        sleep(3000);
+    })
 
     /**
      * @tc.number Telephony_NetManager_NetWorkTest_GetType_None_0100
