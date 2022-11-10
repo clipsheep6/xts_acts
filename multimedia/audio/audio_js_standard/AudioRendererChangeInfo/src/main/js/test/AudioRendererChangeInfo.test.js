@@ -25,7 +25,6 @@ describe('audioRendererChange', function () {
     console.info(`${Tag} : Create AudioManger Object JS Framework`);
 
     beforeAll(async function () {
-
         audioStreamManager = AUDIOMANAGER.getStreamManager();
         audioStreamManagerCB = AUDIOMANAGER.getStreamManager();
         await sleep(1000);

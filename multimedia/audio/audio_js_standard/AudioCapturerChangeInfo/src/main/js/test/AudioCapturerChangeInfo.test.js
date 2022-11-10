@@ -28,14 +28,12 @@ describe('audioCapturerChange', function () {
     beforeAll(async function () {
         console.info(`AudioFrameworkTest: beforeAll: Prerequisites at the test suite level`);
         let permissionName1 = 'ohos.permission.MICROPHONE';
-        let permissionName2 = 'ohos.permission.MANAGE_AUDIO_CONFIG';
-        let permissionNameList = [permissionName1,permissionName2];
+        let permissionNameList = [permissionName1];
         let appName = 'ohos.acts.multimedia.audio.audiocapturerchangeInfo';
         await audioTestBase.applyPermission(appName, permissionNameList);
         await sleep(100);
         console.info(`AudioFrameworkTest: beforeAll: END`);
         await sleep(100);
-
         audioStreamManager = audioManager.getStreamManager();
         audioStreamManagerCB = audioManager.getStreamManager();
         await sleep(1000);
