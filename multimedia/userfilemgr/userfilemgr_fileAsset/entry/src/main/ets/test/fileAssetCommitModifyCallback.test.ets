@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import userFileManager from '@ohos.filemanagement.userFileManager';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import userFileManager from "@ohos.filemanagement.userFileManager";
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
+import dataSharePredicates from "@ohos.data.dataSharePredicates";
 
 import {
     sleep,
@@ -27,25 +27,25 @@ import {
     checkPresetsAssets,
     checkAssetsCount,
     getPermission,
-} from '../../../../../../common';
+} from "../../../../../../common";
 
 export default function fileAssetCommitModifyCallbackTest(abilityContext) {
-    describe('fileAssetCommitModifyCallbackTest', function () {
+    describe("fileAssetCommitModifyCallbackTest", function () {
         const userfilemgr = userFileManager.getUserFileMgr(abilityContext);
         beforeAll(async function () {
-            console.info('beforeAll case');
+            console.info("beforeAll case");
             await getPermission();
-            await checkPresetsAssets(userfilemgr, 'ActsUserFileMgrFileAssetJsTest')
+            await checkPresetsAssets(userfilemgr, "ActsUserFileMgrFileAssetJsTest");
         });
         beforeEach(function () {
-            console.info('beforeEach case');
+            console.info("beforeEach case");
         });
         afterEach(async function () {
-            console.info('afterEach case');
-            await sleep()
+            console.info("afterEach case");
+            await sleep();
         });
         afterAll(function () {
-            console.info('afterAll case');
+            console.info("afterAll case");
         });
 
         const checkCommitModify = async function (done, testNum, fetchOp, prop, val, isAudio) {
@@ -66,8 +66,8 @@ export default function fileAssetCommitModifyCallbackTest(abilityContext) {
                 asset.set(prop, val);
                 await asset.commitModify(async (err) => {
                     if (err) {
-                        console.info(`${testNum} err : ${err}`)
-                        expect.assertFail();
+                        console.info(`${testNum} err : ${err}`);
+                        expect().assertFail();
                         done();
                         return;
                     }
@@ -75,7 +75,7 @@ export default function fileAssetCommitModifyCallbackTest(abilityContext) {
                     predicates.equalTo(fileKey.URI, asset.get(fileKey.URI));
                     let ops = {
                         fetchColumns: [],
-                        predicates: predicates
+                        predicates: predicates,
                     };
                     let newResult;
                     if (isAudio) {
@@ -91,12 +91,12 @@ export default function fileAssetCommitModifyCallbackTest(abilityContext) {
                     done();
                 });
             } catch (error) {
-                console.info(`${testNum} error : ${error}`)
+                console.info(`${testNum} error : ${error}`);
                 expect(false).assertTrue();
                 done();
             }
-        }
-        
+        };
+
         /**
          * @tc.number    : SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_01
          * @tc.name      : commitModify
@@ -105,10 +105,10 @@ export default function fileAssetCommitModifyCallbackTest(abilityContext) {
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_01', 2, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_01';
-            let fetchOp = imageVideoNameFetchOps(testNum, 'Pictures/ModifyCb/', '01.jpg');
-            let prop = 'title';
+        it("SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_01", 2, async function (done) {
+            let testNum = "SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_01";
+            let fetchOp = imageVideoNameFetchOps(testNum, "Pictures/ModifyCb/", "01.jpg");
+            let prop = "title";
             let val = IMAGE_TYPE.toString();
             let isAudio = false;
             await checkCommitModify(done, testNum, fetchOp, prop, val, isAudio);
@@ -122,10 +122,10 @@ export default function fileAssetCommitModifyCallbackTest(abilityContext) {
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_02', 2, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_02';
-            let fetchOp = imageVideoNameFetchOps(testNum, 'Videos/ModifyCb/', '01.mp4');
-            let prop = 'title';
+        it("SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_02", 2, async function (done) {
+            let testNum = "SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_02";
+            let fetchOp = imageVideoNameFetchOps(testNum, "Videos/ModifyCb/", "01.mp4");
+            let prop = "title";
             let val = VIDEO_TYPE.toString();
             let isAudio = false;
             await checkCommitModify(done, testNum, fetchOp, prop, val, isAudio);
@@ -139,14 +139,13 @@ export default function fileAssetCommitModifyCallbackTest(abilityContext) {
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-         it('SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_03', 2, async function (done) {
-            let testNum = 'SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_03';
-            let fetchOp = audioNameFetchOps(testNum, 'Audios/ModifyCb/', '01.mp3');
-            let prop = 'title';
+        it("SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_03", 2, async function (done) {
+            let testNum = "SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_CALLBACK_03";
+            let fetchOp = audioNameFetchOps(testNum, "Audios/ModifyCb/", "01.mp3");
+            let prop = "title";
             let val = AUDIO_TYPE.toString();
             let isAudio = true;
             await checkCommitModify(done, testNum, fetchOp, prop, val, isAudio);
         });
     });
 }
-
