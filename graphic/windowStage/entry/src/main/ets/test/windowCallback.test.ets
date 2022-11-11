@@ -1189,7 +1189,6 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
             let loopCount1 = systemWindowTypeArr;
             console.log(msgStr + 'ohosWindow.windowType' + JSON.stringify(loopCount1))
             getData(0, loopCount1.length)
-
             function getData(i, length) {
               let tempType = ohosWindow.WindowType[loopCount1[i]];
               console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' start');
