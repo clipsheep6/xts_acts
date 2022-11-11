@@ -1188,62 +1188,134 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
             }
             let loopCount1 = systemWindowTypeArr;
             console.log(msgStr + 'ohosWindow.windowType' + JSON.stringify(loopCount1))
-            for (let i = 0; i < loopCount1.length; i++) {
-              let tempType = ohosWindow.WindowType[loopCount1[i]];
-              console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' start');
-              tempTypeArr.push(tempType);
-              tempWnd.setWindowType(tempType, (err, data) => {
-                try {
-                  console.log(msgStr + 'tempWnd.setWindowType i: ' + i);
-                  console.log(msgStr + 'tempWnd.setWindowType err: ' + JSON.stringify(err));
-                  console.log(msgStr + 'tempWnd.setWindowType data: ' + JSON.stringify(data));
-                  console.log(msgStr + 'tempWnd.setWindowType !data: ' + !data);
-                  if (!data) {
-                    try {
-                      expect(!data).assertTrue();
-                    } catch (error) {
-                      console.info(`tempWnd.setWindowType catch error: ${JSON.stringify(error)}`)
-                    }
-                    console.log(msgStr + 'tempWnd.getProperties start');
-                    tempWnd.getProperties((err, dataProper) => {
-                      try {
-                        console.log(msgStr + 'tempWnd.getProperties err: ' + JSON.stringify(err));
-                        console.log(msgStr + 'tempWnd.getProperties dataProper: ' + JSON.stringify(dataProper));
-                        console.log(msgStr + 'tempWnd.getProperties !!dataProper: ' + !!dataProper);
-                        try {
 
-                          expect(!!dataProper).assertTrue();
-                        } catch (error) {
-                          console.info(`tempWnd.getProperties catch error: ${JSON.stringify(error)}`)
-                        }
-                        if (!!dataProper) {
-                          console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr: ' + JSON.stringify(tempTypeArr));
-                          console.log(msgStr + 'tempWnd.getProperties true  i: ' + i);
-                          tempTypeArr.splice(tempTypeArr.findIndex(item => item === dataProper.type), 1);
-                          console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr.length: ' + tempTypeArr.length);
-                          console.log(msgStr + 'tempWnd.getProperties true  loopCount1.length: ' + loopCount1.length);
-                          console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr.length + 1: ' + Number(tempTypeArr.length + 1));
-                          try {
-                            expect((loopCount1.length - i) == (tempTypeArr.length + 1)).assertTrue();
-                          } catch (error) {
-                            console.info(`tempWnd.getProperties catch error: ${JSON.stringify(error)}`)
-                          }
-                          if (i == loopCount1.length - 1) {
-                            console.log(msgStr + 'tempWnd.getProperties i=' + i + '   ,    loopCount1.length-1==' + loopCount1.length);
-                            done();
-                          }
-                        }
-                      } catch (err) {
-                        console.log(msgStr + 'tempWnd.getProperties catch err: ' + JSON.stringify(err));
-                      }
-                    })
+
+
+getData(0,loopCount1.length)
+function getData(i,length){
+    let tempType = ohosWindow.WindowType[loopCount1[i]];
+    console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' start');
+    tempTypeArr.push(tempType);
+    tempWnd.setWindowType(tempType, (err, data) => {
+      try {
+        console.log(msgStr + 'tempWnd.setWindowType i: ' + i);
+        console.log(msgStr + 'tempWnd.setWindowType err: ' + JSON.stringify(err));
+        console.log(msgStr + 'tempWnd.setWindowType data: ' + JSON.stringify(data));
+        console.log(msgStr + 'tempWnd.setWindowType !data: ' + !data);
+        if (!data) {
+          try {
+            expect(!data).assertTrue();
+          } catch (error) {
+            console.info(`tempWnd.setWindowType catch error: ${JSON.stringify(error)}`)
+          }
+          console.log(msgStr + 'tempWnd.getProperties start');
+          tempWnd.getProperties((err, dataProper) => {
+            try {
+              console.log(msgStr + 'tempWnd.getProperties err: ' + JSON.stringify(err));
+              console.log(msgStr + 'tempWnd.getProperties dataProper: ' + JSON.stringify(dataProper));
+              console.log(msgStr + 'tempWnd.getProperties !!dataProper: ' + !!dataProper);
+              try {
+                expect(!!dataProper).assertTrue();
+              } catch (error) {
+                console.info(`tempWnd.getProperties catch error: ${JSON.stringify(error)}`)
+              }
+              if (!!dataProper) {
+                console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr: ' + JSON.stringify(tempTypeArr));
+                console.log(msgStr + 'tempWnd.getProperties true  i: ' + i);
+                tempTypeArr.splice(tempTypeArr.findIndex(item => item === dataProper.type), 1);
+                console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr.length: ' + tempTypeArr.length);
+                console.log(msgStr + 'tempWnd.getProperties true  loopCount1.length: ' + loopCount1.length);
+                console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr.length + 1: ' + Number(tempTypeArr.length + 1));
+                console.log(msgStr + 'tempWnd.getProperties true  (loopCount1.length - i): ' + (loopCount1.length - i));
+                console.log(msgStr + 'tempWnd.getProperties true  (tempTypeArr.length + 1): ' + (tempTypeArr.length + 1));
+                try {
+//                  expect((loopCount1.length - i) == (tempTypeArr.length + 1)).assertTrue();
+                  expect(tempTypeArr.length === 0).assertTrue();
+                  if(++i<length){
+                    getData(i,length)
+                    console.log(msgStr + 'jixuzhixing  i: ' + i);
                   }
-                  console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' end');
-                } catch (err) {
-                  console.log(msgStr + 'tempWnd.setWindowType catch err: ' + JSON.stringify(err));
+                } catch (error) {
+                  console.info(`tempWnd.getProperties catch error: ${JSON.stringify(error)}`)
                 }
-              })
+                if (i == loopCount1.length - 1) {
+                  console.log(msgStr + 'tempWnd.getProperties i=' + i + '   ,    loopCount1.length-1==' + loopCount1.length);
+                  done();
+                }
+              }
+            } catch (err) {
+              console.log(msgStr + 'tempWnd.getProperties catch err: ' + JSON.stringify(err));
             }
+          })
+        }
+        console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' end');
+      } catch (err) {
+        console.log(msgStr + 'tempWnd.setWindowType catch err: ' + JSON.stringify(err));
+      }
+    })
+}
+
+
+
+//            for (let i = 0; i < loopCount1.length; i++) {
+//              let tempType = ohosWindow.WindowType[loopCount1[i]];
+//              console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' start');
+//              tempTypeArr.push(tempType);
+//              tempWnd.setWindowType(tempType, (err, data) => {
+//                try {
+//                  console.log(msgStr + 'tempWnd.setWindowType i: ' + i);
+//                  console.log(msgStr + 'tempWnd.setWindowType err: ' + JSON.stringify(err));
+//                  console.log(msgStr + 'tempWnd.setWindowType data: ' + JSON.stringify(data));
+//                  console.log(msgStr + 'tempWnd.setWindowType !data: ' + !data);
+//                  if (!data) {
+//                    try {
+//                      expect(!data).assertTrue();
+//                    } catch (error) {
+//                      console.info(`tempWnd.setWindowType catch error: ${JSON.stringify(error)}`)
+//                    }
+//                    console.log(msgStr + 'tempWnd.getProperties start');
+//                    tempWnd.getProperties((err, dataProper) => {
+//                      try {
+//                        console.log(msgStr + 'tempWnd.getProperties err: ' + JSON.stringify(err));
+//                        console.log(msgStr + 'tempWnd.getProperties dataProper: ' + JSON.stringify(dataProper));
+//                        console.log(msgStr + 'tempWnd.getProperties !!dataProper: ' + !!dataProper);
+//                        try {
+//
+//                          expect(!!dataProper).assertTrue();
+//                        } catch (error) {
+//                          console.info(`tempWnd.getProperties catch error: ${JSON.stringify(error)}`)
+//                        }
+//                        if (!!dataProper) {
+//                          console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr: ' + JSON.stringify(tempTypeArr));
+//                          console.log(msgStr + 'tempWnd.getProperties true  i: ' + i);
+//                          tempTypeArr.splice(tempTypeArr.findIndex(item => item === dataProper.type), 1);
+//                          console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr.length: ' + tempTypeArr.length);
+//                          console.log(msgStr + 'tempWnd.getProperties true  loopCount1.length: ' + loopCount1.length);
+//                          console.log(msgStr + 'tempWnd.getProperties true  tempTypeArr.length + 1: ' + Number(tempTypeArr.length + 1));
+//                          console.log(msgStr + 'tempWnd.getProperties true  (loopCount1.length - i): ' + (loopCount1.length - i));
+//                          console.log(msgStr + 'tempWnd.getProperties true  (tempTypeArr.length + 1): ' + (tempTypeArr.length + 1));
+//
+//                          try {
+//                            expect((loopCount1.length - i) == (tempTypeArr.length + 1)).assertTrue();
+//                          } catch (error) {
+//                            console.info(`tempWnd.getProperties catch error: ${JSON.stringify(error)}`)
+//                          }
+//                          if (i == loopCount1.length - 1) {
+//                            console.log(msgStr + 'tempWnd.getProperties i=' + i + '   ,    loopCount1.length-1==' + loopCount1.length);
+//                            done();
+//                          }
+//                        }
+//                      } catch (err) {
+//                        console.log(msgStr + 'tempWnd.getProperties catch err: ' + JSON.stringify(err));
+//                      }
+//                    })
+//                  }
+//                  console.log(msgStr + 'tempWnd.setWindowType ' + tempType + ' end');
+//                } catch (err) {
+//                  console.log(msgStr + 'tempWnd.setWindowType catch err: ' + JSON.stringify(err));
+//                }
+//              })
+//            }
           }
         } catch (err) {
           console.log(msgStr + 'ohosWindow.create catch err: ' + JSON.stringify(err));
