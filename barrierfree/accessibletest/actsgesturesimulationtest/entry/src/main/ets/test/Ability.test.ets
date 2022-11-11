@@ -15,7 +15,6 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
-import prompt from '@system.prompt'
 import config from '@ohos.accessibility.config'
 
 const ASSIST_BUNDLE_NAME = 'com.example.gesturesimulationtest/ServiceExtAbility'
@@ -65,9 +64,6 @@ export default function abilityTest() {
       }
     })
     afterAll(async function (done) {
-      prompt.showToast({
-        message: 'CASE All End'
-      })
       disableAbility(LOG_PREFIX, ASSIST_BUNDLE_NAME)
       done()
     })
@@ -786,9 +782,6 @@ export default function abilityTest() {
           return
         }
         console.info(LOG_PREFIX + caseCode + ' success publish')
-        prompt.showToast({
-          message: 'CASE ' + caseCode
-        })
       })
     } catch (e) {
       console.info(LOG_PREFIX + caseCode + ' error to publish because ' + JSON.stringify(e))
