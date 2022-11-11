@@ -800,14 +800,14 @@ export default function StartAbilityForResult() {
             }
             await featureAbility.startAbilityForResult(startAbilityParameter)
                 .then((data) => {
-                    details = data;
                     console.info(TAG + ' StartAbilityForResultPromise successful. Data: ' + JSON.stringify(data))
                 }).catch((error) => {
+                    details = error;
                     console.info(TAG + ' StartAbilityForResultPromise failed. Cause: ' + JSON.stringify(error));
                 })
             await Utils.sleep(2000);
-            console.log(TAG + " resultCode: " + details.resultCode);
-            expect(details.resultCode).assertEqual(1);
+            console.log(TAG + " errorCode: " + details.code);
+            expect(details.code).assertEqual(1);
             done();
         });
 
