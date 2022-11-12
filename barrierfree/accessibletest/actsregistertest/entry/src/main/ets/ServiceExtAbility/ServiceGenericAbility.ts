@@ -14,11 +14,11 @@
  */
 import commonEvent from '@ohos.commonEvent'
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
-const log = "[xtsLog] "
 
-class ServiceExtAbilityRegister extends AccessibilityExtensionAbility {
+const LOG_PREFIX = '[CQH-GENERIC-ABILITY-ACCESSIBLE]'
+class ServiceExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
-        console.info(log + " onConnect")
+        console.info(LOG_PREFIX + " onConnect")
         var commonEventPublishData = {
             data: "on_connect_success"
         }
@@ -28,7 +28,7 @@ class ServiceExtAbilityRegister extends AccessibilityExtensionAbility {
         }
     }
     onDisconnect() {
-        console.info(log + " onDisconnect")
+        console.info(LOG_PREFIX + " onDisconnect");
         var commonEventPublishData = {
             data: "on_disconnect_success"
         }
@@ -39,4 +39,4 @@ class ServiceExtAbilityRegister extends AccessibilityExtensionAbility {
     }
 }
 
-export default ServiceExtAbilityRegister
+export default ServiceExtAbility

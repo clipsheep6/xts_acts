@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import commonevent from '@ohos.commonEvent'
 import accessibility from '@ohos.accessibility';
 
-const accessibility_receiveEvent_budleName = 'com.example.myapplicationevent';
+const accessibility_receiveEvent_budleName = 'com.example.myapplicationxtsd';
 const Log :string= "[xtsLogB1] ";
 
 const ThreadSleep = (ms) => {

@@ -11,6 +11,10 @@
     {
       "name": "MainAbility_label",
       "value": "AbilityList"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "accessibility service"
     }
   ]
 }

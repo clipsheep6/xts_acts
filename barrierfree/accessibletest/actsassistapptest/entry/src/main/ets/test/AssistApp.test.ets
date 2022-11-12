@@ -18,8 +18,8 @@ import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility'
 
 const logTag = "[xtsLog]"
-const AssistAppA_bundleNameAndAbilityName = 'com.example.assistappa.hmservice/ServiceExtAbility';
-const AssistAppB_bundleNameAndAbilityName = 'com.example.assistappb.hmservice/ServiceExtAbility';
+const AssistAppA_bundleNameAndAbilityName = 'com.example.myapplicationxtsd/ServiceExtAbilityA';
+const AssistAppB_bundleNameAndAbilityName = 'com.example.myapplicationxtsd/ServiceExtAbilityB';
 let subScriber = undefined;
 
 const CapabilityArray: accessibility.Capability[] = [

@@ -12,16 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import accessibility from '@ohos.accessibility'
 import accessibilityConfig from '@ohos.accessibility.config'
 
-const accessibility_base_bundleName = 'com.example.accessiblebaseability.hmservice/ServiceExtAbility'
-const accessibility_check_bundleName = 'com.example.accessiblecheckability.hmservice/ServiceExtAbility'
+const accessibility_base_bundleName = 'com.example.checkabilityisopen/ServiceExtBaseAbility'
+const accessibility_check_bundleName = 'com.example.checkabilityisopen/ServiceExtCheckAbility'
 const LOG_PREFIX = '[CQH-CHECK-ABILITY-TEST]'
 const TIME_OUT = 3000
-
 
 export default function abilityTest() {
 

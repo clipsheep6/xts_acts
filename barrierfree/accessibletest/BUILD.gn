@@ -43,21 +43,7 @@ group("actsaccessibletest") {
       "actsshortkeytest:ActsShortkeyTest",
       "actstouchintercepttest:ActsTouchInterceptTest",
       "actswindowinfotest:ActsWindowinfoTest",
-      "sceneProject/accessibilityAudibleAbility:accessibilityAudibleAbility",
-      "sceneProject/accessibilityBaseAbility:accessibilityBaseAbility",
-      "sceneProject/accessibilityCheckAbility:accessibilityCheckAbility",
-      "sceneProject/accessibilityDfx:accessibilityDfx",
-      "sceneProject/accessibilityGenericAbility:accessibilityGenericAbility",
-      "sceneProject/accessibilityGesture2D:accessibilityGesture2D",
-      "sceneProject/accessibilityGestureD:accessibilityGestureD",
-      "sceneProject/accessibilityHapticAbility:accessibilityHapticAbility",
       "sceneProject/accessibilityReceiveEventOther:accessibilityReceiveEventOther",
-      "sceneProject/accessibilityRegister:accessibilityRegister",
-      "sceneProject/accessibilitySpokenAbility:accessibilitySpokenAbility",
-      "sceneProject/accessibilityVisualAbility:accessibilityVisualAbility",
-      "sceneProject/accessibilityWindowInfo:accessibilityWindowInfo",
-      "sceneProject/assistAppA:assistAppA",
-      "sceneProject/assistAppB:assistAppB",
     ]
   }
 }

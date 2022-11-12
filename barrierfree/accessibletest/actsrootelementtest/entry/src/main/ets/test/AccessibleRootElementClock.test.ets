@@ -12,10 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { describe, beforeAll, beforeEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 import config from '@ohos.accessibility.config';
+import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+
+async function startAbility(bundleName: string, abilityName: string) {
+    await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
+        console.info(`ActsAccessibleRootElementClockTest, start abilityFinished: ${result}`)
+    }).catch(err => {
+        console.error(`ActsAccessibleRootElementClockTest, start abilityFailed: ${err}`)
+    })
+}
+
+async function stopApplication(bundleName: string) {
+    delegator.executeShellCommand(`aa force-stop ${bundleName} `).then(result => {
+        console.info(`ActsAccessibleRootElementClockTest, stop application finished: ${result}`)
+    }).catch(err => {
+        console.error(`ActsAccessibleRootElementClockTest, stop application failed: ${err}`)
+    })
+}
 
 const EXPECT_TIMEOUT = 6000;
 const START_TIMEOUT = 5000;
@@ -70,19 +89,11 @@ export default function AccessibleRootElementClockTest() {
           }
         }
       });
-
-      globalThis.abilityContext.startAbility({
-        bundleName: "ohos.samples.clock",
-        abilityName: "ohos.samples.clock.default"
-      },(error, data) => {
-        console.info(logTag + "startAbility " + JSON.stringify(error) + ", " + JSON.stringify(data));
-        setTimeout(() => {
-          config.enableAbility('com.example.myapplicationxtsd/ServiceExtAbilityAllAbility',
-            ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
-            console.info('AccessibleReceiveEventsTest beforeAll enableAbility success ');
-          });
-        }, 3000);
-      })
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
+      config.enableAbility('com.example.myapplicationxtsd/ServiceExtAbilityAllAbility',
+        ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
+        console.info('AccessibleReceiveEventsTest beforeAll enableAbility success ');
+      });
       setTimeout(done(), START_TIMEOUT);
     });
 
@@ -95,6 +106,7 @@ export default function AccessibleRootElementClockTest() {
       setTimeout(done(), 3000);
     });
     beforeEach(async function (done) {
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = false;
         assist_success =false;
@@ -109,6 +121,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get target application's window root element.
      */
     it('RootElementGet_0050', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0050";
       excuteCase(caseName)
       setTimeout(() => {
@@ -124,6 +137,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get target application's window root element.
      */
     it('RootElementGet_0051', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0051";
       excuteCase(caseName)
       setTimeout(() => {
@@ -139,6 +153,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get target application's window root element.
      */
     it('RootElementGet_0060', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0060";
       excuteCase(caseName)
       setTimeout(() => {
@@ -154,6 +169,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get system application's window root element.
      */
     it('RootElementGet_0090', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0090";
       excuteCase(caseName)
       setTimeout(() => {
@@ -169,6 +185,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get system application's window root element.
      */
     it('RootElementGet_0091', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0091";
       excuteCase(caseName)
       setTimeout(() => {
@@ -184,6 +201,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get system application's window root element.
      */
     it('RootElementGet_0100', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0100";
       excuteCase(caseName)
       setTimeout(() => {
@@ -199,6 +217,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get root element, then get rootElement attribute.
      */
     it('RootElementGet_0101', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0101";
       excuteCase(caseName)
       setTimeout(() => {
@@ -214,6 +233,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get root element, then get rootElement attribute.
      */
     it('RootElementGet_0102', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0102";
       excuteCase(caseName)
       setTimeout(() => {
@@ -229,6 +249,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get root element, then get rootElement attribute.
      */
     it('RootElementGet_0103', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0103";
       excuteCase(caseName)
       setTimeout(() => {
@@ -244,6 +265,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get root element, then get parent attribute.
      */
     it('RootElementGet_0104', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0104";
       excuteCase(caseName)
       setTimeout(() => {
@@ -259,6 +281,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get root element, then get parent attribute.
      */
     it('RootElementGet_0105', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0105";
       excuteCase(caseName)
       setTimeout(() => {
@@ -274,6 +297,7 @@ export default function AccessibleRootElementClockTest() {
      * @tc.desc: Get root element, then get parent attribute.
      */
     it('RootElementGet_0106', 1, async function (done) {
+      await startAbility('ohos.samples.clock', 'ohos.samples.clock.default');
       caseName = "RootElementGet_0106";
       excuteCase(caseName)
       setTimeout(() => {

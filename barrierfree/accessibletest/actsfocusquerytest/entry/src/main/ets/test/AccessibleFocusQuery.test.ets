@@ -13,10 +13,23 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility'
+import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+
+async function startAbility(bundleName: string, abilityName: string) {
+    await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
+        console.info(`ActsAccessibleFocusQueryTest, start abilityFinished: ${result}`)
+    }).catch(err => {
+        console.error(`ActsAccessibleFocusQueryTest, start abilityFailed: ${err}`)
+    })
+}
+
 const accessibility_focusQuery_Name = 'com.example.myapplicationxtsd/ServiceExtAbilityFocusQuery';
 const EXPECT_TIMEOUT = 6000;
 
@@ -97,6 +110,7 @@ export default function AccessibleFocusQueryTest() {
           }
         }
       });
+      await startAbility('com.ohos.mms', 'com.ohos.mms.MainAbility');
       config.enableAbility('com.example.myapplicationxtsd/ServiceExtAbilityFocusQuery',
         ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
         console.info('ActsAccessibleFocusQueryTest beforeAll enableAbility success ');
@@ -113,6 +127,7 @@ export default function AccessibleFocusQueryTest() {
       done();
     });
     beforeEach(async function (done) {
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = false;
         assist_success =false;
@@ -1281,37 +1296,16 @@ export default function AccessibleFocusQueryTest() {
      * @tc.desc: getFocusElement() in the call back mode for accessibilityFocus.
      */
     it('FocusQuery_0270', 1, async function (done) {
+      await startAbility('com.ohos.mms', 'com.ohos.mms.MainAbility');
       caseName = "FocusQuery_0270";
-      globalThis.abilityContext.startAbility({
-        bundleName: "com.ohos.mms",
-        abilityName: "com.ohos.mms.MainAbility"
-      },(error, data) => {
-        console.info(logTag + "startAbility " + JSON.stringify(error) + ", " + JSON.stringify(data));
-        setExtentionDisabled(caseName, [accessibility_focusQuery_Name]);
-        setTimeout(() => {
-          accessibility.getAbilityLists('all', 'enable')
-            .then((res) => {
-              for (let i = 0; i < res.length; i++) {
-                console.info(logTag + "getAbilityLists res=" + JSON.stringify(res[i]))
-              }
-            })
-            .catch((error) => {
-              console.info(logTag + ' getAbilityLists error ' + JSON.stringify(error))
-            })
-          setTimeout(() => {
-            setExtentionEnabled(caseName, accessibility_focusQuery_Name);
-            setTimeout(() => {
-              excuteCase(caseName)
-            }, 1000);
-          }, 1000);
-        }, 3000);
-        setTimeout(() => {
-          isSucceed = assist_success;
-          console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
-          expect(isSucceed).assertEqual(true);
-          done();
-        }, 10000);
-      })
+      excuteCase(caseName)
+      setTimeout(() => {
+        isSucceed = assist_success;
+        console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
+        expect(isSucceed).assertEqual(true);
+        done();
+      }, EXPECT_TIMEOUT);
+
     })
     /**
      * @tc.number: FocusQuery_0281
@@ -1319,6 +1313,7 @@ export default function AccessibleFocusQueryTest() {
      * @tc.desc: getFocusElement(true) in the call back mode for accessibilityFocus.
      */
     it('FocusQuery_0281', 1, async function (done) {
+      await startAbility('com.ohos.mms', 'com.ohos.mms.MainAbility');
       caseName = "FocusQuery_0281";
       excuteCase(caseName)
       setTimeout(() => {
@@ -1334,6 +1329,7 @@ export default function AccessibleFocusQueryTest() {
      * @tc.desc: getFocusElement(true) in the promise mode for accessibilityFocus.
      */
     it('FocusQuery_0282', 1, async function (done) {
+      await startAbility('com.ohos.mms', 'com.ohos.mms.MainAbility');
       caseName = "FocusQuery_0282";
       excuteCase(caseName)
       setTimeout(() => {
@@ -1349,6 +1345,7 @@ export default function AccessibleFocusQueryTest() {
      * @tc.desc: getFocusElement() then attributeValue("parent") in the call back mode for accessibilityFocus.
      */
     it('FocusQuery_0284', 1, async function (done) {
+      await startAbility('com.ohos.mms', 'com.ohos.mms.MainAbility');
       caseName = "FocusQuery_0284";
       excuteCase(caseName)
       setTimeout(() => {
@@ -1364,6 +1361,7 @@ export default function AccessibleFocusQueryTest() {
      * @tc.desc: getFocusElement() then attributeValue("children") in the call back mode for accessibilityFocus.
      */
     it('FocusQuery_0285', 1, async function (done) {
+      await startAbility('com.ohos.mms', 'com.ohos.mms.MainAbility');
       caseName = "FocusQuery_0285";
       excuteCase(caseName)
       setTimeout(() => {

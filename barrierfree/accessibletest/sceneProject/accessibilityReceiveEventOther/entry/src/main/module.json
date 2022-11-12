@@ -33,22 +33,6 @@
         ]
       }
     ],
-    "extensionAbilities": [
-      {
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbilityReceiveEvent.ts",
-        "name": "ServiceExtAbilityReceiveEvent",
-        "icon": "$media:icon",
-        "description": "$string:description_serviceability",
-        "type": "accessibility",
-        "visible": true,
-        "metadata": [
-          {
-            "name": "ohos.accessibleability",
-            "resource": "$profile:accessibility_config"
-          }
-        ]
-      }
-    ],
     "requestPermissions": [
       {
       "name": "ohos.permission.SYSTEM_FLOAT_WINDOW",

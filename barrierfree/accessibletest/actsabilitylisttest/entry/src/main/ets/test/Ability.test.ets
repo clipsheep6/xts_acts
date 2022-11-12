@@ -16,11 +16,11 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import config from '@ohos.accessibility.config'
 import accessibility from '@ohos.accessibility'
 
-const AUDIBLE_BUNDLE_NAME = 'com.example.accessibleaudibleability.hmservice/ServiceExtAbility'
-const GENERIC_BUNDLE_NAME = 'com.example.accessiblegenericability.hmservice/ServiceExtAbility'
-const HAPTIC_BUNDLE_NAME = 'com.example.accessiblehapticability.hmservice/ServiceExtAbility'
-const SPOKEN_BUNDLE_NAME = 'com.example.accessiblespokenability.hmservice/ServiceExtAbility'
-const VISUAL_BUNDLE_NAME = 'com.example.accessiblevisualability.hmservice/ServiceExtAbility'
+const AUDIBLE_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceAudibleAbility'
+const GENERIC_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceGenericAbility'
+const HAPTIC_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceHapticAbility'
+const SPOKEN_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceSpokenAbility'
+const VISUAL_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceVisualAbility'
 const LOG_PREFIX = '[CQH-ABILITY-LIST-TEST]'
 const TIME_OUT = 3000
 const TIME_OUT_S = 1000

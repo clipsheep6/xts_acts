@@ -19,6 +19,7 @@ import config from '@ohos.accessibility.config';
 const LOG = "[xtsLog]"
 const START_TIMEOUT = 5000;
 var backList = []
+var defVal = 0;
 let subScriber = undefined;
 var onbackList = []
 const findTimesFormonbackList = (caseName)=>{
@@ -87,6 +88,11 @@ export default function BrightnessDiscountTest() {
           backList.push(data.data)
         }
       });
+      config.brightnessDiscount.get().then((res) => {
+        defVal = res;
+      }).catch((err) => {
+        console.info("BrightnessDiscount get err=" + JSON.stringify(err));
+      });
       setTimeout(done(), START_TIMEOUT);
     });
 
@@ -94,7 +100,7 @@ export default function BrightnessDiscountTest() {
       console.info(LOG + 'ActsBrightnessDiscountTest: afterAll');
       setTimeout(function () {
         commonEvent.unsubscribe(subScriber);
-        config.brightnessDiscount.set(0);
+        config.brightnessDiscount.set(defVal);
       }, 20000);
       done();
     });

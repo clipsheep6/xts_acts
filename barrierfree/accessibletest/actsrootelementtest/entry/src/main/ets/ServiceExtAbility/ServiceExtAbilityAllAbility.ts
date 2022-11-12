@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 import commonEvent from '@ohos.commonEvent';
+
 const log = "[xtsLog] "
 class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
     onConnect() {
@@ -290,19 +290,20 @@ class ServiceExtAbilityAllAbility extends AccessibilityExtensionAbility {
 
     onAccessibilityEvent(accessibilityEvent) {
         console.info( log + "accessibilityEvent " + JSON.stringify(accessibilityEvent));
-        let target = accessibilityEvent.target
-        target.attributeNames().then((names) => {
-            if(-1 != names.indexOf("description")) {
-                target.attributeValue("description").then((value) => {
-                    console.info( log + "attributeValue description:" + JSON.stringify(value));
-                    AccessibleReceiveEvents(accessibilityEvent.eventType, value);
-                }).catch((err) => {
-                    console.info( log + "attributeValue description err:" + JSON.stringify(err));
-                })
-            }
-        }).catch((err) => {
-            console.info(log + "attributeNames err=" + JSON.stringify(err));
-        });
+        if (accessibilityEvent.eventType) {
+            accessibilityEvent?.target && accessibilityEvent?.target.attributeNames().then((names) => {
+		if(-1 != names.indexOf("description")) {
+		    accessibilityEvent?.target.attributeValue("description").then((value) => {
+		        console.info( log + "attributeValue description:" + JSON.stringify(value));
+		        AccessibleReceiveEvents(accessibilityEvent.eventType, value);
+		    }).catch((err) => {
+		        console.info( log + "attributeValue description err:" + JSON.stringify(err));
+		    })
+		}
+	    }).catch((err) => {
+		console.info(log + "attributeNames err=" + JSON.stringify(err));
+	    });
+        }
     }
 }
 

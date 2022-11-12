@@ -17,7 +17,7 @@ import commonEvent from '@ohos.commonEvent'
 import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility';
 
-const bundleName = 'com.example.accessibilitydfx.hmservice/ServiceExtAbility';
+const bundleName = 'com.example.myapplicationxtsd/ServiceExtAbility';
 const LOG = "[xtsLog]"
 var backList = []
 let subScriber = undefined;
@@ -52,25 +52,21 @@ const setEnabledAndDisabledTimes = (caseName, logTag, bundleNameAndabilityName, 
     }, 500)
   });
 }
-
+const callbackVoidData = () => {
+  console.info("config.on success");
+};
 const onAndOffAccessibility = (times, logTag) => {
-  config.on('enabledAccessibilityExtensionListChange', () => {
-    console.info(logTag + " times: " + times + "   onAccessibility");
-      config.off('enabledAccessibilityExtensionListChange', () => {
-        console.info(logTag + " times: " + times + "   offAccessibility");
-      });
-  });
+  config.on('enabledAccessibilityExtensionListChange', callbackVoidData);
+  console.info(logTag + " times: " + times + "   onAccessibility");
+  config.off('enabledAccessibilityExtensionListChange', callbackVoidData);
 }
 
 const onehundredTimesOnAndOffAccessibility = (caseName, logF, thisBundleName) => {
-  let times = 1;
-  let id = setInterval(() => {
-    onAndOffAccessibility(times, logF);
-    times++;
-    if (times > 100) {
-      clearInterval(id)
-    }
-  }, 50);
+  for (let times =0; times < 100; times++){
+    setTimeout(() => {
+      onAndOffAccessibility(times, logF);
+    }, 50)
+  }
 };
 
 const commonEventPublishOnTargetChangeExtra = (caseName) => {
@@ -99,20 +95,24 @@ const setExtentionDfxEnabled2 = (caseName, logTag, bundleNameAndabilityName) => 
 const setEnabledAndnDisabledAndPublishOnTargetChange2 = (caseName, logTag, bundleNameAndabilityName) => {
   config.enableAbility(bundleNameAndabilityName, capabilityArray2).then(() => {
     console.info(logTag + caseName + " extentionEnabled ");
-    config.disableAbility(bundleNameAndabilityName).then(() => {
-      console.info(logTag + caseName + " extentionDisabled ");
-      commonEventPublishOnTargetChangeExtra(caseName)
-    });
+    setTimeout(() => {
+      config.disableAbility(bundleNameAndabilityName).then(() => {
+        console.info(logTag + caseName + " extentionDisabled ");
+        commonEventPublishOnTargetChangeExtra(caseName)
+      });
+    }, 3000);
   });
 }
 
 const setEnabledAndnDisabledAndPublishOnTargetChange = (caseName, logTag, bundleNameAndabilityName) => {
   config.enableAbility(bundleNameAndabilityName, capabilityArray).then(() => {
     console.info(logTag + caseName + " extentionEnabled ");
-    config.disableAbility(bundleNameAndabilityName).then(() => {
-      console.info(logTag + caseName + " extentionDisabled ");
-      commonEventPublishOnTargetChangeExtra(caseName)
-    });
+    setTimeout(() => {
+      config.disableAbility(bundleNameAndabilityName).then(() => {
+        console.info(logTag + caseName + " extentionDisabled ");
+        commonEventPublishOnTargetChangeExtra(caseName)
+      });
+    }, 3000);
   });
 
 }
@@ -182,23 +182,22 @@ export default function PerformanceTest() {
       var onBackIsSucceed: boolean = false;
       var isSucceedTarget: boolean = false;
       onehundredTimesOnAndOffAccessibility(caseName, logF, bundleName);
+      const callbackData = () => {
+        console.info(logF + "config.on enabledAccessibilityExtensionListChange success");
+        onBackIsSucceed = true;
+        config.off('enabledAccessibilityExtensionListChange');
+      };
+      config.on('enabledAccessibilityExtensionListChange', callbackData);
+      setEnabledAndnDisabledAndPublishOnTargetChange(caseName, logF, bundleName);
       setTimeout(() => {
-        config.on('enabledAccessibilityExtensionListChange', () => {
-          onBackIsSucceed = true
-          config.off('enabledAccessibilityExtensionListChange', () => {
-          });
-        });
         setTimeout(() => {
-          setEnabledAndnDisabledAndPublishOnTargetChange(caseName, logF, bundleName);
-          setTimeout(() => {
-            if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
-              isSucceedTarget = true;
-            }
-            expect(isSucceedTarget && onBackIsSucceed).assertEqual(true);
-            console.info(logF + ' isSucceed : ' + (isSucceedTarget && onBackIsSucceed));
-            done();
-          }, 3000);
-        }, 2000)
+          if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+            isSucceedTarget = true;
+          }
+          expect(isSucceedTarget && onBackIsSucceed).assertEqual(true);
+          console.info(logF + ' isSucceed : ' + (isSucceedTarget && onBackIsSucceed));
+          done();
+        }, 3000);
       }, 6000);
     });
 
@@ -214,23 +213,22 @@ export default function PerformanceTest() {
       var onBackIsSucceed: boolean = false;
       var isSucceedTarget: boolean = false;
       onehundredTimesOnAndOffAccessibility(caseName, logF, bundleName);
+      const callbackData = () => {
+        console.info(logF + "config.on enabledAccessibilityExtensionListChange success");
+        onBackIsSucceed = true;
+        config.off('enabledAccessibilityExtensionListChange');
+      };
+      config.on('enabledAccessibilityExtensionListChange', callbackData);
+      setEnabledAndnDisabledAndPublishOnTargetChange2(caseName, logF, bundleName);
       setTimeout(() => {
-        config.on('enabledAccessibilityExtensionListChange', () => {
-          onBackIsSucceed = true
-          config.off('enabledAccessibilityExtensionListChange', () => {
-          });
-        });
         setTimeout(() => {
-          setEnabledAndnDisabledAndPublishOnTargetChange2(caseName, logF, bundleName);
-          setTimeout(() => {
-            if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
-              isSucceedTarget = true;
-            }
-            expect(isSucceedTarget && onBackIsSucceed).assertEqual(true);
-            console.info(logF + ' isSucceed : ' + (isSucceedTarget && onBackIsSucceed));
-            done();
-          }, 3000);
-        }, 2000)
+          if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+            isSucceedTarget = true;
+          }
+          expect(isSucceedTarget && onBackIsSucceed).assertEqual(true);
+          console.info(logF + ' isSucceed : ' + (isSucceedTarget && onBackIsSucceed));
+          done();
+        }, 3000);
       }, 6000);
     });
 
@@ -245,7 +243,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -268,7 +266,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -291,7 +289,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -314,7 +312,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -339,7 +337,6 @@ export default function PerformanceTest() {
         setEnabledAndDisabledTimes(caseName, logF, bundleName, times);
       }
       if (times == 100) {
-        //clearInterval(id)
         setTimeout(() => {
           setExtentionDisabled(logF, bundleName);
           setTimeout(() => {
@@ -360,7 +357,7 @@ export default function PerformanceTest() {
                 }, 2000);
               }
             });
-          }, 2000)
+          }, 3000)
         }, 13000)
       }
     });
@@ -395,7 +392,7 @@ export default function PerformanceTest() {
             }).catch((AccessibilityAbilityInfoError) => {
               console.info(logF + "getAbilityLists err=" + JSON.stringify(AccessibilityAbilityInfoError));
             });
-          }, 2000)
+          }, 3000)
         }, 13000)
       }
     });
@@ -445,34 +442,34 @@ export default function PerformanceTest() {
     it('Dfx_0160', 4, async function (done) {
       const caseName = 'Dfx_0160';
       const logF = LOG + caseName;
-      let times = 1;
-      let id = setInterval(() => {
-        setExtentionDfxEnabled(caseName, logF, bundleName);
-        times++;
-        if (times > 100) {
-          clearInterval(id)
+      let times = 0;
+      for (times =0; times < 100; times++){
+        setTimeout(() => {
+          setExtentionDfxEnabled(caseName, logF, bundleName);
+        }, 50)
+      }
+      if (times == 100) {
+        setTimeout(() => {
+          setExtentionDfxEnabled(caseName, logF, bundleName);
           setTimeout(() => {
-            setExtentionDfxEnabled(caseName, logF, bundleName);
-            setTimeout(() => {
-              accessibility.getAbilityLists('all', 'enable').then((AccessibilityAbilityInfoArray) => {
-                console.info(logF + "getAbilityLists success=" + JSON.stringify(AccessibilityAbilityInfoArray));
-                commonEventPublishOnTargetChangeExtra(caseName);
-              }).catch((AccessibilityAbilityInfoError) => {
-                console.info(logF + "getAbilityLists err=" + JSON.stringify(AccessibilityAbilityInfoError));
-              });
-            }, 2000)
-          }, 3000)
-          setTimeout(() => {
-            var isSucceedTarget: boolean = false;
-            if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
-              isSucceedTarget = true;
-            }
-            expect(isSucceedTarget).assertEqual(true);
-            console.info(logF + ' isSucceed : ' + (isSucceedTarget));
-            done();
-          }, 10000);
-        }
-      }, 50);
+            accessibility.getAbilityLists('all', 'enable').then((AccessibilityAbilityInfoArray) => {
+              console.info(logF + "getAbilityLists success=" + JSON.stringify(AccessibilityAbilityInfoArray));
+              commonEventPublishOnTargetChangeExtra(caseName);
+            }).catch((AccessibilityAbilityInfoError) => {
+              console.info(logF + "getAbilityLists err=" + JSON.stringify(AccessibilityAbilityInfoError));
+            });
+          }, 2000)
+        }, 3000)
+        setTimeout(() => {
+          var isSucceedTarget: boolean = false;
+          if (backList.indexOf(caseName + '_on_target_change_extra_success') !== -1) {
+            isSucceedTarget = true;
+          }
+          expect(isSucceedTarget).assertEqual(true);
+          console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+          done();
+        }, 10000);
+      }
     });
     /**
     * @tc.number: Dfx_0180
@@ -485,7 +482,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -507,7 +504,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -526,24 +523,22 @@ export default function PerformanceTest() {
     it('Dfx_0110', 4, async function (done) {
       const caseName = 'Dfx_0110';
       const logF = LOG + caseName;
+      setExtentionDisabled(logF, bundleName);
       setTimeout(() => {
-        setExtentionDisabled(logF, bundleName);
+        setExtentionDfxEnabled2(caseName, logF, bundleName);
         setTimeout(() => {
-          setExtentionDfxEnabled2(caseName, logF, bundleName);
+          commonEventPublishExecuteAccessibilityEvent(caseName)
           setTimeout(() => {
-            commonEventPublishExecuteAccessibilityEvent(caseName)
-            setTimeout(() => {
-              var isSucceedTarget: boolean = false;
-              if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
-                isSucceedTarget = true;
-              }
-              expect(isSucceedTarget).assertEqual(true);
-              console.info(logF + ' isSucceed : ' + (isSucceedTarget));
-              done();
-            }, 15000);
-          }, 2000);
-        }, 1000);
-      }, 1000);
+            var isSucceedTarget: boolean = false;
+            if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
+              isSucceedTarget = true;
+            }
+            expect(isSucceedTarget).assertEqual(true);
+            console.info(logF + ' isSucceed : ' + (isSucceedTarget));
+            done();
+          }, 15000);
+        }, 4000);
+      }, 3000);
     });
     /**
     * @tc.number: Dfx_0120
@@ -556,7 +551,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled2(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {
@@ -578,7 +573,7 @@ export default function PerformanceTest() {
       setExtentionDfxEnabled2(caseName, logF, bundleName)
       setTimeout(() => {
         commonEventPublishExecuteAccessibilityEvent(caseName)
-      }, 2000);
+      }, 3000);
       setTimeout(() => {
         var isSucceedTarget: boolean = false;
         if (backList.indexOf(caseName + '_on_assist_change_extra_success') !== -1) {

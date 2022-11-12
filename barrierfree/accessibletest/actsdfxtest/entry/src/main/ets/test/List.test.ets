@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 import PerformanceTest from './Performance.test'
-//import StabilityTest from './Stability.test'
+
 export default function testsuite() {
   PerformanceTest()
-  //StabilityTest()
 }

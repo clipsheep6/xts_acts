@@ -13,10 +13,6 @@
       "value": "receiveEvent"
     },
     {
-      "name": "description_serviceability",
-      "value": "receiveEvent"
-    },
-    {
       "name": "form_description",
       "value": "Register"
     }

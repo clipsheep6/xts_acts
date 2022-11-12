@@ -21,8 +21,7 @@ import accessibility from '@ohos.accessibility';
 const LOG = "[xtsLog]"
 var backList = []
 let subScriber = undefined;
-const bundleName = 'com.example.accessibilitywindowinfo.hmservice/ServiceExtAbility';
-const bundleNameAllD = 'com.example.myapplicationxtsd/ServiceExtAbility';
+const bundleName = 'com.example.myapplicationxtsd/ServiceExtAbility';
 const CapabilityArray: accessibility.Capability[] = [
   "retrieve",
   'touchGuide'
@@ -78,10 +77,6 @@ export default function WindowInfoTest() {
       config.enableAbility(bundleName, CapabilityArray).then(() => {
         console.info(LOG + 'ActsWindowinfoTest beforeAll enableAbility ' );
       });
-
-      config.enableAbility(bundleNameAllD, CapabilityArray).then(() => {
-        console.info(LOG + 'ActsWindowinfoTest beforeAll enableAbility ' );
-      });
       setTimeout(done(), 3000);
     });
 
@@ -92,10 +87,7 @@ export default function WindowInfoTest() {
         config.disableAbility(bundleName).then(() => {
           console.info(LOG + 'ActsWindowinfoTest afterAll disableAbility: ' );
         });
-        config.disableAbility(bundleNameAllD).then(() => {
-          console.info(LOG + 'ActsWindowinfoTest afterAll disableAbility: '  );
-        });
-        done();
+        setTimeout(done(), 3000);
       }, 20000);
     });
 

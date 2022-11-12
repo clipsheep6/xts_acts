@@ -17,8 +17,8 @@ import commonEvent from '@ohos.commonEvent'
 import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility';
 
-const bundleNameA = 'com.example.accessibilitygestured.hmservice/ServiceExtAbility';
-const bundleNameB = 'com.example.accessibilitygesture2d.hmservice/ServiceExtAbility';
+const bundleNameA = 'com.example.myapplicationxtsd/ServiceGestureAbility';
+const bundleNameB = 'com.example.myapplicationxtsd/ServiceExtAbility';
 
 const LOG = "[xtsLog]"
 var backList = []

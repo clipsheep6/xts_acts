@@ -338,7 +338,7 @@ function printLongText(logTag, res) {
 }
 
 const publishCallback = (result) => {
-    console.info("====>on_target_change_extra publish call back result:" + JSON.stringify(result));
+    console.info("====>on_assist_change_extra publish call back result:" + JSON.stringify(result));
 }
 
 const excuteClearAccessibilityFocus = (context, searchText, description, focusType) => {

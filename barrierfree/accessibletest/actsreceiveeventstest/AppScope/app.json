@@ -16,6 +16,6 @@
     "car": {
       "apiCompatibleVersion": 9,
       "singleUser": false
-  }
+    }
   }
 }

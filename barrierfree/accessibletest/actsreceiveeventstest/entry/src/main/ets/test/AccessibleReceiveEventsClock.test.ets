@@ -16,6 +16,18 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import commonEvent from '@ohos.commonEvent'
 import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility'
+import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+
+async function startAbility(bundleName: string, abilityName: string) {
+    await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
+        console.info(`ActsAccessibleRootElementClockTest, start abilityFinished: ${result}`)
+    }).catch(err => {
+        console.error(`ActsAccessibleRootElementClockTest, start abilityFailed: ${err}`)
+    })
+}
 
 const START_TIMEOUT = 5000;
 let caseName = '';
@@ -29,7 +41,7 @@ let subScriber = undefined;
 let subscriberInfo = {
   events: ["on_assist_change_extra","on_target_change_extra"],
 };
-const EXPECT_TIMEOUT = 6000;
+const EXPECT_TIMEOUT = 7000;
 
 export default function AccessibleReceiveEventsClockTest() {
 
@@ -59,26 +71,17 @@ export default function AccessibleReceiveEventsClockTest() {
           }
         }
       });
-      globalThis.abilityContext.startAbility({
-        bundleName: "com.example.myapplicationevent",
-        abilityName: "com.example.myapplicationevent.MainAbility"
-      }, (error, data) => {
-        console.info(logTag + ' startAbility start HapB: '
-        + JSON.stringify(error) + ", " + JSON.stringify(data));
-        setTimeout(() => {
-          config.enableAbility('com.example.myapplicationevent/ServiceExtAbilityReceiveEvent',
-            ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
-            console.info('AccessibleReceiveEventsTest beforeAll enableAbility success' );
-          });
-        }, 2000);
-      })
+      config.enableAbility('com.example.myapplicationxtsd/ServiceExtReceiveAbility',
+        ['retrieve', 'keyEventObserver', 'gesture']).then(() => {
+        console.info('AccessibleReceiveEventsTest beforeAll enableAbility success' );
+      });
       setTimeout(done(), START_TIMEOUT);
     });
 
     afterAll(async function (done) {
       console.info('AccessibleReceiveEventsTest: afterAll');
       commonEvent.unsubscribe(subScriber);
-      config.disableAbility("com.example.myapplicationevent/ServiceExtAbilityReceiveEvent").then(() => {
+      config.disableAbility("com.example.myapplicationxtsd/ServiceExtReceiveAbility").then(() => {
         console.info('AccessibleReceiveEventsTest afterAll disableAbility success');
       });
       done();
@@ -93,26 +96,33 @@ export default function AccessibleReceiveEventsClockTest() {
         done();
       }, 2000);
     });
+    afterEach(async function (done) {
+      setTimeout(() => {
+        done();
+      }, 2000);
+    });
     /**
      * @tc.number: ReceiveEventsFilter_0290
      * @tc.name: When the filter event type is set, only the corresponding event can be received.
      * @tc.desc: When the filter event type is set, only the corresponding event can be received.
      */
     it('ReceiveEventsFilter_0290', 3, async function (done) {
+      await startAbility('com.example.myapplicationevent', 'com.example.myapplicationevent.MainAbility');
       caseName = "ReceiveEventsFilter_0290";
+      var commonEventPublishData = {
+        data: caseName
+      }
+      function publishCallback(err) {
+        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
+      }
+      commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
+      setTimeout(function (){
+        commonEvent.publish("on_target_change", commonEventPublishData, publishCallback);
         setTimeout(function (){
-          commonEvent.publish("on_target_change", commonEventPublishData, publishCallback);
-          commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
-          setTimeout(function (){
-            commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
-          }, 1000);
-        }, 2000);
-        var commonEventPublishData = {
-          data: caseName
-        }
-        function publishCallback(err) {
-          console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
-        }
+          commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
+        }, 1000);
+      }, 2000);
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = target && target_b && assist_click && assist_select;
         console.info(logTag + caseName + ' target : ' + target  + ' target_b : ' + target_b + ' assist_click : ' + assist_click + ' assist_select :' + assist_select);
@@ -127,21 +137,22 @@ export default function AccessibleReceiveEventsClockTest() {
      * @tc.desc: When the filter event type is set, only the corresponding event can be received.
      */
     it('ReceiveEventsFilter_0300', 3, async function (done) {
+      await startAbility('com.example.myapplicationevent', 'com.example.myapplicationevent.MainAbility');
       caseName = "ReceiveEventsFilter_0300";
       var commonEventPublishData = {
         data: caseName
       }
-
+      function publishCallback(err) {
+        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
+      }
+      commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
       setTimeout(function (){
         commonEvent.publish("on_target_change", commonEventPublishData, publishCallback);
-        commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
         setTimeout(function (){
           commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
         }, 1000);
       }, 2000);
-      function publishCallback(err) {
-        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
-      }
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = target && target_b && assist_click;
         console.info(logTag + ' target : ' + target  + ' target_b : ' + target_b + ' assist_click : ' + assist_click);
@@ -156,19 +167,19 @@ export default function AccessibleReceiveEventsClockTest() {
      * @tc.desc: When targetnames is set to '', no event is received.
      */
     it('ReceiveEventsFilter_0320', 1, async function (done) {
+      await startAbility('com.example.myapplicationevent', 'com.example.myapplicationevent.MainAbility');
       caseName = "ReceiveEventsFilter_0320";
       var commonEventPublishData = {
         data: caseName
       }
-      setTimeout(function (){
-        commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
-        setTimeout(function (){
-          commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
-        }, 1000);
-      }, 2000);
       function publishCallback(err) {
         console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
       }
+      commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
+      setTimeout(function (){
+        commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
+      }, 1000);
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = target_b && !assist_click && !assist_select;
         console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
@@ -182,20 +193,22 @@ export default function AccessibleReceiveEventsClockTest() {
      * @tc.desc: When the filter event type is set, only the corresponding event can be received.
      */
     it('ReceiveEventsFilter_0610', 3, async function (done) {
+      await startAbility('com.example.myapplicationevent', 'com.example.myapplicationevent.MainAbility');
       caseName = "ReceiveEventsFilter_0610";
       var commonEventPublishData = {
         data: caseName
       }
+      function publishCallback(err) {
+        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
+      }
+      commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
       setTimeout(function (){
         commonEvent.publish("on_target_change", commonEventPublishData, publishCallback);
-        commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
         setTimeout(function (){
           commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
         }, 1000);
       }, 2000);
-      function publishCallback(err) {
-        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
-      }
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = target && target_b && assist_click && assist_select;
         console.info(logTag + caseName + ' target : ' + target  + ' target_b : ' + target_b + ' assist_click : ' + assist_click + ' assist_select :' + assist_select);
@@ -210,20 +223,22 @@ export default function AccessibleReceiveEventsClockTest() {
      * @tc.desc: When the filter event type is set, only the corresponding event can be received.
      */
     it('ReceiveEventsFilter_0620', 3, async function (done) {
+      await startAbility('com.example.myapplicationevent', 'com.example.myapplicationevent.MainAbility');
       caseName = "ReceiveEventsFilter_0620";
       var commonEventPublishData = {
         data: caseName
       }
+      function publishCallback(err) {
+        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
+      }
+      commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
       setTimeout(function (){
         commonEvent.publish("on_target_change", commonEventPublishData, publishCallback);
-        commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
         setTimeout(function (){
           commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
         }, 1000);
       }, 2000);
-      function publishCallback(err) {
-        console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
-      }
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = target && target_b && assist_click;
         console.info(logTag + ' target : ' + target  + ' target_b : ' + target_b + ' assist_click : ' + assist_click);
@@ -238,19 +253,19 @@ export default function AccessibleReceiveEventsClockTest() {
      * @tc.desc: When targetnames is set to '', no event is received.
      */
     it('ReceiveEventsFilter_0640', 1, async function (done) {
+      await startAbility('com.example.myapplicationevent', 'com.example.myapplicationevent.MainAbility');
       caseName = "ReceiveEventsFilter_0640";
       var commonEventPublishData = {
         data: caseName
       }
-      setTimeout(function (){
-        commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
-        setTimeout(function (){
-          commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
-        }, 1000);
-      }, 2000);
       function publishCallback(err) {
         console.info(logTag+caseName + " publish call back result:" + JSON.stringify(err));
       }
+      commonEvent.publish("on_assist_change", commonEventPublishData, publishCallback);
+      setTimeout(function (){
+        commonEvent.publish("on_target_change_b", commonEventPublishData, publishCallback);
+      }, 2000);
+      await startAbility('com.example.myapplicationxtsd', 'com.example.myapplicationxtsd.MainAbility');
       setTimeout(() => {
         isSucceed = target_b && !assist_click && !assist_select;
         console.info(logTag + caseName + ' isSucceed : ' + isSucceed);
