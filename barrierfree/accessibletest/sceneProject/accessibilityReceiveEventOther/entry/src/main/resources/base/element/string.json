@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "receiveEvent"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "receiveEvent"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "receiveEvent"
+    },
+    {
+      "name": "form_description",
+      "value": "Register"
+    }
+  ]
+}

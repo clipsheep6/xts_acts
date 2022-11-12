@@ -15,13 +15,12 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import config from '@ohos.accessibility.config'
 import accessibility from '@ohos.accessibility'
-import prompt from '@ohos.prompt'
 
-const AUDIBLE_BUNDLE_NAME = 'com.example.accessibleaudibleability.hmservice/ServiceExtAbility'
-const GENERIC_BUNDLE_NAME = 'com.example.accessiblegenericability.hmservice/ServiceExtAbility'
-const HAPTIC_BUNDLE_NAME = 'com.example.accessiblehapticability.hmservice/ServiceExtAbility'
-const SPOKEN_BUNDLE_NAME = 'com.example.accessiblespokenability.hmservice/ServiceExtAbility'
-const VISUAL_BUNDLE_NAME = 'com.example.accessiblevisualability.hmservice/ServiceExtAbility'
+const AUDIBLE_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceAudibleAbility'
+const GENERIC_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceGenericAbility'
+const HAPTIC_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceHapticAbility'
+const SPOKEN_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceSpokenAbility'
+const VISUAL_BUNDLE_NAME = 'com.example.abilitylisttest/ServiceVisualAbility'
 const LOG_PREFIX = '[CQH-ABILITY-LIST-TEST]'
 const TIME_OUT = 3000
 const TIME_OUT_S = 1000
@@ -35,9 +34,7 @@ export default function abilityTest() {
       }, TIME_OUT)
     })
     afterAll(async function (done) {
-      prompt.showToast({
-        message: 'CASE All End'
-      })
+      console.info(LOG_PREFIX + 'CASE All End')
       done()
     })
     /**
@@ -590,6 +587,560 @@ export default function abilityTest() {
             done()
           }).catch((err) => {
             console.info(logTag + 'failed to getAbilityLists because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0190
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is spoken, stateType is install.
+     */
+    it('AbilityList_0190', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0190 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('spoken', 'install', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0200
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is spoken, stateType is install.
+     */
+    it('AbilityList_0200', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0200 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('spoken', 'install').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0210
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is audible, stateType is install.
+     */
+    it('AbilityList_0210', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0210 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('audible', 'install', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0220
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is audible, stateType is install.
+     */
+    it('AbilityList_0220', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0220 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('audible', 'install').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0230
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is visual, stateType is install.
+     */
+    it('AbilityList_0230', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0230 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('visual', 'install', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0240
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is visual, stateType is install.
+     */
+    it('AbilityList_0240', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0240 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('visual', 'install').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0250
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is haptic, stateType is install.
+     */
+    it('AbilityList_0250', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0250 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('haptic', 'install', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0260
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is haptic, stateType is install.
+     */
+    it('AbilityList_0260', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0260 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('haptic', 'install').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0270
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is generic, stateType is install.
+     */
+    it('AbilityList_0270', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0270 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('generic', 'install', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0280
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is generic, stateType is install.
+     */
+    it('AbilityList_0280', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0280 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('generic', 'install').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0290
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is all, stateType is enable.
+     */
+    it('AbilityList_0290', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0290 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0300
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable, get eventTypes.
+     */
+    it('AbilityList_0300', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0300 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            let eventTypes = []
+            if (data.length > 0) {
+              eventTypes = data[0].eventTypes
+            }
+            expect(eventTypes.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0310
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable, get targetBundleNames.
+     */
+    it('AbilityList_0310', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0310 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            let targetBundleNames = []
+            if (data.length > 0) {
+              targetBundleNames = data[0].targetBundleNames
+            }
+            expect(targetBundleNames.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0320
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable, get other attribute.
+     */
+    it('AbilityList_0320', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0320 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            let id = ''
+            let name = ''
+            let bundleName = ''
+            let abilityTypes = []
+            let capabilities = []
+            let description = ''
+            if (data.length > 0) {
+              id = data[0].id
+              name = data[0].name
+              bundleName = data[0].bundleName
+              abilityTypes = data[0].abilityTypes
+              capabilities = data[0].capabilities
+              description = data[0].description
+            }
+            expect(id.length).assertLarger(0)
+            expect(name.length).assertLarger(0)
+            expect(bundleName.length).assertLarger(0)
+            expect(abilityTypes.length).assertLarger(0)
+            expect(capabilities.length).assertLarger(0)
+            expect(description.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0330
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable.
+     */
+    it('AbilityList_0330', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0330 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0340
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable, get eventTypes.
+     */
+    it('AbilityList_0340', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0340 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            let eventTypes = []
+            if (data.length > 0) {
+              eventTypes = data[0].eventTypes
+            }
+            expect(eventTypes.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0350
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable, get targetBundleNames.
+     */
+    it('AbilityList_0350', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0350 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            let targetBundleNames = []
+            if (data.length > 0) {
+              targetBundleNames = data[0].targetBundleNames
+            }
+            expect(targetBundleNames.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0360
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable, get other attribute.
+     */
+    it('AbilityList_0360', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0360 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            let id = ''
+            let name = ''
+            let bundleName = ''
+            let abilityTypes = []
+            let capabilities = []
+            let description = ''
+            if (data.length > 0) {
+              id = data[0].id
+              name = data[0].name
+              bundleName = data[0].bundleName
+              abilityTypes = data[0].abilityTypes
+              capabilities = data[0].capabilities
+              description = data[0].description
+            }
+            expect(id.length).assertLarger(0)
+            expect(name.length).assertLarger(0)
+            expect(bundleName.length).assertLarger(0)
+            expect(abilityTypes.length).assertLarger(0)
+            expect(capabilities.length).assertLarger(0)
+            expect(description.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0370
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is all, stateType is disable.
+     */
+    it('AbilityList_0370', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0370 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'disable', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0380
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is disable.
+     */
+    it('AbilityList_0380', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0380 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME, HAPTIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'disable').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0390
+     * @tc.name: getAccessibilityExtensionList callback API.
+     * @tc.desc: getAccessibilityExtensionList callback API abilityType is all, stateType is enable.
+     */
+    it('AbilityList_0390', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0390 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable', (err, data) => {
+            if (err && err.code != 0) {
+              console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
+              return
+            }
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          })
+        }, TIME_OUT)
+      }, TIME_OUT_S)
+    })
+    /**
+     * @tc.number: AbilityList_0400
+     * @tc.name: getAccessibilityExtensionList promise API.
+     * @tc.desc: getAccessibilityExtensionList promise API abilityType is all, stateType is enable.
+     */
+    it('AbilityList_0400', 1, async function (done) {
+      let logTag = LOG_PREFIX + ' AbilityList_0400 '
+      enableAbility(logTag, [AUDIBLE_BUNDLE_NAME, GENERIC_BUNDLE_NAME])
+      setTimeout(() => {
+        disableAbility(logTag, [AUDIBLE_BUNDLE_NAME])
+        setTimeout(() => {
+          accessibility.getAccessibilityExtensionList('all', 'enable').then((data) => {
+            console.info(logTag + 'success data:getAccessibilityExtensionList : ' + JSON.stringify(data))
+            console.info(logTag + 'data.length : ' + JSON.stringify(data.length))
+            expect(data.length).assertLarger(0)
+            done()
+          }).catch((err) => {
+            console.info(logTag + 'failed to getAccessibilityExtensionList because ' + JSON.stringify(err))
           })
         }, TIME_OUT)
       }, TIME_OUT_S)
