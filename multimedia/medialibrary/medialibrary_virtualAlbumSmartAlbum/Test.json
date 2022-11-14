@@ -1,0 +1,55 @@
+{
+    "description": "Configuration for mediaLibrary Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "1200000",
+        "package": "ohos.acts.multimedia.mediaLibrary.virtualAlbumSmartAlbum",
+        "shell-timeout": "1200000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [
+            ],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                
+                "mkdir -pv /storage/media/100/local/files/{Pictures,Videos,Audios,Documents}",
+                "mkdir -p /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata",
+                "./resource/medialibrary/01.mp4 ->/data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -pv /storage/media/100/local/files/Pictures/SmartAlbumaddFileAssets",
+                "mkdir -pv /storage/media/100/local/files/Videos/SmartAlbumaddFileAssets",
+                "for d in SmartAlbumaddFileAssets; do for i in $$(seq 3); do cp /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata/01.jpg /storage/media/100/local/files/Pictures/$$d/0$$i.jpg; done;done;",
+                "cp /data/accounts/account_0/appdata/com.ohos.medialibrary.medialibrarydata/01.mp4 /storage/media/100/local/files/Videos/SmartAlbumaddFileAssets/01.mp4",
+
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "sleep 10",
+                "cem publish -e usual.event.SCREEN_OFF",
+                "sleep 10"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsMediaLibraryVirtualAlbumSmartAlbumJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

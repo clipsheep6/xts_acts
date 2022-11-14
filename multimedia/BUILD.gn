@@ -60,6 +60,7 @@ group("multimedia") {
       "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
       "medialibrary/mediaLibrary_mediafetchoptions:mediaLibrary_mediafetchoptions_hap",
       "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
+      "medialibrary/medialibrary_virtualAlbumSmartAlbum:mediaLibrary_virtualAlbumSmartAlbum_js_hap",
       "userfilemgr/userfilemgr_album:userfilemgr_album_js_hap",
       "userfilemgr/userfilemgr_base:userfilemgr_base_js_hap",
       "userfilemgr/userfilemgr_fileAsset:userfilemgr_fileAsset_js_hap",
