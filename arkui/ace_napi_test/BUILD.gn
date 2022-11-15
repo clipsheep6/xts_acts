@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Copyright (C) 2021 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -11,30 +11,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
-import("//test/xts/tools/build/suite.gni")
-ohos_js_hap_suite("ActsAceNapiEtsTest") {
-  hap_profile = "./entry/src/main/config.json"
-  deps = [
-    ":ace_third_ets_assets",
-    ":ace_third_ets_resources",
-    ":ace_third_ets_test_assets",
+import("//foundation/arkui/napi/napi.gni")
+
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+    "-fPIC",
+    "-DNAPI_EXPERIMENTAL",
   ]
-  ets2abc = true
-  certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "ActsAceNapiEtsTest"
-  subsystem_name = "arkui"
-  part_name = "napi"
-  shared_libraries = [ "./entry/src/main/cpp:napitest" ]
 }
 
-ohos_js_assets("ace_third_ets_assets") {
-  source_dir = "./entry/src/main/ets/MainAbility"
+config("public_config") {
 }
-ohos_js_assets("ace_third_ets_test_assets") {
-  source_dir = "./entry/src/main/ets/TestAbility"
-}
-ohos_resources("ace_third_ets_resources") {
-  sources = [ "./entry/src/main/resources" ]
-  hap_profile = "./entry/src/main/config.json"
+
+ohos_shared_library("napitest") {
+  sources = [ "./napi/napi_test.cpp" ]
+  if (!(product_name == "m40")) {
+    if (target_cpu == "arm") {
+      libs = [ "${clang_base_path}/../libcxx-ndk/lib/arm-linux-ohos/c++/libc++_shared.so" ]
+    } else if (target_cpu == "arm64") {
+      libs = [ "${clang_base_path}/../libcxx-ndk/lib/aarch64-linux-ohos/c++/libc++_shared.so" ]
+    } else {
+      libs = []
+    }
+  }
+
+  include_dirs = [ "//test/xts/acts/arkui/ace_napi_test/entry/src/main/cpp" ]
+  configs = [ ":config" ]
+
+  deps = [ "//foundation/arkui/napi:ace_napi" ]
+
+  output_extension = "so"
 }
