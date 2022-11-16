@@ -52,8 +52,8 @@ export default function inputMethodJSUnit() {
       let inputMethodSetting = inputMethod.getInputMethodSetting();
       console.info("====>inputmethoh_test_003 result:" + JSON.stringify(inputMethodSetting));
       setTimeout(()=>{
-        try{
-          inputMethodSetting.displayOptionalInputMethod((err) => {
+        inputMethodSetting.displayOptionalInputMethod((err) => {
+          try {
             if(err){
               console.info("====>inputmethoh_test_003 displayOptionalInputMethod err:" + JSON.stringify(err));
               expect().assertFail();
@@ -62,13 +62,12 @@ export default function inputMethodJSUnit() {
             expect(true).assertTrue();
             console.info("====>inputmethoh_test_003 displayOptionalInputMethod---");
             done();
-          });
-        }catch(err){
-          console.info("====>inputmethoh_test_004 displayOptionalInputMethod throw_err: " + JSON.stringify(err));
-          expect().assertFail()
-          done();
-        }        
-      },100)      
+          } catch(err) {
+            console.info("====>inputmethoh_test_004 displayOptionalInputMethod throw_err: " + JSON.stringify(err));
+            done();
+          }
+        });
+      },500)
     });
 
     it('inputmethoh_test_004', 0, async function (done) {
@@ -84,7 +83,7 @@ export default function inputMethodJSUnit() {
           expect().assertFail()
           done();
         });
-      },100)      
+      },500)
     });
 
     it('inputmethoh_test_005', 0, async function (done) {
@@ -131,24 +130,25 @@ export default function inputMethodJSUnit() {
      */
     it('inputmethod_test_switchInputMethod_001', 0, async function (done) {
       console.info("====>************* inputmethod_test_switchInputMethod_001 Test start*************");
+      let inputM = inputMethod.getCurrentInputMethod()
+      console.info("inputmethod_test_switchInputMethod_001 getCurrentInputMethod: " +  JSON.stringify(inputM));
       let inputMethodProperty = {
-        packageName: "com.example.kikakeyboard",
-        methodId: "ServiceExtAbility",
-        name:"com.example.kikakeyboard",
-        id:"ServiceExtAbility",
+        packageName: inputM.packageName,
+        methodId: inputM.methodId,
+        name:inputM.packageName,
+        id:inputM.methodId,
         extra:{}
       }
       inputMethod.switchInputMethod(inputMethodProperty).then(data => {
         console.info("====>inputmethod_test_switchInputMethod_001 data:" + data)
         expect(data == true).assertTrue();
-	      console.info("====>************* inputmethod_test_switchInputMethod_001 Test end*************");
+        console.info("====>************* inputmethod_test_switchInputMethod_001 Test end*************");
         done();
       }).catch( err=> {
         console.info("====>inputmethod_test_switchInputMethod_001 err:" + err)
         expect().assertFail();
         done();
-      })
-      
+      });
     });
 
     /*
@@ -159,25 +159,26 @@ export default function inputMethodJSUnit() {
      */
     it('inputmethod_test_switchInputMethod_002', 0, async function (done) {
       console.info("====>************* inputmethod_test_switchInputMethod_002 Test start*************");
+      let inputM = inputMethod.getCurrentInputMethod()
+      console.info("inputmethod_test_switchInputMethod_002 getCurrentInputMethod: " +  JSON.stringify(inputM));
       let inputMethodProperty = {
-        packageName: "com.example.kikakeyboard",
-        methodId: "ServiceExtAbility",
-        name:"com.example.kikakeyboard",
-        id:"ServiceExtAbility",
+        packageName: inputM.packageName,
+        methodId: inputM.methodId,
+        name:inputM.packageName,
+        id:inputM.methodId,
         extra:{}
       }
       inputMethod.switchInputMethod(inputMethodProperty, (err, data)=>{
         if(err){
           console.info("====>inputmethod_test_switchInputMethod_002 error:" + err);
           expect().assertFail();
-	        done();
+          done();
         }
         console.info("====>inputmethod_test_switchInputMethod_002 data:" + data)
-	      console.info("====>************* inputmethod_test_switchInputMethod_002 Test end*************");
+        console.info("====>************* inputmethod_test_switchInputMethod_002 Test end*************");
         expect(data == true).assertTrue();
         done();
       });
-      
     });
 
     /*
@@ -188,20 +189,20 @@ export default function inputMethodJSUnit() {
      */
     it('inputmethod_test_showSoftKeyboard_001', 0, async function (done) {
       let inputMethodCtrl = inputMethod.getInputMethodController()
-      try{
-        inputMethodCtrl.showSoftKeyboard((err)=>{
+      inputMethodCtrl.showSoftKeyboard((err)=>{
+        try{
           expect(err.code).assertEqual('12800003')
           console.info("====>************* inputmethod_test_showSoftKeyboard_001 Test end*************");
           done();
-        });
-      }catch(err){
-        expect().assertFail()
-        done();
-      }
+        }catch(err){
+          expect().assertFail()
+          done();
+        }
+      });
     });
 
     /*
-     * @tc.number  inputmethod_test_showSoftKeyboard_001
+     * @tc.number  inputmethod_test_showSoftKeyboard_002
      * @tc.name    Test Indicates the input method which will show softboard with Promise.
      * @tc.desc    Function test
      * @tc.level   2
@@ -220,28 +221,28 @@ export default function inputMethodJSUnit() {
     });
 
     /*
-     * @tc.number  inputmethod_test_showSoftKeyboard_001
+     * @tc.number  inputmethod_test_hideSoftKeyboard_001
      * @tc.name    Test Indicates the input method which will hide softboard with calback.
      * @tc.desc    Function test
      * @tc.level   2
      */
     it('inputmethod_test_hideSoftKeyboard_001', 0, async function (done) {
       let inputMethodCtrl = inputMethod.getInputMethodController()
-      try{
-        inputMethodCtrl.hideSoftKeyboard((err)=>{
-        console.info('====>hideSoftKeyboard callbacek failed : ' + JSON.stringify(err))
-        expect(err.code).assertEqual('12800003')
-        console.info("====>************* inputmethod_test_hideSoftKeyboard_001 Test end*************");
-        done();
+      inputMethodCtrl.hideSoftKeyboard((err)=>{
+        try{
+          console.info('====>hideSoftKeyboard callbacek failed : ' + JSON.stringify(err))
+          expect(err.code).assertEqual('12800003')
+          console.info("====>************* inputmethod_test_hideSoftKeyboard_001 Test end*************");
+          done();
+        }catch(err){
+          expect().assertFail();
+          done();
+        }
       })
-      }catch(err){
-        expect().assertFail();
-        done();
-      }  
     });
 
     /*
-     * @tc.number  inputmethod_test_showSoftKeyboard_001
+     * @tc.number  inputmethod_test_hideSoftKeyboard_002
      * @tc.name    Test Indicates the input method which will hide softboard with Promise.
      * @tc.desc    Function test
      * @tc.level   2
