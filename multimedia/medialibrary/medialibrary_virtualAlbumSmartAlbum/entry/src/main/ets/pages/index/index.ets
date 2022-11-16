@@ -17,7 +17,6 @@ import file from '@system.file';
 import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index"
 import testsuite from "../../test/List.test.ets"
 
-
 @Entry
 @Component
 struct Index {

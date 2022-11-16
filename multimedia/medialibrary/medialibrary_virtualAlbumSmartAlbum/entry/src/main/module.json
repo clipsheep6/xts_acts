@@ -6,6 +6,7 @@
         "description": "$string:mainability_description",
         "mainElement": "MainAbility",
         "deviceTypes": [
+      "default",
             "phone"
         ],
         "deliveryWithInstall": true,
@@ -14,7 +15,7 @@
         "pages": "$profile:main_pages",
         "abilities": [
             {
-                "name": "ohos.acts.multimedia.mediaLibrary.virtualAlbumSmartAlbum.MainAbility",
+                "name": "ohos.acts.multimedia.mediaLibrary.MainAbility",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:mainability_description",
                 "icon": "$media:icon",

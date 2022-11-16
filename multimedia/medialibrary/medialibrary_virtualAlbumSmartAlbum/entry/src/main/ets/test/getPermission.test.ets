@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { describe, beforeAll,afterAll, it, expect } from 'deccjsunit/index';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundle from '@ohos.bundle';
@@ -32,7 +33,7 @@ export default function getPermissionTest() {
      * @tc.require
      */
       async function getPermission() {
-              let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.mediaLibrary.virtualAlbumSmartAlbum', 0, 100);
+              let appInfo = await bundle.getApplicationInfo('ohos.acts.multimedia.mediaLibrary', 0, 100);
               let tokenID = appInfo.accessTokenId;
               let atManager = abilityAccessCtrl.createAtManager();
               await atManager.grantUserGrantedPermission(tokenID, "ohos.permission.MEDIA_LOCATION", 1);
