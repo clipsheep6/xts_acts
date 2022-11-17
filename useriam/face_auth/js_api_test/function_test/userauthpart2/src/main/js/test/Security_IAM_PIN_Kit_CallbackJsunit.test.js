@@ -56,7 +56,7 @@ describe('userauthTest', function () {
             AvailabeStatus = UserAuthKit.getAvailableStatus(userAuthNorth.UserAuthType.FACE,
                 userAuthNorth.AuthTrustLevel.ATL1);
             console.info('testFace publicgetAvailableStatus result = ' + JSON.stringify(AvailabeStatus));
-            expect(6).assertEqual(AvailabeStatus);
+            expect(10).assertEqual(AvailabeStatus);
             done();
         } catch (e) {
             console.log("GetAvailabeStatusTest0101 fail " + e);
@@ -90,7 +90,7 @@ describe('userauthTest', function () {
                 console.log("testFace faceDemo auth extraInfo = " + JSON.stringify(extraInfo));
                 onresult.authextr = extraInfo;
                 console.info('testFace publicauth auth onResult = ' + JSON.stringify(onresult));
-                expect(1).assertEqual(result);
+                expect(10).assertEqual(result);
                 console.info('testFace publicauth auth contextID1 = ' + contextID1);
                 let cancelResult = UserAuthKit.cancelAuth(contextID1);
                 console.info('testFace publicauth cancelResult = ' + cancelResult);
