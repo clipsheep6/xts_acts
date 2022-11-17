@@ -1,11 +1,11 @@
 # XTS
 
 ## Introduction
-The X test suite (XTS) is used to ensure consistent ArkUI functions across different platforms. Related test suites are all migrated from the OpenHarmony [acts] (https://gitee.com/openharmony/xts_acts/tree/master/arkui) repository.
+The X test suite (XTS) is used to ensure consistent ArkUI functions across different platforms. Related test suites are all migrated from the OpenHarmony [acts](https://gitee.com/openharmony/xts_acts/tree/master/arkui) repository.
 
 ## About XTS Porting
 
-XTS porting is the same as application porting. You need to build the XTS project into a JSBundle and place the JSBundle into the project directory of the corresponding platform. For example, if you place the JSBundle in the** assets** directory of Android, **aboutToAppear** will be called back to trigger test case execution when the application is started.
+XTS porting is the same as application porting. You need to build the XTS project into a JSBundle and place the JSBundle into the project directory of the corresponding platform. For example, if you place the JSBundle in the **assets** directory of Android, **aboutToAppear** will be called back to trigger test case execution when the application is started.
 
 ## Directory Structure
 
