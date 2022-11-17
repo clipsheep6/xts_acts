@@ -21,7 +21,7 @@
   "module": {
     "mainAbility": ".featureAbility",
     "deviceType": [
-      "phone",
+      "default",
       "tablet"
     ],
     "abilities": [

@@ -6,7 +6,7 @@
     "description": "$string:featureAbility_desc",
     "mainElement": "MainAbility3",
     "deviceTypes": [
-      "phone",
+      "default",
       "tablet"
     ],
     "deliveryWithInstall": true,
