@@ -2,10 +2,11 @@
     "description": "Configuration for NetworkSearch Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "2100000",
+        "test-timeout": "21000000",
         "bundle-name": "com.ohos.networksearch",
         "package-name": "com.ohos.networksearch",  
-        "shell-timeout": "2100000"
+        "shell-timeout": "21000000",
+        "testcase-timeout":"12000000"
     },
     "kits": [
         {
