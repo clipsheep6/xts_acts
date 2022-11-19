@@ -12,6 +12,10 @@
 # limitations under the License.
 
 group("ai") {
-  testonly = true
-  deps = [ "neural_network_runtime:neural_network_runtime" ]
+  if (device_name == "rk3568") {
+    if (is_standard_system) {
+      testonly = true
+      deps = [ "neural_network_runtime:neural_network_runtime" ]
+    }
+  }
 }
