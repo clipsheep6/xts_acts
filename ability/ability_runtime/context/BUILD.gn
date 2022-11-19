@@ -17,6 +17,7 @@ group("context") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "actscontexteventhubtest:ActsContextEventHubTest",
       "actscontexttest:ActsContextTest",
       "actscreatemodulecontextassist:ActsCreateModuleContextAssist",
       "actscreatemodulecontextassistone:ActsCreateModuleContextAssistOne",
