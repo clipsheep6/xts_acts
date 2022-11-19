@@ -17,6 +17,7 @@
         "package": "com.example.actsnotificationrequest",
         "name": ".entry",
         "deviceType": [
+            "tablet",
             "default",
             "tablet"
         ],
