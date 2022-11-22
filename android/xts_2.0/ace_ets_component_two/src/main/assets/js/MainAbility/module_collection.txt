@@ -1,1 +1,0 @@
-system.file,system.configuration,ohos.curves,system.router,system.prompt

@@ -1,9 +1,0 @@
-include ':ace_ets_component'
-include ':ace_ets_component_five'
-include ':ace_ets_component_four'
-include ':ace_ets_component_three'
-include ':ace_ets_component_two'
-include ':ace_ets_standard'
-include ':ace_ets_test'
-include ':ace_ets_third_test'
-rootProject.name = "xts_arkui2.0"

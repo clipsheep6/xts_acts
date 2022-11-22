@@ -1,1 +1,0 @@
-system.file,ohos.animator,system.prompt,ohos.prompt,system.router,system.app

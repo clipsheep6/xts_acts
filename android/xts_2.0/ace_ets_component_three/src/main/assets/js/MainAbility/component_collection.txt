@@ -1,1 +1,0 @@
-Flex,Column,Text,Image,Button,If,Row,Badge,Blank,Toggle,Scroller,RenderingContextSettings,CanvasRenderingContext2D,Scroll,Canvas,ImageBitmap,Path2D,OffscreenCanvasRenderingContext2D,Circle,Grid,GridItem,ForEach,Line,LongPressGesture,PanGesture,TapGesture,Progress,QRCode,Rating,Checkbox,Stack,Shape,Rect,Ellipse,Path,List,ListItem,Navigator,Span,TabsController,Tabs,TabContent
