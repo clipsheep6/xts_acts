@@ -18,7 +18,7 @@ export default function lifecycleTest() {
 
     beforeEach(async function (done) {
       console.info('LifeCycleTest before each called');
-      await sleep(1500);
+      await sleep(1200);
       done()
     });
 
@@ -57,6 +57,7 @@ export default function lifecycleTest() {
             console.log("LifeCycleTest terminateSelfwithresult error: " + JSON.stringify(error));
           });
       }
+      await sleep(1000);
       done();
     });
 
