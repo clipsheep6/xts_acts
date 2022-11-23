@@ -24,6 +24,8 @@ group("ans_standard") {
       "actsNotificationShowTest:ActsNotificationShowTest",
       "actsNotificationSlotTest:ActsNotificationSlotTest",
       "actsNotificationWantAgentTest:ActsNotificationWantAgentTest",
+            "hitsNotificationSlotTest:HitsNotificationSlotTest",
+      "hitsNotificationUserIdTest:HitsNotificationUserIdTest"
     ]
   }
 }
