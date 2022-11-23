@@ -1608,12 +1608,12 @@ export default function lifecycleTest() {
           expect(exlist[2]).assertEqual("MainAbility2 onAbilityForeground");
           expect(exlist[3]).assertEqual("MainAbility2 onAbilityBackground");
           expect(exlist[4]).assertEqual("MainAbility2 onWindowStageDestroy");
-          expect(exlist12[0]).assertEqual("MainAbility2 onAbilityDestroy");
-          expect(exlist12[1]).assertEqual("MainAbility12 onAbilityCreate");
-          expect(exlist12[2]).assertEqual("MainAbility12 onWindowStageCreate");
-          expect(exlist12[3]).assertEqual("MainAbility12 onAbilityForeground");
-          expect(exlist12[4]).assertEqual("MainAbility12 onAbilityBackground");
-          expect(exlist12[5]).assertEqual("MainAbility12 onAbilityForeground");
+          expect(exlist[5]).assertEqual("MainAbility2 onAbilityDestroy");
+          expect(exlist12[0]).assertEqual("MainAbility12 onAbilityCreate");
+          expect(exlist12[1]).assertEqual("MainAbility12 onWindowStageCreate");
+          expect(exlist12[2]).assertEqual("MainAbility12 onAbilityForeground");
+          expect(exlist12[3]).assertEqual("MainAbility12 onAbilityBackground");
+          expect(exlist12[4]).assertEqual("MainAbility12 onAbilityForeground");
           expect(exlist1[0]).assertEqual("MainAbility2 onAbilityCreate");
           expect(exlist1[1]).assertEqual("MainAbility2 onWindowStageCreate");
           expect(exlist1[2]).assertEqual("MainAbility2 onAbilityForeground");
