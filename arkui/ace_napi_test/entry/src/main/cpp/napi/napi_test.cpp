@@ -1611,12 +1611,13 @@ static napi_value napiGetTypedarrayInfo(napi_env env, napi_callback_info info)
     size_t arrayBufferLength = 0;
     napi_get_arraybuffer_info(env, arrayBuffer, &tmpArrayBufferPr, &arrayBufferLength);
     
-    NAPI_ASSERT(env, arrayBufferPr == tmpArrayBufferPr, "creat and get ArrayBuffer success");
-    NAPI_ASSERT(env, arrayBufferSize == arrayBufferLength, "creat and get ArrayBuffer size success");
+    NAPI_ASSERT(env, arrayBufferPr == tmpArrayBufferPr, "get ArrayBuffer success");
+    NAPI_ASSERT(env, arrayBufferSize == arrayBufferLength, "get ArrayBuffer size success");
     
     napi_value typedarray = nullptr;
     // create a JavaScript TypedArray
-    napi_status status = napi_create_typedarray(env, napi_int8_array, arrayBufferSize, arrayBuffer, 0, &typedarray);
+    napi_status status = napi_create_typedarray(env, napi_int8_array, arrayBufferSize,
+	                                            arrayBuffer, 0, &typedarray);
     NAPI_ASSERT(env, status == napi_ok, "napi_create_typedarray success");
     
     bool isTypedArray = false;
@@ -1631,9 +1632,10 @@ static napi_value napiGetTypedarrayInfo(napi_env env, napi_callback_info info)
     napi_value tmpArrayBuffer = nullptr;
     size_t byteOffset = 0;
     // returns various properties of a typed array
-    napi_get_typedarray_info(env, typedarray, &typedarrayType, &typedarrayLength, &typedarrayBufferPtr, &tmpArrayBuffer, &byteOffset);
-    NAPI_ASSERT(env, typedarrayBufferPtr == arrayBufferPr, "napi_get_typedarray_info success");
-    NAPI_ASSERT(env, arrayBufferSize == typedarrayLength, "napi_get_typedarray_info size success");
+    napi_get_typedarray_info(env, typedarray, &typedarrayType, &typedarrayLength,
+	                        &typedarrayBufferPtr, &tmpArrayBuffer, &byteOffset);
+    NAPI_ASSERT(env, typedarrayBufferPtr == arrayBufferPr, "napigettypedarrayinfo success");
+    NAPI_ASSERT(env, arrayBufferSize == typedarrayLength, "napigetypedarrayinfo size success");
     
     // return the value of success
     napi_value _value;
