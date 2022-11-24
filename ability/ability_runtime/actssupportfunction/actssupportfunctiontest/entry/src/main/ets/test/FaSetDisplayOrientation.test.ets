@@ -115,7 +115,7 @@ export default function FaSetDisplayOrientationTest() {
                 expect(JSON.stringify(lifeList)).assertEqual(JSON.stringify(listCheck));
                 expect(displayOrientationBefore).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
-                expect(setDisplayOrientation).assertEqual(1);
+                expect(setDisplayOrientation).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -179,7 +179,7 @@ export default function FaSetDisplayOrientationTest() {
                 expect(JSON.stringify(lifeList)).assertEqual(JSON.stringify(listCheck));
                 expect(displayOrientationBefore).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
-                expect(setDisplayOrientation).assertEqual(1);
+                expect(setDisplayOrientation).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -246,7 +246,7 @@ export default function FaSetDisplayOrientationTest() {
                 expect(JSON.stringify(lifeList)).assertEqual(JSON.stringify(listCheck));
                 expect(displayOrientationBefore).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter).assertEqual(bundle.DisplayOrientation.PORTRAIT);
-                expect(setDisplayOrientation).assertEqual(1);
+                expect(setDisplayOrientation).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -329,8 +329,8 @@ export default function FaSetDisplayOrientationTest() {
                 expect(displayOrientationBefore2).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter1).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
                 expect(displayOrientationAfter2).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
-                expect(setDisplayOrientation1).assertEqual(1);
-                expect(setDisplayOrientation2).assertEqual(1);
+                expect(setDisplayOrientation1).assertEqual(undefined);
+                expect(setDisplayOrientation2).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -413,8 +413,8 @@ export default function FaSetDisplayOrientationTest() {
                 expect(displayOrientationBefore2).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter1).assertEqual(bundle.DisplayOrientation.PORTRAIT);
                 expect(displayOrientationAfter2).assertEqual(bundle.DisplayOrientation.PORTRAIT);
-                expect(setDisplayOrientation1).assertEqual(1);
-                expect(setDisplayOrientation2).assertEqual(1);
+                expect(setDisplayOrientation1).assertEqual(undefined);
+                expect(setDisplayOrientation2).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -497,8 +497,8 @@ export default function FaSetDisplayOrientationTest() {
                 expect(displayOrientationBefore2).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter1).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
                 expect(displayOrientationAfter2).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
-                expect(setDisplayOrientation1).assertEqual(1);
-                expect(setDisplayOrientation2).assertEqual(1);
+                expect(setDisplayOrientation1).assertEqual(undefined);
+                expect(setDisplayOrientation2).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -581,8 +581,8 @@ export default function FaSetDisplayOrientationTest() {
                 expect(displayOrientationBefore2).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter1).assertEqual(bundle.DisplayOrientation.PORTRAIT);
                 expect(displayOrientationAfter2).assertEqual(bundle.DisplayOrientation.PORTRAIT);
-                expect(setDisplayOrientation1).assertEqual(1);
-                expect(setDisplayOrientation2).assertEqual(1);
+                expect(setDisplayOrientation1).assertEqual(undefined);
+                expect(setDisplayOrientation2).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -665,8 +665,8 @@ export default function FaSetDisplayOrientationTest() {
                 expect(displayOrientationBefore2).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter1).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
                 expect(displayOrientationAfter2).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
-                expect(setDisplayOrientation1).assertEqual(1);
-                expect(setDisplayOrientation2).assertEqual(1);
+                expect(setDisplayOrientation1).assertEqual(undefined);
+                expect(setDisplayOrientation2).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
@@ -753,8 +753,8 @@ export default function FaSetDisplayOrientationTest() {
                 expect(displayOrientationBefore2).assertEqual(bundle.DisplayOrientation.UNSPECIFIED);
                 expect(displayOrientationAfter1).assertEqual(bundle.DisplayOrientation.PORTRAIT);
                 expect(displayOrientationAfter2).assertEqual(bundle.DisplayOrientation.PORTRAIT);
-                expect(setDisplayOrientation1).assertEqual(1);
-                expect(setDisplayOrientation2).assertEqual(1);
+                expect(setDisplayOrientation1).assertEqual(undefined);
+                expect(setDisplayOrientation2).assertEqual(undefined);
                 done();
               });
             }, sleepTimeOne);
