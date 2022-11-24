@@ -110,7 +110,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testClearElementIllegal, Function | MediumTe
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetWantElementLegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     ElementName element = { 0 };
     SetElementDeviceID(&element, "0001000");
     SetElementBundleName(&element, "com.openharmony.testnative");
@@ -137,7 +140,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementLegal, Function | MediumTe
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementIllegal, Function | MediumTest | Level2)
 {
     printf("------start testSetWantElementIllegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     ElementName element = { 0 };
     bool ret = SetWantElement(&want, element);
     if (ret) {
@@ -160,7 +166,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantElementIllegal, Function | Medium
 LITE_TEST_CASE(AbilityMgrTestSuite, testClearWantIllegal, Function | MediumTest | Level2)
 {
     printf("------start testClearWantIllegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     ElementName element = { 0 };
     SetElementDeviceID(&element, "0001000");
     SetElementBundleName(&element, "com.openharmony.testnative");
@@ -190,7 +199,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testClearWantIllegal, Function | MediumTest 
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDateLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetWantDateLegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     char *data = "test";
     SetWantData(&want, (void *)data, strlen(data) + 1);
     if (want.data != NULL) {
@@ -211,7 +223,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDateLegal, Function | MediumTest 
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetWantDateIllegal, Function | MediumTest | Level2)
 {
     printf("------start testSetWantDateIllegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     SetWantData(&want, "test", -1);
     TEST_ASSERT_EQUAL_STRING((char*)(want.data), NULL);
     TEST_ASSERT_FALSE(want.dataLength);
@@ -255,7 +270,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamIllegal, Function | MediumTes
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetIntParamLegal, Function | MediumTest | Level0)
 {
     printf("------start testSetIntParamLegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     int32_t value = 1;
     char *key = "key";
     bool ret = SetIntParam(&want, key, strlen(key), value);
@@ -286,7 +304,10 @@ LITE_TEST_CASE(AbilityMgrTestSuite, testSetStrParamIllegal, Function | MediumTes
 LITE_TEST_CASE(AbilityMgrTestSuite, testSetStrParamLegal, Function | MediumTest | Level2)
 {
     printf("------start testSetStrParamLegal------\n");
-    Want want = { 0 };
+    Want want;
+    want.element = NULL;
+    want.data = NULL;
+    want.dataLength = 0;
     char *key = "key";
     char *value = "value";
     bool ret = SetStrParam(&want, key, strlen(key), value, strlen(value));
