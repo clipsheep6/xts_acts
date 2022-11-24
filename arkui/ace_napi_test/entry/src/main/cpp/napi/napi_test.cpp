@@ -1655,9 +1655,6 @@ static napi_value Init(napi_env env, napi_value exports)
     DECLARE_NAPI_FUNCTION("isError", isError),
     DECLARE_NAPI_FUNCTION("createError", createError),
     DECLARE_NAPI_FUNCTION("createTypeError", createTypeError),
-
-
-    
     DECLARE_NAPI_FUNCTION("createRangeError", createRangeError),
     DECLARE_NAPI_FUNCTION("getAndClearLastException", getAndClearLastException),
     DECLARE_NAPI_FUNCTION("isExceptionPending", isExceptionPending),
