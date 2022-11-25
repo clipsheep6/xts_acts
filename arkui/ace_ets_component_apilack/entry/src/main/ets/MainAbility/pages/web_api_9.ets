@@ -80,7 +80,7 @@ struct Index {
                     console.info("x coord = " + event.param.y());
                     console.info("link url = " + event.param.getLinkUrl());
                     console.info("source url = " + event.param.getSourceUrl());
-                    console.info("source url = " + event.param.getUnfilterendLinkUrl());
+                    console.info("source url = " + event.param.getUnfilteredLinkUrl());
                     console.info("source url = " + event.param.existsImageContents());
                     console.info("" + event.result.copyImage());
                     console.info("" + event.result.closeContextMenu());
@@ -136,30 +136,30 @@ struct Index {
           return true;
         })
 
-            Web({ src: 'www.baidu.com', controller: this.controller })
-                .onShowFileSelector((event) => {
-                    AlertDialog.show({
-                        title: event.fileSelector.getTitle(),
-                        message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-                        confirm: {
-                            value: 'upload',
-                            action: () => {
-                                let fileList: Array<string> = [
-                                    '/data/storage/el2/base/test',
-                                ]
-                                event.result.handleFileList(fileList)
-                            }
-                        },
-                        cancel: () => {
-                            let fileList: Array<string> = []
-                            console.info("this is Capture " + event.fileSelector.isCapture());
-                            console.info("this is getTitle" + event.fileSelector.getTitle());
-                            console.info("this is getMode" + event.fileSelector.getMode());
-                            console.info("this is getAcceptType" + event.fileSelector.getAcceptType().length);
+        Web({ src: 'www.baidu.com', controller: this.controller })
+            .onShowFileSelector((event) => {
+                AlertDialog.show({
+                    title: event.fileSelector.getTitle(),
+                    message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
+                    confirm: {
+                        value: 'upload',
+                        action: () => {
+                            let fileList: Array<string> = [
+                                '/data/storage/el2/base/test',
+                            ]
+                            event.result.handleFileList(fileList)
                         }
-                    })
-                    return true;
+                    },
+                    cancel: () => {
+                        let fileList: Array<string> = []
+                        console.info("this is Capture " + event.fileSelector.isCapture());
+                        console.info("this is getTitle" + event.fileSelector.getTitle());
+                        console.info("this is getMode" + event.fileSelector.getMode());
+                        console.info("this is getAcceptType" + event.fileSelector.getAcceptType().length);
+                    }
                 })
+                return true;
+            })
 
 
         Row() {
