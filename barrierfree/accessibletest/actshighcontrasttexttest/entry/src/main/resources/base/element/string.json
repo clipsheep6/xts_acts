@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "highContrastText"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "highContrastText"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "highContrastText"
+    }
+  ]
+}
