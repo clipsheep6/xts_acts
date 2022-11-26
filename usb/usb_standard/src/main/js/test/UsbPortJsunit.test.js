@@ -51,7 +51,6 @@ describe('UsbPortJsFunctionsTest', function () {
     }
     expect(usbPortList.length > 0).assertTrue();
     console.info('usb SUB_USB_JS_0410 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -75,7 +74,6 @@ describe('UsbPortJsFunctionsTest', function () {
     }
 
     console.info('usb SUB_USB_JS_0220 :  PASS');
-    expect(true).assertTrue();
   })
 
 })

@@ -62,8 +62,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0930 begin');
     var maskCode = 0
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('none');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('none');
     console.info('usb SUB_USB_JS_0930 :  PASS');
   })
 
@@ -76,8 +76,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0940 begin');
     var maskCode = 1
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('acm');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('acm');
     console.info('usb SUB_USB_JS_0940 :  PASS');
   })
 
@@ -90,8 +90,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0950 begin');
     var maskCode = 2
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('ecm');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('ecm');
     console.info('usb SUB_USB_JS_0950 :  PASS');
   })
 
@@ -104,8 +104,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0960 begin');
     var maskCode = 3
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('acm,ecm');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('acm,ecm');
     console.info('usb SUB_USB_JS_0960 :  PASS');
   })
 
@@ -118,8 +118,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0970 begin');
     var maskCode = 4
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('hdc');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('hdc');
     console.info('usb SUB_USB_JS_0970 :  PASS');
   })
 
@@ -132,8 +132,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0980 begin');
     var maskCode = 5
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('acm,hdc');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('acm,hdc');
     console.info('usb SUB_USB_JS_0980 :  PASS');
   })
 
@@ -146,8 +146,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0990 begin');
     var maskCode = 6
     var strMaskCode = usb.usbFunctionsToString(maskCode)
-    expect(strMaskCode).assertEqual('ecm,hdc');
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
+    expect(strMaskCode).assertEqual('ecm,hdc');
     console.info('usb SUB_USB_JS_0990 :  PASS');
   })
 
@@ -160,8 +160,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0860 begin');
     var strMaskCode = 'none'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(0);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(0);
     console.info('usb SUB_USB_JS_0860 :  PASS');
   })
 
@@ -174,8 +174,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0870 begin');
     var strMaskCode = 'acm'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(1);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(1);
     console.info('usb SUB_USB_JS_0870 :  PASS');
   })
 
@@ -188,8 +188,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0880 begin');
     var strMaskCode = 'ecm'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(2);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(2);
     console.info('usb SUB_USB_JS_0880 :  PASS');
   })
 
@@ -202,8 +202,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0890 begin');
     var strMaskCode = 'acm,ecm'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(3);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(3);
     console.info('usb SUB_USB_JS_0890 :  PASS');
   })
 
@@ -216,8 +216,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0900 begin');
     var strMaskCode = 'hdc'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(4);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(4);
     console.info('usb SUB_USB_JS_0900 :  PASS');
   })
 
@@ -230,8 +230,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0910 begin');
     var strMaskCode = 'acm,hdc'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(5);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(5);
     console.info('usb SUB_USB_JS_0910 :  PASS');
   })
 
@@ -244,8 +244,8 @@ describe('UsbAutoJsunit', function () {
     console.info('usb SUB_USB_JS_0920 begin');
     var strMaskCode = 'ecm,hdc'
     var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
-    expect(nMaskCode).assertEqual(6);
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
+    expect(nMaskCode).assertEqual(6);
     console.info('usb SUB_USB_JS_0920 :  PASS');
   })
 
@@ -285,15 +285,13 @@ describe('UsbAutoJsunit', function () {
 
     var errmaskCode = 0
     var strMaskCode = usb.usbFunctionsToString(errmaskCode)
-
     console.info('usb case ' + errmaskCode + ' usbFunctionsToString return str: ' + strMaskCode);
 
     var errStrMaskCode = 'none'
     var nMaskCode = usb.usbFunctionsFromString(errStrMaskCode)
-    expect(nMaskCode).assertEqual(0);
     console.info('usb case errStrMaskCode ' + errStrMaskCode +
       ' usbFunctionsFromString return int: ' + nMaskCode);
-
+    expect(nMaskCode).assertEqual(0);
     console.info('usb SUB_USB_JS_0340 :  PASS');
   })
 
@@ -312,7 +310,6 @@ describe('UsbAutoJsunit', function () {
     }
     expect(usbPortList.length > 0).assertTrue();
     console.info('usb SUB_USB_JS_0410 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -334,9 +331,7 @@ describe('UsbAutoJsunit', function () {
       var maskCode = usb.getSupportedModes(usbPortList[i].id)
       expect(maskCode).assertEqual(usbPortList[i].supportedModes);
     }
-
     console.info('usb SUB_USB_JS_0220 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -358,9 +353,7 @@ describe('UsbAutoJsunit', function () {
     var portID = usbPortList[0].id + 10
     var maskCode = usb.getSupportedModes(portID)
     expect(maskCode).assertEqual(0);
-
     console.info('usb SUB_USB_JS_0230 :  PASS');
-    expect(true).assertTrue();
   })
 
 })

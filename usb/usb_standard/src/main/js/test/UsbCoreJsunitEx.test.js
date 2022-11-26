@@ -679,8 +679,14 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       console.info('usb 1220 catch err code: ' + err.code + ' message: ' + err.message);
       expect(err.code).assertEqual(14400001);
       console.info('usb SUB_USB_JS_1220 :  PASS');
-      usb.requestRight(gDeviceList[0].name);
     }
+    usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      console.info('usb 1220 requestRight hasRight:' + hasRight);
+      expect(hasRight).assertTrue();
+    }).catch(error => {
+      console.info('usb 1220 requestRight error:' + error);
+    });
+    CheckEmptyUtils.sleep(5000)
   })
 
   /**
@@ -706,11 +712,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       deviceName = deviceName + '$#'
       var hasRight = usb.hasRight(deviceName)
       console.info('usb has_right ret :' + hasRight);
-      expect(hasRight == false).assertTrue();
+      expect(hasRight).assertFalse();
     }
-
     console.info('usb SUB_USB_JS_0720 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -736,11 +740,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       deviceName = deviceName + 'abcdg'
       var hasRight = usb.hasRight(deviceName)
       console.info('usb hasRight ret :' + hasRight);
-      expect(hasRight == false).assertTrue();
+      expect(hasRight).assertFalse();
     }
-
     console.info('usb SUB_USB_JS_0730 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**

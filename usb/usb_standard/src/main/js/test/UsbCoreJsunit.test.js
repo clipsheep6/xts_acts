@@ -80,15 +80,15 @@ describe('UsbCoreJsFunctionsTest', function () {
       expect(false).assertTrue();
       return
     }
-    expect(gDeviceList.length).assertLarger(0);
     console.info('usb case getDevices ret length: ' + gDeviceList.length);
+    expect(gDeviceList.length).assertLarger(0);
     console.info('usb SUB_USB_JS_0480:  PASS');
   })
 
   /**
    * @tc.number    : SUB_USB_JS_0710
    * @tc.name      : hasRight
-   * @tc.desc      : 权限查询 连接设备 关闭设备
+   * @tc.desc      : 权限查询
    */
   it('SUB_USB_JS_0710', 0, function () {
     console.info('usb has_right_01 begin');
@@ -108,8 +108,8 @@ describe('UsbCoreJsFunctionsTest', function () {
       console.info('usb has_right ret :' + hasRight);
     }
 
-    console.info('usb SUB_USB_JS_0710 :  PASS');
     expect(true).assertTrue();
+    console.info('usb SUB_USB_JS_0710 :  PASS');
   })
 
   /**
@@ -132,8 +132,8 @@ describe('UsbCoreJsFunctionsTest', function () {
 
     for (var i = 0; i < gDeviceList.length; i++) {
       usb.requestRight(gDeviceList[i].name).then(hasRight => {
-        expect(hasRight).assertTrue();
         console.info('usb request_right ret :' + hasRight);
+        expect(hasRight).assertTrue();
         console.info('usb SUB_USB_JS_0680 :  PASS');
       }).catch(error => {
         console.info('usb case device request right failed : ' + error + ' :' + gDeviceList[i].name);
@@ -337,7 +337,7 @@ describe('UsbCoreJsFunctionsTest', function () {
     console.info('usb case getRawDescriptor param: ' + JSON.stringify(gPipe));
     var descriptor = usb.getRawDescriptor(gPipe);
     console.info('usb case getRawDescriptor ret: ' + descriptor);
-    expect(true).assertTrue();
+    expect(descriptor.length).assertLarger(0);
     var isPipClose = usb.closePipe(gPipe);
     expect(isPipClose).assertEqual(0);
 
@@ -365,7 +365,7 @@ describe('UsbCoreJsFunctionsTest', function () {
     console.info('usb case getFileDescriptor param: ' + JSON.stringify(gPipe));
     var fileDescriptor = usb.getFileDescriptor(gPipe);
     console.info('usb case getFileDescriptor ret: ' + fileDescriptor);
-    expect(true).assertTrue();
+    expect(fileDescriptor >= 0).assertTrue();
     var isPipClose = usb.closePipe(gPipe);
     expect(isPipClose).assertEqual(0);
 
