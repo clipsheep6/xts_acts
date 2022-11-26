@@ -168,19 +168,18 @@ describe('UsbPortAndFunctionsJsFunctionsTest', function () {
     }
 
     for (var i = 0; i < usbPortList.length; i++) {
-      console.info('usb case set data role 2, data role 2');
+      console.info('usb 0010 case set data role 2, data role 2');
       usb.setPortRoles(usbPortList[i].id, usb.SINK, usb.DEVICE).then(data => {
-        console.info('usb case setPortRoles return: ' + data);
+        console.info('usb 0010 case setPortRoles return: ' + data);
         expect(data).assertTrue();
       }).catch(error => {
-        console.info('usb case setPortRoles error : ' + error);
+        console.info('usb 0010 case setPortRoles error : ' + error);
         expect(false).assertTrue();
       });
       CheckEmptyUtils.sleep(8000)
     }
 
     console.info('usb SUB_USB_JS_0010 device 2 2:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
@@ -198,19 +197,18 @@ describe('UsbPortAndFunctionsJsFunctionsTest', function () {
     }
 
     for (var i = 0; i < usbPortList.length; i++) {
-      console.info('usb case set data role 1, data role 1');
+      console.info('usb 0020 case set data role 1, data role 1');
       usb.setPortRoles(usbPortList[i].id, usb.SOURCE, usb.HOST).then(data => {
+        console.info('usb 0020 case setPortRoles return: ' + data);
         expect(data).assertTrue();
-        console.info('usb case setPortRoles return: ' + data);
       }).catch(error => {
-        console.info('usb case setPortRoles error : ' + error);
+        console.info('usb 0020 case setPortRoles error : ' + error);
         expect(false).assertTrue();
       });
       CheckEmptyUtils.sleep(8000)
     }
 
     console.info('usb SUB_USB_JS_0020 host 1 1:  PASS');
-    expect(true).assertTrue();
   })
 })
 }
