@@ -1,0 +1,43 @@
+{
+  "forms": [
+    {
+      "isDefault": true,
+      "src": "./js/widget/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget",
+      "description": "StageB entry module widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://com.across_devices_form.provider_stage_b/entry/MainAbility",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1,
+      "continuableType": "coordinated"
+    },
+    {
+      "isDefault": false,
+      "src": "./js/second_widget/pages/index/index",
+      "scheduledUpdateTime": "11:30",
+      "defaultDimension": "2*2",
+      "name": "second_widget",
+      "description": "StageB entry module second widget.",
+      "colorMode": "dark",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://com.across_devices_form.provider_stage_b/entry/MainAbility",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "updateEnabled": false,
+      "updateDuration": 2
+    }
+  ]
+}
