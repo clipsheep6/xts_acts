@@ -78,7 +78,6 @@ export default function abilitySecondTest() {
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
       }
-
       function unSubscribeCallback() {
         console.debug(`${TAG} unSubscribeCallback`)
         done()
