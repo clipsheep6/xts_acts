@@ -1071,7 +1071,7 @@ export default function stageContextPropertiesTest(abilityContext) {
     it("SUB_AA_OpenHarmony_EnvChange_0200", 0, async function (done) {
       TAG = "SUB_AA_OpenHarmony_EnvChange_0200"
       console.info(`-------- ${TAG} start --------`);
-      console.info(`${TAG} abilityContext.config.language: ${abilityContext.config.direction}`);
+      console.info(`${TAG} abilityContext.config.direction: ${abilityContext.config.direction}`);
       expect(abilityContext.config.direction == 0).assertTrue();
       done();
     });
@@ -1085,7 +1085,7 @@ export default function stageContextPropertiesTest(abilityContext) {
     it("SUB_AA_OpenHarmony_EnvChange_0300", 0, async function (done) {
       TAG = "SUB_AA_OpenHarmony_EnvChange_0300"
       console.info(`-------- ${TAG} start --------`);
-      console.info(`${TAG} abilityContext.config.language: ${abilityContext.config.screenDensity}`);
+      console.info(`${TAG} abilityContext.config.screenDensity: ${abilityContext.config.screenDensity}`);
       expect(abilityContext.config.screenDensity == 240).assertTrue();
       done();
     });
@@ -1099,7 +1099,7 @@ export default function stageContextPropertiesTest(abilityContext) {
     it("SUB_AA_OpenHarmony_EnvChange_0400", 0, async function (done) {
       TAG = "SUB_AA_OpenHarmony_EnvChange_0400"
       console.info(`-------- ${TAG} start --------`);
-      console.info(`${TAG} abilityContext.config.language: ${abilityContext.config.displayId}`);
+      console.info(`${TAG} abilityContext.config.displayId: ${abilityContext.config.displayId}`);
       expect(abilityContext.config.displayId == 0).assertTrue();
       done();
     });
