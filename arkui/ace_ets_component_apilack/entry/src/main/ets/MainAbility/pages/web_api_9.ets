@@ -89,7 +89,7 @@ struct Index {
                     return true;
                 }).onWindowNew((event) => {
                    console.log("onWindowNew...");
-                   var popController: WebController = new WebController();
+                   var popController: web_webview.WebviewController = new web_webview.WebviewController();
                    event.handler.setWebController(popController);
                    this.isSuccess = true;
                    Utils.emitEvent(this.isSuccess,1102)
@@ -136,30 +136,30 @@ struct Index {
           return true;
         })
 
-            Web({ src: 'www.baidu.com', controller: this.controller })
-                .onShowFileSelector((event) => {
-                    AlertDialog.show({
-                        title: event.fileSelector.getTitle(),
-                        message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-                        confirm: {
-                            value: 'upload',
-                            action: () => {
-                                let fileList: Array<string> = [
-                                    '/data/storage/el2/base/test',
-                                ]
-                                event.result.handleFileList(fileList)
-                            }
-                        },
-                        cancel: () => {
-                            let fileList: Array<string> = []
-                            console.info("this is Capture " + event.fileSelector.isCapture());
-                            console.info("this is getTitle" + event.fileSelector.getTitle());
-                            console.info("this is getMode" + event.fileSelector.getMode());
-                            console.info("this is getAcceptType" + event.fileSelector.getAcceptType().length);
+        Web({ src: 'www.baidu.com', controller: this.controller })
+            .onShowFileSelector((event) => {
+                AlertDialog.show({
+                    title: event.fileSelector.getTitle(),
+                    message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
+                    confirm: {
+                        value: 'upload',
+                        action: () => {
+                            let fileList: Array<string> = [
+                                '/data/storage/el2/base/test',
+                            ]
+                            event.result.handleFileList(fileList)
                         }
-                    })
-                    return true;
+                    },
+                    cancel: () => {
+                        let fileList: Array<string> = []
+                        console.info("this is Capture " + event.fileSelector.isCapture());
+                        console.info("this is getTitle" + event.fileSelector.getTitle());
+                        console.info("this is getMode" + event.fileSelector.getMode());
+                        console.info("this is getAcceptType" + event.fileSelector.getAcceptType().length);
+                    }
                 })
+                return true;
+            })
 
 
         Row() {
