@@ -32,26 +32,26 @@ export default function OnAndOffScreenTest() {
     let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let id = undefined;
     beforeAll(async (done) => {
-        console.log(TAG1 + "beforeAll called");
-        let myReason = 'test FaShowOnLockTest';
-        let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-            console.log(TAG1 + "Request suspension delay will time out.");
-        })
-        id = delayInfo.requestId;
-        console.log(TAG1 + "requestId is : " + id);
-        setTimeout(function () {
-            console.log(TAG1 + "beforeAll end");
-            done();
-        }, sleepTimeOne);
+      console.log(TAG1 + "beforeAll called");
+      let myReason = 'test FaShowOnLockTest';
+      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+        console.log(TAG1 + "Request suspension delay will time out.");
+      })
+      id = delayInfo.requestId;
+      console.log(TAG1 + "requestId is : " + id);
+      setTimeout(function () {
+        console.log(TAG1 + "beforeAll end");
+        done();
+      }, sleepTimeOne);
     })
-        
+
     afterAll(async (done) => {
-        console.log(TAG1 + "afterAll called");
-        backgroundTaskManager.cancelSuspendDelay(id);
-        setTimeout(function () {
-            console.log(TAG1 + "afterAll end");
-            done();
-        }, sleepTimeOne);
+      console.log(TAG1 + "afterAll called");
+      backgroundTaskManager.cancelSuspendDelay(id);
+      setTimeout(function () {
+        console.log(TAG1 + "afterAll end");
+        done();
+      }, sleepTimeOne);
     })
 
     async function slideScreen(TAG) {
@@ -429,7 +429,7 @@ export default function OnAndOffScreenTest() {
       var subscriber;
       var subscribeInfo = {
         events: [onCreate, onWindowStageCreate, onForeground, onBackground, onWindowStageDestroy, onDestroy,
-                 onForeground2, onBackground2]
+          onForeground2, onBackground2]
       }
       await commonEvent.createSubscriber(subscribeInfo).then(async (data) => {
         console.log(TAG + "createSubscriber data : " + JSON.stringify(data));
@@ -507,10 +507,32 @@ export default function OnAndOffScreenTest() {
     })
 
     /*
-     * @tc.number  : SUB_AA_OpenHarmony_OnAndOffScreen_0600
-     * @tc.name    : Verify the life cycle of on / off screen ability
-     * @tc.desc    : Application in the background, device lock screen.
+     * @tc.number  : SUB_AA_OpenHarmony_Share_1000
+     * @tc.name    : Verify the ability implicit start
+     * @tc.desc    : Verify that the capability is started implicitly, and the input parameter is a nonexistent action.
      */
+    it('SUB_AA_OpenHarmony_Share_1000', 0, async function (done) {
+      TAG = 'SUB_AA_OpenHarmony_Share_1000 == ';
+      console.log(TAG + "begin");
+
+      let wantNum = {
+        action: "ohos.acts.aafwk.aafwk.aafwk",
+      }
+      await globalThis.abilityTestContext.startAbility(wantNum).then((data) => {
+        console.log(TAG + "startAbility data = " + JSON.stringify(data));
+        expect().assertFail();
+        done();
+      }).catch((error) => {
+        console.log(TAG + "startAbility error = " + JSON.stringify(error));
+        done();
+      })
+    })
+
+  /*
+   * @tc.number  : SUB_AA_OpenHarmony_OnAndOffScreen_0600
+   * @tc.name    : Verify the life cycle of on / off screen ability
+   * @tc.desc    : Application in the background, device lock screen.
+   */
     it('SUB_AA_OpenHarmony_OnAndOffScreen_0600', 0, async function (done) {
       TAG = 'SUB_AA_OpenHarmony_OnAndOffScreen_0600 == ';
       console.log(TAG + "begin");
@@ -531,7 +553,7 @@ export default function OnAndOffScreenTest() {
       var subscriber;
       var subscribeInfo = {
         events: [onCreate, onWindowStageCreate, onForeground, onBackground, onWindowStageDestroy, onDestroy,
-                 onForeground2, onBackground2]
+          onForeground2, onBackground2]
       }
       await commonEvent.createSubscriber(subscribeInfo).then(async (data) => {
         console.log(TAG + "createSubscriber data : " + JSON.stringify(data));
@@ -564,19 +586,15 @@ export default function OnAndOffScreenTest() {
             lifeList.push("onDestroy");
           }
 
-          if (data.event == onForeground2 && !flag) {
+          if (data.event == onForeground2) {
             let cmd = "uinput -K -d 18 -u 18";
             await executeShellCommand(cmd, TAG);
-            flag = true;
-          } else if (data.event == onForeground2 && flag) {
-            setTimeout(async () => {
-              commonEvent.unsubscribe(subscriber, async (err, data) => {
-                console.log(TAG + "UnSubscribeInfoCallback : " + JSON.stringify(data));
-                expect(JSON.stringify(lifeList)).assertEqual(JSON.stringify(listCheck));
-                expect(status1).assertTrue();
-                done();
-              });
-            }, sleepTimeOne);
+            commonEvent.unsubscribe(subscriber, async (err, data) => {
+              console.log(TAG + "UnSubscribeInfoCallback : " + JSON.stringify(data));
+              expect(JSON.stringify(lifeList)).assertEqual(JSON.stringify(listCheck));
+              expect(status1).assertTrue();
+              done();
+            })
           }
 
           if (data.event == onBackground2) {
@@ -599,40 +617,19 @@ export default function OnAndOffScreenTest() {
         expect().assertFail();
         done();
       })
-
-      let wantNum = {
-        bundleName: "ohos.acts.aafwk.test.stageonandoffscreen",
-        abilityName: "MainAbility2"
-      }
-      await globalThis.abilityTestContext.startAbility(wantNum).then((data) => {
-        console.log(TAG + "startAbility data = " + JSON.stringify(data));
-      }).catch((error) => {
-        console.log(TAG + "startAbility error = " + JSON.stringify(error));
-        expect().assertFail();
-        done();
-      })
-    })
-
-    /*
-     * @tc.number  : SUB_AA_OpenHarmony_Share_1000
-     * @tc.name    : Verify the ability implicit start
-     * @tc.desc    : Verify that the capability is started implicitly, and the input parameter is a nonexistent action.
-     */
-    it('SUB_AA_OpenHarmony_Share_1000', 0, async function (done) {
-      TAG = 'SUB_AA_OpenHarmony_Share_1000 == ';
-      console.log(TAG + "begin");
-
-      let wantNum = {
-        action: "ohos.acts.aafwk.aafwk.aafwk",
-      }
-      await globalThis.abilityTestContext.startAbility(wantNum).then((data) => {
-        console.log(TAG + "startAbility data = " + JSON.stringify(data));
-        expect().assertFail();
-        done();
-      }).catch((error) => {
-        console.log(TAG + "startAbility error = " + JSON.stringify(error));
-        done();
-      })
+      setTimeout(async () => {
+        let wantNum = {
+          bundleName: "ohos.acts.aafwk.test.stageonandoffscreen",
+          abilityName: "MainAbility2"
+        }
+        await globalThis.abilityTestContext.startAbility(wantNum).then((data) => {
+          console.log(TAG + "startAbility data = " + JSON.stringify(data));
+        }).catch((error) => {
+          console.log(TAG + "startAbility error = " + JSON.stringify(error));
+          expect().assertFail();
+          done();
+        })
+      }, 500)
     })
   })
 }

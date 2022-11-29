@@ -76,7 +76,7 @@ export default class MainAbility2 extends Ability {
             }).catch((error) => {
                 console.log(TAG2 + "startAbility error = " + JSON.stringify(error));
             })
-        }, 1000);
+        }, 500);
     }
 
     onBackground() {
