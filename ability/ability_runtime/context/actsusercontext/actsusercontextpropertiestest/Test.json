@@ -1,0 +1,32 @@
+{
+  "description": "Configuration for aceceshi Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "600000",
+    "bundle-name": "com.example.usercontextpropertiestest",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": "15000"
+  },
+  "kits": [
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "acm create -n 101 -t normal",
+        "acm switch -i 101"
+      ],
+      "teardown-command": [
+        "acm delete -i 101"
+      ]
+    },
+    {
+      "test-file-name": [
+        "ActsUserContextPropertiesTest.hap",
+        "ActsUserContextAssistOne.hap",
+        "ActsUserContextAssistTwo.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}
