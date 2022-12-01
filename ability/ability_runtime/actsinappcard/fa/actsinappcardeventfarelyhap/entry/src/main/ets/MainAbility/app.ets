@@ -26,6 +26,6 @@ export default {
     AppStorage.SetOrCreate('formName', want.parameters.formName);
   },
   onDestroy() {
-    console.info('Application MainAbility onDestroy')
+    console.info('Application MainAbility onDestroy');
   },
 }

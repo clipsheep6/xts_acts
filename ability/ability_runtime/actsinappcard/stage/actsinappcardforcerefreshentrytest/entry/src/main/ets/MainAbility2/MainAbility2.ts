@@ -20,7 +20,7 @@ export default class MainAbility2 extends Ability {
         console.log("[Demo] MainAbility2 onCreate")
         globalThis.abilityWant = want;
         AppStorage.SetOrCreate('bundleName', "com.example.actsinappcardforcerefresh");
-        AppStorage.SetOrCreate('abilityName', "FormAbility");
+        AppStorage.SetOrCreate('abilityName', "FormAbility1");
         AppStorage.SetOrCreate('moduleName', "featureAbility");
         AppStorage.SetOrCreate('formName', "widget");
         console.log("FormMgrService FormUserSTAGE onCreate want："+JSON.stringify(want))

@@ -75,7 +75,6 @@ struct Index3 {
         }
         .width('100%')
         .height('30%')
-
       }
       .width('100%')
     }

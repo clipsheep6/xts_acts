@@ -21,7 +21,7 @@ let formId;
 
 struct Index {
   @StorageLink('bundleName') bundleName: string = "com.example.faaa";
-  @StorageLink('abilityName') abilityName: string = "FormAbility";
+  @StorageLink('abilityName') abilityName: string = "FormAbility1";
   @StorageLink('moduleName') moduleName: string = "featureAbility";
   @StorageLink('formName') formName: string = "widget";
   @StorageLink('dimension') dimension: FormDimension = FormDimension.Dimension_2_4;

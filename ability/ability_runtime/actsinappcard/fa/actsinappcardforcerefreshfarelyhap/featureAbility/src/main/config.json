@@ -49,8 +49,8 @@
         "launchType": "standard"
       },
       {
-        "srcPath": "FormAbility",
-        "name": "FormAbility",
+        "srcPath": "FormAbility1",
+        "name": "FormAbility1",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:form_FormAbility_desc",

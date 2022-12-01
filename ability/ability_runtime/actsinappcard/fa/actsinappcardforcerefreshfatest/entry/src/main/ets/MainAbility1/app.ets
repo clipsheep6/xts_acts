@@ -17,7 +17,7 @@ export default {
   onCreate() {
     console.info('Application onCreate')
     AppStorage.SetOrCreate('bundleName', "com.example.faaa");
-    AppStorage.SetOrCreate('abilityName', "FormAbility");
+    AppStorage.SetOrCreate('abilityName', "FormAbility1");
     AppStorage.SetOrCreate('moduleName', "featureAbility");
     AppStorage.SetOrCreate('formName', "widget");
   },

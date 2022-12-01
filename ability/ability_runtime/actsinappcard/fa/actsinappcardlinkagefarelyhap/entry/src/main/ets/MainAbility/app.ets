@@ -23,6 +23,6 @@ export default {
   },
 
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   },
 }

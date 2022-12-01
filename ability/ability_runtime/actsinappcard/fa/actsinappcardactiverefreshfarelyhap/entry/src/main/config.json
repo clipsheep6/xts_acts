@@ -59,12 +59,12 @@
         "type": "service",
         "forms": [
           {
-            "jsComponentName": "active_refresh_widget",
+            "jsComponentName": "widget",
             "isDefault": true,
             "scheduledUpdateTime": "10:30",
             "defaultDimension": "2*2",
             "formVisibleNotify": true,
-            "name": "active_refresh_widget",
+            "name": "widget",
             "description": "This is a service widget.",
             "colorMode": "auto",
             "type": "JS",
@@ -105,7 +105,7 @@
         "pages": [
           "pages/index/index"
         ],
-        "name": "active_refresh_widget",
+        "name": "widget",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": true

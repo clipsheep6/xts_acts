@@ -77,7 +77,6 @@ export default function abilityTest() {
       })
 
       async function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0100====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0100====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID") {
@@ -89,6 +88,7 @@ export default function abilityTest() {
       }
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardRouterEvent_0100====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
 
@@ -143,7 +143,6 @@ export default function abilityTest() {
       })
 
       async function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0200====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0200====> subscribeCallBack data:" + JSON.stringify(data))
         if (data.event == "ACTS_FORM_ID2") {
@@ -156,9 +155,9 @@ export default function abilityTest() {
       }
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardRouterEvent_0200====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
-
       id = setTimeout(async () => {
         if (flag == false) {
           expect().assertFail();
@@ -221,7 +220,7 @@ export default function abilityTest() {
         done();
       }
 
-      setTimeout(async () => {
+      setTimeout(() => {
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, TIME_OUT)
     })
@@ -279,7 +278,7 @@ export default function abilityTest() {
         done();
       }
 
-      setTimeout(async () => {
+      setTimeout(() => {
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, TIME_OUT)
     })
@@ -326,7 +325,6 @@ export default function abilityTest() {
       })
 
       function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0500====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0500====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID5") {
@@ -338,10 +336,11 @@ export default function abilityTest() {
 
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardRouterEvent_0500====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
 
-      id = setTimeout(async () => {
+      id = setTimeout(() => {
         expect().assertFail();
         console.debug('ACTS_InAppCardRouterEvent_0500====> timeout');
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
@@ -391,11 +390,10 @@ export default function abilityTest() {
       })
 
       function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardRouterEvent_0600====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardRouterEvent_0600====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_FORM_ID6") {
-          expect(data.parameters.message).assertEqual(0);
+          expect(data.parameters.message).assertEqual("");
           flag = true;
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
         }
@@ -403,10 +401,11 @@ export default function abilityTest() {
 
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardRouterEvent_0600====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
 
-      id = setTimeout(async () => {
+      id = setTimeout(() => {
         expect().assertFail();
         console.debug('ACTS_InAppCardRouterEvent_0600====> timeout');
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
@@ -454,7 +453,6 @@ export default function abilityTest() {
       })
 
       function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardMessageEvent_0100====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardMessageEvent_0100====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_MESSAGE_ID1") {
@@ -465,10 +463,11 @@ export default function abilityTest() {
       }
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardMessageEvent_0100====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
 
-      id = setTimeout(async () => {
+      id = setTimeout(() => {
         expect().assertFail();
         console.debug('ACTS_InAppCardMessageEvent_0100====> timeout');
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
@@ -516,7 +515,6 @@ export default function abilityTest() {
       })
 
       function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardMessageEvent_0200====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardMessageEvent_0200====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_MESSAGE_ID2") {
@@ -527,10 +525,11 @@ export default function abilityTest() {
       }
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardMessageEvent_0200====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
 
-      id = setTimeout(async () => {
+      id = setTimeout(() => {
         expect().assertFail();
         console.debug('ACTS_InAppCardMessageEvent_0200====> timeout');
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
@@ -579,7 +578,6 @@ export default function abilityTest() {
       })
 
       function subscribeCallBack(err, data) {
-        clearTimeout(id);
         console.debug("ACTS_InAppCardMessageEvent_0300====> subscribeCallBack err:" + JSON.stringify(err));
         console.debug("ACTS_InAppCardMessageEvent_0300====> subscribeCallBack data:" + JSON.stringify(data));
         if (data.event == "ACTS_MESSAGE_ID3") {
@@ -590,10 +588,11 @@ export default function abilityTest() {
       }
       function unSubscribeCallback() {
         console.debug("ACTS_InAppCardMessageEvent_0300====> unSubscribeCallback")
+        clearTimeout(id);
         done()
       }
 
-      id = setTimeout(async () => {
+      id = setTimeout(() => {
         expect().assertFail();
         console.debug('ACTS_InAppCardMessageEvent_0300====> timeout');
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);

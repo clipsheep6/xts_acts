@@ -42,7 +42,7 @@ export default {
         console.log(`ACTS_InAppCardRouterEvent_1100====>publish:err:` + JSON.stringify(err));
       })
     }
-    if(want.parameters.message == 0){
+    if(want.parameters.message == ""){
       commonEvent.publish("ACTS_FORM_ID6",commonEventData,(err)=>{
         console.log(`ACTS_InAppCardRouterEvent_1200====>publish:err:` + JSON.stringify(err));
       })

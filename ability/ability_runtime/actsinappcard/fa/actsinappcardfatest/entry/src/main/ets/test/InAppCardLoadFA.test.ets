@@ -123,8 +123,8 @@ export default function abilityTest() {
           }
         }
         featureAbility.startAbility(parameter, (err, data) => {
-          console.log('ACTS_InAppCardLoadCard_1000 start ability err.code:' + err.code)
-          console.log('ACTS_InAppCardLoadCard_1000 start ability data:' + data)
+          console.log('ACTS_InAppCardLoadCard_1100 start ability err.code:' + err.code)
+          console.log('ACTS_InAppCardLoadCard_1100 start ability data:' + data)
           expect(0).assertEqual(err.code)
         })
       })
@@ -161,17 +161,17 @@ export default function abilityTest() {
                if (data.event == "onCreate_want_count") {
           		   countcard ++;
           			  if(countcard == 2) {
-          				expect(countcard ==2 ).assertTrue()
+          				expect(2).assertTrue(countcard)
           			  }
           			  if(countcard > 2) {
-                          expect("").assertFail()
+                  expect().assertFail()
           			  }
           			  commonEvent.unsubscribe(subscriber, unSubscribeCallback);
           		}
           }, 1000)
           	}
           		function unSubscribeCallback() {
-          			console.debug("ACTS_InAppCardLoadCard_0200 ====> unSubscribeCallback")
+          			console.debug("ACTS_InAppCardLoadCard_1100 ====> unSubscribeCallback")
           			done();
           		}
           	})

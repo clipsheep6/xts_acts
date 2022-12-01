@@ -27,7 +27,7 @@ struct Index {
   @State bundleName: string = "com.inappcard.activerefreshfatest";
   @State abilityName: string = "FormAbility";
   @State moduleName: string = "entry";
-  @State formName: string = "active_refresh_widget";
+  @State formName: string = "widget";
   @State dimension: FormDimension = FormDimension.Dimension_2_2;
   @State isShow: boolean = true;
 
@@ -64,7 +64,6 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-
         if (this.isShow) {
           FormComponent({
             id: this.formId,
@@ -105,7 +104,6 @@ struct Index {
             })
             .size({ width: 360, height: 180 })
         }
-
       }
       .width('100%')
     }

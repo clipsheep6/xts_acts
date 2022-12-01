@@ -35,8 +35,8 @@
     ],
     "extensionAbilities": [
       {
-        "name": "FormAbility",
-        "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+        "name": "FormAbility1",
+        "srcEntrance": "./ets/FormAbility1/FormAbility.ts",
         "label": "$string:form_FormAbility_label",
         "description": "$string:form_FormAbility_desc",
         "type": "form",
