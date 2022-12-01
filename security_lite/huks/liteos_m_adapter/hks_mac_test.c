@@ -26,7 +26,7 @@
 
 #include "cmsis_os2.h"
 #include "ohos_types.h"
-
+#include "stdlib.h"
 #define HKS_TEST_MAC_REE_KEY_SIZE_32 32
 #define HKS_DEFAULT_MAC_SRCDATA_SIZE 253
 #define HKS_DEFAULT_MAC_SHA256_SIZE 32
@@ -50,7 +50,7 @@ static char IntToAscii(uint8_t in_num)
 static int32_t BufferToAscii(uint8_t *src, uint32_t src_size, char *dst, uint32_t *dst_size) {
     const uint32_t ascii_len = src_size * 4 + 1;
     if (*dst_size < ascii_len) {
-        HKS_TEST_LOG_E("buffer is too samll.");
+        printf("buffer is too samll.");
         return -1;
     }
     for (uint32_t i = 0; i < src_size; i++)
@@ -74,7 +74,7 @@ static void printBuffer(uint8_t *buffer, uint32_t buffer_size)
         char chars[SINGLE_PRINT_LENGTH * 4 + 1] = {0};
         uint32_t char_size = SINGLE_PRINT_LENGTH * 4 + 1;
         BufferToAscii(buffer + index, (i == print_count)? buffer_size % SINGLE_PRINT_LENGTH : SINGLE_PRINT_LENGTH, chars, &char_size);
-        HKS_TEST_LOG_I("buff[%2u] size[%2u]: \"%s\"", i, (char_size -1) /4, chars);
+        printf("buff[%2u] size[%2u]: \"%s\"", i, (char_size -1) /4, chars);
         index += SINGLE_PRINT_LENGTH;
     }
 }
@@ -237,9 +237,9 @@ static int32_t BaseTestMac(uint32_t index)
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testMacParams[index].testId, ret);
     }
     TEST_ASSERT_TRUE(ret == g_testMacParams[index].expectResult);
-    HKS_TEST_LOG_I("###GSY HMAC TEST srcdata:");
+    printf("###GSY HMAC TEST srcdata:\n");
     printBuffer(srcData->data, srcData->size);
-    HKS_TEST_LOG_I("###GSY HMAC TEST macdata:");
+    printf("###GSY HMAC TEST macdata:\n");
     printBuffer(macData->data, macData->size);
     /* 3. deletekey */
     if ((g_testMacParams[index].macType == HKS_TEST_MAC_TYPE_TEE) &&
