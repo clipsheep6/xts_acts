@@ -19,13 +19,25 @@ export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     console.log("ActsApplicationInfoAssist  MainAbility onCreate")
-    globalThis.abilityContext = this.context
+    globalThis.abilityWant = want;
 
+    let context = this.context;
     console.log("context: " + JSON.stringify(context))
     console.log("getApplicationInfo success" + JSON.stringify(context.applicationInfo));
     console.log("context.applicationInfo.codePath is : " + JSON.stringify(context.applicationInfo.codePath))
     console.log("context.applicationInfo.removable is : " + JSON.stringify(context.applicationInfo.removable))
     console.log("context.applicationInfo.accessTokenId is : " + JSON.stringify(context.applicationInfo.accessTokenId))
+    console.log("context.applicationInfo.codePath is : " + JSON.stringify(context.applicationInfo.codePath))
+    commonEvent.publish("contextApplicationInfo", {
+      parameters: {
+        codePath: context.applicationInfo.codePath,
+        removable: context.applicationInfo.removable,
+        accessTokenId: context.applicationInfo.accessTokenId
+
+      }
+    }, () => {
+      console.log("AUX MainAbility Publish CallBack data.codePath")
+    });
   }
 
   onDestroy() {
@@ -49,34 +61,6 @@ export default class MainAbility extends Ability {
   onForeground() {
     // Ability has brought to foreground
     console.log("ActsApplicationInfoAssist  MainAbility onForeground")
-    if (globalThis.abilityContext.applicationInfo.codePath != undefined) {
-      console.log("context.applicationInfo.codePath is : " + JSON.stringify(globalThis.abilityContext.applicationInfo.codePath))
-      commonEvent.publish("getCodePath", {
-        parameters: {
-          codePath: globalThis.abilityContext.applicationInfo.codePath
-        }
-      }, () => {
-        console.log("AUX MainAbility Publish CallBack data.codePath")
-      });
-    } else if (globalThis.abilityContext.applicationInfo.removable != undefined) {
-      console.log("context.applicationInfo.removable is : " + JSON.stringify(globalThis.abilityContext.applicationInfo.removable))
-      commonEvent.publish("getRemovable", {
-        parameters: {
-          removable: globalThis.abilityContext.applicationInfo.removable
-        }
-      }, () => {
-        console.log("AUX MainAbility Publish CallBack data.removable")
-      });
-    } else if (globalThis.abilityContext.applicationInfo.accessTokenId != undefined) {
-      console.log("context.applicationInfo.accessTokenId is : " + JSON.stringify(globalThis.abilityContext.applicationInfo.accessTokenId))
-      commonEvent.publish("getAccessTokenId", {
-        parameters: {
-          accessTokenId: globalThis.abilityContext.applicationInfo.accessTokenId
-        }
-      }, () => {
-        console.log("AUX MainAbility Publish CallBack data.accessTokenId")
-      });
-    }
   }
 
   onBackground() {

@@ -17,12 +17,14 @@ group("stage") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "actsabilityconstanttest:ActsAbilityConstantTest",
       "actslifecyclemultihap2:ActsLifecycleMultiHap2",
       "actslifecyclemultihap3:ActsLifecycleMultiHap3",
       "actslifecyclemultihaptest:ActsLifecycleMultiHapTest",
       "actslifecyclesinglehaptest:ActsLifecycleSingleHapTest",
       "actswindowstagelifecyclemultihaptest:ActsWindowStageLifecycleMultiHapTest",
       "actswindowstagelifecyclesinglehaptest:ActsWindowStageLifecycleSingleHapTest",
+      "applicationinfotest:applicationinfotest",
     ]
   }
 }
