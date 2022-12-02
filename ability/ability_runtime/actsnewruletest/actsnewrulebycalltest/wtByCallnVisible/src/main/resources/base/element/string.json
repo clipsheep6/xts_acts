@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "wtByCallnVisible_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "newRuleByCallVisible"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "tvBase"
+    }
+  ]
+}

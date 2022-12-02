@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "wtByCall_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "newRuleByCall"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "tvBase"
+    }
+  ]
+}

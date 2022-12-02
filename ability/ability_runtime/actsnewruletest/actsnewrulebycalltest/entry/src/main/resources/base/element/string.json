@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "newRule"
+    },
+    {
+      "name": "ImmortalStageAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ImmortalStageAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "tvBase"
+    }
+  ]
+}
