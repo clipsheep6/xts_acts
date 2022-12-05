@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { UiComponent,UiDriver,Component,Driver,UiWindow,ON,BY,MatchPattern,DisplayRotation,ResizeDirection,WindowMode,PointerMatrix } from '@ohos.uitest'
 import notificationManager from '@ohos.notificationManager'
 import WantAgent from '@ohos.wantAgent'
 import image from '@ohos.multimedia.image'
@@ -21,6 +22,41 @@ export default function ActsNotificationSecondaryDirectoryTest() {
 describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
     let TAG = 'SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST ===>'
     console.info(TAG + 'SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST START')
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function driveFn() {
+      console.info(`${TAG} come in driveFn`)
+      let driver = await UiDriver.create()
+      console.info(`${TAG} driver is ${JSON.stringify(driver)}`)
+      await sleep(2000)
+      console.info(`${TAG} UiDriver start`)
+      let button = await driver.findComponent(BY.text('允许'))
+      console.info(`${TAG} button is ${JSON.stringify(button)}`)
+      await sleep(5000)
+      await button.click()
+    }
+
+    beforeAll(async function (done) {
+      console.info(`${TAG} come in beforeAll`)
+      notificationManager.requestEnableNotification(async (err) => {
+        console.info(`${TAG} come in requestEnableNotification`)
+        if (err) {
+          console.info(`${TAG} requestEnableNotification err: ${err}`)
+          expect(false).assertTrue()
+          done()
+        } else {
+          console.info(`${TAG} requestEnableNotification success`)
+        }
+      })
+      console.info(`${TAG} requestEnableNotification sleep START`)
+      await sleep(2000)
+      console.info(`${TAG} requestEnableNotification sleep END`)
+      await driveFn()
+      done()
+    })
 
     afterEach(async function (done) {
         console.info(`${TAG} afterEach START`)
