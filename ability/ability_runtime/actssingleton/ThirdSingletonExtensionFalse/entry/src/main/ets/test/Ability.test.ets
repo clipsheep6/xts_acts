@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
@@ -84,7 +83,7 @@ export default function singleusermodelTest() {
                     console.info('executeShellCommand 0: err : ' + JSON.stringify(err));
                 })
                 console.debug('ACTS_ExtensionSingleUserModel_1000====>timeout====>');
-                await globalThis.abilityContext.disconnectAbility(connId).then((data, err) => {
+                await globalThis.abilityContext.disconnectServiceExtensionAbility(connId).then((data, err) => {
                     console.debug("====>data is====>" + JSON.stringify(data));
                     console.debug("====>err is====>" + JSON.stringify(err));
                 })

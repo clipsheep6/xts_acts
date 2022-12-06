@@ -14,10 +14,11 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent';
-import AbilityConstant from "@ohos.application.AbilityConstant";
+import AbilityConstant from "@ohos.app.ability.AbilityConstant";
 import appManager from "@ohos.application.appManager";
 import wantConstant from '@ohos.ability.wantConstant';
 
+var INVALID_PARAM = 401
 var TAG
 export default function verificationTest(){
 
@@ -280,90 +281,34 @@ export default function verificationTest(){
     */
     it('SUB_AA_OpenHarmony_SetMissionLabel_0100', 0, async function(done) {
       TAG = 'SUB_AA_OpenHarmony_SetMissionLabel_0100 ==>';
+      let label = undefined;
+      let code1 = 0;
+      let code2 = 0;
 
       try {
-        let label = undefined
-        let code1 = 0
-        let code2 = 0
-        globalThis.abilityContext.setMissionLabel(label).then((data) => {
+        await globalThis.abilityContext.setMissionLabel(label).then((data) => {
           console.info(TAG + "setMissionLabel data = " + JSON.stringify(data));
         }).catch((err) => {
           code1 = err.code
           console.info(TAG + "setMissionLabel err = " + JSON.stringify(err));
         });
+      } catch (err) {
+        console.info(TAG + "setMissionLabel err = " + JSON.stringify(err));
+        expect(err.code).assertEqual(INVALID_PARAM);
+      }
 
-        globalThis.abilityContext.setMissionLabel(label, (err, data) => {
+      try {
+        await globalThis.abilityContext.setMissionLabel(label, (err, data) => {
           code2 = err.code
           console.info(TAG + "setMissionLabel err = " + JSON.stringify(err));
           console.info(TAG + "setMissionLabel data = " + JSON.stringify(data));
         })
-
-        setTimeout(()=>{
-          expect(code1).assertEqual(-1);
-          expect(code2).assertEqual(-1);
-          done()
-        }, 3000)
       } catch (err) {
-        console.info(TAG + "catch err = " + JSON.stringify(err));
-        expect().assertFail();
-        done();
+        console.info(TAG + "setMissionLabel err = " + JSON.stringify(err));
+        expect(err.code).assertEqual(INVALID_PARAM);
       }
-    })
 
-    /*
-    * @tc.number  SUB_AA_OpenHarmony_IsTerminating_0100
-    * @tc.name    Verification ability destroy status query.
-    * @tc.desc    Function test
-    * @tc.level   3
-    */
-    it('SUB_AA_OpenHarmony_IsTerminating_0100', 0, async function(done) {
-      TAG = 'SUB_AA_OpenHarmony_IsTerminating_0100 ==>';
-
-      try {
-        let status1 = undefined
-        let status2 = undefined
-        let subscriber = null
-        let subscribeInfo = {
-          events: ["Stage_MainAbility5_onCreate", "Stage_MainAbility5_onDestroy"]
-        }
-        function SubscribeInfoCallback(err, data) {
-          console.info(TAG + "===SubscribeInfoCallback===" + JSON.stringify(data))
-          if (data.event == "Stage_MainAbility5_onCreate") {
-            status1 = data.parameters.isTerminating
-          }
-          if (data.event == "Stage_MainAbility5_onDestroy") {
-            status2 = data.parameters.isTerminating
-            expect(status1).assertFalse();
-            expect(status2).assertTrue();
-            commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
-          }
-        }
-        function UnSubscribeInfoCallback(err, data) {
-          console.info(TAG + "===UnSubscribeInfoCallback===")
-          done()
-        }
-        commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-          console.info(TAG + "===CreateSubscriberCallback===")
-          subscriber = data
-          commonEvent.subscribe(subscriber, SubscribeInfoCallback)
-        })
-
-        let wantNum = {
-          bundleName: 'ohos.acts.aafwk.test.stagesupplement',
-          abilityName: 'MainAbility5'
-        }
-        globalThis.abilityContext.startAbility(wantNum).then((data) => {
-          console.info(TAG + "startAbility data = " + JSON.stringify(data));
-        }).catch((err) => {
-          console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
-        });
-      } catch (err) {
-        console.info(TAG + "catch err = " + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      }
+      done();
     })
 
     /*

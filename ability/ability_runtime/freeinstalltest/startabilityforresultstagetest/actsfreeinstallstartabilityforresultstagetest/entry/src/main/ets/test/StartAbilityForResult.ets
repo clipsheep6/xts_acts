@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import ability from '@ohos.application.Ability'
+import ability from '@ohos.app.ability.UIAbility'
 import rpc from '@ohos.rpc';
 import wantConstant from '@ohos.ability.wantConstant'
 import Prompt from '@system.prompt';
@@ -201,8 +200,8 @@ export default function StartAbilityForResult(abilityContext) {
       }).catch((error) => {
         console.error(' getTopAbility error: ' + JSON.stringify(error));
       });
-      console.log(" checkAbilityInfo deviceId : " + details1.ability.deviceId);
-      DeviceId = details1.ability.deviceId;
+      console.log(" checkAbilityInfo deviceId : " + details1.deviceId);
+      DeviceId = details1.deviceId;
       setTimeout(async () => {
         var str = {
           "deviceId": DeviceId,

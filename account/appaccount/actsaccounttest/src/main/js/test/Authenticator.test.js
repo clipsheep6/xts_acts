@@ -32,7 +32,33 @@ export default function ActsAccountAppAccess() {
                 console.info(`sleep #{time} over ...`)
             })
         }
-        beforeAll(async function (done) {            
+        beforeAll(async function (done) {      
+            await featureAbility.startAbility(
+                {
+                    want:
+                    {
+                        deviceId: "",
+                        bundleName: "com.example.accountauthenticator",
+                        abilityName: "com.example.accountauthenticator.MainAbility",
+                        action: "action1",
+                        parameters:
+                        {},
+                    },
+                },
+            )
+            await sleep(1000)      
+            done();
+        });
+        beforeEach(async function (done) {            
+            console.debug("====>afterEach start====");
+            var appAccountManager = account.getAccountManager();
+            var accounts = await appAccountManager.getAllAccountByOwner(owner)
+            for (i=0;i<accounts.length;i++){
+                var localName = accounts[i].name
+                if(localName == 'zhangsan'){
+                    await appAccountManager.removeAccount(localName)
+                }
+            }
             done();
         });
         /*
@@ -344,11 +370,10 @@ export default function ActsAccountAppAccess() {
             appAccountManager.addAccount(name, (err)=>{
                 console.debug("====>ActsAccountDeleteAccountCredential_0100 add_account_err:" + JSON.stringify(err));
                 expect(err).assertEqual(null);
-                appAccountManager.setAccountCredential(name, "PIN", (err, data)=>{
+                appAccountManager.setAccountCredential(name, "PIN", '123456',  (err, data)=>{
                     console.debug("====>ActsAccountDeleteAccountCredential_0100 setAccountCredential_err:" + JSON.stringify(err));
                     expect(err).assertEqual(null);
-                    console.debug("====>ActsAccountDeleteAccountCredential_0100 setAccountCredential_data:" + JSON.stringify(data));  
-                    appAccountManager.getAccountCredential(name, "PIN", (err) =>{
+                    appAccountManager.getAccountCredential(name, "PIN", (err, data) =>{
                         console.debug("====>ActsAccountDeleteAccountCredential_0100 getAccountCredential_err:" + JSON.stringify(err))
                         expect(err).assertEqual(null);
                         console.debug("====>ActsAccountDeleteAccountCredential_0100 getAccountCredential_success:" + JSON.stringify(data));
@@ -384,11 +409,11 @@ export default function ActsAccountAppAccess() {
             var appAccountManager = account.createAppAccountManager();
             appAccountManager.addAccount(name, 'test_extraInfo').then((data) =>{
                 console.debug("====>ActsAccountDeleteAccountCredential_0200 add_account_success");
-                appAccountManager.setAccountCredential(name, "PIN").then(() =>{
+                appAccountManager.setAccountCredential(name, "PIN", '123456').then(() =>{
                     console.debug("====>ActsAccountDeleteAccountCredential_0200 setAccountCredential_success");
-                    appAccountManager.getAccountCredential(name, "PIN").then((data) =>{
+                    appAccountManager.getAccountCredential(name,  "PIN").then((data) =>{
                         console.debug("====>ActsAccountDeleteAccountCredential_0200 getAccountCredential_data:" + JSON.stringify(data));
-                        appAccountManager.deleteAccountCredential(name, "PIN").then((data) =>{
+                        appAccountManager.deleteAccountCredential(name,  "PIN").then((data) =>{
                             console.debug("====>ActsAccountDeleteAccountCredential_0200 data:" + JSON.stringify(data));                
                             try{
                                 appAccountManager.deleteAccount(name)
@@ -436,26 +461,26 @@ export default function ActsAccountAppAccess() {
                 console.debug("====>ActsAccountVerifyCredential_0100 add_account_err:" + JSON.stringify(err));
                 expect(err).assertEqual(null);
                 appAccountManager.verifyCredential(name, owner, options, {
-                onResult:(resultCode, resultData)=>{
-                    console.debug("====>ActsAccountVerifyCredential_0100 verifyCredential_resultcode:" + JSON.stringify(resultCode));
-                    expect(resultCode).assertEqual(0)
-                    console.debug("====>ActsAccountVerifyCredential_0100 verifyCredential_resultData:" + JSON.stringify(resultData));
-                    expect(resultData.booleanResult).assertEqual(true) 
-                    try{
-                        appAccountManager.deleteAccount(name)
-                        console.debug('====>ActsAccountVerifyCredential_0100 deleteAccount_success')
-                        done();
-                    }                               
-                    catch{
-                        console.debug('====>ActsAccountVerifyCredential_0100 deleteAccount_err')
-                        expect().assertFail()
-                    }    
-                    done(); 
-                    },
-                onRequestRedirected:null,
-                onRequestContinued: function(){ 
-                    console.debug("====>ActsAccountVerifyCredential_0100 verifyCredential_onRequestContinued")
-                    }   
+                    onResult: async (resultCode, resultData)=>{
+                        console.debug("====>ActsAccountVerifyCredential_0100 verifyCredential_resultcode:" + JSON.stringify(resultCode));
+                        expect(resultCode).assertEqual(0)
+                        console.debug("====>ActsAccountVerifyCredential_0100 verifyCredential_resultData:" + JSON.stringify(resultData));
+                        expect(resultData.booleanResult).assertEqual(true) 
+                        try{
+                            await appAccountManager.deleteAccount(name)
+                            console.debug('====>ActsAccountVerifyCredential_0100 deleteAccount_success')
+                            done();
+                        }                               
+                        catch{
+                            console.debug('====>ActsAccountVerifyCredential_0100 deleteAccount_err')
+                            expect().assertFail()
+                        }    
+                        done(); 
+                        },
+                        onRequestRedirected:null,
+                        onRequestContinued: function(){ 
+                            console.debug("====>ActsAccountVerifyCredential_0100 verifyCredential_onRequestContinued")
+                        }   
                 });
             });            
         });
@@ -473,25 +498,23 @@ export default function ActsAccountAppAccess() {
             appAccountManager.addAccount(name, (err)=>{
                 console.debug("====>ActsAccountVerifyCredential_0200 add_account_err:" + JSON.stringify(err));
                 expect(err).assertEqual(null);
-                console.debug("====>ActsAccountVerifyCredential_0200 add_account_err:" + JSON.stringify(err));
-                expect(err).assertEqual(null);
-                appAccountManager.verifyCredential(name, owner,  {
-                onResult:(resultCode, resultData)=>{
-                    console.debug("====>ActsAccountVerifyCredential_0200 verifyCredential_resultcode:" + JSON.stringify(resultCode));
-                    expect(resultCode).assertEqual(0)
-                    console.debug("====>ActsAccountVerifyCredential_0200 verifyCredential_resultData:" + JSON.stringify(resultData));
-                    expect(resultData.booleanResult).assertEqual(false) 
-                    try{
-                        appAccountManager.deleteAccount(name)
-                        console.debug('====>ActsAccountVerifyCredential_0200 deleteAccount_success')
-                        done();
-                    }                               
-                    catch{
-                        console.debug('====>ActsAccountVerifyCredential_0200 deleteAccount_err')
-                        expect().assertFail()
-                    }    
-                    done(); 
-                    },
+                appAccountManager.verifyCredential(name, owner, {
+                    onResult: async (resultCode, resultData)=>{
+                        console.debug("====>ActsAccountVerifyCredential_0200 verifyCredential_resultcode:" + JSON.stringify(resultCode));
+                        expect(resultCode).assertEqual(0)
+                        console.debug("====>ActsAccountVerifyCredential_0200 verifyCredential_resultData:" + JSON.stringify(resultData));
+                        expect(resultData.booleanResult).assertEqual(false) 
+                        try{
+                            await appAccountManager.deleteAccount(name)
+                            console.debug('====>ActsAccountVerifyCredential_0200 removeAccount_success')
+                            done();
+                        }                               
+                        catch{
+                            console.debug('====>ActsAccountVerifyCredential_0200 removeAccount_err')
+                            expect().assertFail()
+                        }    
+                        done(); 
+                        },
                     onRequestRedirected:null,
                     onRequestContinued: function(){ 
                         console.debug("====>ActsAccountVerifyCredential_0200 verifyCredential_onRequestContinued")
@@ -499,7 +522,6 @@ export default function ActsAccountAppAccess() {
                 });
             });            
         });
-
         /*
         * @tc.number    : ActsAccountSetAuthenticatorProperties_0100
         * @tc.name      : Verify Credential callback form, options
@@ -514,13 +536,13 @@ export default function ActsAccountAppAccess() {
             appAccountManager.addAccount(name, (err)=>{
                 console.debug("====>ActsAccountSetAuthenticatorProperties_0100 add_account_err:" + JSON.stringify(err));
                 expect(err).assertEqual(null);
-                appAccountManager.setAuthenticatorProperties(owner, options, {
-                onResult:(resultCode, resultData)=>{
+                appAccountManager.setAuthenticatorProperties(owner, options,  {
+                onResult: async (resultCode, resultData)=>{
                     console.debug("====>ActsAccountSetAuthenticatorProperties_0100 setAuthenticatorProperties_resultcode:" + JSON.stringify(resultCode));
                     expect(resultCode).assertEqual(10016)
                     console.debug("====>ActsAccountSetAuthenticatorProperties_0100 setAuthenticatorProperties_resultData:" + JSON.stringify(resultData));
                     try{
-                        appAccountManager.deleteAccount(name)
+                        await appAccountManager.deleteAccount(name)
                         console.debug('====>ActsAccountSetAuthenticatorProperties_0100 deleteAccount_success')
                         done();
                     }                               
@@ -552,12 +574,12 @@ export default function ActsAccountAppAccess() {
                 console.debug("====>ActsAccountSetAuthenticatorProperties_0200 add_account_err:" + JSON.stringify(err));
                 expect(err).assertEqual(null);
                 appAccountManager.setAuthenticatorProperties(owner, {
-                onResult:(resultCode, resultData)=>{
+                onResult: async (resultCode, resultData)=>{
                     console.debug("====>ActsAccountSetAuthenticatorProperties_0200 setAuthenticatorProperties_resultcode:" + JSON.stringify(resultCode));
                     expect(resultCode).assertEqual(10016)
                     console.debug("====>ActsAccountSetAuthenticatorProperties_0200 setAuthenticatorProperties_resultData:" + JSON.stringify(resultData));
                     try{
-                        appAccountManager.deleteAccount(name)
+                        await appAccountManager.deleteAccount(name)
                         console.debug('====>ActsAccountSetAuthenticatorProperties_0200 deleteAccount_success')
                         done();
                     }                               
@@ -582,19 +604,6 @@ export default function ActsAccountAppAccess() {
         */
 
         it('ActsAccountSelectAccountByOptions_0100', 0, async function (done) {  
-            await featureAbility.startAbility(
-                {
-                    want:
-                    {
-                        deviceId: "",
-                        bundleName: "com.example.accountauthenticator",
-                        abilityName: "com.example.accountauthenticator.MainAbility",
-                        action: "action1",
-                        parameters:
-                        {},
-                    },
-                },
-            )          
             await sleep(1000)
             console.debug("====>ActsAccountSelectAccountByOptions_0100 start====");
             var appAccountManager = account.createAppAccountManager();
@@ -630,21 +639,7 @@ export default function ActsAccountAppAccess() {
         * @tc.desc      : 
         */
 
-        it('ActsAccountSelectAccountByOptions_0200', 0, async function (done) {
-            await featureAbility.startAbility(
-                {
-                    want:
-                    {
-                        deviceId: "",
-                        bundleName: "com.example.accountauthenticator",
-                        abilityName: "com.example.accountauthenticator.MainAbility",
-                        action: "action1",
-                        parameters:
-                        {},
-                    },
-                },
-            )
-            await sleep(1000)
+        it('ActsAccountSelectAccountByOptions_0200', 0, async function (done) {            
             console.debug("====>ActsAccountSelectAccountByOptions_0200 start====");
             var appAccountManager = account.createAppAccountManager();
             var select_options = {allowedOwners: [owner]}
@@ -681,20 +676,6 @@ export default function ActsAccountAppAccess() {
         */
 
         it('ActsAccountSelectAccountByOptions_0300', 0, async function (done) {
-            await featureAbility.startAbility(
-                {
-                    want:
-                    {
-                        deviceId: "",
-                        bundleName: "com.example.accountauthenticator",
-                        abilityName: "com.example.accountauthenticator.MainAbility",
-                        action: "action1",
-                        parameters:
-                        {},
-                    },
-                },
-            )
-            await sleep(1000)
             console.debug("====>ActsAccountSelectAccountByOptions_0300 start====");
             var appAccountManager = account.createAppAccountManager();
             var options = {requiredLabels: ["male", "30-40"]}

@@ -6,6 +6,7 @@
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
+      "tablet",
       "default",
       "phone",
       "tablet"
@@ -42,10 +43,6 @@
       {
       "name": "ohos.permission.CAPTURE_SCREEN",
       "reason": "need use ohos.permission.SYSTEM_FLOAT_WINDOW"
-      },
-      {
-        "name": "ohos.permission.READ_ACCESSIBILITY_CONFIG",
-        "reason": "need use ohos.permission.READ_ACCESSIBILITY_CONFIG"
       },
       {
         "name": "ohos.permission.WRITE_ACCESSIBILITY_CONFIG",

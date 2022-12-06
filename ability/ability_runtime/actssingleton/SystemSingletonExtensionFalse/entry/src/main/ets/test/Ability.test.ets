@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 const ABILITY_TIMEOUT=5000;
@@ -82,7 +81,7 @@ export default function singleusermodelTest() {
                         console.info('executeShellCommand : err : ' + JSON.stringify(err));
                     })
                 console.debug('ACTS_ExtensionSingleUserModel_1400====>timeout====>');
-                globalThis.abilityContex.disconnectAbility(connId).then((data)=>{
+                globalThis.abilityContext.disconnectServiceExtensionAbility(connId).then((data)=>{
                     console.debug("====>data is====>" + JSON.stringify(data));
                 })
             },START_ABILITY_TIMEOUT);
@@ -137,7 +136,6 @@ export default function singleusermodelTest() {
                 let temp
                 let cmd ='aa dump -e'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand : err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data : ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility2") == -1).assertTrue()
@@ -147,7 +145,6 @@ export default function singleusermodelTest() {
                     })
                 cmd ='aa dump -e -u 0'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand 0: err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data 0: ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility2") == -1).assertTrue()
@@ -183,24 +180,31 @@ export default function singleusermodelTest() {
          */
         it('ACTS_ExtensionSingleUserModel_1600', 0, async function(done){
             console.log("ACTS_ExtensionSingleUserModel_1600====>callback start====>");
-            let connId;
 
-            console.debug("====>start connectAbilityWithAccount====>");
-            connId = globalThis.abilityContext.connectAbilityWithAccount(
-                {
-                    bundleName: "com.singleusermodel.actssingleusertest",
-                    abilityName: "ServiceAbility3",
-                    action: "StartAbilityPromise"
-                },
-                null,
-                {
-                    onConnect: onConnectCallbackC,
-                    onDisconnect: onDisconnectCallbackC,
-                    onFailed: onFailedCallbackC,
-                }
-            );
-            console.log('ACTS_ExtensionSingleUserModel_1600====>StartConnectNative ' +
-            'connectAbilityWithAccount connId : ' + connId);
+            try {
+                let connId;
+                console.debug("====>start connectAbilityWithAccount====>");
+                connId = globalThis.abilityContext.connectAbilityWithAccount(
+                    {
+                        bundleName: "com.singleusermodel.actssingleusertest",
+                        abilityName: "ServiceAbility3",
+                        action: "StartAbilityPromise"
+                    },
+                    null,
+                    {
+                        onConnect: onConnectCallbackC,
+                        onDisconnect: onDisconnectCallbackC,
+                        onFailed: onFailedCallbackC,
+                    }
+                );
+                console.log('ACTS_ExtensionSingleUserModel_1600====>StartConnectNative ' +
+                'connectAbilityWithAccount connId : ' + connId);
+            } catch (err) {
+                let e = err.toString()
+                let errLog = "Invalid input parameter"
+                console.debug("====>e====>" + e);
+                expect(e.indexOf(errLog) >= 0).assertTrue()
+            }
 
             setTimeout(async()=> {
                 let abilityDelegator = undefined
@@ -208,7 +212,6 @@ export default function singleusermodelTest() {
                 let temp
                 let cmd ='aa dump -e'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand : err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data : ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility3") == -1).assertTrue()
@@ -218,7 +221,6 @@ export default function singleusermodelTest() {
                     })
                 cmd ='aa dump -e -u 0'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand 0: err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data 0: ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility3") == -1).assertTrue()
@@ -277,7 +279,6 @@ export default function singleusermodelTest() {
                 let temp
                 let cmd ='aa dump -e'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand : err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data : ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility4") == -1).assertTrue()
@@ -287,7 +288,6 @@ export default function singleusermodelTest() {
                     })
                 cmd ='aa dump -e -u 0'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand 0: err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data 0: ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility4") == -1).assertTrue()
@@ -323,29 +323,37 @@ export default function singleusermodelTest() {
          */
         it('ACTS_ExtensionSingleUserModel_1900', 0, async function(done){
             console.log("ACTS_ExtensionSingleUserModel_1900====>callback start====>");
-            let connId;
-            connId = globalThis.abilityContext.connectAbilityWithAccount(
-                {
-                    bundleName: "com.singleusermodel.actssingleusertest",
-                    abilityName: "ServiceAbility5",
-                    action: "StartAbilityPromise"
-                },
-                undefined,
-                {
-                    onConnect: onConnectCallbackE,
-                    onDisconnect: onDisconnectCallbackE,
-                    onFailed: onFailedCallbackE,
-                }
-            );
-            console.log('ACTS_ExtensionSingleUserModel_1900====>StartConnectNative ' +
-            'connectAbilityWithAccount connId : ' + connId);
+
+            try {
+                let connId;
+                connId = globalThis.abilityContext.connectAbilityWithAccount(
+                    {
+                        bundleName: "com.singleusermodel.actssingleusertest",
+                        abilityName: "ServiceAbility5",
+                        action: "StartAbilityPromise"
+                    },
+                    undefined,
+                    {
+                        onConnect: onConnectCallbackE,
+                        onDisconnect: onDisconnectCallbackE,
+                        onFailed: onFailedCallbackE,
+                    }
+                );
+                console.log('ACTS_ExtensionSingleUserModel_1900====>StartConnectNative ' +
+                'connectAbilityWithAccount connId : ' + connId);
+            } catch (err) {
+                let e = err.toString()
+                let errLog = "Invalid input parameter"
+                console.debug("====>e====>" + e);
+                expect(e.indexOf(errLog) >= 0).assertTrue()
+            }
+
             setTimeout(async()=> {
                 let abilityDelegator = undefined
                 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
                 let temp
                 let cmd ='aa dump -e'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand : err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data : ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility5") == -1).assertTrue()
@@ -355,7 +363,6 @@ export default function singleusermodelTest() {
                     })
                 cmd ='aa dump -e -u 0'
                 await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                        console.info('executeShellCommand 0: err : ' + JSON.stringify(err));
                         console.info('executeShellCommand : data 0: ' + JSON.stringify(data));
                         temp = data["stdResult"];
                         expect(temp.indexOf("ServiceAbility5") == -1).assertTrue()

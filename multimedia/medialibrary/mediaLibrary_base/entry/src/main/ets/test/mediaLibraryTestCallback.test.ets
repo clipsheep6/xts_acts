@@ -106,7 +106,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
                 relativePath: 'Audios/Static/',
                 size: 1958311,
                 mediaType: AUDIO_TYPE.toString(),
-                title: '01',
+                title: 'test',
                 artist: '元数据测试',
                 orientation: 0,
                 duration: '219600',
@@ -133,7 +133,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
                 fetchFileResult.getFirstObject(async (err, asset) => {
                     if (err) {
                         console.info(`${testNum} err : ${err}`)
-                        expect.assertFail();
+                        expect().assertFail();
                         done();
                         return;
                     }
@@ -181,7 +181,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
                 media.getPublicDirectory(dir, async (err, res) => {
                     if (err) {
                         console.info(`${testNum} err : ${err}`)
-                        expect.assertFail();
+                        expect().assertFail();
                         done();
                         return;
                     }
@@ -219,7 +219,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
                 media.getFileAssets(fetchOps, async (err, fetchFileResult) => {
                     if (err) {
                         console.info(`${testNum} err : ${err}`)
-                        expect.assertFail();
+                        expect().assertFail();
                         done();
                         return;
                     }
@@ -243,7 +243,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
                 media.createAsset(type, name, path, async (err, creatAsset) => {
                     if (err) {
                         console.info(`${testNum} err : ${err}`)
-                        expect.assertFail();
+                        expect().assertFail();
                         done();
                         return;
                     }
@@ -404,7 +404,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
          * @tc.level     : Level 0
          */
         it('SUB_MEDIA_MEDIALIBRARY_CALLBACK_GETFILEASSETS_007', 0, async function (done) {
-            let testNum = 'SUB_MEDIA_MEDIALIBRARY_CALLBACK_GETFILEASSETS_006';
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_CALLBACK_GETFILEASSETS_007';
             let currentFetchOps = imageAndVideoAndfileAndAudiofetchOp;
             let type = 'audio';
             let count = 4;
@@ -729,7 +729,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
         });
 
         /**
-       * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CALLBACK_CREATEASSET_001
+       * @tc.number    : SUB_MEDIA_MEDIALIBRARY_CALLBACK_CREATEASSET_009
        * @tc.name      : createAsset
        * @tc.desc      : Create File Asset image (does not exist)
        * @tc.size      : MEDIUM
@@ -737,7 +737,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
        * @tc.level     : Level 0
        */
         it('SUB_MEDIA_MEDIALIBRARY_CALLBACK_CREATEASSET_009', 0, async function (done) {
-            let testNum = 'SUB_MEDIA_MEDIALIBRARY_CALLBACK_CREATEASSET_001';
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_CALLBACK_CREATEASSET_009';
             let currentFetchOps = fetchOps(testNum, 'Pictures/Static/', IMAGE_TYPE);
             let type = IMAGE_TYPE;
             let name = new Date().getTime() + '.jpg';

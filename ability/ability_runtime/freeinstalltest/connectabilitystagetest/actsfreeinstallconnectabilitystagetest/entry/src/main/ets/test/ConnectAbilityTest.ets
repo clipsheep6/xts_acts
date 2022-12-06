@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -101,7 +99,7 @@ export default function ConnectAbilityTest(abilityContext) {
           tips("连接失败");
         }
       }
-      let connection = await globalThis.abilityContext.connectAbility(request, options);
+      let connection = await globalThis.abilityContext.connectServiceExtensionAbility(request, options);
       console.info(msg + "request：" + JSON.stringify(request));
       console.info(msg + "options：" + JSON.stringify(options));
       console.info(msg + "connection=" + JSON.stringify(connection));

@@ -17,7 +17,8 @@
         "package": "com.example.actssubscribertestorder",
         "name": ".entry",
         "deviceType": [
-      "default",
+            "tablet",
+            "default",
             "phone"
         ],
         "distro": {

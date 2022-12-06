@@ -22,7 +22,6 @@ import {
     AUDIO_TYPE,
     FILE_TYPE,
     FILEKEY,
-    checkPresetsAssets,
     checkAssetsCount,
     fetchOps,
     getPermission,
@@ -36,7 +35,6 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
         beforeAll(async function () {
             console.info('beforeAll case');
             await getPermission();
-            await checkPresetsAssets(media, 'ActsMediaLibraryBaseTest');
         });
         beforeEach(function () {
             console.info('beforeEach case');
@@ -106,7 +104,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
                 relativePath: 'Audios/Static/',
                 size: 1958311,
                 mediaType: AUDIO_TYPE.toString(),
-                title: '01',
+                title: 'test',
                 artist: '元数据测试',
                 orientation: 0,
                 duration: '219600',
@@ -383,7 +381,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
          * @tc.level     : Level 0
          */
         it('SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_007', 0, async function (done) {
-            let testNum = 'SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_006';
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_007';
             let currentFetchOps = imageAndVideoAndfileAndAudiofetchOp;
             let type = 'audio';
             let count = 4;
@@ -709,7 +707,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
         });
 
         /**
-       * @tc.number    : SUB_MEDIA_MEDIALIBRARY_PROMISE_CREATEASSET_001
+       * @tc.number    : SUB_MEDIA_MEDIALIBRARY_PROMISE_CREATEASSET_009
        * @tc.name      : createAsset
        * @tc.desc      : Create File Asset image (does not exist)
        * @tc.size      : MEDIUM
@@ -717,7 +715,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
        * @tc.level     : Level 0
        */
         it('SUB_MEDIA_MEDIALIBRARY_PROMISE_CREATEASSET_009', 0, async function (done) {
-            let testNum = 'SUB_MEDIA_MEDIALIBRARY_PROMISE_CREATEASSET_001';
+            let testNum = 'SUB_MEDIA_MEDIALIBRARY_PROMISE_CREATEASSET_009';
             let currentFetchOps = fetchOps(testNum, 'Pictures/Static/', IMAGE_TYPE);
             let type = IMAGE_TYPE;
             let name = new Date().getTime() + '.jpg';

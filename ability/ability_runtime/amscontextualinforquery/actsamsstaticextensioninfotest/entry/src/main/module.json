@@ -7,7 +7,7 @@
         "mainElement": "com.example.staticextensioninfo.MainAbility",
         "deviceTypes": [
             "default",
-            "phone"
+            "tablet"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,

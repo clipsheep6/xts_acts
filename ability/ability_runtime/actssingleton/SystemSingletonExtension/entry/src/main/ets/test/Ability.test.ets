@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
@@ -48,7 +47,7 @@ export default function singleusermodelTest() {
 
             console.debug("====>start connectAbilityWithAccount====>");
 
-            connId = globalThis.abilityContext.connectAbilityWithAccount(
+            connId = globalThis.abilityContext.connectServiceExtensionAbilityWithAccount(
                 {
                     bundleName: "com.singleusermodel.actssingleusertest",
                     abilityName: "ServiceAbility1",
@@ -86,7 +85,7 @@ export default function singleusermodelTest() {
                     console.info('executeShellCommand : err : ' + JSON.stringify(err));
                 })
                 console.debug('ACTS_ExtensionSingleUserModel_0500====>timeout====>');
-                await globalThis.abilityContext.disconnectAbility(connId).then((data) => {
+                await globalThis.abilityContext.disconnectServiceExtensionAbility(connId).then((data) => {
                     console.debug("====>data is====>" + JSON.stringify(data));
                 })
             }, START_ABILITY_TIMEOUT);
@@ -182,23 +181,30 @@ export default function singleusermodelTest() {
          */
         it('ACTS_ExtensionSingleUserModel_0700', 0, async function (done) {
             console.log("ACTS_ExtensionSingleUserModel_0700====>callback start====>");
-            let connId;
-            console.debug("====>start connectAbilityWithAccount====>");
-            connId = globalThis.abilityContext.connectAbilityWithAccount(
-                {
-                    bundleName: "com.singleusermodel.actssingleusertest",
-                    abilityName: "ServiceAbility3",
-                    action: "StartAbilityPromise"
-                },
-                null,
-                {
-                    onConnect: onConnectCallbackC,
-                    onDisconnect: onDisconnectCallbackC,
-                    onFailed: onFailedCallbackC,
-                }
-            );
-            console.log('ACTS_ExtensionSingleUserModel_0700====>StartConnectNative ' +
-                'connectAbilityWithAccount connId : ' + connId);
+            try {
+                let connId;
+                console.debug("====>start connectAbilityWithAccount====>");
+                connId = globalThis.abilityContext.connectAbilityWithAccount(
+                    {
+                        bundleName: "com.singleusermodel.actssingleusertest",
+                        abilityName: "ServiceAbility3",
+                        action: "StartAbilityPromise"
+                    },
+                    null,
+                    {
+                        onConnect: onConnectCallbackC,
+                        onDisconnect: onDisconnectCallbackC,
+                        onFailed: onFailedCallbackC,
+                    }
+                );
+                console.log('ACTS_ExtensionSingleUserModel_0700====>StartConnectNative ' +
+                    'connectAbilityWithAccount connId : ' + connId);
+            } catch (err) {
+                let e = err.toString()
+                let errLog = "Invalid input parameter"
+                console.debug("====>e====>" + e);
+                expect(e.indexOf(errLog) >= 0).assertTrue()
+            }
 
             setTimeout(async () => {
                 let abilityDelegator = undefined
@@ -318,23 +324,30 @@ export default function singleusermodelTest() {
          */
         it('ACTS_ExtensionSingleUserModel_1300', 0, async function (done) {
             console.log("ACTS_ExtensionSingleUserModel_1300====>callback start====>");
-            let connId;
+            try {
+                let connId;
+                connId = globalThis.abilityContext.connectAbilityWithAccount(
+                    {
+                        bundleName: "com.singleusermodel.actssingleusertest",
+                        abilityName: "ServiceAbility5",
+                        action: "StartAbilityPromise"
+                    },
+                    undefined,
+                    {
+                        onConnect: onConnectCallbackE,
+                        onDisconnect: onDisconnectCallbackE,
+                        onFailed: onFailedCallbackE,
+                    }
+                );
+                console.log('ACTS_ExtensionSingleUserModel_1300====>StartConnectNative ' +
+                    'connectAbilityWithAccount connId : ' + connId);
+            } catch (err) {
+                let e = err.toString()
+                let errLog = "Invalid input parameter"
+                console.debug("====>e====>" + e);
+                expect(e.indexOf(errLog) >= 0).assertTrue()
+            }
 
-            connId = globalThis.abilityContext.connectAbilityWithAccount(
-                {
-                    bundleName: "com.singleusermodel.actssingleusertest",
-                    abilityName: "ServiceAbility5",
-                    action: "StartAbilityPromise"
-                },
-                undefined,
-                {
-                    onConnect: onConnectCallbackE,
-                    onDisconnect: onDisconnectCallbackE,
-                    onFailed: onFailedCallbackE,
-                }
-            );
-            console.log('ACTS_ExtensionSingleUserModel_1300====>StartConnectNative ' +
-                'connectAbilityWithAccount connId : ' + connId);
             setTimeout(async () => {
                 let abilityDelegator = undefined
                 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()

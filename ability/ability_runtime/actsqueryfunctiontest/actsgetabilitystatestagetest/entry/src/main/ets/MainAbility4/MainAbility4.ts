@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 
 export default class MainAbility4 extends Ability {
 
@@ -21,7 +20,7 @@ export default class MainAbility4 extends Ability {
         console.log("MainAbility4 onCreate")
     }
 
-    onDestroy(want) {
+    onDestroy() {
         // Ability is destroying, release resources for this ability
         console.log("MainAbility4 onDestroy")
     }

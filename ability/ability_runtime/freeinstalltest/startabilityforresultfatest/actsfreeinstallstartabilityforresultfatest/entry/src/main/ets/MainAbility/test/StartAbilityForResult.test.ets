@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -494,8 +491,8 @@ export default function StartAbilityForResult() {
             }).catch((error) => {
                 console.error(' getTopAbility error: ' + JSON.stringify(error));
             });
-            console.log(" checkAbilityInfo deviceId : " + details1.ability.deviceId);
-            DeviceId = details1.ability.deviceId;
+            console.log(" checkAbilityInfo deviceId : " + details1.deviceId);
+            DeviceId = details1.deviceId;
             await Utils.sleep(500);
             var str = {
                 'want': {
@@ -536,8 +533,8 @@ export default function StartAbilityForResult() {
             }).catch((error) => {
                 console.error(' getTopAbility error: ' + JSON.stringify(error));
             });
-            console.log(" checkAbilityInfo deviceId : " + details1.ability.deviceId);
-            DeviceId = details1.ability.deviceId;
+            console.log(" checkAbilityInfo deviceId : " + details1.deviceId);
+            DeviceId = details1.deviceId;
             await Utils.sleep(1000);
             var str = {
                 'want': {
@@ -753,15 +750,15 @@ export default function StartAbilityForResult() {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_1800-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_1800";
             let wrong;
-            var str = {
-                'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
-                    "abilityName": "com.example.qianyiyingyong.MainAbility",
-                    "moduleName": "entry",
-                    'flags': '11'
+            let startAbilityParameter =  {
+                want: {
+                    bundleName: "com.example.qianyiyingyong.hmservice",
+                    abilityName: "com.example.qianyiyingyong.MainAbility",
+                    moduleName: "entry",
+                    flags: 11
                 }
             }
-            await featureAbility.startAbilityForResult(str)
+            await featureAbility.startAbilityForResult(startAbilityParameter)
                 .then((data) => {
                     console.info(TAG + ' StartAbilityForResultPromise successful. Data: ' + JSON.stringify(data))
                 }).catch((error) => {
@@ -775,7 +772,7 @@ export default function StartAbilityForResult() {
 
         /*
          * @tc.number: FreeInstall_FA_StartAbilityForResult_1900
-         * @tc.name: startAbilityForResult: yuanzihua already installed,input wrong flags('11'),start successfully.
+         * @tc.name: startAbilityForResult: yuanzihua already installed,input wrong flags('11'),start failed.
          * @tc.desc: Function test
          * @tc.level   0
          */
@@ -793,24 +790,24 @@ export default function StartAbilityForResult() {
             })
             await Utils.sleep(500);
             let details;
-            var str = {
-                'want': {
+            let startAbilityParameter = {
+                want: {
                     "bundleName": "com.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
-                    'flags': '11'
+                    'flags': 11
                 }
             }
-            await featureAbility.startAbilityForResult(str)
+            await featureAbility.startAbilityForResult(startAbilityParameter)
                 .then((data) => {
-                    details = data;
                     console.info(TAG + ' StartAbilityForResultPromise successful. Data: ' + JSON.stringify(data))
                 }).catch((error) => {
+                    details = error;
                     console.info(TAG + ' StartAbilityForResultPromise failed. Cause: ' + JSON.stringify(error));
                 })
             await Utils.sleep(2000);
-            console.log(TAG + " resultCode: " + details.resultCode);
-            expect(details.resultCode).assertEqual(1);
+            console.log(TAG + " errorCode: " + details.code);
+            expect(details.code).assertEqual(1);
             done();
         });
 
@@ -824,15 +821,15 @@ export default function StartAbilityForResult() {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_2000-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_2000";
             let wrong;
-            var str = {
-                'want': {
+            let startAbilityParameter = {
+                want: {
                     "bundleName": "com.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
-                    'flags': ''
+                    'flags': 0
                 }
             }
-            await featureAbility.startAbilityForResult(str)
+            await featureAbility.startAbilityForResult(startAbilityParameter)
                 .then((data) => {
                     console.info(TAG + ' StartAbilityForResultPromise successful. Data: ' + JSON.stringify(data))
                 }).catch((error) => {
@@ -859,15 +856,15 @@ export default function StartAbilityForResult() {
             })
             await Utils.sleep(1000);
             let details;
-            var str = {
-                'want': {
+            let startAbilityParameter = {
+                want: {
                     "bundleName": "com.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
-                    'flags': ''
+                    'flags': 2
                 }
             }
-            await featureAbility.startAbilityForResult(str)
+            await featureAbility.startAbilityForResult(startAbilityParameter)
                 .then((data) => {
                     details = data;
                     console.info(TAG + ' StartAbilityForResultPromise successful. Data: ' + JSON.stringify(data))

@@ -19,7 +19,7 @@
     "mainAbility": "com.ohos.st.formacquiretest.MainAbility",
     "deviceType": [
       "default",
-      "phone"
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,

@@ -16,7 +16,8 @@
         "package": "ohos.acts.usb.usb.function",
         "name": ".entry",
         "deviceType": [
-      "default",
+            "tablet",
+            "default",
             "phone"
         ],
         "distro": {

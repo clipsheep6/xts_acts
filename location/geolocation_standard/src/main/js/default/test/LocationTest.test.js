@@ -127,12 +127,12 @@ describe('geolocationTest_geo3', function () {
                 console.info("[lbs_js] getLocationSwitchState callback data: " + JSON.stringify(data));
                 expect(data).assertTrue();
             }
-            done()
         })
+        done();
     });
 
     /**
-     * @tc.number LocSwitch_0400
+     * @tc.number SUB_HSS_LocationSystem_LocSwitch_0400
      * @tc.name Test requestrequestEnableLocation api.
      * @tc.desc Enabling the Location Service Function for a Third-Party Application -Promise Mode
      * @tc.size MEDIUM
@@ -164,7 +164,7 @@ describe('geolocationTest_geo3', function () {
         }
         geolocation.on('locationServiceState', locationServiceState);
         geolocation.off('locationServiceState', locationServiceState);
-	expect(true).assertTrue();
+	    expect(true).assertTrue();
         done();
     })
 
@@ -193,7 +193,7 @@ describe('geolocationTest_geo3', function () {
                 });
             })
         }
-        console.info('getCurrentLocationCallback  start');
+        console.info('getCurrentLocationCallback start');
         await geolocation.getCurrentLocation(currentLocationRequest).then((result) => {
             console.info("getCurrentLocation callback_0003, result:  " + JSON.stringify(result));
             expect(true).assertEqual(result != null);
@@ -493,10 +493,8 @@ describe('geolocationTest_geo3', function () {
             expect(true).assertEqual(JSON.stringify(error) != null);
             done();
         })
-        done()
+        done();
     })
-
-
 
     /**
      * @tc.number SUB_HSS_SendCommand_0100
@@ -508,14 +506,20 @@ describe('geolocationTest_geo3', function () {
      */
     it('SUB_HSS_SendCommand_0100', 0, async function (done) {
         let requestInfo = { 'scenairo': 0x301, 'command': "command_1" };
-        await geolocation.sendCommand(requestInfo, (err, result) => {
-            if (err) {
-                console.info('sendcommand callback err:' + JSON.stringify(err));
-                expect(true).assertEqual(JSON.stringify(err) != null);
-                done();
-            }
-            console.info('sendcommand callback result:' + JSON.stringify(result));
-        });
+        try {
+            await geolocation.sendCommand(requestInfo, (err, result) => {
+                if (err) {
+                    console.info('sendcommand callback err:' + JSON.stringify(err));
+                    expect(true).assertEqual(JSON.stringify(err) != null);
+                    done();
+                }
+                console.info('sendcommand callback result:' + JSON.stringify(result));
+            });
+        } catch (error) {
+            console.info('sendcommand callback err:' + JSON.stringify(error));
+            expect(true).assertEqual(JSON.stringify(error) != null);
+        }
+        done();
     })
 
     /**
@@ -528,14 +532,21 @@ describe('geolocationTest_geo3', function () {
      */
     it('SUB_HSS_SendCommand_0200', 0, async function (done) {
         let requestInfo = { 'scenairo': 0x301, 'command': "command_1" };
-        geolocation.sendCommand(requestInfo).then((result) => {
-            console.info('sendCommand promise result:' + result);
-            done();
-        }).catch(error => {
+        try {
+            geolocation.sendCommand(requestInfo).then((result) => {
+                console.info('sendCommand promise result:' + result);
+                done();
+            }).catch(error => {
+                console.info('sendcommand promise err:' + JSON.stringify(error));
+                expect(true).assertEqual(JSON.stringify(error) != null);
+                done();
+            })
+        } catch (error) {
             console.info('sendcommand promise err:' + JSON.stringify(error));
             expect(true).assertEqual(JSON.stringify(error) != null);
-            done();
-        })
+        }
+        done();
+
     })
 
     /**
@@ -1248,4 +1259,6 @@ describe('geolocationTest_geo3', function () {
         done();
     })
 })
+
+
 

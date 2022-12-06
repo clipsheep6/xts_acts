@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 const START_ABILITY_TIMEOUT = 3000;
@@ -150,7 +149,7 @@ export default function singleusermodelTest() {
           })
       } catch (err) {
         let e = err.toString();
-        let errLog = "Cannot read property then of undefined"
+        let errLog = "Invalid input parameter"
         console.debug("====>e====>" + e);
         expect(e.indexOf(errLog) >= 0).assertTrue()
       }
@@ -252,7 +251,7 @@ export default function singleusermodelTest() {
           })
       } catch (err) {
         let e = err.toString();
-        let errLog = "Cannot read property then of undefined"
+        let errLog = "Invalid input parameter"
         console.debug("====>e====>" + e);
         expect(e.indexOf(errLog) >= 0).assertTrue()
       }

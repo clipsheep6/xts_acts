@@ -22,7 +22,6 @@ import {
     VIDEO_TYPE,
     AUDIO_TYPE,
     FILE_TYPE,
-    checkPresetsAssets,
     checkAssetsCount,
     fetchOps,
     isNum,
@@ -33,7 +32,6 @@ export default function fileAssetTestPromiseTest(abilityContext) {
         const media = mediaLibrary.getMediaLibrary(abilityContext);
         beforeAll(async function () {
             console.info('beforeAll case');
-            await checkPresetsAssets(media, 'ActsMediaLibraryFileAssetTest')
         });
         beforeEach(function () {
             console.info('beforeEach case');
@@ -82,7 +80,7 @@ export default function fileAssetTestPromiseTest(abilityContext) {
                 console.info(`${testNum} :: error: ${error}`);
                 await asset.close(fd);
                 await asset1.close(fd1);
-                expect.assertFail();
+                expect().assertFail();
                 done();
             }
         }
@@ -103,7 +101,7 @@ export default function fileAssetTestPromiseTest(abilityContext) {
                 expect(res.bytesRead).assertEqual(assetProps.bytesRead);
                 try {
                     await fileio.write(fd, buf);
-                    expect.assertFail();
+                    expect().assertFail();
                 } catch (error) {
                     expect(true).assertTrue();
                     await asset.close(fd);
@@ -111,7 +109,7 @@ export default function fileAssetTestPromiseTest(abilityContext) {
                 }
             } catch (error) {
                 console.info(`${testNum} :: error: ${error}`);
-                expect.assertFail();
+                expect().assertFail();
                 await asset.close(fd);
                 done();
             }
@@ -140,7 +138,7 @@ export default function fileAssetTestPromiseTest(abilityContext) {
                 let buf1 = new ArrayBuffer(4096);
                 try {
                     await fileio.read(fd, buf1);
-                    expect.assertFail();
+                    expect().assertFail();
 
                 } catch (error) {
                     expect(true).assertTrue();

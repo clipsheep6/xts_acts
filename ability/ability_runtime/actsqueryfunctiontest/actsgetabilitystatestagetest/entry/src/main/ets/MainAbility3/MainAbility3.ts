@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,14 +13,14 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 export default class MainAbility3 extends Ability {
 
     onCreate(want, launchParam) {
         console.log("MainAbility3 onCreate")
     }
 
-    onDestroy(want) {
+    onDestroy() {
         // Ability is destroying, release resources for this ability
         console.log("MainAbility3 onDestroy")
     }

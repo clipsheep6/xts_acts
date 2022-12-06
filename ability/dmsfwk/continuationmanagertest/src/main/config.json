@@ -17,8 +17,8 @@
         "name": ".entry",
         "mainAbility": ".MainAbility",
         "deviceType": [
-      "default",
-            "phone"
+            "tablet",
+            "default"
         ],
         "distro": {
             "deliveryWithInstall": true,
@@ -84,6 +84,11 @@
                     "designWidth": 720,
                     "autoDesignWidth": false
                 }
+            }
+        ],
+        "reqPermissions": [
+            {
+                "name": "ohos.permission.DISTRIBUTED_DATASYNC"
             }
         ],
         "testRunner": {

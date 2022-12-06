@@ -46,6 +46,7 @@ describe('audioFramework', function () {
             console.info(`${TagFrmwk}: getAudioManger : FAIL`);
         }
     }
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -100,7 +101,8 @@ describe('audioFramework', function () {
         let permissionName1 = 'ohos.permission.MICROPHONE';
         let permissionName2 = 'ohos.permission.ACCESS_NOTIFICATION_POLICY';
         let permissionName3 = 'ohos.permission.MODIFY_AUDIO_SETTINGS';
-        let permissionNameList = [permissionName1, permissionName2, permissionName3];
+        let permissionName4 = 'ohos.permission.MANAGE_AUDIO_CONFIG';
+        let permissionNameList = [permissionName1, permissionName2, permissionName3,permissionName4];
         let appName = 'ohos.acts.multimedia.audio.audiomanager';
         await audioTestBase.applyPermission(appName, permissionNameList);
         await sleep(100);
@@ -4902,7 +4904,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0100', 2,async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(1, (err, value) => {
             // Getting all Output devices Enumb 1 = OUTPUT_DEVICES_FLAG
             console.info(`${TagFrmwk}: Callback: getDevices OUTPUT_DEVICES_FLAG`);
@@ -4936,7 +4938,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0200', 2,async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(2, (err, value) => {
             // Getting all Input Devices ENUM 2 = INPUT_DEVICES_FLAG
             console.info(`${TagFrmwk}: Callback: getDevices INPUT_DEVICES_FLAG`);
@@ -4969,7 +4971,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0300', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(3, (err, value) => {
             // Getting all devies connected 3 = ALL_DEVICES_FLAG
             console.info(`${TagFrmwk}: Callback: getDevices ALL_DEVICES_FLAG`);
@@ -5002,7 +5004,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0400', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
             console.info(`${TagFrmwk}: Callback: getDevices OUTPUT_DEVICES_FLAG`);
             if (err) {
@@ -5034,7 +5036,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0500', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG, (err, value) => {
             console.info(`${TagFrmwk}: Callback: getDevices INPUT_DEVICES_FLAG`);
             if (err) {
@@ -5065,7 +5067,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0600', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         AudioRoutingManager.getDevices(audio.DeviceFlag.ALL_DEVICES_FLAG, (err, value) => {
             console.info(`${TagFrmwk}: Callback: getDevices ALL_DEVICES_FLAG`);
             if (err) {
@@ -5096,7 +5098,7 @@ describe('audioFramework', function () {
      *@tc.level     : Level 2
      */
     it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0700', 2, async function (done) {
-        let AudioRoutingManager = await audioManager.getRoutingManager();
+        let AudioRoutingManager = audioManager.getRoutingManager();
         let value = await AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
         console.info(`${TagFrmwk}: Promise: getDevices OUTPUT_DEVICES_FLAG`);
         value.forEach(displayDeviceProp);
@@ -5109,69 +5111,6 @@ describe('audioFramework', function () {
             expect(false).assertTrue();
         }
         done();
-    })
-
-    /**
-     *@tc.number    : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0800
-     *@tc.name      : getDevices - INPUT device - Promise - ENAME
-     *@tc.desc      : getDevices - INPUT device
-     *@tc.size      : MEDIUM
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     */
-    it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0800', 2, function (done) {
-        audioManager.getRoutingManager(async (err, AudioRoutingManager) => {
-            if (err) {
-                console.error(`${TagFrmwk}: Callback: failed to get RoutingManager ${err.message}`);
-                expect().assertFail();
-            } else {
-                let value = await AudioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG)
-                console.info(`${TagFrmwk}: Promise: getDevices INPUT_DEVICES_FLAG`);
-                value.forEach(displayDeviceProp);
-
-                if (dTValue != null && dRValue != null && devId > 0 && sRate != null && cCount != null &&
-                    cMask != null) {
-                    console.info(`${TagFrmwk}: Promise: getDevices : INPUT_DEVICES_FLAG :  PASS`);
-                    expect(true).assertTrue();
-                } else {
-                    console.info(`${TagFrmwk}: Promise: getDevices : INPUT_DEVICES_FLAG :  FAIL`);
-                    expect(false).assertTrue();
-                }
-            }
-            done();
-        });
-    })
-
-    /**
-     *@tc.number    : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0900
-     *@tc.name      : getDevices - ALL device - Promise - ENAME
-     *@tc.desc      : getDevices - ALL device
-     *@tc.size      : MEDIUM
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     */
-    it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_GETDEVICES_0900', 2, function (done) {
-        audioManager.getRoutingManager(async (err, AudioRoutingManager) => {
-            if (err) {
-                console.error(`${TagFrmwk}:Callback:failed to get RoutingManager ${err.message}`);
-                expect().assertFail();
-            } else {
-                let value = await AudioRoutingManager.getDevices(audio.DeviceFlag.ALL_DEVICES_FLAG)
-                console.info(`${TagFrmwk}: Promise: getDevices ALL_DEVICES_FLAG`);
-                value.forEach(displayDeviceProp);
-
-                if (dTValue != null && dRValue != null && devId > 0 && sRate != null && cCount != null &&
-                    cMask != null) {
-                    console.info(`${TagFrmwk}: Promise: getDevices : ALL_DEVICES_FLAG :  PASS`);
-                    expect(true).assertTrue();
-                }
-                else {
-                    console.info(`${TagFrmwk}: Promise: getDevices : ALL_DEVICES_FLAG :  FAIL`);
-                    expect(false).assertTrue();
-                }
-            }
-            done();
-        });
     })
 
     /**

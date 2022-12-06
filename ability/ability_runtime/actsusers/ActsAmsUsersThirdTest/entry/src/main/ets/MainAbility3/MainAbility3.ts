@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 
 export default class MainAbility extends Ability {
 
@@ -46,9 +46,13 @@ export default class MainAbility extends Ability {
 
   onForeground() {
     console.log("MainAbility3 onForeground")
-    globalThis.abilityContext3.terminateSelfWithResult({
-      resultCode: 1
-    })
+
+    try {
+        globalThis.abilityContext3.terminateSelfWithResult({
+            resultCode: 1
+          })
+    } catch (error) {
+    }
   }
 
   onBackground() {

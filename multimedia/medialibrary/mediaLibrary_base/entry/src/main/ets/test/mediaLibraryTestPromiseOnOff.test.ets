@@ -21,7 +21,6 @@ import {
     VIDEO_TYPE,
     AUDIO_TYPE,
     FILE_TYPE,
-    checkPresetsAssets,
     checkAssetsCount,
     fetchOps,
     albumFetchOps,
@@ -35,7 +34,6 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
         beforeAll(async function () {
             console.info('beforeAll case');
             await getPermission();
-            await checkPresetsAssets(media, 'ActsMediaLibraryBaseTest');
         });
         beforeEach(function () {
             console.info('beforeEach case');
@@ -223,7 +221,7 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
         });
 
         /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_PROMISE_ON_006
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_PROMISE_ON_007
          * @tc.name      : ON
          * @tc.desc      : ON REMOTE_FILE ASSET
          * @tc.size      : MEDIUM
@@ -254,7 +252,7 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 expect(count == 0).assertTrue();
                 done();
             } catch (error) {
-                console.info(`MediaLibraryTest : on 006 failed, error: ${error}`);
+                console.info(`MediaLibraryTest : on 007 failed, error: ${error}`);
                 expect(false).assertTrue();
                 media.off('remoteFileChange');
                 done();
@@ -450,7 +448,7 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 expect(true).assertTrue();
                 done();
             } catch (error) {
-                console.info(`MediaLibraryTest : off 006 failed, error: ${error}`);
+                console.info(`MediaLibraryTest : off 007 failed, error: ${error}`);
                 expect(false).assertTrue();
                 media.off('fileChange');
                 done();

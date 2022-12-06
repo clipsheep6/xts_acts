@@ -22,7 +22,7 @@
     "name": ".MyApplication",
     "deviceType": [
       "default",
-      "phone"
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,

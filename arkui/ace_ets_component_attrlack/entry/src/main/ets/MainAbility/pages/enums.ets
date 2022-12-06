@@ -19,7 +19,6 @@ const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
-export default
 struct EnumsCancel {
 
   @State widthSize: number = 200
@@ -35,6 +34,13 @@ struct EnumsCancel {
   @State eventType: string = ''
 
   @State mouseText: string = 'MouseText'
+
+
+  @State fit:RelateType = RelateType.FIT;
+  @State fill:RelateType = RelateType.FILL;
+  @State mainonly:TitleHeight = TitleHeight.MainOnly;
+  @State MainWithSub:TitleHeight = TitleHeight.MainWithSub;
+  @State Block:HitTestMode  = HitTestMode.Block;
 
   @Styles pressedStyles() {
     .backgroundColor('red')
