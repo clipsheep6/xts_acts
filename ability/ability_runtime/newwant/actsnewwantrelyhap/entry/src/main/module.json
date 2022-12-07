@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "com.example.newwanthapa",
+    "name": "com.acts.example.newwanthapa",
     "type": "entry",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:phone_entry_dsc",
@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.newwanthapa.MainAbility",
+        "name": "com.acts.example.newwanthapa.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
@@ -35,7 +35,7 @@
         ]
       },
       {
-        "name": "com.example.newwanthapa.SecondAbility",
+        "name": "com.acts.example.newwanthapa.SecondAbility",
         "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
@@ -48,7 +48,7 @@
     "extensionAbilities": [
       {
         "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
-        "name": "com.example.newwanthapa.ServiceAbility",
+        "name": "com.acts.example.newwanthapa.ServiceAbility",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",

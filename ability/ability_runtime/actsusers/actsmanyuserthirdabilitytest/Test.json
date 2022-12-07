@@ -4,7 +4,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
-        "bundle-name": "com.example.actsmanyusersabilitytest",
+        "bundle-name": "com.acts.actsmanyusersabilitytest",
         "module-name":"phone",
         "shell-timeout": "300000",
         "testcase-timeout": "30000"

@@ -18,7 +18,7 @@ import wantConstant from '@ohos.ability.wantConstant'
 import bundleManager from '@ohos.bundle';
 import Prompt from '@system.prompt';
 
-const BUNDLE_NAME = 'com.example.qianyiyingyong.hmservice';
+const BUNDLE_NAME = 'com.acts.example.qianyiyingyong.hmservice';
 const ABILITY_NAME1 = 'hnm2MainAbility';
 
 @Entry
@@ -97,7 +97,7 @@ struct Index {
 
   async updateModuleUpgradeFlag(tag, type1) {
     console.info(tag + ' startAbility fAStartAbilityPromise START' + JSON.stringify(type1));
-//    await bundleManager.updateModuleUpgradeFlag("com.example.qianyiyingyong.hmservice", type1, true);
+//    await bundleManager.updateModuleUpgradeFlag("com.acts.example.qianyiyingyong.hmservice", type1, true);
     console.info(tag + ' startAbility fAStartAbilityPromise END');
   }
 

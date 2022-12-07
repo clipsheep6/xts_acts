@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.actsconnectabilitysystemabilitytest.MainAbility",
+        "name": "com.acts.actsconnectabilitysystemabilitytest.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
@@ -37,7 +37,7 @@
     "extensionAbilities": [
       {
         "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
-        "name": "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+        "name": "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",
@@ -46,7 +46,7 @@
       },
       {
         "srcEntrance": "./ets/ServiceAbility2/ServiceAbility2.ts",
-        "name": "com.example.actsconnectabilitysystemabilitytest.ServiceAbility2",
+        "name": "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility2",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",

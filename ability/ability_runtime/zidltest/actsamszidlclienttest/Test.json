@@ -3,7 +3,7 @@
     "driver": {
         "type": "JSUnitTest",
         "test-timeout": "300000",
-        "package": "com.example.zidlclienttest",
+        "package": "com.acts.example.zidlclienttest",
         "shell-timeout": "300000"
     },
     "kits": [

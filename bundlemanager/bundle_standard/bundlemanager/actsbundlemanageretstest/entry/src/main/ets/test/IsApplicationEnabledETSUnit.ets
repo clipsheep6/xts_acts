@@ -16,7 +16,7 @@ import { describe, it, expect } from 'hypium/index';
 import Utils from './Utils';
 import Bundle from '@ohos.bundle';
 
-const BUNDLE_NAME = 'com.open.harmony.packagemag';
+const BUNDLE_NAME = 'com.acts.open.harmony.packagemag';
 const BUNDLE_NAME_OTHER = 'com.example.l3jsdemo';
 const BUNDLE_NAME_ERROR = 'com.ohos.acepackage.error';
 

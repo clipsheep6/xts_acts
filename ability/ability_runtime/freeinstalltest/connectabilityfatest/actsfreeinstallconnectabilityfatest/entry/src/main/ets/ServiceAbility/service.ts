@@ -53,7 +53,7 @@ export default {
         console.info('FreeInstall_FA_ConnectAbility_PA service onCommand');
         let request = {
             'deviceId': '',
-            'bundleName': 'com.example.myapplication.hmservice',
+            'bundleName': 'com.acts.example.myapplication.hmservice',
             'abilityName': 'com.example.myapplication7.ServiceAbility',
             'moduleName': 'myapplication7',
             'flags': wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

@@ -15,7 +15,7 @@
     "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "com.open.harmony.packagemag.hmservice.MainAbility",
+        "name": "com.acts.open.harmony.packagemag.hmservice.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",

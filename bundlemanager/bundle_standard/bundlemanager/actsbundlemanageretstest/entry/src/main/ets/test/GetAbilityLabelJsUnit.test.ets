@@ -16,9 +16,9 @@ import { describe, it, expect } from 'hypium/index';
 import Utils from './Utils';
 import Bundle from '@ohos.bundle';
 
-const BUNDLE_NAME = 'com.open.harmony.packagemag';
-const ABILITY_NAME = 'com.open.harmony.packagemag.MainAbility';
-const SERVICE_ABILITY_NAME = 'com.open.harmony.packagemag.ServiceAbility';
+const BUNDLE_NAME = 'com.acts.open.harmony.packagemag';
+const ABILITY_NAME = 'com.acts.open.harmony.packagemag.MainAbility';
+const SERVICE_ABILITY_NAME = 'com.acts.open.harmony.packagemag.ServiceAbility';
 const OTHER_BUNDLE_NAME = 'com.example.l3jsdemo';
 const OTHER_ABILITY_NAME = 'com.example.l3jsdemo.MainAbility';
 const BUNDLE_NAME_ERROR = 'com.ohos.acepackage.error';

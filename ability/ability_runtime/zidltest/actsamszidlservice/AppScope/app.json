@@ -1,6 +1,6 @@
 {
     "app": {
-        "bundleName": "com.example.zidlservice",
+        "bundleName": "com.acts.example.zidlservice",
         "vendor": "huawei",
         "versionCode": 1000000,
         "versionName": "1.0.0",

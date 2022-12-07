@@ -24,7 +24,7 @@ struct Index {
   @State isShowing: boolean = true;
 
   @State formId: number = 0;
-  @State bundle: string = "com.example.apicoverhaptest";
+  @State bundle: string = "com.acts.apicoverhaptest";
   @State ability: string = "FormAbility";
   @State moduleName: string = "phone";
   @State name: string = "form1";

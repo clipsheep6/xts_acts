@@ -18,9 +18,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 const MODULE_NAME = "testModule"
 const MODULE_NAME_TEST = "testModule1"
-const ABILITY_NAME = "ohos.acts.bundle.stage.test.MainAbility"
-const ABILITY_NAME1 = "ohos.acts.bundle.stage.test.MainAbility1"
-const ABILITY_NAME_TEST = "ohos.acts.bundle.stage.test.MainAbilityTest"
+const ABILITY_NAME = "com.acts.bundle.stage.test.MainAbility"
+const ABILITY_NAME1 = "com.acts.bundle.stage.test.MainAbility1"
+const ABILITY_NAME_TEST = "com.acts.bundle.stage.test.MainAbilityTest"
 const METADATA_NAME = "ohos.ability.form"
 const METADATA_NAME1 = "ohos.ability.form1"
 const METADATA_NAME2 = "ohos.ability.form2"

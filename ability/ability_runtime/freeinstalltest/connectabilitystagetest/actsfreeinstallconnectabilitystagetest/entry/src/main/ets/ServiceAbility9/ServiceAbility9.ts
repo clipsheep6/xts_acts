@@ -51,7 +51,7 @@ export default class ServiceAbility4 extends ServiceExtensionAbility {
         console.info('onRequest, startId: ' + startId);
         console.info('ConnectAbilityTest_Ext service9 onRequest');
         let request = {
-            'bundleName': 'com.example.myapplication.hmservice',
+            'bundleName': 'com.acts.example.myapplication.hmservice',
             'abilityName': 'ServiceAbility6',
             'moduleName': 'myapplication8',
             'flags': wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

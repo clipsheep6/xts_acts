@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.myapplication.hmservice",
+    "bundleName": "com.acts.example.myapplication.hmservice",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

@@ -35,8 +35,8 @@ export default function wantAgentCoverTest() {
                     wants: [
                         {
                             deviceId: "",
-                            bundleName: "com.example.apicoverhaptest",
-                            abilityName: "com.example.apicoverhaptest.MainAbility",
+                            bundleName: "com.acts.apicoverhaptest",
+                            abilityName: "com.acts.apicoverhaptest.MainAbility",
                             action: "action1",
                             entities: ["entity1"],
                             type: "MIMETYPE",

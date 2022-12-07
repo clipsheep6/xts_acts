@@ -1,7 +1,7 @@
 {
   "app": {
     "targetBundleList": [
-      "com.example.qianyiyingyong.hmservice"
+      "com.acts.example.qianyiyingyong.hmservice"
     ],
     "vendor": "example",
     "bundleName": "com.open.harmony.startAbilityForResult",

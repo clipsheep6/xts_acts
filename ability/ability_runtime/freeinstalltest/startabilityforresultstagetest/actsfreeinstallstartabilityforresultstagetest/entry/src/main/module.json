@@ -15,7 +15,7 @@
     "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "com.example.startAbilityForResult.hmservice.MainAbility",
+        "name": "com.acts.startabilityforresult.hmservice.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",

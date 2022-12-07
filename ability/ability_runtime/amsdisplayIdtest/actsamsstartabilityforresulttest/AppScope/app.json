@@ -1,6 +1,6 @@
 {
     "app":{
-        "bundleName":"com.example.startabilityforresult",
+        "bundleName":"com.acts.startabilityforresult",
         "vendor":"huawei",
         "versionCode":1000000,
         "versionName":"1.0.0",

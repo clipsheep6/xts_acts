@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "com.example.actsabilitypermissiontest",
+    "name": "com.acts.example.actsabilitypermissiontest",
     "type": "entry",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:phone_entry_dsc",
@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.actsabilitypermissiontest.MainAbility",
+        "name": "com.acts.example.actsabilitypermissiontest.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
@@ -34,7 +34,7 @@
         ]
       },
         {
-          "name": "com.example.actsabilitypermissiontest.MainAbility2",
+          "name": "com.acts.example.actsabilitypermissiontest.MainAbility2",
           "srcEntrance": "./ets/MainAbility2/MainAbility2.ts",
           "description": "$string:phone_entry_main",
           "icon": "$media:icon",
@@ -56,7 +56,7 @@
     "extensionAbilities": [
       {
         "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
-        "name": "com.example.actsabilitypermissiontest.ServiceAbility",
+        "name": "com.acts.example.actsabilitypermissiontest.ServiceAbility",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",

@@ -3,8 +3,8 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "600000",
-        "bundle-name": "com.open.harmony.packagemag",
-        "package-name": "com.open.harmony.packagemag",
+        "bundle-name": "com.acts.open.harmony.packagemag",
+        "package-name": "com.acts.open.harmony.packagemag",
         "shell-timeout": "600000"
     },
     "kits": [
@@ -64,7 +64,7 @@
                 "bm uninstall -n com.example.myapplication5",
                 "bm uninstall -n com.example.myapplication6",
                 "bm uninstall -n com.example.third7",
-                "bm uninstall -n ohos.acts.bundle.stage"
+                "bm uninstall -n com.acts.bundle.stage"
             ]
         }
     ]

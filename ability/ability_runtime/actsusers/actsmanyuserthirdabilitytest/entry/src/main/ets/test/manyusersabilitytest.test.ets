@@ -147,8 +147,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyConnectAbility_0100 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "one",
         },{
           onConnect:onConnectCallback,
@@ -199,8 +199,8 @@ export default function abilityTest() {
       id = setTimeout(timeout, START_ABILITY_TIMEOUT);
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbilityone",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbilityone",
           action: "two",
         },
         {
@@ -261,8 +261,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyDisconnectAbility_0100 3====>");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Three",
         }, {
         onConnect: onConnectCallback,
@@ -341,8 +341,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack)
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.actsmanyusersabilitytest",
-            abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+            bundleName: "com.acts.actsmanyusersabilitytest",
+            abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
             action: "Four",
           }, {
           onConnect: onConnectCallback,
@@ -413,8 +413,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyDisconnectAbility_0300 3 ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Five",
         }, {
         onConnect: onConnectCallback,
@@ -492,8 +492,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack)
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.actsmanyusersabilitytest",
-            abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+            bundleName: "com.acts.actsmanyusersabilitytest",
+            abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
             action: "Six",
           }, {
           onConnect: onConnectCallback,
@@ -565,8 +565,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyExtensionConnectAbility_0100 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Seven",
         }, {
         onConnect: onConnectCallback,
@@ -630,8 +630,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyExtensionConnectAbility_0200 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Eight",
         }, {
         onConnect: onConnectCallback,
@@ -695,8 +695,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyExtensionDisconnectAbility_0100 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Nine",
         }, {
         onConnect: onConnectCallback,
@@ -761,8 +761,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyExtensionDisconnectAbility_0200 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Ten",
         }, {
         onConnect: onConnectCallback,
@@ -826,8 +826,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyExtensionDisconnectAbility_0300 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Ten one",
         }, {
         onConnect: onConnectCallback,
@@ -891,8 +891,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ThirdPartyExtensionDisconnectAbility_0400 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsmanyusersabilitytest",
-          abilityName: "com.example.actsmanyusersabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsmanyusersabilitytest",
+          abilityName: "com.acts.actsmanyusersabilitytest.ServiceAbility",
           action: "Ten two",
         }, {
         onConnect: onConnectCallback,

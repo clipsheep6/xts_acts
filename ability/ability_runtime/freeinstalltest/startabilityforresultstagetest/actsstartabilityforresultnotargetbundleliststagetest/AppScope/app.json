@@ -1,6 +1,6 @@
 {
     "app": {
-      "bundleName": "com.example.startAbilityForResult.hmservice",
+      "bundleName": "com.acts.startabilityforresult.hmservice",
       "vendor": "example",
       "versionCode": 1000000,
       "versionName": "1.0.0",

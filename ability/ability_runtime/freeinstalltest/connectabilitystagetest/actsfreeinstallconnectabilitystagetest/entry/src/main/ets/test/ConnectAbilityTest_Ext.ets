@@ -110,12 +110,12 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd1 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+      var cmd1 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry";
       globalThis.delegator.executeShellCommand(cmd1, (err: any, d: any) => {
         console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd2 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      var cmd2 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
       globalThis.delegator.executeShellCommand(cmd2, (err: any, d: any) => {
         console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         done();
@@ -127,7 +127,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       dataAssert = ""
       await sleep(1000);
       if ("FreeInstall_Stage_ConnectAbility_Ext_1200" === TAG) {
-        var cmdUninstall = "bm uninstall -n com.ohos.hag.famanager";
+        var cmdUninstall = "bm uninstall -n com.acts.ohos.hag.famanager";
         globalThis.delegator.executeShellCommand(cmdUninstall, (err: any, d: any) => {
           console.info("executeShellCommandUninstall : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
@@ -145,14 +145,14 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_Ext_0100", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0100-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0100";
-      var cmdmyapp6 = "cp data/test/ConnectStageMyApplication6.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmdmyapp6 = "cp data/test/ConnectStageMyApplication6.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmdmyapp6, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
       var str1 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility",
       };
       startService(TAG, str1);
@@ -174,7 +174,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0200-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0200";
       var str1 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility",
       };
       startService(TAG, str1);
@@ -195,13 +195,13 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_Ext_0300", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0300-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0300";
-      var cmdum = "bm uninstall -n com.example.different.hmservice";
+      var cmdum = "bm uninstall -n com.acts.example.different.hmservice";
       globalThis.delegator.executeShellCommand(cmdum, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
       var str2 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility2",
       };
       startService(TAG, str2);
@@ -223,7 +223,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0400-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0400";
       var str3 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility3",
       };
       startService(TAG, str3);
@@ -250,7 +250,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       })
       await sleep(500);
       var str3 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility3",
       };
       startService(TAG, str3);
@@ -272,7 +272,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0600-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0600";
       var str4 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility4",
       };
       startService(TAG, str4);
@@ -294,7 +294,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0700-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0700";
       var str5 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility5",
       };
       startService(TAG, str5);
@@ -316,7 +316,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0800-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0800";
       var str6 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility6",
       };
       startService(TAG, str6);
@@ -337,13 +337,13 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_Ext_0900", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_0900-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_0900";
-      var cmdrm = "rm -r /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/*";
+      var cmdrm = "rm -r /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/*";
       globalThis.delegator.executeShellCommand(cmdrm, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
       var str7 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility7",
       };
       startService(TAG, str7);
@@ -365,7 +365,7 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_1000-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_1000";
       var str8 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility8",
       };
       startService(TAG, str8);
@@ -386,14 +386,14 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_Ext_1100", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_1100-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_1100";
-      var cmdmyapp7 = "cp data/test/ConnectStageMyApplication7.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmdmyapp7 = "cp data/test/ConnectStageMyApplication7.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmdmyapp7, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(1000);
       var str7 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility7",
       };
       startService(TAG, str7);
@@ -415,14 +415,14 @@ export default function ConnectAbilityTest_Ext(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_Ext_1200", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_Ext_1200-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_Ext_1200";
-      var cmdmyapp8 = "cp data/test/ConnectStageMyApplication8.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmdmyapp8 = "cp data/test/ConnectStageMyApplication8.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmdmyapp8, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(1000);
       var str9 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.ServiceAbility9",
       };
       startService(TAG, str9);

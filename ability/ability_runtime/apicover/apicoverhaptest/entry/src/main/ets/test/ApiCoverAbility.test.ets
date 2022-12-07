@@ -590,11 +590,11 @@ export default function ApiCoverTest() {
           console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(processRunningInformations[i]));
           expect(processRunningInformations[i].pid).assertLarger(0)
           expect(processRunningInformations[i].uid).assertLarger(0)
-          if(processRunningInformations[i].processName == "com.example.apicoverhaptest"){
+          if(processRunningInformations[i].processName == "com.acts.apicoverhaptest"){
             process = processRunningInformations[i]
           }
         }
-        expect(process.bundleNames[0]).assertEqual("com.example.apicoverhaptest")
+        expect(process.bundleNames[0]).assertEqual("com.acts.apicoverhaptest")
         done()
       }).catch((error)=>{
         console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(error));
@@ -618,11 +618,11 @@ export default function ApiCoverTest() {
             console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(processRunningInformations[i]));
             expect(processRunningInformations[i].pid).assertLarger(0)
             expect(processRunningInformations[i].uid).assertLarger(0)
-            if(processRunningInformations[i].processName == "com.example.apicoverhaptest"){
+            if(processRunningInformations[i].processName == "com.acts.apicoverhaptest"){
             process = processRunningInformations[i]
           }
         }
-          expect(process.bundleNames[0]).assertEqual("com.example.apicoverhaptest")
+          expect(process.bundleNames[0]).assertEqual("com.acts.apicoverhaptest")
           done()
         }else{
           console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(error));
@@ -699,13 +699,13 @@ export default function ApiCoverTest() {
         console.info("SUB_AA_FMS_AbilityStage_0200===config===" + JSON.stringify(globalThis.serviceContext.config))
         expect(data.parameters["config"]).assertLess(2)
         expect(data.parameters["poniterDevices"]).assertFalse()
-        expect(data.parameters["AbilityInfo"]).assertEqual("com.example.apicoverhaptest")
+        expect(data.parameters["AbilityInfo"]).assertEqual("com.acts.apicoverhaptest")
         let direction = globalThis.serviceContext.config.direction
         let pointerDervice = globalThis.serviceContext.config.hasPointerDevice
         let AbilityInfo = globalThis.serviceContext.extensionAbilityInfo.bundleName
         expect(direction).assertLess(2)
         expect(pointerDervice).assertFalse()
-        expect(AbilityInfo).assertEqual("com.example.apicoverhaptest")
+        expect(AbilityInfo).assertEqual("com.acts.apicoverhaptest")
         commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
         await sleep(4000)
         done()
@@ -717,7 +717,7 @@ export default function ApiCoverTest() {
       })
       let formWant ={
         deviceId:"",
-        bundleName:"com.example.apicoverhaptest",
+        bundleName:"com.acts.apicoverhaptest",
         abilityName:"ServiceAbility",
       }
       globalThis.abilityContext.startAbility(formWant, (err, data)=>{
@@ -759,7 +759,7 @@ export default function ApiCoverTest() {
         })
       let formWant ={
         deviceId:"",
-        bundleName:"com.example.apicoverhaptest",
+        bundleName:"com.acts.apicoverhaptest",
         abilityName:"CreateFormAbility",
         parameters:{
           "createForm": true
@@ -784,7 +784,7 @@ export default function ApiCoverTest() {
     it('SUB_AA_FormDisplaySpecifications_0100', 0, async function (done) {
       let formWant ={
         deviceId:"",
-        bundleName:"com.example.apicoverhaptest",
+        bundleName:"com.acts.apicoverhaptest",
         abilityName:"FormHostAbility",
       }
       globalThis.abilityContext.startAbility(formWant, (err, data)=>{
@@ -815,7 +815,7 @@ export default function ApiCoverTest() {
      * @tc.level   3
      */
     it('SUB_AA_FormDisplaySpecifications_0200', 0, async function (done) {
-      await formHost.getFormsInfo("com.example.apicoverhaptest", "phone").then((data)=>{
+      await formHost.getFormsInfo("com.acts.apicoverhaptest", "phone").then((data)=>{
         console.info("SUB_AA_FormDisplaySpecifications_0200===deleteForm success===" + JSON.stringify(data))
         expect(5).assertEqual(data[0].defaultDimension)
         done()

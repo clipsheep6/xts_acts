@@ -3,7 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "180000",
-        "bundle-name": "ohos.acts.bundle.stage.test",
+        "bundle-name": "com.acts.bundle.stage.test",
         "module-name": "testModule",
         "shell-timeout": "600000",
         "testcase-timeout": 70000
@@ -19,7 +19,7 @@
         {
             "type": "ShellKit",
             "teardown-command":[
-                "bm uninstall -n ohos.acts.bundle.stage.test"
+                "bm uninstall -n com.acts.bundle.stage.test"
             ]
         }
     ] 

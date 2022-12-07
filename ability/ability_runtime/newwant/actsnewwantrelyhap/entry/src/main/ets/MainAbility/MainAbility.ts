@@ -62,8 +62,8 @@ export default class MainAbility extends Ability {
         console.log("ACTS_NewWant MainAbility onForeground")
         if (globalThis.abilityWant.action == 'startStandard0400') {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.SecondAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.SecondAbility",
                 action: "restartSingleton"
             }, (error, data) => {
                 console.log('ACTS_NewWant MainAbility onForeground - startAbility restart singleton: '
@@ -72,8 +72,8 @@ export default class MainAbility extends Ability {
         }
         if (globalThis.abilityWant.action == 'startStandard0300') {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.SecondAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.SecondAbility",
                 action: "startSingleton0300"
             }, (error, data) => {
                 console.log('ACTS_NewWant MainAbility onForeground - startAbility restart singleton: '
@@ -82,8 +82,8 @@ export default class MainAbility extends Ability {
         }
         if (globalThis.abilityWant.action == 'startMainAbility0700') {
             globalThis.abilityContext.connectServiceExtensionAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.ServiceAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.ServiceAbility",
                 action: "connectServiceAbility0700"
             }, (error, data) => {
                 console.log('ACTS_NewWant MainAbility onForeground - startAbility startServiceAbility: '
@@ -92,8 +92,8 @@ export default class MainAbility extends Ability {
         }
         if (globalThis.abilityWant.action == 'startMainAbility0800') {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.SecondAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.SecondAbility",
                 action: "startSecondAbility0800"
             }, (error, data) => {
                 console.log('ACTS_NewWant MainAbility onForeground - startAbility startServiceAbility: '

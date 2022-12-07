@@ -1,6 +1,6 @@
 {
     "app": {
-        "bundleName": "com.example.extensionmodule",
+        "bundleName": "com.acts.extensionmodule",
         "vendor": "huawei",
         "versionCode": 1000000,
         "versionName": "1.0.0",

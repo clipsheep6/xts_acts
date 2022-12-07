@@ -45,8 +45,8 @@ export default class ServiceAbility extends ServiceExtension {
             console.log('ACTS_NewWant ServiceAbility onConnect, action:' + globalThis.abilityWant.action);
             this.context.startAbility(
                 {
-                    bundleName: "com.example.newwanthap",
-                    abilityName: "com.example.newwanthapa.SecondAbility",
+                    bundleName: "com.acts.example.newwanthap",
+                    abilityName: "com.acts.example.newwanthapa.SecondAbility",
                     action: "restartSecondAbility0700"
                 },
             )

@@ -34,8 +34,8 @@ export default class ServiceAbility extends ServiceExtension {
         if (want.action == 'getExtensionInfotwo') {
             this.context.startAbility(
                 {
-                    bundleName: 'com.example.startabilityforresult',
-                    abilityName: 'com.example.startabilityforresult.MainAbility2'
+                    bundleName: 'com.acts.startabilityforresult',
+                    abilityName: 'com.acts.startabilityforresult.MainAbility2'
                 },
                 {
                     windowMode: 0,

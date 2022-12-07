@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.open.harmony.packagemag",
+    "bundleName": "com.acts.open.harmony.packagemag",
     "vendor": "ohos",
     "version": {
       "code": 1000000,
@@ -14,10 +14,10 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.open.harmony.packagemag",
+    "package": "com.acts.open.harmony.packagemag",
     "name": ".MyApplication",
     "srcPath": "",
-    "mainAbility": "com.open.harmony.packagemag.MainAbility",
+    "mainAbility": "com.acts.open.harmony.packagemag.MainAbility",
     "deviceType": [
       "default",
       "tablet"
@@ -90,7 +90,7 @@
         "icon": "$media:icon",
         "description": "$string:DataAbility_desc",
         "type": "data",
-        "uri": "dataability://com.open.harmony.packagemag.DataAbility"
+        "uri": "dataability://com.acts.open.harmony.packagemag.DataAbility"
       },
       {
         "orientation": "followRecent",

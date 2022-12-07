@@ -47,7 +47,7 @@ export default class MainAbility1 extends Ability {
                     resultCode: 1,
                     want:
                     {
-                        bundleName: "com.example.qianyiyingyong.hmservice",
+                        bundleName: "com.acts.example.qianyiyingyong.hmservice",
                         abilityName: "hnm2MainAbility",
                     },
                 }

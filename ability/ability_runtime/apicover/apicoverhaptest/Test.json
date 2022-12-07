@@ -3,7 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "180000",
-        "bundle-name": "com.example.apicoverhaptest",
+        "bundle-name": "com.acts.apicoverhaptest",
         "module-name": "phone",
         "shell-timeout": "600000",
         "testcase-timeout": 70000

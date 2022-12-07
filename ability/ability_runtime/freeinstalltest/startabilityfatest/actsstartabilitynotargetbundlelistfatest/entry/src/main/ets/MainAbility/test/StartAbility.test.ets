@@ -32,17 +32,17 @@ export default function StartAbilityTest() {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await Utils.sleep(500);
-      var cmd1 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+      var cmd1 = "mkdir /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry";
       delegator.executeShellCommand(cmd1, (err: any, d: any) => {
         console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await Utils.sleep(500);
-      var cmd2 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      var cmd2 = "mkdir /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
       delegator.executeShellCommand(cmd2, (err: any, d: any) => {
         console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await Utils.sleep(500);
-      var cmd3 = "cp data/test/AtomizationFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+      var cmd3 = "cp data/test/AtomizationFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/" +
         "entry/files";
       delegator.executeShellCommand(cmd3, (err: any, d: any) => {
         console.info("executeShellCommand3 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -53,14 +53,14 @@ export default function StartAbilityTest() {
     afterEach(async function (done) {
       console.info("StartAbilityTest after each called");
       if ("FreeInstall_FA_StartAbility_2800" === TAG || "FreeInstall_FA_StartAbility_3900") {
-        var cmd5 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
+        var cmd5 = "bm uninstall -n com.acts.example.qianyiyingyong.hmservice";
         delegator.executeShellCommand(cmd5, (err: any, d: any) => {
           console.info("executeShellCommand5: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
       }
       await Utils.sleep(500);
       if ("FreeInstall_FA_StartAbility_3900" === TAG) {
-        var cmd4 = "bm uninstall -n com.ohos.hag.famanager";
+        var cmd4 = "bm uninstall -n com.acts.ohos.hag.famanager";
         delegator.executeShellCommand(cmd4, (err: any, d: any) => {
           console.info("executeShellCommand4: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
@@ -83,7 +83,7 @@ export default function StartAbilityTest() {
         var str = {
           'want': {
             "deviceId": "",
-            "bundleName": "com.example.qianyiyingyong.hmservice",
+            "bundleName": "com.acts.example.qianyiyingyong.hmservice",
             "abilityName": "com.example.qianyiyingyong.MainAbility",
             "moduleName": "entry",
             "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -118,7 +118,7 @@ export default function StartAbilityTest() {
         var str = {
           'want': {
             "deviceId": "",
-            "bundleName": "com.example.qianyiyingyong.hmservice",
+            "bundleName": "com.acts.example.qianyiyingyong.hmservice",
             "abilityName": "com.example.qianyiyingyong.MainAbility",
             "moduleName": "entry",
             "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -145,12 +145,12 @@ export default function StartAbilityTest() {
     it("FreeInstall_FA_StartAbility_2800", 0, async function (done) {
       console.log("------------start FreeInstall_FA_StartAbility_2800-------------");
       TAG = "FreeInstall_FA_StartAbility_2800";
-      var cmd7 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationFaEntry.hap";
+      var cmd7 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationFaEntry.hap";
       delegator.executeShellCommand(cmd7, (err: any, d: any) => {
         console.info("executeShellCommand7 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await Utils.sleep(500);
-      var cmd8 = "cp data/test/FaMyApplication1.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+      var cmd8 = "cp data/test/FaMyApplication1.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/" +
         "entry/files";
       delegator.executeShellCommand(cmd8, (err: any, d: any) => {
         console.info("executeShellCommand8 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));

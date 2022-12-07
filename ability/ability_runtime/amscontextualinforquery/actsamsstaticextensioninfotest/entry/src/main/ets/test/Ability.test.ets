@@ -58,8 +58,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack);
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.staticextensioninfo",
-            abilityName: "com.example.staticextensioninfo.ServiceAbility",
+            bundleName: "com.acts.staticextensioninfo",
+            abilityName: "com.acts.staticextensioninfo.ServiceAbility",
             action: "getExtensionInfo"
           }
         );
@@ -129,9 +129,9 @@ export default function abilityTest() {
         expect(data.deviceTypes.length).assertEqual(2);
         expect(data.deviceTypes[0]).assertEqual("default");
         expect(data.moduleName).assertEqual("phone")
-        expect(data.mainAbilityName).assertEqual("com.example.staticextensioninfo.MainAbility");
+        expect(data.mainAbilityName).assertEqual("com.acts.staticextensioninfo.MainAbility");
         expect(data.installationFree).assertEqual(false);
-        expect(data.mainElementName).assertEqual('com.example.staticextensioninfo.MainAbility');
+        expect(data.mainElementName).assertEqual('com.acts.staticextensioninfo.MainAbility');
         expect(data.hashValue).assertEqual('');
         console.log("checkHapModuleInfo end  " + data);
       }
@@ -185,7 +185,7 @@ export default function abilityTest() {
         expect(typeof (data.codePath)).assertEqual("string");
         expect(typeof (data.removable)).assertEqual("boolean");
         console.log("checkApplicationInfo_expect_typeof_end")
-        expect(data.name).assertEqual("com.example.staticextensioninfo");
+        expect(data.name).assertEqual("com.acts.staticextensioninfo");
         expect(data.description).assertEqual("$string:description_application");
         expect(data.descriptionId).assertLarger(0);
         expect(data.systemApp).assertEqual(true);
@@ -194,18 +194,18 @@ export default function abilityTest() {
         expect(data.labelId).assertEqual("16777216");
         expect(data.icon).assertEqual("$media:icon");
         expect(data.iconId).assertEqual("16777224");
-        expect(data.process).assertEqual("com.example.staticextensioninfo");
+        expect(data.process).assertEqual("com.acts.staticextensioninfo");
         expect(data.supportedModes).assertEqual(0);
         expect(data.moduleSourceDirs.length).assertEqual(1);
         expect(data.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/" +
-        "com.example.staticextensioninfo/phone");
+        "com.acts.staticextensioninfo/phone");
         expect(data.moduleInfos.length).assertEqual(1);
         expect(data.moduleInfos[0].moduleName).assertEqual("phone");
         expect(data.moduleInfos[0].moduleSourceDir).assertEqual("/data/app/el1/bundle/public/" +
-        "com.example.staticextensioninfo/phone");
-        expect(data.entryDir).assertEqual("/data/app/el1/bundle/public/com.example.staticextensioninfo" +
+        "com.acts.staticextensioninfo/phone");
+        expect(data.entryDir).assertEqual("/data/app/el1/bundle/public/com.acts.staticextensioninfo" +
         "/phone");
-        expect(data.codePath).assertEqual("/data/app/el1/bundle/public/com.example.staticextensioninfo");
+        expect(data.codePath).assertEqual("/data/app/el1/bundle/public/com.acts.staticextensioninfo");
         expect(data.removable).assertEqual(true);
         console.log("checkApplicationInfo end  " + data);
       }
@@ -241,8 +241,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack);
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.staticextensioninfotest",
-            abilityName: "com.example.staticextensioninfotest.ServiceAbility",
+            bundleName: "com.acts.staticextensioninfotest",
+            abilityName: "com.acts.staticextensioninfotest.ServiceAbility",
             action: "getExtensionInfoTest"
           }
         );
@@ -311,9 +311,9 @@ export default function abilityTest() {
         expect(data.deviceTypes.length).assertEqual(2);
         expect(data.deviceTypes[0]).assertEqual("default");
         expect(data.moduleName).assertEqual("phone")
-        expect(data.mainAbilityName).assertEqual("com.example.staticextensioninfotest.MainAbility");
+        expect(data.mainAbilityName).assertEqual("com.acts.staticextensioninfotest.MainAbility");
         expect(data.installationFree).assertEqual(false);
-        expect(data.mainElementName).assertEqual('com.example.staticextensioninfotest.MainAbility');
+        expect(data.mainElementName).assertEqual('com.acts.staticextensioninfotest.MainAbility');
         expect(data.hashValue).assertEqual('');
         console.log("checkHapModuleInfo end  " + data);
       }
@@ -367,7 +367,7 @@ export default function abilityTest() {
         expect(typeof (data.codePath)).assertEqual("string");
         expect(typeof (data.removable)).assertEqual("boolean");
         console.log("checkApplicationInfo_expect_typeof_end")
-        expect(data.name).assertEqual("com.example.staticextensioninfotest");
+        expect(data.name).assertEqual("com.acts.staticextensioninfotest");
         expect(data.description).assertEqual("$string:description_application");
         expect(data.descriptionId).assertLarger(0);
         expect(data.systemApp).assertEqual(true);
@@ -376,18 +376,18 @@ export default function abilityTest() {
         expect(data.labelId.length).assertLarger(0);
         expect(data.icon).assertEqual("$media:icon");
         expect(data.iconId.length).assertLarger(0);
-        expect(data.process).assertEqual("com.example.staticextensioninfotest");
+        expect(data.process).assertEqual("com.acts.staticextensioninfotest");
         expect(data.supportedModes).assertEqual(0);
         expect(data.moduleSourceDirs.length).assertEqual(1);
         expect(data.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/" +
-        "com.example.staticextensioninfotest/phone");
+        "com.acts.staticextensioninfotest/phone");
         expect(data.moduleInfos.length).assertEqual(1);
         expect(data.moduleInfos[0].moduleName).assertEqual("phone");
         expect(data.moduleInfos[0].moduleSourceDir).assertEqual("/data/app/el1/bundle/public/" +
-        "com.example.staticextensioninfotest/phone");
-        expect(data.entryDir).assertEqual("/data/app/el1/bundle/public/com.example.staticextensioninfotest" +
+        "com.acts.staticextensioninfotest/phone");
+        expect(data.entryDir).assertEqual("/data/app/el1/bundle/public/com.acts.staticextensioninfotest" +
         "/phone");
-        expect(data.codePath).assertEqual("/data/app/el1/bundle/public/com.example.staticextensioninfotest");
+        expect(data.codePath).assertEqual("/data/app/el1/bundle/public/com.acts.staticextensioninfotest");
         expect(data.removable).assertEqual(true);
         console.log("checkApplicationInfo end  " + data);
       }
@@ -422,7 +422,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack);
               connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.extensionmodule",
+          bundleName: "com.acts.extensionmodule",
           abilityName: "ServiceExtAbility",
         }
       );
@@ -456,7 +456,7 @@ export default function abilityTest() {
         expect(data.metadata[0].name).assertEqual("ohos.extension.form");
         expect(data.metadata[0].value).assertEqual("MainAbility");
         expect(data.metadata[0].resource).assertEqual("@profile:form_config");
-        expect(data.bundleName).assertEqual("com.example.extensionmodule");
+        expect(data.bundleName).assertEqual("com.acts.extensionmodule");
         expect(data.moduleName).assertEqual("phone");
         expect(data.name).assertEqual("ServiceExtAbility");
         expect(data.permissions.length).assertEqual(1);

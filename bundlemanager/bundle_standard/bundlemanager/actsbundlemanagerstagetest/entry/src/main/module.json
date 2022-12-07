@@ -4,7 +4,7 @@
         "type": "entry",
         "srcEntrance": "./ets/Application/AbilityStage.ts",
         "description": "$string:testModule_entry_dsc",
-        "mainElement": "ohos.acts.bundle.stage.test.MainAbility",
+        "mainElement": "com.acts.bundle.stage.test.MainAbility",
         "deviceTypes": [
             "default",
             "tablet"
@@ -15,7 +15,7 @@
         "pages": "$profile:main_pages",
         "abilities": [
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility",
+                "name": "com.acts.bundle.stage.test.MainAbility",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -62,7 +62,7 @@
                 ]
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility1",
+                "name": "com.acts.bundle.stage.test.MainAbility1",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -73,7 +73,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility2",
+                "name": "com.acts.bundle.stage.test.MainAbility2",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -84,7 +84,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility3",
+                "name": "com.acts.bundle.stage.test.MainAbility3",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -95,7 +95,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility4",
+                "name": "com.acts.bundle.stage.test.MainAbility4",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -106,7 +106,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility5",
+                "name": "com.acts.bundle.stage.test.MainAbility5",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -117,7 +117,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility6",
+                "name": "com.acts.bundle.stage.test.MainAbility6",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -128,7 +128,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility7",
+                "name": "com.acts.bundle.stage.test.MainAbility7",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -139,7 +139,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility8",
+                "name": "com.acts.bundle.stage.test.MainAbility8",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -150,7 +150,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility9",
+                "name": "com.acts.bundle.stage.test.MainAbility9",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
@@ -161,7 +161,7 @@
                 "skills": []
             },
             {
-                "name": "ohos.acts.bundle.stage.test.MainAbility10",
+                "name": "com.acts.bundle.stage.test.MainAbility10",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",

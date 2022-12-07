@@ -17,7 +17,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 import wantConstant from '@ohos.ability.wantConstant'
 import Prompt from '@system.prompt';
 
-const BUNDLE_NAME = 'com.example.qianyiyingyong.hmservice';
+const BUNDLE_NAME = 'com.acts.example.qianyiyingyong.hmservice';
 const ABILITY_NAME1 = 'com.example.hm2.MainAbility';
 
 async function routePage() {
@@ -104,7 +104,7 @@ struct Index {
         resultCode: 1,
         want:
         {
-          bundleName: "com.example.qianyiyingyong.hmservice",
+          bundleName: "com.acts.example.qianyiyingyong.hmservice",
           abilityName: "com.example.hm2.MainAbility",
         },
       }

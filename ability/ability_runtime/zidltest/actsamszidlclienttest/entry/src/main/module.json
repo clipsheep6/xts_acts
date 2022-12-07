@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.zidlclienttest.MainAbility",
+        "name": "com.acts.example.zidlclienttest.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
@@ -38,7 +38,7 @@
     "extensionAbilities": [
       {
         "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
-        "name": "com.example.zidlclienttest.ServiceAbility",
+        "name": "com.acts.example.zidlclienttest.ServiceAbility",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",
@@ -47,7 +47,7 @@
       },
       {
         "srcEntrance": "./ets/ServiceAbility2/ServiceAbility2.ts",
-        "name": "com.example.zidlclienttest.ServiceAbility2",
+        "name": "com.acts.example.zidlclienttest.ServiceAbility2",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",
