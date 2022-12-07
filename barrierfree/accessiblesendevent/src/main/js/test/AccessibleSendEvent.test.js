@@ -14,8 +14,8 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import accessibility from '@ohos.accessibility'
-import { GesturePath } from '@ohos.accessibility.GesturePath';
-import { GesturePoint } from '@ohos.accessibility.GesturePoint';
+import GesturePath from '@ohos.accessibility.GesturePath';
+import GesturePoint from '@ohos.accessibility.GesturePoint';
 const bundleName = 'com.sample.testfora11y';
 const triggerAction = 'accessibilityFocus';
 const eventType = 'accessibilityFocus';
