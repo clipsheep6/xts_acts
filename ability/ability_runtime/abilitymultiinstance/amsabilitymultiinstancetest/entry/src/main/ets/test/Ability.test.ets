@@ -71,8 +71,8 @@ async function startAbilityProcess(abilityContext, parameters) {
       abilityName = "com.example.amsabilitymultiinstanceappd.ThirdAbility";
       break;
     case "StartE":
-      bundleName = "com.example.amsabilitymultiinstanceappe";
-      abilityName = "com.example.amsabilitymultiinstanceappe.MainAbility";
+      bundleName = "com.acts.example.amsabilitymultiinstanceappe";
+      abilityName = "com.acts.example.amsabilitymultiinstanceappe.MainAbility";
       break;
 
     default:

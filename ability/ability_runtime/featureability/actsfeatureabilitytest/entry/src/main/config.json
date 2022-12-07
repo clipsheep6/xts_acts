@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.actsfeatureabilitytest",
+    "bundleName": "com.acts.example.actsfeatureabilitytest",
     "vendor": "jstest",
     "version": {
       "code": 1,
@@ -18,9 +18,9 @@
     }
   },
   "module": {
-    "package": "com.example.actsfeatureabilitytest",
+    "package": "com.acts.example.actsfeatureabilitytest",
     "name": ".MyApplication",
-    "mainAbility": "com.example.actsfeatureabilitytest.MainAbility",
+    "mainAbility": "com.acts.example.actsfeatureabilitytest.MainAbility",
     "deviceType": [
         "default",
         "tablet"
@@ -47,7 +47,7 @@
         "backgroundModes": [
           "dataTransfer"
         ],
-        "name": "com.example.actsfeatureabilitytest.MainAbility",
+        "name": "com.acts.example.actsfeatureabilitytest.MainAbility",
         "srcPath": "MainAbility",
         "srcLanguage": "js",
         "icon": "$media:icon",

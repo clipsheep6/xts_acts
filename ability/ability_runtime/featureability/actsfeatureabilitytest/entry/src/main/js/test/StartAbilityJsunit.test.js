@@ -26,8 +26,8 @@ describe('StartAbilityTest', function () {
     afterEach(async function(done) {
         let wantInfo = {
             want: {
-                bundleName: "com.example.actsfeatureabilitytest",
-                abilityName: "com.example.actsfeatureabilitytest.TestAbility"
+                bundleName: "com.acts.example.actsfeatureabilitytest",
+                abilityName: "com.acts.example.actsfeatureabilitytest.TestAbility"
             }
         }
         await featureAbility.startAbility(wantInfo).then((data) => {
