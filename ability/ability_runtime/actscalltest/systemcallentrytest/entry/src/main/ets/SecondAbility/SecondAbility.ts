@@ -134,8 +134,8 @@ export default class SecondAbility extends Ability {
         let recvData = new MySequenceable(0, '', '');
         data.readSequenceable(recvData);
         let want = {
-            bundleName: "com.example.systemcalltest",
-            abilityName: "com.example.systemcalltest.MainAbility",
+            bundleName: "com.acts.example.systemcalltest",
+            abilityName: "com.acts.example.systemcalltest.MainAbility",
         };
         console.log("SystemCallTest SecondAbility test2100 before startAbilityByCall");
         let resultData = new MySequenceable(0, '', '');
@@ -193,7 +193,7 @@ export default class SecondAbility extends Ability {
             let commonEventData = {
                 data: stressResult.toString(),
             };
-            commonEvent.publish('com.example.systemcalltest.Test5600', commonEventData, (err) => {
+            commonEvent.publish('com.acts.example.systemcalltest.Test5600', commonEventData, (err) => {
                 console.log('SystemCallTest SecondAbility stress test result event');
             });
             seq=0;

@@ -15,7 +15,7 @@
         "pages": "$profile:main_pages",
         "abilities": [
             {
-                "name": "com.example.lifecycletest.Hap3MainAbility1",
+                "name": "com.acts.example.lifecycletest.Hap3MainAbility1",
                 "srcEntrance": "./ets/Hap3MainAbility1/Hap3MainAbility1.ts",
                 "description": "$string:Hap3MainAbility1_desc",
                 "icon": "$media:icon",

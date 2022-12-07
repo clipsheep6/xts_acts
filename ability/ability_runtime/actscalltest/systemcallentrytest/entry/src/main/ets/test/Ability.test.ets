@@ -18,9 +18,9 @@ import missionManager from '@ohos.application.missionManager'
 import appManager from '@ohos.application.appManager'
 
 const MAX_MISSION_NUM = 1024;
-var sysABundleName = "com.example.systemcalltest";
-var sysAMainAbilityName = "com.example.systemcalltest.MainAbility";
-var sysASecondAbilityName = "com.example.systemcalltest.SecondAbility";
+var sysABundleName = "com.acts.example.systemcalltest";
+var sysAMainAbilityName = "com.acts.example.systemcalltest.MainAbility";
+var sysASecondAbilityName = "com.acts.example.systemcalltest.SecondAbility";
 var systemAppCallerABundleName = "com.example.systemappcallera";
 var systemAppCallerAMainAbilityName = "com.example.systemappcallera.MainAbility";
 var systemAppCallerASecondAbilityName = "com.example.systemappcallera.SecondAbility";

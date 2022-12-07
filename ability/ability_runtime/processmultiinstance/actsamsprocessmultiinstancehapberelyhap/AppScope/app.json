@@ -1,6 +1,6 @@
 {
     "app": {
-        "bundleName": "com.example.multiinstancehapb",
+        "bundleName": "com.acts.example.multiinstancehapb",
         "vendor": "huawei",
         "versionCode": 1000000,
         "versionName": "1.0.0",

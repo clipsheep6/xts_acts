@@ -15,13 +15,13 @@
 import Ability from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEvent'
 
-var bundleNameCallee = "com.example.systemcalltest";
-var abilityNameCallee = "com.example.systemcalltest.SecondAbility";
+var bundleNameCallee = "com.acts.example.systemcalltest";
+var abilityNameCallee = "com.acts.example.systemcalltest.SecondAbility";
 var subscriber;
 var caller;
-var event_getcaller = "getcaller.com.example.systemcalltest.SecondAbility";
-var event_call = "call.com.example.systemcalltest.SecondAbility";
-var event_release = "release.com.example.systemcalltest.SecondAbility";
+var event_getcaller = "getcaller.com.acts.example.systemcalltest.SecondAbility";
+var event_call = "call.com.acts.example.systemcalltest.SecondAbility";
+var event_release = "release.com.acts.example.systemcalltest.SecondAbility";
 var subscribeInfo = {
     events: [event_getcaller, event_call, event_release, ],
 };

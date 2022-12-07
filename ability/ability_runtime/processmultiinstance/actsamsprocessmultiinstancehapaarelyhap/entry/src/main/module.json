@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "com.example.multiinstancehapaa",
+    "name": "com.acts.example.multiinstancehapaa",
     "type": "entry",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:phone_entry_dsc",
@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.multiinstancehapaa.MainAbility",
+        "name": "com.acts.example.multiinstancehapaa.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
