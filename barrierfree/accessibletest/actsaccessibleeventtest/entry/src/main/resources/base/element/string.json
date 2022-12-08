@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "accessibleXts"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "accessibleXts"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "accessibleXts"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "Accessibility_desc",
+      "value": "accessibility_description"
+  },
+  {
+      "name": "Accessibility_label",
+      "value": "accessibility_label"
+  }
+  ]
+}

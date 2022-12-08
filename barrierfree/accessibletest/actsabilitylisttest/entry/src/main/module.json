@@ -6,7 +6,6 @@
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
-      "tablet",
       "default",
       "phone",
       "tablet"
@@ -31,6 +30,78 @@
             "actions": [
               "action.system.home"
             ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "srcEntrance": "./ets/ServiceExtAbility/ServiceAudibleAbility.ts",
+        "name": "ServiceAudibleAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_serviceability",
+        "type": "accessibility",
+        "visible": true,
+        "metadata": [
+          {
+            "name": "ohos.accessibleability",
+            "resource": "$profile:accessibility_audible_config"
+          }
+        ]
+      },
+      {
+        "srcEntrance": "./ets/ServiceExtAbility/ServiceGenericAbility.ts",
+        "name": "ServiceGenericAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_serviceability",
+        "type": "accessibility",
+        "visible": true,
+        "metadata": [
+          {
+            "name": "ohos.accessibleability",
+            "resource": "$profile:accessibility_generic_config"
+          }
+        ]
+      },
+      {
+        "srcEntrance": "./ets/ServiceExtAbility/ServiceHapticAbility.ts",
+        "name": "ServiceHapticAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_serviceability",
+        "type": "accessibility",
+        "visible": true,
+        "metadata": [
+          {
+            "name": "ohos.accessibleability",
+            "resource": "$profile:accessibility_haptic_config"
+          }
+        ]
+      },
+      {
+        "srcEntrance": "./ets/ServiceExtAbility/ServiceSpokenAbility.ts",
+        "name": "ServiceSpokenAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_serviceability",
+        "type": "accessibility",
+        "visible": true,
+        "metadata": [
+          {
+            "name": "ohos.accessibleability",
+            "resource": "$profile:accessibility_spoken_config"
+          }
+        ]
+      },
+      {
+        "srcEntrance": "./ets/ServiceExtAbility/ServiceVisualAbility.ts",
+        "name": "ServiceVisualAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_serviceability",
+        "type": "accessibility",
+        "visible": true,
+        "metadata": [
+          {
+            "name": "ohos.accessibleability",
+            "resource": "$profile:accessibility_visual_config"
           }
         ]
       }
