@@ -14,7 +14,8 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import accessibility from '@ohos.accessibility'
-
+import GesturePath from '@ohos.accessibility.GesturePath';
+import GesturePoint from '@ohos.accessibility.GesturePoint';
 const bundleName = 'com.sample.testfora11y';
 const triggerAction = 'accessibilityFocus';
 const eventType = 'accessibilityFocus';
@@ -48,7 +49,21 @@ describe('AccessibleSendEvent', function () {
     it('SendEvent_null_0020', 0, async function (done) {
         console.info('SendEvent_null_0020');
         let event = null;
-
+        let gesturePoint = new GesturePoint(676, 735);
+        expect(gesturePoint.positionX == 676).assertTrue();
+        expect(gesturePoint.positionY == 735).assertTrue();
+        let gesturePath = new GesturePath(100);
+        expect(gesturePath.durationTime == 100).assertTrue();
+        accessibility.sendEvent(event, (err, data) => {
+            if (err) {
+                console.error('failed to sendEvent because ' + JSON.stringify(err));
+                return;
+            }
+            console.info('success data:sendEvent : ' + JSON.stringify(data))
+            expect(null).assertFail();
+            done();
+            return;
+        })
         accessibility.sendEvent(event).then((result) => {           
             console.error(`AccessibleSendEvent: SendEvent_null_0020 result ${result}`);
             expect(null).assertFail();            
