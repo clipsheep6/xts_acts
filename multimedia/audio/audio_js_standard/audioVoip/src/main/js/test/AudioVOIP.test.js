@@ -17,9 +17,10 @@ import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
 import featureAbility from '@ohos.ability.featureAbility'
 import resourceManager from '@ohos.resourceManager';
-import * as audioTestBase from '../../../../../AudioTestBase'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium';
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix } from '@ohos.uitest'
 
+export default function audioVoip(){
 describe('audioVoip', function () {
     let mediaDir;
     let fdRead;
@@ -30,14 +31,24 @@ describe('audioVoip', function () {
     let TagRec = "AudioFrameworkRecLog";
     const AUDIOMANAGER = audio.getAudioManager();
     console.info(`${TagRender}: Create AudioManger Object JS Framework`);
+    async function getPermission() {
+        let permissions = ['ohos.permission.MICROPHONE'];
+        featureAbility.getContext().requestPermissionsFromUser(permissions).then((data) => {
+            console.log(`requestPermissionsFromUser success ${JSON.stringify(data)}`);
+        }).catch((error) => {
+            console.log(`requestPermissionsFromUser error ${JSON.stringify(error)}`);
+        });
+    }
+    async function clickButton() {
+        let driver = UiDriver.create()
+        let button = await driver.findComponent(BY.text('允许'))
+        await button.click()
+    }
 
     beforeAll(async function () {
         console.info(`AudioFrameworkTest: beforeAll: Prerequisites at the test suite level`);
-        let permissionName1 = 'ohos.permission.MICROPHONE';
-        let permissionNameList = [permissionName1];
-        let appName = 'ohos.acts.multimedia.audio.audiovoip';
-        await audioTestBase.applyPermission(appName, permissionNameList);
-        await sleep(100);
+        await getPermission();
+        await clickButton();
         console.info(`AudioFrameworkTest: beforeAll: END`);
     })
 
@@ -505,3 +516,4 @@ describe('audioVoip', function () {
 
 
 })
+}
