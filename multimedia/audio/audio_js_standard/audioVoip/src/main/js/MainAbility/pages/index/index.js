@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,19 @@
  * limitations under the License.
  */
 
-import audioVoip from './AudioVOIP.test.js'
+const injectRef = Object.getPrototypeOf(global) || global
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
 
-export default function testsuite(){
-  audioVoip()
+export default {
+   data: {
+       title: ""
+   },
+    onInit() {
+       this.title = this.$t('strings.world');
+    },
+    onShow() {
+       console.info('onShow finish')
+    },
+    onReady() {
+    },
 }
-

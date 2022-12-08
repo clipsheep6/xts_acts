@@ -1,9 +1,10 @@
 {
     "description": "Configuration for audio manager Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
+        "bundle-name": "ohos.acts.multimedia.audio.audiovoip",
+        "package-name": "ohos.acts.multimedia.audio.audiovoip",
         "test-timeout": "550000",
-        "package": "ohos.acts.multimedia.audio.audiovoip",
         "shell-timeout": "60000"
     },
     "kits": [
