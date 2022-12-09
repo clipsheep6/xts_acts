@@ -232,9 +232,9 @@ describe('ActsOsAccountThirdPartyTest_third1', function () {
         var osAccountManager = osaccount.getAccountManager();
         var testLocalId = await osAccountManager.getOsAccountLocalIdFromProcess();
         console.debug("====>get AccountManager finish====");
-        osAccountManager.getSerialNumberByOsAccountLocalId(100, (err, serialNumber)=>{
+        osAccountManager.getSerialNumberByOsAccountLocalId(testLocalId, (err, serialNumber)=>{
             console.debug("====>ger serialNumber err:" + JSON.stringify(err));
-            console.debug("====>get serialNumber:" + serialNumber + " by localId: 100" );
+            console.debug("====>get serialNumber:" + serialNumber + " by localId: " + testLocalId);
             expect(err).assertEqual(null);
             var serialNumberStr = serialNumber.toString();
             var serialIntercept = serialNumberStr.substring(8);
@@ -262,7 +262,7 @@ describe('ActsOsAccountThirdPartyTest_third1', function () {
         var testLocalId = await osAccountManager.getOsAccountLocalIdFromProcess();
         console.debug("====>get AccountManager finish====");
         var serialNumber = await osAccountManager.getSerialNumberByOsAccountLocalId(testLocalId);
-        console.debug("====>get serialNumber:" + serialNumber + " by localId: 100" );
+        console.debug("====>get serialNumber:" + serialNumber + " by localId: " + testLocalId);
         var serialNumberStr = serialNumber.toString();
         var serialIntercept = serialNumberStr.substring(8);
         console.debug("====>truncate the last eight characters: " + serialIntercept);
