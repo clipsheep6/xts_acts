@@ -62,7 +62,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0100', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0100 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.UNKNOWN_TYPE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.ONE_TIME_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.ONE_TIME_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -86,7 +86,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0200', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0200 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.NO_BUILD_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.NO_BUILD_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -110,7 +110,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0300', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0300 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITIES
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.CANCEL_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.CANCEL_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -134,7 +134,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0400', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0400 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_SERVICE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -158,7 +158,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0500', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0500 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.SEND_COMMON_EVENT
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.CONSTANT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.CONSTANT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -182,7 +182,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0600', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0600 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.UNKNOWN_TYPE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_ELEMENT
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ELEMENT]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -206,7 +206,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0700', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0700 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_ACTION
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ACTION]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -230,7 +230,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0800', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0800 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITIES
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_URI
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_URI]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -254,7 +254,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0900', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0900 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_SERVICE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_ENTITIES
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ENTITIES]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -278,7 +278,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1000', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1000 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.SEND_COMMON_EVENT
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_BUNDLE
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_BUNDLE]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -302,7 +302,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1100', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1100 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.UNKNOWN_TYPE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.ONE_TIME_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.ONE_TIME_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -324,7 +324,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1200', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1200 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.NO_BUILD_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.NO_BUILD_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -346,7 +346,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1300', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1300 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITIES
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.CANCEL_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.CANCEL_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -368,7 +368,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1400', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1400 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_SERVICE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -390,7 +390,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1500', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1500 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.SEND_COMMON_EVENT
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.CONSTANT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.CONSTANT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -412,7 +412,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1600', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1600 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.UNKNOWN_TYPE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_ELEMENT
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ELEMENT]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -434,7 +434,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1700', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1700 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_ACTION
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ACTION]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -456,7 +456,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1800', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1800 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITIES
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_URI
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_URI]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -478,7 +478,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1900', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_1900 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_SERVICE
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_ENTITIES
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ENTITIES]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -500,7 +500,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2000', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2000 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.SEND_COMMON_EVENT
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.REPLACE_BUNDLE
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_BUNDLE]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -522,7 +522,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2100', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2100 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -557,7 +557,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2200', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2200 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -588,7 +588,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2300', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2300 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -624,7 +624,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2400', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2400 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -657,7 +657,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2500', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2500 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -692,7 +692,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2600', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2600 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -723,7 +723,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2700', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2700 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -758,7 +758,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2800', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2800 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -792,7 +792,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2900', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2900 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
@@ -827,7 +827,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3000', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3000 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
@@ -860,7 +860,7 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3100', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3100 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err.code) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
