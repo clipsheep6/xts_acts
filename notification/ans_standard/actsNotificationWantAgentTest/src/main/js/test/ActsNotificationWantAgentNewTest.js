@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,6 +54,13 @@ export default function ActsNotificationWantAgentNewTest() {
       }
     }
 
+    beforeEach(async function (done) {
+      console.info(`${TAG} beforeEach START`)
+      WantAgent = {}
+      console.info(`${TAG} beforeEachEach END`)
+      done();
+    })
+
     /*
      * @tc.number    : SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_0100
      * @tc.name      : function getWantAgent(info: WantAgentInfo, callback: AsyncCallback<WantAgent>): void
@@ -64,7 +71,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.UNKNOWN_TYPE
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.ONE_TIME_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -88,7 +95,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.NO_BUILD_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -112,7 +119,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITIES
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.CANCEL_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -136,7 +143,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_SERVICE
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -160,7 +167,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.SEND_COMMON_EVENT
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.CONSTANT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -184,7 +191,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.UNKNOWN_TYPE
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ELEMENT]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -208,7 +215,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ACTION]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -232,7 +239,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITIES
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_URI]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -256,7 +263,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_SERVICE
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_ENTITIES]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -280,7 +287,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.SEND_COMMON_EVENT
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.REPLACE_BUNDLE]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -524,26 +531,24 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
         } else {
           WantAgent = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
-          done()
-        }
-      })
-      wantAgent.cancel(WantAgent, (err) => {
-        if (err.code) {
-          console.info(`${TAG} cancel AsyncCallback err: ${err.code}`)
-          expect(false).assertTrue()
-          done()
-        } else {
-          console.info(`${TAG} cancel AsyncCallback success`)
-          expect(true).assertTrue()
-          done()
+          wantAgent.cancel(WantAgent, (err) => {
+            if (err.code) {
+              console.info(`${TAG} cancel AsyncCallback err: ${err.code}`)
+              expect(false).assertTrue()
+              done()
+            } else {
+              console.info(`${TAG} cancel AsyncCallback success`)
+              expect(true).assertTrue()
+              done()
+            }
+          })
         }
       })
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2100 END`)
@@ -561,19 +566,17 @@ export default function ActsNotificationWantAgentNewTest() {
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
-        expect(true).assertTrue()
-        done()
+        wantAgent.cancel(WantAgent).then(() => {
+          console.info(`${TAG} cancel Promise success`)
+          expect(true).assertTrue()
+          done()
+        }).catch((err) => {
+          console.info(`${TAG} cancel Promise err: ${err.code}`)
+          expect(false).assertTrue()
+          done()
+        })
       }).catch((err) => {
         console.info(`${TAG} getWantAgent Promise err: ${err.code}`)
-        expect(false).assertTrue()
-        done()
-      })
-      wantAgent.cancel(WantAgent).then(() => {
-        console.info(`${TAG} cancel Promise success`)
-        expect(true).assertTrue()
-        done()
-      }).catch((err) => {
-        console.info(`${TAG} cancel Promise err: ${err.code}`)
         expect(false).assertTrue()
         done()
       })
@@ -590,29 +593,26 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
         } else {
           WantAgent = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
-          done()
+          wantAgent.getBundleName(WantAgent, (err, data) => {
+            if (err.code) {
+              console.info(`${TAG} getBundleName AsyncCallback err: ${err.code}`)
+              expect(false).assertTrue()
+              done()
+            } else {
+              console.info(`${TAG} getBundleName AsyncCallback success: ${JSON.stringify(data)}`)
+              expect(data).assertEqual('com.example.actsnotificationwantagent')
+              done()
+            }
+          })
         }
       })
-      wantAgent.getBundleName(WantAgent, (err, data) => {
-        if (err.code) {
-          console.info(`${TAG} getBundleName AsyncCallback err: ${err.code}`)
-          expect(false).assertTrue()
-          done()
-        } else {
-          console.info(`${TAG} getBundleName AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(data).assertEqual('com.example.actsnotificationwantagent')
-          done()
-        }
-      })
-
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2300 END`)
     })
 
@@ -628,14 +628,7 @@ export default function ActsNotificationWantAgentNewTest() {
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
-        expect(true).assertTrue()
-        done()
-      }).catch((err) => {
-        console.info(`${TAG} getWantAgent Promise err: ${err.code}`)
-        expect(false).assertTrue()
-        done()
-      })
-      wantAgent.getBundleName(WantAgent)
+        wantAgent.getBundleName(WantAgent)
         .then((data) => {
           console.info(`${TAG} getBundleName Promise success: ${JSON.stringify(data)}`)
           expect(data).assertEqual('com.example.actsnotificationwantagent')
@@ -646,6 +639,11 @@ export default function ActsNotificationWantAgentNewTest() {
           expect(false).assertTrue()
           done()
         })
+      }).catch((err) => {
+        console.info(`${TAG} getWantAgent Promise err: ${err.code}`)
+        expect(false).assertTrue()
+        done()
+      })
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2400 END`)
     })
 
@@ -659,26 +657,24 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
         } else {
           WantAgent = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
-          done()
-        }
-      })
-      await wantAgent.getUid(WantAgent, (err, data) => {
-        if (err.code) {
-          console.info(`${TAG} getUid AsyncCallback err: ${err.code}`)
-          expect(false).assertTrue()
-          done()
-        } else {
-          console.info(`${TAG} getUid AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
-          done()
+          wantAgent.getUid(WantAgent, (err, data) => {
+            if (err.code) {
+              console.info(`${TAG} getUid AsyncCallback err: ${err.code}`)
+              expect(false).assertTrue()
+              done()
+            } else {
+              console.info(`${TAG} getUid AsyncCallback success: ${JSON.stringify(data)}`)
+              expect(true).assertTrue()
+              done()
+            }
+          })
         }
       })
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2500 END`)
@@ -696,19 +692,17 @@ export default function ActsNotificationWantAgentNewTest() {
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
-        expect(true).assertTrue()
-        done()
+        wantAgent.getUid(WantAgent).then((data) => {
+          console.info(`${TAG} getUid Promise success: ${JSON.stringify(data)}`)
+          expect(true).assertTrue()
+          done()
+        }).catch((err) => {
+          console.info(`${TAG} getUid Promise err: ${err.code}`)
+          expect(false).assertTrue()
+          done()
+        })
       }).catch((err) => {
         console.info(`${TAG} getWantAgent Promise err: ${err.code}`)
-        expect(false).assertTrue()
-        done()
-      })
-      await wantAgent.getUid(WantAgent).then((data) => {
-        console.info(`${TAG} getUid Promise success: ${JSON.stringify(data)}`)
-        expect(true).assertTrue()
-        done()
-      }).catch((err) => {
-        console.info(`${TAG} getUid Promise err: ${err.code}`)
         expect(false).assertTrue()
         done()
       })
@@ -725,7 +719,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -733,7 +727,6 @@ export default function ActsNotificationWantAgentNewTest() {
           wantAgentData1 = data
           wantAgentData2 = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
           wantAgent.equal(wantAgentData1, wantAgentData2, (err, data) => {
             if (err.code) {
               console.info(`${TAG} equal AsyncCallback err: ${err.code}`)
@@ -760,7 +753,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -768,7 +761,6 @@ export default function ActsNotificationWantAgentNewTest() {
           wantAgentData1 = data
           wantAgentData2 = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
           wantAgent.equal(wantAgentData1, wantAgentData2).then((data) => {
             console.info(`${TAG} equal Promise success: ${JSON.stringify(data)}`)
             expect(data).assertTrue()
@@ -783,7 +775,6 @@ export default function ActsNotificationWantAgentNewTest() {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2800 END`)
     })
 
-
     /*
       * @tc.number    : SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2900
       * @tc.name      : function getOperationType(agent: WantAgent, callback: AsyncCallback<number>): void
@@ -794,26 +785,24 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
         } else {
           WantAgent = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
-          done()
-        }
-      })
-      await wantAgent.getOperationType(WantAgent, (err, data) => {
-        if (err.code) {
-          console.info(`${TAG} getOperationType AsyncCallback err: ${err.code}`)
-          expect(false).assertTrue()
-          done()
-        } else {
-          console.info(`${TAG} getOperationType AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(true).assertTrue()
-          done()
+          wantAgent.getOperationType(WantAgent, (err, data) => {
+            if (err != null) {
+              console.info(`${TAG} getOperationType AsyncCallback err: ${err.code}`)
+              expect(false).assertTrue()
+              done()
+            } else {
+              console.info(`${TAG} getOperationType AsyncCallback success: ${JSON.stringify(data)}`)
+              expect(true).assertTrue()
+              done()
+            }
+          })
         }
       })
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_2900 END`)
@@ -831,14 +820,7 @@ export default function ActsNotificationWantAgentNewTest() {
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
-        expect(true).assertTrue()
-        done()
-      }).catch((err) => {
-        console.info(`${TAG} getWantAgent Promise err: ${err.code}`)
-        expect(false).assertTrue()
-        done()
-      })
-      await wantAgent.getOperationType(WantAgent)
+        wantAgent.getOperationType(WantAgent)
         .then((data) => {
           console.info(`${TAG} getOperationType Promise success: ${JSON.stringify(data)}`)
           expect(true).assertTrue()
@@ -849,6 +831,11 @@ export default function ActsNotificationWantAgentNewTest() {
           expect(false).assertTrue()
           done()
         })
+      }).catch((err) => {
+        console.info(`${TAG} getWantAgent Promise err: ${err.code}`)
+        expect(false).assertTrue()
+        done()
+      })
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3000 END`)
     })
 
@@ -862,7 +849,7 @@ export default function ActsNotificationWantAgentNewTest() {
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
       WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
@@ -927,9 +914,9 @@ export default function ActsNotificationWantAgentNewTest() {
     it('SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3200', 0, async function (done) {
       console.info(`${TAG} SUB_NOTIFICATION_ANS_GET_WANT_AGENT_NEW_TEST_3200 START`)
       WantAgentInfo.operationType = wantAgent.OperationType.START_ABILITY
-      WantAgentInfo.wantAgentFlags = wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG
+      WantAgentInfo.wantAgentFlags = [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
-        if (err.code) {
+        if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code}`)
           expect(false).assertTrue()
           done()
