@@ -84,8 +84,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.MainAbility"
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapa.MainAbility"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0100 - startAbility start standard: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
@@ -154,8 +154,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.SecondAbility"
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapa.SecondAbility"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0200 - startAbility start singleton: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
@@ -223,8 +223,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.MainAbility",
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapa.MainAbility",
         action: "startStandard0300"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0300 - startAbility start standard: '
@@ -293,8 +293,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.SecondAbility",
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapa.SecondAbility",
         action: "startSingleton0400"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0400 - startAbility start singleton: '
@@ -365,8 +365,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapb.MainAbility",
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapb.MainAbility",
         action: "startHapB"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0500 - startAbility start HapB: '
@@ -437,8 +437,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthapa",
-        abilityName: "com.example.newwanthapc.MainAbility",
+        bundleName: "com.acts.example.newwanthapa",
+        abilityName: "com.acts.example.newwanthapc.MainAbility",
         action: "startHapC"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0600 - startAbility start HapC: '
@@ -509,8 +509,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.SecondAbility",
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapa.SecondAbility",
         action: "startSecondAbility0700"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0700 - startAbility start SecondAbility: '
@@ -580,8 +580,8 @@ export default function abilityTest() {
       })
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.MainAbility",
+        bundleName: "com.acts.example.newwanthap",
+        abilityName: "com.acts.example.newwanthapa.MainAbility",
         action: "startMainAbility0800"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0800 - startAbility start SecondAbility: '

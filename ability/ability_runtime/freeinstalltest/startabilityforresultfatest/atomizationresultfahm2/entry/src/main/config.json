@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.qianyiyingyong.hmservice",
+    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
     "vendor": "example",
     "version": {
       "code": 1000000,

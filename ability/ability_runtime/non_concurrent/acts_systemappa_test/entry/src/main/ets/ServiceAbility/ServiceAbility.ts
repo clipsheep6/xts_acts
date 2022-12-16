@@ -44,7 +44,7 @@ export default class ServiceAbility extends ServiceExtension {
     console.log('ServiceAbility onConnect, action:' + want.action);
     if (want.action == 'StartAbilityPromise') {
       commonEvent.publish("ACTS_AbilityPermission_0400_Start_CommonEvent", PublishCallBackOne8);
-      var myStub = new Stub("com.example.actsabilitypermissiontest.ServiceAbility");
+      var myStub = new Stub("com.acts.example.actsabilitypermissiontest.ServiceAbility");
       console.log('ThirdAbility onConnect before returnU100:')
       return myStub;
       console.log('after return')

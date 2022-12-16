@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.newwanthapapi7",
+    "bundleName": "com.acts.example.newwanthapapi7",
     "vendor": "example",
     "version": {
       "code": 1,
@@ -14,7 +14,7 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.example.newwanthapapi7",
+    "package": "com.acts.example.newwanthapapi7",
     "name": ".MyApplication",
     "deviceType": [
         "default",
@@ -38,7 +38,7 @@
           }
         ],
         "visible": true,
-        "name": "com.example.newwanthapapi7.MainAbility",
+        "name": "com.acts.example.newwanthapapi7.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:app_name",

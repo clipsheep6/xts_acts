@@ -42,7 +42,7 @@ export default class ServiceAbility extends ServiceExtensionAbility {
         console.info('ServiceAbility2 onRequest');
         let str = {
             'deviceId': '',
-            'bundleName': 'com.example.qianyiyingyong.hmservice',
+            'bundleName': 'com.acts.example.qianyiyingyong.hmservice',
             'abilityName': 'com.example.qianyiyingyong.ServiceAbility',
             'moduleName': 'entry',
             'flags': wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

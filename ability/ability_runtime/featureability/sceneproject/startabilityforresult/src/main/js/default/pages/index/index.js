@@ -30,8 +30,8 @@ export default {
                 resultCode: 1,
                 want:
                 {
-                    bundleName: "com.example.startabilityforresult",
-                    abilityName: "com.example.startabilityforresult.MainAbility",
+                    bundleName: "com.acts.startabilityforresult",
+                    abilityName: "com.acts.startabilityforresult.MainAbility",
                 },
             }
         );

@@ -62,8 +62,8 @@ export default class MainAbility extends Ability {
         console.log("ACTS_NewWant MainAbility onForeground")
         if (globalThis.abilityWant.action == 'startHapB') {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.SecondAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.SecondAbility",
                 action: "startHapA0500"
             }, (error, data) => {
                 console.log('ACTS_NewWant MainAbility onForeground - startAbility start HapA: '

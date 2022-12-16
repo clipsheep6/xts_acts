@@ -51,7 +51,7 @@ export default class ServiceAbility2 extends ServiceExtensionAbility {
         console.info('onRequest, startId: ' + startId);
         console.info('ConnectAbilityTest_Ext service2 onRequest');
         let request = {
-            'bundleName': 'com.example.different.hmservice',
+            'bundleName': 'com.acts.example.different.hmservice',
             'abilityName': 'com.example.different.ServiceAbility',
             'moduleName': 'entry',
             'flags': wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

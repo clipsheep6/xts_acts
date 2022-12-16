@@ -17,9 +17,9 @@ import bundle from '@ohos.bundle'
 import image from '@ohos.multimedia.image'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
 
-const BUNDLE_NAME = "com.open.harmony.packagemag";
-const ABILITIY_NAME = "com.open.harmony.packagemag.MainAbility";
-const SERVICE_NAME = "com.open.harmony.packagemag.ServiceAbility";
+const BUNDLE_NAME = "com.acts.open.harmony.packagemag";
+const ABILITIY_NAME = "com.acts.open.harmony.packagemag.MainAbility";
+const SERVICE_NAME = "com.acts.open.harmony.packagemag.ServiceAbility";
 const BUNDLE_NAME_OTHER = "com.example.l3jsdemo";
 const ABILITIY_NAME_OTHER = "com.example.l3jsdemo.MainAbility";
 const BUNDLE_NAME_ERROR = "com.ohos.packagemag";

@@ -1,7 +1,7 @@
 {
   "module": {
-    "name": "com.example.multiinstancehapab",
-    "process": "com.example.multiinstancehapb",
+    "name": "com.acts.example.multiinstancehapab",
+    "process": "com.acts.example.multiinstancehapb",
     "type": "feature",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:phone_entry_dsc",
@@ -16,7 +16,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.multiinstancehapab.MainAbility",
+        "name": "com.acts.example.multiinstancehapab.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",

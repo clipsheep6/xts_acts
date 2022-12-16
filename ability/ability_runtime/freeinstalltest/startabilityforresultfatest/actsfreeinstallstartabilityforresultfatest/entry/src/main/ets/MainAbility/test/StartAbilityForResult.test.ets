@@ -35,17 +35,17 @@ export default function StartAbilityForResult() {
                 console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(500);
-            var cmd1 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+            var cmd1 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry";
             delegator.executeShellCommand(cmd1, (err: any, d: any) => {
                 console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(500);
-            var cmd2 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+            var cmd2 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
             delegator.executeShellCommand(cmd2, (err: any, d: any) => {
                 console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(500);
-            var cmd3 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps" +
+            var cmd3 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps" +
             "/entry/files";
             delegator.executeShellCommand(cmd3, (err: any, d: any) => {
                 console.info("executeShellCommand3 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -66,7 +66,7 @@ export default function StartAbilityForResult() {
             "FreeInstall_FA_StartAbilityForResult_2100" === TAG ||
             "FreeInstall_FA_StartAbilityForResult_3000" === TAG ||
             "FreeInstall_FA_StartAbilityForResult_3100" === TAG) {
-                var cmd4 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
+                var cmd4 = "bm uninstall -n com.acts.example.qianyiyingyong.hmservice";
                 delegator.executeShellCommand(cmd4, (err: any, d: any) => {
                     console.info("executeShellCommand4: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
                 })
@@ -86,7 +86,7 @@ export default function StartAbilityForResult() {
             }
 
             if ("FreeInstall_FA_StartAbilityForResult_3200" === TAG) {
-                var cmd14 = "bm uninstall -n com.ohos.hag.famanager";
+                var cmd14 = "bm uninstall -n com.acts.ohos.hag.famanager";
                 delegator.executeShellCommand(cmd14, (err: any, d: any) => {
                     console.info("executeShellCommand14: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
                 })
@@ -113,7 +113,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": "",
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -141,12 +141,12 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_0200", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_0200-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_0200";
-            var cmd15 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultFaEntry.hap";
+            var cmd15 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationResultFaEntry.hap";
             delegator.executeShellCommand(cmd15, (err: any, d: any) => {
                 console.info("executeShellCommand15: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(500);
-            var cmd16 = "cp data/test/AtomizationResultA.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+            var cmd16 = "cp data/test/AtomizationResultA.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
             delegator.executeShellCommand(cmd16, (err: any, d: any) => {
                 console.info("executeShellCommand16: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
@@ -155,7 +155,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": "",
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -182,7 +182,7 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_0300", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_0300-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_0300";
-            var cmd17 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultA.hap";
+            var cmd17 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationResultA.hap";
             delegator.executeShellCommand(cmd17, (err: any, d: any) => {
                 console.info("executeShellCommand17: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
@@ -191,7 +191,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": "",
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -218,7 +218,7 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_0400", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_0400-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_0400";
-            var cmd18 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+            var cmd18 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/" +
             "entry/files";
             delegator.executeShellCommand(cmd18, (err: any, d: any) => {
                 console.info("executeShellCommand18: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -228,7 +228,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": "",
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -259,12 +259,12 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_0500", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_0500-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_0500";
-            var cmd15 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultFaEntry.hap";
+            var cmd15 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationResultFaEntry.hap";
             delegator.executeShellCommand(cmd15, (err: any, d: any) => {
                 console.info("executeShellCommand15: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(500);
-            var cmd16 = "cp data/test/AtomizationResultA.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+            var cmd16 = "cp data/test/AtomizationResultA.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
             delegator.executeShellCommand(cmd16, (err: any, d: any) => {
                 console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
@@ -273,7 +273,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": "",
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -303,7 +303,7 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_0600", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_0600-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_0600";
-            var cmd17 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultA.hap";
+            var cmd17 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationResultA.hap";
             delegator.executeShellCommand(cmd17, (err: any, d: any) => {
                 console.info("executeShellCommand17: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
@@ -312,7 +312,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": "",
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -342,7 +342,7 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_0700", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_0700-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_0700";
-            var cmd18 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+            var cmd18 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/" +
             "entry/files";
             delegator.executeShellCommand(cmd18, (err: any, d: any) => {
                 console.info("executeShellCommand18: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -351,7 +351,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND
@@ -382,7 +382,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND
@@ -421,7 +421,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -452,7 +452,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -497,7 +497,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": DeviceId,
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -539,7 +539,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     "deviceId": DeviceId,
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -570,12 +570,12 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_1300", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_1300-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_1300";
-            var cmd7 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultFaEntry.hap";
+            var cmd7 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationResultFaEntry.hap";
             delegator.executeShellCommand(cmd7, (err: any, d: any) => {
                 console.info("executeShellCommand7: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(500);
-            var cmd8 = "cp data/test/AtomizationResultFaHm2.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+            var cmd8 = "cp data/test/AtomizationResultFaHm2.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
             delegator.executeShellCommand(cmd8, (err: any, d: any) => {
                 console.info("executeShellCommand8: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
@@ -583,7 +583,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.hm2.MainAbility",
                     "moduleName": "hnm2",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -614,7 +614,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.hm2.MainAbility",
                     "moduleName": "hnm2",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -645,12 +645,12 @@ export default function StartAbilityForResult() {
         it("FreeInstall_FA_StartAbilityForResult_1500", 0, async function (done) {
             console.log("------------start FreeInstall_FA_StartAbilityForResult_1500-------------");
             TAG = "FreeInstall_FA_StartAbilityForResult_1500";
-            var cmd1500 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultFaHm2.hap";
+            var cmd1500 = "rm /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/AtomizationResultFaHm2.hap";
             delegator.executeShellCommand(cmd1500, (err: any, d: any) => {
                 console.info("executeShellCommand1500: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
             await Utils.sleep(1000);
-            var cmd1501 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+            var cmd1501 = "cp data/test/AtomizationResultFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
             "haps/entry/files";
             delegator.executeShellCommand(cmd1501, (err: any, d: any) => {
                 console.info("executeShellCommand1501: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -659,7 +659,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": 'com.example.qianyiyingyong.hmservice',
+                    "bundleName": 'com.acts.example.qianyiyingyong.hmservice',
                     "abilityName": 'com.example.qianyiyingyong.MainAbility',
                     "moduleName": 'entry',
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -689,7 +689,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -722,7 +722,7 @@ export default function StartAbilityForResult() {
             let wrong;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     'flags': 22
@@ -752,7 +752,7 @@ export default function StartAbilityForResult() {
             let wrong;
             let startAbilityParameter =  {
                 want: {
-                    bundleName: "com.example.qianyiyingyong.hmservice",
+                    bundleName: "com.acts.example.qianyiyingyong.hmservice",
                     abilityName: "com.example.qianyiyingyong.MainAbility",
                     moduleName: "entry",
                     flags: 11
@@ -792,7 +792,7 @@ export default function StartAbilityForResult() {
             let details;
             let startAbilityParameter = {
                 want: {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     'flags': 11
@@ -823,7 +823,7 @@ export default function StartAbilityForResult() {
             let wrong;
             let startAbilityParameter = {
                 want: {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     'flags': 0
@@ -858,7 +858,7 @@ export default function StartAbilityForResult() {
             let details;
             let startAbilityParameter = {
                 want: {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     'flags': 2
@@ -894,7 +894,7 @@ export default function StartAbilityForResult() {
             let details;
             var str = {
                 'want': {
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "hm1",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -926,7 +926,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     'deviceId': '',
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "entry",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -961,7 +961,7 @@ export default function StartAbilityForResult() {
             var str = {
                 'want': {
                     'deviceId': '',
-                    "bundleName": "com.example.qianyiyingyong.hmservice",
+                    "bundleName": "com.acts.example.qianyiyingyong.hmservice",
                     "abilityName": "com.example.qianyiyingyong.MainAbility",
                     "moduleName": "xxxxx",
                     "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

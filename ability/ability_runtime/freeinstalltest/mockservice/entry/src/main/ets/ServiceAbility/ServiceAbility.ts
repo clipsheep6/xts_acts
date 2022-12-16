@@ -111,50 +111,50 @@ async function targetInfoCheck(transactId: string, remoteObj: any) {
         console.info("ServiceAbility serviceCenter targetInfoCheck retcode = " + retcode);
         sendCallBack(transactId, remoteObj, retcode);
     }
-    else if ( (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if ( (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication6.ServiceAbility" && targetmoduleName === "myapplication6"
     )) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication6.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if ((targetbundleName === "com.example.myapplication.hmservice" &&
+    else if ((targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication1.ServiceAbility_feature" && targetmoduleName === "myapplication1"
     )
-    || (targetbundleName === "com.example.myapplication.hmservice" &&
+    || (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication1.MainAbility" && targetmoduleName === "myapplication1"
     )) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication1.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication1.ServiceAbility_feature" && targetmoduleName === "myapplication3"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication3.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication5.ServiceAbility5" && targetmoduleName === "myapplication5"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication5.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication7.ServiceAbility" && targetmoduleName === "myapplication7"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication7.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
-    } else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    } else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication8.ServiceAbility" && targetmoduleName === "myapplication8"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication8.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
-    } else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    } else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "com.example.myapplication7.ServiceAbility" && targetmoduleName === "myapplication9"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/ConnectFaMyApplication9.hap"];
@@ -162,49 +162,49 @@ async function targetInfoCheck(transactId: string, remoteObj: any) {
         serviceInstall(transactId, remoteObj);
     }
     //connect stage
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility" && targetmoduleName === "myapplication"
     ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication0.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility_feature" && targetmoduleName === "myapplication1"
     ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication1.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility_feature" && targetmoduleName === "myapplication3"
     ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication3.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility5" && targetmoduleName === "myapplication5"
     ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication5.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility6" && targetmoduleName === "myapplication6"
     ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication6.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.myapplication.hmservice" &&
+    else if (targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility7" && targetmoduleName === "myapplication7"
     ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication7.hap"];
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if ((targetbundleName === "com.example.myapplication.hmservice" &&
+    else if ((targetbundleName === "com.acts.example.myapplication.hmservice" &&
     targetabilityName === "ServiceAbility6" && targetmoduleName === "myapplication8"
     ) ){
         path = ["/data/storage/el2/base/haps/entry/files/ConnectStageMyApplication8.hap"];
@@ -228,7 +228,7 @@ async function targetInfoCheck(transactId: string, remoteObj: any) {
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.startAbilityForResult.hmservice" &&
+    else if (targetbundleName === "com.acts.startabilityforresult.hmservice" &&
     targetabilityName === "MainAbility1" && targetmoduleName === "myapplication1"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/StageResultMyApplication1.hap"];
@@ -248,37 +248,37 @@ async function targetInfoCheck(transactId: string, remoteObj: any) {
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if ((targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    else if ((targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.qianyiyingyong.MainAbility" && targetmoduleName === "entry"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.qianyiyingyong.ServiceAbility" && targetmoduleName === "entry"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.qianyiyingyong.MainAbility" && targetmoduleName === "hm1"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.hm3.MainAbility" && targetmoduleName === "hm3"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.hm2.MainAbility" && targetmoduleName === "hnm2"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "MainAbility" && targetmoduleName === "entry"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "hm3MainAbility" && targetmoduleName === "hm3"
     )
-    || (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    || (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "hnm2MainAbility" && targetmoduleName === "hnm2"
     )
-    || (targetbundleName === "com.example.myapplication.hmservice0" &&
+    || (targetbundleName === "com.acts.example.myapplication.hmservice0" &&
     targetabilityName === "com.example.myapplication.MainAbility" && targetmoduleName === "entry"
     )
-    || (targetbundleName === "com.example.myapplication.hmservice0" &&
+    || (targetbundleName === "com.acts.example.myapplication.hmservice0" &&
     targetabilityName === "com.example.myapplication1.MainAbility" && targetmoduleName === "myapplication1"
     )
-    || (targetbundleName === "com.example.myapplication.hmservice0" &&
+    || (targetbundleName === "com.acts.example.myapplication.hmservice0" &&
     targetabilityName === "com.example.myapplication2.MainAbility" && targetmoduleName === "myapplication2"
     )
     || (targetbundleName === "com.open.harmony.myapplication0.hmservice" &&
@@ -298,7 +298,7 @@ async function targetInfoCheck(transactId: string, remoteObj: any) {
         console.info("ServiceAbility serviceCenter targetInfoCheck path: " + JSON.stringify(path));
         serviceInstall(transactId, remoteObj);
     }
-    else if (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    else if (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.hm2.MainAbility" && targetmoduleName === "hm4"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/AtomizationFaHm4.hap"];
@@ -336,7 +336,7 @@ async function targetInfoCheck(transactId: string, remoteObj: any) {
 
 async function updateInfoCheck(transactId: string, remoteObj: any) {
     //startAbility 高低版本
-    if (targetbundleName === "com.example.qianyiyingyong.hmservice" &&
+    if (targetbundleName === "com.acts.example.qianyiyingyong.hmservice" &&
     targetabilityName === "com.example.qianyiyingyong.MainAbility" && targetmoduleName === "entry"
     ) {
         path = ["/data/storage/el2/base/haps/entry/files/sign-core-qianyi-allv2.hap"];

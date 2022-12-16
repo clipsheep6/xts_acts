@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.different.hmservice",
+    "bundleName": "com.acts.example.different.hmservice",
     "vendor": "huawei",
     "versionCode": 1000000,
     "versionName": "1.0.0",

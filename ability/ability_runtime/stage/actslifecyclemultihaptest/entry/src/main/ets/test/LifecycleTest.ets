@@ -32,7 +32,7 @@ export default function abilityTest() {
           resultCode: 2,
           want: {
             "abilityName": "MainAbility4",
-            bundleName: "com.example.lifecycletest"
+            bundleName: "com.acts.example.lifecycletest"
           }
         }
         console.log("LifeCycleTest terminateSelfwithresult para: " + JSON.stringify(para));
@@ -67,7 +67,7 @@ export default function abilityTest() {
       listKeyTemp = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4"
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -77,7 +77,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility3"
       }, (error, data) => {
         setTimeout(() => {
@@ -122,7 +122,7 @@ export default function abilityTest() {
       listKeyTemp = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4"
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -132,7 +132,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility4"
       }, (error, data) => {
         console.log(TAG + ":first Hap2MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -142,7 +142,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility4"
       }, (error, data) => {
         setTimeout(() => {
@@ -186,7 +186,7 @@ export default function abilityTest() {
       listKeyTemp = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4"
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -196,7 +196,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility5"
       }, (error, data) => {
         console.log(TAG + ":first Hap2MainAbility5 startAbility success, err: " + JSON.stringify(error) +
@@ -206,7 +206,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility5"
       }, (error, data) => {
         setTimeout(() => {
@@ -258,7 +258,7 @@ export default function abilityTest() {
       listKeyTemp1 = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4"
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -268,7 +268,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility6"
       }, (error, data) => {
         console.log(TAG + ":first Hap2MainAbility6 startAbility success, err: " + JSON.stringify(error) +
@@ -278,7 +278,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap3MainAbility2"
       }, (error, data) => {
         setTimeout(() => {
@@ -335,7 +335,7 @@ export default function abilityTest() {
       listKeyTemp1 = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4"
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -345,7 +345,7 @@ export default function abilityTest() {
       await sleep(500);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility6"
       }, (error, data) => {
         console.log(TAG + ":first Hap2MainAbility6 startAbility success, err: " + JSON.stringify(error) +
@@ -355,7 +355,7 @@ export default function abilityTest() {
       await sleep(500);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility7"
       }, (error, data) => {
         setTimeout(() => {
@@ -415,7 +415,7 @@ export default function abilityTest() {
       var secondCallbackId;
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility7"
       }, (error, data) => {
         console.log(TAG + ": first MainAbility7 startAbility success, err: " + JSON.stringify(error) +
@@ -425,7 +425,7 @@ export default function abilityTest() {
       await sleep(500);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility8"
       }, (error, data) => {
         setTimeout(function () {
@@ -440,7 +440,7 @@ export default function abilityTest() {
       await sleep(500);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility7"
       }, (error, data) => {
         console.log(TAG + ": second MainAbility7 startAbility success, err: " + JSON.stringify(error) +
@@ -450,7 +450,7 @@ export default function abilityTest() {
       await sleep(1000);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility8"
       }, (error, data) => {
         setTimeout(() => {
@@ -497,7 +497,7 @@ export default function abilityTest() {
       var flag;
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility6"
       }, (error, data) => {
         console.log(TAG + ": first MainAbility6 startAbility success, err: " + JSON.stringify(error) +
@@ -506,7 +506,7 @@ export default function abilityTest() {
 
       setTimeout(function () {
         globalThis.abilityContext.startAbility({
-          bundleName: "com.example.lifecycletest",
+          bundleName: "com.acts.example.lifecycletest",
           abilityName: "Hap2MainAbility9"
         }, (error, data) => {
           setTimeout(() => {
@@ -547,7 +547,7 @@ export default function abilityTest() {
         if (flag == 0) {
 
           globalThis.abilityContext.startAbility({
-            bundleName: "com.example.lifecycletest",
+            bundleName: "com.acts.example.lifecycletest",
             abilityName: "MainAbility6"
           }, (error, data) => {
             console.log(TAG + ": first MainAbility6 startAbility success, err: " + JSON.stringify(error) +
@@ -556,7 +556,7 @@ export default function abilityTest() {
 
           setTimeout(function () {
             globalThis.abilityContext.startAbility({
-              bundleName: "com.example.lifecycletest",
+              bundleName: "com.acts.example.lifecycletest",
               abilityName: "Hap2MainAbility9"
             }, (error, data) => {
 
@@ -611,7 +611,7 @@ export default function abilityTest() {
       listKeyTemp = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4"
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) +
@@ -621,7 +621,7 @@ export default function abilityTest() {
       await sleep(500);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility6"
       }, (error, data) => {
         setTimeout(() => {
@@ -674,7 +674,7 @@ export default function abilityTest() {
       listKeyTemp1 = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility4",
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " +
@@ -683,7 +683,7 @@ export default function abilityTest() {
 
       await sleep(1000)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility10",
       }, (error, data) => {
         console.log(TAG + ": first Hap2MainAbility10 startAbility success, err: " +
@@ -692,7 +692,7 @@ export default function abilityTest() {
 
       await sleep(1000)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap3MainAbility3",
       }, (error, data) => {
         console.log(TAG + ": first Hap3MainAbility3 startAbility success, err: " +
@@ -701,7 +701,7 @@ export default function abilityTest() {
 
       await sleep(1000)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility10",
       }, (error, data) => {
         console.log(TAG + ": second Hap2MainAbility10 startAbility success, err: " +
@@ -710,7 +710,7 @@ export default function abilityTest() {
 
       await sleep(1000)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap3MainAbility3",
       }, (error, data) => {
         console.log(TAG + ": second Hap3MainAbility3 startAbility success, err: " +
@@ -720,7 +720,7 @@ export default function abilityTest() {
 
       await sleep(1000)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap2MainAbility10",
       }, (error, data) => {
         console.log(TAG + ": third Hap2MainAbility10 startAbility success, err: " +
@@ -729,7 +729,7 @@ export default function abilityTest() {
 
       await sleep(1000)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap3MainAbility3",
       }, (error, data) => {
 
@@ -790,7 +790,7 @@ export default function abilityTest() {
       listKeyTemp = [];
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "MainAbility2",
       }, (error, data) => {
         console.log(TAG + ": Hap1MainAbility2 startAbility success, err: " +
@@ -800,7 +800,7 @@ export default function abilityTest() {
       await sleep(500);
 
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.lifecycletest",
+        bundleName: "com.acts.example.lifecycletest",
         abilityName: "Hap4MainAbility1",
       }, (error, data) => {
         setTimeout(() => {

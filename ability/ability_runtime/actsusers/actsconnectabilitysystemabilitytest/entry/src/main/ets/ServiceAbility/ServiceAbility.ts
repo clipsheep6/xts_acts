@@ -96,8 +96,8 @@ export default class ServiceAbility extends ServiceExtension {
         if (want.action == "Seven") {
             extensionContext.connectAbility(
                 {
-                    bundleName: "com.example.actsconnectabilitysystemabilitytest",
-                    abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility2",
+                    bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+                    abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility2",
                 }, {
                 onConnect: onConnectCallback,
                 onDisconnect: onDisconnectCallback,
@@ -108,8 +108,8 @@ export default class ServiceAbility extends ServiceExtension {
         if (want.action == "Eight") {
             extensionContext.connectAbility(
                 {
-                    bundleName: "com.example.actsconnectabilitysystemabilitytest",
-                    abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility3",
+                    bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+                    abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility3",
                 }, {
                 onConnect: onConnectCallback,
                 onDisconnect: onDisconnectCallback,
@@ -121,8 +121,8 @@ export default class ServiceAbility extends ServiceExtension {
             console.log('connectAbility 111');
             let num = extensionContext.connectAbility(
                 {
-                    bundleName: 'com.example.actsconnectabilitysystemabilitytest',
-                    abilityName: 'com.example.actsconnectabilitysystemabilitytest.ServiceAbility2'
+                    bundleName: 'com.acts.actsconnectabilitysystemabilitytest',
+                    abilityName: 'com.acts.actsconnectabilitysystemabilitytest.ServiceAbility2'
                 }, {
                 onConnect: onConnectCallback,
                 onDisconnect: onDisconnectCallback,
@@ -139,8 +139,8 @@ export default class ServiceAbility extends ServiceExtension {
             console.log('connectAbility 222');
             let num = extensionContext.connectAbility(
                 {
-                    bundleName: 'com.example.actsconnectabilitysystemabilitytest',
-                    abilityName: 'com.example.actsconnectabilitysystemabilitytest.ServiceAbility2'
+                    bundleName: 'com.acts.actsconnectabilitysystemabilitytest',
+                    abilityName: 'com.acts.actsconnectabilitysystemabilitytest.ServiceAbility2'
                 }, {
                 onConnect: onConnectCallback,
                 onDisconnect: onDisconnectCallback,
@@ -157,8 +157,8 @@ export default class ServiceAbility extends ServiceExtension {
             console.log('connectAbility 333');
             let num = extensionContext.connectAbility(
                 {
-                    bundleName: 'com.example.actsconnectabilitysystemabilitytest',
-                    abilityName: 'com.example.actsconnectabilitysystemabilitytest.ServiceAbility2'
+                    bundleName: 'com.acts.actsconnectabilitysystemabilitytest',
+                    abilityName: 'com.acts.actsconnectabilitysystemabilitytest.ServiceAbility2'
                 }, {
                 onConnect: onConnectCallback,
                 onDisconnect: onDisconnectCallback,
@@ -175,8 +175,8 @@ export default class ServiceAbility extends ServiceExtension {
             console.log('connectAbility 444');
             let num = extensionContext.connectAbility(
                 {
-                    bundleName: 'com.example.actsconnectabilitysystemabilitytest',
-                    abilityName: 'com.example.actsconnectabilitysystemabilitytest.ServiceAbility2'
+                    bundleName: 'com.acts.actsconnectabilitysystemabilitytest',
+                    abilityName: 'com.acts.actsconnectabilitysystemabilitytest.ServiceAbility2'
                 }, {
                 onConnect: onConnectCallback,
                 onDisconnect: onDisconnectCallback,

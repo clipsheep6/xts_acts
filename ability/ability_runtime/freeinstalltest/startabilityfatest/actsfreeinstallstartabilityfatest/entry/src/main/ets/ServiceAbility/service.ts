@@ -43,7 +43,7 @@ export default {
         var str = {
             'want': {
                 'deviceId': '',
-                'bundleName': 'com.example.qianyiyingyong.hmservice',
+                'bundleName': 'com.acts.example.qianyiyingyong.hmservice',
                 'abilityName': 'com.example.qianyiyingyong.ServiceAbility',
                 'moduleName': 'entry',
                 'flags': wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

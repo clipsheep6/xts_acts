@@ -139,8 +139,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ConnectAbility_0100 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "one",
         },
         {
@@ -188,8 +188,8 @@ export default function abilityTest() {
       id = setTimeout(timeout, START_ABILITY_TIMEOUT);
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbilityone",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbilityone",
           action: "two",
         },
         {
@@ -248,8 +248,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_DisconnectAbility_0100 3====>");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Three",
         },
       );
@@ -325,8 +325,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack)
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.actsconnectabilitysystemabilitytest",
-            abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+            bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+            abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
             action: "Four",
           },
         );
@@ -390,8 +390,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_DisconnectAbility_0300 3 ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Five",
         },
       );
@@ -467,8 +467,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack)
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.actsconnectabilitysystemabilitytest",
-            abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+            bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+            abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
             action: "Six",
           },
         );
@@ -532,8 +532,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ExtensionConnectAbility_0100 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Seven",
         },
       );
@@ -590,8 +590,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ExtensionConnectAbility_0200 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Eight",
         },
       );
@@ -649,8 +649,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ExtensionDisconnectAbility_0100 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Nine",
         },
       );
@@ -708,8 +708,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ExtensionDisconnectAbility_0200 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Ten",
         },
       );
@@ -766,8 +766,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ExtensionDisconnectAbility_0300 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Ten one",
         },
       );
@@ -825,8 +825,8 @@ export default function abilityTest() {
       console.debug("====>ACTS_ExtensionDisconnectAbility_0400 3  ");
       connId = await globalThis.abilityContext.connectServiceExtensionAbility(
         {
-          bundleName: "com.example.actsconnectabilitysystemabilitytest",
-          abilityName: "com.example.actsconnectabilitysystemabilitytest.ServiceAbility",
+          bundleName: "com.acts.actsconnectabilitysystemabilitytest",
+          abilityName: "com.acts.actsconnectabilitysystemabilitytest.ServiceAbility",
           action: "Ten two",
         },
       );

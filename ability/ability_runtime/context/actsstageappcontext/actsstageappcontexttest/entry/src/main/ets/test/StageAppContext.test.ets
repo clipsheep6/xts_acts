@@ -23,7 +23,7 @@ export default function stageAppContextTest(abilityContext) {
         beforeAll(async (done) => {
             console.log("ActsStageContextPropertiesTest afterAll called");
             await abilityContext.startAbility({
-                bundleName: "com.example.stageappcontexttest",
+                bundleName: "com.acts.example.stageappcontexttest",
                 abilityName: "ServiceAbility",
             }).then((data) => {
                 console.log('ActsStageContextPropertiesTest - ServiceAbility: ' + JSON.stringify(data));
@@ -50,10 +50,10 @@ export default function stageAppContextTest(abilityContext) {
             let TAG = "SUB_AA_OpenHarmony_ApplicationContext_0100";
             console.log(TAG + " --- start");
             let context = abilityContext.getApplicationContext();
-            let result = context.createBundleContext('com.example.stageappcontexttest')
+            let result = context.createBundleContext('com.acts.example.stageappcontexttest')
             let getCacheDir = result.cacheDir
             console.log(TAG + 'getCacheDir::' + JSON.stringify(getCacheDir));
-            expect(getCacheDir).assertEqual('/data/app/el2/100/base/com.example.stageappcontexttest/cache')
+            expect(getCacheDir).assertEqual('/data/app/el2/100/base/com.acts.example.stageappcontexttest/cache')
             done();
         });
 
@@ -106,7 +106,7 @@ export default function stageAppContextTest(abilityContext) {
             let context = abilityContext.getApplicationContext();
             let result = context.applicationInfo.name;
             console.log(TAG + " result = " + JSON.stringify(result));
-            expect(result).assertEqual("com.example.stageappcontexttest");
+            expect(result).assertEqual("com.acts.example.stageappcontexttest");
             done();
         });
 
@@ -142,7 +142,7 @@ export default function stageAppContextTest(abilityContext) {
             let context = globalThis.abilityStageContext.getApplicationContext();
             let result = context.applicationInfo.name;
             console.log(TAG + " result = " + JSON.stringify(result));
-            expect(result).assertEqual("com.example.stageappcontexttest");
+            expect(result).assertEqual("com.acts.example.stageappcontexttest");
             done();
         });
 
@@ -157,10 +157,10 @@ export default function stageAppContextTest(abilityContext) {
             let TAG = "SUB_AA_OpenHarmony_ApplicationContext_0700";
             console.log(TAG + " --- start");
             let context = globalThis.serviceExtenxionAbilityContext.getApplicationContext();
-            let result = context.createBundleContext('com.example.stageappcontexttest')
+            let result = context.createBundleContext('com.acts.example.stageappcontexttest')
             let getCacheDir = result.cacheDir
             console.log(TAG + 'getCacheDir::' + JSON.stringify(getCacheDir));
-            expect(getCacheDir).assertEqual('/data/app/el2/100/base/com.example.stageappcontexttest/cache')
+            expect(getCacheDir).assertEqual('/data/app/el2/100/base/com.acts.example.stageappcontexttest/cache')
             done();
         });
 
@@ -214,7 +214,7 @@ export default function stageAppContextTest(abilityContext) {
             let serviceContext = globalThis.serviceExtenxionAbilityContext.getApplicationContext();
             let result = serviceContext.applicationInfo.name;
             console.log(TAG + " result = " + result);
-            expect(result).assertEqual("com.example.stageappcontexttest");
+            expect(result).assertEqual("com.acts.example.stageappcontexttest");
             done();
         });
 
@@ -230,10 +230,10 @@ export default function stageAppContextTest(abilityContext) {
             console.log(TAG + " --- start");
             let context = abilityContext.getApplicationContext();
             let context2 = context.getApplicationContext();
-            let result = context2.createBundleContext("com.example.stageappcontexttest");
+            let result = context2.createBundleContext("com.acts.example.stageappcontexttest");
             let dir = result.cacheDir;
             console.log(TAG + " dir = " + dir);
-            expect(dir).assertEqual("/data/app/el2/100/base/com.example.stageappcontexttest/cache");
+            expect(dir).assertEqual("/data/app/el2/100/base/com.acts.example.stageappcontexttest/cache");
             done();
         });
 
@@ -288,7 +288,7 @@ export default function stageAppContextTest(abilityContext) {
             let context2 = context.getApplicationContext();
             let result = context2.applicationInfo.name;
             console.log(TAG + " result = " + result);
-            expect(result).assertEqual("com.example.stageappcontexttest");
+            expect(result).assertEqual("com.acts.example.stageappcontexttest");
             done();
         });
 

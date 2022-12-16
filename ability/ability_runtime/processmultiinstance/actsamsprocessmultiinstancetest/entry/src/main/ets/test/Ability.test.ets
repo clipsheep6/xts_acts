@@ -30,8 +30,8 @@ var subscriberInfo = {
   ],
 };
 
-var processNameA = "com.example.multiinstancehapa";
-var processNameB = "com.example.multiinstancehapb";
+var processNameA = "com.acts.example.multiinstancehapa";
+var processNameB = "com.acts.example.multiinstancehapb";
 var processNameC = "com.example.multiinstancehapc";
 
 function sleep(ms) {
@@ -42,8 +42,8 @@ export default function abilityTest() {
 
     afterEach(async (done) => {
 
-      await appManager.killProcessesByBundleName("com.example.multiinstancehapa");
-      await appManager.killProcessesByBundleName("com.example.multiinstancehapb");
+      await appManager.killProcessesByBundleName("com.acts.example.multiinstancehapa");
+      await appManager.killProcessesByBundleName("com.acts.example.multiinstancehapb");
 
       let wantInfo = {
         bundleName: "com.example.processmultiinstance",
@@ -155,7 +155,7 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapba.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0100 - startAbilityhapba: '
@@ -163,7 +163,7 @@ export default function abilityTest() {
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbb.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0100 - startAbilityhapbb: '
@@ -266,7 +266,7 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbc.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0200 - startAbilityhapbc: '
@@ -274,7 +274,7 @@ export default function abilityTest() {
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbd.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0200 - startAbilityhapbd: '
@@ -382,7 +382,7 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbd.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0300 - startAbilityhapbd: '
@@ -390,7 +390,7 @@ export default function abilityTest() {
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbe.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0300 - startAbilityhapbe: '
@@ -495,7 +495,7 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapba.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0400 - startAbilityhapba: '
@@ -503,7 +503,7 @@ export default function abilityTest() {
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbf.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0400 - startAbilityhapbf: '
@@ -575,7 +575,7 @@ export default function abilityTest() {
             if ((abilityinfos[i].processName == processNameA)) {
               console.debug("ACTS_Process_MultiInstance_0500 PA abilityinfos[" + i + "].ability.abilityName:"
                 + JSON.stringify(abilityinfos[i].ability.abilityName));
-              if (abilityinfos[i].ability.abilityName == 'com.example.multiinstancehapaa.MainAbility') {
+              if (abilityinfos[i].ability.abilityName == 'com.acts.example.multiinstancehapaa.MainAbility') {
                 abilityhapaaExist = true;
                 pidaa = abilityinfos[i].pid
               }
@@ -608,15 +608,15 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapa",
-        abilityName: "com.example.multiinstancehapaa.MainAbility",
+        bundleName: "com.acts.example.multiinstancehapa",
+        abilityName: "com.acts.example.multiinstancehapaa.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0500 - startAbilityhapaa: '
           + JSON.stringify(err) + ", " + JSON.stringify(data))
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbe.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0500 - startAbilityhapbe: '
@@ -687,7 +687,7 @@ export default function abilityTest() {
             if ((abilityinfos[i].processName == processNameA)) {
               console.debug("ACTS_Process_MultiInstance_0600 PA abilityinfos[" + i + "].ability.abilityName:"
                 + JSON.stringify(abilityinfos[i].ability.abilityName));
-              if (abilityinfos[i].ability.abilityName == 'com.example.multiinstancehapaa.MainAbility') {
+              if (abilityinfos[i].ability.abilityName == 'com.acts.example.multiinstancehapaa.MainAbility') {
                 abilityhapaaExist = true;
                 pidaa = abilityinfos[i].pid
               }
@@ -724,15 +724,15 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapa",
-        abilityName: "com.example.multiinstancehapaa.MainAbility",
+        bundleName: "com.acts.example.multiinstancehapa",
+        abilityName: "com.acts.example.multiinstancehapaa.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0600 - startAbilityhapaa: '
           + JSON.stringify(err) + ", " + JSON.stringify(data))
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbf.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0600 - startAbilityhapbf: '
@@ -803,7 +803,7 @@ export default function abilityTest() {
             if ((abilityinfos[i].processName == processNameB)) {
               console.debug("ACTS_Process_MultiInstance_0700 PB abilityinfos[" + i + "].ability.abilityName:"
                 + JSON.stringify(abilityinfos[i].ability.abilityName));
-              if (abilityinfos[i].ability.abilityName == 'com.example.multiinstancehapab.MainAbility') {
+              if (abilityinfos[i].ability.abilityName == 'com.acts.example.multiinstancehapab.MainAbility') {
                 abilityhapabExist = true;
                 pidab = abilityinfos[i].pid
               }
@@ -839,15 +839,15 @@ export default function abilityTest() {
       }
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapa",
-        abilityName: "com.example.multiinstancehapab.MainAbility",
+        bundleName: "com.acts.example.multiinstancehapa",
+        abilityName: "com.acts.example.multiinstancehapab.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0700 - startAbilityhapab: '
           + JSON.stringify(err) + ", " + JSON.stringify(data))
       })
       await sleep(500)
       globalThis.abilityContext.startAbility({
-        bundleName: "com.example.multiinstancehapb",
+        bundleName: "com.acts.example.multiinstancehapb",
         abilityName: "com.example.multiinstancehapbc.MainAbility",
       }, (err, data) => {
         console.log('ACTS_Process_MultiInstance_0700 - startAbilityhapbc: '

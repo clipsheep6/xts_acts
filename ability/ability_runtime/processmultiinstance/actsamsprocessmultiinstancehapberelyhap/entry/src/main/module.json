@@ -1,7 +1,7 @@
 {
   "module": {
     "name": "com.example.multiinstancehapbe",
-    "process": "com.example.multiinstancehapa",
+    "process": "com.acts.example.multiinstancehapa",
     "type": "feature",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:phone_entry_dsc",

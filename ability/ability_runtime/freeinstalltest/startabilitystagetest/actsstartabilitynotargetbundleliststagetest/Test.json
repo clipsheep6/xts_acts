@@ -3,7 +3,7 @@
     "driver": {
          "type": "OHJSUnitTest",
         "test-timeout": "600000",
-		"bundle-name": "com.open.harmony.packagemag.hmservice",
+		"bundle-name": "com.acts.open.harmony.packagemag.hmservice",
         "module-name": "entry",
         "shell-timeout": "600000",
         "testcase-timeout": "50000"

@@ -56,7 +56,7 @@ struct Index {
         resultCode: 1,
         want:
         {
-          bundleName: "com.example.qianyiyingyong.hmservice",
+          bundleName: "com.acts.example.qianyiyingyong.hmservice",
           abilityName: "MainAbility",
         },
       }

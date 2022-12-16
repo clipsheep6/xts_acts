@@ -52,8 +52,8 @@ export default {
             {
                 want:
                 {
-                    bundleName: "com.example.newwanthap",
-                    abilityName: "com.example.newwanthapa.SecondAbility",
+                    bundleName: "com.acts.example.newwanthap",
+                    abilityName: "com.acts.example.newwanthapa.SecondAbility",
                     action: "restartSecondAbility0800",
                 },
             }

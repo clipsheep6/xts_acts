@@ -51,8 +51,8 @@ let subscriberInfoTerminateAbilityTwo = {
 };
 let subscriberInfoActsGetCallingBundle0100 = {
     events: ["ACTS_GetCallingBundle_0100_CommonEvent",
-        "com.example.actsfeatureabilitytest.promise",
-        "com.example.actsfeatureabilitytest.callback"],
+        "com.acts.example.actsfeatureabilitytest.promise",
+        "com.acts.example.actsfeatureabilitytest.callback"],
 };
 
 function sleep(time) {
@@ -98,8 +98,8 @@ describe('ActsFeatureAbilityTest', function () {
 
         let wantInfo = {
             want: {
-                bundleName: "com.example.actsfeatureabilitytest",
-                abilityName: "com.example.actsfeatureabilitytest.TestAbility"
+                bundleName: "com.acts.example.actsfeatureabilitytest",
+                abilityName: "com.acts.example.actsfeatureabilitytest.TestAbility"
             }
         }
         await featureAbility.startAbility(wantInfo).then((data) => {
@@ -896,7 +896,7 @@ describe('ActsFeatureAbilityTest', function () {
         expect(Array.isArray(info.moduleInfos)).assertEqual(true);
         expect(typeof (info.entryDir)).assertEqual("string");
 
-        expect(info.name).assertEqual("com.example.actsfeatureabilitytest");
+        expect(info.name).assertEqual("com.acts.example.actsfeatureabilitytest");
         expect(info.description).assertEqual("descriptionTest");
         //            expect(info.descriptionId).assertEqual(0);    //create by DevEco when building HAP.
         expect(info.systemApp).assertEqual(true);
@@ -908,12 +908,12 @@ describe('ActsFeatureAbilityTest', function () {
         expect(info.process).assertEqual("processTestAbility");
         expect(info.supportedModes).assertEqual(0);
         expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
+            "com.acts.example.actsfeatureabilitytest/com.acts.example.actsfeatureabilitytest");
         expect(info.moduleInfos[0].moduleName).assertEqual("entry");
         expect(info.moduleInfos[0].moduleSourceDir).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
+            "com.acts.example.actsfeatureabilitytest/com.acts.example.actsfeatureabilitytest");
         expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.actsfeatureabilitytest/com.example.actsfeatureabilitytest");
+            "com.acts.example.actsfeatureabilitytest/com.acts.example.actsfeatureabilitytest");
         console.info("getApplicationInfo : end")
     }
 
@@ -1021,8 +1021,8 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (info.shortName)).assertEqual("string");
 
         expect(info.deviceId).assertEqual("");
-        expect(info.bundleName).assertEqual("com.example.actsfeatureabilitytest");
-        expect(info.abilityName).assertEqual("com.example.actsfeatureabilitytest.TestAbility");
+        expect(info.bundleName).assertEqual("com.acts.example.actsfeatureabilitytest");
+        expect(info.abilityName).assertEqual("com.acts.example.actsfeatureabilitytest.TestAbility");
         expect(info.uri).assertEqual("");
         expect(info.shortName).assertEqual("");
         console.info("getElementName : end");
@@ -1151,8 +1151,8 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (data.uri)).assertEqual("string");
 
 
-        expect(data.bundleName).assertEqual("com.example.actsfeatureabilitytest");
-        expect(data.name).assertEqual("com.example.actsfeatureabilitytest.TestAbility");
+        expect(data.bundleName).assertEqual("com.acts.example.actsfeatureabilitytest");
+        expect(data.name).assertEqual("com.acts.example.actsfeatureabilitytest.TestAbility");
         expect(data.label).assertEqual("$string:TestAbility_label");
         expect(data.description).assertEqual("$string:TestAbility_desc");
         expect(data.icon).assertEqual("$media:icon");
@@ -1241,7 +1241,7 @@ describe('ActsFeatureAbilityTest', function () {
         expect(typeof (data.moduleName)).assertEqual("string");
         expect(typeof (data.mainAbilityName)).assertEqual("string");
         expect(typeof (data.installationFree)).assertEqual("boolean");
-        expect(data.name).assertEqual("com.example.actsfeatureabilitytest.MyApplication");
+        expect(data.name).assertEqual("com.acts.example.actsfeatureabilitytest.MyApplication");
         expect(data.description).assertEqual("descriptionTest");
         expect(data.descriptionId).assertEqual(0);
         expect(data.icon).assertEqual("$media:icon");
@@ -1254,7 +1254,7 @@ describe('ActsFeatureAbilityTest', function () {
         expect(data.reqCapabilities[1]).assertEqual("reqCapabilitiesTest2");
         expect(data.deviceTypes[0]).assertEqual("default");
         expect(data.moduleName).assertEqual("entry")
-        expect(data.mainAbilityName).assertEqual("com.example.actsfeatureabilitytest.MainAbility");
+        expect(data.mainAbilityName).assertEqual("com.acts.example.actsfeatureabilitytest.MainAbility");
         expect(data.installationFree).assertEqual(false);
         console.info("checkHapModuleInfo end  " + data);
     }
@@ -1365,15 +1365,15 @@ describe('ActsFeatureAbilityTest', function () {
             console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
             if (events.size == 1) {
                 expect(events.has("ACTS_GetCallingBundle_0100_CommonEvent") ||
-                    events.has("com.example.actsfeatureabilitytest.promise") ||
-                    events.has("com.example.actsfeatureabilitytest.callback")).assertTrue();
+                    events.has("com.acts.example.actsfeatureabilitytest.promise") ||
+                    events.has("com.acts.example.actsfeatureabilitytest.callback")).assertTrue();
             } else if (events.size == 2) {
-                expect(events.has("com.example.actsfeatureabilitytest.promise") ||
-                    events.has("com.example.actsfeatureabilitytest.callback")).assertTrue();
+                expect(events.has("com.acts.example.actsfeatureabilitytest.promise") ||
+                    events.has("com.acts.example.actsfeatureabilitytest.callback")).assertTrue();
             } else if (events.size == 3) {
                 expect(events.has("ACTS_GetCallingBundle_0100_CommonEvent") &&
-                    events.has("com.example.actsfeatureabilitytest.promise") &&
-                    events.has("com.example.actsfeatureabilitytest.callback")).assertTrue();
+                    events.has("com.acts.example.actsfeatureabilitytest.promise") &&
+                    events.has("com.acts.example.actsfeatureabilitytest.callback")).assertTrue();
                 commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
                 done();
             }

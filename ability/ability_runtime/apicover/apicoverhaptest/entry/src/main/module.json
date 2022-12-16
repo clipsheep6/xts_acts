@@ -15,7 +15,7 @@
       "uiSyntax": "ets",
       "abilities": [
         {
-          "name": "com.example.apicoverhaptest.MainAbility",
+          "name": "com.acts.apicoverhaptest.MainAbility",
           "srcEntrance": "./ets/MainAbility/MainAbility.ts",
           "description": "$string:phone_entry_main",
           "icon": "$media:icon",

@@ -4,7 +4,7 @@
     "type": "entry",
     "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:phone_entry_dsc",
-    "mainElement": "com.example.staticextensioninfotest.MainAbility",
+    "mainElement": "com.acts.staticextensioninfotest.MainAbility",
     "deviceTypes": [
     "default",
     "tablet"
@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.staticextensioninfotest.MainAbility",
+        "name": "com.acts.staticextensioninfotest.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",
@@ -37,7 +37,7 @@
     "extensionAbilities": [
       {
         "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
-        "name": "com.example.staticextensioninfotest.ServiceAbility",
+        "name": "com.acts.staticextensioninfotest.ServiceAbility",
         "icon": "$media:icon",
         "srcLanguage": "ets",
         "description": "$string:phone_entry_main",

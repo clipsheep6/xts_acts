@@ -64,8 +64,8 @@ export default class SecondAbility extends Ability {
         if (globalThis.abilityWant.action == 'startSingleton0400')
         {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.MainAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.MainAbility",
                 action:"startStandard0400"
             }, (error, data) => {
                 console.log('ACTS_NewWant SecondAbility onForeground - startAbility start standard: '
@@ -75,8 +75,8 @@ export default class SecondAbility extends Ability {
         if (globalThis.abilityWant.action == 'startSingleton0300')
         {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapa.MainAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapa.MainAbility",
                 action:"restartSingleton"
             }, (error, data) => {
                 console.log('ACTS_NewWant SecondAbility onForeground - startAbility restart standard: '
@@ -85,8 +85,8 @@ export default class SecondAbility extends Ability {
         }
         if (globalThis.abilityWant.action == 'startHapA0500') {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthap",
-                abilityName: "com.example.newwanthapb.MainAbility",
+                bundleName: "com.acts.example.newwanthap",
+                abilityName: "com.acts.example.newwanthapb.MainAbility",
                 action: "restartHapB"
             }, (error, data) => {
                 console.log('ACTS_NewWant SecondAbility onForeground - startAbility restart HapB: '
@@ -95,8 +95,8 @@ export default class SecondAbility extends Ability {
         }
         if (globalThis.abilityWant.action == 'startHapA0600') {
             globalThis.abilityContext.startAbility({
-                bundleName: "com.example.newwanthapa",
-                abilityName: "com.example.newwanthapc.MainAbility",
+                bundleName: "com.acts.example.newwanthapa",
+                abilityName: "com.acts.example.newwanthapc.MainAbility",
                 action: "restartHapC"
             }, (error, data) => {
                 console.log('ACTS_NewWant SecondAbility onForeground - startAbility restart HapC: '
@@ -106,8 +106,8 @@ export default class SecondAbility extends Ability {
         if (globalThis.abilityWant.action == 'startSecondAbility0700') {
             globalThis.abilityContext.startAbility(
                 {
-                    bundleName: "com.example.newwanthap",
-                    abilityName: "com.example.newwanthapa.MainAbility",
+                    bundleName: "com.acts.example.newwanthap",
+                    abilityName: "com.acts.example.newwanthapa.MainAbility",
                     action: "startMainAbility0700"
                 }, (error, data) => {
                 console.log('ACTS_NewWant SecondAbility onForeground - startAbility startMainAbility0700: '
@@ -117,8 +117,8 @@ export default class SecondAbility extends Ability {
         if (globalThis.abilityWant.action == 'startSecondAbility0800') {
             globalThis.abilityContext.startAbility(
                 {
-                    bundleName: "com.example.newwanthapapi7",
-                    abilityName: "com.example.newwanthapapi7.MainAbility",
+                    bundleName: "com.acts.example.newwanthapapi7",
+                    abilityName: "com.acts.example.newwanthapapi7.MainAbility",
                     action: "startapi70800"
                 }, (error, data) => {
                 console.log('ACTS_NewWant SecondAbility onForeground - startAbility startapi70800: '

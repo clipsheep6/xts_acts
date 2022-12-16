@@ -52,7 +52,7 @@ export default {
     onCommand(want, startId) {
         console.info('FreeInstall_FA_ConnectAbility_PA service3 onCommand');
         let request = {
-            'bundleName': 'com.example.different.hmservice',
+            'bundleName': 'com.acts.example.different.hmservice',
             'abilityName': 'com.example.different.ServiceAbility',
             'moduleName': 'entry',
             'flags': wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

@@ -39,17 +39,17 @@ export default function startAbilityTest2() {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd1 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+      var cmd1 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry";
       delegator.executeShellCommand(cmd1, (err: any, d: any) => {
         console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd2 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      var cmd2 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
       delegator.executeShellCommand(cmd2, (err: any, d: any) => {
         console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd3 = "cp data/test/AtomizationFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+      var cmd3 = "cp data/test/AtomizationFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/" +
         "entry/files";
       delegator.executeShellCommand(cmd3, (err: any, d: any) => {
         console.info("executeShellCommand3 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -60,7 +60,7 @@ export default function startAbilityTest2() {
     afterEach(async function (done) {
       console.info("StartAbilityTest after each called");
       if ("FreeInstall_FA_Local_StartAbility_2000" === TAG) {
-        var cmd4 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
+        var cmd4 = "bm uninstall -n com.acts.example.qianyiyingyong.hmservice";
         delegator.executeShellCommand(cmd4, (err: any, d: any) => {
           console.info("executeShellCommand4 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
@@ -68,7 +68,7 @@ export default function startAbilityTest2() {
       }
 
       if ("FreeInstall_FA_Local_StartAbility_2500" === TAG) {
-        var cmd5 = "bm uninstall -n com.ohos.hag.famanager";
+        var cmd5 = "bm uninstall -n com.acts.ohos.hag.famanager";
         delegator.executeShellCommand(cmd5, (err: any, d: any) => {
           console.info("executeShellCommand5 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
@@ -104,7 +104,7 @@ export default function startAbilityTest2() {
       setTimeout(async () => {
         var str = {
           'want': {
-            "bundleName": "com.example.qianyiyingyong.hmservice",
+            "bundleName": "com.acts.example.qianyiyingyong.hmservice",
             "abilityName": "com.example.qianyiyingyong.MainAbility",
             "moduleName": "entry",
             "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND
@@ -154,7 +154,7 @@ export default function startAbilityTest2() {
       setTimeout(async () => {
         var str = {
           'want': {
-            "bundleName": "com.example.qianyiyingyong.hmservice",
+            "bundleName": "com.acts.example.qianyiyingyong.hmservice",
             "abilityName": "com.example.qianyiyingyong.MainAbility",
             "moduleName": "entry",
             "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND
@@ -182,7 +182,7 @@ export default function startAbilityTest2() {
     it("FreeInstall_FA_Local_StartAbility_2500", 0, async function (done) {
       console.info("------------start FreeInstall_FA_Local_StartAbility_2500-------------");
       TAG = "FreeInstall_FA_Local_StartAbility_2500";
-      var cmd2500 = "bm uninstall -n com.ohos.hag.famanager";
+      var cmd2500 = "bm uninstall -n com.acts.ohos.hag.famanager";
       delegator.executeShellCommand(cmd2500, (err: any, d: any) => {
         console.info("executeShellCommand2500 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
@@ -190,15 +190,15 @@ export default function startAbilityTest2() {
       delegator.executeShellCommand(cmd2501, (err: any, d: any) => {
         console.info("executeShellCommand2501 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
-      var cmd2502 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+      var cmd2502 = "mkdir /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry";
       delegator.executeShellCommand(cmd2502, (err: any, d: any) => {
         console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
-      var cmd2503 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      var cmd2503 = "mkdir /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
       delegator.executeShellCommand(cmd2503, (err: any, d: any) => {
         console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
-      var cmd2504 = "cp data/test/AtomizationFaEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps" +
+      var cmd2504 = "cp data/test/AtomizationFaEntry.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps" +
         "/entry/files";
       delegator.executeShellCommand(cmd2504, (err: any, d: any) => {
         console.info("executeShellCommand3 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -207,7 +207,7 @@ export default function startAbilityTest2() {
         let wrong;
         var str = {
           'want': {
-            "bundleName": "com.example.qianyiyingyong.hmservice",
+            "bundleName": "com.acts.example.qianyiyingyong.hmservice",
             "abilityName": "com.example.qianyiyingyong.MainAbility",
             "moduleName": "entry",
             "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

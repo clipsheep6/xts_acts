@@ -35,8 +35,8 @@ export default {
           resultCode: 1,
           want:
           {
-            bundleName: "com.example.qianyiyingyong.hmservice",
-            abilityName: "com.example.qianyiyingyong.hmservice.MainAbility",
+            bundleName: "com.acts.example.qianyiyingyong.hmservice",
+            abilityName: "com.acts.example.qianyiyingyong.hmservice.MainAbility",
           },
         }
       );

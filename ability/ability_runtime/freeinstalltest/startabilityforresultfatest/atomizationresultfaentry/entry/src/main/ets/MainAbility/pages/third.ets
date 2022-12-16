@@ -21,7 +21,7 @@ import RemoteDeviceModel from '../model/getRemoteDeviceModel.ets';
 import bundleManager from '@ohos.bundle';
 import freeInstall from '@ohos.bundle.freeInstall';
 
-const BUNDLE_NAME = 'com.example.qianyiyingyong.hmservice';
+const BUNDLE_NAME = 'com.acts.example.qianyiyingyong.hmservice';
 const ABILITY_NAME = 'com.example.qianyiyingyong.MainAbility';
 const ABILITY_NAME1 = 'com.example.hm2.MainAbility';
 const ABILITY_NAME2 = 'com.example.hm3.MainAbility';
@@ -229,7 +229,7 @@ struct Third {
 
   async updateModuleUpgradeFlag(tag, type1) {
     console.info(tag + ' startAbility fAStartAbilityPromise START' + JSON.stringify(type1));
-    await freeInstall.setHapModuleUpgradeFlag("com.example.qianyiyingyong.hmservice", type1, 1);
+    await freeInstall.setHapModuleUpgradeFlag("com.acts.example.qianyiyingyong.hmservice", type1, 1);
     console.info(tag + ' startAbility fAStartAbilityPromise END');
   }
 

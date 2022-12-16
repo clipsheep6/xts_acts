@@ -17,12 +17,12 @@ import { describe, it, expect } from 'hypium/index';
 import Utils from './Utils';
 import bundleManager from '@ohos.bundle';
 
-const BUNDLE_NAME1 = 'com.open.harmony.packagemag';
+const BUNDLE_NAME1 = 'com.acts.open.harmony.packagemag';
 const BUNDLE_NAME_OTHER = 'com.ohos.acecollaboration';
 const BUNDLE_NAME2 = 'com.harmony.packagemag';
 const BUNDLE_NAME3 = "";
 const BUNDLE_NAME4 = 'com.example.third1';
-const ABILITY_NAME1 = 'com.open.harmony.packagemag.MainAbility';
+const ABILITY_NAME1 = 'com.acts.open.harmony.packagemag.MainAbility';
 const ABILITY_NAME_OTHER = 'com.ohos.acecollaboration.MainAbility';
 const ABILITY_NAME2 = 'com.harmony.packagemag1.MainAbility';
 const ABILITY_NAME3 = 'com.example.third1.MainAbility';
@@ -218,9 +218,9 @@ export default function GetabilityInfo() {
 
         function checkAbilityInfo(data) {
             expect(typeof (data.bundleName)).assertEqual("string");
-            expect(data.bundleName).assertEqual("com.open.harmony.packagemag");
+            expect(data.bundleName).assertEqual("com.acts.open.harmony.packagemag");
             expect(typeof (data.name)).assertEqual("string");
-            expect(data.name).assertEqual("com.open.harmony.packagemag.MainAbility");
+            expect(data.name).assertEqual("com.acts.open.harmony.packagemag.MainAbility");
             expect(data.label).assertEqual("$string:entry_MainAbility");
             expect(typeof (data.label)).assertEqual("string");
             expect(data.description).assertEqual("$string:mainability_description");
@@ -232,7 +232,7 @@ export default function GetabilityInfo() {
             expect(Array.isArray(data.deviceCapabilities)).assertEqual(true);
             expect(data.deviceTypes[0]).assertEqual("default");
             expect(typeof (data.process)).assertEqual("string");
-            expect(data.process).assertEqual("com.open.harmony.packagemag");
+            expect(data.process).assertEqual("com.acts.open.harmony.packagemag");
             expect(typeof (data.uri)).assertEqual("string");
             expect(data.uri).assertEqual("");
             expect(data.moduleName).assertEqual("entry");
@@ -245,9 +245,9 @@ export default function GetabilityInfo() {
         function checkApplicationInfo(info) {
             expect(typeof (info)).assertEqual("object");
             expect(typeof (info.name)).assertEqual("string");
-            expect(info.name).assertEqual("com.open.harmony.packagemag");
+            expect(info.name).assertEqual("com.acts.open.harmony.packagemag");
             expect(typeof (info.codePath)).assertEqual("string");
-            expect(info.codePath).assertEqual("/data/app/el1/bundle/public/com.open.harmony.packagemag");
+            expect(info.codePath).assertEqual("/data/app/el1/bundle/public/com.acts.open.harmony.packagemag");
             expect(typeof (info.accessTokenId)).assertEqual("number");
             expect(info.accessTokenId > 0).assertTrue();
             expect(typeof (info.description)).assertEqual("string");
@@ -264,13 +264,13 @@ export default function GetabilityInfo() {
             expect(info.labelId > 0).assertTrue();
             expect(info.systemApp).assertEqual(false);
             expect(typeof (info.entryDir)).assertEqual("string");
-            expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.open.harmony.packagemag/com.open.harmony.packagemag");
+            expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.acts.open.harmony.packagemag/com.acts.open.harmony.packagemag");
             expect(typeof (info.supportedModes)).assertEqual("number");
             expect(info.supportedModes).assertEqual(0);
             expect(typeof (info.process)).assertEqual("string");
-            expect(info.process).assertEqual("com.open.harmony.packagemag");
+            expect(info.process).assertEqual("com.acts.open.harmony.packagemag");
             expect(Array.isArray(info.moduleSourceDirs)).assertEqual(true);
-            expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/com.open.harmony.packagemag/com.open.harmony.packagemag");
+            expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/com.acts.open.harmony.packagemag/com.acts.open.harmony.packagemag");
             expect(Array.isArray(info.permissions)).assertEqual(true);
         }
 

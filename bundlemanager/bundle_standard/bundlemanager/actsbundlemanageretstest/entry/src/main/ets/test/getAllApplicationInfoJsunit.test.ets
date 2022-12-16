@@ -354,10 +354,10 @@ export default function getAllApplicationBundleTest() {
         function getApplicationInfoSuccess(msg, data) {
             console.info(msg + 'getApplicationInfoSuccess data length [' + data.length + ']');
             for (let i = 0; i < data.length; i++) {
-                if (data[i].name === 'com.open.harmony.packagemag' || i === 0 && data[i].name === '') {
+                if (data[i].name === 'com.acts.open.harmony.packagemag' || i === 0 && data[i].name === '') {
                     console.info(msg + JSON.stringify(data[i]));
-                    expect(data[i].name).assertEqual('com.open.harmony.packagemag');
-                    expect(data[i].codePath).assertEqual('/data/app/el1/bundle/public/com.open.harmony.packagemag');
+                    expect(data[i].name).assertEqual('com.acts.open.harmony.packagemag');
+                    expect(data[i].codePath).assertEqual('/data/app/el1/bundle/public/com.acts.open.harmony.packagemag');
                     expect(data[i].description).assertEqual('$string:entry_description');
                     if (data[i].descriptionId !== 0) {
                         expect(data[i].descriptionId > 0).assertEqual(true);
@@ -374,17 +374,17 @@ export default function getAllApplicationBundleTest() {
                     };
                     expect(data[i].systemApp).assertEqual(false);
                     expect(data[i].supportedModes).assertEqual(0);
-                    expect(data[i].process).assertEqual('com.open.harmony.packagemag');
-                    expect(data[i].entryDir).assertEqual('/data/app/el1/bundle/public/com.open.harmony.packagemag' +
-                        '/com.open.harmony.packagemag');
+                    expect(data[i].process).assertEqual('com.acts.open.harmony.packagemag');
+                    expect(data[i].entryDir).assertEqual('/data/app/el1/bundle/public/com.acts.open.harmony.packagemag' +
+                        '/com.acts.open.harmony.packagemag');
                     expect(data[i].enabled).assertEqual(true);
                     expect(data[i].entityType).assertEqual('unspecified');
                     expect(data[i].removable).assertEqual(true);
                     expect(data[i].moduleInfos[0].moduleName).assertEqual('entry');
                     expect(data[i].moduleInfos[0].moduleSourceDir).assertEqual('/data/app/el1/bundle/public/' +
-                        'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                        'com.acts.open.harmony.packagemag/com.acts.open.harmony.packagemag');
                     expect(data[i].moduleSourceDirs[0]).assertEqual('/data/app/el1/bundle/public/' +
-                        'com.open.harmony.packagemag/com.open.harmony.packagemag');
+                        'com.acts.open.harmony.packagemag/com.acts.open.harmony.packagemag');
                 }
             }
         }

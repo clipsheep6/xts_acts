@@ -59,8 +59,8 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         await globalThis.abilityContext.startAbilityForResult(
           {
-            bundleName: 'com.example.startabilityforresult',
-            abilityName: 'com.example.startabilityforresult.MainAbility2',
+            bundleName: 'com.acts.startabilityforresult',
+            abilityName: 'com.acts.startabilityforresult.MainAbility2',
           }, {
           windowMode: 0,
           displayId: 15
@@ -117,8 +117,8 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         await globalThis.abilityContext.startAbilityForResult(
           {
-            bundleName: 'com.example.startabilityforresult',
-            abilityName: 'com.example.startabilityforresult.MainAbility2',
+            bundleName: 'com.acts.startabilityforresult',
+            abilityName: 'com.acts.startabilityforresult.MainAbility2',
           }, {
           windowMode: 0,
           displayId: undefined
@@ -178,8 +178,8 @@ export default function abilityTest() {
         commonEvent.subscribe(subscriber, subscribeCallBack);
         await globalThis.abilityContext.startAbilityForResult(
           {
-            bundleName: 'com.example.startabilityforresult',
-            abilityName: 'com.example.startabilityforresult.MainAbility2',
+            bundleName: 'com.acts.startabilityforresult',
+            abilityName: 'com.acts.startabilityforresult.MainAbility2',
             parameters:
             {
               "ohos.aafwk.param.displayId": 10,
@@ -237,8 +237,8 @@ export default function abilityTest() {
         await commonEvent.subscribe(subscriber, subscribeCallBack);
         connId = await globalThis.abilityContext.connectServiceExtensionAbility(
           {
-            bundleName: "com.example.startabilityforresult",
-            abilityName: "com.example.startabilityforresult.ServiceAbility",
+            bundleName: "com.acts.startabilityforresult",
+            abilityName: "com.acts.startabilityforresult.ServiceAbility",
             action: "getExtensionInfotwo"
           }
         );

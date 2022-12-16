@@ -1,7 +1,7 @@
 {
   "app": {
     "vendor": "example",
-    "bundleName": "com.example.myapplication.hmservice",
+    "bundleName": "com.acts.example.myapplication.hmservice",
     "version": {
       "code": 1000000,
       "name": "1.0.0"

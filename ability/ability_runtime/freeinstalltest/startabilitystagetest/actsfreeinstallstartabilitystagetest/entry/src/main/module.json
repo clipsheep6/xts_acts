@@ -15,7 +15,7 @@
     "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "com.open.harmony.packagemag.MainAbility",
+        "name": "com.acts.open.harmony.packagemag.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
@@ -62,7 +62,7 @@
     ],
     "extensionAbilities": [
       {
-        "name": "com.open.harmony.packagemag.ServiceAbility",
+        "name": "com.acts.open.harmony.packagemag.ServiceAbility",
         "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
         "label": "$string:form_ServiceAbility_label",
         "description": "$string:form_ServiceAbility_desc",

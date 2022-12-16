@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.newwanthapc.MainAbility",
+        "name": "com.acts.example.newwanthapc.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",

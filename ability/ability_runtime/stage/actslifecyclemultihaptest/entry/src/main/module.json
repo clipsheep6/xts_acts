@@ -15,7 +15,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.example.lifecycletest.MainAbility",
+        "name": "com.acts.example.lifecycletest.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:phone_entry_main",
         "icon": "$media:icon",

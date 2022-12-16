@@ -29,7 +29,7 @@ export default class FormAbility extends FormExtension {
         };
         console.info("FormAbility onCreate===StarAbility=== ")
         this.context.startAbility({
-            bundleName:"com.example.apicoverhaptest",
+            bundleName:"com.acts.apicoverhaptest",
             abilityName:"SecondAbility"
         }).then((data)=>{
             console.info("FormAbility startAbility success")

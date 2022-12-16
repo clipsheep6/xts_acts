@@ -37,12 +37,12 @@ export default function ConnectAbilityTest(abilityContext) {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd1 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+      var cmd1 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry";
       globalThis.delegator.executeShellCommand(cmd1, (err: any, d: any) => {
         console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd2 = "mkdir -p /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      var cmd2 = "mkdir -p /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files";
       globalThis.delegator.executeShellCommand(cmd2, (err: any, d: any) => {
         console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         done();
@@ -115,7 +115,7 @@ export default function ConnectAbilityTest(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_0100", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_0100-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_0100";
-      var cmd4 = "cp data/test/ConnectStageMyApplication0.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmd4 = "cp data/test/ConnectStageMyApplication0.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmd4, (err: any, d: any) => {
         console.info("executeShellCommand4 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -130,7 +130,7 @@ export default function ConnectAbilityTest(abilityContext) {
       await sleep(500);
       var request1 = {
         "deviceId": deviceid,
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility",
         "moduleName": "myapplication",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -161,7 +161,7 @@ export default function ConnectAbilityTest(abilityContext) {
       await sleep(500);
       var request2 = {
         "deviceId": deviceid,
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility",
         "moduleName": "myapplication",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -183,7 +183,7 @@ export default function ConnectAbilityTest(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_0300", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_0300-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_0300";
-      var cmd3 = "cp data/test/ConnectStageMyApplication1.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmd3 = "cp data/test/ConnectStageMyApplication1.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmd3, (err: any, d: any) => {
         console.info("executeShellCommand3 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -191,7 +191,7 @@ export default function ConnectAbilityTest(abilityContext) {
       await sleep(500);
       var request3 = {
         "deviceId": "",
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility_feature",
         "moduleName": "myapplication1",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -215,7 +215,7 @@ export default function ConnectAbilityTest(abilityContext) {
       TAG = "FreeInstall_Stage_ConnectAbility_0400";
       var request4 = {
         "deviceId": "",
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility_feature",
         "moduleName": "myapplication1",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -238,7 +238,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_0500-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_0500";
       var request5 = {
-        "bundleName": "com.example.different.hmservice",
+        "bundleName": "com.acts.example.different.hmservice",
         "abilityName": "com.example.different.ServiceAbility",
         "moduleName": "entry",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -284,7 +284,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_0700-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_0700";
       var request7 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "",
         "moduleName": "myapplication1",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -308,7 +308,7 @@ export default function ConnectAbilityTest(abilityContext) {
       TAG = "FreeInstall_Stage_ConnectAbility_0800";
       var request8 = {
         "deviceId": "xxxxxx",
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility2",
         "moduleName": "myapplication2",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -354,7 +354,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1000-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1000";
       var request10 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility2",
         "moduleName": "myapplication2",
         "flags": 1111111,
@@ -382,7 +382,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1000);
       var request11 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility2",
         "moduleName": "myapplication2",
         "flags": "11",
@@ -404,13 +404,13 @@ export default function ConnectAbilityTest(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_1200", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1200-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1200";
-      var cmdrm = "rm -r /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/*";
+      var cmdrm = "rm -r /data/app/el2/100/base/com.acts.ohos.hag.famanager/haps/entry/files/*";
       globalThis.delegator.executeShellCommand(cmdrm, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
       var request12 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility3",
         "moduleName": "myapplication3",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -433,7 +433,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1300-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1300";
       var str = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "com.example.myapplication.MainAbility2",
       }
       console.info(TAG + " startmainability2 str: " + JSON.stringify(str));
@@ -445,7 +445,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1500);
       var request13 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility3",
         "moduleName": "myapplication3",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -468,7 +468,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1400-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1400";
       var str = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "MainAbility_myapp2",
       }
       console.info(TAG + " startmyapp2 str: " + JSON.stringify(str));
@@ -480,7 +480,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1500);
       var request14 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility3",
         "moduleName": "myapplication3",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -509,7 +509,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1000);
       var str = {
-        "bundleName": "com.example.different.hmservice",
+        "bundleName": "com.acts.example.different.hmservice",
         "abilityName": "MainAbility",
       };
       globalThis.abilityContext.startAbility(str)
@@ -520,7 +520,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1500);
       var request15 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility4",
         "moduleName": "myapplication4",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -549,7 +549,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1000);
       var str = {
-        "bundleName": "com.example.different.hmservice",
+        "bundleName": "com.acts.example.different.hmservice",
         "abilityName": "MainAbility",
       };
       globalThis.abilityContext.startAbility(str)
@@ -560,7 +560,7 @@ export default function ConnectAbilityTest(abilityContext) {
       })
       await sleep(1500);
       var request16 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility4",
         "moduleName": "myapplication4",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -583,7 +583,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1700-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1700";
       var request17 = {
-        "bundleName": "com.example.different.hmservice",
+        "bundleName": "com.acts.example.different.hmservice",
         "abilityName": "com.example.different.ServiceAbility",
         "moduleName": "entry",
       }
@@ -605,7 +605,7 @@ export default function ConnectAbilityTest(abilityContext) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1800-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1800";
       var request18 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility3",
         "moduleName": "xxxxx",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -627,14 +627,14 @@ export default function ConnectAbilityTest(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_1900", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_1900-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_1900";
-      var cmdmyapp5 = "cp data/test/ConnectStageMyApplication5.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmdmyapp5 = "cp data/test/ConnectStageMyApplication5.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmdmyapp5, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(1000);
       var request19 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility3",
         "moduleName": "myapplication3",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -656,14 +656,14 @@ export default function ConnectAbilityTest(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_2000", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_2000-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_2000";
-      var cmdmyapp5 = "cp data/test/ConnectStageMyApplication5.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmdmyapp5 = "cp data/test/ConnectStageMyApplication5.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmdmyapp5, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(1000);
       var request20 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility5",
         "moduleName": "myapplication5",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -686,14 +686,14 @@ export default function ConnectAbilityTest(abilityContext) {
     it("FreeInstall_Stage_ConnectAbility_2100", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_ConnectAbility_2100-------------");
       TAG = "FreeInstall_Stage_ConnectAbility_2100";
-      var cmdmyapp5 = "cp data/test/ConnectStageMyApplication3.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      var cmdmyapp5 = "cp data/test/ConnectStageMyApplication3.hap /data/app/el2/100/base/com.acts.ohos.hag.famanager/" +
       "haps/entry/files";
       globalThis.delegator.executeShellCommand(cmdmyapp5, (err: any, d: any) => {
         console.info(TAG + " executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(1000);
       var request21 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility_feature",
         "moduleName": "myapplication3",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
@@ -726,7 +726,7 @@ export default function ConnectAbilityTest(abilityContext) {
        });
       await sleep(1000);
       var request22 = {
-        "bundleName": "com.example.myapplication.hmservice",
+        "bundleName": "com.acts.example.myapplication.hmservice",
         "abilityName": "ServiceAbility6",
         "moduleName": "myapplication6",
         "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,

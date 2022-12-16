@@ -3,8 +3,8 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
-        "bundle-name": "com.example.systemcalltest",
-        "module-name": "com.example.systemcalltest",
+        "bundle-name": "com.acts.example.systemcalltest",
+        "module-name": "com.acts.example.systemcalltest",
         "shell-timeout": "600000",
         "testcase-timeout": 70000
     },

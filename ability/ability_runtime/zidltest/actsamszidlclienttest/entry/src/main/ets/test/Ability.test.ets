@@ -120,20 +120,20 @@ export default function abilityTest(abilityContext) {
       };
 
       let wantMulti = {
-        "bundleName": "com.example.zidlservice",
-        "abilityName": "com.example.zidlservice.ServiceAbility"
+        "bundleName": "com.acts.example.zidlservice",
+        "abilityName": "com.acts.example.zidlservice.ServiceAbility"
       };
       let wantMultiOneway = {
-        "bundleName": "com.example.zidlservice",
-        "abilityName": "com.example.zidlservice.ServiceAbility2"
+        "bundleName": "com.acts.example.zidlservice",
+        "abilityName": "com.acts.example.zidlservice.ServiceAbility2"
       };
       let wantSingle = {
-        "bundleName": "com.example.zidlclienttest",
-        "abilityName": "com.example.zidlclienttest.ServiceAbility"
+        "bundleName": "com.acts.example.zidlclienttest",
+        "abilityName": "com.acts.example.zidlclienttest.ServiceAbility"
       };
       let wantSingleOneway = {
-        "bundleName": "com.example.zidlclienttest",
-        "abilityName": "com.example.zidlclienttest.ServiceAbility2"
+        "bundleName": "com.acts.example.zidlclienttest",
+        "abilityName": "com.acts.example.zidlclienttest.ServiceAbility2"
       };
 
       console.info('ZidlTest Client connectAbility start');
