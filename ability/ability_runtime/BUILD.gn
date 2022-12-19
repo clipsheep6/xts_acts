@@ -28,6 +28,7 @@ group("ability_runtime") {
       "actscalldataabilitytest:ActsCallDataAbilityTest",
       "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
       "actsfwkdataaccessortest:dataability",
+      "actsnewruletest:actsnewruletest",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsserviceabilityclienttest:serviceability",
       "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
