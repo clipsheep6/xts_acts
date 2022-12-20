@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file';
+import file from '@system.file'
 
 import {Core, ExpectExtend, InstrumentLog, ReportExtend} from "deccjsunit/index"
 import testsuite from "../../test/List.test.ets"
@@ -23,7 +23,7 @@ import testsuite from "../../test/List.test.ets"
 struct Index {
 
   aboutToAppear(){
-    console.info("start run testcase!!!!")
+    console.info('start run testcase!!!!')
     const core = Core.getInstance()
     const expectExtend = new ExpectExtend({
       'id': 'extend'
@@ -36,7 +36,7 @@ struct Index {
     core.subscribeEvent('task', reportExtend)
     const configService = core.getDefaultService('config')
     console.info('parameters---->' + JSON.stringify(globalThis.abilityWant.parameters))
-    globalThis.abilityWant.parameters.timeout = 70000;
+    globalThis.abilityWant.parameters.timeout = 70000
     configService.setConfig(globalThis.abilityWant.parameters)
     testsuite(globalThis.abilityContext)
     core.execute()
