@@ -2349,9 +2349,9 @@ describe('deviceKvStorePromiseTest', function () {
             await kvStore.putBatch(entries).then( async (err) => {
                 console.info('SUB_DDM_DKV_DEVICEKVSTORE_GETRESULTSET_PROMISE_0700 putBatch success');
                 expect(err == undefined).assertTrue();
-                let predicates = new dataSharePredicates.DataSharePredicates();
-                predicates.inKeys("batch_test");
-                await kvStore.getResultSet(localDeviceId, predicates).then( async (result) => {
+                let query = new factory.Query();
+                query.prefixKey("batch_test");
+                await kvStore.getResultSet(localDeviceId, query).then( async (result) => {
                     console.info('SUB_DDM_DKV_DEVICEKVSTORE_GETRESULTSET_PROMISE_0700 getResultSet success');
                     resultSet = result;
                     expect(resultSet.getCount() == 10).assertTrue();
