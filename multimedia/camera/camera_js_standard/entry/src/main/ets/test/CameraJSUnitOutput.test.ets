@@ -214,40 +214,6 @@ export default function cameraJSUnitOutput() {
       console.info('afterAll case');
     })
 
-
-    /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_CAMERA_MANAGER_CALLBACK_0100
-      * @tc.name      : Create CameraManager instance async api
-      * @tc.desc      : Create CameraManager instance async api
-      * @tc.size      : MEDIUM
-      * @tc.type      : Function
-      * @tc.level     : Level 1
-    */
-    it('SUB_MULTIMEDIA_CAMERA_GET_CAMERA_MANAGER_CALLBACK_0100', 1, async function (done) {
-      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_GET_CAMERA_MANAGER_CALLBACK_0100--------------");
-      if (isEmpty(cameraObj)) {
-        console.info(TAG + "Entering GET_CAMERA_MANAGER cameraManager == null || undefined")
-        expect().assertFail();
-      } else {
-        cameraObj.getCameraManager(null, async (err, data) => {
-          if (!err) {
-            expect(isEmpty(data)).assertFalse();
-            console.info(TAG + "Entering GET_CAMERA_MANAGER success");
-            cameraManager = data;
-          } else {
-            expect().assertFail();
-            console.info(TAG + "Entering GET_CAMERA_MANAGER FAILED: " + err.message);
-          }
-          console.info(TAG + "Entering GET_CAMERA_MANAGER ends here");
-          await sleep(1000);
-          done();
-        })
-        await sleep(1000);
-        done();
-      }
-    })
-
-
     /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_GET_CAMERAS_CALLBACK_0100
       * @tc.name      : Get camera from cameramanager to get array of camera async api
@@ -482,7 +448,7 @@ export default function cameraJSUnitOutput() {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_METADATA_OUTPUT_CALLBACK_0100, data == null || undefined");
                 expect().assertFail();
               }
-              
+
             } else {
               console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_METADATA_OUTPUT_CALLBACK_0100 FAILED: " + err.message);
               expect().assertFail();
@@ -733,7 +699,7 @@ export default function cameraJSUnitOutput() {
             done();
           })
         }
-        
+
       }
       await sleep(1000);
       done();
@@ -887,7 +853,7 @@ export default function cameraJSUnitOutput() {
               console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_METADATA_TYPE_CALLBACK_0100 FAILED, data == null || undefined");
               expect().assertFail();
             }
-            
+
           } else {
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_GET_METADATA_TYPE_CALLBACK_0100 FAILED: " + err.message);
             expect().assertFail();
@@ -1349,7 +1315,7 @@ export default function cameraJSUnitOutput() {
               console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_IS_MIRROR_SUPPORTED_CALLBACK_0100 FAILED, data == null || undefined");
               expect().assertFail();
             }
-            
+
           } else {
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_IS_MIRROR_SUPPORTED_CALLBACK_0100 FAILED: " + err.message);
             expect().assertFail();
@@ -1450,13 +1416,13 @@ export default function cameraJSUnitOutput() {
         }).catch((err) => {
             console.info('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_PROMISE_0100 failed :' + err);
         });
-        
+
       }
       await sleep(1000);
       done();
     })
 
-    
+
 
     /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_CALLBACK_0100

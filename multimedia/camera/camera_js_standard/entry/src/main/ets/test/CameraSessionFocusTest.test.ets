@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-ignore
 
 import cameraObj from '@ohos.multimedia.camera';
@@ -154,7 +154,7 @@ export default function cameraSessionFocusTest() {
             mFdPath = "fd://" + mFdNumber.toString();
         }
     }
-    
+
     async function closeFd() {
         if (mFileAsset != null) {
                 await mFileAsset[0].close(mFdNumber).then(() => {
@@ -228,7 +228,7 @@ export default function cameraSessionFocusTest() {
     async function getCameraManagerInstance() {
         console.info('Enter getCameraManagerInstance');
 
-        mCameraManager = await cameraObj.getCameraManager(null);
+        mCameraManager = await cameraObj.getCameraManager();
         if (isEmpty(mCameraManager)) {
             console.info(TAG + "getCameraManager FAILED");
             return false;
@@ -241,7 +241,7 @@ export default function cameraSessionFocusTest() {
 
     async function getCameraSupportDevicesArray() {
         console.info('Enter getCameraSupportDevicesArray');
-        
+
         mCameraDevicesArray = await mCameraManager.getSupportedCameras();
         /*
         mCameraManager.getSupportedCameras(async (err, data) => {
@@ -345,7 +345,7 @@ export default function cameraSessionFocusTest() {
             console.info(TAG + "Entering createInputs FAILED with NoCamera");
             return false;
         }
-        
+
         mCameraInput = null;
         await mCameraManager.createCameraInput(mCameraDevicesArray[idx]).then((result) => {
             console.info('createCameraInput success');
@@ -353,7 +353,7 @@ export default function cameraSessionFocusTest() {
         }).catch((err) => {
             console.info('createCameraInput failed, err = ' + err.message);
         });
-        
+
         if (isEmpty(mCameraInput)) {
             console.info(TAG + "createCameraInput FAILED");
             return false;
@@ -405,40 +405,40 @@ export default function cameraSessionFocusTest() {
 
         if (!isEmpty(cameraOutputCap)) {
             if (!isEmpty(cameraOutputCap.previewProfiles)) {
-                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);      
+                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);
                 for (let i = 0; i < cameraOutputCap.previewProfiles.length; i++) {
                     mPreviewOutput = await mCameraManager.createPreviewOutput(cameraOutputCap.previewProfiles[i], globalThis.surfaceId);
                     if (!isEmpty(mPreviewOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPreviewOutput)) {
                     console.info(TAG + "createPreviewOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPreviewOutput: " + mPreviewOutput);
             }
-    
+
             if (!isEmpty(cameraOutputCap.photoProfiles)) {
-                console.info(TAG + "cameraOutputCap.photoProfiles.length: " + cameraOutputCap.photoProfiles.length);   
-                    
+                console.info(TAG + "cameraOutputCap.photoProfiles.length: " + cameraOutputCap.photoProfiles.length);
+
                 for (let i = 0; i < cameraOutputCap.photoProfiles.length; i++) {
                     mPhotoOutput = await mCameraManager.createPhotoOutput(cameraOutputCap.photoProfiles[i], mPhotoSurface);
                     if (!isEmpty(mPhotoOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPhotoOutput)) {
                         console.info(TAG + "createPhotoOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPhotoOutput: " + mPhotoOutput);
             }
             /*
             if (!isEmpty(cameraOutputCap.videoProfiles)) {
-                console.info(TAG + "cameraOutputCap.videoProfiles.length: " + cameraOutputCap.videoProfiles.length); 
+                console.info(TAG + "cameraOutputCap.videoProfiles.length: " + cameraOutputCap.videoProfiles.length);
                 for (let i = 0; i < cameraOutputCap.videoProfiles.length; i++) {
                     try {
                         mVideoOutput = await mCameraManager.createVideoOutput(cameraOutputCap.videoProfiles[i], mVideoSurface);
@@ -450,16 +450,16 @@ export default function cameraSessionFocusTest() {
                         console.info(TAG + "createVideoOutput FAILED");
                     }
                 }
-    
+
                 if (isEmpty(mVideoOutput)) {
                     console.info(TAG + "createVideoOutput FAILED");
                 }
-    
-                console.info(TAG + "createVideoOutput: " + mVideoOutput);  
+
+                console.info(TAG + "createVideoOutput: " + mVideoOutput);
             }
             */
         }
-        
+
         console.info('Exit createOutputs');
 
         return true;
@@ -472,7 +472,7 @@ export default function cameraSessionFocusTest() {
             await mPreviewOutput.stop();
             await mPreviewOutput.release();
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             await mPhotoOutput.release();
         }
@@ -483,7 +483,7 @@ export default function cameraSessionFocusTest() {
         }
         */
         console.info('Exit releaseOutput');
-        
+
         return true;
     }
 
@@ -499,12 +499,12 @@ export default function cameraSessionFocusTest() {
             console.info(TAG + "Start to addInput");
             await mCameraSession.addInput(mCameraInput);
         }
-        
+
         if (!isEmpty(mPreviewOutput)) {
             console.info(TAG + "Start to addOutput mPreviewOutput");
             await mCameraSession.addOutput(mPreviewOutput);
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             console.info(TAG + "Start to addOutput mPhotoOutput");
             await mCameraSession.addOutput(mPhotoOutput);
@@ -519,7 +519,7 @@ export default function cameraSessionFocusTest() {
 
         await commitCameraSessionConfig();
         await beginCameraSessionConfig();
-        
+
         /*
         await mCameraSession.start(async (err) => {
             console.info(TAG + "Entering mCameraSession start callback");
@@ -529,7 +529,7 @@ export default function cameraSessionFocusTest() {
                 console.info(TAG + "Entering mCameraSession start FAILED : " + err.message);
             }
         })
-        
+
         await sleep(100);
         */
         console.info(TAG + "Exit startCameraSession");
@@ -561,7 +561,7 @@ export default function cameraSessionFocusTest() {
             console.info(TAG + "Start to removeOutput mPreviewOutput");
             await mCameraSession.removeOutput(mPreviewOutput);
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             console.info(TAG + "Start to removeOutput mPhotoOutput");
             await mCameraSession.removeOutput(mPhotoOutput);
@@ -595,7 +595,7 @@ export default function cameraSessionFocusTest() {
 
             console.info('beforeAll case');
         })
-    
+
         beforeEach(function () {
             sleep(5000);
             console.info('beforeEach case');
@@ -630,11 +630,11 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsFocusModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_MANUAL, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0100 callback");
                         if (!err) {
@@ -651,12 +651,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0100 ends here");
                 done();
             }
@@ -680,9 +680,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isFocusModeSupported = await mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_MANUAL);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0100 finish");
                     if (isFocusModeSupported != null || isFocusModeSupported != undefined) {
@@ -690,15 +690,15 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0100 FAILED with isFocusModeSupported is: " + isFocusModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0100 ends here");
                 done();
             }
@@ -722,9 +722,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_MANUAL, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0100 callback");
@@ -755,12 +755,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0100 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0100 ends here");
                 done();
             }
@@ -784,13 +784,13 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         await mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_MANUAL);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_MANUAL);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_MANUAL);
                         await sleep(500);
 
                         let focusMode = await mCameraSession.getFocusMode();
@@ -805,12 +805,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0100 ends here");
                 done();
             }
@@ -834,11 +834,11 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsFocusModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0101 callback");
                         if (!err) {
@@ -855,12 +855,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0101 ends here");
                 done();
             }
@@ -884,9 +884,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isFocusModeSupported = await mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0101 finish");
                     if (isFocusModeSupported != null || isFocusModeSupported != undefined) {
@@ -894,15 +894,15 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0101 FAILED with isFocusModeSupported is: " + isFocusModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0101 ends here");
                 done();
             }
@@ -926,9 +926,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0101 callback");
@@ -959,12 +959,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0101 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0101 ends here");
                 done();
             }
@@ -988,13 +988,13 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         await mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
                         await sleep(500);
 
                         let focusMode = await mCameraSession.getFocusMode();
@@ -1009,12 +1009,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0101 ends here");
                 done();
             }
@@ -1038,11 +1038,11 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsFocusModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_AUTO, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0102 callback");
                         if (!err) {
@@ -1059,12 +1059,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0102 ends here");
                 done();
             }
@@ -1088,9 +1088,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isFocusModeSupported = await mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_AUTO);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0102 finish");
                     if (isFocusModeSupported != null || isFocusModeSupported != undefined) {
@@ -1098,15 +1098,15 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0102 FAILED with isFocusModeSupported is: " + isFocusModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0102 ends here");
                 done();
             }
@@ -1130,9 +1130,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_AUTO, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0102 callback");
@@ -1163,12 +1163,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0102 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0102 ends here");
                 done();
             }
@@ -1192,13 +1192,13 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         await mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_AUTO);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_AUTO);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_AUTO);
                         await sleep(500);
 
                         let focusMode = await mCameraSession.getFocusMode();
@@ -1213,12 +1213,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0102 ends here");
                 done();
             }
@@ -1242,11 +1242,11 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsFocusModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_LOCKED, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0103 callback");
                         if (!err) {
@@ -1263,12 +1263,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_CALLBACK_0103 ends here");
                 done();
             }
@@ -1292,9 +1292,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isFocusModeSupported = await mCameraSession.isFocusModeSupported(cameraObj.FocusMode.FOCUS_MODE_LOCKED);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0103 finish");
                     if (isFocusModeSupported != null || isFocusModeSupported != undefined) {
@@ -1302,15 +1302,15 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0103 FAILED with isFocusModeSupported is: " + isFocusModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FOCUS_MODE_SUPPORT_PROMISE_0103 ends here");
                 done();
             }
@@ -1334,9 +1334,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_LOCKED, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0103 callback");
@@ -1367,12 +1367,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0103 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_CALLBACK_0103 ends here");
                 done();
             }
@@ -1396,13 +1396,13 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsFocusModeSupportedArray[i] == true) {
                         await mCameraSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_LOCKED);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_LOCKED);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 PASSED with FocusMode is: " + cameraObj.FocusMode.FOCUS_MODE_LOCKED);
                         await sleep(500);
 
                         let focusMode = await mCameraSession.getFocusMode();
@@ -1417,12 +1417,12 @@ export default function cameraSessionFocusTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_MODE_PROMISE_0103 ends here");
                 done();
             }
@@ -1446,9 +1446,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPoint, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0100 callback");
                         if (!err) {
@@ -1475,12 +1475,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0100 ends here");
                 done();
             }
@@ -1504,12 +1504,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPoint);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0100 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0100 PASSED with FocusPoint is: " + mFocusPoint.x + ", " + mFocusPoint.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0100 PASSED with FocusPoint is: " + mFocusPoint.x + ", " + mFocusPoint.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -1521,16 +1521,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0100 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0101
@@ -1550,9 +1550,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointLT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0101 callback");
                         if (!err) {
@@ -1579,12 +1579,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0101 ends here");
                 done();
             }
@@ -1608,12 +1608,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointLT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 PASSED with FocusPoint is: " + mFocusPointLT.x + ", " + mFocusPointLT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 PASSED with FocusPoint is: " + mFocusPointLT.x + ", " + mFocusPointLT.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -1625,16 +1625,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0102
@@ -1654,9 +1654,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointRT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0102 callback");
                         if (!err) {
@@ -1683,12 +1683,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0102 ends here");
                 done();
             }
@@ -1712,12 +1712,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointRT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 PASSED with FocusPoint is: " + mFocusPointRT.x + ", " + mFocusPointRT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 PASSED with FocusPoint is: " + mFocusPointRT.x + ", " + mFocusPointRT.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -1729,16 +1729,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0103
@@ -1758,9 +1758,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointLB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0103 callback");
                         if (!err) {
@@ -1787,12 +1787,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0103 ends here");
                 done();
             }
@@ -1816,12 +1816,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointLB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 PASSED with FocusPoint is: " + mFocusPointLB.x + ", " + mFocusPointLB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 PASSED with FocusPoint is: " + mFocusPointLB.x + ", " + mFocusPointLB.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -1833,16 +1833,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0104
@@ -1862,9 +1862,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0104 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointRB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0104 callback");
                         if (!err) {
@@ -1891,12 +1891,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0104 ends here");
                 done();
             }
@@ -1920,14 +1920,14 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointRB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 PASSED with FocusPoint is: " + mFocusPointRB.x + ", " + mFocusPointRB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 PASSED with FocusPoint is: " + mFocusPointRB.x + ", " + mFocusPointRB.y);
                     await sleep(500);
-                    
+
                     let focusPoint = await mCameraSession.getFocusPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 finish");
                     if ((focusPoint.x == mFocusPointRB.x) && (focusPoint.y == mFocusPointRB.y)) {
@@ -1937,16 +1937,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0105
@@ -1966,9 +1966,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0105 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointInvalidLT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0105 callback");
                         if (!err) {
@@ -1995,12 +1995,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0105 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0105 ends here");
                 done();
             }
@@ -2024,12 +2024,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointInvalidLT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 PASSED with FocusPoint is: " + mFocusPointInvalidLT.x + ", " + mFocusPointInvalidLT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 PASSED with FocusPoint is: " + mFocusPointInvalidLT.x + ", " + mFocusPointInvalidLT.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -2041,16 +2041,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0106
@@ -2070,9 +2070,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0106 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointInvalidRT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0106 callback");
                         if (!err) {
@@ -2099,12 +2099,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0106 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0106 ends here");
                 done();
             }
@@ -2128,12 +2128,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointInvalidRT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 PASSED with FocusPoint is: " + mFocusPointInvalidRT.x + ", " + mFocusPointInvalidRT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 PASSED with FocusPoint is: " + mFocusPointInvalidRT.x + ", " + mFocusPointInvalidRT.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -2145,16 +2145,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0107
@@ -2174,9 +2174,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0107 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointInvalidLB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0107 callback");
                         if (!err) {
@@ -2203,12 +2203,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0107 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0107 ends here");
                 done();
             }
@@ -2232,12 +2232,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointInvalidLB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 PASSED with FocusPoint is: " + mFocusPointInvalidLB.x + ", " + mFocusPointInvalidLB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 PASSED with FocusPoint is: " + mFocusPointInvalidLB.x + ", " + mFocusPointInvalidLB.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -2249,16 +2249,16 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 ends here");
                 done();
             }
-        })  
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0108
@@ -2278,9 +2278,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0108 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setFocusPoint(mFocusPointInvalidRB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0108 callback");
                         if (!err) {
@@ -2307,12 +2307,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0108 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_CALLBACK_0108 ends here");
                 done();
             }
@@ -2336,12 +2336,12 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setFocusPoint(mFocusPointInvalidRB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 PASSED with FocusPoint is: " + mFocusPointInvalidRB.x + ", " + mFocusPointInvalidRB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 PASSED with FocusPoint is: " + mFocusPointInvalidRB.x + ", " + mFocusPointInvalidRB.y);
                     await sleep(500);
 
                     let focusPoint = await mCameraSession.getFocusPoint();
@@ -2353,17 +2353,17 @@ export default function cameraSessionFocusTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 ends here");
                 done();
             }
-        })  
-        
+        })
+
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_CALLBACK_0100
         * @tc.name      : Check capture session get focal length with callback
@@ -2382,9 +2382,9 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.getFocalLength(async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_CALLBACK_0100 callback");
                         if (!err) {
@@ -2395,12 +2395,12 @@ export default function cameraSessionFocusTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_CALLBACK_0100 ends here");
                 done();
             }
@@ -2424,24 +2424,24 @@ export default function cameraSessionFocusTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let focalLength = await mCameraSession.getFocalLength();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_PROMISE_0100 finish");
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_PROMISE_0100 PASSED with FocalLength is: " + focalLength);
-    
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_FOCAL_LENGTH_PROMISE_0100 ends here");
-                done(); 
+                done();
             }
-        })    
+        })
 
     })
 }

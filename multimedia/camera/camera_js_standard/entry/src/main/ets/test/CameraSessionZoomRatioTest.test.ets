@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-ignore
 
 import cameraObj from '@ohos.multimedia.camera';
@@ -109,7 +109,7 @@ export default function cameraSessionZoomRatioTest() {
             mFdPath = "fd://" + mFdNumber.toString();
         }
     }
-    
+
     async function closeFd() {
         if (mFileAsset != null) {
                 await mFileAsset[0].close(mFdNumber).then(() => {
@@ -183,7 +183,7 @@ export default function cameraSessionZoomRatioTest() {
     async function getCameraManagerInstance() {
         console.info('Enter getCameraManagerInstance');
 
-        mCameraManager = await cameraObj.getCameraManager(null);
+        mCameraManager = await cameraObj.getCameraManager();
         if (isEmpty(mCameraManager)) {
             console.info(TAG + "getCameraManager FAILED");
             return false;
@@ -196,7 +196,7 @@ export default function cameraSessionZoomRatioTest() {
 
     async function getCameraSupportDevicesArray() {
         console.info('Enter getCameraSupportDevicesArray');
-        
+
         mCameraDevicesArray = await mCameraManager.getSupportedCameras();
         /*
         mCameraManager.getSupportedCameras(async (err, data) => {
@@ -302,7 +302,7 @@ export default function cameraSessionZoomRatioTest() {
             console.info(TAG + "Entering createInputs FAILED with NoCamera");
             return false;
         }
-        
+
         mCameraInput = null;
         await mCameraManager.createCameraInput(mCameraDevicesArray[idx]).then((result) => {
             console.info('createCameraInput success');
@@ -310,7 +310,7 @@ export default function cameraSessionZoomRatioTest() {
         }).catch((err) => {
             console.info('createCameraInput failed, err = ' + err.message);
         });
-        
+
         if (isEmpty(mCameraInput)) {
             console.info(TAG + "createCameraInput FAILED");
             return false;
@@ -362,40 +362,40 @@ export default function cameraSessionZoomRatioTest() {
 
         if (!isEmpty(cameraOutputCap)) {
             if (!isEmpty(cameraOutputCap.previewProfiles)) {
-                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);      
+                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);
                 for (let i = 0; i < cameraOutputCap.previewProfiles.length; i++) {
                     mPreviewOutput = await mCameraManager.createPreviewOutput(cameraOutputCap.previewProfiles[i], globalThis.surfaceId);
                     if (!isEmpty(mPreviewOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPreviewOutput)) {
                     console.info(TAG + "createPreviewOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPreviewOutput: " + mPreviewOutput);
             }
-    
+
             if (!isEmpty(cameraOutputCap.photoProfiles)) {
-                console.info(TAG + "cameraOutputCap.photoProfiles.length: " + cameraOutputCap.photoProfiles.length);   
-                    
+                console.info(TAG + "cameraOutputCap.photoProfiles.length: " + cameraOutputCap.photoProfiles.length);
+
                 for (let i = 0; i < cameraOutputCap.photoProfiles.length; i++) {
                     mPhotoOutput = await mCameraManager.createPhotoOutput(cameraOutputCap.photoProfiles[i], mPhotoSurface);
                     if (!isEmpty(mPhotoOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPhotoOutput)) {
                         console.info(TAG + "createPhotoOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPhotoOutput: " + mPhotoOutput);
             }
             /*
             if (!isEmpty(cameraOutputCap.videoProfiles)) {
-                console.info(TAG + "cameraOutputCap.videoProfiles.length: " + cameraOutputCap.videoProfiles.length); 
+                console.info(TAG + "cameraOutputCap.videoProfiles.length: " + cameraOutputCap.videoProfiles.length);
                 for (let i = 0; i < cameraOutputCap.videoProfiles.length; i++) {
                     try {
                         mVideoOutput = await mCameraManager.createVideoOutput(cameraOutputCap.videoProfiles[i], mVideoSurface);
@@ -407,16 +407,16 @@ export default function cameraSessionZoomRatioTest() {
                         console.info(TAG + "createVideoOutput FAILED");
                     }
                 }
-    
+
                 if (isEmpty(mVideoOutput)) {
                     console.info(TAG + "createVideoOutput FAILED");
                 }
-    
-                console.info(TAG + "createVideoOutput: " + mVideoOutput);  
+
+                console.info(TAG + "createVideoOutput: " + mVideoOutput);
             }
             */
         }
-        
+
         console.info('Exit createOutputs');
 
         return true;
@@ -429,7 +429,7 @@ export default function cameraSessionZoomRatioTest() {
             await mPreviewOutput.stop();
             await mPreviewOutput.release();
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             await mPhotoOutput.release();
         }
@@ -440,7 +440,7 @@ export default function cameraSessionZoomRatioTest() {
         }
         */
         console.info('Exit releaseOutput');
-        
+
         return true;
     }
 
@@ -456,12 +456,12 @@ export default function cameraSessionZoomRatioTest() {
             console.info(TAG + "Start to addInput");
             await mCameraSession.addInput(mCameraInput);
         }
-        
+
         if (!isEmpty(mPreviewOutput)) {
             console.info(TAG + "Start to addOutput mPreviewOutput");
             await mCameraSession.addOutput(mPreviewOutput);
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             console.info(TAG + "Start to addOutput mPhotoOutput");
             await mCameraSession.addOutput(mPhotoOutput);
@@ -476,7 +476,7 @@ export default function cameraSessionZoomRatioTest() {
 
         await commitCameraSessionConfig();
         await beginCameraSessionConfig();
-        
+
         /*
         await mCameraSession.start(async (err) => {
             console.info(TAG + "Entering mCameraSession start callback");
@@ -486,7 +486,7 @@ export default function cameraSessionZoomRatioTest() {
                 console.info(TAG + "Entering mCameraSession start FAILED : " + err.message);
             }
         })
-        
+
         await sleep(100);
         */
         console.info(TAG + "Exit startCameraSession");
@@ -518,7 +518,7 @@ export default function cameraSessionZoomRatioTest() {
             console.info(TAG + "Start to removeOutput mPreviewOutput");
             await mCameraSession.removeOutput(mPreviewOutput);
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             console.info(TAG + "Start to removeOutput mPhotoOutput");
             await mCameraSession.removeOutput(mPhotoOutput);
@@ -552,7 +552,7 @@ export default function cameraSessionZoomRatioTest() {
 
             console.info('beforeAll case');
         })
-    
+
         beforeEach(function () {
             sleep(5000);
             console.info('beforeEach case');
@@ -587,9 +587,9 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.getZoomRatioRange(async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 callback");
                         if (!err) {
@@ -598,16 +598,16 @@ export default function cameraSessionZoomRatioTest() {
                                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 PASSED with ZoomRatioRange length is: " + data.length);
                                 for (let j = 0; j < mZoomRatioRangeArray[i].length; j++) {
                                     console.info(TAG + j + "th, zoom ratio is: " + data[j] + ", " + mZoomRatioRangeArray[i][j]);
-    
+
                                     if ((mZoomRatioMaxArray[i] == undefined) || (mZoomRatioMaxArray[i] < mZoomRatioRangeArray[i][j])) {
                                         mZoomRatioMaxArray[i] = mZoomRatioRangeArray[i][j]
                                     }
-    
+
                                     if ((mZoomRatioMinArray[i] == undefined) || (mZoomRatioMinArray[i] > mZoomRatioRangeArray[i][j])) {
                                         mZoomRatioMinArray[i] = mZoomRatioRangeArray[i][j]
                                     }
                                 }
-    
+
                                 console.info(TAG + "Zoom ratio max is: " + mZoomRatioMaxArray[i] + ", min is: " + mZoomRatioMinArray[i]);
                             } else {
                                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 FAILED with ZoomRatioRange length is: " + data.length);
@@ -618,14 +618,14 @@ export default function cameraSessionZoomRatioTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 ends here");
-                done();           
+                done();
             }
         })
 
@@ -647,9 +647,9 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     try {
                         let zoomRatioRange = await mCameraSession.getZoomRatioRange();
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 finish");
@@ -659,22 +659,22 @@ export default function cameraSessionZoomRatioTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 FAILED with ZoomRatioRange length is: " + zoomRatioRange.length);
                             expect().assertFail();
                         }
-        
+
                         for (let j = 0; j < zoomRatioRange.length; j++) {
                             console.info(TAG + j + "th, zoom ratio is: " + zoomRatioRange[j]);
-                        }    
+                        }
                     }
                     catch {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 PASSED");
                     }
-    
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 ends here");
                 done();
             }
@@ -698,10 +698,10 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-    
+
                         mCameraSession.setZoomRatio(mZoomRatioRangeArray[i][0], async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0100 callback");
                             if (!err) {
@@ -728,13 +728,13 @@ export default function cameraSessionZoomRatioTest() {
                             }
                         })
                         await sleep(500);
-                        
-                        await stopCameraSession();    
+
+                        await stopCameraSession();
                     }
-                    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0100 ends here");
                 done();
             }
@@ -758,13 +758,13 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         await mCameraSession.setZoomRatio(mZoomRatioRangeArray[i][0]);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 PASSED with ZoomRatio is: " + mZoomRatioRangeArray[i][0]);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 PASSED with ZoomRatio is: " + mZoomRatioRangeArray[i][0]);
                         await sleep(500);
 
                         let zoomRatio = await mCameraSession.getZoomRatio();
@@ -776,17 +776,17 @@ export default function cameraSessionZoomRatioTest() {
                             expect().assertFail();
                         }
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0101
@@ -806,10 +806,10 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         mCameraSession.setZoomRatio((mZoomRatioMaxArray[i] + 1), async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0101 callback");
                             if (!err) {
@@ -836,13 +836,13 @@ export default function cameraSessionZoomRatioTest() {
                             }
                         })
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0101 ends here");
                 done();
             }
@@ -866,13 +866,13 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         await mCameraSession.setZoomRatio((mZoomRatioMaxArray[i] + 1));
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] + 1));  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] + 1));
                         await sleep(500);
 
                         let zoomRatio = await mCameraSession.getZoomRatio();
@@ -884,17 +884,17 @@ export default function cameraSessionZoomRatioTest() {
                             expect().assertFail();
                         }
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0102
@@ -914,10 +914,10 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         mCameraSession.setZoomRatio((mZoomRatioMaxArray[i] + 0.1), async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0102 callback");
                             if (!err) {
@@ -944,13 +944,13 @@ export default function cameraSessionZoomRatioTest() {
                             }
                         })
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0102 ends here");
                 done();
             }
@@ -974,13 +974,13 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         await mCameraSession.setZoomRatio((mZoomRatioMaxArray[i] + 0.1));
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] + 0.1));  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] + 0.1));
                         await sleep(500);
 
                         let zoomRatio = await mCameraSession.getZoomRatio();
@@ -992,17 +992,17 @@ export default function cameraSessionZoomRatioTest() {
                             expect().assertFail();
                         }
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0103
@@ -1022,10 +1022,10 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0103 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         mCameraSession.setZoomRatio((mZoomRatioMinArray[i] - 1), async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0103 callback");
                             if (!err) {
@@ -1052,13 +1052,13 @@ export default function cameraSessionZoomRatioTest() {
                             }
                         })
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0103 ends here");
                 done();
             }
@@ -1082,13 +1082,13 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         await mCameraSession.setZoomRatio((mZoomRatioMinArray[i] - 1));
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] - 1));  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] - 1));
                         await sleep(500);
 
                         let zoomRatio = await mCameraSession.getZoomRatio();
@@ -1100,17 +1100,17 @@ export default function cameraSessionZoomRatioTest() {
                             expect().assertFail();
                         }
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0104
@@ -1130,10 +1130,10 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0104 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         mCameraSession.setZoomRatio((mZoomRatioMaxArray[i] - 0.1), async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0104 callback");
                             if (!err) {
@@ -1160,13 +1160,13 @@ export default function cameraSessionZoomRatioTest() {
                             }
                         })
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_CALLBACK_0104 ends here");
                 done();
             }
@@ -1190,13 +1190,13 @@ export default function cameraSessionZoomRatioTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 start for camera[" + i + "]");
-    
+
                     if (!isEmpty(mZoomRatioRangeArray[i])) {
                         await startCameraSession(i);
-        
+
                         await mCameraSession.setZoomRatio((mZoomRatioMinArray[i] - 0.1));
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] - 0.1));  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[i] - 0.1));
                         await sleep(500);
 
                         let zoomRatio = await mCameraSession.getZoomRatio();
@@ -1208,17 +1208,17 @@ export default function cameraSessionZoomRatioTest() {
                             expect().assertFail();
                         }
                         await sleep(500);
-                        
+
                         await stopCameraSession();
                     }
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 ends here");
                 done();
             }
-        })    
+        })
 
     })
 }

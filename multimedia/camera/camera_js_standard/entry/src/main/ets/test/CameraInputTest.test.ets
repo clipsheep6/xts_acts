@@ -72,7 +72,7 @@ export default function CameraInputTest() {
     async function getCameraManagerInstance() {
         console.info('Enter getCameraManagerInstance');
 
-        mCameraManager = await cameraObj.getCameraManager(null);
+        mCameraManager = await cameraObj.getCameraManager();
         if (isEmpty(mCameraManager)) {
             console.info(TAG + "getCameraManager FAILED");
             return false;
@@ -85,7 +85,7 @@ export default function CameraInputTest() {
 
     async function getCameraSupportDevicesArray() {
         console.info('Enter getCameraSupportDevicesArray');
-        
+
         mCameraDevicesArray = await mCameraManager.getSupportedCameras();
         /*
         mCameraManager.getSupportedCameras(async (err, data) => {
@@ -112,12 +112,12 @@ export default function CameraInputTest() {
         mCameraNum = mCameraDevicesArray.length;
 
         console.info(TAG + "getCameraSupportDevicesArray is: " + mCameraNum);
-        
+
         console.info('Exit getCameraSupportDevicesArray');
 
         return true;
     }
-    
+
     async function beginCameraSessionConfig() {
         console.info('Enter beginCameraSessionConfig');
 
@@ -187,7 +187,7 @@ export default function CameraInputTest() {
             console.info(TAG + "Entering createInputs FAILED with NoCamera");
             return false;
         }
-        
+
         mCameraInput = null;
         await mCameraManager.createCameraInput(mCameraDevicesArray[idx]).then((result) => {
             console.info('createCameraInput success');
@@ -246,22 +246,22 @@ export default function CameraInputTest() {
 
         if (!isEmpty(cameraOutputCap)) {
             if (!isEmpty(cameraOutputCap.previewProfiles)) {
-                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);      
+                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);
                 for (let i = 0; i < cameraOutputCap.previewProfiles.length; i++) {
                     mPreviewOutput = await mCameraManager.createPreviewOutput(cameraOutputCap.previewProfiles[i], globalThis.surfaceId);
                     if (!isEmpty(mPreviewOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPreviewOutput)) {
                     console.info(TAG + "createPreviewOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPreviewOutput: " + mPreviewOutput);
             }
         }
-        
+
         console.info('Exit createOutputs');
 
         return true;
@@ -276,7 +276,7 @@ export default function CameraInputTest() {
         }
 
         console.info('Exit releaseOutput');
-        
+
         return true;
     }
 
@@ -292,16 +292,16 @@ export default function CameraInputTest() {
             console.info(TAG + "Start to addInput");
             await mCameraSession.addInput(mCameraInput);
         }
-        
+
         if (!isEmpty(mPreviewOutput)) {
             console.info(TAG + "Start to addOutput mPreviewOutput");
             await mCameraSession.addOutput(mPreviewOutput);
         }
-        
+
         await sleep(1);
 
         await commitCameraSessionConfig();
-        
+
         console.info(TAG + "Exit startCameraSession");
 
         return true;
@@ -319,7 +319,7 @@ export default function CameraInputTest() {
             console.info(TAG + "Start to removeOutput mPreviewOutput");
             await mCameraSession.removeOutput(mPreviewOutput);
         }
-        
+
         await releaseInput();
         await releaseOutput();
 
@@ -405,10 +405,10 @@ export default function CameraInputTest() {
                 }
 
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100 ends here");
-                done(); 
+                done();
             }
         });
-        
+
         /**
          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_RELEASE_CALLBACK_0100
          * @tc.name      : open/close/release Camera with cameraInput callback api

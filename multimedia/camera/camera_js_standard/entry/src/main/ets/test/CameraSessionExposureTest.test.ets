@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-ignore
 
 import cameraObj from '@ohos.multimedia.camera';
@@ -157,7 +157,7 @@ export default function cameraSessionExposureTest() {
             mFdPath = "fd://" + mFdNumber.toString();
         }
     }
-    
+
     async function closeFd() {
         if (mFileAsset != null) {
                 await mFileAsset[0].close(mFdNumber).then(() => {
@@ -229,7 +229,7 @@ export default function cameraSessionExposureTest() {
     async function getCameraManagerInstance() {
         console.info('Enter getCameraManagerInstance');
 
-        mCameraManager = await cameraObj.getCameraManager(null);
+        mCameraManager = await cameraObj.getCameraManager();
         if (isEmpty(mCameraManager)) {
             console.info(TAG + "getCameraManager FAILED");
             return false;
@@ -242,7 +242,7 @@ export default function cameraSessionExposureTest() {
 
     async function getCameraSupportDevicesArray() {
         console.info('Enter getCameraSupportDevicesArray');
-        
+
         mCameraDevicesArray = await mCameraManager.getSupportedCameras();
         /*
         mCameraManager.getSupportedCameras(async (err, data) => {
@@ -349,7 +349,7 @@ export default function cameraSessionExposureTest() {
             console.info(TAG + "Entering createInputs FAILED with NoCamera");
             return false;
         }
-        
+
         mCameraInput = null;
         await mCameraManager.createCameraInput(mCameraDevicesArray[idx]).then((result) => {
             console.info('createCameraInput success');
@@ -357,7 +357,7 @@ export default function cameraSessionExposureTest() {
         }).catch((err) => {
             console.info('createCameraInput failed, err = ' + err.message);
         });
-        
+
         if (isEmpty(mCameraInput)) {
             console.info(TAG + "createCameraInput FAILED");
             return false;
@@ -409,40 +409,40 @@ export default function cameraSessionExposureTest() {
 
         if (!isEmpty(cameraOutputCap)) {
             if (!isEmpty(cameraOutputCap.previewProfiles)) {
-                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);      
+                console.info(TAG + "cameraOutputCap.previewProfiles.length: " + cameraOutputCap.previewProfiles.length);
                 for (let i = 0; i < cameraOutputCap.previewProfiles.length; i++) {
                     mPreviewOutput = await mCameraManager.createPreviewOutput(cameraOutputCap.previewProfiles[i], globalThis.surfaceId);
                     if (!isEmpty(mPreviewOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPreviewOutput)) {
                     console.info(TAG + "createPreviewOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPreviewOutput: " + mPreviewOutput);
             }
-    
+
             if (!isEmpty(cameraOutputCap.photoProfiles)) {
-                console.info(TAG + "cameraOutputCap.photoProfiles.length: " + cameraOutputCap.photoProfiles.length);   
-                    
+                console.info(TAG + "cameraOutputCap.photoProfiles.length: " + cameraOutputCap.photoProfiles.length);
+
                 for (let i = 0; i < cameraOutputCap.photoProfiles.length; i++) {
                     mPhotoOutput = await mCameraManager.createPhotoOutput(cameraOutputCap.photoProfiles[i], mPhotoSurface);
                     if (!isEmpty(mPhotoOutput)) {
                         break;
                     }
                 }
-    
+
                 if (isEmpty(mPhotoOutput)) {
                         console.info(TAG + "createPhotoOutput FAILED");
                 }
-    
+
                 console.info(TAG + "createPhotoOutput: " + mPhotoOutput);
             }
             /*
             if (!isEmpty(cameraOutputCap.videoProfiles)) {
-                console.info(TAG + "cameraOutputCap.videoProfiles.length: " + cameraOutputCap.videoProfiles.length); 
+                console.info(TAG + "cameraOutputCap.videoProfiles.length: " + cameraOutputCap.videoProfiles.length);
                 for (let i = 0; i < cameraOutputCap.videoProfiles.length; i++) {
                     try {
                         mVideoOutput = await mCameraManager.createVideoOutput(cameraOutputCap.videoProfiles[i], mVideoSurface);
@@ -454,16 +454,16 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "createVideoOutput FAILED");
                     }
                 }
-    
+
                 if (isEmpty(mVideoOutput)) {
                     console.info(TAG + "createVideoOutput FAILED");
                 }
-    
-                console.info(TAG + "createVideoOutput: " + mVideoOutput);  
+
+                console.info(TAG + "createVideoOutput: " + mVideoOutput);
             }
             */
         }
-        
+
         console.info('Exit createOutputs');
 
         return true;
@@ -476,7 +476,7 @@ export default function cameraSessionExposureTest() {
             await mPreviewOutput.stop();
             await mPreviewOutput.release();
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             await mPhotoOutput.release();
         }
@@ -487,7 +487,7 @@ export default function cameraSessionExposureTest() {
         }
         */
         console.info('Exit releaseOutput');
-        
+
         return true;
     }
 
@@ -503,12 +503,12 @@ export default function cameraSessionExposureTest() {
             console.info(TAG + "Start to addInput");
             await mCameraSession.addInput(mCameraInput);
         }
-        
+
         if (!isEmpty(mPreviewOutput)) {
             console.info(TAG + "Start to addOutput mPreviewOutput");
             await mCameraSession.addOutput(mPreviewOutput);
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             console.info(TAG + "Start to addOutput mPhotoOutput");
             await mCameraSession.addOutput(mPhotoOutput);
@@ -523,7 +523,7 @@ export default function cameraSessionExposureTest() {
 
         await commitCameraSessionConfig();
         await beginCameraSessionConfig();
-        
+
         /*
         await mCameraSession.start(async (err) => {
             console.info(TAG + "Entering mCameraSession start callback");
@@ -533,7 +533,7 @@ export default function cameraSessionExposureTest() {
                 console.info(TAG + "Entering mCameraSession start FAILED : " + err.message);
             }
         })
-        
+
         await sleep(100);
         */
         console.info(TAG + "Exit startCameraSession");
@@ -565,7 +565,7 @@ export default function cameraSessionExposureTest() {
             console.info(TAG + "Start to removeOutput mPreviewOutput");
             await mCameraSession.removeOutput(mPreviewOutput);
         }
-        
+
         if (!isEmpty(mPhotoOutput)) {
             console.info(TAG + "Start to removeOutput mPhotoOutput");
             await mCameraSession.removeOutput(mPhotoOutput);
@@ -599,7 +599,7 @@ export default function cameraSessionExposureTest() {
 
             console.info('beforeAll case');
         })
-    
+
         beforeEach(function () {
             sleep(1000);
             console.info('beforeEach case');
@@ -634,11 +634,11 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsExposureModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0100 callback");
                         if (!err) {
@@ -655,12 +655,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0100 ends here");
                 done();
             }
@@ -684,9 +684,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isExposureModeSupported = await mCameraSession.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0100 finish");
                     if (isExposureModeSupported != null || isExposureModeSupported != undefined) {
@@ -694,15 +694,15 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0100 FAILED with isExposureModeSupported is: " + isExposureModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0100 ends here");
                 done();
             }
@@ -726,9 +726,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsExposureModeSupportedArray[i] == true) {
                         mCameraSession.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0100 callback");
@@ -759,12 +759,12 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0100 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0100 ends here");
                 done();
             }
@@ -788,13 +788,13 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsExposureModeSupportedArray[i] == true) {
                         await mCameraSession.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 PASSED with ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 PASSED with ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_LOCKED);
                         await sleep(500);
 
                         let exposureMode = await mCameraSession.getExposureMode();
@@ -809,12 +809,12 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0100 ends here");
                 done();
             }
@@ -838,11 +838,11 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsExposureModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_AUTO, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0101 callback");
                         if (!err) {
@@ -859,12 +859,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0101 ends here");
                 done();
             }
@@ -888,9 +888,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isExposureModeSupported = await mCameraSession.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_AUTO);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0101 finish");
                     if (isExposureModeSupported != null || isExposureModeSupported != undefined) {
@@ -898,15 +898,15 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0101 FAILED with isExposureModeSupported is: " + isExposureModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0101 ends here");
                 done();
             }
@@ -930,9 +930,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsExposureModeSupportedArray[i] == true) {
                         mCameraSession.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_AUTO, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0101 callback");
@@ -963,12 +963,12 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0101 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0101 ends here");
                 done();
             }
@@ -992,13 +992,13 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsExposureModeSupportedArray[i] == true) {
                         await mCameraSession.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_AUTO);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 PASSED with ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_AUTO);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 PASSED with ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_AUTO);
                         await sleep(500);
 
                         let exposureMode = await mCameraSession.getExposureMode();
@@ -1013,12 +1013,12 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0101 ends here");
                 done();
             }
@@ -1042,11 +1042,11 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mIsExposureModeSupportedArray[i] = false;
-    
+
                     mCameraSession.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0102 callback");
                         if (!err) {
@@ -1063,12 +1063,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_CALLBACK_0102 ends here");
                 done();
             }
@@ -1092,9 +1092,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let isExposureModeSupported = await mCameraSession.isExposureModeSupported(cameraObj.ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0102 finish");
                     if (isExposureModeSupported != null || isExposureModeSupported != undefined) {
@@ -1102,15 +1102,15 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0102 FAILED with isExposureModeSupported is: " + isExposureModeSupported);
                         expect().assertFail();
-                    }    
-    
+                    }
+
                     await sleep(100);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_0102 ends here");
                 done();
             }
@@ -1134,9 +1134,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsExposureModeSupportedArray[i] == true) {
                         mCameraSession.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO, async (err) => {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0102 callback");
@@ -1167,12 +1167,12 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0102 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_CALLBACK_0102 ends here");
                 done();
             }
@@ -1196,13 +1196,13 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     if (mIsExposureModeSupportedArray[i] == true) {
                         await mCameraSession.setExposureMode(cameraObj.ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO);
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 finish");
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 PASSED with ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO);  
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 PASSED with ExposureMode is: " + cameraObj.ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO);
                         await sleep(500);
 
                         let exposureMode = await mCameraSession.getExposureMode();
@@ -1217,12 +1217,12 @@ export default function cameraSessionExposureTest() {
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 not support");
                     }
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_0102 ends here");
                 done();
             }
@@ -1246,9 +1246,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPoint, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0100 callback");
                         if (!err) {
@@ -1275,12 +1275,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0100 ends here");
                 done();
             }
@@ -1304,12 +1304,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPoint);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0100 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0100 PASSED with METERINGPoint is: " + mMETERINGPoint.x + ", " + mMETERINGPoint.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0100 PASSED with METERINGPoint is: " + mMETERINGPoint.x + ", " + mMETERINGPoint.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1321,12 +1321,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0100 ends here");
                 done();
             }
@@ -1350,9 +1350,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointLT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0101 callback");
                         if (!err) {
@@ -1379,12 +1379,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0101 ends here");
                 done();
             }
@@ -1408,12 +1408,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointLT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 PASSED with METERINGPoint is: " + mMETERINGPointLT.x + ", " + mMETERINGPointLT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 PASSED with METERINGPoint is: " + mMETERINGPointLT.x + ", " + mMETERINGPointLT.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1425,12 +1425,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 ends here");
                 done();
             }
@@ -1454,9 +1454,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointRT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0102 callback");
                         if (!err) {
@@ -1483,12 +1483,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0102 ends here");
                 done();
             }
@@ -1512,12 +1512,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointRT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 PASSED with METERINGPoint is: " + mMETERINGPointRT.x + ", " + mMETERINGPointRT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 PASSED with METERINGPoint is: " + mMETERINGPointRT.x + ", " + mMETERINGPointRT.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1529,12 +1529,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 ends here");
                 done();
             }
@@ -1558,9 +1558,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointLB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0103 callback");
                         if (!err) {
@@ -1587,12 +1587,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0103 ends here");
                 done();
             }
@@ -1616,12 +1616,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointLB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 PASSED with METERINGPoint is: " + mMETERINGPointLB.x + ", " + mMETERINGPointRB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 PASSED with METERINGPoint is: " + mMETERINGPointLB.x + ", " + mMETERINGPointRB.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1633,12 +1633,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 ends here");
                 done();
             }
@@ -1662,9 +1662,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0104 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointRB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0104 callback");
                         if (!err) {
@@ -1691,12 +1691,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0104 ends here");
                 done();
             }
@@ -1720,12 +1720,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointRB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 PASSED with METERINGPoint is: " + mMETERINGPointRB.x + ", " + mMETERINGPointRB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 PASSED with METERINGPoint is: " + mMETERINGPointRB.x + ", " + mMETERINGPointRB.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1736,14 +1736,14 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                         expect().assertFail();
                     }
-    
+
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 ends here");
                 done();
             }
@@ -1767,9 +1767,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0105 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointInvalidLT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0105 callback");
                         if (!err) {
@@ -1796,12 +1796,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0105 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0105 ends here");
                 done();
             }
@@ -1825,12 +1825,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointInvalidLT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 PASSED with METERINGPoint is: " + mMETERINGPointInvalidLT.x + ", " + mMETERINGPointInvalidLT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 PASSED with METERINGPoint is: " + mMETERINGPointInvalidLT.x + ", " + mMETERINGPointInvalidLT.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1842,12 +1842,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 ends here");
                 done();
             }
@@ -1871,9 +1871,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0106 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointInvalidRT, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0106 callback");
                         if (!err) {
@@ -1900,12 +1900,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0106 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0106 ends here");
                 done();
             }
@@ -1929,12 +1929,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointInvalidRT);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 PASSED with METERINGPoint is: " + mMETERINGPointInvalidRT.x + ", " + mMETERINGPointInvalidRT.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 PASSED with METERINGPoint is: " + mMETERINGPointInvalidRT.x + ", " + mMETERINGPointInvalidRT.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -1946,12 +1946,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 ends here");
                 done();
             }
@@ -1975,9 +1975,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0107 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointInvalidLB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0107 callback");
                         if (!err) {
@@ -2004,12 +2004,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0107 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0107 ends here");
                 done();
             }
@@ -2033,12 +2033,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointInvalidLB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 PASSED with METERINGPoint is: " + mMETERINGPointInvalidLB.x + ", " + mMETERINGPointInvalidRB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 PASSED with METERINGPoint is: " + mMETERINGPointInvalidLB.x + ", " + mMETERINGPointInvalidRB.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -2050,12 +2050,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 ends here");
                 done();
             }
@@ -2079,9 +2079,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0108 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setMeteringPoint(mMETERINGPointInvalidRB, async (err) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0108 callback");
                         if (!err) {
@@ -2108,12 +2108,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0108 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_CALLBACK_0108 ends here");
                 done();
             }
@@ -2137,12 +2137,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setMeteringPoint(mMETERINGPointInvalidRB);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 PASSED with METERINGPoint is: " + mMETERINGPointInvalidRB.x + ", " + mMETERINGPointInvalidRB.y);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 PASSED with METERINGPoint is: " + mMETERINGPointInvalidRB.x + ", " + mMETERINGPointInvalidRB.y);
                     await sleep(500);
 
                     let METERINGPoint = await mCameraSession.getMeteringPoint();
@@ -2154,12 +2154,12 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 ends here");
                 done();
             }
@@ -2183,9 +2183,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.getExposureBiasRange(async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_CALLBACK_0100 callback");
                         if (!err) {
@@ -2194,16 +2194,16 @@ export default function cameraSessionExposureTest() {
                                 console.info(TAG + i + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_CALLBACK_0100 PASSED with ExposureBiasRange length is: " + data.length);
                                 for (let j = 0; j < mExposureBiasRangeArray[i].length; j++) {
                                     console.info(TAG + j + "th, exposure bias is: " + data[j] + ", " + mExposureBiasRangeArray[i][j]);
-    
+
                                     if ((mExposureBiasMaxArray[i] == undefined) || (mExposureBiasMaxArray[i] < mExposureBiasRangeArray[i][j])) {
                                         mExposureBiasMaxArray[i] = mExposureBiasRangeArray[i][j]
                                     }
-    
+
                                     if ((mExposureBiasMinArray[i] == undefined) || (mExposureBiasMinArray[i] > mExposureBiasRangeArray[i][j])) {
                                         mExposureBiasMinArray[i] = mExposureBiasRangeArray[i][j]
                                     }
                                 }
-    
+
                                 console.info(TAG + "Exposure bias max is: " + mExposureBiasMaxArray[i] + ", min is: " + mExposureBiasMinArray[i]);
                             } else {
                                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_CALLBACK_0100 FAILED with ExposureBiasRange length is: " + data.length);
@@ -2215,12 +2215,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_CALLBACK_0100 ends here");
                 done();
             }
@@ -2244,9 +2244,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     let exposureBiasRange = await mCameraSession.getExposureBiasRange();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 finish");
                     if (exposureBiasRange.length > 0) {
@@ -2255,18 +2255,18 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 FAILED with ExposureBiasRange length is: " + exposureBiasRange.length);
                         expect().assertFail();
                     }
-    
+
                     for (let j = 0; j < exposureBiasRange.length; j++) {
                         console.info(TAG + j + "th, exposure bias is: " + exposureBiasRange[j]);
                     }
-    
+
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 ends here");
                 done();
             }
@@ -2290,9 +2290,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setExposureBias(mExposureBiasRangeArray[i][0], async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0100 callback");
                         if (!err) {
@@ -2319,14 +2319,14 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0100 ends here");
-                done();       
+                done();
             }
         })
 
@@ -2348,12 +2348,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setExposureBias(mExposureBiasRangeArray[i][0]);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 PASSED with ExposureBias is: " + mExposureBiasRangeArray[i][0]);  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 PASSED with ExposureBias is: " + mExposureBiasRangeArray[i][0]);
                     await sleep(500);
 
                     let exposureValue = await mCameraSession.getExposureValue();
@@ -2365,16 +2365,16 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0101
@@ -2394,9 +2394,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setExposureBias(mExposureBiasMinArray[i] - 1, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0101 callback");
                         if (!err) {
@@ -2423,12 +2423,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0101 ends here");
                 done();
             }
@@ -2452,12 +2452,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setExposureBias(mExposureBiasMinArray[i] - 1);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 PASSED with ExposureBias is: " + (mExposureBiasMinArray[i] - 1));  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 PASSED with ExposureBias is: " + (mExposureBiasMinArray[i] - 1));
                     await sleep(500);
 
                     let exposureValue = await mCameraSession.getExposureValue();
@@ -2469,16 +2469,16 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0102
@@ -2498,9 +2498,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setExposureBias(mExposureBiasMinArray[i] - 0.1, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0102 callback");
                         if (!err) {
@@ -2527,12 +2527,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0102 ends here");
                 done();
             }
@@ -2556,12 +2556,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setExposureBias(mExposureBiasMinArray[i] - 0.1);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 PASSED with ExposureBias is: " + (mExposureBiasMinArray[i] - 0.1));  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 PASSED with ExposureBias is: " + (mExposureBiasMinArray[i] - 0.1));
                     await sleep(500);
 
                     let exposureValue = await mCameraSession.getExposureValue();
@@ -2573,16 +2573,16 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0103
@@ -2602,9 +2602,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setExposureBias(mExposureBiasMaxArray[i] + 1, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0103 callback");
                         if (!err) {
@@ -2631,12 +2631,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0103 ends here");
                 done();
             }
@@ -2660,12 +2660,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setExposureBias(mExposureBiasMaxArray[i] + 1);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 PASSED with ExposureBias is: " + (mExposureBiasMaxArray[i] + 1));  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 PASSED with ExposureBias is: " + (mExposureBiasMaxArray[i] + 1));
                     await sleep(500);
 
                     let exposureValue = await mCameraSession.getExposureValue();
@@ -2677,16 +2677,16 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 ends here");
                 done();
             }
-        })    
+        })
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0104
@@ -2706,9 +2706,9 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0104 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     mCameraSession.setExposureBias(mExposureBiasMaxArray[i] + 0.1, async (err, data) => {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0104 callback");
                         if (!err) {
@@ -2735,12 +2735,12 @@ export default function cameraSessionExposureTest() {
                         }
                     })
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_CALLBACK_0104 ends here");
                 done();
             }
@@ -2764,12 +2764,12 @@ export default function cameraSessionExposureTest() {
             } else {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 start for camera[" + i + "]");
-    
+
                     await startCameraSession(i);
-    
+
                     await mCameraSession.setExposureBias(mExposureBiasMaxArray[i] + 0.1);
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 finish");
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 PASSED with ExposureBias is: " + (mExposureBiasMaxArray[i] + 0.1));  
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 PASSED with ExposureBias is: " + (mExposureBiasMaxArray[i] + 0.1));
                     await sleep(500);
 
                     let exposureValue = await mCameraSession.getExposureValue();
@@ -2781,16 +2781,16 @@ export default function cameraSessionExposureTest() {
                         expect().assertFail();
                     }
                     await sleep(500);
-                    
+
                     await stopCameraSession();
-    
+
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 end for camera[" + i + "]");
                 }
-    
+
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 ends here");
                 done();
             }
-        })    
+        })
 
     })
 }
