@@ -16,8 +16,6 @@ import("//build/ohos_var.gni")
 group("validator") {
   testonly = true
   if (is_standard_system) {
-    deps = [
-      "acts_validator:acts_validator_test",
-    ]
-  } 
+    deps = [ "acts_validator:acts_validator_test" ]
+  }
 }
