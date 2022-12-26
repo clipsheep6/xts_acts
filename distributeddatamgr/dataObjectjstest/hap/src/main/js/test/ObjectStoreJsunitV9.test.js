@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {afterAll, afterEach, beforeAll, beforeEach, describe, expect, it} from 'deccjsunit/index';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import distributedObject from '@ohos.data.distributedDataObject';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import featureAbility from '@ohos.ability.featureAbility';
