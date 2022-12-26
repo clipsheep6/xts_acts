@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+// @ts-nocheck
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import pasteboard from '@ohos.pasteboard'
 
 export default function pasteBoardJEtsunitTest() {
