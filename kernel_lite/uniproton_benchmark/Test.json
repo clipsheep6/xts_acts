@@ -1,0 +1,25 @@
+{
+    "description": "Config for kernel_lite posix futex api test cases",
+    "enviroment": [
+        {
+            "type": "device",
+            "label": "ipcamera"
+        }
+    ],
+    "kits": [
+        {
+            "type":"MoubtKit"，
+            "server": "NfsServer",
+            "mount": [
+               {
+                     "source": "testcases/kernel",
+                     "target": "test_root/kernel"
+               }
+            ]
+        }
+    ],
+    "driver":{
+        "type": "CppTestLite",
+        "excute": "/test_root/kernel/benchmarkTest.bin"
+    }
+}
