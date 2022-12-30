@@ -8,7 +8,7 @@
     ],
     "kits": [
         {
-            "type":"MoubtKit"，
+            "type": "MoubtKit",
             "server": "NfsServer",
             "mount": [
                {
@@ -20,6 +20,6 @@
     ],
     "driver":{
         "type": "CppTestLite",
-        "excute": "/test_root/kernel/benchmarkTest.bin"
+        "execute": "/test_root/kernel/benchmarkTest.bin"
     }
 }

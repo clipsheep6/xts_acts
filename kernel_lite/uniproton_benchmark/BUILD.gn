@@ -14,7 +14,7 @@
 import("//test/xts/tools/lite/build/suite_lite.gni")
 import("//kernel/uniproton/uniproton.gni")
 
-hctest_suite("ActsRtosTest"){
+hctest_suite("ActsRtosTest") {
     suite_name = "acts"
     sources = [
         "src/benchmarkTest.c",

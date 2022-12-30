@@ -10,7 +10,7 @@ bool g_testDebugInfo = false;
 */
 static uint32_t g_cycle;
 TaskPreempt taskInfo = {0};
-LITE_TEST_SUIT(test,example,TntTestSuite);
+LITE_TEST_SUIT(test, example, IntTestSuite);
 
 /**
  * @tc.setup:define a setup for test suite,format:"IntTestSuite + SetUp"
@@ -24,7 +24,7 @@ static BOOL IntTestSuiteSetUp()
     printf("############## FreeRTOS test ###############\n");
 #endif
 
-#ifdef ___UNIPROTON__
+#ifdef __UNIPROTON__
     taskInfo.highPrio = 2;
     taskInfo.midPrio = 3;
     taskInfo.lowPrio = 4;
