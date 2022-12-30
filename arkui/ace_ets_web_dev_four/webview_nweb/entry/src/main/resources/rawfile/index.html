@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+	#pageHeight{
+	  height:1300px
+	}
+    </style>
+</head>
+<body onload="openWindows()">
+<div id="container" >
+    <p class="a"> 首页 </p>
+</div>
+<div id="result">universalAccessFromFileURLs</div>
+
+</body>
+<script>
+    let ele=document.getElementById("imgs");
+    let loadImage = "ImageLoadingAccess false";
+    ele.onload=function(){
+        loadImage="ImageLoadingAccess"
+    }
+
+    function getSystemFonts(){
+    var computedFonts = window.getComputedStyle(document.getElementById("container")).fontFamily
+        return computedFonts
+    }
+
+    function getFontSize(){
+        var computedFontSize = window.getComputedStyle(document.getElementById("container")).fontSize
+        var size = parseInt(computedFontSize)
+        return size
+    }
+
+    function getEncoding(){
+        var x=document.getElementById("container");
+        x.innerHTML=document.inputEncoding;
+        return x.innerHTML
+    }
+
+    function getImgResult(){
+        return loadImage
+    }
+
+    function load(name){
+        let xhr=new XMLHttpRequest();
+        let okStatus=document.location.protocol==="file:" ? 0 : 200;
+        console.log("okStatus:"+okStatus);
+        xhr.open("GET",name,false);
+        xhr.overrideMimeType("text/html;charset=utf-8")
+        xhr.send(null);
+        console.log("xhr.status="+xhr.status);
+        return xhr.status===okStatus?xhr.responseText:null;
+    }
+
+    let text=load("universalAccessFromFileURLs.html");
+    document.getElementById("result").innerHTML=text;
+
+    function getFileResult(){
+        let text=document.getElementById("result").innerHTML;
+        return text
+    }
+
+    function NetworkAvailable(){
+        var onLine = navigator.onLine
+        return onLine
+    }
+    function getDefaultUserAgent(){
+        var x=document.getElementById("container");
+        x.innerHTML=navigator.userAgent;
+            return x.innerHTML
+    }
+
+
+</script>
+</html>
+
+
