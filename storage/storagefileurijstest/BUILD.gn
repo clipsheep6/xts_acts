@@ -10,21 +10,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 import("//test/xts/tools/build/suite.gni")
 
-group("storage") {
-  testonly = true
-  if (is_standard_system) {
-    deps = [
-      "storagefileioerrorjstest:storagefileioerror_js_test",
-      "storagefileiojstest:storagefileio_js_test",
-      "storagefileiov9jstest:storagefileiov9_js_test",
-      "storagefilejstest:storagefile_js_test",
-      "storagefilesharejstest:storagefileshare_js_test",
-      "storagefileurijstest:storagefileuri_js_test",
-      "storagesecuritylabeljstest:storagesecuritylabel_js_test",
-      "storagestatfsjstest:storagestatfs_js_test",
-      "storagestatisticsjstest:storagestatistics_js_test",
-    ]
-  }
+ohos_js_hap_suite("storagefileuri_js_test") {
+  hap_profile = "./src/main/config.json"
+  deps = [
+    ":storagefileuri_js_assets",
+    ":storagefileuri_js_resources",
+  ]
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "ActsStorageFileUriJSTest"
+  subsystem_name = "filemanagement"
+  part_name = "app_file_service"
+}
+ohos_js_assets("storagefileuri_js_assets") {
+  js2abc = true
+  hap_profile = "./src/main/config.json"
+  source_dir = "./src/main/js"
+}
+ohos_resources("storagefileuri_js_resources") {
+  sources = [ "./src/main/resources" ]
+  hap_profile = "./src/main/config.json"
 }
