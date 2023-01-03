@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5d38d05d-ab02-426d-917d-5bb06640dbc0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/entry/src/main/ets/test/QueryExtensionAbilityInfos.test.ets" beforeDir="false" afterPath="$PROJECT_DIR$/entry/src/main/ets/test/QueryExtensionAbilityInfos.test.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/BUILD.gn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/BUILD.gn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/Test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/MainAbility/app.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/MainAbility/pages/index.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/TestRunner/OpenHarmonyTestRunner.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/test/List.test.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/test/Utils.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/test/print.test1.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/test/print.test2.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/ets/test/print.test3.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/resources/base/element/string.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/entry/src/main/resources/base/media/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../print/actsprinttest/signature/openharmony_sx.p7b" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="2Jo9KZBSMKT0tCEHywTWKAIjAmf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>
