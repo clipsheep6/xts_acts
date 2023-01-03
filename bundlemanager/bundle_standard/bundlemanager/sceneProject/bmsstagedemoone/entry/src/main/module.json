@@ -258,6 +258,19 @@
                         "resource": "$profile:form_config"
                     }
                 ]
+            },
+            {
+                "name": "PrintAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "preview",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
             }
         ]
     }
