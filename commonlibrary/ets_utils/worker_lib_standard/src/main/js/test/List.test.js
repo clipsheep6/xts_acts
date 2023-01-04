@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 import workerTest from './Worker.test.js'
-import threadWorkerTest from './ThreadWorker.test.js'
 
 export default function testsuite() {
     workerTest()
-    threadWorkerTest()
 }
