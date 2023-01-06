@@ -443,6 +443,32 @@ export default function publicDirectoryCreateAssetPromise(abilityContext) {
             await getDirectoryAndCreateAsset(done, 
                     dirDocument, fileType, `${new Date().getTime()}`, testNo)
         });
+        /**
+        * @tc.number : SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_026
+        * @tc.name 	 : createAsset
+        * @tc.desc 	 : Create  ".j" extension File Asset in Download/
+        * @tc.size 	 : MEDIUM
+        * @tc.type 	 : Function
+        * @tc.level	 : Level 0
+        */
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_026', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_026';
+            await getDirectoryAndCreateAsset(done,
+                    dirDownload, fileType, `${new Date().getTime()}.j`, testNo)
+        });
 
+        /**
+        * @tc.number : SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_027
+        * @tc.name 	 : createAsset
+        * @tc.desc 	 : Create ".j" extension File Asset in Documents/
+        * @tc.size 	 : MEDIUM
+        * @tc.type 	 : Function
+        * @tc.level	 : Level 0
+        */
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_027', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_027';
+            await getDirectoryAndCreateAsset(done,
+                    dirDocument, fileType, `${new Date().getTime()}.j`, testNo)
+        });
     });
 }
