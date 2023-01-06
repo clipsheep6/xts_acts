@@ -74,56 +74,56 @@ static BOOL IntTestSuiteTearDown()
  * @tc.require: AR000CQGMV
  * @tc.autor: xingchuanwen
 */
-LITE_TEST_CASE(IntTestSuite, DEADLOCKBREAK,Function | MediumTest | Level1)
+LITE_TEST_CASE(IntTestSuite, DEADLOCKBREAK, Function | MediumTest | Level1)
 {
     printf("##################start DEADLOCKBREAKTEST##################\n");
     RunTestCase("Rhealstone: Deadlock Break", &taskInfo, RhealstoneDeadlockBreakTest);
-    TEST_ASSERT_LESS_THAN_INT(1422,g_cycle);
+    TEST_ASSERT_LESS_THAN_INT(1422, g_cycle);
     printf("##################end DEADLOCKBREAKTEST##################\n");
 };
 
 
-LITE_TEST_CASE(IntTestSuite, TASKPREEMPT,Function | MediumTest | Level1)
+LITE_TEST_CASE(IntTestSuite, TASKPREEMPT, Function | MediumTest | Level1)
 {
     printf("##################start TASKPREEMPTTEST##################\n");
     RunTestCase("Rhealstone: Task Preempt", &taskInfo, RhealstonePreemptTest);
-    TEST_ASSERT_LESS_THAN_INT(474,g_cycle);
+    TEST_ASSERT_LESS_THAN_INT(474, g_cycle);
     printf("##################end TASKPREEMPTTEST##################\n");
 };
 
 
-LITE_TEST_CASE(IntTestSuite, MESSAGELATENCY,Function | MediumTest | Level1)
+LITE_TEST_CASE(IntTestSuite, MESSAGELATENCY, Function | MediumTest | Level1)
 {
     printf("##################start MESSAGELATENCYTEST##################\n");
     RunTestCase("Rhealstone: Intertask Message Latency", &taskInfo, RhealstoneMessageLatencyTest);
-    TEST_ASSERT_LESS_THAN_INT(607,g_cycle);
+    TEST_ASSERT_LESS_THAN_INT(607, g_cycle);
     printf("##################end MESSAGELATENCYTEST##################\n");
 };
 
 
-LITE_TEST_CASE(IntTestSuite, INTERRUPTLATENCY,Function | MediumTest | Level1)
+LITE_TEST_CASE(IntTestSuite, INTERRUPTLATENCY, Function | MediumTest | Level1)
 {
     printf("##################start INTERRUPTLATENCYTEST##################\n");
     RunTestCase("Rhealstone: Intertask Message Latency", &taskInfo, RhealstoneMessageLatencyTest);
-    TEST_ASSERT_LESS_THAN_INT(195,g_cycle);
+    TEST_ASSERT_LESS_THAN_INT(195, g_cycle);
     printf("##################end INTERRUPTLATENCYTEST##################\n");
 };
 
 
-LITE_TEST_CASE(IntTestSuite, TASKSWITCH,Function | MediumTest | Level1)
+LITE_TEST_CASE(IntTestSuite, TASKSWITCH, Function | MediumTest | Level1)
 {
     printf("##################start TASKSWITCHTEST##################\n");
     RunTestCase("Rhealstone: Task switch", &taskInfo, RhealstoneSwitchTest);
-    TEST_ASSERT_LESS_THAN_INT(368,g_cycle);
+    TEST_ASSERT_LESS_THAN_INT(368, g_cycle);
     printf("##################end TASKSWITCHTEST##################\n");
 };
 
 
-LITE_TEST_CASE(IntTestSuite, SEMAPHORESHUFFLE,Function | MediumTest | Level1)
+LITE_TEST_CASE(IntTestSuite, SEMAPHORESHUFFLE, Function | MediumTest | Level1)
 {
     printf("##################start SEMAPHORESHUFFLETEST##################\n");
     RunTestCase("Rhealstone: Semaphore Shuffle", &taskInfo, RhealstoneSemaphoreShuffleTest);
-    TEST_ASSERT_LESS_THAN_INT(1164,g_cycle);
+    TEST_ASSERT_LESS_THAN_INT(1164, g_cycle);
     printf("##################end SEMAPHORESHUFFLETEST##################\n");
 };
 
