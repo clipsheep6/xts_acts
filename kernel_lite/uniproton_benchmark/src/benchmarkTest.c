@@ -55,13 +55,14 @@ static BOOL IntTestSuiteSetUp()
     #define MID_PRIO 3
     #define LOW_PRIO 2
     #define STACK_SIZE 512
-    
+
     taskInfo.highPrio = HIGH_PRIO;
     taskInfo.midPrio = MID_PRIO;
     taskInfo.lowPrio = LOW_PRIO;
     taskInfo.stackSize = STACK_SIZE;
 #endif
-    taskInfo.testCount = 50000;
+    #define TEST_COUNT 50000
+    taskInfo.testCount = TEST_COUNT;
     LiteTestPrint("benchmarkTest setup\n");
     return TRUE;
 }
