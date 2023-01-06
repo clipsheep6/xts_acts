@@ -1,0 +1,10 @@
+{"suites":[
+	{"describe":["webgl1Test_webgl1","webgl1Test_webgl2","webgl1Test_webgl3","webgl1Test_webgl4","webgl1Test_webgl5"
+	"webgl1Test_webgl6","webgl1Test_webgl7","webgl1Test_webgl8","webgl1Test_webgl9","webgl1Test_webgl10"
+	"webgl1Test_webgl11","webgl1Test_webgl12","webgl1Test_webgl13","webgl1Test_webgl14","webgl1Test_webgl15"]
+	"stress":10}
+]
+
+
+
+}
