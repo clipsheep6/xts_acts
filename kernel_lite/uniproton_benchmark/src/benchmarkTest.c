@@ -42,15 +42,24 @@ static BOOL IntTestSuiteSetUp()
 #endif
 
 #ifdef __UNIPROTON__
-    taskInfo.highPrio = 2;
-    taskInfo.midPrio = 3;
-    taskInfo.lowPrio = 4;
+    #define HIGH_PRIO 2
+    #define MID_PRIO 3
+    #define LOW_PRIO 4
+
+    taskInfo.highPrio = HIGH_PRIO;
+    taskInfo.midPrio = MID_PRIO;
+    taskInfo.lowPrio = LOW_PRIO;
     taskInfo.stackSize = 0x800;
 #elif __FREERTOS__
-    taskInfo.highPrio = 4;
-    taskInfo.midPrio = 3;
-    taskInfo.lowPrio = 2;
-    taskInfo.stackSize = 512;
+    #define HIGH_PRIO 4
+    #define MID_PRIO 3
+    #define LOW_PRIO 2
+    #define STACK_SIZE 512
+    
+    taskInfo.highPrio = HIGH_PRIO;
+    taskInfo.midPrio = MID_PRIO;
+    taskInfo.lowPrio = LOW_PRIO;
+    taskInfo.stackSize = STACK_SIZE;
 #endif
     taskInfo.testCount = 50000;
     LiteTestPrint("benchmarkTest setup\n");
