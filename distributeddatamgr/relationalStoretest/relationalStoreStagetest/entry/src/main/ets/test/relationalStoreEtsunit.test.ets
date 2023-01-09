@@ -55,19 +55,14 @@ describe('relationalStoreTest', function () {
             name: "secure.db",
             securityLevel: dataRdb.SecurityLevel.S1
         }
-        let storePromise = dataRdb.getRdbStore(context, config);
-        storePromise.then(async (store) => {
-            try {
-                await store.executeSql(CREATE_TABLE_TEST);
-            } catch (err) {
-                expect(null).assertFail();
-            }
-        }).catch((err) => {
+        try {
+            let store = await dataRdb.getRdbStore(context, config);
+            await store.executeSql(CREATE_TABLE_TEST);
+            store = null
+            await dataRdb.deleteRdbStore(context,"secure.db");
+        } catch (err) {
             expect(null).assertFail();
-        })
-        await storePromise
-        storePromise = null
-        await dataRdb.deleteRdbStore(context,"secure.db");
+        }
         done();
         console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0100 end   *************");
     })
@@ -84,19 +79,14 @@ describe('relationalStoreTest', function () {
             name: "secure.db",
             securityLevel: dataRdb.SecurityLevel.S2
         }
-        let storePromise = dataRdb.getRdbStore(context, config);
-        storePromise.then(async (store) => {
-            try {
-                await store.executeSql(CREATE_TABLE_TEST);
-            } catch (err) {
-                expect(null).assertFail();
-            }
-        }).catch((err) => {
+        try {
+            let store = await dataRdb.getRdbStore(context, config);
+            await store.executeSql(CREATE_TABLE_TEST);
+            store = null
+            await dataRdb.deleteRdbStore(context,"secure.db");
+        } catch (err) {
             expect(null).assertFail();
-        })
-        await storePromise
-        storePromise = null
-        await dataRdb.deleteRdbStore(context,"secure.db");
+        }
         done();
         console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0200 end   *************");
     })
@@ -113,19 +103,14 @@ describe('relationalStoreTest', function () {
             name: "secure.db",
             securityLevel: dataRdb.SecurityLevel.S3
         }
-        let storePromise = dataRdb.getRdbStore(context, config);
-        storePromise.then(async (store) => {
-            try {
-                await store.executeSql(CREATE_TABLE_TEST);
-            } catch (err) {
-                expect(null).assertFail();
-            }
-        }).catch((err) => {
+        try {
+            let store = await dataRdb.getRdbStore(context, config);
+            await store.executeSql(CREATE_TABLE_TEST);
+            store = null
+            await dataRdb.deleteRdbStore(context,"secure.db");
+        } catch (err) {
             expect(null).assertFail();
-        })
-        await storePromise
-        storePromise = null
-        await dataRdb.deleteRdbStore(context,"secure.db");
+        }
         done();
         console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0300 end   *************");
     })
@@ -142,19 +127,14 @@ describe('relationalStoreTest', function () {
             name: "secure.db",
             securityLevel: dataRdb.SecurityLevel.S4
         }
-        let storePromise = dataRdb.getRdbStore(context, config);
-        storePromise.then(async (store) => {
-            try {
-                await store.executeSql(CREATE_TABLE_TEST);
-            } catch (err) {
-                expect(null).assertFail();
-            }
-        }).catch((err) => {
+        try {
+            let store = await dataRdb.getRdbStore(context, config);
+            await store.executeSql(CREATE_TABLE_TEST);
+            store = null
+            await dataRdb.deleteRdbStore(context,"secure.db");
+        } catch (err) {
             expect(null).assertFail();
-        })
-        await storePromise
-        storePromise = null
-        await dataRdb.deleteRdbStore(context,"secure.db");
+        }
         done();
         console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0400 end   *************");
     })
@@ -202,7 +182,7 @@ describe('relationalStoreTest', function () {
             if(err != null){
                 console.info(TAG + "get rdb store error")
                 expect(null).assertFail();
-            }else{
+            } else {
                 console.info(TAG + "create table success")
             }
             dataRdb.deleteRdbStore(context, "secure.db").then(() => {
