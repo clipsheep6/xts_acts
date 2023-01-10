@@ -16,7 +16,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 import taskpool from '@ohos.taskpool'
 import worker from "@ohos.worker"
 export default function TaskPoolTest() {
-describe('ActsAbilityTest', function (done) {
+describe('ActsAbilityTest', function () {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
 
     it('TaskPoolTestClass001', 0,  async function (done) {
@@ -655,18 +655,18 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(additionDelay, 100);
-          var task2 = new taskpool.Task(additionDelay, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(additionDelay, 100);
+            var task2 = new taskpool.Task(additionDelay, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("");
+            expect(e.toString()).assertEqual("");
         }
         done();
     })
@@ -691,18 +691,18 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(additionDelay, 100);
-          var task2 = new taskpool.Task(additionDelay, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(additionDelay, 100);
+            var task2 = new taskpool.Task(additionDelay, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("");
+            expect(e.toString()).assertEqual("");
         }
         done();
     })
@@ -727,23 +727,24 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(additionDelay, 100);
-          var task2 = new taskpool.Task(additionDelay, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(additionDelay, 100);
+            var task2 = new taskpool.Task(additionDelay, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          var start = new Date().getTime();
-          while (new Date().getTime() - start < 1000) {
-            continue;
-          }
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 1000) {
+              continue;
+            }
 
-          taskpool.cancel(task1);
+            taskpool.cancel(task1);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not cancel the running task");
+          expect(e.toString()).assertEqual(
+              "BusinessError: The task is executing when it is canceled, taskpool:: can not cancel the running task");
         }
         done();
     })
@@ -768,23 +769,24 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(additionDelay, 100);
-          var task2 = new taskpool.Task(additionDelay, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(additionDelay, 100);
+            var task2 = new taskpool.Task(additionDelay, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          var start = new Date().getTime();
-          while (new Date().getTime() - start < 1000) {
-            continue;
-          }
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 1000) {
+              continue;
+            }
 
-          taskpool.cancel(task1);
+            taskpool.cancel(task1);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not cancel the running task");
+          expect(e.toString()).assertEqual(
+              "BusinessError: The task is executing when it is canceled, taskpool:: can not cancel the running task");
         }
         done();
     })
@@ -802,23 +804,24 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(addition, 100);
-          var task2 = new taskpool.Task(addition, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(addition, 100);
+            var task2 = new taskpool.Task(addition, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          var start = new Date().getTime();
-          while (new Date().getTime() - start < 1000) {
-            continue;
-          }
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 1000) {
+              continue;
+            }
 
-          taskpool.cancel(task1);
+            taskpool.cancel(task1);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -836,29 +839,30 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(addition, 100);
-          var task2 = new taskpool.Task(addition, 200);
-          var task3 = new taskpool.Task(addition, 300);
-          var task4 = new taskpool.Task(addition, 400);
-          var task5 = new taskpool.Task(addition, 500);
-          var task6 = new taskpool.Task(addition, 600);
+            var task1 = new taskpool.Task(addition, 100);
+            var task2 = new taskpool.Task(addition, 200);
+            var task3 = new taskpool.Task(addition, 300);
+            var task4 = new taskpool.Task(addition, 400);
+            var task5 = new taskpool.Task(addition, 500);
+            var task6 = new taskpool.Task(addition, 600);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
-          var result4 = taskpool.execute(task4);
-          var result5 = taskpool.execute(task5);
-          var result6 = taskpool.execute(task6);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
+            var result4 = taskpool.execute(task4);
+            var result5 = taskpool.execute(task5);
+            var result6 = taskpool.execute(task6);
 
-          var start = new Date().getTime();
-          while (new Date().getTime() - start < 1000) {
-            continue;
-          }
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 1000) {
+              continue;
+            }
 
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -876,17 +880,18 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(addition, 100);
-          var task2 = new taskpool.Task(addition, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(addition, 100);
+            var task2 = new taskpool.Task(addition, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
 
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -904,17 +909,18 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(addition, 100);
-          var task2 = new taskpool.Task(addition, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(addition, 100);
+            var task2 = new taskpool.Task(addition, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
 
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -939,24 +945,25 @@ describe('ActsAbilityTest', function (done) {
           return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(additionDelay, 100);
-          var task2 = new taskpool.Task(additionDelay, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(additionDelay, 100);
+            var task2 = new taskpool.Task(additionDelay, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          var start = new Date().getTime();
-          while (new Date().getTime() - start < 1000) {
-            continue;
-          }
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 1000) {
+              continue;
+            }
 
-          taskpool.cancel(task3);
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -981,24 +988,25 @@ describe('ActsAbilityTest', function (done) {
           return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(additionDelay, 100);
-          var task2 = new taskpool.Task(additionDelay, 200);
-          var task3 = new taskpool.Task(addition, 300);
+            var task1 = new taskpool.Task(additionDelay, 100);
+            var task2 = new taskpool.Task(additionDelay, 200);
+            var task3 = new taskpool.Task(addition, 300);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
 
-          var start = new Date().getTime();
-          while (new Date().getTime() - start < 1000) {
-            continue;
-          }
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 1000) {
+              continue;
+            }
 
-          taskpool.cancel(task3);
-          taskpool.cancel(task3);
+            taskpool.cancel(task3);
+            taskpool.cancel(task3);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -1016,28 +1024,34 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(addition, 100);
-          var task2 = new taskpool.Task(addition, 200);
-          var task3 = new taskpool.Task(addition, 300);
-          var task4 = new taskpool.Task(addition, 400);
-          var task5 = new taskpool.Task(addition, 500);
-          var task6 = new taskpool.Task(addition, 600);
+            var task1 = new taskpool.Task(addition, 100);
+            var task2 = new taskpool.Task(addition, 200);
+            var task3 = new taskpool.Task(addition, 300);
+            var task4 = new taskpool.Task(addition, 400);
+            var task5 = new taskpool.Task(addition, 500);
+            var task6 = new taskpool.Task(addition, 600);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
-          var result4 = taskpool.execute(task4);
-          var result5 = taskpool.execute(task5);
-          var result6 = taskpool.execute(task6);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
+            var result4 = taskpool.execute(task4);
+            var result5 = taskpool.execute(task5);
+            var result6 = taskpool.execute(task6);
 
-          taskpool.cancel(task6);
-          taskpool.cancel(task5);
-          taskpool.cancel(task4);
-          taskpool.cancel(task3);
-          taskpool.cancel(task2);
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 100) {
+              continue;
+            }
+
+            taskpool.cancel(task6);
+            taskpool.cancel(task5);
+            taskpool.cancel(task4);
+            taskpool.cancel(task3);
+            taskpool.cancel(task2);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
@@ -1055,28 +1069,34 @@ describe('ActsAbilityTest', function (done) {
             return arg + 1;
         }
         try {
-          var task1 = new taskpool.Task(addition, 100);
-          var task2 = new taskpool.Task(addition, 200);
-          var task3 = new taskpool.Task(addition, 300);
-          var task4 = new taskpool.Task(addition, 400);
-          var task5 = new taskpool.Task(addition, 500);
-          var task6 = new taskpool.Task(addition, 600);
+            var task1 = new taskpool.Task(addition, 100);
+            var task2 = new taskpool.Task(addition, 200);
+            var task3 = new taskpool.Task(addition, 300);
+            var task4 = new taskpool.Task(addition, 400);
+            var task5 = new taskpool.Task(addition, 500);
+            var task6 = new taskpool.Task(addition, 600);
 
-          var result1 = taskpool.execute(task1);
-          var result2 = taskpool.execute(task2);
-          var result3 = taskpool.execute(task3);
-          var result4 = taskpool.execute(task4);
-          var result5 = taskpool.execute(task5);
-          var result6 = taskpool.execute(task6);
+            var result1 = taskpool.execute(task1);
+            var result2 = taskpool.execute(task2);
+            var result3 = taskpool.execute(task3);
+            var result4 = taskpool.execute(task4);
+            var result5 = taskpool.execute(task5);
+            var result6 = taskpool.execute(task6);
 
-          taskpool.cancel(task6);
-          taskpool.cancel(task5);
-          taskpool.cancel(task4);
-          taskpool.cancel(task3);
-          taskpool.cancel(task2);
+            var start = new Date().getTime();
+            while (new Date().getTime() - start < 100) {
+              continue;
+            }
+
+            taskpool.cancel(task6);
+            taskpool.cancel(task5);
+            taskpool.cancel(task4);
+            taskpool.cancel(task3);
+            taskpool.cancel(task2);
         }
         catch (e) {
-          expect(e.toString()).assertEqual("BusinessError: taskpool:: can not find the task");
+            expect(e.toString()).assertEqual(
+                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
         }
         done();
     })
