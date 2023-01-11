@@ -26,7 +26,7 @@
 
 #include "cmsis_os2.h"
 #include "ohos_types.h"
-
+#include "stdlib.h"
 #define HKS_TEST_MAC_REE_KEY_SIZE_32 32
 #define HKS_DEFAULT_MAC_SRCDATA_SIZE 253
 #define HKS_DEFAULT_MAC_SHA256_SIZE 32
@@ -34,6 +34,51 @@
 #define TEST_TASK_STACK_SIZE      0x2000
 #define WAIT_TO_TEST_DONE         4
 
+//*********************************************
+#define SINGLE_PRINT_LENGTH 50
+//*********************************************
+
+//******************************************************
+static char IntToAscii(uint8_t in_num)
+{
+    if (in_num <= 9) {
+        return (char)('0' + in_num);
+    }
+    return (char)('A' + in_num - 10);    
+}
+
+static int32_t BufferToAscii(uint8_t *src, uint32_t src_size, char *dst, uint32_t *dst_size) {
+    const uint32_t ascii_len = src_size * 4 + 1;
+    if (*dst_size < ascii_len) {
+        printf("buffer is too samll.");
+        return -1;
+    }
+    for (uint32_t i = 0; i < src_size; i++)
+    {
+        dst[4 *i] = '\\';
+        dst[4 *i + 1] = 'x';
+        dst[4 *i + 2] = IntToAscii(src[i] >> 4);/* take 4 high-order digits*/
+        dst[4 *i + 3] = IntToAscii(src[i] & 0b00001111); /*take 4 low-order digits*/
+    }
+
+    dst[ascii_len - 1] = '\0';
+    *dst_size = ascii_len;
+    return 0;
+}
+
+static void printBuffer(uint8_t *buffer, uint32_t buffer_size)
+{
+    uint32_t index = 0;
+    uint32_t print_count = buffer_size / SINGLE_PRINT_LENGTH;
+    for (uint32_t i = 0; i < (print_count + 1); i++) {
+        char chars[SINGLE_PRINT_LENGTH * 4 + 1] = {0};
+        uint32_t char_size = SINGLE_PRINT_LENGTH * 4 + 1;
+        BufferToAscii(buffer + index, (i == print_count)? buffer_size % SINGLE_PRINT_LENGTH : SINGLE_PRINT_LENGTH, chars, &char_size);
+        printf("buff[%2u] size[%2u]: \"%s\"", i, (char_size -1) /4, chars);
+        index += SINGLE_PRINT_LENGTH;
+    }
+}
+//************************************
 static osPriority_t g_setPriority;
 
 
@@ -192,7 +237,10 @@ static int32_t BaseTestMac(uint32_t index)
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testMacParams[index].testId, ret);
     }
     TEST_ASSERT_TRUE(ret == g_testMacParams[index].expectResult);
-
+    printf("###GSY HMAC TEST srcdata:\n");
+    printBuffer(srcData->data, srcData->size);
+    printf("###GSY HMAC TEST macdata:\n");
+    printBuffer(macData->data, macData->size);
     /* 3. deletekey */
     if ((g_testMacParams[index].macType == HKS_TEST_MAC_TYPE_TEE) &&
         (g_testMacParams[index].keyAliasParams.blobExist)) {
