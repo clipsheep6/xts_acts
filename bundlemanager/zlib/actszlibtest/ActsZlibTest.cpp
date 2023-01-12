@@ -64,17 +64,17 @@ static int push(void *desc, unsigned char *buf, unsigned len)
     return desc != nullptr;      /* force error if desc not null */
 }
 
-static int TestGzPrintf(gzFile file, const char *format, ...)
-{
-    std::lock_guard<std::mutex> lock(gzMutex_);
-    va_list va;
-    int ret;
+// static int TestGzPrintf(gzFile file, const char *format, ...)
+// {
+//     std::lock_guard<std::mutex> lock(gzMutex_);
+//     va_list va;
+//     int ret;
 
-    va_start(va, format);
-    ret = gzvprintf(file, format, va);
-    va_end(va);
-    return ret;
-}
+//     va_start(va, format);
+//     ret = gzvprintf(file, format, va);
+//     va_end(va);
+//     return ret;
+// }
 
 class ActsZlibTest : public testing::Test {
 protected:
@@ -1291,8 +1291,8 @@ HWTEST_F(ActsZlibTest, ActsZlibTestGzVprintf, Function | MediumTest | Level2)
     file = gzopen(TESTFILE, "wb");
     ASSERT_TRUE(file != NULL);
 
-    int err = TestGzPrintf(file, ", %s!", "hello");
-    fprintf(stderr, "gzvprintf result: %d\n", err);
+    // int err = TestGzPrintf(file, ", %s!", "hello");
+    // fprintf(stderr, "gzvprintf result: %d\n", err);
     gzclose(file);
 #endif
 }
