@@ -17,7 +17,7 @@ import image from '@ohos.multimedia.image'
 import fileio from '@ohos.fileio'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { testPng, testJpg } from './testImg'
-import { tcBuf020, tcBuf020_1, tcBuf021, tcBuf021_1, tcBuf022 } from './testImg'
+import { tcBuf020, tcBuf020_1, tcBuf020_2, tcBuf021, tcBuf021_1, tcBuf022 } from './testImg'
 import featureAbility from '@ohos.ability.featureAbility'
 
 export default function imageJsTest() {
@@ -363,7 +363,7 @@ export default function imageJsTest() {
                 bufferArr[i] = i + 1;
             }
 
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: 4, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts)
                 .then(pixelmap => {
                     globalpixelmap = pixelmap;
@@ -422,7 +422,7 @@ export default function imageJsTest() {
                 bufferArr[i] = i + 1;
             }
 
-            let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            let opts = { editable: true, pixelFormat: 4, size: { height: 4, width: 6 } }
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
@@ -502,6 +502,115 @@ export default function imageJsTest() {
                 }
             })
         })
+
+        /**
+         * @tc.number    : SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300
+         * @tc.name      : readPixelsToBuffer-promise
+         * @tc.desc      : read all pixels to an buffer
+         *                 1.create PixelMap,buffer
+         *                 2.call readPixelsToBuffer
+         *                 3.return undefined
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+                it('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300', 0, async function (done) {
+                    console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300 in');
+                    const color = new ArrayBuffer(96);
+                    var bufferArr = new Uint8Array(color);
+                    for (var i = 0; i < bufferArr.length; i++) {
+                        bufferArr[i] = i + 1;
+                    }
+        
+                    let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+                    image.createPixelMap(color, opts)
+                        .then(pixelmap => {
+                            globalpixelmap = pixelmap;
+                            if (pixelmap == undefined) {
+                                console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300 createPixelMap failed');
+                                expect(false).assertTrue()
+                                done();
+                            }
+                            const readBuffer = new ArrayBuffer(96);
+                            pixelmap.readPixelsToBuffer(readBuffer).then(() => {
+                                var bufferArr2 = new Uint8Array(readBuffer);
+                                var res = true;
+                                for (var i = 0; i < bufferArr2.length; i++) {
+                                    if (bufferArr2[i] != tcBuf020_2[i]) {
+                                        res = false;
+                                        console.info('TC_20_buffer' + bufferArr2[i]);
+                                        console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300 failed');
+                                        expect(false).assertTrue();
+                                        done();
+                                        break;
+                                    }
+                                }
+                                if (res) {
+                                    console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300 success');
+                                    expect(true).assertTrue()
+                                    done();
+                                }
+                            }).catch(error => {
+                                console.log('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300 read error: ' + error);
+                                expect().assertFail();
+                                done();
+                            })
+                        }).catch(error => {
+                            console.log('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_PROMISE_0300 error: ' + error);
+                            expect().assertFail();
+                            done();
+                        })
+                })
+        
+                /**
+                 * @tc.number    : SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0300
+                 * @tc.name      : readPixelsToBuffer-callback
+                 * @tc.desc      : read all pixels to an buffer
+                 *                 1.create PixelMap,buffer
+                 *                 2.call readPixelsToBuffer
+                 *                 3.return undefined
+                 * @tc.size      : MEDIUM
+                 * @tc.type      : Functional
+                 * @tc.level     : Level 1
+                 */
+                it('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0300', 0, async function (done) {
+                    console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0300 in');
+                    const color = new ArrayBuffer(96);
+                    var bufferArr = new Uint8Array(color);
+                    for (var i = 0; i < bufferArr.length; i++) {
+                        bufferArr[i] = i + 1;
+                    }
+        
+                    let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+                    image.createPixelMap(color, opts, (err, pixelmap) => {
+                        globalpixelmap = pixelmap;
+                        if (pixelmap == undefined) {
+                            console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0300 createPixelMap failed');
+                            expect(false).assertTrue();
+                            done();
+                        } else {
+                            const readBuffer = new ArrayBuffer(96);
+                            pixelmap.readPixelsToBuffer(readBuffer, () => {
+                                var bufferArr = new Uint8Array(readBuffer);
+                                var res = true;
+                                for (var i = 0; i < bufferArr.length; i++) {
+                                    if (bufferArr[i] != tcBuf020_2[i]) {
+                                        res = false;
+                                        console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0300 failed');
+                                        expect(false).assertTrue();
+                                        done();
+                                        break;
+                                    }
+                                }
+                                if (res) {
+                                    console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0300 success');
+                                    expect(true).assertTrue()
+                                    done();
+                                }
+                            })
+                        }
+                    })
+                })
 
         /**
          * @tc.number    : SUB_GRAPHIC_IMAGE_READPIXELS_PROMISE_0100
