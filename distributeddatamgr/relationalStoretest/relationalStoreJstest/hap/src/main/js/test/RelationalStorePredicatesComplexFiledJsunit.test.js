@@ -12,20 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
-import dataRdb from '@ohos.data.rdb';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import data_Rdb from '@ohos.data.relationalStore';
+import ability_featureAbility from '@ohos.ability.featureAbility'
+var context = ability_featureAbility.getContext();
 
-const TAG = "[RDB_JSKITS_TEST]"
+const TAG = "[RelationalStore_JSKITS_TEST]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT, " + "age INTEGER, " + "salary REAL, " + "adddate DATE)";
 const STORE_CONFIG = {
     name: "PredicatesComplexFiledJsunit.db",
+    securityLevel: data_Rdb.SecurityLevel.S1
 }
 var rdbStore = undefined;
-export default function rdbStorePredicatesComplexFiledTest(){
-describe('rdbStorePredicatesComplexFiledTest', function () {
+export default function relationalStorePredicatesComplexFiledTest(){
+describe('relationalStorePredicatesComplexFiledTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
+        rdbStore = await data_Rdb.getRdbStore(context, STORE_CONFIG);
         await generateTable();
     })
 
@@ -40,7 +43,7 @@ describe('rdbStorePredicatesComplexFiledTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await dataRdb.deleteRdbStore("PredicatesComplexFiledJsunit.db");
+        await data_Rdb.deleteRdbStore(context, "PredicatesComplexFiledJsunit.db");
     })
 
     async function generateTable() {
@@ -61,13 +64,13 @@ describe('rdbStorePredicatesComplexFiledTest', function () {
 
     /**
      * @tc.name resultSet Update test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0001
+     * @tc.number SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0001
      * @tc.desc resultSet Update test
      */
-    it('SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0001', 0, async function (done) {
-        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0001 start *************");
+    it('SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0001', 0, async function (done) {
+        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0001 start *************");
 
-        let predicates = await new dataRdb.RdbPredicates("test")
+        let predicates = await new data_Rdb.RdbPredicates("test")
         predicates.groupBy(["DATE(test.adddate)"]).orderByAsc("COUNT(*)")
         let resultSet = await rdbStore.query(predicates, ["COUNT(*) AS 'num Count'", "DATE(test.adddate) as birthday"])
         expect(true).assertEqual(resultSet.goToFirstRow())
@@ -82,18 +85,18 @@ describe('rdbStorePredicatesComplexFiledTest', function () {
         await expect("2022-09-02").assertEqual(birthday)
         expect(false).assertEqual(resultSet.goToNextRow())
         done();
-        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0001 end   *************");
+        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0001 end   *************");
     })
 
     /**
      * @tc.name resultSet Update test
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0002
+     * @tc.number SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0002
      * @tc.desc resultSet Update test
      */
-    it('SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0002', 0, async function (done) {
-        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0002 start *************");
+    it('SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0002', 0, async function (done) {
+        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0002 start *************");
 
-        let predicates = await new dataRdb.RdbPredicates("test")
+        let predicates = await new data_Rdb.RdbPredicates("test")
         predicates.groupBy(["DATE(test.adddate)"]).orderByDesc("COUNT(*)")
         let resultSet = await rdbStore.query(predicates, ["COUNT(*) AS numCount", "DATE(test.adddate) as birthday"])
         expect(true).assertEqual(resultSet.goToFirstRow())
@@ -108,7 +111,7 @@ describe('rdbStorePredicatesComplexFiledTest', function () {
         await expect("2022-09-01").assertEqual(birthday)
         expect(false).assertEqual(resultSet.goToNextRow())
         done();
-        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRDB_Predicates_ComplexFiled_0002 end   *************");
+        console.log(TAG + "************* SUB_DDM_AppDataFWK_JSRelationalStore_Predicates_ComplexFiled_0002 end   *************");
     })
 
     console.log(TAG + "*************Unit Test End*************");
