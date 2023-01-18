@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -381,10 +381,10 @@ export default function publicDirectoryCreateAssetPromise(abilityContext) {
         * @tc.level	 : Level 0
         */
          it('SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_021', 0, async function (done) {
-            const errorCode  = ERR_RELATIVE_PATH_NOT_EXIST_OR_INVALID;
+            const errorCode  = DATA_ABILITY_CHECK_MEDIATYPE_FAIL;
             const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_021';
             await getDirectoryAndCreateAssetAbnormal(done, 
-                    dirAudio, imageType, `${new Date().getTime()}.jpg`, errorCode, testNo)
+                    dirDocument, imageType, `${new Date().getTime()}.jpg`, errorCode, testNo)
         });
 
         /*
@@ -399,7 +399,7 @@ export default function publicDirectoryCreateAssetPromise(abilityContext) {
             const errorCode  = DATA_ABILITY_CHECK_MEDIATYPE_FAIL;
             const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_022';
             await getDirectoryAndCreateAssetAbnormal(done, 
-                    dirImage, videoType, `${new Date().getTime()}.mp4`, errorCode, testNo)
+                    dirDocument, videoType, `${new Date().getTime()}.mp4`, errorCode, testNo)
         });
 
         /*
@@ -411,10 +411,10 @@ export default function publicDirectoryCreateAssetPromise(abilityContext) {
         * @tc.level	 : Level 0
         */
         it('SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_023', 0, async function (done) {
-            const errorCode  = ERR_RELATIVE_PATH_NOT_EXIST_OR_INVALID;
+            const errorCode  = DATA_ABILITY_CHECK_MEDIATYPE_FAIL;
             const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_P_004_003_001_023';
             await getDirectoryAndCreateAssetAbnormal(done, 
-                    dirImage, audioType, `${new Date().getTime()}.mp3`, errorCode, testNo)
+                    dirDocument, audioType, `${new Date().getTime()}.mp3`, errorCode, testNo)
         });
 
         /*
