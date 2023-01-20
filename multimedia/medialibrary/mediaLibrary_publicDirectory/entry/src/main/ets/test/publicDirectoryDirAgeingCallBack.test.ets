@@ -506,7 +506,37 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         });
 
         /**
-        * @tc.number : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_017
+        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_017
+        * @tc.name	  : deleteAsset
+        * @tc.desc	  : delete Documents/xxx.dat success.
+        *               delete upper directory fail
+        * @tc.size	  : MEDIUMx
+        * @tc.type	  : Function
+        * @tc.level	  : Level 0
+        */
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_017', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_017';
+            const mediaName = `${new Date().getTime()}.dat`;
+            await deleteAssetOneLevelCallBack(done, dirDocuments, fileType, mediaName, testNo)
+        });
+
+        /**
+        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_018
+        * @tc.name	  : deleteAsset
+        * @tc.desc	  : delete Documents/dirA/dirB/dirC/dirD/xxx.dat success.
+        *               delete upper directory
+        * @tc.size	  : MEDIUM
+        * @tc.type	  : Function
+        * @tc.level	  : Level 0
+        */
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_018', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_018';
+            const mediaName = `${new Date().getTime()}.dat`;
+            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_018/"
+            await deleteAssetMoreLevelCallBack(done, dirDocuments, fileType, mediaName, inputPath, testNo)
+        });
+        /**
+        * @tc.number : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_019
         * @tc.name 	 : deleteAsset
         * @tc.desc 	 : delete Documents/xxx.dat success.
         *              delete upper directory fail
@@ -515,15 +545,15 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         * @tc.type 	 : Function
         * @tc.level	 : Level 0
         */
-        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_017', 0, async function (done) {
-            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_017';
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_019', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_019';
             const mediaNameOne = `${new Date().getTime()}.dat`;
-            const mediaNameTwo = `C_004_005_017.dat`;
+            const mediaNameTwo = `C_004_005_019.dat`;
             await OneLevelTwoFilesAbnormalCallBack(done, dirDocuments, fileType, mediaNameOne, mediaNameTwo, testNo)
         });
 
         /**
-        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_018
+        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_020
         * @tc.name	  : deleteAsset
         * @tc.desc	  : delete Documents/dirA/dirB/dirC/dirD/xxx.dat success.
         *               delete upper directory fail
@@ -532,17 +562,17 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         * @tc.type	  : Function
         * @tc.level	  : Level 0
         */
-        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_018', 0, async function (done) {
-            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_018';
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_020', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_020';
             const mediaNameOne = `${new Date().getTime()}.dat`;
-            const mediaNameTwo = `004_005_018.dat`;
-            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_018/"
+            const mediaNameTwo = `004_005_020.dat`;
+            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_020/"
             await MoreLevelTwoFilesAbnormalCallBack(done, 
                     dirDocuments, fileType, mediaNameOne, mediaNameTwo, inputPath, testNo)
         });
 
         /**
-        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_019
+        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_021
         * @tc.name	  : deleteAsset
         * @tc.desc	  : delete Download/xxx.png success.
         *               delete upper directory
@@ -551,15 +581,15 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         * @tc.type	  : Function
         * @tc.level	  : Level 0
         */
-        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_019', 0, async function (done) {
-            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_019';
-            const mediaName = `C_004_005_019.png`;
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_021', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_021';
+            const mediaName = `C_004_005_021.png`;
             await deleteAssetOneLevelCallBack(done, dirDownload, imageType, mediaName, testNo)
             
         });
 
         /**
-        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_020
+        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_022
         * @tc.name	  : deleteAsset
         * @tc.desc	  : delete Download/dirA/dirB/dirC/dirD/xxx.png success.
         *               delete upper directory
@@ -568,15 +598,15 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         * @tc.type	  : Function
         * @tc.level	  : Level 0
         */
-        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_020', 0, async function (done) {
-            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_020';
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_022', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_022';
             const mediaName = `${new Date().getTime()}.png`;
-            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_020/"
+            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_022/"
             await deleteAssetMoreLevelCallBack(done, dirDownload, imageType, mediaName, inputPath, testNo)
         });
 
         /**
-        * @tc.number : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_021
+        * @tc.number : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_023
         * @tc.name 	 : deleteAsset
         * @tc.desc 	 : delete Download/xxx.png success.
         *              delete upper directory fail
@@ -585,15 +615,15 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         * @tc.type 	 : Function
         * @tc.level	 : Level 0
         */
-        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_021', 0, async function (done) {
-            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_021';
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_023', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_023';
             const mediaNameOne = `${new Date().getTime()}.png`;
-            const mediaNameTwo = `C_004_005_021.png`;
+            const mediaNameTwo = `C_004_005_023.png`;
             await OneLevelTwoFilesCallBack(done, dirDownload, imageType, mediaNameOne, mediaNameTwo, testNo)
         });
 
         /**
-        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_022
+        * @tc.number  : SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_024
         * @tc.name	  : deleteAsset
         * @tc.desc	  : delete Download/dirA/dirB/dirC/dirD/xxx.png success.
         *               delete upper directory fail
@@ -602,11 +632,11 @@ export default function publicDirectoryDirAgeingCallBack(abilityContext) {
         * @tc.type	  : Function
         * @tc.level	  : Level 0
         */
-        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_022', 0, async function (done) {
-            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_022';
-            const mediaNameOne = `C_004_005_022_1.png`;
-            const mediaNameTwo = `C_004_005_022-2.png`;
-            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_022/"
+        it('SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_024', 0, async function (done) {
+            const testNo = 'SUB_MEDIA_GETPUBLICDIRECTORY_C_004_005_024';
+            const mediaNameOne = `C_004_005_024_1.png`;
+            const mediaNameTwo = `C_004_005_024-2.png`;
+            const inputPath = "dirA/dirB/dirC/dirD/C_004_005_024/"
             await MoreLevelTwoFilesCallBack(done, 
                     dirDownload, imageType, mediaNameOne, mediaNameTwo, inputPath, testNo)
         });
