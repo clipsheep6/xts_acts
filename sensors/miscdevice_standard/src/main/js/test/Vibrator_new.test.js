@@ -13,17 +13,22 @@
  * limitations under the License.
  */
 import vibrator from '@ohos.vibrator'
+import deviceInfo from '@ohos.deviceInfo'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
 export default function VibratorJsTest_misc_2() {
 describe("VibratorJsTest_misc_2", function () {
+    let g_effectId = "haptic.clock.timer";
     beforeAll(function () {
 
         /*
          * @tc.setup: setup invoked before all testcases
          */
-        console.info('beforeAll caled')
+        console.info('beforeAll called')
+        if (deviceInfo.deviceType == "tablet") {
+            g_effectId = "haptic.common.click";
+        }
     })
 
     afterAll(function () {
@@ -31,7 +36,7 @@ describe("VibratorJsTest_misc_2", function () {
         /*
          * @tc.teardown: teardown invoked after all testcases
          */
-        console.info('afterAll caled')
+        console.info('afterAll called')
     })
 
     beforeEach(function () {
@@ -39,7 +44,7 @@ describe("VibratorJsTest_misc_2", function () {
         /*
          * @tc.setup: setup invoked before each testcases
          */
-        console.info('beforeEach caled')
+        console.info('beforeEach called')
     })
 
     afterEach(function () {
@@ -47,14 +52,14 @@ describe("VibratorJsTest_misc_2", function () {
         /*
          * @tc.teardown: teardown invoked after each testcases
          */
-        console.info('afterEach caled')
+        console.info('afterEach called')
     })
 
-    const OPERATION_FAIL_CODE = 14600101; 
+    const DEVICE_OPERATION_FAILED = 14600101; 
     const PERMISSION_ERROR_CODE = 201;
     const PARAMETER_ERROR_CODE = 401;
     
-    const OPERATION_FAIL_MSG = 'Device operation failed.'
+    const DEVICE_OPERATION_MSG = 'Device operation failed.'
     const PERMISSION_ERROR_MSG = 'Permission denied.'
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
 
@@ -202,7 +207,7 @@ describe("VibratorJsTest_misc_2", function () {
                 done();
             }, 500);
         }
-        vibrator.vibrate("haptic.clock.timer", vibrateCallback);
+        vibrator.vibrate(g_effectId, vibrateCallback);
     })
 
     /*
@@ -376,7 +381,7 @@ describe("VibratorJsTest_misc_2", function () {
      * @tc.number:SUB_SensorSystem_Vibrator_JsTest_0140
      */
     it("VibratorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
+        vibrator.vibrate(g_effectId).then(() => {
             console.log("VibratorJsTest014  vibrate success");
             expect(true).assertTrue();
             setTimeout(() => {

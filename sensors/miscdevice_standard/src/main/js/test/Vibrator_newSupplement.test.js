@@ -18,12 +18,16 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestT
 
 export default function VibratorJsTest_misc_3() {
 describe("VibratorJsTest_misc_3", function () {
+    let g_effectId = "haptic.clock.timer";
      beforeAll(function () {
 
         /*
          * @tc.setup: setup invoked before all testcases
          */
-        console.info('beforeAll caled')
+        console.info('beforeAll called')
+        if (deviceInfo.deviceType == "tablet") {
+            g_effectId = "haptic.common.click";
+        }
     })
 
     afterAll(function () {
@@ -31,7 +35,7 @@ describe("VibratorJsTest_misc_3", function () {
         /*
          * @tc.teardown: teardown invoked after all testcases
          */
-        console.info('afterAll caled')
+        console.info('afterAll called')
     })
 
     beforeEach(function () {
@@ -39,7 +43,7 @@ describe("VibratorJsTest_misc_3", function () {
         /*
          * @tc.setup: setup invoked before each testcases
          */
-        console.info('beforeEach caled')
+        console.info('beforeEach called')
     })
 
     afterEach(function () {
@@ -47,17 +51,17 @@ describe("VibratorJsTest_misc_3", function () {
         /*
          * @tc.teardown: teardown invoked after each testcases
          */
-        console.info('afterEach caled')
+        console.info('afterEach called')
 		vibrator.stop("preset");
         vibrator.stop("time");
         console.info('afterEach called')
     })
 
-    const OPERATION_FAIL_CODE = 14600101; 
+    const DEVICE_OPERATION_FAILED = 14600101;
     const PERMISSION_ERROR_CODE = 201;
     const PARAMETER_ERROR_CODE = 401;
     
-    const OPERATION_FAIL_MSG = 'Device operation failed.'
+    const DEVICE_OPERATION_MSG = 'Device operation failed.'
     const PERMISSION_ERROR_MSG = 'Permission denied.'
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
 	
@@ -124,7 +128,7 @@ describe("VibratorJsTest_misc_3", function () {
     it("VibratorJsTest021", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         vibrator.vibrate({
             type: "preset",
-            effectId: "haptic.clock.timer",
+            effectId: g_effectId,
             count: 1,
         }, {
             usage: "unknown"
@@ -183,7 +187,7 @@ describe("VibratorJsTest_misc_3", function () {
         try {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: ""
@@ -274,7 +278,7 @@ describe("VibratorJsTest_misc_3", function () {
     it("VibratorJsTest027", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         await vibrator.vibrate({
             type: "preset",
-            effectId: "haptic.clock.timer",
+            effectId: g_effectId,
             count: 1,
         }, {
             usage: "unknown"
@@ -323,7 +327,7 @@ describe("VibratorJsTest_misc_3", function () {
         try {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: ""
@@ -423,7 +427,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.vibrate({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "unknown"
@@ -475,7 +479,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.vibrate({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 3,
                 }, {
                     usage: "unknown",
@@ -527,7 +531,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.vibrate({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "unknown",
@@ -547,7 +551,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: "unknown",
@@ -599,7 +603,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: "unknown"
@@ -651,7 +655,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 1,
             }, {
                 usage: "unknown"
@@ -684,7 +688,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.vibrate({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 3,
                 }, {
                     usage: "unknown"
@@ -704,7 +708,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: "unknown"
@@ -737,7 +741,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.vibrate({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "ring"
@@ -757,7 +761,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 1,
             }, {
                 usage: "notification"
@@ -790,7 +794,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.vibrate({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "unknown"
@@ -810,7 +814,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.vibrate({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 1,
             }, {
                 usage: "notification"
@@ -897,7 +901,7 @@ describe("VibratorJsTest_misc_3", function () {
     it("VibratorJsTest042", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         vibrator.vibrate({
             type: "preset",
-            effectId: "haptic.clock.timer",
+            effectId: g_effectId,
             count: 1,
         }, {
 			id:"xxx",
@@ -1011,7 +1015,7 @@ describe("VibratorJsTest_misc_3", function () {
     it("VibratorJsTest046", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         vibrator.startVibration({
             type: "preset",
-            effectId: "haptic.clock.timer",
+            effectId: g_effectId,
             count: 1,
         }, {
             usage: "unknown"
@@ -1069,7 +1073,7 @@ describe("VibratorJsTest_misc_3", function () {
         try {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: ""
@@ -1160,7 +1164,7 @@ describe("VibratorJsTest_misc_3", function () {
     it("VibratorJsTest052", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         await vibrator.startVibration({
             type: "preset",
-            effectId: "haptic.clock.timer",
+            effectId: g_effectId,
             count: 1,
         }, {
             usage: "unknown"
@@ -1213,7 +1217,7 @@ describe("VibratorJsTest_misc_3", function () {
         try {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: ""
@@ -1320,15 +1324,15 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.startVibration({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "unknown"
                 }, (error)=>{
                     if (error) {
 						console.info("VibratorJsTest057_1 error :" + error);
-                        expect(error.code).assertEqual(OPERATION_FAIL_CODE);
-                        expect(error.message).assertEqual(OPERATION_FAIL_MSG);
+                        expect(error.code).assertEqual(DEVICE_OPERATION_FAILED);
+                        expect(error.message).assertEqual(DEVICE_OPERATION_MSG);
                     } else {
                         expect(false).assertTrue();
                     }
@@ -1376,7 +1380,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.startVibration({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 3,
                 }, {
                     usage: "unknown",
@@ -1431,14 +1435,14 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.startVibration({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "unknown",
                 }, (error)=>{
                     if (error) {
-                        expect(error.code).assertEqual(OPERATION_FAIL_CODE);
-                        expect(error.message).assertEqual(OPERATION_FAIL_MSG);
+                        expect(error.code).assertEqual(DEVICE_OPERATION_FAILED);
+                        expect(error.message).assertEqual(DEVICE_OPERATION_MSG);
                     } else {
                         expect(false).assertTrue();
                     }
@@ -1452,7 +1456,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: "unknown",
@@ -1490,8 +1494,8 @@ describe("VibratorJsTest_misc_3", function () {
                     usage: "alarm"
                 }, (error)=>{
                     if (error) {
-                        expect(error.code).assertEqual(OPERATION_FAIL_CODE);
-                        expect(error.message).assertEqual(OPERATION_FAIL_MSG);
+                        expect(error.code).assertEqual(DEVICE_OPERATION_FAILED);
+                        expect(error.message).assertEqual(DEVICE_OPERATION_MSG);
                     } else {
                         expect(false).assertTrue();
                     }
@@ -1505,7 +1509,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: "unknown"
@@ -1557,7 +1561,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 1,
             }, {
                 usage: "unknown"
@@ -1590,7 +1594,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.startVibration({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 3,
                 }, {
                     usage: "unknown"
@@ -1610,7 +1614,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 3,
             }, {
                 usage: "unknown"
@@ -1642,7 +1646,7 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.startVibration({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "ring"
@@ -1662,7 +1666,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 1,
             }, {
                 usage: "notification"
@@ -1695,14 +1699,14 @@ describe("VibratorJsTest_misc_3", function () {
             return new Promise((resolve, reject) => {
                 vibrator.startVibration({
                     type: "preset",
-                    effectId: "haptic.clock.timer",
+                    effectId: g_effectId,
                     count: 1,
                 }, {
                     usage: "unknown"
                 }, (error)=>{
                     if (error) {
-                        expect(error.code).assertEqual(OPERATION_FAIL_CODE);
-                        expect(error.message).assertEqual(OPERATION_FAIL_MSG);
+                        expect(error.code).assertEqual(DEVICE_OPERATION_FAILED);
+                        expect(error.message).assertEqual(DEVICE_OPERATION_MSG);
                     } else {
                         expect(false).assertTrue();
                     }
@@ -1716,7 +1720,7 @@ describe("VibratorJsTest_misc_3", function () {
         let promise = new Promise((resolve, reject) => {
             vibrator.startVibration({
                 type: "preset",
-                effectId: "haptic.clock.timer",
+                effectId: g_effectId,
                 count: 1,
             }, {
                 usage: "notification"
@@ -1793,7 +1797,7 @@ describe("VibratorJsTest_misc_3", function () {
         }
 
         let promise = new Promise((resolve, reject) => {
-            vibrator.startVibration("haptic.clock.timer").then(() => {
+            vibrator.startVibration(g_effectId).then(() => {
                 console.log("VibratorJsTest066  vibrate success");
                 expect(true).assertTrue();
                 setTimeout(()=>{
