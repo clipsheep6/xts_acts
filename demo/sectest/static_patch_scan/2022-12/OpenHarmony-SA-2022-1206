@@ -1,0 +1,18 @@
+import "console"
+import "elf"
+
+rule openharmony
+{
+ meta:
+   date="2023-01-13"
+   openharmony_sa="OpenHarmony-SA-2022-1206"
+   cve="CVE-2022-45118"
+   affected_files="libtel_state_registry.z.so"
+  
+ strings:
+
+   $fix="SendCallStateChanged PublishBroadcastEvent result fail"
+   
+ condition: 
+   $fix and console.log("OpenHarmony-SA-2022-1206 testcase pass") 
+ }
