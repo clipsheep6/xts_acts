@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import vibrator from '@ohos.vibrator'
+import deviceInfo from '@ohos.deviceInfo'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
