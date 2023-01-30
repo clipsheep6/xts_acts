@@ -1,0 +1,21 @@
+import "console"
+import "elf"
+
+rule OpenHarmony_SA_2022_1205
+{
+    meta:
+    	date = "2023-01-10"
+    	openharmony_sa = "OpenHarmony-SA-2022-1205"
+    	cve = "CVE-2022-44455"
+    	severity = "medium"
+    	affacted_files = "appspawn"
+    	affected_func = "CheckAppProperty"
+    	
+    strings:
+        $features = "process name error" nocase wide ascii
+        $features1 = "process name length is 0" nocase wide ascii
+
+    condition:
+        (elf.machine == elf.EM_ARM) and ($features and not $features1) and console.log("OpenHarmony-SA-2022-1205 testcase pass")
+        
+}
