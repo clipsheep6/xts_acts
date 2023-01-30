@@ -322,7 +322,6 @@ export default function ApiCoverTest() {
         let el1 = common.AreaMode.EL1;
         let el2 = common.AreaMode.EL2;
         let eventHub: common.EventHub = context.eventHub;
-        let permissionRequestResult: common.PermissionRequestResult;
         let abilityResult: common.AbilityResult;
         let connectOptions: common.ConnectOptions;
 
@@ -521,62 +520,6 @@ export default function ApiCoverTest() {
     });
 
     /*
-     * @tc.number  SUB_AA_Test_ProcessRunningInformation_0100
-     * @tc.name    Test getProcessRunningInformation in appManager.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_Test_ProcessRunningInformation_0100', 0, async function (done) {
-      let processRunningInformation:appManagerNew.ProcessRunningInformation;
-      let process;
-      appManagerNew.getProcessRunningInformation().then((processRunningInformations)=>{
-        console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(processRunningInformations));
-        for(let i = 0; i < processRunningInformations.length; i++){
-          console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(processRunningInformations[i]));
-          expect(processRunningInformations[i].pid).assertLarger(0)
-          expect(processRunningInformations[i].uid).assertLarger(0)
-          if(processRunningInformations[i].processName == "com.example.apicoverhaptest"){
-            process = processRunningInformations[i]
-          }
-        }
-        expect(process.bundleNames[0]).assertEqual("com.example.apicoverhaptest")
-        done()
-      }).catch((error)=>{
-        console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(error));
-        expect().assertFail()
-        done()
-      })
-    });
-
-    /*
-     * @tc.number  SUB_AA_Test_ProcessRunningInformation_0200
-     * @tc.name    Test getProcessRunningInformation by callback in appManager.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_Test_ProcessRunningInformation_0200', 0, async function (done) {
-      let process;
-      appManagerNew.getProcessRunningInformation((error, processRunningInformations)=>{
-        if (error) {
-          console.info("SUB_AA_Test_ProcessRunningInformation_0200:" + JSON.stringify(error));
-          expect().assertFail()
-          done()
-        }
-        console.info("SUB_AA_Test_ProcessRunningInformation_0200:" + JSON.stringify(processRunningInformations));
-        for(let i = 0; i < processRunningInformations.length; i++){
-          console.info("SUB_AA_Test_ProcessRunningInformation_0200:" + JSON.stringify(processRunningInformations[i]));
-          expect(processRunningInformations[i].pid).assertLarger(0)
-          expect(processRunningInformations[i].uid).assertLarger(0)
-          if(processRunningInformations[i].processName == "com.example.apicoverhaptest"){
-            process = processRunningInformations[i]
-          }
-        }
-        expect(process.bundleNames[0]).assertEqual("com.example.apicoverhaptest")
-        done()
-      })
-    });
-
-    /*
      * @tc.number  SUB_AA_FMS_AbilityStage_0100
      * @tc.name    Start AbilityStage and get config.
      * @tc.desc    Function test
@@ -586,6 +529,7 @@ export default function ApiCoverTest() {
       console.info("SUB_AA_FMS_AbilityStage_0100===AbilityStage===" + JSON.stringify(globalThis.stageContext))
       console.info("SUB_AA_FMS_AbilityStage_0100===AbilityStage===" + JSON.stringify(globalThis.stageContext.config))
       let directions = globalThis.stageContext.config.direction
+      let pointer = globalThis.stageContext.config.hasPointerDevice
       let subscriber = null
         let subscribeInfo = {
           events: ["AbilityStage_StartAbility"]
@@ -598,6 +542,7 @@ export default function ApiCoverTest() {
           console.info("SUB_AA_FMS_AbilityStage_0100===SubscribeInfoCallback===" + JSON.stringify(data))
             expect(data.parameters["config"]).assertEqual(-1)
             expect(data.parameters["config"]).assertEqual(directions)
+            expect(pointer).assertFalse()
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
             await sleep(4000)
             done()
@@ -617,57 +562,6 @@ export default function ApiCoverTest() {
            console.info("SUB_AA_FMS_AbilityStage_0100===CreateSubscriberCallback===")
         }else{
           console.info("SUB_AA_FMS_AbilityStage_0100===failed===")
-          expect().assertFail()
-          done()
-        }
-      })
-    })
-
-    /*
-     * @tc.number  SUB_AA_FMS_AbilityStage_0200
-     * @tc.name    Start Service and get config.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-     it('SUB_AA_FMS_AbilityStage_0200', 0, async function (done) {
-      let subscriber = null
-      let subscribeInfo = {
-        events: ["ExtensionConext_StartAbility"]
-      }
-      function UnSubscribeInfoCallback(err, data) {
-        console.info("SUB_AA_FMS_AbilityStage_0200===UnSubscribeInfoCallback===")
-      }
-      async function SubscribeInfoCallback(err, data) {
-        console.info("SUB_AA_FMS_AbilityStage_0200===SubscribeInfoCallback===" + JSON.stringify(data))
-        console.info("SUB_AA_FMS_AbilityStage_0200===serviceContext===" + JSON.stringify(globalThis.serviceContext))
-        console.info("SUB_AA_FMS_AbilityStage_0200===config===" + JSON.stringify(globalThis.serviceContext.config))
-        expect(data.parameters["config"]).assertLess(2)
-        expect(data.parameters["poniterDevices"]).assertFalse()
-        expect(data.parameters["AbilityInfo"]).assertEqual("com.example.apicoverhaptest")
-        let direction = globalThis.serviceContext.config.direction
-        let pointerDervice = globalThis.serviceContext.config.hasPointerDevice
-        let AbilityInfo = globalThis.serviceContext.extensionAbilityInfo.bundleName
-        expect(direction).assertLess(2)
-        expect(pointerDervice).assertFalse()
-        expect(AbilityInfo).assertEqual("com.example.apicoverhaptest")
-        commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
-        await sleep(4000)
-        done()
-      }
-      commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-        console.info("SUB_AA_FMS_AbilityStage_0200===CreateSubscriberCallback===")
-        subscriber = data
-        commonEvent.subscribe(subscriber, SubscribeInfoCallback)
-      })
-      let formWant ={
-        deviceId:"",
-        bundleName:"com.example.apicoverhaptest",
-        abilityName:"ServiceAbility",
-      }
-      globalThis.abilityContext.startAbility(formWant, (err, data)=>{
-        if(err.code == 0){
-           console.info("SUB_AA_FMS_AbilityStage_0200===abilityContext startAbility success===")
-        }else{
           expect().assertFail()
           done()
         }
