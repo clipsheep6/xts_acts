@@ -424,7 +424,7 @@ struct Index {
                         }
                         case "emitOnce":{   
                             try {
-                                let re = this.controller.getCookie("https://www.huawei.com")
+                                let re = web_webview.WebCookieManager.getCookie("https://www.huawei.com")
                                 Utils.emitEvent(re, 31)
                                 console.log("result: " + re);
                             } catch (error) {
