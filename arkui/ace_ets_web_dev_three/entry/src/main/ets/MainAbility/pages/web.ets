@@ -71,7 +71,6 @@ struct Index {
             web_webview.once("webInited",()=>{
                 web_webview.WebCookieManager.setCookie("https://www.huawei.com", "a=b");
             })
-            web_webview.WebviewController.setWebDebuggingAccess(true);
         }catch(error){
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
         }
@@ -572,7 +571,6 @@ struct Index {
                 console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
             })
             .pinchSmooth(true)
-            .allowWindowOpenMethod(true)
 
             
         }
