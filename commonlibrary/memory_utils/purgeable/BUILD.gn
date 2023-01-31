@@ -10,15 +10,27 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 import("//test/xts/tools/build/suite.gni")
 
-group("commonlibrary") {
-  testonly = true
-  if (is_standard_system) {
-    deps = [
-      "ets_utils:ets_utils",
-      "memory_utils:memory_utils",
-      "toolchain:toolchain",
-    ]
-  }
+ohos_js_hap_suite("purgeable_js_hap") {
+  hap_profile = "./src/main/config.json"
+  deps = [
+    ":purgeable_js_assets",
+    ":purgeable_resources",
+  ]
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "PurgeableJSTest"
+
+  subsystem_name = "commonlibrary"
+  part_name = "memory_utils"
+}
+ohos_js_assets("purgeable_js_assets") {
+  js2abc = true
+  hap_profile = "./src/main/config.json"
+  source_dir = "./src/main/js"
+}
+ohos_resources("purgeable_resources") {
+  sources = [ "./src/main/resources" ]
+  hap_profile = "./src/main/config.json"
 }
