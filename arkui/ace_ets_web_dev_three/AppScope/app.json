@@ -13,6 +13,7 @@
         "singleUser": true,
         "minAPIVersion": 9,
         "targetAPIVersion": 9,
+        "apiReleaseType":"Beta4",
         "car": {
             "apiCompatibleVersion": 9,
             "singleUser": false
