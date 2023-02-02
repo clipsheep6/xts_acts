@@ -13,11 +13,14 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { BY,UiDriver,UiComponent } from '@ohos.uitest';
 import commonEvent from '@ohos.commonEvent';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import power from '@ohos.power';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export default function OnAndOffScreenTest() {
 
@@ -40,7 +43,7 @@ export default function OnAndOffScreenTest() {
             console.log(TAG1 + "beforeAll end");
             done();
         }, sleepTimeOne);
-    })
+    }) 
         
     afterAll(async (done) => {
         console.log(TAG1 + "afterAll called");
@@ -52,13 +55,11 @@ export default function OnAndOffScreenTest() {
     })
 
     async function slideScreen(TAG) {
+      await sleep(1500)
       console.log(TAG + "slideScreen start");
-      var driver = UiDriver.create();
-      await driver.swipe(1000, 3000, 1000, 500, 1200).then((data) => {
-        console.log(TAG + "swipe : " + JSON.stringify(data));
-      }).catch((error) => {
-        console.log(TAG + "swipe error = " + JSON.stringify(error));
-      })
+      let cmd = 'uinput -T -d 300 600 -m 300 600 300 100 -u 300 100';
+      await executeShellCommand(cmd, TAG);
+      await sleep(500)
       console.log(TAG + "slideScreen end");
     }
 
@@ -83,6 +84,7 @@ export default function OnAndOffScreenTest() {
       })
 
       if (!status) {
+        await sleep(500)
         let cmd = "uinput -K -d 18 -u 18";
         await executeShellCommand(cmd, TAG1);
         await slideScreen(TAG1);
@@ -462,6 +464,7 @@ export default function OnAndOffScreenTest() {
           }
 
           if (data.event == onForeground2) {
+            await sleep(500)
             let cmd = "uinput -K -d 18 -u 18";
             await executeShellCommand(cmd, TAG);
           }
@@ -564,6 +567,7 @@ export default function OnAndOffScreenTest() {
           }
 
           if (data.event == onForeground2 && !flag) {
+            await sleep(500)
             let cmd = "uinput -K -d 18 -u 18";
             await executeShellCommand(cmd, TAG);
             flag = true;
@@ -579,6 +583,7 @@ export default function OnAndOffScreenTest() {
           }
 
           if (data.event == onBackground2) {
+            await sleep(500)
             let cmd = "uinput -K -d 18 -u 18";
             await executeShellCommand(cmd, TAG);
             await slideScreen(TAG);

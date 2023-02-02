@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,6 +14,7 @@
  */
 
 import fileio from '@ohos.fileio';
+import fileIO from '@ohos.file.fs';
 import featureAbility from '@ohos.ability.featureAbility';
 
 export const FILE_CONTENT = 'hello world';
@@ -112,6 +113,10 @@ function isIntNum(val) {
   return typeof val === 'number' && val % 1 === 0;
 }
 
+function isBigInt(val) {
+  return typeof val === 'bigint';
+}
+
 function isString(str) {
   return (typeof str == 'string') && str.constructor == String;
 }
@@ -126,7 +131,9 @@ function isInclude(error, message) {
 
 export {
   fileio,
+  fileIO,
   isIntNum,
+  isBigInt,
   isString,
   isBoolean,
   isInclude,

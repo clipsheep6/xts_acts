@@ -17,7 +17,8 @@
     "package": "com.example.verifyiability",
     "name": ".MyApplication",
     "deviceType": [
-      "phone"
+        "default",
+        "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,

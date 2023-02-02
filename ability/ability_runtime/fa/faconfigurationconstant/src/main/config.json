@@ -19,7 +19,8 @@
     "mainAbility": ".MainAbility",
     "srcPath":"",
     "deviceType": [
-      "phone"
+        "default",
+        "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,
@@ -68,10 +69,6 @@
     "reqPermissions": [
       {
         "name": "ohos.permission.GET_BUNDLE_INFO",
-        "reason": "need use ohos.permission.INSTALL_BUNDLE"
-      },
-      {
-        "name": "ohos.permission.UPDATE_CONFIGURATION",
         "reason": "need use ohos.permission.INSTALL_BUNDLE"
       }
     ],

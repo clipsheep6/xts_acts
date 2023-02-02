@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// @ts-nocheck
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 import sensor from '@ohos.sensor'
 
@@ -37,31 +34,27 @@ describe('SystemParameterTest', function () {
     })
 
     let testNullSensorId = -1;
-	
-	let errMessages = ['SubscribeSensor failed'];
-
-    let errMessage;
+    let errCode = 401
+    let errMessage = 'The parameter invalid.'
 
    /**
-   * @tc.number SUB_SENSORS_Sensor_JSTest_0020
+   * @tc.number SUB_SENSORS_Sensor_JSTest_0010
    * @tc.name   testRegisterSensortest001
    * @tc.desc   test get sensor data by wrong sensor id.
    */
     it('testRegisterSensortest001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('testRegisterSensortest001 start');
-
         function onSensorCallback(data) {
-            console.info('testRegisterSensortest001  on error');
+            console.info('testRegisterSensortest001 callback in');
             expect(false).assertTrue();
             done();
         }
-
         try {
             sensor.on(testNullSensorId, onSensorCallback);
         } catch (error) {
-            console.info('testRegisterSensortest001 error' +error);
-            errMessage = error.toString().slice(12, 34);
-            expect(errMessage).assertEqual(errMessages[0]);
+            console.info('testRegisterSensortest001 error: ' + error.code + ' ,msg: ' + error.message);
+            expect(error.code).assertEqual(errCode)
+            expect(error.message).assertEqual(errMessage)
             done();
         }
         console.info('testRegisterSensortest001 end');

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,9 +17,10 @@ import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
 import featureAbility from '@ohos.ability.featureAbility'
 import resourceManager from '@ohos.resourceManager';
-import * as audioTestBase from '../../../../../AudioTestBase'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { UiDriver, BY} from '@ohos.uitest'
 
+export default function audioVoip() {
 describe('audioVoip', function () {
     let mediaDir;
     let fdRead;
@@ -31,13 +31,34 @@ describe('audioVoip', function () {
     let TagRec = "AudioFrameworkRecLog";
     const AUDIOMANAGER = audio.getAudioManager();
     console.info(`${TagRender}: Create AudioManger Object JS Framework`);
-
+    async function getPermission() {
+        let permissions = ['ohos.permission.MICROPHONE',
+        'ohos.permission.GRANT_SENSITIVE_PERMISSIONS',
+        'ohos.permission.MANAGE_AUDIO_CONFIG'];
+        featureAbility.getContext().requestPermissionsFromUser(permissions, 0, (data) => {
+            console.info("request success" + JSON.stringify(data));
+        })
+    }
+    async function driveFn() {
+        console.info(`come in driveFn`)
+        let driver = await UiDriver.create()
+        console.info(`driver is ${JSON.stringify(driver)}`)
+        await sleep(2000)
+        console.info(`UiDriver start`)
+        let button = await driver.findComponent(BY.text('允许'))
+        while(button){
+            console.info(`button is ${JSON.stringify(button)}`)
+            await button.click()
+            await sleep(5000)
+            button = await driver.findComponent(BY.text('允许'))
+        }
+        
+    }
     beforeAll(async function () {
         console.info(`AudioFrameworkTest: beforeAll: Prerequisites at the test suite level`);
-        let permissionName1 = 'ohos.permission.MICROPHONE';
-        let permissionNameList = [permissionName1];
-        let appName = 'ohos.acts.multimedia.audio.audiovoip';
-        await audioTestBase.applyPermission(appName, permissionNameList);
+        await getPermission();
+        sleep(2000)
+        await driveFn();
         await sleep(100);
         console.info(`AudioFrameworkTest: beforeAll: END`);
     })
@@ -51,7 +72,7 @@ describe('audioVoip', function () {
         console.info(`AudioFrameworkTest: afterEach: Test case-level clearance conditions`);
     })
 
-    afterAll(async function () {
+    afterAll(function () {
         console.info(`AudioFrameworkTest: afterAll: Test suite-level cleanup condition`);
     })
 
@@ -111,7 +132,7 @@ describe('audioVoip', function () {
         console.info(`${TagRender}: Promise : Audio Playback Function`);
 
         let audioRen;
-        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+        await audio.createAudioRenderer(AudioRendererOptions).then((data) => {
             audioRen = data;
             console.info(`${TagRender}: AudioRender Created : Success : Stream Type: SUCCESS`);
         }).catch((err) => {
@@ -123,7 +144,7 @@ describe('audioVoip', function () {
 
         console.info(`${TagRender}: AudioRenderer : STATE : ${audioRen.state}`);
 
-        await audioRen.getStreamInfo().then(async function (audioParamsGet) {
+        await audioRen.getStreamInfo().then((audioParamsGet) => {
             console.info(`${TagRender}: Renderer getStreamInfo:`);
             console.info(`${TagRender}: Renderer sampleFormat: ${audioParamsGet.sampleFormat}`);
             console.info(`${TagRender}: Renderer samplingRate: ${audioParamsGet.samplingRate}`);
@@ -138,7 +159,7 @@ describe('audioVoip', function () {
             return resultFlag;
         }
 
-        await audioRen.getRendererInfo().then(async function (audioParamsGet) {
+        await audioRen.getRendererInfo().then((audioParamsGet) => {
             console.info(`${TagRender}: Renderer RendererInfo:`);
             console.info(`${TagRender}: Renderer content type: ${audioParamsGet.content}`);
             console.info(`${TagRender}: Renderer usage: ${audioParamsGet.usage}`);
@@ -152,7 +173,7 @@ describe('audioVoip', function () {
             return resultFlag;
         }
 
-        await audioRen.start().then(async function () {
+        await audioRen.start().then(() => {
             console.info(`${TagRender}: renderInstant started :SUCCESS `);
         }).catch((err) => {
             console.info(`${TagRender}: renderInstant start :ERROR : ${err.message}`);
@@ -166,7 +187,7 @@ describe('audioVoip', function () {
         console.info(`${TagRender}: AudioRenderer : STATE : ${audioRen.state}`);
 
         let bufferSize;
-        await audioRen.getBufferSize().then(async function (data) {
+        await audioRen.getBufferSize().then((data) => {
             console.info(`${TagRender}: getBufferSize :SUCCESS ${data}`);
             bufferSize = data;
         }).catch((err) => {
@@ -193,7 +214,7 @@ describe('audioVoip', function () {
             console.info(`${TagRender}: BufferAudioFramework: bytes read from file: ${rlen}`);
             await audioRen.write(buf);
             if (rlen > (totalSize / 2)) {
-                await AUDIOMANAGER.getAudioScene().then(async function (data) {
+                await AUDIOMANAGER.getAudioScene().then((data) => {
                     console.info(`${TagRender}:AudioFrameworkAudioScene: getAudioScene : Value : ${data}`);
                 }).catch((err) => {
                     console.info(`${TagRender}:AudioFrameworkAudioScene: getAudioScene : ERROR : ${err.message}`);
@@ -203,7 +224,7 @@ describe('audioVoip', function () {
         }
         console.info(`${TagRender}: Renderer after read`);
 
-        await audioRen.drain().then(async function () {
+        await audioRen.drain().then(() => {
             console.info(`${TagRender}: Renderer drained : SUCCESS`);
         }).catch((err) => {
             console.error(`${TagRender}: Renderer drain: ERROR : ${err.message}`);
@@ -216,7 +237,7 @@ describe('audioVoip', function () {
 
         console.info(`${TagRender}: AudioRenderer : STATE : ${audioRen.state}`);
 
-        await audioRen.stop().then(async function () {
+        await audioRen.stop().then(() => {
             console.info(`${TagRender}: Renderer stopped : SUCCESS`);
             resultFlag = true;
             console.info(`${TagRender}: resultFlagRen : ${resultFlag}`);
@@ -227,7 +248,7 @@ describe('audioVoip', function () {
 
         console.info(`${TagRender}: AudioRenderer : STATE : ${audioRen.state}`);
 
-        await audioRen.release().then(async function () {
+        await audioRen.release().then(() => {
             console.info(`${TagRender}: Renderer release : SUCCESS`);
         }).catch((err) => {
             console.info(`${TagRender}: Renderer release :ERROR : ${err.message}`);
@@ -247,7 +268,7 @@ describe('audioVoip', function () {
 
         let audioCap;
 
-        await audio.createAudioCapturer(AudioCapturerOptions).then(async function (data) {
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
             audioCap = data;
             console.info(`${TagRec}: AudioCapturer Created : Success : Stream Type: SUCCESS`);
         }).catch((err) => {
@@ -259,7 +280,7 @@ describe('audioVoip', function () {
 
         console.info(`${TagRec}: AudioCapturer : STATE : ${audioCap.state}`);
 
-        await audioCap.getStreamInfo().then(async function (audioParamsGet) {
+        await audioCap.getStreamInfo().then((audioParamsGet) => {
             if (audioParamsGet != undefined) {
                 console.info(`${TagRec}: Capturer getStreamInfo:`);
                 console.info(`${TagRec}: Capturer sampleFormat: ${audioParamsGet.sampleFormat}`);
@@ -280,7 +301,7 @@ describe('audioVoip', function () {
             return resultFlag;
         }
 
-        await audioCap.getCapturerInfo().then(async function (audioParamsGet) {
+        await audioCap.getCapturerInfo().then((audioParamsGet) => {
             if (audioParamsGet != undefined) {
                 console.info(`${TagRec}: Capturer CapturerInfo:`);
                 console.info(`${TagRec}: Capturer SourceType: ${audioParamsGet.source}`);
@@ -299,7 +320,7 @@ describe('audioVoip', function () {
             return resultFlag;
         }
 
-        await audioCap.start().then(async function () {
+        await audioCap.start().then(() => {
             console.info(`${TagRec}: Capturer started :SUCCESS`);
         }).catch((err) => {
             console.info(`${TagRec}: Capturer start :ERROR : ${err.message}`);
@@ -349,7 +370,7 @@ describe('audioVoip', function () {
         await sleep(1000);
         console.info(`${TagRec}: AudioCapturer : STATE : ${audioCap.state}`);
 
-        await audioCap.stop().then(async function () {
+        await audioCap.stop().then(() => {
             console.info(`${TagRec}: Capturer stopped : SUCCESS`);
             resultFlag = true;
             console.info(`${TagRec}: resultFlag : ${resultFlag}`);
@@ -360,7 +381,7 @@ describe('audioVoip', function () {
 
         console.info(`${TagRec}: AudioCapturer : STATE : ${audioCap.state}`);
 
-        await audioCap.release().then(async function () {
+        await audioCap.release().then(() => {
             console.info(`${TagRec}: Capturer release : SUCCESS`);
         }).catch((err) => {
             console.info(`${TagRec}: Capturer release :ERROR : ${err.message}`);
@@ -505,4 +526,4 @@ describe('audioVoip', function () {
     })
 
 
-})
+});}

@@ -2,7 +2,7 @@ import hilog from '@ohos.hilog';
 import Window from '@ohos.window';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import Ability from '@ohos.application.Ability';
+import Ability from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 export default class MainAbility extends Ability {
@@ -34,6 +34,8 @@ export default class MainAbility extends Ability {
         // Main window is created, set main page for this ability
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+        globalThis.abilityContext = this.context;
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {

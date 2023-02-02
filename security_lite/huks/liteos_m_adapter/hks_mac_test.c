@@ -16,7 +16,8 @@
 #include "hks_mac_test.h"
 
 #include <hctest.h>
-#include "iot_watchdog.h"
+#include <unistd.h>
+
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -79,7 +80,6 @@ static void ExecHksInitialize(void const *argument)
 static BOOL HksMacTestSetUp()
 {
     LiteTestPrint("setup\n");
-    IoTWatchDogDisable();
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -103,7 +103,6 @@ static BOOL HksMacTestSetUp()
 static BOOL HksMacTestTearDown()
 {
     LiteTestPrint("tearDown\n");
-    IoTWatchDogEnable();
     return TRUE;
 }
 
@@ -169,7 +168,7 @@ static int32_t BaseTestMac(uint32_t index)
             g_testMacParams[index].keyParams.blobDataSize);
     } else {
         if (g_testMacParams[index].keyAliasParams.blobExist) {
-            ret = GenerateKey(&key, &(g_testMacParams[index].keyAliasParams),
+            ret = HuksGenerateKey(&key, &(g_testMacParams[index].keyAliasParams),
                 &g_testMacParams[index].genKeyParamSetParams, NULL);
         } else {
             ret = TestConstuctBlob(&key,

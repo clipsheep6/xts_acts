@@ -18,6 +18,8 @@
     "name": ".MyApplication",
     "mainAbility": "com.open.harmony.aceEtsAttrLack.MainAbility",
     "deviceType": [
+      "tablet",
+      "default",
       "phone"
     ],
     "distro": {
@@ -114,7 +116,9 @@
           "pages/responseType",
           "pages/hoverEffect",
           "pages/hitTestMode",
-          "pages/color"
+          "pages/color",
+          "pages/navigation_lack",
+          "pages/gestureSetting"
         ],
         "name": ".MainAbility",
         "window": {

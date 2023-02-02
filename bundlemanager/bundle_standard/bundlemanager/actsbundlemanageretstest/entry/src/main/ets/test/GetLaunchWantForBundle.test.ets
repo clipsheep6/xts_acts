@@ -28,7 +28,6 @@ export default function getLaunchWantForBundle() {
         * @tc.number: SUB_BMS_APPINFO_QUERY_0069
         * @tc.name: testGetLaunchWantForBundle.
         * @tc.desc: Test getLaunchWantForBundle api by promise and callback.
-        * @tc.author renyi 00559040
         * @tc.size MediumTest
         * @tc.type Function
         * @tc.level Level 1
@@ -44,7 +43,7 @@ export default function getLaunchWantForBundle() {
                 expect(err).assertFail();
             });
             bundleMgr.getLaunchWantForBundle(NAME1, (err, res) => {
-                expect(err).assertEqual(0);
+                expect(err.code).assertEqual(0);
                 expect(res.bundleName).assertEqual(NAME1);
                 expect(res.abilityName).assertEqual(ABILITYNAME1);
                 expect(res.deviceId).assertEqual('');
@@ -58,7 +57,6 @@ export default function getLaunchWantForBundle() {
         * @tc.number: SUB_BMS_APPINFO_QUERY_0012
         * @tc.name: testGetLaunchWantForBundleWithManyHaps.
         * @tc.desc: Test getLaunchWantForBundle api by promise and callback.
-        * @tc.author renyi 00559040
         * @tc.size MediumTest
         * @tc.type Function
         * @tc.level Level 1
@@ -74,7 +72,7 @@ export default function getLaunchWantForBundle() {
                 expect(err).assertFail();
             });
             bundleMgr.getLaunchWantForBundle(NAME2, (err, res) => {
-                expect(err).assertEqual(0);
+                expect(err.code).assertEqual(0);
                 expect(res.bundleName).assertEqual(NAME2);
                 expect(res.abilityName).assertEqual(ABILITYNAME2);
                 expect(res.deviceId).assertEqual('');
@@ -87,7 +85,6 @@ export default function getLaunchWantForBundle() {
         * @tc.number: SUB_BMS_APPINFO_QUERY_0013
         * @tc.name: testGetLaunchWantForBundleWithNotExist.
         * @tc.desc: Test getLaunchWantForBundle api by promise and callback.
-        * @tc.author renyi 00559040
         * @tc.size MediumTest
         * @tc.type Function
         * @tc.level Level 2
@@ -96,11 +93,11 @@ export default function getLaunchWantForBundle() {
             await bundleMgr.getLaunchWantForBundle(NAME3).then(res => {
                 expect().assertFail();
             }).catch(err => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             bundleMgr.getLaunchWantForBundle(NAME3, (err, res) => {
                 if (err) {
-                    expect(err).assertEqual(1);
+                    expect(err.code).assertEqual(1);
                     done();
                     return;
                 }
@@ -113,7 +110,6 @@ export default function getLaunchWantForBundle() {
         * @tc.number: SUB_BMS_APPINFO_QUERY_0014
         * @tc.name: testGetLaunchWantForBundleWithInvalidParam.
         * @tc.desc: Test getLaunchWantForBundle api by promise and callback.
-        * @tc.author renyi 00559040
         * @tc.size MediumTest
         * @tc.type Function
         * @tc.level Level 3
@@ -122,11 +118,11 @@ export default function getLaunchWantForBundle() {
             await bundleMgr.getLaunchWantForBundle(null).then(res => {
                 expect().assertFail();
             }).catch(err => {
-                expect(err).assertEqual(1);
+                expect(err.code).assertEqual(1);
             });
             bundleMgr.getLaunchWantForBundle(null, (err, res) => {
                 if (err) {
-                    expect(err).assertEqual(1);
+                    expect(err.code).assertEqual(1);
                     done();
                     return;
                 }

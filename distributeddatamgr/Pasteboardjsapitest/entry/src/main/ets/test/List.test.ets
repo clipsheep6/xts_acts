@@ -14,10 +14,12 @@
  */
 
 import pasteBoardJEtsunitTest from './PasteBoardEtsunitTest';
-import pasteBoardTest from './PasteBoeadPixelMapJsunit.test';
-import pasteBoardSupportBinaryDataTest from './PasteBoardSupportBinaryData.test';
+import pasteBoardTest from './PasteBoard.test.ets';
+import pasteBoardRecordTest from './PasteBoardRecord.test.ets'
+import pasteBoardSystemPasteBoardTest from './PasteBoardSystemPasteBoard.test.ets'
 export default function testsuite() {
-  pasteBoardSupportBinaryDataTest()
   pasteBoardJEtsunitTest()
+  pasteBoardSystemPasteBoardTest()
   pasteBoardTest()
+  pasteBoardRecordTest()
 }

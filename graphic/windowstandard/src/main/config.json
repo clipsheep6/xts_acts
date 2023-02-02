@@ -16,6 +16,8 @@
         "package": "com.test.window",
         "name": ".entry",
         "deviceType": [
+      "tablet",
+      "default",
             "phone"
         ],
         "distro": {
@@ -59,12 +61,6 @@
                 "type": "page",
                 "visible": true,
                 "launchType": "standard"
-            }
-        ],
-        "reqPermissions": [
-            {
-                "name": "ohos.permission.CAPTURE_SCREEN",
-                "reason": "query download status"
             }
         ],
         "js": [

@@ -18,7 +18,8 @@
 #include "hks_others_test.h"
 
 #include <hctest.h>
-#include "iot_watchdog.h"
+#include <unistd.h>
+
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_type.h"
@@ -53,7 +54,6 @@ static void ExecHksInitialize(void const *argument)
 static BOOL HksOthersTestSetUp()
 {
     LiteTestPrint("setup\n");
-    IoTWatchDogDisable();
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -77,7 +77,6 @@ static BOOL HksOthersTestSetUp()
 static BOOL HksOthersTestTearDown()
 {
     LiteTestPrint("tearDown\n");
-    IoTWatchDogEnable();
     return TRUE;
 }
 
@@ -103,7 +102,7 @@ static void ExcHksOthersTest003(void const *argument)
 {
     LiteTestPrint("HksOthersTest003 Begin!\n");
     int32_t ret = HksAttestKey(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NOT_SUPPORTED);
+    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
     LiteTestPrint("HksOthersTest003 End!\n");
     osThreadExit();
 }
@@ -112,7 +111,7 @@ static void ExcHksOthersTest004(void const *argument)
 {
     LiteTestPrint("HksOthersTest004 Begin!\n");
     int32_t ret = HksGetCertificateChain(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NOT_SUPPORTED);
+    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
     LiteTestPrint("HksOthersTest004 End!\n");
     osThreadExit();
 }
@@ -121,7 +120,7 @@ static void ExcHksOthersTest005(void const *argument)
 {
     LiteTestPrint("HksOthersTest005 Begin!\n");
     int32_t ret = HksGetCertificateChain(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NOT_SUPPORTED);
+    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
     LiteTestPrint("HksOthersTest005 End!\n");
     osThreadExit();
 }
@@ -130,7 +129,7 @@ static void ExcHksOthersTest006(void const *argument)
 {
     LiteTestPrint("HksOthersTest006 Begin!\n");
     int32_t ret = HksUnwrapKey(NULL, NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NOT_SUPPORTED);
+    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
     LiteTestPrint("HksOthersTest006 End!\n");
     osThreadExit();
 }

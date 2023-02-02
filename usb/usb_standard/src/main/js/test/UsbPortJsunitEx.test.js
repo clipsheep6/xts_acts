@@ -40,9 +40,9 @@ describe('UsbPortJsFunctionsTestEx', function () {
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0230
-   * @tc.name      : getSupportedModes
-   * @tc.desc      : 反向测试 改变id 获取指定的端口支持的模式列表的组合掩码
+   * @tc.number: SUB_USB_JS_0230
+   * @tc.name: getSupportedModes
+   * @tc.desc: Negative test: Get the combination mask of the mode list supported by the specified port, id error
    */
   it('SUB_USB_JS_0230', 0, function () {
     console.info('usb SUB_USB_JS_0230 begin');
@@ -60,141 +60,275 @@ describe('UsbPortJsFunctionsTestEx', function () {
     expect(maskCode).assertEqual(usb.NONE);
 
     console.info('usb SUB_USB_JS_0230 :  PASS');
-    expect(true).assertTrue();
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0030
-   * @tc.name      : setPortRoles
-   * @tc.desc      : dataRole参数错误
+   * @tc.number: SUB_USB_JS_1210
+   * @tc.name: getSupportedModes
+   * @tc.desc: Negative test: Get the combination mask of the mode list supported by the specified port,
+   * parameter type error
+   */
+  it('SUB_USB_JS_1210', 0, function () {
+    console.info('usb SUB_USB_JS_1210 begin');
+    try {
+      var maskCode = usb.getSupportedModes("invalid");
+      console.info('usb 1210 case getSupportedModes return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1210 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1210 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1380
+   * @tc.name: getSupportedModes
+   * @tc.desc: Negative test: Get the combination mask of the mode list supported by the specified port,
+   * parameter number exception, necessary parameters not input
+   */
+  it('SUB_USB_JS_1380', 0, function () {
+    console.info('usb SUB_USB_JS_1380 begin');
+    try {
+      var maskCode = usb.getSupportedModes();
+      console.info('usb 1380 case getSupportedModes return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1380 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1380 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_0030
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: dataRole error
    */
   it('SUB_USB_JS_0030', 0, function () {
     var portId = gPort.id;
     var powerRole = usb.SINK;
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      console.info('usb 0030 case setPortRoles return: ' + data);
+      expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0030 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0030:  PASS');
     })
     CheckEmptyUtils.sleep(8000)
-
     console.info('usb SUB_USB_JS_0030:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0040
-   * @tc.name      : setPortRoles
-   * @tc.desc      : portId，powerRole参数错误
+   * @tc.number: SUB_USB_JS_0040
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: portId && powerRole error
    */
   it('SUB_USB_JS_0040', 0, function () {
     var portId = gPort.id;
     var powerRole = usb.NONE - 1;
     var dataRole = usb.DEVICE;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      console.info('usb 0040 case setPortRoles return: ' + data);
+      expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0040 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0040:  PASS');
     })
     CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0040:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0050
-   * @tc.name      : setPortRoles
-   * @tc.desc      : portId，dataRole参数错误
+   * @tc.number: SUB_USB_JS_0050
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: portId && dataRole error
    */
   it('SUB_USB_JS_0050', 0, function () {
     var portId = gPort.id - 3;
     var powerRole = usb.SINK;
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      console.info('usb 0050 case setPortRoles return: ' + data);
+      expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0050 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0050:  PASS');
     })
     CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0050:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0060
-   * @tc.name      : setPortRoles
-   * @tc.desc      : powerRole，dataRole参数错误
+   * @tc.number: SUB_USB_JS_0060
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: powerRole && dataRole error
    */
   it('SUB_USB_JS_0060', 0, function () {
     var portId = gPort.id;
     var powerRole = usb.NONE - 1;
     var dataRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      console.info('usb 0060 case setPortRoles return: ' + data);
+      expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0060 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0060:  PASS');
     })
     CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0060:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0070
-   * @tc.name      : setPortRoles
-   * @tc.desc      : portId,portId，dataRole参数错误
+   * @tc.number: SUB_USB_JS_0070
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: portId && powerRole && dataRole error
    */
   it('SUB_USB_JS_0070', 0, function () {
     var portId = gPort.id - 1;
     var dataRole = usb.NONE - 1;
     var powerRole = usb.NONE - 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      console.info('usb 0070 case setPortRoles return: ' + data);
+      expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0070 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0070:  PASS');
     })
     CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0070:  PASS');
-    expect(true).assertTrue();
   })
 
   /**
-   * @tc.number    : SUB_USB_JS_0080
-   * @tc.name      : setPortRoles
-   * @tc.desc      : portId参数错误
+   * @tc.number: SUB_USB_JS_0080
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: portId error
    */
   it('SUB_USB_JS_0080', 0, function () {
     var portId = gPort.id - 1;
     var powerRole = 1;
     var dataRole = 1;
     usb.setPortRoles(portId, powerRole, dataRole).then(data => {
-      console.info('usb case setPortRoles return: ' + data);
-      expect(data).assertTrue();
+      console.info('usb 0080 case setPortRoles return: ' + data);
+      expect(data).assertFalse();
     }).catch(error => {
-      console.info('usb case setPortRoles error : ' + error);
+      console.info('usb 0080 case setPortRoles error : ' + error);
       expect(error).assertFalse();
-      console.info('usb SUB_USB_JS_0080:  PASS');
     })
     CheckEmptyUtils.sleep(8000)
     console.info('usb SUB_USB_JS_0080:  PASS');
-    expect(true).assertTrue();
   })
 
+  /**
+   * @tc.number: SUB_USB_JS_1410
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: parameter type exception
+   */
+  it('SUB_USB_JS_1410', 0, function () {
+    console.info('usb SUB_USB_JS_1410 begin');
+    var portId = "invalid";
+    var powerRole = usb.SINK;
+    var dataRole = usb.DEVICE;
+    try {
+      var maskCode = usb.setPortRoles(portId, powerRole, dataRole);
+      console.info('usb 1410 case setPortRoles return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1410 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1410 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1190
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: parameter number exception, input a parameter
+   */
+  it('SUB_USB_JS_1190', 0, function () {
+    console.info('usb SUB_USB_JS_1190 begin');
+    try {
+      var maskCode = usb.setPortRoles("invalid");
+      console.info('usb 1190 case setPortRoles return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1190 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1190 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1390
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: parameter number exception, necessary parameters not input
+   */
+  it('SUB_USB_JS_1390', 0, function () {
+    console.info('usb SUB_USB_JS_1390 begin');
+    try {
+      var maskCode = usb.setPortRoles();
+      console.info('usb 1390 case setPortRoles return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1390 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1390 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1200
+   * @tc.name: getPorts
+   * @tc.desc: Negative test: parameters exception(parameter transfer without parameter interface)
+   */
+  it('SUB_USB_JS_1200', 0, function () {
+    console.info('usb SUB_USB_JS_1200 begin');
+    try {
+      var maskCode = usb.getPorts("invalid");
+      console.info('usb 1200 case getPorts return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1200 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1200 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1180
+   * @tc.name: setCurrentFunctions
+   * @tc.desc: Negative test: parameter type error
+   */
+  it('SUB_USB_JS_1180', 0, function () {
+    console.info('usb SUB_USB_JS_1180 begin');
+    try {
+      var maskCode = usb.setCurrentFunctions("invalid");
+      console.info('usb 1180 case setCurrentFunctions return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1180 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1180 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1400
+   * @tc.name: setCurrentFunctions
+   * @tc.desc: Negative test: parameter number exception, necessary parameters not input
+   */
+  it('SUB_USB_JS_1400', 0, function () {
+    console.info('usb SUB_USB_JS_1400 begin');
+    try {
+      var maskCode = usb.setCurrentFunctions();
+      console.info('usb 1400 case setCurrentFunctions return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1400 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1400 :  PASS');
+    }
+  })
 })
 }

@@ -17,6 +17,8 @@
         "package": "com.example.actsnotificationwantagent",
         "name": ".entry",
         "deviceType": [
+            "tablet",
+            "default",
             "phone"
         ],
         "distro": {

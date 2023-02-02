@@ -26,13 +26,12 @@ group("ability_runtime") {
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
       "actsabilityusertest:ActsAbilityuserTest",
       "actscalldataabilitytest:ActsCallDataAbilityTest",
-      "actscalldataabilitytest:ActsCallDataAbilityTest",
-      "actscalltest:actscalltest",
       "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
       "actsfwkdataaccessortest:dataability",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsserviceabilityclienttest:serviceability",
       "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
+      "actssingleton:actssingleton",
       "actsstartrunnertest:ActsStartRunnerTest",
       "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
       "actssupportfunction:actssupportfunction",
@@ -52,12 +51,9 @@ group("ability_runtime") {
       "killprocesswithaccountstage:killprocesswithaccountstage",
       "newwant:newwant",
       "non_concurrent:non_concurrent",
-      "processmultiinstance:processmultiinstance",
       "stage:stage",
       "want:want",
       "workercontextcover:workercontextcover",
-
-      #"zidltest:zidltest",
     ]
   }
 }

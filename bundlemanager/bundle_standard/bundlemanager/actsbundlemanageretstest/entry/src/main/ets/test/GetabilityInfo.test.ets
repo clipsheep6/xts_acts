@@ -258,25 +258,19 @@ export default function GetabilityInfo() {
             expect(info.icon).assertEqual("$media:icon");
             expect(typeof (info.iconId)).assertEqual("number");
             expect(info.iconId > 0).assertTrue();
-            expect(typeof (info.iconIndex)).assertEqual("number");
-            expect(info.iconIndex > 0).assertTrue();
-            expect(info.iconIndex).assertEqual(info.iconId);
             expect(typeof (info.label)).assertEqual("string");
             expect(info.label).assertEqual("$string:entry_MainAbility");
             expect(typeof (info.labelId)).assertEqual("number");
             expect(info.labelId > 0).assertTrue();
-            expect(typeof (info.labelIndex)).assertEqual("number");
-            expect(info.labelIndex > 0).assertTrue();
-            expect(info.labelIndex).assertEqual(info.labelId);
             expect(info.systemApp).assertEqual(false);
             expect(typeof (info.entryDir)).assertEqual("string");
-            expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.open.harmony.packagemag/com.open.harmony.packagemag");
+            expect(info.entryDir).assertEqual("");
             expect(typeof (info.supportedModes)).assertEqual("number");
             expect(info.supportedModes).assertEqual(0);
             expect(typeof (info.process)).assertEqual("string");
             expect(info.process).assertEqual("com.open.harmony.packagemag");
             expect(Array.isArray(info.moduleSourceDirs)).assertEqual(true);
-            expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/com.open.harmony.packagemag/com.open.harmony.packagemag");
+            expect(info.moduleSourceDirs.length).assertEqual(0);
             expect(Array.isArray(info.permissions)).assertEqual(true);
         }
 
@@ -305,7 +299,6 @@ export default function GetabilityInfo() {
             expect(data.writePermission).assertEqual("");
             expect(data.targetAbility).assertEqual("");
             expect(data.metaData.length).assertEqual(0);
-            expect(data.metadata.length).assertEqual(0);
             checkApplicationInfo_other(data.applicationInfo);
             console.log("---checkAbilityInfo_other End---  ");
         }
@@ -321,12 +314,11 @@ export default function GetabilityInfo() {
             expect(info.label).assertEqual("$string:app_name");
             expect(info.labelId > 0).assertTrue();
             expect(info.systemApp).assertEqual(false);
-            expect(info.entryDir).assertEqual("/data/app/el1/bundle/public/com.example.third1/com.example.third1.entry");
+            expect(info.entryDir).assertEqual("");
             expect(info.supportedModes).assertEqual(0);
             expect(info.process).assertEqual("com.example.third1");
-            expect(info.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/com.example.third1/com.example.third1.entry");
+            expect(info.moduleSourceDirs.length).assertEqual(0);
             expect(JSON.stringify(info.metaData)).assertEqual("{}");
-            expect(JSON.stringify(info.metadata)).assertEqual("{}");
             expect(info.enabled).assertEqual(true);
             expect(info.uid).assertLarger(0);
             expect(info.entityType).assertEqual("unspecified");

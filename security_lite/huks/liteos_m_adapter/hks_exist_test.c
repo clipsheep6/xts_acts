@@ -16,7 +16,7 @@
 #ifndef _CUT_AUTHENTICATE_
 
 #include "hctest.h"
-#include "iot_watchdog.h"
+
 #include "hks_api.h"
 #include "hks_exist_test.h"
 #include "hks_param.h"
@@ -26,6 +26,8 @@
 #include "hks_type.h"
 #include "cmsis_os2.h"
 #include "ohos_types.h"
+
+#include <unistd.h>
 
 #define TEST_TASK_STACK_SIZE      0x2000
 #define WAIT_TO_TEST_DONE         4
@@ -91,7 +93,6 @@ static void ExecHksExistTest001(void const *argument)
 static BOOL HksExistTestSetUp(void)
 {
     LiteTestPrint("setup\n");
-    IoTWatchDogDisable();
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -118,7 +119,6 @@ static BOOL HksExistTestSetUp(void)
 static BOOL HksExistTestTearDown(void)
 {
     LiteTestPrint("tearDown\n");
-    IoTWatchDogEnable();
     return TRUE;
 }
 

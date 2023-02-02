@@ -19,8 +19,9 @@
     "mainAbility": "com.acts.theme.wallpapertest.MainAbility",
 
     "deviceType": [
-      "phone",
       "tablet",
+      "default",
+      "phone",
       "tv",
       "wearable"
     ],

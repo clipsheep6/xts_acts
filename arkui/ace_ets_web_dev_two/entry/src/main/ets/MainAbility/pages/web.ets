@@ -71,32 +71,6 @@ struct Index {
     }
     build(){
         Column(){
-            Web({src:$rawfile('index.html'),controller:this.controller})
-            .databaseAccess(true)
-            .zoomAccess(this.zoomAccessValue)
-            .textZoomRatio(this.textRatio)
-            .onConsole((event) => {
-                let level = event.message.getMessageLevel()
-                let msg = event.message.getMessage()
-                let lineNumber = event.message.getLineNumber().toString()
-                let sourceId = event.message.getSourceId()
-                console.log("lineNumber:" + lineNumber)
-                setTimeout(()=>{ 
-                    Utils.emitEvent(lineNumber,420)
-                },3000)
-                setTimeout(()=>{ 
-                    Utils.emitEvent(sourceId,422)
-                },3000)
-                return false
-            })
-            .onSearchResultReceive(ret=>{
-                var searchResult = ret.activeMatchOrdinal.toString() + 
-                ret.numberOfMatches.toString()
-                console.log("searchResult" + searchResult)
-                setTimeout(()=>{
-                    Utils.emitEvent(searchResult,426)
-                },3000)
-            })
             Row(){
                 Button("web click").key('webcomponent').onClick(async ()=>{
                     console.info("key==>"+this.str)
@@ -159,7 +133,7 @@ struct Index {
                         }
                         case "emitSaveCookieAsync":{ 
                             web_webview.WebCookieManager.saveCookieAsync(function(result){
-                                Utils.emitEvent(result,410)   
+                                Utils.emitEvent("result",410)   
                             })                                                                                 
                             break;
                         }
@@ -205,8 +179,7 @@ struct Index {
                             this.controller.refresh()  
                             var origin = this.controller.getPageHeight()
                             var zoomInCalled = false  
-                            setTimeout(()=>{ 
-                                this.controller.zoomIn()    
+                            setTimeout(()=>{  
                                 if (this.controller.getPageHeight() > origin) {
                                     zoomInCalled = true
                                 }
@@ -228,7 +201,7 @@ struct Index {
                             setTimeout(()=>{
                                 let result = this.username_password[0];
                                 Utils.emitEvent(result,444)
-                            },3000)                                                                           
+                            },5000)                                                                           
                             break;
                         }
                         case "emitDeleteHttpAuthCredentials":{ 
@@ -239,18 +212,29 @@ struct Index {
                             },3000)                                                                               
                             break;
                         }
-                        case "emitSearchAllAsync":{ 
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
-                            setTimeout(()=>{
-                                this.controller.searchAllAsync("首页"); 
-                            },3000)                                                                                
-                            break ;
-                        }
                         default:
                             console.info("can not match case")
                     }
                 })
             }
+            Web({src:$rawfile('index.html'),controller:this.controller})
+            .databaseAccess(true)
+            .zoomAccess(this.zoomAccessValue)
+            .textZoomRatio(this.textRatio)
+            .onConsole((event) => {
+                let level = event.message.getMessageLevel()
+                let msg = event.message.getMessage()
+                let lineNumber = event.message.getLineNumber().toString()
+                let sourceId = event.message.getSourceId()
+                console.log("lineNumber:" + lineNumber)
+                setTimeout(()=>{ 
+                    Utils.emitEvent(lineNumber,420)
+                },3000)
+                setTimeout(()=>{ 
+                    Utils.emitEvent(sourceId,422)
+                },3000)
+                return false
+            })
         }
     }
 }

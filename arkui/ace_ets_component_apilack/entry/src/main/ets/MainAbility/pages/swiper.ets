@@ -44,7 +44,6 @@ const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
-export default
 struct SwiperCurve {
 
   private swiperController: SwiperController = new SwiperController()
@@ -85,6 +84,12 @@ struct SwiperCurve {
         .itemSpace("0px")
         .curve(Curve.Linear) // 动画曲线
         .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .onAnimationStart((index: number) => {
+          console.info(index.toString())
+        })
+        .onAnimationEnd((index: number) => {
           console.info(index.toString())
         })
 

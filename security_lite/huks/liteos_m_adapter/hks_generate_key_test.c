@@ -18,7 +18,8 @@
 #include "hks_generate_key_test.h"
 
 #include <hctest.h>
-#include "iot_watchdog.h"
+#include <unistd.h>
+
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -56,7 +57,6 @@ static void ExecHksInitialize(void const *argument)
 static BOOL HksGenerateKeyTestSetUp()
 {
     LiteTestPrint("setup\n");
-    IoTWatchDogDisable();
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -80,7 +80,6 @@ static BOOL HksGenerateKeyTestSetUp()
 static BOOL HksGenerateKeyTestTearDown()
 {
     LiteTestPrint("tearDown\n");
-    IoTWatchDogEnable();
     return TRUE;
 }
 

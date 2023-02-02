@@ -14,7 +14,7 @@
  */
 
 #include "hctest.h"
-#include "iot_watchdog.h"
+
 #include "hks_agreement_test.h"
 #include "hks_api.h"
 #include "hks_param.h"
@@ -25,6 +25,8 @@
 
 #include "cmsis_os2.h"
 #include "ohos_types.h"
+
+#include <unistd.h>
 
 #define TMP_SIZE 512
 #define X25519_KEY_SIZE 32
@@ -57,7 +59,6 @@ static void ExecHksInitialize(void const *argument)
 static BOOL HksAgreementTestSetUp()
 {
     LiteTestPrint("setup\n");
-    IoTWatchDogDisable();
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -81,8 +82,6 @@ static BOOL HksAgreementTestSetUp()
 static BOOL HksAgreementTestTearDown()
 {
     LiteTestPrint("tearDown\n");
-
-    IoTWatchDogEnable();
     return TRUE;
 }
 

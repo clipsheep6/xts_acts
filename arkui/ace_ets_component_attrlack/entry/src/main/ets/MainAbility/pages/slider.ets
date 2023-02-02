@@ -21,8 +21,9 @@ const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
-export default struct SliderMoving {
-  @State outSetValue: number = 40
+struct SliderMoving {
+  @State outSetValue: number = 40;
+  @State move:SliderChangeMode = SliderChangeMode.Moving;
   slide() {
     var rect = Utils.getComponentRect("Slider")
     Utils.drag(rect["left"],rect["top"],rect["right"],rect["bottom"],20)

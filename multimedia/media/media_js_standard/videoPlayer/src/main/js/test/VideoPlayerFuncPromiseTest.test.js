@@ -298,14 +298,14 @@ describe('VideoPlayerFuncPromiseTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_SeekMode
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_SEEKMODE_0100
         * @tc.name      : 001.seek mode SEEK_PREV_SYNC/SEEK_NEXT_SYNC (promise)
         * @tc.desc      : Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level0
     */
-    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_SeekMode', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_SEEKMODE_0100', 0, async function (done) {
         mediaTestBase.isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         await media.createVideoPlayer().then((video) => {
@@ -465,14 +465,14 @@ describe('VideoPlayerFuncPromiseTest', function () {
     })
 
     /* *
-        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_GetTreckDescription
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_GETTRECKDESCRIPTION_0100
         * @tc.name      : 001.getTrackDescription (promise)
         * @tc.desc      : Video playback control test
         * @tc.size      : MediumTest
         * @tc.type      : Function test
         * @tc.level     : Level1
     */
-    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_GetTreckDescription', 0, async function (done) {
+    it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_PROMISE_GETTRECKDESCRIPTION_0100', 0, async function (done) {
         mediaTestBase.isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
         let arrayDescription = null;
@@ -480,8 +480,8 @@ describe('VideoPlayerFuncPromiseTest', function () {
                                       'track_index', 'track_type', 'width');
         let audioTrackKey = new Array('bitrate', 'channel_count', 'codec_mime', 'sample_rate',
                                       'track_index', 'track_type');
-        let videoTrackValue = new Array(1366541, 'video/x-h264', 6000, 480, 0, 1, 720);
-        let audioTrackValue = new Array(129207, 2, 'audio/mpeg', 44100, 1, 0);
+        let videoTrackValue = new Array(1366541, 'video/avc', 6000, 480, 0, 1, 720);
+        let audioTrackValue = new Array(129207, 2, 'audio/mp4a-latm', 44100, 1, 0);
         let descriptionKey = new Array(videoTrackKey, audioTrackKey);
         let descriptionValue = new Array(videoTrackValue, audioTrackValue);
         await media.createVideoPlayer().then((video) => {

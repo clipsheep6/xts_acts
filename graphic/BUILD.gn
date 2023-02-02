@@ -19,10 +19,14 @@ group("graphic") {
       "effectKit:EffectKitTest",
       "graphicColorSpace:ActsColorSpaceManagerTest",
       "graphicnapidrawingtest:ActsGraphicNapiDrawingTest",
+      "graphicnapitest:ActsGraphicNapiTest",
       "webGL:webGL_hap_test",
       "windowStage:ActsWindowStageTest",
       "windowstandard:window_hap_test",
     ]
+    if (!(product_name == "ohcore")) {
+      deps += [ "vkgl:cpvkgl" ]
+    }
   } else {
     deps = [
       "appaccount:appaccount_hap",
