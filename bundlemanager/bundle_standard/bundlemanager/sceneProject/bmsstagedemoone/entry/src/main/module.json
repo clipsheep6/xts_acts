@@ -264,7 +264,7 @@
                 "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
-                "type": "preview",
+                "type": "print",
                 "metadata": [
                     {
                         "name": "ohos.extension.form",
