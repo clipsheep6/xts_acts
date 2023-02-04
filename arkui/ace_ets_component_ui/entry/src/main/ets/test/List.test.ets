@@ -23,6 +23,17 @@ import dividerJsunit from './dividerJsunit.test.ets';
 import gaugeJsunit from './gaugeJsunit.test.ets';
 import loadingProgressJsunit from './loadingProgressJsunit.test.ets';
 import marqueeJsunit from './marqueeJsunit.test.ets';
+import PatternLockJsunit from './PatternLockJsunit.test.ets';
+import SelectJsunit from './SelectJsunit.test.ets';
+import GridItemJsunit from './GridItemJsunit.test.ets';
+import NavDestinationJsunit from './NavDestinationJsunit.test.ets';
+import ProgressJsunit from './ProgressJsunit.test.ets';
+import QRCodeJsunit from './QRCodeJsunit.test.ets';
+import RadioJsunit from './RadioJsunit.test.ets';
+import RatingJsunit from './RatingJsunit.test.ets';
+import ScrollBarJsunit from './ScrollBarJsunit.test.ets';
+import GridRowJsunit from './GridRowJsunit.test.ets';
+import RichTextJsunit from './RichTextJsunit.test.ets';
 
 export default function testsuite() {
   blankJsunit();
@@ -35,4 +46,15 @@ export default function testsuite() {
   gaugeJsunit();
   loadingProgressJsunit();
   marqueeJsunit();
+  PatternLockJsunit();
+  SelectJsunit();
+  GridItemJsunit();
+  NavDestinationJsunit();
+  ProgressJsunit();
+  QRCodeJsunit();
+  RadioJsunit();
+  RatingJsunit();
+  ScrollBarJsunit();
+  GridRowJsunit();
+  RichTextJsunit();
 }

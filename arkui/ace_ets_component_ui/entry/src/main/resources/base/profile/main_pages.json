@@ -11,6 +11,17 @@
         "MainAbility/pages/divider",
         "MainAbility/pages/loadingprogress",
         "MainAbility/pages/guage",
-        "MainAbility/pages/marquee"
+        "MainAbility/pages/marquee",
+		"MainAbility/pages/NavDestinationPage",
+        "MainAbility/pages/PatternLockPage",
+        "MainAbility/pages/ProgressPage",
+        "MainAbility/pages/QRCodePage",
+        "MainAbility/pages/RadioPage",
+        "MainAbility/pages/RatingPage",
+        "MainAbility/pages/ScrollBarPage",
+        "MainAbility/pages/SelectPage",
+        "MainAbility/pages/GridRowPage",
+        "MainAbility/pages/GridItemPage",
+        "MainAbility/pages/RichTextPage"
     ]
 }
