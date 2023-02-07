@@ -174,7 +174,6 @@ HWTEST_F(FileSystemTest, testChdirEnotdir, Function | MediumTest | Level3)
     EXPECT_EQ(errno, ENOTDIR);
     EXPECT_NE(chdir(TOP_DIR), -1) << "> chdir errno = " << errno;
 }
-#if 0
 #if defined(LITE_FS_NFS) || defined(LITE_FS_VFAT)
 /**
  * @tc.number   SUB_KERNEL_FS_UNISTD_0300
