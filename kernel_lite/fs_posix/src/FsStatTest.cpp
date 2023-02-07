@@ -50,7 +50,6 @@ HWTEST_F(FileSystemTest, testUmask, Function | MediumTest | Level2)
     EXPECT_EQ(umask(maskPre), maskNew) << "> umask error";
 }
 #endif
-#if 0
 /**
  * @tc.number   SUB_KERNEL_FS_STAT_0200
  * @tc.name     basic function test : Run the stat function to obtain the file status.
@@ -113,7 +112,6 @@ HWTEST_F(FileSystemTest, testStatLimt, Function | MediumTest | Level3)
 }
 #endif
 #endif
-#if 0
 /**
  * @tc.number   SUB_KERNEL_FS_STAT_0300
  * @tc.name     basic function test : Run the lstat function to obtain the file status.
@@ -178,7 +176,6 @@ HWTEST_F(FileSystemTest, testLstatLimt, Function | MediumTest | Level3)
 }
 #endif
 #endif
-#if 0
 /**
  * @tc.number   SUB_KERNEL_FS_STAT_0400
  * @tc.name     basic function test : Run the fstat function to obtain the file status.
