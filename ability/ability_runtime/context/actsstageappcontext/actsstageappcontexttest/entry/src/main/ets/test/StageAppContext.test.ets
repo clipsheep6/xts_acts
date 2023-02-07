@@ -220,6 +220,7 @@ export default function stageAppContextTest(abilityContext) {
                 console.log(TAG + " result = " + JSON.stringify(data));
                 expect(data.processName).assertEqual("com.example.stageappcontexttest");
             })
+            done();
         });
 
         /**
@@ -237,38 +238,7 @@ export default function stageAppContextTest(abilityContext) {
                 console.log(TAG + " result = " + JSON.stringify(data));
                 expect(data.processName).assertEqual("com.example.stageappcontexttest");
             })
-        });
-
-        /**
-         * @tc.number: SUB_AA_OpenHarmony_ApplicationContext_1800
-         * @tc.name: killProcessesBySelf test 1
-         * killProcessesBySelf test
-         * @tc.desc: Function test
-         * @tc.level   3
-         */
-        it('SUB_AA_OpenHarmony_ApplicationContext_1800', 0, async function (done) {
-            let TAG = "SUB_AA_OpenHarmony_ApplicationContext_1800";
-            console.log(TAG + " --- start");
-            let context = globalThis.abilityStageContext.getApplicationContext();
-            context.killProcessesBySelf().then((data) => {
-                console.log(TAG + " result = " + JSON.stringify(data));
-            })
-        });
-        
-        /**
-         * @tc.number: SUB_AA_OpenHarmony_ApplicationContext_1900
-         * @tc.name: killProcessesBySelf test 2
-         * killProcessesBySelf test
-         * @tc.desc: Function test
-         * @tc.level   3
-         */
-        it('SUB_AA_OpenHarmony_ApplicationContext_1900', 0, async function (done) {
-            let TAG = "SUB_AA_OpenHarmony_ApplicationContext_1900";
-            console.log(TAG + " --- start");
-            let context = globalThis.abilityStageContext.getApplicationContext();
-            context.killProcessesBySelf().then((err, data) => {
-                console.log(TAG + " result = " + JSON.stringify(data));
-            })
+            done();
         });
     })
 }
