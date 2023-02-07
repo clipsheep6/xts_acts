@@ -248,7 +248,7 @@ HWTEST_F(FileSystemTest, testGlob, Function | MediumTest | Level3)
     }
     globfree(&buf);
 }
-#if 0
+
 /**
  * @tc.number   SUB_KERNEL_FS_OTHER_0500
  * @tc.name     basic function test : Use fwprintf function to write wide characters
