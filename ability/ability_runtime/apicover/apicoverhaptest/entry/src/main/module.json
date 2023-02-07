@@ -13,6 +13,12 @@
       "installationFree": false,
       "pages": "$profile:main_pages",
       "uiSyntax": "ets",
+      "metadata": [
+        {
+          "name": "ArkTSPartialUpdate",
+          "value": "false"
+        }
+      ],
       "abilities": [
         {
           "name": "com.example.apicoverhaptest.MainAbility",
@@ -95,7 +101,10 @@
           "name":"ohos.permission.UPDATE_CONFIGURATION"
         },
         {
-          "name":"ohos.permission.GET_RUNNING_INFO"
+          "name": "ohos.permission.GET_RUNNING_INFO"
+        },
+        {
+          "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
         }
       ]
     }
