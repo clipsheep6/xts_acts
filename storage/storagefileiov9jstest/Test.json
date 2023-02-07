@@ -9,7 +9,16 @@
     },
     "kits": [
         {
-            "test-file-name": ["ActsStorageFileIoV9JSTest.hap"],
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "setenforce 0"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsStorageFileIoV9JSTest.hap"
+            ],
             "type": "AppInstallKit",
             "cleanup-apps": true
         }

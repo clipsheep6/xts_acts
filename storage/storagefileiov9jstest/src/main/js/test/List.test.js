@@ -18,10 +18,12 @@ import fileIORead from './members/read.test.js'
 import fileIOStat from './members/stat.test.js'
 import fileIOTruncate from './members/truncate.test.js'
 import fileIOWrite from './members/write.test.js'
+import fileIOWatcher from './members/watcher.test.js'
 export default function testsuite() {
     fileIOOpen()
     fileIORead()
     fileIOStat()
     fileIOTruncate()
     fileIOWrite()
+    fileIOWatcher()
 }
