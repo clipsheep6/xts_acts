@@ -274,7 +274,6 @@ HWTEST_F(ProcessTest, testExit, Function | MediumTest | Level2)
         ASSERT_EQ(exitCode, reInt[i]);
     }
 }
-#if 0
 /**
  * @tc.number   SUB_KERNEL_PROCESS_EXIT_0200
  * @tc.name     Test exit about IO flush
