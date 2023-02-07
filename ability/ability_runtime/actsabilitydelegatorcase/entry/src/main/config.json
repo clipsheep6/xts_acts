@@ -17,8 +17,8 @@
     "package": "com.amsst.actsabilitydelegatorcasetest",
     "name": ".MyApplication",
     "deviceType": [
-        "default",
-        "tablet"
+      "default",
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,
