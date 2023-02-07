@@ -33,7 +33,7 @@
 #include "libfs.h"
 
 using namespace testing::ext;
-#if 0
+
 /**
  * @tc.number   SUB_KERNEL_FS_STDLIB_0100
  * @tc.name     basic function test : mkstemp create a temporary file
