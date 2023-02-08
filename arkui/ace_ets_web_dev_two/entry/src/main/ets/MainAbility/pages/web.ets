@@ -172,7 +172,6 @@ struct Index {
                                     if (Number(res) > Number(res1)) {
                                     zoomInCalled = true
                                 }
-                                console.log("final" + this.controller.getPageHeight())
                                 Utils.emitEvent(zoomInCalled,428);
                                     }})
                                 }})                                                                                
