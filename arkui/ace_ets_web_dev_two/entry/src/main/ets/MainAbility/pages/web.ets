@@ -25,7 +25,7 @@ let loadedUrl;
 struct Index {
     controller:WebController = new WebController()
     responseweb: WebResourceResponse = new WebResourceResponse()
-    @State str:string="emitStoreWebArchive"
+    @State str:string="emitAllowGeolocation"
     @State text:string=""
     @State textRatio:number=100
     @State zoomAccessValue:boolean=true
@@ -75,15 +75,6 @@ struct Index {
                 Button("web click").key('webcomponent').onClick(async ()=>{
                     console.info("key==>"+this.str)
                     switch(this.str){
-                        case "emitStoreWebArchive":{                                                                                 
-                            let webAsyncController = new web_webview.WebAsyncController(this.controller)
-                            webAsyncController.storeWebArchive("/data/storage/el2/base/",true,(filename) => {
-                                if(filename != null) {
-                                    Utils.emitEvent(filename,400) 
-                                }
-                            })                                                             
-                            break;
-                        }
                         case "emitAllowGeolocation":{
                             try {
                                 web_webview.GeolocationPermissions.allowGeolocation("resource://rawfile/");

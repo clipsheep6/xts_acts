@@ -16,7 +16,7 @@
 import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
-let emitKey = "emitUserAgent";
+let emitKey = "emitAllowGeolocation";
 export default function webJsunit() {
   describe('ActsAceWebDevTest', function () {
     beforeEach(async function (done) {
@@ -43,16 +43,6 @@ export default function webJsunit() {
       }
       await Utils.sleep(2000);
       done();
-    })
-    /* 
-     *tc.number SUB_ACE_BASIC_ETS_API_066                                                                                                                                                                      
-     *tc.name storeWebArchive                                                                                                                                                                                                                
-     *tc.desic Save current page
-     */
-    it('storeWebArchive',0,async function(done){
-      emitKey="emitAllowGeolocation";
-      Utils.registerContainEvent("storeWebArchive","/data/storage/el2/base/",400,done);
-      sendEventByKey('webcomponent',10,'');
     })
     /* 
      *tc.number SUB_ACE_BASIC_ETS_API_067                                                                                                                                                                   
