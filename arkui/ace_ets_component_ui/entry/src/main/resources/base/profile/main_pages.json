@@ -22,6 +22,9 @@
         "MainAbility/pages/SelectPage",
         "MainAbility/pages/GridRowPage",
         "MainAbility/pages/GridItemPage",
-        "MainAbility/pages/RichTextPage"
+        "MainAbility/pages/RichTextPage",
+		"MainAbility/pages/SearchPage",
+        "MainAbility/pages/GridPage",
+        "MainAbility/pages/TextClockPage"
     ]
 }
