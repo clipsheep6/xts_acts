@@ -150,15 +150,6 @@ struct Index {
                             },3000)                                                                                      
                             break;
                         }
-                        case "emitExistCookie":{ 
-                            this.controller.getCookieManager().deleteEntireCookie();
-                            setTimeout(()=>{ 
-                                var result = web_webview.WebCookieManager.existCookie();
-                                console.log(result.toString()); 
-                                Utils.emitEvent(result,414)
-                            },3000)                                                                                   
-                            break ;
-                        }
                         case "emitOnConsole":{                           
                             this.controller.runJavaScript({script:"consoleTest()"})
                             break;
@@ -167,28 +158,33 @@ struct Index {
                             this.controller.loadUrl({url:"resource://rawfile/index.html"})
                             setTimeout(()=>{
                                 this.controller.loadData({
-                                data: "<html><title>index</title></html>",
+                                data: "<html><head><title>index</title></head><body bgcolor=\"white\">Source:<pre>source</pre</body><script>function gettitle(){return document.title}</script></html>",
                                 mimeType: "text/html",
                                 encoding: "UTF-8"
                                 })
                             },3000)
                             setTimeout(()=>{
-                                this.text = this.controller.getTitle();
-                                Utils.emitEvent(this.text,424)
+                                this.controller.runJavaScript({script:"gettitle()",callback:(res)=>{
+                                    Utils.emitEvent(res,424)
+                                }})
                                 },4000)                                                                                     
                             break ;
                         }
                         case "emitZoomAccess":{ 
                             this.zoomAccessValue = false
-                            this.controller.refresh()  
-                            var origin = this.controller.getPageHeight()
-                            var zoomInCalled = false  
-                            setTimeout(()=>{  
-                                if (this.controller.getPageHeight() > origin) {
+                            this.controller.refresh() 
+                            setTimeout(()=>{
+                                this.controller.runJavaScript({script:"getPageHeight()",callback:(res1)=>{
+                                var zoomInCalled = false
+                                this.controller.runJavaScript({script:"getPageHeight()",callback:(res)=>{
+                                    console.info("getPageHeight++++++"+res)
+                                    if (Number(res) > Number(res1)) {
                                     zoomInCalled = true
                                 }
                                 console.log("final" + this.controller.getPageHeight())
-                                Utils.emitEvent(zoomInCalled,428);                                                                                 
+                                Utils.emitEvent(zoomInCalled,428);
+                                    }})
+                                }})                                                                                
                             },3000);                                                                                  
                             break ;
                         }
