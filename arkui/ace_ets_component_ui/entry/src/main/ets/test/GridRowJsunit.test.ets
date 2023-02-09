@@ -1,0 +1,147 @@
+/**
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@system.router';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest';
+import CommonFunc from '../MainAbility/utils/Common';
+import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+
+
+export default function GridRowJsunit() {
+  describe('GridRowJsunit', function () {
+    beforeEach(async function (done) {
+      console.info("GridRowJsunit beforeEach start");
+      let options = {
+        uri: 'MainAbility/pages/GridRowPage',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get GridRowJsunit state pages: " + JSON.stringify(pages));
+        if (!("GridRowPage" == pages.name)) {
+          console.info("get GridRowJsunit state pages.name: " + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await CommonFunc.sleep(2000);
+          console.info("push GridRowJsunit success: " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push GridRowJsunit page error: " + err);
+        expect().assertFail();
+      }
+      done();
+    });
+
+    it('GridRowJsunit_0100', 0, async function (done) {
+      // Get the information of the GridRow component
+      console.info('[GridRowJsunit_0100] START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('gridRow');
+      let obj = JSON.parse(strJson);
+      console.info("[GridRowJsunit_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.columns).assertEqual('4');
+      expect(obj.$attrs.gutter).assertEqual('<7.500000, 15.000000');
+      expect(obj.$attrs.breakpoints).assertEqual('4');
+      expect(obj.$attrs.direction).assertEqual('4');
+      await CommonFunc.sleep(1000);
+      let driver = await UiDriver.create()
+      let textComponent = await driver.findComponent(BY.key('currentBp'));
+      let text = await textComponent.getText();
+      expect(text).assertEqual('currentBp:sm');
+      console.info('[GridRowJsunit_0100] END');
+      done();
+    });
+
+    it('GridRowJsunit_0200', 0, async function (done) {
+      // Modify the properties of component GridRow
+      console.info('[GridRowJsunit_0200] START');
+      globalThis.value.message.notify({name:'columns',value:'12'})
+      await CommonFunc.sleep(2000);
+      globalThis.value.message.notify({name:'gutter',value:'x: 6, y: 20'})
+      await CommonFunc.sleep(2000);
+      globalThis.value.message.notify({name:'breakpoints',value:'value: ["300vp", "600vp", "900vp"], reference: BreakpointsReference.WindowSize'})
+      await CommonFunc.sleep(2000);
+      globalThis.value.message.notify({name:'grDirection',value:GridRowDirection.RowReverse})
+      await CommonFunc.sleep(2000);
+      globalThis.value.message.notify({name:'currentBp',value:'sm'})
+      await CommonFunc.sleep(2000);
+
+      // Get the propoties value of the GridRow component
+      let strJson = getInspectorByKey('gridRow');
+      let obj = JSON.parse(strJson);
+      console.info("[GridRowJsunit_0200] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.columns).assertEqual('12');
+      expect(obj.$attrs.gutter).assertEqual('<7.500000, 15.000000');
+      expect(obj.$attrs.breakpoints).assertEqual('12');
+      expect(obj.$attrs.direction).assertEqual('12');
+      await CommonFunc.sleep(1000);
+      let driver = await UiDriver.create()
+      let textComponent = await driver.findComponent(BY.key('currentBp'));
+      let text = await textComponent.getText();
+      expect(text).assertEqual('currentBp:sm');
+      console.info('[GridRowJsunit_0200] END');
+      done();
+    });
+
+    it('GridRowJsunit_0300', 0, async function (done) {
+      // Illegal modification of properties of component GridRow
+      console.info('[GridRowJsunit_0300] START');
+      globalThis.value.message.notify({name:'gutter',value:'-10'})
+      await CommonFunc.sleep(200);
+      globalThis.value.message.notify({name:'columns',value:'-5'})
+      await CommonFunc.sleep(200);
+      globalThis.value.message.notify({name:'breakpoints',value:'test'})
+      await CommonFunc.sleep(200);
+      globalThis.value.message.notify({name:'grDirection',value:'test'})
+      await CommonFunc.sleep(200);
+      globalThis.value.message.notify({name:'currentBp',value:'110'})
+      await CommonFunc.sleep(200);
+
+      // Get the propoties value of the GridRow component
+      let strJson = getInspectorByKey('gridRow');
+      let obj = JSON.parse(strJson);
+      console.info("[GridRowJsunit_0300] component obj is: " + JSON.stringify(obj));
+      //expect(obj.$attrs.columns).assertEqual('12');
+      expect(obj.$attrs.gutter).assertEqual('<7.500000, 15.000000');
+      expect(obj.$attrs.breakpoints).assertEqual('12');
+      expect(obj.$attrs.direction).assertEqual('12');
+      await CommonFunc.sleep(1000);
+      let driver = await UiDriver.create()
+      let textComponent = await driver.findComponent(BY.key('currentBp'));
+      let text = await textComponent.getText();
+      expect(text).assertEqual('currentBp:sm');
+      console.info('[GridRowJsunit_0300] END');
+      done();
+    });
+
+    it('GridRowJsunit_0400', 0, async function (done) {
+      // Verify default value of the GridRow component
+      console.info('[GridRowJsunit_0400] START');
+      let strJson = getInspectorByKey('gridRow_default');
+      let obj = JSON.parse(strJson);
+      console.info("[GridRowJsunit_0400] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.columns).assertEqual('12');
+      expect(obj.$attrs.gutter).assertEqual('<0.000000, 0.000000');
+      expect(obj.$attrs.breakpoints).assertEqual('12');
+      expect(obj.$attrs.direction).assertEqual('12');
+      await CommonFunc.sleep(1000);
+      let driver = await UiDriver.create()
+      let textComponent = await driver.findComponent(BY.key('currentBp'));
+      let text = await textComponent.getText();
+      expect(text).assertEqual('currentBp:sm');
+      console.info('[GridRowJsunit_0400] END');
+      done();
+    });
+  })
+}

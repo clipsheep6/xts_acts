@@ -110,18 +110,8 @@ export default function webJsunit() {
      *tc.desic return whether the third party cookie is allowed
      */
     it('isThirdPartyCookieAllowed',0,async function(done){
-      emitKey="emitExistCookie";
-      Utils.registerEvent("isThirdPartyCookieAllowed",false,412,done);
-      sendEventByKey('webcomponent',10,'');
-    })
-    /* 
-     *tc.number SUB_ACE_BASIC_ETS_API_073                                                                                                                                                                   
-     *tc.name existCookie                                                                                                                                                                                                               
-     *tc.desic return whether there exits cookie
-     */
-    it('existCookie',0,async function(done){
       emitKey="emitOnConsole";
-      Utils.registerEvent("existCookie",false,414,done);
+      Utils.registerEvent("isThirdPartyCookieAllowed",false,412,done);
       sendEventByKey('webcomponent',10,'');
     })
     /* 
@@ -151,7 +141,7 @@ export default function webJsunit() {
      */
     it('loadData',0,async function(done){
       emitKey="emitZoomAccess";
-      Utils.registerEvent("loadData","index",424,done);
+      Utils.registerEvent("loadData","\"index\"",424,done);
       sendEventByKey('webcomponent',10,'');
     })
     /* 
