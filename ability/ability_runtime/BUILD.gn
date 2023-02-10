@@ -54,6 +54,7 @@ group("ability_runtime") {
       "stage:stage",
       "want:want",
       "workercontextcover:workercontextcover",
+	  "actspcstest:actspcstest",
     ]
   }
 }

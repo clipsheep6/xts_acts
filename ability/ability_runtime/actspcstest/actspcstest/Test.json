@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.actspcstest",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout":"10000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPcsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+
