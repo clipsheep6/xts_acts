@@ -162,7 +162,7 @@ export function SecurityHuksAccessControlJsunit() {
         properties: new Array(
           HuksSignVerifyECC.HuksKeyAlgECC,
           HuksSignVerifyECC.HuksKeyECCPurposeSINGVERIFY,
-          HuksSignVerifyECC.HuksKeyECCSize224,
+          HuksSignVerifyECC.HuksKeyECCSize384,
           HuksSignVerifyECC.HuksTagECCDigestNONE
         ),
         inData: srcData63Kb,
@@ -233,7 +233,7 @@ export function SecurityHuksAccessControlJsunit() {
           HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
           HuksSignVerifyRSA.HuksTagPKCS1DigestMD5,
           HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-          HuksSignVerifyRSA.HuksKeyRSASize512
+          HuksSignVerifyRSA.HuksKeyRSASize3072
         ),
         inData: srcData63Kb,
       };
@@ -391,7 +391,7 @@ export function SecurityHuksAccessControlJsunit() {
         properties: new Array(
           HuksAgreeECDH.HuksKeyAlgECC,
           HuksAgreeECDH.HuksKeyPurposeECDH,
-          HuksAgreeECDH.HuksKeyECCSize224,
+          HuksAgreeECDH.HuksKeyECCSize384,
           HuksAgreeECDH.HuksKeyECCDIGEST,
           HuksAgreeECDH.HuksKeyECCPADDING,
           HuksAgreeECDH.HuksKeyECCBLOCKMODE
