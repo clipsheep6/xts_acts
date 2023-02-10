@@ -42,8 +42,10 @@ import lineJsunit from './LineJsunit.test.ets';
 import circleJsunit from './CircleJsunit.test.ets';
 import aboutToDisappearJsunit from './AboutToDisappearJsunit.test.ets';
 import timeStampJsunit from './TimeStampJsunit.test.ets';
+import canvas4Jsunit from './Canvas4Jsunit.test.ets';
 
 export default function testsuite() {
+  canvas4Jsunit();
   badgeJsunit();
   lineJsunit();
   progressJsunit();

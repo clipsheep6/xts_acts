@@ -92,6 +92,7 @@
           "pages/animate",
           "pages/rating",
           "pages/canvas2",
+          "pages/canvas4",
           "pages/shape",
           "pages/motionPath",
           "pages/scrollCode",
