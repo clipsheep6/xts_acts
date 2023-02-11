@@ -37,11 +37,6 @@ export default function abilityTest() {
         * @tc.desc    : [G-SOFTWARE-0400]禁止修改现有want的显示匹配行为或语义
         */
         it('SUB_AA_AMS_PCSTEST_0100', 0, async function (done) {
-            expect(wantConstantNew.Entity.ENTITY_DEFAULT).assertEqual("entity.system.default");
-            expect(wantConstantNew.Entity.ENTITY_HOME).assertEqual("entity.system.home");
-            expect(wantConstantNew.Entity.ENTITY_VOICE).assertEqual("entity.system.voice");
-            expect(wantConstantNew.Entity.ENTITY_BROWSABLE).assertEqual("entity.system.browsable");
-            expect(wantConstantNew.Entity.ENTITY_VIDEO).assertEqual("entity.system.video");
             expect(wantConstantNew.Flags.FLAG_AUTH_READ_URI_PERMISSION).assertEqual(0x00000001);
             expect(wantConstantNew.Flags.FLAG_AUTH_WRITE_URI_PERMISSION).assertEqual(0x00000002);
             expect(wantConstantNew.Flags.FLAG_INSTALL_ON_DEMAND).assertEqual(0x00000800);

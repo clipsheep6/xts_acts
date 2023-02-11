@@ -29,6 +29,7 @@ group("ability_runtime") {
       "actscalltest:actscalltest",
       "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
       "actsfwkdataaccessortest:dataability",
+      "actspcstest:actspcstest",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsserviceabilityclienttest:serviceability",
       "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
@@ -54,7 +55,6 @@ group("ability_runtime") {
       "stage:stage",
       "want:want",
       "workercontextcover:workercontextcover",
-      "actspcstest:actspcstest",
     ]
   }
 }
