@@ -18,6 +18,7 @@ group("want") {
   if (is_standard_system) {
     deps = [
       "actsgetwantalltest:ActsGetWantAllTest",
+      "actsgetwantparameterstest:ActsGetWanParametersTest",
       "sceneProject/actsgetwantalltesthap:ActsGetWantAllTestHap",
     ]
   }
