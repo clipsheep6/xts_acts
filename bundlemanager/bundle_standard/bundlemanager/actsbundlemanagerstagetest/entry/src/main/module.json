@@ -2,7 +2,7 @@
     "module": {
         "name": "testModule",
         "type": "entry",
-        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "srcEntry": "./ets/Application/AbilityStage.ts",
         "description": "$string:testModule_entry_dsc",
         "mainElement": "ohos.acts.bundle.stage.test.MainAbility",
         "deviceTypes": [
@@ -11,7 +11,6 @@
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
-        "uiSyntax": "ets",
         "pages": "$profile:main_pages",
         "metadata": [
             {
@@ -22,11 +21,11 @@
         "abilities": [
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "singleton",
                 "orientation": "portrait",
                 "skills": [
@@ -69,110 +68,110 @@
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility1",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
-                "launchType": "standard",
+                "exported": true,
+                "launchType": "multiton",
                 "orientation": "landscape",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility2",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "landscape_inverted",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility3",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "portrait_inverted",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility4",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "auto_rotation",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility5",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "auto_rotation_landscape",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility6",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "auto_rotation_portrait",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility7",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "auto_rotation_restricted",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility8",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "auto_rotation_landscape_restricted",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility9",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "auto_rotation_portrait_restricted",
                 "skills": []
             },
             {
                 "name": "ohos.acts.bundle.stage.test.MainAbility10",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:testModule_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
-                "visible": true,
+                "exported": true,
                 "launchType": "specified",
                 "orientation": "locked",
                 "skills": []
@@ -213,9 +212,9 @@
                     }
                 ],
                 "name": "Form",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "form",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -224,9 +223,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "Form1",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "form",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -235,9 +234,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "workScheduler",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "workScheduler",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -246,9 +245,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "inputMethod",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "inputMethod",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -257,9 +256,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "accessibility",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "accessibility",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -268,9 +267,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "fileShare",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "fileShare",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -279,9 +278,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "staticSubscriber",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "staticSubscriber",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -290,9 +289,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "wallpaper",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "wallpaper",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -301,9 +300,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "backup",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "backup",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -312,9 +311,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "window",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "window",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -323,9 +322,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "enterpriseAdmin",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "enterpriseAdmin",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -334,9 +333,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "thumbnail",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "thumbnail",
-                "visible": true
+                "exported": true
             },
             {
                 "description": "$string:form_description",
@@ -345,9 +344,9 @@
                 "iconId": 16777225,
                 "label": "$string:entry_label",
                 "name": "preview",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "type": "preview",
-                "visible": true
+                "exported": true
             }
         ],
         "requestPermissions": [
