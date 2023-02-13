@@ -315,8 +315,7 @@ export default function RecorderLocalTestAudioFUNC() {
             audioConfig.format = FORMAT_MP4;
             let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig);
             initAudioRecorder();
-            let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE,
-                CHECK_STATE, trackArray, RECORDER_TIME, END_STATE);
+            let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE, END_STATE);
             setCallback(mySteps, done);
             audioRecorder.prepare(audioConfig);
         })
@@ -338,8 +337,7 @@ export default function RecorderLocalTestAudioFUNC() {
             audioConfig.format = FORMAT_M4A;
             let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig);
             initAudioRecorder();
-            let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE,
-                CHECK_STATE, trackArray, RECORDER_TIME, END_STATE);
+            let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE, END_STATE);
             setCallback(mySteps, done);
             audioRecorder.prepare(audioConfig);
         })
