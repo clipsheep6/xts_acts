@@ -244,7 +244,7 @@ describe('securityHuksExportSupportJsunit', function () {
       properties: new Array(
         HuksAgreeECDH.HuksKeyAlgECC,
         HuksAgreeECDH.HuksKeyECCSize256,
-        HuksAgreeECDH.HuksKeyPurposeECDH,//没找到
+        HuksAgreeECDH.HuksKeyPurposeECDH,
         HuksAgreeECDH.HuksKeyECCDIGEST
       ),
       inData: gInData64Array,
@@ -261,7 +261,7 @@ describe('securityHuksExportSupportJsunit', function () {
       properties: new Array(
         HuksAgreeECDH.HuksKeyAlgECC,
         HuksAgreeECDH.HuksKeyECCSize384,
-        HuksAgreeECDH.HuksKeyPurposeECDH,//没找到
+        HuksAgreeECDH.HuksKeyPurposeECDH,
         HuksAgreeECDH.HuksKeyECCDIGEST
       ),
       inData: gInData64Array,
@@ -278,7 +278,7 @@ describe('securityHuksExportSupportJsunit', function () {
       properties: new Array(
         HuksAgreeECDH.HuksKeyAlgECC,
         HuksAgreeECDH.HuksKeyECCSize521,
-        HuksAgreeECDH.HuksKeyPurposeECDH,//没找到
+        HuksAgreeECDH.HuksKeyPurposeECDH,
         HuksAgreeECDH.HuksKeyECCDIGEST
       ),
       inData: gInData64Array,
@@ -441,7 +441,7 @@ describe('securityHuksExportSupportJsunit', function () {
       properties: new Array(
         HuksCipherRSA.HuksKeyAlgRSA,
         HuksCipherRSA.HuksKeyPurposeENCRYPT,
-        HuksCipherRSA.HuksKeyRSASize512,
+        HuksCipherRSA.HuksKeyRSASize4096,
         HuksCipherRSA.HuksKeyRSAPADDINGNONE,
         HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
         HuksCipherRSA.HuksKeyRSADIGESTSHA256,

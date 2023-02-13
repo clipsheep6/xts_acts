@@ -16,7 +16,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import { HuksCipherRSA } from '../../../../../../utils/param/cipher/publicCipherParam';
 import { stringToUint8Array } from '../../../../../../utils/param/publicFunc';
-import huks from '@ohos.security.huks'
+import huks from '@ohos.security.huks';
 import { HuksKeyAlgX25519, HuksAgreeECDH } from '../../../../../../utils/param/agree/publicAgreeParam';
 import {
   HuksSignVerifySM2,
@@ -266,7 +266,7 @@ export default function securityHuksExportSupportJsunit() {
         properties: new Array(
           HuksAgreeECDH.HuksKeyAlgECC,
           HuksAgreeECDH.HuksKeyECCSize256,
-          HuksAgreeECDH.HuksKeyPurposeECDH,//没找到
+          HuksAgreeECDH.HuksKeyPurposeECDH,
           HuksAgreeECDH.HuksKeyECCDIGEST
         ),
         inData: gInData64Array,
@@ -283,7 +283,7 @@ export default function securityHuksExportSupportJsunit() {
         properties: new Array(
           HuksAgreeECDH.HuksKeyAlgECC,
           HuksAgreeECDH.HuksKeyECCSize384,
-          HuksAgreeECDH.HuksKeyPurposeECDH,//没找到
+          HuksAgreeECDH.HuksKeyPurposeECDH,
           HuksAgreeECDH.HuksKeyECCDIGEST
         ),
         inData: gInData64Array,
@@ -300,7 +300,7 @@ export default function securityHuksExportSupportJsunit() {
         properties: new Array(
           HuksAgreeECDH.HuksKeyAlgECC,
           HuksAgreeECDH.HuksKeyECCSize521,
-          HuksAgreeECDH.HuksKeyPurposeECDH,//没找到
+          HuksAgreeECDH.HuksKeyPurposeECDH,
           HuksAgreeECDH.HuksKeyECCDIGEST
         ),
         inData: gInData64Array,
@@ -463,7 +463,7 @@ export default function securityHuksExportSupportJsunit() {
         properties: new Array(
           HuksCipherRSA.HuksKeyAlgRSA,
           HuksCipherRSA.HuksKeyPurposeENCRYPT,
-          HuksCipherRSA.HuksKeyRSASize512,
+          HuksCipherRSA.HuksKeyRSASize4096,
           HuksCipherRSA.HuksKeyRSAPADDINGNONE,
           HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
           HuksCipherRSA.HuksKeyRSADIGESTSHA256,
