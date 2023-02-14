@@ -2,7 +2,7 @@
     "module": {
         "name": "myfeature",
         "type": "feature",
-        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "srcEntry": "./ets/Application/AbilityStage.ts",
         "description": "$string:phone_entry_dsc",
         "mainElement": "MainAbility1",
         "deviceTypes": [
@@ -11,7 +11,6 @@
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
-        "uiSyntax": "ets",
         "pages": "$profile:main_pages",
         "metadata": [
             {
@@ -22,7 +21,7 @@
         "abilities": [
             {
                 "name": "com.acts.bundle.stage.MainAbility1",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:phone_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
@@ -41,26 +40,26 @@
             },
             {
                 "name": "MainAbility",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon"
 			},
             {
                 "name": "MainAbility1",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
 				"orientation": "unspecified",
 				"supportWindowMode": ["fullscreen"]
 			},
 			{
                 "name": "MainAbility2",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
 				"orientation": "landscape",
 				"supportWindowMode": ["split"]
 			},
 			{
                 "name": "MainAbility3",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
 				"orientation": "portrait",
 				"supportWindowMode": ["floating"]
@@ -69,7 +68,7 @@
         "extensionAbilities": [
             {
                 "name": "ExtensionAbilityQ",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "form",
@@ -88,7 +87,7 @@
             },
             {
                 "name": "ExtensionAbilityW",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "service",
@@ -108,7 +107,7 @@
             },
             {
                 "name": "ExtensionAbilityA",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "wallpaper",
@@ -133,7 +132,7 @@
             },
             {
                 "name": "ExtensionAbilityB",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "workScheduler",

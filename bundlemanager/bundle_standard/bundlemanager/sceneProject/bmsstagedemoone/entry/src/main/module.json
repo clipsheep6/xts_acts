@@ -2,7 +2,7 @@
     "module": {
         "name": "phone",
         "type": "entry",
-        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "srcEntry": "./ets/Application/AbilityStage.ts",
         "description": "$string:phone_entry_dsc",
         "mainElement": "MainAbility",
         "deviceTypes": [
@@ -11,7 +11,6 @@
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
-        "uiSyntax": "ets",
         "pages": "$profile:main_pages",
         "metadata": [
             {
@@ -22,7 +21,7 @@
         "abilities": [
             {
                 "name": "com.acts.bundle.stage.MainAbility",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:phone_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",
@@ -41,26 +40,26 @@
             },
             {
                 "name": "MainAbility",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon"
 			},
             {
                 "name": "MainAbility1",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
 				"orientation": "unspecified",
 				"supportWindowMode": ["fullscreen"]
 			},
 			{
                 "name": "MainAbility2",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
 				"orientation": "landscape",
 				"supportWindowMode": ["split"]
 			},
 			{
                 "name": "MainAbility3",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntry": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
 				"orientation": "portrait",
 				"supportWindowMode": ["floating"]
@@ -69,7 +68,7 @@
         "extensionAbilities": [
             {
                 "name": "FormAbility",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "form",
@@ -111,7 +110,7 @@
             },
             {
                 "name": "ExtensionAbility1",
-                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "srcEntry": "./ets/FormAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "form",
@@ -155,7 +154,7 @@
             },
             {
                 "name": "ServiceAbility",
-                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "srcEntry": "./ets/ServiceAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "service",
@@ -168,7 +167,7 @@
             },
             {
                 "name": "EnterpriseAdminAbility",
-                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "srcEntry": "./ets/ServiceAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "enterpriseAdmin",
@@ -181,7 +180,7 @@
             },
             {
                 "name": "ThumbnailAbility",
-                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "srcEntry": "./ets/ServiceAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "thumbnail",
@@ -194,7 +193,7 @@
             },
             {
                 "name": "PreviewAbility",
-                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "srcEntry": "./ets/ServiceAbility/FormAbility.ts",
                 "label": "$string:form_FormAbility_label",
                 "description": "$string:form_FormAbility_desc",
                 "type": "preview",
