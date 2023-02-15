@@ -14,6 +14,7 @@
  */
 
 import { describe, it, expect, beforeAll } from '@ohos/hypium'
+import appManager from '@ohos.application.appManager'
 
 let TAG;
 
@@ -240,5 +241,71 @@ export default function stageAppContextTest(abilityContext) {
             })
             done();
         });
+
+        /**
+         * @tc.number: SUB_AA_OpenHarmony_ApplicationContext_1800
+         * @tc.name: killProcessBySelf test 1
+         * killProcessBySelf test
+         * @tc.desc: Function test
+         * @tc.level   3
+        */
+        it('SUB_AA_OpenHarmony_ApplicationContext_1800', 0, async function (done) {
+            let TAG = "SUB_AA_OpenHarmony_ApplicationContext_1800";
+            console.log(TAG + " --- start");
+            let want = {
+                "deviceId": "",
+                "bundleName": "com.acts.killprocesshap",
+                "abilityName": "com.acts.killprocesshap.MainAbility"
+            }
+            await globalThis.abilityContext.startAbility(want, (error) => {
+                console.log("error.code = " + error.code)
+            })
+            await setTimeout(()=> {
+                appManager.getProcessRunningInfos().then((data) => {
+                    console.info(TAG + '====>ACTS_TerminateSelf_0100 result=====>' + JSON.stringify(data))
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].processName == 'com.acts.killprocesshap') {
+                            console.info('====>has com.acts.killprocesshap=====>')
+                            expect().assertFail()
+                            break
+                        }
+                    }
+                })
+                done();
+            },5000)
+        })
+
+         /**
+         * @tc.number: SUB_AA_OpenHarmony_ApplicationContext_1900
+         * @tc.name: killProcessBySelf test 1
+         * killProcessBySelf test
+         * @tc.desc: Function test
+         * @tc.level   3
+        */
+        it('SUB_AA_OpenHarmony_ApplicationContext_1900', 0, async function (done) {
+            let TAG = "SUB_AA_OpenHarmony_ApplicationContext_1900";
+            console.log(TAG + " --- start");
+            let want = {
+                "deviceId": "",
+                "bundleName": "com.acts.killprocesshap",
+                "abilityName": "com.acts.killprocesshap.MainAbility2"
+            }
+            await globalThis.abilityContext.startAbility(want, (error) => {
+                console.log("error.code = " + error.code)
+            })
+            await setTimeout(()=> {
+                appManager.getProcessRunningInfos().then((data) => {
+                    console.info(TAG + '====>ACTS_TerminateSelf_0200 result=====>' + JSON.stringify(data))
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].processName == 'com.acts.killprocesshap') {
+                            console.info('====>has com.acts.killprocesshap=====>')
+                            expect().assertFail()
+                            break
+                        }
+                    }
+                })
+                done();
+            },5000)
+        })
     })
 }

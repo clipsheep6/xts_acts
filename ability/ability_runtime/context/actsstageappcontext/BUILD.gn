@@ -20,6 +20,7 @@ group("actsstageappcontext") {
       #"actsstagecontextassistone:ActsStageContextAssistOne",
       #"actsstagecontextassisttwo:ActsStageContextAssistTwo",
       "actsstageappcontexttest:ActsStageAppContextTest",
+      "actsamsuserskillprocessapp:ActsAmsUsersKillProcessApp",
     ]
   }
 }
