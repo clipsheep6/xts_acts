@@ -21,7 +21,8 @@
  import flexVisibility_AutoJsunit from './Flex/alignItems/ItemAlign_Auto/FlexVisibilityJsunit.test.ets';
  import flexAlignSelf_AutoJsunit from './Flex/alignItems/ItemAlign_Auto/FlexAlignSelfJsunit.test.ets';
  import flexTextMargin_AutoJsunit from './Flex/alignItems/ItemAlign_Auto/FlexTextMarginJsunit.test.ets';
-
+ import Row_Space from './Row/spaceChanged/Row_Space.test.ets';
+ import Column_Space from './Column/spaceChanged/Column_Space.test.ets';
 export default function testsuite() {
   flexBase_AutoJsunit()
   flexPadding_AutoJsunit()
@@ -32,4 +33,6 @@ export default function testsuite() {
   flexVisibility_AutoJsunit()
   flexAlignSelf_AutoJsunit()
   flexTextMargin_AutoJsunit()
+  Row_Space()
+  Column_Space()
 }

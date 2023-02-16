@@ -35,5 +35,6 @@ group("arkui") {
     "ace_standard:ActsAceStandardTest",
     "ace_standard_video:ActsAceStandardVideoTest",
     "libuv:libuvTest",
+    "ace_ets_layout_test:ArkUIActsLayoutTest",
   ]
 }
