@@ -35,7 +35,7 @@ export default class MainAbility extends Ability {
         // Main window is created, set main page for this ability
         console.log("MainAbility onWindowStageCreate")
         globalThis.abilityContext = this.context
-        this.context.getApplicationContext().killProcessesBySelf()
+        this.context.getApplicationContext().killAllProcesses()
         windowStage.setUIContent(this.context, "pages/index/index", null)
         commonEvent.publish("ACTS_KillProcess", PublishCallBackOne);
     }
