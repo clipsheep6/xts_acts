@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import inputkeyCode from '@ohos.multimodalInput.keyCode';
+import inputkeyCode from '@ohos.multimodalInput.KeyCode';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 export default function MultimodalInput_KeyCode_test() {
   describe('MultimodalInput_KeyCode_test', function () {
