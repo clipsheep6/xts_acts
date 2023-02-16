@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import inputkeyCode from '@ohos.multimodalInput.keyCode'
-import keyEvent from '@ohos.multimodalInput.keyEvent'
-import mouseEvent from '@ohos.multimodalInput.mouseEvent'
-import touchEvent from '@ohos.multimodalInput.touchEvent'
-import inputEvent from '@ohos.multimodalInput.inputEvent'
-import { Key, KeyEvent } from '@ohos.multimodalInput.keyEvent'
-import { AxisValue, MouseEvent } from '@ohos.multimodalInput.mouseEvent'
-import { Touch, TouchEvent } from '@ohos.multimodalInput.touchEvent'
+import inputkeyCode from '@ohos.multimodalInput.KeyCode'
+import keyEvent from '@ohos.multimodalInput.KeyEvent'
+import mouseEvent from '@ohos.multimodalInput.MouseEvent'
+import touchEvent from '@ohos.multimodalInput.TouchEvent'
+import inputEvent from '@ohos.multimodalInput.InputEvent'
+import { Key, KeyEvent } from '@ohos.multimodalInput.KeyEvent'
+import { AxisValue, MouseEvent } from '@ohos.multimodalInput.MouseEvent'
+import { Touch, TouchEvent } from '@ohos.multimodalInput.TouchEvent'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
 export default function MultimodalInputEventTypeTest() {
