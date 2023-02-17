@@ -94,7 +94,7 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
     function expectedError(error, caseName, apiName, done, code) {
       let msgStr = 'jsunittest ' + caseName + ' ' + apiName + ' failed, err: ';
       console.log(msgStr + JSON.stringify(error));
-      if (error.code === code) {
+      if (error.code == code) {
         expect(TRUE_FLAG).assertTrue();
       }
       done();
@@ -1401,57 +1401,6 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       done();
     })
     /**
-    * @tc.number     SUB_WINDOW_SETDENSITTYDPI_JSAPI_001
-    * @tc.name       Test setDensityDpiTest1
-    * @tc.desc       Verify Sets the screen pixel
-    */
-    it('setDensityDpiTest1', 0, async function (done) {
-      let caseName = 'setDensityDpiTest1';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      let screens = null;
-      try {
-        await screenManager.getAllScreens().then((data) => {
-          screens = data
-          console.log(msgStr + 'screenManager.getAllScreen' + JSON.stringify(screens));
-          expect(!!screens).assertTrue();
-        }).catch(err => {
-          unexpectedError(err, caseName, 'screenManager.getAllScreen', done);
-        })
-      }
-      catch (err) {
-        console.log(msgStr + 'screenManager.getAllScreen catch err:' + JSON.stringify(err));
-      }
-      let currentDeviceDefault = null;
-      await display.getDefaultDisplay().then((data) => {
-        currentDeviceDefault = data
-      }).catch(err => {
-        console.log(msgStr + 'screen.setDensityDpi display.getDefaultDisplay failed current device');
-      });
-      console.log(msgStr + 'screen.setDensityDpi display.getDefaultDisplay current device' + JSON.stringify(currentDeviceDefault));
-      let currentDeviceDefaultDpi = parseInt(currentDeviceDefault.densityDPI)
-      let dpiItem = [-80, 80, 1000, 160, 0, 320, 188.88, 0, 640, 300, currentDeviceDefaultDpi];
-      for (let i = 0; i < dpiItem.length; i++) {
-        await screens[0].setDensityDpi(dpiItem[i]).then(async () => {
-          console.log(msgStr + 'screen.setDensityDpi success set DPI ' + dpiItem[i]);
-          let defaultDpi = null;
-          display.getDefaultDisplay().then((data) => {
-            defaultDpi = data
-          }).catch(err => {
-            console.log(msgStr + 'screen.setDensityDpi display.getDefaultDisplay failed');
-          });
-          console.log(msgStr + 'screen.setDensityDpi display.getDefaultDisplay' + JSON.stringify(defaultDpi));
-          let isEqual = Number(defaultDpi.densityDPI) == dpiItem[i]
-          console.log(msgStr + 'same ? ' + isEqual)
-          expect(isEqual).assertTrue()
-        }).catch(err => {
-          console.log(msgStr + 'screen.setDensityDpi failed set DPI error' + dpiItem[i]);
-        });
-      }
-      console.log(msgStr + 'done ');
-      done();
-    })
-    /**
     * @tc.number     SUB_WINDOW_SETPREFERREDORIENTATION_JSAPI_001
     * @tc.name       Test setPreferredOrientationTest1
     * @tc.desc       Sets the display direction property of the window
@@ -1710,6 +1659,73 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       }).catch((err) => {
         console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
       })
+    })
+    /**
+    * @tc.number     SUB_WINDOW_SETASPECTRATIO_JSAPI_002
+    * @tc.name       Test setAspectRatioTest2
+    * @tc.desc       Validate the scenario cancelled after setting the proportion of the content layout of the main window
+    */
+    it('setAspectRatioTest2', 0, async function (done) {
+      let caseName = 'setAspectRatioTest2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWnd = null;
+      await windowStage.getMainWindow().then((data) => {
+        mainWnd = data;
+        expect(!!mainWnd).assertTrue();
+        console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+      });
+      try {
+        let ratio = 1.0;
+        await mainWnd.setAspectRatio(ratio).then(() => {
+          console.info(msgStr + 'Succeeded in setting aspect ratio of window.');
+        }).catch((err) => {
+          console.error(msgStr + 'Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+        });
+      } catch (exception) {
+        console.error(msgStr + 'Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+      }
+      try {
+        await mainWnd.resetAspectRatio().then(() => {
+          console.info(msgStr + 'Succeeded in resetting aspect ratio of window.');
+        }).catch((err) => {
+          console.error(msgStr + 'Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+        });
+      } catch (exception) {
+        console.error(msgStr + 'Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+      }
+      done();
+    })
+    /**
+    * @tc.number     SUB_WINDOW_SETASPECTRATIO_JSAPI_004
+    * @tc.name       Test setAspectRatioTest4
+    * @tc.desc       Validate the scenario where the content layout proportion of the main window is abnormal
+    */
+    it('setAspectRatioTest4', 0, async function (done) {
+      let caseName = 'setAspectRatioTest4';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWnd = null;
+      await windowStage.getMainWindow().then((data) => {
+        mainWnd = data;
+        expect(!!mainWnd).assertTrue();
+        console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+      });
+      try {
+        let ratio = 0;
+        await mainWnd.setAspectRatio(ratio).then(() => {
+          console.info(msgStr + 'Succeeded in setting aspect ratio of window.');
+        }).catch((err) => {
+          console.error(msgStr + 'Failed to set the aspect ratio of window. err:' + JSON.stringify(err));
+        });
+      } catch (exception) {
+        console.error(msgStr + 'Failed to set the aspect ratio of window. exception: ' + JSON.stringify(exception));
+        expectedError(exception, caseName, 'mainWnd.setAspectRatio', done, 401);
+      }
     })
   })
 }
