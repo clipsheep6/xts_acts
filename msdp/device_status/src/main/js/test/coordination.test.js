@@ -62,7 +62,7 @@ describe('CoordinationTest', function () {
      * @tc.name DeviveStatus_Coordination_Enable_Exception_Test_002
      * @tc.desc Coordination interface enable exception test
      */
-     it('msdp_test_devices_status_031', 0, async function (done) {
+    it('msdp_test_devices_status_031', 0, async function (done) {
       console.info(`msdp_test_devices_status_031 enter`);
       try {
           await coordination.enable(false, (err, data) => {
