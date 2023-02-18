@@ -1,0 +1,17 @@
+<body onload="testload()">
+<div id="container" >
+    <p style="font-family:monospace; prefers-color-scheme: light">
+        Submit
+    </p>
+</div>
+<div id="pageHeight"></div>
+<form name="input" method="get" enctype="multipart/form-data" action="index.html">
+    <input id="Submit" type="submit" value="Submit" style="heigth:200%;width:100px">
+</form>
+</body>
+<script>
+    function testload(){
+        document.getElementById("Submit").click();
+        console.info("key==>get")
+    }
+</script>

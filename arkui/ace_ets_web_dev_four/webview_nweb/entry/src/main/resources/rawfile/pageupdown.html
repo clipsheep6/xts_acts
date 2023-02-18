@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<body >
+<div id="container" >
+    <p > webPage Top </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Test </p>
+    <p > webPage Bottom </p>
+</div>
+</body>
+<script>
+    function Scroll(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollTopX = document.documentElement.scrollLeft || document.body.scrollLeft;
+        console.log("滚动距离 :" + scrollTop);
+        console.log("滚动距离 X:" + scrollTopX);
+        if(scrollTop > 0 ) {
+          return "PageScroll Success"
+        } else {
+		  return "PageScroll fail"
+        }
+    }
+    function PageScrollUp(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        console.log('==> scrollPage scrollTop  :'+JSON.stringify(scrollTop));
+        console.log('==> scrollPage clientHeight  :'+JSON.stringify(clientHeight));
+        console.log('==> scrollPage scrollHeight  :'+JSON.stringify(scrollHeight));
+        if (scrollTop === 0) {
+            console.log('滚动到顶了');
+            return "PageScroll Up true"
+        } else if (scrollTop + clientHeight >= scrollHeight-1) {
+            return "PageScroll Up fail"
+        } else {
+            return "PageScroll Up"
+        }
+    }
+    function PageScrollDown(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        console.log('==> scrollPage scrollTop  :'+JSON.stringify(scrollTop));
+        console.log('==> scrollPage clientHeight  :'+JSON.stringify(clientHeight));
+        console.log('==> scrollPage scrollHeight  :'+JSON.stringify(scrollHeight));
+        if (scrollTop + clientHeight >= scrollHeight-1) {
+            console.log('==>滚动到底了');
+            return "PageScroll Down true"
+        } else if (scrollTop > 0) {
+            return "PageScroll Down"
+        } else {
+            return "PageScroll Down Fail"
+        }
+    }
+</script>
+</html>
+
+
