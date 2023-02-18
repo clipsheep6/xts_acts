@@ -512,41 +512,41 @@ describe('BatteryCommonEventTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_BatteryManager_JSTest_0590
-     * @tc.name Subscribe_Hwidlogin_Common_Event
+     * @tc.name Subscribe_Distributedaccountlogin_Common_Event
      * @tc.desc Battery acquisition kit
      */
-    it('Subscribe_Hwidlogin_Common_Event', 0, function (done) {
-        createHwidLoginSubscriber();
+    it('Subscribe_Distributedaccountlogin_Common_Event', 0, function (done) {
+        createDistributedAccountLoginSubscriber();
         done();
     })
 
     /**
      * @tc.number SUB_PowerSystem_BatteryManager_JSTest_0600
-     * @tc.name Subscribe_Hwidlogout_Common_Event
+     * @tc.name Subscribe_Distributedaccountlogout_Common_Event
      * @tc.desc Battery acquisition kit
      */
-    it('Subscribe_Hwidlogout_Common_Event', 0, function (done) {
-        createHwidLogoutSubscriber();
+    it('Subscribe_Distributedaccountlogout_Common_Event', 0, function (done) {
+        createDistributedAccountLogoutSubscriber();
         done();
     })
 
     /**
      * @tc.number SUB_PowerSystem_BatteryManager_JSTest_0610
-     * @tc.name Subscribe_Hwidtokeninvalid_Common_Event
+     * @tc.name Subscribe_Distributedaccounttokeninvalid_Common_Event
      * @tc.desc Battery acquisition kit
      */
-    it('Subscribe_Hwidtokeninvalid_Common_Event', 0, function (done) {
-        createHwidTokenInvalidSubscriber();
+    it('Subscribe_Distributedaccounttokeninvalid_Common_Event', 0, function (done) {
+        createDistributedAccountTokenInvalidSubscriber();
         done();
     })
 
     /**
      * @tc.number SUB_PowerSystem_BatteryManager_JSTest_0620
-     * @tc.name Subscribe_Hwidlogoff_Common_Event
+     * @tc.name Subscribe_Distributedaccountlogoff_Common_Event
      * @tc.desc Battery acquisition kit
      */
-    it('Subscribe_Hwidlogoff_Common_Event', 0, function (done) {
-        createHwidLogOffSubscriber();
+    it('Subscribe_Distributedaccountlogoff_Common_Event', 0, function (done) {
+        createDistributedAccountLogOffSubscriber();
         done();
     })
 
@@ -5340,13 +5340,13 @@ function createWifiPowerStateSubscriber() {
     });
 }
 
-function createHwidLogOffSubscriber() {
+function createDistributedAccountLogOffSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_LOGOFF],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTEDACCOUNT_LOGOFF],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
-            console.info('createHwidLogOffSubscriber success');
+            console.info('createDistributedAccountLogOffSubscriber success');
             var mySubscriber = subscriber;
             console.log(subscriber);
 
@@ -5367,7 +5367,7 @@ function createHwidLogOffSubscriber() {
                 }).catch((error) => {
                 console.error('Subscriber getData error because: ' + JSON.stringify(error));
             })
-            console.info('subscribe Hwid_Logoff begin ');
+            console.info('subscribe DistributedAccount_Logoff begin ');
 
             commonEvent.subscribe(mySubscriber, (error, commonEventData) => {
                 console.error('err code: ' + JSON.stringify(error));
@@ -5385,13 +5385,13 @@ function createHwidLogOffSubscriber() {
     });
 }
 
-function createHwidTokenInvalidSubscriber() {
+function createDistributedAccountTokenInvalidSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_TOKEN_INVALID],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTEDACCOUNT_TOKEN_INVALID],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
-            console.info('createHwidTokenInvalidSubscriber success');
+            console.info('createDistributedAccountTokenInvalidSubscriber success');
             var mySubscriber = subscriber;
             console.log(subscriber);
 
@@ -5412,7 +5412,7 @@ function createHwidTokenInvalidSubscriber() {
                 }).catch((error) => {
                 console.error('Subscriber getData error because: ' + JSON.stringify(error));
             })
-            console.info('subscribe Hwid_Token_Invalid begin ');
+            console.info('subscribe DistributedAccount_Token_Invalid begin ');
 
             commonEvent.subscribe(mySubscriber, (error, commonEventData) => {
                 console.error('err code: ' + JSON.stringify(error));
@@ -5430,13 +5430,13 @@ function createHwidTokenInvalidSubscriber() {
     });
 }
 
-function createHwidLogoutSubscriber() {
+function createDistributedAccountLogoutSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_LOGOUT],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTEDACCOUNT_LOGOUT],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
-            console.info('createHwidLogoutSubscriber success');
+            console.info('createDistributedAccountLogoutSubscriber success');
             var mySubscriber = subscriber;
             console.log(subscriber);
 
@@ -5457,7 +5457,7 @@ function createHwidLogoutSubscriber() {
                 }).catch((error) => {
                 console.error('Subscriber getData error because: ' + JSON.stringify(error));
             })
-            console.info('subscribe Hwid_loguot begin ');
+            console.info('subscribe DistributedAccount_loguot begin ');
 
             commonEvent.subscribe(mySubscriber, (error, commonEventData) => {
                 console.error('err code: ' + JSON.stringify(error));
@@ -5475,13 +5475,13 @@ function createHwidLogoutSubscriber() {
     });
 }
 
-function createHwidLoginSubscriber() {
+function createDistributedAccountLoginSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_LOGIN],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
-            console.info('createHwidLoginSubscriber success');
+            console.info('createDistributedAccountLoginSubscriber success');
             var mySubscriber = subscriber;
             console.log(subscriber);
 
@@ -5502,7 +5502,7 @@ function createHwidLoginSubscriber() {
                 }).catch((error) => {
                 console.error('Subscriber getData error because: ' + JSON.stringify(error));
             })
-            console.info('subscribe Hwid_Login begin ');
+            console.info('subscribe DistributedAccount_Login begin ');
 
             commonEvent.subscribe(mySubscriber, (error, commonEventData) => {
                 console.error('err code: ' + JSON.stringify(error));
