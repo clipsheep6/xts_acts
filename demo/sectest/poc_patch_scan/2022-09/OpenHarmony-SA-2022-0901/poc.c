@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+//编译时需要使用-l参数动态链接cjson动态库
 #include <stdio.h>
 #include <cjson/cJSON.h>
 
