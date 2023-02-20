@@ -15,7 +15,7 @@
 
 import request from "@ohos.request";
 import featureAbility from '@ohos.ability.featureAbility'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import fileio from '@ohos.fileio';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
 
 export default function requestDownloadJSUnit() {
@@ -23,30 +23,30 @@ export default function requestDownloadJSUnit() {
     console.info('====>################################request download Test start');
 
     /**
-    * beforeAll: Prerequisites at the test suite level, which are executed before the test suite is executed.
-    */
+     * beforeAll: Prerequisites at the test suite level, which are executed before the test suite is executed.
+     */
     beforeAll(async function () {
       console.info('====>beforeAll: Prerequisites are executed.');
     });
 
     /**
-    * beforeEach: Prerequisites at the test case level, which are executed before each test case is executed.
-    */
+     * beforeEach: Prerequisites at the test case level, which are executed before each test case is executed.
+     */
     beforeEach(async function () {
-      console.info('====>beforeEach: Prerequisites is executed.');      
+      console.info('====>beforeEach: Prerequisites is executed.');
       await setDownLoadConfig()
     });
 
     /**
-    * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
-    */
+     * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
+     */
     afterEach(function () {
       console.info('====>afterEach: Test case-level clearance conditions is executed.');
     });
 
     /**
-    * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
-    */
+     * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
+     */
     afterAll(function () {
       console.info('====>afterAll: Test suite-level cleanup condition is executed');
     });
@@ -58,7 +58,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig = {
         url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
         header: {
-            headers: 'http'
+          headers: 'http'
         },
         enableMetered: false,
         enableRoaming: false,
@@ -90,20 +90,23 @@ export default function requestDownloadJSUnit() {
               console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0001 on data1 =" + data1);
               console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0001 on data2 =" + data2);
               expect(true).assertEqual(data1 != undefined);
-              expect(true).assertEqual(data2 != undefined); 
+              expect(true).assertEqual(data2 != undefined);
               if (data1 == data2){
+                fileio.unlinkSync(downloadConfig.filePath);
                 done();
               }
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_PROMISE_0001 throw_error: " + err);
+              fileio.unlinkSync(downloadConfig.filePath);
               done();
-            }      
+            }
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_PROMISE_0001 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }   
-      });      
+        }
+      });
     });
 
     /**
@@ -116,9 +119,9 @@ export default function requestDownloadJSUnit() {
     it('SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002', 0, async function (done) {
       console.info("====>-----------------------SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002 is starting-----------------------");
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002.txt'
-      request.download(downloadConfig, (err, data)=>{      
+      request.download(downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002 downloadTask: " + downloadTask);
         try{
           expect(true).assertEqual(downloadTask != undefined);
           downloadTask.on('complete', async () => {
@@ -128,13 +131,15 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002 throw_error: " + err);
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0002 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }     
+        }
       });
     });
 
@@ -150,7 +155,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003.txt'
       request.download(downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003 downloadTask: " + downloadTask);       
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003 downloadTask: " + downloadTask);
         try{
           expect(true).assertEqual(downloadTask != undefined);
           downloadTask.on('pause', async () => {
@@ -160,19 +165,21 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003 throw_error: " + err);
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
           downloadTask.on('progress', (data1, data2) => {
             if(data1 > 0){
               downloadTask.pause()
             }
-          });          
+          });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0003 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -187,7 +194,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0004.txt'
       request.download(downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0004 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0004 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.on('remove', () => {
@@ -197,18 +204,20 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0004 throw_error: " + err);
             }
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
           downloadTask.on('progress', (data1, data2) => {
             if(data1 > 0){
-              downloadTask.remove()
+              downloadTask.remove();
             }
-          }); 
+          });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0004 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -224,9 +233,9 @@ export default function requestDownloadJSUnit() {
       downloadConfig.url += 'xxxxxxxxxx'
       request.download(downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0005 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0005 downloadTask: " + downloadTask);
         try{
-          expect(downloadTask != undefined).assertEqual(true);          
+          expect(downloadTask != undefined).assertEqual(true);
           downloadTask.on('fail', async()=>{
             try{
               console.info('====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0005 fail completed')
@@ -234,14 +243,16 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0005 throw_error: " + err);
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0005 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -256,7 +267,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0006.txt'
       request.download(downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0006 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0006 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.on('complete', async () => {
@@ -265,16 +276,18 @@ export default function requestDownloadJSUnit() {
               })
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0006 second throw_error: " + err);
-              expect(err.code).assertEqual(13400002)
-              await downloadTask.remove()
+              expect(err.code).assertEqual(13400002);
+              await downloadTask.remove();
+              fileio.unlinkSync(downloadConfig.filePath);
               done();
-            }            
+            }
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_ON_0006 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -301,14 +314,16 @@ export default function requestDownloadJSUnit() {
               expect(data2).assertEqual(0);
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0001 off_err: " + err);
-            }  
-            await downloadTask.remove()   
-            done();       
+            }
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
+            done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0001 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }        
+        }
       });
     });
 
@@ -324,7 +339,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0002.txt'
       request.download(downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0002 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0002 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.off('complete',async  () => {
@@ -334,14 +349,16 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0002 off_err: " + err);
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0002 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -356,7 +373,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0003.txt'
       request.download( downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0003 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0003 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.off('pause', async () => {
@@ -366,11 +383,13 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0003 off_err: " + err);
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0003 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       });
@@ -388,7 +407,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0004.txt'
       request.download( downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0004 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0004 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.off('remove', async (data) => {
@@ -398,11 +417,13 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0003 off_err: " + err);
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0004 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       });
@@ -431,14 +452,16 @@ export default function requestDownloadJSUnit() {
               console.info("====>-----------------------SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0005 end-----------------------");
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0005 fail_error: " + err);
-            }  
-            await downloadTask.remove()          
+            }
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_DOWNLOADTASK_OFF_0005 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }        
+        }
       });
     });
 
@@ -473,12 +496,14 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.info('====>SUB_REQUEST_DOWNLOAD_API_REMOVE_0001 remove_throw_err:' + JSON.stringify(err))
             }
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           });
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_REMOVE_0001 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }    
+        }
       })
     });
 
@@ -506,16 +531,19 @@ export default function requestDownloadJSUnit() {
               expect().assertFail();
             }
             done();
+            fileio.unlinkSync(downloadConfig.filePath);
           }).catch((err) => {
             console.error('====>SUB_REQUEST_DOWNLOAD_API_REMOVE_0002 Failed to remove the download task.');
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_REMOVE_0002 error: " + err);
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       })
-      
+
     });
 
     /**
@@ -539,12 +567,14 @@ export default function requestDownloadJSUnit() {
               expect(true).assertTrue();
             }catch(err){
               console.info('====>SUB_REQUEST_DOWNLOAD_API_PAUSE_0001 pause_throw_err:' + JSON.stringify(err))
-            }  
-            await downloadTask.remove()
-            done();          
+            }
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
+            done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_PAUSE_0001 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       })
@@ -572,10 +602,12 @@ export default function requestDownloadJSUnit() {
             done();
           }).catch((err) => {
             console.error("====>SUB_REQUEST_DOWNLOAD_API_PAUSE_0002 throw_error: " + JSON.stringify(err));
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_PAUSE_0002 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       })
@@ -602,12 +634,14 @@ export default function requestDownloadJSUnit() {
               expect(true).assertTrue();
             }catch(err){
               console.info('====>SUB_REQUEST_DOWNLOAD_API_REMUSE_0001 pause_throw_err:' + JSON.stringify(err))
-            }  
-            await downloadTask.remove() 
-            done();         
+            }
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
+            done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_REMUSE_0001 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       })
@@ -631,16 +665,19 @@ export default function requestDownloadJSUnit() {
           downloadTask.resume().then(async () => {
             console.info('====>SUB_REQUEST_DOWNLOAD_API_REMUSE_0002 Download task resume success.');
             expect(true).assertTrue();
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done()
           }).catch((err) => {
             console.error("====>SUB_REQUEST_DOWNLOAD_API_REMUSE_0002 throw_error: " + JSON.stringify(err));
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_REMUSE_0002 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }        
+        }
       })
     });
 
@@ -656,7 +693,7 @@ export default function requestDownloadJSUnit() {
       downloadConfig.filePath += 'SUB_REQUEST_DOWNLOAD_API_QUERY_0001.txt'
       request.download( downloadConfig, (err, data)=>{
         downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0001 downloadTask: " + downloadTask);        
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0001 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.query(async (err, downloadInfo)=>{
@@ -681,11 +718,13 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0001 throw_error: " + JSON.stringify(err));
             }
-            await downloadTask.remove()
+            await downloadTask.remove();
+            fileio.unlinkSync(downloadConfig.filePath);
             done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0001 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
         }
       })
@@ -725,21 +764,25 @@ export default function requestDownloadJSUnit() {
                 console.info('====>SUB_REQUEST_DOWNLOAD_API_QUERY_0002 query info: '+ downloadInfo.downloadTotalBytes);
                 expect(true).assertTrue();
               }
-              await downloadTask.remove()
+              await downloadTask.remove();
+              fileio.unlinkSync(downloadConfig.filePath);
               done();
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0002 error: " + JSON.stringify(err));
+              fileio.unlinkSync(downloadConfig.filePath);
               done();
             }
           }).catch((err)=>{
             console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0002  catch_error: " + JSON.stringify(err));
+            fileio.unlinkSync(downloadConfig.filePath);
             expect().assertFail();
             done();
           })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERY_0002 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }   
+        }
       })
     });
 
@@ -765,6 +808,7 @@ export default function requestDownloadJSUnit() {
                   try{
                     if(err) {
                       console.error('====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0001 return_err:'+ JSON.stringify(err));
+                      fileio.unlinkSync(downloadConfig.filePath);
                       expect().assertFail();
                       done();
                     }
@@ -773,27 +817,30 @@ export default function requestDownloadJSUnit() {
                       expect(typeof data == "string").assertTrue();
                     } else {
                       console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0001 data_error: " + JSON.stringify(err));
-                      expect().assertFail(); 
+                      expect().assertFail();
                     }
                   }catch(err){
                     console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0001 throw_error: " + JSON.stringify(err));
-                  }    
+                  }
                 });
               }
               if (data1 == data2){
                 downloadTask = null
-                await downloadTask.remove()
+                await downloadTask.remove();
+                fileio.unlinkSync(downloadConfig.filePath);
                 done();
               }
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0001 error: " + JSON.stringify(err));
+              fileio.unlinkSync(downloadConfig.filePath);
               done();
-            }   
-          })          
+            }
+          })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0001 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }       
+        }
       })
     });
 
@@ -817,22 +864,25 @@ export default function requestDownloadJSUnit() {
               if(data1 > 0 && downloadTask != null){
                 let data = await downloadTask.queryMimeType()
                 console.info('====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0002 Download task queryMimeType.');
-                expect(typeof data == "string").assertTrue();   
+                expect(typeof data == "string").assertTrue();
               }
               if(data1 == data2){
                 downloadTask = null
-                await downloadTask.remove()
+                await downloadTask.remove();
+                fileio.unlinkSync(downloadConfig.filePath);
                 done();
               }
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0002 throw_error: " + JSON.stringify(err));
+              fileio.unlinkSync(downloadConfig.filePath);
               done();
-            }            
-          })          
+            }
+          })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_QUERYMINETYPE_0002 error: " + JSON.stringify(err));
+          fileio.unlinkSync(downloadConfig.filePath);
           done();
-        }  
+        }
       })
     });
   })
