@@ -13,7 +13,6 @@
 # limitations under the License.
 import "console"
 import "elf"
-
 rule OpenHarmony_SA_2022_1201
 {
 meta:
