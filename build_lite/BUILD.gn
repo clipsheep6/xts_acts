@@ -53,7 +53,10 @@ lite_component("acts_component") {
         "//test/xts/acts/commonlibrary_lite/file_hal:ActsUtilsFileTest",
         "//test/xts/acts/startup_lite/bootstrap_hal:ActsBootstrapTest",
       ]
-      features += [ "//test/xts/acts/communication_lite/lwip_hal:ActsLwipTest" ]
+      features += [
+        "//test/xts/acts/communication_lite/lwip_hal:ActsLwipTest",
+        "//test/xts/acts/kernel_lite/uniproton_perf_testing:ActsPerfTest",
+      ]
     } else if (ohos_kernel_type == "liteos_a") {
       all_features += [
         "//test/xts/acts/kernel_lite:ActsKernelTest",
