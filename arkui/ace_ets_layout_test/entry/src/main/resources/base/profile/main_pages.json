@@ -9,6 +9,8 @@
         "MainAbility/pages/Flex/alignItems/ItemAlign_Auto/FlexOffset",
         "MainAbility/pages/Flex/alignItems/ItemAlign_Auto/FlexVisibility",
         "MainAbility/pages/Flex/alignItems/ItemAlign_Auto/FlexAlignSelf",
-        "MainAbility/pages/Flex/alignItems/ItemAlign_Auto/FlexTextMargin"
+        "MainAbility/pages/Flex/alignItems/ItemAlign_Auto/FlexTextMargin",
+        "MainAbility/pages/Row/spaceChanged/Row_Space",
+        "MainAbility/pages/Column/spaceChanged/Column_Space"
     ]
 }
