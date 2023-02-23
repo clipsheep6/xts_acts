@@ -16,6 +16,7 @@ import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from "@ohos.bundle";
 import uitest from "@ohos.UiTest";
+import fileio from "@ohos.fileio";
 const presetsCount = {
     ActsMediaLibraryAlbumTest: { albumsCount: 15, assetsCount: 27 },
     ActsMediaLibraryBaseTest: { albumsCount: 11, assetsCount: 14 },
@@ -27,6 +28,7 @@ const presetsCount = {
     ActsMediaLibraryGetThumbnailTest: { albumsCount: 3, assetsCount: 3 },
     ActsMediaLibraryMediafetchoptionsTest: { albumsCount: 3, assetsCount: 8 },
     ActsMediaLibraryTrashJsTest: { albumsCount: 6, assetsCount: 24 },
+    ActsMediaLibraryPendingAJsTest: { albumsCount: 4, assetsCount: 4 },
 };
 
 const IMAGE_TYPE = mediaLibrary.MediaType.IMAGE;
@@ -269,6 +271,12 @@ const MODIFY_ERROR_CODE_01 = "-1000";
 const isNum = function (value) {
     return typeof value === "number" && !isNaN(value);
 };
+async function copyFile(fd1, fd2) {
+    let stat = await fileio.fstat(fd1);
+    let buf = new ArrayBuffer(stat.size);
+    await fileio.read(fd1, buf);
+    await fileio.write(fd2, buf);
+}
 export {
     getPermission,
     IMAGE_TYPE,
@@ -290,4 +298,5 @@ export {
     MODIFY_ERROR_CODE_01,
     isNum,
     fileIdFetchOps,
+    copyFile,
 };

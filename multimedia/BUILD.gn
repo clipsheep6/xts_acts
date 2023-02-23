@@ -61,6 +61,9 @@ group("multimedia") {
       "medialibrary/mediaLibrary_getExiflocation:mediaLibrary_getExifLocation_hap",
       "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
       "medialibrary/mediaLibrary_mediafetchoptions:mediaLibrary_mediafetchoptions_hap",
+      "medialibrary/mediaLibrary_pendingA:mediaLibrary_pending_a_hap",
+      "medialibrary/mediaLibrary_pendingB:mediaLibrary_pending_b_hap",
+      "medialibrary/mediaLibrary_pendingC:mediaLibrary_pending_c_hap",
       "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
     ]
   } else {
