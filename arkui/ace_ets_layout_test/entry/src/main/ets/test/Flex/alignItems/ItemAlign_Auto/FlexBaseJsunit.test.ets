@@ -47,7 +47,7 @@ export default function flexBase_AutoJsunit() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_0100
      * @tc.name      ItemAlign_Auto_FlexBase
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      The subcomponent is inside the parent component.
      */
     it('SUB_ACE_FLEXALIGNITEMS_AUTO_0100', 0, async function (done) {
       console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_0100 START');
@@ -83,7 +83,7 @@ export default function flexBase_AutoJsunit() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_0200
      * @tc.name      ItemAlign_Auto_FlexBase
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      The subcomponent exceeds the parent component.
      */
     it('SUB_ACE_FLEXALIGNITEMS_AUTO_0200', 0, async function (done) {
       console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_0200 START');

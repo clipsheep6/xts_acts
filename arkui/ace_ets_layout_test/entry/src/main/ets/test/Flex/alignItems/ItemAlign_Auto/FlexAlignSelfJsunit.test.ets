@@ -46,12 +46,12 @@ export default function flexAlignSelf_AutoJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1200
+     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1300
      * @tc.name      ItemAlign_Auto_FlexAlignSelf
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      The first subcomponent set ItemAlign.End attribute.
      */
-    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1200', 0, async function (done) {
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1200 START');
+    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1300', 0, async function (done) {
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1300 START');
       let strJson1 = getInspectorByKey('flexAlignSelf');
       let obj1 = JSON.parse(strJson1);
       let strJson2 = getInspectorByKey('textAlignSelf01');
@@ -76,7 +76,7 @@ export default function flexAlignSelf_AutoJsunit() {
       expect(obj1.$attrs.constructor.direction).assertEqual('FlexDirection.Row')
       expect(obj1.$attrs.constructor.alignItems).assertEqual('ItemAlign.Auto')
       expect(obj2.$attrs.alignSelf).assertEqual("ItemAlign.End")
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1200 END');
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1300 END');
       done();
     });
   })

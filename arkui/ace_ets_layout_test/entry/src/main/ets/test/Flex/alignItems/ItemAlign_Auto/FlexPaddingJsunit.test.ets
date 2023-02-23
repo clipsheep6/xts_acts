@@ -48,7 +48,7 @@ export default function flexPadding_AutoJsunit() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_0300
      * @tc.name      ItemAlign_Auto_testFlexPadding
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      Parent component set paddding,subcomponent does not exceed the parent component.
      */
     it('SUB_ACE_FLEXALIGNITEMS_AUTO_0300', 0, async function (done) {
       console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_0300 START');
@@ -60,11 +60,13 @@ export default function flexPadding_AutoJsunit() {
       let textFlexPadding02 = CommonFunc.getComponentRect('textFlexPadding02')
       let textFlexPadding03 = CommonFunc.getComponentRect('textFlexPadding03')
       let flexPadding01 = CommonFunc.getComponentRect('flexPadding01')
+      expect(textFlexPadding01.left - flexPadding01.left).assertEqual(vp2px(10))
+      expect(textFlexPadding01.right).assertEqual(textFlexPadding02.left)
+      expect(textFlexPadding02.right).assertEqual(textFlexPadding03.left)
 
       expect(textFlexPadding01.top).assertEqual(textFlexPadding02.top)
       expect(textFlexPadding02.top).assertEqual(textFlexPadding03.top)
       expect(textFlexPadding01.top - flexPadding01.top).assertEqual(vp2px(10))
-      expect(textFlexPadding03.right).assertLess(flexPadding01.right)
 
       expect(textFlexPadding01.bottom - textFlexPadding01.top).assertEqual(vp2px(50))
       expect(textFlexPadding02.bottom - textFlexPadding02.top).assertEqual(vp2px(100))
@@ -82,7 +84,7 @@ export default function flexPadding_AutoJsunit() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_0400
      * @tc.name      ItemAlign_Auto_FlexPadding
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      Parent component set paddding,subcomponent exceedS the parent component.
      */
     it('SUB_ACE_FLEXALIGNITEMS_AUTO_0400', 0, async function (done) {
       console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_0400 START');
@@ -94,10 +96,13 @@ export default function flexPadding_AutoJsunit() {
       let textFlexPadding02 = CommonFunc.getComponentRect('textFlexPadding02');
       let textFlexPadding03 = CommonFunc.getComponentRect('textFlexPadding03');
       let flexPadding01 = CommonFunc.getComponentRect('flexPadding01');
+      expect(textFlexPadding01.left - flexPadding01.left).assertEqual(vp2px(30))
+      expect(textFlexPadding01.right).assertEqual(textFlexPadding02.left)
+      expect(textFlexPadding02.right).assertEqual(textFlexPadding03.left)
+
       expect(textFlexPadding01.top).assertEqual(textFlexPadding02.top)
       expect(textFlexPadding02.top).assertEqual(textFlexPadding03.top)
       expect(textFlexPadding01.top - flexPadding01.top).assertEqual(vp2px(30))
-      expect(textFlexPadding03.right).assertLess(flexPadding01.right)
       
       expect(textFlexPadding01.bottom - textFlexPadding01.top).assertEqual(vp2px(50))
       expect(textFlexPadding02.bottom - textFlexPadding02.top).assertEqual(vp2px(100))

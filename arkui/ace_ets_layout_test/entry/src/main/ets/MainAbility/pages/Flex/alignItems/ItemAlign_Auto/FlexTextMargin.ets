@@ -54,7 +54,7 @@ struct FlexTextMargin_Auto {
         .height(150)
         .width(500)
         .backgroundColor(0xAFEEEE)
-      }.width('100%')
+      }.width('100%').alignItems(HorizontalAlign.Start)
     }.width('100%')
   }
 }

@@ -45,12 +45,12 @@ export default function flexOffset_AutoJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_0900
+     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1000
      * @tc.name      ItemAlign_Auto_FlexOffset
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      First subcomponent set offset attribute.
      */
-    it('SUB_ACE_FLEXALIGNITEMS_AUTO_0900', 0, async function (done) {
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_0900 START');
+    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1000', 0, async function (done) {
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1000 START');
       let strJson1 = getInspectorByKey('flexOffset');
       let obj1 = JSON.parse(strJson1);
       let textOffset01 = CommonFunc.getComponentRect('textOffset01');
@@ -71,7 +71,7 @@ export default function flexOffset_AutoJsunit() {
       expect(textOffset03.right - textOffset03.left).assertEqual(vp2px(150))
       expect(obj1.$attrs.constructor.direction).assertEqual('FlexDirection.Row')
       expect(obj1.$attrs.constructor.alignItems).assertEqual('ItemAlign.Auto')
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_0900 END');
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1000 END');
       done();
     });
   })
