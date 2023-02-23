@@ -36,7 +36,11 @@ using namespace testing::ext;
 #if defined(__i386__) || defined(__x86_64__)
 const std::string LIB_PATH = const_cast<char*>("./hos/out/hos-arm/clang_x64/devtools/devtools/libmemdataplugin.z.so");
 #else
+#ifdef __aarch64__
+const std::string LIB_PATH = const_cast<char*>("/system/lib64/libmemdataplugin.z.so");
+#else
 const std::string LIB_PATH = const_cast<char*>("/system/lib/libmemdataplugin.z.so");
+#endif
 #endif
 
 namespace {
