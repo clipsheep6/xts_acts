@@ -13,4 +13,8 @@
  * limitations under the License.
  */
 
+require('./BleScanResult.test.js')
 require('./BluetoothOn.test.js')
+require('./BluetoothPair.test.js')
+require('./bluetoothProfileAdd.test.js')
+require('./bluetoothSys.test.js')

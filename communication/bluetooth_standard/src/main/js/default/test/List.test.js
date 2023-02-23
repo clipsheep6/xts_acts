@@ -13,4 +13,10 @@
  * limitations under the License.
  */
 
-require('./Bluetooth.test.js')
+require('./BRSwitch.test.js')
+require('./BRSetLocalName.test.js')
+require('./BRScanMode.test.js')
+require('./BRDiscovery.test.js')
+require('./BRSpp.test.js')
+
+
