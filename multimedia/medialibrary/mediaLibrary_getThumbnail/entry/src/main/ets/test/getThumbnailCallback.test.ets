@@ -176,7 +176,7 @@ export default function getThumbnailCallback(abilityContext) {
                 let asset = await fetchFileResult.getFirstObject();
                 let creatAsset = await media.createAsset(
                     mediaLibrary.MediaType.IMAGE,
-                    '${new Date().getTime()}.jpg',
+                    `${new Date().getTime()}.jpg`,
                     path
                 );
                 const assetFd = await asset.open('rw');
