@@ -51,14 +51,14 @@ export default function getThumbnailPromise(abilityContext) {
 
         function fetchThumbnailOps(id){
             return{
-                selections:fileKeyObj.ID + '= ? AND'+'lcd is not null'+'AND'+'thumbnail is not null',
+                selections:fileKeyObj.ID + '= ? AND '+'lcd is not null'+' AND '+'thumbnail is not null',
                 selectionArgs:[id+''],
             };
         }
 
         function fetchOpsNew(path,type){
             return{
-                selections:fileKeyObj.RELATIVE_PATH + '= ? AND'+fileKeyObj.MEDIA_TYPE + '=?',
+                selections:fileKeyObj.RELATIVE_PATH + '= ? AND '+fileKeyObj.MEDIA_TYPE + '=?',
                 selectionArgs:[path,type.toString()],
                 order:fileKeyObj.DATE_ADDED,
             };
