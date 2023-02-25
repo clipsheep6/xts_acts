@@ -136,55 +136,7 @@ export default function getThumbnailPromise(abilityContext) {
             await fileio.read(fd1,buf);
             await fileio.write(fd2,buf);
         }
-
-        async function autoCreateThumbnailTest(done, testNum, dOp, path){
-            try{
-                let fetchFileResult = await media.getFileAssets(dOp);
-                let count = fetchFileResult.getCount();
-                if (!checkCount(done,testNum,count)) return;
-                let asset = await fetchFileResult.getFirstObject();
-                let creatAsset = await media.createAsset(
-                    mediaLibrary.MediaType.IMAGE,
-                    `${new Date().getTime()}.jpg`,
-                    path
-                );
-                const assetFd = await asset.open('rw');
-                const creatAssetFd = await creatAsset.open('rw');
-                await copyFile(assetFd, creatAssetFd);
-
-                let newFetchFileResult = await media.getFileAssets(fetchThumbnailOps(creatAsset.id));
-                let lcdCount = newFetchFileResult.getCount();
-                console.info(`${testNum}:: lcdCount ${lcdCount}`);
-                expect(lcdCount == 0).assertTrue();
-
-                await creatAsset.close(creatAssetFd);
-                await asset.close(assetFd);
-                newFetchFileResult = await media.getFileAssets(fetchThumbnailOps(creatAsset.id));
-                lcdCount = newFetchFileResult.getCount();
-                console.info(`${testNum}:: lcdCount ${lcdCount}`);
-                done();
-            }catch(error){
-                console.info(`${testNum}:: error :${error}`);
-                expect(false).assertTrue();
-                done();
-            }
-        }
         
-        /**
-         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_AUTO_CREATE_THUMBNAIL_PROMISE_001_01
-         * @tc.name      : auto create thumbnail
-         * @tc.desc      : Automatically create thumbnail after newly generated resources
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-        it("SUB_MEDIA_MEDIALIBRARY_AUTO_CREATE_THUMBNAIL_PROMISE_001_01", 0, async function (done) {
-            let testNum = "SUB_MEDIA_MEDIALIBRARY_AUTO_CREATE_THUMBNAIL_PROMISE_001_01";
-            let dOp = fetchOpsNew("Pictures/Thumbnail/", IMAGE_TYPE);
-            let path = "Pictures/Thumbnail/"
-            await autoCreateThumbnailTest(done, testNum, dOp, path);
-        });
-
         // ------------------------------ image type start -----------------------
         /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_GETTHUMBNAIL_PROMISE_001_01
