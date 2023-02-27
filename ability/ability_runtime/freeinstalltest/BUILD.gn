@@ -38,7 +38,6 @@ group("freeinstalltest") {
       "startabilityforresultfatest/atomizationresultfaentry:AtomizationResultFaEntry",
       "startabilityforresultfatest/faresultmyapplication1:FaResultMyApplication1",
       "startabilityforresultstagetest/actsfreeinstallstartabilityforresultstagetest:ActsFreeInstallStartAbilityForResultStageTest",
-      "startabilityforresultstagetest/actsstartabilityforresultnotargetbundleliststagetest:ActsStartAbilityForResultNoTargetBundleListStageTest",
       "startabilityforresultstagetest/atomizationresultstageentry:AtomizationResultStageEntry",
       "startabilityforresultstagetest/atomizationresultstagehm2:AtomizationResultStageHm2",
       "startabilityforresultstagetest/atomizationresultstagehnm2:AtomizationResultStageHnm2",
