@@ -295,7 +295,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_0700
      * @tc.name media_file_access_test_get_thumbnail_promise_007
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(image) by { width: 1024, height: 1024 }
+     *  getThumbnail(image) by uri is 'notAllowed'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -313,7 +313,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_0800
      * @tc.name media_file_access_test_get_thumbnail_promise_008
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(image) by { width: 1024, height: 1024 }
+     *  getThumbnail(image) by uri is ''
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -331,7 +331,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_0900
      * @tc.name media_file_access_test_get_thumbnail_promise_009
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(image) by { width: 1024, height: 1024 }
+     *  getThumbnail(image) by uri is '/'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -468,7 +468,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_1700
      * @tc.name media_file_access_test_get_thumbnail_promise_017
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(video) by { width: 1024, height: 1024 }
+     *  getThumbnail(video) by uri is 'notAllowed'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -486,7 +486,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_1800
      * @tc.name media_file_access_test_get_thumbnail_promise_018
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(video) by { width: 1024, height: 1024 }
+     *  getThumbnail(video) by uri is ''
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -504,7 +504,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_1900
      * @tc.name media_file_access_test_get_thumbnail_promise_019
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(video) by { width: 1024, height: 1024 }
+     *  getThumbnail(video) by uri is '/'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -641,7 +641,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_2700
      * @tc.name media_file_access_test_get_thumbnail_promise_027
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(audio) by { width: 1024, height: 1024 }
+     *  getThumbnail(audio) by uri is 'notAllowed'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -659,7 +659,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_2800
      * @tc.name media_file_access_test_get_thumbnail_promise_028
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(audio) by { width: 1024, height: 1024 }
+     *  getThumbnail(audio) by uri is ''
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -677,7 +677,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_PROMISE_2900
      * @tc.name media_file_access_test_get_thumbnail_promise_029
      * @tc.desc Test getThumbnail() interfaces, return in promise mode.
-     *  getThumbnail(audio) by { width: 1024, height: 1024 }
+     *  getThumbnail(audio) by uri is '/'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -814,7 +814,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_0700
      * @tc.name media_file_access_test_get_thumbnail_callback_007
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(image) by { width: 1024, height: 1024 }
+     *  getThumbnail(image) by uri is 'notAllowed'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -831,7 +831,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_0800
      * @tc.name media_file_access_test_get_thumbnail_callback_008
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(image) by { width: 1024, height: 1024 }
+     *  getThumbnail(image) by uri is ''
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -848,7 +848,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_0900
      * @tc.name media_file_access_test_get_thumbnail_callback_009
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(image) by { width: 1024, height: 1024 }
+     *  getThumbnail(image) by uri is '/'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -984,7 +984,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_1700
      * @tc.name media_file_access_test_get_thumbnail_callback_017
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(video) by { width: 1024, height: 1024 }
+     *  getThumbnail(video) by uri is 'notAllowed'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -1002,7 +1002,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_1800
      * @tc.name media_file_access_test_get_thumbnail_callback_018
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(video) by { width: 1024, height: 1024 }
+     *  getThumbnail(video) by uri is ''
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -1020,7 +1020,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_1900
      * @tc.name media_file_access_test_get_thumbnail_callback_019
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(video) by { width: 1024, height: 1024 }
+     *  getThumbnail(video) by uri is '/'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -1157,7 +1157,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_2700
      * @tc.name media_file_access_test_get_thumbnail_callback_027
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(audio) by { width: 1024, height: 1024 }
+     *  getThumbnail(audio) by uri is 'notAllowed'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -1175,7 +1175,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_2800
      * @tc.name media_file_access_test_get_thumbnail_callback_028
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(audio) by { width: 1024, height: 1024 }
+     *  getThumbnail(audio) by uri is ''
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -1193,7 +1193,7 @@ export default function getThumbnailTest(helper) {
      * @tc.number SUB_DF_MEDIA_FILE_ACCESS_GET_THUMBNAIL_CALLBACK_2900
      * @tc.name media_file_access_test_get_thumbnail_callback_029
      * @tc.desc Test getThumbnail() interfaces, return in callback mode.
-     *  getThumbnail(audio) by { width: 1024, height: 1024 }
+     *  getThumbnail(audio) by uri is '/'
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
