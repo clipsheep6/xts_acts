@@ -15,7 +15,6 @@
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import helperTestsuite from "../../test/helperTest/List.test"
-import shareTestsuite from '../../test/shareTest/List.test'
 import mediaTestsuite from "../../test/mediaTest/List.test"
 import fileAccess from '@ohos.file.fileAccess'
 import hilog from '@ohos.hilog'
