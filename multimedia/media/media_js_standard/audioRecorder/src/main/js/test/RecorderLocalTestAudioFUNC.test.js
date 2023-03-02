@@ -277,7 +277,7 @@ export default function RecorderLocalTestAudioFUNC() {
     
         /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_CODEC_AAC_0500
-            * @tc.name      : 03.AAC_DifferentSampleRate 32000
+            * @tc.name      : 03.AAC_DifferentSampleRate 16000
             * @tc.desc      : Audio recordr control test
             * @tc.size      : MediumTest
             * @tc.type      : Function
@@ -287,7 +287,7 @@ export default function RecorderLocalTestAudioFUNC() {
             fdObject = await mediaTestBase.getAudioFd('audio_05.m4a');
             fdPath = "fd://" + fdObject.fdNumber.toString();
             audioConfig.uri = fdPath;
-            audioConfig.audioSampleRate = 32000; // samplerate 32000
+            audioConfig.audioSampleRate = 16000; // samplerate 16000
             audioConfig.numberOfChannels = CHANNEL_ONE;
             audioConfig.format = FORMAT_MP4;
             let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig);
@@ -300,7 +300,7 @@ export default function RecorderLocalTestAudioFUNC() {
     
         /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_CODEC_AAC_0600
-            * @tc.name      : 03.AAC_DifferentSampleRate 44100
+            * @tc.name      : 03.AAC_DifferentSampleRate 32000
             * @tc.desc      : Audio recordr control test
             * @tc.size      : MediumTest
             * @tc.type      : Function
@@ -310,7 +310,7 @@ export default function RecorderLocalTestAudioFUNC() {
             fdObject = await mediaTestBase.getAudioFd('audio_06.m4a');
             fdPath = "fd://" + fdObject.fdNumber.toString();
             audioConfig.uri = fdPath;
-            audioConfig.audioSampleRate = 44100; // samplerate 44100
+            audioConfig.audioSampleRate = 32000; // samplerate 44100
             audioConfig.numberOfChannels = CHANNEL_TWO;
             audioConfig.format = FORMAT_MP4;
             let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig);
@@ -323,7 +323,7 @@ export default function RecorderLocalTestAudioFUNC() {
     
         /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_CODEC_AAC_0700
-            * @tc.name      : 03.AAC_DifferentSampleRate 64000
+            * @tc.name      : 03.AAC_DifferentSampleRate 44100
             * @tc.desc      : Audio recordr control test
             * @tc.size      : MediumTest
             * @tc.type      : Function
@@ -333,7 +333,7 @@ export default function RecorderLocalTestAudioFUNC() {
             fdObject = await mediaTestBase.getAudioFd('audio_07.m4a');
             fdPath = "fd://" + fdObject.fdNumber.toString();
             audioConfig.uri = fdPath;
-            audioConfig.audioSampleRate = 64000; // samplerate 64000
+            audioConfig.audioSampleRate = 44100; // samplerate 44100
             audioConfig.numberOfChannels = CHANNEL_ONE;
             audioConfig.format = FORMAT_M4A;
             let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig);
@@ -346,7 +346,7 @@ export default function RecorderLocalTestAudioFUNC() {
     
         /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_AUDIO_RECORDER_CODEC_AAC_0800
-            * @tc.name      : 03.AAC_DifferentSampleRate 96000
+            * @tc.name      : 03.AAC_DifferentSampleRate 48000
             * @tc.desc      : Audio recordr control test
             * @tc.size      : MediumTest
             * @tc.type      : Function
@@ -356,7 +356,7 @@ export default function RecorderLocalTestAudioFUNC() {
             fdObject = await mediaTestBase.getAudioFd('audio_08.m4a');
             fdPath = "fd://" + fdObject.fdNumber.toString();
             audioConfig.uri = fdPath;
-            audioConfig.audioSampleRate = 96000; // samplerate 96000
+            audioConfig.audioSampleRate = 48000; // samplerate 48000
             audioConfig.numberOfChannels = CHANNEL_TWO;
             audioConfig.format = FORMAT_M4A;
             let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig);
