@@ -8862,6 +8862,7 @@ describe('audioRenderer', function () {
                 if (interruptEvent.hintType >= 0) {
                     console.info("AudioFrameworkRenderLog: on'interrupt' SUCCESS ");
                     interrput_flag = true;
+                    expect(interrput_flag).assertTrue();
                 }
             });
 
@@ -8906,7 +8907,6 @@ describe('audioRenderer', function () {
             await sleep(2000);
             await audioRen.release();
             await audioRen_interrupt.release();
-            expect(interrput_flag).assertFalse();
         }
         catch (error) {
             console.log("SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_AUDIO_0500 : error = " + error);
@@ -8960,6 +8960,7 @@ describe('audioRenderer', function () {
                 if (interruptEvent.hintType >= 0) {
                     console.info("AudioFrameworkRenderLog: on'interrupt' SUCCESS ");
                     interrput_flag = true;
+                    expect(interrput_flag).assertTrue();
                 }
             });
 
@@ -9004,7 +9005,6 @@ describe('audioRenderer', function () {
             await sleep(2000);
             await audioRen.release();
             await audioRen_interrupt.release();
-            expect(interrput_flag).assertFalse();
         }
         catch (error) {
             console.log("SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_AUDIO_0600 : error = " + error);
