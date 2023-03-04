@@ -827,5 +827,64 @@ export default function abilityTest() {
       });
       console.info("---------------Multihap_LifecycleTest_011 is end---------------")
     })
+    
+    /*
+     * @tc.number  Multihap_LifecycleTest_009
+     * @tc.name    Ability1 of HAP A listens to the lifecycle callback of ability2 of HAP B.
+                    during the listening process, ability1 is destroyed
+     * @tc.desc    Function test
+     * @tc.level   0
+     */
+    it("Multihap_LifecycleTest_009", 0, async function (done) {
+      console.log("------------Multihap_LifecycleTest_009 start-------------");
+      TAG = "Multihap_LifecycleTest_009";
+      listKeyTemp = [];
+
+      await sleep(1000);
+      globalThis.abilityContext.startAbility({
+        bundleName: "com.example.lifecycletest",
+        abilityName: "MainAbility5"
+      }, (error, data) => {
+        console.log(TAG + ": MainAbility5 startAbility success, err: " + JSON.stringify(error) +
+        ",data: " + JSON.stringify(data));
+      });
+
+      await sleep(4000);
+      globalThis.abilityContext.startAbility({
+        bundleName: "com.example.lifecycletest",
+        abilityName: "Hap2MainAbility6"
+      }, (error, data) => {
+        setTimeout(() => {
+          console.log(TAG + ": Hap2MainAbility6 startAbility success, err: " +
+          JSON.stringify(error) + ",data: " + JSON.stringify(data));
+
+          console.log(TAG + "mainAbility5ListKey " +  globalThis.mainAbility5ListKey)
+          console.log(TAG + "mainAbility5ListKey.length " +  globalThis.mainAbility5ListKey.length)
+
+          for(var i = 0;i<globalThis.mainAbility5ListKey.length;i++){
+            if(globalThis.mainAbility5ListKey[i].substring(0,16)=="Hap2MainAbility6"){
+              listKeyTemp.push(globalThis.mainAbility5ListKey[i]);
+            }
+          }
+          console.log(TAG + "listKeyTemp is :" + listKeyTemp);
+          console.log(TAG + "globalThis.mainAbility5CallBackId is :" + globalThis.mainAbility5CallBackId);
+          expect(listKeyTemp[0]).assertEqual("Hap2MainAbility6 onAbilityCreate");
+          expect(listKeyTemp[1]).assertEqual("Hap2MainAbility6 onWindowStageCreate");
+          expect(listKeyTemp[2]).assertEqual("Hap2MainAbility6 onAbilityForeground");
+          expect(listKeyTemp[3]).assertEqual("Hap2MainAbility6 onAbilityBackground");
+          expect(listKeyTemp[4]).assertEqual("Hap2MainAbility6 onWindowStageDestroy");
+          expect(listKeyTemp[5]).assertEqual("Hap2MainAbility6 onAbilityDestroy");
+
+          globalThis.ApplicationContext5
+            .unregisterAbilityLifecycleCallback(globalThis.mainAbility5CallBackId, (error, data) => {
+              console.log(TAG + ": unregisterAbilityLifecycleCallback, err: " + JSON.stringify(error) +
+              ",data: " + JSON.stringify(data));
+              expect(error.code).assertEqual(0);
+              done()
+            });
+        }, 5000)
+      });
+      console.log("------------Multihap_LifecycleTest_009 end-------------");
+    });
   })
 }
