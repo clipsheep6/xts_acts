@@ -15,7 +15,7 @@
 import "console"
 import "elf"
 
-rule openharmony
+rule OpenHarmony_SA_2022_1206
 {
  meta:
    date="2023-01-13"
