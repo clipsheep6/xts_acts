@@ -15,9 +15,11 @@
  import Telephony_NETSTACK_HTTPTest from './NetworkManagerHttp.test.js';
  import Http2Test from './Http2Test.js';
  import HttpCacheTest from './HttpCacheTest.js';
+ import HttpRequest2JsunitTest from './HttpRequest2JsunitTest.js';
 
  export default function testsuite() {
    HttpCacheTest(); 
    Telephony_NETSTACK_HTTPTest();
-    Http2Test();    
+    Http2Test();
+     HttpRequest2JsunitTest();
  }
