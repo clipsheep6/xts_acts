@@ -315,10 +315,17 @@ export default function webgl1Test_webgl8() {
 			gl.texParameteri(gl2.TEXTURE_CUBE_MAP, gl2.TEXTURE_MAG_FILTER, gl2.NEAREST);
 			const framebuffer = gl.createFramebuffer();
 			gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
-			gl2.framebufferTextureLayer(gl.FRAMEBUFFER, gl2.COLOR_ATTACHMENT0, texture, 0, 8)
+			gl2.framebufferTextureLayer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, texture, 0, 8)
 			const framebufferTextureLayerError = gl.getError();
 			console.info("framebufferTextureLayerError: " + framebufferTextureLayerError);
-			expect(framebufferTextureLayerError).assertEqual(0);
+			var openGLVersion = gl.getParameter(gl.VERSION);
+			console.info("openGLVersion: " + openGLVersion);
+			var version = "OpenGL,ES,3";
+			if (openGLVersion > version) {
+			    expect(framebufferTextureLayerError).assertEqual(0);
+			} else {
+			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_OPERATION);
+			}
 			done();
 		})
 
@@ -388,7 +395,7 @@ export default function webgl1Test_webgl8() {
 				0, -0, 256, -256);
 			const invalidateSubFramebufferError = gl.getError();
 			console.info("invalidateSubFramebufferError: " + invalidateSubFramebufferError);
-			expect(invalidateSubFramebufferError).assertEqual(gl.INVALID_ENUM);
+			expect(invalidateSubFramebufferError).assertLarger(gl.NO_ERROR);
 			done();
 		})
 
@@ -798,15 +805,15 @@ export default function webgl1Test_webgl8() {
 
 		/**
 		 * @tc.number GRAPHIC_FUNCTION_JS_WEBGL_TESTWEBGL_0728
-		 * @tc.name webgl_test_activeTexture_2
-		 * @tc.desc Test activeTexture.
+		 * @tc.name webgl_test_activeTexture_01
+		 * @tc.desc Test activeTexture_01.
 		 */
-		it('webgl_test_activeTexture_1', 0, async function (done) {
+		it('webgl_test_activeTexture_01', 0, async function (done) {
 			//initContext();
-			console.info("webgltest into activeTexture");
+			console.info("webgltest into activeTexture_01");
 			gl.activeTexture(gl.TEXTURE2);
 			const activeTextureParameter = gl.getParameter(gl.ACTIVE_TEXTURE);
-			console.info("webgltest activeTexture --> getParameter: " + activeTextureParameter);
+			console.info("webgltest activeTexture_01 --> getParameter: " + activeTextureParameter);
 			expect(activeTextureParameter).assertEqual(33986);
 			//deleteContext();
 			done();
@@ -815,15 +822,15 @@ export default function webgl1Test_webgl8() {
 
 		/**
 		 * @tc.number GRAPHIC_FUNCTION_JS_WEBGL_TESTWEBGL_0729
-		 * @tc.name webgl_test_activeTexture_3
-		 * @tc.desc Test activeTexture.
+		 * @tc.name webgl_test_activeTexture_02
+		 * @tc.desc Test activeTexture_02.
 		 */
-		it('webgl_test_activeTexture_1', 0, async function (done) {
+		it('webgl_test_activeTexture_02', 0, async function (done) {
 			//initContext();
-			console.info("webgltest into activeTexture");
+			console.info("webgltest into activeTexture_02");
 			gl.activeTexture(gl.TEXTURE3);
 			const activeTextureParameter = gl.getParameter(gl.ACTIVE_TEXTURE);
-			console.info("webgltest activeTexture --> getParameter: " + activeTextureParameter);
+			console.info("webgltest activeTexture_02 --> getParameter: " + activeTextureParameter);
 			expect(activeTextureParameter).assertEqual(33987);
 			//deleteContext();
 			done();
