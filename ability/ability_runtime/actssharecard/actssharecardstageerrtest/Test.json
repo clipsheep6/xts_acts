@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actssharepermissionerrtest",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout":"5000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "setenforce 0",
+                "power-shell setmode 602",
+                "param set persist.ace.testmode.enabled 1",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsShareCardStageTest.hap",
+                "ActsShareCardStageErrTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+
