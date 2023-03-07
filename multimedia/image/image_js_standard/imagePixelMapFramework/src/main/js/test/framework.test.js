@@ -88,6 +88,9 @@ describe('imagePixelMapFramework', function () {
         await pixelMap.readPixelsToBuffer(readBuffer);
         var bufferArr2 = new Uint8Array(readBuffer);
         for (var i = 0; i < bufferArr2.length; i++) {
+            logger.log(`renhw pixel[${i}] current[${bufferArr2[i]}] target[${data[i]}]`);
+        }
+        for (var i = 0; i < bufferArr2.length; i++) {
             if (bufferArr2[i] != data[i]) {
                 logger.log(`pixel[${i}] current[${bufferArr2[i]}] target[${data[i]}]`);
                 expect(false).assertTrue();
