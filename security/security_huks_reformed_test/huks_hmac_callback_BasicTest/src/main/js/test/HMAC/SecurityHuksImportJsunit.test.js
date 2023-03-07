@@ -1205,7 +1205,7 @@ export function SecurityHuksImportJsunit() {
                         })
                         .catch(err => {
                             console.error(`callback: generateKeyItem failed, code: ${err.code}, msg: ${err.message}`);
-                            expect(err.code == 401).assertTrue();
+                            expect(err.code == 12000003).assertTrue();
                         })
                 } catch (err) {
                     console.error(`callback: generateKeyItem invalid, code: ${err.code}, msg: ${err.message}`);
