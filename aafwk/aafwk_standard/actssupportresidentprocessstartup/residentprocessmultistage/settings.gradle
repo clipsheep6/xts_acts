@@ -1,0 +1,1 @@
+include ':residentprocesssecondstage', ':residentprocessfirststage', ':residentprocessthirdstage'
