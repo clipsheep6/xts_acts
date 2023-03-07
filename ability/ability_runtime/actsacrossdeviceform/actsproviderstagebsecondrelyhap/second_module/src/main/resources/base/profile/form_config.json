@@ -1,0 +1,24 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "description": "StageB second module widget.",
+      "src": "./js/widget/pages/index/index",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "dark",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "12:30",
+      "updateDuration": 2,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "formConfigAbility": "ability://com.across_devices_form.provider_stage_b/second_module/MainAbility",
+      "continuableType": "coordinated"
+    }
+  ]
+}

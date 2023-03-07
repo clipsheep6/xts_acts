@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "ACTSInAppCardRouterEventFATest"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "ProviderFA"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "form_SecondForm_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_SecondForm_label",
+      "value": "form_label"
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "com.across_devices_form.provider_fa",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "icon": "$media:icon",
+    "label": "$string:app_name",
+    "description" : "$string:description_application",
+    "distributedNotificationEnabled": true,
+    "keepAlive" : true,
+    "apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "phone",
+      "tablet"
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "srcPath": "FormAbility",
+        "name": "FormAbility",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:form_FormAbility_desc",
+        "formsEnabled": true,
+        "label": "$string:form_FormAbility_label",
+        "type": "service",
+        "forms": [
+          {
+            "jsComponentName": "widget",
+            "isDefault": true,
+            "scheduledUpdateTime": "13:30",
+            "defaultDimension": "2*2",
+            "formVisibleNotify": true,
+            "name": "widget",
+            "description": "fa entry module widget.",
+            "colorMode": "light",
+            "type": "JS",
+            "supportDimensions": [
+              "2*2"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 4,
+            "continuableType": "coordinated"
+          },
+          {
+            "jsComponentName": "form_second_widget",
+            "isDefault": false,
+            "scheduledUpdateTime": "14:30",
+            "defaultDimension": "2*2",
+            "formVisibleNotify": false,
+            "name": "form_second_widget",
+            "description": "fa entry module second widget in FormAbility.",
+            "colorMode": "dark",
+            "type": "JS",
+            "supportDimensions": [
+              "1*2",
+              "2*2"
+            ],
+            "updateEnabled": false,
+            "updateDuration": 5
+          }
+        ]
+      },
+      {
+        "srcPath": "SecondForm",
+        "name": "SecondForm",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:form_SecondForm_desc",
+        "formsEnabled": true,
+        "label": "$string:form_SecondForm_label",
+        "type": "service",
+        "forms": [
+          {
+            "jsComponentName": "second_widget",
+            "isDefault": false,
+            "scheduledUpdateTime": "15:30",
+            "defaultDimension": "2*2",
+            "formVisibleNotify": true,
+            "name": "second_widget",
+            "description": "fa entry module second widget in SecondForm.",
+            "colorMode": "auto",
+            "type": "JS",
+            "supportDimensions": [
+              "2*2",
+              "2*4"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 6,
+            "continuableType": "coordinated"
+          }
+        ]
+      }
+    ],
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "com.example.entry",
+    "srcPath": "",
+    "name": ".entry",
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "widget",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "second_widget",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "form_second_widget",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
+      },
+      {
+        "name": "ohos.permission.REMOVE_CACHE_FILES"
+      },
+      {
+        "name": "ohos.permission.LISTEN_BUNDLE_CHANGE"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.REQUIRE_FORM"
+      }
+    ]
+  }
+}
