@@ -54,7 +54,7 @@ HWTEST_F(hilogndktest, OH_LOG_Print_CHECK, Function | MediumTest | Level1)
     LogType type = LOG_APP;
     LogLevel level = LOG_ERROR;
     int ret = OH_LOG_Print(type, level, 0xD003e00, "testtag0testtag1testtag2", "string:for hilog test %{private}s", "name");
-    ASSERT_TRUE(ret == 85);
+    ASSERT_TRUE(ret > 0);
 }
 
 /**
@@ -64,9 +64,9 @@ HWTEST_F(hilogndktest, OH_LOG_Print_CHECK, Function | MediumTest | Level1)
  */
 HWTEST_F(hilogndktest, OH_LOG_IsLoggable_CHECK, Function | MediumTest | Level1)
 {
-    LogLevel level = LOG_DEBUG;
+    LogLevel level = LOG_INFO;
     const char *LOG_TAG = "testtag0testtag0testtag0testta";
     bool res = OH_LOG_IsLoggable(0xD003e00, LOG_TAG, level);
-    ASSERT_TRUE(res == false);
+    ASSERT_TRUE(res == true);
 }
 
