@@ -25,13 +25,13 @@
         {
             "type": "PushKit",
             "push": [
-                "ActsUserauthTest.hap->/data/test/ActsUserauthTest.hap"
+                "ActsUserauthTest.hap->/data/local/tmp/xts-test/ActsUserauthTest.hap"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
-                "chmod 644 /data/test/*.hap",
+                "chmod 777 /data/local/tmp",
                 "chmod 777 -R data"
             ]
         }

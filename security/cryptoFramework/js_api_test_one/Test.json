@@ -21,12 +21,12 @@
     {
       "type": "PushKit",
       "push": [
-        "ActsCryptoFrameworkJSNormalTest.hap->/data/test/ActsCryptoFrameworkJSNormalTest.hap"
+        "ActsCryptoFrameworkJSNormalTest.hap->/data/local/tmp/xts-test/ActsCryptoFrameworkJSNormalTest.hap"
       ]
     },
     {
       "type": "ShellKit",
-      "run-command": ["chmod 644 /data/test/*.hap", "chmod 777 -R data"]
+      "run-command": ["chmod 777 /data/local/tmp"]
     }
   ]
 }
