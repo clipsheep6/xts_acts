@@ -1,0 +1,15 @@
+{
+    "data": {
+        "imageSrc": "/common/share.png",
+        "location": "浑南MessageB(Stage)",
+        "temperature": "0",
+        "time": "00:00:00"
+    },
+    "actions": {
+        "messageEvent": {
+            "action": "message",
+            "params": {
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actsinappcardforcerefresh",
+        "module-name": "entry",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell setmode 602",
+                "param set persist.ace.testmode.enabled 1",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsInAppCardForceRefreshStageEntryTest.hap",
+                "ActsInAppCardForceRefreshStageFeatureRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

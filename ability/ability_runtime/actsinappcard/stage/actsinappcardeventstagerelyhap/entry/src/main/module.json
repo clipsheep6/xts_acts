@@ -1,0 +1,143 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "launchType": "standard",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility1",
+        "srcEntrance": "./ets/MainAbility1/MainAbility1.ts",
+        "description": "$string:MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility1_label",
+        "visible": true,
+        "launchType": "standard"
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntrance": "./ets/MainAbility2/MainAbility2.ts",
+        "description": "$string:MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility2_label",
+        "visible": true,
+        "launchType": "standard"
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
+        "description": "$string:MainAbility3_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility3_label",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      {
+        "name": "MainAbility4",
+        "srcEntrance": "./ets/MainAbility4/MainAbility4.ts",
+        "description": "$string:MainAbility4_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility4_label",
+        "visible": true
+      },
+      {
+        "name": "MainAbility5",
+        "srcEntrance": "./ets/MainAbility5/MainAbility5.ts",
+        "description": "$string:MainAbility5_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility5_label",
+        "visible": true
+      },
+      {
+        "name": "MainAbility6",
+        "srcEntrance": "./ets/MainAbility6/MainAbility6.ts",
+        "description": "$string:MainAbility6_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility6_label",
+        "visible": true
+      },
+      {
+        "name": "MainAbility7",
+        "srcEntrance": "./ets/MainAbility7/MainAbility7.ts",
+        "description": "$string:MainAbility7_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility7_label",
+        "visible": true
+      },
+      {
+        "name": "MainAbility8",
+        "srcEntrance": "./ets/MainAbility8/MainAbility8.ts",
+        "description": "$string:MainAbility8_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility8_label"
+      },
+      {
+        "name": "MainAbility9",
+        "srcEntrance": "./ets/MainAbility9/MainAbility9.ts",
+        "description": "$string:MainAbility9_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility9_label"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "FormAbility",
+        "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+        "label": "$string:form_FormAbility_label",
+        "description": "$string:form_FormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.REQUIRE_FORM"
+      },
+      {
+        "name":"ohos.permission.START_INVISIBLE_ABILITY"
+      },
+      {
+        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

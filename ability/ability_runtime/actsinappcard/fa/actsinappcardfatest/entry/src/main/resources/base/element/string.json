@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "app_name",
+      "value": "InAppLoadCardFA"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "description_TestAbility",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_TestAbility",
+      "value": "entry_TestAbility"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "FormAbility_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}

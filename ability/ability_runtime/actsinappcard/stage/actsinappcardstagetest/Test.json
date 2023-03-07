@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actsinappcardstage",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout":"10000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell setmode 602",
+                "param set persist.ace.testmode.enabled 1",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsInAppCardLoadErr.hap->/data/app/ActsInAppCardLoadErr.hap",
+                "ActsInAppCardLoadErrA.hap->/data/app/ActsInAppCardLoadErrA.hap"
+            ]
+        },
+		{
+            "test-file-name": [
+                "ActsInAppCardStageTest.hap",
+                "ActsInAppCardLoadStageRelyHap.hap",
+                "ActsInAppCardLoadErr.hap",
+                "ActsInAppCardEventStageRelyHap.hap",
+                "ActsInAppCardLinkageStageRelyHap.hap",
+                "ActsInAppCardLinkageStageA.hap",
+                "ActsInAppCardLinkageStageB.hap",
+                "ActsInAppCardActiveRefreshStageRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

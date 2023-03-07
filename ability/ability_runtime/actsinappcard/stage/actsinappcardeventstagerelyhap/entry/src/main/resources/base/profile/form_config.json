@@ -1,0 +1,224 @@
+{
+  "forms": [
+    {
+      "isDefault": true,
+      "src": "./js/widget/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget1/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget1",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget2/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget2",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget3/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget3",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget4/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget4",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget5/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget5",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget6/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget6",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget7/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget7",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget8/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget8",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": true,
+      "src": "./js/widget9/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "widget9",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    }
+  ]
+}

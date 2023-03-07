@@ -1,0 +1,23 @@
+{
+  "forms": [
+    {
+      "name": "stage_widget",
+      "description": "This is a stage service widget.",
+      "src": "./js/stage_widget/pages/index/index",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "formConfigAbility": "ability://xxxxx"
+    }
+  ]
+}

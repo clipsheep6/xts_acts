@@ -1,0 +1,16 @@
+{
+    "data": {
+        "imageSrc": "/common/share.png",
+        "location": "浑南Message(FA)",
+        "temperature": "0",
+        "time": "00:00:00"
+    },
+    "actions": {
+        "messageEvent": {
+            "action": "message",
+            "params": {
+                "message": "MessageEvent_0100"
+            }
+        }
+    }
+}
