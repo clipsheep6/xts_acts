@@ -316,7 +316,7 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = UiDriver.create()
             await driver.delayMs(waitUiReadyMs)
-            let savePath = '/data/local/tmp/1.png'
+            let savePath = '/data/storage/el2/base/cache/1.png'
             let success = await driver.screenCap(savePath)
             expect(success == true).assertTrue()
             await stopApplication('com.uitestScene.acts')
@@ -851,7 +851,7 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
-            let savePath = '/data/local/tmp/1.png'
+            let savePath = '/data/storage/el2/base/cache/1.png'
             let success = await driver.screenCap(savePath)
             expect(success == true).assertTrue()
             await stopApplication('com.uitestScene.acts')
