@@ -1918,7 +1918,6 @@ describe('audioRenderer', function () {
                 console.info("AudioFrameworkRenderLog: InterruptHint : " + interruptEvent.hintType);
                 if (interruptEvent.hintType >= 0) {
                     console.info("AudioFrameworkRenderLog: on'audioInterrupt' SUCCESS ");
-                    interrput_flag = true;
                 }
             });
 
@@ -2016,7 +2015,6 @@ describe('audioRenderer', function () {
                 console.info("AudioFrameworkRenderLog: InterruptHint : " + interruptEvent.hintType);
                 if (interruptEvent.hintType >= 0) {
                     console.info("AudioFrameworkRenderLog: on'audioInterrupt' SUCCESS ");
-                    interrput_flag = true;
                 }
             });
 
