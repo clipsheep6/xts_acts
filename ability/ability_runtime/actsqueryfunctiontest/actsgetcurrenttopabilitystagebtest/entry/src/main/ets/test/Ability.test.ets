@@ -36,7 +36,8 @@ export default function abilityTest() {
         /**
          *@tc.number: ACTS_GetCurrentTopAbility_0200
          *@tc.name: Verify the interface for obtaining the Ability of the foreground
-         *@tc.desc:Start PageAbility2,Ability1 to be tested in turn, and get the current foreground Ability (AsyncCallback)
+         *@tc.desc:Start PageAbility2,Ability1 to be tested in turn, 
+         * and get the current foreground Ability (AsyncCallback)
          */
         it('ACTS_GetCurrentTopAbility_0200', 0, async function (done) {
             console.log("ACTS_GetCurrentTopAbility_0200 --- start")
@@ -46,7 +47,8 @@ export default function abilityTest() {
             var AbilityDelegator=await abilityDelegatorRegistry.getAbilityDelegator();
 
             function SubscribeCallBack(err, data) {
-                console.debug("ACTS_GetCurrentTopAbility_0200====>Subscribe CallBack data:====>" + JSON.stringify(data));
+                console.debug("ACTS_GetCurrentTopAbility_0200====>Subscribe CallBack data:====>" 
+                + JSON.stringify(data));
                 expect(data.event == 'GetCurrentTopAbility').assertTrue();
                 if (data.event == 'GetCurrentTopAbility') {
                     AbilityDelegator.getCurrentTopAbility((err,data) => {
@@ -103,7 +105,8 @@ export default function abilityTest() {
             var AbilityDelegator=await abilityDelegatorRegistry.getAbilityDelegator();
 
             function SubscribeCallBack(err, data) {
-                console.debug("ACTS_GetCurrentTopAbility_0500====>Subscribe CallBack data:====>" + JSON.stringify(data));
+                console.debug("ACTS_GetCurrentTopAbility_0500====>Subscribe CallBack data:====>" 
+                + JSON.stringify(data));
                 expect(data.event == 'GetCurrentTopAbility').assertTrue();
                 if (data.event == 'GetCurrentTopAbility') {
                     AbilityDelegator.getCurrentTopAbility().then((data) => {

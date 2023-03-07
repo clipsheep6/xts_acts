@@ -33,7 +33,8 @@ export default function abilityTest() {
             function onAbilityForegroundCallback2(){
                 console.debug("====>onAbilityForegroundCallback2====");
                 abilityDelegator.getCurrentTopAbility((err, data)=>{
-                    console.debug("====>getCurrentTopAbility_0200 err:" + JSON.stringify(err) + " data:" + JSON.stringify(data));
+                    console.debug("====>getCurrentTopAbility_0200 err:" 
+                    + JSON.stringify(err) + " data:" + JSON.stringify(data));
                     ability = data;
                     abilityDelegator.doAbilityBackground(ability, (err)=>{
                         console.debug("====>doAbilityBackground_0200 data:" + JSON.stringify(err));
@@ -91,7 +92,8 @@ export default function abilityTest() {
             function onAbilityForegroundCallback3(){
                 console.debug("====>onAbilityForegroundCallback3====");
                 abilityDelegator.getCurrentTopAbility((err, data)=>{
-                    console.debug("====>getCurrentTopAbility_0300 err:" + JSON.stringify(err) + "data:" + JSON.stringify(data));
+                    console.debug("====>getCurrentTopAbility_0300 err:" 
+                    + JSON.stringify(err) + "data:" + JSON.stringify(data));
                     ability = data;
                     var state = abilityDelegator.getAbilityState(ability);
                     console.debug("====>ACTS_GetAbilityState_0300 state:" + state);
@@ -157,7 +159,8 @@ export default function abilityTest() {
             function onAbilityForegroundCallback6(){
                 console.debug("====>onAbilityForegroundCallback6====");
                 abilityDelegator.getCurrentTopAbility((err, data)=>{
-                    console.debug("====>getCurrentTopAbility_0600 err:" + JSON.stringify(err) + "data:" + JSON.stringify(data));
+                    console.debug("====>getCurrentTopAbility_0600 err:" 
+                    + JSON.stringify(err) + "data:" + JSON.stringify(data));
                     ability = data;
                     globalThis.ability4Context.terminateSelf();
                 })

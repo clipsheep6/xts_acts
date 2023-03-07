@@ -52,6 +52,7 @@ group("ability_runtime") {
       "newwant:newwant",
       "non_concurrent:non_concurrent",
       "stage:stage",
+      "testapi:ActstestapiTest",
       "want:want",
       "workercontextcover:workercontextcover",
     ]

@@ -35,7 +35,8 @@ export default function abilityTest() {
         /**
          *@tc.number: ACTS_GetCurrentTopAbility_0100
          *@tc.name: Verify the interface for obtaining the Ability of the foreground
-         *@tc.desc:Start PageAbility1,Ability2 to be tested in turn, and get the current foreground Ability (AsyncCallback)
+         *@tc.desc:Start PageAbility1,Ability2 to be tested in turn, 
+         * and get the current foreground Ability (AsyncCallback)
          */
         it('ACTS_GetCurrentTopAbility_0100', 0, async function (done) {
             console.log("ACTS_GetCurrentTopAbility_0100 --- start");
@@ -96,6 +97,195 @@ export default function abilityTest() {
                     expect().assertFail();
                 }
                 console.debug("ACTS_GetCurrentTopAbility_0100 - timeout");
+            }, START_ABILITY_TIMEOUT);
+        })
+
+         /**
+         *@tc.number: ACTS_GetCurrentTopAbility_0300
+         *@tc.name: Verify the interface for obtaining the Ability of the foreground
+         *@tc.desc:Start PageAbility1,Ability2 to be tested in turn, 
+         * schedule both the started abilities to the background,
+         * and get the current foreground Ability (AsyncCallback)
+         */
+         it('ACTS_GetCurrentTopAbility_0300', 0, async function (done) {
+            console.log("ACTS_GetCurrentTopAbility_0300 --- start");
+            var flag = true;
+            var Subscriber;
+            var AbilityDelegator = await abilityDelegatorRegistry.getAbilityDelegator();
+            var abilityB;
+
+            function SubscribeCallBack(err, data) {
+                console.debug("ACTS_GetCurrentTopAbility_0300====>Subscribe CallBack data:====>" 
+                + JSON.stringify(data));
+                expect(data.event == 'GetCurrentTopAbilityB').assertTrue();
+                if (data.event == 'GetCurrentTopAbilityB') {
+                    AbilityDelegator.doAbilityForeground(abilityB).then((data) => {
+                        console.debug("ACTS_GetCurrentTopAbility_0300====>ability to top====>" + data);
+                        if (data == true) {
+                            AbilityDelegator.getCurrentTopAbility((err, data) => {
+                                console.debug("====>thisTopAbility_0300====>err====>" + err)
+                                console.debug("====>thisTopAbility_0300====>want====>" 
+                                + JSON.stringify(data.lastRequestWant))
+                                if (data.lastRequestWant.abilityName != "Ability1" &&
+                                data.lastRequestWant.abilityName != "Ability2") {
+                                    console.debug("ACTS_GetCurrentTopAbility_0300====>true====>"
+                                    + JSON.stringify(data.lastRequestWant.abilityName));
+                                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback)
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+
+            function UnSubscribeCallback() {
+                flag = false
+                console.debug("ACTS_GetCurrentTopAbility_0300====>UnSubscribe CallBack====>");
+                globalThis.ability2Context.terminateSelf();
+                globalThis.ability3Context.terminateSelf();
+                done();
+            }
+
+            Subscriber = await commonEvent.createSubscriber(subscriberInfo_MainAbility2);
+            console.debug("ACTS_GetCurrentTopAbility_0300====>Create Subscriber====>");
+            commonEvent.subscribe(Subscriber, SubscribeCallBack);
+
+            abilityB = await AbilityDelegator.getCurrentTopAbility()
+
+            await globalThis.abilityContext.startAbility(
+                {
+                    bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
+                    abilityName: 'Ability1'
+                })
+            setTimeout(() => {
+                if (flag == true) {
+                    console.debug("====>0300====>end====>flag" + flag);
+                    console.debug("in ACTS_GetCurrentTopAbility_0300 - timeout");
+                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+                    expect().assertFail();
+                }
+                console.debug("ACTS_GetCurrentTopAbility_0300 - timeout");
+            }, START_ABILITY_TIMEOUT);
+        })
+
+        /**
+         *@tc.number: ACTS_GetCurrentTopAbility_0400
+         *@tc.name: Verify the interface for obtaining the Ability of the foreground
+         *@tc.desc:PageAbility1,Ability2 to be tested in turn, and get the current foreground Ability (Promise)
+         */
+        it('ACTS_GetCurrentTopAbility_0400', 0, async function (done) {
+            console.log("ACTS_GetCurrentTopAbility_0400 --- start")
+            var flag = true;
+            var Subscriber;
+            var AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+
+            function SubscribeCallBack(err, data) {
+                console.debug("ACTS_GetCurrentTopAbility_0400====>Subscribe CallBack data:====>" 
+                + JSON.stringify(data));
+                expect(data.event == 'GetCurrentTopAbilityB').assertTrue();
+                if (data.event == 'GetCurrentTopAbilityB') {
+                    AbilityDelegator.getCurrentTopAbility().then((data) => {
+                        console.debug("====>thisTopAbility====>" + JSON.stringify(data.lastRequestWant));
+                        console.debug("====>start startAbility====>");
+                        if (data.lastRequestWant.abilityName == 'Ability2') {
+                            console.debug("====>0400====>flag" + flag);
+                            commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+                        }
+                    })
+                }
+            }
+
+            commonEvent.createSubscriber(subscriberInfo_MainAbility2).then(async (data) => {
+                console.debug("ACTS_GetCurrentTopAbility_0400====>Create Subscriber====>");
+                Subscriber = data;
+                await commonEvent.subscribe(Subscriber, SubscribeCallBack);
+                await globalThis.abilityContext.startAbility(
+                    {
+                        bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
+                        abilityName: 'Ability1'
+                    })
+            })
+
+            function UnSubscribeCallback() {
+                flag = false
+                console.debug("ACTS_GetCurrentTopAbility_0400====>UnSubscribe CallBack====>");
+                globalThis.ability2Context.terminateSelf();
+                globalThis.ability3Context.terminateSelf();
+                done();
+            }
+            setTimeout(() => {
+                if (flag == true) {
+                    console.debug("====>0400====>end====>flag" + flag);
+                    console.debug("in ACTS_GetCurrentTopAbility_0400 - timeout");
+                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+                    expect().assertFail();
+                }
+                console.debug("ACTS_GetCurrentTopAbility_0400 - timeout");
+            }, START_ABILITY_TIMEOUT);
+        })
+
+        /**
+         *@tc.number: ACTS_GetCurrentTopAbility_0600
+         *@tc.name: Verify the interface for obtaining the Ability of the foreground
+         *@tc.desc:Start PageAbility1,Ability2 to be tested in turn, 
+         * schedule both the started abilities to the background,
+         * and get the current foreground Ability (Promise)
+         *
+         */
+        it('ACTS_GetCurrentTopAbility_0600', 0, async function (done) {
+            console.log("ACTS_GetCurrentTopAbility_0600 --- start");
+            var flag = true;
+            var Subscriber;
+            var AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+            var abilityB;
+            abilityB = await AbilityDelegator.getCurrentTopAbility();
+
+            function SubscribeCallBack(err, data) {
+                console.debug("ACTS_GetCurrentTopAbility_0600====>Subscribe CallBack data:====>" 
+                + JSON.stringify(data));
+                expect(data.event == 'GetCurrentTopAbilityB').assertTrue();
+                if (data.event == 'GetCurrentTopAbilityB') {
+                    AbilityDelegator.doAbilityForeground(abilityB).then((data) => {
+                        if (data == true) {
+                            AbilityDelegator.getCurrentTopAbility().then((data) => {
+                                console.debug("ACTS_GetCurrentTopAbility_0600====>ability to top====>" +
+                                JSON.stringify(data.lastRequestWant));
+                                if (data.lastRequestWant.abilityName != "Ability1" &&
+                                data.lastRequestWant.abilityName != "Ability2") {
+                                    console.debug("ACTS_GetCurrentTopAbility_0600====>true====>" + data);
+                                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+
+            commonEvent.createSubscriber(subscriberInfo_MainAbility2).then(async (data) => {
+                console.debug("ACTS_GetCurrentTopAbility_0600====>Create Subscriber====>");
+                Subscriber = data;
+                await commonEvent.subscribe(Subscriber, SubscribeCallBack);
+                await globalThis.abilityContext.startAbility(
+                    {
+                        bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
+                        abilityName: 'Ability1'
+                    })
+            })
+            function UnSubscribeCallback() {
+                flag = false;
+                console.debug("ACTS_GetCurrentTopAbility_0600====>UnSubscribe CallBack====>");
+                globalThis.ability2Context.terminateSelf();
+                globalThis.ability3Context.terminateSelf();
+                done();
+            }
+            setTimeout(() => {
+                if (flag == true) {
+                    console.debug("====>0600====>end====>flag" + flag);
+                    console.debug("in ACTS_GetCurrentTopAbility_0600 - timeout");
+                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
+                    expect().assertFail();
+                }
+                console.debug("ACTS_GetCurrentTopAbility_0600 - timeout");
             }, START_ABILITY_TIMEOUT);
         })
     })
