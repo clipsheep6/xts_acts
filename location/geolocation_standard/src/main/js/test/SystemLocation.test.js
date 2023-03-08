@@ -148,7 +148,7 @@ export default function geolocationTest_geo2() {
                 expect().assertFail();
             },
         });
-        geolocation.unsubscribe();
+        geolocations.unsubscribe();
         console.info("[lbs_js] unsubscribe called")
         done();
     })
