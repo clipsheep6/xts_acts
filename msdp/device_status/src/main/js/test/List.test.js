@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 import DeviceStatusUnitTest from './device_status_unittest.test'
-
+import CoordinationUnitTest from './coordination.test.js'
 export default function testsuite() {
     DeviceStatusUnitTest()
+    CoordinationUnitTest()
 }
