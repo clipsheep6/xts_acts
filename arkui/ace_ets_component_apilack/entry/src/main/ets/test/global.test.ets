@@ -54,9 +54,9 @@ export default function globalJsunit() {
     it('testglobal_getInspectorTree0001', 0, async function (done) {
       console.info('testglobal_getInspectorTree0001 START');
       await Utils.sleep(2000);
-      let strJson = getInspectorTree();
-      console.info("[testglobal_getInspectorTree0001] strJson:" + strJson);
-      expect(strJson !== null).assertTrue();
+      let inspectorTree = getInspectorTree();
+      console.info("[testglobal_getInspectorTree0001] strJson:" + JSON.stringify(inspectorTree));
+      expect(inspectorTree !== null).assertTrue();
       done();
     });
 
