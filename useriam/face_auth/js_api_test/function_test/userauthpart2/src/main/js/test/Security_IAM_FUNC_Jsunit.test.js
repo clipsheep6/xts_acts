@@ -30,7 +30,7 @@ export default function userauthTest() {
             try {
                 let getversionresult = userAuthNorth.getVersion();
                 console.info('GetVersionTest_0101 getversionresult = ' + getversionresult);
-                expect(getversionresult).assertEqual(0);
+                expect(getversionresult).assertEqual(1);
                 done();
             } catch (e) {
                 console.log("testFace GetVersionTest_0101 fail " + e.code);
