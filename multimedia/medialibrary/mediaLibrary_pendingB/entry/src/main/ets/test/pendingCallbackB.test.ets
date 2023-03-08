@@ -120,14 +120,14 @@ export default function pendingCallbackB(abilityContext) {
                 expect(await asset.isPending()).assertEqual(false);
                 try {
                     await asset.setPending(true);
+                    expect(false).assertTrue();
+                    done();
+                } catch (error) {
+                    console.info(`${testNum} error : ${error}`);
                     fetchFileResult = await media.getFileAssets(assetOp);
                     asset = await fetchFileResult.getFirstObject();
                     expect(await asset.isPending()).assertEqual(false);
                     await fetchFileResult.close();
-                    done();
-                } catch (error) {
-                    console.info(`${testNum} error : ${error}`);
-                    expect(false).assertTrue();
                     done();
                 }
             } catch (error) {
