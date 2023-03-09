@@ -110,6 +110,35 @@ export default function AccountTest() {
         })
 
         /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0200
+        * @tc.name       Test distributedAccount.getOsAccountDistributedInfo.
+        * @tc.desc       Test distributedAccount.getOsAccountDistributedInfo API functionality.
+        */
+         it('account_getOsAccountDistributedInfo_test001', 0, function () {
+            const accountAbility = account.getDistributedAccountAbility()
+            accountAbility.getOsAccountDistributedInfo().then(function (data) {
+                expect(data.name).assertEqual('anonymous')
+            }).catch(function(err) {
+                console.error('account_getOsAccountDistributedInfo_test001 error: ' + JSON.stringify(err))
+                expect(err).assertEqual(null)
+            });
+        })
+
+        /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0300
+        * @tc.name       Test distributedAccount.getOsAccountDistributedInfo by callback.
+        * @tc.desc       Test distributedAccount.getOsAccountDistributedInfo API functionality by callback.
+        */
+         it('account_getOsAccountDistributedInfo_test002', 0, function () {
+            const accountAbility = account.getDistributedAccountAbility()
+            accountAbility.getOsAccountDistributedInfo(function (err, data) {
+                console.error('account_getOsAccountDistributedInfo_test001 error: ' + JSON.stringify(err))
+                expect(err).assertEqual(null)
+                expect(data.name).assertEqual('anonymous')
+            });
+        })
+
+        /**
         * @tc.number     SUB_Account_distributedAccount_JS_API_0400
         * @tc.name       Test distributedAccount.updateOsAccountDistributedInfo.
         * @tc.desc       Test distributedAccount.updateOsAccountDistributedInfo API functionality.
@@ -231,6 +260,176 @@ export default function AccountTest() {
                     });
                 });
             });
+        })
+
+        /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0400
+        * @tc.name       Test distributedAccount.setOsAccountDistributedInfo.
+        * @tc.desc       Test distributedAccount.setOsAccountDistributedInfo API functionality.
+        */
+         it('account_setOsAccountDistributedInfo_test001', 0, function () {
+            const accountAbility = account.getDistributedAccountAbility()
+            let data = null
+            let obj = {
+                id: '12345',
+                name: 'ZhangSan',
+                event: 'Ohos.account.event.LOGIN',
+                scalableData:data
+            };
+            accountAbility.setOsAccountDistributedInfo(obj).then(function (result) {
+                expect(result).assertTrue()
+                accountAbility.queryOsAccountDistributedInfo(function (data) {
+                    expect(data.name).assertEqual('ZhangSan')
+                    expect(data.id).assertEqual('12345')
+                    let obj = {
+                        id: '12345',
+                        name: 'ZhangSan',
+                        event: 'Ohos.account.event.LOGOUT'
+                    };
+                    accountAbility.setOsAccountDistributedInfo(obj).then(function (result) {
+                        expect(result).assertTrue()
+                    }).catch(function(err) {
+                        console.error('account_setOsAccountDistributedInfo_test001 error: ' + JSON.stringify(err))
+                        expect(err).assertEqual(null)
+                    });
+                });
+            }).catch(function(err) {
+                console.error('account_setOsAccountDistributedInfo_test001 error: ' + JSON.stringify(err))
+                expect(err).assertEqual(null)
+            });
+            accountAbility.queryOsAccountDistributedInfo(function (data) {
+                execpt(data).assertNull()
+            })
+        })
+
+        /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0500
+        * @tc.name       Test distributedAccount.setOsAccountDistributedInfo by callback.
+        * @tc.desc       Test distributedAccount.setOsAccountDistributedInfo API functionality by callback.
+        */
+        it('account_setOsAccountDistributedInfo_test002', 0, function () {
+            let data = null
+            const accountAbility = account.getDistributedAccountAbility()
+            let obj = {
+                id: '12345',
+                name: 'ZhangSan',
+                event: 'Ohos.account.event.LOGIN',
+                scalableData:data
+            };
+            accountAbility.setOsAccountDistributedInfo(obj, function (err, result) {
+                console.error('account_setOsAccountDistributedInfo_test002 error: ' + JSON.stringify(err))
+                expect(err).assertEqual(null)
+                expect(result).assertTrue()
+                accountAbility.queryOsAccountDistributedInfo(function (data) {
+                    expect(data.name).assertEqual('ZhangSan')
+                    expect(data.id).assertEqual('12345')
+                    const accountAbility = account.getDistributedAccountAbility()
+                    let obj = {
+                        id: '12345',
+                        name: 'ZhangSan',
+                        event: 'Ohos.account.event.LOGOUT'
+                        
+                    };
+                    accountAbility.setOsAccountDistributedInfo(obj).then(function (result) {
+                        expect(result).assertTrue()
+                    }).catch(function(err) {
+                        console.error('account_setOsAccountDistributedInfo_test002 error: ' + JSON.stringify(err))
+                        expect(err).assertEqual(null)
+                    });
+                });
+            });
+        })
+        
+        /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0300
+        * @tc.name       Test distributedAccount.setOsAccountDistributedInfo by callback.
+        * @tc.desc       Test distributedAccount.setOsAccountDistributedInfo API functionality by callback.
+        */
+        it('account_setOsAccountDistributedInfo_test003', 0, function () {
+            const accountAbility = account.getDistributedAccountAbility()
+            let data = null
+            let obj = {
+                id: '12345',
+                name: 'ZhangSan',
+                event: 'Ohos.account.event.TOKEN_INVALID',
+                scalableData:data
+            };
+            accountAbility.setOsAccountDistributedInfo(obj, function (err, result) {
+                console.error('account_setOsAccountDistributedInfo_test003 error: ' + JSON.stringify(err))
+                expect(err).assertEqual(null)
+                expect(result).assertTrue()
+                accountAbility.queryOsAccountDistributedInfo(obj).then(function (data) {
+                    except(data.name).assertNull()
+                })
+            });
+        })
+        
+        /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0500
+        * @tc.name       Test distributedAccount.setOsAccountDistributedInfo by callback.
+        * @tc.desc       Test distributedAccount.setOsAccountDistributedInfo API functionality by callback.
+        */
+        it('account_setOsAccountDistributedInfo_test004', 0, function () {
+            const accountAbility = account.getDistributedAccountAbility()
+            let data = null
+            let obj = {
+                id: '12345',
+                name: 'ZhangSan',
+                event: 'Ohos.account.event.LOGIN',
+                scalableData:data
+            };
+            accountAbility.setOsAccountDistributedInfo(obj, function (err, result) {
+                console.error('account_setOsAccountDistributedInfo_test004 error: ' + JSON.stringify(err))
+                expect(err).assertEqual(null)
+                expect(result).assertTrue()
+                accountAbility.queryOsAccountDistributedInfo(function (data) {
+                    expect(data.name).assertEqual('ZhangSan')
+                    expect(data.id).assertEqual('12345')
+                    const accountAbility = account.getDistributedAccountAbility()
+                    let obj = {
+                        id: '12345',
+                        name: 'ZhangSan',
+                        event: 'Ohos.account.event.LOGOFF'
+                        
+                    };
+                    accountAbility.setOsAccountDistributedInfo(obj).then(function (result) {
+                        expect(result).assertNull()
+                    }).catch(function(err) {
+                        console.error('account_setOsAccountDistributedInfo_test002 error: ' + JSON.stringify(err))
+                        expect(err).assertEqual(null)
+                    });
+                });
+            });
+        })
+
+        /**
+        * @tc.number     SUB_Account_distributedAccount_JS_API_0500
+        * @tc.name       Test distributedAccount.setOsAccountDistributedInfo by callback.
+        * @tc.desc       Test distributedAccount.setOsAccountDistributedInfo API functionality by callback.
+        */
+         it('account_setOsAccountDistributedInfo_test005', 0, function () {
+            const accountAbility = account.getDistributedAccountAbility()
+            let data = null
+            let obj = {
+                id: 12345,
+                name: 'ZhangSan',
+                event: 'Ohos.account.event.TOKEN_INVALID',
+                scalableData:data
+            };
+            try {
+                accountAbility.setOsAccountDistributedInfo(obj, function (err, result) {
+                    console.error('account_setOsAccountDistributedInfo_test005 error: ' + JSON.stringify(err))
+                    expect(err).assertEqual(null)
+                    expect(result).assertTrue()
+                    accountAbility.queryOsAccountDistributedInfo(obj).then(function (data) {
+                        except(data.name).assertNull()
+                    })
+                });
+            }
+            catch(err) {
+                console.debug("====>account_setOsAccountDistributedInfo_test005 err:" + JSON.stringify(err));
+                expect(err).assertEqual(null);
+            }
         })
     })
 }

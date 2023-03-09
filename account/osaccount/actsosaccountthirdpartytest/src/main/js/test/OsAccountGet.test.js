@@ -157,6 +157,152 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
         });
 
         /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0100
+        * @tc.name    : queryOsAccountLocalIdFromUid callback
+        * @tc.desc    : Verify that the user localId is obtained by uid
+        */
+        it('ActsOsAccountQueryIdFormUid_0100', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0100 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            var testLocalId = await osAccountManager.getOsAccountLocalIdFromProcess();
+            console.debug("====>testLocalId:" + testLocalId)
+            console.debug("====>get AccountManager finish====");
+            var bundleName = "com.example.actsosaccountthirdpartytest";
+            var bundleInfo = await bundle.getBundleInfo(bundleName, bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
+            var uid = bundleInfo.uid;
+            console.debug("====>obtained uid:" + uid);
+            osAccountManager.queryOsAccountLocalIdFromUid(uid, (err, localId)=>{
+                console.debug("====>get localId err: " + JSON.stringify(err));
+                console.debug("====>localId obtained by uid:" + localId);
+                expect(err).assertEqual(null);
+                expect(localId).assertEqual(testLocalId);
+                console.debug("====>ActsOsAccountQueryIdFormUid_0100 end====");
+                done();
+            });
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0200
+        * @tc.name    : queryOsAccountLocalIdFromUid promise
+        * @tc.desc    : Verify that the user localId is obtained by uid
+        */
+        it('ActsOsAccountQueryIdFormUid_0200', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0200 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            var testLocalId = await osAccountManager.getOsAccountLocalIdFromProcess();
+            console.debug("====>get AccountManager finish====");
+            var bundleName = "com.example.actsosaccountthirdpartytest";
+            var bundleInfo = await bundle.getBundleInfo(bundleName, bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
+            var uid = bundleInfo.uid;
+            console.debug("====>obtained uid:" + uid);
+            var localId = await osAccountManager.queryOsAccountLocalIdFromUid(uid);
+            console.debug("====>localId obtained by uid:" + localId);
+            expect(localId).assertEqual(testLocalId);
+            console.debug("====>ActsOsAccountQueryIdFormUid_0200 end====");
+            done();
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0300
+        * @tc.name    : queryOsAccountLocalIdFromUid callback
+        * @tc.desc    : Authentication failed to query user by uid -1
+        */
+        it('ActsOsAccountQueryIdFormUid_0300', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0300 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var incorrectUid = -1;
+            osAccountManager.queryOsAccountLocalIdFromUid(incorrectUid, (err, localId)=>{
+                console.debug("====>get localId err: " + JSON.stringify(err));
+                console.debug("====>localId obtained by uid:" + localId);
+                expect(err.code).assertEqual(ERR_OS_ACCOUNT_SERVICE_MANAGER_BAD_UID_ERR);
+                expect(localId).assertEqual(null);
+                console.debug("====>ActsOsAccountQueryIdFormUid_0300 end====");
+                done();
+            });
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0400
+        * @tc.name    : queryOsAccountLocalIdFromUid promise
+        * @tc.desc    : Authentication failed to query user by uid -1
+        */
+        it('ActsOsAccountQueryIdFormUid_0400', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0400 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var incorrectUid = -1;
+            try{
+                await osAccountManager.queryOsAccountLocalIdFromUid(incorrectUid);
+            }catch(err){
+                console.debug("====>get localId by uid err:"  +JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OS_ACCOUNT_SERVICE_MANAGER_BAD_UID_ERR);
+                console.debug("====>ActsOsAccountQueryIdFormUid_0400 end====");
+                done();
+            }
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0500
+        * @tc.name    : queryOsAccountLocalIdFromUid callback
+        * @tc.desc    : Authentication failed to query user by uid 2147483648
+        */
+        it('ActsOsAccountQueryIdFormUid_0500', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0500 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var incorrectUid = 2147483648;
+            osAccountManager.queryOsAccountLocalIdFromUid(incorrectUid, (err, localId)=>{
+                console.debug("====>get localId err: " + JSON.stringify(err));
+                console.debug("====>localId obtained by uid:" + localId);
+                expect(err.code).assertEqual(ERR_OS_ACCOUNT_SERVICE_MANAGER_BAD_UID_ERR);
+                expect(localId).assertEqual(null);
+                console.debug("====>ActsOsAccountQueryIdFormUid_0500 end====");
+                done();
+            });
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0600
+        * @tc.name    : queryOsAccountLocalIdFromUid promise
+        * @tc.desc    : Authentication failed to query user by uid 2147483648
+        */
+        it('ActsOsAccountQueryIdFormUid_0600', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0600 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var incorrectUid = 2147483648;
+            try{
+                await osAccountManager.queryOsAccountLocalIdFromUid(incorrectUid);
+            }catch(err){
+                console.debug("====>get localId by uid err:"  +JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OS_ACCOUNT_SERVICE_MANAGER_BAD_UID_ERR);
+                console.debug("====>ActsOsAccountQueryIdFormUid_0600 end====");
+                done();
+            }
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormUid_0700
+        * @tc.name    : queryOsAccountLocalIdFromUid promise
+        * @tc.desc    : Authentication failed to query user by uid 2147483648
+        */
+        it('ActsOsAccountQueryIdFormUid_0700', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormUid_0700 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var incorrectUid = '2147483648';
+            try{
+                await osAccountManager.queryOsAccountLocalIdFromUid(incorrectUid);
+            }catch(err){
+                console.debug("====>get localId by uid err:"  +JSON.stringify(err));
+                expect(err.code).assertEqual(ERR_OS_ACCOUNT_SERVICE_MANAGER_BAD_UID_ERR);
+                console.debug("====>ActsOsAccountQueryIdFormUid_0700 end====");
+                done();
+            }
+        });
+
+        /*
         * @tc.number  : ActsOsAccountGetIdFormProcess_0100
         * @tc.name    : getOsAccountLocalIdFromProcess callback
         * @tc.desc    : Verify that the user localId obtained from the current process uid
@@ -201,6 +347,50 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
         });
 
         /*
+        * @tc.number  : ActsOsAccountQueryIdFormProcess_0100
+        * @tc.name    : queryOsAccountLocalIdFromProcess callback
+        * @tc.desc    : Verify that the user localId obtained from the current process uid
+        */
+        it('ActsOsAccountQueryIdFormProcess_0100', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormProcess_0100 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            var bundleName = "com.example.actsosaccountthirdpartytest";
+            var bundleInfo = await bundle.getBundleInfo(bundleName, bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
+            var uid = bundleInfo.uid;
+            var testLocalId = await osAccountManager.getOsAccountLocalIdFromUid(uid)
+            console.debug("====>get AccountManager finish====");
+            osAccountManager.queryOsAccountLocalIdFromProcess((err, localId)=>{
+                console.debug("====>get localId err: " + JSON.stringify(err));
+                console.debug("====>localId obtained by process:" + localId);
+                expect(err).assertEqual(null);
+                expect(localId).assertEqual(testLocalId);
+                console.debug("====>ActsOsAccountQueryIdFormProcess_0100 end====");
+                done();
+            });
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryIdFormProcess_0200
+        * @tc.name    : queryOsAccountLocalIdFromProcess promise
+        * @tc.desc    : Verify that the user localId obtained from the current process uid
+        */
+        it('ActsOsAccountQueryIdFormProcess_0200', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryIdFormProcess_0200 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            var bundleName = "com.example.actsosaccountthirdpartytest";
+            var bundleInfo = await bundle.getBundleInfo(bundleName, bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES);
+            var uid = bundleInfo.uid;
+            var testLocalId = await osAccountManager.getOsAccountLocalIdFromUid(uid)
+            console.debug("====>testLocalId obtained by process:" + testLocalId)
+            console.debug("====>get AccountManager finish====");
+            var localId = await osAccountManager.queryOsAccountLocalIdFromProcess();
+            console.debug("====>localId obtained by process:" + localId);
+            expect(localId).assertEqual(testLocalId);
+            console.debug("====>ActsOsAccountQueryIdFormProcess_0200 end====");
+            done();
+        });
+
+        /*
         * @tc.number  : ActsOsAccountGetTypeFormProcess_0100
         * @tc.name    : getOsAccountTypeFromProcess callback
         * @tc.desc    : Verify that the user type obtained from the current process uid
@@ -232,6 +422,41 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
             console.debug("====>type obtained by process:" + JSON.stringify(accountType));
             expect(accountType.ADMIN).assertEqual(0);
             console.debug("====>ActsOsAccountGetTypeFormProcess_0200 end====");
+            done();
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryTypeFormProcess_0100
+        * @tc.name    : queryOsAccountTypeFromProcess callback
+        * @tc.desc    : Verify that the user type obtained from the current process uid
+        */
+        it('ActsOsAccountQueryTypeFormProcess_0100', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryTypeFormProcess_0100 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            osAccountManager.queryOsAccountTypeFromProcess((err, accountType)=>{
+                console.debug("====>get type err: " + JSON.stringify(err));
+                console.debug("====>type obtained by process:" + JSON.stringify(accountType));
+                expect(err).assertEqual(null);
+                expect(accountType.ADMIN).assertEqual(0);
+                console.debug("====>ActsOsAccountQueryTypeFormProcess_0100 end====");
+                done();
+            });
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountQueryTypeFormProcess_0200
+        * @tc.name    : queryOsAccountTypeFromProcess promise
+        * @tc.desc    : Verify that the user type obtained from the current process uid
+        */
+        it('ActsOsAccountQueryTypeFormProcess_0200', 0, async function (done) {
+            console.debug("====>ActsOsAccountQueryTypeFormProcess_0200 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var accountType = await osAccountManager.queryOsAccountTypeFromProcess();
+            console.debug("====>type obtained by process:" + JSON.stringify(accountType));
+            expect(accountType.ADMIN).assertEqual(0);
+            console.debug("====>ActsOsAccountQueryTypeFormProcess_0200 end====");
             done();
         });
 
@@ -397,7 +622,7 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
             var osAccountManager = osaccount.getAccountManager();
             console.debug("====>get AccountManager finish====");
             var localId;
-            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.GUEST);
+            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.Guest);
             console.debug("====>create os account OsAccountInfo: " + JSON.stringify(OsAccountInfo));
             expect(OsAccountInfo.localName).assertEqual("accountIdSerialB");
             localId = OsAccountInfo.localId;
@@ -408,6 +633,182 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
             expect(getlocalId).assertEqual(localId);
             await osAccountManager.removeOsAccount(localId);
             console.debug("====>ActsOsAccountLocalIdSerial_0600 end====");
+            done();
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountIdSerial_0100
+        * @tc.name    : getSerialNumberByOsAccountId callback
+        * @tc.desc    : Verify query serialNumber by 100 user and query 100 user by serialNumber
+        */
+        it('ActsOsAccountIdSerial_0100', 0, async function (done) {
+            console.debug("====>ActsOsAccountIdSerial_0100 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            var testLocalId = await osAccountManager.getOsAccountLocalIdFromProcess();
+            console.debug("====>get AccountManager finish====");
+            osAccountManager.getSerialNumberByOsAccountId(testLocalId, (err, serialNumber)=>{
+                console.debug("====>ger serialNumber err:" + JSON.stringify(err));
+                console.debug("====>get serialNumber:" + serialNumber + " by localId: 100" );
+                expect(err).assertEqual(null);
+                var serialNumberStr = serialNumber.toString();
+                var serialIntercept = serialNumberStr.substring(8);
+                console.debug("====>truncate the last eight characters: " + serialIntercept);
+                expect(serialIntercept).assertEqual("00000001");
+                osAccountManager.getOsAccountIdBySerialNumber(serialNumber, (err, localId)=>{
+                    console.debug("====>ger localId err:" + JSON.stringify(err));
+                    console.debug("====>get localId:" + localId + " by serialNumber: " + serialNumber);
+                    expect(err).assertEqual(null);
+                    expect(localId).assertEqual(testLocalId);
+                    console.debug("====>ActsOsAccountIdSerial_0100 end====");
+                    done();
+                })
+            })
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountIdSerial_0200
+        * @tc.name    : getSerialNumberByOsAccountId promise
+        * @tc.desc    : Verify query serialNumber by 100 user and query 100 user by serialNumber
+        */
+        it('ActsOsAccountIdSerial_0200', 0, async function (done) {
+            console.debug("====>ActsOsAccountIdSerial_0200 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            var testLocalId = await osAccountManager.getOsAccountLocalIdFromProcess();
+            console.debug("====>get AccountManager finish====");
+            var serialNumber = await osAccountManager.getSerialNumberByOsAccountId(testLocalId);
+            console.debug("====>get serialNumber:" + serialNumber + " by localId: 100" );
+            var serialNumberStr = serialNumber.toString();
+            var serialIntercept = serialNumberStr.substring(8);
+            console.debug("====>truncate the last eight characters: " + serialIntercept);
+            expect(serialIntercept).assertEqual("00000001");
+            var localId = await osAccountManager.getOsAccountIdBySerialNumber(serialNumber);
+            console.debug("====>get localId:" + localId + " by serialNumber: " + serialNumber);
+            expect(localId).assertEqual(testLocalId);
+            console.debug("====>ActsOsAccountIdSerial_0200 end====");
+            done();
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountIdSerial_0300
+        * @tc.name    : getOsAccountIdBySerialNumber callback
+        * @tc.desc    : Verify query serialNumber by 0 user and query 0 user by serialNumber
+        */
+        it('ActsOsAccountIdSerial_0300', 0, async function (done) {
+            console.debug("====>ActsOsAccountIdSerial_0300 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            osAccountManager.getSerialNumberByOsAccountId(0, (err, serialNumber)=>{
+                console.debug("====>ger serialNumber err:" + JSON.stringify(err));
+                console.debug("====>get serialNumber:" + serialNumber + " by localId: 0" );
+                expect(err).assertEqual(null);
+                var serialNumberStr = serialNumber.toString();
+                var serialIntercept = serialNumberStr.substring(8);
+                console.debug("====>truncate the last eight characters: " + serialIntercept);
+                expect(serialIntercept).assertEqual("00000000");
+                osAccountManager.getOsAccountIdBySerialNumber(serialNumber, (err, localId)=>{
+                    console.debug("====>ger localId err:" + JSON.stringify(err));
+                    console.debug("====>get localId:" + localId + " by serialNumber: " + serialNumber);
+                    expect(err).assertEqual(null);
+                    expect(localId).assertEqual(0);
+                    console.debug("====>ActsOsAccountIdSerial_0300 end====");
+                    done();
+                })
+            })
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountIdSerial_0400
+        * @tc.name    : getOsAccountIdBySerialNumber promise
+        * @tc.desc    : Verify query serialNumber by 0 user and query 0 user by serialNumber
+        */
+        it('ActsOsAccountIdSerial_0400', 0, async function (done) {
+            console.debug("====>ActsOsAccountIdSerial_0400 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var serialNumber = await osAccountManager.getSerialNumberByOsAccountId(0);
+            console.debug("====>get serialNumber:" + serialNumber + " by localId: 0" );
+            var serialNumberStr = serialNumber.toString();
+            var serialIntercept = serialNumberStr.substring(8);
+            console.debug("====>truncate the last eight characters: " + serialIntercept);
+            expect(serialIntercept).assertEqual("00000000");
+            var localId = await osAccountManager.getOsAccountIdBySerialNumber(serialNumber);
+            console.debug("====>get localId:" + localId + " by serialNumber: " + serialNumber);
+            expect(localId).assertEqual(0);
+            console.debug("====>ActsOsAccountIdSerial_0400 end====");
+            done();
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountIdSerial_0500
+        * @tc.name    : getSerialNumberByOsAccountId callback
+        * @tc.desc    : Verify the query for the newly created user serialNumber and query the owning user through the
+        *               serialNumber
+        */
+        it('ActsOsAccountIdSerial_0500', 0, async function (done) {
+            console.debug("====>ActsOsAccountIdSerial_0500 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var localId;
+            osAccountManager.createOsAccount("osAccountNameIdSerialA", osaccount.OsAccountType.NORMAL, (err, data)=>{
+                console.debug("====>create os account err: " + JSON.stringify(err));
+                console.debug("====>create os account OsAccountInfo: " + JSON.stringify(data));
+                expect(err).assertEqual(null);
+                expect(data.localName).assertEqual("osAccountNameIdSerialA");
+                expect(data.domainInfo.accountName == "").assertEqual(true)
+                expect(data.type.NORMAL).assertEqual(1);
+                expect(data.constraints.length > 0).assertEqual(true);
+                expect(data.isVerified).assertEqual(false);
+                expect(data.distributedInfo.name != null).assertEqual(true);
+                expect(data.domainInfo.domain == "").assertEqual(true);
+		        expect(data.photo == "").assertEqual(true);
+            	expect(data.createTime != "").assertEqual(true);
+            	expect(data.lastLoginTime>=0).assertEqual(true);
+            	expect(data.serialNumber.toString().length == 16).assertEqual(true);
+            	expect(data.isActived).assertEqual(false);
+            	expect(data.isCreateCompleted).assertEqual(true)
+                localId = data.localId;
+                osAccountManager.getSerialNumberByOsAccountId(localId, (err, serialNumber)=>{
+                    console.debug("====>queryOsAccountById err:" + JSON.stringify(err));
+                    console.debug("====>get serialNumber:" + serialNumber + " by localId: " + localId);
+                    expect(err).assertEqual(null);
+                    osAccountManager.getOsAccountIdBySerialNumber(serialNumber, (err, getlocalId)=>{
+                        console.debug("====>ger localId err:" + JSON.stringify(err));
+                        console.debug("====>get localId:" + getlocalId + " by serialNumber: " + serialNumber);
+                        expect(err).assertEqual(null);
+                        expect(getlocalId).assertEqual(localId);
+                        osAccountManager.removeOsAccount(localId, (err)=>{
+                            console.debug("====>remove localId: " + localId + " err:" + JSON.stringify(err));
+                            expect(err).assertEqual(null);
+                            console.debug("====>ActsOsAccountIdSerial_0500 end====");
+                            done();
+                        })
+                    })
+                })
+            })
+        });
+
+        /*
+        * @tc.number  : ActsOsAccountIdSerial_0600
+        * @tc.name    : getOsAccountIdBySerialNumber promise
+        * @tc.desc    : Verify the query for the newly created user serialNumber and query the owning user through the
+        *               serialNumber
+        */
+        it('ActsOsAccountIdSerial_0600', 0, async function (done) {
+            console.debug("====>ActsOsAccountIdSerial_0600 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var localId;
+            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.GUEST);
+            console.debug("====>create os account OsAccountInfo: " + JSON.stringify(OsAccountInfo));
+            expect(OsAccountInfo.localName).assertEqual("accountIdSerialB");
+            localId = OsAccountInfo.localId;
+            var serialNumber = await osAccountManager.getSerialNumberByOsAccountId(localId);
+            console.debug("====>get serialNumber:" + serialNumber + " by localId: " + localId);
+            var getlocalId = await osAccountManager.getOsAccountIdBySerialNumber(serialNumber);
+            console.debug("====>get localId:" + getlocalId + " by serialNumber: " + serialNumber);
+            expect(getlocalId).assertEqual(localId);
+            await osAccountManager.removeOsAccount(localId);
+            console.debug("====>ActsOsAccountIdSerial_0600 end====");
             done();
         });
 
@@ -506,6 +907,99 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
         })
 
         /*
+        * @tc.number  : ActsOsAccountGetCount_0300
+        * @tc.name    : getOsAccountCount callback
+        * @tc.desc    : Verify to obtain the number os all os accounts created
+        */
+        it('ActsOsAccountGetCount_0300', 0, async function (done) {
+            console.debug("====>ActsOsAccountGetCount_0300 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var obtainCount = 0;
+            var localIdFir;
+            var localIdSec;
+            osAccountManager.getOsAccountCount((err, data)=>{
+                console.debug("====>obtains the number of all os accounts created err:" + JSON.stringify(err));
+                console.debug("====>obtains the number of all os accounts created data:" + data);
+                expect(err).assertEqual(null);
+                obtainCount = data;
+                osAccountManager.createOsAccount("osAccountNameIdSerialE", osaccount.OsAccountType.NORMAL, (err, data)=>{
+                    console.debug("====>create first os account err: " + JSON.stringify(err));
+                    console.debug("====>create first os account OsAccountInfo: " + JSON.stringify(data));
+                    localIdFir = data.localId;
+                    expect(err).assertEqual(null);
+                    expect(data.localName).assertEqual("osAccountNameIdSerialE");
+                    osAccountManager.createOsAccount("osAccountIdSerialF", osaccount.OsAccountType.NORMAL, (err, data)=>{
+                        console.debug("====>create second os account err: " + JSON.stringify(err));
+                        console.debug("====>create second os account OsAccountInfo: " + JSON.stringify(data));
+                        localIdSec = data.localId;
+                        expect(err).assertEqual(null);
+                        expect(data.localName).assertEqual("osAccountIdSerialF");
+                        osAccountManager.getOsAccountCount((err, count)=>{
+                            console.debug("====>obtains the number of all os accounts created err:" + JSON.stringify(err));
+                            console.debug("====>obtains the number of all os accounts created count:" + count);
+                            expect(err).assertEqual(null);
+                            count = count - 2;
+                            expect(count).assertEqual(obtainCount);
+                            osAccountManager.removeOsAccount(localIdFir, (err)=>{
+                                console.debug("====>remove localId: " + localIdFir + " err:" + JSON.stringify(err));
+                                expect(err).assertEqual(null);
+                                osAccountManager.getOsAccountCount((err, data)=>{
+                                    console.debug("====>obtains the number accounts created err:" + JSON.stringify(err));
+                                    console.debug("====>obtains the number accounts created data:" + data);
+                                    expect(err).assertEqual(null);
+                                    data = data - 1;
+                                    expect(data).assertEqual(obtainCount);
+                                    osAccountManager.removeOsAccount(localIdSec, (err)=>{
+                                        console.debug("====>remove localId: " + localIdSec + " err:" + JSON.stringify(err));
+                                        expect(err).assertEqual(null);
+                                        console.debug("====>ActsOsAccountGetCount_0300 end====");
+                                        done();
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+
+        /*
+        * @tc.number  : ActsOsAccountGetCount_0400
+        * @tc.name    : getOsAccountCount promise
+        * @tc.desc    : Verify to obtain the number os all os accounts created
+        */
+        it('ActsOsAccountGetCount_0400', 0, async function (done) {
+            console.debug("====>ActsOsAccountGetCount_0400 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            var obtainCount = await osAccountManager.getOsAccountCount();
+            console.debug("====>obtains the number of all os accounts created:" + obtainCount);
+            var osAccountFir = await osAccountManager.createOsAccount("osAccountIdSerialG", osaccount.OsAccountType.NORMAL);
+            console.debug("====>create first os account OsAccountInfo: " + JSON.stringify(osAccountFir));
+            var localIdFir = osAccountFir.localId;
+            expect(osAccountFir.localName).assertEqual("osAccountIdSerialG");
+            var osAccountSec = await osAccountManager.createOsAccount("osAccountIdSerialH", osaccount.OsAccountType.NORMAL);
+            console.debug("====>create second os account OsAccountInfo: " + JSON.stringify(osAccountSec));
+            var localIdSec = osAccountSec.localId;
+            expect(osAccountSec.localName).assertEqual("osAccountIdSerialH");
+            var countFir = await osAccountManager.getOsAccountCount();            
+            console.debug("====>obtains the number of all os accounts created count:" + countFir);
+            countFir = countFir - 2;
+            expect(countFir).assertEqual(obtainCount);
+            await osAccountManager.removeOsAccount(localIdFir);
+            console.debug("====>remove localId: " + localIdFir);
+            var countSec = await osAccountManager.getOsAccountCount();
+            console.debug("====>obtains the number accounts created count:" + countSec);
+            countSec = countSec - 1;
+            expect(countSec).assertEqual(obtainCount);
+            await osAccountManager.removeOsAccount(localIdSec);
+            console.debug("====>remove localId: " + localIdSec);
+            console.debug("====>ActsOsAccountGetCount_0400 end====");
+            done();
+        })
+
+        /*
         * @tc.number  : ActsOsAccountQueryActivedOsAccountIds_0100
         * @tc.name    : queryActivatedOsAccountIds callback
         * @tc.desc    : query activated osAccount Ids
@@ -536,6 +1030,40 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
                 done();
             }).catch((err)=>{
                 console.info("====>ActsOsAccountQueryActivedOsAccountIds_0200 err " + JSON.stringify(err));
+                expect(err).assertEqual(null)
+                done();
+            });
+        })
+
+        /*
+        * @tc.number  : ActsOsAccountGetActivedOsAccountIds_0100
+        * @tc.name    : getActivatedOsAccountIds callback
+        * @tc.desc    : query activated osAccount Ids
+        */
+        it('ActsOsAccountGetActivedOsAccountIds_0100', 0, async function (done) {
+            console.debug("====>ActsOsAccountGetActivedOsAccountIds_0100 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            osAccountManager.getActivatedOsAccountIds((err,dataArray)=>{
+                console.info("====>ActsOsAccountGetActivedOsAccountIds_0100 err :" + JSON.stringify(err));
+                expect(err).assertEqual(null)
+                console.info("====>ActsOsAccountGetActivedOsAccountIds_0100 dataArray" + dataArray.length);
+                done();
+            })
+        })
+        
+        /*
+        * @tc.number  : ActsOsAccountGetActivedOsAccountIds_0200
+        * @tc.name    : getActivatedOsAccountIds promise
+        * @tc.desc    : query activated osAccount Ids
+        */
+        it('ActsOsAccountGetActivedOsAccountIds_0200', 0, async function (done) {
+            console.debug("====>ActsOsAccountGetActivedOsAccountIds_0200 start====");
+            var osAccountManager = osaccount.getAccountManager(); 
+            osAccountManager.getActivatedOsAccountIds().then((data)=>{
+                console.debug("====>ActsOsAccountGetActivedOsAccountIds_0200 data" + JSON.stringify(data))
+                done();
+            }).catch((err)=>{
+                console.info("====>ActsOsAccountGetActivedOsAccountIds_0200 err " + JSON.stringify(err));
                 expect(err).assertEqual(null)
                 done();
             });
@@ -580,6 +1108,70 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
             })
         })
 
+        /*
+        * @tc.number  : ActsOsAccountConstraints_0300
+        * @tc.name    : Constraints callback
+        * @tc.desc    : get 0 local user all constraints
+        */
+        it('ActsOsAccountConstraints_3300', 0, async function(done){
+            console.debug("====>ActsOsAccountConstraints_3300 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("====>get AccountManager finish====");
+            AccountManager.getOsAccountConstraints(0, (err, constraints)=>{
+                console.debug("====>getOsAccountConstraints err:" + JSON.stringify(err));
+                console.debug("====>getOsAccountConstraints:" + JSON.stringify(constraints));
+                expect(err).assertEqual(null);
+                expect(constraints.length).assertEqual(0);
+                console.debug("====>ActsOsAccountConstraints_3300 end====");
+                done();
+            })
+        })
+
+        /*
+        * @tc.number  : ActsOsAccountConstraints_0400
+        * @tc.name    : Constraints promise
+        * @tc.desc    : get 0 local user all constraints
+        */
+        it('ActsOsAccountConstraints_3400', 0, async function(done){
+            console.debug("====>ActsOsAccountConstraints_3400 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("get AccountManager finish====");
+            AccountManager.getOsAccountConstraints(0).then((data)=>{
+                console.debug("====>ActsOsAccountConstraints_3400 getOsAccountConstraints data:" + data);
+                done();
+            }).catch((err)=>{
+                console.debug("====>ActsOsAccountConstraints_3400 getOsAccountConstraints err:" + JSON.stringify(err));
+                expect().assertFalse()
+                done();
+            })
+        })
+
+        /*
+        * @tc.number  : ActsOsAccountConstraints_0500
+        * @tc.name    : Constraints promise
+        * @tc.desc    : get 0 local user all constraints
+        */
+        it('ActsOsAccountConstraints_3500', 0, async function(done){
+            console.debug("====>ActsOsAccountConstraints_3500 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("get AccountManager finish====");
+            try {
+                AccountManager.getOsAccountConstraints('0').then((data)=>{
+                    console.debug("====>ActsOsAccountConstraints_3500 getOsAccountConstraints data:" + data);
+                    done();
+                }).catch((err)=>{
+                    console.debug("====>ActsOsAccountConstraints_3500 getOsAccountConstraints err:" + JSON.stringify(err));
+                    expect().assertFalse()
+                    done();
+                })
+            }
+            catch(err) {
+                console.debug("====>ActsOsAccountConstraints_3500 getOsAccountConstraints err:" + JSON.stringify(err));
+                expect().assertFalse()
+                done();
+            }
+        })
+
         /**
         * @tc.number     ActsAccountDomainTest_0300
         * @tc.name       Test createOsAccountForDomain getOsAccountLocalIdFromDomain callback
@@ -612,6 +1204,65 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
                 expect(err.code != 0).assertEqual(true)
                 done();
             })
+        });
+
+        /**
+        * @tc.number     ActsAccountDomainTest_0500
+        * @tc.name       Test createOsAccountForDomain queryOsAccountLocalIdFromDomain callback
+        * @tc.desc       Test createOsAccountForDomain queryOsAccountLocalIdFromDomain API functionality
+        */
+         it('ActsOsAccountDomainTest_0500', 0, async function (done) {
+            console.debug("====>ActsOsAccountDomainTest_0500 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            osAccountManager.queryOsAccountLocalIdFromDomain({domain: "", accountName: ""}, (err)=>{
+                console.debug("====>ActsOsAccountDomainTest_0500 err:" + JSON.stringify(err));
+                expect(err.code != 0).assertEqual(true)
+                console.debug("====>ActsOsAccountDomainTest_0500 end====");
+                done();
+            })
+        });
+
+        /**
+        * @tc.number     ActsAccountDomainTest_0600
+        * @tc.name       Test createOsAccountForDomain queryOsAccountLocalIdFromDomain pormise
+        * @tc.desc       Test createOsAccountForDomain queryOsAccountLocalIdFromDomain API functionality
+        */
+         it('ActsOsAccountDomainTest_0600', 0, async function (done) {
+            console.debug("====>ActsOsAccountDomainTest_0600 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            osAccountManager.queryOsAccountLocalIdFromDomain({domain: "", accountName: ""}).then((accountID)=>{
+                console.debug("ActsOsAccountDomainTest_0600 accountID:" + JSON.stringify(accountID))
+                done();
+            }).catch((err)=>{
+                console.debug("ActsOsAccountDomainTest_0600 err:" + JSON.stringify(err))
+                expect(err.code != 0).assertEqual(true)
+                done();
+            })
+        });
+
+        /**
+        * @tc.number     ActsAccountDomainTest_0700
+        * @tc.name       Test createOsAccountForDomain queryOsAccountLocalIdFromDomain pormise
+        * @tc.desc       Test createOsAccountForDomain queryOsAccountLocalIdFromDomain API functionality
+        */
+         it('ActsOsAccountDomainTest_0700', 0, async function (done) {
+            console.debug("====>ActsOsAccountDomainTest_0700 start====");
+            var osAccountManager = osaccount.getAccountManager();
+            try {
+                osAccountManager.queryOsAccountLocalIdFromDomain({domain: 111, accountName: 111}).then((accountID)=>{
+                    console.debug("ActsOsAccountDomainTest_0700 accountID:" + JSON.stringify(accountID))
+                    done();
+                }).catch((err)=>{
+                    console.debug("ActsOsAccountDomainTest_0700 err:" + JSON.stringify(err))
+                    expect(err.code != 0).assertEqual(true)
+                    done();
+                })
+            }
+            catch(err) {
+                console.debug("ActsOsAccountDomainTest_0700 err:" + JSON.stringify(err))
+                expect(err.code != 0).assertEqual(true)
+                done();
+            }
         });
 
         /*
@@ -654,6 +1305,46 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
             done();
         })
 
+        /*
+        * @tc.number  : ActsOsAccountQuery_1700
+        * @tc.name    : getCurrentOsAccount callback
+        * @tc.desc    : Get the os account information to which the application belongs
+        */
+        it('ActsOsAccountGet_2100', 0, async function(done){
+            console.debug("====>ActsOsAccountGet_2100 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("====>get os AccountManager finish====");
+            AccountManager.getCurrentOsAccount((err, data)=>{
+                console.debug("====>getCurrentOsAccount err:" + JSON.stringify(err));
+                console.debug("====>getCurrentOsAccount data:" + JSON.stringify(data));
+                expect(err).assertEqual(null);
+                console.debug("====>ActsOsAccountGet_2100 end====");
+                done();
+            })
+        })
+
+        /*
+        * @tc.number  : ActsOsAccountQuery_1800
+        * @tc.name    : getCurrentOsAccount promise
+        * @tc.desc    : Get the os account information to which the application belongs
+        */
+        it('ActsOsAccountGet_2200', 0, async function(done){
+            console.debug("====>ActsOsAccountGet_2200 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("====>get os AccountManager finish====");
+            var data = await AccountManager.getCurrentOsAccount();
+            console.debug("====>getCurrentOsAccount data:" + JSON.stringify(data));
+            expect(data.localId).assertEqual(100);
+            expect(data.type.ADMIN).assertEqual(0);
+            var serialNumberStr = data.serialNumber.toString();
+            var serialIntercept = serialNumberStr.substring(8);
+            console.debug("====>truncate the last eight characters: " + serialIntercept);
+            expect(serialIntercept).assertEqual("00000001");
+            expect(data.isCreateCompleted).assertTrue();
+            console.debug("====>ActsOsAccountGet_2200 end====");
+            done();
+        })
+
 
         /*
         * @tc.number  : ActsOsAccountPermission_3300
@@ -693,5 +1384,65 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
                 done();
             }
         })       
+
+        /*
+        * @tc.number  : ActsPermission_3300
+        * @tc.name    : isConstraintEnabled callback
+        * @tc.desc    : the application call interface does not meet the permissions
+        */
+        it('ActsConstraints_3300', 0, async function(done){
+            console.debug("====>ActsConstraints_3300 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("====>get os AccountManager finish====");
+            AccountManager.isConstraintEnabled(100, "constraint.bluetooth", (err, result)=>{
+                console.debug("====>isConstraintEnabled err:" + JSON.stringify(err));
+                expect(err).assertEqual(null);
+                expect(result).assertTrue();
+                console.debug("====>ActsConstraints_3300 end====");
+                done();
+            })
+        })
+
+        /*
+        * @tc.number  : ActsPermission_3400
+        * @tc.name    : isConstraintEnabled promise
+        * @tc.desc    : the application call interface does not meet the permissions
+        */
+        it('ActsConstraints_3400', 0, async function(done){
+            console.debug("====>ActsConstraints_3400 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("====>get os AccountManager finish====");
+            try{
+                await AccountManager.isConstraintEnabled(100, "constraint.bluetooth");
+                done();
+            }
+            catch(err){
+                console.debug("====>isConstraintEnabled err:" + JSON.stringify(err));
+                expect(err).assertEqual(null);
+                console.debug("====>ActsConstraints_3400 end====");
+                done();
+            }
+        })   
+
+        /*
+        * @tc.number  : ActsPermission_3500
+        * @tc.name    : isConstraintEnabled promise
+        * @tc.desc    : the application call interface does not meet the permissions
+        */
+        it('ActsConstraints_3500', 0, async function(done){
+            console.debug("====>ActsConstraints_3500 start====");
+            var AccountManager = osaccount.getAccountManager();
+            console.debug("====>get os AccountManager finish====");
+            try{
+                await AccountManager.isConstraintEnabled('100', "constraint.bluetooth");
+                done();
+            }
+            catch(err){
+                console.debug("====>isConstraintEnabled err:" + JSON.stringify(err));
+                expect(err).assertEqual(null);
+                console.debug("====>ActsConstraints_3500 end====");
+                done();
+            }
+        })  
     })
 }
