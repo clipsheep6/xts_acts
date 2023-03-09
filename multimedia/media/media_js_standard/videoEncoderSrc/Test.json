@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for videoEncoderSrc Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "2000000",
+        "package": "ohos.acts.multimedia.video.videoencodersrc",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+	        {
+            "type": "ShellKit",
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "chmod 777 -R  /storage/media/100/local/files/",
+                "chmod 777 /storage/media/100/local/files/*",
+                "killall com.ohos.medialibrary.MediaScannerAbilityA",
+                "aa start  -a MediaScannerAbility -b com.ohos.medialibrary.MediaScannerAbilityA"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsVideoEncoderSrcJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+
+    ]
+}
