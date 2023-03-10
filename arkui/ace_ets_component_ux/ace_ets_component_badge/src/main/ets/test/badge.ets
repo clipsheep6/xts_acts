@@ -635,7 +635,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderColor_0600 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderColor).assertEqual("#FF000000");
+          expect(style.borderColor).assertEqual("#FFFA2A2D");
           console.info('ArkUX_Stage_Badge_BorderColor_0600 END ');
           done();
         } catch (err) {
@@ -663,7 +663,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderColor_0700 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderColor).assertEqual("#FF000000");
+          expect(style.borderColor).assertEqual("#FFFA2A2D");
           console.info('ArkUX_Stage_Badge_BorderColor_0700 END ');
           done();
         } catch (err) {
@@ -691,7 +691,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderColor_0800 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderColor).assertEqual("#FF000000");
+          expect(style.borderColor).assertEqual("#FFFA2A2D");
           console.info('ArkUX_Stage_Badge_BorderColor_0800 END ');
           done();
         } catch (err) {
@@ -749,7 +749,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderColor_0900 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderColor).assertEqual("#FF000000");
+          expect(style.borderColor).assertEqual("#FFFA2A2D");
           console.info('ArkUX_Stage_Badge_BorderColor_1000 END ');
           done();
         } catch (err) {
@@ -777,7 +777,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderColor_1100 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderColor).assertEqual("#FF000000");
+          expect(style.borderColor).assertEqual("#FFFA2A2D");
           console.info('ArkUX_Stage_Badge_BorderColor_1100 END ');
           done();
         } catch (err) {
