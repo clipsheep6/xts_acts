@@ -15,7 +15,7 @@
 
 import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
- 
+
 export default function bluetoothhostTest() {
 describe('bluetoothhostTest', function() {
     function sleep(delay) {
