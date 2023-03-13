@@ -1175,9 +1175,9 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderWidth_1300 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderWidth).assertEqual("0.00vp");
+          expect(style.borderWidth).assertEqual("1.00vp");
           expect(style.fontWeight).assertEqual("FontWeight.Normal");
-          expect(style.borderColor).assertEqual("#FF000000");
+          expect(style.borderColor).assertEqual("#FFFA2A2D");
           console.info('ArkUX_Stage_Badge_BorderWidth_1300 END ');
           done();
         } catch (err) {
