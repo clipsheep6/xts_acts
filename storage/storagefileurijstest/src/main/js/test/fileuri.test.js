@@ -14,6 +14,7 @@
  */
 
 import fileUri from '@ohos.file.fileuri';
+import featureAbility from '@ohos.ability.featureAbility';
 import {
   describe,
   it,
@@ -32,16 +33,22 @@ describe('file_uri_test', function () {
   it('FileUri_GetUriFromPath_000', 0, async function () {
     try {
       let path = "/data/storage/el2/base/haps/entry/files/sync.jpg";
-      let uri = fileUri.getUriFromPath(path);
-      let result = "file://ohos.acts.storage.fileuri/data/storage/el2/base/haps/entry/files/sync.jpg"
-      console.log("FileUri_GetUriFromPath_000 uri:" + uri);
-      console.log("FileUri_GetUriFromPath_000 result:" + result);
-      expect(uri != "").assertTrue();
-      expect(uri == result).assertTrue();
-    } catch (e) {
+      featureAbility.getContext().getBundleName((err, bundleName) => {
+          if (err.code) {
+              console.log('FileUri_GetUriFromPath_000 getBundleName failed for ' + err.message + ', code: ' + err.code);
+              expect(false).assertTrue();
+          }
+          let uri = fileUri.getUriFromPath(path);
+          let result = "file://"+ bundleName +"/data/storage/el2/base/haps/entry/files/sync.jpg"
+          console.log("FileUri_GetUriFromPath_000 uri:" + uri);
+          console.log("FileUri_GetUriFromPath_000 result:" + result);
+          expect(uri != "").assertTrue();
+          expect(uri == result).assertTrue();
+      });
+  } catch (e) {
       console.log('FileUri_GetUriFromPath_000 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
-    }
+  }
   });
 
   /**
@@ -51,12 +58,18 @@ describe('file_uri_test', function () {
    */
   it('FileUri_GetUriFromPath_001', 0, async function () {
     try {
-      let uri = fileUri.getUriFromPath("");
-      let result = "file://ohos.acts.storage.fileuri"
-      console.log("FileUri_GetUriFromPath_001 uri:" + uri);
-      console.log("FileUri_GetUriFromPath_001 result:" + result);
-      expect(uri != "").assertTrue();
-      expect(uri == result).assertTrue();
+      featureAbility.getContext().getBundleName((err, bundleName) => {
+        if (err.code) {
+          console.log('FileUri_GetUriFromPath_001 getBundleName failed for ' + err.message + ', code: ' + err.code);
+          expect(false).assertTrue();
+        }
+        let uri = fileUri.getUriFromPath("");
+        let result = "file://" + bundleName
+        console.log("FileUri_GetUriFromPath_001 uri:" + uri);
+        console.log("FileUri_GetUriFromPath_001 result:" + result);
+        expect(uri != "").assertTrue();
+        expect(uri == result).assertTrue();
+      });
     } catch (e) {
       console.log('FileUri_GetUriFromPath_001 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
