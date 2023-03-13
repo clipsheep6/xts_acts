@@ -12,29 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import fileio from '@ohos.fileio';
 import prompt from '@ohos.prompt';
 import router from '@ohos.router';
+// @ts-ignore
 import screenshot from '@ohos.screenshot';
 import image from '@ohos.multimedia.image';
 import Logger from '../model/Logger';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 let path = globalThis.dir;
-
 const TAG = '[Screenshot]';
 @Component
 export struct CustomContainer {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   @Link FillColor: string;
-  @Link X: number;
   @Link name: string;
+  @Link Vue : boolean;
+  @Link isEnabled: boolean;
   Url : string = '';
   title : string = '';
   StepTips: string = '';
-  @Link Vue: boolean;
-  @BuilderParam content: () => void;
+  testingFrequency: number
+  @Link clickFrequency: number
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
     if(this.Vue == false){
@@ -50,11 +50,16 @@ export struct CustomContainer {
         Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
       }.width('30%').height('30vp').backgroundColor(Color.Grey)
       .onClick(()=>{
-        router.back({
-          url:this.Url,
-          params: {result : 'Pass', title : this.name,
-          }
-        })
+        this.isEnabled = true
+        this.Vue = false
+        this.clickFrequency++
+        if (this.clickFrequency === this.testingFrequency){
+          router.back({
+            url:this.Url,
+            params: {result : 'Pass', title : this.name,
+            }
+          })
+        }
         this.getScreen(isFullScreen);
         prompt.showToast({
           message: '通过', duration: 1000
@@ -81,22 +86,9 @@ export struct CustomContainer {
   }
   build() {
     Column() {
-      Row() {
-        Button(){
-          Image($r('app.media.ic_public_back')).width('20vp').height('18vp').margin({left:'20vp'})
-        }.backgroundColor(Color.Black)
-        .onClick(()=>{
-          router.back({
-            url:this.Url,
-            params: {result : 'None',}
-          })
-        })
-        Text(this.title).fontColor(Color.White).fontSize('18fp').margin({left:'-20vp'})
-        Text('hello').fontColor(Color.White).visibility(Visibility.Hidden)
-      }.backgroundColor(Color.Black).height('10%').width('100%').justifyContent(FlexAlign.SpaceBetween)
-      this.content();
-      Blank()
-      Row() {
+      Flex({
+        justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center
+      }){
         this.PassBtn($r('app.string.btn_fullscreen'), true);
         Button(){
           Image($r('app.media.ic_public_help')).width('20vp').height('20vp')
@@ -115,9 +107,10 @@ export struct CustomContainer {
           )
         })
         this.FailBtn($r('app.string.btn_fullscreen'), true);
-      }.width('100%').justifyContent(FlexAlign.SpaceEvenly).backgroundColor(Color.Black)
+      }.height('98%').width('100%').backgroundColor(Color.Black)
     }.height('98%').width('100%')
   }
+
   async savePicture(data: image.PixelMap, context: any) {
     Logger.info(TAG, `savePicture`);
     let packOpts: image.PackingOption = {
