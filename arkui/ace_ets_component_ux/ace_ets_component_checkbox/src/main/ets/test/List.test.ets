@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import badgeTest from './badge'
+import checkBoxTest from './checkBox'
 
 export default function testsuite() {
-       badgeTest()
+       checkBoxTest()
 }
