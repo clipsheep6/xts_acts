@@ -21,46 +21,31 @@ import Logger from '../model/Logger';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 let path = globalThis.dir;
-
 const TAG = '[Screenshot]';
 @Component
 export struct CustomContainer {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   @Link FillColor: string;
-  @Link X: number;
   @Link name: string;
   Url : string = '';
   title : string = '';
   StepTips: string = '';
-  @Link Vue: boolean;
   @BuilderParam content: () => void;
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
-    if(this.Vue == false){
-      Button({stateEffect:this.Vue}) {
-        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
-      }.width('30%').height('30vp').backgroundColor(Color.Grey).opacity(0.4)
-      .onClick(()=>{
-
+    Button() {
+      Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
+    }.width('30%').height('30vp').backgroundColor(Color.Grey)
+    .onClick(()=>{
+      router.back({
+        url:this.Url,
+        params: {result : 'Pass', title : this.name,
+        }
       })
-    }
-    else{
-      Button({stateEffect:this.Vue}) {
-        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
-      }.width('30%').height('30vp').backgroundColor(Color.Grey)
-      .onClick(()=>{
-        router.back({
-          url:this.Url,
-          params: {result : 'Pass', title : this.name,
-          }
-        })
-        this.getScreen(isFullScreen);
-        prompt.showToast({
-          message: '通过', duration: 1000
-        });
-      })
-    }
+      this.getScreen(isFullScreen);
+      prompt.showToast({
+        message: '通过', duration: 1000
+      });
+    })
   }
   @Builder
   FailBtn(text: Resource, isFullScreen: boolean) {
