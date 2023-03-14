@@ -113,7 +113,8 @@ export default function startAbilityTest(abilityContext) {
       "FreeInstall_Stage_Local_StartAbility_3000" === TAG ||
       "FreeInstall_Stage_Local_StartAbility_3400" === TAG ||
       "FreeInstall_Stage_Local_StartAbility_3500" === TAG ||
-      "FreeInstall_Stage_Local_StartAbility_2000" === TAG) {
+      "FreeInstall_Stage_Local_StartAbility_2000" === TAG ||
+      "FreeInstall_Stage_Local_StartAbility_Async_0100" === TAG) {
         var cmd4 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
         globalThis.delegator.executeShellCommand(cmd4, (err: any, d: any) => {
           console.info("executeShellCommand4 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
@@ -1056,6 +1057,58 @@ export default function startAbilityTest(abilityContext) {
       });
       await sleep(2000);
       console.info("------------end FreeInstall_Stage_Local_StartAbility_3400-------------");
+      done();
+    });
+
+    
+    /*
+     * @tc.number  FreeInstall_Stage_Local_StartAbility_Async_0100
+     * @tc.name    Send two startFreeInstall request, the last request can be returned firstly.
+     * @tc.desc    Function test
+     * @tc.level   0
+     */
+    it("FreeInstall_Stage_Local_StartAbility_Async_0100", 0, async function (done) {
+      console.info("------------start FreeInstall_Stage_Local_StartAbility_Async_0100-------------");
+      TAG = "FreeInstall_Stage_Local_StartAbility_Async_0100";
+      var cmd0100 = "bm install -p data/test/AtomizationStageEntry.hap";
+      globalThis.delegator.executeShellCommand(cmd0100, (err: any, d: any) => {
+        console.info("executeShellCommand0100 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+      })
+      await sleep(500);
+      abilityForeground(TAG);
+      await sleep(1000);
+      let resultCode = 0;
+      var str = {
+        "deviceId": "",
+        "bundleName": "com.example.qianyiyingyong.hmservice",
+        "abilityName": "com.example.qianyiyingyong.NotFoundAbility",
+        "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
+      }
+      globalThis.abilityContext.startAbility(str, (err, data) => {
+        if (err.code != 0) {
+          resultCode = err.code;
+          console.log(TAG + ": NotFoundAbility startAbility fail. err: " + JSON.stringify(err));
+        } else {
+          console.log(TAG + ": NotFoundAbility startAbility success. data: " + JSON.stringify(data));
+        }
+      });
+      var str2 = {
+        "bundleName": "com.open.harmony.packagemag",
+        "abilityName": "MainAbility1",
+        "moduleName": "entry",
+      }
+      globalThis.abilityContext.startAbility(str2, (err, data) => {
+        if (err.code != 0) {
+          console.log(TAG + ": Mainability1 startAbility fail. err: " + JSON.stringify(err));
+        } else {
+          resultCode = err.code;
+          console.log(TAG + ": Mainability1 startAbility success. data: " + JSON.stringify(data));
+        }
+      });
+      await sleep(2000);
+      console.log(TAG + ": resultCode is: " + resultCode);
+      expect(resultCode == SYSTEM_INNER_ERROR).assertTrue();
+      console.info("------------end FreeInstall_Stage_Local_StartAbility_2000-------------");
       done();
     });
 
