@@ -25,10 +25,6 @@ var ACTS_AppRecovery = {
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    beforeAll(function () {})
-    beforeEach(function () {})
-    afterEach(function () {})
-    afterAll(function () {})
 
     /*
      * @tc.number: Acts_AppRecovery_0100
