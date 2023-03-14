@@ -16,6 +16,6 @@ import("//test/xts/tools/build/suite.gni")
 group("ActsAceArkUXTest") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "ace_ets_component_checkbox:ActsAceCheckboxTest" ]
+    deps = [ "ace_ets_component_button:ActsAceButtonTest" ]
   }
 }
