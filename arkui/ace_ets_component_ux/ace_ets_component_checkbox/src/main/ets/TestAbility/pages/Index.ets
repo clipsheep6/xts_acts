@@ -37,128 +37,9 @@ struct checkBoxTest {
       Column() {
         List({space: 0, initialIndex: 0 }){
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup13'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0100")
-              .selectedColor(0xed6f21)
-              .mark({size:0})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup14'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0200")
-              .selectedColor(0xed6f21)
-              .mark({size:10})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup15'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0300")
-              .selectedColor(0xed6f21)
-              .mark({size:"60px"})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup16'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0400")
-              .selectedColor(0xed6f21)
-              .mark({size:"80%"})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup17'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0500")
-              .selectedColor(0xed6f21)
-              .mark({size:$r("app.string.Check_Mark_Size_test")})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup18'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0600")
-              .selectedColor(0xed6f21)
-              .mark({size:""})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup19'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0700")
-              .selectedColor(0xed6f21)
-              .mark({size:null})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup20'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0800")
-              .selectedColor(0xed6f21)
-              .mark({size:undefined})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup21'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_0900")
-              .selectedColor(0xed6f21)
-              .mark({size:10})
-              .mark({size:"40fp"})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup22'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_1000")
-              .selectedColor(0xed6f21)
-              .mark({size:10})
-              .mark({size:undefined})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup23'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_1100")
-              .selectedColor(0xed6f21)
-              .mark({size:"asdf#$8"})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup24'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_1200")
-              .selectedColor(0xed6f21)
-              .mark({size:"10.00lpx"})
-              .size(null)
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup24'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkSize_1300")
-              .selectedColor(0xed6f21)
-              .mark({size:-10})
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroup25'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0100")
+            Checkbox({name: 'checkbox37',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0100")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:0})
               .onChange((value: boolean) => {
@@ -166,8 +47,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup26'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0200")
+            Checkbox({name: 'checkbox38',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0200")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:1})
               .onChange((value: boolean) => {
@@ -175,8 +57,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup27'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0300")
+            Checkbox({name: 'checkbox39',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0300")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:"60px"})
               .onChange((value: boolean) => {
@@ -184,8 +67,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup28'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0400")
+            Checkbox({name: 'checkbox40',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0400")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:"120%"})
               .onChange((value: boolean) => {
@@ -193,8 +77,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup29'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0500")
+            Checkbox({name: 'checkbox41',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0500")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:$r("app.string.Check_Mark_Size_test")})
               .onChange((value: boolean) => {
@@ -202,8 +87,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup30'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0600")
+            Checkbox({name: 'checkbox42',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0600")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:""})
               .onChange((value: boolean) => {
@@ -211,8 +97,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup31'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0700")
+            Checkbox({name: 'checkbox43',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0700")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:null})
               .onChange((value: boolean) => {
@@ -220,8 +107,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup32'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0800")
+            Checkbox({name: 'checkbox44',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0800")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:undefined})
               .onChange((value: boolean) => {
@@ -229,8 +117,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup33'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_0900")
+            Checkbox({name: 'checkbox45',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0900")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:10})
               .mark({strokeWidth:"5fp"})
@@ -239,8 +128,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup34'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1000")
+            Checkbox({name: 'checkbox46',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1000")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:10})
               .mark({strokeWidth:undefined})
@@ -249,17 +139,19 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup35'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1100")
+            Checkbox({name: 'checkbox47',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1100")
+              .select(true)
               .selectedColor(0xed6f21)
-              .mark({strokeWidth:"frgw*&^%"})
+              .mark({strokeWidth:"asdf#$8"})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup36'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1200")
+            Checkbox({name: 'checkbox48',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1200")
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeWidth:"40lpx"})
               .width(null)
@@ -268,8 +160,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup37'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1300")
+            Checkbox({name: 'checkbox49',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1300")
+              .select(true)
               .selectedColor(0xed6f21)
               .unselectedColor(Color.Pink)
               .mark({strokeWidth:-1})
@@ -278,8 +171,9 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup37'})
-              .key("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1400")
+            Checkbox({name: 'checkbox49',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1400")
+              .select(true)
               .selectedColor(0xed6f21)
               .unselectedColor(Color.Pink)
               .mark({strokeColor:0x00ff00, size:40, strokeWidth:40})
@@ -288,138 +182,121 @@ struct checkBoxTest {
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup38'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0100")
+            CheckboxGroup({group: 'checkboxGroup'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0100")
               .selectedColor(0xed6f21)
-              .unselectedColor(0x00ff00)
+              .mark({strokeColor:0x00ff00})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup39'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0200")
+            CheckboxGroup({group: 'checkboxGroup2'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0200")
               .selectedColor(0xed6f21)
-              .unselectedColor('#fffd0000')
+              .mark({strokeColor:"#fffd0000"})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup40'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0300")
+            CheckboxGroup({group: 'checkboxGroup3'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0300")
               .selectedColor(0xed6f21)
-              .unselectedColor("rgb(138,43,226)")
+              .mark({strokeColor:"rgb(138,43,226)"})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup41'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0400")
+            CheckboxGroup({group: 'checkboxGroup4'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0400")
               .selectedColor(0xed6f21)
-              .unselectedColor(Color.Pink)
+              .mark({strokeColor:Color.Pink})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup42'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0500")
+            CheckboxGroup({group: 'checkboxGroup5'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0500")
               .selectedColor(0xed6f21)
-              .unselectedColor($r("app.color.checkbox_Color"))
+              .mark({strokeColor:$r("app.color.checkbox_Color")})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup43'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0600")
+            CheckboxGroup({group: 'checkboxGroup6'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0600")
               .selectedColor(0xed6f21)
-              .unselectedColor("")
+              .mark({strokeColor:""})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup44'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0700")
+            CheckboxGroup({group: 'checkboxGroup7'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0700")
               .selectedColor(0xed6f21)
-              .unselectedColor(null)
+              .mark({strokeColor:null})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup45'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0800")
+            CheckboxGroup({group: 'checkboxGroup8'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0800")
               .selectedColor(0xed6f21)
-              .unselectedColor(undefined)
+              .mark({strokeColor:undefined})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup46'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_0900")
+            CheckboxGroup({group: 'checkboxGroup9'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_0900")
               .selectedColor(0xed6f21)
-              .unselectedColor(Color.Pink)
-              .unselectedColor("#FFFD0000")
+              .mark({strokeColor:Color.Pink})
+              .mark({strokeColor:"#FFFD0000"})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup47'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_1000")
+            CheckboxGroup({group: 'checkboxGroup10'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_1000")
               .selectedColor(0xed6f21)
-              .unselectedColor(Color.Pink)
-              .unselectedColor(undefined)
+              .mark({strokeColor:Color.Pink})
+              .mark({strokeColor:'bgr(138,43,226)'})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup48'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_1100")
+            CheckboxGroup({group: 'checkboxGroup11'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_1100")
               .selectedColor(0xed6f21)
-              .unselectedColor('bgr(138,43,226)')
+              .mark({strokeColor:'bgr(138,43,226)'})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup49'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_1200")
+            CheckboxGroup({group: 'checkboxGroup12'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_1200")
               .selectedColor(0xed6f21)
-              .unselectedColor(0x00ff00)
+              .mark({strokeColor:0x00ff00})
               .backgroundColor(null)
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
           }
           ListItem(){
-            CheckboxGroup({group: 'checkboxGroup49'})
-              .key("ArkUX_Stage_CheckboxGroup_unselectedColor_1300")
+            CheckboxGroup({group: 'checkboxGroup12'})
+              .key("ArkUX_Stage_CheckboxGroup_CheckMarkColor_1300")
               .selectedColor(0xed6f21)
-              .unselectedColor(-1)
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            CheckboxGroup({group: 'checkboxGroupNO'})
-              .key("checkboxGroupNO")
-              .selectedColor(0xed6f21)
-              .onChange((value: boolean) => {
-                console.info('Checkbox1 change is'+ value)
-              })
-          }
-          ListItem(){
-            Checkbox({name: 'checkbox3',  group: 'checkboxGroupNO'})
-              .key("checkboxNO")
-              .select(true)
-              .selectedColor(0xed6f21)
+              .mark({strokeColor:-1})
               .onChange((value: boolean) => {
                 console.info('Checkbox1 change is'+ value)
               })
