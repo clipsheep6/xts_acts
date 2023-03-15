@@ -28,20 +28,20 @@ struct AppearExample {
   private myText: string = 'Text for onAppear'
 
   onPageShow() {
-    console.info('[appear] page show called');
+    console.info('[appear] page show called')
     var stateChangeEvent = {
       eventId: 58,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
   }
 
   private stateChangCallBack = (eventData) => {
-    console.info("[appear] page stateChangCallBack");
+    console.info("[appear] page stateChangCallBack")
     if (eventData != null) {
-      console.info("[appear] page state change called:" + JSON.stringify(eventData));
+      console.info("[appear] page state change called:" + JSON.stringify(eventData))
       if (eventData.data.isShow != null) {
-        this.isShow = eventData.data.isShow;
+        this.isShow = eventData.data.isShow
       }
     }
   }
@@ -73,7 +73,7 @@ struct AppearExample {
           .onAppear(() => {
             this.appearFlag = "appearStatusOn"
             this.changeAppear = 'Show Text'
-            console.info('appearFlag current action state is: ' + this.appearFlag);
+            console.info('appearFlag current action state is: ' + this.appearFlag)
             prompt.showToast({ message: 'The text is shown', duration: 2000 })
             try {
               var backData2 = {
@@ -94,7 +94,7 @@ struct AppearExample {
           .onDisAppear(() => {
             this.disAppearFlag = true
             this.changeAppear = 'Hide Text'
-            console.info('disAppearFlag current action state is: ' + this.disAppearFlag);
+            console.info('disAppearFlag current action state is: ' + this.disAppearFlag)
             prompt.showToast({ message: 'The text is hidden', duration: 2000 })
             try {
               var backData1 = {
