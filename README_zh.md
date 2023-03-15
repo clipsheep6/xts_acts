@@ -547,7 +547,7 @@ OpenHarmony支持如下几种系统类型：
 
 ### JS语言用例开发指导（适用于标准系统）<a name="section159801435165220"></a>
 
-当前使用的测试框架是HJSUnit，用于支撑OpenHarmony application测试（特指基于JS应用框架使用 Javascript 语言开发的 APP）进行自动化测试。
+当前使用的测试框架是HJSUnit，用于支撑OpenHarmony application测试（特指基于JS应用框架使用 Javascript 语言或者Ets语言开发的 APP）进行自动化测试。
 
 **用例编写基础语法**
 
