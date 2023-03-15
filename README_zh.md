@@ -1,19 +1,5 @@
 # XTS子系统<a name="ZH-CN_TOPIC_0000001117409671"></a>
 
--   [简介](#section465982318513)
--   [系统类型](#section125090457443)
--   [目录](#section161941989596)
--   [约束](#section119744591305)
--   [使用说明](#section137768191623)
--   [用例开发指导](#section3695134065513)
-    -   [C语言用例开发编译指导（适用于轻量系统产品用例开发）](#section198193336544)
-    -   [C语言用例执行指导（适用于轻量系统产品用例开发）](#section13820233175418)
-    -   [C++语言用例开发编译指导（适用于小型系统、标准系统用例开发）](#section3822123311540)
-    -   [C++语言用例执行指导（适用于小型系统、标准系统用例开发）](#section128222336544)
-    -   [JS语言用例开发指导（适用于标准系统）](#section159801435165220)
-    -   [JS语言用例编译打包指导（适用于标准系统）](#section445519106559)
-
--   [相关仓](#section1371113476307)
 
 ## 简介<a name="section465982318513"></a>
 
@@ -21,8 +7,8 @@ XTS子系统是OpenHarmony生态认证测试套件的集合，当前包括acts�
 
 XTS子系统当前包括acts与tools软件包：
 
--   acts，存放acts相关测试用例源码与配置文件，其目的是帮助终端设备厂商尽早发现软件与OpenHarmony的不兼容性，确保软件在整个开发过程中满足OpenHarmony的兼容性要求。
--   tools，存放acts相关测试用例开发框架。
+-   acts：存放acts相关测试用例源码与配置文件，其目的是帮助终端设备厂商尽早发现软件与OpenHarmony的不兼容性，确保软件在整个开发过程中满足OpenHarmony的兼容性要求。
+-   tools：存放acts相关测试用例开发框架。
 
 ## 系统类型<a name="section125090457443"></a>
 
@@ -543,7 +529,7 @@ OpenHarmony支持如下几种系统类型：
 
 **用例执行**
 
-测试套件执行 ActsDemoTest.bin 触发用例执行，基于串口打印日志进行分析。
+测试套件执行ActsDemoTest.bin触发用例执行，基于串口打印日志进行分析。
 
 ### JS语言用例开发指导（适用于标准系统）<a name="section159801435165220"></a>
 
@@ -551,7 +537,7 @@ OpenHarmony支持如下几种系统类型：
 
 **用例编写基础语法**
 
-测试用例为 js 语言，必须满足 JavaScript 语言编程规范:
+测试用例为JavaScript语言，必须满足JavaScript语言编程规范:
 
 **表 5** 
 
@@ -614,7 +600,7 @@ OpenHarmony支持如下几种系统类型：
 </tbody>
 </table>
 
-用例编写语法采用 jasmine 的标准语法，格式支持ES6格式。
+用例编写语法采用jasmine的标准语法，格式支持ES6格式。
 
 **以FA 模式为例：**
 
@@ -932,7 +918,7 @@ Stage 模式适配指导请参考
 
 ### JS语言用例编译打包指导（适用于标准系统）<a name="section445519106559"></a>
 
-hap包编译请参考 [标准系统 JS用例源码编译Hap包指导](https://gitee.com/openharmony/xts_acts/wikis/%E6%A0%87%E5%87%86%E7%B3%BB%E7%BB%9F%20JS%E7%94%A8%E4%BE%8B%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91Hap%E5%8C%85%E6%8C%87%E5%AF%BC%20?sort_id=4427112)。
+hap包编译请参考 [标准系统JS用例源码编译Hap包指导](https://gitee.com/openharmony/xts_acts/wikis/%E6%A0%87%E5%87%86%E7%B3%BB%E7%BB%9F%20JS%E7%94%A8%E4%BE%8B%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91Hap%E5%8C%85%E6%8C%87%E5%AF%BC%20?sort_id=4427112)。
 
 ### 全量编译指导（适用于标准系统）<a name="section159801435165220"></a>
 
