@@ -415,21 +415,21 @@ OpenHarmony支持如下几种系统类型：
     using namespace std;
     using namespace testing::ext;
     class TestSuite: public testing::Test {
-    protected:
-    // Preset action of the test suite, which is executed before the first test case
-    static void SetUpTestCase(void){
-    }
-    // Test suite cleanup action, which is executed after the last test case
-    static void TearDownTestCase(void){
-    }
-    // Preset action of the test case
-    virtual void SetUp()
-    {
-    }
-    // Cleanup action of the test case
-    virtual void TearDown()
-    {
-    }
+        protected:
+        // Preset action of the test suite, which is executed before the first test case
+        static void SetUpTestCase(void){
+        }
+        // Test suite cleanup action, which is executed after the last test case
+        static void TearDownTestCase(void){
+        }
+        // Preset action of the test case
+        virtual void SetUp()
+        {
+        }
+        // Cleanup action of the test case
+        virtual void TearDown()
+        {
+        }
     };
     ```
 
