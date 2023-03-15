@@ -416,6 +416,151 @@ struct checkBoxTest {
                 console.info('Checkbox1 change is'+ value)
               })
           }
+          ListItem(){
+            Checkbox({name: 'checkbox37',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0100")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:0})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox38',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0200")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:1})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox39',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0300")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:"60px"})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox40',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0400")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:"120%"})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox41',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0500")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:$r("app.string.Check_Mark_Size_test")})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox42',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0600")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:""})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox43',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0700")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:null})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox44',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0800")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:undefined})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox45',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_0900")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:10})
+              .mark({strokeWidth:"5fp"})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox46',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1000")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:10})
+              .mark({strokeWidth:undefined})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox47',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1100")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:"asdf#$8"})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox48',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1200")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .mark({strokeWidth:"40lpx"})
+              .width(null)
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox49',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1300")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .unselectedColor(Color.Pink)
+              .mark({strokeWidth:-1})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
+          ListItem(){
+            Checkbox({name: 'checkbox49',  group: 'checkboxGroup'})
+              .key("ArkUX_Stage_Checkbox_CheckMarkWidth_1400")
+              .select(true)
+              .selectedColor(0xed6f21)
+              .unselectedColor(Color.Pink)
+              .mark({strokeColor:0x00ff00, size:40, strokeWidth:40})
+              .onChange((value: boolean) => {
+                console.info('Checkbox1 change is'+ value)
+              })
+          }
         }
       }
       .width('100%')
