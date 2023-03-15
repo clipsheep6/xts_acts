@@ -121,7 +121,7 @@ export default function actsWifiEventTest() {
         /**
         * @tc.number Communication_WiFi_Event_Test_0005
         * @tc.name testHotspotStateChange
-        * @tc.desc Test hotspotStateChange api.
+        * @tc.desc Test hotspotStateChange callback
         * @tc.type Function
         * @tc.level Level 3
         */
