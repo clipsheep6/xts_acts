@@ -13,7 +13,7 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-group("componnetUxTest") {
+group("componentUxTest") {
   testonly = true
   if (is_standard_system) {
     deps = [
