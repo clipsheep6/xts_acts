@@ -27,7 +27,7 @@ import prompt from '@ohos.prompt'
 struct cameraOrientation {
   @State FillColor: string = '#FF000000';
   @State name: string = 'CameraVideo';
-  @State StepTips: string = '测试目的：用于测试相机预览和拍照旋转能力\n-左侧显示给定旋转角度后的预览窗口\n-右侧显示拍照后的图片\n-对于前置摄像头会有镜像效果' + '\n' + '预期结果：拍照图片与预览窗口的画面一致';
+  @State StepTips: string = '测试目的：用于测试相机录像分辨率能力\n预期结果：所有分辨率均可以录像，录像与预览一致';
   private tag: string = 'qlw CameraVideo'
   private mXComponentController: XComponentController = new XComponentController()
   private mXComponentController1: XComponentController = new XComponentController()

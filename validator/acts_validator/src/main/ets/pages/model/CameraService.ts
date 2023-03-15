@@ -379,14 +379,14 @@ class CameraService {
             Logger.info(this.tag, `videoConfig.profile: ${this.videoConfig.profile}`)
             this.videoRecorder = await media.createVideoRecorder()
             this.videoConfig.url = `fd://${this.fd}`
-            this.videoConfig.profile.videoFrameWidth = this.cameraOutputCapability.videoProfiles[200].size.width
-            this.videoConfig.profile.videoFrameHeight = this.cameraOutputCapability.videoProfiles[200].size.height
+            this.videoConfig.profile.videoFrameWidth = this.cameraOutputCapability.videoProfiles[0].size.width
+            this.videoConfig.profile.videoFrameHeight = this.cameraOutputCapability.videoProfiles[0].size.height
             await this.videoRecorder.prepare(this.videoConfig)
             let videoId = await this.videoRecorder.getInputSurface()
             Logger.info(this.tag, `videoProfileObj: ` + JSON.stringify(this.videoProfileObj))
-            Logger.info(this.tag, `videoProfileObj: ` + JSON.stringify(this.cameraOutputCapability.videoProfiles[200]))
+            Logger.info(this.tag, `videoProfileObj: ` + JSON.stringify(this.cameraOutputCapability.videoProfiles[0]))
 //            this.videoOutput = await this.cameraManager.createVideoOutput(this.videoProfileObj, videoId)
-            this.videoOutput = await this.cameraManager.createVideoOutput(this.cameraOutputCapability.videoProfiles[200], videoId)
+            this.videoOutput = await this.cameraManager.createVideoOutput(this.cameraOutputCapability.videoProfiles[0], videoId)
             Logger.info(this.tag, `createVideoOutput success: ${this.videoOutput}`)
             await this.captureSession.addOutput(this.videoOutput)
             await this.captureSession.commitConfig()

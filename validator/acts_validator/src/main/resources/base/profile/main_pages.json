@@ -40,7 +40,8 @@
     "pages/Audio/AudioOutputRoutingTypeC",
     "pages/Audio/AudioOutputRoutingBT",
     "pages/Player/Player_index",
-    "pages/Player/ScrollListTest",
+    "pages/Player/PlayAudio",
+    "pages/Player/PlayVideo",
     "pages/Experience/Experience_index",
     "pages/Experience/PhotoFps",
     "pages/Experience/DeskFps"
