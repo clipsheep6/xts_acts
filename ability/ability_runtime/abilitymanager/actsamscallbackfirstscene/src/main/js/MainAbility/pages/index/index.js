@@ -22,7 +22,7 @@ export default {
         title: ''
     },
     onInit() {
-        this.title = this.$t('strings.world');
+        this.title = this.$t('strings.world')
     },
     onShow() {
         if (once) {
@@ -31,7 +31,7 @@ export default {
         }
     },
     onReady() {
-        console.info('onReady');
+        console.info('onReady')
     },
 }
 
