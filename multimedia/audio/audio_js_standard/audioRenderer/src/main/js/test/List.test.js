@@ -14,4 +14,5 @@
  */
 
 require('./AudioRenderer.test.js')
+require('./AudioRendererInterrupt.test.js')
 
