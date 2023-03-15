@@ -23,13 +23,6 @@ import testsuite from '../../test/List.test'
 struct checkBoxTest {
   
   aboutToAppear(){
-    var abilityDelegator: any
-      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      var abilityDelegatorArguments: any
-      abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-      hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-      hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
-      Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   build() {
@@ -39,7 +32,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox1',  group: 'checkboxGroup1'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_0100")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor(0x00ff00)
               .onChange((value: boolean) => {
@@ -49,7 +42,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox2',  group: 'checkboxGroup1'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_0200")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor("#fffd0000")
               .onChange((value: boolean) => {
@@ -59,7 +52,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox3',  group: 'checkboxGroup1'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_0300")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor("rgb(138,43,226)")
               .onChange((value: boolean) => {
@@ -69,7 +62,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox4',  group: 'checkboxGroup2'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_0400")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor(Color.Pink)
               .onChange((value: boolean) => {
@@ -79,7 +72,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox5',  group: 'checkboxGroup2'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_0500")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor($r("app.color.checkbox_Color"))
               .onChange((value: boolean) => {
@@ -130,7 +123,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox10',  group: 'checkboxGroup13'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_1000")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor(Color.Pink)
               .unselectedColor(undefined)
@@ -141,7 +134,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox11',  group: 'checkboxGroup13'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_1100")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor('bgr(138,43,226)')
               .onChange((value: boolean) => {
@@ -151,7 +144,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox12',  group: 'checkboxGroup13'})
               .key("ArkUX_Stage_Checkbox_unselectedColor_1200")
-              .select(true)
+              .select(false)
               .selectedColor(0xed6f21)
               .unselectedColor(0x00ff00)
               .backgroundColor(null)
@@ -182,7 +175,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox15',  group: 'checkboxGroup14'})
               .key("ArkUX_Stage_Checkbox_CheckMarkColor_0300")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeColor:"rgb(138,43,226)"})
               .onChange((value: boolean) => {
@@ -192,7 +185,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox16',  group: 'checkboxGroup15'})
               .key("ArkUX_Stage_Checkbox_CheckMarkColor_0400")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeColor:Color.Pink})
               .onChange((value: boolean) => {
@@ -202,7 +195,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox17',  group: 'checkboxGroup15'})
               .key("ArkUX_Stage_Checkbox_CheckMarkColor_0500")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeColor:$r("app.color.checkbox_Color")})
               .onChange((value: boolean) => {
@@ -212,7 +205,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox18',  group: 'checkboxGroup15'})
               .key("ArkUX_Stage_Checkbox_CheckMarkColor_0600")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeColor:""})
               .onChange((value: boolean) => {
@@ -274,7 +267,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox24',  group: 'checkboxGroup26'})
               .key("ArkUX_Stage_Checkbox_CheckMarkColor_1200")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({strokeColor:0x00ff00})
               .backgroundColor(null)
@@ -285,7 +278,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox25',  group: 'checkboxGroup27'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_0100")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:0})
               .onChange((value: boolean) => {
@@ -295,7 +288,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox26',  group: 'checkboxGroup27'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_0200")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:1})
               .onChange((value: boolean) => {
@@ -305,7 +298,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox27',  group: 'checkboxGroup27'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_0300")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:"60px"})
               .onChange((value: boolean) => {
@@ -365,7 +358,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox33',  group: 'checkboxGroup39'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_0900")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:10})
               .mark({size:"40fp"})
@@ -376,7 +369,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox34',  group: 'checkboxGroup40'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_1000")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:10})
               .mark({size:undefined})
@@ -387,7 +380,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox35',  group: 'checkboxGroup40'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_1100")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:"asdf#$8"})
               .onChange((value: boolean) => {
@@ -397,7 +390,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox36',  group: 'checkboxGroup40'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_1200")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size: "10lpx" })
               .size(null)
@@ -408,7 +401,7 @@ struct checkBoxTest {
           ListItem(){
             Checkbox({name: 'checkbox36',  group: 'checkboxGroup40'})
               .key("ArkUX_Stage_Checkbox_CheckMarkSize_1300")
-              .select(false)
+              .select(true)
               .selectedColor(0xed6f21)
               .mark({size:-10})
               .size(null)
