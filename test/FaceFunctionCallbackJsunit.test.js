@@ -1,0 +1,943 @@
+import {describe, it, expect} from 'deccjsunit/index'
+import userAuth from '@ohos.userauth'
+import userIDM from '@ohos.useridm'
+import pinAuth from '@ohos.pinauth'
+import * as publicFC from './Publicfunction-f.js'
+
+let UserIDM = userIDM.constructor()
+let PinAuth = pinAuth.constructor()
+let UserAuth = userAuth.constructor()
+
+let AuthType = {
+    PIN : 1,
+    FACE : 2
+}
+let AuthSubType = {
+    PIN_SIX : 10000,
+    PIN_NUMBER : 10001,
+    PIN_MIXED : 10002,
+    FACE_2D : 20000,
+    FACE_3D : 20001
+}
+let AuthTurstLevel = {
+    ATL1 : 10000,
+    ATL2 : 20000,
+    ATL3 : 30000,
+    ATL4 : 40000
+}
+
+let SetPropertyType = {
+    PROCESS_ALGORITHM : 1,
+}
+
+let userID = {
+    User1 : 10,
+    User2 : 11,
+    User3 : 12,
+    User4 : 13,
+    User5 : 14
+}
+
+let ResultCode = {
+    SUCCESS : 0,
+    FAIL : 1,
+    GENERAL_ERROR : 2,
+    CANCELED : 3,
+    TIMEOUT : 4,
+    TYPE_NOT_SUPPORT : 5,
+    TRUST_LEVEL_NOT_SUPPORT : 6,
+    BUSY : 7,
+    INVALID_PARAMETERS : 8,
+    LOCKED : 9,
+    NOT_ENROLLED : 10
+}
+
+let GetPropertyType = {
+    AUTH_SUB_TYPE : 1,
+    REMAIN_TIMES : 2,
+    FREEZING_TIME : 3
+}
+
+let Inputerdata = new Uint8Array([12,34,56]);
+
+let GetPropertyTypearray=new Array();
+GetPropertyTypearray[0]=GetPropertyType.AUTH_SUB_TYPE;      
+GetPropertyTypearray[1]=GetPropertyType.FREEZING_TIME;
+GetPropertyTypearray[2]=GetPropertyType.REMAIN_TIMES;
+
+let GetPropertyRequestpin = {
+    authType:AuthType.PIN,
+    keys:GetPropertyTypearray
+    }
+
+let GetPropertyRequestface = {
+    authType:AuthType.FACE,
+    keys:GetPropertyTypearray
+    }
+
+let CredentialInfopinsix = {
+    credType: AuthType.PIN,
+    credSubType: AuthSubType.PIN_SIX,
+    token: null
+}
+
+let CredentialInfopinnum = {
+    credType: AuthType.PIN,
+    credSubType: AuthSubType.PIN_NUMBER,
+    token: null
+}
+
+let CredentialInfopinmix = {
+    credType: AuthType.PIN,
+    credSubType: AuthSubType.PIN_MIXED,
+    token: null
+}
+
+let CredentialInfoface2d = {
+    credType: AuthType.FACE,
+    credSubType: AuthSubType.FACE_2D,
+    token: null
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+describe('userauthTest', function () {
+
+    it('tesaddface101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata)
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace101 openSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (onresult) {
+                    console.info('testFace101 addCredential onResult1 = ' + JSON.stringify(onresult));
+                    let info101;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace101 auth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        let addfaceresult;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (onresult) {
+                            console.info('testFace101 addCredential onResult2 = ' + JSON.stringify(onresult));
+                            addfaceresult = onresult;
+                            expect(ResultCode.SUCCESS).assertEqual(addfaceresult.credentialId);
+                            publicFC.publicdelUser(UserIDM,token, function (data) {
+                                console.info('testFace101 delUser onResult = ' + JSON.stringify(data));
+                                publicFC.publicCloseSession(UserIDM, function (data) {
+                                    console.info('testFace101 closeSession');
+                                    publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                        console.info('testFace101 unRegisterInputer');
+                                        done();
+                                    })
+                                })
+                            }, function (data) {
+                                console.info('testFace101 delUser onAcquireInfo = ' + JSON.stringify(data));
+                            })
+
+                        }, function (onacquireinfo) {
+                            console.info('testFace101 addCredential onAcquireInfo2 = ' + JSON.stringify(onacquireinfo))
+                        })
+                    }, function (data) {
+                        console.info('testFace101 auth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (onacquireinfo) {
+                    console.info('testFace101 addCredential onAcquireInfo1 = ' + JSON.stringify(onacquireinfo))
+                })
+            })
+        } catch (e) {
+            console.log("tesaddface101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testaddfacecancel101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge;
+            let result1 = null;
+            let extraInfo1 = null;
+            let module1 = null;
+            let acquire1 = null;
+            let extr1 = null;
+            let token;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testaddfacecancel101 OpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testaddfacecancel101 addCredential onResult = ' + JSON.stringify(data));
+                    let info101;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testaddfacecancel101 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        token = info101.authextr.token
+                        CredentialInfoface2d.token = token
+                        UserIDM.addCredential(CredentialInfoface2d, {
+                            onResult: function(result,extraInfo){
+                                console.log(result)
+                                result1 = result
+                                extraInfo1 = extraInfo.credentialId
+                            },
+                            onAcquireInfo:function (module,acquire,extr){
+                                module1 = module
+                                acquire1 = acquire
+                                extr1 = extr
+                                console.info(module);
+                            }
+                        })
+                    }, function (data) {
+                        console.info('testFace testaddfacecancel101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testaddfacecancel101 addCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+            await sleep(13000);
+            let cancelresult = publicFC.publiccancel(UserIDM,challenge)
+            expect(ResultCode.SUCCESS).assertEqual(cancelresult);
+            await sleep(1000);
+            expect(ResultCode.CANCELED).assertEqual(result1);
+            publicFC.publicCloseSession(UserIDM, function (data) {
+                console.info('testFace testaddfacecancel101 publicCloseSession ');
+                publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                    console.info('testFace testaddfacecancel101 publicunRegisterInputer ');
+                })
+                done();
+            })
+        } catch (e) {
+            console.log("testaddfacecancel101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testaddfacecancel102', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testaddfacecancel102 OpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testaddfacecancel102 addCredential onResult = ' + JSON.stringify(data));
+                    let info101;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1,async function (data) {
+                        console.info('testFace testaddfacecancel102 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token
+                        CredentialInfoface2d.token = token
+                        let result1 = null
+                        let extraInfo1 = null
+                        let module1 = null
+                        let acquire1 = null
+                        let extr1 = null
+                        await UserIDM.addCredential(CredentialInfoface2d, {
+                            onResult: function(result,extraInfo){
+                                console.log(result)
+                                result1 = result
+                                extraInfo1 = extraInfo.credentialId
+                            },
+                            onAcquireInfo:function (module,acquire,extr){
+                                module1 = module
+                                acquire1 = acquire
+                                extr1 = extr
+                                console.info(module);
+                            }
+                        })
+                        await sleep(3000);
+                        let cancelresult = publicFC.publiccancel(UserIDM,challenge)
+                        expect(ResultCode.SUCCESS).assertEqual(cancelresult);
+                        expect(ResultCode.CANCELED).assertEqual(result1);
+                        publicFC.publicCloseSession(UserIDM, function (data) {
+                            console.info('testFace testaddfacecancel102 publicCloseSession ');
+                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                console.info('testFace testaddfacecancel102 publicunRegisterInputer ');
+                            })
+                            done();
+                        })
+                    }, function (data) {
+                        console.info('testFace testaddfacecancel102 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testaddfacecancel102 addCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testaddfacecancel102 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testaddfacecancel103', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testaddfacecancel103 OpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testaddfacecancel103 addCredential onResult = ' + JSON.stringify(data));
+                    let info101;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, async function (data) {
+                        console.info('testFace testaddfacecancel103 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token
+                        CredentialInfoface2d.token = token
+                        let result1 = null
+                        let extraInfo1 = null
+                        let module1 = null
+                        let acquire1 = null
+                        let extr1 = null
+                        await UserIDM.addCredential(CredentialInfoface2d, {
+                            onResult: function(result,extraInfo){
+                                console.log(result)
+                                result1 = result
+                                extraInfo1 = extraInfo.credentialId
+                            },
+                            onAcquireInfo:function (module,acquire,extr){
+                                module1 = module
+                                acquire1 = acquire
+                                extr1 = extr
+                                console.info(module);
+                            }
+                        })
+                        await sleep(3000);
+                        let cancelresult = publicFC.publiccancel(UserIDM,challenge)
+                        expect(ResultCode.SUCCESS).assertEqual(cancelresult);
+                        expect(ResultCode.CANCELED).assertEqual(result1);
+                        publicFC.publicCloseSession(UserIDM, function (data) {
+                            console.info('testFace testaddfacecancel103 publicCloseSession ');
+                            publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                console.info('testFace testaddfacecancel103 publicunRegisterInputer ');
+                            })
+                            done();
+                        })
+                    }, function (data) {
+                        console.info('testFace testaddfacecancel103 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testaddfacecancel103 addCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testaddfacecancel103 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthface101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthface101 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthface101 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthface101 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.extraInfo.token;
+                        CredentialInfoface2d.token = token;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (data) {
+                            console.info('testFace testauthface101 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let faceauth101 ;
+                            publicFC.publicauth(UserAuth,challenge,AuthType.FACE,AuthTurstLevel.ATL1, function (data) {
+                                console.info('testFace testauthface101 publicauth onResult = ' + JSON.stringify(data));
+                                faceauth101 = data;
+                                expect(ResultCode.SUCCESS).assertEqual(faceauth101.authresult);
+                                let deluserresult = publicFC.publicdelUser(UserIDM,token, function (data) {
+                                    console.info('testFace testauthface101 publicdelUser onResult = ' + JSON.stringify(data));
+                                    publicFC.publicCloseSession(UserIDM, function (data) {
+                                        console.info('testFace testauthface101 publicCloseSession ');
+                                        publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                            console.info('testFace testauthface101 publicunRegisterInputer ');
+                                        })
+                                        done();
+                                    })
+                                }, function (data) {
+                                    console.info('testFace testauthface101 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                                })
+                            }, function (data) {
+                                console.info('testFace testauthface101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthface101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthface101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testauthface101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testauthface101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthuserface101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthuserface101 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthuserface101 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauthUser(UserAuth,userID.User1,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthuserface101 publicauthUser onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        CredentialInfoface2d.token = token
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (data) {
+                            console.info('testFace testauthuserface101 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let faceauth101 ;
+                            publicFC.publicauth(UserAuth,challenge,AuthType.FACE,AuthTurstLevel.ATL1, function (data) {
+                                console.info('testFace testauthuserface101 publicauth onResult = ' + JSON.stringify(data));
+                                faceauth101 = data;
+                                expect(ResultCode.SUCCESS).assertEqual(faceauth101.authresult);
+                                publicFC.publicdelUser(UserIDM,token, function (data) {
+                                    console.info('testFace testauthuserface101 publicdelUser onResult = ' + JSON.stringify(data));
+                                    publicFC.publicCloseSession(UserIDM, function (data) {
+                                        console.info('testFace testauthuserface101 publicCloseSession');
+                                        publicFC.publicunRegisterInputer(PinAuth, function (params) {
+                                            console.info('testFace testauthuserface101 publicunRegisterInputer');
+                                            done();
+                                        })
+                                    })
+                                }, function (data) {
+                                    console.info('testFace testauthuserface101 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                                })
+                            }, function (data) {
+                                console.info('testFace testauthuserface101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthuserface101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthuserface101 publicauthUser onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testauthuserface101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("tesaddface101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthfacecancel101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthfacecancel101 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthfacecancel101 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthfacecancel101 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token
+                        CredentialInfoface2d.token = token
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, async function (data) {
+                            console.info('testFace testauthfacecancel101 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let result1 = null;
+                            let extraInfo1 = null;
+                            let module1 = null;
+                            let acquire1 = null;
+                            let extr1 = null;
+                            let contextID1 = null;
+                            contextID1 = await UserAuth.auth(challenge, AuthType.FACE, AuthTurstLevel.ATL1, {
+                                onResult: function(result,extraInfo){
+                                    console.log(result);
+                                    result1 = result;
+                                    extraInfo1 = extraInfo;
+                                },
+                                onAcquireInfo:function (module,acquire,extr){
+                                    module1 = module;
+                                    acquire1 = acquire;
+                                    extr1 = extr;
+                                    console.info(module);
+                                }
+                            });
+                            await sleep(3000);
+                            let authfacecancel101 = publicFC.publicgecancelAuth(UserAuth,contextID1)
+                            expect(ResultCode.SUCCESS).assertEqual(authfacecancel101);
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicdelUser(UserIDM,token, function (data) {
+                                console.info('testFace testauthfacecancel101 publicdelUser onResult = ' + JSON.stringify(data));
+                                publicFC.publicCloseSession(UserIDM, function (data) {
+                                    console.info('testFace testauthfacecancel101 publicCloseSession');
+                                    publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                        console.info('testFace testauthfacecancel101 publicunRegisterInputer');
+                                        done();
+                                    })
+                                })
+                            }, function (data) {
+                                console.info('testFace testauthfacecancel101 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthfacecancel101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthfacecancel101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testauthfacecancel101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+
+        } catch (e) {
+            console.log("testauthfacecancel101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthfacecancel102', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthfacecancel102 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthfacecancel102 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthfacecancel102 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token
+                        CredentialInfoface2d.token = token
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, async function (data) {
+                            console.info('testFace testauthfacecancel102 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let result1 = null;
+                            let extraInfo1 = null;
+                            let module1 = null;
+                            let acquire1 = null;
+                            let extr1 = null;
+                            let contextID1 = null;
+                            contextID1 = await UserAuth.auth(challenge, AuthType.FACE, AuthTurstLevel.ATL1, {
+                                onResult: function(result,extraInfo){
+                                    console.log(result);
+                                    result1 = result;
+                                    extraInfo1 = extraInfo;
+                                },
+                                onAcquireInfo:function (module,acquire,extr){
+                                    module1 = module;
+                                    acquire1 = acquire;
+                                    extr1 = extr;
+                                    console.info(module);
+                                }
+                            });
+                            await sleep(8000);
+                            let authfacecancel101 = publicFC.publicgecancelAuth(UserAuth,contextID1)
+                            expect(ResultCode.SUCCESS).assertEqual(authfacecancel101);
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicdelUser(UserIDM,token, function (data) {
+                                console.info('testFace testauthfacecancel102 publicdelUser onResult = ' + JSON.stringify(data));
+                                publicFC.publicCloseSession(UserIDM, function (data) {
+                                    console.info('testFace testauthfacecancel102 publicCloseSession');
+                                    publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                        console.info('testFace testauthfacecancel102 publicunRegisterInputer');
+                                        done();
+                                    })
+                                })
+                            }, function (data) {
+                                console.info('testFace testauthfacecancel102 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthfacecancel102 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthfacecancel102 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testauthfacecancel102 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+
+        } catch (e) {
+            console.log("testauthfacecancel102 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthfacecancel103', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthfacecancel103 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthfacecancel103 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthfacecancel103 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token
+                        CredentialInfoface2d.token = token
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, async function (data) {
+                            console.info('testFace testauthfacecancel103 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let result1 = null;
+                            let extraInfo1 = null;
+                            let module1 = null;
+                            let acquire1 = null;
+                            let extr1 = null;
+                            let contextID1 = null;
+                            contextID1 = await UserAuth.auth(challenge, AuthType.FACE, AuthTurstLevel.ATL1, {
+                                onResult: function(result,extraInfo){
+                                    console.log(result);
+                                    result1 = result;
+                                    extraInfo1 = extraInfo;
+                                },
+                                onAcquireInfo:function (module,acquire,extr){
+                                    module1 = module;
+                                    acquire1 = acquire;
+                                    extr1 = extr;
+                                    console.info(module);
+                                }
+                            });
+                            await sleep(10000);
+                            let authfacecancel101 = publicFC.publicgecancelAuth(UserAuth,contextID1)
+                            expect(ResultCode.SUCCESS).assertEqual(authfacecancel101);
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicdelUser(UserIDM,token, function (data) {
+                                console.info('testFace testauthfacecancel103 publicdelUser onResult = ' + JSON.stringify(data));
+                                publicFC.publicCloseSession(UserIDM, function (data) {
+                                    console.info('testFace testauthfacecancel103 publicCloseSession');
+                                    publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                        console.info('testFace testauthfacecancel103 publicunRegisterInputer');
+                                        done();
+                                    })
+                                })
+                            }, function (data) {
+                                console.info('testFace testauthfacecancel103 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthfacecancel103 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthfacecancel103 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testauthfacecancel103 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+
+        } catch (e) {
+            console.log("testauthfacecancel103 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthuserfacecancel101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthuserfacecancel101 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthuserfacecancel101 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthuserfacecancel101 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        CredentialInfoface2d.token = token;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, async function (data) {
+                            console.info('testFace testauthuserfacecancel101 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let result1 = null;
+                            let extraInfo1 = null;
+                            let module1 = null;
+                            let acquire1 = null;
+                            let extr1 = null;
+                            let contextID1 = null;
+                            contextID1 = await UserAuth.authUser(userID.User1, challenge, AuthType.FACE, AuthTurstLevel.ATL1, {
+                                onResult: function(result,extraInfo){
+                                    console.log(result);
+                                    result1 = result;
+                                    extraInfo1 = extraInfo;
+                                },
+                                onAcquireInfo:function (module,acquire,extr){
+                                    module1 = module;
+                                    acquire1 = acquire;
+                                    extr1 = extr;
+                                    console.info(module);
+                                }
+                            })
+                            await sleep(3000);
+                            let authfacecancel101 = publicFC.publicgecancelAuth(UserAuth,contextID1);
+                            expect(ResultCode.SUCCESS).assertEqual(authfacecancel101);
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicCloseSession(UserIDM, function (data) {
+                                console.info('testFace testauthuserfacecancel101 publicCloseSession');
+                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                    console.info('testFace testauthuserfacecancel101 publicunRegisterInputer');
+                                    done();
+                                })
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthuserfacecancel101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthuserfacecancel101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    });
+                }, function (data) {
+                    console.info('testFace testauthuserfacecancel101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testauthuserfacecancel101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthuserfacecancel102', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthuserfacecancel102 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthuserfacecancel102 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthuserfacecancel102 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        CredentialInfoface2d.token = token;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, async function (data) {
+                            console.info('testFace testauthuserfacecancel102 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let result1 = null;
+                            let extraInfo1 = null;
+                            let module1 = null;
+                            let acquire1 = null;
+                            let extr1 = null;
+                            let contextID1 = null;
+                            contextID1 = await UserAuth.authUser(userID.User1, challenge, AuthType.FACE, AuthTurstLevel.ATL1, {
+                                onResult: function(result,extraInfo){
+                                    console.log(result);
+                                    result1 = result;
+                                    extraInfo1 = extraInfo;
+                                },
+                                onAcquireInfo:function (module,acquire,extr){
+                                    module1 = module;
+                                    acquire1 = acquire;
+                                    extr1 = extr;
+                                    console.info(module);
+                                }
+                            })
+                            await sleep(8000);
+                            let authfacecancel101 = publicFC.publicgecancelAuth(UserAuth,contextID1);
+                            expect(ResultCode.SUCCESS).assertEqual(authfacecancel101);
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicCloseSession(UserIDM, function (data) {
+                                console.info('testFace testauthuserfacecancel102 publicCloseSession');
+                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                    console.info('testFace testauthuserfacecancel102 publicunRegisterInputer');
+                                    done();
+                                })
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthuserfacecancel102 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthuserfacecancel102 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    });
+                }, function (data) {
+                    console.info('testFace testauthuserfacecancel102 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testauthuserfacecancel102 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testauthuserfacecancel103', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testauthuserfacecancel103 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testauthuserfacecancel103 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testauthuserfacecancel103 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        CredentialInfoface2d.token = token;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, async function (data) {
+                            console.info('testFace testauthuserfacecancel103 publicaddCredential onResult = ' + JSON.stringify(data));
+                            let result1 = null;
+                            let extraInfo1 = null;
+                            let module1 = null;
+                            let acquire1 = null;
+                            let extr1 = null;
+                            let contextID1 = null;
+                            contextID1 = await UserAuth.authUser(userID.User1, challenge, AuthType.FACE, AuthTurstLevel.ATL1, {
+                                onResult: function(result,extraInfo){
+                                    console.log(result);
+                                    result1 = result;
+                                    extraInfo1 = extraInfo;
+                                },
+                                onAcquireInfo:function (module,acquire,extr){
+                                    module1 = module;
+                                    acquire1 = acquire;
+                                    extr1 = extr;
+                                    console.info(module);
+                                }
+                            })
+                            await sleep(11000);
+                            let authfacecancel101 = publicFC.publicgecancelAuth(UserAuth,contextID1);
+                            expect(ResultCode.SUCCESS).assertEqual(authfacecancel101);
+                            expect(ResultCode.CANCELED).assertEqual(result1);
+                            publicFC.publicCloseSession(UserIDM, function (data) {
+                                console.info('testFace testauthuserfacecancel103 publicCloseSession');
+                                publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                    console.info('testFace testauthuserfacecancel103 publicunRegisterInputer');
+                                    done();
+                                })
+                            })
+                        }, function (data) {
+                            console.info('testFace testauthuserfacecancel103 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testauthuserfacecancel103 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    });
+                }, function (data) {
+                    console.info('testFace testauthuserfacecancel103 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testauthuserfacecancel103 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testdelface101', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testdelface101 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testdelface101 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testdelface101 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        CredentialInfoface2d.token = token;
+                        let addfaceresult ;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (data) {
+                            console.info('testFace testdelface101 publicaddCredential onResult = ' + JSON.stringify(data));
+                            addfaceresult = data;
+                            let credentialId = addfaceresult.credentialId;
+                            let delcredresult ;
+                            publicFC.publicdelCred(UserIDM,credentialId,token, function (data) {
+                                console.info('testFace testdelface101 publicdelCred onResult = ' + JSON.stringify(data));
+                                delcredresult = data;
+                                expect(ResultCode.SUCCESS).assertEqual(delcredresult.authresult);
+                                publicFC.publicdelUser(UserIDM,token, function (data) {
+                                    console.info('testFace testdelface101 publicdelUser onResult = ' + JSON.stringify(data));
+                                    publicFC.publicCloseSession(UserIDM, function (data) {
+                                        console.info('testFace testdelface101 publicCloseSession ');
+                                        publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                            console.info('testFace testdelface101 publicunRegisterInputer ');
+                                            done();
+                                        })
+                                    })
+                                }, function (data) {
+                                    console.info('testFace testdelface101 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                                })
+                            }, function (data) {
+                                console.info('testFace testdelface101 publicdelCred onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testdelface101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testdelface101 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testdelface101 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testdelface101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+
+    it('testdelface102', 0, async function (done) {
+        try {
+            publicFC.publicRegisterInputer(PinAuth,AuthSubType.PIN_SIX,Inputerdata);
+            let challenge ;
+            publicFC.publicOpenSession(UserIDM, function (data) {
+                console.info('testFace testdelface102 publicOpenSession challenge = ' + data);
+                challenge = data;
+                publicFC.publicaddCredential(UserIDM,CredentialInfopinsix, function (data) {
+                    console.info('testFace testdelface102 publicaddCredential onResult = ' + JSON.stringify(data));
+                    let info101 ;
+                    publicFC.publicauth(UserAuth,challenge,AuthType.PIN,AuthTurstLevel.ATL1, function (data) {
+                        console.info('testFace testdelface102 publicauth onResult = ' + JSON.stringify(data));
+                        info101 = data;
+                        let token = info101.authextr.token;
+                        CredentialInfoface2d.token = token;
+                        let addfaceresult ;
+                        publicFC.publicaddCredential(UserIDM,CredentialInfoface2d, function (data) {
+                            console.info('testFace testdelface102 publicaddCredential onResult = ' + JSON.stringify(data));
+                            addfaceresult = data;
+                            let credentialId = addfaceresult.credentialId;
+                            let token1 = token + "Wrong Word";
+                            let delcredresult ;
+                            publicFC.publicdelCred(UserIDM,credentialId,token1, function (data) {
+                                console.info('testFace testdelface102 publicdelCred onResult = ' + JSON.stringify(data));
+                                delcredresult = data;
+                                expect(ResultCode.FAIL).assertEqual(delcredresult.authresult);
+                                publicFC.publicdelUser(UserIDM,token, function (data) {
+                                    console.info('testFace testdelface102 publicdelUser onResult = ' + JSON.stringify(data));
+                                    publicFC.publicCloseSession(UserIDM, function (data) {
+                                        console.info('testFace testdelface102 publicCloseSession ');
+                                        publicFC.publicunRegisterInputer(PinAuth, function (data) {
+                                            console.info('testFace testdelface102 publicunRegisterInputer ');
+                                            done();
+                                        })
+                                    })
+                                }, function (data) {
+                                    console.info('testFace testdelface102 publicdelUser onAcquireInfo = ' + JSON.stringify(data));
+                                })
+                            }, function (data) {
+                                console.info('testFace testdelface102 publicdelCred onAcquireInfo = ' + JSON.stringify(data));
+                            })
+                        }, function (data) {
+                            console.info('testFace testdelface102 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                        })
+                    }, function (data) {
+                        console.info('testFace testdelface102 publicauth onAcquireInfo = ' + JSON.stringify(data));
+                    })
+                }, function (data) {
+                    console.info('testFace testdelface102 publicaddCredential onAcquireInfo = ' + JSON.stringify(data));
+                })
+            })
+        } catch (e) {
+            console.log("testdelface101 fail " + e);
+            expect(null).assertFail();
+        }
+    })
+})
