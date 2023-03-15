@@ -47,6 +47,18 @@
       },
       {
         "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.MEDIA_LOCATION"
+      },
+      {
+        "name": "ohos.permission.CAMERA"
+      },
+      {
+        "name": "ohos.permission.MICROPHONE"
+      },
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY"
       }
     ]
   }
