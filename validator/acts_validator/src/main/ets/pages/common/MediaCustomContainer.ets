@@ -24,40 +24,28 @@ let path = globalThis.dir;
 const TAG = '[Screenshot]';
 @Component
 export struct CustomContainer {
-  @Link X: number;
-  @Link Y: number;
-  @Link name:string;
+  @Link FillColor: string;
+  @Link name: string;
+  Url : string = '';
   title : string = '';
   StepTips: string = '';
-  Url : string = '';
-  @Link Vue : boolean;
   @BuilderParam content: () => void;
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
-    if(this.Vue == false){
-      Button({stateEffect:this.Vue}) {
-        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
-      }.width('30%').height('30vp').backgroundColor(Color.Grey).opacity(0.4)
-      .onClick(()=>{
-
+    Button() {
+      Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
+    }.width('30%').height('30vp').backgroundColor(Color.Grey)
+    .onClick(()=>{
+      router.back({
+        url:this.Url,
+        params: {result : 'Pass', title : this.name,
+        }
       })
-    }
-    else{
-      Button({stateEffect:this.Vue}) {
-        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
-      }.width('30%').height('30vp').backgroundColor(Color.Grey)
-      .onClick(()=>{
-        router.back({
-          url:this.Url,
-          params: {result : 'Pass', title : this.name,
-          }
-        })
-        this.getScreen(isFullScreen);
-        prompt.showToast({
-          message: '通过', duration: 1000
-        });
-      })
-    }
+      this.getScreen(isFullScreen);
+      prompt.showToast({
+        message: '通过', duration: 1000
+      });
+    })
   }
   @Builder
   FailBtn(text: Resource, isFullScreen: boolean) {
@@ -85,7 +73,7 @@ export struct CustomContainer {
         .onClick(()=>{
           router.back({
             url:this.Url,
-            params: {result : 'None', }
+            params: {result : 'None',}
           })
         })
         Text(this.title).fontColor(Color.White).fontSize('18fp').margin({left:'-20vp'})
