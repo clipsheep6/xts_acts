@@ -17,14 +17,14 @@
 @Component
 struct column {
   @State active: boolean = false
-  private content: string = "Column Page"
+  private content: string = 'Column Page'
 
   onPageShow() {
-    console.info('Column page show called');
+    console.info('Column page show called')
   }
 
   onBuildDone() {
-    console.info('Column page build done called');
+    console.info('Column page build done called')
   }
 
   build() {
