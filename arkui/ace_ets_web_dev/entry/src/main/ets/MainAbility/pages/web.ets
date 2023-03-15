@@ -35,7 +35,7 @@ struct Index {
     @State errorReceive:string=""
     @State httpErrorReceive:number=0
     @State titleReceive:string=""
-    @State downloadStart:string=""
+    @State isDownloadStart:boolean=false
     @State javaScriptAccess:boolean=true
     @State fileAccess:boolean=true
     @State domStorageAccess:boolean=false
@@ -43,7 +43,6 @@ struct Index {
     @State geolocationAccess:boolean=true
     @State onlineImageAccess:boolean=true
     @State databaseAccess:boolean=true
-    @State overviewModeAccess:boolean=false
     @State initialScale:number=100
     @State enterPageEnd:boolean=false
     @State newScale:number=0
@@ -54,8 +53,9 @@ struct Index {
     @State cacheError:boolean=false
     @State mixedSwitch:boolean=false
     @State mixedAllSwitch:boolean=false
-    @State overViewFalseHeight:number=0
     @State webVisibility: Visibility = Visibility.Visible
+    @State isProgressFinish:boolean=false
+    @State isHttpErrorReceive:boolean=false
     onPageShow(){
         let valueChangeEvent={
             eventId:10,
@@ -109,7 +109,7 @@ struct Index {
                             break;
                         }
                         case "emitOnUrlLoadIntercept":{
-                            this.controller.loadUrl({url:"https://www.gitee.com/"})
+                            this.controller.loadUrl({url:"https://gitee.com/"})
                             setTimeout(()=>{
                                 Utils.emitEvent(loadedUrl,104)
                             },3000)
@@ -120,22 +120,24 @@ struct Index {
                             break;
                         }
                         case "emitOnResourceLoad":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/second.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/second.html"});
                             setTimeout(()=>{
                                 Utils.emitEvent(this.loadedResource,108)
                             },3000)
                             break;
                         }
                         case "emitLoadUrl":{
-                            this.controller.loadUrl({url:"https://www.gitee.com"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"})
                             setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,110)
+                                this.controller.runJavaScript({script:"gettitle()",callback:(res)=>{
+                                    console.info("gettitle1==>"+res)
+                                    Utils.emitEvent(res,110)
+                                }})
                             },3000)
                             break;
                         }
                         case "emitRunJavaScript":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"testRunJavaScript()",callback:(res)=>{
                                     Utils.emitEvent(res,112)
@@ -144,14 +146,13 @@ struct Index {
                             break;
                         }
                         case "emitOnProgressChange":{
-                            this.controller.loadUrl({url:"https://www.gitee.com"})
-                            setTimeout(()=>{
-                                Utils.emitEvent(this.progress,114)
-                            },5000)
+                            this.isProgressFinish=true
+                            await Utils.sleep(1000)
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"})
                             break;
                         }
                         case "emitOnRefreshAccessedHistory":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/second.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/second.html"});
                             setTimeout(()=>{
                                 Utils.emitEvent(this.newUrl,116)
                             },3000)
@@ -166,27 +167,8 @@ struct Index {
                             Utils.emitEvent("webId",120)
                             break;
                         }
-                        case "emitGetTitle":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
-                            setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,122)
-                            },3000)
-                            break;
-                        }
-                        case "emitGetPageHeight":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
-                            let webPageHeight=this.controller.getPageHeight()+""
-                            setTimeout(()=>{
-                                this.controller.runJavaScript({script:"getPageHeight()",callback:(res)=>{
-                                    console.info("getPageHeight==>"+res)
-                                    Utils.emitEventTwo(res,webPageHeight,124)
-                                }})
-                            },3000)
-                            break;
-                        }
                         case "emitGetRequestFocus":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/second.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/second.html"});
                             await Utils.sleep(2000)
                             sendEventByKey('textInput',10,'')
                             break;
@@ -208,32 +190,25 @@ struct Index {
                         }
                         case "emitBackward":{
                             this.controller.backward()
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,134)
+                                this.controller.runJavaScript({script:"gettitle()",callback:(res)=>{
+                                    Utils.emitEvent(res,134)
+                                }})
                             },3000)
                             break;
                         }
                         case "emitForward":{
                             this.controller.forward()
                             setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,136)
-                            },3000)
-                            break;
-                        }
-                        case "emitBackOrForward":{
-                            this.controller.backOrForward(-1)
-                            setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,138)
+                                Utils.emitEvent(this.newUrl,136)
                             },3000)
                             break;
                         }
                         case "emitGeolocationAccessFalse":{
                             this.geolocationAccess=false
                             await Utils.sleep(2000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/geo.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/geo.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getGeoResult()",callback:(res)=>{
                                     console.info("getGeoResult==>"+res)
@@ -245,7 +220,7 @@ struct Index {
                         case "emitInitialScale":{
                             this.initialScale=120
                             await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/second.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/second.html"});
                             this.enterPageEnd=true
                             break;
                         }
@@ -260,13 +235,13 @@ struct Index {
                             this.geolocationAccess=true
                             this.geoShow=true
                             await Utils.sleep(2000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/geo.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/geo.html"});
                             break;
                         }
                         case "emitDomStorageAccessFalse":{
                             this.domStorageAccess=false
                             await Utils.sleep(2000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/domApi.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/domApi.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getDomResult()",callback:(res)=>{
                                     console.info("getDomResult==>"+res)
@@ -278,7 +253,7 @@ struct Index {
                         case "emitDomStorageAccessTrue":{
                             this.domStorageAccess=true
                             await Utils.sleep(2000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/domApi.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/domApi.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getDomResult()",callback:(res)=>{
                                     console.info("getDomResult==>"+res)
@@ -290,7 +265,7 @@ struct Index {
                         case "emitImageAccessFalse":{
                             this.imageAccess=false
                             await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getImgResult()",callback:(res)=>{
                                     console.info("getImgResult==>"+res)
@@ -302,7 +277,7 @@ struct Index {
                         case "emitImageAccessTrue":{
                             this.imageAccess=true
                             await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getImgResult()",callback:(res)=>{
                                     console.info("getImgResult==>"+res)
@@ -314,7 +289,7 @@ struct Index {
                         case "emitOnlineImageAccessFalse":{
                             this.onlineImageAccess=false
                             await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/onlineImageAccess.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/onlineImageAccess.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getImageLoadResult()",callback:(res)=>{
                                     console.info("getImageLoadResult==>"+res)
@@ -326,7 +301,7 @@ struct Index {
                         case "emitOnlineImageAccessTrue":{
                             this.onlineImageAccess=true
                             await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/onlineImageAccess.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/onlineImageAccess.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getImageLoadResult()",callback:(res)=>{
                                     console.info("getImageLoadResult==>"+res)
@@ -338,7 +313,7 @@ struct Index {
                         case "emitDatabaseAccessTrue":{
                             this.databaseAccess=true
                             await Utils.sleep(2000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/databaseAccess.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/databaseAccess.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"getDataResult()",callback:(res)=>{
                                     console.info("getDataResult==>"+res)
@@ -347,34 +322,8 @@ struct Index {
                             },3000)
                             break;
                         }
-                        case "emitOverviewModeAccessFalse":{
-                            this.overviewModeAccess=false
-                            await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/overview.html"})
-                            setTimeout(()=>{
-                                let webPageHeight=this.controller.getPageHeight()
-                                this.controller.runJavaScript({script:"getViewResult()",callback:(res)=>{
-                                    this.overViewFalseHeight=parseInt(res)
-                                    console.info("getViewResult==>"+res)
-                                    Utils.emitEventTwo(webPageHeight,res,168)
-                                }})
-                            },3000)
-                            break;
-                        }
-                        case "emitOverviewModeAccessTrue":{
-                            this.overviewModeAccess=true
-                            await Utils.sleep(1000)
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/overview.html"})
-                            setTimeout(()=>{
-                                this.controller.runJavaScript({script:"getViewResult()",callback:(res)=>{
-                                    console.info("getViewResult==>"+res)
-                                    Utils.emitEventTwo(this.overViewFalseHeight,parseInt(res),170)
-                                }})
-                            },3000)
-                            break;
-                        }
                         case "emitOnPrompt":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
                                 this.controller.runJavaScript({script:"toPrompt()"})
                             },3000)
@@ -390,10 +339,11 @@ struct Index {
                         case "emitCacheModeDefault":{
                             this.cacheMode=CacheMode.Default
                             await Utils.sleep(2000)
-                            this.controller.loadUrl({url:"https://www.openharmony.cn/mainPlay"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"})
                             setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,184)
+                                this.controller.runJavaScript({script:"gettitle()",callback:(res)=>{
+                                    Utils.emitEvent(res,184)
+                                }}) 
                             },3000)
                             break;
                         }
@@ -413,11 +363,12 @@ struct Index {
                         }
                         case "emitFileAccessTrue":{
                             this.fileAccess=true
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             this.controller.runJavaScript({script:"openRawFile()"})
                             setTimeout(()=>{
-                                let webTitle=this.controller.getTitle()
-                                Utils.emitEvent(webTitle,190)
+                                this.controller.runJavaScript({script:"gettitle()",callback:(res)=>{
+                                    Utils.emitEvent(res,190)
+                                }})
                             },3000)
                             break;
                         }
@@ -461,83 +412,36 @@ struct Index {
                             break;
                         }
                         case "emitOnHttpErrorReceive":{
+                            this.isHttpErrorReceive=true
+                            await Utils.sleep(1000)
                             this.controller.loadUrl({url:'https://example1.com/path/does/not/exist/index.jsp'})
-                            setTimeout(()=>{
-                                this.controller.loadUrl({url:'https://example1.com/path/does/not/exist/index.jsp'})
-                                setTimeout(()=>{
-                                    Utils.emitEvent(this.httpErrorReceive,66)
-                                },3000)
-                            },3000)
                             break;
                         }
                         case "emitOnTitleReceive":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
                                 Utils.emitEvent(this.titleReceive,67)
                             },3000)
                             break;
                         }
                         case "emitOnDownloadStart":{
+                            this.isDownloadStart=true
+                            await Utils.sleep(1000)
                             this.controller.loadUrl({url:"https://consumer.huawei.com/content/dam/huawei-cbg-site/cn/mkt/mobileservices/2022/download/PC107f1b3947c942ffaa14334a879065d8.2107261020.exe"})
-                            setTimeout(()=>{
-                                Utils.emitEvent(this.downloadStart,68)
-                            },5000)
-                            break;
-                        }
-                        case "emitSetCookie":{
-                            this.controller.getCookieManager().setCookie('http://www.baidu.com','e=f')
-                            setTimeout(()=>{
-                                let setCookieCalled =  this.controller.getCookieManager().getCookie('http://www.baidu.com')
-                                Utils.emitEvent(setCookieCalled,76)
-                            },3000)
-                            break;
-                        }
-                        case "emitGetCookie":{
-                            this.controller.getCookieManager().setCookie('https://www.bilibili.com/','e=f')
-                            setTimeout(()=>{
-                                let getCookieCalled =  this.controller.getCookieManager().getCookie('https://www.bilibili.com/')
-                                Utils.emitEvent(getCookieCalled,69)
-                            },3000)
                             break;
                         }
                         case "emitZoom":{
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
-                            setTimeout(()=>{
-                                this.controller.zoom(2)
-                                setTimeout(() => {
-                                    if(this.controller.getPageHeight() > 1400){
-                                        var zoomCalled = true
-                                    }
-                                    Utils.emitEvent(zoomCalled,77)
-                                },3000)
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
+                            this.controller.zoom(2)
+                            setTimeout(()=>{                    
+                                this.controller.runJavaScript({script:"getPageHeight()",callback:(res)=>{
+                                console.info("getPageHeight++++++"+res)
+                                    if(Number(res) > 1400){
+                                    var zoomCalled = true
+                                }
+                                Utils.emitEvent(zoomCalled,77)
+                                }})
                             },5000)
-                            break;
-                        }
-                        case "emitZoomOut":{
-                            setTimeout(()=>{
-                                var zoomOutCalled = true
-                                Utils.emitEvent(zoomOutCalled,78)
-                            },3000)
-                            break;
-                        }
-                        case "emitZoomIn":{
-                            setTimeout(()=>{
-                                var zoomInCalled = false
-                                Utils.emitEvent(zoomInCalled,79)
-                            },3000)
-                            break;
-                        }
-                        case "emitDeleteEntireCookie":{
-                            this.controller.getCookieManager().deleteEntireCookie()
-                            setTimeout(()=>{
-                                let deleteEntireCookieCalled = this.controller.getCookieManager().getCookie('http://www.baidu.com')
-                                Utils.emitEvent(deleteEntireCookieCalled,80)
-                            },3000)
-                            break;
-                        }
-                        case "emitSaveCookieSync":{
-                            let saveCookieSyncCalled = this.controller.getCookieManager().saveCookieSync()
-                            Utils.emitEvent(saveCookieSyncCalled,81)
                             break;
                         }
                         case "emitClearHistory":{
@@ -564,20 +468,23 @@ struct Index {
                             break;
                         }
                         case "emitOnInactive":{
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             this.controller.onInactive()
-                            this.controller.zoomOut()
                             setTimeout(()=>{
                                 var onInactiveCalled = false
-                                if(this.controller.getPageHeight() < 2600){
+                                this.controller.runJavaScript({script:"gettitle()",callback:(res)=>{
+                                    console.info("gettitle++++++"+res)
+                                    if(res == "\"index\""){
                                     onInactiveCalled = true
                                 }
                                 Utils.emitEvent(onInactiveCalled,84)
+                                }})        
                             },3000)
                             break;
                         }
                         case "emitOnActive":{
                             this.controller.onActive()
-                            this.controller.loadUrl({url:"file:///data/storage/el1/bundle/phone/resources/rawfile/index.html"})
+                            this.controller.loadUrl({url:"resource://rawfile/index.html"});
                             setTimeout(()=>{
                                 let onActiveCalled = this.pageBegin
                                 Utils.emitEvent(onActiveCalled,85)
@@ -613,14 +520,6 @@ struct Index {
                                         Utils.emitEvent(javaScriptAccessCalled,88)
                                     }
                                 },3000)
-                            },3000)
-                            break;
-                        }
-                        case "emitGetCookieManager":{
-                            this.controller.getCookieManager().setCookie("https://weibo.com","a=b")
-                            setTimeout(()=>{
-                                let getCookieManagerCalled =  this.controller.getCookieManager().getCookie('https://weibo.com')
-                                Utils.emitEvent(getCookieManagerCalled,89)
                             },3000)
                             break;
                         }
@@ -670,7 +569,6 @@ struct Index {
             .cacheMode(this.cacheMode)
             .initialScale(this.initialScale)
             .mixedMode(this.mixedMode)
-            .overviewModeAccess(this.overviewModeAccess)
             .userAgent("Mozila/5.0 (Linux; Andriod 9; VRD-AL10; HMSCore 6.3.0.331) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 MobileSafari/537.36")
             .javaScriptProxy({
                 object:this.jsObj,
@@ -711,6 +609,10 @@ struct Index {
                 if(this.enterPageEnd){
                     Utils.emitEvent(this.newScale,97)
                     this.enterPageEnd=false
+                }else if(this.isProgressFinish){
+                    console.info("isProgressFinish==>")
+                    Utils.emitEvent(this.progress,114)
+                    this.isProgressFinish=false
                 }
             })
             .onConsole((event) => {
@@ -744,13 +646,22 @@ struct Index {
                 }
             })
             .onHttpErrorReceive((event) => {
-                this.httpErrorReceive = event.response.getResponseCode()
+                if(this.isHttpErrorReceive){
+                    console.info("isHttpErrorReceive==>")
+                    this.httpErrorReceive = event.response.getResponseCode()
+                    Utils.emitEvent(this.httpErrorReceive,66)
+                    this.isHttpErrorReceive=false
+                }
             })
             .onTitleReceive((event) => {
                 this.titleReceive = event.title
             })
             .onDownloadStart((event) => {
-                this.downloadStart = event.url
+                if(this.isDownloadStart){
+                    console.info("isDownloadStart==>")
+                    Utils.emitEvent(event.url,68)
+                    this.isDownloadStart=false
+                }
             })
             .onScaleChange((event)=>{
                 console.log("onScaleChange==>")

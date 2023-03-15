@@ -3807,23 +3807,12 @@ export default function actsRpcClientJsTest() {
         it("SUB_Softbus_IPC_Compatibility_MessageSequence_10800", 0,async function(done){
             console.info("---------------------start SUB_Softbus_IPC_Compatibility_MessageSequence_10800---------------------------");
             try{
-                let count = 0;
-                function checkResult(num, str) {
-                    expect(num).assertEqual(123);
-                    expect(str).assertEqual("rpcListenerTest");
-                    count++;
-                    console.info("check result done, count: " + count);
-                    if (count == 3) {
-                        done();
-                    };
-                };
                 let data = rpc.MessageSequence.create();
                 let reply = rpc.MessageSequence.create();
                 let option = new rpc.MessageOption();
-                data.writeInterfaceToken("rpcTestAbility");
-                let listeners = [new TestListener("rpcListener", checkResult),
-                    new TestListener("rpcListener2", checkResult),
-                    new TestListener("rpcListener3", checkResult)];
+                let listeners = [new TestRemoteObject("rpcListener"),
+                    new TestRemoteObject("rpcListener2"),
+                    new TestRemoteObject("rpcListener3")];
                 data.writeRemoteObjectArray(listeners);
                 expect(gIRemoteObject != undefined).assertTrue();
                 await gIRemoteObject.sendMessageRequest(CODE_WRITE_REMOTEOBJECTARRAY, data, reply, option).then((result) => {
@@ -3840,48 +3829,6 @@ export default function actsRpcClientJsTest() {
             }
             done();
             console.info("---------------------end SUB_Softbus_IPC_Compatibility_MessageSequence_10800---------------------------");
-        });
-    
-        /*
-         * @tc.number  SUB_Softbus_IPC_Compatibility_MessageSequence_10900
-         * @tc.name    Call the writeremoteobjectarray interface to write the object array to the MessageSequence instance,
-         *             and call readremoteobjectarray (objects: iremoteobject []) to read the data
-         * @tc.desc    Function test
-         * @tc.level   3
-         */
-        it("SUB_Softbus_IPC_Compatibility_MessageSequence_10900", 0,async function(done){
-            console.info("---------------------start SUB_Softbus_IPC_Compatibility_MessageSequence_10900---------------------------");
-            try{
-                let count = 0;
-                function checkResult(num, str) {
-                    expect(num).assertEqual(123);
-                    expect(str).assertEqual("rpcListenerTest");
-                    count++;
-                    console.info("check result done, count: " + count);
-                    if (count == 3) {
-                        done();
-                    }
-                }
-                let data = rpc.MessageSequence.create();
-                let reply = rpc.MessageSequence.create();
-                let option = new rpc.MessageOption();
-                data.writeInterfaceToken("rpcTestAbility");
-                let listeners = [new TestListener("rpcListener", checkResult),
-                    new TestListener("rpcListener2", checkResult),
-                    new TestListener("rpcListener3", checkResult)];
-                data.writeRemoteObjectArray(listeners);
-                expect(gIRemoteObject != undefined).assertTrue();
-                await gIRemoteObject.sendMessageRequest(CODE_WRITE_REMOTEOBJECTARRAY, data, reply, option).then((result) => {
-                    console.info("SUB_Softbus_IPC_Compatibility_MessageSequence_10900: sendMessageRequest is " + result.errCode);
-                    expect(result.errCode == 0).assertTrue();
-                });
-                data.reclaim();
-                reply.reclaim();
-            } catch (error) {
-                expect(error == null).assertTrue();
-            }
-            done();
-            console.info("---------------------end SUB_Softbus_IPC_Compatibility_MessageSequence_10900---------------------------");
         });
     
         /*
@@ -4012,7 +3959,7 @@ export default function actsRpcClientJsTest() {
                 let a = [new MySequenceable(1, "aaa"), new MySequenceable(2, "bbb"),
                     new MySequenceable(3, "ccc")]
                 data.writeParcelableArray(a);
-                await gIRemoteObject.sendMessageRequest(CODE_ALL_ARRAY_TYPE, data, reply, option,(err, result) => {
+                await gIRemoteObject.sendMessageRequest(CODE_ALL_ARRAY_TYPE, data, reply, option).then((result) => {
                     expect(result.errCode).assertEqual(0);
                     assertArrayElementEqual(result.reply.readByteArray(), [1, 2, 3]);
                     assertArrayElementEqual(result.reply.readShortArray(), [4, 5, 6]);
@@ -4068,15 +4015,33 @@ export default function actsRpcClientJsTest() {
                 data.writeParcelableArray(a);
                 await gIRemoteObject.sendMessageRequest(CODE_ALL_ARRAY_TYPE, data, reply, option).then((result) => {
                     expect(result.errCode).assertEqual(0);
-                    assertArrayElementEqual(result.reply.readByteArray(), [1, 2, 3]);
-                    assertArrayElementEqual(result.reply.readShortArray(), [4, 5, 6]);
-                    assertArrayElementEqual(result.reply.readIntArray(), [7, 8, 9]);
-                    assertArrayElementEqual(result.reply.readLongArray(), [10, 11, 12]);
-                    assertArrayElementEqual(result.reply.readFloatArray(), [1.1, 1.2, 1.3]);
-                    assertArrayElementEqual(result.reply.readDoubleArray(), [2.1, 2.2, 2.3]);
-                    assertArrayElementEqual(result.reply.readBooleanArray(), [true, true, false]);
-                    assertArrayElementEqual(result.reply.readCharArray(), [65,97,122]);
-                    assertArrayElementEqual(result.reply.readStringArray(), ['abc', 'seggg']);
+                    let ByteArray = new Array();
+                    result.reply.readByteArray(ByteArray)
+                    assertArrayElementEqual(ByteArray, [1, 2, 3]);
+                    let ShortArray = new Array();
+                    result.reply.readShortArray(ShortArray)
+                    assertArrayElementEqual(ShortArray, [4, 5, 6]);
+                    let IntArray = new Array();
+                    result.reply.readIntArray(IntArray)
+                    assertArrayElementEqual(IntArray, [7, 8, 9]);
+                    let LongArray = new Array();
+                    result.reply.readLongArray(LongArray)
+                    assertArrayElementEqual(LongArray, [10, 11, 12]);
+                    let FloatArray = new Array();
+                    result.reply.readFloatArray(FloatArray)
+                    assertArrayElementEqual(FloatArray, [1.1, 1.2, 1.3]);
+                    let DoubleArray = new Array();
+                    result.reply.readDoubleArray(DoubleArray)
+                    assertArrayElementEqual(DoubleArray, [2.1, 2.2, 2.3]);
+                    let BooleanArray = new Array();
+                    result.reply.readBooleanArray(BooleanArray)
+                    assertArrayElementEqual(BooleanArray, [true, true, false]);
+                    let CharArray = new Array();
+                    result.reply.readCharArray(CharArray)
+                    assertArrayElementEqual(CharArray, [65,97,122]);
+                    let StringArray = new Array();
+                    result.reply.readStringArray(StringArray);
+                    assertArrayElementEqual(StringArray, ['abc', 'seggg']);
                     let b = [new MySequenceable(null, null), new MySequenceable(null, null),
                         new MySequenceable(null, null)];
                     result.reply.readParcelableArray(b);
@@ -9350,7 +9315,7 @@ export default function actsRpcClientJsTest() {
             console.info("---------------------end SUB_Softbus_IPC_Compatibility_MessageParcel_12100---------------------------");
         });
 
-        /*
+    /*
      * @tc.number  SUB_Softbus_IPC_Compatibility_MessageParcel_12200
      * @tc.name    Call the writeremoteobjectarray interface to write the object array to the messageparcel
      *             instance, and call readremoteobjectarray to read the data
@@ -9360,25 +9325,13 @@ export default function actsRpcClientJsTest() {
         it("SUB_Softbus_IPC_Compatibility_MessageParcel_12200", 0,async function(done){
             console.info("---------------------start SUB_Softbus_IPC_Compatibility_MessageParcel_12200---------------------------");
             try{
-                let count = 0
-                function checkResult(num, str) {
-                    expect(num).assertEqual(123);
-                    expect(str).assertEqual("rpcListenerTest");
-                    count++;
-                    console.info("check result done, count: " + count);
-                    if (count == 3) {
-                        done();
-                    }
-                }
                 var data = rpc.MessageParcel.create();
                 console.info("SUB_Softbus_IPC_Compatibility_MessageParcel_12200: create object successfully.");
                 var reply = rpc.MessageParcel.create();
                 var option = new rpc.MessageOption();
-
-                expect(data.writeInterfaceToken("rpcTestAbility")).assertTrue();
-                var listeners = [new TestListener("rpcListener", checkResult),
-                    new TestListener("rpcListener2", checkResult),
-                    new TestListener("rpcListener3", checkResult)];
+                var listeners = [new TestRemoteObject("rpcListener"),
+                    new TestRemoteObject("rpcListener2"),
+                    new TestRemoteObject("rpcListener3")];
                 var result = data.writeRemoteObjectArray(listeners);
                 console.info("SUB_Softbus_IPC_Compatibility_MessageParcel_12200: writeRemoteObjectArray is " + result);
                 expect(result == true).assertTrue();
@@ -9404,56 +9357,7 @@ export default function actsRpcClientJsTest() {
             console.info("---------------------end SUB_Softbus_IPC_Compatibility_MessageParcel_12200---------------------------");
         });
 
-        /*
-     * @tc.number  SUB_Softbus_IPC_Compatibility_MessageParcel_12300
-     * @tc.name    Call the writeremoteobjectarray interface to write the object array to the messageparcel instance,
-     *             and call readremoteobjectarray (objects: iremoteobject []) to read the data
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-        it("SUB_Softbus_IPC_Compatibility_MessageParcel_12300", 0,async function(done){
-            console.info("---------------------start SUB_Softbus_IPC_Compatibility_MessageParcel_12300---------------------------");
-            try{
-                let count = 0;
-                function checkResult(num, str) {
-                    expect(num).assertEqual(123);
-                    expect(str).assertEqual("rpcListenerTest");
-                    count++;
-                    console.info("check result done, count: " + count);
-                    if (count == 3) {
-                        done();
-                    }
-                }
-                var data = rpc.MessageParcel.create();
-                console.info("SUB_Softbus_IPC_Compatibility_MessageParcel_12300: create object successfully.");
-                var reply = rpc.MessageParcel.create();
-                var option = new rpc.MessageOption();
-                expect(data.writeInterfaceToken("rpcTestAbility")).assertTrue()
-                var listeners = [new TestListener("rpcListener", checkResult),
-                    new TestListener("rpcListener2", checkResult),
-                    new TestListener("rpcListener3", checkResult)];
-                var result = data.writeRemoteObjectArray(listeners);
-                console.info("RpcClient: writeRemoteObjectArray is " + result);
-                expect(result == true).assertTrue();
-                if (gIRemoteObject == undefined)
-                {
-                    console.info("SUB_Softbus_IPC_Compatibility_MessageParcel_12300: gIRemoteObject is undefined");
-                }
-                await gIRemoteObject.sendRequest(CODE_WRITE_REMOTEOBJECTARRAY, data, reply, option).then((result) => {
-                    console.info("SUB_Softbus_IPC_Compatibility_MessageParcel_12300: sendRequestis is " + result.errCode);
-                    expect(result.errCode == 0).assertTrue();
-                });
-
-                data.reclaim();
-                reply.reclaim();
-                done();
-            } catch (error) {
-                console.info("SUB_Softbus_IPC_Compatibility_MessageParcel_12300:error = " + error);
-            }
-            console.info("---------------------end SUB_Softbus_IPC_Compatibility_MessageParcel_12300---------------------------");
-        });
-
-        /*
+    /*
      * @tc.number  SUB_Softbus_IPC_Compatibility_MessageParcel_12400
      * @tc.name    Test messageparcel delivery file descriptor object
      * @tc.desc    Function test
@@ -9647,7 +9551,7 @@ export default function actsRpcClientJsTest() {
                 let a = [new MySequenceable(1, "aaa"), new MySequenceable(2, "bbb"),
                     new MySequenceable(3, "ccc")];
                 expect(data.writeSequenceableArray(a)).assertTrue();
-                gIRemoteObject.sendRequest(CODE_ALL_ARRAY_TYPE, data, reply, option,(err, result) => {
+                gIRemoteObject.sendRequest(CODE_ALL_ARRAY_TYPE, data, reply, option).then((result) => {
                     expect(result.errCode).assertEqual(0);
                     assertArrayElementEqual(result.reply.readByteArray(), [1, 2, 3]);
                     assertArrayElementEqual(result.reply.readShortArray(), [4, 5, 6]);
@@ -9707,15 +9611,33 @@ export default function actsRpcClientJsTest() {
                 expect(data.writeSequenceableArray(a)).assertTrue();
                 gIRemoteObject.sendRequest(CODE_ALL_ARRAY_TYPE, data, reply, option).then((result) => {
                     expect(result.errCode).assertEqual(0);
-                    assertArrayElementEqual(result.reply.readByteArray(), [1, 2, 3]);
-                    assertArrayElementEqual(result.reply.readShortArray(), [4, 5, 6]);
-                    assertArrayElementEqual(result.reply.readIntArray(), [7, 8, 9]);
-                    assertArrayElementEqual(result.reply.readLongArray(), [10, 11, 12]);
-                    assertArrayElementEqual(result.reply.readFloatArray(), [1.1, 1.2, 1.3]);
-                    assertArrayElementEqual(result.reply.readDoubleArray(), [2.1, 2.2, 2.3]);
-                    assertArrayElementEqual(result.reply.readBooleanArray(), [true, true, false]);
-                    assertArrayElementEqual(result.reply.readCharArray(), [10, 20, 30]);
-                    assertArrayElementEqual(result.reply.readStringArray(), ['abc', 'seggg']);
+                    let ByteArray = new Array();
+                    result.reply.readByteArray(ByteArray)
+                    assertArrayElementEqual(ByteArray, [1, 2, 3]);
+                    let ShortArray = new Array();
+                    result.reply.readShortArray(ShortArray)
+                    assertArrayElementEqual(ShortArray, [4, 5, 6]);
+                    let IntArray = new Array();
+                    result.reply.readIntArray(IntArray)
+                    assertArrayElementEqual(IntArray, [7, 8, 9]);
+                    let LongArray = new Array();
+                    result.reply.readLongArray(LongArray)
+                    assertArrayElementEqual(LongArray, [10, 11, 12]);
+                    let FloatArray = new Array();
+                    result.reply.readFloatArray(FloatArray)
+                    assertArrayElementEqual(FloatArray, [1.1, 1.2, 1.3]);
+                    let DoubleArray = new Array();
+                    result.reply.readDoubleArray(DoubleArray)
+                    assertArrayElementEqual(DoubleArray, [2.1, 2.2, 2.3]);
+                    let BooleanArray = new Array();
+                    result.reply.readBooleanArray(BooleanArray)
+                    assertArrayElementEqual(BooleanArray, [true, true, false]);
+                    let CharArray = new Array();
+                    result.reply.readCharArray(CharArray)
+                    assertArrayElementEqual(CharArray, [65,97,122]);
+                    let StringArray = new Array();
+                    result.reply.readStringArray(StringArray);
+                    assertArrayElementEqual(StringArray, ['abc', 'seggg']);
                     let b = [new MySequenceable(null, null), new MySequenceable(null, null),
                         new MySequenceable(null, null)];
                     result.reply.readSequenceableArray(b);
@@ -13320,7 +13242,7 @@ export default function actsRpcClientJsTest() {
                 data.writeString("HelloWorld");
                 data.writeParcelable(new MySequenceable(1, "aaa"));
 
-                await gIRemoteObject.sendMessageRequest(CODE_ALL_TYPE, data, reply, option, (err, result) => {
+                await gIRemoteObject.sendMessageRequest(CODE_ALL_TYPE, data, reply, option).then((result) => {
                     console.info("SUB_Softbus_IPC_Compatibility_IRemoteObject_00900 errorcode: " + result.errCode);
                     expect(result.errCode).assertEqual(0);
                     expect(result.reply.readByte()).assertEqual(1);

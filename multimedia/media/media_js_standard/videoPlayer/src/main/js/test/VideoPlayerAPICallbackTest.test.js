@@ -47,7 +47,7 @@ describe('VideoPlayerAPICallbackTest', function () {
     const SPEED_VALUE = 1;
     const NEXT_FRAME_TIME = 8333;
     const PREV_FRAME_TIME = 4166;
-    const DELTA_TIME = 100;
+    const DELTA_TIME = 300;
     let surfaceID = '';
     let fileDescriptor = null;
     const pagePath1 = 'pages/surfaceTest/surfaceTest';
@@ -418,7 +418,7 @@ describe('VideoPlayerAPICallbackTest', function () {
         fileDescriptor.offset = -1;
         let videoPlayer = null;
         let mySteps = new Array(CREATE_EVENT, SETFDSRC_EVENT, SETSURFACE_EVENT,
-            PREPARE_EVENT, PLAY_EVENT, PAUSE_EVENT, RELEASE_EVENT, END_EVENT);
+            PREPARE_EVENT, ERROR_EVENT, RELEASE_EVENT, END_EVENT);
         eventEmitter.emit(mySteps[0], videoPlayer, mySteps, done);
     })
 

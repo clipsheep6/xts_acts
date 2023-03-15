@@ -17,11 +17,13 @@ group("communication") {
   if (is_standard_system) {
     deps = [
       "bluetooth_ble:ActsBluetoothBleJsTest",
+      "bluetooth_manager:ActsBluetoothBleJs1Test",
       "bluetooth_on:ActsBluetoothOnJsTest",
       "bluetooth_profile:ActsBluetoothProFileJsTest",
       "bluetooth_standard:ActsBluetoothJsTest",
       "dsoftbus/rpc:ActsRpcJsTest",
       "nfc_Controller:ActsNFCJSTest",
+      "nfc_ErrorCode:ActsNFCErrorJSTest",
       "wifi_p2p:ActsP2PJSTest",
       "wifi_standard:ActsWifiJSTest",
     ]

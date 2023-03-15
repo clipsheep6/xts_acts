@@ -539,9 +539,9 @@ describe('hiSysEventJsSecondTest', function () {
 	 */
 	it('testHiSysEventApi42', 3, async function (done) {
 		console.info('testHiSysEventApi42 start')
+        var watcher = []
 		try {
-			var watcher = []
-			for (var i = 0; i < 30; i++) {
+			for (var i = 0; i < 31; i++) {
 				watcher[i] = {
 					rules: [{
 						domain: "RELIABILITY" + i,
@@ -555,19 +555,25 @@ describe('hiSysEventJsSecondTest', function () {
 				}
 				hiSysEvent.addWatcher(watcher[i])
 			}
-			setTimeout(() => {
-				var watcher = []
-				for (var i = 0; i < 30; i++) {
-					hiSysEvent.removeWatcher(watcher[i])
-				}
-			}, 5000)
-			done()
 		}catch (err) {
-			console.error(`testHiSysEventApi42 > error code: ${err.code}, error msg: ${err.message}`)
+			console.error(`testHiSysEventApi42 > addWatcher error code: ${err.code}, error msg: ${err.message}`)
 			expect(err.code == 11200101).assertTrue()
-			console.info('testHiSysEventApi42 end')
+			console.info('testHiSysEventApi42 addWatcher end')
 			done()
 		}
+        setTimeout(() => {
+            try {
+                for (var i = 0; i < 31; i++) {
+                    hiSysEvent.removeWatcher(watcher[i])
+                }
+            }catch (err) {
+                console.error(`testHiSysEventApi42 > remove error code: ${err.code}, error msg: ${err.message}`)
+			    expect(err.code == 11200201).assertTrue()
+			    console.info('testHiSysEventApi42 remove end')
+			    done()
+            }
+        }, 5000)
+        done()
 	})
 
 	/**
@@ -1206,7 +1212,7 @@ describe('hiSysEventJsSecondTest', function () {
 	it('testHiSysEventApi53', 3, async function (done) {
 		console.info('testHiSysEventApi53 start')
 		try {
-			hiSysEvent.write((err, val) => {
+			hiSysEvent.write({}, (err, val) => {
 				if (err) {
 					console.error('in testHiSysEventApi53 test callback: err.code = ' + err.code)
 				} else {

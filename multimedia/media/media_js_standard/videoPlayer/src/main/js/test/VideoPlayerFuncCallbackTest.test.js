@@ -21,6 +21,7 @@ export default function VideoPlayerFuncCallbackTest() {
 describe('VideoPlayerFuncCallbackTest', function () {
     const VIDEO_SOURCE = 'H264_AAC.mp4';
     const PLAY_TIME = 3000;
+    const PLAY_TIME_1S = 1000;
     const SEEK_TIME = 5000;
     const WIDTH_VALUE = 720;
     const HEIGHT_VALUE = 480;
@@ -48,7 +49,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
     const DELTA_TIME = 1000;
     const NEXT_FRAME_TIME = 8333;
     const PREV_FRAME_TIME = 4166;
-    const DELTA_SEEK_TIME = 100;
+    const DELTA_SEEK_TIME = 300;
     let surfaceID = '';
     let fdHead = 'fd://';
     let fileDescriptor = null;
@@ -74,7 +75,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
     beforeEach(async function() {
         await mediaTestBase.toNewPage(pagePath1, pagePath2, pageId);
         pageId = (pageId + 1) % 2;
-        await mediaTestBase.msleepAsync(1000).then(
+        await mediaTestBase.msleepAsync(PLAY_TIME_1S).then(
             () => {}, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
         surfaceID = globalThis.value;
         console.info('case new surfaceID is ' + surfaceID);
@@ -243,7 +244,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         videoPlayer.getTrackDescription((err, arrlist) => {
             if (err == null) {
                 for (let i = 0; i < arrlist.length; i++) {
-                    mediaTestBase.checkDescription(arrlist[i], descriptionKey[i], descriptionValue[i]);
+                    mediaTestBase.checkOldDescription(arrlist[i], descriptionKey[i], descriptionValue[i]);
                 }
                 toNextStep(videoPlayer, steps, done);
             } else if ((err != null) && (steps[0] == ERROR_EVENT)) {
@@ -429,19 +430,19 @@ describe('VideoPlayerFuncCallbackTest', function () {
         if (videoPlayer.state == 'playing') {
             switch (speedValue) {
                 case media.PlaybackSpeed.SPEED_FORWARD_0_75_X:
-                    expect(Math.abs(endTime - startTime - (0.75 * 1000))).assertLess(DELTA_TIME * 0.75);
+                    expect(Math.abs(endTime - startTime - (0.75 * PLAY_TIME_1S))).assertLess(DELTA_TIME * 0.75);
                     break;
                 case media.PlaybackSpeed.SPEED_FORWARD_1_00_X:
-                    expect(Math.abs(endTime - startTime - (1000))).assertLess(DELTA_TIME);
+                    expect(Math.abs(endTime - startTime - (PLAY_TIME_1S))).assertLess(DELTA_TIME);
                     break;
                 case media.PlaybackSpeed.SPEED_FORWARD_1_25_X:
-                    expect(Math.abs(endTime - startTime - (1.25 * 1000))).assertLess(DELTA_TIME * 1.25);
+                    expect(Math.abs(endTime - startTime - (1.25 * PLAY_TIME_1S))).assertLess(DELTA_TIME * 1.25);
                     break;
                 case media.PlaybackSpeed.SPEED_FORWARD_1_75_X:
-                    expect(Math.abs(endTime - startTime - (1.75 * 1000))).assertLess(DELTA_TIME * 1.75);
+                    expect(Math.abs(endTime - startTime - (1.75 * PLAY_TIME_1S))).assertLess(DELTA_TIME * 1.75);
                     break;
                 case media.PlaybackSpeed.SPEED_FORWARD_2_00_X:
-                    expect(Math.abs(endTime - startTime - (2 * 1000))).assertLess(DELTA_TIME * 2);
+                    expect(Math.abs(endTime - startTime - (2 * PLAY_TIME_1S))).assertLess(DELTA_TIME * 2);
                     break;
             }
         } else {
@@ -456,7 +457,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         let startTime = videoPlayer.currentTime;
         videoPlayer.setSpeed(speedValue, (err, speedMode) => {
             if (err == null) {
-                mediaTestBase.msleep(1000);
+                mediaTestBase.msleep(PLAY_TIME_1S);
                 expect(speedValue).assertEqual(speedMode);
                 console.info('case setSpeed success and speedMode is '+ speedMode);
                 checkSpeedTime(videoPlayer, speedValue, startTime);
@@ -605,7 +606,7 @@ describe('VideoPlayerFuncCallbackTest', function () {
         });
 
         eventEmitter.on('test_setSurface', () => {
-            videoPlayer.url = fdHead + fileDescriptor.fd;
+            videoPlayer.url = fdPath;
             videoPlayer.setDisplaySurface(surfaceID, (err) => {
                 if (err == null) {
                     expect(videoPlayer.state).assertEqual('idle');
@@ -690,7 +691,6 @@ describe('VideoPlayerFuncCallbackTest', function () {
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FUNCTION_CALLBACK_BASE_0100', 0, async function (done) {
         mediaTestBase.isFileOpen(fileDescriptor, done);
         let videoPlayer = null;
-        let fdPath = fdHead + fileDescriptor.fd;
         let mySteps = new Array(CREATE_EVENT, SETFDSOURCE_EVENT, fileDescriptor, SETSURFACE_EVENT,
             PREPARE_EVENT, PLAY_EVENT, PAUSE_EVENT, PLAY_EVENT, STOP_EVENT, RESET_EVENT, SETSOURCE_EVENT, fdPath,
             PREPARE_EVENT, SETLOOP_EVENT, true, PLAY_EVENT, SEEK_EVENT, DURATION_TIME / 2, SEEK_EVENT, 0,

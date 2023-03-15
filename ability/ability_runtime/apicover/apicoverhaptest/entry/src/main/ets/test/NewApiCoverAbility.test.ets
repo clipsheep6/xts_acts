@@ -81,48 +81,6 @@ export default function ApiCoverTest() {
     });
 
     /*
-     * @tc.number  SUB_AA_GetTopAbility_0100
-     * @tc.name    Test getTopAbility.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_GetTopAbility_0100', 0, async function (done) {
-      try {
-        await abilityManager.getTopAbility().then((data)=>{
-          expect(true).assertTrue();
-          done();
-        }).catch((err)=>{
-          expect().assertFail()
-          done();
-        })
-      } catch (error) {
-        expect().assertFail()
-        done();
-      }
-    });
-
-    /*
-     * @tc.number  SUB_AA_GetAbilityRunningInfo_0100
-     * @tc.name    Test getAbilityRunningInfo.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_GetAbilityRunningInfo_0100', 0, async function (done) {
-      try {
-        await abilityManager.getAbilityRunningInfos().then((data)=>{
-          expect(true).assertTrue();
-          done();
-        }).catch((err)=>{
-          expect().assertFail()
-          done();
-        })
-      } catch (error) {
-        expect().assertFail()
-        done();
-      }
-    });
-
-    /*
      * @tc.number  SUB_AA_GetExtensionRunningInfos_0100
      * @tc.name    Test getExtensionRunningInfos.
      * @tc.desc    Function test
@@ -172,6 +130,66 @@ export default function ApiCoverTest() {
         expect().assertFail()
         done();
       }
+    });
+
+    /*
+     * @tc.number  SUB_AA_UpdateConfiguration_0200
+     * @tc.name    Test updateConfiguration.
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_UpdateConfiguration_0200', 0, async function (done) {
+      let enLanguage = {
+        language: 'English'
+      }
+      let zhLanguage = {
+        language: 'zh-Hans'
+      }
+
+    // set language to english
+    await new Promise((resolve, reject) => {
+      globalThis.UpdateConfiguration_0200_prepare_resolve = resolve;
+      console.info("SUB_AA_UpdateConfiguration_0200 ----> before set language to english.");
+      abilityManager.updateConfiguration(enLanguage).then(() => {
+        console.info("SUB_AA_UpdateConfiguration_0200 ----> set language to english succeed.");
+      }).catch(err => {
+        console.info("SUB_AA_UpdateConfiguration_0200 ----> failed to set language to english: " + err);
+        globalThis.UpdateConfiguration_0200_prepare_resolve();
+      });
+    }).then(() => {
+      console.info("SUB_AA_UpdateConfiguration_0200 ----> succees to set language.");
+    }).catch(err => {
+      console.info("SUB_AA_UpdateConfiguration_0200 ----> failed to set language: " + err);
+    }).finally(() => {
+      globalThis.UpdateConfiguration_0200_prepare_resolve = null;
+      globalThis.UpdateConfiguration_0200_resolve = null;
+      globalThis.UpdateConfiguration_0200_reject = null;
+      console.info("SUB_AA_UpdateConfiguration_0200 ----> set promise to null after all");
+    });
+
+
+    // set language to chinese
+      await new Promise((resolve, reject) => {
+        globalThis.UpdateConfiguration_0200_resolve = resolve;
+        globalThis.UpdateConfiguration_0200_reject = reject;
+        console.info("SUB_AA_UpdateConfiguration_0200 ----> before set language to chinese.");
+        abilityManager.updateConfiguration(zhLanguage).then(() => {
+          console.info("SUB_AA_UpdateConfiguration_0200 ----> set language to chinese succeed.");
+        }).catch(err => {
+          console.info("SUB_AA_UpdateConfiguration_0200 ----> failed to set language to chinese: " + err);
+        });
+      }).then(() => {
+        console.info("SUB_AA_UpdateConfiguration_0200 ----> succees to set language.");
+        expect(true).assertTrue();
+      }).catch(err => {
+        console.info("SUB_AA_UpdateConfiguration_0200 ----> failed to set language: " + err);
+        expect(false).assertTrue();
+      }).finally(() => {
+        globalThis.UpdateConfiguration_0200_resolve = null;
+        globalThis.UpdateConfiguration_0200_reject = null;
+        console.info("SUB_AA_UpdateConfiguration_0200 ----> set promise to null after all");
+        done();
+      });
     });
   })
 }

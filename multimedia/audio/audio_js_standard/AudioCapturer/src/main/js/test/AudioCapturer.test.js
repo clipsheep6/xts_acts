@@ -17,7 +17,7 @@ import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
 import featureAbility from '@ohos.ability.featureAbility';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium';
-import { UiDriver, BY } from '@ohos.uitest'
+import { UiDriver, BY } from '@ohos.UiTest'
 export default function audioCapturer() {
 
     describe('audioCapturer', function () {
@@ -449,20 +449,19 @@ export default function audioCapturer() {
             })
         }
         async function driveFn() {
-            console.info(`come in driveFn`)
-            let driver = await UiDriver.create()
-            console.info(`driver is ${JSON.stringify(driver)}`)
-            await sleep(2000)
-            console.info(`UiDriver start`)
-            let button = await driver.findComponent(BY.text('允许'))
-            console.info(`button is ${JSON.stringify(button)}`)
-            await sleep(5000)
-            await button.click()
+            console.info(`come in driveFn`);
+            let driver = await UiDriver.create();
+            console.info(`driver is ${JSON.stringify(driver)}`);
+            await sleep(100);
+            console.info(`UiDriver start`);
+            let button = await driver.findComponent(BY.text('允许'));
+            console.info(`button is ${JSON.stringify(button)}`);
+            await sleep(100);
+            await button.click();
         }
-
+    
         beforeAll(async function () {
             await getPermission();
-            sleep(2000)
             await driveFn();
             console.info('TestLog: Start Testing AudioFrameworkTest Interfaces');
         })

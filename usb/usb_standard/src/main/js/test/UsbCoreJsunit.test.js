@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,6 +32,10 @@ describe('UsbCoreJsFunctionsTest', function () {
     console.info('begin test getversion :' + Version)
     // version > 17  host currentMode = 2 device currentMode = 1
     var usbPortList = usb.getPorts()
+    if (usbPortList == undefined) {
+      portCurrentMode = 1;
+      return
+    }
     gDeviceList = usb.getDevices();
     if (usbPortList.length > 0) {
       console.info('usb case gDeviceList.length return: ' + gDeviceList.length);
@@ -65,6 +69,7 @@ describe('UsbCoreJsFunctionsTest', function () {
    * @tc.number: SUB_USB_JS_0480
    * @tc.name: getDevices
    * @tc.desc: Positive test: Get device list
+   * @tc.desc: 【C-ALL-HARDWARE-0502】必须支持连接标准 USB 外围设备
    */
   it('SUB_USB_JS_0480', 0, function () {
     console.info('usb SUB_USB_JS_0480 begin');

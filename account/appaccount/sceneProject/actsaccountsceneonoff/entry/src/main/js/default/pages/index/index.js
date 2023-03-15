@@ -35,10 +35,11 @@ injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
 export default {
     data: {
     },
+    onShow() {
+       // this.title = "scene on off";
+    },
     onInit() {
         this.title = "scene on off";
-    },
-    onShow() {
         console.debug("====>change on off scene start====");
         var appAccountManager = account.createAppAccountManager();
         var commonEventSubscribeInfo = {
@@ -51,9 +52,10 @@ export default {
             console.debug("====>publish call back scene err:" + JSON.stringify(err));
             console.debug("====>scene off start====");
             appAccountManager.off('accountChange', function (){
-                appAccountManager.off('change', function (){
-                    console.debug("====>scene off finish====");
-                });
+                console.debug("====>scene off accountChange finish====");
+            });
+            appAccountManager.off('change', function (){
+                console.debug("====>scene off change finish====");
             });
             featureAbility.terminateSelf()
         }

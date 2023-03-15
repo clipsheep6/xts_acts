@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,7 +70,7 @@ export default function buttonJsunit() {
       let obj = JSON.parse(strJson);
       console.info("[testButton02] component obj is: " + JSON.stringify(obj));
       expect(obj.$type).assertEqual('Button');
-      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
+      expect(obj.$attrs.type).assertEqual('ButtonType.Normal');
       done();
     });
 
@@ -332,7 +332,7 @@ export default function buttonJsunit() {
       try {
         var eventData = {
           data: {
-            "buttonTypeValue": qaq,
+            "buttonTypeValue": "qaq",
           }
         }
         var innerEvent = {
@@ -403,7 +403,7 @@ export default function buttonJsunit() {
       let callback = (indexEvent) => {
         console.info("testButton15 get state result is: " + JSON.stringify(indexEvent))
         console.info("testButton15 indexEvent.data.fontColorValue is: " + indexEvent.data.fontColorValue)
-        expect(indexEvent.data.fontColorValue).assertEqual('ab996')
+        expect(indexEvent.data.fontColorValue).assertEqual("ab996")
         console.info('[testButton15] END');
         done();
       }

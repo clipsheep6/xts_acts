@@ -105,7 +105,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
         switch (mySteps[0]) {
             case SRC_STATE:
                 console.info(`case to prepare`);
-                audioPlayer.src = fdHead + fileDescriptor.fd;
+                audioPlayer.src = fdPath;
                 break;
             case FDSRC_STATE:
                 console.info(`case to prepare`);
@@ -157,7 +157,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
                     console.info('case getTrackDescription called!!');
                     if (typeof (arrayList) != 'undefined') {
                         for (let i = 0; i < arrayList.length; i++) {
-                            mediaTestBase.checkDescription(arrayList[i], descriptionKey[i], descriptionValue[i]);
+                            mediaTestBase.checkOldDescription(arrayList[i], descriptionKey[i], descriptionValue[i]);
                         }
                     } else {
                         console.info('case getTrackDescription is failed');
@@ -171,7 +171,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
                 audioPlayer.getTrackDescription((err, arrayList) => {
                     if (typeof (err) == 'undefined') {
                         for (let i = 0; i < arrayList.length; i++) {
-                            mediaTestBase.checkDescription(arrayList[i], descriptionKey[i], descriptionValue[i]);
+                            mediaTestBase.checkOldDescription(arrayList[i], descriptionKey[i], descriptionValue[i]);
                         }
                         nextStep(mySteps, done);
                     } else {
@@ -323,7 +323,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
             DURATION_TIME / 2, SEEK_STATE, DURATION_TIME, FINISH_STATE, RELEASE_STATE, END_STATE);
         initAudioPlayer();
         setCallback(mySteps, done);
-        audioPlayer.src = fdHead + fileDescriptor.fd;
+        audioPlayer.src = fdPath;
     })
 
     /* *
@@ -339,7 +339,7 @@ describe('PlayerLocalTestAudioFUNC', function () {
         let mySteps = new Array(SRC_STATE, GETDESCRIPTION_PROMISE, GETDESCRIPTION_CALLBACK, RELEASE_STATE, END_STATE);
         initAudioPlayer();
         setCallback(mySteps, done);
-        audioPlayer.src = fdHead + fileDescriptor.fd;
+        audioPlayer.src = fdPath;
     })
 
     /* *

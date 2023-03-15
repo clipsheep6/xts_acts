@@ -85,15 +85,13 @@ export default function abilityTest() {
             expect(typeof (data.iconId)).assertEqual("string");
             expect(typeof (data.process)).assertEqual("string");
             expect(typeof (data.supportedModes)).assertEqual("number");
-            expect(Array.isArray(data.moduleSourceDirs)).assertEqual(true);
             expect(Array.isArray(data.permissions)).assertEqual(true);
             expect(Array.isArray(data.moduleInfos)).assertEqual(true);
-            expect(typeof (data.entryDir)).assertEqual("string");
             expect(typeof (data.codePath)).assertEqual("string");
             expect(typeof (data.removable)).assertEqual("boolean");
 
             console.log("checkApplicationInfo_expect_typeof_end")
-            expect(data.name).assertEqual("com.example.staticabilitystagecontext");
+            expect(data.name).assertEqual("com.acts.stabilitystagecontext");
             expect(data.description).assertEqual("$string:description_application");
             expect(data.descriptionId).assertLarger(0);
             expect(data.systemApp).assertEqual(true);
@@ -102,19 +100,12 @@ export default function abilityTest() {
             expect(data.labelId.length).assertLarger(0);
             expect(data.icon).assertEqual("$media:icon");
             expect(data.iconId.length).assertLarger(0);
-            expect(data.process).assertEqual("com.example.staticabilitystagecontext");
+            expect(data.process).assertEqual("com.acts.stabilitystagecontext");
             expect(data.supportedModes).assertEqual(0);
-            expect(data.moduleSourceDirs.length).assertEqual(1);
-            expect(data.moduleSourceDirs[0]).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.staticabilitystagecontext/com.example.staticabilitystagecontext");
             expect(data.moduleInfos.length).assertEqual(1);
-            expect(data.moduleInfos[0].moduleName).assertEqual("com.example.staticabilitystagecontext");
-            expect(data.moduleInfos[0].moduleSourceDir).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.staticabilitystagecontext/com.example.staticabilitystagecontext");
-            expect(data.entryDir).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.staticabilitystagecontext/com.example.staticabilitystagecontext");
+            expect(data.moduleInfos[0].moduleName).assertEqual("com.acts.stabilitystagecontext");
             expect(data.codePath).assertEqual("/data/app/el1/bundle/public/" +
-            "com.example.staticabilitystagecontext");
+            "com.acts.stabilitystagecontext");
             expect(data.removable).assertEqual(true);
             console.log("checkApplicationInfo end  " + data);
         }
@@ -154,7 +145,7 @@ export default function abilityTest() {
             expect(typeof (data.moduleName)).assertEqual("string");
             expect(typeof (data.mainAbilityName)).assertEqual("string");
             console.log("checkHapModuleInfo_expect_typeof_end")
-            expect(data.name).assertEqual("com.example.staticabilitystagecontext");
+            expect(data.name).assertEqual("com.acts.stabilitystagecontext");
             expect(data.description).assertEqual("$string:phone_entry_dsc");
             expect(data.descriptionId).assertEqual(16777221);
             expect(data.icon).assertEqual("$media:icon");
@@ -166,10 +157,10 @@ export default function abilityTest() {
             expect(data.reqCapabilities.length).assertEqual(0);
             expect(data.deviceTypes.length).assertEqual(2);
             expect(data.deviceTypes[0]).assertEqual("default");
-            expect(data.moduleName).assertEqual("com.example.staticabilitystagecontext")
-            expect(data.mainAbilityName).assertEqual("com.example.staticabilitystagecontext.MainAbility");
+            expect(data.moduleName).assertEqual("com.acts.stabilitystagecontext")
+            expect(data.mainAbilityName).assertEqual("com.acts.stabilitystagecontext.MainAbility");
             expect(data.installationFree).assertEqual(false);
-            expect(data.mainElementName).assertEqual('com.example.staticabilitystagecontext.MainAbility');
+            expect(data.mainElementName).assertEqual('com.acts.stabilitystagecontext.MainAbility');
             expect(data.hashValue).assertEqual('');
             console.log("checkHapModuleInfo end  " + data);
         }

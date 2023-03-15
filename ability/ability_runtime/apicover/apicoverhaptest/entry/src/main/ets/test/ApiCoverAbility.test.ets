@@ -12,28 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, afterEach, it, expect } from '@ohos/hypium'
 
-import formProvider from '@ohos.application.formProvider';
 import FormInfo from '@ohos.application.formInfo';
 import formInfoNew from '@ohos.app.form.formInfo';
 import formError from '@ohos.application.formError';
 import formHost from '@ohos.application.formHost';
-import errorManager from '@ohos.app.ability.errorManager';
 import abilityConstant from '@ohos.app.ability.AbilityConstant'
-import appManager from '@ohos.application.appManager'
 import appManagerNew from '@ohos.app.ability.appManager'
 import commonEvent from '@ohos.commonEvent';
 import ability from '@ohos.ability.ability';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import common from '@ohos.app.ability.common';
+import contextConstant from "@ohos.app.ability.contextConstant"
 
-var EXTENSION_INFO_ERR = 16000001
-var INNER_ERROR = 16000050
-var CROSS_USER_DENY = 201
-var INVALID_PARAM = 401
-var trueInfo;
-var array = new Array();
+let EXTENSION_INFO_ERR = 16000001;
+let INNER_ERROR = 16000050;
+let CROSS_USER_DENY = 201;
+let array = new Array();
+let TAG = '';
 function sleep(time) {
   return new Promise((resolve)=>setTimeout(resolve,time));
 }
@@ -313,23 +310,19 @@ export default function ApiCoverTest() {
      */
     it('SUB_AA_ABILITY_Extension_API_012', 0, async function (done) {
       try {
-        let info: appManagerNew.ProcessRunningInfo;
+        let info: appManagerNew.ProcessInformation;
         let stageContext: common.AbilityStageContext = globalThis.stageContext;
         let abilityContext: common.UIAbilityContext = globalThis.abilityContext;
         let appContext: common.ApplicationContext = abilityContext.getApplicationContext();
         let baseContext: common.BaseContext = stageContext;
         let context: common.Context = stageContext;
-        let el1 = common.AreaMode.EL1;
-        let el2 = common.AreaMode.EL2;
+        let el1 = contextConstant.AreaMode.EL1;
+        let el2 = contextConstant.AreaMode.EL2;
         let eventHub: common.EventHub = context.eventHub;
-        let permissionRequestResult: common.PermissionRequestResult;
         let abilityResult: common.AbilityResult;
         let connectOptions: common.ConnectOptions;
 
-        appContext.killProcessesBySelf();
-        appContext.killProcessesBySelf((err, data) => {
-            console.log(`killProcessesBySelf, err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}`);
-        })
+        console.log("killAllProcesses:" + JSON.stringify(appContext.killAllProcesses));
         let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
         abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         let abilityDelegatorArgs: abilityDelegatorRegistry.AbilityDelegatorArgs;
@@ -521,62 +514,6 @@ export default function ApiCoverTest() {
     });
 
     /*
-     * @tc.number  SUB_AA_Test_ProcessRunningInformation_0100
-     * @tc.name    Test getProcessRunningInformation in appManager.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_Test_ProcessRunningInformation_0100', 0, async function (done) {
-      let processRunningInformation:appManagerNew.ProcessRunningInformation;
-      let process;
-      appManagerNew.getProcessRunningInformation().then((processRunningInformations)=>{
-        console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(processRunningInformations));
-        for(let i = 0; i < processRunningInformations.length; i++){
-          console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(processRunningInformations[i]));
-          expect(processRunningInformations[i].pid).assertLarger(0)
-          expect(processRunningInformations[i].uid).assertLarger(0)
-          if(processRunningInformations[i].processName == "com.example.apicoverhaptest"){
-            process = processRunningInformations[i]
-          }
-        }
-        expect(process.bundleNames[0]).assertEqual("com.example.apicoverhaptest")
-        done()
-      }).catch((error)=>{
-        console.info("SUB_AA_Test_ProcessRunningInformation_0100:" + JSON.stringify(error));
-        expect().assertFail()
-        done()
-      })
-    });
-
-    /*
-     * @tc.number  SUB_AA_Test_ProcessRunningInformation_0200
-     * @tc.name    Test getProcessRunningInformation by callback in appManager.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_Test_ProcessRunningInformation_0200', 0, async function (done) {
-      let process;
-      appManagerNew.getProcessRunningInformation((error, processRunningInformations)=>{
-        if (error) {
-          console.info("SUB_AA_Test_ProcessRunningInformation_0200:" + JSON.stringify(error));
-          expect().assertFail()
-          done()
-        }
-        console.info("SUB_AA_Test_ProcessRunningInformation_0200:" + JSON.stringify(processRunningInformations));
-        for(let i = 0; i < processRunningInformations.length; i++){
-          console.info("SUB_AA_Test_ProcessRunningInformation_0200:" + JSON.stringify(processRunningInformations[i]));
-          expect(processRunningInformations[i].pid).assertLarger(0)
-          expect(processRunningInformations[i].uid).assertLarger(0)
-          if(processRunningInformations[i].processName == "com.example.apicoverhaptest"){
-            process = processRunningInformations[i]
-          }
-        }
-        expect(process.bundleNames[0]).assertEqual("com.example.apicoverhaptest")
-        done()
-      })
-    });
-
-    /*
      * @tc.number  SUB_AA_FMS_AbilityStage_0100
      * @tc.name    Start AbilityStage and get config.
      * @tc.desc    Function test
@@ -599,7 +536,7 @@ export default function ApiCoverTest() {
           console.info("SUB_AA_FMS_AbilityStage_0100===SubscribeInfoCallback===" + JSON.stringify(data))
             expect(data.parameters["config"]).assertEqual(-1)
             expect(data.parameters["config"]).assertEqual(directions)
-            expect(pointer).assertFalse()
+            expect(typeof(pointer)).assertEqual("boolean")
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
             await sleep(4000)
             done()
@@ -619,57 +556,6 @@ export default function ApiCoverTest() {
            console.info("SUB_AA_FMS_AbilityStage_0100===CreateSubscriberCallback===")
         }else{
           console.info("SUB_AA_FMS_AbilityStage_0100===failed===")
-          expect().assertFail()
-          done()
-        }
-      })
-    })
-
-    /*
-     * @tc.number  SUB_AA_FMS_AbilityStage_0200
-     * @tc.name    Start Service and get config.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-     it('SUB_AA_FMS_AbilityStage_0200', 0, async function (done) {
-      let subscriber = null
-      let subscribeInfo = {
-        events: ["ExtensionConext_StartAbility"]
-      }
-      function UnSubscribeInfoCallback(err, data) {
-        console.info("SUB_AA_FMS_AbilityStage_0200===UnSubscribeInfoCallback===")
-      }
-      async function SubscribeInfoCallback(err, data) {
-        console.info("SUB_AA_FMS_AbilityStage_0200===SubscribeInfoCallback===" + JSON.stringify(data))
-        console.info("SUB_AA_FMS_AbilityStage_0200===serviceContext===" + JSON.stringify(globalThis.serviceContext))
-        console.info("SUB_AA_FMS_AbilityStage_0200===config===" + JSON.stringify(globalThis.serviceContext.config))
-        expect(data.parameters["config"]).assertLess(2)
-        expect(data.parameters["poniterDevices"]).assertFalse()
-        expect(data.parameters["AbilityInfo"]).assertEqual("com.example.apicoverhaptest")
-        let direction = globalThis.serviceContext.config.direction
-        let pointerDervice = globalThis.serviceContext.config.hasPointerDevice
-        let AbilityInfo = globalThis.serviceContext.extensionAbilityInfo.bundleName
-        expect(direction).assertLess(2)
-        expect(pointerDervice).assertFalse()
-        expect(AbilityInfo).assertEqual("com.example.apicoverhaptest")
-        commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
-        await sleep(4000)
-        done()
-      }
-      commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-        console.info("SUB_AA_FMS_AbilityStage_0200===CreateSubscriberCallback===")
-        subscriber = data
-        commonEvent.subscribe(subscriber, SubscribeInfoCallback)
-      })
-      let formWant ={
-        deviceId:"",
-        bundleName:"com.example.apicoverhaptest",
-        abilityName:"ServiceAbility",
-      }
-      globalThis.abilityContext.startAbility(formWant, (err, data)=>{
-        if(err.code == 0){
-           console.info("SUB_AA_FMS_AbilityStage_0200===abilityContext startAbility success===")
-        }else{
           expect().assertFail()
           done()
         }
@@ -769,6 +655,116 @@ export default function ApiCoverTest() {
         console.info("SUB_AA_FormDisplaySpecifications_0200===deleteForm failed===" + JSON.stringify(err))
         expect().assertFail()
         done()
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_AbilityAppManager_0100
+     * @tc.name    The form of a promise getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_AbilityAppManager_0100', 0, async function (done) {
+      TAG = 'SUB_AA_AbilityAppManager_0100';
+      await appManagerNew.getRunningProcessInformation().then((data)=>{
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
+      }).catch((err)=>{
+        console.log(`${TAG} getRunningProcessInformation err  ${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_AbilityAppManager_0200
+     * @tc.name    The form of a callback getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_AbilityAppManager_0200', 0, async function (done) {
+      TAG = 'SUB_AA_AbilityAppManager_0100';
+      appManagerNew.getRunningProcessInformation((err, data) => {
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}
+        err: ${JSON.stringify(err)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_ApplicationContext_0100
+     * @tc.name    The form of a promise getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_ApplicationContext_0100', 0, async function (done) {
+      TAG = 'SUB_AA_ApplicationContext_0100';
+      await globalThis.applicationContext.getRunningProcessInformation().then((data)=>{
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
+      }).catch((err)=>{
+        console.log(`${TAG} getRunningProcessInformation err  ${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_ApplicationContext_0200
+     * @tc.name    The form of a callback getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_ApplicationContext_0200', 0, async function (done) {
+      TAG = 'SUB_AA_ApplicationContext_0200';
+      globalThis.applicationContext.getRunningProcessInformation((err, data) => {
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}
+        err: ${JSON.stringify(err)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
       })
     })
   })

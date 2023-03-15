@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -53,6 +53,7 @@ describe('UsbFunctionsJsFunctionsTest', function () {
    * @tc.number: SUB_USB_JS_0330
    * @tc.name: getCurrentFunctions
    * @tc.desc: Positive test: Get current device mode, mask and description character conversion
+   * @tc.desc: 【C-ALL-HARDWARE-0500】端口必须可连接到具有标准A型或C型的主机模式的USB端口
    */
   it('SUB_USB_JS_0330', 0, function () {
     console.info('usb SUB_USB_JS_0330 begin');

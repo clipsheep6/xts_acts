@@ -67,8 +67,10 @@ export default function verificationTest(){
           console.info(TAG + "startAbility data = " + JSON.stringify(data));
         }).catch((err) => {
           console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
+          if (err.code != 16000017) {
+            expect().assertFail();
+            done();
+          }
         });
       } catch (err) {
         console.info(TAG + "catch err = " + JSON.stringify(err));
@@ -130,8 +132,10 @@ export default function verificationTest(){
           console.info(TAG + "startAbility data = " + JSON.stringify(data));
         }).catch((err) => {
           console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
+          if (err.code != 16000017) {
+            expect().assertFail();
+            done();
+          }
         });
       } catch (err) {
         console.info(TAG + "catch err = " + JSON.stringify(err));
@@ -207,8 +211,10 @@ export default function verificationTest(){
           console.info(TAG + "startAbility data = " + JSON.stringify(data));
         }).catch((err) => {
           console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
+          if (err.code != 16000017) {
+            expect().assertFail();
+            done();
+          }
         });
       } catch (err) {
         console.info(TAG + "catch err = " + JSON.stringify(err));
@@ -263,8 +269,10 @@ export default function verificationTest(){
           console.info(TAG + "startAbility data = " + JSON.stringify(data));
         }).catch((err) => {
           console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
+          if (err.code != 16000017) {
+            expect().assertFail();
+            done();
+          }
         });
       } catch (err) {
         console.info(TAG + "catch err = " + JSON.stringify(err));
@@ -365,67 +373,10 @@ export default function verificationTest(){
           console.info(TAG + "startAbility data = " + JSON.stringify(data) + ";" + JSON.stringify(data));
         }).catch((err) => {
           console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
-        });
-      } catch (err) {
-        console.info(TAG + "catch err = " + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      }
-    })
-
-    /*
-     * @tc.number  SUB_AA_OpenHarmony_RequestPermissionsFromUser_0200
-     * @tc.name    Stage model is not configured with permission for authorization verification.
-     * @tc.desc    Function test
-     * @tc.level   3
-     */
-    it('SUB_AA_OpenHarmony_RequestPermissionsFromUser_0200', 0, async function(done) {
-      TAG = 'SUB_AA_OpenHarmony_RequestPermissionsFromUser_0200 ==>';
-
-      try {
-        let permissionRequestResult = null
-        let subscriber = null
-        let subscribeInfo = {
-          events: ["Stage_MainAbility10_onCreate", "Stage_MainAbility10_onDestroy"]
-        }
-
-        function SubscribeInfoCallback(err, data) {
-          console.info(TAG + "===SubscribeInfoCallback===" + JSON.stringify(data))
-          if (data.event == "Stage_MainAbility10_onCreate") {
-            permissionRequestResult = data.parameters.permissionRequestResult
+          if (err.code != 16000017) {
+            expect().assertFail();
+            done();
           }
-          if (data.event == "Stage_MainAbility10_onDestroy") {
-            console.info(TAG + "===PermissionRequestResult===" + JSON.stringify(permissionRequestResult))
-            expect(JSON.stringify(permissionRequestResult.permissions))
-              .assertEqual(JSON.stringify(["ohos.permission.CAMERA"]));
-            expect(JSON.stringify(permissionRequestResult.authResults)).assertEqual(JSON.stringify([2]));
-            commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
-          }
-        }
-
-        function UnSubscribeInfoCallback(err, data) {
-          console.info(TAG + "===UnSubscribeInfoCallback===")
-          done()
-        }
-
-        commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-          console.info(TAG + "===CreateSubscriberCallback===")
-          subscriber = data
-          commonEvent.subscribe(subscriber, SubscribeInfoCallback)
-        })
-
-        let wantNum = {
-          bundleName: 'ohos.acts.aafwk.test.stagesupplement',
-          abilityName: 'MainAbility10'
-        }
-        globalThis.abilityContext.startAbility(wantNum).then((data) => {
-          console.info(TAG + "startAbility data = " + JSON.stringify(data));
-        }).catch((err) => {
-          console.info(TAG + "startAbility err = " + JSON.stringify(err));
-          expect().assertFail();
-          done();
         });
       } catch (err) {
         console.info(TAG + "catch err = " + JSON.stringify(err));

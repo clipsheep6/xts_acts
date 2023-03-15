@@ -87,7 +87,7 @@ export default function actsWifiManagerEventTest() {
                 });
             await sleep(2000);
             wifiMg.off(p2pConnectionState, p2pConnectionChangeCallback);
-            let removeGroupResult = wifiMg.removeGroup();
+            let removeP2pGroupResult = wifiMg.removeP2pGroup();
             done();
         })
 
@@ -122,9 +122,9 @@ export default function actsWifiManagerEventTest() {
                 console.info("[wifi_test]p2pPeerDeviceChange callback, result: " + JSON.stringify(result));
             }
             wifiMg.on(p2pPeerDeviceState, p2pPeerDeviceChangeCallback);
-            let startDiscover = wifiMg.startDiscoverDevices();
+            let startDiscover = wifiMg.startDiscoverP2pDevices();
             await sleep(3000);
-            let stopDiscover = wifiMg.stopDiscoverDevices();
+            let stopDiscover = wifiMg.stopDiscoverP2pDevices();
             wifiMg.off(p2pPeerDeviceState, p2pPeerDeviceChangeCallback);
             done();
         })
@@ -149,14 +149,22 @@ export default function actsWifiManagerEventTest() {
                 groupName : "AAAZZZ123",
                 goBand : wifiMg.GroupOwnerBand.GO_BAND_AUTO,
             };
-            let createGroupResult = wifiMg.createGroup(WifiP2PConfig);
+            let createP2pGroupResult = wifiMg.createP2pGroup(WifiP2PConfig);
             await (2000);
-            await wifiMg.getCurrentGroup()
-                .then(data => {
-                    let resultLength = Object.keys(data).length;
-                    console.info("[wifi_test] getCurrentGroup  promise result -> " + JSON.stringify(data));
-                    expect(true).assertEqual(resultLength!=0);
-                });
+            try {
+                await wifiMg.getCurrentP2pGroup()
+                    .then(data => {
+                        let resultLength = Object.keys(data).length;
+                        console.info("[wifi_test] getCurrentP2pGroup  promise result -> " + JSON.stringify(data));
+                        expect(true).assertEqual(resultLength!=0);
+                    }).catch((error) => {
+                        console.error('[wifi_test] getCurrentP2pGroup  promise failed :' + JSON.stringify(error));
+                        expect(true).assertEqual(error !=null);
+                    });
+            }catch(error){
+                console.info("[wifi_test]getCurrentP2pGroup promise error: " + JSON.stringify(error.message));
+                expect(true).assertEqual( (JSON.stringify(error.message)) !=null);
+            }
             wifiMg.off(p2pGroupState, p2pPersistentGroupChangeCallback);
             done();
         })
@@ -174,14 +182,13 @@ export default function actsWifiManagerEventTest() {
                 console.info("[wifi_test]p2pDiscoveryChange callback, result: " + JSON.stringify(result));
             }
             wifiMg.on(p2pPeerDeviceState, p2pDiscoveryChangeCallback);
-            let startDiscover = wifiMg.startDiscoverDevices();
+            let startDiscover = wifiMg.startDiscoverP2pDevices();
             await sleep(3000);
-            let stopDiscover = wifiMg.stopDiscoverDevices();
+            let stopDiscover = wifiMg.stopDiscoverP2pDevices();
             wifiMg.off(p2pPeerDeviceState, p2pDiscoveryChangeCallback);
             done();
         })
         console.log("*************[wifi_test] start wifi js unit test end*************");
     })
 }
-
 

@@ -19,20 +19,24 @@ import { stringToUint8Array } from '../../../../../../utils/param/publicFunc';
 import { publicSignVerifyFunc } from '../../../../../../utils/param/signverify/publicSignverifyPromise.js';
 let srcData65 = Data.Data65b;
 let srcData65Kb = stringToUint8Array(srcData65);
+const srcData65Sha256 = new Uint8Array([
+  0x23, 0xF8, 0x94, 0xEA, 0xEE, 0x1C, 0x70, 0xA9, 0x33, 0x82, 0x6C, 0xCF, 0xEF, 0x2D, 0x41, 0x6F,
+  0x64, 0xF6, 0x46, 0xD4, 0xCD, 0xD4, 0x5C, 0x33, 0x84, 0x4D, 0x53, 0x4A, 0x1D, 0xF0, 0xE7, 0xDF,
+]);
 export default function SecurityHuksECCBasicAbort65KBPromiseJsunit() {
 describe('SecurityHuksECCBasicAbort65KBPromiseJsunit', function () {
   it('testReformedSignVerifyECC104', 0, async function (done) {
-    const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias104';
+    const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias104';
     let HuksOptions = {
       properties: new Array(
         HuksSignVerifyECC.HuksKeyAlgECC,
         HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
         HuksSignVerifyECC.HuksTagECCDigestNONE,
-        HuksSignVerifyECC.HuksKeyECCSize224
+        HuksSignVerifyECC.HuksKeyECCSize256
       ),
-      inData: srcData65Kb,
+      inData: srcData65Sha256,
     };
-    await publicSignVerifyFunc(srcKeyAlies, HuksOptions, 'abort', true, srcData65Kb);
+    await publicSignVerifyFunc(srcKeyAlies, HuksOptions, 'abort', true, srcData65Sha256);
     done();
   });
 });

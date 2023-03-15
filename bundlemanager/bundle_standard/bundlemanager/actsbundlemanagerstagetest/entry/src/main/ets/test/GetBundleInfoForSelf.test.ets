@@ -43,7 +43,7 @@ export default function getBundleInfoForSelf() {
         expect(data.versionCode).assertEqual(1000000);
         expect(data.versionName).assertEqual("1.0.0");
         expect(data.minCompatibleVersionCode).assertEqual(1000000);
-        expect(data.targetVersion).assertEqual(8);
+        expect(data.targetVersion).assertEqual(9);
         expect(data.installTime).assertLarger(0);
         expect(data.updateTime).assertLarger(0);
         expect(data.appInfo).assertEqual(null);
@@ -72,7 +72,7 @@ export default function getBundleInfoForSelf() {
         expect(data.versionCode).assertEqual(1000000);
         expect(data.versionName).assertEqual("1.0.0");
         expect(data.minCompatibleVersionCode).assertEqual(1000000);
-        expect(data.targetVersion).assertEqual(8);
+        expect(data.targetVersion).assertEqual(9);
         expect(data.installTime).assertLarger(0);
         expect(data.updateTime).assertLarger(0);
         expect(data.appInfo).assertEqual(null);
@@ -94,6 +94,7 @@ export default function getBundleInfoForSelf() {
       await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then(data => {
         console.info("getBundleInfoForSelfApplicationPro" + JSON.stringify(data.appInfo));
         checkCommonBundleInfo(data);
+        expect(data.appInfo.bundleType).assertEqual(bundle.BundleType.APP);
         expect(data.appInfo.name).assertEqual(BUNDLE_NAME);
         expect(data.appInfo.description).assertEqual("$string:description_application");
         expect(data.appInfo.descriptionId).assertLarger(0);
@@ -281,7 +282,7 @@ export default function getBundleInfoForSelf() {
         expect(data.hapModulesInfo[0].abilitiesInfo[0].icon).assertEqual("$media:icon");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].iconId).assertLarger(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].process).assertEqual("");
-        expect(data.hapModulesInfo[0].abilitiesInfo[0].isVisible).assertTrue();
+        expect(data.hapModulesInfo[0].abilitiesInfo[0].exported).assertTrue();
         expect(data.hapModulesInfo[0].abilitiesInfo[0].type).assertEqual(1);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].orientation).assertEqual(bundle.DisplayOrientation.PORTRAIT);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].launchType).assertEqual(bundle.LaunchType.SINGLETON);
@@ -311,7 +312,7 @@ export default function getBundleInfoForSelf() {
         expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.maxWindowHeight).assertEqual(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.minWindowHeight).assertEqual(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[1].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility1");
-        expect(data.hapModulesInfo[0].abilitiesInfo[1].launchType).assertEqual(bundle.LaunchType.STANDARD);
+        expect(data.hapModulesInfo[0].abilitiesInfo[1].launchType).assertEqual(bundle.LaunchType.MULTITON);
         expect(data.hapModulesInfo[0].abilitiesInfo[1].orientation).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
         expect(data.hapModulesInfo[0].abilitiesInfo[2].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility10");
         expect(data.hapModulesInfo[0].abilitiesInfo[2].orientation).assertEqual(bundle.DisplayOrientation.LOCKED);
@@ -387,7 +388,7 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo[0].icon).assertEqual("$media:icon");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].iconId).assertLarger(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].process).assertEqual("");
-          expect(data.hapModulesInfo[0].abilitiesInfo[0].isVisible).assertTrue();
+          expect(data.hapModulesInfo[0].abilitiesInfo[0].exported).assertTrue();
           expect(data.hapModulesInfo[0].abilitiesInfo[0].type).assertEqual(1);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].orientation).assertEqual(bundle.DisplayOrientation.PORTRAIT);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].launchType).assertEqual(bundle.LaunchType.SINGLETON);
@@ -417,7 +418,7 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.maxWindowHeight).assertEqual(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].windowSize.minWindowHeight).assertEqual(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[1].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility1");
-          expect(data.hapModulesInfo[0].abilitiesInfo[1].launchType).assertEqual(bundle.LaunchType.STANDARD);
+          expect(data.hapModulesInfo[0].abilitiesInfo[1].launchType).assertEqual(bundle.LaunchType.MULTITON);
           expect(data.hapModulesInfo[0].abilitiesInfo[1].orientation).assertEqual(bundle.DisplayOrientation.LANDSCAPE);
           expect(data.hapModulesInfo[0].abilitiesInfo[2].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility10");
           expect(data.hapModulesInfo[0].abilitiesInfo[2].orientation).assertEqual(bundle.DisplayOrientation.LOCKED);
@@ -493,7 +494,7 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].labelId).assertLarger(0);
               expect(extensionList[i].descriptionId).assertLarger(0);
               expect(extensionList[i].iconId).assertLarger(0);
-              expect(extensionList[i].isVisible).assertTrue();
+              expect(extensionList[i].exported).assertTrue();
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.FORM);
               expect(extensionList[i].permissions.length).assertEqual(0);
               expect(extensionList[i].applicationInfo).assertEqual(null);
@@ -511,7 +512,7 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].labelId).assertLarger(0);
               expect(extensionList[i].descriptionId).assertLarger(0);
               expect(extensionList[i].iconId).assertLarger(0);
-              expect(extensionList[i].isVisible).assertTrue();
+              expect(extensionList[i].exported).assertTrue();
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.FORM);
               expect(extensionList[i].permissions.length).assertEqual(0);
               expect(extensionList[i].applicationInfo).assertEqual(null);
@@ -618,7 +619,7 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].labelId).assertLarger(0);
                 expect(extensionList[i].descriptionId).assertLarger(0);
                 expect(extensionList[i].iconId).assertLarger(0);
-                expect(extensionList[i].isVisible).assertTrue();
+                expect(extensionList[i].exported).assertTrue();
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.FORM);
                 expect(extensionList[i].permissions.length).assertEqual(0);
                 expect(extensionList[i].applicationInfo).assertEqual(null);
@@ -636,7 +637,7 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].labelId).assertLarger(0);
                 expect(extensionList[i].descriptionId).assertLarger(0);
                 expect(extensionList[i].iconId).assertLarger(0);
-                expect(extensionList[i].isVisible).assertTrue();
+                expect(extensionList[i].exported).assertTrue();
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.FORM);
                 expect(extensionList[i].permissions.length).assertEqual(0);
                 expect(extensionList[i].applicationInfo).assertEqual(null);
@@ -1001,7 +1002,7 @@ export default function getBundleInfoForSelf() {
       expect(data.versionCode).assertEqual(1000000);
       expect(data.versionName).assertEqual("1.0.0");
       expect(data.minCompatibleVersionCode).assertEqual(1000000);
-      expect(data.targetVersion).assertEqual(8);
+      expect(data.targetVersion).assertEqual(9);
       expect(data.installTime).assertLarger(0);
       expect(data.updateTime).assertLarger(0);
       console.info("checkCommonBundleInfo end");
@@ -1067,7 +1068,7 @@ export default function getBundleInfoForSelf() {
       expect(data.icon).assertEqual("$media:icon");
       expect(data.iconId).assertLarger(0);
       expect(data.process).assertEqual("");
-      expect(data.isVisible).assertTrue();
+      expect(data.exported).assertTrue();
       expect(data.type).assertEqual(1);
       expect(data.permissions.length).assertEqual(0);
       expect(data.readPermission).assertEqual("");

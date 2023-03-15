@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -223,7 +223,7 @@ describe('UsbPortJsFunctionsTestEx', function () {
   /**
    * @tc.number: SUB_USB_JS_1410
    * @tc.name: setPortRoles
-   * @tc.desc: Negative test: parameter type exception
+   * @tc.desc: Negative test: parameter portId type exception
    */
   it('SUB_USB_JS_1410', 0, function () {
     console.info('usb SUB_USB_JS_1410 begin');
@@ -274,6 +274,68 @@ describe('UsbPortJsFunctionsTestEx', function () {
       console.info('usb 1390 catch err code: ' + err.code + ' message: ' + err.message);
       expect(err.code).assertEqual(401);
       console.info('usb SUB_USB_JS_1390 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1590
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: parameter number exception, parameter powerRole type exception
+   */
+  it('SUB_USB_JS_1590', 0, function () {
+    console.info('usb SUB_USB_JS_1590 begin');
+    var portId = gPort.id;
+    var powerRole = "invalid";
+    var dataRole = usb.DEVICE;
+    try {
+      var maskCode = usb.setPortRoles(portId, powerRole, dataRole);
+      console.info('usb 1590 case setPortRoles return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1590 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1590 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1600
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: parameter number exception, parameter dataRole type exception
+   */
+  it('SUB_USB_JS_1600', 0, function () {
+    console.info('usb SUB_USB_JS_1600 begin');
+    var portId = gPort.id;
+    var powerRole = usb.SINK;
+    var dataRole = "invalid";
+    try {
+      var maskCode = usb.setPortRoles(portId, powerRole, dataRole);
+      console.info('usb 1600 case setPortRoles return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1600 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1600 :  PASS');
+    }
+  })
+
+  /**
+   * @tc.number: SUB_USB_JS_1610
+   * @tc.name: setPortRoles
+   * @tc.desc: Negative test: parameter number exception, input two parameter
+   */
+  it('SUB_USB_JS_1610', 0, function () {
+    console.info('usb SUB_USB_JS_1610 begin');
+    var portId = gPort.id;
+    var powerRole = usb.SINK;
+    try {
+      var maskCode = usb.setPortRoles(portId, powerRole);
+      console.info('usb 1610 case setPortRoles return: ' + maskCode);
+      expect(false).assertTrue();
+    } catch (err) {
+      console.info('usb 1610 catch err code: ' + err.code + ' message: ' + err.message);
+      expect(err.code).assertEqual(401);
+      console.info('usb SUB_USB_JS_1610 :  PASS');
     }
   })
 

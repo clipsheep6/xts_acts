@@ -16,20 +16,20 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import ability from '@ohos.app.ability.UIAbility'
-import rpc from '@ohos.rpc';
+import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium"
 import wantConstant from '@ohos.ability.wantConstant'
-import Prompt from '@system.prompt';
-import abilityManager from '@ohos.app.ability.abilityManager';
 import commonEvent from '@ohos.commonEvent';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
 const SYSTEM_INNER_ERROR = 16000050
 const ERR_COMPONENT_NOF_FOUND = 16000001
 const ERR_NOT_TOP = 16000053
+
 export default function startAbilityTest(abilityContext) {
 
   describe('startAbilityTest', function () {
+
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
     console.info("-------------Stage model--> startAbilityXTS Test start----------------")
 
@@ -132,14 +132,14 @@ export default function startAbilityTest(abilityContext) {
     });
 
     async function abilityForeground(tag) {
-      globalThis.delegator.doAbilityForeground(globalThis.ability, (err: any, data: any) => {
-        console.info(tag + "doAbilityForeground err: " + JSON.stringify(err) + ", data: " + JSON.stringify(data));
+      globalThis.delegator.doAbilityForeground(globalThis.ability, (err: any) => {
+        console.info(tag + "doAbilityForeground err: " + JSON.stringify(err));
       });
     }
 
     async function abilityBackground(tag) {
-      globalThis.delegator.doAbilityBackground(globalThis.ability, (err: any, data: any) => {
-        console.info(tag + "abilityBackground err: " + JSON.stringify(err) + ", data: " + JSON.stringify(data));
+      globalThis.delegator.doAbilityBackground(globalThis.ability, (err: any) => {
+        console.info(tag + "abilityBackground err: " + JSON.stringify(err));
       });
     }
 
@@ -316,9 +316,9 @@ export default function startAbilityTest(abilityContext) {
       var deviceId = "";
       abilityForeground(TAG);
       await sleep(1000);
-      abilityManager.getTopAbility((err, data) => {
-        console.log(TAG + 'getTopAbility result: ' + JSON.stringify(data) + " , err: " + JSON.stringify(err));
-        console.log(TAG + 'getTopAbility result deviceId:' + JSON.stringify(data.deviceId));
+      abilityDelegator.getCurrentTopAbility((err, data) => {
+        console.log(TAG + 'getCurrentTopAbility result: ' + JSON.stringify(data) + " , err: " + JSON.stringify(err));
+        console.log(TAG + 'getCurrentTopAbility result deviceId:' + JSON.stringify(data.deviceId));
         deviceId = data.deviceId;
       })
       await sleep(2000);
@@ -355,9 +355,9 @@ export default function startAbilityTest(abilityContext) {
       var deviceId = "";
       abilityForeground(TAG);
       await sleep(1000);
-      abilityManager.getTopAbility((err, data) => {
-        console.log(TAG + 'getTopAbility result: ' + JSON.stringify(data) + " , err: " + JSON.stringify(err));
-        console.log(TAG + 'getTopAbility result deviceId:' + JSON.stringify(data.deviceId));
+      abilityDelegator.getCurrentTopAbility((err, data) => {
+        console.log(TAG + 'getCurrentTopAbility result: ' + JSON.stringify(data) + " , err: " + JSON.stringify(err));
+        console.log(TAG + 'getCurrentTopAbility result deviceId:' + JSON.stringify(data.deviceId));
         deviceId = data.deviceId;
       })
       await sleep(2000);
