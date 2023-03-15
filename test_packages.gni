@@ -44,7 +44,6 @@ _all_test_packages = [
   "${ACTS_ROOT}/telephony:telephony",
   "${ACTS_ROOT}/hiviewdfx:hiviewdfxtestacts",
   "${ACTS_ROOT}/location:location",
-  "${ACTS_ROOT}/settingsdata:settingsdata",
   "${ACTS_ROOT}/barrierfree:barrierfree",
   "${ACTS_ROOT}/applications:applications",
   "${ACTS_ROOT}/wukong:wukong",
