@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// @ts-ignore
 import camera from '@ohos.multimedia.camera'
 import Logger from '../model/Logger'
 import CameraService from '../model/CameraService'
