@@ -15,6 +15,16 @@
 
 #include "huks_three_stage_test_common.h"
 
+static struct OH_Huks_Param g_genParamsTest001[] = {
+    {.tag = OH_HUKS_TAG_ALGORITHM,
+     .uint32Param = OH_HUKS_ALG_DSA},
+    {.tag = OH_HUKS_TAG_PURPOSE,
+     .uint32Param = OH_HUKS_KEY_PURPOSE_SIGN | OH_HUKS_KEY_PURPOSE_VERIFY},
+    {.tag = OH_HUKS_TAG_KEY_SIZE,
+     .uint32Param = 1024},
+    {.tag = OH_HUKS_TAG_DIGEST,
+     .uint32Param = OH_HUKS_DIGEST_SHA1}};
+
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
@@ -680,4 +690,17 @@ OH_Huks_Result HuksAgreeKey(const struct OH_Huks_ParamSet *paramSet, const struc
         return ret;
     }
     return ret;
+}
+
+bool checkUseSoftware()
+{
+    const char *keyAliasString = "HksDSASignVerifyKeyAliasTest001";
+    struct OH_Huks_ParamSet *genParamSet = nullptr;
+    struct OH_Huks_Blob keyAlias = {strlen(keyAliasString), (uint8_t *)keyAliasString};
+    InitParamSet(&genParamSet, g_genParamsTest001, sizeof(g_genParamsTest001) / sizeof(OH_Huks_Param));
+    OH_Huks_Result ret = OH_Huks_GenerateKeyItem(&keyAlias, genParamSet, nullptr);
+    if(!ret.errorCode){
+        return false;
+    }
+    return true;
 }
