@@ -12,9 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import fileio from '@ohos.fileio';
 import prompt from '@ohos.prompt';
 import router from '@ohos.router';
+// @ts-ignore
 import screenshot from '@ohos.screenshot';
 import image from '@ohos.multimedia.image';
 import Logger from '../model/Logger';
@@ -22,34 +24,39 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 let path = globalThis.dir;
 const TAG = '[Screenshot]';
+
 @Component
 export struct CustomContainer {
-  @Link X: number;
-  @Link Y: number;
-  @Link name:string;
-  title : string = '';
+  @Link FillColor: string;
+  @Link name: string;
+  @Link Vue: boolean;
+  @Link isFlash: boolean;
+  Url: string = '';
+  title: string = '';
   StepTips: string = '';
-  Url : string = '';
-  @Link Vue : boolean;
-  @BuilderParam content: () => void;
+
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
-    if(this.Vue == false){
-      Button({stateEffect:this.Vue}) {
+    if (this.Vue == false) {
+      Button({ stateEffect: this.Vue }) {
         Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
-      }.width('30%').height('30vp').backgroundColor(Color.Grey).opacity(0.4)
-      .onClick(()=>{
+      }
+      .width('30%')
+      .height('30vp')
+      .backgroundColor(Color.Grey)
+      .opacity(0.4)
+      .onClick(() => {
 
       })
     }
-    else{
-      Button({stateEffect:this.Vue}) {
+    else {
+      Button({ stateEffect: this.Vue }) {
         Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
       }.width('30%').height('30vp').backgroundColor(Color.Grey)
-      .onClick(()=>{
+      .onClick(() => {
         router.back({
-          url:this.Url,
-          params: {result : 'Pass', title : this.name,
+          url: this.Url,
+          params: { result: 'Pass', title: this.name,
           }
         })
         this.getScreen(isFullScreen);
@@ -59,15 +66,16 @@ export struct CustomContainer {
       })
     }
   }
+
   @Builder
   FailBtn(text: Resource, isFullScreen: boolean) {
-    Button(){
+    Button() {
       Image($r('app.media.ic_public_fail')).width('20vp').height('20vp')
     }.width('30%').height('30vp').backgroundColor(Color.Grey)
-    .onClick(()=>{
+    .onClick(() => {
       router.back({
-        url:this.Url,
-        params: {result : 'Fail',title : this.name,
+        url: this.Url,
+        params: { result: 'Fail', title: this.name,
         }
       })
       this.getScreen(isFullScreen);
@@ -76,45 +84,35 @@ export struct CustomContainer {
       });
     })
   }
+
   build() {
     Column() {
-      Row() {
-        Button(){
-          Image($r('app.media.ic_public_back')).width('20vp').height('18vp').margin({left:'20vp'})
-        }.backgroundColor(Color.Black)
-        .onClick(()=>{
-          router.back({
-            url:this.Url,
-            params: {result : 'None', }
-          })
-        })
-        Text(this.title).fontColor(Color.White).fontSize('18fp').margin({left:'-20vp'})
-        Text('hello').fontColor(Color.White).visibility(Visibility.Hidden)
-      }.backgroundColor(Color.Black).height('10%').width('100%').justifyContent(FlexAlign.SpaceBetween)
-      this.content();
-      Blank()
-      Row() {
+      Flex({
+        justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center
+      }) {
         this.PassBtn($r('app.string.btn_fullscreen'), true);
-        Button(){
+        Button() {
           Image($r('app.media.ic_public_help')).width('20vp').height('20vp')
         }.width('30%').height('30vp').backgroundColor(Color.Grey)
-        .onClick(() =>{
+        .onClick(() => {
           AlertDialog.show(
             {
-              title:'操作提示',
+              title: '操作提示',
               message: this.StepTips,
-              confirm:{
-                value:'OK',
-                action:()=>{
+              confirm: {
+                value: 'OK',
+                action: () => {
                 }
               }
             }
           )
         })
+
         this.FailBtn($r('app.string.btn_fullscreen'), true);
-      }.width('100%').justifyContent(FlexAlign.SpaceEvenly).backgroundColor(Color.Black)
+      }.height('98%').width('100%').backgroundColor(Color.Black)
     }.height('98%').width('100%')
   }
+
   async savePicture(data: image.PixelMap, context: any) {
     Logger.info(TAG, `savePicture`);
     let packOpts: image.PackingOption = {
@@ -128,7 +126,7 @@ export struct CustomContainer {
     let dirPath = path + '/' + displayName;
     let imagePackerApi = image.createImagePacker();
     let arrayBuffer = await imagePackerApi.packing(data, packOpts);
-    let fd = fileio.openSync(dirPath,0o102,0o666);
+    let fd = fileio.openSync(dirPath, 0o102, 0o666);
     imagePackerApi.release();
     try {
       await fileio.write(fd, arrayBuffer);
@@ -138,6 +136,7 @@ export struct CustomContainer {
     await fileio.close(fd);
     Logger.info(TAG, `write done`);
   }
+
   getScreen = (isFullScreen: boolean) => {
     let screenshotOptions: screenshot.ScreenshotOptions = {
       screenRect: { left: 0, top: 0, width: 400, height: 400 },
