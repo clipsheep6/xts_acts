@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-ignore
 import prompt from '@ohos.prompt';
 import router from '@ohos.router';
 import fileio from '@ohos.fileio';
