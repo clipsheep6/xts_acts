@@ -13,9 +13,12 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-group("ActsAceArkUXTest") {
+group("componnetUxTest") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "ace_ets_component_badge:ActsAcebadgeTest" ]
+    deps = [
+      "ace_ets_component_button:ActsAcebadgeTest",
+      "ace_ets_component_sidebar:ActsAceSideBarTest",
+    ]
   }
 }
