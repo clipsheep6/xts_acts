@@ -40,7 +40,7 @@ function getNowTime() {
 function getDurationTime(msg, startTime, endTime) {
     console.info(msg + 'Get Interface startTime: ' + startTime);
     console.info(msg + 'Get Interface endTime: ' + endTime);
-    var duration = (endTime - startTime)
+    var duration = (endTime - startTime);
     console.info(msg + 'Get Interface Duration: ' + duration);
     return duration;
 }
@@ -68,19 +68,19 @@ export default {
         let request = {
             "bundleName": "com.open.harmony.packagemag",
             "abilityName": "com.open.harmony.packagemag.packServiceAbility",
-        }
+        };
         let options = {
             onConnect: async function (element: any, proxy: any) {
                 console.log('particleAbility_connectAbility_test_0300 ConnectAbility onConnect element.deviceId : '
-                + JSON.stringify(element.deviceId))
+                + JSON.stringify(element.deviceId));
                 console.log('particleAbility_connectAbility_test_0300 ConnectAbility onConnect element.bundleName : '
-                + JSON.stringify(element.bundleName))
+                + JSON.stringify(element.bundleName));
                 console.log('particleAbility_connectAbility_test_0300 ConnectAbility onConnect element.abilityName : '
-                + JSON.stringify(element.abilityName))
+                + JSON.stringify(element.abilityName));
                 console.log('particleAbility_connectAbility_test_0300 ConnectAbility onConnect element.uri : '
-                + JSON.stringify(element.uri))
+                + JSON.stringify(element.uri));
                 console.log('particleAbility_connectAbility_test_0300 ConnectAbility onConnect element.shortName : '
-                + JSON.stringify(element.shortName))
+                + JSON.stringify(element.shortName));
                 console.log('particleAbility_connectAbility_test_0300 ConnectAbility onConnect proxy : '
                 + JSON.stringify(proxy));
             },
