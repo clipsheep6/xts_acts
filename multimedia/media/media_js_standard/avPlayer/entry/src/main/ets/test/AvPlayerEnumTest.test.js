@@ -68,6 +68,26 @@ export default function AvPlayerEnumTest() {
             expect(media.AVErrorCode.AVERR_UNSUPPORT_FORMAT).assertEqual(5400106);
             done();
         })
+
+        /* *
+    * @tc.number    : SUB_MULTIMEDIA_MEDIA_AVPLAYER_ENUM_0300
+    * @tc.name      : AVPlayer
+    * @tc.desc      : AVPlayer Enumeration test
+    * @tc.size      : MediumTest
+    * @tc.type      : Function test
+    * @tc.level     : Level0
+      */
+        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_ENUM_0300', 0, async function (done) {
+            expect(media.CodecMimeType.VIDEO_H263).assertEqual('video/h263');
+            expect(media.CodecMimeType.VIDEO_AVC).assertEqual('video/avc');
+            expect(media.CodecMimeType.VIDEO_MPEG2).assertEqual('video/mpeg2');
+            expect(media.CodecMimeType.VIDEO_MPEG4).assertEqual('video/mp4v-es');
+            expect(media.CodecMimeType.VIDEO_VP8).assertEqual('video/x-vnd.on2.vp8');
+            expect(media.CodecMimeType.AUDIO_AAC).assertEqual('audio/mp4a-latm');
+            expect(media.CodecMimeType.AUDIO_VORBIS).assertEqual('audio/vorbis');
+            expect(media.CodecMimeType.AUDIO_FLAC).assertEqual('audio/flac');
+            done();
+        })
     })
 }
 
