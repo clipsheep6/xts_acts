@@ -17,6 +17,8 @@ import AVPlayerHttpCompatibilityTest from './AVPlayerHttpCompatibilityTest.test.
 import AVPlayerHttpSeekTest from './AVPlayerHttpSeekTest.test.ets'
 import AVPlayerLocalTest from './AVPlayerLocalTest.test.js'
 import AVPlayerStabilityTest from './AVPlayerStabilityTest.test.js'
+import AVPlayerDataSrcCompatibilityTest from './AVPlayerDataSrcCompatibilityTest.test.js'
+import AVPlayerDataSrcReliabilityTest from './AVPlayerDataSrcReliabilityTest.test.js'
 
 export default function testsuite() {
   // AVPlayerHlsFuncTest()
@@ -24,4 +26,6 @@ export default function testsuite() {
   // AVPlayerHttpSeekTest();
   AVPlayerLocalTest();
   AVPlayerStabilityTest();
+  AVPlayerDataSrcCompatibilityTest();
+  AVPlayerDataSrcReliabilityTest();
 }
