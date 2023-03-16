@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// @ts-ignore
+
 import camera from '@ohos.multimedia.camera'
 import Logger from '../model/Logger'
 import CameraService from '../model/CameraService'
@@ -87,7 +87,6 @@ struct cameraOrientation {
 
   onPageShow() {
     Logger.info(this.tag, `takePicture end, assetUri`)
-    // @ts-ignore
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex).then(() => {
       this.cameraListFn()
@@ -125,7 +124,6 @@ struct cameraOrientation {
           })
             .onLoad(async () => {
               Logger.info(this.tag, 'onLoad is called')
-              // @ts-ignore
               this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
               Logger.info(this.tag, `onLoad surfaceId: ${this.surfaceId}`)
               CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex).then(() => {

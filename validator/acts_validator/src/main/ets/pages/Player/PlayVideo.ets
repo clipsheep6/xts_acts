@@ -1,14 +1,26 @@
-// @ts-ignore
-import camera from '@ohos.multimedia.camera'
-import Logger from '../model/Logger'
-import CameraService from '../model/CameraService'
-import { CustomContainer } from '../common/CameraPhotoContainer';
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+
+import { CustomContainer } from '../common/AudioContainer';
 import FirstDialog from '../model/FirstDialog';
 import router from '@ohos.router';
 
 @Entry
 @Component
-struct cameraOrientation {
+struct playVideo {
   @State FillColor: string = '#FF000000';
   @State name: string = 'PlayVideo';
   @State StepTips: string = '测试目的：用于测试视频播放暂停seek\n预期结果：视频播放暂停seek功能正常';
@@ -31,7 +43,7 @@ struct cameraOrientation {
         }.backgroundColor(Color.Black)
         .onClick(() => {
           router.back({
-            url: 'pages/Camera/Camera_index',
+            url: 'pages/Play/Camera_index',
             params: { result: 'None', }
           })
         })
@@ -57,7 +69,6 @@ struct cameraOrientation {
         title: this.name,
         Url: 'pages/Camera/Camera_index',
         StepTips: this.StepTips,
-        FillColor: $FillColor,
         name: $name,
         Vue: $Vue
       }).height('10%').width('100%')

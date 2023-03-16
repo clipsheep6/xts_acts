@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -107,7 +107,6 @@ struct cameraOrientation {
 
   onPageShow() {
     Logger.info(this.tag, `takePicture end, assetUri`)
-    // @ts-ignore
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex)
   }
@@ -144,7 +143,6 @@ struct cameraOrientation {
           })
             .onLoad(async () => {
               Logger.info(this.tag, 'onLoad is called')
-              // @ts-ignore
               this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
               Logger.info(this.tag, `onLoad surfaceId: ${this.surfaceId}`)
               this.cameraInit()
@@ -238,7 +236,6 @@ struct cameraOrientation {
               });
               CameraService.startVideo().then(() => {
                 setTimeout(() => {
-                  // @ts-ignore
                   let sufferID = this.mXComponentController1.getXComponentSurfaceId()
                   Logger.info(this.tag, `onSelect format sufferID: ${sufferID}`)
                   mediaPlay.init(sufferID)
