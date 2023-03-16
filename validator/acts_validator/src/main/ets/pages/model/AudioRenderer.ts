@@ -10,6 +10,7 @@ class AudioRenderer {
     private static instance: AudioRenderer = new AudioRenderer()
     private audioRenderer: audio.AudioRenderer = undefined
     private fd: number = undefined
+	private offset: number = undefined
 
     async createAudioRenderer(){
         let audioStreamInfo = {
@@ -43,10 +44,11 @@ class AudioRenderer {
 //                console.log('case getRawFileDescriptor err: ' + error);
 //            });
             globalThis.abilityContext.resourceManager.getRawFd("test_44100_2.wav").then(value => {
-                this.fd = value.fd;
+                this.fd = value.fd
+				this.offset = value.offset
                 Logger.info(this.tag, `getRawFd fd : ${this.fd}, offset: ${value.offset}, length: ${value.length}`)
             }).catch(err => {
-                console.log(`getRawFd fail err: ${err}, message: ${err.message}, code: ${err.code}`);
+                console.log(`getRawFd fail err: ${err}, message: ${err.message}, code: ${err.code}`)
             })
 
             let bufferSize = await this.audioRenderer.getBufferSize()
@@ -57,7 +59,7 @@ class AudioRenderer {
             while (true) {
                 for (let i = 0;i < len; i++) {
                     let options = {
-                        offset: i * bufferSize,
+                        offset: i * bufferSize + this.offset,
                         length: bufferSize
                     }
                     await fs.read(this.fd, buf, options)
