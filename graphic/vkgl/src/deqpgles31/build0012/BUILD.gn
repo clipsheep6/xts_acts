@@ -78,6 +78,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0012") {
     "../functional/Deqpgles31image_load_store_early_fragment_testsTestCase.cpp",
     "../functional/Deqpgles31random_basic_type_arraysTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

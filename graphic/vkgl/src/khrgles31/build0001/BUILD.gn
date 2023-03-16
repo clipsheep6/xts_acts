@@ -137,6 +137,8 @@ ohos_moduletest_suite("ActsKhrgles31TestSuite0001") {
     "../core/Khrgles31texture_storage_multisample_FunctionalTestsTestCase.cpp",
     "../core/Khrgles31texture_storage_multisample_GLCoverageTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

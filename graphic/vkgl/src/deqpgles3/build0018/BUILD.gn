@@ -103,6 +103,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0018") {
     "../functional/Deqpgles3texture_functions_texturesizeTestCase.cpp",
     "../functional/Deqpgles3texture_msaa4TestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

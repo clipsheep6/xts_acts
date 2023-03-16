@@ -70,6 +70,8 @@ ohos_moduletest_suite("ActsDeqpgles2TestSuite0016") {
     "../functional/Deqpgles2triangle_vertex_clip_twoTestCase.cpp",
     "../functional/Deqpgles2uniform_api_randomTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

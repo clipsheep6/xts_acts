@@ -70,6 +70,8 @@ ohos_moduletest_suite("ActsKhrgles3TestSuite0002") {
     "../shaders/Khrgles3uniform_block_single_structTestCase.cpp",
     "../shaders/Khrgles3uniform_block_single_struct_arrayTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

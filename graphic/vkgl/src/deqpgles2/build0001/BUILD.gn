@@ -97,6 +97,8 @@ ohos_moduletest_suite("ActsDeqpgles2TestSuite0001") {
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
   deps = [ ":libdeqpgles2func0001" ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   cflags = [ "-Wno-error" ]
 }
