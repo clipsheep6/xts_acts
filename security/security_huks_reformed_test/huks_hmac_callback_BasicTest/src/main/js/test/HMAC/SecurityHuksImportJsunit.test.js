@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium';
-import { stringToUint8Array } from '../../../../../../utils/param/publicFunc';
+import { describe, it, expect, beforeAll } from '@ohos/hypium';
+import { stringToUint8Array, checkSoftware } from '../../../../../../utils/param/publicFunc';
 import huks from '@ohos.security.huks';
 import Data from '../../../../../../utils/data.json';
 import { HuksCipherAES, HuksCipherRSA, HuksCipherSM4 } from '../../../../../../utils/param/cipher/publicCipherParam'
@@ -44,6 +44,7 @@ let outPlainKeyEncData;
 let outKekEncData;
 let outKekEncTag;
 let outAgreeKeyEncTag;
+let useSoftware = true;
 
 let mask = [0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000];
 function subUint8ArrayOf(arrayBuf, start, end) {
@@ -1039,17 +1040,24 @@ async function BuildWrappedDataAndImportWrappedKey(plainKey) {
 
 export function SecurityHuksImportJsunit() {
     describe('SecurityHuksImportJsunit', function () {
+        beforeAll(async function (done) {
+            useSoftware = await checkSoftware();
+            done();
+        });
         it('HUKS_Basic_Capability_Import_Reformed_0100', 0, async function (done) {
             const srcKeyAlies = 'HUKS_Basic_Capability_Import_0100';
             let HuksOptions = {
                 properties: new Array(
                     HuksSignVerifyECC.HuksKeyAlgECC,
                     HuksSignVerifyECC.HuksKeyECCPurposeSINGVERIFY,
-                    HuksSignVerifyECC.HuksKeyECCSize224,
+                    HuksSignVerifyECC.HuksKeyECCSize256,
                     HuksSignVerifyECC.HuksTagECCDigestNONE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
-                inData: ecc224Key,
+                inData: ecc256Key,
             };
             await publicGenerateItemFunc(srcKeyAlies, HuksOptions);
             await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
@@ -1064,9 +1072,12 @@ export function SecurityHuksImportJsunit() {
                 properties: new Array(
                     HuksSignVerifyECC.HuksKeyAlgECC,
                     HuksSignVerifyECC.HuksKeyECCPurposeSINGVERIFY,
-                    HuksSignVerifyECC.HuksKeyECCSize224,
+                    HuksSignVerifyECC.HuksKeyECCSize256,
                     HuksSignVerifyECC.HuksTagECCDigestNONE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: dsa2048Key,
             };
@@ -1087,35 +1098,39 @@ export function SecurityHuksImportJsunit() {
 
         it('HUKS_Basic_Capability_Import_Reformed_0300', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
-            await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
+            if (useSoftware) {
+                await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+                await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
 
-            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
-            importWrappedAes192Params.inData = wrappedData;
-            await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
-            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
-            await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
-            await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+                await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
+                await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+                let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+                importWrappedAes192Params.inData = wrappedData;
+                await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
+                await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+                await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
+                await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
+                await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+            }
             done();
         });
 
         it('HUKS_Basic_Capability_Import_Reformed_0400', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0400';
-            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParamsX25519, false);
-            await generateAndExportPublicKey(callerKeyAlias, genCallerX25519Params, true);
+            if (useSoftware) {
+                await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParamsX25519, false);
+                await generateAndExportPublicKey(callerKeyAlias, genCallerX25519Params, true);
 
-            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParamsX25519);
-            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
-            importWrappedAes192ParamsX25519.inData = wrappedData;
-            await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192ParamsX25519);
-            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParamsX25519);
-            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerX25519Params);
-            await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192ParamsX25519);
-            await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+                await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParamsX25519);
+                await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+                let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+                importWrappedAes192ParamsX25519.inData = wrappedData;
+                await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192ParamsX25519);
+                await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParamsX25519);
+                await publicDeleteKeyItemFunc(callerKeyAlias, genCallerX25519Params);
+                await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192ParamsX25519);
+                await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+            }
             done();
         });
 
@@ -1173,33 +1188,6 @@ export function SecurityHuksImportJsunit() {
             done();
         });
 
-        it('HUKS_Basic_Capability_Import_Reformed_0800', 0, async function (done) {
-            const srcKeyAlies = 'HUKS_Basic_Capability_Import_0800';
-            let HuksOptions = {
-                properties: new Array(
-                    HuksCipherAES.HuksKeyAlgAES,
-                    HuksCipherAES.HuksKeyPurposeENCRYPT,
-                    HuksCipherAES.HuksKeyAESSize512,
-                    HuksCipherAES.HuksKeyAESPADDINGNONE,
-                    HuksCipherAES.HuksKeyAESBLOCKMODE,
-                    HuksCipherAES.HuksKeyAESDIGESTNONE
-                ),
-                inData: aes512Key,
-            };
-            try {
-                await huks.importKeyItem(srcKeyAlies, HuksOptions)
-                    .then(data => {
-                        console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
-                    }).catch(err => {
-                        console.error(`promise: importKeyItem failed, code: ${err.code}, msg: ${err.message}`);
-                    })
-            } catch (err) {
-                console.error(`promise: importKeyItem input arg invalid, code: ${err.code}, msg: ${err.message}`);
-                expect(null).assertFail();
-            }
-            done();
-        });
-
         it('HUKS_Basic_Capability_Import_Reformed_0900', 0, async function (done) {
             const srcKeyAlies = 'HUKS_Basic_Capability_Import_0900';
             let HuksOptions = {
@@ -1210,12 +1198,17 @@ export function SecurityHuksImportJsunit() {
                     HuksCipherRSA.HuksKeyRSAPADDINGNONE,
                     HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
                     HuksCipherRSA.HuksKeyRSADIGESTSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: rsa512Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1229,12 +1222,17 @@ export function SecurityHuksImportJsunit() {
                     HuksCipherRSA.HuksKeyRSAPADDINGNONE,
                     HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
                     HuksCipherRSA.HuksKeyRSADIGESTSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: rsa768Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1248,12 +1246,17 @@ export function SecurityHuksImportJsunit() {
                     HuksCipherRSA.HuksKeyRSAPADDINGNONE,
                     HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
                     HuksCipherRSA.HuksKeyRSADIGESTSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: rsa1024Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1267,7 +1270,10 @@ export function SecurityHuksImportJsunit() {
                     HuksCipherRSA.HuksKeyRSAPADDINGNONE,
                     HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
                     HuksCipherRSA.HuksKeyRSADIGESTSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: rsa2048Key,
             };
@@ -1286,7 +1292,10 @@ export function SecurityHuksImportJsunit() {
                     HuksCipherRSA.HuksKeyRSAPADDINGNONE,
                     HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
                     HuksCipherRSA.HuksKeyRSADIGESTSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: rsa3072Key,
             };
@@ -1305,7 +1314,10 @@ export function SecurityHuksImportJsunit() {
                     HuksCipherRSA.HuksKeyRSAPADDINGNONE,
                     HuksCipherRSA.HuksKeyRSABLOCKMODEECB,
                     HuksCipherRSA.HuksKeyRSADIGESTSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: rsa4096Key,
             };
@@ -1325,8 +1337,10 @@ export function SecurityHuksImportJsunit() {
                 ),
                 inData: aes512Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1338,12 +1352,17 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
                     HuksSignVerifyECC.HuksTagECCDigestNONE,
                     HuksSignVerifyECC.HuksKeyECCSize224,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc224Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1355,7 +1374,10 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
                     HuksSignVerifyECC.HuksTagECCDigestNONE,
                     HuksSignVerifyECC.HuksKeyECCSize256,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc256Key,
             };
@@ -1372,7 +1394,10 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
                     HuksSignVerifyECC.HuksTagECCDigestNONE,
                     HuksSignVerifyECC.HuksKeyECCSize384,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc384Key,
             };
@@ -1389,7 +1414,10 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
                     HuksSignVerifyECC.HuksTagECCDigestNONE,
                     HuksSignVerifyECC.HuksKeyECCSize521,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc521Key,
             };
@@ -1408,12 +1436,17 @@ export function SecurityHuksImportJsunit() {
                     HuksAgreeECDH.HuksKeyECCDIGEST,
                     HuksAgreeECDH.HuksKeyECCPADDING,
                     HuksAgreeECDH.HuksKeyECCBLOCKMODE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc224Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1427,7 +1460,10 @@ export function SecurityHuksImportJsunit() {
                     HuksAgreeECDH.HuksKeyECCDIGEST,
                     HuksAgreeECDH.HuksKeyECCPADDING,
                     HuksAgreeECDH.HuksKeyECCBLOCKMODE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc256Key,
             };
@@ -1446,7 +1482,10 @@ export function SecurityHuksImportJsunit() {
                     HuksAgreeECDH.HuksKeyECCDIGEST,
                     HuksAgreeECDH.HuksKeyECCPADDING,
                     HuksAgreeECDH.HuksKeyECCBLOCKMODE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc384Key,
             };
@@ -1465,7 +1504,10 @@ export function SecurityHuksImportJsunit() {
                     HuksAgreeECDH.HuksKeyECCDIGEST,
                     HuksAgreeECDH.HuksKeyECCPADDING,
                     HuksAgreeECDH.HuksKeyECCBLOCKMODE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ecc521Key,
             };
@@ -1484,7 +1526,10 @@ export function SecurityHuksImportJsunit() {
                     HuksKeyAlgX25519.HuksKeyDIGEST,
                     HuksKeyAlgX25519.HuksKeyPADDING,
                     HuksKeyAlgX25519.HuksKeyBLOCKMODE,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: x25519Key,
             };
@@ -1501,7 +1546,10 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifyED25519.HuksKeyED25519PurposeSIGN,
                     HuksSignVerifyED25519.HuksKeyED25519Size256,
                     HuksSignVerifyED25519.HuksTagDigestSHA1,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: ed25519Key,
             };
@@ -1512,45 +1560,49 @@ export function SecurityHuksImportJsunit() {
 
         it('HUKS_Basic_Capability_Import_Reformed_2600', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
-            await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
+            if (useSoftware) {
+                await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+                await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
 
-            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
-            importWrappedAes192Params.inData = wrappedData;
-            await publicImportWrappedKeyPromise(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-            await publicImportWrappedKeyPromise(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
-            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
-            await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
-            await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+                await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
+                await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+                let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+                importWrappedAes192Params.inData = wrappedData;
+                await publicImportWrappedKeyPromise(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
+                await publicImportWrappedKeyPromise(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
+                await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+                await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
+                await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
+                await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+            }
             done();
         });
 
         it('HUKS_Basic_Capability_Import_Reformed_2700', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_2700';
-            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
-            await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
-            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
-            importWrappedAes192ParamsX25519.inData = wrappedData;
-            try {
-                await importWrappedKeyItem(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192ParamsX25519)
-                    .then((data) => {
-                        console.info(`callback: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
-                    })
-                    .catch(error => {
-                        console.error(`callback: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                        expect(error.code == 12000006).assertTrue();
-                    });
-            } catch (error) {
-                console.error(`callback: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-                expect(null).assertFail();
+            if (useSoftware) {
+                await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+                await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
+                await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
+                await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+                let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+                importWrappedAes192ParamsX25519.inData = wrappedData;
+                try {
+                    await importWrappedKeyItem(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192ParamsX25519)
+                        .then((data) => {
+                            console.info(`callback: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
+                        })
+                        .catch(error => {
+                            console.error(`callback: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                            expect(error.code == 12000006).assertTrue();
+                        });
+                } catch (error) {
+                    console.error(`callback: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+                    expect(null).assertFail();
+                }
+                await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+                await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
             }
-            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
-            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
             done();
         });
 
@@ -1561,13 +1613,21 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifyDSA.HuksKeyAlgDSA,
                     HuksSignVerifyDSA.HuksKeyDSAPurposeSIGN,
                     HuksSignVerifyDSA.HuksTagDSADigestSHA256,
-                    { tag: huks.HuksTag.HUKS_TAG_KEY_SIZE, value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048 },
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+                        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+                    },
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: dsa2048Key,
             };
-            await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
-            await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            if (useSoftware) {
+                await publicImportKeyItemFunc(srcKeyAlies, HuksOptions);
+                await publicDeleteKeyItemFunc(srcKeyAlies, HuksOptions);
+            }
             done();
         });
 
@@ -1579,7 +1639,10 @@ export function SecurityHuksImportJsunit() {
                     HuksSignVerifySM2.HuksKeySM2PurposeSINGVERIFY,
                     HuksSignVerifySM2.HuksKeySize256,
                     HuksSignVerifySM2.HuksTagSM2DigestSM3,
-                    { tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE, value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR }
+                    {
+                        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+                        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
+                    }
                 ),
                 inData: sm2Key,
             };

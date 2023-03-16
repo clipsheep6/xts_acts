@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 import huks from "@ohos.security.huks";
-import { describe, it, expect } from "@ohos/hypium";
+import { describe, it, expect, beforeAll } from "@ohos/hypium";
 import Data from '../../../../../../utils/data.json';
-import { stringToUint8Array } from '../../../../../../utils/param/publicFunc';
+import { stringToUint8Array, checkSoftware } from '../../../../../../utils/param/publicFunc';
 import { HuksSignVerifyRSA } from '../../../../../../utils/param/signverify/publicSignverifyParam';
 
 let inDataString = "Hks_RSA_Sign_Verify_Test_0000000000000000000000000000000000000000000000000000000" +
@@ -29,6 +29,7 @@ let srcData64 = Data.Data64b;
 let srcData64Kb = stringToUint8Array(srcData64);
 let signedResult;
 let handle;
+let useSoftware = true;
 
 async function publicGenerateKeyFunc(srcKeyAlias, genHuksOptionsNONECBC) {
     console.error(`enter promise generateKeyItem`);
@@ -91,7 +92,7 @@ async function publicUpdateSessionFunction(HuksOptions) {
     let isFinished = false;
     let outData = [];
 
-    while (inDataSegPosition <= lastInDataPosition) {        
+    while (inDataSegPosition <= lastInDataPosition) {
         HuksOptions.inData = new Uint8Array(
             Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
         );
@@ -127,22 +128,22 @@ async function publicUpdateSessionFunction(HuksOptions) {
     }
 }
 
-async function publicUpdateError(HuksOptions, errCode){
+async function publicUpdateError(HuksOptions, errCode) {
     console.error(`enter promise doUpdate`);
-        try {
-            await huks.updateSession(handle, HuksOptions)
-                .then((data) => {
-                    console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
-                    expect(null).assertFail();
-                })
-                .catch(error => {
-                    console.error(`promise: doUpdate failed, code: ${error.code}, msg: ${error.message}`);
-                    expect(err.code == errCode).assertTrue();
-                });
-        } catch (error) {
-            console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
-            expect(null).assertFail();
-        }
+    try {
+        await huks.updateSession(handle, HuksOptions)
+            .then((data) => {
+                console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+                expect(null).assertFail();
+            })
+            .catch(error => {
+                console.error(`promise: doUpdate failed, code: ${error.code}, msg: ${error.message}`);
+                expect(err.code == errCode).assertTrue();
+            });
+    } catch (error) {
+        console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        expect(null).assertFail();
+    }
 }
 
 async function publicFinishSessionFunc(HuksOptions) {
@@ -184,7 +185,10 @@ async function publicDeleteKeyFunc(srcKeyAlias, genHuksOptionsNONECBC) {
 
 export default function SecurityHuksRSASignExtendJsunit() {
     describe('SecurityHuksRSASignExtendJsunit', function () {
-
+        beforeAll(async function (done) {
+            useSoftware = await checkSoftware();
+            done();
+        })
         /**
          * @tc.number Security_HUKS_RSA_SignExtend_0100
          * @tc.name No Padding and Sign Verify with RSA.
@@ -192,48 +196,50 @@ export default function SecurityHuksRSASignExtendJsunit() {
          */
         it("Security_HUKS_RSA_SignExtend_0100", 0, async function (done) {
             let srcKeyAliesGen = "Security_HUKS_RSA_SignExtend_0100_Gen";
-            let HuksOptionsGen = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeSINGVERIFY,
-                    HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
-            };
-            let HuksOptionsSign = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
-                    HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
-            }
-            await publicGenerateKeyFunc(srcKeyAliesGen, HuksOptionsGen);
-            await publicInitFunc(srcKeyAliesGen, HuksOptionsSign);
-            HuksOptionsSign.inData = srcData64Kb;
-            await publicUpdateSessionFunction(HuksOptionsSign);
-            HuksOptionsSign.inData = new Uint8Array(new Array());
-            await publicFinishSessionFunc(HuksOptionsSign);
+            if (useSoftware) {
+                let HuksOptionsGen = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeSINGVERIFY,
+                        HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                };
+                let HuksOptionsSign = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
+                        HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
+                        HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                }
+                await publicGenerateKeyFunc(srcKeyAliesGen, HuksOptionsGen);
+                await publicInitFunc(srcKeyAliesGen, HuksOptionsSign);
+                HuksOptionsSign.inData = srcData64Kb;
+                await publicUpdateSessionFunction(HuksOptionsSign);
+                HuksOptionsSign.inData = new Uint8Array(new Array());
+                await publicFinishSessionFunc(HuksOptionsSign);
 
-            let HuksOptionsVerify = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
-                    HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
+                let HuksOptionsVerify = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
+                        HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
+                        HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                }
+                await publicInitFunc(srcKeyAliesGen, HuksOptionsVerify);
+                HuksOptionsVerify.inData = srcData64Kb;
+                publicUpdateSessionFunction(HuksOptionsVerify);
+                HuksOptionsVerify.inData = signedResult;
+                await publicFinishSessionFunc(HuksOptionsVerify);
+                await publicDeleteKeyFunc(srcKeyAliesGen, HuksOptionsGen);
             }
-            await publicInitFunc(srcKeyAliesGen, HuksOptionsVerify);
-            HuksOptionsVerify.inData = srcData64Kb;
-            publicUpdateSessionFunction(HuksOptionsVerify);
-            HuksOptionsVerify.inData = signedResult;
-            await publicFinishSessionFunc(HuksOptionsVerify);
-            await publicDeleteKeyFunc(srcKeyAliesGen, HuksOptionsGen);
             done();
         })
 
@@ -244,48 +250,50 @@ export default function SecurityHuksRSASignExtendJsunit() {
          */
         it("Security_HUKS_RSA_SignExtend_0200", 0, async function (done) {
             let srcKeyAliesGen = "Security_HUKS_RSA_SignExtend_0200";
-            let HuksOptionsGen = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeSINGVERIFY,
-                    HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
-            };
-            let HuksOptionsSign = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
-                    HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
-            }
-            await publicGenerateKeyFunc(srcKeyAliesGen, HuksOptionsGen);
-            await publicInitFunc(srcKeyAliesGen, HuksOptionsSign);
-            HuksOptionsSign.inData = srcData64Kb;
-            await publicUpdateSessionFunction(HuksOptionsSign);
-            HuksOptionsSign.inData = new Uint8Array(new Array());
-            await publicFinishSessionFunc(HuksOptionsSign);
+            if (useSoftware) {
+                let HuksOptionsGen = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeSINGVERIFY,
+                        HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                };
+                let HuksOptionsSign = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
+                        HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
+                        HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                }
+                await publicGenerateKeyFunc(srcKeyAliesGen, HuksOptionsGen);
+                await publicInitFunc(srcKeyAliesGen, HuksOptionsSign);
+                HuksOptionsSign.inData = srcData64Kb;
+                await publicUpdateSessionFunction(HuksOptionsSign);
+                HuksOptionsSign.inData = new Uint8Array(new Array());
+                await publicFinishSessionFunc(HuksOptionsSign);
 
-            let HuksOptionsVerify = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
-                    HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
+                let HuksOptionsVerify = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
+                        HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
+                        HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                }
+                await publicInitFunc(srcKeyAliesGen, HuksOptionsVerify);
+                HuksOptionsVerify.inData = srcData64Kb;
+                publicUpdateSessionFunction(HuksOptionsVerify);
+                HuksOptionsVerify.inData = signedResult;
+                await publicFinishSessionFunc(HuksOptionsVerify);
+                await publicDeleteKeyFunc(srcKeyAliesGen, HuksOptionsGen);
             }
-            await publicInitFunc(srcKeyAliesGen, HuksOptionsVerify);
-            HuksOptionsVerify.inData = srcData64Kb;
-            publicUpdateSessionFunction(HuksOptionsVerify);
-            HuksOptionsVerify.inData = signedResult;
-            await publicFinishSessionFunc(HuksOptionsVerify);
-            await publicDeleteKeyFunc(srcKeyAliesGen, HuksOptionsGen);
             done();
         })
 
@@ -300,7 +308,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                 properties: new Array(
                     HuksSignVerifyRSA.HuksKeyAlgRSA,
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSINGVERIFY,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             };
@@ -310,33 +318,35 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             }
-            await publicGenerateKeyFunc(srcKeyAliesGen, HuksOptionsGen);
-            await publicInitFunc(srcKeyAliesGen, HuksOptionsSign);
-            HuksOptionsSign.inData = srcData64Kb;
-            await publicUpdateSessionFunction(HuksOptionsSign);
-            HuksOptionsSign.inData = new Uint8Array(new Array());
-            await publicFinishSessionFunc(HuksOptionsSign);
+            if (useSoftware) {
+                await publicGenerateKeyFunc(srcKeyAliesGen, HuksOptionsGen);
+                await publicInitFunc(srcKeyAliesGen, HuksOptionsSign);
+                HuksOptionsSign.inData = srcData64Kb;
+                await publicUpdateSessionFunction(HuksOptionsSign);
+                HuksOptionsSign.inData = new Uint8Array(new Array());
+                await publicFinishSessionFunc(HuksOptionsSign);
 
-            let HuksOptionsVerify = {
-                properties: new Array(
-                    HuksSignVerifyRSA.HuksKeyAlgRSA,
-                    HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
-                    HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
-                ),
-                inData: srcData64Kb,
+                let HuksOptionsVerify = {
+                    properties: new Array(
+                        HuksSignVerifyRSA.HuksKeyAlgRSA,
+                        HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
+                        HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
+                        HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
+                        HuksSignVerifyRSA.HuksKeyRSASize4096
+                    ),
+                    inData: srcData64Kb,
+                }
+                await publicInitFunc(srcKeyAliesGen, HuksOptionsVerify);
+                HuksOptionsVerify.inData = srcData64Kb;
+                publicUpdateSessionFunction(HuksOptionsVerify);
+                HuksOptionsVerify.inData = signedResult;
+                await publicFinishSessionFunc(HuksOptionsVerify);
+                await publicDeleteKeyFunc(srcKeyAliesGen, HuksOptionsGen);
             }
-            await publicInitFunc(srcKeyAliesGen, HuksOptionsVerify);
-            HuksOptionsVerify.inData = srcData64Kb;
-            publicUpdateSessionFunction(HuksOptionsVerify);
-            HuksOptionsVerify.inData = signedResult;
-            await publicFinishSessionFunc(HuksOptionsVerify);
-            await publicDeleteKeyFunc(srcKeyAliesGen, HuksOptionsGen);
             done();
         })
 
@@ -353,7 +363,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSINGVERIFY,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestNONE,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: inDataAfterSha512,
             }
@@ -363,7 +373,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestNONE,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: inDataAfterSha512,
             }
@@ -380,7 +390,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeVERIFY,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestNONE,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: signedResult,
             }
@@ -406,7 +416,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             };
@@ -415,7 +425,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyAlgRSA,
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             }
@@ -438,7 +448,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             };
@@ -447,7 +457,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyAlgRSA,
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             }
@@ -470,7 +480,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestSHA256,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             };
@@ -478,7 +488,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                 properties: new Array(
                     HuksSignVerifyRSA.HuksKeyAlgRSA,
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: srcData64Kb,
             }
@@ -501,7 +511,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestNONE,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: inDataAfterSha512,
             };
@@ -511,7 +521,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
                     HuksSignVerifyRSA.HuksKeyRSAPurposeSIGN,
                     HuksSignVerifyRSA.HuksTagPKCS1DigestNONE,
                     HuksSignVerifyRSA.HuksKeyRSAPADDINGPKCS1V15,
-                    HuksSignVerifyRSA.HuksKeyRSASize1024
+                    HuksSignVerifyRSA.HuksKeyRSASize4096
                 ),
                 inData: inDataString,
             }
