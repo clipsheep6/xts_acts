@@ -10,7 +10,7 @@ class AudioRenderer {
     private static instance: AudioRenderer = new AudioRenderer()
     private audioRenderer: audio.AudioRenderer = undefined
     private fd: number = undefined
-	private offset: number = undefined
+    private offset: number = undefined
 
     async createAudioRenderer(){
         let audioStreamInfo = {
