@@ -33,6 +33,7 @@ group("arkui") {
     "ace_ets_web_dev_two:ActsAceWebDevTwoTest",
     "ace_ets_xcomponent:ActsAceXComponentEtsTest",
     "ace_js_attribute_api:ActsAceJsApiTest",
+    "ace_ets_canvas:ActsAceCanvasEtsTest",
     "ace_napi_test:ActsAceNapiEtsTest",
     "ace_standard:ActsAceStandardTest",
     "ace_standard_video:ActsAceStandardVideoTest",
