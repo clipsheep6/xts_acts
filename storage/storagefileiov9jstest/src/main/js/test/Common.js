@@ -24,6 +24,24 @@ import {
 }
 from '@ohos/hypium'
 
+export async function mkdirForTest(folderName) {
+  try {
+      let context = featureAbility.getContext();
+      let data = await context.getCacheDir();
+      let BASE_PATH = data + '/' + folderName + randomString(folderName.length);
+      fileio.mkdirSync(BASE_PATH);
+      return BASE_PATH;
+  }
+  catch (e) {
+      console.log('Failed to prepareFile for ' + e)
+      return false
+  }
+}
+
+export function randomFileName(testName) {
+  return testName + '_' + randomString(testName.length);
+}
+
 export function prepareFile(fpath, content) {
   try {
     let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE)
