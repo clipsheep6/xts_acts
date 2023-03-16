@@ -61,6 +61,9 @@ struct playVideo {
           .height('60%')
           .autoPlay(this.isAutoPlay)
           .controls(this.showControls)
+		  .onFinish(() => {
+			this.Vue = true
+		  })
       }.width('100%').height('80%').onClick(() => {
         this.showControls = !this.showControls
       })
