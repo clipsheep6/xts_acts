@@ -19,6 +19,7 @@
 #include <hdi_support.h>
 #include <string_ex.h>
 #include <hdf_base.h>
+#include <unordered_map>
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
