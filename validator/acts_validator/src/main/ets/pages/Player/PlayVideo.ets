@@ -43,7 +43,7 @@ struct playVideo {
         }.backgroundColor(Color.Black)
         .onClick(() => {
           router.back({
-            url: 'pages/Play/Camera_index',
+            url: 'pages/Player/Player_index',
             params: { result: 'None', }
           })
         })
@@ -67,7 +67,7 @@ struct playVideo {
 
       CustomContainer({
         title: this.name,
-        Url: 'pages/Camera/Camera_index',
+        Url: 'pages/Player/Player_index',
         StepTips: this.StepTips,
         name: $name,
         Vue: $Vue

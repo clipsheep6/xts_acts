@@ -42,7 +42,7 @@ struct playAudio {
         }.backgroundColor(Color.Black)
         .onClick(() => {
           router.back({
-            url: 'pages/Camera/Camera_index',
+            url: 'pages/Player/Player_index',
             params: { result: 'None', }
           })
         })
@@ -60,13 +60,16 @@ struct playAudio {
           .height('60%')
           .autoPlay(this.isAutoPlay)
           .controls(this.showControls)
+		  .onFinish(() => {
+			this.Vue = true
+		  })
       }.width('100%').height('80%').onClick(() => {
         this.showControls = !this.showControls
       })
 
       CustomContainer({
         title: this.name,
-        Url: 'pages/Camera/Camera_index',
+        Url: 'pages/Player/Player_index',
         StepTips: this.StepTips,
         name: $name,
         Vue: $Vue
