@@ -180,15 +180,21 @@ int32_t MockIDevice::ReleaseBuffer(const SharedBuffer &buffer)
 int32_t MockIDevice::MemoryCopy(float* data, uint32_t length)
 {
     std::lock_guard<std::mutex> lock(m_mtx);
-    auto memManager = NeuralNetworkRuntime::MemoryManager::GetInstance();
-    auto memAddress = memManager->MapMemory(m_bufferFd, length);
-    if (memAddress == nullptr) {
-        LOGE("[NNRtTest] Map fd to address failed.");
+    auto ashptr = m_ashmems[m_bufferFd];
+    if (ashptr == nullptr) {
+        LOGE("[NNRtTest] Read shared memory failed.");
+        return HDF_ERR_MALLOC_FAIL;
+    }
+    bool ret = ashptr->MapReadAndWriteAshmem();
+    if (!ret) {
+        LOGE("[NNRtTest] Map fd to write ashptr failed.");
         return HDF_FAILURE;
     }
-    auto ret = memcpy_s(memAddress, length, data, length);
-    if (ret != EOK) {
-        LOGE("[NNRtTest] MockIDevice memory cop failed.");
+    
+    ret = ashptr->WriteToAshmem(data, length, 0);
+    ashptr->UnmapAshmem();
+    if (!ret) {
+        LOGE("[NNRtTest] Write cache failed.");
         return HDF_FAILURE;
     }
     return HDF_SUCCESS;
