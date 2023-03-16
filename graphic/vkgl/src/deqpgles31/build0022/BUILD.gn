@@ -203,6 +203,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0022") {
     "../functional/Deqpgles31vertex_tess_geo_fragment_uniform_blockTestCase.cpp",
     "../functional/Deqpgles31vertex_tess_geo_fragment_unnamed_blockTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

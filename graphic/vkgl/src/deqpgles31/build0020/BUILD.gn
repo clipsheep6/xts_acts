@@ -91,6 +91,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0020") {
     "../functional/Deqpgles31no_attachments_npot_sizeTestCase.cpp",
     "../functional/Deqpgles31no_attachments_sizeTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

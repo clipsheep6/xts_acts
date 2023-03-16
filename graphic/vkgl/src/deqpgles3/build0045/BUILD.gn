@@ -96,6 +96,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0045") {
     "../functional/Deqpgles3lifetime_delete_usedTestCase.cpp",
     "../functional/Deqpgles3lifetime_genTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

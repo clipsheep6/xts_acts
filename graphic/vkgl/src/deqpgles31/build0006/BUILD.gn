@@ -77,6 +77,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0006") {
     "../functional/Deqpgles31struct_fields_field_before_inputTestCase.cpp",
     "../functional/Deqpgles31struct_fields_input_before_fieldTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

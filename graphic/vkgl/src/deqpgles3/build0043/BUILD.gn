@@ -59,6 +59,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0043") {
     "../functional/Deqpgles3state_query_integers64TestCase.cpp",
     "../functional/Deqpgles3state_query_integersTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

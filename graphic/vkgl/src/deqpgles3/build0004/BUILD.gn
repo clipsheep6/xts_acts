@@ -46,6 +46,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0004") {
     "../functional/Deqpgles3swizzle_math_operations_vector_multiplyTestCase.cpp",
     "../functional/Deqpgles3swizzle_math_operations_vector_subtractTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
