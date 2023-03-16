@@ -67,6 +67,8 @@ ohos_moduletest_suite("ActsKhrgles3TestSuite0003") {
     "../texture_filter_anisotropic/Khrgles3KHR-GLES3_texture_filter_anisotropicTestCase.cpp",
     "../texture_repeat_mode/Khrgles3KHR-GLES3_texture_repeat_modeTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

@@ -60,6 +60,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0041") {
     "../functional/Deqpgles3transform_feedback_point_sizeTestCase.cpp",
     "../functional/Deqpgles3transform_feedback_positionTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

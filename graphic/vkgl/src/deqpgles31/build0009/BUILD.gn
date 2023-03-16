@@ -83,6 +83,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0009") {
     "../functional/Deqpgles31tessellation_fractional_spacingTestCase.cpp",
     "../functional/Deqpgles31tessellation_primitive_discardTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

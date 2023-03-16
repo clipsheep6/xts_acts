@@ -84,6 +84,8 @@ ohos_moduletest_suite("ActsKhrglesextTestSuite0001") {
     "../texture_cube_map_array/KhrglesextKHR-GLESEXT_texture_cube_map_arrayTestCase.cpp",
     "../viewport_array/KhrglesextKHR-GLESEXT_viewport_arrayTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

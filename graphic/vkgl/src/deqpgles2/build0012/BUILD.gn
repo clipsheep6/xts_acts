@@ -50,6 +50,8 @@ ohos_moduletest_suite("ActsDeqpgles2TestSuite0012") {
     "../functional/Deqpgles2fragment_ops_stencilTestCase.cpp",
     "../functional/Deqpgles2rgb_func_alpha_func_srcTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

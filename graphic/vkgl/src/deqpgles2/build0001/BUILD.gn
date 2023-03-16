@@ -93,6 +93,8 @@ ohos_moduletest_suite("ActsDeqpgles2TestSuite0001") {
     "../functional/Deqpgles2write_recreate_storeTestCase.cpp",
     "../info/Deqpgles2dEQP-GLES2_infoTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

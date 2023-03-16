@@ -66,6 +66,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0033") {
     "../functional/Deqpgles3strides_floatTestCase.cpp",
     "../functional/Deqpgles3strides_shortTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

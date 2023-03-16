@@ -76,6 +76,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0019") {
     "../functional/Deqpgles31uniform_location_nested_structTestCase.cpp",
     "../functional/Deqpgles31uniform_location_structTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

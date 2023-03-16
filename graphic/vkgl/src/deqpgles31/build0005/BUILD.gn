@@ -69,6 +69,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0005") {
     "../functional/Deqpgles31varying_rulesTestCase.cpp",
     "../functional/Deqpgles31varying_typesTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

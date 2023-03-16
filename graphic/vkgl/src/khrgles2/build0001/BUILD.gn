@@ -54,6 +54,8 @@ ohos_moduletest_suite("ActsKhrgles2TestSuite0001") {
     "../texture_3d/Khrgles2texture_3d_framebuffer_textureTestCase.cpp",
     "../texture_3d/Khrgles2texture_3d_sub_imageTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
