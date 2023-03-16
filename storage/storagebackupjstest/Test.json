@@ -1,0 +1,57 @@
+{
+    "description": "Configuration for storage backup Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.storage.backup",
+        "package-name": "ohos.acts.storage.backup"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "setenforce 0",
+                "mkdir -p /storage/media/100/local/files/backup_tmp",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/app2.hap ->/storage/media/100/local/files/backup_tmp",
+                "./resource/app3.hap ->/storage/media/100/local/files/backup_tmp",
+                "./resource/app4.hap ->/storage/media/100/local/files/backup_tmp"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "bm install -p /storage/media/100/local/files/backup_tmp/app2.hap",
+                "bm install -p /storage/media/100/local/files/backup_tmp/app3.hap",
+                "bm install -p /storage/media/100/local/files/backup_tmp/app4.hap",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "scanner",
+                "sleep 3"
+            ],
+            "teardown-command": [
+                "bm uninstall -n com.example.app2backup",
+                "bm uninstall -n com.example.app3backup",
+                "bm uninstall -n com.example.app4backup",
+                "hilog -b X -D 0xD002B70",
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "test-file-name": ["ActsStorageBackUpJSTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
