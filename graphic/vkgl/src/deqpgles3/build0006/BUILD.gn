@@ -48,6 +48,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0006") {
     "../functional/Deqpgles3uniform_block_invalidTestCase.cpp",
     "../functional/Deqpgles3uniform_block_validTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

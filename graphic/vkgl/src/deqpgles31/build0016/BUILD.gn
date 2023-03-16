@@ -66,6 +66,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0016") {
     "../functional/Deqpgles31texture_texture_cube_arrayTestCase.cpp",
     "../functional/Deqpgles31texture_texture_cube_mapTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

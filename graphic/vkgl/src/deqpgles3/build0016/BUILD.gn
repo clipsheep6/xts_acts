@@ -53,6 +53,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0016") {
     "../functional/Deqpgles3outerproduct_dynamicTestCase.cpp",
     "../functional/Deqpgles3transpose_dynamicTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

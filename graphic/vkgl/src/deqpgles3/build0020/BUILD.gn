@@ -198,6 +198,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0020") {
     "../functional/Deqpgles3trunc_mediump_fragmentTestCase.cpp",
     "../functional/Deqpgles3trunc_mediump_vertexTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

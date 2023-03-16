@@ -81,6 +81,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0010") {
     "../functional/Deqpgles31unsized_struct_array_per_block_bufferTestCase.cpp",
     "../functional/Deqpgles31unsized_struct_array_single_bufferTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

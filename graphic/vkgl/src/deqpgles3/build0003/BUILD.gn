@@ -50,6 +50,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0003") {
     "../functional/Deqpgles3declarations_invalid_declarationsTestCase.cpp",
     "../functional/Deqpgles3swizzles_vector_swizzlesTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
