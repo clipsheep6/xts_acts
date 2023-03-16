@@ -1,0 +1,56 @@
+{
+    "module": {
+      "name": "phone",
+      "type": "entry",
+      "srcEntrance": "./ets/Application/AbilityStage.ts",
+      "description": "$string:phone_entry_dsc",
+      "mainElement": "MainAbility",
+      "deviceTypes": [
+        "default",
+        "tablet"
+      ],
+      "deliveryWithInstall": true,
+      "installationFree": false,
+      "pages": "$profile:main_pages",
+      "uiSyntax": "ets",
+      "abilities": [
+        {
+          "name": "com.example.apicoverhaptest.MainAbility",
+          "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "orientation": "portrait",
+          "skills": [
+            {
+              "entities": [
+                "entity.system.home"
+              ],
+              "actions": [
+                "action.system.home"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "WantAbility",
+          "srcEntrance": "./ets/WantAbility/WantAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "launchType": "singleton"
+        }
+      ],
+      "requestPermissions":[
+        {
+          "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        }
+      ]
+    }
+  }
