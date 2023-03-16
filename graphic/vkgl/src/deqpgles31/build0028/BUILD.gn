@@ -88,6 +88,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0028") {
     "../functional/Deqpgles31viewclass_32_bits_rg16i_srgb8_alpha8TestCase.cpp",
     "../functional/Deqpgles31viewclass_32_bits_rg16ui_r32fTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

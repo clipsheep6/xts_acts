@@ -65,6 +65,8 @@ ohos_moduletest_suite("ActsKhrgles3TestSuite0004") {
     "../packed_pixels/Khrgles3packed_pixels_varied_rectangleTestCase.cpp",
     "../parallel_shader_compile/Khrgles3KHR-GLES3_parallel_shader_compileTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

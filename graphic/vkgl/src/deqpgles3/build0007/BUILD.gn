@@ -52,6 +52,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0007") {
     "../functional/Deqpgles3loops_while_constant_iterationsTestCase.cpp",
     "../functional/Deqpgles3loops_while_uniform_iterationsTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

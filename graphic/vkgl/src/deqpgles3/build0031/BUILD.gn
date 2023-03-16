@@ -49,6 +49,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0031") {
     "../functional/Deqpgles3renderbuffer_color0TestCase.cpp",
     "../functional/Deqpgles3renderbuffer_stencilTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

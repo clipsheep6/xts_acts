@@ -45,6 +45,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0030") {
     "../functional/Deqpgles3fbo_srgb_equation_src_func_dst_funcTestCase.cpp",
     "../functional/Deqpgles3rgb_func_alpha_func_dstTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
