@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-
+// @ts-ignore
 import camera from '@ohos.multimedia.camera'
 import Logger from '../model/Logger'
 import CameraService from '../model/CameraService'
@@ -87,6 +87,7 @@ struct cameraOrientation {
 
   onPageShow() {
     Logger.info(this.tag, `takePicture end, assetUri`)
+	// @ts-ignore
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex).then(() => {
       this.cameraListFn()
@@ -124,6 +125,7 @@ struct cameraOrientation {
           })
             .onLoad(async () => {
               Logger.info(this.tag, 'onLoad is called')
+			  // @ts-ignore
               this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
               Logger.info(this.tag, `onLoad surfaceId: ${this.surfaceId}`)
               CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex).then(() => {

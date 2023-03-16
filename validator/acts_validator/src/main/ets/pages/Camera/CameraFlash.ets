@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-ignore
 import camera from '@ohos.multimedia.camera'
 import Logger from '../model/Logger'
 import CameraService from '../model/CameraService'
@@ -39,6 +39,7 @@ struct cameraOrientation {
   }
 
   cameraInit() {
+    // @ts-ignore
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
     CameraService.initCamera(this.surfaceId, 0).then(() => {
       this.captureSession = CameraService.captureSession
