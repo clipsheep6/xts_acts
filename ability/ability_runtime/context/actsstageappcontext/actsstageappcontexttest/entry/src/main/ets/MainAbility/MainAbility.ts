@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 
-export default class MainAbility extends Ability {
+export default class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
         // Ability is creating, initialize resources for this ability
         console.log("ActsStageAppContextTest  MainAbility onCreate")
@@ -25,6 +25,7 @@ export default class MainAbility extends Ability {
         globalThis.abilityContext = this.context
         let abilityDelegator: any
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+        globalThis.abilityDelegator = abilityDelegator
         let abilityDelegatorArguments: any
         abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         console.info('start run testcase!!!')

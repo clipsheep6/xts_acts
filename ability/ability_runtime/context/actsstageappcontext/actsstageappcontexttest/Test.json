@@ -10,11 +10,23 @@
     },
     "kits": [
 		{
+            "type": "ShellKit",
+            "run-command": [
+                "acm create -n user101 -t normal",
+                "acm switch -i 101"
+            ],
+            "teardown-command": [
+                "acm switch -i 100",
+                "acm delete -i 101"
+            ]
+        },
+		{
             "test-file-name": [
-                "ActsStageAppContextTest.hap"
+                "ActsStageAppContextTest.hap",
+				"ActsAmsUsersKillProcessApp.hap"
             ],
             "type": "AppInstallKit",
-            "cleanup-apps": true
+            "cleanup-apps": false
         }
     ]
 }
