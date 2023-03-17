@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,8 +39,13 @@ struct IndexPage {
   @State result : string = '';
   @State TEST : number = 0;
   private TestCaseList = [
-    {title:'ScrollingList',uri:'pages/Audio/ScrollListTest'},
+    {title:'AudioInputRoutingTest(WiredHeadset)',uri:'pages/Audio/AudioInputRoutingWiredHeadset'},
+    {title:'AudioInputRoutingTest(TypeC)',uri:'pages/Audio/AudioInputRoutingTypeC'},
+    {title:'AudioOutputRoutingTest(WiredHeadset)',uri:'pages/Audio/AudioOutputRoutingWiredHeadset'},
+    {title:'AudioOutputRoutingTest(TypeC)',uri:'pages/Audio/AudioOutputRoutingTypeC'},
+    {title:'AudioOutputRoutingTest(BT)',uri:'pages/Audio/AudioOutputRoutingBT'}
   ]
+
   @State ColorObject : string[] = VarColor;
   async onPageShow(){
     let Test = null;
@@ -277,23 +282,23 @@ struct IndexPage {
       serializer.setDeclaration();
       serializer.startElement("testsuite");
       serializer.setAttributes("name","ActsAudioTest");
-      serializer.setAttributes("time", "");
+      serializer.setAttributes("time", " ");
       serializer.setAttributes("errors", "0");
       serializer.setAttributes("disabled", "0");
       serializer.setAttributes("failures", failNum);
-      serializer.setAttributes("ignored", "0");
+      serializer.setAttributes("ignored", ignoreNum);
       serializer.setAttributes("tests", testNum);
-      serializer.setAttributes("message", "");
+      serializer.setAttributes("message", " ");
       serializer.setAttributes("modulename", "ActsAudioTest");
       for (let i = 0; i < title.length; i++) {
         serializer.startElement("testcase");
         serializer.setAttributes("name", String(title[i]));
-        serializer.setAttributes("status", "");
-        serializer.setAttributes("time", "");
-        serializer.setAttributes("classname", "");
+        serializer.setAttributes("status", " ");
+        serializer.setAttributes("time", " ");
+        serializer.setAttributes("classname", " ");
         serializer.setAttributes("result", String(result[i]));
-        serializer.setAttributes("level", "");
-        serializer.setAttributes("message", "");
+        serializer.setAttributes("level", " ");
+        serializer.setAttributes("message", " ");
         serializer.endElement();
       }
       serializer.endElement();
