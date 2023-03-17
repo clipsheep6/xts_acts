@@ -77,7 +77,7 @@ struct ScrollExample {
             )
             Checkbox({ name: 'hi' })
               .size({ width: 30, height: 30 })
-            TextInput({ placeholder: 'welcome', text: 'Hello World' })
+            TextInput({ placeholder: 'welcome', text: '' })
               .type(InputType.Normal)
               .width(300)
               .height(50)
