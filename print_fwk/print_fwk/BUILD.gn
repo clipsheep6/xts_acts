@@ -18,8 +18,8 @@ ohos_js_hap_suite("ActsPrintFrameWorkEtsTest") {
   hap_profile = "./entry/src/main/config.json"
   deps = [
     ":print_fwk_ets_assets",
-    ":print_fwk_resources",
     ":print_fwk_ets_test_assets",
+    ":print_fwk_resources",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
@@ -35,4 +35,3 @@ ohos_resources("print_fwk_resources") {
   sources = [ "./entry/src/main/resources" ]
   hap_profile = "./entry/src/main/config.json"
 }
-
