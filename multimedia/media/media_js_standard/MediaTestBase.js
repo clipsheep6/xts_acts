@@ -13,15 +13,9 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager';
-import {expect} from 'deccjsunit/index'
-import router from '@system.router'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
-import { UiDriver, BY, PointerMatrix } from '@ohos.UiTest'
+import { UiDriver, BY, PointerMatrix } from '@ohos.uitest'
 const CODECMIMEVALUE = ['video/avc', 'audio/mp4a-latm', 'audio/mpeg']
-const context = featureAbility.getContext();
 
 export async function getPermission(permissionNames) {
     featureAbility.getContext().requestPermissionsFromUser(permissionNames, 0, async (data) => {
@@ -30,71 +24,22 @@ export async function getPermission(permissionNames) {
 }
 
 export async function driveFn(num) {
-    console.info(`case come in driveFn 111`)
-    let driver = await UiDriver.create()
-    console.info(`case come in driveFn 222`)
-    console.info(`driver is ${JSON.stringify(driver)}`)
-    await msleepAsync(2000)
-    console.info(`UiDriver start`)
+    console.info(`case come in driveFn`);
+    let driver = UiDriver.create();
+    console.info(`driver is ${JSON.stringify(driver)}`);
+    await msleepAsync(2000);
+    console.info(`UiDriver start`);
     for (let i = 0; i < num; i++) {
-        let button = await driver.findComponent(BY.text('允许'))
-        console.info(`button is ${JSON.stringify(button)}`)
-        await msleepAsync(2000)
-        await button.click()
+        let button = await driver.findComponent(BY.text('允许'));
+        console.info(`button is ${JSON.stringify(button)}`);
+        await msleepAsync(2000);
+        await button.click();
     }
-    await msleepAsync(2000)
-}
-
-export async function getAvRecorderFd(pathName, fileType) {
-    console.info('case come in getAvRecorderFd')
-    let fdObject = {
-        fileAsset : null,
-        fdNumber : null
-    }
-    let displayName = pathName;
-    console.info('[mediaLibrary] displayName is ' + displayName);
-    console.info('[mediaLibrary] fileType is ' + fileType);
-    const mediaTest = mediaLibrary.getMediaLibrary();
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType;
-    let publicPath;
-    if (fileType == 'audio') {
-        mediaType = mediaLibrary.MediaType.AUDIO;
-        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
-    } else {
-        mediaType = mediaLibrary.MediaType.VIDEO;
-        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-    }
-    console.info('[mediaLibrary] publicPath is ' + publicPath);
-    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-    if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        fdObject.fileAsset = await fetchFileResult.getAllObject();
-        fdObject.fdNumber = await fdObject.fileAsset[0].open('rw');
-        console.info('case getFd number is: ' + fdObject.fdNumber);
-    }
-    return fdObject;
+    await msleepAsync(2000);
 }
 
 // File operation
 export async function getFileDescriptor(fileName) {
-    let fileDescriptor = undefined;
-    await resourceManager.getResourceManager().then(async (mgr) => {
-        await mgr.getRawFileDescriptor(fileName).then(value => {
-            fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length};
-            console.log('case getRawFileDescriptor success fileName: ' + fileName);
-        }).catch(error => {
-            console.log('case getRawFileDescriptor err: ' + error);
-        });
-    });
-    return fileDescriptor;
-}
-export async function getStageFileDescriptor(fileName) {
     let fileDescriptor = undefined;
     let mgr = globalThis.abilityContext.resourceManager
     await mgr.getRawFileDescriptor(fileName).then(value => {
@@ -106,56 +51,16 @@ export async function getStageFileDescriptor(fileName) {
     return fileDescriptor;
 }
 export async function closeFileDescriptor(fileName) {
-    await resourceManager.getResourceManager().then(async (mgr) => {
-        await mgr.closeRawFileDescriptor(fileName).then(()=> {
-            console.log('case closeRawFileDescriptor ' + fileName);
-        }).catch(error => {
-            console.log('case closeRawFileDescriptor err: ' + error);
-        });
+    await globalThis.abilityContext.resourceManager.closeRawFileDescriptor(fileName).then(()=> {
+        console.log('case closeRawFileDescriptor ' + fileName);
+    }).catch(error => {
+        console.log('case closeRawFileDescriptor err: ' + error);
     });
-}
-
-export function isFileOpen(fileDescriptor, done) {
-    if (fileDescriptor == undefined) {
-        expect().assertFail();
-        console.info('case error fileDescriptor undefined, open file fail');
-        done();
-    }
-}
-
-export async function getFdRead(pathName, done) {
-    let fdReturn;
-    await context.getFilesDir().then((fileDir) => {
-        console.info("case file dir is" + JSON.stringify(fileDir));
-        pathName = fileDir + '/' + pathName;
-        console.info("case pathName is" + pathName);
-    });
-    await fileio.open(pathName).then((fdNumber) => {
-        isFileOpen(fdNumber, done)
-        fdReturn = fdNumber;
-        console.info('[fileio]case open fd success, fd is ' + fdReturn);
-    })
-    return fdReturn;
-}
-
-export async function closeFdNumber(fdNumber) {
-    await fileio.close(fdNumber);
-}
-
-// wait synchronously 
-export function msleep(time) {
-    for(let t = Date.now();Date.now() - t <= time;);
 }
 
 // wait asynchronously
 export async function msleepAsync(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-export function printError(error, done) {
-    expect().assertFail();
-    console.info(`case error called,errMessage is ${error.message}`);
-    done();
 }
 
 export function assertErr(opera, err, done) {
@@ -167,13 +72,13 @@ export function assertErr(opera, err, done) {
 // callback function for promise call back error
 export function failureCallback(error) {
     expect().assertFail();
-    console.info(`case error called,errMessage is ${error.message}`);
+    console.info(`case failureCallback promise called,errMessage is ${error.message}`);
 }
 
 // callback function for promise catch error
 export function catchCallback(error) {
     expect().assertFail();
-    console.info(`case error called,errMessage is ${error.message}`);
+    console.info(`case error catch called,errMessage is ${error.message}`);
 }
 
 export function checkDescription(actualDescription, descriptionKey, descriptionValue) {
@@ -191,82 +96,29 @@ export function checkDescription(actualDescription, descriptionKey, descriptionV
     }
 }
 
-export function checkOldDescription(actualDescription, descriptionKey, descriptionValue) {
-    for (let i = 0; i < descriptionKey.length; i++) {
-        let property = actualDescription[descriptionKey[i]];
-        console.info('case key is  '+ descriptionKey[i]);
-        console.info('case actual value is  '+ property);
-        console.info('case hope value is  '+ descriptionValue[i]);
-        expect(property).assertEqual(descriptionValue[i]);
+export async function getFd(pathName, fileType) {
+    let fdObject = {
+        fileAsset : null,
+        fdNumber : null
     }
-}
-
-export function printDescription(obj) { 
-    let description = ""; 
-    for(let i in obj) { 
-        let property = obj[i];
-        console.info('case key is  '+ i);
-        console.info('case value is  '+ property);
-        description += i + " = " + property + "\n"; 
-    } 
-}
-
-export async function toNewPage(pagePath1, pagePath2, page) {
-    let path = '';
-    if (page == 0) {
-        path = pagePath1;
+    let displayName = pathName;
+    console.info('[mediaLibrary] fileType is ' + fileType);
+    const mediaTest = mediaLibrary.getMediaLibrary(globalThis.abilityContext);
+    let fileKeyObj = mediaLibrary.FileKey;
+    let mediaType;
+    let publicPath;
+    if (fileType == 'audio') {
+        mediaType = mediaLibrary.MediaType.AUDIO;
+        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
+    } else if (fileType == "video") {
+        mediaType = mediaLibrary.MediaType.VIDEO;
+        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
     } else {
-        path = pagePath2;
+        mediaType = mediaLibrary.MediaType.VIDEO;
+        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
     }
-    let options = {
-        uri: path,
-    }
-    try {
-        await router.push(options);
-    } catch {
-        console.info('case route failed');
-    }
-}
+    console.info('[mediaLibrary] publicPath is ' + publicPath);
 
-export async function clearRouter() {
-    await router.clear();
-}
-
-export async function getFd(pathName) {
-    let fdObject = {
-        fileAsset : null,
-        fdNumber : null
-    }
-    let displayName = pathName;
-    const mediaTest = mediaLibrary.getMediaLibrary();
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-    if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        fdObject.fileAsset = await fetchFileResult.getAllObject();
-        fdObject.fdNumber = await fdObject.fileAsset[0].open('rw');
-        console.info('case getFd number is: ' + fdObject.fdNumber);
-    }
-    return fdObject;
-}
-
-export async function getAudioFd(pathName) {
-    let fdObject = {
-        fileAsset : null,
-        fdNumber : null
-    }
-    let displayName = pathName;
-    const mediaTest = mediaLibrary.getMediaLibrary();
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType = mediaLibrary.MediaType.AUDIO;
-    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
     let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
     if (dataUri != undefined) {
         let args = dataUri.id.toString();
