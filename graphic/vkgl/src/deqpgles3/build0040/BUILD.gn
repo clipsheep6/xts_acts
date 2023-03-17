@@ -97,6 +97,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0040") {
     "../functional/Deqpgles3triangles_unsigned_intTestCase.cpp",
     "../functional/Deqpgles3triangles_unsigned_shortTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

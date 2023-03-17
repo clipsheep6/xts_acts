@@ -53,6 +53,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0022") {
     "../functional/Deqpgles3trigonometric_fragmentTestCase.cpp",
     "../functional/Deqpgles3trigonometric_vertexTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

@@ -77,6 +77,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0014") {
     "../functional/Deqpgles3sequence_no_side_effectsTestCase.cpp",
     "../functional/Deqpgles3sequence_side_effectsTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

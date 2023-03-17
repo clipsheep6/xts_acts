@@ -142,6 +142,8 @@ ohos_moduletest_suite("ActsKhrgles31TestSuite0003") {
     "../core/Khrgles31teximage2d_rgba8uiTestCase.cpp",
     "../core/Khrgles31teximage3d_r8TestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

@@ -105,6 +105,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0004") {
     "../functional/Deqpgles31uniform_tessellation_evaluationTestCase.cpp",
     "../functional/Deqpgles31uniform_vertexTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

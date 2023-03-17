@@ -81,6 +81,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0014") {
     "../functional/Deqpgles31size_pot_compare_lessTestCase.cpp",
     "../functional/Deqpgles31texture_buffer_state_queryTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
