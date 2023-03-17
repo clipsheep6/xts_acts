@@ -39,11 +39,6 @@ async function stopApplication(bundleName: string) {
 
 export default function UiTest() {
     describe('UiTest_API8', function () {
-        /*
-         * @tc.number: uiTest_8001
-         * @tc.name: testInputText
-         * @tc.desc: inject text to the target UiComponent
-         */
         it('InputPermission', 0, async function () {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = UiDriver.create()
