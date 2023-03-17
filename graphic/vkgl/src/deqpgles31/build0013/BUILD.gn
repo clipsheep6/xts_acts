@@ -92,6 +92,8 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0013") {
     "../functional/Deqpgles31texstorage3d_formatTestCase.cpp",
     "../functional/Deqpgles31texstorage3d_sizeTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

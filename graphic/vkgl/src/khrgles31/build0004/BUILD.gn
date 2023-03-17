@@ -90,6 +90,8 @@ ohos_moduletest_suite("ActsKhrgles31TestSuite0004") {
     "../shaders/Khrgles31shaders_layout_locationTestCase.cpp",
     "../shaders/Khrgles31shaders_negativeTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

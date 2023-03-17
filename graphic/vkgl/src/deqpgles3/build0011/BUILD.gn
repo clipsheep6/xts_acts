@@ -51,6 +51,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0011") {
     "../functional/Deqpgles3binary_operator_right_shift_assign_effectTestCase.cpp",
     "../functional/Deqpgles3binary_operator_sub_assign_resultTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 

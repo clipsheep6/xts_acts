@@ -60,6 +60,8 @@ ohos_moduletest_suite("ActsDeqpgles3TestSuite0038") {
     "../functional/Deqpgles3render_nested_structs_arraysTestCase.cpp",
     "../functional/Deqpgles3render_struct_in_arrayTestCase.cpp",
   ]
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
 
   include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
 
