@@ -335,8 +335,8 @@ export default function inputMethodStageJSUnit() {
       console.info("inputMethod_test_switchCurrentInputMethodAndSubtype_001 getCurrentInputMethodSubtype: " +  JSON.stringify(inputMS));
       let inputMethodSubProperty : subtype = {
         id: inputMS.id,
-        label: inputMS.label,
-        name: "",
+        label: "",
+        name: inputMS.name,
         mode: "lower",
         locale: "",
         language: "",
@@ -387,8 +387,8 @@ export default function inputMethodStageJSUnit() {
       console.info("inputMethod_test_switchCurrentInputMethodAndSubtype_002 getCurrentInputMethodSubtype: " +  JSON.stringify(inputMS));
       let inputMethodSubProperty : subtype = {
         id: inputMS.id,
-        label: inputMS.label,
-        name: "",
+        label: "",
+        name: inputMS.name,
         mode: "lower",
         locale: "",
         language: "",
@@ -427,8 +427,8 @@ export default function inputMethodStageJSUnit() {
       console.info("inputMethod_test_switchCurrentInputMethodSubtype_001 getCurrentInputMethodSubtype: " +  JSON.stringify(inputMS));
       let inputMethodSubProperty : subtype = {
         id: inputMS.id,
-        label: inputMS.label,
-        name: "",
+        label: "",
+        name: inputMS.name,
         mode: "lower",
         locale: "",
         language: "",
@@ -467,8 +467,8 @@ export default function inputMethodStageJSUnit() {
       console.info("inputMethod_test_switchCurrentInputMethodSubtype_002 getCurrentInputMethodSubtype: " +  JSON.stringify(inputMS));
       let inputMethodSubProperty : subtype = {
         id: inputMS.id,
-        label: inputMS.label,
-        name: "",
+        label: "",
+        name: inputMS.name,
         mode: "lower",
         locale: "",
         language: "",
@@ -493,7 +493,6 @@ export default function inputMethodStageJSUnit() {
         done();
       };
       console.info("====>************* inputMethod_test_switchCurrentInputMethodSubtype_002 Test end*************");
-      done();
     });
 
     /*
