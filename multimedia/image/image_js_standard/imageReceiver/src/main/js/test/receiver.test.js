@@ -638,12 +638,16 @@ export default function ImageReceiver() {
             var dummy = receiver.test((err, img) => {
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 test err1");
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 test err"+err);
+            })
+            .catch((error) => {
+                console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 test error: " + error);
             });
             console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 test dummy1");
             console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 test dummy"+dummy);
 
             expect(true).assertTrue();
-                        done();
+            done();
+            
             if (receiver != undefined) {
                 receiver
                     .readLatestImage()
