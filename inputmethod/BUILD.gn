@@ -17,5 +17,6 @@ group("inputmethod") {
   deps = [
     "InputMethodTest_Stage:ActsImeAbilityTest",
     "InputMethodTest_ets:ActsInputMethodEtsTest",
+    "InputMethodEngine:ActsInputMethodEngineTest",
   ]
 }
