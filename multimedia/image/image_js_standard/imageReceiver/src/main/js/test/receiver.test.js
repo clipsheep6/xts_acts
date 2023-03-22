@@ -22,7 +22,6 @@ export default function ImageReceiver() {
         const CAPACITY = 8;
         const RGBA = 12;
         const Jpg_Stride = 1;
-        const DEVICE_CODE = 801;
         const { JPEG: FORMATJPEG } = image.ImageFormat;
         const { JPEG } = image.ComponentType;
         beforeAll(async function () {
@@ -49,9 +48,10 @@ export default function ImageReceiver() {
             );
         }
 
-        async function noSupportDevice(code) {
+        async function createRecriver(done, testNum, wid, hei, fmt, cap) {
             try {
-                expect(code == DEVICE_CODE).assertTrue();
+                image.createImageReceiver(wid, hei, fmt, cap);
+                expect(false).assertTrue();
                 done();
             } catch (error) {
                 expect(error.code == 1).assertTrue();
@@ -60,10 +60,9 @@ export default function ImageReceiver() {
             }
         }
 
-        async function createRecriver(done, testNum, wid, hei, fmt, cap) {
+        async function checkSupportDevice(code) {
             try {
-                image.createImageReceiver(wid, hei, fmt, cap);
-                expect(false).assertTrue();
+                expect(code == DEVICE_CODE).assertTrue();
                 done();
             } catch (error) {
                 expect(error.code == 1).assertTrue();
@@ -79,46 +78,40 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.on("imageArrival", () => {
-                            if (once) {
-                                return;
-                            }
-                            once = true;
-                            receiver.readLatestImage(async (err, img) => {
-                                if (img == undefined) {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    receiver.on("imageArrival", () => {
+                        if (once) {
+                            return;
+                        }
+                        once = true;
+                        receiver.readLatestImage(async (err, img) => {
+                            if (img == undefined) {
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                expect(img.size.width == WIDTH).assertTrue();
+                                expect(img.size.height == HEIGHT).assertTrue();
+                                console.log(`${testNum} img.format: ${img.format}`)
+                                expect(img.clipRect.size.width == WIDTH).assertTrue();
+                                expect(img.clipRect.size.height == HEIGHT).assertTrue();
+                                expect(img.clipRect.x == 0).assertTrue();
+                                expect(img.clipRect.y == 0).assertTrue();
+                                try {
+                                    await img.getComponent(param);
                                     expect(false).assertTrue();
                                     done();
-                                } else {
-                                    expect(img.size.width == WIDTH).assertTrue();
-                                    expect(img.size.height == HEIGHT).assertTrue();
-                                    console.log(`${testNum} img.format: ${img.format}`)
-                                    expect(img.clipRect.size.width == WIDTH).assertTrue();
-                                    expect(img.clipRect.size.height == HEIGHT).assertTrue();
-                                    expect(img.clipRect.x == 0).assertTrue();
-                                    expect(img.clipRect.y == 0).assertTrue();
-                                    try {
-                                        await img.getComponent(param);
-                                        expect(false).assertTrue();
-                                        done();
-                                    } catch (error) {
-                                        expect(error.code == 1).assertTrue();
-                                        console.log(`${testNum} error msg: ` + error);
-                                        done();
-                                    }
+                                } catch (error) {
+                                    expect(error.code == 1).assertTrue();
+                                    console.log(`${testNum} error msg: ` + error);
+                                    done();
                                 }
-                            });
-                            expect(true).assertTrue();
+                            }
                         });
-                    }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
+                        expect(true).assertTrue();
+                    });
                 }
             }
         }
@@ -130,47 +123,41 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.on("imageArrival", () => {
-                            if (once) {
-                                return;
-                            }
-                            once = true;
-                            receiver.readLatestImage(async (err, img) => {
-                                if (img == undefined) {
-                                    expect(false).assertTrue();
-                                    done();
-                                } else {
-                                    expect(img.size.width == WIDTH).assertTrue();
-                                    expect(img.size.height == HEIGHT).assertTrue();
-                                    console.log(`${testNum} img.format: ${img.format}`)
-                                    expect(img.clipRect.size.width == WIDTH).assertTrue();
-                                    expect(img.clipRect.size.height == HEIGHT).assertTrue();
-                                    expect(img.clipRect.x == 0).assertTrue();
-                                    expect(img.clipRect.y == 0).assertTrue();
-                                    try {
-                                        img.getComponent(param, (err, component) => {
-                                            expect(false).assertTrue();
-                                            done();
-                                        });
-                                    } catch (error) {
-                                        expect(error.code == 1).assertTrue();
-                                        console.log(`${testNum} error msg: ` + error);
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    receiver.on("imageArrival", () => {
+                        if (once) {
+                            return;
+                        }
+                        once = true;
+                        receiver.readLatestImage(async (err, img) => {
+                            if (img == undefined) {
+                                expect(false).assertTrue();
+                                done();
+                            } else {
+                                expect(img.size.width == WIDTH).assertTrue();
+                                expect(img.size.height == HEIGHT).assertTrue();
+                                console.log(`${testNum} img.format: ${img.format}`)
+                                expect(img.clipRect.size.width == WIDTH).assertTrue();
+                                expect(img.clipRect.size.height == HEIGHT).assertTrue();
+                                expect(img.clipRect.x == 0).assertTrue();
+                                expect(img.clipRect.y == 0).assertTrue();
+                                try {
+                                    img.getComponent(param, (err, component) => {
+                                        expect(false).assertTrue();
                                         done();
-                                    }
+                                    });
+                                } catch (error) {
+                                    expect(error.code == 1).assertTrue();
+                                    console.log(`${testNum} error msg: ` + error);
+                                    done();
                                 }
-                            });
-                            expect(true).assertTrue();
-                        }); 
-                    }  
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
+                            }
+                        });
+                        expect(true).assertTrue();
+                    });
                 }
             }
         }
@@ -180,58 +167,50 @@ export default function ImageReceiver() {
             let once = false;
             if (receiver == undefined) {
                 expect(false).assertTrue();
-                done();
+                return;
+            }
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                checkSupportDevice(error);
             } else {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        console.info("getComponentPromise in 2 ");
-                        receiver.on("imageArrival", () => {
-                            if (once) {
-                                return;
-                            }
-                            once = true;
-                            receiver.readLatestImage((err, img) => {
-                                if (err) {
+                receiver.on("imageArrival", () => {
+                    if (once) {
+                        return;
+                    }
+                    once = true;
+                    receiver.readLatestImage((err, img) => {
+                        if (err) {
+                            expect(false).assertTrue();
+                            done();
+                        } else {
+                            expect(img.size.width == WIDTH).assertTrue();
+                            expect(img.size.height == HEIGHT).assertTrue();
+                            checkFormat(img.format);
+                            expect(img.clipRect.size.width == WIDTH).assertTrue();
+                            expect(img.clipRect.size.height == HEIGHT).assertTrue();
+                            expect(img.clipRect.x == 0).assertTrue();
+                            expect(img.clipRect.y == 0).assertTrue();
+                            img.getComponent(param)
+                                .then((component) => {
+                                    if (component == undefined) {
+                                        expect(false).assertTrue();
+                                        done();
+                                        return;
+                                    }
+                                    expect(component.componentType == param).assertTrue();
+                                    expect(component.byteBuffer != undefined).assertTrue();
+                                    checkStride(component.rowStride, component.pixelStride);
+                                    done();
+                                })
+                                .catch((error) => {
+                                    console.log(`${testNum} error:` + error);
                                     expect(false).assertTrue();
                                     done();
-                                } else {
-                                    expect(img.size.width == WIDTH).assertTrue();
-                                    expect(img.size.height == HEIGHT).assertTrue();
-                                    checkFormat(img.format);
-                                    expect(img.clipRect.size.width == WIDTH).assertTrue();
-                                    expect(img.clipRect.size.height == HEIGHT).assertTrue();
-                                    expect(img.clipRect.x == 0).assertTrue();
-                                    expect(img.clipRect.y == 0).assertTrue();
-                                    img.getComponent(param)
-                                        .then((component) => {
-                                            if (component == undefined) {
-                                                expect(false).assertTrue();
-                                                done();
-                                                return;
-                                            }
-                                            expect(component.componentType == param).assertTrue();
-                                            expect(component.byteBuffer != undefined).assertTrue();
-                                            checkStride(component.rowStride, component.pixelStride);
-                                            done();
-                                        })
-                                        .catch((error) => {
-                                            console.log(`${testNum} error:` + error);
-                                            expect(false).assertTrue();
-                                            done();
-                                        });
-                                }
-                            });
-                            expect(true).assertTrue();
-                        });
-                    }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
-                }
+                                });
+                        }
+                    });
+                    expect(true).assertTrue();
+                });
             }
         }
 
@@ -241,52 +220,46 @@ export default function ImageReceiver() {
             if (receiver == undefined) {
                 expect(false).assertTrue();
                 done();
+                return;
+            }
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                checkSupportDevice(error);
             } else {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.on("imageArrival", () => {
-                            if (once) {
-                                return;
-                            }
-                            once = true;
-                            receiver.readLatestImage((err, img) => {
+                receiver.on("imageArrival", () => {
+                    if (once) {
+                        return;
+                    }
+                    once = true;
+                    receiver.readLatestImage((err, img) => {
+                        if (err) {
+                            expect(false).assertTrue();
+                            done();
+                        } else {
+                            expect(img.size.width == WIDTH).assertTrue();
+                            expect(img.size.height == HEIGHT).assertTrue();
+                            checkFormat(img.format);
+                            expect(img.clipRect.size.width == WIDTH).assertTrue();
+                            expect(img.clipRect.size.height == HEIGHT).assertTrue();
+                            expect(img.clipRect.x == 0).assertTrue();
+                            expect(img.clipRect.y == 0).assertTrue();
+                            img.getComponent(param, (err, component) => {
                                 if (err) {
                                     expect(false).assertTrue();
+                                    console.log(`${testNum} geterror: ` + err);
                                     done();
                                 } else {
-                                    expect(img.size.width == WIDTH).assertTrue();
-                                    expect(img.size.height == HEIGHT).assertTrue();
-                                    checkFormat(img.format);
-                                    expect(img.clipRect.size.width == WIDTH).assertTrue();
-                                    expect(img.clipRect.size.height == HEIGHT).assertTrue();
-                                    expect(img.clipRect.x == 0).assertTrue();
-                                    expect(img.clipRect.y == 0).assertTrue();
-                                    img.getComponent(param, (err, component) => {
-                                        if (err) {
-                                            expect(false).assertTrue();
-                                            console.log(`${testNum} geterror: ` + err);
-                                            done();
-                                        } else {
-                                            expect(component != undefined).assertTrue();
-                                            expect(component.componentType == param).assertTrue();
-                                            expect(component.byteBuffer != undefined).assertTrue();
-                                            checkStride(component.rowStride, component.pixelStride);
-                                            done();
-                                        }
-                                    });
+                                    expect(component != undefined).assertTrue();
+                                    expect(component.componentType == param).assertTrue();
+                                    expect(component.byteBuffer != undefined).assertTrue();
+                                    checkStride(component.rowStride, component.pixelStride);
+                                    done();
                                 }
                             });
-                            expect(true).assertTrue();
-                        });
-                    }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
-                }
+                        }
+                    });
+                    expect(true).assertTrue();
+                });
             }
         }
 
@@ -297,19 +270,19 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    try {
                         receiver.on(param, () => {
                             expect(false).assertTrue();
                         });
+                    } catch (error) {
+                        expect(error.code == 1).assertTrue();
+                        console.log(`${testNum} error msg: ` + error);
+                        done();
                     }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
                 }
             }
         }
@@ -694,27 +667,22 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.readLatestImage()
-                            .then((img) => {
-                                console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 readLatestImage Success");
-                                expect(img != undefined).assertTrue();
-                                done();
-                            })
-                            .catch((error) => {
-                                console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 error: " + error);
-                                expect(false).assertTrue();
-                                done();
-                            });
-                    }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    receiver
+                    .readLatestImage()
+                    .then((img) => {
+                        console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 readLatestImage Success");
+                        expect(img != undefined).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 error: " + error);
+                        expect(false).assertTrue();
+                        done();
+                    });
                 }
             } else {
                 expect(false).assertTrue();
@@ -736,23 +704,17 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.readLatestImage((err, img) => {
-                            console.info(
-                                "SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100 readLatestImage call back Success"
-                            );
-                            expect(img != undefined).assertTrue();
-                            done();
-                        });
-                    } 
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    receiver.readLatestImage((err, img) => {
+                        console.info(
+                            "SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100 readLatestImage call back Success"
+                        );
+                        expect(img != undefined).assertTrue();
+                        done();
+                    });
                 }
             } else {
                 expect(false).assertTrue();
@@ -773,28 +735,24 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
+            expect(receiver != undefined).assertTrue();
             if (receiver != undefined) {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.readNextImage()
-                            .then((img) => {
-                                console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 readNextImage Success");
-                                expect(img != undefined).assertTrue();
-                                done();
-                            })
-                            .catch((error) => {
-                                console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 error: " + error);
-                                expect(false).assertTrue();
-                                done();
-                            });
-                    }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.log(`${testNum} error msg: ` + error);
-                    done();
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    receiver
+                    .readNextImage()
+                    .then((img) => {
+                        console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 readNextImage Success");
+                        expect(img != undefined).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 error: " + error);
+                        expect(false).assertTrue();
+                        done();
+                    });
                 }
             } else {
                 expect(false).assertTrue();
@@ -816,29 +774,23 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        receiver.readNextImage((err, img) => {
-                            if (err) {
-                                expect(false).assertTrue();
-                                done();
-                            } else {
-                                console.info(
-                                    "SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100 readNextImage call back Success"
-                                );
-                                expect(img != undefined).assertTrue();
-                                done();
-                            }
-                        });
-                    }
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.info(`${testNum} err message` + error);
-                    done();
-                }    
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    receiver.readNextImage((err, img) => {
+                        if (err) {
+                            expect(false).assertTrue();
+                            done();
+                        } else {
+                            console.info(
+                                "SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100 readNextImage call back Success"
+                            );
+                            expect(img != undefined).assertTrue();
+                            done();
+                        }
+                    });
+                }
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100 finished");
@@ -858,8 +810,6 @@ export default function ImageReceiver() {
          * @tc.level     : Level 0
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_GETCOMPONENT_PROMISE_JPEG_0100", 0, async function (done) {
-            console.info("SUB_GRAPHIC_IMAGE_RECEIVER_GETCOMPONENT_PROMISE_JPEG_0100 in ");
-
             function checkFormat(imgformat) {
                 expect(imgformat == RGBA);
             }
@@ -921,32 +871,25 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
-                try {
-                    var error = receiver.test;
-                    if (error == DEVICE_CODE) {
-                        noSupportDevice(error);
-                    } else {
-                        let pass = false;
-                        receiver.on("imageArrival", (err) => {
-                            if (err) {
-                                console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0098 on err" + err);
-                                expect(false).assertTrue();
-                                done();
-                            } else {
-                                pass = true;
-                                console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0100 on call back IN");
-                            }
-                        });
-                        await sleep(2000);
-                        expect(pass).assertTrue();
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    checkSupportDevice(error);
+                } else {
+                    let pass = false;
+                    receiver.on("imageArrival", (err) => {
+                    if (err) {
+                        console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0100 on err" + err);
+                        expect(false).assertTrue();
                         done();
+                    } else {
+                        pass = true;
+                        console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0100 on call back IN");
                     }
-                    
-                } catch (error) {
-                    expect(error.code == 1).assertTrue();
-                    console.info(`${testNum} err message` + error);
-                    done();
-                }   
+                });
+                }
+                await sleep(2000);
+                expect(pass).assertTrue();
+                done();
             }
         });
 
@@ -969,52 +912,45 @@ export default function ImageReceiver() {
                 done();
                 return;
             }
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                checkSupportDevice(error);
+            }
+            receiver.on("imageArrival", () => {
+                expect(true).assertTrue();
+            });
+            receiver
+                .readLatestImage()
+                .then((img) => {
+                    if (img == undefined) {
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        expect(img.size.width == WIDTH).assertTrue();
+                        expect(img.size.height == HEIGHT).assertTrue();
+                        expect(img.format == RGBA).assertTrue();
+                        expect(img.clipRect.size.width == WIDTH).assertTrue();
+                        expect(img.clipRect.size.height == HEIGHT).assertTrue();
+                        expect(img.clipRect.x == 0).assertTrue();
+                        expect(img.clipRect.y == 0).assertTrue();
 
-            try {
-                var error = receiver.test;
-                if (error == DEVICE_CODE) {
-                    noSupportDevice(error);
-                } else {
-                    receiver.on("imageArrival", () => {
-                        expect(true).assertTrue();
-                    });
-                    receiver.readLatestImage()
-                        .then((img) => {
-                            if (img == undefined) {
+                        img.release()
+                            .then(() => {
+                                expect(true).assertTrue();
+                                done();
+                            })
+                            .catch((error) => {
+                                console.log("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0200 err" + error);
                                 expect(false).assertTrue();
                                 done();
-                            } else {
-                                expect(img.size.width == WIDTH).assertTrue();
-                                expect(img.size.height == HEIGHT).assertTrue();
-                                expect(img.format == RGBA).assertTrue();
-                                expect(img.clipRect.size.width == WIDTH).assertTrue();
-                                expect(img.clipRect.size.height == HEIGHT).assertTrue();
-                                expect(img.clipRect.x == 0).assertTrue();
-                                expect(img.clipRect.y == 0).assertTrue();
-
-                                img.release()
-                                    .then(() => {
-                                        expect(true).assertTrue();
-                                        done();
-                                    })
-                                    .catch((error) => {
-                                        console.log("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0200 err" + error);
-                                        expect(false).assertTrue();
-                                        done();
-                                    });
-                            }
-                        })
-                        .catch((error) => {
-                            console.log("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0200 readLatestImage err" + error);
-                            expect(false).assertTrue();
-                            done();
-                        });
-                }
-            } catch (error) {
-                expect(error.code == 1).assertTrue();
-                console.info(`${testNum} err message` + error);
-                done();
-            }
+                            });
+                    }
+                })
+                .catch((error) => {
+                    console.log("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0200 readLatestImage err" + error);
+                    expect(false).assertTrue();
+                    done();
+                });
         });
 
         /**
@@ -1036,46 +972,38 @@ export default function ImageReceiver() {
                 done();
                 return;
             }
-
-            try {
-                var error = receiver.test;
-                if (error == DEVICE_CODE) {
-                    noSupportDevice(error);
-                } else {
-                    receiver.on("imageArrival", () => {
-                        expect(true).assertTrue();
-                    });
-                    receiver.readLatestImage((err, img) => {
-                        if (img == undefined) {
-                            expect(false).assertTrue();
-                            done();
-                            return;
-                        }
-        
-                        expect(img.size.width == WIDTH).assertTrue();
-                        expect(img.size.height == HEIGHT).assertTrue();
-                        expect(img.format == RGBA).assertTrue();
-                        expect(img.clipRect.size.width == WIDTH).assertTrue();
-                        expect(img.clipRect.size.height == HEIGHT).assertTrue();
-                        expect(img.clipRect.x == 0).assertTrue();
-                        expect(img.clipRect.y == 0).assertTrue();
-        
-                        img.release((err) => {
-                            if (err) {
-                                expect(false).assertTrue();
-                                done();
-                            } else {
-                                expect(true).assertTrue();
-                                done();
-                            }
-                        });
-                    });
-                }
-            } catch (error) {
-                expect(error.code == 1).assertTrue();
-                console.info(`${testNum} err message` + error);
-                done();
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                checkSupportDevice(error);
             }
+            receiver.on("imageArrival", () => {
+                expect(true).assertTrue();
+            });
+            receiver.readLatestImage((err, img) => {
+                if (img == undefined) {
+                    expect(false).assertTrue();
+                    done();
+                    return;
+                }
+
+                expect(img.size.width == WIDTH).assertTrue();
+                expect(img.size.height == HEIGHT).assertTrue();
+                expect(img.format == RGBA).assertTrue();
+                expect(img.clipRect.size.width == WIDTH).assertTrue();
+                expect(img.clipRect.size.height == HEIGHT).assertTrue();
+                expect(img.clipRect.x == 0).assertTrue();
+                expect(img.clipRect.y == 0).assertTrue();
+
+                img.release((err) => {
+                    if (err) {
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        expect(true).assertTrue();
+                        done();
+                    }
+                });
+            });
         });
 
         /**
