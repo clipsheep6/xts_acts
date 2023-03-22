@@ -22,6 +22,7 @@ export default function ImageReceiver() {
         const CAPACITY = 8;
         const RGBA = 12;
         const Jpg_Stride = 1;
+        const DEVICE_CODE = 801;
         const { JPEG: FORMATJPEG } = image.ImageFormat;
         const { JPEG } = image.ComponentType;
         beforeAll(async function () {
