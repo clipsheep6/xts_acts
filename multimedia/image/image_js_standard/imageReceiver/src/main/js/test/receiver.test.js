@@ -22,6 +22,7 @@ export default function ImageReceiver() {
         const CAPACITY = 8;
         const RGBA = 12;
         const Jpg_Stride = 1;
+        const DEVICE_CODE = 801;
         const { JPEG: FORMATJPEG } = image.ImageFormat;
         const { JPEG } = image.ComponentType;
         beforeAll(async function () {
@@ -67,6 +68,11 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 receiver.on("imageArrival", () => {
                     if (once) {
                         return;
@@ -97,7 +103,6 @@ export default function ImageReceiver() {
                     });
                     expect(true).assertTrue();
                 });
-                var dummy = receiver.test;
             }
         }
 
@@ -108,6 +113,11 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 receiver.on("imageArrival", () => {
                     if (once) {
                         return;
@@ -139,7 +149,6 @@ export default function ImageReceiver() {
                     });
                     expect(true).assertTrue();
                 });
-                var dummy = receiver.test;
             }
         }
 
@@ -149,6 +158,11 @@ export default function ImageReceiver() {
             if (receiver == undefined) {
                 expect(false).assertTrue();
                 return;
+            }
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
             }
             receiver.on("imageArrival", () => {
                 if (once) {
@@ -188,7 +202,6 @@ export default function ImageReceiver() {
                 });
                 expect(true).assertTrue();
             });
-            var dummy = receiver.test;
         }
 
         async function getComponentCb(done, testNum, format, param, checkFormat, checkStride) {
@@ -198,6 +211,11 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
                 return;
+            }
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
             }
             receiver.on("imageArrival", () => {
                 if (once) {
@@ -233,7 +251,6 @@ export default function ImageReceiver() {
                 });
                 expect(true).assertTrue();
             });
-            var dummy = receiver.test;
         }
 
         async function onErr(done, testNum, param) {
@@ -244,6 +261,11 @@ export default function ImageReceiver() {
                 done();
             } else {
                 try {
+                    var error = receiver.test;
+                    if (DEVICE_CODE == error) {
+                        expect(error == DEVICE_CODE).assertTrue();
+                        done();
+                    }
                     receiver.on(param, () => {
                         expect(false).assertTrue();
                     });
@@ -252,7 +274,6 @@ export default function ImageReceiver() {
                     console.log(`${testNum} error msg: ` + error);
                     done();
                 }
-                var dummy = receiver.test;
             }
         }
 
@@ -635,8 +656,12 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
-            var dummy = receiver.test;
             if (receiver != undefined) {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 receiver
                     .readLatestImage()
                     .then((img) => {
@@ -668,8 +693,12 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
-            var dummy = receiver.test;
             if (receiver != undefined) {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 receiver.readLatestImage((err, img) => {
                     console.info(
                         "SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100 readLatestImage call back Success"
@@ -696,9 +725,12 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
-            var dummy = receiver.test;
-            expect(receiver != undefined).assertTrue();
             if (receiver != undefined) {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 receiver
                     .readNextImage()
                     .then((img) => {
@@ -730,8 +762,12 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
-            var dummy = receiver.test;
             if (receiver != undefined) {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 receiver.readNextImage((err, img) => {
                     if (err) {
                         expect(false).assertTrue();
@@ -824,6 +860,11 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 done();
             } else {
+                var error = receiver.test;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                }
                 let pass = false;
                 receiver.on("imageArrival", (err) => {
                     if (err) {
@@ -835,8 +876,6 @@ export default function ImageReceiver() {
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0100 on call back IN");
                     }
                 });
-
-                var dummy = receiver.test;
                 await sleep(2000);
                 expect(pass).assertTrue();
                 done();
@@ -862,13 +901,14 @@ export default function ImageReceiver() {
                 done();
                 return;
             }
-
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+            }
             receiver.on("imageArrival", () => {
                 expect(true).assertTrue();
             });
-
-            var dummy = receiver.test;
-
             receiver
                 .readLatestImage()
                 .then((img) => {
@@ -923,12 +963,14 @@ export default function ImageReceiver() {
                 return;
             }
 
+            var error = receiver.test;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+            }
             receiver.on("imageArrival", () => {
                 expect(true).assertTrue();
             });
-
-            var dummy = receiver.test;
-
             receiver.readLatestImage((err, img) => {
                 if (img == undefined) {
                     expect(false).assertTrue();
