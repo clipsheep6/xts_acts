@@ -1,0 +1,61 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.fileaccess",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 100000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [
+            ],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.MediaLibraryDataA/*",
+                "mkdir -pv /storage/media/100/local/files/Download/queryTest/{image,video,audio,file}",
+                "mkdir -p /storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp3 ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.dat ->/storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -pv /storage/media/100/local/files/Pictures/Thumbnail/image",
+                "mkdir -pv /storage/media/100/local/files/Videos/Thumbnail/audio",
+                "mkdir -pv /storage/media/100/local/files/Audios/Thumbnail/video",
+
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Download/queryTest/image/01.jpg",
+                "cp /storage/media/100/local/temp/01.mp3 /storage/media/100/local/files/Download/queryTest/audio/01.mp3",
+                "cp /storage/media/100/local/temp/01.mp4 /storage/media/100/local/files/Download/queryTest/video/01.mp4",
+                "cp /storage/media/100/local/temp/01.dat /storage/media/100/local/files/Download/queryTest/file/01.dat",
+
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "scanner",
+                "sleep 30"
+            ]
+        },
+		{
+			"test-file-name": [
+				"ActsStorageFileAccessEtsTest.hap"
+			],
+			"type": "AppInstallKit",
+			"cleanup-apps": true
+		}
+	]
+}
