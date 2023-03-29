@@ -46,12 +46,12 @@ export default function flexVisibility_AutoJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1000
+     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1100
      * @tc.name      ItemAlign_Auto_FlexVisibility
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      The first subcomponent set Visibility.None attribute.
      */
-    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1000', 0, async function (done) {
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1000 START');
+    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1100', 0, async function (done) {
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1100 START');
       globalThis.value.message.notify({name:'visibility', value:Visibility.None})
       await CommonFunc.sleep(2000);
       let strJson1 = getInspectorByKey('flexVisible');
@@ -72,22 +72,22 @@ export default function flexVisibility_AutoJsunit() {
       expect(textVisible03.bottom - textVisible03.top).assertEqual(vp2px(150))
       expect(textVisible02.right - textVisible02.left).assertEqual(vp2px(150))
       expect(textVisible03.right - textVisible03.left).assertEqual(vp2px(150))
-
+      expect(obj1.$attrs.visibility).assertEqual("Visibility.Visible");
+      expect(obj2.$attrs.visibility).assertEqual("Visibility.None");
       expect(obj1.$attrs.constructor.direction).assertEqual('FlexDirection.Row')
       expect(obj1.$attrs.constructor.alignItems).assertEqual('ItemAlign.Auto')
-      expect(obj2.$attrs.visibility).assertEqual("Visibility.None");
 
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1000 END');
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1100 END');
       done();
     });
 
     /**
-     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1100
+     * @tc.number    SUB_ACE_FLEXALIGNITEMS_AUTO_1200
      * @tc.name      ItemAlign_Auto_FlexVisibility
-     * @tc.desc      aceFlexAlignItemTest
+     * @tc.desc      The first subcomponent set Visibility.Hidden attribute.
      */
-    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1100', 0, async function (done) {
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1100 START');
+    it('SUB_ACE_FLEXALIGNITEMS_AUTO_1200', 0, async function (done) {
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1200 START');
       globalThis.value.message.notify({name:'visibility', value:Visibility.Hidden});
       await CommonFunc.sleep(2000);
       let strJson1 = getInspectorByKey('flexVisible');
@@ -112,7 +112,7 @@ export default function flexVisibility_AutoJsunit() {
       expect(obj1.$attrs.constructor.direction).assertEqual('FlexDirection.Row')
       expect(obj1.$attrs.constructor.alignItems).assertEqual('ItemAlign.Auto')
       expect(obj2.$attrs.visibility).assertEqual("Visibility.Hidden");
-      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1100 END');
+      console.info('new SUB_ACE_FLEXALIGNITEMS_AUTO_1200 END');
       done();
     });
   })

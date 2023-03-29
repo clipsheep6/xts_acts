@@ -54,7 +54,7 @@ struct FlexHeightModify_Auto {
         .height(150)
         .width(500)
         .backgroundColor(0xAFEEEE)
-      }.width('100%').margin({ top: 5 })
+      }.width('100%').alignItems(HorizontalAlign.Start)
     }.width('100%')
   }
 }

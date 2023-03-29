@@ -59,7 +59,7 @@ struct FlexBase_Auto {
         .height(this.testHeight)
         .width(this.testWidth)
         .backgroundColor(0xAFEEEE)
-      }.width('100%').margin({ top: 5 })
+      }.width('100%').alignItems(HorizontalAlign.Start)
     }.width('100%')
   }
 }

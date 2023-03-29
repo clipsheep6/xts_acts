@@ -55,7 +55,7 @@ struct FlexPadding_Auto {
         .width(500)
         .padding(this.testPadding)
         .backgroundColor(0xAFEEEE)
-      }.width('100%').margin({ top: 5 })
+      }.width('100%').alignItems(HorizontalAlign.Start)
     }.width('100%')
   }
 }

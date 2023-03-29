@@ -57,11 +57,14 @@ export default function flexMargin_AutoJsunit() {
       let textFlexMargin02 = CommonFunc.getComponentRect('textFlexMargin02');
       let textFlexMargin03 = CommonFunc.getComponentRect('textFlexMargin03');
       let flexMargin = CommonFunc.getComponentRect('flexMargin');
-
+      expect(flexMargin.top).assertEqual(textFlexMargin01.top)
       expect(textFlexMargin01.top).assertEqual(textFlexMargin02.top)
       expect(textFlexMargin02.top).assertEqual(textFlexMargin03.top)
-      expect(textFlexMargin03.right).assertLess(flexMargin.right)
-      expect(textFlexMargin01.left).assertLarger(flexMargin.left)
+
+      expect(flexMargin.left).assertEqual(textFlexMargin01.left)
+      expect(textFlexMargin01.right).assertEqual(textFlexMargin02.left)
+      expect(textFlexMargin02.right).assertEqual(textFlexMargin03.left)
+
       expect(textFlexMargin01.bottom - textFlexMargin01.top).assertEqual(vp2px(50))
       expect(textFlexMargin02.bottom - textFlexMargin02.top).assertEqual(vp2px(100))
       expect(textFlexMargin03.bottom - textFlexMargin03.top).assertEqual(vp2px(150))

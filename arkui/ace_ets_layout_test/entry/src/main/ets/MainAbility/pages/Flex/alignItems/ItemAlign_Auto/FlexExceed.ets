@@ -60,7 +60,7 @@ struct FlexExceed_Auto {
         .margin(this.testMargin)
         .padding(this.testPadding)
         .backgroundColor(0xAFEEEE)
-      }.width('100%').margin({ top: 5 })
+      }.width('100%').alignItems(HorizontalAlign.Start)
     }.width('100%')
   }
 }
