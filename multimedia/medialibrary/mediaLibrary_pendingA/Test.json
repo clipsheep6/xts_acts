@@ -1,0 +1,73 @@
+{
+    "description": "Configuration for mediaLibrary Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.mediaLibraryA",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 5000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "mkdir -p /storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp3 ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.dat ->/storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -pv /storage/media/100/local/files/Pictures/static",
+                "mkdir -pv /storage/media/100/local/files/Pictures/pendingB",
+                "mkdir -pv /storage/media/100/local/files/Pictures/pendingA/pro/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingGetThumbnails,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Videos/pendingA/pro/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingGetThumbnails,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Audios/pendingA/pro/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingGetThumbnails,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Documents/pendingA/pro/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Pictures/pendingA/cb/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingGetThumbnails,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Videos/pendingA/cb/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingGetThumbnails,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Audios/pendingA/cb/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingGetThumbnails,ispendingError}",
+                "mkdir -pv /storage/media/100/local/files/Documents/pendingA/cb/{static,ispending,setPendingT,setPendingF,ispendingOpen,ispendingError}",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/pendingA/cb/static",
+                "cp /storage/media/100/local/temp/01.mp3 /storage/media/100/local/files/Audios/pendingA/cb/static",
+                "cp /storage/media/100/local/temp/01.mp4 /storage/media/100/local/files/Videos/pendingA/cb/static",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/static",
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "uinput  -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell setmode 602",
+                "scanner",
+                "sleep 10"
+            ],
+            "teardown-command": [
+                "hilog -b X -D 0xD002B70",
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsMediaLibraryPendingAJsTest.hap"
+            ],
+            "type": "AppInstallKit"
+        }
+    ]
+}
