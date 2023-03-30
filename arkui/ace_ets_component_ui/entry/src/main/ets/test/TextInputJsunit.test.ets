@@ -67,11 +67,11 @@ export default function TextInputJsunit() {
       expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
       expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Search');
       expect(obj.$attrs.caretColor).assertEqual('#FF0000FF');
-      expect(obj.$attrs.maxLength).assertEqual('10');
-      expect(obj.$attrs.style).assertEqual('TextInputStyle.Inline');
+      expect(obj.$attrs.maxLength).assertEqual('10');      
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Center');
       expect(obj.$attrs.copyOption).assertEqual('CopyOptions.None');
-      expect(obj.$attrs.showPasswordIcon).assertEqual(false); 
+      expect(obj.$attrs.showPasswordIcon).assertEqual(false);
+      expect(obj.$attrs.style).assertEqual('TextInputStyle.Inline');
       console.info('[TextInputJsunit_0100] END');
       done();
     });

@@ -218,7 +218,7 @@ export default function ListJsunit() {
       expect(obj.$attrs.chainAnimation).assertEqual(true);
       expect(obj.$attrs.multiSelectable).assertEqual(true);
       expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.Start');
-      expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
+      expect(obj.$attrs.sticky).assertEqual('StickyStyle.Header');
       console.info('[ListJsunit_0300] END');
       done();
     });

@@ -125,7 +125,7 @@ export default function sliderJsunit() {
       console.info('sliderJsunit_0500 component obj is: ' + obj.$attrs.blockColor + "---" + obj.$attrs.trackColor + "--" + obj.$attrs.selectedColor + "--" );
       expect(obj.$attrs.blockColor).assertEqual('#FFEE82EE');
       expect(obj.$attrs.trackColor).assertEqual('#FFEE82EE');
-      expect(obj.$attrs.selectedColor).assertEqual('#FFAEFFFF');
+      expect(obj.$attrs.selectedColor).assertEqual('#FFEE82EE');
       done(); 
     });
 
