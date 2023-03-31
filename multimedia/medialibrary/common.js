@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
+import userFileManager from "@ohos.filemanagement.userFileManager";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from "@ohos.bundle";
 import uitest from "@ohos.UiTest";
@@ -33,6 +34,13 @@ const IMAGE_TYPE = mediaLibrary.MediaType.IMAGE;
 const VIDEO_TYPE = mediaLibrary.MediaType.VIDEO;
 const AUDIO_TYPE = mediaLibrary.MediaType.AUDIO;
 const FILE_TYPE = mediaLibrary.MediaType.FILE;
+const USER_ALBUM_TYPE = userFileManager.AlbumType.USER;
+const SYSTEM_ALBUM_TYPE = userFileManager.AlbumType.SYSTEM;
+const USER_GENERIC_ALBUM_SUB_TYPE = userFileManager.AlbumSubType.USER_GENERIC;
+const VIDEO_ALBUM_SUB_TYPE = userFileManager.AlbumSubType.VIDEO;
+const FAVORITE_ALBUM_SUB_TYPE = userFileManager.AlbumSubType.FAVORITE;
+const TRASH_ALBUM_SUB_TYPE = userFileManager.AlbumSubType.TRASH;
+const ANY_ALBUM_SUB_TYPE = userFileManager.AlbumSubType.ANY;
 
 const FILEKEY = mediaLibrary.FileKey;
 const { RELATIVE_PATH, ALBUM_NAME, MEDIA_TYPE } = FILEKEY;
@@ -276,6 +284,13 @@ export {
     AUDIO_TYPE,
     FILE_TYPE,
     FILEKEY,
+    USER_ALBUM_TYPE,
+    SYSTEM_ALBUM_TYPE,
+    USER_GENERIC_ALBUM_SUB_TYPE,
+    VIDEO_ALBUM_SUB_TYPE,
+    FAVORITE_ALBUM_SUB_TYPE,
+    TRASH_ALBUM_SUB_TYPE,
+    ANY_ALBUM_SUB_TYPE,
     sleep,
     allFetchOp,
     fetchOps,
