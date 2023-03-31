@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.restore",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 100000
+    },
+    "kits": [
+		{
+			"type": "ShellKit",
+            "pre-push": [
+            ],
+            "run-command": [
+                "setenforce 0",
+                "rm -rf /storage/media/100/local/files/*",
+                "mkdir -p /storage/media/100/local/files/Download",
+				"chmod -R 777 /storage/media/100/local/files/*",
+				"hilog -Q pidoff",
+                "hilog -p off",
+                "scanner",
+                "sleep 6"
+            ],
+            "teardown-command": [
+                "rm -rf /storage/media/100/local/files/Download/*"
+            ]
+		},
+		{
+			"test-file-name": [
+				"ActsStorageRestoreEtsTest.hap"
+			],
+			"type": "AppInstallKit",
+			"cleanup-apps": true
+		}
+	]
+}

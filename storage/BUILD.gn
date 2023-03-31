@@ -22,6 +22,7 @@ group("storage") {
       "storagefilejstest:storagefile_js_test",
       "storagefileurijstest:storagefileuri_js_test",
       "storagepickerjstest:storagepicker_js_test",
+      "storagerestoreetstest:storagerestore_ets_test",
       "storagesecuritylabeljstest:storagesecuritylabel_js_test",
       "storagestatfsjstest:storagestatfs_js_test",
       "storagestatisticsjstest:storagestatistics_js_test",
