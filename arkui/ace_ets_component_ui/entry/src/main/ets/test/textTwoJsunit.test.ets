@@ -91,7 +91,7 @@ export default function textTwoJsunit() {
       let strJson2 = getInspectorByKey('text1');
       let obj2 = JSON.parse(strJson2);
       console.info('textTwoJsunit_0200 component obj2 is: ' + obj2.$attrs.decoration);
-      expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FF000000"}'); 
+      expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FFACEEEE"}'); 
     });
 
     it('textTwoJsunit_0300', 0, async function (done) {
