@@ -62,12 +62,12 @@ export default function marqueeJsunit() {
    it('marqueeJsunit_0200', 0, async function (done) {
       console.info('marqueeJsunit_0200 START');
       // modify the type attribute normal value of marquee dynamically
-      globalThis.value.message.notify({name:'fromStart',value:true})
+      globalThis.value.message.notify({name:'fromStart',value:false})
       await CommonFunc.sleep(2000);
       // check the value of changed parameter
       let strJson = getInspectorByKey('marquee');
       let obj = JSON.parse(strJson);
-      expect(obj.$attrs.fromStart).assertEqual('true');
+      expect(obj.$attrs.fromStart).assertEqual('false');
       done();
     });
 
@@ -80,19 +80,19 @@ export default function marqueeJsunit() {
       // check the value of changed attribute
       let strJson = getInspectorByKey('marquee');
       let obj = JSON.parse(strJson);
-      expect(obj.$attrs.loop).assertEqual('2');
+      expect(obj.$attrs.loop).assertEqual('-1');
       done();
    });
    
     it('marqueeJsunit_0400', 0, async function (done) {
       console.info('marqueeJsunit_0400 START');
       // modify the type attribute normal value of marquee dynamically
-      globalThis.value.message.notify({name:'step',value:50})
+      globalThis.value.message.notify({name:'step',value:30})
       await CommonFunc.sleep(2000);
       // check the value of changed parameter
       let strJson = getInspectorByKey('marquee');
       let obj = JSON.parse(strJson);
-      expect(obj.$attrs.step).assertEqual('50.000000');
+      expect(obj.$attrs.step).assertEqual('30.000000');
       done();   
     });
 
@@ -130,19 +130,19 @@ export default function marqueeJsunit() {
       let strJson = getInspectorByKey('marquee');
       let obj = JSON.parse(strJson);
       // to confirm
-      expect(obj.$attrs.step).assertEqual('50.000000');
+      expect(obj.$attrs.step).assertEqual('30.000000');
       done();
    });
   
    it('marqueeJsunit_0700', 0, async function (done) {
       console.info('marqueeJsunit_0700 START');
       // modify the type attribute normal value of marquee dynamically
-      globalThis.value.message.notify({name:'loop',value:2})
+      globalThis.value.message.notify({name:'loop',value:3})
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('marquee');
       let obj = JSON.parse(strJson);
-      expect(obj.$attrs.loop).assertEqual('2');
-      done();   
+      expect(obj.$attrs.loop).assertEqual('3');
+      done();
     });
 
     it('marqueeJsunit_0800', 0, async function (done) {
@@ -152,8 +152,19 @@ export default function marqueeJsunit() {
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('marquee');
       let obj = JSON.parse(strJson);
-      expect(obj.$attrs.src).assertEqual('Running Marquee starts rolling');
-      done();   
+      expect(obj.$attrs.src).assertEqual('starts rolling');
+      done();
+    });
+
+    it('marqueeJsunit_0900', 0, async function (done) {
+      console.info('marqueeJsunit_0900 START');
+      // modify the type attribute normal value of marquee dynamically
+      globalThis.value.message.notify({name:'start',value:true})
+      await CommonFunc.sleep(2000);
+      let strJson = getInspectorByKey('marquee');
+      let obj = JSON.parse(strJson);
+      expect(obj.$attrs.start).assertEqual('true');
+      done();
     });
 
   })

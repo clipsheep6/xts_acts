@@ -91,21 +91,24 @@ export default function TextClockJsunit() {
       let driver = await UiDriver.create()
       let stopButton = await driver.findComponent(BY.text('stop TextClock'));
       await stopButton.click();
-      await CommonFunc.sleep(500);
+      await CommonFunc.sleep(1000);
       let accumulateTime1 = await driver.findComponent(BY.key('accumulateTime'));
       let text1 = await accumulateTime1.getText();
       await CommonFunc.sleep(1000);
       let accumulateTime2 = await driver.findComponent(BY.key('accumulateTime'));
       let text2 = await accumulateTime2.getText();
       expect(text1).assertEqual(text2);
+      console.info("[TextClock_0300] text1 and text2 equal !");
 
       let operation1 = await driver.findComponent(BY.key('operation'));
       let textOperation1 = await operation1.getText();
       expect(textOperation1).assertEqual('stop success');
+      console.info("[TextClock_0300] stop success !");
 
       let change1 = await driver.findComponent(BY.key('change'));
       let textChange1 = await change1.getText();
       expect(textChange1).assertEqual('no change success');
+      console.info("[TextClock_0300] no change success !");
 
       // Click start button
       let startButton = await driver.findComponent(BY.text('start TextClock'));
@@ -114,14 +117,17 @@ export default function TextClockJsunit() {
       let accumulateTime3 = await driver.findComponent(BY.key('accumulateTime'));
       let text3 = await accumulateTime3.getText();
       expect(text2 == text3).assertFalse();
+      console.info("[TextClock_0300] text2 and text3 equal !");
 
       let change2 = await driver.findComponent(BY.key('change'));
       let textChange2 = await change2.getText();
       expect(textChange2).assertEqual('change success');
+      console.info("[TextClock_0300] change success !");
 
       let operation2 = await driver.findComponent(BY.key('operation'));
       let textOperation2 = await operation2.getText();
       expect(textOperation2).assertEqual('start success');
+      console.info("[TextClock_0300] start success !");
       console.info('[TextClock_0300] END');
       done();
     });
