@@ -73,7 +73,7 @@ export default function blankJsunit() {
       let strJson = getInspectorByKey('bl2');
       let obj = JSON.parse(strJson);
       console.info("[blankJsunit_0200'] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.min).assertEqual('80.00px');
+      expect(obj.$attrs.min).assertEqual('80.00vp');
       done();
     });
 

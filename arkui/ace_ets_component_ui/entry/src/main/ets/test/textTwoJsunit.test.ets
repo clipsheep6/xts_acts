@@ -54,7 +54,7 @@ export default function textTwoJsunit() {
       globalThis.value.message.notify({name:'type',value:TextDecorationType.Overline})
       await CommonFunc.sleep(1000);
       globalThis.value.message.notify({name:'color',value:Color.Green})
-      await CommonFunc.sleep(2000);
+      await CommonFunc.sleep(200);
       let strJson2 = getInspectorByKey('text1');
       let obj2 = JSON.parse(strJson2);
       console.info('textTwoJsunit_0100 component obj2 is: ' + obj2.$attrs.decoration);
@@ -63,7 +63,7 @@ export default function textTwoJsunit() {
       globalThis.value.message.notify({name:'type',value:TextDecorationType.Underline})
       await CommonFunc.sleep(1000);
       globalThis.value.message.notify({name:'color',value:'rgb(238, 130, 238)'})
-      await CommonFunc.sleep(2000);
+      await CommonFunc.sleep(200);
       let strJson3 = getInspectorByKey('text1');
       let obj3 = JSON.parse(strJson3);
       console.info('textTwoJsunit_0100 component obj3 is: ' + obj3.$attrs.decoration);
@@ -72,7 +72,7 @@ export default function textTwoJsunit() {
       globalThis.value.message.notify({name:'type',value:TextDecorationType.None})
       await CommonFunc.sleep(1000);
       globalThis.value.message.notify({name:'color',value:'#FFACEEEE'})
-      await CommonFunc.sleep(2000);
+      await CommonFunc.sleep(200);
       let strJson4 = getInspectorByKey('text1');
       let obj4 = JSON.parse(strJson4);
       console.info('textTwoJsunit_0100 component obj4 is: ' + obj4.$attrs.decoration);
@@ -92,6 +92,7 @@ export default function textTwoJsunit() {
       let obj2 = JSON.parse(strJson2);
       console.info('textTwoJsunit_0200 component obj2 is: ' + obj2.$attrs.decoration);
       expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FFACEEEE"}'); 
+      done();
     });
 
     it('textTwoJsunit_0300', 0, async function (done) {

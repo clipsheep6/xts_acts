@@ -91,60 +91,60 @@ export default function ListJsunit() {
       console.info('[ListJsunit_0200] START');
       
       // Verify onScroll function of List component
-      let gridTop = CommonFunc.getComponentRect('grid2');
+      let gridTop = CommonFunc.getComponentRect('list');
       let top = gridTop.top
-      let gridLeft = CommonFunc.getComponentRect('grid2');
-      let left = gridLeft.left
-      let gridRight = CommonFunc.getComponentRect('grid2');
+      let gridBottom = CommonFunc.getComponentRect('list');
+      let bottom = gridBottom.bottom
+      let gridRight = CommonFunc.getComponentRect('list');
       let right = gridRight.right
       let driver = await UiDriver.create()
-      await driver.swipe(Math.round(left + 50), Math.round(top + 100), Math.round(right - 50), Math.round(top + 100));
+      await driver.swipe(Math.round(top + 50), Math.round(right - 50), Math.round(bottom - 50), Math.round(right - 50));
       await CommonFunc.sleep(1000);
       
       let onScrollText = await driver.findComponent(BY.key('onScrollText'));
       let text1 = await onScrollText.getText();
-      console.info("[ListJsunit_0200] onScrollText: " + text1);
-      expect(text1).assertEqual('onScroll:succ');
+      console.info("[ListJsunit_0200] onScrollText: " + text1.toString());
+      expect(text1).assertEqual('onScroll');
 
       // Verify the functions of onReachStart
       await CommonFunc.sleep(200);
       let onReachStartText = await driver.findComponent(BY.key('onReachStartText'));
       let text2 = await onReachStartText.getText();
-      console.info("[ListJsunit_0200] onReachStartText: " + text2);
+      console.info("[ListJsunit_0200] onReachStartText: " + text2.toString());
       expect(text2).assertEqual('onReachStart:succ');
 
       // Verify the functions of onScrollFrameBegin
       await CommonFunc.sleep(200);
       let onScrollBeginText = await driver.findComponent(BY.key('onScrollBeginText'));
       let text3 = await onScrollBeginText.getText();
-      console.info("[ListJsunit_0200] onScrollBeginText: " + text3);
+      console.info("[ListJsunit_0200] onScrollBeginText: " + text3.toString());
       expect(text3).assertEqual('onScrollBegin:succ');
 
       // Verify the functions of onScrollStart
       await CommonFunc.sleep(200);
       let onScrollStartText = await driver.findComponent(BY.key('onScrollStartText'));
       let text4 = await onScrollStartText.getText();
-      console.info("[ListJsunit_0200] onScrollStartText: " + text4);
+      console.info("[ListJsunit_0200] onScrollStartText: " + text4.toString());
       expect(text4).assertEqual('onScrollStart:succ');
 
       // Verify the functions of onScrollStop
       await CommonFunc.sleep(200);
       let onScrollStopText = await driver.findComponent(BY.key('onScrollStopText'));
       let text5 = await onScrollStopText.getText();
-      console.info("[ListJsunit_0200] onScrollStopText: " + text5);
+      console.info("[ListJsunit_0200] onScrollStopText: " + text5.toString());
       expect(text5).assertEqual('onScrollStop:succ');
 
       // Verify the functions of onReachEnd
-      await driver.swipe(Math.round(right - 50), Math.round(top + 100), Math.round(left + 50), Math.round(top + 100));
-      await driver.swipe(Math.round(right - 50), Math.round(top + 100), Math.round(left + 50), Math.round(top + 100));
+      await driver.swipe(Math.round(bottom - 50), Math.round(right - 50), Math.round(top + 50), Math.round(right - 50));
+      await driver.swipe(Math.round(bottom - 50), Math.round(right - 50), Math.round(top + 50), Math.round(right - 50));
       await CommonFunc.sleep(1000);
-      await driver.swipe(Math.round(right - 50), Math.round(top + 100), Math.round(left + 50), Math.round(top + 100));
-      await driver.swipe(Math.round(right - 50), Math.round(top + 100), Math.round(left + 50), Math.round(top + 100));
-      await driver.swipe(Math.round(right - 50), Math.round(top + 100), Math.round(left + 50), Math.round(top + 100));
+      await driver.swipe(Math.round(bottom - 50), Math.round(right - 50), Math.round(top + 50), Math.round(right - 50));
+      await driver.swipe(Math.round(bottom - 50), Math.round(right - 50), Math.round(top + 50), Math.round(right - 50));
+      await driver.swipe(Math.round(bottom - 50), Math.round(right - 50), Math.round(top + 50), Math.round(right - 50));
       await CommonFunc.sleep(1000);
       let onReachEndText = await driver.findComponent(BY.key('onReachEndText'));
       let text= await onReachEndText.getText();
-      console.info("[ListJsunit_0200] onReachEndText: " + text);
+      console.info("[ListJsunit_0200] onReachEndText: " + text.toString());
       expect(text).assertEqual('onReachEnd:succ');
       console.info('[ListJsunit_0200] END');
       done();
