@@ -1,0 +1,23 @@
+[
+	{
+		"fileName" : "1.tar",
+		"information" : 
+		{
+			"path" : "/data/storage/el2/backup/backup/1.tar",
+			"stat" : 
+			{
+				"st_atim" : 
+				{
+					"tv_nsec" : 460340363,
+					"tv_sec" : 1680233446
+				},
+				"st_mtim" : 
+				{
+					"tv_nsec" : 467007031,
+					"tv_sec" : 1680233446
+				},
+				"st_size" : 3584
+			}
+		}
+	}
+]
