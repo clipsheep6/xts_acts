@@ -29,11 +29,11 @@ export struct CustomContainer {
   @Link name: string;
   @Link Vue : boolean;
   @Link isEnabled: boolean;
+  @Link clickFrequency: number
+  @Link testingFrequency: number
   Url : string = '';
   title : string = '';
   StepTips: string = '';
-  testingFrequency: number
-  @Link clickFrequency: number
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
     if(this.Vue == false){
@@ -52,6 +52,8 @@ export struct CustomContainer {
         this.isEnabled = true
         this.Vue = false
         this.clickFrequency++
+        Logger.info(TAG, `this.testingFrequency done :${this.testingFrequency}`);
+        Logger.info(TAG, `this.clickFrequency done :${this.clickFrequency}`);
         if (this.clickFrequency === this.testingFrequency){
           router.back({
             url:this.Url,
