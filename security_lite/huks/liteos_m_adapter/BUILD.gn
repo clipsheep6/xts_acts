@@ -43,7 +43,10 @@ hctest_suite("ActsHuksHalFunctionTest") {
     "../common/include",
   ]
 
-  deps = [ "//test/xts/acts/security_lite/huks/common:huks_test_common" ]
+  deps = [
+    "//test/xts/acts/security_lite/huks/common:huks_test_common",
+    "//third_party/mbedtls:mbedtls_static",
+  ]
 
   cflags = [
     "-D_CUT_ED25519_",
