@@ -1,0 +1,64 @@
+{
+    "description": "Configuration for mediaLibrary Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.userfilemgrA",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 5000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "mkdir -p /storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp3 ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -pv /storage/media/100/local/files/Pictures/static",
+                "mkdir -pv /storage/media/100/local/files/Videos/static",
+                "mkdir -pv /storage/media/100/local/files/Audios/static",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/static",
+                "cp /storage/media/100/local/temp/01.mp4 /storage/media/100/local/files/Videos/static",
+                "cp /storage/media/100/local/temp/01.mp3 /storage/media/100/local/files/Audios/static",
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "uinput  -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell setmode 602",
+                "scanner",
+                "sleep 10"
+            ],
+            "teardown-command": [
+                "hilog -b X -D 0xD002B70",
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsUserFileMgrPendingAJsTest.hap"
+            ],
+            "type": "AppInstallKit"
+        }
+    ]
+}
