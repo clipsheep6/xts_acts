@@ -1172,6 +1172,27 @@ describe('aceJsTest', function () {
         expect("pages/obj_Path2D/router/").assertEqual(pages.path);
         done();
     });
+       /**
+         * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0100
+         * @tc.name      testPickerViewComponent
+         * @tc.desc      ACE
+         */
+        it('testPickerViewComponent', 0, async function (done) {
+            let result;
+            let options = {
+                uri: 'pages/pickerView/router/index'
+            }
+            try {
+                result = router.push(options)
+            } catch (err) {
+                result = err
+            }
+            await sleep(1000)
+            let pages = router.getState();
+            expect("pages/pickerView/router/").assertEqual(pages.path);
+            done();
+        });
+    
 
     /**
      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0100
@@ -1195,6 +1216,7 @@ describe('aceJsTest', function () {
         expect("pages/camera/router/").assertEqual(pages.path);
         done();
     });
+  
 
     /**
      * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0100
@@ -1218,28 +1240,5 @@ describe('aceJsTest', function () {
         expect("pages/web/router/").assertEqual(pages.path);
         done();
     });
-
-    
-       /**
-         * @tc.number    SUB_ACE_BASIC_COMPONENT_JS_API_0100
-         * @tc.name      testPickerViewComponent
-         * @tc.desc      ACE
-         */
-         it('testPickerViewComponent', 0, async function (done) {
-            let result;
-            let options = {
-                uri: 'pages/pickerView/router/index'
-            }
-            try {
-                result = router.push(options)
-            } catch (err) {
-                result = err
-            }
-            await sleep(1000)
-            let pages = router.getState();
-            expect("pages/pickerView/router/").assertEqual(pages.path);
-            done();
-        });
-
 
 });
