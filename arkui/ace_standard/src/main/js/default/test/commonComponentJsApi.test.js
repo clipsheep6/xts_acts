@@ -1180,16 +1180,16 @@ describe('aceJsTest', function () {
         it('testPickerViewComponent', 0, async function (done) {
             let result;
             let options = {
-                uri: 'pages/pickerView/router/index'
+                uri: 'pages/pickerView/router2/index'
             }
             try {
                 result = router.push(options)
             } catch (err) {
                 result = err
             }
-            await sleep(1000)
+            await sleep(5000)
             let pages = router.getState();
-            expect("pages/pickerView/router/").assertEqual(pages.path);
+            expect("pages/pickerView/router2/").assertEqual(pages.path);
             done();
         });
     
