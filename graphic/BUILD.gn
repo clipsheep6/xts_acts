@@ -20,9 +20,6 @@ group("graphic") {
       "graphicColorSpace:ActsColorSpaceManagerTest",
       "graphicnapidrawingtest:ActsGraphicNapiDrawingTest",
       "graphicnapitest:ActsGraphicNapiTest",
-      "webGL:webGL_hap_test",
-      "windowStage:ActsWindowStageTest",
-      "windowstandard:window_hap_test",
       "image/image_js_standard/image:image_js_hap",
       "image/image_js_standard/imageColorspace:image_colorspace_js_hap",
       "image/image_js_standard/imageCreator:image_creator_js_hap",
@@ -43,6 +40,9 @@ group("graphic") {
       "image/image_js_standard/imageWebp:image_webp_js_hap",
       "image/image_js_standard/imageYUV:image_yuv_js_hap",
       "image/image_js_standard/image_ndk_test:image_pixelmap_ndk_hap",
+      "webGL:webGL_hap_test",
+      "windowStage:ActsWindowStageTest",
+      "windowstandard:window_hap_test",
     ]
     if (!(product_name == "ohcore")) {
       deps += [ "vkgl:cpvkgl" ]
