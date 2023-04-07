@@ -25,3 +25,12 @@ hctest_suite("ActsAbilityMgrTest") {
     cflags = [ "-Wno-error" ]
   }
 }
+hctest_suite("ActsAbilityThreadLoaderTest") {
+  suite_name = "acts"
+  sources = [ "src/ability_thread_loader_test.cpp" ]
+
+  include_dirs = [ "${aafwk_lite_path}/services/abilitymgr_lite" ]
+  if (board_toolchain_type != "iccarm") {
+    cflags = [ "-Wno-error" ]
+  }
+}
