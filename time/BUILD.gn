@@ -16,6 +16,7 @@ group("time") {
   testonly = true
   deps = [
     "dateTimeTest:ActsDateTimeAPITest",
+    "timeNormalTest:ActsTimeNormalAPITest",
     "timeTest:ActsTimeAPITest",
   ]
 }
