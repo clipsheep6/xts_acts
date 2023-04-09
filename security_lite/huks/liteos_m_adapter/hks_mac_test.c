@@ -13,6 +13,12 @@
  * limitations under the License.
  */
 
+#include <stdlib.h>
+#include <mbedtls/md.h>
+#include <mbedtls/pkcs5.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "hks_mac_test.h"
 
 #include <hctest.h>
@@ -217,6 +223,103 @@ static void ExecHksInitialize(void const *argument)
     TEST_ASSERT_TRUE(HksInitialize() == 0);
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
+}
+
+#define SINGLE_PRINT_LENGTH 50
+
+static char IntToAscii(uint8_t in_num)
+{
+    if (in_num <= 9) {
+        return (char)('0' + in_num);
+    }
+    return (char)('A' + in_num - 10);
+}
+
+static int32_t BufferToAscii(uint8_t* src, uint32_t src_size, char* dst, uint32_t* dst_size) {
+    const uint32_t ascii_len = src_size * 2 + 1;
+    if (*dst_size < ascii_len) {
+        printf("buffer is too samll.");
+        return -1;
+    }
+    for (uint32_t i = 0; i < src_size; i++)
+    {
+        dst[2 * i] = IntToAscii(src[i] >> 4);
+        dst[2 * i + 1] = IntToAscii(src[i] & 0b00001111);
+    }
+
+    dst[ascii_len - 1] = '\0';
+    *dst_size = ascii_len;
+    return 0;
+}
+
+static void printBuffer(uint8_t* buffer, uint32_t buffer_size)
+{
+    uint32_t index = 0;
+    uint32_t print_count = buffer_size / SINGLE_PRINT_LENGTH;
+    for (uint32_t i = 0; i < (print_count + 1); i++) {
+        char chars[SINGLE_PRINT_LENGTH * 2 + 1] = { 0 };
+        uint32_t char_size = SINGLE_PRINT_LENGTH * 2 + 1;
+        BufferToAscii(buffer + index, (i == print_count) ? buffer_size % SINGLE_PRINT_LENGTH : SINGLE_PRINT_LENGTH, chars, &char_size);
+        printf("Mine buff[%2u] size[%2u]: \"%s\"", i, (char_size - 1) / 2, chars);
+        printf("\n");
+        index += SINGLE_PRINT_LENGTH;
+    }
+}
+
+
+static uint8_t CharToHex(char c)
+{
+    if ((c >= 'A') && (c <= 'F')) {
+        return (c - 'A' + 10);
+    }
+    else if ((c >= 'a') && (c <= 'f')) {
+        return (c - 'a' + 10);
+    }
+    else if ((c >= '0') && (c <= '9')) {
+        return (c - '0');
+    }
+    else {
+        return 16;
+    }
+}
+
+int32_t HexStringToByteForTest(const char* hexStr, uint8_t* byte, uint32_t byteLen)
+{
+    if (byte == NULL || hexStr == NULL) {
+        return NULL;
+    }
+    uint32_t realHexLen = strlen(hexStr);
+    if (realHexLen % 2 != 0 || byteLen < realHexLen / 2) {
+        return -1;
+    }
+
+    for (uint32_t i = 0; i < realHexLen / 2; i++) {
+        uint8_t high = CharToHex(hexStr[i * 2]);
+        uint8_t low = CharToHex(hexStr[i * 2 + 1]);
+        if (high == 16 || low == 16) {
+            return -1;
+        }
+        byte[i] = high << 4;
+        byte[i] |= low;
+    }
+    return 0;
+}
+
+int BaseTestMacAnswer()
+{
+    char mainKey[] = "8DD3C70014857C93F2B3B131892BB67662CD7B41D5D0D1E28CC60480975050F6";
+    char msgSource[] = "484A813EA48CD370DEF23EA6C488199BDE801FB1DE7E155C3B4ADBD3459DBBBE3030383532444145463338413436424130413833303336323332383637323334394437454530434135394435303646393139323932433133363633413631433435343230343539443933464537373346393934354644363432373746424132434142384642393936444443314430423937363736464242313234324233393330";
+    uint8_t mainKeyByte[32] = { 0 };
+    uint8_t sourceByte[160] = { 0 };
+    uint8_t macByte[32] = { 0 };
+    HexStringToByteForTest(mainKey, mainKeyByte, 32);
+    HexStringToByteForTest(msgSource, sourceByte, 160);
+    uint32_t mbedtlsAlg = MBEDTLS_MD_SHA256;
+    mbedtls_md_context_t ctx;
+    mbedtls_md_init(&ctx);
+    mbedtls_md_hmac(mbedtls_md_info_from_type((mbedtls_md_type_t)mbedtlsAlg), mainKeyByte, 32, sourceByte, 160, macByte);
+    printBuffer(macByte, 32);
+    return 0;
 }
 
 /**
