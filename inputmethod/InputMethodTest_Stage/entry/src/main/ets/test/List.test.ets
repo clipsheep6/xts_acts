@@ -14,9 +14,10 @@
  */
 import imeAbilityTest from './imeAbilityTest.test'
 import inputMethodStageJSUnit from './inputMethodStageJSUnit';
-
+import inputMethodNormalStageJSUnit from './inputMethodNormalStageJSUnit';
 
 export default function testsuite() {
   imeAbilityTest(globalThis.abilityContext);
   inputMethodStageJSUnit();
+  inputMethodNormalStageJSUnit();
 }
