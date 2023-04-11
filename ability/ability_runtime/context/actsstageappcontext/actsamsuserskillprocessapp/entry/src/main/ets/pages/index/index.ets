@@ -12,9 +12,26 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+import file from '@system.file';
 
-import stageAppContextTest from './StageAppContext.test'
+@Entry
+@Component
+struct Index {
 
-export default function testsuite() {
-  stageAppContextTest(globalThis.abilityContext)
+  aboutToAppear() {
+    console.info("start run testcase!!!!")
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('hello')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+      .margin({
+        top: 20
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
 }

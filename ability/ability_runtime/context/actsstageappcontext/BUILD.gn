@@ -19,6 +19,7 @@ group("actsstageappcontext") {
     deps = [
       #"actsstagecontextassistone:ActsStageContextAssistOne",
       #"actsstagecontextassisttwo:ActsStageContextAssistTwo",
+      "actsamsuserskillprocessapp:ActsAmsUsersKillProcessApp",
       "actsstageappcontexttest:ActsStageAppContextTest",
     ]
   }
