@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import sensor from '@system.sensor'
-
+import sensors from '@ohos.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
 export default function SensorJsTest_sensor_31() {
@@ -49,6 +49,8 @@ describe("SensorJsTest_sensor_31", function () {
          */
         console.info('afterEach caled')
     })
+	
+	let lightId = sensor.SensorId.AMBIENT_LIGHT;	
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeLight_JSTest_0010
@@ -58,9 +60,8 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest001---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {				
+		   sensor.getSingleSensor(lightId ,(error, data) => {				
 				sensor.subscribeLight({
-					interval: 'game',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest001 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
@@ -89,9 +90,8 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest002---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {				
+		   sensor.getSingleSensor(lightId ,(error, data) => {				
 				sensor.subscribeLight({
-					interval: 'ui',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest002 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
@@ -120,7 +120,7 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest003---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {				
+		   sensor.getSingleSensor(lightId ,(error, data) => {				
 				sensor.subscribeLight({
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest003 success" + JSON.stringify(data));
@@ -150,9 +150,8 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest004---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {	        
+		   sensor.getSingleSensor(lightId ,(error, data) => {	        
 				sensor.subscribeLight({
-					interval: 'normal',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest004 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
@@ -164,7 +163,6 @@ describe("SensorJsTest_sensor_31", function () {
 				});
 
 				sensor.subscribeLight({
-					interval: 'normal',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest004_1 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
@@ -193,9 +191,8 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest005---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {	      		
+		   sensor.getSingleSensor(lightId ,(error, data) => {	      		
 				sensor.subscribeLight({
-					interval: 'xxx',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest005 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
@@ -222,9 +219,8 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest006---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {	    		
+		   sensor.getSingleSensor(lightId ,(error, data) => {	    		
 				sensor.subscribeLight({
-					interval: 'normal',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest006 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
@@ -246,19 +242,21 @@ describe("SensorJsTest_sensor_31", function () {
     it("subscribeLight_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------subscribeLight_SensorJsTest007---------------------------');
 		try{
-		   sensor.getSingleSensor(sensor.subscribeLight ,(error, data) => {	          
+		   sensor.getSingleSensor(lightId ,(error, data) => {	          
 				sensor.subscribeLight({
-					interval: 'normal',
 					success: function (data) {
 						console.info("subscribeLight_SensorJsTest007 success" + JSON.stringify(data));
 						expect(typeof (data.intensity)).assertEqual("number");
-						done();
 					},
 					fail: function (data, code) {
 						console.log("subscribeLight_SensorJsTest007 is failed, data: " + data + ", code: " + code);
 						expect(false).assertTrue();
 					},
 				});
+				setTimeout(() => {
+					sensor.unsubscribeLight();
+					done();
+				}, 1000);
 			})
 		} catch (error) {
             console.info('subscribeLight_SensorJsTest007 Device does not support! ');
