@@ -287,7 +287,7 @@ export default function ActsCommonEventManagerSupportTest() {
     /*
      * @tc.number    : SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1600
      * @tc.name      : commonEventManager.Support
-     * @tc.desc      : charging battery,device's ,User,ability,Gps
+     * @tc.desc      : charging battery,device idle,User,ability,Gps
      */
     it('SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1600', 0, async  function () {
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1600 START`)
