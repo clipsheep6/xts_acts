@@ -25,16 +25,12 @@ config("nnrt_config") {
   cflags = [ "-Wno-error" ]
 }
 
-ohos_moduletest_suite("ActsAiNnrtFunctionTest") {
+ohos_moduletest_suite("ActsAiNnrtStabilityV1_0Test") {
   module_out_path = "acts/nnrt"
   sources = [
     "../common/mock_idevice.cpp",
     "../common/nnrt_utils.cpp",
-    "src/CompileTest.cpp",
-    "src/DeviceTest.cpp",
-    "src/ExecutorTest.cpp",
-    "src/MemoryTest.cpp",
-    "src/ModelTest.cpp",
+    "src/MultiThreadTest.cpp",
   ]
 
   configs = [ ":nnrt_config" ]
