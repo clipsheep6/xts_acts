@@ -27,6 +27,7 @@
             "teardown-command":[
                 "power-shell setmode 600"
             ]
+            
         }
     ]
 }
