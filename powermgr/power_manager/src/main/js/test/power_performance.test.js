@@ -149,6 +149,39 @@ describe('PowerPerformanceTest', function () {
         console.info(`PowerPerformance_007: Promise: brightness.setValue Wait Time : ${waitTime}`);
         avgTime < LIMIT_TIME ? expect(true).assertTrue() : expect(false).assertTrue();
     })
+    
+     /**
+     * @tc.number PowerPerformance_008
+     * @tc.name isScreenOn_test
+     * @tc.desc AsyncCallback<boolean> judge whether the screen is lit and return to true
+     */
+    it('PowerPerformance_006', 0, async function (done) {
+        let startTime = new Date().getTime();
+        for (let i = 0; i < MAXNUM; i++) {
+            await power.isScreenOn()
+        }
+        let waitTime = new Date().getTime() - startTime;
+        let avgTime = waitTime / MAXNUM * MS_TO_US; //us
+        console.info(`PowerPerformance_006: Promise: await power.isScreenOn Wait Time : ${waitTime}`);
+        avgTime < LIMIT_TIME ? expect(true).assertTrue() : expect(false).assertTrue();
+        done();
+    })
+
+    /**
+     * @tc.number PowerPerformance_009
+     * @tc.name setValue_test
+     * @tc.desc Interface is called normally
+     */
+    it('PowerPerformance_007', 0, function () {
+        let startTime = new Date().getTime();
+        for (let i = 0; i < MAXNUM; i++) {
+            brightness.setValue(100);
+        }
+        let waitTime = new Date().getTime() - startTime;
+        let avgTime = waitTime / MAXNUM * MS_TO_US; //us
+        console.info(`PowerPerformance_007: Promise: brightness.setValue Wait Time : ${waitTime}`);
+        avgTime < LIMIT_TIME ? expect(true).assertTrue() : expect(false).assertTrue();
+    })
 
 })
 }
