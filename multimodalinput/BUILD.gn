@@ -18,6 +18,7 @@ group("multimodalinput") {
   if (is_standard_system) {
     deps = [
       "input_js_standard:multimodalinput_js_test",
+      "sys_check_js_standard",
       "multimodalinput_ets_standard:ActsMultimodalInputEtsTest",
     ]
   }
