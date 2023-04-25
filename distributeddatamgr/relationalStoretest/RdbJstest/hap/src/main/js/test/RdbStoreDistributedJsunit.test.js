@@ -66,7 +66,7 @@ export default function rdbStoreDistributedTest() {
 describe('rdbStoreDistributedTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await dataRdb.getRdbStore(config, 1);
+        rdbStore = await dataRdb.getRdbStore(context, config, 1);
         console.info(TAG + "create rdb store success")
         await executeSql1()
         await executeSql2()
@@ -82,7 +82,7 @@ describe('rdbStoreDistributedTest', function () {
 
     afterAll(async function () {
         console.info(TAG + 'afterAll')
-        await dataRdb.deleteRdbStore(STORE_NAME);
+        await dataRdb.deleteRdbStore(context, STORE_NAME);
     })
 
     console.info(TAG + "*************Unit Test Begin*************");
@@ -260,7 +260,7 @@ describe('rdbStoreDistributedTest', function () {
         console.info(TAG + "************* testRdbStoreDistributed0009 start *************");
         let predicates = new dataRdb.RdbPredicates("employee")
         try {
-            predicates = predicates.inDevices("1234567890");
+            predicates = predicates.inDevices(["1234567890"]);
             console.info(TAG + "inDevices success");
             expect(predicates).assertEqual(predicates);
         } catch (err) {
@@ -299,7 +299,7 @@ describe('rdbStoreDistributedTest', function () {
     it('testRdbStoreDistributed0011', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0011 start *************");
         let predicates = new dataRdb.RdbPredicates("employee")
-        predicates = predicates.inDevices("12345678abcd");
+        predicates = predicates.inDevices(["12345678abcd"]);
         rdbStore.sync(dataRdb.SyncMode.SYNC_MODE_PUSH, predicates);
         console.info(TAG + "sync push success");
         expect(rdbStore).assertEqual(rdbStore);
@@ -321,7 +321,7 @@ describe('rdbStoreDistributedTest', function () {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
         let predicates = new dataRdb.RdbPredicates("employee")
-        predicates = predicates.inDevices("12345678abcd");
+        predicates = predicates.inDevices(["12345678abcd"]);
         rdbStore.sync(dataRdb.SyncMode.SYNC_MODE_PUSH, predicates,(err,ret)=>{
             console.info(TAG + "sync push success");
             expect(rdbStore).assertEqual(rdbStore);

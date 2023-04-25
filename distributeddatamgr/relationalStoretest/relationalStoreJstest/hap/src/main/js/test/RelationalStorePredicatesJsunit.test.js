@@ -2183,7 +2183,7 @@ describe('relationalStorePredicatesTest', function () {
         let errInfo = undefined
         try{
             let predicates = await new data_Rdb.RdbPredicates("AllDataType");
-            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(["characterValue"]);
+            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy("characterValue");
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
             result.close();
@@ -2205,7 +2205,7 @@ describe('relationalStorePredicatesTest', function () {
         let errInfo = undefined
         try{
             let predicates = await new data_Rdb.RdbPredicates("AllDataType");
-            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(["characterValueX"]);
+            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy("characterValueX");
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
             result.close();

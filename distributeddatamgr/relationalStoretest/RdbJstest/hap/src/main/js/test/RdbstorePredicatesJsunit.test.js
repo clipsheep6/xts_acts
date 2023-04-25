@@ -14,6 +14,8 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.rdb';
+import ability_featureAbility from '@ohos.ability.featureAbility'
+var context = ability_featureAbility.getContext();
 
 const TAG = "[RDB_JSKITS _TEST]"
 const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS AllDataType "
@@ -34,7 +36,7 @@ export default function rdbPredicatesTest() {
 describe('rdbPredicatesTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-        rdbStore = await dataRdb.getRdbStore(STORE_CONFIG, 1);
+        rdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG, 1);
         await rdbStore.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL, null);
         await buildAllDataType1();
         await buildAllDataType2();
@@ -52,7 +54,7 @@ describe('rdbPredicatesTest', function () {
     afterAll(async function () {
         console.info(TAG + 'afterAll')
         rdbStore = null
-        await dataRdb.deleteRdbStore("Predicates.db");
+        await dataRdb.deleteRdbStore(context, "Predicates.db");
     })
 
     function resultSize(resultSet) {
@@ -2182,7 +2184,7 @@ describe('rdbPredicatesTest', function () {
         let errInfo = undefined
         try{
             let predicates = await new dataRdb.RdbPredicates("AllDataType");
-            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(["characterValue"]);
+            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy("characterValue");
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
         } catch (err) {
@@ -2204,7 +2206,7 @@ describe('rdbPredicatesTest', function () {
         let errInfo = undefined
         try{
             let predicates = await new dataRdb.RdbPredicates("AllDataType");
-            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(["characterValueX"]);
+            predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy("characterValueX");
             let result = await rdbStore.query(predicates);
             expect(3).assertEqual(result.rowCount);
         } catch (err) {
