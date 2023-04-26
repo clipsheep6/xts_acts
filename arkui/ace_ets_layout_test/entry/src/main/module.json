@@ -29,10 +29,6 @@
                 "entities": [
                     "entity.system.home"
                 ]
-            }],
-            "metadata":[{
-                "name":"ArkTSPartialUpdate",
-                "value":"true"
             }]
         }],
         "metadata":[{
