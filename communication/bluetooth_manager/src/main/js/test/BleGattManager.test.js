@@ -157,22 +157,22 @@ describe('bluetoothBLETest', function() {
         try {
             await gattClient.getRssiValue().then((data) => {
                 console.info('[bluetooth_js] BLE read rssi: ' + JSON.stringify(data));
-                let rssiLength = Object.keys(data).length;
-                console.info('[bluetooth_js] BLE read rssi: ' + JSON.stringify(rssiLength));
-                expect(rssiLength).assertEqual(0);
+                expect(true).assertEqual(data!=null);
                 done();
             }).catch(err => {
                 console.info('bluetooth getRssiValue has error: '+ JSON.stringify(err));
+                expect(err.code).assertEqual(2900099);
                 done();
             });
         } catch (error) {
             console.error(`[bluetooth_js]GetRssiValue_0100 error, code is ${error.code}, 
             message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(false).assertEqual(true);
             done()
         }
         
     })
+   
     
     /**
      * @tc.number COMMUNICATION_BLUETOOTH_BLE_GetRssiValue_0200
@@ -185,23 +185,30 @@ describe('bluetoothBLETest', function() {
      */
     it('COMMUNICATION_BLUETOOTH_BLE_GetRssiValue_0200', 0, async function (done) {
         try {
-            let promise = new Promise((resolve) => {            
-                gattClient.getRssiValue((err, data)=> {
-                    if (err) {
-                        console.error('getRssi failed ');
-                      }
-                    console.info('[bluetooth_js]getRssi value:'+JSON.stringify(data));
-                    expect(true).assertFalse();
+            function getRssi() {
+                 return new Promise((resolve,reject) => {
+                    gattClient.getRssiValue((err, data)=> {
+                        if (err) {
+                            console.error('getRssi failed ');
+                            expect(err.code).assertEqual(2900099);
+                          }
+                          else
+                          {
+                            console.info('[bluetooth_js]getRssi value:'+JSON.stringify(data));
+                            expect(true).assertEqual(data!=null );
+                        }
+                        resolve();
+                    });
                 });
-                resolve()
-            })
-            await promise.then(done)
+            }
+            await getRssi();
         } catch (error) {
             console.error(`[bluetooth_js]GetRssiValue_0200 error, code is ${error.code}, 
             message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');        
-            done()
-        }       
+            expect(false).assertEqual(true);
+        }
+        await sleep(2000);
+        done();
     })
 
     /**
