@@ -13,9 +13,13 @@
  * limitations under the License.
  */
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
+import userFileManager from "@ohos.filemanagement.userFileManager";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from "@ohos.bundle";
+import dataSharePredicates from "@ohos.data.dataSharePredicates";
 import uitest from "@ohos.UiTest";
+import fileio from "@ohos.fileio";
+
 const presetsCount = {
     ActsMediaLibraryAlbumTest: { albumsCount: 15, assetsCount: 27 },
     ActsMediaLibraryBaseTest: { albumsCount: 11, assetsCount: 14 },
@@ -37,6 +41,10 @@ const FILE_TYPE = mediaLibrary.MediaType.FILE;
 const FILEKEY = mediaLibrary.FileKey;
 const { RELATIVE_PATH, ALBUM_NAME, MEDIA_TYPE } = FILEKEY;
 
+const IMAGEVIDEOKEY = userFileManager.ImageVideoKey;
+const THROW_ERROR_CODE = 13900020;
+const JPG_HEIGHT = 1706;
+const JPG_WIDTH = 1279;
 const sleep = async function sleep(times) {
     if (!times) {
         times = 10;
@@ -276,6 +284,7 @@ export {
     AUDIO_TYPE,
     FILE_TYPE,
     FILEKEY,
+    IMAGEVIDEOKEY,
     sleep,
     allFetchOp,
     fetchOps,
@@ -290,4 +299,6 @@ export {
     MODIFY_ERROR_CODE_01,
     isNum,
     fileIdFetchOps,
+    JPG_HEIGHT,
+    JPG_WIDTH,
 };
