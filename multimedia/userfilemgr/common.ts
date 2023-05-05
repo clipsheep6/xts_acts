@@ -25,6 +25,8 @@ const presetsCount = {
   ActsUserFileMgrFileAssetJsTest: { albumsCount: 45, assetsCount: 87 }
 }
 
+const JPG_HEIGHT = 1706;
+const JPG_WIDTH = 1279;
 const IMAGE_TYPE = userFileManager.FileType.IMAGE
 const VIDEO_TYPE = userFileManager.FileType.VIDEO
 const AUDIO_TYPE = userFileManager.FileType.AUDIO
@@ -235,5 +237,7 @@ export {
   isNum,
   deleteAllUserAlbum,
   getFileAsset,
-  assetFetchOneArgsWithFetchColumn
+  assetFetchOneArgsWithFetchColumn,
+  JPG_HEIGHT,
+  JPG_WIDTH,
 }
