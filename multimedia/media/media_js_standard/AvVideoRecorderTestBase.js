@@ -379,3 +379,26 @@ export async function avConfigChangedPromise(avConfig, avRecorder, done) {
     await AVRecorderTestBase.releasePromise(avRecorder);
     done();
 }
+
+export async function avRecorderWithPromise2(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    console.info('case avConfig.orientationHint is ' + avConfig.orientationHint);
+    console.info('case avConfig.profile.audioBitrate is ' + avConfig.profile.audioBitrate)
+    console.info('case avConfig.profile.audioSampleRate is ' + avConfig.profile.audioSampleRate)
+    console.info('case avConfig.profile.videoBitrate is ' + avConfig.profile.videoBitrate)
+    console.info('case avConfig.profile.videoFrameRate is ' + avConfig.profile.videoFrameRate);
+
+    setAvRecorderCallback(avRecorder)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig)
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcess(avRecorder, recorderTime)
+    await pauseRecordingProcess(avRecorder)
+
+    await resumeRecordingProcess(avRecorder)
+    await stopRecordingProcess(avRecorder)
+
+    await releaseRecorder(avRecorder, done)
+}
