@@ -88,8 +88,6 @@ export default function avVideoRecorderTestTwo() {
             console.info('afterAll case');
         })
 
-        // promise 
-        // prepare
         /* *
             * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0100
             * @tc.name      : 01. create->prepare
