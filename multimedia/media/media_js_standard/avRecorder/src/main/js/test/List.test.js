@@ -14,8 +14,8 @@
  */
 
 import avRecorderTest from './AVRecorderFuncTest.test.js'
-
+import avVideoRecorderTestTwo from './AvVideoRecorderFuncTestTwo.test.js'
 
 export default function testsuite() {
-  avRecorderTest()
+  avVideoRecorderTestTwo()
 }
