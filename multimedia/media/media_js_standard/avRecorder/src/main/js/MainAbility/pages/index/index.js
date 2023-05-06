@@ -26,4 +26,7 @@ export default {
     },
     onReady() {
     },
+    onload() {
+        globalThis.value = this.$element('xcomponent').getXComponentSurfaceId();
+    }
 }
