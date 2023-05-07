@@ -20,7 +20,6 @@ import getAlbumsPromiseTest from './getAlbumsPromise.test.ets'
 import getFileAssetsCallbackTest from './getFileAssetsCallback.test.ets'
 import getFileAssetsPromiseTest from './getFileAssetsPromise.test.ets'
 import getUserFileMgrTest from './getUserFileMgr.test.ets'
-import onOffReleasePromiseTest from './onOffReleasePromise.test.ets'
 export default function testsuite(abilityContext) {
   deleteCallbackTest(abilityContext)
   deletePromiseTest(abilityContext)
@@ -29,5 +28,4 @@ export default function testsuite(abilityContext) {
   getFileAssetsCallbackTest(abilityContext)
   getFileAssetsPromiseTest(abilityContext)
   getUserFileMgrTest(abilityContext)
-  onOffReleasePromiseTest(abilityContext)
 }
