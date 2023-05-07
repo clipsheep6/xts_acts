@@ -40,75 +40,6 @@ const sleep = async function sleep (times) {
   await new Promise(res => setTimeout(res, times))
 }
 
-// const allFetchOp = function () {
-//     let predicates = new dataSharePredicates.DataSharePredicates();
-//     return {
-//         fetchColumns: ['file_id', 'uri', 'mime_type', 'media_type', 'display_name',
-//             'title', 'relative_path', 'parent', 'size', 'date_added', 'date_modified',
-//             'date_taken', 'artist', 'width', 'height', 'orientation', 'duration', 'bucket_id',
-//             'bucket_display_name', 'is_trash', 'is_favorite', 'date_trashed', 'position'],
-//         predicates: predicates
-//     };
-// }
-
-// const audioFetchOps = function (testNum, path) {
-//     let predicates = new dataSharePredicates.DataSharePredicates();
-//     predicates.equalTo(AudioKey.RELATIVE_PATH, path);
-//     let ops = {
-//         fetchColumns: ['file_id', 'uri', 'mime_type', 'media_type', 'display_name',
-//             'title', 'relative_path', 'parent', 'size', 'date_added', 'date_modified',
-//             'date_taken', 'artist', 'width', 'height', 'orientation', 'duration', 'bucket_id',
-//             'bucket_display_name', 'is_trash', 'is_favorite', 'date_trashed', 'position', 'audio_album'],
-//         predicates: predicates
-//     };
-//     console.info(`${testNum} queryOps: ${AudioKey.RELATIVE_PATH} = ${path}`);
-//     return ops
-// }
-
-// const imageVideoFetchOps = function (testNum, path) {
-//     let predicates = new dataSharePredicates.DataSharePredicates();
-//     predicates.equalTo(ImageVideoKey.RELATIVE_PATH, path);
-//     let ops = {
-//         fetchColumns: ['file_id', 'uri', 'mime_type', 'media_type', 'display_name',
-//             'title', 'relative_path', 'parent', 'size', 'date_added', 'date_modified',
-//             'date_taken', 'artist', 'width', 'height', 'orientation', 'duration', 'bucket_id',
-//             'bucket_display_name', 'is_trash', 'is_favorite', 'date_trashed', 'position'],
-//         predicates: predicates
-//     };
-//     console.info(`${testNum} queryOps: ${ImageVideoKey.RELATIVE_PATH} = ${path}`);
-//     return ops
-// }
-
-// const audioNameFetchOps = function (testNum, path, displayName) {
-//     let predicates = new dataSharePredicates.DataSharePredicates();
-//     predicates.equalTo(AudioKey.RELATIVE_PATH, path)
-//         .equalTo(AudioKey.DISPLAY_NAME, displayName);
-//     let ops = {
-//         fetchColumns: ['file_id', 'uri', 'mime_type', 'media_type', 'display_name',
-//             'title', 'relative_path', 'parent', 'size', 'date_added', 'date_modified',
-//             'date_taken', 'artist', 'width', 'height', 'orientation', 'duration', 'bucket_id',
-//             'bucket_display_name', 'is_trash', 'is_favorite', 'date_trashed', 'position', 'audio_album'],
-//         predicates: predicates
-//     };
-//     console.info(`${testNum} queryOps: ${AudioKey.RELATIVE_PATH} = ${path} AND display_name = ${displayName}`);
-//     return ops
-// }
-
-// const imageVideoNameFetchOps = function (testNum, path, displayName) {
-//     let predicates = new dataSharePredicates.DataSharePredicates();
-//     predicates.equalTo(ImageVideoKey.RELATIVE_PATH, path)
-//         .equalTo(ImageVideoKey.DISPLAY_NAME, displayName);
-//     let ops = {
-//         fetchColumns: ['file_id', 'uri', 'mime_type', 'media_type', 'display_name',
-//             'title', 'relative_path', 'parent', 'size', 'date_added', 'date_modified',
-//             'date_taken', 'artist', 'width', 'height', 'orientation', 'duration', 'bucket_id',
-//             'bucket_display_name', 'is_trash', 'is_favorite', 'date_trashed', 'position'],
-//         predicates: predicates
-//     };
-//     console.info(`${testNum} queryOps: ${ImageVideoKey.RELATIVE_PATH} = ${path} AND display_name = ${displayName}`);
-//     return ops
-// }
-
 const fetchAllOps = function () {
   const predicates = new dataSharePredicates.DataSharePredicates()
   return {
@@ -116,28 +47,6 @@ const fetchAllOps = function () {
     predicates
   }
 }
-
-// ImageVideoKey.URI,
-// ImageVideoKey.FILE_TYPE,
-// ImageVideoKey.DISPLAY_NAME,
-// ImageVideoKey.DATE_ADDED,
-// ImageVideoKey.DATE_MODIFIED,
-// ImageVideoKey.TITLE,
-// ImageVideoKey.DURATION,
-// ImageVideoKey.WIDTH,
-// ImageVideoKey.HEIGHT,
-// ImageVideoKey.DATE_TAKEN,
-// ImageVideoKey.ORIENTATION,
-// ImageVideoKey.FAVORITE,
-// ImageVideoKey.POSITION,
-// ImageVideoKey.DATE_TRASHED,
-// ImageVideoKey.HIDDEN,
-
-// AlbumKey.URI,
-// AlbumKey.FILE_TYPE,
-// AlbumKey.ALBUM_NAME,
-// AlbumKey.DATE_ADDED,
-// AlbumKey.DATE_MODIFIED,
 
 const assetFetchOneArgs = function (testNum, key, value) {
   const predicates = new dataSharePredicates.DataSharePredicates()
@@ -154,21 +63,25 @@ const assetFetchOneArgsWithFetchColumn = function (testNum, key, value) {
   const predicates = new dataSharePredicates.DataSharePredicates()
   predicates.equalTo(key, value)
   const ops = {
-    fetchColumns: [ImageVideoKey.FAVORITE, ImageVideoKey.HIDDEN],
+    fetchColumns: [
+      ImageVideoKey.URI,
+      ImageVideoKey.FILE_TYPE,
+      ImageVideoKey.DISPLAY_NAME,
+      ImageVideoKey.DATE_ADDED,
+      ImageVideoKey.DATE_MODIFIED,
+      ImageVideoKey.TITLE,
+      ImageVideoKey.DURATION,
+      ImageVideoKey.WIDTH,
+      ImageVideoKey.HEIGHT,
+      ImageVideoKey.DATE_TAKEN,
+      ImageVideoKey.ORIENTATION,
+      ImageVideoKey.FAVORITE,
+      ImageVideoKey.POSITION,
+      ImageVideoKey.HIDDEN,
+    ],
     predicates
   }
   console.info(`${testNum} queryOps: ${key} = ${value}`)
-  return ops
-}
-
-const assetFetchTwoArgs = function (testNum, key1, value1, key2, value2) {
-  const predicates = new dataSharePredicates.DataSharePredicates()
-  predicates.equalTo(key1, value1).equalTo(key2, value2)
-  const ops = {
-    fetchColumns: [],
-    predicates
-  }
-  console.info(`${testNum} queryOps: ${key1} = ${value1} AND ${key2} = ${value2}`)
   return ops
 }
 
@@ -181,27 +94,6 @@ const albumFetchOneArgs = function (testNum, key, value) {
   console.info(`${testNum} queryOps: ${key} = ${value}`)
   return ops
 }
-
-const albumFetchOps = function (testNum, path, albumName) {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo(AlbumKey.RELATIVE_PATH, path)
-        .equalTo("bucket_display_name", albumName);
-    let ops = {
-        predicates: predicates
-    };
-    console.info(`${testNum} queryOps: ${AlbumKey.RELATIVE_PATH} = ${path} AND bucket_display_name = ${albumName}`);
-    return ops
-}
-
-// const albumNameFetchOps = function (testNum, albumName) {
-//     let predicates = new dataSharePredicates.DataSharePredicates();
-//     predicates.equalTo(AlbumKey.ALBUM_NAME, albumName);
-//     let ops = {
-//         predicates: predicates
-//     };
-//     console.info(`${testNum} queryOps: ${AlbumKey.ALBUM_NAME} = ${albumName}`);
-//     return ops
-// }
 
 const checkPresetsAssets = async function (userfilemgr, hapName) {
   console.info('checkPresetsAssets start')
@@ -304,11 +196,16 @@ async function deleteAllUserAlbum() {
   }
 }
 
-async function getFileAsset(testNum, fetchOps) {
+async function getFileAsset(testNum, fetchOps, isAudio = false) {
   let asset: userFileManager.FileAsset
   try {
       const userfilemgr = userFileManager.getUserFileMgr(globalThis.abilityContext);
-      const fetchResult = await userfilemgr.getPhotoAssets(fetchOps);
+      let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset>
+      if (isAudio) {
+        fetchResult = await userfilemgr.getAudioAssets(fetchOps)
+      } else {
+        fetchResult = await userfilemgr.getPhotoAssets(fetchOps)
+      }
       console.info(`${testNum} getFileAsset fetchResult: ${fetchResult.getCount()}`);
       asset = await fetchResult.getFirstObject();
       fetchResult.close()
@@ -330,10 +227,8 @@ export {
   AlbumType,
   AlbumSubType,
   sleep,
-  albumFetchOps,
   fetchAllOps,
   assetFetchOneArgs,
-  assetFetchTwoArgs,
   albumFetchOneArgs,
   checkPresetsAssets,
   checkAssetsCount,

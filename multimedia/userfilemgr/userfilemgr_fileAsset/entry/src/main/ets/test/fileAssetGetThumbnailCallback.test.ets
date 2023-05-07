@@ -43,13 +43,13 @@ export default function fileAssetGetThumbnailCallbackTest (abilityContext) {
       console.info('afterAll case')
     })
 
-    async function testGetThumbnail (done, testNum, fetchOp, size, isAudio) {
+    async function testGetThumbnail (done, testNum, fetchOps, size, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
         if (!checkAssetCountPass) return
@@ -107,13 +107,13 @@ export default function fileAssetGetThumbnailCallbackTest (abilityContext) {
     }
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_001
-         * @tc.name      : getThumbnail
-         * @tc.desc      : getThumbnail(image) by no arg
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_001
+     * @tc.name      : getThumbnail
+     * @tc.desc      : getThumbnail(image) by no arg
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_001', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_001'
       const dOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'thumCallback01.jpg')
@@ -123,14 +123,14 @@ export default function fileAssetGetThumbnailCallbackTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_002
-         * @tc.name      : getThumbnail
-         * @tc.desc      : getThumbnail(image) by { width: 128, height: 128 }
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_002', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_002
+     * @tc.name      : getThumbnail
+     * @tc.desc      : getThumbnail(image) by { width: 128, height: 128 }
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_002', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_01_002'
       const dOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'thumCallback02.jpg')
       const size = { width: 128, height: 128 }
@@ -139,14 +139,14 @@ export default function fileAssetGetThumbnailCallbackTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_001
-         * @tc.name      : getThumbnail
-         * @tc.desc      : getThumbnail(video) by no arg
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_001', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_001
+     * @tc.name      : getThumbnail
+     * @tc.desc      : getThumbnail(video) by no arg
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_001'
       const dOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'thumCallback01.mp4')
       const size = 'default'
@@ -155,14 +155,14 @@ export default function fileAssetGetThumbnailCallbackTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_002
-         * @tc.name      : getThumbnail
-         * @tc.desc      : getThumbnail(video) by { width: 128, height: 128 }
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_002', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_002
+     * @tc.name      : getThumbnail
+     * @tc.desc      : getThumbnail(video) by { width: 128, height: 128 }
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_002', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_GETTHUMBNAIL_CALLBACK_03_002'
       const dOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'thumCallback02.mp4')
       const size = { width: 128, height: 128 }

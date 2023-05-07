@@ -58,13 +58,13 @@ export default function getFileAssetsCallbackTest (abilityContext) {
       }
     }
 
-    async function getFirstObjectTest (done, testNum, fetchOp, isAudio) {
+    async function getFirstObjectTest (done, testNum, fetchOps, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -88,13 +88,13 @@ export default function getFileAssetsCallbackTest (abilityContext) {
       }
     }
 
-    async function getLastObjectTest (done, testNum, fetchOp, isAudio) {
+    async function getLastObjectTest (done, testNum, fetchOps, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -118,13 +118,13 @@ export default function getFileAssetsCallbackTest (abilityContext) {
       }
     }
 
-    async function getPositionObjectTest (done, testNum, fetchOp, pos, isAudio) {
+    async function getPositionObjectTest (done, testNum, fetchOps, pos, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -148,13 +148,13 @@ export default function getFileAssetsCallbackTest (abilityContext) {
       }
     }
 
-    async function isAfterLastTest (done, testNum, fetchOp, isAudio) {
+    async function isAfterLastTest (done, testNum, fetchOps, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -177,13 +177,13 @@ export default function getFileAssetsCallbackTest (abilityContext) {
       }
     }
 
-    async function checkFileAssetAttr (done, testNum, fetchOp, type, isAudio) {
+    async function checkFileAssetAttr (done, testNum, fetchOps, type, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -261,9 +261,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : getLastObject query video assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_02_003', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_02_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_02_003'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', VIDEO_TYPE)
       const isAudio = false
@@ -278,9 +278,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : getPositionObject query image assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_03_001', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_03_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_03_001'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', IMAGE_TYPE)
       const pos = 0
@@ -294,9 +294,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : getPositionObject query video assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_03_003', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_03_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_03_003'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', VIDEO_TYPE)
       const pos = 0
@@ -312,9 +312,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : isAfterLast query image assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_04_001', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_04_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_04_001'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', IMAGE_TYPE)
       const isAudio = false
@@ -327,9 +327,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : isAfterLast query video assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_04_003', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_04_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_04_003'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', VIDEO_TYPE)
       const isAudio = false
@@ -344,9 +344,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : query image assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_05_001', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_05_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_05_001'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', IMAGE_TYPE)
       const type = 'image'
@@ -360,9 +360,9 @@ export default function getFileAssetsCallbackTest (abilityContext) {
      * @tc.desc      : query video assets
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_05_003', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_05_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETS_CALLBACK_05_003'
       const currentFetchOps = assetFetchOneArgs(testNum, 'media_type', VIDEO_TYPE)
       const type = 'video'

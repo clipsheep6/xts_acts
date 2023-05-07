@@ -44,13 +44,13 @@ export default function fileAssetCommitModifyPromiseTest (abilityContext) {
       console.info('afterAll case')
     })
 
-    const checkCommitModify = async function (done, testNum, fetchOp, prop, val, isAudio) {
+    const checkCommitModify = async function (done, testNum, fetchOps, prop, val, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
         if (!checkAssetCountPass) return
@@ -70,37 +70,37 @@ export default function fileAssetCommitModifyPromiseTest (abilityContext) {
     }
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_01
-         * @tc.name      : commitModify
-         * @tc.desc      : image asset modify displayName
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_01
+     * @tc.name      : commitModify
+     * @tc.desc      : image asset modify displayName
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_01', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_01'
-      const fetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'commitModifyPromise01.jpg')
+      const fetchOps = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'commitModifyPromise01.jpg')
       const prop = 'display_name'
       const val = IMAGE_TYPE.toString() + '.jpg'
       const isAudio = false
-      await checkCommitModify(done, testNum, fetchOp, prop, val, isAudio)
+      await checkCommitModify(done, testNum, fetchOps, prop, val, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_03
-         * @tc.name      : commitModify
-         * @tc.desc      : video asset modify displayName
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_03', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_03
+     * @tc.name      : commitModify
+     * @tc.desc      : video asset modify displayName
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_03', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_COMMITMODIFY_PROMISE_03'
-      const fetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'commitModifyPromise01.mp4')
+      const fetchOps = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'commitModifyPromise01.mp4')
       const prop = 'display_name'
       const val = VIDEO_TYPE.toString() + '.mp4'
       const isAudio = false
-      await checkCommitModify(done, testNum, fetchOp, prop, val, isAudio)
+      await checkCommitModify(done, testNum, fetchOps, prop, val, isAudio)
     })
   })
 }

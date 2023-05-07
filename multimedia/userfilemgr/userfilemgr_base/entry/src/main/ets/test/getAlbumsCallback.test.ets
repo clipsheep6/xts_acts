@@ -78,9 +78,9 @@ export default function getAlbumsCallbackTest (abilityContext) {
         expect(album.relativePath).assertEqual(relativePaths)
       }
     }
-    const checkAlbumInfo = async function (done, testNum, fetchOp, relativePaths) {
+    const checkAlbumInfo = async function (done, testNum, fetchOps, relativePaths) {
       try {
-        userfilemgr.getPhotoAlbums(fetchOp, async (err, fetchAlbumResult) => {
+        userfilemgr.getPhotoAlbums(fetchOps, async (err, fetchAlbumResult) => {
           if (err) {
             console.info(`${testNum} getPhotoAlbums err: ${err}`)
             expect(false).assertTrue()

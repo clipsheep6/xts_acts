@@ -31,7 +31,9 @@
             "run-command": [
                 "mkdir -pv /storage/media/100/local/files/Pictures/{Static,DynamicCb,DynamicPro}",
                 
-                "for d in Static DynamicCb DynamicPro; do for i in $$(seq 1); do cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/$$d/0$$i.jpg; done;done;",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/Static/",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/DynamicCb/",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/DynamicPro/",
                
                 "chmod -R 777 /storage/media/100/local/files/*",
                 "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",

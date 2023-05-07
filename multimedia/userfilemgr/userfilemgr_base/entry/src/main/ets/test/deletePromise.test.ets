@@ -39,13 +39,13 @@ export default function deleteCallbackTest(abilityContext) {
             console.info("afterAll case");
         });
 
-        const deleteTest = async function (done, testNum, fetchOp, isAudio) {
+        const deleteTest = async function (done, testNum, fetchOps, isAudio) {
             try {
                 let fetchAssetResult: userFileManager.FetchResult<userFileManager.FileAsset>;
                 if (isAudio) {
-                    fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp);
+                    fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps);
                 } else {
-                    fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp);
+                    fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps);
                 }
                 const expectCount = 1;
                 const chechAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount);
@@ -55,9 +55,9 @@ export default function deleteCallbackTest(abilityContext) {
                 await userfilemgr.delete(asset.uri);
                 let newFetchResult: userFileManager.FetchResult<userFileManager.FileAsset>;
                 if (isAudio) {
-                    newFetchResult = await userfilemgr.getAudioAssets(fetchOp);
+                    newFetchResult = await userfilemgr.getAudioAssets(fetchOps);
                 } else {
-                    newFetchResult = await userfilemgr.getPhotoAssets(fetchOp);
+                    newFetchResult = await userfilemgr.getPhotoAssets(fetchOps);
                 }
                 expect(newFetchResult.getCount()).assertEqual(1);
                 newFetchResult.close();

@@ -18,10 +18,10 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import {
   sleep,
   ImageVideoKey,
-  assetFetchOneArgs,
+  assetFetchOneArgsWithFetchColumn,
   checkPresetsAssets,
-  checkAssetsCount,
-  getPermission
+  getPermission,
+  getFileAsset
 } from '../../../../../../common'
 
 export default function fileAssetFavoriteCallbackTest (abilityContext) {
@@ -43,47 +43,20 @@ export default function fileAssetFavoriteCallbackTest (abilityContext) {
       console.info('afterAll case')
     })
 
-    const favoriteDefaultState = async function (done, testNum, fetchOp, isAudio) {
+    const favoriteDefaultState = async function (done, testNum, fetchOps, isAudio) {
       try {
-        let fetchAssetResult
-        if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
-        } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
-        }
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
-        asset.isFavorite(async (err, isFavorite) => {
-          if (err) {
-            expect(false).assertTrue()
-            await fetchAssetResult.close()
-            done()
-            return
-          }
-          expect(isFavorite).assertEqual(false)
-          fetchAssetResult.close()
-          done()
-        })
+        const asset = await getFileAsset(testNum, fetchOps, isAudio)
+        expect(asset.get(ImageVideoKey.FAVORITE.toString())).assertEqual(0)
+        done()
       } catch (error) {
         console.info(`${testNum} failed error: ${error}`)
         expect(false).assertTrue()
         done()
       }
     }
-    const favoriteByTrue = async function (done, testNum, fetchOp, isAudio) {
+    const favoriteByTrue = async function (done, testNum, fetchOps, isAudio) {
       try {
-        let fetchAssetResult
-        if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
-        } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
-        }
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
-        const isFavorite = await asset.isFavorite()
-        console.info(`${testNum} isFavorite: ${isFavorite}`)
+        let asset = await getFileAsset(testNum, fetchOps, isAudio)
         asset.favorite(true, async (err) => {
           if (err) {
             console.info(`${testNum} failed err: ${err}`)
@@ -91,9 +64,8 @@ export default function fileAssetFavoriteCallbackTest (abilityContext) {
             done()
             return
           }
-          const isFavorite = await asset.isFavorite()
-          expect(isFavorite).assertEqual(true)
-          fetchAssetResult.close()
+          asset = await getFileAsset(testNum, fetchOps)
+          expect(asset.get(ImageVideoKey.FAVORITE.toString())).assertEqual(1)
           done()
         })
       } catch (error) {
@@ -102,17 +74,9 @@ export default function fileAssetFavoriteCallbackTest (abilityContext) {
         done()
       }
     }
-    const favoriteByFalse = async function (done, testNum, fetchOp, isAudio) {
+    const favoriteByFalse = async function (done, testNum, fetchOps, isAudio) {
       try {
-        let fetchAssetResult
-        if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
-        } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
-        }
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
+        let asset = await getFileAsset(testNum, fetchOps, isAudio)
         await asset.favorite(true)
         asset.favorite(false, async (err) => {
           if (err) {
@@ -121,9 +85,8 @@ export default function fileAssetFavoriteCallbackTest (abilityContext) {
             done()
             return
           }
-          const isFavorite = await asset.isFavorite()
-          expect(isFavorite).assertEqual(false)
-          fetchAssetResult.close()
+          asset = await getFileAsset(testNum, fetchOps)
+          expect(asset.get(ImageVideoKey.FAVORITE.toString())).assertEqual(0)
           done()
         })
       } catch (error) {
@@ -134,76 +97,76 @@ export default function fileAssetFavoriteCallbackTest (abilityContext) {
     }
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_001
-         * @tc.name      : isFavorite
-         * @tc.desc      : isFavorite(image) result false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_001
+     * @tc.name      : isFavorite
+     * @tc.desc      : isFavorite(image) result false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_001', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_001'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback01.jpg')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback01.jpg')
       const isAudio = false
       await favoriteDefaultState(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_002
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(image) by true
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_002', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_002
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(image) by true
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_002', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_002'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback02.jpg')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback02.jpg')
       const isAudio = false
       await favoriteByTrue(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_003
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(image) by false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_003', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_003
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(image) by false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_01_003'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback03.jpg')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback03.jpg')
       const isAudio = false
       await favoriteByFalse(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_001
-         * @tc.name      : isFavorite
-         * @tc.desc      : isFavorite(video) result false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_001', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_001
+     * @tc.name      : isFavorite
+     * @tc.desc      : isFavorite(video) result false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_001'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback01.mp4')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback01.mp4')
       const isAudio = false
       await favoriteDefaultState(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_002
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(video) by true
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_002', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_002
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(video) by true
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_002', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_002'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback02.mp4')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback02.mp4')
       const isAudio = false
       await favoriteByTrue(done, testNum, currentFetchOp, isAudio)
     })
@@ -214,11 +177,11 @@ export default function fileAssetFavoriteCallbackTest (abilityContext) {
          * @tc.desc      : favorite(video) by false
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 0
+         * @tc.level     : Level 3
          */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_003', 0, async function (done) {
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_003', 3, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_CALLBACK_03_003'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback03.mp4')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favCallback03.mp4')
       const isAudio = false
       await favoriteByFalse(done, testNum, currentFetchOp, isAudio)
     })

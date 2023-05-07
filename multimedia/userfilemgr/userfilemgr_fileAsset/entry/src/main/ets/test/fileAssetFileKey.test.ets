@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
+// @ts-nocheck
 import userFileManager from '@ohos.filemanagement.userFileManager'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 import {
   sleep,
-  AlbumKey,
   ImageVideoKey,
-  assetFetchOneArgs,
   checkPresetsAssets,
-  checkAssetsCount,
-  getFileAsset
+  getFileAsset,
+  assetFetchOneArgsWithFetchColumn
 } from '../../../../../../common'
 
 export default function fileAssetFileKeyTest (abilityContext) {
@@ -45,54 +43,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
       console.info('afterAll case')
     })
 
-    const getAlbumsByKey = async function (done, testNum, type, fileKey) {
-      try {
-        const expectAlbumNum = 1
-        const fetchOps = albumFetchOps(testNum, 'Pictures/', 'Static')
-        const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOps)
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumNum)
-        if (!checkAssetCountPass) return
-        const album = await fetchAlbumResult.getFirstObject()
-        console.info(`${testNum} fileKey : ${fileKey}`)
-        console.info(`${testNum} type : ${album[type]}`)
-        fetchAlbumResult.close()
-        const ops = albumFetchOneArgs(testNum, fileKey, album[type])
-
-        userfilemgr.getPhotoAlbums(ops, async (err, newAlbumResult) => {
-          if (err) {
-            console.info(`${testNum}, err: ${err}`)
-            expect(false).assertTrue()
-            done()
-            return
-          }
-          const fetchCount = newAlbumResult.getCount()
-          const currentAlbum = await newAlbumResult.getFirstObject()
-          // expect(currentAlbum.get(type)).assertEqual(album.get(type));
-          expect(currentAlbum[type]).assertEqual(album[type])
-          expect(fetchCount > 0).assertTrue()
-          console.info(`${testNum} newAlbum : ${currentAlbum[type]} count: ${fetchCount}`)
-          newAlbumResult.close()
-          done()
-        })
-      } catch (error) {
-        console.info(`${testNum} error : ${error}`)
-        expect(false).assertTrue()
-        done()
-      }
-    }
-
     const getPhotoAssetsByKey = async function (done, testNum, fileKey) {
       try {
-        const expectAssetNum = 1
-        const fetchOps = imageVideoFetchOps(testNum, 'Pictures/Static/')
-        const fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectAssetNum)
-        if (!checkAssetCountPass) return
-        const asset = await getFileAsset()
+        const fetchOps = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, '01.jpg')
+        const asset = await getFileAsset(testNum, fetchOps)
         console.info(`${testNum} fileKey : ${fileKey}`)
         console.info(`${testNum} type : ${asset.get(fileKey)}`)
-        const ops = assetFetchOneArgs(testNum, fileKey, album[type])
-
+        const ops = assetFetchOneArgsWithFetchColumn(testNum, fileKey, asset.get(fileKey))
         userfilemgr.getPhotoAssets(ops, async (err, newAssetResult) => {
           if (err) {
             console.info(`${testNum}, err: ${err}`)
@@ -113,78 +70,14 @@ export default function fileAssetFileKeyTest (abilityContext) {
       }
     }
 
-    const getAudioAssetsByKey = async function (done, testNum, fileKey) {
-      try {
-        const expectAssetNum = 1
-        const fetchOps = audioFetchOps(testNum, 'Audios/Static/')
-        const fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectAssetNum)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
-        console.info(`${testNum} fileKey : ${fileKey}`)
-        console.info(`${testNum} type : ${asset.get(fileKey)}`)
-        const ops = assetFetchOneArgs(testNum, fileKey, album[type])
-
-        userfilemgr.getAudioAssets(ops, async (err, newAssetResult) => {
-          if (err) {
-            console.info(`${testNum}, err: ${err}`)
-            expect(false).assertTrue()
-            done()
-            return
-          }
-          const fetchCount = newAssetResult.getCount()
-          const currentAsset = await newAssetResult.getFirstObject()
-          expect(currentAsset.get(fileKey)).assertEqual(asset.get(fileKey))
-          expect(fetchCount > 0).assertTrue()
-          done()
-        })
-      } catch (error) {
-        console.info(`${testNum} error : ${error}`)
-        expect(false).assertTrue()
-        done()
-      }
-    }
-
-    //        /**
-    //         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOALBUMSBYKEY_03
-    //         * @tc.name      : AlbumKey
-    //         * @tc.desc      : AlbumKey.DATE_ADDED
-    //         * @tc.size      : MEDIUM
-    //         * @tc.type      : Function
-    //         * @tc.level     : Level 0
-    //         */
-    //        it('SUB_USERFILE_MGR_GETPHOTOALBUMSBYKEY_03', 0, async function (done) {
-    //            let testNum = 'SUB_USERFILE_MGR_GETPHOTOALBUMSBYKEY_03';
-    //            let type = 'dateAdded';
-    //            let fileKey = AlbumKey.DATE_ADDED;
-    //            await getAlbumsByKey(done, testNum, type, fileKey);
-    //        });
-    //
-    //        /**
-    //         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOALBUMSBYKEY_04
-    //         * @tc.name      : AlbumKey
-    //         * @tc.desc      : AlbumKey.DATE_MODIFIED
-    //         * @tc.size      : MEDIUM
-    //         * @tc.type      : Function
-    //         * @tc.level     : Level 0
-    //         */
-    //        it('SUB_USERFILE_MGR_GETPHOTOALBUMSBYKEY_04', 0, async function (done) {
-    //            let testNum = 'SUB_USERFILE_MGR_GETPHOTOALBUMSBYKEY_04';
-    //            let type = 'dateModified';
-    //            let fileKey = AlbumKey.DATE_MODIFIED;
-    //            await getAlbumsByKey(done, testNum, type, fileKey);
-    //        });
-
-    // ------------------------------------------------------------------------------
-
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_02
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.FILE_TYPE
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_02
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.FILE_TYPE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_02', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_02'
       const fileKey = ImageVideoKey.FILE_TYPE
@@ -192,13 +85,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_03
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.DISPLAY_NAME
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_03
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.DISPLAY_NAME
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_03', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_03'
       const fileKey = ImageVideoKey.DISPLAY_NAME
@@ -206,13 +99,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_04
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.DATE_ADDED
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_04
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.DATE_ADDED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_04', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_04'
       const fileKey = ImageVideoKey.DATE_ADDED
@@ -220,13 +113,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_05
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.DATE_MODIFIED
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_05
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.DATE_MODIFIED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_05', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_05'
       const fileKey = ImageVideoKey.DATE_MODIFIED
@@ -234,13 +127,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_06
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.TITLE
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_06
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.TITLE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_06', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_06'
       const fileKey = ImageVideoKey.TITLE
@@ -248,13 +141,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_07
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.DURATION
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_07
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.DURATION
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_07', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_07'
       const fileKey = ImageVideoKey.DURATION
@@ -262,13 +155,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_08
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.WIDTH
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_08
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.WIDTH
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_08', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_08'
       const fileKey = ImageVideoKey.WIDTH
@@ -276,13 +169,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_09
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.HEIGHT
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_09
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.HEIGHT
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_09', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_09'
       const fileKey = ImageVideoKey.HEIGHT
@@ -290,13 +183,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_010
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.DATE_TAKEN
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_010
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.DATE_TAKEN
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_010', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_010'
       const fileKey = ImageVideoKey.DATE_TAKEN
@@ -304,13 +197,13 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_011
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.ORIENTATION
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_011
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.ORIENTATION
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_011', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_011'
       const fileKey = ImageVideoKey.ORIENTATION
@@ -318,16 +211,44 @@ export default function fileAssetFileKeyTest (abilityContext) {
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_012
-         * @tc.name      : ImageVideoKey
-         * @tc.desc      : ImageVideoKey.FAVORITE
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_012
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.FAVORITE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_012', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_012'
       const fileKey = ImageVideoKey.FAVORITE
+      await getPhotoAssetsByKey(done, testNum, fileKey)
+    })
+
+    /**
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_013
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.POSITION
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_013', 0, async function (done) {
+      const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_013'
+      const fileKey = ImageVideoKey.POSITION
+      await getPhotoAssetsByKey(done, testNum, fileKey)
+    })
+
+    /**
+     * @tc.number    : SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_014
+     * @tc.name      : ImageVideoKey
+     * @tc.desc      : ImageVideoKey.HIDDEN
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_014', 0, async function (done) {
+      const testNum = 'SUB_USERFILE_MGR_GETPHOTOASSETSBYKEY_014'
+      const fileKey = ImageVideoKey.HIDDEN
       await getPhotoAssetsByKey(done, testNum, fileKey)
     })
   })

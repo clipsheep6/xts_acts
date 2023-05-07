@@ -18,7 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 import {
   sleep,
-  albumFetchOps,
+  albumFetchOneArgs,
   checkPresetsAssets,
   checkAssetsCount,
   getPermission
@@ -43,9 +43,9 @@ export default function albumCommitModifyCallback (abilityContext) {
       console.info('afterAll case')
     })
 
-    const albumCommitModify = async function (done, testNum, fetchOp, expectAlbumCount = 1) {
+    const albumCommitModify = async function (done, testNum, fetchOps, expectAlbumCount = 1) {
       try {
-        const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOp)
+        const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOps)
         const albumCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumCount)
         if (!albumCountPass) return
         const album = await fetchAlbumResult.getFirstObject()
@@ -64,16 +64,16 @@ export default function albumCommitModifyCallback (abilityContext) {
     }
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_ALBUM_COMMITMODIFY_CALLBACK_01
-         * @tc.name      : commitModify
-         * @tc.desc      : image album modify albumname
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
+     * @tc.number    : SUB_USERFILE_MGR_ALBUM_COMMITMODIFY_CALLBACK_01
+     * @tc.name      : commitModify
+     * @tc.desc      : image album modify albumname
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
     it('SUB_USERFILE_MGR_ALBUM_COMMITMODIFY_CALLBACK_01', 0, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_ALBUM_COMMITMODIFY_CALLBACK_01'
-      const currentFetchOp = albumFetchOps(testNum, 'Pictures/', 'DynamicCb')
+      const currentFetchOp = albumFetchOneArgs(testNum, 'display_name', 'DynamicCb')
       await albumCommitModify(done, testNum, currentFetchOp)
     })
   })

@@ -60,13 +60,13 @@ export default function getFileAssetsPromiseTest (abilityContext) {
       }
     }
 
-    async function getFirstObjectTest (done, testNum, fetchOp, isAudio) {
+    async function getFirstObjectTest (done, testNum, fetchOps, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -82,13 +82,13 @@ export default function getFileAssetsPromiseTest (abilityContext) {
       }
     }
 
-    async function getLastObjectTest (done, testNum, fetchOp, isAudio) {
+    async function getLastObjectTest (done, testNum, fetchOps, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -104,13 +104,13 @@ export default function getFileAssetsPromiseTest (abilityContext) {
       }
     }
 
-    async function getPositionObjectTest (done, testNum, fetchOp, pos, isAudio) {
+    async function getPositionObjectTest (done, testNum, fetchOps, pos, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -126,13 +126,13 @@ export default function getFileAssetsPromiseTest (abilityContext) {
       }
     }
 
-    async function isAfterLastTest (done, testNum, fetchOp, isAudio) {
+    async function isAfterLastTest (done, testNum, fetchOps, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
@@ -154,13 +154,13 @@ export default function getFileAssetsPromiseTest (abilityContext) {
       }
     }
 
-    async function checkFileAssetAttr (done, testNum, fetchOp, type, isAudio) {
+    async function checkFileAssetAttr (done, testNum, fetchOps, type, isAudio) {
       try {
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const expectCount = 4
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)

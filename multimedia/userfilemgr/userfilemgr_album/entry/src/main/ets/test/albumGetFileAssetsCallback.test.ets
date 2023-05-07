@@ -14,13 +14,11 @@
  */
 import userFileManager from '@ohos.filemanagement.userFileManager';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 import {
     sleep,
-    FILEKEY,
-    allFetchOp,
-    albumFetchOps,
+    fetchAllOps,
+    albumFetchOneArgs,
     checkPresetsAssets,
     checkAssetsCount,
 } from '../../../../../../common';
@@ -43,14 +41,14 @@ export default function albumGetFileAssetsCallback(abilityContext) {
             console.info('afterAll case');
         });
 
-        const getPhotoAssetsTest = async function (done, testNum, fetchOp, expectAlbumCount = 1, expectAssetsCount = 1) {
+        const getPhotoAssetsTest = async function (done, testNum, fetchOps, expectAlbumCount = 1, expectAssetsCount = 1) {
             try {
-                const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOp);
+                const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOps);
                 const albumCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumCount);
                 if (!albumCountPass) return;
                 const album = await fetchAlbumResult.getFirstObject();
                 fetchAlbumResult.close();
-                album.getPhotoAssets(allFetchOp(), (error, fetchAssetResult) => {
+                album.getPhotoAssets(fetchAllOps(), (error, fetchAssetResult) => {
                     if (error != undefined) {
                         console.info(`${testNum} getPhotoAssets error: ${error}`);
                         expect(false).assertTrue();
@@ -70,9 +68,9 @@ export default function albumGetFileAssetsCallback(abilityContext) {
             }
         }
 
-        const getPhotoAssetsErrCodeTest = async function (done, testNum, fetchOp, expectAlbumCount = 1, expectAssetsCount = 1) {
+        const getPhotoAssetsErrCodeTest = async function (done, testNum, fetchOps, expectAlbumCount = 1, expectAssetsCount = 1) {
             try {
-                const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOp);
+                const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOps);
                 const albumCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumCount);
                 if (!albumCountPass) return;
                 const album = await fetchAlbumResult.getFirstObject();
@@ -106,7 +104,7 @@ export default function albumGetFileAssetsCallback(abilityContext) {
          */
         it('SUB_USERFILE_MGR_ALBUM_GETPHOTOASSETS_CALLBACK_01', 0, async function (done) {
             const testNum = 'SUB_USERFILE_MGR_ALBUM_GETPHOTOASSETS_CALLBACK_01';
-            let currentFetchOp = albumFetchOps(testNum, 'Pictures/', 'Static');
+            let currentFetchOp = albumFetchOneArgs(testNum, 'display_name', 'Static')
             await getPhotoAssetsTest(done, testNum, currentFetchOp);
         });
 
@@ -120,7 +118,7 @@ export default function albumGetFileAssetsCallback(abilityContext) {
          */
         it('SUB_USERFILE_MGR_ALBUM_GETPHOTOASSETS_ERRCODE_CALLBACK_01', 2, async function (done) {
             const testNum = 'SUB_USERFILE_MGR_ALBUM_GETPHOTOASSETS_ERRCODE_CALLBACK_01';
-            let currentFetchOp = albumFetchOps(testNum, 'Pictures/', 'Static');
+            let currentFetchOp = albumFetchOneArgs(testNum, 'display_name', 'Static')
             await getPhotoAssetsErrCodeTest(done, testNum, currentFetchOp);
         });
     });

@@ -18,9 +18,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import {
   sleep,
   ImageVideoKey,
-  assetFetchOneArgs,
+  assetFetchOneArgsWithFetchColumn,
   checkPresetsAssets,
-  checkAssetsCount
+  getFileAsset
 } from '../../../../../../common'
 
 export default function fileAssetFavoritePromiseTest (abilityContext) {
@@ -41,20 +41,10 @@ export default function fileAssetFavoritePromiseTest (abilityContext) {
       console.info('afterAll case')
     })
 
-    const favoriteDefaultState = async function (done, testNum, fetchOp, isAudio) {
+    const favoriteDefaultState = async function (done, testNum, fetchOps, isAudio) {
       try {
-        let fetchAssetResult
-        if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
-        } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
-        }
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
-        const isFavorite = await asset.isFavorite()
-        expect(isFavorite).assertEqual(false)
-        fetchAssetResult.close()
+        const asset = await getFileAsset(testNum, fetchOps)
+        expect(asset.get(ImageVideoKey.FAVORITE.toString())).assertEqual(0)
         done()
       } catch (error) {
         console.info(`${testNum} failed error: ${error}`)
@@ -62,21 +52,12 @@ export default function fileAssetFavoritePromiseTest (abilityContext) {
         done()
       }
     }
-    const favoriteByTrue = async function (done, testNum, fetchOp, isAudio) {
+    const favoriteByTrue = async function (done, testNum, fetchOps, isAudio) {
       try {
-        let fetchAssetResult
-        if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
-        } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
-        }
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
+        let asset = await getFileAsset(testNum, fetchOps)
         await asset.favorite(true)
-        const isFavorite = await asset.isFavorite()
-        expect(isFavorite).assertEqual(true)
-        fetchAssetResult.close()
+        asset = await getFileAsset(testNum, fetchOps)
+        expect(asset.get(ImageVideoKey.FAVORITE.toString())).assertEqual(1)
         done()
       } catch (error) {
         console.info(`${testNum} failed error: ${error}`)
@@ -84,22 +65,13 @@ export default function fileAssetFavoritePromiseTest (abilityContext) {
         done()
       }
     }
-    const favoriteByFalse = async function (done, testNum, fetchOp, isAudio) {
+    const favoriteByFalse = async function (done, testNum, fetchOps, isAudio) {
       try {
-        let fetchAssetResult
-        if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
-        } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
-        }
-        const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
-        if (!checkAssetCountPass) return
-        const asset = await fetchAssetResult.getFirstObject()
+        let asset = await getFileAsset(testNum, fetchOps)
         await asset.favorite(true)
         await asset.favorite(false)
-        const isFavorite = await asset.isFavorite()
-        expect(isFavorite).assertEqual(false)
-        fetchAssetResult.close()
+        asset = await getFileAsset(testNum, fetchOps)
+        expect(asset.get(ImageVideoKey.FAVORITE.toString())).assertEqual(0)
         done()
       } catch (error) {
         console.info(`${testNum} failed error: ${error}`)
@@ -109,91 +81,91 @@ export default function fileAssetFavoritePromiseTest (abilityContext) {
     }
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_001
-         * @tc.name      : isFavorite
-         * @tc.desc      : isFavorite(image) result false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_001', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_001
+     * @tc.name      : isFavorite
+     * @tc.desc      : isFavorite(image) result false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_001'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise01.jpg')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise01.jpg')
       const isAudio = false
       await favoriteDefaultState(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_002
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(image) by true
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_002', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_002
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(image) by true
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_002', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_002'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise02.jpg')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise02.jpg')
       const isAudio = false
       await favoriteByTrue(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_003
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(image) by false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_003', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_003
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(image) by false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_01_003'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise02.jpg')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise02.jpg')
       const isAudio = false
       await favoriteByFalse(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_001
-         * @tc.name      : isFavorite
-         * @tc.desc      : isFavorite(video) result false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_001', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_001
+     * @tc.name      : isFavorite
+     * @tc.desc      : isFavorite(video) result false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_001', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_001'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise01.mp4')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise01.mp4')
       const isAudio = false
       await favoriteDefaultState(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_002
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(video) by true
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_002', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_002
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(video) by true
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_002', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_002'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise02.mp4')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise02.mp4')
       const isAudio = false
       await favoriteByTrue(done, testNum, currentFetchOp, isAudio)
     })
 
     /**
-         * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_003
-         * @tc.name      : favorite
-         * @tc.desc      : favorite(video) by false
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_003', 0, async function (done) {
+     * @tc.number    : SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_003
+     * @tc.name      : favorite
+     * @tc.desc      : favorite(video) by false
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_003', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_FILEASSET_FAVORITE_PROMISE_03_003'
-      const currentFetchOp = assetFetchOneArgs(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise03.mp4')
+      const currentFetchOp = assetFetchOneArgsWithFetchColumn(testNum, ImageVideoKey.DISPLAY_NAME, 'favPromise03.mp4')
       const isAudio = false
       await favoriteByFalse(done, testNum, currentFetchOp, isAudio)
     })

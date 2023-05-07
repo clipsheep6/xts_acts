@@ -78,9 +78,9 @@ export default function getAlbumsPromiseTest (abilityContext) {
         expect(album.relativePath).assertEqual(relativePaths)
       }
     }
-    const checkAlbumInfo = async function (done, testNum, fetchOp, relativePaths, expectAlbumCount = 1) {
+    const checkAlbumInfo = async function (done, testNum, fetchOps, relativePaths, expectAlbumCount = 1) {
       try {
-        const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOp)
+        const fetchAlbumResult = await userfilemgr.getPhotoAlbums(fetchOps)
         const albumCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumCount)
         if (!albumCountPass) return
         const album = await fetchAlbumResult.getFirstObject()
@@ -100,9 +100,9 @@ export default function getAlbumsPromiseTest (abilityContext) {
      * @tc.desc      : getPhotoAlbums by relativePath && albumName, print all album info
      * @tc.size      : MEDIUM
      * @tc.type      : Function
-     * @tc.level     : Level 0
+     * @tc.level     : Level 2
      */
-    it('SUB_USERFILE_MGR_GETPHOTOALBUMS_PROMISE_01', 0, async function (done) {
+    it('SUB_USERFILE_MGR_GETPHOTOALBUMS_PROMISE_01', 2, async function (done) {
       const testNum = 'SUB_USERFILE_MGR_GETPHOTOALBUMS_PROMISE_01'
       const currentFetchOp = albumFetchOneArgs(testNum, 'display_name', 'myAlbum')
       const relativePaths = 'Pictures/'

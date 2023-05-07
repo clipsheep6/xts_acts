@@ -20,7 +20,7 @@ import userAlbumPromiseTest from './userAlbumPromiseTest.ets'
 import systemAlbumCallbackTest from './systemAlbumCallbackTest.ets'
 import systemAlbumPromiseTest from './systemAlbumPromiseTest.ets'
 
-export default function testsuite() {
+export default function testsuite () {
   albumCallbackTest(globalThis.abilityContext)
   albumPromiseTest(globalThis.abilityContext)
   userAlbumCallbackTest(globalThis.abilityContext)

@@ -43,15 +43,15 @@ export default function onOffReleasePromiseTest (abilityContext) {
       console.info('afterAll case')
     })
 
-    const onTest = async (done, testNum, fetchOp, type, newName, isAudio) => {
+    const onTest = async (done, testNum, fetchOps, type, newName, isAudio) => {
       try {
         let count = 0
         userfilemgr.on(type, () => { count++ })
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
         if (!checkAssetCountPass) return
@@ -72,7 +72,7 @@ export default function onOffReleasePromiseTest (abilityContext) {
         done()
       }
     }
-    const offTest = async (done, testNum, fetchOp, type, newName, isAudio) => {
+    const offTest = async (done, testNum, fetchOps, type, newName, isAudio) => {
       try {
         let count = 0
         userfilemgr.on(type, () => {
@@ -80,9 +80,9 @@ export default function onOffReleasePromiseTest (abilityContext) {
         })
         let fetchAssetResult
         if (isAudio) {
-          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getAudioAssets(fetchOps)
         } else {
-          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
+          fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOps)
         }
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, 1)
         if (!checkAssetCountPass) return
