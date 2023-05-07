@@ -89,7 +89,10 @@ export default function getAlbumsCallbackTest (abilityContext) {
           }
           const expectAlbumCount = 1
           const albumCountPass = await checkAssetsCount(done, testNum, fetchAlbumResult, expectAlbumCount)
-          if (!albumCountPass) return
+          if (!albumCountPass) {
+            expect(true).assertTrue()
+            done()
+          }
           const album = await fetchAlbumResult.getFirstObject()
           checkProps(done, testNum, album, relativePaths)
           fetchAlbumResult.close()

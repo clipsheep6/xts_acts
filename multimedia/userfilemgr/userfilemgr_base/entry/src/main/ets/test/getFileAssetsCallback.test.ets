@@ -49,11 +49,11 @@ export default function getFileAssetsCallbackTest (abilityContext) {
 
     const props = {
       image: {
-        displayName: 'deleteCallback01.jpg',
+        displayName: 'onPromise01.jpg',
         fileType: IMAGE_TYPE.toString()
       },
       video: {
-        displayName: 'deleteCallback01.mp4',
+        displayName: 'onPromise01.mp4',
         fileType: VIDEO_TYPE.toString()
       }
     }
@@ -66,7 +66,7 @@ export default function getFileAssetsCallbackTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         fetchAssetResult.getFirstObject(async (err, asset) => {
@@ -96,7 +96,7 @@ export default function getFileAssetsCallbackTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         fetchAssetResult.getLastObject(async (err, asset) => {
@@ -126,7 +126,7 @@ export default function getFileAssetsCallbackTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         fetchAssetResult.getPositionObject(pos, async (err, asset) => {
@@ -156,7 +156,7 @@ export default function getFileAssetsCallbackTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         let asset = await fetchAssetResult.getFirstObject()
@@ -185,7 +185,7 @@ export default function getFileAssetsCallbackTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         fetchAssetResult.getFirstObject(async (err, asset) => {

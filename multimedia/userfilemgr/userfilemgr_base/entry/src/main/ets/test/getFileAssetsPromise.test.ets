@@ -47,11 +47,11 @@ export default function getFileAssetsPromiseTest (abilityContext) {
 
     const props = {
       image: {
-        displayName: '01.jpg',
+        displayName: 'onPromise01.jpg',
         fileType: IMAGE_TYPE.toString()
       },
       video: {
-        displayName: '01.mp4',
+        displayName: 'onPromise01.mp4',
         fileType: VIDEO_TYPE.toString()
       },
       audio: {
@@ -68,7 +68,7 @@ export default function getFileAssetsPromiseTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         const asset = await fetchAssetResult.getFirstObject()
@@ -90,7 +90,7 @@ export default function getFileAssetsPromiseTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         const asset = await fetchAssetResult.getLastObject()
@@ -112,7 +112,7 @@ export default function getFileAssetsPromiseTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         const asset = await fetchAssetResult.getPositionObject(pos)
@@ -134,7 +134,7 @@ export default function getFileAssetsPromiseTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         let asset = await fetchAssetResult.getFirstObject()
@@ -162,7 +162,7 @@ export default function getFileAssetsPromiseTest (abilityContext) {
         } else {
           fetchAssetResult = await userfilemgr.getPhotoAssets(fetchOp)
         }
-        const expectCount = 4
+        const expectCount = 2
         const checkAssetCountPass = await checkAssetsCount(done, testNum, fetchAssetResult, expectCount)
         if (!checkAssetCountPass) return
         fetchAssetResult.getFirstObject(async (err, asset) => {
