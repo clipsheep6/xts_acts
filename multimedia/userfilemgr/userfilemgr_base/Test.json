@@ -1,0 +1,76 @@
+{
+    "description": "Configuration for userfilemgr Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "300000",
+        "package": "ohos.acts.multimedia.mediaLibrary",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [
+            ],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`",
+                "scanner",
+                "sleep 5",
+                "mkdir -pv /storage/media/100/local/files/{Camera,Pictures,Videos,Audios,Documents}",
+                "mkdir /storage/media/100/local/temp",
+                "param set persist.ace.testmode.enabled 1"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/deleteCallback01.jpg",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp/deleteCallback01.mp4",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/deletePromise01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/deletePromise01.mp4",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/onPromise01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/onPromise01.mp4",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp/offPromise01.jpg",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp/offPromise01.mp4",
+                "./resource/medialibrary/media_tool ->/storage/media/100/local/temp"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mediatool send /storage/media/100/local/temp/deleteCallback01.jpg",
+                "mediatool send /storage/media/100/local/temp/deleteCallback01.mp4",
+                "mediatool send /storage/media/100/local/temp/deletePromise01.jpg",
+                "mediatool send /storage/media/100/local/temp/deletePromise01.mp4",
+                "mediatool send /storage/media/100/local/temp/onPromise01.jpg",
+                "mediatool send /storage/media/100/local/temp/onPromise01.mp4",
+                "mediatool send /storage/media/100/local/temp/offPromise01.jpg",
+                "mediatool send /storage/media/100/local/temp/offPromise01.mp4",
+
+                "mkdir -pv /storage/media/100/local/files/Pictures/myAlbum",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/myAlbum/",
+
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70", 
+                "scanner",
+                "sleep 10"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsUserFileMgrBase.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
