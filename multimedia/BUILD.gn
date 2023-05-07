@@ -70,6 +70,8 @@ group("multimedia") {
       "userfilemgr/userfilemgr_albumNew:userFileManager_albumNew",
       "userfilemgr/userfilemgr_base:userfilemgr_base_js_hap",
       "userfilemgr/userfilemgr_fileAsset:userfilemgr_fileAsset_js_hap",
+      "userfilemgr/userfilemgr_createPhotoAsset:userfilemgr_createPhotoAsset_js_hap",
+      "userfilemgr/userfilemgr_getPhotoAssets:userfilemgr_getPhotoAssets_js_hap",
     ]
   } else {
     deps = [
