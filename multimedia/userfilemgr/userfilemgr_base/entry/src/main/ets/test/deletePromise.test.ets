@@ -59,7 +59,7 @@ export default function deleteCallbackTest(abilityContext) {
                 } else {
                     newFetchResult = await userfilemgr.getPhotoAssets(fetchOp);
                 }
-                expect(newFetchResult.getCount()).assertEqual(1);
+                expect(newFetchResult.getCount()).assertEqual(0);
                 newFetchResult.close();
                 done();
             } catch (error) {
