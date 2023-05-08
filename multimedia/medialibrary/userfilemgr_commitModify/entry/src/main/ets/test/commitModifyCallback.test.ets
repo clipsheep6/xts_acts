@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -42,18 +42,19 @@ export default function commitModifyCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_COMMITMODIFY_CALLBACK_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_COMMITMODIFY_CALLBACK_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
-                  fetchColumns: [],
-                  predicates: predicates,
+                    fetchColumns: [],
+                    predicates: predicates,
                 };
                 let fetchResult = await mgr["getPhotoAssets"](assetOp);
                 let fileAsset = await fetchResult.getFirstObject();
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
                 fileAsset.displayName = '中文.jpg';
-                fileAsset.commitModify( async (err) => {
+                fileAsset.commitModify(async (err) => {
                     expect(fileAsset.displayName == '中文.jpg').assertTrue();
                     await fileAsset["close"](fd);
                     done();
@@ -76,19 +77,20 @@ export default function commitModifyCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_COMMITMODIFY_CALLBACK_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_COMMITMODIFY_CALLBACK_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
-                  fetchColumns: [],
-                  predicates: predicates,
+                    fetchColumns: [],
+                    predicates: predicates,
                 };
                 let fetchResult = await mgr["getPhotoAssets"](assetOp);
                 let fileAsset = await fetchResult.getFirstObject();
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
                 fileAsset.displayName = 'withoutExtension';
-                fileAsset.commitModify( async (err) => {
-                    try{
+                fileAsset.commitModify(async (err) => {
+                    try {
                         expect(true).assertTrue();
                         done();
                     } catch (err) {

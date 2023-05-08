@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -20,6 +20,7 @@ import {
     getPermission,
     JPG_HEIGHT,
     JPG_WIDTH,
+    COMMITMODIFY_USE_ERROR_CODE,
 } from "../../../../../../common";
 
 export default function commitModifyPromise(abilityContext) {
@@ -41,6 +42,7 @@ export default function commitModifyPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_COMMITMODIFY_PROMISE_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_COMMITMODIFY_PROMISE_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: [],
@@ -73,6 +75,7 @@ export default function commitModifyPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_COMMITMODIFY_PROMISE_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_COMMITMODIFY_PROMISE_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -85,13 +88,14 @@ export default function commitModifyPromise(abilityContext) {
                 await fileAsset["close"](fd);
                 fileAsset.displayName = 'withoutExtension';
                 await fileAsset.commitModify();
-                expect(true).assertTrue();
+                expect(false).assertTrue();
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(false).assertTrue();
+                expect(error.code == COMMITMODIFY_USE_ERROR_CODE).assertTrue();
                 done();
             }
         });
+
     });
 }

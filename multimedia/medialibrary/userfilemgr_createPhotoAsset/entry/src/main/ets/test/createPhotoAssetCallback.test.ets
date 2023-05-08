@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import { getPermission } from "../../../../../../common";
@@ -43,7 +43,7 @@ export default function createPhotoAssetCallback(abilityContext) {
                         expect(false).assertTrue();
                         done();
                     }
-                    expect(fileAsset.displayName).assertEqual(displayName);
+                    expect(fileAsset.displayName == displayName).assertTrue();
                     done();
                 });
             } catch (error) {
@@ -65,7 +65,7 @@ export default function createPhotoAssetCallback(abilityContext) {
             let testNum = "SUB_MEDIA_USERFILEMGR_CREATEPHOTOASSET_CALLBACK_0100";
             try {
                 mgr["createPhotoAsset"](undefined, async (err) => {
-                    try{
+                    try {
                         expect(false).assertTrue();
                         done();
                     } catch (err) {
@@ -94,12 +94,12 @@ export default function createPhotoAssetCallback(abilityContext) {
             let displayName = `createPhotoAssetT${new Date().getTime()}`;
             try {
                 mgr["createPhotoAsset"](displayName, async (err) => {
-                    try{
-                        expect(false).assertTrue();
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err}`);
                         expect(true).assertTrue();
+                        done();
+                    } else {
+                        expect(false).assertTrue();
                         done();
                     }
                 });
@@ -131,7 +131,7 @@ export default function createPhotoAssetCallback(abilityContext) {
                         expect(false).assertTrue();
                         done();
                     }
-                    expect(fileAsset.displayName).assertEqual(displayName);
+                    expect(fileAsset.displayName == displayName).assertTrue();
                     done();
                 });
             } catch (error) {
@@ -162,7 +162,7 @@ export default function createPhotoAssetCallback(abilityContext) {
                         expect(false).assertTrue();
                         done();
                     }
-                    expect(fileAsset.displayName).assertEqual(displayName);
+                    expect(fileAsset.displayName == displayName).assertTrue();
                     done();
                 });
             } catch (error) {
@@ -188,7 +188,7 @@ export default function createPhotoAssetCallback(abilityContext) {
             };
             try {
                 mgr["createPhotoAsset"](undefined, createOperation, async (err) => {
-                    try{
+                    try {
                         expect(false).assertTrue();
                         done();
                     } catch (err) {
@@ -220,7 +220,7 @@ export default function createPhotoAssetCallback(abilityContext) {
             };
             try {
                 mgr["createPhotoAsset"](undefined, createOperation, async (err) => {
-                    try{
+                    try {
                         expect(false).assertTrue();
                         done();
                     } catch (err) {
@@ -252,12 +252,12 @@ export default function createPhotoAssetCallback(abilityContext) {
             };
             try {
                 mgr["createPhotoAsset"](displayName, createOperation, async (err) => {
-                    try{
-                        expect(false).assertTrue();
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err}`);
                         expect(true).assertTrue();
+                        done();
+                    } else {
+                        expect(false).assertTrue();
                         done();
                     }
                 });
@@ -285,12 +285,12 @@ export default function createPhotoAssetCallback(abilityContext) {
             };
             try {
                 mgr["createPhotoAsset"](displayName, createOperation, async (err) => {
-                    try{
-                        expect(false).assertTrue();
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err}`);
                         expect(true).assertTrue();
+                        done();
+                    } else {
+                        expect(false).assertTrue();
                         done();
                     }
                 });
@@ -317,7 +317,7 @@ export default function createPhotoAssetCallback(abilityContext) {
             };
             try {
                 mgr["createPhotoAsset"](displayName, createOperation, async (err) => {
-                    try{
+                    try {
                         expect(false).assertTrue();
                         done();
                     } catch (err) {

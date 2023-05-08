@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -42,6 +42,7 @@ export default function openPromise(abilityContext) {
             let displayName = `openT${new Date().getTime()}.jpg`;
             try {
                 await mgr["createPhotoAsset"](displayName);
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: [],
@@ -49,6 +50,8 @@ export default function openPromise(abilityContext) {
                 };
                 let fetchResult = await mgr["getPhotoAssets"](assetOp);
                 let fileAsset = await fetchResult.getFirstObject();
+                let fdTemp = await fileAsset["open"]("rw");
+                await fileAsset["close"](fdTemp);
                 let fd = await fileAsset["open"]("r");
                 expect(isNum(fd)).assertTrue();
                 await fileAsset["close"](fd);
@@ -74,6 +77,7 @@ export default function openPromise(abilityContext) {
             let displayName = `openT${new Date().getTime()}.jpg`;
             try {
                 await mgr["createPhotoAsset"](displayName);
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: [],
@@ -106,6 +110,7 @@ export default function openPromise(abilityContext) {
             let displayName = `openT${new Date().getTime()}.jpg`;
             try {
                 await mgr["createPhotoAsset"](displayName);
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: [],
@@ -138,6 +143,7 @@ export default function openPromise(abilityContext) {
             let displayName = `openT${new Date().getTime()}.jpg`;
             try {
                 await mgr["createPhotoAsset"](displayName);
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: [],

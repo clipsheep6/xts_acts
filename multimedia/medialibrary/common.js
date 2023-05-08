@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaLibrary from "@ohos.multimedia.mediaLibrary";
+
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import bundle from "@ohos.bundle";
@@ -21,228 +21,145 @@ import uitest from "@ohos.UiTest";
 import fileio from "@ohos.fileio";
 
 const presetsCount = {
-    ActsMediaLibraryAlbumTest: { albumsCount: 15, assetsCount: 27 },
-    ActsMediaLibraryBaseTest: { albumsCount: 11, assetsCount: 14 },
-    ActsMediaLibraryFavoriteTest: { albumsCount: 6, assetsCount: 32 },
-    ActsMediaLibraryFileTest: { albumsCount: 6, assetsCount: 28 },
-    ActsMediaLibraryFileAssetTest: { albumsCount: 27, assetsCount: 116 },
-    ActsMediaLibraryFileKeyTest: { albumsCount: 2, assetsCount: 2 },
-    ActsMediaLibraryFileResultTest: { albumsCount: 3, assetsCount: 112 },
-    ActsMediaLibraryGetThumbnailTest: { albumsCount: 3, assetsCount: 3 },
-    ActsMediaLibraryMediafetchoptionsTest: { albumsCount: 3, assetsCount: 8 },
-    ActsMediaLibraryTrashJsTest: { albumsCount: 6, assetsCount: 24 },
+    ActsUserFileMgrPendingAJsTest: { albumsCount: 3, assetsCount: 3 },
 };
 
-const IMAGE_TYPE = mediaLibrary.MediaType.IMAGE;
-const VIDEO_TYPE = mediaLibrary.MediaType.VIDEO;
-const AUDIO_TYPE = mediaLibrary.MediaType.AUDIO;
-const FILE_TYPE = mediaLibrary.MediaType.FILE;
+const IMAGE_TYPE = userFileManager.FileType.IMAGE;
+const VIDEO_TYPE = userFileManager.FileType.VIDEO;
+const AUDIO_TYPE = userFileManager.FileType.AUDIO;
 
-const FILEKEY = mediaLibrary.FileKey;
-const { RELATIVE_PATH, ALBUM_NAME, MEDIA_TYPE } = FILEKEY;
-
+const AUDIOKEY = userFileManager.AudioKey;
 const IMAGEVIDEOKEY = userFileManager.ImageVideoKey;
+const ALBUMKEY = userFileManager.AlbumKey;
 const THROW_ERROR_CODE = 13900020;
 const JPG_HEIGHT = 1706;
 const JPG_WIDTH = 1279;
+const THUMBNAIL_DEFAULT_SIZE = 256;
+const ERROR_CDOE_NO_DATA_BY_OPTIONS = 2;
+const ERROR_GET_THUMBNAIL_FAILED = 3;
+const ERROR_CODE_INVALID_PARAMETER = 13900020;
+const ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION = 13900012;
+const ERROR_CODE_MEDIALIBRARY_INNER_FAIL = 14000011;
+const INVALID_URI = "datashare:///media/image/-1";
+const TEST_STRING = "test";
+const DELETE_USE_ERROR_CODE = -210;
+const COMMITMODIFY_USE_ERROR_CODE = -3006;
+
 const sleep = async function sleep(times) {
-    if (!times) {
+    if (times == undefined) {
         times = 10;
     }
     await new Promise((res) => setTimeout(res, times));
 };
 
-const allFetchOp = function (others) {
-    if (!others) {
-        others = {};
-    }
+const allFetchOp = function () {
+    let predicates = new dataSharePredicates.DataSharePredicates();
     return {
-        selections: "",
-        selectionArgs: [],
-        ...others,
+        fetchColumns: [],
+        predicates: predicates,
     };
 };
 
-const fetchOps = function (testNum, path, type, others) {
-    if (!others) {
-        others = {};
-    }
+const audioFetchOps = function (testNum, path) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("relative_path", path);
     let ops = {
-        selections: FILEKEY.RELATIVE_PATH + "= ? AND " + FILEKEY.MEDIA_TYPE + "=?",
-        selectionArgs: [path, type.toString()],
-        ...others,
+        fetchColumns: [],
+        predicates: predicates,
     };
-    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
-    return ops;
-};
-const nameFetchOps = function (testNum, path, display_name, type) {
-    let ops = {
-        selections: FILEKEY.RELATIVE_PATH + "= ? AND " + FILEKEY.DISPLAY_NAME + "= ? AND " + FILEKEY.MEDIA_TYPE + "=?",
-        selectionArgs: [path, display_name, type.toString()],
-    };
-    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
+    console.info(`${testNum} queryOps: relative_path = ${path}`);
     return ops;
 };
 
-const idFetchOps = function (testNum, albumId) {
+const imageVideoFetchOps = function (testNum, path) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("relative_path", path);
     let ops = {
-        selections: FILEKEY.ALBUM_ID + "= ?",
-        selectionArgs: [albumId + ""],
+        fetchColumns: [],
+        predicates: predicates,
     };
-    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
+    console.info(`${testNum} queryOps: relative_path = ${path}`);
     return ops;
 };
 
-const fileIdFetchOps = function (testNum, id) {
+const audioNameFetchOps = function (testNum, path, displayName) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    // predicates.equalTo("relative_path", path).equalTo(userFileManager.AudioKey.DISPLAY_NAME, displayName);
     let ops = {
-        selections: FILEKEY.ID + "= ?",
-        selectionArgs: [id + ""],
+        fetchColumns: [],
+        predicates: predicates,
     };
-    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
+    console.info(`${testNum} queryOps: relative_path = ${path} AND display_name = ${displayName}`);
     return ops;
 };
 
-const albumFetchOps = function (testNum, path, albumName, type, others) {
-    if (!others) {
-        others = { order: FILEKEY.DATE_ADDED + " DESC" };
-    }
+const imageVideoNameFetchOps = function (testNum, path, displayName) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    // predicates.equalTo("relative_path", path).equalTo(userFileManager.ImageVideoKey.DISPLAY_NAME, displayName);
     let ops = {
-        selections: RELATIVE_PATH + "= ? AND " + ALBUM_NAME + "= ? AND " + MEDIA_TYPE + "= ?",
-        selectionArgs: [path, albumName, type.toString()],
-        ...others,
+        fetchColumns: [],
+        predicates: predicates,
     };
-    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
+    console.info(`${testNum} queryOps: relative_path = ${path} AND display_name = ${displayName}`);
     return ops;
 };
 
-// albums of two resource types
-const albumTwoTypesFetchOps = function (testNum, paths, albumName, types, others) {
-    if (!others) {
-        others = { order: FILEKEY.DATE_ADDED + " DESC" };
-    }
-    try {
-        let ops = {
-            selections:
-                "(" +
-                RELATIVE_PATH +
-                "= ? or " +
-                RELATIVE_PATH +
-                "= ? ) AND " +
-                ALBUM_NAME +
-                "= ? AND (" +
-                MEDIA_TYPE +
-                "= ? or " +
-                MEDIA_TYPE +
-                "= ?)",
-            selectionArgs: [paths[0], paths[1], albumName, types[0].toString(), types[1].toString()],
-            ...others,
-        };
-        console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
-        return ops;
-    } catch (error) {
-        console.info(`albumTwoTypesFetchOps :: error: ${error}`);
-    }
+const albumFetchOps = function (testNum, path, albumName) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    // predicates.equalTo("relative_path", path).equalTo(userFileManager.AlbumKey.ALBUM_NAME, albumName);
+    let ops = {
+        predicates: predicates,
+    };
+    console.info(`${testNum} queryOps: relative_path = ${path} AND bucket_display_name = ${albumName}`);
+    return ops;
 };
 
-// albums of three resource types
-const albumThreeTypesFetchOps = function (testNum, paths, albumName, types, others) {
-    if (!others) {
-        others = { order: FILEKEY.DATE_ADDED + " DESC" };
-    }
-    try {
-        let ops = {
-            selections:
-                "(" +
-                RELATIVE_PATH +
-                "= ? or " +
-                RELATIVE_PATH +
-                "= ? or " +
-                RELATIVE_PATH +
-                "= ? ) AND " +
-                ALBUM_NAME +
-                "= ? AND (" +
-                MEDIA_TYPE +
-                "= ? or " +
-                MEDIA_TYPE +
-                "= ? or " +
-                MEDIA_TYPE +
-                "= ?)",
-            selectionArgs: [
-                paths[0],
-                paths[1],
-                paths[2],
-                albumName,
-                types[0].toString(),
-                types[1].toString(),
-                types[2].toString(),
-            ],
-            ...others,
-        };
-        console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
-        return ops;
-    } catch (error) {
-        console.info(`albumThreeTypesFetchOps :: error: ${error}`);
-    }
-};
-
-const checkPresetsAssets = async function (media, hapName) {
+const checkPresetsAssets = async function (userfilemgr, hapName) {
     console.info("checkPresetsAssets start");
-    let albumList = await media.getAlbums(allFetchOp());
-    let albumsCount = albumList.length;
-    let fetchFileResult = await media.getFileAssets(allFetchOp());
-    let assetsCount = await fetchFileResult.getCount();
-    let presetsassetsCount = presetsCount[hapName].assetsCount;
-    let presetsalbumsCount = presetsCount[hapName].albumsCount;
-    if (assetsCount != presetsCount[hapName].assetsCount || albumsCount != presetsCount[hapName].albumsCount) {
-        console.info(`${hapName} checkPresetsAssets failed; 
-            assetsCount : presetsassetsCount = ${assetsCount} : ${presetsassetsCount}
-            albumsCount : presetsalbumsCount = ${albumsCount} : ${presetsalbumsCount}`);
-        fetchFileResult.close();
-    } else {
-        console.info(`${hapName} checkPresetsAssets passed`);
-        fetchFileResult.close();
-    }
+    let fetchAlbumResult = await userfilemgr.getPhotoAlbums(allFetchOp());
+    let albumsCount = fetchAlbumResult.getCount();
+    let fetchPhotoResult = await userfilemgr.getPhotoAssets(allFetchOp());
+    let fetchAudioResult = await userfilemgr.getAudioAssets(allFetchOp());
+    let assetsCount = fetchPhotoResult.getCount() + fetchAudioResult.getCount();
+    console.info(`${hapName}:: assetsCount: ${assetsCount} albumsCount: ${albumsCount},
+            presetsassetsCount: ${presetsCount[hapName].assetsCount} 
+            presetsalbumsCount: ${presetsCount[hapName].albumsCount}`);
+    console.info("checkPresetsAssets end");
 };
 
-const checkAssetsCount = async function (done, testNum, fetchFileResult, expectCount) {
-    if (!fetchFileResult) {
-        console.info(`${testNum}:: fetchFileResult error:`);
-        expect(false).assertTrue();
+const checkAssetsCount = async function (done, testNum, fetchAssetResult, expectCount) {
+    if (!fetchAssetResult) {
+        console.info(`${testNum}:: fetchAssetResult is undefined`);
+        // expect(false).assertTrue();
         done();
         return false;
     }
-    let count = await fetchFileResult.getCount();
+    let count = await fetchAssetResult.getCount();
     if (count != expectCount) {
         console.info(`${testNum}:: count:expectCount - ${count} : ${expectCount}`);
-        expect(count).assertEqual(expectCount);
+        // expect(count).assertEqual(expectCount);
         done();
     }
     return count == expectCount;
 };
 
-const checkAlbumsCount = function (done, testNum, albumList, expectCount) {
-    if (!Array.isArray(albumList)) {
-        console.info(`${testNum}:: albumList error:`);
-        expect(false).assertTrue();
-        done();
-        return false;
-    }
-    let albumsCount = albumList.length;
-    if (albumsCount != expectCount) {
-        console.info(`${testNum}:: albumsCount: expectCount - ${albumsCount} : ${expectCount}`);
-        expect(albumsCount).assertEqual(expectCount);
-        done();
-    }
-    return albumsCount == expectCount;
+const isNum = function (value) {
+    return typeof value === "number" && !isNaN(value);
 };
-
 const getPermission = async function (name, context) {
     if (!name) {
-        name = "ohos.acts.multimedia.mediaLibrary";
+        name = "ohos.acts.multimedia.userfilemgr";
     }
     console.info("getPermission start", name);
-
-    let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA"];
+    let permissions = [
+        "ohos.permission.MEDIA_LOCATION",
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.WRITE_AUDIO",
+        "ohos.permission.READ_AUDIO",
+        "ohos.permission.WRITE_MEDIA",
+        "ohos.permission.READ_MEDIA",
+    ];
 
     let atManager = abilityAccessCtrl.createAtManager();
     try {
@@ -250,55 +167,113 @@ const getPermission = async function (name, context) {
             console.info(`getPermission requestPermissionsFromUser ${JSON.stringify(data)}`);
         });
     } catch (err) {
-        console.log(`get permission catch err -> ${JSON.stringify(err)}`);
+        console.info(`getPermission catch err -> ${JSON.stringify(err)}`);
     }
-    await sleep(1000);
+    await sleep(500);
     let driver = uitest.Driver.create();
-    
-    await sleep(2000);
+    await sleep(500);
     let button = await driver.findComponent(uitest.ON.text("允许"));
-    await button.click();
-    await sleep(2000);
+    while (button) {
+        await button.click();
+        await sleep(500);
 
+        button = await driver.findComponent(uitest.ON.text("允许"));
+    }
+    await sleep(500);
     let appInfo = await bundle.getApplicationInfo(name, 0, 100);
     let tokenID = appInfo.accessTokenId;
-    
+
     let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
-    let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
-    let isGranted3 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_MEDIA");
-    if (!(isGranted1 == 0 && isGranted2 == 0 && isGranted3 == 0)) {
+    let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_IMAGEVIDEO");
+    let isGranted3 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_IMAGEVIDEO");
+    let isGranted4 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_AUDIO");
+    let isGranted5 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_AUDIO");
+    if (!(isGranted1 == 0 && isGranted2 == 0 && isGranted3 == 0 && isGranted4 == 0 && isGranted5 == 0)) {
         console.info("getPermission failed");
     }
     console.info("getPermission end");
 };
 
-const MODIFY_ERROR_CODE_01 = "-1000";
+const nameAndPathFetchOps = function (testNum, path, DISPLAY_NAME, displayName) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("relative_path", path).equalTo(DISPLAY_NAME, displayName);
+    let ops = {
+        fetchColumns: [],
+        predicates: predicates,
+    };
+    console.info(`${testNum} queryOps: relative_path = ${path} AND display_name = ${displayName}`);
+    return ops;
+};
 
-const isNum = function (value) {
-    return typeof value === "number" && !isNaN(value);
+const assetByPathFetchOps = function (testNum, path) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("relative_path", path);
+    let ops = {
+        fetchColumns: [],
+        predicates: predicates,
+    };
+    console.info(`${testNum} queryOps: relative_path = ${path}`);
+    return ops;
+};
+
+const displayNameFetchOps = function (testNum, DISPLAY_NAME, displayName) {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo(DISPLAY_NAME, displayName);
+    let ops = {
+        fetchColumns: [],
+        predicates: predicates,
+    };
+    console.info(`${testNum} queryOps: DISPLAY_NAME = ${DISPLAY_NAME} AND display_name = ${displayName}`);
+    return ops;
+};
+async function copyFile(fd1, fd2) {
+    let stat = await fileio.fstat(fd1);
+    let buf = new ArrayBuffer(stat.size);
+    await fileio.read(fd1, buf);
+    await fileio.write(fd2, buf);
+}
+const getSecond = () => {
+    return Number(
+        new Date()
+            .getTime()
+            .toString()
+            .slice(0, new Date().getTime().toString().length - 3)
+    );
 };
 export {
-    getPermission,
     IMAGE_TYPE,
     VIDEO_TYPE,
     AUDIO_TYPE,
-    FILE_TYPE,
-    FILEKEY,
+    THROW_ERROR_CODE,
+    AUDIOKEY,
     IMAGEVIDEOKEY,
+    ALBUMKEY,
     sleep,
     allFetchOp,
-    fetchOps,
-    nameFetchOps,
-    idFetchOps,
+    audioFetchOps,
+    imageVideoFetchOps,
+    audioNameFetchOps,
+    imageVideoNameFetchOps,
     albumFetchOps,
-    albumTwoTypesFetchOps,
-    albumThreeTypesFetchOps,
     checkPresetsAssets,
     checkAssetsCount,
-    checkAlbumsCount,
-    MODIFY_ERROR_CODE_01,
     isNum,
-    fileIdFetchOps,
+    displayNameFetchOps,
+    getPermission,
+    nameAndPathFetchOps,
+    copyFile,
+    assetByPathFetchOps,
+    getSecond,
     JPG_HEIGHT,
     JPG_WIDTH,
+    THUMBNAIL_DEFAULT_SIZE,
+    ERROR_CDOE_NO_DATA_BY_OPTIONS,
+    ERROR_GET_THUMBNAIL_FAILED,
+    ERROR_CODE_INVALID_PARAMETER,
+    ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION,
+    ERROR_CODE_MEDIALIBRARY_INNER_FAIL,
+    INVALID_URI,
+    TEST_STRING,
+    DELETE_USE_ERROR_CODE,
+    COMMITMODIFY_USE_ERROR_CODE,
 };

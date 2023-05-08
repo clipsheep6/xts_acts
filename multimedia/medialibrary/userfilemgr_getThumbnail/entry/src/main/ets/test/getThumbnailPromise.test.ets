@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -21,6 +21,8 @@ import {
     getPermission,
     JPG_HEIGHT,
     JPG_WIDTH,
+    THUMBNAIL_DEFAULT_SIZE,
+    ERROR_GET_THUMBNAIL_FAILED,
 } from "../../../../../../common";
 
 export default function getThumbnailPromise(abilityContext) {
@@ -43,6 +45,7 @@ export default function getThumbnailPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -55,8 +58,8 @@ export default function getThumbnailPromise(abilityContext) {
                 await fileAsset["close"](fd);
                 let pixelmap = await fileAsset.getThumbnail();
                 let info = await pixelmap.getImageInfo();
-                expect(info.size.height).equalTo(256);
-                expect(info.size.width).equalTo(256);
+                expect(info.size.height == THUMBNAIL_DEFAULT_SIZE).assertTrue();
+                expect(info.size.width == THUMBNAIL_DEFAULT_SIZE).assertTrue();
                 await fileAsset["close"](fd);
                 done();
             } catch (error) {
@@ -77,6 +80,7 @@ export default function getThumbnailPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -88,8 +92,8 @@ export default function getThumbnailPromise(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
                 await fileAsset.getThumbnail(-1);
-                expect(false).assertTrue();
                 await fileAsset["close"](fd);
+                expect(false).assertTrue();
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
@@ -97,7 +101,6 @@ export default function getThumbnailPromise(abilityContext) {
                 done();
             }
         });
-
         /**
          * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0200
          * @tc.name 	 : getThumbnail
@@ -109,6 +112,7 @@ export default function getThumbnailPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0200", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0200";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -141,6 +145,7 @@ export default function getThumbnailPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0300", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0300";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -152,12 +157,14 @@ export default function getThumbnailPromise(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                let size = { width: 128, height: 128 };
+                let size = {
+                    width: 128, height: 128
+                };
                 let s: image.Size = size;
                 let pixelmap = await fileAsset.getThumbnail(s);
                 let info = await pixelmap.getImageInfo();
-                expect(info.size.width).assertEqual(size.width);
-                expect(info.size.height).assertEqual(size.height);
+                expect(info.size.width == size.width).assertTrue();
+                expect(info.size.height == size.height).assertTrue();
                 await fileAsset["close"](fd);
                 done();
             } catch (error) {
@@ -178,6 +185,7 @@ export default function getThumbnailPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0400", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0400";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -189,7 +197,9 @@ export default function getThumbnailPromise(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                let size = { width: -1, height: -1 };
+                let size = {
+                    width: -1, height: -1
+                };
                 let s: image.Size = size;
                 await fileAsset.getThumbnail(s);
                 expect(false).assertTrue();
@@ -197,7 +207,7 @@ export default function getThumbnailPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(true).assertTrue();
+                expect(error.code == ERROR_GET_THUMBNAIL_FAILED).assertTrue();
                 done();
             }
         });
@@ -213,6 +223,7 @@ export default function getThumbnailPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0500", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_PROMISE_0500";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -224,7 +235,9 @@ export default function getThumbnailPromise(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                let size = { width: 99999, height: 99999 };
+                let size = {
+                    width: 99999, height: 99999
+                };
                 let s: image.Size = size;
                 await fileAsset.getThumbnail(s);
                 expect(false).assertTrue();
@@ -232,7 +245,7 @@ export default function getThumbnailPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(true).assertTrue();
+                expect(error.code == ERROR_GET_THUMBNAIL_FAILED).assertTrue();
                 done();
             }
         });

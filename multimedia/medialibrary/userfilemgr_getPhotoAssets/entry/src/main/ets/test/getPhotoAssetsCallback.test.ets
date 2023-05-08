@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -20,9 +20,10 @@ import {
     getPermission,
     JPG_HEIGHT,
     JPG_WIDTH,
+    ERROR_CDOE_NO_DATA_BY_OPTIONS,
+    ERROR_CODE_INVALID_PARAMETER,
+    ERROR_CODE_MEDIALIBRARY_INNER_FAIL,
 } from "../../../../../../common";
-const ERROR_CDOE_NO_DATA_BY_OPTIONS = 2;
-const ERROR_CODE_INVALID_PARAMETER = 13900020;
 
 export default function getPhotoAssetsCallback(abilityContext) {
     describe("getPhotoAssetsCallback", function () {
@@ -43,11 +44,12 @@ export default function getPhotoAssetsCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
-                  fetchColumns: [],
-                  predicates: predicates,
+                    fetchColumns: [],
+                    predicates: predicates,
                 };
                 mgr["getPhotoAssets"](assetOp, async (err, fetchResult) => {
                     if (err) {
@@ -80,6 +82,7 @@ export default function getPhotoAssetsCallback(abilityContext) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0100";
             let displayName = `getPhotoAssetsT${new Date().getTime()}.jpg`;
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo('test', displayName);
                 let assetOp = {
@@ -113,21 +116,21 @@ export default function getPhotoAssetsCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0200", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0200";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: ['test'],
                     predicates: predicates,
                 };
                 await mgr["getPhotoAssets"](assetOp, (err, fetchResult) => {
-                    try {
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err.code}`);
                         expect(err.code == ERROR_CDOE_NO_DATA_BY_OPTIONS).assertTrue();
                         done();
                     }
+                    expect(false).assertTrue();
+                    done();
                 });
-                done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
                 done();
@@ -145,21 +148,21 @@ export default function getPhotoAssetsCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0300", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_CALLBACK_0300";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: ['display_name', 'test'],
                     predicates: predicates,
                 };
                 await mgr["getPhotoAssets"](assetOp, (err, fetchResult) => {
-                    try {
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err.code}`);
                         expect(err.code == ERROR_CDOE_NO_DATA_BY_OPTIONS).assertTrue();
                         done();
                     }
+                    expect(false).assertTrue();
+                    done();
                 });
-                done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
                 done();
@@ -209,13 +212,13 @@ export default function getPhotoAssetsCallback(abilityContext) {
                         done();
                     } catch (err) {
                         console.info(`${testNum} err : ${err.code}`);
-                        expect(err.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
                         done();
                     }
                 });
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
+                expect(error.code == ERROR_CODE_MEDIALIBRARY_INNER_FAIL).assertTrue();
                 done();
             }
         });

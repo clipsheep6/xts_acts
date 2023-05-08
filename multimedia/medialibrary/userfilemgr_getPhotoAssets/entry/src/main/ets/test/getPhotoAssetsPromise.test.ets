@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -20,9 +20,10 @@ import {
     getPermission,
     JPG_HEIGHT,
     JPG_WIDTH,
+    ERROR_CDOE_NO_DATA_BY_OPTIONS,
+    ERROR_CODE_INVALID_PARAMETER,
+    ERROR_CODE_MEDIALIBRARY_INNER_FAIL,
 } from "../../../../../../common";
-const ERROR_CDOE_NO_DATA_BY_OPTIONS = 2;
-const ERROR_CODE_INVALID_PARAMETER = 13900020;
 
 export default function getPhotoAssetsPromise(abilityContext) {
     describe("getPhotoAssetsPromise", function () {
@@ -43,11 +44,12 @@ export default function getPhotoAssetsPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
-                  fetchColumns: [],
-                  predicates: predicates,
+                    fetchColumns: [],
+                    predicates: predicates,
                 };
                 let fetchResult = await mgr["getPhotoAssets"](assetOp);
                 let fileAsset = await fetchResult.getFirstObject();
@@ -74,6 +76,7 @@ export default function getPhotoAssetsPromise(abilityContext) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0100";
             let displayName = `getPhotoAssetsT${new Date().getTime()}.jpg`;
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo('test', displayName);
                 let assetOp = {
@@ -100,6 +103,7 @@ export default function getPhotoAssetsPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0200", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0200";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: ['test'],
@@ -109,7 +113,7 @@ export default function getPhotoAssetsPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error.code}`);
-                expect(error.code == ERROR_CDOE_NO_DATA_BY_OPTIONS).assertTrue();
+                expect(error.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
                 done();
             }
         });
@@ -125,6 +129,7 @@ export default function getPhotoAssetsPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0300", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETPHOTOASSETS_PROMISE_0300";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: ['display_name', 'test'],
@@ -134,7 +139,7 @@ export default function getPhotoAssetsPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error.code}`);
-                expect(error.code == ERROR_CDOE_NO_DATA_BY_OPTIONS).assertTrue();
+                expect(error.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
                 done();
             }
         });
@@ -174,7 +179,7 @@ export default function getPhotoAssetsPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error.code}`);
-                expect(error.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
+                expect(error.code == ERROR_CODE_MEDIALIBRARY_INNER_FAIL).assertTrue();
                 done();
             }
         });

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -20,6 +20,7 @@ import {
     getPermission,
     JPG_HEIGHT,
     JPG_WIDTH,
+    ERROR_CODE_INVALID_PARAMETER,
 } from "../../../../../../common";
 
 export default function fileAssetPromise(abilityContext) {
@@ -41,6 +42,7 @@ export default function fileAssetPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -85,6 +87,7 @@ export default function fileAssetPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -100,7 +103,7 @@ export default function fileAssetPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(true).assertTrue();
+                expect(error.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
                 done();
             }
         });
@@ -116,6 +119,7 @@ export default function fileAssetPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0200", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0200";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -131,7 +135,7 @@ export default function fileAssetPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(true).assertTrue();
+                expect(error.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
                 done();
             }
         });
@@ -147,6 +151,7 @@ export default function fileAssetPromise(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0300", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_FILEASSET_PROMISE_0300";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -162,6 +167,7 @@ export default function fileAssetPromise(abilityContext) {
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
+                expect(error.code == ERROR_CODE_INVALID_PARAMETER).assertTrue();
                 expect(true).assertTrue();
                 done();
             }

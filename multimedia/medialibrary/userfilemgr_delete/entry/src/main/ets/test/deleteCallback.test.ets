@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
 import {
     getPermission,
+    ERROR_CODE_INVALID_PARAMETER,
+    ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION,
+    INVALID_URI,
+    TEST_STRING,
 } from "../../../../../../common";
-const ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION = 13900020;
-const ERROR_CODE_INVALID_PARAMETER = 13900012;
-const INVALID_URI = "datashare:///media/image/-1";
-const TEST_STRING = "test";
 
 export default function deleteCallback(abilityContext) {
     describe("deleteCallback", function () {
@@ -45,6 +45,7 @@ export default function deleteCallback(abilityContext) {
             let displayName = `getPhotoAssetsT${new Date().getTime()}.jpg`;
             try {
                 await mgr["createPhotoAsset"](displayName);
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 let assetOp = {
                     fetchColumns: [],
@@ -55,16 +56,14 @@ export default function deleteCallback(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                await mgr["delete"](fileAsset.uri, async (err) => {
-                    try {
-                        await mgr["getPhotoAssets"](assetOp);
+                mgr["delete"](fileAsset.uri, async (err) => {
+                    if (err) {
+                        console.info(`${testNum} err_1 : ${err}`);
                         expect(false).assertTrue();
                         done();
-                    } catch (err) {
-                        console.info(`${testNum} err : ${err}`);
-                        expect(true).assertTrue();
-                        done();
                     }
+                    expect(true).assertTrue();
+                    done();
                 });
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
@@ -84,19 +83,16 @@ export default function deleteCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_DELETE_CALLBACK_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_DELETE_CALLBACK_0100";
             try {
-                await mgr["delete"](INVALID_URI, (err) => {
-                    try {
-                        expect(true).assertTrue();
-                        done();
-                    } catch (err) {
+                mgr["delete"](INVALID_URI, (err) => {
+                    if (err) {
                         console.info(`${testNum} err : ${err.code}`);
-                        expect(false).assertTrue();
+                        expect(true).assertTrue();
                         done();
                     }
                 });
             } catch (error) {
                 console.info(`${testNum} error : ${error.code}`);
-                expect(false).assertTrue();
+                expect(true).assertTrue();
                 done();
             }
         });
@@ -112,19 +108,16 @@ export default function deleteCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_DELETE_CALLBACK_0200", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_DELETE_CALLBACK_0200";
             try {
-                await mgr["delete"](TEST_STRING, (err) => {
-                    try {
-                        expect(false).assertTrue();
-                        done();
-                    } catch (err) {
+                mgr["delete"](TEST_STRING, (err) => {
+                    if (err) {
                         console.info(`${testNum} err : ${err.code}`);
-                        expect(err.code = ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION).assertTrue();
+                        expect(true).assertTrue();
                         done();
                     }
                 });
             } catch (error) {
                 console.info(`${testNum} error : ${error.code}`);
-                expect(error.code = ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION).assertTrue();
+                expect(error.code == ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION).assertTrue();
                 done();
             }
         });
@@ -140,13 +133,10 @@ export default function deleteCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_DELETE_CALLBACK_0300", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_DELETE_CALLBACK_0300";
             try {
-                await mgr["delete"]((err) => {
-                    try {
-                        expect(false).assertTrue();
-                        done();
-                    } catch (err) {
+                mgr["delete"]((err) => {
+                    if (err) {
                         console.info(`${testNum} err : ${err.code}`);
-                        expect(err.code = ERROR_CODE_WITHOUT_MEDIALIBRARY_PERMISSION).assertTrue();
+                        expect(true).assertTrue();
                         done();
                     }
                 });

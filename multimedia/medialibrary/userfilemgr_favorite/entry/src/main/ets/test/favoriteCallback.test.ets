@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -34,16 +34,17 @@ export default function favoriteCallback(abilityContext) {
         });
 
         /**
-         * @tc.number	 : SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0000
-         * @tc.name 	 : favorite
-         * @tc.desc 	 : set true except favorite's value is ture, then set false except favorite's value is false
-         * @tc.size 	 : MEDIUM
-         * @tc.type 	 : Function
-         * @tc.level	 : Level 2
+         * @tc.number   : SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0000
+         * @tc.name   : favorite
+         * @tc.desc   : set true except favorite's value is ture, then set false except favorite's value is false
+         * @tc.size   : MEDIUM
+         * @tc.type   : Function
+         * @tc.level   : Level 2
          */
         it("SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0000", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0000";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -80,18 +81,19 @@ export default function favoriteCallback(abilityContext) {
         });
 
         /**
-         * @tc.number	 : SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0100
-         * @tc.name 	 : favorite
-         * @tc.desc 	 : favorite with no parameter
-         * @tc.size 	 : MEDIUM
-         * @tc.type 	 : Function
-         * @tc.level	 : Level 2
+         * @tc.number   : SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0100
+         * @tc.name   : favorite
+         * @tc.desc   : favorite with no parameter
+         * @tc.size   : MEDIUM
+         * @tc.type   : Function
+         * @tc.level   : Level 2
          */
         it("SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_FAVORITE_CALLBACK_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
-                predicates.equalTo(COLUMN_DISPLAY_NAME, PIC_DISPLAYNAME);
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
                     fetchColumns: ['is_favorite'],
                     predicates: predicates,

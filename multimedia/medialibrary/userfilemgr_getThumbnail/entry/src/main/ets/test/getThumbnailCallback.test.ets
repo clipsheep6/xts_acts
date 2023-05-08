@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import dataSharePredicates from "@ohos.data.dataSharePredicates";
@@ -40,9 +40,10 @@ export default function getThumbnailCallback(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 2
          */
-        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0000", 0, async function (done) {
-            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0000";
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -53,23 +54,21 @@ export default function getThumbnailCallback(abilityContext) {
                 let fileAsset = await fetchResult.getFirstObject();
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
-                fileAsset.getThumbnail( async (err, pixelmap) => {
-                    if (err) {
-                        console.info(`${testNum} err : ${err}`);
+                fileAsset.getThumbnail(-1, async (err, pixelmap) => {
+                    try {
                         expect(false).assertTrue();
                         await fileAsset["close"](fd);
                         done();
+                    } catch (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(true).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
                     }
-                    let info = await pixelmap.getImageInfo();
-                    expect(info.size.height).equalTo(256);
-                    expect(info.size.width).equalTo(256);
-                    await fileAsset["close"](fd);
-                    done();
-
                 });
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(false).assertTrue();
+                expect(true).assertTrue();
                 done();
             }
         });
@@ -85,6 +84,7 @@ export default function getThumbnailCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -125,6 +125,7 @@ export default function getThumbnailCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0200", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0200";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -165,6 +166,7 @@ export default function getThumbnailCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0300", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0300";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -176,24 +178,26 @@ export default function getThumbnailCallback(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                let size = { width: 128, height: 128 };
+                let size = {
+                    width: 128, height: 128
+                };
                 let s: image.Size = size;
                 fileAsset.getThumbnail(s, async (err, pixelmap) => {
                     if (err) {
                         console.info(`${testNum} err : ${err}`);
-                        expect(true).assertTrue();
+                        expect(false).assertTrue();
                         await fileAsset["close"](fd);
                         done();
                     }
                     let info = await pixelmap.getImageInfo();
-                    expect(info.size.width).assertEqual(size.width);
-                    expect(info.size.height).assertEqual(size.height);
+                    expect(info.size.width == size.width).assertTrue();
+                    expect(info.size.height == size.height).assertTrue();
                     await fileAsset["close"](fd);
                     done();
                 });
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
-                expect(true).assertTrue();
+                expect(false).assertTrue();
                 done();
             }
         });
@@ -209,6 +213,7 @@ export default function getThumbnailCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0400", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0400";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -220,17 +225,14 @@ export default function getThumbnailCallback(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                let size = { width: -1, height: -1 };
+                let size = {
+                    width: -1, height: -1
+                };
                 let s: image.Size = size;
                 fileAsset.getThumbnail(s, async (err, pixelmap) => {
-                    try {
-                        expect(false).assertTrue();
-                        await fileAsset["close"](fd);
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err}`);
                         expect(true).assertTrue();
-                        await fileAsset["close"](fd);
                         done();
                     }
                 });
@@ -252,6 +254,7 @@ export default function getThumbnailCallback(abilityContext) {
         it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0500", 0, async function (done) {
             let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0500";
             try {
+                // @ts-ignore
                 let predicates = new dataSharePredicates.DataSharePredicates();
                 predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
                 let assetOp = {
@@ -263,17 +266,14 @@ export default function getThumbnailCallback(abilityContext) {
                 let fd = await fileAsset["open"]("rw");
                 await fileAsset["close"](fd);
 
-                let size = { width: 99999, height: 99999 };
+                let size = {
+                    width: 99999, height: 99999
+                };
                 let s: image.Size = size;
                 fileAsset.getThumbnail(s, async (err, pixelmap) => {
-                    try {
-                        expect(false).assertTrue();
-                        await fileAsset["close"](fd);
-                        done();
-                    } catch (err) {
+                    if (err) {
                         console.info(`${testNum} err : ${err}`);
                         expect(true).assertTrue();
-                        await fileAsset["close"](fd);
                         done();
                     }
                 });

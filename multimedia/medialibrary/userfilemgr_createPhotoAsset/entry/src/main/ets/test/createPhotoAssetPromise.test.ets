@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// @ts-nocheck
 import { describe, beforeAll, it, expect } from "deccjsunit/index";
 import userFileManager from "@ohos.filemanagement.userFileManager";
 import { getPermission } from "../../../../../../common";
@@ -38,7 +38,7 @@ export default function createPhotoAssetPromise(abilityContext) {
             try {
                 let displayName = `createPhotoAssetT${new Date().getTime()}.jpg`;
                 let fileAsset = await mgr["createPhotoAsset"](displayName);
-                expect(fileAsset.displayName).assertEqual(displayName);
+                expect(fileAsset.displayName == displayName).assertTrue();
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
@@ -106,7 +106,7 @@ export default function createPhotoAssetPromise(abilityContext) {
                     subType: userFileManager.PhotoSubType.CAMERA,
                 };
                 let fileAsset = await mgr["createPhotoAsset"](displayName, createOperation);
-                expect(fileAsset.displayName).assertEqual(displayName);
+                expect(fileAsset.displayName == displayName).assertTrue();
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
@@ -131,7 +131,7 @@ export default function createPhotoAssetPromise(abilityContext) {
                     subType: userFileManager.PhotoSubType.SCREENSHOT,
                 };
                 let fileAsset = await mgr["createPhotoAsset"](displayName, createOperation);
-                expect(fileAsset.displayName).assertEqual(displayName);
+                expect(fileAsset.displayName == displayName).assertTrue();
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
@@ -265,5 +265,6 @@ export default function createPhotoAssetPromise(abilityContext) {
                 done();
             }
         });
+
     });
 }
