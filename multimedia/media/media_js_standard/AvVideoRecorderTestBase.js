@@ -94,7 +94,6 @@ export async function initCamera() {
     })
 
     // 创建previewOutput输出对象
-    // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
     let surfaceId = globalThis.value;
     let previewProfile = cameraOutputCapability.previewProfiles[0];
     try {

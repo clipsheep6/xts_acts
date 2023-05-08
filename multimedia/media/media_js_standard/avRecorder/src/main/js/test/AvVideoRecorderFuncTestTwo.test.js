@@ -39,14 +39,14 @@ export default function avVideoRecorderTestTwo() {
             audioSampleRate : 48000,
             fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
             videoBitrate : 100000, // 视频比特率
-            videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+            videoCodec : media.CodecMimeType.VIDEO_MPEG4, 
             videoFrameWidth : 640,  // 视频分辨率的宽
             videoFrameHeight : 480, // 视频分辨率的高
             videoFrameRate : 30 // 视频帧率
         }
         let avConfig = {
             audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES, // 视频源类型，支持YUV和ES两种格式
+            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile : avProfile,
             url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
             rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
@@ -250,14 +250,14 @@ export default function avVideoRecorderTestTwo() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 100000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_MPEG4,
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
             }
             let avNewConfig = {
                 audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-                videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES, // 视频源类型，支持YUV和ES两种格式
+                videoSourceType : 1,
                 profile : avNewProfile,
                 url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
                 rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
@@ -288,7 +288,7 @@ export default function avVideoRecorderTestTwo() {
                 audioSampleRate : -1,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 100000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_MPEG4,
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -326,7 +326,7 @@ export default function avVideoRecorderTestTwo() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : -1, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_MPEG4,
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -364,7 +364,7 @@ export default function avVideoRecorderTestTwo() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 100000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_MPEG4,
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : -1 // 视频帧率
