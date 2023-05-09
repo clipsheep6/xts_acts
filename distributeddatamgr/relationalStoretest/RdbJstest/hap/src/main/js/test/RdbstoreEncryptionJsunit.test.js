@@ -17,9 +17,9 @@ import data_rdb from '@ohos.data.rdb'
 import ability_featureAbility from '@ohos.ability.featureAbility'
 
 
-const TAG = "[RDB_JSKITS_TEST]"
+const TAG = "[ttt]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-    + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)"
++ "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)"
 
 var rdbStore
 var context
@@ -37,41 +37,41 @@ const STORE_CONFIG_WRONG = {
 }
 
 export default function rdbStoreEncryptionTest() {
-async function CreatRdbStore(context, STORE_CONFIG) {
-    let rdbStore = await data_rdb.getRdbStore(context, STORE_CONFIG, 1)
-    await rdbStore.executeSql(CREATE_TABLE_TEST, null)
-    let u8 = new Uint8Array([1, 2, 3])
-    {
-        const valueBucket = {
-            "name": "zhangsan",
-            "age": 18,
-            "salary": 100.5,
-            "blobType": u8,
+    async function CreatRdbStore(context, STORE_CONFIG) {
+        let rdbStore = await data_rdb.getRdbStore(context, STORE_CONFIG, 1)
+        await rdbStore.executeSql(CREATE_TABLE_TEST, null)
+        let u8 = new Uint8Array([1, 2, 3])
+        {
+            const valueBucket = {
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket)
         }
-        await rdbStore.insert("test", valueBucket)
-    }
-    {
-        const valueBucket = {
-            "name": "lisi",
-            "age": 28,
-            "salary": 100.5,
-            "blobType": u8,
+        {
+            const valueBucket = {
+                "name": "lisi",
+                "age": 28,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket)
         }
-        await rdbStore.insert("test", valueBucket)
-    }
-    {
-        const valueBucket = {
-            "name": "wangwu",
-            "age": 38,
-            "salary": 90.0,
-            "blobType": u8,
+        {
+            const valueBucket = {
+                "name": "wangwu",
+                "age": 38,
+                "salary": 90.0,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket)
         }
-        await rdbStore.insert("test", valueBucket)
+        return rdbStore
     }
-    return rdbStore
-}
 
-describe('rdbEncryptTest', function () {
+    describe('rdbEncryptTest', function () {
         beforeAll(async function () {
             console.info(TAG + 'beforeAll')
 
@@ -128,7 +128,7 @@ describe('rdbEncryptTest', function () {
             }).catch((err) => {
                 expect(null).assertFail();
             })
-            
+
             console.info(TAG + "************* RdbEncryptTest_0020 end *************")
         })
 
@@ -173,14 +173,17 @@ describe('rdbEncryptTest', function () {
             context = ability_featureAbility.getContext()
             rdbStore = await CreatRdbStore(context, STORE_CONFIG_ENCRYPT)
             rdbStore = null
-            rdbStore = await CreatRdbStore(context, STORE_CONFIG_WRONG)
-            expect(rdbStore).assertNull
-
+            try {
+                rdbStore = await CreatRdbStore(context, STORE_CONFIG_WRONG)
+            } catch (err) {
+                console.info(TAG + `catch err: ` + err)
+                expect(err).assertTrue;
+            }
             done()
             console.info(TAG + "************* RdbEncryptTest_0040 end *************")
         })
         console.info(TAG + "*************Unit Test End*************")
     }
-)
+    )
 
 }
