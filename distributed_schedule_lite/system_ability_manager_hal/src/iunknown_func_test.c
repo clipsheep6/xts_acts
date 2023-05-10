@@ -184,6 +184,7 @@ LITE_TEST_CASE(IUnknownTestSuite, testQueryInterface0010, Function | MediumTest 
     int resultRelease = iUnknown->Release(iUnknown);
     TEST_ASSERT_EQUAL_INT(1, resultAdd - resultRelease);
 
+    iUnknown->Release(iUnknown);
     SAMGR_GetInstance()->UnregisterFeatureApi(SERVICE_NAME, FEATURE_NAME);
 }
 
