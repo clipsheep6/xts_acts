@@ -25,6 +25,7 @@ import schemaTest from './SchemaJsTest.js'
 import singleKvStoreEnumTest from './SingleKvStoreEnumJsTest.js'
 import kvStoreBackupPromiseJsunittest from './KvStoreBackupPromiseJsTest.js'
 import kvStoreBackupCallbackJsunittest from './KvStoreBackupCallbackJsTest.js'
+import OptionalparametersJsTest from './OptionalparametersJsTest.js'
 export default function testsuite() {
     SingleKvStorePromiseTest()
     deviceKvStoreCallbackTest()
@@ -39,4 +40,5 @@ export default function testsuite() {
     singleKvStoreEnumTest()
     kvStoreBackupPromiseJsunittest()
     kvStoreBackupCallbackJsunittest()
+    OptionalparametersJsTest()
 }
