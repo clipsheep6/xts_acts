@@ -3343,6 +3343,454 @@ export default function avVideoRecorderTestTwo() {
             eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0800 end')
         })
+
+        // stability test  Promise
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0100
+            * @tc.name      : 01.AVRecorder.prepare(promise)
+            * @tc.desc      : 1. createAVRecorder 2. prepare 2. 执行1000次
+            * @tc.size      : MediumTest
+            * @tc.type      : Stability test
+            * @tc.level     : Level 4
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            avVideoRecorderTestBase.prepare1000TimesPromise(avRecorder, avConfig, done)
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0200
+            * @tc.name      : 01.AVRecorder.start(promise)
+            * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 3. 执行1000次
+            * @tc.size      : MediumTest
+            * @tc.type      : Stability test
+            * @tc.level     : Level 4
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0200', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0200 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            avVideoRecorderTestBase.start1000TimesPromise(avRecorder, avConfig, RECORDER_TIME, done)
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0200 end')
+        })
+
+        // /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0300
+        //     * @tc.name      : 01.AVRecorder.pause(promise)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. pause 4. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0300', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0300 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     avVideoRecorderTestBase.pause1000TimesPromise(avRecorder, avConfig, RECORDER_TIME, done)
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0300 end')
+        // })
+
+        //  /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0400
+        //     * @tc.name      : 01.AVRecorder.resume(promise)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. pause 5. resume 5. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        //  it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0400', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0400 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     avVideoRecorderTestBase.resume1000TimesPromise(avRecorder, avConfig, RECORDER_TIME, done)
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0400 end')
+        // })
+
+         /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0500
+            * @tc.name      : 01.AVRecorder.stop(promise)
+            * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. stop 5. 执行1000次
+            * @tc.size      : MediumTest
+            * @tc.type      : Stability test
+            * @tc.level     : Level 4
+        */
+         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0500', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0500 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            avVideoRecorderTestBase.stop1000TimesPromise(avRecorder, avConfig, RECORDER_TIME, done)
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0500 end')
+        })
+
+        //  /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0600
+        //     * @tc.name      : 01.AVRecorder.reset(promise)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. reset 5. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        //  it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0600', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0600 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     avVideoRecorderTestBase.reset1000TimesPromise(avRecorder, avConfig, RECORDER_TIME, done)
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0600 end')
+        // })
+
+        //  /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0700
+        //     * @tc.name      : 01.AVRecorder.release(promise)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. release 5. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        //  it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0700', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0700 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     avVideoRecorderTestBase.release1000TimesPromise(avRecorder, avConfig, RECORDER_TIME, done)
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_PROMISE_0700 end')
+        // })
+
+         // stability test Callback
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0100
+            * @tc.name      : 01.AVRecorder.prepare(callback)
+            * @tc.desc      : 1. createAVRecorder 2. prepare 2. 执行1000次
+            * @tc.size      : MediumTest
+            * @tc.type      : Stability test
+            * @tc.level     : Level 4
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array();
+            mySteps.push(
+                // init avRecorder
+                CREATE_EVENT, SETONCALLBACK_EVENT,
+                )
+            for (let i = 0; i < 1000; i++) {
+                mySteps.push(
+                    PREPARE_EVENT, GETINPUTSURFACE_EVENT, RESETRECORDER_EVENT,
+                )
+            }
+            mySteps.push(
+                // release avRecorder
+                RELEASECORDER_EVENT,
+                // end
+                END_EVENT
+                )
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0100 end')
+        })
+
+        // /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0200
+        //     * @tc.name      : 01.AVRecorder.start(callback)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 3. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0200', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0200 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     let mySteps = new Array();
+        //     mySteps.push(
+        //         // init avRecorder
+        //         CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+        //         // init camera
+        //         GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+        //         // start avRecorder
+        //         STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+        //         // reset
+        //         RESETRECORDER_EVENT, PREPARE_EVENT, GETINPUTSURFACE_EVENT,
+        //         )
+        //     for (let i = 0; i < 999; i++) {
+        //         mySteps.push(
+        //             // start avRecorder
+        //             STARTRECORDER_EVENT,
+        //             // reset
+        //             RESETRECORDER_EVENT, PREPARE_EVENT, GETINPUTSURFACE_EVENT,
+        //         )
+        //     }
+        //     mySteps.push(
+        //         // stop camera
+        //         STOPCAMERA_EVENT,
+        //         // release avRecorder and camera
+        //         RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+        //         // end
+        //         END_EVENT
+        //         )
+        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0200 end')
+        // })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0300
+            * @tc.name      : 01.AVRecorder.pause(callback)
+            * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. pause 4. 执行1000次
+            * @tc.size      : MediumTest
+            * @tc.type      : Stability test
+            * @tc.level     : Level 4
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array();
+            mySteps.push(
+                // init avRecorder
+                CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+                // init camera
+                GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+                // start avRecorder
+                STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+                // pause avRecorder
+                PAUSERECORDER_EVENT,
+                // resume avRecorder
+                RESUMERECORDER_EVENT,
+                )
+            for (let i = 0; i < 999; i++) {
+                mySteps.push(
+                    // pause avRecorder
+                    PAUSERECORDER_EVENT,
+                    // resume avRecorder
+                    RESUMERECORDER_EVENT,
+                )
+            }
+            mySteps.push(
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+                )
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0300 end')
+        })
+
+         /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0400
+            * @tc.name      : 01.AVRecorder.resume(callback)
+            * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. pause 5. resume 5. 执行1000次
+            * @tc.size      : MediumTest
+            * @tc.type      : Stability test
+            * @tc.level     : Level 4
+        */
+         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0400', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0400 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array();
+            mySteps.push(
+                // init avRecorder
+                CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+                // init camera
+                GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+                // start avRecorder
+                STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+                // pause avRecorder
+                PAUSERECORDER_EVENT,
+                // resume avRecorder
+                RESUMERECORDER_EVENT,
+                )
+            for (let i = 0; i < 999; i++) {
+                mySteps.push(
+                    // pause avRecorder
+                    PAUSERECORDER_EVENT,
+                    // resume avRecorder
+                    RESUMERECORDER_EVENT,
+                )
+            }
+            mySteps.push(
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+                )
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0400 end')
+        })
+
+        //  /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0500
+        //     * @tc.name      : 01.AVRecorder.stop(callback)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. stop 5. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        //  it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0500', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0500 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     let mySteps = new Array();
+        //     mySteps.push(
+        //         // init avRecorder
+        //         CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+        //         // init camera
+        //         GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+        //         // start avRecorder
+        //         STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+        //         // stop avRecorder
+        //         STOPRECORDER_EVENT,
+        //         // prepare avRecorder
+        //         PREPARE_EVENT, GETINPUTSURFACE_EVENT,
+        //         // start avRecorder
+        //         STARTCAMERA_EVENT,
+        //         )
+        //     for (let i = 0; i < 999; i++) {
+        //         mySteps.push(
+        //             // stop avRecorder
+        //             STOPRECORDER_EVENT,
+        //             // prepare avRecorder
+        //             PREPARE_EVENT, GETINPUTSURFACE_EVENT,
+        //             // start avRecorder
+        //             STARTCAMERA_EVENT,
+        //         )
+        //     }
+        //     mySteps.push(
+        //         // stop camera
+        //         STOPCAMERA_EVENT,
+        //         // release avRecorder and camera
+        //         RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+        //         // end
+        //         END_EVENT
+        //         )
+        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0500 end')
+        // })
+
+        //  /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0600
+        //     * @tc.name      : 01.AVRecorder.reset(callback)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. reset 5. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        //  it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0600', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0600 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     let mySteps = new Array();
+        //     mySteps.push(
+        //         // init avRecorder
+        //         CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+        //         // init camera
+        //         GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+        //         // start avRecorder
+        //         STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+        //         // reset avRecorder
+        //         RESETRECORDER_EVENT,
+        //         // prepare avRecorder
+        //         PREPARE_EVENT, GETINPUTSURFACE_EVENT,
+        //         // start avRecorder
+        //         STARTCAMERA_EVENT,
+        //         )
+        //     for (let i = 0; i < 999; i++) {
+        //         mySteps.push(
+        //             // reset avRecorder
+        //             RESETRECORDER_EVENT,
+        //             // prepare avRecorder
+        //             PREPARE_EVENT, GETINPUTSURFACE_EVENT,
+        //             // start avRecorder
+        //             STARTCAMERA_EVENT,
+        //         )
+        //     }
+        //     mySteps.push(
+        //         // stop camera
+        //         STOPCAMERA_EVENT,
+        //         // release avRecorder and camera
+        //         RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+        //         // end
+        //         END_EVENT
+        //         )
+        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0600 end')
+        // })
+
+        //  /* *
+        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0700
+        //     * @tc.name      : 01.AVRecorder.release(callback)
+        //     * @tc.desc      : 1. createAVRecorder 2. prepare 3. start 4. release 5. 执行1000次
+        //     * @tc.size      : MediumTest
+        //     * @tc.type      : Stability test
+        //     * @tc.level     : Level 4
+        // */
+        //  it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0700', 0, async function (done) {
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0700 start')
+        //     let fileName = avVideoRecorderTestBase.resourceName()
+        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdPath = "fd://" + fdObject.fdNumber;
+        //     avConfig.url = fdPath;
+        //     let mySteps = new Array();
+        //     mySteps.push(
+        //         // init avRecorder
+        //         CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+        //         // init camera
+        //         GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+        //         // start avRecorder
+        //         STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+        //         )
+        //     for (let i = 0; i < 999; i++) {
+        //         mySteps.push(
+        //             // release avRecorder and camera
+        //             RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+        //             // init avRecorder
+        //             CREATE_EVENT, SETONCALLBACK_EVENT, PREPARE_EVENT,
+        //             // init camera
+        //             GETINPUTSURFACE_EVENT, INITCAMERA_EVENT,
+        //             // start avRecorder
+        //             STARTCAMERA_EVENT, STARTRECORDER_EVENT,
+        //         )
+        //     }
+        //     mySteps.push(
+        //         // release avRecorder and camera
+        //         RELEASECORDER_EVENT, RELEASECAMERA_EVENT,
+        //         // end
+        //         END_EVENT
+        //         )
+        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, RECORDER_TIME, mySteps, done);
+        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STABILITY_API_CALLBACK_0700 end')
+        // })
     })
 }
 
