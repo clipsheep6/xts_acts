@@ -1,0 +1,38 @@
+import marginStringTest from './margin/MarginStringTest.test';
+import alignRulesTest from './alignRules/AlignRulesTest.test';
+import directionTest from './direction/DirectionTest.test';
+import positionTest from './position/PositionTest.test';
+import alignTest from './align/AlignTest.test';
+import markAnchorTest from './markAnchor/MarkAnchorTest.test';
+import offsetTest from './offset/OffsetTest.test';
+import paddingTest from './padding/PaddingTest.test';
+import PaddingLengthTest from './padding/PaddingLengthTest.test';
+import layoutWeightRowTest from './layoutWeight/LayoutWeightRowtest.test';
+import layoutWeightFlexTest from './layoutWeight/LayoutWeightFlextest.test';
+import marginLengthTest from './margin/MarginLengthTest.test';
+import layoutWeightTest from './layoutWeight/LayoutWeighttest.test';
+import constraintSizeTest from './constraintSize/ConstraintSizeTest.test';
+import marginTest from './margin/MarginTest.test';
+import widthTest from './width/WidthTest.test';
+import heightTest from './height/HeightTest.test';
+import sizeTest from './size/SizeTest.test';
+export default function testsuite() {
+//  alignTest();
+//  positionTest();
+//  directionTest();
+//  markAnchorTest();
+//  offsetTest();
+//  alignRulesTest();
+//  marginTest();
+//  marginLengthTest();
+//  marginStringTest();
+//  layoutWeightTest();
+//  layoutWeightFlexTest();
+//  layoutWeightRowTest();
+//  constraintSizeTest();
+//  widthTest();
+//  heightTest();
+//  sizeTest();
+  paddingTest();
+  PaddingLengthTest();
+}
