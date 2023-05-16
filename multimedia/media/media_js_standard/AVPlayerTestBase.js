@@ -596,7 +596,7 @@ export async function seekLoop(src, avPlayer, done) {
     seekLoopWithCallback(avPlayer);
     await setSource(avPlayer, src);
     console.info('seekLoop setSource');
-    await sleep(20);
+    await sleep(200);
     if(avPlayer.state == AV_PLAYER_STATE.INITIALIZED) {
         avPlayer.surfaceId = surfaceID;
         console.info('seekLoop case prepare success');
@@ -639,7 +639,7 @@ export async function seekLoopWithoutCallback(src, avPlayer, done) {
     avPlayer = await idle(src, avPlayer)
     await setSource(avPlayer, src);
     console.info('seekLoopWithoutCallback setSource');
-    await sleep(20);
+    await sleep(200);
     if(avPlayer.state == 'initialized') {
         avPlayer.surfaceId = surfaceID;
         await preparePromise(avPlayer);
@@ -675,7 +675,7 @@ export async function prepareToStopLoop(src, avPlayer, done) {
     avPlayer = await idle(src, avPlayer)
     setSource(avPlayer, src);
     console.info('prepareToStopLoop setSource');
-    await sleep(20);
+    await sleep(200);
     if(avPlayer.state == AV_PLAYER_STATE.INITIALIZED) {
         avPlayer.surfaceId = surfaceID;
     }
@@ -2070,7 +2070,7 @@ export async function avPlayerWithoutCallBack(src, avPlayer, done) {
     avPlayer = await idle(src, avPlayer)
     setSource(avPlayer, src);
     console.info('avPlayerWithoutCallBack setSource');
-    await sleep(20);
+    await sleep(200);
     if(avPlayer.state == AV_PLAYER_STATE.INITIALIZED) {
         avPlayer.surfaceId = surfaceID;
         await preparePromise(avPlayer);
