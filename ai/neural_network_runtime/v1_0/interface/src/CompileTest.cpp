@@ -88,6 +88,7 @@ void CompileModel(OH_NNCompilation *compilation, const OHNNCompileParam &compile
 HWTEST_F(CompileTest, SUB_AI_NNRt_Func_North_Compilation_Create_0100, Function | MediumTest | Level3)
 {
     OH_NNCompilation *compilation = OH_NNCompilation_Construct(nullptr);
+    printf("SUB_AI_NNRt_Func_North_Compilation_Create_0100\n");
     ASSERT_EQ(nullptr, compilation);
 }
 
