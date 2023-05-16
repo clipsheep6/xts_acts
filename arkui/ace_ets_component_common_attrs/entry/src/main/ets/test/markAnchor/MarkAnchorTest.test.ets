@@ -1,16 +1,30 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { AttrsManager } from '../../MainAbility/common/AttrsManager';
 import Utils from '../../MainAbility/common/Utils';
 import CommonTest from '../common/CommonTest';
 import { describe, expect } from '@ohos/hypium'
 
-export default function markAnchorTest() {
-  let supportView =
-    ["Text","Button", "Radio", "Select","Blank","Checkbox","CheckboxGroup","DataPanel",
-    "DatePicker", "Divider", "Gauge","LoadingProgress","Marquee","Navigation","Image","ImageAnimator",
-    "AlphabetIndexer","NavRouter", "Progress","QRCode","Rating","Search","Slider","TextArea","TextClock",
-    "TextInput","TextPicker", "TimePicker","Toggle","Badge","Column","Counter","Flex","Grid","GridRow",
-    "List","Row","Scroll","SideBarContainer","Stack","Tabs","WaterFlow",
-    "Circle","Ellipse","Line", "Polyline","Polygon","Path","Rect","Shape","Panel","Refresh","TabContent"]
+export default function textMarkAnchor() {
+  let supportView = ['Text','Button','Radio','Select','Blank','Checkbox','CheckboxGroup','DataPanel',
+    'DatePicker','Divider','Gauge','LoadingProgress','Marquee','Navigation','Image','ImageAnimator',
+    'AlphabetIndexer','NavRouter','Progress','QRCode','Rating','Search','Slider','TextArea','TextClock',
+    'TextInput','TextPicker','TimePicker','Toggle','Badge','Column','Counter','Flex','Grid','GridRow',
+    'List','Row','Scroll','SideBarContainer','Stack','Tabs','WaterFlow', 'Circle','Ellipse','Line',
+    'Polyline','Polygon','Path','Rect','Shape','Panel','Refresh','TabContent','ListItem']
 
   //Custom params.
   let parentWidth = 300;
@@ -19,87 +33,79 @@ export default function markAnchorTest() {
   let subassemblyHeight = 100;
 
   let pageConfig = {
-    testName: "MarkAnchorTest",
-    pageName: "MarkAnchorPage",
-    pageUrl: "MainAbility/pages/markAnchor/MarkAnchorPage",
+    testName: 'textMarkAnchor',
+    pageName: 'MarkAnchorPage',
+    pageUrl: 'MainAbility/pages/markAnchor/MarkAnchorPage',
     parentWidth: parentWidth,
     parentHeight :parentHeight,
     subassemblyWidth:subassemblyWidth,
     subassemblyHeight:subassemblyHeight,
   }
 
-  let testValues = [
-    {
-      describe: "DefaultValue",
-      expectValue: {
-        x: "0.00vp", y: "0.00vp", left: vp2px(0) , top: vp2px(0)
-      }
-    },{
-    describe: "Number",
+  let testValues = [{
+    describe: 'Number',
     setValue: {
       x: 50, y: 50
     },
     expectValue: {
-      x: "50.00vp", y: "50.00vp", left: vp2px(50) , top: vp2px(50)
+      x: '50.00vp', y: '50.00vp', left: vp2px(50) , top: vp2px(50)
     }
   }, {
-    describe: "StringPx",
+    describe: 'StringPx',
     setValue: {
-      x: "150px", y: "150px"
+      x: '150px', y: '150px'
     },
     expectValue: {
-      x: "150.00px", y: "150.00px", left: 150 , top: 150
+      x: '150.00px', y: '150.00px', left: 150 , top: 150
     }
   }, {
-    describe: "StringPercent",
+    describe: 'StringPercent',
     setValue: {
-      x: "50%", y: "50%"
+      x: '50%', y: '50%'
     },
     expectValue: {
-      x: "50.00%", y: "50.00%" ,left: vp2px(subassemblyWidth*0.5) , top: vp2px(subassemblyHeight*0.5)
+      x: '50.00%', y: '50.00%' ,left: vp2px(subassemblyWidth*0.5) , top: vp2px(subassemblyHeight*0.5)
     }
   }, {
-    describe: "Resource",
+    describe: 'Resource',
     setValue: {
       x: $r('app.float.50vp'), y: $r('app.float.50vp')
     },
     expectValue: {
-      x: "50.00vp", y: "50.00vp",left: vp2px(50) , top: vp2px(50)
+      x: '50.00vp', y: '50.00vp',left: vp2px(50) , top: vp2px(50)
     }
   }]
 
-  describe("MarkAnchorTest", () => {
+  describe('textMarkAnchor', () => {
     //Create test cases by config.
-    CommonTest.initTest(pageConfig, supportView, testValues,null, async data => {
+    CommonTest.initTest(pageConfig, supportView, testValues, null, async data => {
       //Check test result.
-      if (data.describe == "DefaultValue") {
-        AttrsManager.change(data.caseTag, data.testValue.setValue);
-        let viewObj = Utils.getComponentByKey(data.pageConfig.componentKey);
-        console.info("[" + data.caseTag + "] check actual position.");
-        expect(viewObj.$attrs.markAnchor.x).assertEqual(data.testValue.expectValue.x);
-        expect(viewObj.$attrs.markAnchor.y).assertEqual(data.testValue.expectValue.y);
-      } else {
-        //Restore the target component to its original position
-        console.info("[" + data.caseTag + "] Restore the target component to its original position" + "setValue : {x: 0, y: 0}");
-        AttrsManager.change(data.caseTag, {
-          x: 0, y: 0
-        });
+        console.info('[' + data.caseTag + '] Restore the target component to its original position' + 'setValue : {x: 0, y: 0}');
+        AttrsManager.change(data.caseTag, {x: 0, y: 0});
         await Utils.sleep(1000);
 
-        console.info("[" + data.caseTag + "] get Target Component rect before position changed.");
+        console.info('[' + data.caseTag + '] get Target Component rect before position changed.');
         let initialPosition = Utils.getComponentRect(data.pageConfig.componentKey);
 
-        console.info("[" + data.caseTag + "] setValue : " + JSON.stringify(data.testValue.setValue));
+        console.info('[' + data.caseTag + '] setValue : ' + JSON.stringify(data.testValue.setValue));
         AttrsManager.change(data.caseTag, data.testValue.setValue);
         await Utils.sleep(1000);
 
-        console.info("[" + data.caseTag + "] get referenceComponent rect after position changed.");
+        console.info('[' + data.caseTag + '] get TargetComponent rect after position changed.');
         let targetRectAfter = Utils.getComponentRect(data.pageConfig.componentKey);
-        let viewObj = Utils.getComponentByKey(data.pageConfig.componentKey);
 
-        console.info("[" + data.caseTag + "] check actual position.");
+        console.info('[' + data.caseTag + '] check markAnchor value.');
+        let viewObj = Utils.getComponentByKey(data.pageConfig.componentKey);
         expect(viewObj.$attrs.markAnchor.x).assertEqual(data.testValue.expectValue.x);
         expect(viewObj.$attrs.markAnchor.y).assertEqual(data.testValue.expectValue.y);
+
+        console.info('[' + data.caseTag + '] check actual position.');
+      if (data.describe == 'StringPercent') {
+        expect(Number(targetRectAfter.left - initialPosition.left).toFixed(2))
+          .assertEqual(Number((targetRectAfter.right - targetRectAfter.left) * data.testValue.setValue.x).toFixed(2));
+        expect(Number(targetRectAfter.top - initialPosition.top).toFixed(2))
+          .assertEqual(Number((targetRectAfter.bottom - targetRectAfter.top) * data.testValue.setValue.y).toFixed(2));
+      } else {
         expect(Number(initialPosition.left - targetRectAfter.left).toFixed(2))
           .assertEqual(Number(data.testValue.expectValue.left).toFixed(2));
         expect(Number(initialPosition.top - targetRectAfter.top).toFixed(2))

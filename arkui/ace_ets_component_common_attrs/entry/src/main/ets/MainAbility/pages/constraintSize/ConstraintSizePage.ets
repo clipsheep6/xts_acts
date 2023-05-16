@@ -1,6 +1,20 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import AttrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
-import { SwiperExample } from '../../view/size/SwiperTwo';
 
 @Entry
 @Component
@@ -13,22 +27,22 @@ struct ConstraintSizePage {
   private selectedTime: Date = new Date('2022-07-22T08:00:00')
   private scroller: Scroller = new Scroller()
   private fromStart: boolean = true
-  xcomponentController: XComponentController = new XComponentController()
   textTimerController: TextTimerController = new TextTimerController()
   private step: number = 50
   controllers: TextClockController = new TextClockController()
   private loop: number = Infinity
-  private src: string = "Running Marquee starts rolling"
+  private src: string = 'Running Marquee starts rolling'
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
   public valueArr: number[] = [5, 10, 10, 7, 9, 10, 10, 10, 10]
   @State _width: number = 100
   controllerss: SearchController = new SearchController()
   @State _constraintSize: ConstraintSizeOptions = undefined;
-  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ""
-  @State targetGroupView: string = router.getParams() ? router.getParams()['view']['targetGroupView'] : ""
-  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ""
+  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ''
+  @State targetGroupView: string = router.getParams() ? router.getParams()['view']['targetGroupView'] : ''
+  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ''
   @State childWidth: number = router.getParams() ? router.getParams()['view']['childWidth'] : 0
   @State childHeight: number = router.getParams() ? router.getParams()['view']['childHeight'] : 0
+  @State referenceComponentKey: string = router.getParams() ? router.getParams()['view']['referenceComponentKey'] : ''
 
   onPageShow() {
     console.info('ConstraintSize page show called ')
@@ -45,81 +59,64 @@ struct ConstraintSizePage {
   build() {
     Row() {
       Column() {
-        if (this.targetView == "Button") {
+        if (this.targetView == 'Button') {
           Button('button1').commonStyle()
-        } else if (this.targetView == "Text") {
+        } else if (this.targetView == 'Text') {
           Text('text1').commonStyle()
-        } else if (this.targetView == "AlphabetIndexer") {
-          Stack({ alignContent: Alignment.Start }) {
-            AlphabetIndexer({ arrayValue: this.value, selected: 0 })
-              .commonStyle()
-          }
-        } else if (this.targetView == "Blank") {
-          Blank()
-            .backgroundColor(Color.Yellow).commonStyle()
-        } else if (this.targetView == "Checkbox") {
-          Checkbox()
-            .commonStyle()
-        } else if (this.targetView == "CheckboxGroup") {
-          CheckboxGroup({ group: 'checkboxGroup' })
-            .commonStyle()
-        } else if (this.targetView == "DataPanel") {
-          DataPanel({ values: this.valueArr })
-            .commonStyle()
-        } else if (this.targetView == "DatePicker") {
+        } else if (this.targetView == 'AlphabetIndexer') {
+          AlphabetIndexer({ arrayValue: this.value, selected: 0 }).commonStyle()
+        } else if (this.targetView == 'Blank') {
+          Blank().backgroundColor(Color.Yellow).commonStyle()
+        } else if (this.targetView == 'Checkbox') {
+          Checkbox().commonStyle()
+        } else if (this.targetView == 'CheckboxGroup') {
+          CheckboxGroup({ group: 'checkboxGroup' }).commonStyle()
+        } else if (this.targetView == 'DataPanel') {
+          DataPanel({ values: this.valueArr }).commonStyle()
+        } else if (this.targetView == 'DatePicker') {
           DatePicker({
             start: new Date('1970-1-1'),
             end: new Date('2100-1-1'),
           }).commonStyle()
-        } else if (this.targetView == "Divider") {
-
+        } else if (this.targetView == 'Divider') {
           Divider().commonStyle()
-
-        } else if (this.targetView == "Gauge") {
+        } else if (this.targetView == 'Gauge') {
           Gauge({ value: 105 })
             .commonStyle()
             .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
-        } else if (this.targetView == "Image") {
-          Image($r('app.media.icon'))
-            .commonStyle()
-        } else if (this.targetView == "ImageAnimator") {
+        } else if (this.targetView == 'Image') {
+          Image($r('app.media.icon')).commonStyle()
+        } else if (this.targetView == 'ImageAnimator') {
           ImageAnimator()
             .images([
               {
                 src: $r('app.media.icon')
               }
-            ])
-            .commonStyle()
-        } else if (this.targetView == "LoadingProgress") {
-          LoadingProgress()
-            .commonStyle()
-        } else if (this.targetView == "Marquee") {
+            ]).commonStyle()
+        } else if (this.targetView == 'LoadingProgress') {
+          LoadingProgress().commonStyle()
+        } else if (this.targetView == 'Marquee') {
           Marquee({
             start: this.start = true,
             step: this.step,
             loop: this.loop,
             fromStart: this.fromStart,
             src: this.src
-          })
-            .commonStyle()
-        } else if (this.targetView == "Navigation") {
+          }).commonStyle()
+        } else if (this.targetView == 'Navigation') {
           Navigation() {
-          }
-          .commonStyle()
-        } else if (this.targetView == "Progress") {
+          }.commonStyle()
+        } else if (this.targetView == 'Progress') {
           Progress({ value: 10, type: ProgressType.Eclipse }).commonStyle()
-        } else if (this.targetView == "QRCode") {
+        } else if (this.targetView == 'QRCode') {
           QRCode(this.src).commonStyle()
-        } else if (this.targetView == "Radio") {
-          Radio({ value: 'Radio1', group: 'radioGroup' })
-            .commonStyle()
-        } else if (this.targetView == "Rating") {
-          Rating({ rating: 3.5, indicator: false })
-            .commonStyle()
-        } else if (this.targetView == "RichText") {
-          RichText(this.data)
-            .commonStyle()
-        } else if (this.targetView == "ScrollBar") {
+        } else if (this.targetView == 'Radio') {
+          Radio({ value: 'Radio1', group: 'radioGroup' }).commonStyle()
+        } else if (this.targetView == 'Rating') {
+          Rating({ rating: 3.5, indicator: false }).commonStyle()
+        } else if (this.targetView == 'RichText') {
+          RichText(this.data).commonStyle()
+        } else if (this.targetView == 'ScrollBar') {
           ScrollBar({ scroller: this.scroller, state: BarState.On }) {
             Text()
               .width(20)
@@ -127,14 +124,12 @@ struct ConstraintSizePage {
               .borderRadius(10)
               .backgroundColor('#C0C0C0')
           }.commonStyle()
-        } else if (this.targetView == "Search") {
-          Search()
-            .commonStyle()
-        } else if (this.targetView == "Select") {
+        } else if (this.targetView == 'Search') {
+          Search().commonStyle()
+        } else if (this.targetView == 'Select') {
           Select([{ value: 'aaa' },
-            { value: 'bbb' }])
-            .commonStyle()
-        } else if (this.targetView == "Slider") {
+            { value: 'bbb' }]).commonStyle()
+        } else if (this.targetView == 'Slider') {
           Slider({
             value: this.step,
             min: 0,
@@ -143,51 +138,36 @@ struct ConstraintSizePage {
           })
             .showTips(true)
             .commonStyle()
-        } else if (this.targetView == "TextArea") {
+        } else if (this.targetView == 'TextArea') {
           TextArea({
             placeholder: 'The text area can hold an unlimited amount of text. input your word...',
             controller: this.controllerss
-          })
-            .commonStyle()
-        } else if (this.targetView == "TextClock") {
+          }).commonStyle()
+        } else if (this.targetView == 'TextClock') {
           TextClock({ timeZoneOffset: -8, controller: this.controllers })
             .format('hms')
             .commonStyle()
-        } else if (this.targetView == "TextInput") {
-          TextInput({ placeholder: 'input your word...', controller: this.controllerss })
-            .commonStyle()
-        } else if (this.targetView == "TextPicker") {
+        } else if (this.targetView == 'TextInput') {
+          TextInput({ placeholder: 'input your word...', controller: this.controllerss }).commonStyle()
+        } else if (this.targetView == 'TextPicker') {
           TextPicker({ range: this.value }).commonStyle()
-        } else if (this.targetView == "TextTimer") {
+        } else if (this.targetView == 'TextTimer') {
           TextTimer({ isCountDown: true, count: 30000, controller: this.textTimerController })
             .format('mm:ss.SS')
             .fontColor(Color.Black)
             .commonStyle()
-
-        } else if (this.targetView == "TimePicker") {
+        } else if (this.targetView == 'TimePicker') {
           TimePicker({
             selected: this.selectedTime,
-          })
-            .commonStyle()
+          }).commonStyle()
         } else if (this.targetView == 'Toggle') {
-          Toggle({ type: ToggleType.Switch, isOn: false })
-            .commonStyle()
+          Toggle({ type: ToggleType.Switch, isOn: false }).commonStyle()
         } else if (this.targetView == 'Web') {
-          Web({ src: 'www.example.com', controller: this.controller })
-            .commonStyle()
-        } else if (this.targetView == 'Xcomponent') {
-          XComponent({
-            id: 'xcomponent',
-            type: 'surface',
-            controller: this.xcomponentController
-          })
-            .commonStyle()
+          Web({ src: 'www.example.com', controller: this.controller }).commonStyle()
         } else if (this.targetView == 'Circle') {
-          Circle()
-            .commonStyle()
+          Circle().commonStyle()
         } else if (this.targetView == 'Ellipse') {
-          Ellipse()
-            .commonStyle()
+          Ellipse().commonStyle()
         } else if (this.targetView == 'Line') {
           Line()
             .commonStyle()
@@ -195,17 +175,13 @@ struct ConstraintSizePage {
             .endPoint([50, 100])
             .backgroundColor(Color.Black)
         } else if (this.targetView == 'Polyline') {
-          Polyline()
-            .commonStyle()
+          Polyline().commonStyle()
         } else if (this.targetView == 'Polygon') {
-          Polygon()
-            .commonStyle()
+          Polygon().commonStyle()
         } else if (this.targetView == 'Path') {
-          Path()
-            .commonStyle()
+          Path().commonStyle()
         } else if (this.targetView == 'Rect') {
-          Rect()
-            .commonStyle()
+          Rect().commonStyle()
         } else if (this.targetView == 'Shape') {
           Shape() {
             Rect().width(100).height(50)
@@ -234,8 +210,19 @@ struct ConstraintSizePage {
             Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
           }.commonStyle()
         } else if (this.targetView == 'GridRow') {
-          GridRow().commonStyle()
-        }  else if (this.targetView == 'Grid') {
+          GridRow({
+            columns: 5,
+            gutter: { x: 5, y: 10 },
+            breakpoints: { value: ['400vp', '600vp', '800vp'], reference: BreakpointsReference.WindowSize },
+            direction: GridRowDirection.Row
+          }) {
+            ForEach([Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown], (color) => {
+              GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
+                Row().width('100%').height('20vp')
+              }.borderColor(color).borderWidth(2)
+            })
+          }.commonStyle()
+        } else if (this.targetView == 'Grid') {
           Grid() {
             ForEach(['0', '1', '2', '3', '4'], () => {
               ForEach(['0', '1', '2', '3', '4'], (day: string) => {
@@ -245,7 +232,11 @@ struct ConstraintSizePage {
                 }
               })
             })
-          }.columnsTemplate('1fr 1fr 1fr 1fr 1fr').rowsTemplate('1fr 1fr 1fr 1fr 1fr').commonStyle().backgroundColor(0xFAEEE0)
+          }
+          .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+          .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
+          .commonStyle()
+          .backgroundColor(0xFAEEE0)
         } else if (this.targetView == 'GridItem') {
           Grid() {
             GridItem() {
@@ -290,10 +281,31 @@ struct ConstraintSizePage {
             Text('Text')
           }.commonStyle()
         } else if (this.targetView == 'Scroll') {
-          Scroll(this.scroller) {
-          }.commonStyle()
+          Scroll() {
+            Column() {
+              ForEach([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (item) => {
+                Text('Scroll' + item.toString())
+                  .width('90%')
+                  .height(50)
+                  .backgroundColor(Color.White)
+                  .textAlign(TextAlign.Center)
+              }, item => item)
+            }.width('100%')
+          }.scrollBar(BarState.On).commonStyle()
         } else if (this.targetView == 'SideBarContainer') {
           SideBarContainer(SideBarContainerType.Embed) {
+            Column() {
+              ForEach([1, 2, 3], (item) => {
+                Column({ space: 5 }) {
+                  Image($r('app.media.icon')).width(50).height(50)
+                  Text('Index0' + item).fontSize(25)
+                }
+              })
+            }.width('100%').justifyContent(FlexAlign.SpaceEvenly).backgroundColor(Color.Green)
+
+            Column() {
+              Text('SideBarContainer content').fontSize(25)
+            }.backgroundColor(Color.Orange)
           }.commonStyle()
         } else if (this.targetView == 'Stack') {
           Stack() {
@@ -301,7 +313,7 @@ struct ConstraintSizePage {
         } else if (this.targetView == 'Swiper') {
           Swiper() {
             ForEach([1, 2, 3], (item: string) => {
-              Text("Swiper" + item).width('90%').height(50)
+              Text('Swiper' + item).width('90%').height(50)
             }, item => item)
           }
           .indicator(true)
@@ -316,16 +328,20 @@ struct ConstraintSizePage {
         } else if (this.targetView == 'TabContent') {
           Tabs() {
             TabContent() {
-              Text("TabContent Test").width('100%').height('100%').backgroundColor(Color.White)
-            }.tabBar("Tabs1").commonStyle()
+              Text('TabContent Test').width('100%').height('100%').backgroundColor(Color.White)
+            }.tabBar('Tabs1').commonStyle()
+
+            TabContent() {
+              Text('TabContent Test').width('100%').height('100%').backgroundColor(Color.White)
+            }.tabBar('Tabs2').key(this.referenceComponentKey)
           }
         } else if (this.targetView == 'WaterFlow') {
           WaterFlow() {
             ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], (item: number) => {
               FlowItem() {
                 Column() {
-                  Text("WaterFlow" + item).fontSize(12).height('16')
-                  Image($r("app.media.icon"))
+                  Text('WaterFlow' + item).fontSize(12).height('16')
+                  Image($r('app.media.icon'))
                     .width(50)
                     .height(50)
                     .objectFit(ImageFit.Fill)
@@ -335,8 +351,7 @@ struct ConstraintSizePage {
           }.commonStyle()
         }
       }
-      //.key('KEY_SIZE_TWO')
-      .backgroundColor(Color.Red)
+      .backgroundColor(Color.Pink)
 
     }.backgroundColor(Color.Yellow)
   }

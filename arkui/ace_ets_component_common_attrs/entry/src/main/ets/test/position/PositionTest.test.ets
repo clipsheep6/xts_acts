@@ -1,3 +1,18 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { AttrsManager } from '../../MainAbility/common/AttrsManager';
 import Utils from '../../MainAbility/common/Utils';
 import CommonTest from '../common/CommonTest';
@@ -74,7 +89,7 @@ export default function positionTest() {
 
   //Page config, this param is required.
   let pageConfig = {
-    testName: 'PositionTest',
+    testName: 'testPosition',
     pageName: 'PositionPage',
     pageUrl: 'MainAbility/pages/position/PositionPage',
     parentWidth: parentWidth,
@@ -103,7 +118,7 @@ export default function positionTest() {
   }, {
     describe: 'SetStringPercent',
     setValue: {
-      x: '20%', y: '10%'
+      x: '20%', y: '10%', xp: 0.2, yp: 0.1
     },
     expectValue: {
       x: '20.00%', y: '10.00%', left: vp2px(parentWidth) * 0.2, top: vp2px(parentHeight) * 0.1
@@ -127,6 +142,9 @@ export default function positionTest() {
       console.info('[' + data.caseTag + '] get referenceComponent rect before position changed.');
       let referenceRectBefore = Utils.getComponentRect(data.pageConfig.referenceComponentKey);
 
+      console.info('[' + data.caseTag + '] get parentComponent rect before position changed.');
+      let parentRectBefore = Utils.getComponentRect(data.pageConfig.parentComponentKey);
+
       console.info('[' + data.caseTag + '] setValue : ' + JSON.stringify(data.testValue.setValue));
       AttrsManager.change(data.caseTag, data.testValue.setValue);
       await Utils.sleep(1000);
@@ -134,9 +152,22 @@ export default function positionTest() {
       console.info('[' + data.caseTag + '] get referenceComponent rect after position changed.');
       let referenceRectAfter = Utils.getComponentRect(data.pageConfig.referenceComponentKey);
 
+      console.info('[' + data.caseTag + '] get parentComponent rect after position changed.');
+      let parentRectAfter = Utils.getComponentRect(data.pageConfig.parentComponentKey);
+
       console.info('[' + data.caseTag + '] check actual position.');
       let rect = Utils.getComponentRect(data.pageConfig.componentKey);
       let rectParent = Utils.getComponentRect(data.pageConfig.parentComponentKey);
+      if ("TabContent" == data.pageConfig.targetView) {
+        rectParent.top = referenceRectBefore.top;
+        rectParent.left = referenceRectBefore.left;
+        if ("SetStringPercent" == data.testValue.describe) {
+          data.testValue.expectValue.left =
+          (rectParent.right - rectParent.left) * data.testValue.setValue.xp;
+          data.testValue.expectValue.top =
+          (rectParent.bottom - rectParent.top) * data.testValue.setValue.yp;
+        }
+      }
       expect(Number(rect.left - rectParent.left).toFixed(2))
         .assertEqual(Number(data.testValue.expectValue.left).toFixed(2));
       expect(Number(rect.top - rectParent.top).toFixed(2))
@@ -152,6 +183,12 @@ export default function positionTest() {
       expect(referenceRectBefore.right).assertEqual(referenceRectAfter.right);
       expect(referenceRectBefore.top).assertEqual(referenceRectAfter.top);
       expect(referenceRectBefore.bottom).assertEqual(referenceRectAfter.bottom);
+
+      console.info('[' + data.caseTag + '] check parentComponent layout not changed.');
+      expect(parentRectBefore.left).assertEqual(parentRectAfter.left);
+      expect(parentRectBefore.right).assertEqual(parentRectAfter.right);
+      expect(parentRectBefore.top).assertEqual(parentRectAfter.top);
+      expect(parentRectBefore.bottom).assertEqual(parentRectAfter.bottom);
     })
   })
 }

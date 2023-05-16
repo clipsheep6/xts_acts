@@ -1,3 +1,18 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import AttrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
 
@@ -5,9 +20,9 @@ import router from '@ohos.router'
 @Component
 struct LayoutWeightPage_Row {
   @State _layoutWeight: number  = 0;
-  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ""
-  @State targetGroupView: string = router.getParams() ? router.getParams()['view']['targetGroupView'] : ""
-  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ""
+  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ''
+  @State targetGroupView: string = router.getParams() ? router.getParams()['view']['targetGroupView'] : ''
+  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ''
   @State childWidth: number = router.getParams() ? router.getParams()['view']['childWidth'] : 0
   @State childHeight: number = router.getParams() ? router.getParams()['view']['childHeight'] : 0
   @State parentWidth: number = router.getParams() ? router.getParams()['view']['parentWidth'] : 0
@@ -22,7 +37,7 @@ struct LayoutWeightPage_Row {
   private fromStart: boolean = true
   private step: number = 50
   private loop: number = Infinity
-  private src: string = "Running Marquee starts rolling"
+  private src: string = 'Running Marquee starts rolling'
   @State data: string = '<h1 style="text-align: center;">h1标题</h1>' +
   '<h1 style="text-align: center;"><i>h1斜体</i></h1>' ;
   @State currentIndex: number = 0
@@ -52,7 +67,7 @@ struct LayoutWeightPage_Row {
         Text('text1').commonStyle()
       } else if (this.targetView == 'Blank') {
         Blank().color(Color.Red).commonStyle()
-      } else if (this.targetView == "Button") {
+      } else if (this.targetView == 'Button') {
         Button('button1').commonStyle()
       } else if (this.targetView == 'Checkbox') {
         Checkbox().select(true).selectedColor(Color.Red).commonStyle()
@@ -117,8 +132,8 @@ struct LayoutWeightPage_Row {
           .searchButton('SEARCH')
           .commonStyle()
       } else if (this.targetView == 'Select') {
-        Select([{ value: 'aaa', icon: "/common/public_icon.svg" },
-          { value: 'bbb', icon: "/common/public_icon.svg" }]).commonStyle()
+        Select([{ value: 'aaa', icon: '/common/public_icon.svg' },
+          { value: 'bbb', icon: '/common/public_icon.svg' }]).commonStyle()
       } else if (this.targetView == 'Slider') {
         Slider({
           value: this.step,
@@ -199,12 +214,12 @@ struct LayoutWeightPage_Row {
         GridRow({
           columns: 5,
           gutter: { x: 5, y: 10 },
-          breakpoints: { value: ["400vp", "600vp", "800vp"], reference: BreakpointsReference.WindowSize },
+          breakpoints: { value: ['400vp', '600vp', '800vp'], reference: BreakpointsReference.WindowSize },
           direction: GridRowDirection.Row
         }) {
           ForEach([Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown], (color) => {
             GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
-              Row().width("100%").height("20vp")
+              Row().width('100%').height('20vp')
             }.borderColor(color).borderWidth(2)
           })
         }.commonStyle()
@@ -250,7 +265,7 @@ struct LayoutWeightPage_Row {
         Scroll() {
           Column() {
             ForEach([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (item) => {
-              Text("Scroll" + item.toString())
+              Text('Scroll' + item.toString())
                 .width('90%')
                 .height(50)
                 .backgroundColor(Color.White)
@@ -263,8 +278,8 @@ struct LayoutWeightPage_Row {
           Column() {
             ForEach([1, 2, 3], (item) => {
               Column({ space: 5 }) {
-                Image($r("app.media.icon")).width(50).height(50)
-                Text("Index0" + item).fontSize(25)
+                Image($r('app.media.icon')).width(50).height(50)
+                Text('Index0' + item).fontSize(25)
               }
             })
           }.width('100%').justifyContent(FlexAlign.SpaceEvenly).backgroundColor(Color.Green)
@@ -279,16 +294,22 @@ struct LayoutWeightPage_Row {
       } else if (this.targetView == 'Swiper') {
         Swiper() {
           ForEach([1, 2, 3], (item: string) => {
-            Text("Swiper" + item).width('90%').height(50)
+            Text('Swiper' + item).width('90%').height(50)
           }, item => item)
         }.indicator(true).backgroundColor(Color.White).commonStyle()
+      } else if (this.targetView == 'Tabs') {
+        Tabs() {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor('#00CB87')
+          }
+        }.commonStyle()
       } else if (this.targetView == 'WaterFlow') {
         WaterFlow() {
           ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], (item: number) => {
             FlowItem() {
               Column() {
-                Text("WaterFlow" + item).fontSize(12).height('16')
-                Image($r("app.media.icon"))
+                Text('WaterFlow' + item).fontSize(12).height('16')
+                Image($r('app.media.icon'))
                   .width(50)
                   .height(50)
                   .objectFit(ImageFit.Fill)

@@ -1,10 +1,20 @@
-import { ListItemGroupTwo } from '../../view/size/ListItemGroupTwo';
-import { SwiperExample } from '../../view/size/SwiperTwo';
-import { SideBarContainers } from '../../view/size/SideBarContainer';
-import { NavigationView } from '../../view/size/NavigationView';
-
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import attrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
+import { NavigationView } from '../../view/size/NavigationView';
 
 @Entry
 @Component
@@ -217,8 +227,6 @@ struct WidthPage {
           }
           .commonStyle()
         }.width(200).height(200)
-      } else if (this.targetView == 'ListItemGroup') {
-        ListItemGroupTwo().width(this._width).key(this.componentKey)
       } else if (this.targetView == 'Panel') {
         Panel(this.show = true) { // 展示日程
           Column() {
@@ -253,14 +261,34 @@ struct WidthPage {
         .commonStyle().height(200)
         .backgroundColor(this.BackGroundColor)
       } else if (this.targetView == 'SideBarContainer') {
-        SideBarContainers().width(this._width)
-          .key(this.componentKey)
+        SideBarContainer(SideBarContainerType.Embed) {
+          Column() {
+            ForEach([1, 2, 3], (item) => {
+              Column({ space: 5 }) {
+                Image($r("app.media.icon")).width(50).height(50)
+                Text("Index0" + item).fontSize(25)
+              }
+            })
+          }.width('100%')
+          .justifyContent(FlexAlign.SpaceEvenly)
+          .backgroundColor(Color.Green)
+
+          Column() {
+            Text('SideBarContainer content').fontSize(25)
+          }.backgroundColor(Color.Orange)
+        }.commonStyle()
       } else if (this.targetView == 'Stack') {
         Stack() {
         }.commonStyle().height(150)
       } else if (this.targetView == 'Swiper') {
-        SwiperExample().width(this._width)
-          .key(this.componentKey)
+        Swiper() {
+          ForEach([1, 2, 3], (item: string) => {
+            Text("Swiper" + item).width('90%').height(50)
+          }, item => item)
+        }
+        .indicator(true)
+        .backgroundColor(Color.White)
+        .commonStyle()
       } else if (this.targetView == 'Tabs') {
         Tabs() {
           TabContent() {

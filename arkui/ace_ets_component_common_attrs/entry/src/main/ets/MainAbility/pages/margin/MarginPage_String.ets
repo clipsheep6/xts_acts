@@ -1,9 +1,21 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import AttrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
-//import { ListItemGroupTwo } from '../../view/size/ListItemGroupTwo';
-//import { SwiperExample } from '../../view/size/SwiperTwo';
-//import { TabsExample } from '../../view/size/Tabs';
-//import { Tab } from '../../view/TabContentTwo';
+
 @Entry
 @Component
 struct MarginPage_String {
@@ -15,29 +27,28 @@ struct MarginPage_String {
   private selectedTime: Date = new Date('2022-07-22T08:00:00')
   private scroller: Scroller = new Scroller()
   private fromStart: boolean = true
-  xcomponentController: XComponentController = new XComponentController()
   textTimerController: TextTimerController = new TextTimerController()
   private step: number = 50
   controllers: TextClockController = new TextClockController()
   private loop: number = Infinity
-  private src: string = "Running Marquee starts rolling"
+  private src: string = 'Running Marquee starts rolling'
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
   public valueArr: number[] = [5, 10, 10, 7, 9, 10, 10, 10, 10]
   @State _width: number = 100
   controllerss: SearchController = new SearchController()
   @State _margin: string = undefined;
-  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ""
-  @State targetGroupView: string = router.getParams() ? router.getParams()['view']['targetGroupView'] : ""
-  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ""
-  @State parentComponentKey: string = router.getParams() ? router.getParams()['view']['parentComponentKey'] : ""
+  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ''
+  @State targetGroupView: string = router.getParams() ? router.getParams()['view']['targetGroupView'] : ''
+  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ''
+  @State parentComponentKey: string = router.getParams() ? router.getParams()['view']['parentComponentKey'] : ''
   @State childWidth: number = router.getParams() ? router.getParams()['view']['childWidth'] : 0
   @State childHeight: number = router.getParams() ? router.getParams()['view']['childHeight'] : 0
   @State parentWidth: number = router.getParams() ? router.getParams()['view']['parentWidth'] : 0
   @State parentHeight: number = router.getParams() ? router.getParams()['view']['parentHeight'] : 0
-  @State ReferenceComponentKey1: string = router.getParams() ? router.getParams()['view']['ReferenceComponentKey1'] : ""
-  @State ReferenceComponentKey2: string = router.getParams() ? router.getParams()['view']['ReferenceComponentKey2'] : ""
-  @State ReferenceComponentKey3: string = router.getParams() ? router.getParams()['view']['ReferenceComponentKey3'] : ""
-  @State ReferenceComponentKey4: string = router.getParams() ? router.getParams()['view']['ReferenceComponentKey4'] : ""
+  @State referenceComponentKeyTop: string = router.getParams() ? router.getParams()['view']['referenceComponentKeyTop'] : ''
+  @State referenceComponentKeyBottom: string = router.getParams() ? router.getParams()['view']['referenceComponentKeyBottom'] : ''
+  @State referenceComponentKeyLeft: string = router.getParams() ? router.getParams()['view']['referenceComponentKeyLeft'] : ''
+  @State referenceComponentKeyRight: string = router.getParams() ? router.getParams()['view']['referenceComponentKeyRight'] : ''
 
   onPageShow() {
     console.info('Margin page show called ')
@@ -46,8 +57,8 @@ struct MarginPage_String {
 
   @Styles commonStyle(){
     .alignRules({
-      center: { anchor: "__container__", align: VerticalAlign.Center },
-      middle: { anchor: "__container__", align: HorizontalAlign.Center }
+      center: { anchor: '__container__', align: VerticalAlign.Center },
+      middle: { anchor: '__container__', align: HorizontalAlign.Center }
     })
     .width(this.childWidth)
     .height(this.childHeight)
@@ -64,7 +75,9 @@ struct MarginPage_String {
               .width('100%')
               .textAlign(TextAlign.Center)
               .backgroundColor(Color.White)
-          }.commonStyle()
+          }
+          .margin(this._margin)
+          .key(this.componentKey)
 
           ListItem() {
             Text('referenceComponent')
@@ -72,74 +85,74 @@ struct MarginPage_String {
               .textAlign(TextAlign.Center)
               .backgroundColor(Color.White)
           }
-          .width(this.childWidth)
-          .height(this.childHeight)
-          .key(this.ReferenceComponentKey1)
+          .key(this.referenceComponentKeyTop)
         }
-        .width('100%')
-        .height('100%')
+        .width(this.parentWidth)
+        .height(this.parentHeight)
         .key(this.parentComponentKey)
       } else if (this.targetView == 'TabContent') {
         Tabs() {
           TabContent() {
-            Text("TabContent Test").width('100%').height('100%').backgroundColor(Color.White)
-          }.tabBar("Tabs1").commonStyle()
-
+            Text('TabContent Test').width('100%').height('100%').backgroundColor(Color.White)
+          }.tabBar('Tabs1')
+          .margin(this._margin)
+          .key(this.componentKey)
           TabContent() {
-            Text("referenceComponent").width('100%').height('100%').backgroundColor(Color.Orange)
-          }
-          .tabBar("Tabs2")
-          .width(this.childWidth)
-          .height(this.childHeight)
-          .key(this.ReferenceComponentKey1)
+            Text('TabContent Test').width('100%').height('100%').backgroundColor(Color.White)
+          }.tabBar('Tabs1')
+          .key(this.referenceComponentKeyTop)
         }
+        .width(this.parentWidth)
+        .height(this.parentHeight)
         .key(this.parentComponentKey)
-      } else if (this.targetView == "Blank") {
-        Blank().backgroundColor(Color.Yellow).commonStyle()
+      } else if (this.targetView == 'Blank'){
+      Column(){
         Blank().backgroundColor(Color.Yellow)
-          .width(this.childWidth)
-          .height(this.childHeight)
-          .key(this.ReferenceComponentKey1)
+          .margin(this._margin)
+          .key(this.componentKey)
+        Blank().backgroundColor(Color.Yellow)
+          .key(this.referenceComponentKeyTop)
+          }
+      .width(400).height(600)
+      .backgroundColor(Color.Green)
+      .key(this.parentComponentKey)
       } else {
         RelativeContainer() {
-          if (this.targetView == "Button") {
+          if (this.targetView == 'Button') {
             Button('button1').commonStyle()
-          } else if (this.targetView == "Text") {
+          } else if (this.targetView == 'Text') {
             Text('text1').commonStyle()
-          } else if (this.targetView == "AlphabetIndexer") {
+          } else if (this.targetView == 'AlphabetIndexer') {
             AlphabetIndexer({ arrayValue: this.value, selected: 0 }).commonStyle()
-          } else if (this.targetView == "Checkbox") {
+          } else if (this.targetView == 'Checkbox') {
             Checkbox({ name: 'checkbox1', group: 'checkboxGroup' }).commonStyle()
-          } else if (this.targetView == "CheckboxGroup") {
+          } else if (this.targetView == 'CheckboxGroup') {
             CheckboxGroup({ group: 'checkboxGroup' }).commonStyle()
-          } else if (this.targetView == "DataPanel") {
+          } else if (this.targetView == 'DataPanel') {
             DataPanel({ values: this.valueArr }).commonStyle()
-          } else if (this.targetView == "DatePicker") {
+          } else if (this.targetView == 'DatePicker') {
             DatePicker({
               start: new Date('1970-1-1'),
               end: new Date('2100-1-1'),
             }).commonStyle()
-          } else if (this.targetView == "Divider") {
+          } else if (this.targetView == 'Divider') {
             Divider().commonStyle()
-          } else if (this.targetView == "Gauge") {
+          } else if (this.targetView == 'Gauge') {
             Gauge({ value: 105 })
               .commonStyle()
               .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
-          } else if (this.targetView == "Image") {
-            Image($r('app.media.icon'))
-              .commonStyle()
-          } else if (this.targetView == "ImageAnimator") {
+          } else if (this.targetView == 'Image') {
+            Image($r('app.media.icon')).commonStyle()
+          } else if (this.targetView == 'ImageAnimator') {
             ImageAnimator()
               .images([
                 {
                   src: $r('app.media.icon')
                 }
-              ])
-              .commonStyle()
-          } else if (this.targetView == "LoadingProgress") {
-            LoadingProgress()
-              .commonStyle()
-          } else if (this.targetView == "Marquee") {
+              ]).commonStyle()
+          } else if (this.targetView == 'LoadingProgress') {
+            LoadingProgress().commonStyle()
+          } else if (this.targetView == 'Marquee') {
             Marquee({
               start: this.start = true,
               step: this.step,
@@ -147,19 +160,19 @@ struct MarginPage_String {
               fromStart: this.fromStart,
               src: this.src
             }).commonStyle()
-          } else if (this.targetView == "Navigation") {
+          } else if (this.targetView == 'Navigation') {
             Navigation().commonStyle()
-          } else if (this.targetView == "Progress") {
+          } else if (this.targetView == 'Progress') {
             Progress({ value: 10, type: ProgressType.Eclipse }).commonStyle()
-          } else if (this.targetView == "QRCode") {
+          } else if (this.targetView == 'QRCode') {
             QRCode(this.src).commonStyle()
-          } else if (this.targetView == "Radio") {
+          } else if (this.targetView == 'Radio') {
             Radio({ value: 'Radio1', group: 'radioGroup' }).commonStyle()
-          } else if (this.targetView == "Rating") {
+          } else if (this.targetView == 'Rating') {
             Rating({ rating: 3.5, indicator: false }).commonStyle()
-          } else if (this.targetView == "RichText") {
+          } else if (this.targetView == 'RichText') {
             RichText(this.data).commonStyle()
-          } else if (this.targetView == "ScrollBar") {
+          } else if (this.targetView == 'ScrollBar') {
             ScrollBar({ scroller: this.scroller, state: BarState.On }) {
               Text()
                 .width(20)
@@ -167,35 +180,35 @@ struct MarginPage_String {
                 .borderRadius(10)
                 .backgroundColor('#C0C0C0')
             }.commonStyle()
-          } else if (this.targetView == "Search") {
+          } else if (this.targetView == 'Search') {
             Search().commonStyle()
-          } else if (this.targetView == "Select") {
+          } else if (this.targetView == 'Select') {
             Select([{ value: 'aaa' },
               { value: 'bbb' }]).commonStyle()
-          } else if (this.targetView == "Slider") {
+          } else if (this.targetView == 'Slider') {
             Slider({
               value: this.step,
               min: 0,
               max: 100,
               style: SliderStyle.OutSet
             }).showTips(true).commonStyle()
-          } else if (this.targetView == "TextArea") {
+          } else if (this.targetView == 'TextArea') {
             TextArea({
               placeholder: 'The text area can hold an unlimited amount of text. input your word...',
               controller: this.controllerss
             }).commonStyle()
-          } else if (this.targetView == "TextClock") {
+          } else if (this.targetView == 'TextClock') {
             TextClock({ timeZoneOffset: -8, controller: this.controllers }).format('hms').commonStyle()
-          } else if (this.targetView == "TextInput") {
+          } else if (this.targetView == 'TextInput') {
             TextInput({ placeholder: 'input your word...', controller: this.controllerss }).commonStyle()
-          } else if (this.targetView == "TextPicker") {
+          } else if (this.targetView == 'TextPicker') {
             TextPicker({ range: this.value }).commonStyle()
-          } else if (this.targetView == "TextTimer") {
+          } else if (this.targetView == 'TextTimer') {
             TextTimer({ isCountDown: true, count: 30000, controller: this.textTimerController })
               .format('mm:ss.SS')
               .fontColor(Color.Black)
               .commonStyle()
-          } else if (this.targetView == "TimePicker") {
+          } else if (this.targetView == 'TimePicker') {
             TimePicker({
               selected: this.selectedTime,
             }).commonStyle()
@@ -299,13 +312,12 @@ struct MarginPage_String {
           } else if (this.targetView == 'RowSplit') {
             RowSplit() {
               Text('Text')
-            }
-            .commonStyle()
+            }.commonStyle()
           } else if (this.targetView == 'Scroll') {
             Scroll() {
               Column() {
                 ForEach([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (item) => {
-                  Text("Scroll" + item.toString())
+                  Text('Scroll' + item.toString())
                     .width('90%')
                     .height(150)
                     .backgroundColor(Color.White)
@@ -320,8 +332,8 @@ struct MarginPage_String {
               Column() {
                 ForEach([1, 2, 3], (item) => {
                   Column({ space: 5 }) {
-                    Image($r("app.media.icon")).width(50).height(50)
-                    Text("Index0" + item).fontSize(25)
+                    Image($r('app.media.icon')).width(50).height(50)
+                    Text('Index0' + item).fontSize(25)
                   }
                 })
               }.width('100%')
@@ -338,7 +350,7 @@ struct MarginPage_String {
           } else if (this.targetView == 'Swiper') {
             Swiper() {
               ForEach([1, 2, 3], (item: string) => {
-                Text("Swiper" + item).width('90%').height(50)
+                Text('Swiper' + item).width('90%').height(50)
               }, item => item)
             }
             .indicator(true)
@@ -355,8 +367,8 @@ struct MarginPage_String {
               ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], (item: number) => {
                 FlowItem() {
                   Column() {
-                    Text("WaterFlow" + item).fontSize(12).height('16')
-                    Image($r("app.media.icon"))
+                    Text('WaterFlow' + item).fontSize(12).height('16')
+                    Image($r('app.media.icon'))
                       .width(50)
                       .height(50)
                       .objectFit(ImageFit.Fill)
@@ -368,39 +380,39 @@ struct MarginPage_String {
           Row()
             .width(20)
             .height(20)
-            .backgroundColor("#FF6633")
+            .backgroundColor('#FF6633')
             .alignRules({
               top: { anchor: this.componentKey, align: VerticalAlign.Bottom },
-              middle: { anchor: "__container__", align: HorizontalAlign.Center },
+              middle: { anchor: '__container__', align: HorizontalAlign.Center },
             })
-            .id(this.ReferenceComponentKey2)
+            .id(this.referenceComponentKeyBottom)
           Row()
             .width(20)
             .height(20)
-            .backgroundColor("#FF6633")
+            .backgroundColor('#FF6633')
             .alignRules({
               bottom: { anchor: this.componentKey, align: VerticalAlign.Top },
-              middle: { anchor: "__container__", align: HorizontalAlign.Center },
+              middle: { anchor: '__container__', align: HorizontalAlign.Center },
             })
-            .key(this.ReferenceComponentKey1)
+            .key(this.referenceComponentKeyTop)
           Row()
             .width(20)
             .height(20)
-            .backgroundColor("#FF6633")
+            .backgroundColor('#FF6633')
             .alignRules({
               left: { anchor: this.componentKey, align: HorizontalAlign.End },
-              center: { anchor: "__container__", align: VerticalAlign.Center },
+              center: { anchor: '__container__', align: VerticalAlign.Center },
             })
-            .id(this.ReferenceComponentKey4)
+            .id(this.referenceComponentKeyRight)
           Row()
             .width(20)
             .height(20)
-            .backgroundColor("#FF6633")
+            .backgroundColor('#FF6633')
             .alignRules({
               right: { anchor: this.componentKey, align: HorizontalAlign.Start },
-              center: { anchor: "__container__", align: VerticalAlign.Center },
+              center: { anchor: '__container__', align: VerticalAlign.Center },
             })
-            .id(this.ReferenceComponentKey3)
+            .id(this.referenceComponentKeyLeft)
         }
         .width(400).height(600)
         .backgroundColor(Color.Green)

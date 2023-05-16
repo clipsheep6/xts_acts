@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import Utils from '../../MainAbility/common/Utils';
 import CommonTest from '../common/CommonTest';
 import { describe, expect } from '@ohos/hypium'
@@ -45,7 +59,6 @@ export default function sizeTest() {
     'Grid',
     'List',
     'ListItem',
-    'ListItemGroup',
     'Panel',
     'Refresh',
     'Row',
@@ -72,7 +85,7 @@ export default function sizeTest() {
   let BackGroundColor = Color.Orange;
 
   let pageConfig = {
-    testName: "SizeTest",
+    testName: "testSize",
     pageName: "SizePage",
     pageUrl: "MainAbility/pages/size/SizePage",
     parentWidth: parentWidth,
@@ -115,31 +128,31 @@ export default function sizeTest() {
   }, {
     describe: 'StringPx',
     setValue: {
-      width: '600px',
-      height: '600px'
+      width: '300px',
+      height: '300px'
     },
     expectValue: {
-      WidthCompare: '600.00px',HeightCompare: '600.00px',
-      width: 600, height: 600
+      WidthCompare: '300.00px',HeightCompare: '300.00px',
+      width: 300, height: 300
     }
   }, {
     describe: 'SetStringWidth',
     setValue: {
-      width: '600px'
+      width: '300px'
     },
     expectValue: {
-      WidthCompare: '600.00px',
-      width: 600
+      WidthCompare: '300.00px',
+      width: 300
     }
   },
     {
       describe: 'SetStringHeight',
       setValue: {
-        height: '600px'
+        height: '300px'
       },
       expectValue: {
-        HeightCompare: '600.00px',
-        height: 600
+        HeightCompare: '300.00px',
+        height: 300
       }
     }]
 

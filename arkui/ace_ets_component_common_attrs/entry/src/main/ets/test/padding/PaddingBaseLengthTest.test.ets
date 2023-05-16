@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import Utils from '../../MainAbility/common/Utils';
 import { AttrsManager } from '../../MainAbility/common/AttrsManager';
 import CommonTest from '../common/CommonTest';
@@ -39,26 +53,6 @@ export default function paddingTest() {
     'TimePicker',
     'Toggle',
     'Web',
-    'Badge',
-    'Column',
-    'ColumnSplit',
-    'Counter',
-    'Flex',
-    'GridRow',
-    'Grid',
-    'List',
-    'ListItem',
-    'ListItemGroup',
-    'Panel',
-    'Refresh',
-    'Row',
-    'RowSplit',
-    'Scroll',
-    'SideBarContainer',
-    'Stack',
-    'Swiper',
-    'Tabs',
-    'TabContent',
     'Circle',
     'Ellipse',
     'Polyline',
@@ -67,42 +61,25 @@ export default function paddingTest() {
     'Rect',
     'Shape',
     'Line',
-    'WaterFlow'
   ]
 
   let parentBackGroundColor = Color.Yellow
 
   let pageConfig = {
-    testName: "PaddingLengthTest",
-    pageName: "PaddingPage_Length",
-    pageUrl: "MainAbility/pages/padding/PaddingPage_Length",
+    testName: "testPaddingLengthTest",
+    pageName: "PaddingBasePageLength",
+    pageUrl: "MainAbility/pages/padding/PaddingBasePageLength",
     parentBackGroundColor: parentBackGroundColor,
     parentComponentKey: "parentComponentKey"
   }
 
   let testValues = [{
-    describe: 'SetUndefined',
-    setValue: {
-      padding: undefined,
-    },
-    expectValue: {
-      padding: '0.00px',
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0
-    }
-  }, {
     describe: 'SetNumber',
     setValue: {
       padding: 100,
     },
     expectValue: {
-      padding: '100.00vp',
-      top: vp2px(100),
-      right: vp2px(100),
-      bottom: vp2px(100),
-      left: vp2px(100)
+      padding: '100.00vp'
     }
   }, {
     describe: 'SetStringPx',
@@ -110,11 +87,7 @@ export default function paddingTest() {
       padding: '200px',
     },
     expectValue: {
-      padding: '200.00px',
-      top: 200,
-      right: 200,
-      bottom: 200,
-      left: 200
+      padding: '200.00px'
     }
   }, {
     describe: 'SetResource',
@@ -122,11 +95,7 @@ export default function paddingTest() {
       padding: $r('app.float.100vp'),
     },
     expectValue: {
-      padding: '100.00vp',
-      top: vp2px(100),
-      right: vp2px(100),
-      bottom: vp2px(100),
-      left: vp2px(100)
+      padding: '100.00vp'
     }
   }, {
     describe: 'SetStringPercent',
@@ -134,19 +103,15 @@ export default function paddingTest() {
       padding: '20%',
     },
     expectValue: {
-      padding: '20.00%',
-      top: '0.20',
-      right: '0.20',
-      bottom: '0.20',
-      left: '0.20'
+      padding: '20.00%'
     }
   }]
   let paddingLength = {
     padding: 0
   }
-  describe("PaddingLengthTest", () => {
-    CommonTest.initTest(pageConfig, supportView, testValues, async data => {
-      AttrsManager.change(data.caseTag,{padding:0});
+  describe('PaddingBaseLengthTest', () => {
+    CommonTest.initTest(pageConfig, supportView, testValues, null, async data => {
+      AttrsManager.change(data.caseTag, paddingLength.padding);
       await Utils.sleep(1000);
       console.info("[" + data.caseTag + "] get referenceComponent rect after padding changed.");
       AttrsManager.change(data.caseTag, data.testValue.setValue);

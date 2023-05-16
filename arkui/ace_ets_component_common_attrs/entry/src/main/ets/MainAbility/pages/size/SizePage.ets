@@ -1,9 +1,6 @@
 import attrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
-import { ListItemGroupTwo } from '../../view/size/ListItemGroupTwo';
-import { SwiperExample } from '../../view/size/SwiperTwo';
 import { Tab } from '../../view/size/Tabs';
-import { SideBarContainers } from '../../view/size/SideBarContainer';
 import { NavigationView } from '../../view/size/NavigationView';
 @Entry
 @Component
@@ -270,10 +267,7 @@ struct sizePage {
         }
         .width(200)
         .height(200)
-      } else if (this.targetView == 'ListItemGroup') {
-        ListItemGroupTwo().size(this._size)
-          .key(this.componentKey)
-      } else if (this.targetView == 'Panel') {
+      }  else if (this.targetView == 'Panel') {
         Panel(this.show = true) { // 展示日程
           Column() {
           }
@@ -309,14 +303,34 @@ struct sizePage {
         .commonStyle()
         .backgroundColor(this.BackGroundColor)
       } else if (this.targetView == 'SideBarContainer') {
-        SideBarContainers().size(this._size)
-          .key(this.componentKey)
+        SideBarContainer(SideBarContainerType.Embed) {
+          Column() {
+            ForEach([1, 2, 3], (item) => {
+              Column({ space: 5 }) {
+                Image($r("app.media.icon")).width(50).height(50)
+                Text("Index0" + item).fontSize(25)
+              }
+            })
+          }.width('100%')
+          .justifyContent(FlexAlign.SpaceEvenly)
+          .backgroundColor(Color.Green)
+
+          Column() {
+            Text('SideBarContainer content').fontSize(25)
+          }.backgroundColor(Color.Orange)
+        }.commonStyle()
       } else if (this.targetView == 'Stack') {
         Stack() {
         }.commonStyle()
-      } else if (this.targetView == 'Swiper') {
-        SwiperExample().size(this._size)
-          .key(this.componentKey)
+      }else if (this.targetView == 'Swiper') {
+        Swiper() {
+          ForEach([1, 2, 3], (item: string) => {
+            Text("Swiper" + item).width('90%').height(50)
+          }, item => item)
+        }
+        .indicator(true)
+        .backgroundColor(Color.White)
+        .commonStyle()
       } else if (this.targetView == 'Tabs') {
         Tabs() {
           TabContent() {
@@ -328,7 +342,7 @@ struct sizePage {
         Tab().size(this._size)
           .key(this.componentKey)
       } else if (this.targetView == 'WaterFlow') {
-        WaterFlow().commonStyle().backgroundColor(this.BackGroundColor).height(100)
+        WaterFlow().commonStyle().backgroundColor(this.BackGroundColor)
       }
     }
     .height(this.parentHeight)

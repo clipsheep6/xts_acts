@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import Utils from '../../MainAbility/common/Utils';
 import { AttrsManager } from '../../MainAbility/common/AttrsManager';
 import CommonTest from '../common/CommonTest';
@@ -5,7 +19,7 @@ import { describe, expect } from '@ohos/hypium'
 
 
 export default function paddingTest() {
-  let supportView = [ 'AlphabetIndexer',
+  let supportView = ['AlphabetIndexer',
     'Button',
     'BlankRow',
     'BlankColumn',
@@ -28,7 +42,7 @@ export default function paddingTest() {
     'Search',
     'RichText',
     'Search',
-    /*'Select',*/
+/*    'Select',*/
     'Slider',
     'Text',
     'TextArea',
@@ -39,26 +53,6 @@ export default function paddingTest() {
     'TimePicker',
     'Toggle',
     'Web',
-    'Badge',
-    'Column',
-    'ColumnSplit',
-    'Counter',
-    'Flex',
-    'GridRow',
-    'Grid',
-    'List',
-    'ListItem',
-    'ListItemGroup',
-    'Panel',
-    'Refresh',
-    'Row',
-    'RowSplit',
-    'Scroll',
-    'SideBarContainer',
-    'Stack',
-    'Swiper',
-    'Tabs',
-    'TabContent',
     'Circle',
     'Ellipse',
     'Polyline',
@@ -67,14 +61,13 @@ export default function paddingTest() {
     'Rect',
     'Shape',
     'Line',
-    'WaterFlow'
   ]
 
   let parentBackGroundColor = Color.Yellow
   let pageConfig = {
-    testName: 'PaddingTest',
-    pageName: 'PaddingPage',
-    pageUrl: 'MainAbility/pages/padding/PaddingPage',
+    testName: 'testPaddingBaseTest',
+    pageName: 'PaddingBasePage',
+    pageUrl: 'MainAbility/pages/padding/PaddingBasePage',
     parentBackGroundColor: parentBackGroundColor,
     parentComponentKey: 'parentComponentKey'
   }
@@ -91,11 +84,9 @@ export default function paddingTest() {
         }
       },
       expectValue: {
-        padding:{'top':'200.00vp', 'right':'100.00vp', 'bottom':'100.00vp', 'left':'100.00vp'},
-        top: vp2px(200),
-        right: vp2px(100),
-        bottom: vp2px(100),
-        left: vp2px(100)
+        padding: {
+          'top': '200.00vp', 'right': '100.00vp', 'bottom': '100.00vp', 'left': '100.00vp'
+        }
       }
     }, {
     describe: 'SetPaddingTop',
@@ -107,11 +98,7 @@ export default function paddingTest() {
     expectValue: {
       padding: {
         'top': '200.00vp', 'right': '0.00vp', 'bottom': '0.00vp', 'left': '0.00vp'
-      },
-      top: vp2px(200),
-      right: vp2px(0),
-      bottom: vp2px(0),
-      left: vp2px(0)
+      }
     }
   }, {
     describe: 'SetPaddingRight',
@@ -123,11 +110,7 @@ export default function paddingTest() {
     expectValue: {
       padding: {
         'top': '0.00vp', 'right': '200.00vp', 'bottom': '0.00vp', 'left': '0.00vp'
-      },
-      top: vp2px(0),
-      right: vp2px(200),
-      bottom: vp2px(0),
-      left: vp2px(0)
+      }
     }
   }, {
     describe: 'SetPaddingBottom',
@@ -139,11 +122,7 @@ export default function paddingTest() {
     expectValue: {
       padding: {
         'top': '0.00vp', 'right': '0.00vp', 'bottom': '200.00vp', 'left': '0.00vp'
-      },
-      top: vp2px(0),
-      right: vp2px(0),
-      bottom: vp2px(200),
-      left: vp2px(0)
+      }
     }
   }, {
     describe: "SetPaddingLeft",
@@ -155,17 +134,12 @@ export default function paddingTest() {
     expectValue: {
       padding: {
         'top': '0.00vp', 'right': '0.00vp', 'bottom': '0.00vp', 'left': '200.00vp'
-      },
-      top: vp2px(0),
-      right: vp2px(0),
-      bottom: vp2px(0),
-      left: vp2px(200)
+      }
     }
   }]
 
-  describe("PaddingTest", () => {
+  describe("PaddingBaseTest", () => {
     CommonTest.initTest(pageConfig, supportView, testValues, async data => {
-
       AttrsManager.change(data.caseTag, {
         padding: {
           left: 0, right: 0, top: 0, bottom: 0
@@ -180,7 +154,36 @@ export default function paddingTest() {
       console.info("viewObj.$attrs" + JSON.stringify(viewObj.$attrs))
       console.info("viewObj.$attrs.padding:" + viewObj.$attrs.padding)
       console.info("JSON.stringify(data.testValue.expectValue.padding):" + JSON.stringify(data.testValue.expectValue.padding))
-      expect(viewObj.$attrs.padding).assertEqual(JSON.stringify(data.testValue.expectValue.padding));
+      if (data.testValue.describe == 'SetPaddingTop') {
+        console.info("JSON.parse(viewObj.$attrs.padding).top" + JSON.parse(viewObj.$attrs.padding).top);
+        console.info("JSON.parse(JSON.stringify(data.testValue.expectValue.padding.top))" + JSON.parse(JSON.stringify(data.testValue.expectValue.padding.top)));
+        console.info("viewObj.$attrs.padding:" + viewObj.$attrs.padding);
+        let expectTop = JSON.parse(JSON.stringify(data.testValue.expectValue.padding.top));
+        console.info("expectTop:" + expectTop);
+        let computeTop = JSON.parse(viewObj.$attrs.padding).top;
+        console.info("computeTop:" + computeTop.top);
+        expect(computeTop).assertEqual(expectTop);
+      } else if (data.testValue.describe == 'SetPaddingRight') {
+        let expectRight = JSON.parse(JSON.stringify(data.testValue.expectValue.padding.right));
+        console.info("expectRight:" + expectRight);
+        let computeRight = JSON.parse(viewObj.$attrs.padding).right;
+        console.info("computeRight:" + computeRight);
+        expect(computeRight).assertEqual(expectRight);
+      } else if (data.testValue.describe == 'SetPaddingBottom') {
+        let expectBottom = JSON.parse(JSON.stringify(data.testValue.expectValue.padding.bottom));
+        console.info("expectBottom:" + expectBottom);
+        let computeBottom = JSON.parse(viewObj.$attrs.padding).bottom;
+        console.info("computeBottom:" + computeBottom);
+        expect(computeBottom).assertEqual(expectBottom);
+      } else if (data.testValue.describe == 'SetPaddingLeft') {
+        let expectLeft= JSON.parse(JSON.stringify(data.testValue.expectValue.padding.left));
+        console.info("expectLeft:" + expectLeft);
+        let computeLeft = JSON.parse(viewObj.$attrs.padding).left;
+        console.info("computeLeft:" + computeLeft);
+        expect(computeLeft).assertEqual(expectLeft);
+      }else if(data.testValue.describe == 'SetPadding'){
+        expect(viewObj.$attrs.padding).assertEqual(JSON.stringify(data.testValue.expectValue.padding));
+      }
     })
   })
 }

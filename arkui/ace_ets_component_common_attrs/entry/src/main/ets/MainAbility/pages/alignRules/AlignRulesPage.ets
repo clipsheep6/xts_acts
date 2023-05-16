@@ -1,11 +1,30 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import attrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
+
+/**
+ * Test page of common attribute:alignRules
+ */
 
 @Entry
 @Component
 struct AlignRules {
   @State show: boolean = false
-  @State _alignRules: Object = undefined;
+  @State _alignRules: Object = {center: {anchor: '__container__', align: VerticalAlign.Center},
+    middle: {anchor: '__container__', align: HorizontalAlign.Center}};
   @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ''
   @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ''
   @State parentWidth: number = router.getParams() ? router.getParams()['view']['parentWidth'] : 0
@@ -33,7 +52,6 @@ struct AlignRules {
 
   build() {
     RelativeContainer() {
-      //Set view by page config.
       if (this.targetView == 'Button') {
         Button('button1')
           .id('subassembly')
@@ -254,7 +272,8 @@ struct AlignRules {
           breakpoints: { value: ['400vp', '600vp', '800vp'], reference: BreakpointsReference.WindowSize },
           direction: GridRowDirection.Row
         }) {
-          ForEach([Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown], (color) => {
+          ForEach([Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown],
+            (color) => {
             GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
               Row().width('100%').height('20vp')
             }.borderColor(color).borderWidth(2)
@@ -438,7 +457,6 @@ struct AlignRules {
         .height(this.subassemblyHeight)
         .alignRules(this.subassemblyCenter)
         .id(this.referenceComponentKey)
-
     }.key(this.parentComponentKey).width(this.parentWidth).height(this.parentHeight).backgroundColor(Color.Pink)
   }
 }

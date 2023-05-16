@@ -1,6 +1,21 @@
+/**
+ * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { AttrsManager } from '../../MainAbility/common/AttrsManager';
 import Utils from '../../MainAbility/common/Utils';
-import { expect, it } from '@ohos/hypium'
+import { expect, it, Level, Size, TestType } from '@ohos/hypium'
 
 export default class CommonTest {
 
@@ -30,8 +45,14 @@ export default class CommonTest {
           caseTag = pageConfig.testName + containerView + targetView + testValue.describe;
         }
 
-        //Create cases.
-        it(caseTag, 0, async (done) => {
+        /**
+         * @tc.number   SUB_ACE_ETS_COMPONENT_COMMON_ATTRS
+         * @tc.name     caseTag, like:testPositionAlphabetIndexerSetNumber
+         * @tc.desc     Test whether the state of different components
+         *              after modifying their properties meets expectations
+         */
+        it(caseTag, TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done) => {
+          console.info('[' + caseTag + '] START');
           //Push page.
           console.info('[' + caseTag + ']' + ' test start, push page.');
           pageConfig['targetView'] = targetView;
@@ -48,7 +69,6 @@ export default class CommonTest {
             }
 
             //Execute test
-            console.info('[' + caseTag + ']' + ' execute test start');
             let data = {
               pageConfig: pageConfig,
               caseTag: caseTag,
@@ -65,6 +85,7 @@ export default class CommonTest {
                 console.info('[' + caseTag + '] :functions[0] is not a call back function, do nothing.');
               }
             } else {
+              //If there is only an assertion function, automatically modify the status value
               console.info('[' + caseTag + '] setValue : ' + JSON.stringify(data.testValue.setValue));
               AttrsManager.change(data.caseTag, data.testValue.setValue);
               await Utils.sleep(1000);
@@ -74,7 +95,6 @@ export default class CommonTest {
             data['viewObj'] = Utils.getComponentByKey(pageConfig['componentKey']);
             await functions[functions.length - 1](data);
 
-            console.info('[' + caseTag + ']' + ' execute test end');
           } catch (err) {
             let msg = 'CommonTest.initTest execute ' + caseTag + ' error:' + err
             console.error(msg);
@@ -85,9 +105,9 @@ export default class CommonTest {
             }
           }
 
-          console.info('[' + caseTag + ']' + ' test complete.');
-
           await CommonTest.back(caseTag, sharePage, currentIndex, testValues.length);
+
+          console.info('[' + caseTag + '] END');
           done();
         });
       })
