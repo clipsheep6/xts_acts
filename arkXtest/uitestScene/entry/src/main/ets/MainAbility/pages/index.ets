@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import router from '@system.router';
-import prompt from '@ohos.prompt';
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
@@ -30,6 +30,37 @@ struct ScrollExample {
       Stack({ alignContent: Alignment.TopStart }) {
         Scroll(this.scroller) {
           Column() {
+            Row() {
+              Button('toast').fontSize(25).fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                    try {
+                      promptAction.showToast({
+                        message: 'toastShow',
+                        duration: 60000
+                      });
+                    } catch (error) {
+                      console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+                    };
+                })
+              Button('dialog').fontSize(25).fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  AlertDialog.show(
+                    {
+                      title: 'dialogShow',
+                      message: 'dialogShow',
+                      alignment: DialogAlignment.Bottom,
+                      confirm: {
+                        value: 'close',
+                        action: () => {
+                          console.info('close dialog')
+                        }
+                      }
+                    }
+                  )
+                })
+            }
+            .width('90%')
+            .direction(Direction.Ltr)
             Button() {
               Text('next page')
                 .fontSize(25)
@@ -39,12 +70,12 @@ struct ScrollExample {
             .type(ButtonType.Capsule)
             .margin({ top: 20 })
             .onClick(() => {
-              router.push({ uri: 'pages/second' })
+              router.push({ uri: 'MainAbility/pages/second' })
             })
             .gesture(
             LongPressGesture({ repeat: false })
               .onAction((event: GestureEvent) => {
-                router.push({ uri: 'pages/fourth' })
+                router.push({ uri: 'MainAbility/pages/fourth' })
               })
             )
             Button() {
@@ -57,7 +88,7 @@ struct ScrollExample {
             .gesture(
             TapGesture({ count: 1 })
               .onAction(() => {
-                router.push({ uri: 'pages/third' })
+                router.push({ uri: 'MainAbility/pages/third' })
               })
             )
             Button() {
@@ -86,12 +117,12 @@ struct ScrollExample {
               }
             })
             .onClick(() => {
-              router.push({ uri: 'pages/screen' })
+              router.push({ uri: 'MainAbility/pages/screen' })
             })
             .gesture(
             LongPressGesture({ repeat: false })
               .onAction((event: GestureEvent) => {
-                router.push({ uri: 'pages/drag' })
+                router.push({ uri: 'MainAbility/pages/drag' })
               })
             )
             Checkbox({ name: 'hi' })
@@ -122,7 +153,7 @@ struct ScrollExample {
               top: 20, left: 150
             })
             .onClick(() => {
-              router.push({ uri: 'pages/second' })
+              router.push({ uri: 'MainAbility/pages/second' })
             })
           }.width('100%')
         }
