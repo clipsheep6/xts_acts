@@ -30,37 +30,33 @@ struct ScrollExample {
       Stack({ alignContent: Alignment.TopStart }) {
         Scroll(this.scroller) {
           Column() {
-            Row() {
-              Button('toast').fontSize(25).fontWeight(FontWeight.Bold)
-                .onClick(() => {
-                    try {
-                      promptAction.showToast({
-                        message: 'toastShow',
-                        duration: 60000
-                      });
-                    } catch (error) {
-                      console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
-                    };
-                })
-              Button('dialog').fontSize(25).fontWeight(FontWeight.Bold)
-                .onClick(() => {
-                  AlertDialog.show(
-                    {
-                      title: 'dialogShow',
-                      message: 'dialogShow',
-                      alignment: DialogAlignment.Bottom,
-                      confirm: {
-                        value: 'close',
-                        action: () => {
-                          console.info('close dialog')
-                        }
+            Button('toast').fontSize(25).fontWeight(FontWeight.Bold)
+              .onClick(() => {
+                try {
+                  promptAction.showToast({
+                    message: 'toastShow',
+                    duration: 60000
+                  });
+                } catch (error) {
+                  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+                };
+              })
+            Button('dialog').fontSize(25).fontWeight(FontWeight.Bold)
+              .onClick(() => {
+                AlertDialog.show(
+                  {
+                    title: 'dialogShow',
+                    message: 'dialogShow',
+                    alignment: DialogAlignment.Bottom,
+                    confirm: {
+                      value: 'close',
+                      action: () => {
+                        console.info('close dialog')
                       }
                     }
-                  )
-                })
-            }
-            .width('90%')
-            .direction(Direction.Ltr)
+                  }
+                )
+              })
             Button() {
               Text('next page')
                 .fontSize(25)
@@ -70,13 +66,13 @@ struct ScrollExample {
             .type(ButtonType.Capsule)
             .margin({ top: 20 })
             .onClick(() => {
-              router.push({ uri: 'MainAbility/pages/second' })
+              router.push({ uri: 'pages/second' })
             })
             .gesture(
-            LongPressGesture({ repeat: false })
-              .onAction((event: GestureEvent) => {
-                router.push({ uri: 'MainAbility/pages/fourth' })
-              })
+              LongPressGesture({ repeat: false })
+                .onAction((event: GestureEvent) => {
+                  router.push({ uri: 'pages/fourth' })
+                })
             )
             Button() {
               Text('Click twice')
@@ -86,10 +82,10 @@ struct ScrollExample {
             .type(ButtonType.Capsule)
             .margin({ top: 20 })
             .gesture(
-            TapGesture({ count: 1 })
-              .onAction(() => {
-                router.push({ uri: 'MainAbility/pages/third' })
-              })
+              TapGesture({ count: 1 })
+                .onAction(() => {
+                  router.push({ uri: 'pages/third' })
+                })
             )
             Button() {
               Text(this.hoverText)
@@ -102,7 +98,7 @@ struct ScrollExample {
               if (isHover) {
                 this.hoverText = 'hover'
               }
-          })
+            })
             .onMouse((event: MouseEvent) => {
               switch (event.button) {
                 case MouseButton.Left :
@@ -117,13 +113,13 @@ struct ScrollExample {
               }
             })
             .onClick(() => {
-              router.push({ uri: 'MainAbility/pages/screen' })
+              router.push({ uri: 'pages/screen' })
             })
             .gesture(
-            LongPressGesture({ repeat: false })
-              .onAction((event: GestureEvent) => {
-                router.push({ uri: 'MainAbility/pages/drag' })
-              })
+              LongPressGesture({ repeat: false })
+                .onAction((event: GestureEvent) => {
+                  router.push({ uri: 'pages/drag' })
+                })
             )
             Checkbox({ name: 'hi' })
               .size({ width: 30, height: 30 })
@@ -153,7 +149,7 @@ struct ScrollExample {
               top: 20, left: 150
             })
             .onClick(() => {
-              router.push({ uri: 'MainAbility/pages/second' })
+              router.push({ uri: 'pages/second' })
             })
           }.width('100%')
         }
