@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,13 @@ struct PaddingPage_Length {
   private scroller: Scroller = new Scroller()
   private step: number = 50
   public valueArr: number[] = [5, 10, 10, 7, 9, 10, 10, 10, 10]
-  @State _padding: number|string  = undefined;
+  @State _padding: number | string = undefined;
   @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ''
   @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ''
   @State parentBackGroundColor: string = router.getParams() ? router.getParams()['view']['parentBackGroundColor'] : 0
   @State parentComponentKey: string = router.getParams() ? router.getParams()['view']['parentComponentKey'] : ''
+  @State parentWidth: number = router.getParams() ? router.getParams()['view']['parentWidth'] : 0
+  @State parentHeight: number = router.getParams() ? router.getParams()['view']['parentHeight'] : 0
 
   onPageShow() {
     console.info('padding page show called ')
@@ -63,7 +65,8 @@ struct PaddingPage_Length {
           Text('1')
         }.commonStyle()
       } else if (this.targetView == 'GridRow') {
-        GridRow(){       }.commonStyle()
+        GridRow() {
+        }.commonStyle()
       } else if (this.targetView == 'Grid') {
         Grid(this.scroller) {
           ForEach(this.valueArr, (day: string) => {
@@ -80,7 +83,7 @@ struct PaddingPage_Length {
             Button('message')
               .backgroundColor(0x317aff)
           }
-        }.commonStyle()
+        }.commonStyle().width(0).height(0)
       } else if (this.targetView == 'ListItem') {
         List() {
           ListItem() {
@@ -88,8 +91,8 @@ struct PaddingPage_Length {
               .backgroundColor(0x317aff)
           }
           .commonStyle()
-        }
-      }  else if (this.targetView == 'Panel') {
+        }.width(0).height(0)
+      } else if (this.targetView == 'Panel') {
         Panel(this.show = true) { // 展示日程
           Text('Text')
         }
@@ -98,7 +101,7 @@ struct PaddingPage_Length {
         Refresh({ refreshing: false }) {
         }
         .commonStyle()
-      }  else if (this.targetView == 'Row') {
+      } else if (this.targetView == 'Row') {
         Row() {
           Button('message')
             .backgroundColor(0x317aff)
@@ -111,7 +114,7 @@ struct PaddingPage_Length {
         .commonStyle()
       } else if (this.targetView == 'SideBarContainer') {
         SideBarContainer(SideBarContainerType.Embed) {
-          Column(){
+          Column() {
             Button('message')
               .backgroundColor(0x317aff)
           }
@@ -134,7 +137,7 @@ struct PaddingPage_Length {
               .backgroundColor(0x317aff)
           }
         }.commonStyle()
-      }else if(this.targetView == 'TabContent'){
+      } else if (this.targetView == 'TabContent') {
         Tabs() {
           TabContent() {
             Button('message')
@@ -157,5 +160,7 @@ struct PaddingPage_Length {
         }.commonStyle()
       }
     }.backgroundColor(this.parentBackGroundColor)
+    .height(this.parentHeight)
+    .width(this.parentWidth)
   }
 }

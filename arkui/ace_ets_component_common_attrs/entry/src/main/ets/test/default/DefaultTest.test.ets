@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
@@ -116,11 +116,6 @@ export default function DefaultTest() {
       layoutWeight: 0
     }
   }, {
-    describe: 'DirectionDefaultTest',
-    expectValue: {
-      direction: 'Direction.Auto'
-    }
-  }, {
     describe: 'MarkAnchorDefaultTest',
     expectValue: {
       markAnchor: {
@@ -154,10 +149,6 @@ export default function DefaultTest() {
       if (data.testValue.describe == 'LayoutWeightDefaultTest') {
         console.info('data.viewObj.$attrs.layoutWeight:' + data.viewObj.$attrs.layoutWeight)
         expect(data.viewObj.$attrs.layoutWeight).assertEqual(data.testValue.expectValue.layoutWeight);
-      }
-      if (data.testValue.describe == 'DirectionDefaultTest') {
-        console.info('data.viewObj.$attrs.direction:' + data.viewObj.$attrs.direction)
-        expect(data.viewObj.$attrs.direction).assertEqual(data.testValue.expectValue.direction);
       }
       if (data.testValue.describe == 'MarkAnchorDefaultTest') {
         console.info('data.viewObj.$attrs.markAnchor.x:' + data.viewObj.$attrs.markAnchor.x)

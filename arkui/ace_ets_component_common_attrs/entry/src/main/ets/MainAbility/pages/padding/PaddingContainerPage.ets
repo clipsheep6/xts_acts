@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2023-2030 iSoftStone Information Technology (Group) Co.,Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ struct paddingPage {
             Button('message')
               .backgroundColor(0x317aff)
           }
-        }.commonStyle()
+        }.commonStyle().width(0).height(0)
       } else if (this.targetView == 'ListItem') {
         List() {
           ListItem() {
@@ -86,7 +86,7 @@ struct paddingPage {
               .backgroundColor(0x317aff)
           }
           .commonStyle()
-        }
+        }.width(0).height(0)
       }  else if (this.targetView == 'Panel') {
         Panel(this.show = true) { // 展示日程
           Text('Text')
