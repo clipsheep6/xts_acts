@@ -24,7 +24,6 @@ struct ImageExample2 {
   @State interpolation:ImageInterpolation = ImageInterpolation.None
   @State fillColor:Color = Color.Red
   @State copyOption:CopyOptions = CopyOptions.None
-  @State draggable:boolean = false
   
   messageManager:MessageManager = new MessageManager()
 
@@ -50,9 +49,6 @@ struct ImageExample2 {
       if (message.name == 'fillColor') {
           this.fillColor = message.value
       }
-      if (message.name == 'draggable') {
-          this.draggable = message.value
-      }
       if (message.name == 'copyOption') {
           this.copyOption = message.value
       }
@@ -76,7 +72,7 @@ struct ImageExample2 {
           .copyOption(CopyOptions.InApp)
           .colorFilter([2,4,5])
           .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          .draggable(this.draggable)
+          .draggable(false)
           .key("image1")
         Image($rawfile('bm.jpg'))
           .renderMode(ImageRenderMode.Template).width(100).height(100)
