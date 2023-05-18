@@ -1523,14 +1523,16 @@ describe("SensorJsTest_sensor_60", function () {
     * @tc.number:SUB_SensorsSystem_GeomagneticAlgorithm_JSTest_1160
     */
      it('Sensor_CreateRotationMatrix_008', 0, async function (done) {
-        try {
-            sensor.getRotationMatrix(gravity[2], -1)
-        } catch (err) {
-			console.info("Sensor_CreateRotationMatrix_008 catch error " + err);
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG)
+        sensor.getRotationMatrix(gravity[2], -1).then((data) => {
+            for(let i = 0; i < data.length; i++) {
+                console.info("Sensor_CreateRotationMatrix_008 [" + i + "] : " + data[i]);
+                expect(data[i]).assertEqual(createRotationMatrixResult[0][i])
+            }
             done()
-        }
+        }, (error) => {
+            expect(false).assertTrue();
+            done()
+        })
     })
 
     /*
@@ -1582,21 +1584,17 @@ describe("SensorJsTest_sensor_60", function () {
     * @tc.desc:Verification results of the incorrect parameters of the test interface.
     * @tc.number:SUB_SensorsSystem_GeomagneticAlgorithm_JSTest_1190
     */
-     it('Sensor_CreateRotationMatrix_011', 0, async function (done) {
-        try {
-            sensor.getRotationMatrix(gravity[2], -1).then((data) => {
-                expect(true).assertfalse()
-                done()
-            }, (error) =>{
-                expect(true).assertfalse()
-                done()
-            })
-        } catch (err) {
-			console.info("Sensor_CreateRotationMatrix_011 catch error " + err);
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG)
+    it('Sensor_CreateRotationMatrix_011', 0, async function (done) {
+        sensor.getRotationMatrix(gravity[2], -1).then((data) => {
+            for(let i = 0; i < data.length; i++) {
+                console.info("Sensor_CreateRotationMatrix_011 [" + i + "] : " + data[i]);
+                expect(data[i]).assertEqual(createRotationMatrixResult[0][i])
+            }
             done()
-        }
+        }, (error) => {
+            expect(false).assertTrue();
+            done()
+        })
     })
 
     let createRotationMatrixResult = [
@@ -2518,16 +2516,20 @@ describe("SensorJsTest_sensor_60", function () {
     * @tc.desc:Verification results of the incorrect parameters of the test interface.
     * @tc.number:SUB_SensorsSystem_GeomagneticAlgorithm_JSTest_1620
     */
-     it('Sensor_CreateQuaterniont_013', 0, async function (done) {
-        try {
-            sensor.createQuaternion([0.52, -0.336, -0.251], -1)
-        } catch (error) {
-			console.info("Sensor_CreateQuaterniont_013 catch error:" + error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+    it('Sensor_CreateQuaterniont_013', 0, async function (done) {
+        sensor.createQuaternion([0.52, -0.336, -0.251], -1).then((data) => {
+            console.info('Sensor_CreateQuaterniont_013');
+            for (let i = 0; i < data.length; i++) {
+                console.info("data[" + i + "]: " + data[i]);
+                expect(data[i]).assertEqual(result[0][i])
+            }
             done()
-        }
+        }, (error) => {
+            expect(false).assertTrue();
+            done()
+        })
     })
+
 
     /*
     * @tc.name:Sensor_CreateQuaterniont_014
@@ -2578,21 +2580,18 @@ describe("SensorJsTest_sensor_60", function () {
     * @tc.desc:Verification results of the incorrect parameters of the test interface.
     * @tc.number:SUB_SensorsSystem_GeomagneticAlgorithm_JSTest_1650
     */
-     it('Sensor_CreateQuaterniont_016', 0, async function (done) {
-        try {
-            sensor.createQuaternion([0.52, -0.336, -0.251], -1).then((data) => {
-                expect(true).assertfalse()
-                done()
-            }, (error) =>{
-                expect(false).assertfalse()
-                done()
-            })
-        } catch (error) {
-			console.info("Sensor_CreateQuaterniont_016 catch error:" + error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+    it('Sensor_CreateQuaterniont_016', 0, async function (done) {
+        sensor.createQuaternion([0.52, -0.336, -0.251], -1).then((data) => {
+            console.info('Sensor_CreateQuaterniont_016');
+            for (let i = 0; i < data.length; i++) {
+                console.info("data[" + i + "]: " + data[i]);
+                expect(data[i]).assertEqual(result[0][i])
+            }
             done()
-        }
+        }, (error) => {
+            expect(false).assertTrue();
+            done()
+        })
     })
 
     var getGeomagneticDipResult = [ 0.8760581016540527, 0.862170, -Infinity, 44330]
