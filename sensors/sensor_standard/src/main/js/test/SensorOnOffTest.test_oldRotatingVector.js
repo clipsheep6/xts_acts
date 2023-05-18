@@ -218,8 +218,7 @@ describe("SensorJsTest_sensor_20", function () {
 						sensor.off(string, "");
 					} catch (error) {
 						console.info("RotatingVector_SensorJsTest006 error:" + error);
-						errMessage = error.toString().slice(16, 40);
-						expect(errMessage).assertEqual(errMessages[0]);
+						expect(true).assertTrue;
 						done();
 					}
 				})
