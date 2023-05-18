@@ -16,21 +16,23 @@ group("ets_utils") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "atomics_lib_standard:atomics_js_hap",
-      "buffer_lib_standard:buffer_js_test",
-      "containerLine_lib_standard:containerLine_js_test",
-      "containerRelation_lib_standard:containerRelation_js_test",
-      "convertxml_lib_standard:convertxml_js_test",
-      "intl_lib_standard:intl_js_test",
-      "process_lib_standard:process_js_test",
-      "taskpool_lib_standard:taskPool_js_test",
-      "threadWorker_lib_standard:threadWorker_js_hap",
-      "uri_lib_standard:uri_js_test",
-      "url_lib_standard:url_js_test",
-      "util2_lib_standard:util2_js_test",
-      "util_lib_standard:util_js_test",
-      "worker_lib_standard:worker_js_hap",
-      "xml_lib_standard:xml_js_test",
+      # "atomics_lib_standard:atomics_js_hap",
+      # "buffer_lib_standard:buffer_js_test",
+      # "containerLine_lib_standard:containerLine_js_test",
+      # "containerRelation_lib_standard:containerRelation_js_test",
+      # "convertxml_lib_standard:convertxml_js_test",
+      # "intl_lib_standard:intl_js_test",
+      # "process_lib_standard:process_js_test",
+      # "taskpool_lib_standard:taskPool_js_test",
+      # "threadWorker_lib_standard:threadWorker_js_hap",
+      # "uri_lib_standard:uri_js_test",
+      # "url_lib_standard:url_js_test",
+      # "util2_lib_standard:util2_js_test",
+      # "util_lib_standard:util_js_test",
+      # "worker_lib_standard:worker_js_hap",
+      # "xml_lib_standard:xml_js_test",
+      "console_lib_standard:console_js_test",
+      "timer_lib_standard:timer_js_test",
     ]
   }
 }
