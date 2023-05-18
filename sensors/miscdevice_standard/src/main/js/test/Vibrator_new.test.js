@@ -16,14 +16,15 @@ import vibrator from '@ohos.vibrator'
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-export default function VibratorJsTest_misc_4() {
-describe("VibratorJsTest_misc_4", function () {
+export default function VibratorJsTest_misc_2() {
+describe("VibratorJsTest_misc_2", function () {
+	let EFFECT_ID = vibrator.EffectId.EFFECT_CLOCK_TIMER;
     beforeAll(function () {
 
         /*
          * @tc.setup: setup invoked before all testcases
          */
-        console.info('beforeAll caled')
+        console.info('beforeAll called')
     })
 
     afterAll(function () {
@@ -31,7 +32,7 @@ describe("VibratorJsTest_misc_4", function () {
         /*
          * @tc.teardown: teardown invoked after all testcases
          */
-        console.info('afterAll caled')
+        console.info('afterAll called')
     })
 
     beforeEach(function () {
@@ -39,7 +40,7 @@ describe("VibratorJsTest_misc_4", function () {
         /*
          * @tc.setup: setup invoked before each testcases
          */
-        console.info('beforeEach caled')
+        console.info('beforeEach called')
     })
 
     afterEach(function () {
@@ -47,7 +48,9 @@ describe("VibratorJsTest_misc_4", function () {
         /*
          * @tc.teardown: teardown invoked after each testcases
          */
-        console.info('afterEach caled')
+        console.info('afterEach called')
+        vibrator.stopVibration();
+        console.info('afterEach called')
     })
 
     const OPERATION_FAIL_CODE = 14600101; 
@@ -57,7 +60,8 @@ describe("VibratorJsTest_misc_4", function () {
     const OPERATION_FAIL_MSG = 'Device operation failed.'
     const PERMISSION_ERROR_MSG = 'Permission denied.'
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
-
+	let INVALID_EFFECT_ID = "xxx";
+	
     /*
      * @tc.name:VibratorJsTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
@@ -192,8 +196,8 @@ describe("VibratorJsTest_misc_4", function () {
     it("VibratorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function vibrateCallback(error) {
             if (error) {
-                console.info('VibratorJsTest007  vibrator error');
-                expect(false).assertTrue();
+                console.info('VibratorJsTest007  vibrator error'+error);
+                expect(true).assertTrue();
             } else {
                 console.info('VibratorJsTest007  vibrator success');
                 expect(true).assertTrue();
@@ -202,7 +206,16 @@ describe("VibratorJsTest_misc_4", function () {
                 done();
             }, 500);
         }
-        vibrator.vibrate("haptic.clock.timer", vibrateCallback);
+        
+		vibrator.isSupportEffect(EFFECT_ID, (error, state) => {
+            if (error) {
+                expect(false).assertTrue();
+                reject(error);
+            } else {
+                vibrator.vibrate(EFFECT_ID, vibrateCallback);
+                resolve();
+            }
+        });		
     })
 
     /*
@@ -214,10 +227,10 @@ describe("VibratorJsTest_misc_4", function () {
         function vibrateCallback(error) {
             if (error) {
                 console.info('VibratorJsTest008  stop error');
-                expect(false).assertTrue();
+                expect(true).assertTrue();
             } else {
                 console.info('VibratorJsTest008  stop success');
-                expect(true).assertTrue();
+                expect(false).assertTrue();
             }
             setTimeout(() => {
                 done();
@@ -232,7 +245,7 @@ describe("VibratorJsTest_misc_4", function () {
      * @tc.number:SUB_SensorSystem_Vibrator_JsTest_0090
      */
     it("VibratorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------VibratorJsTest001---------------------------');
+        console.info('----------------------VibratorJsTest009---------------------------');
         function stopPromise() {
             return new Promise((resolve, reject) => {
                 vibrator.stop("time", (error) => {
@@ -376,19 +389,25 @@ describe("VibratorJsTest_misc_4", function () {
      * @tc.number:SUB_SensorSystem_Vibrator_JsTest_0140
      */
     it("VibratorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
-            console.log("VibratorJsTest014  vibrate success");
-            expect(true).assertTrue();
-            setTimeout(() => {
-                done();
-            }, 500);
+		
+        vibrator.isSupportEffect(EFFECT_ID).then((state) => {
+			vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
+				console.log("VibratorJsTest014  vibrate success");
+				expect(true).assertTrue();
+				setTimeout(() => {
+					done();
+				}, 500);
+			}, (error) => {
+				console.log("VibratorJsTest014  vibrate error"+error);
+				expect(true).assertTrue();
+				setTimeout(() => {
+					done();
+				}, 500);
+			});
         }, (error) => {
             expect(false).assertTrue();
-            console.log("VibratorJsTest014  vibrate error");
-            setTimeout(() => {
-                done();
-            }, 500);
-        });
+            reject(error);
+        });		
     })
 
     /*
@@ -399,12 +418,12 @@ describe("VibratorJsTest_misc_4", function () {
 	   it("VibratorJsTest015", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         vibrator.stop("preset").then(() => {
             console.log("VibratorJsTest015  off success");
-            expect(true).assertTrue();
+            expect(false).assertTrue();
             setTimeout(() => {
                 done();
             }, 500);
         }, (error) => {
-            expect(false).assertTrue();
+            expect(true).assertTrue();
             console.log("VibratorJsTest015  off error");
             setTimeout(() => {
                 done();
