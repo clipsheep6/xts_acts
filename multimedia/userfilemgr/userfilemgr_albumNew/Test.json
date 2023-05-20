@@ -1,0 +1,86 @@
+{
+    "description": "Configuration for mediaLibrary Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.mediaLibrary",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`",
+                "scanner",
+                "sleep 5",
+                "mkdir -pv /storage/media/100/local/files/{Camera,Pictures,Videos,Audios,Documents}",
+                "mkdir /storage/media/100/local/temp",
+                "param set persist.ace.testmode.enabled 1"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/favPromise01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/favPromise02.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/favCallback01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/favCallback02.jpg",
+                "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp/videoAlbum01.mp4",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenPromise01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenPromise02.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenPromise03.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenPromise04.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenCallback01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenCallback02.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenCallback03.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/hiddenCallback04.jpg"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mediatool send /storage/media/100/local/temp/01.jpg",
+                "mediatool send /storage/media/100/local/temp/favPromise01.jpg",
+                "mediatool send /storage/media/100/local/temp/favPromise02.jpg",
+                "mediatool send /storage/media/100/local/temp/favCallback01.jpg",
+                "mediatool send /storage/media/100/local/temp/favCallback02.jpg",
+                "mediatool send /storage/media/100/local/temp/videoAlbum01.mp4",
+                "mediatool send /storage/media/100/local/temp/hiddenPromise01.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenPromise02.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenPromise03.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenPromise04.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenCallback01.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenCallback02.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenCallback03.jpg",
+                "mediatool send /storage/media/100/local/temp/hiddenCallback04.jpg",
+
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "scanner",
+                "sleep 10"
+            ],
+            "teardown-command": [
+                "hilog -b X -D 0xD002B70",
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsUserFileManagerAlbumNewTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
