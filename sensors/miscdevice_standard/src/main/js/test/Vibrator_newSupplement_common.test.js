@@ -313,7 +313,7 @@ describe("VibratorJsTest_misc_3", function () {
      * @tc.number:SUB_SensorSystem_Vibrator_JsTest_0500
      */
     it("VibratorJsTest024", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        vibrator.vibrate({
+        vibrator.startVibration({
             type: "time",
             duration: 1000
         }, {
