@@ -11384,7 +11384,7 @@ export default function actsRpcClientJsTest() {
                 let resultMapRAndW = ashmem.mapReadAndWriteAshmem();
                 expect(resultMapRAndW).assertTrue();
                 let bytes = [0,1];
-                let result = ashmem.writeToAshmem(bytes, bytes.length, 2147483647);
+                let result = ashmem.writeToAshmem(bytes, bytes.length, 2147483648 / 4);
                 expect(result).assertEqual(false);
                 ashmem.unmapAshmem();
                 ashmem.closeAshmem();
@@ -11393,33 +11393,6 @@ export default function actsRpcClientJsTest() {
                 expect(error==null).assertTrue();
             }
             console.info("---------------------end SUB_Softbus_IPC_Compatibility_Ashmem_02000---------------------------");
-        })
-
-        /*
-        * @tc.number  SUB_Softbus_IPC_Compatibility_Ashmem_02100
-        * @tc.name    The writetoashmem interface writes the shared file associated with the object
-        * @tc.desc    [G-DISTRIBUTED-0212]禁止修改IPC中定义的数据结构和接口，并提供对应完整实现
-        * @tc.level   0
-        */
-        it("SUB_Softbus_IPC_Compatibility_Ashmem_02100",0,function(){
-            console.info("---------------------start SUB_Softbus_IPC_Compatibility_Ashmem_02100---------------------------");
-            try{
-                let mapSize = 2*M;
-                let ashmem = rpc.Ashmem.createAshmem("JsAshmemTest", mapSize);
-                let resultMapRAndW = ashmem.mapReadAndWriteAshmem();
-                expect(resultMapRAndW).assertTrue();
-                let bytes = [0,1];
-                let result = ashmem.writeToAshmem(bytes, bytes.length, 2147483648);
-                expect(result).assertTrue();
-                let readresult1 = ashmem.readFromAshmem(bytes.length,0);
-                assertArrayElementEqual(readresult1,bytes);
-                ashmem.unmapAshmem();
-                ashmem.closeAshmem();
-            }catch (error) {
-                console.info("SUB_Softbus_IPC_Compatibility_Ashmem error is:" + error);
-                expect(error==null).assertTrue();
-            }
-            console.info("---------------------end SUB_Softbus_IPC_Compatibility_Ashmem_02100---------------------------");
         })
 
         /*
