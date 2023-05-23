@@ -13,17 +13,20 @@
 
 import("//test/xts/tools/lite/build/suite_lite.gni")
 
-hcpptest_suite("ActsDeviceAttestStartTest") {
-  suite_name = "acts"
-  sources = [ "./src/device_attest_start.cpp" ]
-
-  include_dirs = [ "src" ]
+config("device_attest_config") {
   external_deps = [
     "framework:devattest_client",
     "framework:devattest_server",
     "framework:devattest_service",
     "js:kit_device_attest",
   ]
+}
+hcpptest_suite("ActsDeviceAttestStartTest") {
+  suite_name = "acts"
+  sources = [ "./src/device_attest_start.cpp" ]
+
+  include_dirs = [ "src" ]
+  configs = [ ":device_attest_config" ]
 
   cflags = [ "-Wno-error" ]
   ldflags = [
