@@ -66,6 +66,14 @@ group("multimedia") {
       "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
       "medialibrary/mediaLibrary_mediafetchoptions:mediaLibrary_mediafetchoptions_hap",
       "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
+      "medialibrary/userfilemgr_commitModify:userfilemgr_commitModify_js_hap",
+      "medialibrary/userfilemgr_createPhotoAsset:userfilemgr_createPhotoAsset_js_hap",
+      "medialibrary/userfilemgr_delete:userfilemgr_delete_js_hap",
+      "medialibrary/userfilemgr_favorite:userfilemgr_favorite_js_hap",
+      "medialibrary/userfilemgr_fileAsset:userfilemgr_fileAsset_js_hap",
+      "medialibrary/userfilemgr_getPhotoAssets:userfilemgr_getPhotoAssets_js_hap",
+      "medialibrary/userfilemgr_getThumbnail:userfilemgr_getThumbnail_js_hap",
+      "medialibrary/userfilemgr_open:userfilemgr_open_js_hap",
     ]
   } else {
     deps = [

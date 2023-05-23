@@ -1,0 +1,287 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// @ts-nocheck
+import { describe, beforeAll, it, expect } from "deccjsunit/index";
+import userFileManager from "@ohos.filemanagement.userFileManager";
+import dataSharePredicates from "@ohos.data.dataSharePredicates";
+import image from "@ohos.multimedia.image";
+import {
+    getPermission,
+    JPG_HEIGHT,
+    JPG_WIDTH,
+} from "../../../../../../common";
+
+export default function getThumbnailCallback(abilityContext) {
+    describe("getThumbnailCallback", function () {
+        image.createPixelMap(new ArrayBuffer(4096), { size: { height: 1, width: 2 } }).then((pixelmap) => { });
+        const mgr = userFileManager.getUserFileMgr(abilityContext);
+        beforeAll(async function () {
+            console.info("beforeAll case");
+            await getPermission("ohos.acts.multimedia.userfilemgr", abilityContext);
+        });
+
+        /**
+         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0000
+         * @tc.name 	 : getThumbnail
+         * @tc.desc 	 : fileAsset getThumbnail without size (use default size : 256, 256)
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100";
+            try {
+                // @ts-ignore
+                let predicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
+                let assetOp = {
+                    fetchColumns: [],
+                    predicates: predicates,
+                };
+                let fetchResult = await mgr["getPhotoAssets"](assetOp);
+                let fileAsset = await fetchResult.getFirstObject();
+                let fd = await fileAsset["open"]("rw");
+                await fileAsset["close"](fd);
+                fileAsset.getThumbnail(-1, async (err, pixelmap) => {
+                    try {
+                        expect(false).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    } catch (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(true).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    }
+                });
+            } catch (error) {
+                console.info(`${testNum} error : ${error}`);
+                expect(true).assertTrue();
+                done();
+            }
+        });
+
+        /**
+         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100
+         * @tc.name 	 : getThumbnail
+         * @tc.desc 	 : fileAsset getThumbnail with parameter is -1
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0100";
+            try {
+                // @ts-ignore
+                let predicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
+                let assetOp = {
+                    fetchColumns: [],
+                    predicates: predicates,
+                };
+                let fetchResult = await mgr["getPhotoAssets"](assetOp);
+                let fileAsset = await fetchResult.getFirstObject();
+                let fd = await fileAsset["open"]("rw");
+                await fileAsset["close"](fd);
+                fileAsset.getThumbnail(-1, async (err, pixelmap) => {
+                    try {
+                        expect(false).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    } catch (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(true).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    }
+                });
+            } catch (error) {
+                console.info(`${testNum} error : ${error}`);
+                expect(true).assertTrue();
+                done();
+            }
+        });
+
+        /**
+         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0200
+         * @tc.name 	 : getThumbnail
+         * @tc.desc 	 : fileAsset getThumbnail with parameter is undefined
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0200", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0200";
+            try {
+                // @ts-ignore
+                let predicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
+                let assetOp = {
+                    fetchColumns: [],
+                    predicates: predicates,
+                };
+                let fetchResult = await mgr["getPhotoAssets"](assetOp);
+                let fileAsset = await fetchResult.getFirstObject();
+                let fd = await fileAsset["open"]("rw");
+                await fileAsset["close"](fd);
+                fileAsset.getThumbnail(undefined, async (err, pixelmap) => {
+                    try {
+                        expect(false).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    } catch (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(true).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    }
+                });
+            } catch (error) {
+                console.info(`${testNum} error : ${error}`);
+                expect(true).assertTrue();
+                done();
+            }
+        });
+
+        /**
+         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0300
+         * @tc.name 	 : getThumbnail
+         * @tc.desc 	 : fileAsset getThumbnail with size, size is [128,128]
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0300", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0300";
+            try {
+                // @ts-ignore
+                let predicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
+                let assetOp = {
+                    fetchColumns: [],
+                    predicates: predicates,
+                };
+                let fetchResult = await mgr["getPhotoAssets"](assetOp);
+                let fileAsset = await fetchResult.getFirstObject();
+                let fd = await fileAsset["open"]("rw");
+                await fileAsset["close"](fd);
+
+                let size = {
+                    width: 128, height: 128
+                };
+                let s: image.Size = size;
+                fileAsset.getThumbnail(s, async (err, pixelmap) => {
+                    if (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(false).assertTrue();
+                        await fileAsset["close"](fd);
+                        done();
+                    }
+                    let info = await pixelmap.getImageInfo();
+                    expect(info.size.width == size.width).assertTrue();
+                    expect(info.size.height == size.height).assertTrue();
+                    await fileAsset["close"](fd);
+                    done();
+                });
+            } catch (error) {
+                console.info(`${testNum} error : ${error}`);
+                expect(false).assertTrue();
+                done();
+            }
+        });
+
+        /**
+         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0400
+         * @tc.name 	 : getThumbnail
+         * @tc.desc 	 : fileAsset getThumbnail with size, size is [-1,-1]
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0400", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0400";
+            try {
+                // @ts-ignore
+                let predicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
+                let assetOp = {
+                    fetchColumns: [],
+                    predicates: predicates,
+                };
+                let fetchResult = await mgr["getPhotoAssets"](assetOp);
+                let fileAsset = await fetchResult.getFirstObject();
+                let fd = await fileAsset["open"]("rw");
+                await fileAsset["close"](fd);
+
+                let size = {
+                    width: -1, height: -1
+                };
+                let s: image.Size = size;
+                fileAsset.getThumbnail(s, async (err, pixelmap) => {
+                    if (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(true).assertTrue();
+                        done();
+                    }
+                });
+            } catch (error) {
+                console.info(`${testNum} error : ${error}`);
+                expect(true).assertTrue();
+                done();
+            }
+        });
+
+        /**
+         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0500
+         * @tc.name 	 : getThumbnail
+         * @tc.desc 	 : fileAsset getThumbnail with size, size is [99999,99999]
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0500", 0, async function (done) {
+            let testNum = "SUB_MEDIA_USERFILEMGR_GETTHUMBNAIL_CALLBACK_0500";
+            try {
+                // @ts-ignore
+                let predicates = new dataSharePredicates.DataSharePredicates();
+                predicates.equalTo("height", JPG_HEIGHT).equalTo("width", JPG_WIDTH);
+                let assetOp = {
+                    fetchColumns: [],
+                    predicates: predicates,
+                };
+                let fetchResult = await mgr["getPhotoAssets"](assetOp);
+                let fileAsset = await fetchResult.getFirstObject();
+                let fd = await fileAsset["open"]("rw");
+                await fileAsset["close"](fd);
+
+                let size = {
+                    width: 99999, height: 99999
+                };
+                let s: image.Size = size;
+                fileAsset.getThumbnail(s, async (err, pixelmap) => {
+                    if (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect(true).assertTrue();
+                        done();
+                    }
+                });
+            } catch (error) {
+                console.info(`${testNum} error : ${error}`);
+                expect(true).assertTrue();
+                done();
+            }
+        });
+    });
+}
