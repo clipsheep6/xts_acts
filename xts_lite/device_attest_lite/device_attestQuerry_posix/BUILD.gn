@@ -20,8 +20,6 @@ hcpptest_suite("ActsDeviceAttestQuerryTest") {
   include_dirs = [ "src" ]
   external_deps = [
     "device_attest_lite:devattest_client",
-    "device_attest_lite:devattest_server",
-    "device_attest_lite:devattest_service",
     "device_attest_lite:kit_device_attest",
   ]
   cflags = [ "-Wno-error" ]
