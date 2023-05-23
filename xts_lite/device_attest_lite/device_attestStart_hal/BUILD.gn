@@ -14,9 +14,7 @@
 import("//test/xts/tools/lite/build/suite_lite.gni")
 config("device_attest_config") {
   external_deps = [
-    "framework:devattest_client",
-    "framework:devattest_server",
-    "framework:devattest_service",
+    "framework:devattest_sdk",
     "js:kit_device_attest",
   ]
 }
