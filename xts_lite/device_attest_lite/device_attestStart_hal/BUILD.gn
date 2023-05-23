@@ -12,21 +12,15 @@
 # limitations under the License.
 
 import("//test/xts/tools/lite/build/suite_lite.gni")
-config("device_attest_config") {
-  external_deps = [
-    "framework:devattest_sdk",
-    "js:kit_device_attest",
-  ]
-}
 
 hctest_suite("ActsDeviceAttestTest") {
   suite_name = "acts"
   sources = [ "./src/device_attest.c" ]
-
   include_dirs = [ "src" ]
-
-  configs = [ ":device_attest_config" ]
-
+  external_deps = [
+    "framework:devattest_sdk",
+    "js:kit_device_attest",
+  ]
   if (board_toolchain_type != "iccarm") {
     cflags = [ "-Wno-error" ]
   }
