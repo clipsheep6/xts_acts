@@ -18,10 +18,10 @@ hcpptest_suite("ActsDeviceAttestStartTest") {
   sources = [ "./src/device_attest_start.cpp" ]
   include_dirs = [ "src" ]
   external_deps = [
-    "framework:devattest_client",
-    "framework:devattest_server",
-    "framework:devattest_service",
-    "js:kit_device_attest",
+    "device_attest_lite:devattest_client",
+    "device_attest_lite:devattest_server",
+    "device_attest_lite:devattest_service",
+    "device_attest_lite:kit_device_attest",
   ]
   cflags = [ "-Wno-error" ]
   ldflags = [

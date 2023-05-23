@@ -18,8 +18,8 @@ hctest_suite("ActsDeviceAttestTest") {
   sources = [ "./src/device_attest.c" ]
   include_dirs = [ "src" ]
   external_deps = [
-    "framework:devattest_sdk",
-    "js:kit_device_attest",
+    "device_attest_lite:devattest_sdk",
+    "device_attest_lite:kit_device_attest",
   ]
   if (board_toolchain_type != "iccarm") {
     cflags = [ "-Wno-error" ]
