@@ -33,4 +33,3 @@ UsbFunctionsJsFunctionsTestEx()
 UsbPortJsFunctionsTest()
 UsbPortJsFunctionsTestEx()
 }
-
