@@ -12,17 +12,15 @@
 # limitations under the License.
 
 import("//test/xts/tools/lite/build/suite_lite.gni")
+
 hctest_suite("ActsDeviceAttestTest") {
   suite_name = "acts"
-  sources = [ "src/device_attest.c" ]
-
-  include_dirs = [
-    "src",
-    "//test/xts/device_attest_lite/interfaces/kit/js/include",
-    "//test/xts/device_attest_lite/interfaces/innerkits",
-    "//test/xts/device_attest_lite/framework/mini",
+  sources = [ "./src/device_attest.c" ]
+  include_dirs = [ "src" ]
+  deps = [
+    "device_attest_lite:devattest_sdk",
+    "device_attest_lite:kit_device_attest",
   ]
-
   if (board_toolchain_type != "iccarm") {
     cflags = [ "-Wno-error" ]
   }
