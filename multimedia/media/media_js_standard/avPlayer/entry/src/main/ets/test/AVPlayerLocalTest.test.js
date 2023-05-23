@@ -457,7 +457,7 @@ export default function AVPlayerLocalTest() {
             let audioTrackKey = new Array('bitrate', 'channel_count', 'codec_mime', 'sample_rate',
                                         'track_index', 'track_type');
             let videoTrackValue = new Array(1366541, 0, 6000, 480, 0, 1, 720);
-            let audioTrackValue = new Array(129207, 2, 1, 44100, 1, 0);
+            let audioTrackValue = new Array(129207, 2, 2, 44100, 1, 0);
             let descriptionKey = new Array(videoTrackKey, audioTrackKey);
             let descriptionValue = new Array(videoTrackValue, audioTrackValue);
             testCheckTrackDescription(fileDescriptor, avPlayer, descriptionKey, descriptionValue, done)
