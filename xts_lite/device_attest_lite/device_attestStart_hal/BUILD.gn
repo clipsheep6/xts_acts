@@ -16,9 +16,7 @@ hctest_suite("ActsDeviceAttestTest") {
   suite_name = "acts"
   sources = [ "./src/device_attest.c" ]
 
-  include_dirs = [
-    "src",
-  ]
+  include_dirs = [ "src" ]
 
   external_deps = [
     "framework:devattest_sdk",

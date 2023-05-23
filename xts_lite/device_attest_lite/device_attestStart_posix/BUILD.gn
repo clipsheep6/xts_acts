@@ -17,13 +17,11 @@ hcpptest_suite("ActsDeviceAttestStartTest") {
   suite_name = "acts"
   sources = [ "./src/device_attest_start.cpp" ]
 
-  include_dirs = [
-    "src",
-  ]
+  include_dirs = [ "src" ]
   external_deps = [
     "framework:devattest_client",
-    "framework:devattest_service",
     "framework:devattest_server",
+    "framework:devattest_service",
     "js:kit_device_attest",
   ]
 
