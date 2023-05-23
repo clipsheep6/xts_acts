@@ -527,16 +527,16 @@ describe('UsbDevicePipeJsFunctionsTestEx', function () {
 
     var tmpTimeOut = "invalid";
     var tmpUint8Array = CheckEmptyUtils.str2ab(testParam.sendData);
-      usbManager.bulkTransfer(testParam.pip, testParam.inEndpoint, tmpUint8Array, tmpTimeOut).then(data => {
+    usbManager.bulkTransfer(testParam.pip, testParam.inEndpoint, tmpUint8Array, tmpTimeOut).then(data => {
       console.info('usb case SUB_USB_JS_1530 ret: ' + data);
       console.info('usb case SUB_USB_JS_1530 send data: ' + testParam.sendData);
       expect(data > 0).assertTrue();
       console.info('usb case SUB_USB_JS_1530 :  PASS');
-      }).catch(error => {
-        console.info('usb 1530 write error : ' + JSON.stringify(error));
-        console.info('usb case SUB_USB_JS_1530 :  FAILED');
-        expect(false).assertTrue();
-      });
+    }).catch(error => {
+      console.info('usb 1530 write error : ' + JSON.stringify(error));
+      console.info('usb case SUB_USB_JS_1530 :  FAILED');
+      expect(false).assertTrue();
+    });
     CheckEmptyUtils.sleep(3000);
   })
 
