@@ -542,7 +542,7 @@ export default function imageDecodeOptions() {
                 } else {
                     let decodingOptions = {
                         sampleSize: 1,
-                        editable: false,
+                        editable: true,
                         desiredSize: { width: 1, height: 2 },
                         rotate: 10,
                         desiredPixelFormat: 2,
@@ -1342,7 +1342,7 @@ export default function imageDecodeOptions() {
             } else {
                 let decodingOptions = {
                     sampleSize: 1,
-                    editable: false,
+                    editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
                     desiredPixelFormat: 2,
@@ -2080,7 +2080,7 @@ export default function imageDecodeOptions() {
             } else {
                 let decodingOptions = {
                     sampleSize: 1,
-                    editable: false,
+                    editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
                     desiredPixelFormat: 2,
@@ -2762,7 +2762,7 @@ export default function imageDecodeOptions() {
             } else {
                 let decodingOptions = {
                     sampleSize: 1,
-                    editable: false,
+                    editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
                     desiredPixelFormat: 2,
