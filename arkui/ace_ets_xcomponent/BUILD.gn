@@ -13,7 +13,7 @@
 
 import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
-import("//test/xts/tools/build/suite.gni")
+import("../../../tools/build/suite.gni")
 
 ohos_js_hap_suite("ActsAceXComponentEtsTest") {
   hap_profile = "./entry/src/main/config.json"

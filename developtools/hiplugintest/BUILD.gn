@@ -12,7 +12,7 @@
 # limitations under the License.
 
 import("//build/test.gni")
-import("//test/xts/tools/build/suite.gni")
+import("../../../tools/build/suite.gni")
 import("../../../../../developtools/profiler/device/base/config.gni")
 
 ###############################################################################
