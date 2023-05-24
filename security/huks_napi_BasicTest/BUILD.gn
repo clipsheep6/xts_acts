@@ -13,7 +13,7 @@
 
 import("//base/security/huks/build/config.gni")
 import("//base/security/huks/huks.gni")
-import("//test/xts/tools/build/suite.gni")
+import("../../../tools/build/suite.gni")
 
 config("module_private_config") {
   visibility = [ ":*" ]
