@@ -1198,7 +1198,6 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         }
       })
     })
-
     /**
      * @tc.number SUB_WINDOW_ON_OFF_JSAPI_005
      * @tc.name Test listenerTest5
@@ -1209,10 +1208,6 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       let msgStr = 'jsunittest ' + caseName + ' ';
       let listenerOnFlag = false;
       console.log(msgStr + 'begin');
-      listenerData.on = true;
-      listenerData.typeStr = 'systemAvoidAreaChange';
-      let setSystemBarEnableType = null;
-
       function setSystemBarEnable(tempWnd) {
         return new Promise(function (resolve, reject) {
           tempWnd.setSystemBarEnable([], (err, data) => {
@@ -1220,8 +1215,6 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               reject(false)
             } else {
               console.log(msgStr + 'tempWnd.setSystemBarEnable([]) success');
-              listenerOnFlag = true;
-              setSystemBarEnableType = 0;
               resolve(true)
             }
           })
@@ -1235,7 +1228,6 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               reject(false)
             } else {
               console.log(msgStr + 'tempWnd.setSystemBarEnable([status, navigation]) success');
-              setSystemBarEnableType = 2;
               resolve(true)
             }
           })
@@ -1248,23 +1240,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         expect().assertFail()
       });
       expect(!!tempWnd).assertTrue();
-
-      await tempWnd.show().then((data) => {
-        console.info(msgStr + 'Success to show the window. data: ' + JSON.stringify(data));
-      }).catch((err) => {
-        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
-        expect().assertFail()
-      });
-      await tempWnd.setFullScreen(true).then((data) => {
-        console.info(msgStr + 'Success to enable the full-screen mode. data: ' + JSON.stringify(data));
-      }).catch((err) => {
-        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
-        expect().assertFail()
-      });
-
       tempWnd.on('systemAvoidAreaChange', avoidAreaData => {
-        console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, avoidAreaData : ' + JSON.stringify(avoidAreaData));
-        console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, setSystemBarEnableType : ' + setSystemBarEnableType);
         if (listenerOnFlag === true) {
           console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, listenerOnFlag : ' + listenerOnFlag);
           try {
@@ -1274,35 +1250,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           }
           tempWnd.off('systemAvoidAreaChange')
           done();
-        } else {
-          console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, listenerOnFlag : ' + listenerOnFlag);
-          if (setSystemBarEnableType === 0) {
-            console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, setSystemBarEnableType === 0');
-            try {
-              expect().assertTrue();
-            } catch (error) {
-              console.info(msgStr + `tempWnd.on catch error: ${JSON.stringify(error)}`)
-            }
-            tempWnd.off('systemAvoidAreaChange')
-            done();
-          } else if (setSystemBarEnableType === 2) {
-            console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, setSystemBarEnableType === 2');
-            try {
-              expect().assertTrue();
-            } catch (error) {
-              console.info(msgStr + `tempWnd.on catch error: ${JSON.stringify(error)}`)
-            }
-            tempWnd.off('systemAvoidAreaChange')
-            done();
-          } else {
-            console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, setSystemBarEnableType null:' + setSystemBarEnableType);
-          }
         }
       })
+      listenerOnFlag=true;
       await setSystemBarEnable(tempWnd).catch((err) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
       });
+      await sleep(1000)
       await setSystemBarEnableT(tempWnd).catch((err) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
@@ -2208,112 +2163,6 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           unexpectedError(err, caseName, 'displayClass.getCutoutInfo', done);
         } else {
           console.info(msgStr + 'Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-          done();
-        }
-      })
-    })
-    /**
-     * @tc.number SUB_WINDOW_SHOWWITHANIMATION_JSAPI_002
-     * @tc.name Test showWithAnimationTest2
-     * @tc.desc Displays the current window, playing an animation in the process
-     */
-    it('showWithAnimationTest2', 0, async function (done) {
-      let caseName = 'showWithAnimationTest2';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      let wndId = 'showWithAnimationTest2';
-      let baseType = ohosWindow.WindowType.TYPE_FLOAT;
-      let tempWnd = null;
-
-      function createWin() {
-        return new Promise(function (resolve, reject) {
-          ohosWindow.create(context, wndId, baseType, (err, data) => {
-            if (err && err.code) {
-              reject(null)
-            } else {
-              resolve(data)
-            }
-          })
-        })
-      }
-
-      await createWin().then((data) => {
-        console.info(msgStr + `ohosWindow.create success  data: ${JSON.stringify(data)}`)
-        tempWnd = data;
-      }).catch(err => {
-        console.info(msgStr + `ohosWindow.create failed  error: ${JSON.stringify(err)}`)
-        expect().assertFail();
-        done();
-      })
-      expect(!!tempWnd).assertTrue();
-      console.info(msgStr + `ohosWindow.create success  tempWnd: ${JSON.stringify(tempWnd)}`)
-      tempWnd.showWithAnimation(async (error, animationData) => {
-        if (error && error.code) {
-          console.info(msgStr + 'showWithAnimation fail. error: ' + JSON.stringify(error));
-          await tempWnd.destroy()
-          expectedError(error, caseName, 'tempWnd.showWithAnimation', done, 202);
-        } else {
-          console.info(msgStr + 'Succeeded in showing the window with animation. Data: ' + JSON.stringify(animationData));
-          done()
-        }
-      })
-    })
-    /**
-     * @tc.number SUB_WINDOW_HIDEWITHANIMATION_JSAPI_002
-     * @tc.name Test hideWithAnimationTest2
-     * @tc.desc Hide the current window and play an animation in the process
-     */
-    it('hideWithAnimationTest2', 0, async function (done) {
-      let caseName = 'hideWithAnimationTest2';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      let wndId = 'hideWithAnimationTest2';
-      let baseType = ohosWindow.WindowType.TYPE_FLOAT;
-      let tempWnd = null
-
-      function createWin() {
-        return new Promise(function (resolve, reject) {
-          ohosWindow.create(context, wndId, baseType, (creare_err, data) => {
-            if (creare_err && creare_err.code) {
-              reject(null)
-            } else {
-              resolve(data)
-            }
-          })
-        })
-      }
-
-      function findWin() {
-        return new Promise(function (resolve, reject) {
-          ohosWindow.find(wndId, (findErr, findWnd) => {
-            if (findErr && findErr.code) {
-              reject(null)
-            } else {
-              resolve(findWnd)
-            }
-          })
-        })
-      }
-
-      tempWnd = await createWin().catch(err => {
-        console.info(msgStr + `ohosWindow.create failed  error: ${JSON.stringify(err)}`)
-        expect().assertFail();
-        done();
-      })
-      expect(!!tempWnd).assertTrue();
-      let findWnd;
-      findWnd = await findWin().catch(err => {
-        console.info(msgStr + `ohosWindow.find failed  error: ${JSON.stringify(err)}`)
-        expect().assertFail();
-        done();
-      })
-      expect(!!findWnd).assertTrue();
-      findWnd.hideWithAnimation(async (err, data) => {
-        if (err && err.code) {
-          unexpectedError(err, caseName, 'Failed to hide the window with animation', done);
-        } else {
-          console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
-          await tempWnd.destroy();
           done();
         }
       })

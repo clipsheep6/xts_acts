@@ -767,7 +767,7 @@ struct SliderTest {
               style: SliderStyle.InSet
             })
               .key('ArkUX_Stage_Slider_blockSize_1800')
-              .blockSize({ width: "20lsp", height: "20lsp" })
+              .blockSize({ width: "20lpx", height: "20lpx" })
           }
           ListItem() {
             Slider({
@@ -878,6 +878,17 @@ struct SliderTest {
               .key('ArkUX_Stage_Slider_stepSize_1100')
               .stepSize(10)
               .stepSize(40)
+          }
+          ListItem() {
+             Slider({
+              value: this.inSetValueOne,
+              min: 0,
+              max: 100,
+              style: SliderStyle.InSet
+            })
+              .key('ArkUX_Stage_Slider_stepColor_marker_color_marker_color_aalpha')
+              .backgroundColor($r("sys.color.ohos_id_color_foreground"))
+              .opacity($r("sys.float.ohos_id_alpha_normal_bg"))
           }
           ListItem() {
             Slider({

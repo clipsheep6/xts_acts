@@ -290,28 +290,27 @@ describe('fileIO_randomAccessFile_write', function () {
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_WRITE_SYNC_1000
-     * @tc.name fileIO_randomaccessfile_write_sync_010
-     * @tc.desc Test writeSync() interface. When the length is negative,equivalent to omitting the parameter.
+     * @tc.name fileio_randomaccessfile_write_sync_010
+     * @tc.desc Test writeSync() interface. The "length" of option must > 0.
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
      * @tc.require
      */
-    it('fileIO_randomaccessfile_write_sync_010', 0, async function () {
-        let fpath = await nextFileName('fileIO_randomaccessfile_write_sync_010');
-        let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o102);
+    it('fileio_randomaccessfile_write_sync_010', 0, async function () {
+        let fpath = await nextFileName('fileio_randomaccessfile_write_sync_010');
+        let randomaccessfile;
+
         try {
+            randomaccessfile = fileio.createRandomAccessFileSync(fpath, 0, 0o102);
             let length = 100;
-            let num = randomaccessfile.writeSync(new ArrayBuffer(length), { offset: 1, length: -1 });
-            // expect(num == length).assertTrue();
-            // randomaccessfile.closeSync();
-            // fileIO.unlinkSync(fpath);
+            randomaccessfile.writeSync(new ArrayBuffer(length), { offset: 1, length: -1 });
+            expect(false).assertTrue();
         } catch(err) {
-            console.info('fileIO_randomaccessfile_write_sync_010 has failed for ' + err);
-            // expect(null).assertFail();
-            expect(err.code == 13900020).assertTrue();
             randomaccessfile.closeSync();
-            fileIO.unlinkSync(fpath);
+            fileio.unlinkSync(fpath);
+            console.info('fileio_randomaccessfile_write_sync_010 has failed for ' + err);
+            expect(err.message == "Invalid buffer/options").assertTrue();
         }
     });
 
@@ -667,29 +666,27 @@ describe('fileIO_randomAccessFile_write', function () {
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_WRITE_ASYNC_1000
-     * @tc.name fileIO_randomaccessfile_write_async_010
-     * @tc.desc Test write() interface. When the length is negative,equivalent to omitting the parameter.
+     * @tc.name fileio_randomaccessfile_write_async_010
+     * @tc.desc Test write() interface. The "length" of option must > 0.
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
      * @tc.require
      */
-    it('fileIO_randomaccessfile_write_async_010', 0, async function (done) {
-        let fpath = await nextFileName('fileIO_randomaccessfile_write_async_010');
-        let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o102);
+    it('fileio_randomaccessfile_write_async_010', 0, async function (done) {
+        let fpath = await nextFileName('fileio_randomaccessfile_write_async_010');
+        let randomaccessfile;
+
         try {
+            randomaccessfile = await fileio.createRandomAccessFile(fpath, 0, 0o102);
             let length = 100;
-            let num = await randomaccessfile.write(new ArrayBuffer(length), { offset: 1, length: -1 });
-            // expect(num == length).assertTrue();
-            // randomaccessfile.closeSync();
-            // fileIO.unlinkSync(fpath);
-            done();
+            await randomaccessfile.write(new ArrayBuffer(length), { offset: 1, length: -1 });
+            expect(false).assertTrue();
         } catch(err) {
-            console.info('fileIO_randomaccessfile_write_async_010 has failed for ' + err);
-            // expect(null).assertFail();
-            expect(err.code == 13900020).assertTrue();
             randomaccessfile.closeSync();
-            fileIO.unlinkSync(fpath);
+            fileio.unlinkSync(fpath);
+            console.info('fileio_randomaccessfile_write_async_010 has failed for ' + err);
+            expect(err.message == "Invalid buffer/options").assertTrue();
             done();
         }
     });

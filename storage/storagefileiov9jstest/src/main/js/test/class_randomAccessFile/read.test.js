@@ -295,33 +295,31 @@ describe('fileIO_randomAccessFile_read', function () {
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_READ_SYNC_1000
-     * @tc.name fileIO_randomaccessfile_read_sync_010
-     * @tc.desc Test readSync() interface. When the length is negative,equivalent to omitting the parameter.
+     * @tc.name fileio_randomaccessfile_read_sync_010
+     * @tc.desc Test readSync() interface. The "length" of option must > 0.
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
      * @tc.require
      */
-    it('fileIO_randomaccessfile_read_sync_010', 0, async function () {
-        let fpath = await nextFileName('fileIO_randomaccessfile_read_sync_010');
-        let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o102);
+    it('fileio_randomaccessfile_read_sync_010', 0, async function () {
+        let fpath = await nextFileName('fileio_randomaccessfile_read_sync_010');
+        let randomaccessfile;
+
         try {
+            randomaccessfile = fileio.createRandomAccessFileSync(fpath, 0, 0o102);
             let length = 4096;
             let num = randomaccessfile.writeSync(new ArrayBuffer(length));
             console.info('fileIO_randomaccessfile_read_sync_010===num= ' + num);
             expect(num == length).assertTrue();
             randomaccessfile.setFilePointerSync(0);
-            let number = randomaccessfile.readSync(new ArrayBuffer(16), { offset: 13, length: -1 });
-            // console.info('fileIO_randomaccessfile_read_sync_010===number= ' + number);
-            // expect(number == 16).assertTrue();
-            // randomaccessfile.closeSync();
-            // fileIO.unlinkSync(fpath);
+            randomaccessfile.readSync(new ArrayBuffer(16), { offset: 13, length: -1 });
+            expect(false).assertTrue();
         } catch (err) {
-            console.info('fileIO_randomaccessfile_read_sync_010 has failed for ' + err);
-            // expect(null).assertFail();
-            expect(err.code == 13900020).assertTrue();
             randomaccessfile.closeSync();
-            fileIO.unlinkSync(fpath);
+            fileio.unlinkSync(fpath);
+            console.info('fileio_randomaccessfile_read_sync_010 has failed for ' + err);
+            expect(err.message == "Invalid buffer/options").assertTrue();
         }
     });
 
@@ -708,34 +706,31 @@ describe('fileIO_randomAccessFile_read', function () {
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_READ_ASYNC_1000
-     * @tc.name fileIO_randomaccessfile_read_async_010
-     * @tc.desc Test read() interface. When the length is negative,equivalent to omitting the parameter.
+     * @tc.name fileio_randomaccessfile_read_async_010
+     * @tc.desc Test read() interface. The "length" of option must > 0.
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
      * @tc.require
      */
-    it('fileIO_randomaccessfile_read_async_010', 0, async function (done) {
-        let fpath = await nextFileName('fileIO_randomaccessfile_read_async_010');
-        let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o102);
+    it('fileio_randomaccessfile_read_async_010', 0, async function (done) {
+        let fpath = await nextFileName('fileio_randomaccessfile_read_async_010');
+        let randomaccessfile;
+
         try {
+            randomaccessfile = await fileio.createRandomAccessFile(fpath, 0, 0o102);
             let length = 4096;
             let num = randomaccessfile.writeSync(new ArrayBuffer(length));
             console.info('fileIO_randomaccessfile_read_async_010 num =  ' + num);
             expect(num == length).assertTrue();
             randomaccessfile.setFilePointerSync(0);
-            let readOut = await randomaccessfile.read(new ArrayBuffer(16), { offset: 13, length: -1 });
-            // console.info('fileIO_randomaccessfile_read_async_010 readOut.bytesRead =  ' + readOut.bytesRead);
-            // expect(readOut.bytesRead == 16).assertTrue();
-            // randomaccessfile.closeSync();
-            // fileIO.unlinkSync(fpath);
-            // done();
+            await randomaccessfile.read(new ArrayBuffer(16), { offset: 13, length: -1 });
+            expect(false).assertTrue();
         } catch (err) {
-            console.info('fileIO_randomaccessfile_read_async_010 has failed for ' + err);
-            // expect(null).assertFail();
-            expect(err.code == 13900020).assertTrue();
             randomaccessfile.closeSync();
-            fileIO.unlinkSync(fpath);
+            fileio.unlinkSync(fpath);
+            console.info('fileio_randomaccessfile_read_async_010 has failed for ' + err);
+            expect(err.message == "Invalid buffer/options").assertTrue();
             done();
         }
     });
