@@ -426,10 +426,34 @@ export default function webJsunit() {
      *tc.desic Save current page
      */
     it('GetAccessibleGeolocation',0,async function(done){
-      emitKey="emitGetAccessibleGeolocation";
+      emitKey="emitJsMessExtGetString";
       Utils.registerEvent("GetAccessibleGeolocation",true,451,done);
       sendEventByKey('webcomponent',10,'');
     })
-
+    it('JsMessExtGetString',0,async function(done){
+      emitKey="emitJsMessExtGetNum";
+      Utils.registerEvent("JsMessExtGetString","result type:string",500,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    it('JsMessExtGetNum',0,async function(done){
+      emitKey="emitJsMessExtGetBoo";
+      Utils.registerEvent("JsMessExtGetNum","result type:number",501,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    it('JsMessExtGetBoo',0,async function(done){
+      emitKey="emitJsMessExtGetArrayBuffer";
+      Utils.registerEvent("JsMessExtGetBoo","result type:boolean",502,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    it('JsMessExtGetArrayBuffer',0,async function(done){
+      emitKey="emitJsMessExtGetArray";
+      Utils.registerEvent("JsMessExtGetArrayBuffer","result type:object",503,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    it('JsMessExtGetArray',0,async function(done){
+      emitKey="emitJsMessExtGetArray";
+      Utils.registerEvent("JsMessExtGetArray","result type:object0",504,done);
+      sendEventByKey('webcomponent',10,'');
+    })
   })
 }
