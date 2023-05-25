@@ -33,7 +33,7 @@ group("ability_runtime") {
       "actsmultiplecall:actsmultiplecall",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsrequestdialogtest:actsrequestdialogtest",
-      "actsrevokequickfixtest:ActsRevokeQuickFixApp",
+      "actsrevokequickfixtest:actsrevokequickfixtest",
       "actsserviceabilityclienttest:serviceability",
       "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
       "actsstartrunnertest:ActsStartRunnerTest",
