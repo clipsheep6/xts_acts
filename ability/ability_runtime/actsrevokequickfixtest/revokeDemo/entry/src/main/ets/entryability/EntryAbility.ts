@@ -9,8 +9,6 @@ var ACTS_CallFunction = {
     events: [commonEventManager.Support.COMMON_EVENT_QUICK_FIX_REVOKE_RESULT]
 };
 
-var noSoBundleName = "com.example.quickfixassistapp"
-
 let subscriber;
 
 function subscribeCallBack(err, data) {
@@ -88,9 +86,9 @@ export default class EntryAbility extends Ability {
 
         if (want.action == "Revoke_0900") {
             console.info("====>Revoke_0900");
-            globalThis.revokeQuickFixTest_Promise(noSoBundleName);
+            globalThis.revokeQuickFixTest_Promise("com.acts.actsrevokequickfixapp");
         } else if (want.action == "Revoke_1000") {
-            globalThis.revokeQuickFixTest_Callback(noSoBundleName);
+            globalThis.revokeQuickFixTest_Callback("com.acts.actsrevokequickfixapp");
         } else if (want.action == "Revoke_2100") {
             globalThis.revokeQuickFixTest_Promise("com.ohos.XXXXX");
         } else if (want.action == "Revoke_2200") {
