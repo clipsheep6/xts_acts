@@ -426,10 +426,59 @@ export default function webJsunit() {
      *tc.desic Save current page
      */
     it('GetAccessibleGeolocation',0,async function(done){
-      emitKey="emitGetAccessibleGeolocation";
+      emitKey="emitJsMessExtGetString";
       Utils.registerEvent("GetAccessibleGeolocation",true,451,done);
       sendEventByKey('webcomponent',10,'');
     })
-
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_039                                                                                                                                                           
+     *tc.name JsMessExtGetString                                                                                                                                                                                                                
+     *tc.desic Save current page
+     */
+    it('JsMessExtGetString',0,async function(done){
+      emitKey="emitJsMessExtGetNum";
+      Utils.registerEvent("JsMessExtGetString","result type:string",500,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_040                                                                                                                                                           
+     *tc.name JsMessExtGetNum                                                                                                                                                                                                                
+     *tc.desic Save current page
+     */
+    it('JsMessExtGetNum',0,async function(done){
+      emitKey="emitJsMessExtGetBoo";
+      Utils.registerEvent("JsMessExtGetNum","result type:number",501,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_041                                                                                                                                                          
+     *tc.name JsMessExtGetBoo                                                                                                                                                                                                                
+     *tc.desic Save current page
+     */
+    it('JsMessExtGetBoo',0,async function(done){
+      emitKey="emitJsMessExtGetArrayBuffer";
+      Utils.registerEvent("JsMessExtGetBoo","result type:boolean",502,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_042                                                                                                                                                          
+     *tc.name JsMessExtGetArrayBuffer                                                                                                                                                                                                                
+     *tc.desic Save current page
+     */
+    it('JsMessExtGetArrayBuffer',0,async function(done){
+      emitKey="emitJsMessExtGetArray";
+      Utils.registerEvent("JsMessExtGetArrayBuffer","result type:object",503,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /* 
+     *tc.number SUB_ACE_BASIC_ETS_API_043                                                                                                                                                         
+     *tc.name JsMessExtGetArray                                                                                                                                                                                                                
+     *tc.desic Save current page
+     */
+    it('JsMessExtGetArray',0,async function(done){
+      emitKey="emitJsMessExtGetArray";
+      Utils.registerEvent("JsMessExtGetArray","result type:object0",504,done);
+      sendEventByKey('webcomponent',10,'');
+    })
   })
 }

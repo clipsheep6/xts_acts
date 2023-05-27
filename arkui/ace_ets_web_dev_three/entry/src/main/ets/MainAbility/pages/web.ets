@@ -33,6 +33,8 @@ struct Index {
     scheme2: web_webview.WebCustomScheme = {schemeName: "name2", isSupportCORS: true, isSupportFetch: true}
     scheme3: web_webview.WebCustomScheme = {schemeName: "name3", isSupportCORS: true, isSupportFetch: true}
     responseweb: WebResourceResponse = new WebResourceResponse()
+
+
     @State str:string="emitLoadUrl"
     @State text:boolean=false
     @State num:number=0
@@ -40,6 +42,12 @@ struct Index {
     @State mode1: WebDarkMode = WebDarkMode.On
     @State mode2: WebDarkMode = WebDarkMode.Auto
     @State enterPageEnd: boolean = false
+    @State getString:boolean =false
+    @State getNum:boolean =false
+    @State getBoo:boolean =false
+    @State getArrayBuffer:boolean =false
+    @State getArray:boolean =false
+    @State msg1:string=""
 
     
     
@@ -586,6 +594,54 @@ struct Index {
                             }                                                                                                                                     
                             break;
                         }
+                        case "emitJsMessExtGetString":{ 
+                            try {
+                                this.getString = true;
+                                this.controller.loadUrl("resource://rawfile/index.html")
+                            } catch(error) {
+                                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                            }                                                                               
+                            break;
+                        }
+                        case "emitJsMessExtGetNum":{ 
+                            try {
+                                this.getNum = true;
+                                this.controller.loadUrl("resource://rawfile/index.html")
+                            } catch(error) {
+                                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                            }                                                                               
+                            break;
+                        }
+                        case "emitJsMessExtGetBoo":{ 
+                            try {
+                                this.getBoo = true;
+                                this.controller.loadUrl("resource://rawfile/index.html")
+                            } catch(error) {
+                                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                            }                                                                               
+                            break;
+                        }
+                        case "emitJsMessExtGetArrayBuffer":{ 
+                            try {
+                                this.getArrayBuffer = true;
+                                this.controller.loadUrl("resource://rawfile/index.html")
+                            } catch(error) {
+                                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                            }                                                                               
+                            break;
+                        }
+                        case "emitJsMessExtGetArray":{ 
+                            try {
+                                this.getArray = true;
+                                this.controller.loadUrl("resource://rawfile/index.html")
+                            } catch(error) {
+                                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                            }                                                                               
+                            break;
+                        }
+                        
+
+
                         default:
                             console.info("can not match case")
                     }
@@ -624,6 +680,111 @@ struct Index {
                     Utils.emitEvent(1,446)
                     this.enterPageEnd=false
                 }
+                if(this.getString){
+                    try {
+                        this.controller.runJavaScriptExt(
+                        'getStringForJs()',
+                        (error, result) => {
+                        if (error) {
+                            console.info(`run JavaScript error: ` + JSON.stringify(error))
+                            return;
+                        }
+                            var type = result.getType()
+                            if(web_webview.JsMessageType.STRING == type){
+                            this.msg1 = "result type:" + typeof (result.getString());
+                            Utils.emitEvent(this.msg1,500)
+                            }
+                        });
+                    console.info('urlgetstring: ', event.url);
+                    } catch (error) {
+                        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                    }
+                }
+                if(this.getNum){
+                    try {
+                        this.controller.runJavaScriptExt(
+                        'getNumForJs()',
+                        (error, result) => {
+                        if (error) {
+                            console.info(`run JavaScript error: ` + JSON.stringify(error))
+                            return;
+                        }
+                            var type = result.getType()
+                            if(web_webview.JsMessageType.NUMBER == type){
+                            this.msg1 = "result type:" + typeof (result.getNumber());
+                            Utils.emitEvent(this.msg1,501)
+                            }
+                        });
+                    console.info('urlgetstring: ', event.url);
+                    } catch (error) {
+                        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                    }
+                }
+                if(this.getBoo){
+                    try {
+                        this.controller.runJavaScriptExt(
+                        'getBooForJs()',
+                        (error, result) => {
+                        if (error) {
+                            console.info(`run JavaScript error: ` + JSON.stringify(error))
+                            return;
+                        }
+                            var type = result.getType()
+                            if(web_webview.JsMessageType.BOOLEAN == type){
+                            this.msg1 = "result type:" + typeof (result.getBoolean());
+                            Utils.emitEvent(this.msg1,502)
+                            }
+                        });
+                    console.info('urlgetstring: ', event.url);
+                    } catch (error) {
+                        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                    }
+                }
+                if(this.getArrayBuffer){
+                    try {
+                        this.controller.runJavaScriptExt(
+                        'getArrayBufferForJs()',
+                        (error, result) => {
+                        if (error) {
+                            console.info(`run JavaScript error: ` + JSON.stringify(error))
+                            return;
+                        }
+                            var type = result.getType()
+                            if(web_webview.JsMessageType.ARRAY_BUFFER== type){
+                            this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                            Utils.emitEvent(this.msg1,503)
+                            }
+                        });
+                    console.info('urlgetstring: ', event.url);
+                    } catch (error) {
+                        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                    }
+                }
+                if(this.getArray){
+                    try {
+                        this.controller.runJavaScriptExt(
+                        'getArrayForJs()',
+                        (error, result) => {
+                        if (error) {
+                            console.info(`run JavaScript error: ` + JSON.stringify(error))
+                            return;
+                        }
+                            var type = result.getType()
+                            if(web_webview.JsMessageType.ARRAY== type){
+                            this.msg1 = "result type:" + typeof (result.getArray());
+                            Utils.emitEvent(this.msg1+web_webview.JsMessageType.NOT_SUPPORT,504)
+                            }
+                        });
+                    console.info('urlgetstring: ', event.url);
+                    } catch (error) {
+                        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                    }
+                }
+                this.getString=false
+                this.getNum=false
+                this.getBoo=false
+                this.getArrayBuffer=false
+                this.getArray=false
                 console.log('url:' + event.url)
             })
             .darkMode(this.mode)
