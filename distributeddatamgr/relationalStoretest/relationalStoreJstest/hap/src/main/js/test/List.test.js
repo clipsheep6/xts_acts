@@ -28,6 +28,7 @@ import relationalStoreEncryptionTest from './RelationalStoreEncryptionJsunit.tes
 import relationalStorePredicatesComplexFiledTest from './RelationalStorePredicatesComplexFiledJsunit.test.js'
 import relationalStoreBackupRestoreWithFAContextTest from './RelationalStoreBackupRestoreWithFAContextJsunit.test.js'
 import relationalStoreBackupRestoreCallbackTest from './RelationalStoreBackupRestoreCallbackJsunit.test.js'
+import relationalStoreParameter from './relationalStoreParameter.test.js'
 export default function testsuite() {
     relationalStoreDeleteTest()
     relationalStoreDistributedTest()
@@ -44,4 +45,5 @@ export default function testsuite() {
     relationalStorePredicatesComplexFiledTest()
     relationalStoreBackupRestoreWithFAContextTest()
     relationalStoreBackupRestoreCallbackTest()
+	relationalStoreParameter()
 }

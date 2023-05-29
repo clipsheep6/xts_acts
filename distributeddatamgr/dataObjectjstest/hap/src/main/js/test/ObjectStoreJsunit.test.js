@@ -879,6 +879,94 @@ export default function objectStoreTest() {
     
             console.info(TAG + "************* testRevokeSave002 end *************");
         })
+		
+		/**
+         * @tc.name: testsetSessionId001
+         * @tc.desc: object Set the sessionID to undefined
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api_setSessionId_001
+         */
+        it('testsetSessionId001', 0, function (done) {
+            console.info(TAG + "************* testsetSessionId001 start *************");
+            console.info(TAG + "start watch status");
+
+            var objectTest = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            objectTest.on("change", changeCallback);
+            console.info(TAG + "on success");
+            let v8offChange1 = objectTest.off("change", undefined);
+            console.info(TAG + "testsetSessionId001 = " + v8offChange1);
+
+            let v8setSessionId = objectTest.setSessionId(undefined);
+            console.info(TAG + "testsetSessionId001 = " + v8setSessionId);
+            expect(v8setSessionId).assertEqual(false);
+            done();
+            console.info(TAG + "************* testsetSessionId001 end *************");
+        })
+
+        /**
+         * @tc.name: testsetSessionId002
+         * @tc.desc: object Set the sessionID to null
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api_setSessionId_002
+         */
+         it('testsetSessionId002', 0, function (done) {
+            console.info(TAG + "************* testsetSessionId002 start *************");
+            console.info(TAG + "start watch status");
+
+            var objectTest = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            objectTest.on("change", changeCallback);
+            console.info(TAG + "on success");
+            let v8offChange1 = objectTest.off("change", undefined);
+            console.info(TAG + "testsetSessionId002 = " + v8offChange1);
+
+            let v8setSessionId = objectTest.setSessionId(null);
+            console.info(TAG + "testsetSessionId002 = " + v8setSessionId);
+            expect(v8setSessionId).assertEqual(false);
+            done();
+            console.info(TAG + "************* testsetSessionId002 end *************");
+        })
+
+        /**
+         * @tc.name: testsetSessionId003
+         * @tc.desc: object Set the sessionID to empty
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api_setSessionId_003
+         */
+         it('testsetSessionId003', 0, function (done) {
+            console.info(TAG + "************* testsetSessionId003 start *************");
+            console.info(TAG + "start watch status");
+
+            var objectTest = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            objectTest.on("change", changeCallback);
+            console.info(TAG + "on success");
+            let v8offChange1 = objectTest.off("change", undefined);
+            console.info(TAG + "testsetSessionId003 = " + v8offChange1);
+
+            let v8setSessionId = objectTest.setSessionId();
+            console.info(TAG + "testsetSessionId003 = " + v8setSessionId);
+            expect(v8setSessionId).assertEqual(false);
+            done();
+            console.info(TAG + "************* testsetSessionId003 end *************");
+        })
+
+        /**
+         * @tc.name: testsetSessionId004
+         * @tc.desc: object Set the sessionID to number
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api_setSessionId_004
+         */
+         it('testsetSessionId004', 0, function (done) {
+            console.info(TAG + "************* testsetSessionId004 start *************");
+            console.info(TAG + "start watch status");
+
+            var objectTest = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            objectTest.on("change", changeCallback);
+            console.info(TAG + "on success");
+            let v8offChange1 = objectTest.off("change", undefined);
+            console.info(TAG + "testsetSessionId004 = " + v8offChange1);
+
+            let v8setSessionId = objectTest.setSessionId(1);
+            console.info(TAG + "testsetSessionId004 = " + v8setSessionId);
+            expect(v8setSessionId).assertEqual(false);
+            done();
+            console.info(TAG + "************* testsetSessionId004 end *************");
+        })
     
         console.info(TAG + "*************Unit Test End*************");
     })

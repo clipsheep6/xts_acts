@@ -741,6 +741,94 @@ describe('objectStoreTestV9', function () {
     console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_NumberAbnormal_0100 end *************");
     done();
    })
+   /**
+         * @tc.name:v9testsetSessionId001
+        * @tc.desc object Set the sessionID to undefined
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api9_setSessionId_001
+         */
+    it('SUB_DDM_AppDataFWK_Object_Api9_setSessionId_001', 0, function (done) {
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_001 start *************");
+        console.info(TAG + "start watch status");
+        var g_object = distributedObject.createDistributedObject({
+            name: "Amy", age: 18, isVis: false
+        });
+        g_object.on("change", changeCallback);
+        console.info(TAG + "on success");
+        let v9offChange1 = g_object.off("change", undefined);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_001 = " + v9offChange1);
+
+        let v9setSessionId1 = g_object.setSessionId(undefined);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_001 = " + v9setSessionId1);
+        expect(v9setSessionId1).assertEqual(false);
+        done();
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_001 end *************");
+    })
+    /**
+         * @tc.name:v9testsetSessionId002
+        * @tc.desc object Set the sessionID to null
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api9_setSessionId_002
+         */
+     it('SUB_DDM_AppDataFWK_Object_Api9_setSessionId_002', 0, function (done) {
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_002 start *************");
+        console.info(TAG + "start watch status");
+        var g_object = distributedObject.createDistributedObject({
+            name: "Amy", age: 18, isVis: false
+        });
+        g_object.on("change", changeCallback);
+        console.info(TAG + "on success");
+        let v9offChange1 = g_object.off("change", undefined);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_002 = " + v9offChange1);
+
+        let v9setSessionId1 = g_object.setSessionId(null);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_002 = " + v9setSessionId1);
+        expect(v9setSessionId1).assertEqual(false);
+        done();
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_002 end *************");
+    })
+    /**
+         * @tc.name:v9testsetSessionId003
+        * @tc.desc object Set the sessionID to empty
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api9_setSessionId_003
+         */
+     it('SUB_DDM_AppDataFWK_Object_Api9_setSessionId_003', 0, function (done) {
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_003 start *************");
+        console.info(TAG + "start watch status");
+        var g_object = distributedObject.createDistributedObject({
+            name: "Amy", age: 18, isVis: false
+        });
+        g_object.on("change", changeCallback);
+        console.info(TAG + "on success");
+        let v9offChange1 = g_object.off("change", null);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_003 = " + v9offChange1);
+
+        let v9setSessionId1 = g_object.setSessionId();
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_003 = " + v9setSessionId1);
+        expect(v9setSessionId1).assertEqual(false);
+        done();
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_003 end *************");
+    })
+    /**
+         * @tc.name:v9testsetSessionId004
+        * @tc.desc object Set the sessionID to number
+         * @tc.number: SUB_DDM_AppDataFWK_Object_Api9_setSessionId_004
+         */
+     it('SUB_DDM_AppDataFWK_Object_Api9_setSessionId_004', 0, function (done) {
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_004 start *************");
+        console.info(TAG + "start watch status");
+        var g_object = distributedObject.createDistributedObject({
+            name: "Amy", age: 18, isVis: false
+        });
+        g_object.on("change", changeCallback);
+        console.info(TAG + "on success");
+        let v9offChange1 = g_object.off("change", null);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_004 = " + v9offChange1);
+
+        let v9setSessionId1 = g_object.setSessionId(1);
+        console.info(TAG + "SUB_DDM_AppDataFWK_Object_Api9_setSessionId_004 = " + v9setSessionId1);
+        expect(v9setSessionId1).assertEqual(false);
+        done();
+        console.info(TAG + "************* SUB_DDM_AppDataFWK_Object_Api9_setSessionId_004 end *************");
+    })
 console.info(TAG + "*************Unit Test End*************");
 })
 }
