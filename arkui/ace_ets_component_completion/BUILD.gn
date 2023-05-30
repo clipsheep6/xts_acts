@@ -15,7 +15,7 @@ group("componentCompletionTest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "ace_ets_component_badge:ActsAcebadgeTest"
+      "ace_ets_component_textfont:ActsAceTextfontTest"
     ]
   }
 }
