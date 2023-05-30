@@ -46,7 +46,7 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
   @State index: number = 1
   @State displayCount: number = 3
-  @State displayMode: number = SwiperDisplayMode.AutoLinear
+  @State displayMode: number = SwiperDisplayMode.AUTO_LINEAR
   @State edgeEffect: number = EdgeEffect.None
   @State autoPlay: boolean = true
   @State interval: number = 4000
