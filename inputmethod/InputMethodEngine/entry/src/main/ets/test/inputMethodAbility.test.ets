@@ -2469,8 +2469,9 @@ export default function inputMethodAbility() {
 
     it('Sub_Misc_inputMethod_onImeChange_0150', 0, async function (done) {
       let inputMethodSetting = inputMethod.getSetting();
-      inputMethodSetting.on("imeChange", (inputMethodProperty, inputMethodSubtype) => {
+      inputMethodSetting.on("imeChange", async (inputMethodProperty, inputMethodSubtype) => {
         inputMethodSetting.off("imeChange");
+        await inputMethod.switchInputMethod(inputServerCopy);
         console.info("====>Sub_Misc_inputMethod_onImeChange_0150  inputMethodProperty:" + JSON.stringify(inputMethodProperty));
         console.info("====>Sub_Misc_inputMethod_onImeChange_0150  inputMethodSubtype:" + JSON.stringify(inputMethodSubtype));
         expect(typeof(inputMethodProperty) !== null).assertTrue();
@@ -2480,7 +2481,6 @@ export default function inputMethodAbility() {
       try {
         await inputMethod.switchInputMethod(inputServer);
         console.info("====>Sub_Misc_inputMethod_onImeChange_0150  switchInputMethod success" + JSON.stringify(inputServer));
-        await inputMethod.switchInputMethod(inputServerCopy);
       } catch (err) {
         console.info("====>Sub_Misc_inputMethod_onImeChange_0150 switchInputMethod fail" + JSON.stringify(err));
       }
