@@ -17,6 +17,9 @@ import AVSessionManager from './AVSessionManager.test.js';
 import AVSessionCallback from './AVSessionCallback.test.js';
 import AVSessionManagerCallback from './AVSessionManagerCallback.test.js';
 import AVSessionErrorCode from './AVSessionErrorCode.test';
+import AVSessionControllerJSTest from './AVSessionControllerJSTest';
+import AVSessionManagerJSTest from './AVSessionManagerJSTest';
+import AVSessionJSTest from './AVSessionJSTest';
 
 export default function testsuite() {
     AVSession()
@@ -24,4 +27,7 @@ export default function testsuite() {
     AVSessionCallback()
     AVSessionManagerCallback()
     AVSessionErrorCode()
+    AVSessionJSTest ()
+    AVSessionManagerJSTest ()
+    AVSessionControllerJSTest ()
 }
