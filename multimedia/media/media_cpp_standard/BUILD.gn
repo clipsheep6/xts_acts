@@ -15,6 +15,11 @@ import("//test/xts/tools/build/suite.gni")
 
 module_output_path = "acts/ActsAvcodecNdkTest"
 MEDIA_ROOT_DIR = "//foundation/multimedia/player_framework/"
+AUDIO_ROOT_PATH = "//foundation/multimedia/audio_framework"
+GRAPHIC_PATH = "//foundation/graphic/graphic_2d"
+GRAPHIC_2D_PATH = "//graphic/graphic_2d"
+STARTUP_INIT_PATH = "//base/startup/init"
+WINDOW_PATH = "//foundation//window/window_manager"
 
 ohos_moduletest_suite("ActsAvcodecNdkTest") {
   module_out_path = module_output_path
@@ -29,14 +34,14 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
     "include",
     "audioDecEncNdk/include",
     "videoDecEncNdk/include",
-    "//foundation/multimedia/audio_framework/interfaces/inner_api/native/audiocommon/include",
-    "//foundation/graphic/graphic_2d/frameworks/surface/include",
-    "//foundation/graphic/graphic_2d/interfaces/inner_api/surface",
-    "//foundation/graphic/graphic_2d/interfaces/inner_api/common",
-    "//foundation//window/window_manager/interfaces/innerkits/wm",
-    "//graphic/graphic_2d/interfaces/kits/surface",
-    "//graphic/graphic_2d/interfaces/inner_api/surface",
-    "//base/startup/init/interfaces/kits/syscap/include",
+    "${AUDIO_ROOT_PATH}/interfaces/inner_api/native/audiocommon/include",
+    "${GRAPHIC_PATH}/frameworks/surface/include",
+    "${GRAPHIC_PATH}/interfaces/inner_api/surface",
+    "${GRAPHIC_PATH}/interfaces/inner_api/common",
+    "${GRAPHIC_2D_PATH}/interfaces/kits/surface",
+    "${GRAPHIC_2D_PATH}/interfaces/inner_api/surface",
+    "${STARTUP_INIT_PATH}/interfaces/kits/syscap/include",
+    "${WINDOW_PATH}/interfaces/innerkits/wm",
     "$MEDIA_ROOT_DIR/interfaces/inner_api/native",
     "$MEDIA_ROOT_DIR/interfaces/kits/c",
     "$MEDIA_ROOT_DIR/frameworks/native/capi/common",
@@ -70,15 +75,15 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_core",
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_vdec",
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_venc",
-    "//base/startup/init/interfaces/kits/syscap:deviceinfo_ndk",
-    "//foundation/graphic/graphic_2d:libsurface",
-    "//foundation/graphic/graphic_2d/frameworks/surface:surface",
-    "//foundation/graphic/graphic_2d/rosen/modules/render_service_client:librender_service_client",
-    "//foundation/window/window_manager/wm:libwm",
   ]
   external_deps = [
     "c_utils:utils",
     "hiviewdfx_hilog_native:libhilog",
+    "syscap:deviceinfo_ndk",
+    "graphic_2d:libsurface",
+    "surface:surface",
+    "render_service_client:librender_service_client",
+    "wm:libwm",
   ]
 
   part_name = "player_framework"
