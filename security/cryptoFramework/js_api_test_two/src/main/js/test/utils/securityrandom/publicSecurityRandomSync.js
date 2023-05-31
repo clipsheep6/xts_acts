@@ -29,7 +29,6 @@ async function testRandomSync(length) {
 
     if (length != null) {
       try {
-        //console.info("RandomSync is not null.");
         rand.generateRandomSync(length);
       }catch(err) {
         console.error(
@@ -43,7 +42,6 @@ async function testRandomSync(length) {
       };
     } else {
       try {
-        //console.info("RandomSync is null.");
         rand.generateRandomSync(length);
       } catch (err) {
         console.error(
@@ -59,31 +57,31 @@ async function testRandomSync(length) {
   console.info("RandomSync end.");
 }
 
-async function testGetRandomSync(length) {
-  var rand;
-  var srand;
-  const timestamp = Date.parse(new Date());
-  console.log("GetRandomSync start time is :" + timestamp);
-  rand = cryptoFramework.createRandom();
-  expect(rand != null).assertTrue();
+async function testRandomSyncabilityProcess() {
+  return new Promise((resolve, reject) => {
     try {
-      //console.info("RandomSync is not null.");
-      srand = rand.generateRandomSync(length);
-      console.info("[GetRandomSync] srand data:" + srand.data);
-    }catch(err) {
-      console.error(
-        "[GetRandomSync]generateRandom catch error:" +
-        err +
-        "[GetRandomSync]: error code: " +
-        err.code
-      );
-      console.info("[GetRandomSync] resolve");
-      return;
+      const starttimestamp = Date.parse(new Date());
+      console.info("testRandomSyncabilityProcess start time is :" + starttimestamp);
+      for (let index = 0; index < 1000; index++) {
+        console.info("[promise] testRandomSyncabilityProcess start index:" + index);
+        //sleep(600);
+        testRandomSync(32);
+        console.info("[promise] testRandomSyncabilityProcess index:" + index);
+      }
+      const endtimestamp = Date.parse(new Date());
+      console.info("testRandomSyncabilityProcess end time is :" + endtimestamp);
+      let timeconsum = endtimestamp - starttimestamp;
+      console.info("testRandomSyncabilityProcess timeconsum is :" + timeconsum);
+      resolve();
+    }
+    catch(err) {
+      console.error("[promise] testRandomSyncabilityProcess catch err:" + err);
+      reject(err);
     };
-  console.info("GetRandomSync end.");
+  });
 }
 
 export {
   testRandomSync,
-  testGetRandomSync,
+  testRandomSyncabilityProcess,
 };

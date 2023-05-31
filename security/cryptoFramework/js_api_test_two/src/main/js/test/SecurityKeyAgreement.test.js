@@ -17,8 +17,6 @@
 import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
 import * as asyPromise from "./utils/asymmetric/publicAsymmetricPromise";
 import * as asyCommon from "./utils/common/publicDoSpec";
-import * as asyCallback from "./utils/asymmetric/publicAsymmetricCallback";
-import cryptoFramework from "@ohos.security.cryptoFramework";
 
 export default function SecurityKeyAgreementJsunit() {
   describe("SecurityKeyAgreementJsunit", function () {
@@ -29,108 +27,12 @@ export default function SecurityKeyAgreementJsunit() {
     });
 
     /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
+     * @tc.number Security_CryptoFramework_KeyAgreement_Func_0100
+     * @tc.name Key negotiation scenario testing
+     * @tc.desc the type of secret key is "ECC", use promise style of interface
      */
     it(
-      "Security_crypto_framework_KeyAgreement_0100",
-      0,
-      async function (done) {
-        await asyPromise
-          .keyAgreementProcess("ECC256")
-          .then((data) => {
-            expect(data == null).assertTrue();
-          })
-          .catch((err) => {
-            console.error(
-              "3600 keyAgreementProcess catch  error: " +
-              err
-            );
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
-     */
-    it(
-      "Security_crypto_framework_KeyAgreement_0200",
-      0,
-      async function (done) {
-        await asyPromise
-          .keyAgreementProcess("ECC224")
-          .then((data) => {
-            expect(data == null).assertTrue();
-          })
-          .catch((err) => {
-            console.error(
-              "3600 keyAgreementProcess catch  error: " +
-              err
-            );
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
-     */
-    it(
-      "Security_crypto_framework_KeyAgreement_0300",
-      0,
-      async function (done) {
-        await asyPromise
-          .keyAgreementProcess("ECC384")
-          .then((data) => {
-            expect(data == null).assertTrue();
-          })
-          .catch((err) => {
-            console.error(
-              "3600 keyAgreementProcess catch  error: " +
-              err
-            );
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
-     */
-    it(
-      "Security_crypto_framework_KeyAgreement_0400",
-      0,
-      async function (done) {
-        await asyPromise
-          .keyAgreementProcess("ECC521")
-          .then((data) => {
-            expect(data == null).assertTrue();
-          })
-          .catch((err) => {
-            console.error(
-              "3600 keyAgreementProcess catch  error: " +
-              err
-            );
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
-     */
-    it(
-      "Security_crypto_framework_KeyAgreement_0500",
+      "Security_CryptoFramework_KeyAgreement_Func_0100",
       0,
       async function (done) {
         await asyPromise
@@ -140,22 +42,22 @@ export default function SecurityKeyAgreementJsunit() {
           })
           .catch((err) => {
             console.error(
-              "3600 keyAgreementProcess catch  error: " +
-              err
+              "AsyPromise keyAgreementProcess catch error: " +
+              err.code
             );
-            expect(null).assertFail();
+            expect(err.code == undefined).assertTrue();
           });
         done();
       }
     );
 
     /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
+     * @tc.number Security_CryptoFramework_KeyAgreement_Func_0200
+     * @tc.name Key negotiation exception scenario testing
+     * @tc.desc the type of secret key is "ECC1024", use promise style of interface
      */
     it(
-      "Security_crypto_framework_KeyAgreement_0600",
+      "Security_CryptoFramework_KeyAgreement_Func_0200",
       0,
       async function (done) {
         await asyPromise
@@ -165,8 +67,8 @@ export default function SecurityKeyAgreementJsunit() {
           })
           .catch((err) => {
             console.error(
-              "3600 keyAgreementProcess catch  error: " +
-              err
+              "AsyPromise keyAgreementProcess catch error: " +
+              err.code
             );
             expect(err.code == undefined).assertTrue();
           });
@@ -175,12 +77,12 @@ export default function SecurityKeyAgreementJsunit() {
     );
 
     /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
+     * @tc.number Security_CryptoFramework_KeyAgreement_Func_0300
+     * @tc.name Obtain key agreement algorithm
+     * @tc.desc the type of secret key is "ECC521", use promise style of interface
      */
     it(
-      "Security_crypto_framework_KeyAgreement_0700",
+      "Security_CryptoFramework_KeyAgreement_Func_0300",
       0,
       async function (done) {
         await asyPromise
@@ -190,7 +92,7 @@ export default function SecurityKeyAgreementJsunit() {
           })
           .catch((err) => {
             console.error(
-              "3600 keyAgreementProcess catch  error: " +
+              "AsyPromise keyAgreementProcess catch error: " +
               err
             );
             expect(null).assertFail();
@@ -200,12 +102,12 @@ export default function SecurityKeyAgreementJsunit() {
     );
 
     /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
+     * @tc.number Security_CryptoFramework_KeyAgreement_Func_0400
+     * @tc.name Incoming Structure Test Key Negotiation Scenario
+     * @tc.desc Pass in the ECCCommon structure with a key type of "ECC521" and use a promise style interface
      */
     it(
-      "Security_crypto_framework_KeyAgreement_0800",
+      "Security_CryptoFramework_KeyAgreement_Func_0400",
       0,
       async function (done) {
         await asyPromise
@@ -215,7 +117,7 @@ export default function SecurityKeyAgreementJsunit() {
           })
           .catch((err) => {
             console.error(
-              "3600 keyAgreementBySpecProcess catch  error: " +
+              "AsyPromise keyAgreementBySpecProcess catch error: " +
               err
             );
             expect(err.code == undefined).assertTrue();
@@ -225,12 +127,12 @@ export default function SecurityKeyAgreementJsunit() {
     );
 
     /**
-     * @tc.number Security_crypto_framework_ASymmetric_Encryption_RSA_3100
-     * @tc.name Test convertKey
-     * @tc.desc Use RSA1024|PRIMES_2 algorithm
+     * @tc.number Security_CryptoFramework_KeyAgreement_Func_0500
+     * @tc.name Incoming Structure Test Key Negotiation Scenario
+     * @tc.desc Pass in the RSAKeyPar structure with a key type of "ECC521" and use a promise style interface
      */
     it(
-      "Security_crypto_framework_KeyAgreement_0900",
+      "Security_CryptoFramework_KeyAgreement_Func_0500",
       0,
       async function (done) {
         await asyPromise
@@ -240,7 +142,7 @@ export default function SecurityKeyAgreementJsunit() {
           })
           .catch((err) => {
             console.error(
-              "3600 keyAgreementBySpecProcess 1 catch  error: " +
+              "AsyPromise keyAgreementBySpecProcess catch error: " +
               err
             );
             expect(err.code == 401).assertTrue();

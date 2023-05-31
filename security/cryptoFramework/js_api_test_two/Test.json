@@ -10,7 +10,7 @@
   },
   "kits": [
     {
-      "test-file-name": ["ActsCryptoFrameworkJSNormalTest.hap"],
+      "test-file-name": ["ActsCryptoFrameworkJSNormalTwoTest.hap"],
       "type": "AppInstallKit",
       "cleanup-apps": true
     },
@@ -21,7 +21,7 @@
     {
       "type": "PushKit",
       "push": [
-        "ActsCryptoFrameworkJSNormalTest.hap->/data/local/tmp/xts-test/ActsCryptoFrameworkJSNormalTest.hap"
+        "ActsCryptoFrameworkJSNormalTwoTest.hap->/data/local/tmp/xts-test/ActsCryptoFrameworkJSNormalTwoTest.hap"
       ]
     },
     {
