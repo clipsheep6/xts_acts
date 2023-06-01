@@ -20,9 +20,6 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 import { sleep } from '../../../../../../common';
 
-const ALBUM_BASE_URI = 'file://media/PhotoAlbum';
-const PHOTO_BASE_URI = 'file://media/Photo';
-
 export default function userfilemgrOffCallback(abilityContext) {
   describe('userfilemgrOffCallback', function () {
     const mgr = userFileManager.getUserFileMgr(abilityContext);
@@ -39,7 +36,7 @@ export default function userfilemgrOffCallback(abilityContext) {
     afterAll(function () {
       console.info('afterAll case');
     });
-
+    const { DEFAULT_PHOTO_URI, DEFAULT_ALBUM_URI } = userFileManager.DefaultChangeUri;
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_OFF_CALLBACK_0000
      * @tc.name      : off_callback_000
@@ -338,9 +335,9 @@ export default function userfilemgrOffCallback(abilityContext) {
           expect(false).assertTrue();
           done();
         };
-        mgr.on(ALBUM_BASE_URI, true, callback);
+        mgr.on(DEFAULT_ALBUM_URI, true, callback);
         await sleep(100);
-        mgr.off(ALBUM_BASE_URI, callback);
+        mgr.off(DEFAULT_ALBUM_URI, callback);
         await sleep(100);
         let albumName = 'testAlbum' + Date.now();
         await mgr.createAlbum(albumName);
@@ -412,9 +409,9 @@ export default function userfilemgrOffCallback(abilityContext) {
           expect(false).assertTrue();
           done();
         };
-        mgr.on(ALBUM_BASE_URI, true, callback);
+        mgr.on(DEFAULT_ALBUM_URI, true, callback);
         await sleep(100);
-        mgr.off(ALBUM_BASE_URI, callback);
+        mgr.off(DEFAULT_ALBUM_URI, callback);
         await sleep(100);
         await mgr.deleteAlbums([album]);
         await sleep(1000);
@@ -556,7 +553,7 @@ export default function userfilemgrOffCallback(abilityContext) {
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_OFF_CALLBACK_0013
      * @tc.name      : off_callback_013
-     * @tc.desc      : off listening ALBUM_BASE_URI
+     * @tc.desc      : off listening DEFAULT_ALBUM_URI
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -597,9 +594,9 @@ export default function userfilemgrOffCallback(abilityContext) {
             done();
           }
         };
-        mgr.on(ALBUM_BASE_URI, true, callback);
+        mgr.on(DEFAULT_ALBUM_URI, true, callback);
         await sleep(100);
-        mgr.off(ALBUM_BASE_URI, callback);
+        mgr.off(DEFAULT_ALBUM_URI, callback);
         await sleep(100);
         // 1
         let albumName = 'testAlbum' + Date.now();
@@ -635,7 +632,7 @@ export default function userfilemgrOffCallback(abilityContext) {
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_OFF_CALLBACK_0014
      * @tc.name      : off_callback_014
-     * @tc.desc      : off listening PHOTO_BASE_URI
+     * @tc.desc      : off listening DEFAULT_PHOTO_URI
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -680,9 +677,9 @@ export default function userfilemgrOffCallback(abilityContext) {
             done();
           }
         };
-        mgr.on(PHOTO_BASE_URI, true, callback);
+        mgr.on(DEFAULT_PHOTO_URI, true, callback);
         await sleep(100);
-        mgr.off(PHOTO_BASE_URI, callback);
+        mgr.off(DEFAULT_PHOTO_URI, callback);
         await sleep(100);
         // 1
         let fd = await fileAsset.open('rw');

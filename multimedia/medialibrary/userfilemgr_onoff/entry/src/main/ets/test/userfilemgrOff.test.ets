@@ -20,9 +20,6 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 import { sleep, getPermissionMgr } from '../../../../../../common';
 
-const ALBUM_BASE_URI = 'file://media/PhotoAlbum';
-const PHOTO_BASE_URI = 'file://media/Photo';
-
 export default function userfilemgrOff(abilityContext) {
   describe('userfilemgrOff', function () {
     const mgr = userFileManager.getUserFileMgr(abilityContext);
@@ -40,7 +37,7 @@ export default function userfilemgrOff(abilityContext) {
     afterAll(function () {
       console.info('afterAll case');
     });
-
+    const { DEFAULT_PHOTO_URI, DEFAULT_ALBUM_URI } = userFileManager.DefaultChangeUri;
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_OFF_0000
      * @tc.name      : off_000
@@ -337,14 +334,14 @@ export default function userfilemgrOff(abilityContext) {
     it('off_007', 0, async function (done) {
       try {
         let enterOn = false;
-        mgr.on(ALBUM_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_ALBUM_URI, true, async (changeData) => {
           enterOn = true;
           console.info(`off_007 changeData: ${JSON.stringify(changeData)}`);
           expect(false).assertTrue();
           done();
         });
         await sleep(100);
-        mgr.off(ALBUM_BASE_URI);
+        mgr.off(DEFAULT_ALBUM_URI);
         await sleep(100);
         let albumName = 'testAlbum' + Date.now();
         await mgr.createAlbum(albumName);
@@ -409,14 +406,14 @@ export default function userfilemgrOff(abilityContext) {
         let albumName = 'testAlbum' + Date.now();
         let album = await mgr.createAlbum(albumName);
         await sleep(500);
-        mgr.on(ALBUM_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_ALBUM_URI, true, async (changeData) => {
           enterOn = true;
           console.info(`off_009 changeData: ${JSON.stringify(changeData)}`);
           expect(false).assertTrue();
           done();
         });
         await sleep(100);
-        mgr.off(ALBUM_BASE_URI);
+        mgr.off(DEFAULT_ALBUM_URI);
         await sleep(100);
         await mgr.deleteAlbums([album]);
         await sleep(1000);
@@ -555,7 +552,7 @@ export default function userfilemgrOff(abilityContext) {
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_OFF_0013
      * @tc.name      : off_013
-     * @tc.desc      : off listening ALBUM_BASE_URI
+     * @tc.desc      : off listening DEFAULT_ALBUM_URI
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -567,7 +564,7 @@ export default function userfilemgrOff(abilityContext) {
         let fileAsset1 = await mgr.createPhotoAsset('testCreateFile1' + Date.now() + '.jpg');
         let fileAsset2 = await mgr.createPhotoAsset('testCreateFile2' + Date.now() + '.jpg');
         let fileAsset3 = await mgr.createPhotoAsset('testCreateFile3' + Date.now() + '.jpg');
-        mgr.on(ALBUM_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_ALBUM_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount < 7) {
             switch (listenCount) {
@@ -597,7 +594,7 @@ export default function userfilemgrOff(abilityContext) {
           }
         });
         await sleep(100);
-        mgr.off(ALBUM_BASE_URI);
+        mgr.off(DEFAULT_ALBUM_URI);
         await sleep(100);
         // 1
         let albumName = 'testAlbum' + Date.now();
@@ -633,7 +630,7 @@ export default function userfilemgrOff(abilityContext) {
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_OFF_0014
      * @tc.name      : off_014
-     * @tc.desc      : off listening PHOTO_BASE_URI
+     * @tc.desc      : off listening DEFAULT_PHOTO_URI
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -643,7 +640,7 @@ export default function userfilemgrOff(abilityContext) {
         let listenCount = 0;
         let testFileName = 'testCreateFile' + Date.now() + '.jpg';
         let fileAsset = await mgr.createPhotoAsset(testFileName);
-        mgr.on(PHOTO_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_PHOTO_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount < 9) {
             switch (listenCount) {
@@ -679,7 +676,7 @@ export default function userfilemgrOff(abilityContext) {
           }
         });
         await sleep(100);
-        mgr.off(PHOTO_BASE_URI);
+        mgr.off(DEFAULT_PHOTO_URI);
         await sleep(100);
         // 1
         let fd = await fileAsset.open('rw');

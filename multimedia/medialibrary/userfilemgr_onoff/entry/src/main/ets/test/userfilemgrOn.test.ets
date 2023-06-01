@@ -21,9 +21,6 @@ import fileio from '@ohos.fileio';
 
 import { sleep } from '../../../../../../common';
 
-const ALBUM_BASE_URI = 'file://media/PhotoAlbum';
-const PHOTO_BASE_URI = 'file://media/Photo';
-
 export default function userfilemgrOn(abilityContext) {
   describe('userfilemgrOn', function () {
     const mgr = userFileManager.getUserFileMgr(abilityContext);
@@ -42,7 +39,7 @@ export default function userfilemgrOn(abilityContext) {
     });
     const { NOTIFY_ADD, NOTIFY_UPDATE, NOTIFY_REMOVE, NOTIFY_ALBUM_ADD_ASSET, NOTIFY_ALBUM_REMOVE_ASSET } =
       userFileManager.NotifyType;
-
+    const { DEFAULT_PHOTO_URI, DEFAULT_ALBUM_URI } = userFileManager.DefaultChangeUri;
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_ON_CALLBACK_0000
      * @tc.name      : on_callback_000
@@ -332,7 +329,7 @@ export default function userfilemgrOn(abilityContext) {
       try {
         let listenCount = 0;
         let changeDataUri = '';
-        mgr.on(ALBUM_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_ALBUM_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount == 1) {
             console.info(`on_callback_007 changeData: ${JSON.stringify(changeData)}`);
@@ -346,7 +343,7 @@ export default function userfilemgrOn(abilityContext) {
         await sleep(2000);
         expect(creatAlbumUri).assertEqual(changeDataUri);
         expect(listenCount).assertEqual(1);
-        mgr.off(ALBUM_BASE_URI);
+        mgr.off(DEFAULT_ALBUM_URI);
         done();
       } catch (error) {
         console.log(`on_callback_007: tryError: $${error}`);
@@ -407,7 +404,7 @@ export default function userfilemgrOn(abilityContext) {
         let album = await mgr.createAlbum(albumName);
         albumUri = album.albumUri;
         await sleep(500);
-        mgr.on(ALBUM_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_ALBUM_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount < 2) {
             console.info(`on_callback_009 changeData: ${JSON.stringify(changeData)}`);
@@ -419,7 +416,7 @@ export default function userfilemgrOn(abilityContext) {
         await mgr.deleteAlbums([album]);
         await sleep(1000);
         expect(listenCount).assertEqual(1);
-        mgr.off(ALBUM_BASE_URI);
+        mgr.off(DEFAULT_ALBUM_URI);
         done();
       } catch (error) {
         console.log(`on_callback_009: tryError: $${error}`);
@@ -553,7 +550,7 @@ export default function userfilemgrOn(abilityContext) {
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_ON_CALLBACK_0013
      * @tc.name      : on_callback_013
-     * @tc.desc      : listening ALBUM_BASE_URI
+     * @tc.desc      : listening DEFAULT_ALBUM_URI
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -565,7 +562,7 @@ export default function userfilemgrOn(abilityContext) {
         let fileAsset1 = await mgr.createPhotoAsset('testCreateFile1' + Date.now() + '.jpg');
         let fileAsset2 = await mgr.createPhotoAsset('testCreateFile2' + Date.now() + '.jpg');
         let fileAsset3 = await mgr.createPhotoAsset('testCreateFile3' + Date.now() + '.jpg');
-        mgr.on(ALBUM_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_ALBUM_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount < 7) {
             switch (listenCount) {
@@ -627,7 +624,7 @@ export default function userfilemgrOn(abilityContext) {
         await mgr.deleteAlbums([album]);
         await sleep(1000);
         expect(listenCount).assertEqual(6);
-        mgr.off(ALBUM_BASE_URI);
+        mgr.off(DEFAULT_ALBUM_URI);
         done();
       } catch (error) {
         console.log(`on_callback_013: tryError: $${error}`);
@@ -639,7 +636,7 @@ export default function userfilemgrOn(abilityContext) {
     /**
      * @tc.number    : SUB_MEDIA_USERFILEMGR_ON_CALLBACK_0014
      * @tc.name      : on_callback_014
-     * @tc.desc      : listening PHOTO_BASE_URI
+     * @tc.desc      : listening DEFAULT_PHOTO_URI
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -650,7 +647,7 @@ export default function userfilemgrOn(abilityContext) {
         let testFileName = 'testCreateFile' + Date.now() + '.jpg';
         let fileAsset = await mgr.createPhotoAsset(testFileName);
         let fileAssetUri = fileAsset.uri;
-        mgr.on(PHOTO_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_PHOTO_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount < 9) {
             switch (listenCount) {
@@ -744,7 +741,7 @@ export default function userfilemgrOn(abilityContext) {
         await trashAlbum.deletePhotoAssets([trashFileAsset]);
         await sleep(1000);
         expect(listenCount).assertEqual(8);
-        mgr.off(PHOTO_BASE_URI);
+        mgr.off(DEFAULT_PHOTO_URI);
         done();
       } catch (error) {
         console.log(`on_callback_014: tryError: $${error}`);
@@ -763,7 +760,7 @@ export default function userfilemgrOn(abilityContext) {
      */
     it('on_callback_015', 0, async function (done) {
       try {
-        mgr.off(PHOTO_BASE_URI);
+        mgr.off(DEFAULT_PHOTO_URI);
         const count = 10;
         let fileAssetsList = [];
         let listenCount = 0;
@@ -774,7 +771,7 @@ export default function userfilemgrOn(abilityContext) {
           fileAssetsList.push(fileAsset);
         }
         await sleep(1000);
-        mgr.on(PHOTO_BASE_URI, true, async (changeData) => {
+        mgr.on(DEFAULT_PHOTO_URI, true, async (changeData) => {
           listenCount++;
           if (listenCount == 1) {
             console.info(`on_callback_015 changeData: ${JSON.stringify(changeData)}`);
@@ -789,7 +786,7 @@ export default function userfilemgrOn(abilityContext) {
         }
         await sleep(2000);
         expect(listenCount).assertEqual(1);
-        mgr.off(PHOTO_BASE_URI);
+        mgr.off(DEFAULT_PHOTO_URI);
         done();
       } catch (error) {
         console.log(`on_callback_015: tryError: $${error}`);
