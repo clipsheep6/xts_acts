@@ -26,8 +26,8 @@ export default function testsuite() {
   SecurityRandomSyncJsunit();
   SecuritySignatureVerificationJsunit();
   SecurityKeyAgreementJsunit();
-  SecurityCipherJsunit();
-  AsyKeyGeneratorBySpecJsunit();
   AsyGetKeySpecBySpecJsunit();
+  AsyKeyGeneratorBySpecJsunit();
+  SecurityCipherJsunit();
   SecurityCipherSpecJsunit();
 }

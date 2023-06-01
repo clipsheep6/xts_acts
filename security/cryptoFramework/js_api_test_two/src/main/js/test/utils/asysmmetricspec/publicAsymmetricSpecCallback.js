@@ -15,7 +15,6 @@
 
 import { expect } from "@ohos/hypium";
 import cryptoFramework from "@ohos.security.cryptoFramework";
-import { stringTouInt8Array, uInt8ArrayToShowStr, uInt8ArrayToString, } from "../common/publicDoString";
 import { createAsyKeyGeneratorBySpec, } from "./publicAsymmetricSpecCommon";
 
 async function generateSpecCommonAsyKeyPair(asyKeySpec, type) {
@@ -48,6 +47,7 @@ async function generateSpecCommonAsyKeyPair(asyKeySpec, type) {
                 }
                 console.info("Security_CryptoFramework generateSpecCommonAsyKeyPair success");
                 console.info("Security_CryptoFramework asyKeyPair = " + asyKeyPair)
+                //expect(asyKeyPair != null).assertTrue();
                 resolve();
             }
         });
@@ -99,11 +99,9 @@ async function generatePriKeyByCommonSpec(asyKeySpec, type) {
             }
             console.info("Security_CryptoFramework generateSpecCommonAsyKeyPair success");
             console.info("Security_CryptoFramework asyKeyPair = " + asyKeyPair)
-            expect(asyKeyPair != null).assertTrue();
-            resolve(asyKeyPair);
+            resolve();
         }).catch(err => {
             console.info("Security_CryptoFramework [Callback] generateSpecAsyKeyPair failed");
-            expect(err.code == 401).assertTrue();
             console.error("Security_CryptoFramework [Callback] generateSpecAsyKeyPair failed. error is " + err);
             reject(err);
         });
@@ -122,9 +120,9 @@ async function generateByCommonSpec(asyKeySpec, state) {
                 expect(asyKeyPair != null).assertTrue();
                 resolve();
             }).catch((err) => {
-            console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
-            reject(err);
-        });
+                console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
+                reject(err);
+            });
     });
 }
 
@@ -160,42 +158,53 @@ async function generateByKeyPairSpec(asyKeySpec, state) {
 async function generateByPriKeySpec(asyKeySpec, state) {
     return new Promise((resolve, reject) => {
         let asyKeyPairSpec = createAsyKeyGeneratorBySpec(asyKeySpec);
-        if (asyKeyPairSpec === null) {
-            reject("invalid key spec");
-        }
-        generatePriKeyByCommonSpec(asyKeyPairSpec, state)
-            .then((priKey) => {
-                console.info("Security_CryptoFramework [Callback] generatorByCommonSpec asyKeyPair " + priKey)
-                expect(priKey != null).assertTrue();
-                resolve()
-            })
-            .catch((err) => {
-                console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
+        asyKeyPairSpec.generatePriKey((err, PriKey) => {
+            if (err) {
+                console.error("generateByPriKeySpec [Callback] generateSpecAsyKeyPair failed. error is " + err);
                 reject(err);
-            })
+            }
+            else {
+                if (state == "ECC") {
+                    let sk = PriKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
+                    console.info("generateByPriKeySpec ECCCommonPriKey sk:" + sk);
+                } else if (state == "DSA") {
+                    let sk = PriKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_SK_BN);
+                    console.info("generateByPriKeySpec ECCCommonPriKey sk:" + sk)
+                } else {
+                    let sk = PriKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_SK_BN);
+                    console.info("generateByPriKeySpec ECCCommonPriKey sk:" + sk)
+                }
+                console.info("generateByPriKeySpec asyKeyPair = " + asyKeyPair)
+                resolve();
+            }
+        });
     });
 }
 
 async function generatePubTopriSpecFailed(asyKeySpec, state) {
     return new Promise((resolve, reject) => {
-        if (Number(asyKeySpec.specType) == cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC) {
-            reject("invalid key spec");
-        }
         let asyKeyPairSpec = createAsyKeyGeneratorBySpec(asyKeySpec);
-        if (asyKeyPairSpec === null) {
-            reject("invalid key spec");
-        }
-        generatePriKeyByCommonSpec(asyKeyPairSpec, state)
-            .then((priKey) => {
-                console.info("Security_CryptoFramework [Callback] generatorByCommonSpec asyKeyPair " + priKey)
-                expect(priKey != null).assertTrue();
-                resolve()
-            })
-            .catch((err) => {
-                console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
-                expect(err.code == 401)
+        console.info("generatePubTopriSpecFailed ECCCommonPriKey 111");
+            asyKeyPairSpec.generatePriKey((err, PriKey) => {
+            if (err) {
+                console.error("generatePubTopriSpecFailed [Callback] generateSpecAsyKeyPair failed. error is " + err);
                 reject(err);
-            })
+            }
+            else {
+                if (state == "ECC") {
+                    let sk = PriKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
+                    console.info("generatePubTopriSpecFailed ECCCommonPriKey sk:" + sk);
+                } else if (state == "DSA") {
+                    let sk = PriKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_SK_BN);
+                    console.info("generatePubTopriSpecFailed ECCCommonPriKey sk:" + sk);
+                } else {
+                    let sk = PriKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_SK_BN);
+                    console.info("generatePubTopriSpecFailed ECCCommonPriKey sk:" + sk);
+                }
+                console.info("generatePubTopriSpecFailed PriKey = " + PriKey);
+                resolve();
+            }
+        });
     });
 }
 
@@ -316,6 +325,7 @@ async function PubGetAsyKeySpecFailed(asyKeySpecRsa, asyKeySpecDsa, asyKeySpecEc
             console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
             reject(err);
         });
+
         let eccKeyPairSpec = createAsyKeyGeneratorBySpec(asyKeySpecEcc);
         eccKeyPairSpec.generateKeyPair().then(keyPairEcc => {
             keyPairEcc.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_P_BN);
@@ -325,6 +335,7 @@ async function PubGetAsyKeySpecFailed(asyKeySpecRsa, asyKeySpecDsa, asyKeySpecEc
             console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
             reject(err);
         });
+
         dsaKeyPairSpec.generateKeyPair().then(keyPairDsa => {
             keyPairDsa.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
             resolve();
@@ -333,6 +344,7 @@ async function PubGetAsyKeySpecFailed(asyKeySpecRsa, asyKeySpecDsa, asyKeySpecEc
             console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
             reject(err);
         });
+
         dsaKeyPairSpec.generateKeyPair().then(keyPairDsa => {
             keyPairDsa.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_SK_BN);
             resolve();

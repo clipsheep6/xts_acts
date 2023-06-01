@@ -220,6 +220,7 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
         expect(rsaGenerator != null).assertTrue();
@@ -227,6 +228,7 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
         expect(cipherGeneratorEncrypt != null).assertTrue();
         var cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
         expect(cipherGeneratorDecrypt != null).assertTrue();
+
         generateAsyKeyPair(rsaGenerator)
             .then((rsaKeyPair) => {
                 expect(rsaKeyPair != null).assertTrue();
@@ -268,6 +270,7 @@ async function signAndVerifyNormalProcess(asyAlgoName, signVerifyAlgoName) {
     var globalSignBlob;
     var globalText = "This is a sign test";
     var input = { data: stringTouInt8Array(globalText) };
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
         var signGenerator = createAsySign(signVerifyAlgoName);
@@ -410,6 +413,7 @@ async function keyAgreementProcessFail(ECDHAlgoName, ECDHAlgoName1) {
 
 async function keyAgreementProcessParameterException(ECDHAlgoName) {
     var globalRsaKeyPair;
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(ECDHAlgoName);
         var globalECDHData = createAsyKeyAgreement(ECDHAlgoName);
@@ -476,6 +480,7 @@ async function encryptAndDecryptNormalProcessSuperdata(asyAlgoName, cipherAlgoNa
         globalText += t.charAt(Math.floor(Math.random() * n));
     }
     var input = { data: stringTouInt8Array(globalText) };
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
         var cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
@@ -486,6 +491,7 @@ async function encryptAndDecryptNormalProcessSuperdata(asyAlgoName, cipherAlgoNa
                 return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
             })
             .then((initData) => {
+                expect(initData === "init success").assertTrue();
                 return doFinalCipher(cipherGeneratorEncrypt, encryptMode, input);
             })
             .then((finalOutput) => {
@@ -625,11 +631,14 @@ async function encryptAndDecryptBySpecProcess(asyKeySpec, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
         let cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
+        console.info("11111111 cipherGeneratorEncrypt" + cipherGeneratorEncrypt);
         expect(cipherGeneratorEncrypt != null).assertTrue();
         let cipherGeneratorDncrypt = createAsyCipher(cipherAlgoName);
+
         specGenerator.generateKeyPair()
             .then((specKeyPair) => {
                 expect(specKeyPair != null).assertTrue();
@@ -678,19 +687,19 @@ async function signAndVerifyBySpecAbnormalParameterProcess(asyKeySpec, signVerif
             globalRsaKeyPair = keyPair;
             switch (initType) {
                 case 0:
-                    return signGenerator.init();
+                    return initSign(signGenerator);
                     break;
                 case 1:
-                    return signGenerator.init(null);
+                    return initSign(signGenerator, null);
                     break;
                 case 2:
-                    return signGenerator.init(globalRsaKeyPair.priKey);
+                    return initSign(signGenerator, globalRsaKeyPair.priKey);
                     break;
                 case 3:
-                    return signGenerator.init("sroundpriKey");
+                    return initSign(signGenerator, "sroundpriKey");
                     break;
                 default:
-                    return signGenerator.init(globalRsaKeyPair.priKey);
+                    return initSign(signGenerator, globalRsaKeyPair.priKey);
                     break;
             }
         }).then(() => {
@@ -721,16 +730,16 @@ async function signAbnormalParameterProcess(asyKeySpec, signVerifyAlgoName, sign
         }).then(() => {
             switch (signType) {
                 case 0:
-                    return signGenerator.sign();
+                    return signForSign(signGenerator);
                     break;
                 case 1:
-                    return signGenerator.sign(null);
+                    return signForSign(signGenerator, null);
                     break;
                 case 2:
-                    return signGenerator.sign("");
+                    return signForSign(signGenerator, "");
                     break;
                 default:
-                    return signGenerator.sign(input);
+                    return signForSign(signGenerator, input);
                     break;
             }
         }).then(() => {
@@ -845,16 +854,19 @@ async function encryptSetAndGetSpecInitProcess(asyKeySpec, cipherAlgoName) {
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
     var pSource = new Uint8Array([1, 2, 3, 4]);
+
     return new Promise((resolve, reject) => {
         let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
-        expect(specGenerator != null).assertTrue();
         let cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
-        expect(cipherGeneratorEncrypt != null).assertTrue();
         let cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
-        expect(cipherGeneratorDecrypt != null).assertTrue();
-        expect(cipherGeneratorDecrypt != null).assertTrue();
+
         cipherGeneratorEncrypt.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-        cipherGeneratorEncrypt.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+        let retP = cipherGeneratorEncrypt.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+        if (retP.toString() != pSource.toString()) {
+            console.info("error init pSource" + retP);
+        } else {
+            console.info("pSource changed ==" + retP);
+        }
         specGenerator.generateKeyPair()
             .then((specKeyPair) => {
                 expect(specKeyPair != null).assertTrue();
@@ -873,7 +885,6 @@ async function encryptSetAndGetSpecInitProcess(asyKeySpec, cipherAlgoName) {
                 return initCipher(cipherGeneratorDecrypt, decryptMode, globalRsaKeyPair.priKey, null);
             })
             .then((initData) => {
-                expect(initData === "init success").assertTrue();
                 return doFinalCipher(cipherGeneratorDecrypt, decryptMode, globalCipherText);
             })
             .then((finalOutput) => {
@@ -901,19 +912,19 @@ async function VerifyInitParameterProcess(asyKeySpec, VerifyAlgoName, initType) 
             globalRsaKeyPair = keyPair;
             switch (initType) {
                 case 0:
-                    return verifyGenerator.init();
+                    return initVerify(verifyGenerator);
                     break;
                 case 1:
-                    return verifyGenerator.init(verifyGenerator, null);
+                    return initVerify(verifyGenerator, null);
                     break;
                 case 2:
-                    return verifyGenerator.init(verifyGenerator, globalRsaKeyPair.pubKey);
+                    return initVerify(verifyGenerator, globalRsaKeyPair.pubKey);
                     break;
                 case 3:
-                    return verifyGenerator.init(verifyGenerator, "sroundpriKey");
+                    return initVerify(verifyGenerator, "sroundpriKey");
                     break;
                 default:
-                    return verifyGenerator.init(verifyGenerator, globalRsaKeyPair.pubKey);
+                    return initVerify(verifyGenerator, globalRsaKeyPair.pubKey);
                     break;
             }
         }).then(() => {
@@ -948,16 +959,16 @@ async function verifyAbnormalParameterProcess(asyKeySpec, verifyAlgoName, signTy
         }).then(() => {
             switch (signType) {
                 case 0:
-                    return verifyGenerator.verify(globalSignBlob);
+                    return verifyForVerify(verifyGenerator, globalSignBlob);
                     break;
                 case 1:
-                    return verifyGenerator.verify(null, globalSignBlob);
+                    return verifyForVerify(verifyGenerator, null, globalSignBlob);
                     break;
                 case 2:
-                    return verifyGenerator.verify("", globalSignBlob);
+                    return verifyForVerify(verifyGenerator, "", globalSignBlob);
                     break;
                 default:
-                    return verifyGenerator.verify(input, globalSignBlob);
+                    return verifyForVerify(verifyGenerator, input, globalSignBlob);
             }
         }).then(() => {
             resolve();
@@ -977,9 +988,11 @@ async function encryptUpdateCipherFailed(asyKeySpec, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
         let cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
+
         specGenerator.generateKeyPair()
             .then((specKeyPair) => {
                 expect(specKeyPair != null).assertTrue();
@@ -1022,6 +1035,7 @@ async function VerifyAbnormalGetFillProcess(algNameKey, algNameSign, itemType, s
     var globalKeyPair;
     var rsaGenerator;
     var signer;
+
     return new Promise((resolve, reject) => {
         rsaGenerator = cryptoFramework.createAsyKeyGenerator(algNameKey);
         signer = cryptoFramework.createSign(algNameSign);

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,18 +23,7 @@ import * as callback from "./utils/asymmetric/publicAsymmetricCallback";
 import * as promise from "./utils/asymmetric/publicAsymmetricPromise";
 
 function genRsa2048KeyPairSpec() {
-    let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88" +
-    "b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7" +
-    "686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c21" +
-    "0932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39" +
-    "fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
-    let eIn = BigInt("0x010001");
-    let dIn = BigInt("0x6a7df2ca63ead4dda191d614b6b385e0d9056a3d6d5cfe07db1daabee022db08212d97613d3328e0267c9dd23d7" +
-    "87abde2afcb306aeb7dfce69246cc73f5c87fdf06030179a2114b767db1f083ff841c025d7dc00cd82435b9a90f695369e94df23d2ce45" +
-    "8bc3b3283ad8bba2b8fa1ba62e2dce9accff3799aae7c840016f3ba8e0048c0b6cc4339af7161003a5beb864a0164b2c1c9237b64bc875" +
-    "56994351b27506c33d4bcdfce0f9c491a7d6b0628c7c852be4f0a9c3132b2ed3a2c8881e9aab07e20e17deb074691be677776a78b5c502" +
-    "e05d9bdde72126b3738695e2dd1a0a98a14247c65d8a7ee79432a092cb0721a12df798e44f7cfce0c498147a9b1");
-    return common.genRsaKeyPairSpec(nIn, eIn, dIn);
+    return common.genRsa2048KeyPairSpec();
 }
 
 function genDsa2048CommonSpec() {
@@ -42,36 +31,11 @@ function genDsa2048CommonSpec() {
 }
 
 function genRsa2048CommonSpec() {
-    let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88" +
-    "b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7" +
-    "686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c21" +
-    "0932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39" +
-    "fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
-    return common.genRsaCommonSpec(nIn);
+    return common.genRsa2048CommonSpec();
 }
 
 function genRsa2048PubKetSpec() {
-    let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88" +
-    "b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7" +
-    "686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c21" +
-    "0932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39" +
-    "fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
-    let eIn = BigInt("0x010001");
-    return common.genRSAPubKeySpec(nIn, eIn);
-}
-
-function genRsa2048PriKeySpec() {
-    let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88" +
-    "b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7" +
-    "686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c21" +
-    "0932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39" +
-    "fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
-    let dIn = BigInt("0x6a7df2ca63ead4dda191d614b6b385e0d9056a3d6d5cfe07db1daabee022db08212d97613d3328e0267c9dd23d78" +
-    "7abde2afcb306aeb7dfce69246cc73f5c87fdf06030179a2114b767db1f083ff841c025d7dc00cd82435b9a90f695369e94df23d2ce458b" +
-    "c3b3283ad8bba2b8fa1ba62e2dce9accff3799aae7c840016f3ba8e0048c0b6cc4339af7161003a5beb864a0164b2c1c9237b64bc875569" +
-    "94351b27506c33d4bcdfce0f9c491a7d6b0628c7c852be4f0a9c3132b2ed3a2c8881e9aab07e20e17deb074691be677776a78b5c502e05d" +
-    "9bdde72126b3738695e2dd1a0a98a14247c65d8a7ee79432a092cb0721a12df798e44f7cfce0c498147a9b1");
-    return common.genRSAPriKeySpec(nIn, dIn);
+    return common.genRsa2048PubKetSpec();
 }
 
 function genDsa2048KeyPairSpec() {
@@ -80,10 +44,6 @@ function genDsa2048KeyPairSpec() {
 
 function genDsa2048PubKeySpec() {
     return common.genDsa2048PubKeySpecBigE();
-}
-
-function genDsa2048PriKeySpec() {
-    return common.genDsa2048PriKeySpecBigE();
 }
 
 function genEccKeyTypeSpec(keyType) {
@@ -163,330 +123,10 @@ export default function AsyKeyGeneratorBySpecJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0100
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
+         * @tc.name DSA Key generation scenario by spec
+         * @tc.desc the asyKeySpec is genDsa2048CommonSpec, Use the callback Style of Interface
          */
         it("Security_CryptoFramework_GeneratorBySpec_Func_0100", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_0100 start");
-            asyPromise.generateByPubKeySpec(genDsa2048PubKeySpec(), "DSA").then(data => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0100 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GenerateBySpec_Func_0200
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GenerateBySpec_Func_0200", 0, async function (done) {
-            console.info("Security_CryptoFramework_GenerateBySpec_Func_0200 start");
-            asyCallback.generateByPriKeySpec(genDsa2048PriKeySpec(), "DSA").then((data) => {
-                expect(null).assertFail();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GenerateBySpec_Func_0200 catch err " + err);
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GenerateBySpec_Func_0300
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GenerateBySpec_Func_0300", 0, async function (done) {
-            console.info("Security_CryptoFramework_GenerateBySpec_Func_0300 start");
-            asyPromise.generateByKeyPairSpec(genDsa2048KeyPairSpec(), "DSA").then((data) => {
-                expect(data == null).assertTrue();
-            }).catch((err) => {
-                console.error("Security_CryptoFramework_GenerateBySpec_Func_0300 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        });
-
-        /**
-         * @tc.number Security_CryptoFramework_GenerateBySpec_Func_0400
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-//         it("Security_CryptoFramework_GenerateBySpec_Func_0400", 0, async function (done) {
-//             console.info("Security_CryptoFramework_GenerateBySpec_Func_0400 start");
-//             asyCallback.generatePubTopriSpecFailed(genDsa2048PubKeySpec(), "DSA")
-//             .then(data => {
-//                 expect(true).assertTrue();
-//             }).catch (err => {
-//                 expect(true).assertTrue();
-//             });
-//             done();
-//         }
-//         );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0500
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_0500", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_0500 start");
-            asyPromise.generatePriTopubSpecFailed(genDsa2048PriKeySpec(), "DSA")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0500 catch err " + err);
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0600
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_0600", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_0600 start");
-            asyCallback.generateByCommonSpec(
-                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC), "ECC")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0600 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0700
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_0700", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_0700 start");
-            asyPromise.generateByPubKeySpec(
-                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC), "ECC")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0700 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0800
-         * @tc.name Test DSA creat asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_0800", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_0800 start");
-            asyCallback.generateByPriKeySpec(
-                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC), "ECC")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0800 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0900
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_0900", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_0900 start");
-            asyPromise.generateByKeyPairSpec(
-                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC), "ECC")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0900 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1000
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1000", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1000 start");
-            asyPromise.generatePriTopubSpecFailed(
-                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC), "ECC")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-//                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1000 catch err " + err);
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1100
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1100", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1100 start");
-            asyCallback.generateByCommonSpec(genRsa2048CommonSpec(), "RSA").then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1100 catch err " + err);
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1200
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1200", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1200 start");
-            asyPromise.generateByPubKeySpec(genRsa2048PubKetSpec(), "RSA")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1200 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1300
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1300", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1300 start");
-            asyCallback.generateByPriKeySpec(genRsa2048PriKeySpec(), "RSA")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1300 catch err " + err);
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1400
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1400", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1400 start");
-            asyPromise.generateByKeyPairSpec(genDsa2048KeyPairSpec(), "RSA")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1400 catch err " + err);
-                expect(null).assertFail();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1500
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1500", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1500 start");
-            asyPromise.generatePriTopubSpecFailed(genRsa2048PriKeySpec(), "RSA")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1600
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1600", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1600 start");
-            asyCallback.generateCreateAsyKeyFailed(genEccCommonSpecErr(),
-                genRsaKeyPairSpecErr(), genDsaKeyPairSpecErr()).then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1700
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1700", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1700 start");
-            promise.keyGenerationBySpecProcess(genDsaKeyPairSpecErr())
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                expect(true).assertTrue();
-            });
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1800
-         * @tc.name Test DSA create asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1800", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1800 start");
-            callback.keyGenerationBySpecProcess("DSA")
-            .then((data) => {
-                expect(data == null).assertTrue();
-            }).catch (err => {
-                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1800 catch err " + err);
-                expect(err.code == 401).assertTrue();
-            });
-            done();
-        });
-
-        /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1900
-         * @tc.name Test DSA creat asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
-         */
-        it("Security_CryptoFramework_GeneratorBySpec_Func_1900", 0, async function (done) {
-            console.info("Security_CryptoFramework_GeneratorBySpec_Func_1900 start");
             asyCallback.generateByCommonSpec(genDsa2048CommonSpec(), "DSA")
                 .then((data) => {
                     expect(data == null).assertTrue();
@@ -498,38 +138,280 @@ export default function AsyKeyGeneratorBySpecJsunit() {
         }
         );
 
-         /**
-          * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_2000
-          * @tc.name Test DSA creat asy key generator
-          * @tc.desc the asyAlgoName is DSA1024, Use the common Style of Interface
-          */
-//         it("Security_CryptoFramework_GeneratorBySpec_Func_2000", 0, async function (done) {
-//             console.info("Security_CryptoFramework_GeneratorBySpec_Func_2000 start");
-//             asyCallback.generatePubTopriSpecFailed(genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC), "ECC")
-//             .then((data) => {
-//                 expect(data == null).assertTrue();
-//             }).catch(err => {
-//                 expect(true).assertTrue();
-//             });
-//             done();
-//         }
-//         );
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0200
+         * @tc.name DSA Key generation scenario by spec
+         * @tc.desc the asyKeySpec is genDsa2048PubKeySpec, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_0200", 0, async function (done) {
+            asyPromise.generateByPubKeySpec(genDsa2048PubKeySpec(), "DSA").then(data => {
+                expect(data == null).assertTrue();
+            }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0200 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
 
         /**
-         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_2100
-         * @tc.name Test DSA creat asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
+         * @tc.number Security_CryptoFramework_GenerateBySpec_Func_0300
+         * @tc.name DSA Key generation scenario by spec
+         * @tc.desc the asyKeySpec is genDsa2048KeyPairSpec, Use the promise Style of Interface
          */
-//        it("Security_CryptoFramework_GeneratorBySpec_Func_2100", 0, async function (done) {
-//            console.info("Security_CryptoFramework_GeneratorBySpec_Func_2100 start");
-//            asyCallback.generatePubTopriSpecFailed(genRsa2048PubKetSpec(), "RSA")
-//            .then((data) => {
-//                expect(data == null).assertTrue();
-//            }).catch(err => {
-//                expect(true).assertTrue();
-//            });
-//            done();
-//        }
-//        );
+        it("Security_CryptoFramework_GenerateBySpec_Func_0300", 0, async function (done) {
+            asyPromise.generateByKeyPairSpec(genDsa2048KeyPairSpec(), "DSA").then((data) => {
+                expect(data == null).assertTrue();
+            }).catch((err) => {
+                console.error("Security_CryptoFramework_GenerateBySpec_Func_0300 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        });
+
+        /**
+         * @tc.number Security_CryptoFramework_GenerateBySpec_Func_0400
+         * @tc.name DSA pubKey generate prikey failed
+         * @tc.desc the asyKeySpec is genDsa2048PubKeySpec, Use the callback Style of Interface
+         */
+        it("Security_CryptoFramework_GenerateBySpec_Func_0400", 0, async function (done) {
+            asyCallback.generatePubTopriSpecFailed(genDsa2048PubKeySpec(), "DSA")
+                .then(data => {
+                    console.info("Security_CryptoFramework_GenerateBySpec_Func_0400 success : data:::" + data);
+                    expect(true).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0400 catch err " + err);
+                expect(true).assertTrue();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0500
+         * @tc.name ECC Key generation scenario by spec
+         * @tc.desc the asyKeySpec is eccCommonSpec, Use the callback Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_0500", 0, async function (done) {
+            asyCallback.generateByCommonSpec(
+                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC), "ECC")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0500 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0600
+         * @tc.name ECC Key generation scenario by spec
+         * @tc.desc the asyKeySpec is eccPriKeySpec, Use the callback Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_0600", 0, async function (done) {
+            asyCallback.generateByPriKeySpec(
+                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC), "ECC")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0600 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0700
+         * @tc.name ECC Key generation scenario by spec
+         * @tc.desc the asyKeySpec is eccPubKeySpec, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_0700", 0, async function (done) {
+            asyPromise.generateByPubKeySpec(
+                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC), "ECC")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0700 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0800
+         * @tc.name ECC Key generation scenario by spec
+         * @tc.desc the asyKeySpec is eccKeyPairSpec, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_0800", 0, async function (done) {
+            asyPromise.generateByKeyPairSpec(
+                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC), "ECC")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0800 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_0900
+         * @tc.name ECC PriKey generation Pubkey
+         * @tc.desc the asyKeySpec is eccPrikeySpec, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_0900", 0, async function (done) {
+            asyPromise.generatePriTopubSpecFailed(
+                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC), "ECC")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_0900 catch err " + err);
+                expect(true).assertTrue();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1000
+         * @tc.name ECC PubKey generation Prikey
+         * @tc.desc the asyKeySpec is eccPubkeySpec, Use the callback Style of Interface
+         */
+                 it("Security_CryptoFramework_GeneratorBySpec_Func_1000", 0, async function (done) {
+                     console.info("Security_CryptoFramework_GeneratorBySpec_Func_1000 start");
+                     asyCallback.generatePubTopriSpecFailed(genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC), "ECC")
+                     .then((data) => {
+                         expect(data == null).assertTrue();
+                     }).catch(err => {
+                         expect(true).assertTrue();
+                     });
+                     done();
+                 }
+                 );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1100
+         * @tc.name RSA Key generation scenario by spec
+         * @tc.desc the asyKeySpec is genRsa2048CommonSpec, Use the callback Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_1100", 0, async function (done) {
+            asyCallback.generateByCommonSpec(genRsa2048CommonSpec(), "RSA")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1100 catch err " + err);
+                expect(true).assertTrue();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1200
+         * @tc.name RSA Key generation scenario by spec
+         * @tc.desc the asyKeySpec is genRsa2048PubKetSpec, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_1200", 0, async function (done) {
+            asyPromise.generateByPubKeySpec(genRsa2048PubKetSpec(), "RSA")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1200 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1300
+         * @tc.name RSA Key generation scenario by spec
+         * @tc.desc the asyKeySpec is genRsa2048KeyPairSpec, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_1300", 0, async function (done) {
+            asyPromise.generateByKeyPairSpec(genRsa2048KeyPairSpec(), "RSA")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1300 catch err " + err);
+                expect(null).assertFail();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1400
+         * @tc.name RSA pubKey generation prikey failed
+         * @tc.desc the asyKeySpec is genRsa2048PubKetSpec, Use the callback Style of Interface
+         */
+                it("Security_CryptoFramework_GeneratorBySpec_Func_1400", 0, async function (done) {
+                    console.info("Security_CryptoFramework_GeneratorBySpec_Func_1400 start");
+                    asyCallback.generatePubTopriSpecFailed(genRsa2048PubKetSpec(), "RSA")
+                    .then((data) => {
+                        expect(data == null).assertTrue();
+                    }).catch(err => {
+                        console.error("Security_CryptoFramework_GeneratorBySpec_Func_1400 catch err " + err);
+                        expect(null).assertFail();
+                    });
+                    done();
+                }
+                );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1500
+         * @tc.name create key parser failed
+         * @tc.desc the asyKeySpec is err parameter, Use the callback Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_1500", 0, async function (done) {
+            asyCallback.generateCreateAsyKeyFailed(genEccCommonSpecErr(),
+                genRsaKeyPairSpecErr(), genDsaKeyPairSpecErr()).then((data) => {
+                expect(data == null).assertTrue();
+            }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1500 catch err " + err);
+                expect(true).assertTrue();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1600
+         * @tc.name relatively pubkey and prikey
+         * @tc.desc the asyKeySpec is genDsaKeyPairSpecErr, Use the promise Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_1600", 0, async function (done) {
+            promise.keyGenerationBySpecProcess(genDsaKeyPairSpecErr())
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1600 catch err " + err);
+                expect(true).assertTrue();
+            });
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_GeneratorBySpec_Func_1700
+         * @tc.name relatively pubkey and prikey
+         * @tc.desc the asyKeySpec is "DSA", Use the callback Style of Interface
+         */
+        it("Security_CryptoFramework_GeneratorBySpec_Func_1700", 0, async function (done) {
+            callback.keyGenerationBySpecProcess("DSA")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                }).catch(err => {
+                console.error("Security_CryptoFramework_GeneratorBySpec_Func_1700 catch err " + err);
+                expect(err.code == 401).assertTrue();
+            });
+            done();
+        });
+
     });
 }

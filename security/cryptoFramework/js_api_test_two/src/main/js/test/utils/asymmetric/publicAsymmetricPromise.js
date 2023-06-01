@@ -260,6 +260,7 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
         expect(cipherGeneratorEncrypt != null).assertTrue();
         var cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
         expect(cipherGeneratorDecrypt != null).assertTrue();
+
         generateAsyKeyPair(rsaGenerator)
             .then((rsaKeyPair) => {
                 expect(rsaKeyPair != null).assertTrue();
@@ -283,7 +284,7 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
                 if (finalOutput == null) {
                     console.error("[promise]decrypt doFinal out is null");
                 } else {
-                    console.log("[promise]decrypt doFinal out hex: " + uInt8ArrayToShowStr(finalOutput.data));
+                    console.log("[promise]decrypt doFinal out hex: " +uInt8ArrayToShowStr(finalOutput.data));
                 }
                 let decryptData = uInt8ArrayToString(finalOutput.data);
                 expect(decryptData == globalText).assertTrue();
@@ -468,6 +469,7 @@ async function encryptAndDecryptBySpecProcess(asyKeySpec, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         var specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
         expect(specGenerator != null).assertTrue();
@@ -1039,28 +1041,6 @@ async function signAndVerifyBySpecProcess(asyKeySpec, signVerifyAlgoName) {
     });
 }
 
-async function signAndVerifystabilityProcess() {
-    return new Promise((resolve, reject) => {
-        try {
-            const starttimestamp = Date.parse(new Date());
-            console.info("[promise] signAndVerifystabilityProcess start time is :" + starttimestamp);
-            for (let index = 0; index < 1000; index++) {
-                console.info("[promise] signAndVerifystabilityProcess start index:" + index);
-                signAndVerifyBySpecProcess(asyCommon.genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5");
-                console.info("[promise] signAndVerifystabilityProcess index:" + index);
-            }
-            const endtimestamp = Date.parse(new Date());
-            let timeconsum = endtimestamp - starttimestamp;
-            resolve();
-        }
-        catch (err) {
-            console.error("[promise] signAndVerifystabilityProcess catch err:" + err);
-            reject(err);
-        }
-        ;
-    });
-}
-
 async function signAndVerifySetAndGetSpecProcess(asyKeySpec, signVerifyAlgoName, itemType, itemValue) {
     var globalRsaKeyPair;
     var globalSignBlob;
@@ -1145,28 +1125,28 @@ async function updateAbnormalParameterProcess(asyKeySpec, signVerifyAlgoName, up
         }).then(() => {
             switch (updateType) {
                 case 0:
-                    return signGenerator.update();
+                    return updateSign(signGenerator);
                     break;
                 case 1:
-                    return signGenerator.update(null);
+                    return updateSign(signGenerator, null);
                     break;
                 case 2:
-                    return signGenerator.update("");
+                    return updateSign(signGenerator, "");
                     break;
                 case 3:
                     for (let i = 1; i < 1000; i++) {
                         signGenerator.update(input);
                     }
-                    return signGenerator.update(input);
+                    return updateSign(signGenerator, input);
                     break;
                 default:
-                    return signGenerator.update(input);
+                    return updateSign(signGenerator, input);
             }
         }).then(() => {
             resolve();
         }).catch((err) => {
-            console.error("[promise] signAndVerifyUpdateAbnormalParameterProcess catch err:" + err);
-            console.error("[promise] signAndVerifyUpdateAbnormalParameterProcess catch err.code:" + err.code);
+            console.error("[promise] updateAbnormalParameterProcess catch err:" + err);
+            console.error("[promise] updateAbnormalParameterProcess catch err.code:" + err.code);
             reject(err);
         });
     });
@@ -1175,42 +1155,42 @@ async function updateAbnormalParameterProcess(asyKeySpec, signVerifyAlgoName, up
 async function signAbnormalSetFillProcess(algNameKey, algNameSign, itemValue, initState, fillState) {
     var globalKeyPair;
     var rsaGenerator;
-    var sign;
+    var signer;
     return new Promise((resolve, reject) => {
         rsaGenerator = cryptoFramework.createAsyKeyGenerator(algNameKey);
-        sign = cryptoFramework.createSign(algNameSign);
+        signer = cryptoFramework.createSign(algNameSign);
         generateAsyKeyPair(rsaGenerator)
             .then((rsaKeyPair) => {
                 globalKeyPair = rsaKeyPair;
                 let priKey = globalKeyPair.priKey;
                 if (initState == 0) {
-                    return sign.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
+                    return signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
                 }
                 else {
-                    return sign.init(priKey);
+                    return initSign(signer,  priKey);
                 }
             }).then(() => {
             switch (fillState) {
                 case 0:
-                    return sign.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
+                    return signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
                     break;
                 case 1:
-                    return sign.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+                    return signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
                     break;
                 case 2:
-                    return sign.setSignSpec(1024, itemValue);
+                    return signer.setSignSpec(1024, itemValue);
                     break;
                 case 3:
-                    return sign.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue, itemValue);
+                    return signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue, itemValue);
                     break;
                 case 4:
-                    return sign.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
+                    return signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
                     break;
                 case 5:
-                    return sign.setSignSpec();
+                    return signer.setSignSpec();
                     break;
                 default:
-                    return sign.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
+                    return signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, itemValue);
             }
         }).then(() => {
             resolve();
@@ -1306,7 +1286,7 @@ async function verifyAbnormalSetFillProcess(algNameKey, algNameSign, itemValue, 
                 }
                 if (state == 1) {
                     pubKey = globalKeyPair.pubKey;
-                    return verify.init(pubKey);
+                    return initVerify(verify, pubKey);
                 }
             }).then(() => {
             switch (fillState) {
@@ -1408,7 +1388,6 @@ export {
     encryptGetAlgName,
     signAndVerifyBySpecProcess,
     signAndVerifySetAndGetSpecProcess,
-    signAndVerifystabilityProcess,
     convertKeyEncryptAndDecryptstabilityProcess,
     updateAbnormalParameterProcess,
     signAbnormalSetFillProcess,
