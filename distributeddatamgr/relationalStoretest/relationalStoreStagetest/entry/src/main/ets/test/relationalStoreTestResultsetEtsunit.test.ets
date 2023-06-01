@@ -14,6 +14,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 const TAG = '[RDB_JSKITS_TEST]'
 const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' + 'data1 text,' + 'data2 long, ' + 'data3 double,' + 'data4 blob)';
@@ -110,6 +111,90 @@ describe('relationalStoreResultSetTest', function () {
         resultSet = null
         done();
         console.info(TAG + '************* SUB_DDM_RELATIONALETS_RESULTSET_0010 end *************');
+    })
+	/**
+     * @tc.name RelationalStore query system api test
+     * @tc.number SUB_DDM_RelationalStore_Query_systemapi_columns_empty_0010
+     * @tc.desc RelationalStore query system api test
+     */
+    it('SUB_DDM_RelationalStore_Query_systemapi_columns_empty_0010', 0, async function (done) {
+      console.info(TAG + '************* SUB_DDM_RelationalStore_Query_systemapi_columns_empty_0010 start *************');
+      let predicates = new dataSharePredicates.DataSharePredicates();
+      let resultSet = await rdbStore.query('test',predicates)
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow())
+          const id = resultSet.getLong(resultSet.getColumnIndex('id'))
+          const data4 = resultSet.getBlob(resultSet.getColumnIndex('data4'))
+          console.info(TAG + 'id=' + id + ', data4=' + data4);
+          expect(1).assertEqual(data4[0]);
+          expect(2).assertEqual(data4[1]);
+          expect(3).assertEqual(data4[2]);
+        }
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed)
+      } catch (e) {
+        expect(null).assertFail();
+      }
+      resultSet = null
+      done();
+      console.info(TAG + '************* SUB_DDM_RelationalStore_Query_systemapi_columns_empty_0010 end *************');
+    })
+    /**
+     * @tc.name RelationalStore query system api test
+     * @tc.number SUB_DDM_RelationalStore_Query_systemapi_columns_Undefined_0020
+     * @tc.desc RelationalStore query system api test
+     */
+    it('SUB_DDM_RelationalStore_Query_systemapi_columns_Undefined_0020', 0, async function (done) {
+      console.info(TAG + '************* SUB_DDM_RelationalStore_Query_systemapi_columns_Undefined_0020 start *************');
+      let predicates = new dataSharePredicates.DataSharePredicates();
+      let resultSet = await rdbStore.query('test',predicates,undefined)
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow())
+          const id = resultSet.getLong(resultSet.getColumnIndex('id'))
+          const data4 = resultSet.getBlob(resultSet.getColumnIndex('data4'))
+          console.info(TAG + 'id=' + id + ', data4=' + data4);
+          expect(1).assertEqual(data4[0]);
+          expect(2).assertEqual(data4[1]);
+          expect(3).assertEqual(data4[2]);
+        }
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed)
+      } catch (e) {
+        expect(null).assertFail();
+      }
+      resultSet = null
+      done();
+      console.info(TAG + '************* SUB_DDM_RelationalStore_Query_systemapi_columns_Undefined_0020 end *************');
+    })
+    /**
+     * @tc.name RelationalStore query system api test
+     * @tc.number SUB_DDM_RelationalStore_Query_systemapi_columns_null_0030
+     * @tc.desc RelationalStore query system api test
+     */
+    it('SUB_DDM_RelationalStore_Query_systemapi_columns_null_0030', 0, async function (done) {
+      console.info(TAG + '************* SUB_DDM_RelationalStore_Query_systemapi_columns_null_0030 start *************');
+      let predicates = new dataSharePredicates.DataSharePredicates();
+      let resultSet = await rdbStore.query('test',predicates,null)
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow())
+          const id = resultSet.getLong(resultSet.getColumnIndex('id'))
+          const data4 = resultSet.getBlob(resultSet.getColumnIndex('data4'))
+          console.info(TAG + 'id=' + id + ', data4=' + data4);
+          expect(1).assertEqual(data4[0]);
+          expect(2).assertEqual(data4[1]);
+          expect(3).assertEqual(data4[2]);
+        }
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed)
+      } catch (e) {
+        expect(null).assertFail();
+      }
+      resultSet = null
+      done();
+      console.info(TAG + '************* SUB_DDM_RelationalStore_Query_systemapi_columns_null_0030 end *************');
     })
     console.info(TAG + '*************Unit Test End*************');
 })

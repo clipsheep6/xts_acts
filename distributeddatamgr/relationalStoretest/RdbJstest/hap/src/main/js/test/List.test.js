@@ -25,6 +25,7 @@ import rdbstoreTransactionTest from './RdbstoreTransactionJsunit.test.js'
 import rdbStoreUpdateTest from './RdbstoreUpdateJsunit.test.js'
 import rdbStoreEncryptionTest from './RdbstoreEncryptionJsunit.test.js'
 import rdbStorePredicatesComplexFiledTest from './RdbstorePredicatesComplexFiledJsunit.test.js'
+import rdbParameter from './rdbParameter.test.js'
 
 export default function testsuite() {
     rdbStoreDeleteTest()
@@ -39,4 +40,5 @@ export default function testsuite() {
     rdbStoreUpdateTest()
     rdbStoreEncryptionTest()
     rdbStorePredicatesComplexFiledTest()
+	rdbParameter()
 }
