@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,42 +19,6 @@ import {
   uInt8ArrayToShowStr,
   uInt8ArrayToString,
 } from "../common/publicDoString";
-
-//async function testCreatRandomPromise(length) {
-//  var rand;
-//
-//  return new Promise((resolve, reject) => {
-//    const timestamp = Date.parse(new Date());
-//    console.log("CreatRandomPromise start time is :" + timestamp);
-//    cryptoFramework.createRandom().then(() => {
-//        console.log("[CreatRandomPromise] rand set Seed is success！");
-//        resolve();
-//      }).catch((err) => {
-//        console.error("[CreatRandomPromise]catch err:" + err);
-//        console.error("[CreatRandomPromise]catch err.code:" + err.code);
-//        expect(err.code == 401).assertTrue();
-//        reject(err);
-//      });
-//  });
-//}
-//
-//async function testCreatRandomMultiParameterPromise(length) {
-//  var rand;
-//
-//  return new Promise((resolve, reject) => {
-//    const timestamp = Date.parse(new Date());
-//    console.log("CreatRandomMultiParameterPromise start time is :" + timestamp);
-//    cryptoFramework.createRandom(length).then(() => {
-//      console.log("[CreatRandomMultiParameterPromise] rand set Seed is success！");
-//      resolve();
-//    }).catch((err) => {
-//      console.error("[CreatRandomMultiParameterPromise]catch err:" + err);
-//      console.error("[CreatRandomMultiParameterPromise]catch err.code:" + err.code);
-//      expect(err.code == 401).assertTrue();
-//      reject(err);
-//    });
-//  });
-//}
 
 async function testRandomPromise(length) {
   var rand;
@@ -195,8 +159,6 @@ async function testRandomSyncAbnormalPromise(length) {
 }
 
 export {
-  //testCreatRandomPromise,
-  //testCreatRandomMultiParameterPromise,
   testRandomPromise,
   testRandomAbnormalPromise,
   testRandomSyncAbnormalPromise,
