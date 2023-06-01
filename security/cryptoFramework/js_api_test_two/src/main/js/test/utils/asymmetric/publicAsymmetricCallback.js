@@ -220,6 +220,7 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
         expect(rsaGenerator != null).assertTrue();
@@ -227,11 +228,17 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
         expect(cipherGeneratorEncrypt != null).assertTrue();
         var cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
         expect(cipherGeneratorDecrypt != null).assertTrue();
+
         generateAsyKeyPair(rsaGenerator)
             .then((rsaKeyPair) => {
                 expect(rsaKeyPair != null).assertTrue();
                 globalRsaKeyPair = rsaKeyPair;
-                return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    encryptMode,
+                    globalRsaKeyPair.pubKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
@@ -240,24 +247,41 @@ async function encryptAndDecryptNormalProcess(asyAlgoName, cipherAlgoName) {
             .then((finalOutput) => {
                 expect(finalOutput != null).assertTrue();
                 globalCipherText = finalOutput;
-                return initCipher(cipherGeneratorDecrypt, decryptMode, globalRsaKeyPair.priKey, null);
+                console.log(
+                    "cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data)
+                );
+                return initCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalRsaKeyPair.priKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
-                return doFinalCipher(cipherGeneratorDecrypt, decryptMode, globalCipherText);
+                return doFinalCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalCipherText
+                );
             })
             .then((finalOutput) => {
                 if (finalOutput == null) {
                     console.error("[Callback]decrypt doFinal out is null");
                 } else {
-                    console.log("[Callback]decrypt doFinal out hex: " + uInt8ArrayToShowStr(finalOutput.data));
+                    console.log(
+                        "[Callback]decrypt doFinal out hex: " +
+                        uInt8ArrayToShowStr(finalOutput.data)
+                    );
                 }
                 let decryptData = uInt8ArrayToString(finalOutput.data);
                 expect(decryptData == globalText).assertTrue();
                 resolve();
             })
             .catch((err) => {
-                console.error("[Callback] encryptAndDecryptNormalProcess catch err:" + err);
+                console.error(
+                    "[Callback] encryptAndDecryptNormalProcess catch err:" + err
+                );
                 reject(err);
             });
     });
@@ -268,6 +292,7 @@ async function signAndVerifyNormalProcess(asyAlgoName, signVerifyAlgoName) {
     var globalSignBlob;
     var globalText = "This is a sign test";
     var input = { data: stringTouInt8Array(globalText) };
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
         var signGenerator = createAsySign(signVerifyAlgoName);
@@ -361,24 +386,24 @@ async function createAsyKeyAgreementFail(ECDHAlgoName) {
 async function keyAgreementProcess(ECDHAlgoName) {
     var globalRsaKeyPair;
 
-    return new Promise((resolve, reject) => {
-        var rsaGenerator = createAsyKeyGenerator(ECDHAlgoName);
-        var globalECDHData = createAsyKeyAgreement(ECDHAlgoName);
+  return new Promise((resolve, reject) => {
+    var rsaGenerator = createAsyKeyGenerator(ECDHAlgoName);
+    var globalECDHData = createAsyKeyAgreement(ECDHAlgoName);
 
-        generateAsyKeyPair(rsaGenerator)
-            .then((rsaKeyPair) => {
-                globalRsaKeyPair = rsaKeyPair;
-                return generateAsySecret(globalECDHData, globalRsaKeyPair.priKey, globalRsaKeyPair.pubKey);
-            })
-            .then((result) => {
-                console.warn("result data is  " + uInt8ArrayToShowStr(result.data));
-                resolve();
-            })
-            .catch((err) => {
-                console.error("[Callback] keyAgreementProcess catch err:" + err);
-                reject(err);
-            });
-    });
+    generateAsyKeyPair(rsaGenerator)
+      .then((rsaKeyPair) => {
+        globalRsaKeyPair = rsaKeyPair;
+        return generateAsySecret(globalECDHData, globalRsaKeyPair.priKey, globalRsaKeyPair.pubKey);
+      })
+      .then((result) => {
+        console.warn("result data is  " + uInt8ArrayToShowStr(result.data));
+        resolve();
+      })
+      .catch((err) => {
+        console.error("[Callback] keyAgreementProcess catch err:" + err);
+        reject(err);
+      });
+  });
 }
 
 async function keyAgreementProcessFail(ECDHAlgoName, ECDHAlgoName1) {
@@ -410,6 +435,7 @@ async function keyAgreementProcessFail(ECDHAlgoName, ECDHAlgoName1) {
 
 async function keyAgreementProcessParameterException(ECDHAlgoName) {
     var globalRsaKeyPair;
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(ECDHAlgoName);
         var globalECDHData = createAsyKeyAgreement(ECDHAlgoName);
@@ -476,6 +502,7 @@ async function encryptAndDecryptNormalProcessSuperdata(asyAlgoName, cipherAlgoNa
         globalText += t.charAt(Math.floor(Math.random() * n));
     }
     var input = { data: stringTouInt8Array(globalText) };
+
     return new Promise((resolve, reject) => {
         var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
         var cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
@@ -483,32 +510,55 @@ async function encryptAndDecryptNormalProcessSuperdata(asyAlgoName, cipherAlgoNa
         generateAsyKeyPair(rsaGenerator)
             .then((rsaKeyPair) => {
                 globalRsaKeyPair = rsaKeyPair;
-                return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    encryptMode,
+                    globalRsaKeyPair.pubKey,
+                    null
+                );
             })
             .then((initData) => {
+                expect(initData === "init success").assertTrue();
                 return doFinalCipher(cipherGeneratorEncrypt, encryptMode, input);
             })
             .then((finalOutput) => {
                 expect(finalOutput != null).assertTrue();
                 globalCipherText = finalOutput;
-                return initCipher(cipherGeneratorDecrypt, decryptMode, globalRsaKeyPair.priKey, null);
+                console.log(
+                    "cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data)
+                );
+                return initCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalRsaKeyPair.priKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
-                return doFinalCipher(cipherGeneratorDecrypt, decryptMode, globalCipherText);
+                return doFinalCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalCipherText
+                );
             })
             .then((finalOutput) => {
                 if (finalOutput == null) {
                     console.error("[Callback]decrypt doFinal out is null");
                 } else {
-                    console.log("[Callback]decrypt doFinal out hex: " + uInt8ArrayToShowStr(finalOutput.data));
+                    console.log(
+                        "[Callback]decrypt doFinal out hex: " +
+                        uInt8ArrayToShowStr(finalOutput.data)
+                    );
                 }
                 let decryptData = uInt8ArrayToString(finalOutput.data);
                 expect(decryptData == globalText).assertTrue();
                 resolve();
             })
             .catch((err) => {
-                console.error("[Callback] encryptAndDecryptNormalProcess catch err:" + err);
+                console.error(
+                    "[Callback] encryptAndDecryptNormalProcess catch err:" + err
+                );
                 reject(err);
             });
     });
@@ -519,15 +569,22 @@ async function encryptAndDecryptNormalProcessNull(asyAlgoName, cipherAlgoName) {
     var globalRsaKeyPair;
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
-    return new Promise((resolve, reject) => {
-        var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
-        var cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
-        var cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
+
+  return new Promise((resolve, reject) => {
+    var rsaGenerator = createAsyKeyGenerator(asyAlgoName);
+    var cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
+    var cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
+
         generateAsyKeyPair(rsaGenerator)
             .then((rsaKeyPair) => {
                 expect(rsaKeyPair != null).assertTrue();
                 globalRsaKeyPair = rsaKeyPair;
-                return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    encryptMode,
+                    globalRsaKeyPair.pubKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
@@ -536,25 +593,41 @@ async function encryptAndDecryptNormalProcessNull(asyAlgoName, cipherAlgoName) {
             .then((finalOutput) => {
                 expect(finalOutput != null).assertTrue();
                 globalCipherText = finalOutput;
-                console.log("cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data));
-                return initCipher(cipherGeneratorDecrypt, decryptMode, globalRsaKeyPair.priKey, null);
+                console.log(
+                    "cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data)
+                );
+                return initCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalRsaKeyPair.priKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
-                return doFinalCipher(cipherGeneratorDecrypt, decryptMode, globalCipherText);
+                return doFinalCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalCipherText
+                );
             })
             .then((finalOutput) => {
                 if (finalOutput == null) {
                     console.error("[Callback]decrypt doFinal out is null");
                 } else {
-                    console.log("[Callback]decrypt doFinal out hex: " + uInt8ArrayToShowStr(finalOutput.data));
+                    console.log(
+                        "[Callback]decrypt doFinal out hex: " +
+                        uInt8ArrayToShowStr(finalOutput.data)
+                    );
                 }
                 let decryptData = uInt8ArrayToString(finalOutput.data);
                 expect(decryptData == globalText).assertTrue();
                 reject();
             })
             .catch((err) => {
-                console.error("[Callback] encryptAndDecryptNormalProcess catch err:" + err);
+                console.error(
+                    "[Callback] encryptAndDecryptNormalProcess catch err:" + err
+                );
                 resolve(err);
             });
     });
@@ -603,19 +676,19 @@ async function signAndVerifySetAndGetSpecProcess(asyKeySpec, signVerifyAlgoName,
 }
 
 async function createCipherFail(cipherAlgoName) {
-    try {
-        cryptoFramework.createCipher(null);
-    } catch (err) {
-        console.error("createCipherFail catch  error success: " + err);
-        expect(err == "Error: create C cipher fail!").assertTrue();
-    }
-    try {
-        cryptoFramework.createCipher(cipherAlgoName);
-        console.info("createCipherFail catch  error failed");
-    } catch (err) {
-        console.error("createCipherFail catch  error success: " + err);
-        expect(err == "Error: create C cipher fail!").assertTrue();
-    }
+  try {
+    cryptoFramework.createCipher(null);
+  } catch (err) {
+    console.error("createCipherFail catch  error success: " + err);
+    expect(err == "Error: create C cipher fail!").assertTrue();
+  }
+  try {
+    cryptoFramework.createCipher(cipherAlgoName);
+    console.info("createCipherFail catch  error failed");
+  } catch (err) {
+    console.error("createCipherFail catch  error success: " + err);
+    expect(err == "Error: create C cipher fail!").assertTrue();
+  }
 }
 
 async function encryptAndDecryptBySpecProcess(asyKeySpec, cipherAlgoName) {
@@ -625,17 +698,25 @@ async function encryptAndDecryptBySpecProcess(asyKeySpec, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
         let cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
+        console.info("11111111 cipherGeneratorEncrypt" + cipherGeneratorEncrypt);
         expect(cipherGeneratorEncrypt != null).assertTrue();
         let cipherGeneratorDncrypt = createAsyCipher(cipherAlgoName);
+
         specGenerator.generateKeyPair()
             .then((specKeyPair) => {
                 expect(specKeyPair != null).assertTrue();
                 globalRsaKeyPair = specKeyPair;
                 console.info("[callback] encryptAndDecryptBySpecProcess initCipher1");
-                return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    encryptMode,
+                    globalRsaKeyPair.pubKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
@@ -645,24 +726,46 @@ async function encryptAndDecryptBySpecProcess(asyKeySpec, cipherAlgoName) {
             .then((finalOutput) => {
                 expect(finalOutput != null).assertTrue();
                 globalCipherText = finalOutput;
-                return initCipher(cipherGeneratorDncrypt, decryptMode, globalRsaKeyPair.priKey, null);
+                console.log(
+                    "cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data)
+                );
+                console.info("[callback] encryptAndDecryptBySpecProcess initCipher2");
+                return initCipher(
+                    cipherGeneratorDncrypt,
+                    decryptMode,
+                    globalRsaKeyPair.priKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
-                return doFinalCipher(cipherGeneratorDncrypt, decryptMode, globalCipherText);
+                console.info("[callback] encryptAndDecryptBySpecProcess doFinalCipher2");
+                return doFinalCipher(
+                    cipherGeneratorDncrypt,
+                    decryptMode,
+                    globalCipherText
+                );
             })
             .then((finalOutput) => {
                 if (finalOutput == null) {
                     console.error("[Callback]encryptAndDecryptNormalProcess decrypt doFinal out is null");
                 } else {
-                    console.log("[Callback] decrypt doFinal out hex: " + uInt8ArrayToShowStr(finalOutput.data));
+                    console.log(
+                        "[Callback]encryptAndDecryptNormalProcess decrypt doFinal out hex: " +
+                        uInt8ArrayToShowStr(finalOutput.data)
+                    );
                 }
                 let decryptData = uInt8ArrayToString(finalOutput.data);
                 expect(decryptData == globalText).assertTrue();
                 resolve();
             })
             .catch((err) => {
-                console.error("[Callback] encryptAndDecryptBySpecProcess catch err:" + err);
+                console.error(
+                    "[Callback] encryptAndDecryptBySpecProcess catch err:" + err
+                );
+                console.error(
+                    "[Callback] encryptAndDecryptBySpecProcess catch err.code:" + err.code
+                );
                 reject(err);
             });
     });
@@ -845,44 +948,85 @@ async function encryptSetAndGetSpecInitProcess(asyKeySpec, cipherAlgoName) {
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
     var pSource = new Uint8Array([1, 2, 3, 4]);
+
     return new Promise((resolve, reject) => {
         let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
         expect(specGenerator != null).assertTrue();
         let cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
         expect(cipherGeneratorEncrypt != null).assertTrue();
         let cipherGeneratorDecrypt = createAsyCipher(cipherAlgoName);
+
         expect(cipherGeneratorDecrypt != null).assertTrue();
         expect(cipherGeneratorDecrypt != null).assertTrue();
         cipherGeneratorEncrypt.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-        cipherGeneratorEncrypt.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+        let retP = cipherGeneratorEncrypt.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+        if (retP.toString() != pSource.toString()) {
+            console.info("error init pSource" + retP);
+        } else {
+            console.info("pSource changed ==" + retP);
+        }
         specGenerator.generateKeyPair()
             .then((specKeyPair) => {
                 expect(specKeyPair != null).assertTrue();
                 globalRsaKeyPair = specKeyPair;
-                return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
+                console.info("[callback] encryptAndDecryptBySpecProcess initCipher1");
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    encryptMode,
+                    globalRsaKeyPair.pubKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
+                console.info("[callback] encryptAndDecryptBySpecProcess doFinalCipher1");
                 return doFinalCipher(cipherGeneratorEncrypt, encryptMode, input);
             })
             .then((finalOutput) => {
                 expect(finalOutput != null).assertTrue();
                 globalCipherText = finalOutput;
+                console.log(
+                    "cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data)
+                );
                 cipherGeneratorDecrypt.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
                 cipherGeneratorDecrypt.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-                return initCipher(cipherGeneratorDecrypt, decryptMode, globalRsaKeyPair.priKey, null);
+                console.info("[callback] encryptAndDecryptBySpecProcess initCipher2");
+                return initCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalRsaKeyPair.priKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
-                return doFinalCipher(cipherGeneratorDecrypt, decryptMode, globalCipherText);
+                console.info("[callback] encryptAndDecryptBySpecProcess doFinalCipher2");
+                return doFinalCipher(
+                    cipherGeneratorDecrypt,
+                    decryptMode,
+                    globalCipherText
+                );
             })
             .then((finalOutput) => {
+                if (finalOutput == null) {
+                    console.error("[Callback]encryptAndDecryptNormalProcess decrypt doFinal out is null");
+                } else {
+                    console.log(
+                        "[Callback]encryptAndDecryptNormalProcess decrypt doFinal out hex: " +
+                        uInt8ArrayToShowStr(finalOutput.data)
+                    );
+                }
                 let decryptData = uInt8ArrayToString(finalOutput.data);
                 expect(decryptData == globalText).assertTrue();
                 resolve();
             })
             .catch((err) => {
-                console.error("[Callback] encryptAndDecryptBySpecProcess catch err:" + err);
+                console.error(
+                    "[Callback] encryptAndDecryptBySpecProcess catch err:" + err
+                );
+                console.error(
+                    "[Callback] encryptAndDecryptBySpecProcess catch err.code:" + err.code
+                );
                 reject(err);
             });
     });
@@ -977,25 +1121,41 @@ async function encryptUpdateCipherFailed(asyKeySpec, cipherAlgoName) {
     var input = { data: stringTouInt8Array(globalText) };
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+
     return new Promise((resolve, reject) => {
         let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
         let cipherGeneratorEncrypt = createAsyCipher(cipherAlgoName);
+
         specGenerator.generateKeyPair()
             .then((specKeyPair) => {
                 expect(specKeyPair != null).assertTrue();
                 globalRsaKeyPair = specKeyPair;
-                return initCipher(cipherGeneratorEncrypt, encryptMode, globalRsaKeyPair.pubKey, null);
+                console.info("[callback] encryptAndDecryptBySpecProcess initCipher1");
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    encryptMode,
+                    globalRsaKeyPair.pubKey,
+                    null
+                );
             })
             .then((initData) => {
                 expect(initData === "init success").assertTrue();
+                console.info("[callback] encryptAndDecryptBySpecProcess doFinalCipher1");
                 return doFinalCipher(cipherGeneratorEncrypt, encryptMode, input);
             })
             .then((finalOutput) => {
                 expect(finalOutput != null).assertTrue();
                 globalCipherText = finalOutput;
-                console.log("cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data));
+                console.log(
+                    "cipherOutput: " + uInt8ArrayToShowStr(globalCipherText.data)
+                );
                 console.info("[callback] encryptAndDecryptBySpecProcess initCipher2");
-                return initCipher(cipherGeneratorEncrypt, decryptMode, globalRsaKeyPair.priKey, null);
+                return initCipher(
+                    cipherGeneratorEncrypt,
+                    decryptMode,
+                    globalRsaKeyPair.priKey,
+                    null
+                );
             })
         try {
             cipherGeneratorEncrypt.update(null, (err) => {
@@ -1022,6 +1182,7 @@ async function VerifyAbnormalGetFillProcess(algNameKey, algNameSign, itemType, s
     var globalKeyPair;
     var rsaGenerator;
     var signer;
+
     return new Promise((resolve, reject) => {
         rsaGenerator = cryptoFramework.createAsyKeyGenerator(algNameKey);
         signer = cryptoFramework.createSign(algNameSign);
@@ -1068,34 +1229,34 @@ async function signAndVerifyBySpecProcess(asyKeySpec, signVerifyAlgoName) {
     var globalText = "This is a sign test";
     var input = { data: stringTouInt8Array(globalText) };
 
-    return new Promise((resolve, reject) => {
-        let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
-        let signGenerator = createAsySign(signVerifyAlgoName);
-        let verifyGenerator = createAsyVerify(signVerifyAlgoName);
-        console.info("[callback]: verifyGenerator.algName : " + verifyGenerator.algName);
-        let keyPairPromise = specGenerator.generateKeyPair();
-        keyPairPromise.then((keyPair) => {
-            globalRsaKeyPair = keyPair;
-            return initSign(signGenerator, globalRsaKeyPair.priKey);
-        }).then(() => {
-            return updateSign(signGenerator, input);
-        }).then(() => {
-            return signForSign(signGenerator, input);
-        }).then((finalOutput) => {
-            globalSignBlob = finalOutput;
-            console.log("[callback] signOutput: " + uInt8ArrayToShowStr(globalSignBlob.data));
-            return initVerify(verifyGenerator, globalRsaKeyPair.pubKey);
-        }).then(() => {
-            return updateVerify(verifyGenerator, input);
-        }).then(() => {
-            return verifyForVerify(verifyGenerator, input, globalSignBlob);
-        }).then(() => {
-            resolve();
-        }).catch((err) => {
-            console.error("[callback] signAndVerifyBySpecProcess catch err:" + err);
-            reject(err);
-        });
+  return new Promise((resolve, reject) => {
+    let specGenerator = createAsyKeyGeneratorBySpec(asyKeySpec);
+    let signGenerator = createAsySign(signVerifyAlgoName);
+    let verifyGenerator = createAsyVerify(signVerifyAlgoName);
+    console.info("[callback]: verifyGenerator.algName : " + verifyGenerator.algName);
+    let keyPairPromise = specGenerator.generateKeyPair();
+    keyPairPromise.then((keyPair) => {
+      globalRsaKeyPair = keyPair;
+      return initSign(signGenerator, globalRsaKeyPair.priKey);
+    }).then(() => {
+      return updateSign(signGenerator, input);
+    }).then(() => {
+      return signForSign(signGenerator, input);
+    }).then((finalOutput) => {
+      globalSignBlob = finalOutput;
+      console.log("[callback] signOutput: " + uInt8ArrayToShowStr(globalSignBlob.data));
+      return initVerify(verifyGenerator, globalRsaKeyPair.pubKey);
+    }).then(() => {
+      return updateVerify(verifyGenerator, input);
+    }).then(() => {
+      return verifyForVerify(verifyGenerator, input, globalSignBlob);
+    }).then(() => {
+      resolve();
+    }).catch((err) => {
+      console.error("[callback] signAndVerifyBySpecProcess catch err:" + err);
+      reject(err);
     });
+  });
 }
 
 async function keyGenerationBySpecProcess(asyAlgoName) {

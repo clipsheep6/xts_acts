@@ -379,29 +379,49 @@ export default function SecurityCipherJsunit() {
         );
 
         /**
-         * @tc.number Security_CryptoFramework_Cipher_Func_1600
-         * @tc.name Test createCipherFail
-         * @tc.desc the asyAlgoName is "ECC128|GCM|PKCS7", Use the Callback Style of Interface
+         * @tc.number Encrypt_And_Decrypt_Test_1600
+         * @tc.name Test encryptAndDecryptTimesProcess
+         * @tc.desc the asyAlgoName is genRsa2048KeyPairSpec, Use the Promise Style of Interface
          */
-        it("Security_CryptoFramework_Cipher_Func_1600", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_1600 stare");
-            try {
-                await asyCallback.createCipherFail("ECC128|GCM|PKCS7");
-            } catch (err) {
-                expect(err.code == 401).assertTrue();
-            }
-            console.info("Security_CryptoFramework_Cipher_Func_1600 end");
+        it("Encrypt_And_Decrypt_Test_1600", 0, async function (done) {
+            console.info("Encrypt_And_Decrypt_Test_1600 stare");
+            await asyPromise.encryptAndDecryptTimesProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_MD5")
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Encrypt_And_Decrypt_Test_1600 catch  error: " + err);
+                    expect(null).assertFail();
+                });
+            console.info("Encrypt_And_Decrypt_Test_1600 end");
             done();
         }
         );
 
         /**
          * @tc.number Security_CryptoFramework_Cipher_Func_1700
+         * @tc.name Test createCipherFail
+         * @tc.desc the asyAlgoName is "ECC128|GCM|PKCS7", Use the Callback Style of Interface
+         */
+        it("Security_CryptoFramework_Cipher_Func_1700", 0, async function (done) {
+            console.info("Security_CryptoFramework_Cipher_Func_1800 stare");
+            try {
+                await asyCallback.createCipherFail("ECC128|GCM|PKCS7");
+            } catch (err) {
+                expect(err.code == 401).assertTrue();
+            }
+            console.info("Security_CryptoFramework_Cipher_Func_1700 end");
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_Cipher_Func_1800
          * @tc.name Test initCipherFail
          * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
          */
-        it("Security_CryptoFramework_Cipher_Func_1700", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_1700 stare");
+        it("Security_CryptoFramework_Cipher_Func_1800", 0, async function (done) {
+            console.info("Security_CryptoFramework_Cipher_Func_1800 stare");
             try {
                 await asyPromise.initCipherFail("RSA1024", "RSA1024|PKCS1", 3, null, true)
             } catch (err) {
@@ -432,23 +452,6 @@ export default function SecurityCipherJsunit() {
             } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
-            console.info("Security_CryptoFramework_Cipher_Func_1700 end");
-            done();
-        }
-        );
-
-        /**
-         * @tc.number Security_CryptoFramework_Cipher_Func_1800
-         * @tc.name Test DSA creat asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
-         */
-        it("Security_CryptoFramework_Cipher_Func_1800", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_1800 stare");
-            try {
-                await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5")
-            } catch (err) {
-                expect(err.code == 401).assertTrue();
-            }
             console.info("Security_CryptoFramework_Cipher_Func_1800 end");
             done();
         }
@@ -462,21 +465,38 @@ export default function SecurityCipherJsunit() {
         it("Security_CryptoFramework_Cipher_Func_1900", 0, async function (done) {
             console.info("Security_CryptoFramework_Cipher_Func_1900 stare");
             try {
+                await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5")
+            } catch (err) {
+                expect(err.code == 401).assertTrue();
+            }
+            console.info("Security_CryptoFramework_Cipher_Func_1900 end");
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_Cipher_Func_2000
+         * @tc.name Test DSA creat asy key generator
+         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
+         */
+        it("Security_CryptoFramework_Cipher_Func_2000", 0, async function (done) {
+            console.info("Security_CryptoFramework_Cipher_Func_2000 stare");
+            try {
                 await asyPromise.doFinalCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", false);
             } catch (err) {
-                console.error("Security_CryptoFramework_Cipher_Func_1900 catch  error: " + err);
+                console.error("Security_CryptoFramework_Cipher_Func_2000 catch  error: " + err);
                 expect(err.code == 401).assertTrue();
             }
             try {
                 await asyPromise.doFinalCipherFewParameters(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5");
             } catch (err) {
-                console.error("Security_CryptoFramework_Cipher_Func_1900 catch  error: " + err);
+                console.error("Security_CryptoFramework_Cipher_Func_2000 catch  error: " + err);
                 expect(err.code == 401).assertTrue();
             }
             try {
                 await asyPromise.doFinalCipherMultipleParameters(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5");
             } catch (err) {
-                console.error("Security_CryptoFramework_Cipher_Func_1900 catch  error: " + err);
+                console.error("Security_CryptoFramework_Cipher_Func_2000 catch  error: " + err);
                 expect(err.code == 401).assertTrue();
             }
             console.info("Security_CryptoFramework_Cipher_Func_2000 end");

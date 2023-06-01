@@ -60,7 +60,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0100 start");
             asyCallback.rsaPubGetAsyKeySpec(genRsa2048KeyPairSpec()).then((data) => {
                 expect(data == null).assertTrue();
-            }).catch(err => {
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0100 catch err " + err);
                 expect(null).assertFail();
             });
@@ -76,7 +76,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0200 stare");
             asyPromise.dsaPubGetAsyKeySpec(genDsa2048KeyPairSpec()).then(data => {
                 expect(data == null).assertTrue();
-            }).catch(err => {
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0200 catch err " + err);
                 expect(null).assertFail();
             });
@@ -91,9 +91,9 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0300", 0, async function (done) {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0300 stare");
             asyCallback.eccPubGetAsyKeySpec(genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC))
-                .then(data => {
-                    expect(data == null).assertTrue();
-                }).catch(err => {
+            .then(data => {
+                expect(data == null).assertTrue();
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0300 catch err " + err);
                 expect(null).assertFail();
             });
@@ -108,9 +108,9 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0400", 0, async function (done) {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0400 stare");
             asyPromise.rsaPriGetAsyKeySpec(genRsa2048KeyPairSpec())
-                .then((data) => {
-                    expect(data == null).assertTrue();
-                }).catch(err => {
+            .then((data) => {
+                expect(data == null).assertTrue();
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0400 catch err " + err);
                 expect(null).assertFail();
             });
@@ -125,9 +125,9 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0500", 0, async function (done) {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0500 stare");
             asyCallback.dsaPriGetAsyKeySpec(genDsa2048KeyPairSpec())
-                .then((data) => {
-                    expect(data == null).assertTrue();
-                }).catch(err => {
+            .then((data) => {
+                expect(data == null).assertTrue();
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0500 catch err " + err);
                 expect(null).assertFail();
             });
@@ -142,9 +142,9 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0600", 0, async function (done) {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0600 stare");
             asyPromise.eccPriGetAsyKeySpec(genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC))
-                .then((data) => {
-                    expect(data == null).assertTrue();
-                }).catch(err => {
+            .then((data) => {
+                expect(data == null).assertTrue();
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0600 catch err " + err);
                 expect(null).assertFail();
             });
@@ -161,7 +161,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
             asyCallback.PubGetAsyKeySpecFailed(genRsa2048KeyPairSpec(), genDsa2048KeyPairSpec(),
                 genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC)).then((data) => {
                 expect(data == null).assertTrue();
-            }).catch(err => {
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0700 catch err " + err);
                 expect(null).assertFail();
             });
@@ -178,7 +178,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
             asyPromise.PriGetAsyKeySpecFailed(genRsa2048KeyPairSpec(), genDsa2048KeyPairSpec(),
                 genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC)).then((data) => {
                 expect(data == null).assertTrue();
-            }).catch(err => {
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0800 catch err " + err);
                 expect(null).assertFail();
             });
@@ -193,9 +193,9 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0900", 0, async function (done) {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_0900 stare");
             asyCallback.clearMemGetAsyKeySpec(genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC))
-                .then((data) => {
-                    expect(data == null).assertTrue();
-                }).catch(err => {
+            .then((data) => {
+                expect(data == null).assertTrue();
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_0900 catch err " + err);
                 expect(null).assertFail();
             });
@@ -210,9 +210,9 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_1000", 0, async function (done) {
             console.info("Security_CryptoFramework_AsyKeySpec_Func_1000 stare");
             asyPromise.clearMemGetAsyKeySpec(genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC))
-                .then((data) => {
-                    expect(data == null).assertTrue();
-                }).catch(err => {
+            .then((data) => {
+                expect(data == null).assertTrue();
+            }).catch (err => {
                 console.error("Security_CryptoFramework_AsyKeySpec_Func_1000 catch err " + err);
                 expect(null).assertFail();
             });

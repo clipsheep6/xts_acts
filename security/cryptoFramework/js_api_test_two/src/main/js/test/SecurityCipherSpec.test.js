@@ -79,33 +79,13 @@ export default function SecurityCipherSpecJsunit() {
         });
 
         /**
-         * @tc.number Security_CryptoFramework_Cipher_Func_2000
-         * @tc.name Test DSA creat asy key generator
-         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
-         */
-        it("Security_CryptoFramework_Cipher_Func_2000", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_2100 stare");
-            await asyCallback.encryptSetAndGetSpecInitProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
-                .then((data) => {
-                    expect(data == null).assertTrue();
-                })
-                .catch((err) => {
-                    console.error("Security_CryptoFramework_Cipher_Func_2000 catch  error: " + err);
-                    expect(null).assertFail();
-                });
-            console.info("Security_CryptoFramework_Cipher_Func_2000 end");
-            done();
-        }
-        );
-
-        /**
          * @tc.number Security_CryptoFramework_Cipher_Func_2100
          * @tc.name Test DSA creat asy key generator
          * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_2100", 0, async function (done) {
             console.info("Security_CryptoFramework_Cipher_Func_2100 stare");
-            await asyPromise.encryptInitSetAndGetSpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
+            await asyCallback.encryptSetAndGetSpecInitProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
@@ -124,14 +104,14 @@ export default function SecurityCipherSpecJsunit() {
          * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_2200", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_2200 stare");
-            await asyCallback.encryptSetSpecFail(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", true)
+            console.info("Security_CryptoFramework_Cipher_Func_2100 stare");
+            await asyPromise.encryptInitSetAndGetSpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_2200 catch  error: " + err);
-                    expect(err.code == 401).assertTrue();
+                    expect(null).assertFail();
                 });
             console.info("Security_CryptoFramework_Cipher_Func_2200 end");
             done();
@@ -144,8 +124,8 @@ export default function SecurityCipherSpecJsunit() {
          * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_2300", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_2400 stare");
-            await asyPromise.encryptGetSpecFail(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
+            console.info("Security_CryptoFramework_Cipher_Func_2300 stare");
+            await asyCallback.encryptSetSpecFail(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", true)
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
@@ -165,15 +145,35 @@ export default function SecurityCipherSpecJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_2400", 0, async function (done) {
             console.info("Security_CryptoFramework_Cipher_Func_2400 stare");
-            await asyPromise.encryptGetAlgName(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", true)
+            await asyPromise.encryptGetSpecFail(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_2400 catch  error: " + err);
-                    expect(null).assertFail();
+                    expect(err.code == 401).assertTrue();
                 });
             console.info("Security_CryptoFramework_Cipher_Func_2400 end");
+            done();
+        }
+        );
+
+        /**
+         * @tc.number Security_CryptoFramework_Cipher_Func_2500
+         * @tc.name Test DSA creat asy key generator
+         * @tc.desc the asyAlgoName is DSA1024, Use the commen Style of Interface
+         */
+        it("Security_CryptoFramework_Cipher_Func_2500", 0, async function (done) {
+            console.info("Security_CryptoFramework_Cipher_Func_2400 stare");
+            await asyPromise.encryptGetAlgName(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", true)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_2500 catch  error: " + err);
+                    expect(null).assertFail();
+                });
+            console.info("Security_CryptoFramework_Cipher_Func_2500 end");
             done();
         }
         );
