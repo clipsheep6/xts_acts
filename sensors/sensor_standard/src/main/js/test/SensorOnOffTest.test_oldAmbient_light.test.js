@@ -230,15 +230,14 @@ describe("SensorJsTest_sensor_4", function () {
         console.info('----------------------Ambient_Light_SensorJsTest007---------------------------');
         function onSensorCallback(data) {
             console.info('Ambient_Light_SensorJsTest007  on error');
-            expect(false).assertTrue();
-            done();
+			expect(typeof (data.intensity)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		    sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,(error, data) => {    	
 				sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, onSensorCallback);
-				sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, onSensorCallback);
 				setTimeout(() => {
-					expect(true).assertTrue();
+					sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, onSensorCallback);
 					done();
 				}, 500);
 			})

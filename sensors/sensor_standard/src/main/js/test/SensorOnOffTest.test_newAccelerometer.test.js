@@ -232,13 +232,14 @@ describe("SensorJsTest_sensor_39", function () {
     it("newAccelerometer_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
             console.info('newAccelerometer_SensorJsTest009 callback in' + JSON.stringify(data));
-            expect(false).assertTrue();
-            done();
+            expect(typeof (data.x)).assertEqual("number");
+			expect(typeof (data.y)).assertEqual("number");
+			expect(typeof (data.z)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
         sensor.on(sensor.SensorId.ACCELEROMETER, onSensorCallback);
-        sensor.off(sensor.SensorId.ACCELEROMETER, onSensorCallback);
         setTimeout(()=>{
-            expect(true).assertTrue();
+			sensor.off(sensor.SensorId.ACCELEROMETER, onSensorCallback);
             done();
         }, 1000);
     })

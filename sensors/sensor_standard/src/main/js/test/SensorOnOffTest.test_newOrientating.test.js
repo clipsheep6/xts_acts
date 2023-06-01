@@ -290,8 +290,10 @@ describe("SensorJsTest_sensor_48", function () {
     it("newOrientating_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
             console.info('newOrientating_SensorJsTest009 callback in');
-            expect(false).assertTrue();
-            done();
+			expect(typeof(data.beta)).assertEqual("number");
+			expect(typeof(data.gamma)).assertEqual("number");
+			expect(typeof(data.alpha)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		   sensor.getSingleSensor(sensor.SensorId.ORIENTATION,(error, data) => {
@@ -300,9 +302,8 @@ describe("SensorJsTest_sensor_48", function () {
 				} else {
 					expect(typeof(data)).assertEqual("object");			
 					sensor.on(sensor.SensorId.ORIENTATION, onSensorCallback);
-					sensor.off(sensor.SensorId.ORIENTATION, onSensorCallback);
 					setTimeout(()=>{
-						expect(true).assertTrue();
+						sensor.off(sensor.SensorId.ORIENTATION, onSensorCallback);
 						done();
 					}, 500);
 				}

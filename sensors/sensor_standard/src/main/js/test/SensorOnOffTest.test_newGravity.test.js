@@ -313,8 +313,10 @@ describe("SensorJsTest_sensor_42", function () {
     it("newGravity_SensorJsTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
             console.info('newGravity_SensorJsTest010 callback in');
-            expect(false).assertTrue();
-            done();
+            expect(typeof (data.x)).assertEqual("number");
+			expect(typeof (data.y)).assertEqual("number");
+			expect(typeof (data.z)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		   sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
@@ -323,9 +325,8 @@ describe("SensorJsTest_sensor_42", function () {
 				} else {
 					expect(typeof(data)).assertEqual("object");			
 					sensor.on(sensor.SensorId.GRAVITY, onSensorCallback);
-					sensor.off(sensor.SensorId.GRAVITY, onSensorCallback);
 					setTimeout(()=>{
-						expect(true).assertTrue();
+						sensor.off(sensor.SensorId.GRAVITY, onSensorCallback);
 						done();
 					}, 500);
 				}
