@@ -14,7 +14,6 @@
  */
 import { expect } from "@ohos/hypium";
 import cryptoFramework from "@ohos.security.cryptoFramework";
-import cert from "@ohos.security.cert";
 
 //枚举值重新写
 function testRandomEnumCommon() {

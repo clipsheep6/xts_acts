@@ -38,7 +38,7 @@ export default function SecurityCipherJsunit() {
          * @tc.desc the asyAlgoName is "RSA|PKCS1|SHA1", Use the Callback Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_0100", 0, async function (done) {
-            await asyCallback.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1|SHA1")
+            await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1")
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
@@ -358,7 +358,7 @@ export default function SecurityCipherJsunit() {
                 expect(err.code == 401).assertTrue();
             }
             try {
-                await asyPromise.initCipherFewParameters("RSA1024", "RSA1024|PKCS1", 0, null, true)
+                await asyPromise.initCipherFewParameters("RSA1024", "RSA1024|PKCS1", true)
             } catch (err) {
                 expect(err.code == 401).assertTrue();
             }

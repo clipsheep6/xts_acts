@@ -125,6 +125,18 @@ function genDsaKeyPairSpec(dsap, dsaq, dsag) {
     return dsaCommonSpec;
 }
 
+function genRsaKeyPairSpec(nIn, eIn, dIn) {
+    let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
+    let rsaKeyPairSpec = {
+        params: rsaCommSpec,
+        sk: dIn,
+        pk: eIn,
+        algName: "RSA",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC
+    };
+    return rsaKeyPairSpec;
+}
+
 // 生成RSA2048密钥对参数
 function genRsa2048KeyPairSpec() {
     let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57" +
@@ -139,18 +151,6 @@ function genRsa2048KeyPairSpec() {
     "51b27506c33d4bcdfce0f9c491a7d6b0628c7c852be4f0a9c3132b2ed3a2c8881e9aab07e20e17deb074691be677776a78b5c502e05d9bdde" +
     "72126b3738695e2dd1a0a98a14247c65d8a7ee79432a092cb0721a12df798e44f7cfce0c498147a9b1");
     return genRsaKeyPairSpec(nIn, eIn, dIn);
-}
-
-function genRsaKeyPairSpec(nIn, eIn, dIn) {
-    let rsaCommSpec = { n: nIn, algName: "RSA", specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC };
-    let rsaKeyPairSpec = {
-        params: rsaCommSpec,
-        sk: dIn,
-        pk: eIn,
-        algName: "RSA",
-        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC
-    };
-    return rsaKeyPairSpec;
 }
 
 function genRsa2048CommonSpec() {

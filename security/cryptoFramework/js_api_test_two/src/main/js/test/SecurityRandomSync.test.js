@@ -43,7 +43,6 @@ export default function SecurityRandomSyncJsunit() {
                 console.info("[RandomSync]: 0 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-            ;
             done();
         });
 

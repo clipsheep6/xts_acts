@@ -91,7 +91,7 @@ export default function SecurityCipherSpecJsunit() {
          * @tc.desc the asyAlgoName is err parameter, Use the Promise Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_2300", 0, async function (done) {
-            await asyPromise.encryptGetSpecFail(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
+            await asyPromise.encryptGetSpecFail("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
@@ -109,7 +109,7 @@ export default function SecurityCipherSpecJsunit() {
          * @tc.desc the asyAlgoName is "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", Use the Promise Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_2400", 0, async function (done) {
-            await asyPromise.encryptGetAlgName(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", true)
+            await asyPromise.encryptGetAlgName("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1")
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })

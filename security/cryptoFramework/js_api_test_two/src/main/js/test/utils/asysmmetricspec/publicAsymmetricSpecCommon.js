@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import cryptoFramework from "@ohos.security.cryptoFramework";
-import { expect } from "@ohos/hypium";
 
 function createAsyKeyGeneratorBySpec(asyKeySpec) {
     try {

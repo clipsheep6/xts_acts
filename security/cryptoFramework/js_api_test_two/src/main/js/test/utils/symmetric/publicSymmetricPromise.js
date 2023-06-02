@@ -550,11 +550,11 @@ async function encryptAndDecryptNormalProcessSuperdata(
     var globalKey;
     var globalText;
     var globalTextLen = 1025;
-    var i;
     var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
     var decryptMode = cryptoFramework.CryptoMode.DECRYPT_MODE;
-    var t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz", n = t.length, s = "";
-    for (i = 0; i < globalTextLen; i++) {
+    var t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz";
+    var n = t.length;
+    for (let i = 0; i < globalTextLen; i++) {
         globalText += t.charAt(Math.floor(Math.random() * n));
     }
     console.warn("globalText1111111111111111111111111111111: " + globalText);
