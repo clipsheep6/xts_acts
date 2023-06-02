@@ -143,7 +143,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
          */
         it("Security_CryptoFramework_AsyKeySpec_Func_0700", 0, async function (done) {
             asyCallback.PubGetAsyKeySpecFailed(genRsa2048KeyPairSpec(), genDsa2048KeyPairSpec(),
-                genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC))
+            genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC))
                 .then((data) => {
                     expect(data == null).assertTrue();
                 }).catch(err => {

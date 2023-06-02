@@ -373,12 +373,23 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1800", 0, async function (done) {
             console.info("Security_CryptoFramework_Cipher_Func_1800 stare");
-            try {
-                await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5")
-            } catch (err) {
-                expect(err.code == 401).assertTrue();
-            }
-            console.info("Security_CryptoFramework_Cipher_Func_1800 end");
+            await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 0)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_1800 catch 1 error: " + err);
+                    expect(err.code == 401).assertTrue();
+                });
+
+            await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 1)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_1800 catch 2 error: " + err);
+                    expect(err.code == 401).assertTrue();
+                });
             done();
         }
         );

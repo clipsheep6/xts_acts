@@ -86,7 +86,7 @@ export default function SecurityKeyAgreementJsunit() {
             0,
             async function (done) {
                 await asyPromise
-                    .keyAgreementGetAlgNmaeProcess("ECC521")
+                    .keyAgreementGetAlgNameProcess("ECC521")
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })

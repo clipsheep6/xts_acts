@@ -1060,19 +1060,6 @@ export default function SecuritySignatureVerificationJsunit() {
                     });
 
                 await asyPromise
-                    .signAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", 6, 1, 3)
-                    .then((data) => {
-                        expect(data == null).assertTrue();
-                    })
-                    .catch((err) => {
-                        console.error(
-                            "AsyPromise signAbnormalSetFillProcess 6 catch error: " +
-                            err
-                        );
-                        expect(err.code == 401).assertTrue();
-                    });
-
-                await asyPromise
                     .signAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", "string", 1, 0)
                     .then((data) => {
                         expect(data == null).assertTrue();
@@ -1099,7 +1086,7 @@ export default function SecuritySignatureVerificationJsunit() {
                     });
 
                 await asyPromise
-                    .signAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", 32, 1, 5)
+                    .signAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", 32, 1, 4)
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })
@@ -1268,56 +1255,56 @@ export default function SecuritySignatureVerificationJsunit() {
             0,
             async function (done) {
                 await asyCallback
-                    .VerifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
+                    .verifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
                         "RSA1024|PKCS1|SHA224", 0)
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
-                            "AsyCallback VerifyInitParameterProcess 1 catch error: " +
+                            "AsyCallback verifyInitParameterProcess 1 catch error: " +
                             err.code
                         );
                         expect(err.code == 401).assertTrue();
                     });
 
                 await asyCallback
-                    .VerifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
+                    .verifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
                         "RSA1024|PKCS1|SHA224", 1)
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
-                            "AsyCallback VerifyInitParameterProcess 2 catch error: " +
+                            "AsyCallback verifyInitParameterProcess 2 catch error: " +
                             err.code
                         );
                         expect(err.code == 401).assertTrue();
                     });
 
                 await asyCallback
-                    .VerifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
+                    .verifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
                         "RSA1024|PKCS1|SHA224", 2)
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
-                            "AsyCallback VerifyInitParameterProcess 3 catch error: " +
+                            "AsyCallback verifyInitParameterProcess 3 catch error: " +
                             err.code
                         );
                         expect(err.code == 401).assertTrue();
                     });
 
                 await asyCallback
-                    .VerifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
+                    .verifyInitParameterProcess(asyCommon.genRsa2048KeyPairSpec(),
                         "RSA1024|PKCS1|SHA224", 3)
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
-                            "AsyCallback VerifyInitParameterProcess 4 catch error: " +
+                            "AsyCallback verifyInitParameterProcess 4 catch error: " +
                             err.code
                         );
                         expect(err.code == 401).assertTrue();
@@ -1495,7 +1482,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 1 catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
@@ -1508,7 +1495,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 2 catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
@@ -1521,7 +1508,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 3 catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
@@ -1534,7 +1521,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 4 catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
@@ -1547,20 +1534,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 5 catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
-                    });
-
-                await asyPromise
-                    .verifyAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", 6, 1, 3)
-                    .then((data) => {
-                        expect(data == null).assertTrue();
-                    })
-                    .catch((err) => {
-                        console.error(
-                            "AsyPromise verifyAbnormalSetFillProcess 6 catch error: " +
-                            err
-                        );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
@@ -1573,7 +1547,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 7 catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
@@ -1586,11 +1560,11 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 8 catch error: " +
                             err.code
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
 
                 await asyPromise
-                    .verifyAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", 32, 1, 5)
+                    .verifyAbnormalSetFillProcess("RSA1024|PRIMES_2", "RSA1024|PKCS1|SHA512", 32, 1, 4)
                     .then((data) => {
                         expect(data == null).assertTrue();
                     })
@@ -1599,7 +1573,7 @@ export default function SecuritySignatureVerificationJsunit() {
                             "AsyPromise verifyAbnormalSetFillProcess 9 catch error: " +
                             err.code
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
                 done();
             }
@@ -1615,7 +1589,7 @@ export default function SecuritySignatureVerificationJsunit() {
             0,
             async function (done) {
                 await asyCallback
-                    .VerifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
+                    .verifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
                         "RSA1024|PKCS1|SHA512", 10000, 1, 1)
                     .then((data) => {
                         expect(data == null).assertTrue();
@@ -1629,7 +1603,7 @@ export default function SecuritySignatureVerificationJsunit() {
                     });
 
                 await asyCallback
-                    .VerifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
+                    .verifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
                         "RSA1024|PKCS1|SHA512", cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, 0, 1)
                     .then((data) => {
                         expect(data == null).assertTrue();
@@ -1643,7 +1617,7 @@ export default function SecuritySignatureVerificationJsunit() {
                     });
 
                 await asyCallback
-                    .VerifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
+                    .verifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
                         "RSA1024|PKCS1|SHA512", cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, 1, 2)
                     .then((data) => {
                         expect(data == null).assertTrue();
@@ -1657,7 +1631,7 @@ export default function SecuritySignatureVerificationJsunit() {
                     });
 
                 await asyCallback
-                    .VerifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
+                    .verifyAbnormalGetFillProcess("RSA1024|PRIMES_2",
                         "RSA1024|PKCS1|SHA512", cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM, 1, 1)
                     .then((data) => {
                         expect(data == null).assertTrue();

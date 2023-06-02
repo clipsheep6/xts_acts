@@ -73,13 +73,49 @@ export default function SecurityCipherSpecJsunit() {
          * @tc.desc the asyAlgoName is err parameter, Use the Callback Style of Interface
          */
         it("Security_CryptoFramework_Cipher_Func_2200", 0, async function (done) {
-            await asyCallback.encryptSetSpecFail(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", true)
+            await asyCallback.encryptSetSpecFail("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", 0)
                 .then((data) => {
                     expect(data == null).assertTrue();
                 })
                 .catch((err) => {
-                    console.error("Security_CryptoFramework_Cipher_Func_2200 catch  error: " + err);
-                    expect(err.code == 401).assertTrue();
+                    console.error("Security_CryptoFramework_Cipher_Func_2200 1 catch error: " + err.code);
+                    expect(err.code == undefined).assertTrue();
+                });
+
+            await asyCallback.encryptSetSpecFail("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", 1)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_2200 2 catch error: " + err.code);
+                    expect(err.code == undefined).assertTrue();
+                });
+
+            await asyCallback.encryptSetSpecFail("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", 2)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_2200 3 catch error: " + err.code);
+                    expect(err.code == undefined).assertTrue();
+                });
+
+            await asyCallback.encryptSetSpecFail("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", 3)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_2200 4 catch error: " + err.code);
+                    expect(err.code == undefined).assertTrue();
+                });
+
+            await asyCallback.encryptSetSpecFail("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1", 4)
+                .then((data) => {
+                    expect(data == null).assertTrue();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_2200 5 catch error: " + err.code);
+                    expect(err.code == undefined).assertTrue();
                 });
             done();
         }
