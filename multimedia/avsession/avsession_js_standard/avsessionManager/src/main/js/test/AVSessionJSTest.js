@@ -48,10 +48,7 @@ export default function AVSessionJsTest() {
         expect().assertFail();
       });
       session.activate();
-      controller = await avSession.createController(session.sessionId).catch((err) => {
-        console.error(TAG + "Create controller error " + JSON.stringify(err));
-        expect().assertFail();
-      })
+      controller = await session.getController();
       console.info(TAG + "Create session finished, beforeAll called");
     })
 

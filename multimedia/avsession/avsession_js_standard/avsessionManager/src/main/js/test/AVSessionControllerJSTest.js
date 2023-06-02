@@ -52,7 +52,10 @@ export default function AVSessionControllerJsTest() {
     const QUEUE_ITEM_DESCRIPTION = {
       mediaId: QUEUE_ITEM_KEY_WORD,
       title: QUEUE_ITEM_KEY_WORD,
-      extras: EXTRAS
+      extras: EXTRAS,
+      icon:'http://www.icon.uri.com',
+      iconUri:'http://www.icon.uri.com',
+      mediaUri:'http://www.media.uri.com',
     };
     const QUEUE_ITEM = {
       itemId: QUEUE_ITEM_ID,
@@ -68,10 +71,9 @@ export default function AVSessionControllerJsTest() {
         expect().assertFail();
       });
       session.activate();
-      controller = await avSession.createController(session.sessionId).catch((err) => {
-        console.error(TAG + "Create controller error " + JSON.stringify(err));
-        expect().assertFail();
-      })
+      
+      controller = await session.getController();
+
       console.info(TAG + "Create session and controller finished, beforeAll called");
     })
 
@@ -218,25 +220,25 @@ export default function AVSessionControllerJsTest() {
     }
 
     /*
-   * @tc.name:onSessionEventTest001
+   * @tc.name:SUB_MULTIMEDIA_ONSESSIONEVENT_0100
    * @tc.desc:One on function - lyrics session event
    * @tc.type: FUNC
    * @tc.require: I6C6IN
    */
-    it("onSessionEventTest001", 0, async function (done) {
+    it("SUB_MULTIMEDIA_ONSESSIONEVENT_0100", 0, async function (done) {
       controller.on('sessionEvent', dynamicLyricsCallback1);
       await session.dispatchSessionEvent(UPDATE_LYRICS_EVENT, UPDATE_LYRICS_WANT_PARAMS).catch((err) => {
-        console.error(TAG + "dispatchSessionEventTest002 error " + JSON.stringify(err));
+        console.error(TAG + "SUB_MULTIMEDIA_ONSESSIONEVENT_0100 error " + JSON.stringify(err));
         expect().assertFail();
         done();
       });
       sleep(200).then(() => {
         if (receivedCallback) {
-          console.log(TAG + "Received session event change event");
+          console.log(TAG + "SUB_MULTIMEDIA_ONSESSIONEVENT_0100 Received session event change event");
           expect(receivedString == UPDATE_LYRICS_EVENT).assertTrue();
           expect(receivedParam.lyrics == UPDATE_LYRICS_WANT_PARAMS.lyrics).assertTrue();
         } else {
-          console.error(TAG + "Session event change event not received");
+          console.error(TAG + "SUB_MULTIMEDIA_ONSESSIONEVENT_0100 Session event change event not received");
           expect().assertFail();
         }
         receivedCallback = false;
@@ -247,29 +249,29 @@ export default function AVSessionControllerJsTest() {
     })
 
     /*
-   * @tc.name:onSessionEventTest002
+   * @tc.name:SUB_MULTIMEDIA_ONSESSIONEVENT_0200
    * @tc.desc:Two on functions - lyrics session event
    * @tc.type: FUNC
    * @tc.require: I6C6IN
    */
-    it("onSessionEventTest002", 0, async function (done) {
+    it("SUB_MULTIMEDIA_ONSESSIONEVENT_0200", 0, async function (done) {
       controller.on('sessionEvent', dynamicLyricsCallback1);
       controller.on('sessionEvent', dynamicLyricsCallback2);
       await session.dispatchSessionEvent(UPDATE_LYRICS_EVENT, UPDATE_LYRICS_WANT_PARAMS).catch((err) => {
-        console.error(TAG + "Set session event error " + JSON.stringify(err));
+        console.error(TAG + "SUB_MULTIMEDIA_ONSESSIONEVENT_0200 Set session event error " + JSON.stringify(err));
         expect().assertFail();
         done();
       });
       await sleep(200);
       if (receivedCallback && receivedCallback2) {
-        console.log(TAG + "Received session event change event");
+        console.log(TAG + "SUB_MULTIMEDIA_ONSESSIONEVENT_0200 Received session event change event");
         expect(receivedString == UPDATE_LYRICS_EVENT).assertTrue();
         expect(receivedParam.lyrics == UPDATE_LYRICS_WANT_PARAMS.lyrics).assertTrue();
         expect(receivedString2 == UPDATE_LYRICS_EVENT).assertTrue();
         expect(receivedParam2.lyrics == UPDATE_LYRICS_WANT_PARAMS.lyrics).assertTrue();
         expect(true).assertTrue();
       } else {
-        console.error(TAG + "Session event change event not received");
+        console.error(TAG + "SUB_MULTIMEDIA_ONSESSIONEVENT_0200 Session event change event not received");
         expect().assertFail();
       }
       receivedCallback = false;
