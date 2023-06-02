@@ -668,8 +668,8 @@ describe("SensorJsTest_sensor_17", function () {
 							expect(typeof(data.scalar)).assertEqual('number');
 						}						
                         sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, onSensorCallback, {'interval': 100000000});
-                        sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION);
 						setTimeout(() => {
+							sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION);
                             done();
                         }, 4000);
                     } catch (error) {

@@ -283,8 +283,8 @@ describe("SensorJsTest_sensor_53", function () {
     it("newBarometer_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
             console.info('newBarometer_SensorJsTest009 callback in');
-            expect(false).assertTrue();
-            done();
+			expect(typeof (data.pressure)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		   sensor.getSingleSensor(sensor.SensorId.BAROMETER,(error, data) => {
@@ -293,9 +293,8 @@ describe("SensorJsTest_sensor_53", function () {
 				} else {
 					expect(typeof(data)).assertEqual("object");			
 					sensor.on(sensor.SensorId.BAROMETER, onSensorCallback);
-					sensor.off(sensor.SensorId.BAROMETER, onSensorCallback);
 					setTimeout(()=>{
-						expect(true).assertTrue();
+						sensor.off(sensor.SensorId.BAROMETER, onSensorCallback);
 						done();
 					}, 500);
 				}

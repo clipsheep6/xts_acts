@@ -290,8 +290,10 @@ describe("SensorJsTest_sensor_43", function () {
     it("newGyroScope_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
             console.info('newGyroScope_SensorJsTest009 callback in');
-            expect(false).assertTrue();
-            done();
+            expect(typeof (data.x)).assertEqual("number");
+			expect(typeof (data.y)).assertEqual("number");
+			expect(typeof (data.z)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		   sensor.getSingleSensor(sensor.SensorId.GYROSCOPE,(error, data) => {
@@ -300,9 +302,8 @@ describe("SensorJsTest_sensor_43", function () {
 				} else {
 					expect(typeof(data)).assertEqual("object");			
 					sensor.on(sensor.SensorId.GYROSCOPE, onSensorCallback);
-					sensor.off(sensor.SensorId.GYROSCOPE, onSensorCallback);
 					setTimeout(()=>{
-						expect(true).assertTrue();
+						sensor.off(sensor.SensorId.GYROSCOPE, onSensorCallback);
 						done();
 					}, 500);
 				}

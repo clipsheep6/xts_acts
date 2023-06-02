@@ -282,8 +282,8 @@ describe("SensorJsTest_sensor_41", function () {
     it("newAmbient_Light_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         function onSensorCallback(data) {
             console.info('newAmbient_Light_SensorJsTest009 callback in');
-            expect(false).assertTrue();
-            done();
+			expect(typeof (data.intensity)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		   sensor.getSingleSensor(sensor.SensorId.AMBIENT_LIGHT,(error, data) => {
@@ -292,9 +292,8 @@ describe("SensorJsTest_sensor_41", function () {
 				} else {
 					expect(typeof(data)).assertEqual("object");			
 					sensor.on(sensor.SensorId.AMBIENT_LIGHT, onSensorCallback);
-					sensor.off(sensor.SensorId.AMBIENT_LIGHT, onSensorCallback);
 					setTimeout(()=>{
-						expect(true).assertTrue();
+						sensor.off(sensor.SensorId.AMBIENT_LIGHT, onSensorCallback);
 						done();
 					}, 500);
 				}

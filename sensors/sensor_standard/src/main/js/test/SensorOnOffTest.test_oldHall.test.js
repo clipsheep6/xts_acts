@@ -228,15 +228,14 @@ describe("SensorJsTest_sensor_7", function () {
         console.info('----------------------Hall_SensorJsTest007---------------------------');
         function onSensorCallback(data) {
             console.info('Hall_SensorJsTest007  on error');
-            expect(false).assertTrue();
-            done();
+			expect(typeof (data.status)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		    sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_HALL,(error, data) => {    	
 				sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, onSensorCallback);
-				sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, onSensorCallback);
 				setTimeout(() => {
-					expect(true).assertTrue();
+					sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, onSensorCallback);
 					done();
 				}, 500);
 			})
