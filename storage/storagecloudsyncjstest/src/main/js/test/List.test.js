@@ -14,6 +14,8 @@
  */
 
 import gallerySyncTest from './gallerysync.test.js'
+import cloudFileDownloadTest from './cloudfiledownload.test.js'
 export default function testsuite() {
   gallerySyncTest()
+  cloudFileDownloadTest()
 }
