@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,21 +36,21 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o2);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o2);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_000 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_CREATE_RANDOMACCESSFILE_SYNC_0100
      * @tc.name fileIO_create_randomaccessfile_sync_001
-     * @tc.desc Test createRandomAccessFileSync() interface. fpointer = 5.
-     * Create RandomAccessFile object to access file from fpointer location.
+     * @tc.desc Test createRandomAccessFileSync() interface. filePointer = 5.
+     * Create RandomAccessFile object to access file from filePointer location.
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -60,14 +60,15 @@ describe('fileIO_create_randomAccessFile', function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_001');
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 5, 0o102);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o102);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            expect(randomaccessfile.fpointer == 5).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.setFilePointer(5);
+            expect(randomaccessfile.filePointer == 5).assertTrue();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_001 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -86,20 +87,21 @@ describe('fileIO_create_randomAccessFile', function () {
 
         try {
             let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-            let randomaccessfile = fileIO.createRandomAccessFileSync(file.fd, 0);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(file);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
+            fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_002 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_CREATE_RANDOMACCESSFILE_SYNC_0300
      * @tc.name fileIO_create_randomaccessfile_sync_003
-     * @tc.desc Test createRandomAccessFileSync() interface. fpointer = 1.
+     * @tc.desc Test createRandomAccessFileSync() interface. filePointer = 1.
      * Create RandomAccessFile object based on file descriptor to access file.
      * @tc.size MEDIUM
      * @tc.type Function
@@ -111,14 +113,16 @@ describe('fileIO_create_randomAccessFile', function () {
 
         try {
             let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-            let randomaccessfile = fileIO.createRandomAccessFileSync(file.fd, 1);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(file);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            expect(randomaccessfile.fpointer == 1).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.setFilePointer(1);
+            expect(randomaccessfile.filePointer == 1).assertTrue();
+            randomaccessfile.close();
+            fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_003 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -128,18 +132,18 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. No such file or directory.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_004', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_004', 3, async function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_004');
 
         try {
-            fileIO.createRandomAccessFileSync(fpath, 0, 0o2);
+            fileIO.createRandomAccessFileSync(fpath, 0o2);
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_004 has failed for ' + err);
-            expect(err.message == "No such file or directory").assertTrue();
+            expect(err.code == 13900002 && err.message == "No such file or directory").assertTrue();
         }
     });
 
@@ -149,16 +153,16 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. Invalid fd.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_005', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_005', 3, async function () {
         try {
             fileIO.createRandomAccessFileSync(-1, 0);
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_005 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
         }
     });
 
@@ -168,21 +172,22 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. Invalid fp.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_006', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_006', 3, async function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_006');
         let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
 
         try {
-            fileIO.createRandomAccessFileSync(file.fd, '1');
+            let randomaccessfile = fileIO.createRandomAccessFileSync(file);
+            randomaccessfile.setFilePointer("1");
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_006 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
             fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
         }
     });
 
@@ -192,21 +197,21 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. Missing Parameter.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_007', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_007', 3, async function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_007');
         let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
 
         try {
-            fileIO.createRandomAccessFileSync(file.fd);
+            fileIO.createRandomAccessFileSync();
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_007 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
             fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
         }
     });
 
@@ -225,13 +230,13 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o202);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o202);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_008 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -241,15 +246,15 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. flags=0o302. File exists.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_009', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_009', 3, async function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_009');
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            fileIO.createRandomAccessFileSync(fpath, 0, 0o302);
+            fileIO.createRandomAccessFileSync(fpath, 0o302);
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_009 has failed for ' + err);
@@ -273,14 +278,14 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o1002);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o1002);
             let number = randomaccessfile.readSync(new ArrayBuffer(4096));
             expect(number == 0).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_010 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -299,18 +304,18 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o2002);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o2002);
             let length = 100;
             let num = randomaccessfile.writeSync(new ArrayBuffer(length));
             expect(num == length).assertTrue();
-            randomaccessfile.setFilePointerSync(0);
+            randomaccessfile.setFilePointer(0);
             let number = randomaccessfile.readSync(new ArrayBuffer(4096), { offset: 0 });
             expect(number == length + FILE_CONTENT.length).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_011 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -320,19 +325,19 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. flags=0o200002. Not a directory.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_012', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_012', 3, async function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_012');
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            fileIO.createRandomAccessFileSync(fpath, 0, 0o200002);
+            fileIO.createRandomAccessFileSync(fpath, 0o200002);
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_012 has failed for ' + err);
-            expect(err.message == "Not a directory").assertTrue();
+            expect(err.code == 13900018 && err.message == "Not a directory").assertTrue();
             fileIO.unlinkSync(fpath);
         }
     });
@@ -352,13 +357,13 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o400002);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o400002);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_013 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -377,13 +382,13 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o4010002);
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o4010002);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_014 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -393,19 +398,19 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. flags=0o200002. Invalid filepath.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_015', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_015', 3, async function () {
        let dpath = await nextFileName('fileIO_create_randomaccessfile_sync_015') + 'd';
        fileIO.mkdirSync(dpath);
 
        try {
-           fileIO.createRandomAccessFileSync(dpath, 0, 0o200002);
+           fileIO.createRandomAccessFileSync(dpath, 0o200002);
            expect(false).assertTrue();
        } catch(err) {
            console.info('fileIO_create_randomaccessfile_sync_015 has failed for ' + err);
-           expect(err.code == 13900020).assertTrue();
+           expect(err.code == 13900019 && err.message == "Is a directory").assertTrue();
            fileIO.rmdirSync(dpath);
        }
     });
@@ -416,22 +421,22 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFileSync() interface. flags=0o400002. Symbolic link loop.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_sync_016', 0, async function () {
+    it('fileIO_create_randomaccessfile_sync_016', 3, async function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_sync_016');
         let ffpath = fpath + 'aaaa';
         expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
         try {
             fileIO.symlinkSync(fpath, ffpath);
-            fileIO.createRandomAccessFileSync(ffpath, 0, 0o400002);
+            fileIO.createRandomAccessFileSync(ffpath, 0o400002);
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_sync_016 has failed for ' + err);
-            expect(err.message == 'Symbolic link loop' || 
-                err.message == 'Too many symbolic links encountered').assertTrue();
+            expect(err.code == 13900033 && (err.message == 'Symbolic link loop' || 
+                err.message == 'Too many symbolic links encountered')).assertTrue();
             fileIO.unlinkSync(fpath);
             fileIO.unlinkSync(ffpath);
         }
@@ -452,21 +457,21 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o2);
+            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0o2);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
             done();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_000 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_CREATE_RANDOMACCESSFILE_ASYNC_0100
      * @tc.name fileIO_create_randomaccessfile_async_001
-     * @tc.desc Test createRandomAccessFile() interface. fpointer = 10. return in callback mode.
+     * @tc.desc Test createRandomAccessFile() interface. filePointer = 10. return in callback mode.
      * Create RandomAccessFile object to access file based on file path.
      * @tc.size MEDIUM
      * @tc.type Function
@@ -477,16 +482,17 @@ describe('fileIO_create_randomAccessFile', function () {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_async_001');
 
         try {
-            fileIO.createRandomAccessFile(fpath, 10, 0o102, function(err, randomaccessfile) {
+            fileIO.createRandomAccessFile(fpath, 0o102, function(err, randomaccessfile) {
                 expect(isIntNum(randomaccessfile.fd)).assertTrue();
-                expect(randomaccessfile.fpointer == 10).assertTrue();
-                randomaccessfile.closeSync();
+                randomaccessfile.setFilePointer(10);
+                expect(randomaccessfile.filePointer == 10).assertTrue();
+                randomaccessfile.close();
                 fileIO.unlinkSync(fpath);
                 done();
             });
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_001 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -505,22 +511,23 @@ describe('fileIO_create_randomAccessFile', function () {
 
         try {
             let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-            fileIO.createRandomAccessFile(file.fd, 0, function(err, randomaccessfile) {
+            fileIO.createRandomAccessFile(file, function(err, randomaccessfile) {
                 expect(isIntNum(randomaccessfile.fd)).assertTrue();
-                randomaccessfile.closeSync();
+                randomaccessfile.close();
+                fileIO.closeSync(file.fd);
                 fileIO.unlinkSync(fpath);
                 done();
             });
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_002 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_CREATE_RANDOMACCESSFILE_ASYNC_0300
      * @tc.name fileIO_create_randomaccessfile_async_003
-     * @tc.desc Test createRandomAccessFile() interface. fpointer = 1.
+     * @tc.desc Test createRandomAccessFile() interface. filePointer = 1.
      * Create RandomAccessFile object based on file descriptor to access file.
      * @tc.size MEDIUM
      * @tc.type Function
@@ -532,15 +539,17 @@ describe('fileIO_create_randomAccessFile', function () {
 
         try {
             let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-            let randomaccessfile = await fileIO.createRandomAccessFile(file.fd, 1);
+            let randomaccessfile = await fileIO.createRandomAccessFile(file);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            expect(randomaccessfile.fpointer == 1).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.setFilePointer(1);
+            expect(randomaccessfile.filePointer == 1).assertTrue();
+            randomaccessfile.close();
+            fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
             done();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_003 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -550,17 +559,18 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. No such file or directory.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_004', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_004', 3, async function (done) {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_async_004');
 
         try {
-            await fileIO.createRandomAccessFile(fpath, 0, 0o2);
+            await fileIO.createRandomAccessFile(fpath, 0o2);
+            expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_004 has failed for ' + err);
-            expect(err.message == "No such file or directory").assertTrue();
+            expect(err.code == 13900002 && err.message == "No such file or directory").assertTrue();
             done();
         }
     });
@@ -571,16 +581,17 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. Invalid fd.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_005', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_005', 3, async function (done) {
         try {
             fileIO.createRandomAccessFile(-1, 0, function(err) {
             });
+            expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_005 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
             done();
         }
     });
@@ -591,18 +602,21 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. Invalid fp.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_006', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_006', 3, async function (done) {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_async_006');
         let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
-
+        let randomaccessfile;
         try {
-            await fileIO.createRandomAccessFile(file.fd, '1');
+            randomaccessfile = await fileIO.createRandomAccessFile(file);
+            randomaccessfile.setFilePointer('1');
+            expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_006 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
+            randomaccessfile.close();
             fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
             done();
@@ -623,13 +637,15 @@ describe('fileIO_create_randomAccessFile', function () {
         let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
 
         try {
-            await fileIO.createRandomAccessFile(file.fd);
-        } catch(err) {
-            console.info('fileIO_create_randomaccessfile_async_007 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
+            let randomaccessfile = await fileIO.createRandomAccessFile(file);
+            expect(isIntNum(randomaccessfile.fd)).assertTrue();
+            randomaccessfile.close();
             fileIO.closeSync(file.fd);
             fileIO.unlinkSync(fpath);
             done();
+        } catch(err) {
+            console.info('fileIO_create_randomaccessfile_async_007 has failed for ' + err);
+            expect(false).assertTrue();
         }
     });
 
@@ -648,15 +664,15 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            fileIO.createRandomAccessFile(fpath, 0, 0o202, function(err, randomaccessfile) {
+            fileIO.createRandomAccessFile(fpath, 0o202, function(err, randomaccessfile) {
                 expect(isIntNum(randomaccessfile.fd)).assertTrue();
-                randomaccessfile.closeSync();
+                randomaccessfile.close();
                 fileIO.unlinkSync(fpath);
                 done();
             });
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_008 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -666,18 +682,19 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. flags=0o302. File exists.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_009', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_009', 3, async function (done) {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_async_009');
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            await fileIO.createRandomAccessFile(fpath, 0, 0o302);
+            await fileIO.createRandomAccessFile(fpath, 0o302);
+            expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_009 has failed for ' + err);
-            expect(err.message == "File exists").assertTrue();
+            expect(err.code == 13900015 && err.message == "File exists").assertTrue();
             fileIO.unlinkSync(fpath);
             done();
         }
@@ -698,15 +715,15 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
         try {
-            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o1002);
+            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0o1002);
             let number = randomaccessfile.readSync(new ArrayBuffer(4096));
             expect(number == 0).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
             done();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_010 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -725,19 +742,19 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
         try {
-            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o2002);
+            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0o2002);
             let length = 100;
             let num = randomaccessfile.writeSync(new ArrayBuffer(length));
             expect(num == length).assertTrue();
-            randomaccessfile.setFilePointerSync(0);
+            randomaccessfile.setFilePointer(0);
             let number = randomaccessfile.readSync(new ArrayBuffer(4096), { offset: 0 });
             expect(number == length + FILE_CONTENT.length).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
             done();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_011 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -747,18 +764,18 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. flags=0o200002. Not a directory.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_012', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_012', 3, async function (done) {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_async_012');
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            await fileIO.createRandomAccessFile(fpath, 0, 0o200002);
+            await fileIO.createRandomAccessFile(fpath, 0o200002);
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_012 has failed for ' + err);
-            expect(err.message == "Not a directory").assertTrue();
+            expect(err.code == 13900018 && err.message == "Not a directory").assertTrue();
             fileIO.unlinkSync(fpath);
             done();
         }
@@ -779,14 +796,14 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o400002);
+            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0o400002);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
             done();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_013 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -805,14 +822,14 @@ describe('fileIO_create_randomAccessFile', function () {
         expect(prepareFile(fpath, '')).assertTrue();
 
         try {
-            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0, 0o4010002);
+            let randomaccessfile = await fileIO.createRandomAccessFile(fpath, 0o4010002);
             expect(isIntNum(randomaccessfile.fd)).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
             done();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_014 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
@@ -822,19 +839,19 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. flags=0o200002. Invalid filepath.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_015', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_015', 3, async function (done) {
        let dpath = await nextFileName('fileIO_create_randomaccessfile_async_015') + 'd';
        fileIO.mkdirSync(dpath);
 
        try {
-           await fileIO.createRandomAccessFile(dpath, 0, 0o200002);
+           await fileIO.createRandomAccessFile(dpath, 0o200002);
        } catch(err) {
            console.info('fileIO_create_randomaccessfile_async_015 has failed for ' + err);
-           expect(err.code == 13900020).assertTrue();
            fileIO.rmdirSync(dpath);
+           expect(err.code == 13900019 && err.message == "Is a directory").assertTrue();
            done();
        }
    });
@@ -845,21 +862,22 @@ describe('fileIO_create_randomAccessFile', function () {
      * @tc.desc Test createRandomAccessFile() interface. flags=0o400002. Symbolic link loop.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_create_randomaccessfile_async_016', 0, async function (done) {
+    it('fileIO_create_randomaccessfile_async_016', 3, async function (done) {
         let fpath = await nextFileName('fileIO_create_randomaccessfile_async_016');
         let ffpath = fpath + 'aaaa';
         expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
         try {
             fileIO.symlinkSync(fpath, ffpath);
-            await fileIO.createRandomAccessFile(ffpath, 0, 0o400002);
+            await fileIO.createRandomAccessFile(ffpath, 0o400002);
+            expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_create_randomaccessfile_async_016 has failed for ' + err);
-            expect(err.message == 'Symbolic link loop' || 
-                err.message == 'Too many symbolic links encountered').assertTrue();
+            expect(err.code == 13900033 && (err.message == 'Symbolic link loop' || 
+                err.message == 'Too many symbolic links encountered')).assertTrue();
             fileIO.unlinkSync(fpath);
             fileIO.unlinkSync(ffpath);
             done();
@@ -889,19 +907,21 @@ describe('fileIO_create_randomAccessFile', function () {
             let srcfiles = new Array();
             let dstfiles = new Array();
             for (let i = 0; i < threadNums; i++) {
-                srcfiles[i] = fileIO.createRandomAccessFileSync(srcpath, fileSize / threadNums * i, 0o2);
-                dstfiles[i] = fileIO.createRandomAccessFileSync(dstpath, fileSize / threadNums * i, 0o102);
+                srcfiles[i] = fileIO.createRandomAccessFileSync(srcpath, 0o2);
+                dstfiles[i] = fileIO.createRandomAccessFileSync(dstpath, 0o102);
+                srcfiles[i].setFilePointer(fileSize / threadNums * i);
+                dstfiles[i].setFilePointer(fileSize / threadNums * i);
             }
             // copy in every thread i from multi-thread
             let bufs = new Array(threadNums);
             let len = length / threadNums;
             for(let i = 0; i < threadNums; i++) {
                 bufs[i] = new ArrayBuffer(len);
-                srcfiles[i].read(bufs[i]).then(async function(readOut) {
-                    let writeLen = await dstfiles[i].write(readOut.buffer);
+                srcfiles[i].read(bufs[i]).then(async function(readLength) {
+                    let writeLen = await dstfiles[i].write(bufs[i]);
                     expect(writeLen == len).assertTrue();
-                    dstfiles[i].closeSync();
-                    srcfiles[i].closeSync();
+                    dstfiles[i].close();
+                    srcfiles[i].close();
                     if (i == threadNums - 1) {
                         let size = fileIO.statSync(dstpath).size;
                         expect(size == fileSize).assertTrue();
@@ -913,7 +933,7 @@ describe('fileIO_create_randomAccessFile', function () {
             }
         } catch (err) {
             console.info('fileIO_randomaccessfile_multithreaded_replication_000 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 })

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,7 +23,7 @@ describe('fileIO_randomAccessFile_setFilePointer', function () {
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_SET_FILE_POINTER_SYNC_0000
      * @tc.name fileIO_randomaccessfile_set_file_pointer_sync_000
-     * @tc.desc Test setFilePointerSync() interface. Set file offset pointer position.
+     * @tc.desc Test setFilePointer() interface. Set file offset pointer position.
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 0
@@ -33,63 +33,61 @@ describe('fileIO_randomAccessFile_setFilePointer', function () {
         let fpath = await nextFileName('fileIO_randomaccessfile_set_file_pointer_sync_000');
 
         try {
-            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o102);
-            expect(randomaccessfile.fpointer == 0).assertTrue();
-            randomaccessfile.setFilePointerSync(5);
-            expect(randomaccessfile.fpointer == 5).assertTrue();
-            randomaccessfile.closeSync();
+            let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o102);
+            expect(randomaccessfile.filePointer == 0).assertTrue();
+            randomaccessfile.setFilePointer(5);
+            expect(randomaccessfile.filePointer == 5).assertTrue();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
         } catch(err) {
             console.info('fileIO_randomaccessfile_set_file_pointer_sync_000 has failed for ' + err);
-            expect(null).assertFail();
+            expect(false).assertTrue();
         }
     });
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_SET_FILE_POINTER_SYNC_0100
      * @tc.name fileIO_randomaccessfile_set_file_pointer_sync_001
-     * @tc.desc Test setFilePointerSync() interface. Invalid fpointer.
+     * @tc.desc Test setFilePointer() interface. Invalid fpointer.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_randomaccessfile_set_file_pointer_sync_001', 0, async function () {
+    it('fileIO_randomaccessfile_set_file_pointer_sync_001', 3, async function () {
         let fpath = await nextFileName('fileIO_randomaccessfile_set_file_pointer_sync_001');
-        let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o102);
-
+        let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o102);
         try {
-            randomaccessfile.setFilePointerSync('5');
+            randomaccessfile.setFilePointer('5');
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_randomaccessfile_set_file_pointer_sync_001 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
         }
     });
 
     /**
      * @tc.number SUB_STORAGE_FILEIO_RANDOMACCESSFILE_SET_FILE_POINTER_SYNC_0200
      * @tc.name fileIO_randomaccessfile_set_file_pointer_sync_002
-     * @tc.desc Test setFilePointerSync() interface. Missing Parameter.
+     * @tc.desc Test setFilePointer() interface. Missing Parameter.
      * @tc.size MEDIUM
      * @tc.type Function
-     * @tc.level Level 0
+     * @tc.level Level 3
      * @tc.require
      */
-    it('fileIO_randomaccessfile_set_file_pointer_sync_002', 0, async function () {
+    it('fileIO_randomaccessfile_set_file_pointer_sync_002', 3, async function () {
         let fpath = await nextFileName('fileIO_randomaccessfile_set_file_pointer_sync_002');
-        let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0, 0o102);
-
+        let randomaccessfile = fileIO.createRandomAccessFileSync(fpath, 0o102);
         try {
-            randomaccessfile.setFilePointerSync();
+            randomaccessfile.setFilePointer();
             expect(false).assertTrue();
         } catch(err) {
             console.info('fileIO_randomaccessfile_set_file_pointer_sync_002 has failed for ' + err);
-            expect(err.code == 13900020).assertTrue();
-            randomaccessfile.closeSync();
+            randomaccessfile.close();
             fileIO.unlinkSync(fpath);
+            expect(err.code == 13900020 && err.message == "Invalid argument").assertTrue();
         }
     });
 })

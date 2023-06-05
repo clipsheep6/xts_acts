@@ -284,7 +284,7 @@ export function setAVPlayerFunCb(src, avPlayer, playTest, playTime, done) {
                 completedCnt++;
                 expect(avPlayer.currentTime).assertEqual(avPlayer.duration);
                 expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.COMPLETED);
-                if (completedCnt == 1) {
+                if (completedCnt == 1 && seekDoneCnt[0] < 5) {
                     // step 9: completed -> play
                     avPlayer.play();
                 } else {
@@ -609,28 +609,30 @@ export async function seekLoop(src, avPlayer, done) {
     }, (err) => {
         console.error('seekLoop play filed,error message is :' + err.message)
     })
-    if(avPlayer.state == AV_PLAYER_STATE.PLAYING){
-        console.info('seekLoop avPlayer from play to seek')
-        // play seek loop 1000 times
-        for(var loopTime = 0;loopTime < 1000; loopTime++){
-            avPlayer.seek(loopTime)
-            console.info(`case seekLoopWithCallback loopTime is ${loopTime}`);
-        }
-    }
+    await seekLoopWithCallback(avPlayer)
+    console.info('seekLoop avPlayer from play to seek')
+    // play seek loop 1000 times
     await avPlayer.stop().then(() => {
         console.info('seekLoopWithCallback avPlayer from play to stop')
-        avPlayer.release().then(() => {
-            console.info('seekLoopWithCallback avPlayer from stop to release')
-            expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.RELEASED);
-            done();
-        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+    await avPlayer.release().then(() => {
+        console.info('seekLoopWithCallback avPlayer from stop to release')
+        expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.RELEASED);
+        done();
     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
 }
 
 async function seekLoopWithCallback(avPlayer) {
-    avPlayer.on('seekDone', async (seekDoneTime) => {
-        console.info(`case seekDone called seekDoneTime is ${seekDoneTime}`);
-    });
+    for (let loopTime = 0; loopTime < 5000; loopTime += 5) {
+        await new Promise(resolve => {
+            avPlayer.on('seekDone', seekDoneTime => {
+                console.info(`case seekDone called seekDoneTime is ${seekDoneTime}`);
+                resolve();
+            });
+            avPlayer.seek(loopTime);
+            console.info(`case seekLoopWithCallback loopTime is ${loopTime}`);
+        });
+    }
 }
 
 export async function seekLoopWithoutCallback(src, avPlayer, done) {
@@ -2133,7 +2135,6 @@ function setAVPlayerPlay(src, avPlayer, done) {
                 break;
             case AV_PLAYER_STATE.ERROR:
                 console.info(`case error called, AV_PLAYER_STATE.ERROR, ignore`);
-                // expect().assertFail();
                 avPlayer.release().then(() => {
                 }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
                 break;
@@ -2222,7 +2223,6 @@ export function setAVPlayerSeekCb(src, avPlayer, playTest, playTime, done) {
                     // step 4: seek + pause
                     expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PLAYING);
                     avPlayer.seek(avPlayer.duration / 2, media.SeekMode.SEEK_PREV_SYNC);
-                    // avPlayer.pause();
                     avPlayer.pause((err) => {
                         if (err != null) {
                             mediaTestBase.assertErr('pause', err, done);
