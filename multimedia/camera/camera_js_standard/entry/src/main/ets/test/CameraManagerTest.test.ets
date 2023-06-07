@@ -765,38 +765,6 @@ export default function cameraManagerTest() {
             done();
         })
 
-
-        /**
-          * @tc.number    : SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100
-          * @tc.name      : camera manager on cameraStatus api
-          * @tc.desc      : camera manager on cameraStatus api
-          * @tc.size      : MEDIUM
-          * @tc.type      : Function
-          * @tc.level     : Level 1
-        */
-        it('SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100', 1, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100--------------");
-            if (isEmpty(mCameraManager)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 mCameraManager == null || undefined")
-                expect().assertFail();
-            } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 to operate");
-                mCameraManager.on('cameraStatus', async (err, data) => {
-                    if (!err) {
-                        expect(true).assertTrue();
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 success");
-                    } else {
-                        expect().assertFail();
-                        console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 FAILED: " + err.message);
-                    }
-                    await sleep(1000);
-                    done();
-                })
-            }
-            await sleep(1000);
-            done();
-        })
-
         /**
           * @tc.number    : SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100
           * @tc.name      : camera manager on cameraStatus api
