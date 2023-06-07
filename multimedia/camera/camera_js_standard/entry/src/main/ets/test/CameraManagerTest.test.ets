@@ -814,8 +814,8 @@ export default function cameraManagerTest() {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 to operate");
                 mCameraManager.on('cameraStatus', async (err, CameraStatusInfo) => {
                     if (!err) {
-						console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 camera:" + JSON.stringify(CameraStatusInfo.camera));
-						console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 status:" + JSON.stringify(CameraStatusInfo.status));
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 camera:" + JSON.stringify(CameraStatusInfo.camera));
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 status:" + JSON.stringify(CameraStatusInfo.status));
                         expect(true).assertTrue();
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 success");
                     } else {
