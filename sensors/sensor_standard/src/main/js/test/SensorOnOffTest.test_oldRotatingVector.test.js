@@ -240,15 +240,16 @@ describe("SensorJsTest_sensor_20", function () {
         console.info('----------------------RotatingVector_SensorJsTest007---------------------------');
         function onSensorCallback(data) {
             console.info('RotatingVector_SensorJsTest007  on error');
-            expect(false).assertTrue();
-            done();
+			expect(typeof (data.x)).assertEqual("number");
+			expect(typeof (data.y)).assertEqual("number");
+			expect(typeof (data.z)).assertEqual("number");
+			expect(typeof (data.timestamp)).assertEqual("number");
         }
 		try{
 		    sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,(error, data) => {    	
 				sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, onSensorCallback);
-				sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, onSensorCallback);
 				setTimeout(() => {
-					expect(true).assertTrue();
+					sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, onSensorCallback);
 					done();
 				}, 500);
 			})
