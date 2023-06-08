@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for storage fileio Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.ohos.cloudfilesync",
+        "package-name": "com.ohos.cloudfilesync"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageCloudSyncJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
