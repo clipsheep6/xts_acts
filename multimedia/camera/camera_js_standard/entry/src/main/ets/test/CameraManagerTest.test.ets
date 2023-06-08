@@ -790,14 +790,13 @@ export default function cameraManagerTest() {
                         expect().assertFail();
                         console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 FAILED: " + err.message);
                     }
-                    await sleep(1000);
                     done();
                 })
                 try {
                     let camerasArray = mCameraDevicesArray;
                     let cameraInputPromise = mCameraManager.createCameraInput(camerasArray[0]);
                     await cameraInputPromise.open()
-                    await sleep(1000)
+                    await sleep(500)
                     await cameraInputPromise.close()
                 } catch (err) {
                     expect().assertFail();
