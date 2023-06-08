@@ -19,6 +19,7 @@ import * as asyCallback from "./utils/asymmetric/publicAsymmetricCallback";
 import * as asyPromise from "./utils/asymmetric/publicAsymmetricPromise";
 import * as common from "./utils/common/publicDoSpec";
 import * as symPromise from "./utils/symmetric/publicSymmetricPromise";
+import cryptoFramework from "@ohos.security.cryptoFramework";
 
 function genRsa2048KeyPairSpec() {
     return common.genRsa2048KeyPairSpec();
@@ -26,7 +27,7 @@ function genRsa2048KeyPairSpec() {
 
 export default function SecurityCipherJsunit() {
     describe("SecurityCipherJsunit", function () {
-        console.info("##########start SecurityCipherJsunit##########");
+        console.log("##########start SecurityCipherJsunit##########");
         beforeAll(function () {
         });
         afterEach(function () {
@@ -39,8 +40,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0100", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0100 catch  error: " + err);
@@ -57,8 +58,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0200", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1|SHA224")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0200 catch  error: " + err);
@@ -75,8 +76,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0300", 0, async function (done) {
             await asyCallback.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1|SHA256")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0300 catch  error: " + err);
@@ -93,8 +94,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0400", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1|SHA384")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0400 catch  error: " + err);
@@ -111,8 +112,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0500", 0, async function (done) {
             await asyCallback.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1|SHA512")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0500 catch  error: " + err);
@@ -129,8 +130,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0600", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0600 catch  error: " + err);
@@ -147,8 +148,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0700", 0, async function (done) {
             await asyCallback.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_SHA1")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0700 catch  error: " + err);
@@ -165,8 +166,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0800", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_SHA224")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0800 catch  error: " + err);
@@ -183,8 +184,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_0900", 0, async function (done) {
             await asyCallback.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_SHA256")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_0900 catch  error: " + err);
@@ -201,8 +202,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1000", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_SHA384")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1000 catch  error: " + err);
@@ -219,8 +220,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1100", 0, async function (done) {
             await asyCallback.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_SHA512")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1100 catch  error: " + err);
@@ -237,8 +238,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1200", 0, async function (done) {
             await asyPromise.encryptAndDecryptBySpecProcess(genRsa2048KeyPairSpec(), "RSA|PKCS1_OAEP|SHA1|MGF1_MD5")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1200 catch  error: " + err);
@@ -255,8 +256,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1300", 0, async function (done) {
             await asyCallback.encryptAndDecryptNormalProcess("RSA1024|PRIMES_2", "RSA|PKCS1|SHA256")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1300 catch  error: " + err);
@@ -273,8 +274,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1400", 0, async function (done) {
             await symPromise.encryptAndDecryptNormalProcess("AES256", "AES|ECB|PKCS7", "null")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1400 catch  error: " + err);
@@ -291,8 +292,8 @@ export default function SecurityCipherJsunit() {
          */
         it("Security_CryptoFramework_Cipher_Func_1500", 0, async function (done) {
             await symPromise.encryptAndDecryptNormalProcess("3DES192", "3DES|ECB|PKCS5", "null")
-                .then((data) => {
-                    expect(data == null).assertTrue();
+                .then((result) => {
+                    expect(result).assertTrue();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1500 catch  error: " + err);
@@ -305,22 +306,23 @@ export default function SecurityCipherJsunit() {
         /**
          * @tc.number Security_CryptoFramework_Cipher_Func_1600
          * @tc.name create cipher failed
-         * @tc.desc the asyAlgoName is err parameter, Use the Callback Style of Interface
+         * @tc.desc Pass in an exception parameter null and call it as a async
+         * @tc.desc Pass in an exception parameter "ECC128|GCM|PKCS7" and call it as a async
          */
         it("Security_CryptoFramework_Cipher_Func_1600", 0, async function (done) {
             try {
-                let cipher = cryptoFramework.createCipher(null);
-                expect(cipher != null).assertTrue();
+                cryptoFramework.createCipher(null);
+                expect(null).assertFail();
             } catch (err) {
-                console.error("createCipherFail catch  error: " + err);
-                expect(err.code == undefined).assertTrue();
+                console.error("createCipherFail catch  error: " + err.code);
+                expect(err.code == 401).assertTrue();
             }
             try {
-                let cipher = cryptoFramework.createCipher(cipherAlgoName);
-                expect(cipher != null).assertTrue();
+                cryptoFramework.createCipher("ECC128|GCM|PKCS7");
+                expect(null).assertFail();
             } catch (err) {
-                console.error("createCipherFail catch  error: " + err);
-                expect(err.code == undefined).assertTrue();
+                console.error("createCipherFail catch  error: " + err.code);
+                expect(err.code == 801).assertTrue();
             }
             done();
         }
@@ -329,65 +331,117 @@ export default function SecurityCipherJsunit() {
         /**
          * @tc.number Security_CryptoFramework_Cipher_Func_1700
          * @tc.name init cipher failed
-         * @tc.desc the asyAlgoName is err parameter, Use the Promise Style of Interface
+         * @tc.desc Pass in three exception parameters 3 and keyPair and null, and call them as async
+         * @tc.desc Pass in three exception parameters null and keyPair and null, and call them as async
+         * @tc.desc Pass in three exception parameters encryptMode and null and null, and call them as async
+         * @tc.desc Call it as a async without passing in parameters
+         * @tc.desc Pass in four exception parameters 3 and keyPair and null and keyPair, and call them as async
          */
         it("Security_CryptoFramework_Cipher_Func_1700", 0, async function (done) {
+            var asyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
+            var cipherGeneratorEncrypt = cryptoFramework.createCipher("RSA1024|PKCS1");
+            var encryptMode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
+            let keyPair;
+            asyGenerator.generateKeyPair().then((asyKeyPair) => {
+                    keyPair = asyKeyPair;
+            }).catch ((err) => {
+                console.log("Security_CryptoFramework_Cipher_Func_1700 0 catch err" + err);
+            })
+
             try {
-                await asyPromise.initCipherFail("RSA1024", "RSA1024|PKCS1", 3, null, true)
-            } catch (err) {
+                cipherGeneratorEncrypt.init(3, keyPair, null);
+                expect(null).assertFail();
+            } catch(err) {
+                console.log("Security_CryptoFramework_Cipher_Func_1700 1 catch err" + err);
                 expect(err.code == 401).assertTrue();
+
             }
+
             try {
-                await asyPromise.initCipherFail("RSA1024", "RSA1024|PKCS1", 0, null, false)
-            } catch (err) {
+                cipherGeneratorEncrypt.init(null, keyPair, null);
+                expect(null).assertFail();
+            } catch(err) {
+                console.log("Security_CryptoFramework_Cipher_Func_1700 2 catch err" + err);
                 expect(err.code == 401).assertTrue();
+
             }
+
             try {
-                await asyPromise.initCipherFail("ECC256", "RSA1024|PKCS1", 0, null, true)
-            } catch (err) {
+                cipherGeneratorEncrypt.init(encryptMode, null, null);
+                expect(null).assertFail();
+            } catch(err) {
+                console.log("Security_CryptoFramework_Cipher_Func_1700 3 catch err" + err);
                 expect(err.code == 401).assertTrue();
+
             }
+
             try {
-                await asyPromise.initCipherFail("RSA1024", "RSA1024|PKCS1", 3, null, true)
-            } catch (err) {
+                cipherGeneratorEncrypt.init();
+                expect(null).assertFail();
+            } catch(err) {
+                console.log("Security_CryptoFramework_Cipher_Func_1700 4 catch err" + err);
                 expect(err.code == 401).assertTrue();
+
             }
+
             try {
-                await asyPromise.initCipherMultipleParameters("RSA1024", "RSA1024|PKCS1", 0, null, true)
-            } catch (err) {
-                expect(err.code == 401).assertTrue();
-            }
-            try {
-                await asyPromise.initCipherFewParameters("RSA1024", "RSA1024|PKCS1", true)
-            } catch (err) {
+                cipherGeneratorEncrypt.init(3, keyPair, null, keyPair);
+                expect(null).assertFail();
+            } catch(err) {
+                console.log("Security_CryptoFramework_Cipher_Func_1700 5 catch err" + err);
                 expect(err.code == 401).assertTrue();
             }
             done();
-        }
-        );
+        });
 
         /**
          * @tc.number Security_CryptoFramework_Cipher_Func_1800
          * @tc.name update cipher failed
-         * @tc.desc the asyAlgoName is err parameter, Use the Callback Style of Interface
+         * @tc.desc Call it as a promise without passing in parameters
+         * @tc.desc Pass in an exception parameter null and call it as a promise
+         * @tc.desc Pass in two exception parameters "This is a sign test" and "This is a sign test"
+         * and call them as promise
+         * @tc.desc The encrypt object was not initialized, and the data to be signed "This is a sign test"
+         * was passed in as a promise to be called
          */
         it("Security_CryptoFramework_Cipher_Func_1800", 0, async function (done) {
-            console.info("Security_CryptoFramework_Cipher_Func_1800 stare");
-            await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 0)
+            await asyCallback.encryptUpdateCipherFailed("3DES192", "3DES|ECB|PKCS5", 0)
                 .then((data) => {
-                    expect(data == null).assertTrue();
+                    console.log("data 1: " + data);
+                    expect(null).assertFail();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1800 catch 1 error: " + err);
                     expect(err.code == 401).assertTrue();
                 });
 
-            await asyCallback.encryptUpdateCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 1)
+            await asyCallback.encryptUpdateCipherFailed("3DES192", "3DES|ECB|PKCS5", 1)
                 .then((data) => {
-                    expect(data == null).assertTrue();
+                    console.log("data 2: " + data);
+                    expect(null).assertFail();
                 })
                 .catch((err) => {
                     console.error("Security_CryptoFramework_Cipher_Func_1800 catch 2 error: " + err);
+                    expect(err.code == 401).assertTrue();
+                });
+
+            await asyCallback.encryptUpdateCipherFailed("3DES192", "3DES|ECB|PKCS5", 2)
+                .then((data) => {
+                    console.log("data 3: " + data);
+                    expect(null).assertFail();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_1800 catch 3 error: " + err);
+                    expect(err.code == 401).assertTrue();
+                });
+
+            await asyCallback.encryptUpdateCipherFailed("3DES192", "3DES|ECB|PKCS5", 3)
+                .then((data) => {
+                    console.log("data 4: " + data);
+                    expect(null).assertFail();
+                })
+                .catch((err) => {
+                    console.error("Security_CryptoFramework_Cipher_Func_1800 catch 4 error: " + err);
                     expect(err.code == 401).assertTrue();
                 });
             done();
@@ -397,29 +451,36 @@ export default function SecurityCipherJsunit() {
         /**
          * @tc.number Security_CryptoFramework_Cipher_Func_1900
          * @tc.name doFinal cipher failed
-         * @tc.desc the asyAlgoName is DSA1024, Use the Promise Style of Interface
+         * @tc.desc Call it as a callback without passing in parameters
+         * @tc.desc Pass in an exception parameter null and call it as a callback
+         * @tc.desc The encrypt object was not initialized, and the data to be signed 'This is a sign test'
+         * was passed in as a callback to be called
          */
         it("Security_CryptoFramework_Cipher_Func_1900", 0, async function (done) {
-            try {
-                await asyPromise.doFinalCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", false);
-            } catch (err) {
-                console.error("Security_CryptoFramework_Cipher_Func_1900 catch  error: " + err);
-                expect(err.code == 401).assertTrue();
-            }
-            try {
-                await asyPromise.doFinalCipherFewParameters(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5");
-            } catch (err) {
-                console.error("Security_CryptoFramework_Cipher_Func_1900 catch  error: " + err);
-                expect(err.code == 401).assertTrue();
-            }
-            try {
-                await asyPromise.doFinalCipherMultipleParameters(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5");
-            } catch (err) {
-                console.error("Security_CryptoFramework_Cipher_Func_1900 catch  error: " + err);
-                expect(err.code == 401).assertTrue();
-            }
+        await asyPromise.doFinalCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 2).then((data) => {
+            console.log("data 1: " + data);
+            expect(null).assertFail();
+        }).catch((err) => {
+            console.error("Security_CryptoFramework_Cipher_Func_1900 catch 0 error: " + err);
+            expect(err.code == 401).assertTrue();
+        });
+
+        await asyPromise.doFinalCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 0).then((data) => {
+            console.log("data 2: " + data);
+            expect(null).assertFail();
+        }).catch((err) => {
+            console.error("Security_CryptoFramework_Cipher_Func_1900 catch 1 error: " + err);
+            expect(err.code == 401).assertTrue();
+        });
+
+        await asyPromise.doFinalCipherFailed(genRsa2048KeyPairSpec(), "RSA|PKCS1|MD5", 1).then((data) => {
+            console.log("data 3: " + data);
+            expect(null).assertFail();
+        }).catch((err) => {
+            console.error("Security_CryptoFramework_Cipher_Func_1900 catch 2 error: " + err);
+            expect(err.code == 401).assertTrue();
+        });
             done();
-        }
-        );
+        });
     });
 }

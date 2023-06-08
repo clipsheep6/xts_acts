@@ -20,7 +20,7 @@ import cryptoFrameworks from "@ohos.security.cryptoFramework";
 
 export default function SecurityRandomSyncJsunit() {
     describe("SecurityRandomSyncJsunit", function () {
-        console.info("##########start SecurityRandomSyncJsunit##########");
+        console.log("##########start SecurityRandomSyncJsunit##########");
         beforeAll(function () {
         });
         afterEach(function () {
@@ -40,7 +40,7 @@ export default function SecurityRandomSyncJsunit() {
                     "RandomSync 0 catch error:" +
                     err
                 );
-                console.info("[RandomSync]: 0 error code: 401");
+                console.log("[RandomSync]: 0 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
             done();
@@ -48,86 +48,64 @@ export default function SecurityRandomSyncJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_RandomSync_Func_0200
-         * @tc.name Synchronous generation of random number anomalies and parameter transfer
-         * @tc.desc incoming exception parameters, use sync style of interface
+         * @tc.name Call the generateRandomSync interface with abnormal parameters,
+         * expecting the result to return an exception.
+         * @tc.desc the length of random is 0, use sync style of interface
+         * the length of random is "string", use sync style of interface
+         * the length of random is -1, use sync style of interface
+         * the length of random is NULL, use sync style of interface
+         * the length of random is 6,12(two parameters), use sync style of interface
+         * the length of random is no parameter, use sync style of interface
+         * the length of random is 124384(too long length), use sync style of interface
          */
         it("Security_CryptoFramework_RandomSync_Func_0200", 0, async function (done) {
             var rand = cryptoFrameworks.createRandom();
             try {
                 rand.generateRandomSync(0);
+                expect(null).assertFail();
             } catch (err) {
-                console.error(
-                    "RandomSync 0 catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: 0 error code: 401");
+                console.log("[RandomSync]: 0 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-
             try {
                 rand.generateRandomSync("string");
+                expect(null).assertFail();
             } catch (err) {
-                console.error(
-                    "RandomSync string catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: string error code: 401");
+                console.log("[RandomSync]: string error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-
             try {
                 rand.generateRandomSync(-1);
+                expect(null).assertFail();
             } catch (err) {
-                console.error(
-                    "RandomSync -1 catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: -1 error code: 401");
+                console.log("[RandomSync]: -1 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-
             try {
                 rand.generateRandomSync(null);
+                expect(null).assertFail();
             } catch (err) {
-                console.error(
-                    "RandomSync null catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: null error code: 401");
+                console.log("[RandomSync]: null error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-
             try {
                 rand.generateRandomSync(6, 12);
+                expect(null).assertFail();
             } catch (err) {
-                console.error(
-                    "RandomSync 6, 12 catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: 6, 12 error code: 401");
+                console.log("[RandomSync]: 6, 12 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-
             try {
                 rand.generateRandomSync();
-                console.info("0800 RandomSync ok");
+                expect(null).assertFail();
             } catch (err) {
-                console.error(
-                    "0800 RandomSync catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: error code: 401");
+                console.log("[RandomSync]: error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-            
             try {
                 rand.generateRandomSync(124384);
             } catch (err) {
-                console.error(
-                    "0800 RandomSync catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: error code: 401");
+                console.log("[RandomSync]: error code: 401");
                 expect(err.code == 401).assertTrue();
             }
             done();
@@ -135,20 +113,15 @@ export default function SecurityRandomSyncJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_RandomSync_Func_0300
-         * @tc.name Obtain the algorithm corresponding to generating random numbers
-         * @tc.desc not transmitting ginseng, use sync style of interface
+         * @tc.name Create a random number object, get the algname.
+         * @tc.desc no parameters,use sync style of interface
          */
         it("Security_CryptoFramework_RandomSync_Func_0300", 0, async function (done) {
             var rand = cryptoFrameworks.createRandom();
             try {
-                console.info("RandomSync rand.algName :" + rand.algName);
-                expect(rand != null).assertTrue();
+                expect(rand.algName == "CTR_DRBG").assertTrue();
             } catch (err) {
-                console.error(
-                    "0400 RandomSync catch error:" +
-                    err
-                );
-                console.info("[RandomSync]: error code: 401");
+                console.log("[RandomSync]: error code: 401");
                 expect(err.code == 401).assertTrue();
             }
             done();
@@ -156,11 +129,17 @@ export default function SecurityRandomSyncJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_Enum_Func_0100
-         * @tc.name test enumerated values
-         * @tc.desc cover 100% Enumerated values
+         * @tc.name cover AsyKeySpecItem  AsyKeySpecType  CipherSpecItem  SignSpecItem all enum value
+         * @tc.desc no parameters,use sync style of interface
          */
         it("Security_CryptoFramework_Enum_Func_0100", 0, async function (done) {
-            asyRandomCommon.testRandomEnumCommon();
+            try {
+                let result = asyRandomCommon.testRandomEnumCommon();
+                expect(result).assertTrue();
+            } catch (err) {
+                console.error("0100 Enum catch error:" + err);
+                expect(err.code == 401).assertTrue();
+            }
             done();
         });
     });

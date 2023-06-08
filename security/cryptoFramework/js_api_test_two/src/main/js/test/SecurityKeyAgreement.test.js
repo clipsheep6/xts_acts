@@ -17,10 +17,11 @@
 import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
 import * as asyPromise from "./utils/asymmetric/publicAsymmetricPromise";
 import * as asyCommon from "./utils/common/publicDoSpec";
+import cryptoFramework from "@ohos.security.cryptoFramework";
 
 export default function SecurityKeyAgreementJsunit() {
     describe("SecurityKeyAgreementJsunit", function () {
-        console.info("##########start SecurityKeyAgreementJsunit##########");
+        console.log("##########start SecurityKeyAgreementJsunit##########");
         beforeAll(function () {
         });
         afterEach(function () {
@@ -28,8 +29,8 @@ export default function SecurityKeyAgreementJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_KeyAgreement_Func_0100
-         * @tc.name Key negotiation scenario testing
-         * @tc.desc the type of secret key is "ECC", use promise style of interface
+         * @tc.name Test the scenario of key agreement using ECC and expect a successful result.
+         * @tc.desc the type of secret key is "ECC"(No length), use promise style of interface
          */
         it(
             "Security_CryptoFramework_KeyAgreement_Func_0100",
@@ -37,13 +38,13 @@ export default function SecurityKeyAgreementJsunit() {
             async function (done) {
                 await asyPromise
                     .keyAgreementProcess("ECC")
-                    .then((data) => {
-                        expect(data == null).assertTrue();
+                    .then((result) => {
+                        expect(result).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
                             "AsyPromise keyAgreementProcess catch error: " +
-                            err.code
+                            err
                         );
                         expect(err.code == undefined).assertTrue();
                     });
@@ -53,8 +54,8 @@ export default function SecurityKeyAgreementJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_KeyAgreement_Func_0200
-         * @tc.name Key negotiation exception scenario testing
-         * @tc.desc the type of secret key is "ECC1024", use promise style of interface
+         * @tc.name Input illegal algorithm for key agreement testing scenario, expect to return failure.
+         * @tc.desc the type of secret key is "ECC1024"(illegal algorithm), use promise style of interface
          */
         it(
             "Security_CryptoFramework_KeyAgreement_Func_0200",
@@ -62,15 +63,15 @@ export default function SecurityKeyAgreementJsunit() {
             async function (done) {
                 await asyPromise
                     .keyAgreementProcess("ECC1024")
-                    .then((data) => {
-                        expect(data == null).assertTrue();
+                    .then((result) => {
+                        expect(result).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
                             "AsyPromise keyAgreementProcess catch error: " +
-                            err.code
+                            err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
                 done();
             }
@@ -85,26 +86,19 @@ export default function SecurityKeyAgreementJsunit() {
             "Security_CryptoFramework_KeyAgreement_Func_0300",
             0,
             async function (done) {
-                await asyPromise
-                    .keyAgreementGetAlgNameProcess("ECC521")
-                    .then((data) => {
-                        expect(data == null).assertTrue();
-                    })
-                    .catch((err) => {
-                        console.error(
-                            "AsyPromise keyAgreementProcess catch error: " +
-                            err
-                        );
-                        expect(null).assertFail();
-                    });
+                var globalECDHData = cryptoFramework.createKeyAgreement("ECC521");
+                console.log("[Promise]: globalECDHData.algName : " + globalECDHData.algName);
+                expect(globalECDHData.algName == "ECC521").assertTrue();
                 done();
             }
         );
 
         /**
          * @tc.number Security_CryptoFramework_KeyAgreement_Func_0400
-         * @tc.name Incoming Structure Test Key Negotiation Scenario
-         * @tc.desc Pass in the ECCCommon structure with a key type of "ECC521" and use a promise style interface
+         * @tc.name use EccCommon structure and "ECC521" for key agreement scenario testing,expect a successful return.
+         * @tc.desc use the ECCCommon structure to create AsyKeyGenerator object
+         * a key type of "ECC521" to create KeyAgreement object
+         * use a promise style interface
          */
         it(
             "Security_CryptoFramework_KeyAgreement_Func_0400",
@@ -112,15 +106,15 @@ export default function SecurityKeyAgreementJsunit() {
             async function (done) {
                 await asyPromise
                     .keyAgreementBySpecProcess(asyCommon.genEccCommonSpec(), "ECC521")
-                    .then((data) => {
-                        expect(data == null).assertTrue();
+                    .then((result) => {
+                        expect(result).assertTrue();
                     })
                     .catch((err) => {
                         console.error(
                             "AsyPromise keyAgreementBySpecProcess catch error: " +
                             err
                         );
-                        expect(err.code == undefined).assertTrue();
+                        expect(err.code == 401).assertTrue();
                     });
                 done();
             }
@@ -128,8 +122,9 @@ export default function SecurityKeyAgreementJsunit() {
 
         /**
          * @tc.number Security_CryptoFramework_KeyAgreement_Func_0500
-         * @tc.name Incoming Structure Test Key Negotiation Scenario
-         * @tc.desc Pass in the RSAKeyPar structure with a key type of "ECC521" and use a promise style interface
+         * @tc.name use RsaKeyPair structure and "ECC521" for key agreement scenario testing,expect a successful return.
+         * @tc.desc use the RsaKeyPair structure to create AsyKeyGenerator object
+         * a key type of "ECC521" to create KeyAgreement object
          */
         it(
             "Security_CryptoFramework_KeyAgreement_Func_0500",

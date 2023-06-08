@@ -22,14 +22,17 @@ function testRandomEnumCommon() {
     expect(102).assertEqual(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR);
     expect(103).assertEqual(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
     expect(104).assertEqual(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM);
+
     expect(100).assertEqual(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
     expect(101).assertEqual(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
     expect(102).assertEqual(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
     expect(103).assertEqual(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+
     expect(0).assertEqual(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC);
     expect(1).assertEqual(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC);
     expect(2).assertEqual(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC);
     expect(3).assertEqual(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+
     expect(101).assertEqual(cryptoFramework.AsyKeySpecItem.DSA_P_BN);
     expect(102).assertEqual(cryptoFramework.AsyKeySpecItem.DSA_Q_BN);
     expect(103).assertEqual(cryptoFramework.AsyKeySpecItem.DSA_G_BN);
@@ -51,6 +54,7 @@ function testRandomEnumCommon() {
     expect(301).assertEqual(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
     expect(302).assertEqual(cryptoFramework.AsyKeySpecItem.RSA_SK_BN);
     expect(303).assertEqual(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
+    return true;
 }
 
 export { testRandomEnumCommon };

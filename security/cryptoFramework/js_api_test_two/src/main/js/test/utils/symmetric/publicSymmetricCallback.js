@@ -216,9 +216,7 @@ async function encryptAndDecryptNormalProcess(
                         globalCipherText = { data: globalCipherText };
                     }
                 }
-                return initCipher(
-                    cipherGenerator,
-                    decryptMode,
+                return initCipher(cipherGenerator, decryptMode,
                     globalKey,
                     globalParams
                 );
