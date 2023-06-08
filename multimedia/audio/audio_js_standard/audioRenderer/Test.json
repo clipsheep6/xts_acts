@@ -1,7 +1,7 @@
 {
     "description": "Configuration for audio manager Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "1500000",
         "package": "ohos.acts.multimedia.audio.audiorenderer",
         "shell-timeout": "60000"

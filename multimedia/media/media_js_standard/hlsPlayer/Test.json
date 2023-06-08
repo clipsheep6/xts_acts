@@ -1,7 +1,7 @@
 {
     "description": "Configuration for hls player Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "2000000",
         "package": "ohos.acts.multimedia.media.hlsplayer",
 		"shell-timeout": "60000"

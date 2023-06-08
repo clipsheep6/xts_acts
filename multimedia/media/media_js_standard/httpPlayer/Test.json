@@ -1,7 +1,7 @@
 {
     "description": "Configuration for httpplayer Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "2000000",
         "package": "ohos.acts.multimedia.http.httpplayer",
 		"shell-timeout": "60000"

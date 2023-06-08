@@ -1,7 +1,7 @@
 {
     "description": "Configuration for Image Tests",
     "driver": {
-        "type": "JSUnitTest",
+        "type": "OHJSUnitTest",
         "test-timeout": "300000",
         "package": "ohos.acts.multimedia.image.Creator",
 		"shell-timeout": "120000"
