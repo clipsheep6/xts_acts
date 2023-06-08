@@ -1,0 +1,18 @@
+{
+    "description": "Config for USB ddk test cases",
+    "driver": {
+        "module-name": "ActsUsbDdkTest",
+        "native-test-timeout": "150000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsUsbDdkTest->/data/local/tmp/ActsUsbDdkTest"
+            ]
+        }
+    ]
+}
