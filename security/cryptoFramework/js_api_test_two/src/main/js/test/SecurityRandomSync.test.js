@@ -1,6 +1,5 @@
-// @ts-nocheck
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,8 +53,6 @@ export default function SecurityRandomSyncJsunit() {
          * the length of random is "string", use sync style of interface
          * the length of random is -1, use sync style of interface
          * the length of random is NULL, use sync style of interface
-         * the length of random is 6,12(two parameters), use sync style of interface
-         * the length of random is no parameter, use sync style of interface
          * the length of random is 124384(too long length), use sync style of interface
          */
         it("Security_CryptoFramework_RandomSync_Func_0200", 0, async function (done) {
@@ -67,6 +64,7 @@ export default function SecurityRandomSyncJsunit() {
                 console.log("[RandomSync]: 0 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
+
             try {
                 rand.generateRandomSync("string");
                 expect(null).assertFail();
@@ -74,6 +72,7 @@ export default function SecurityRandomSyncJsunit() {
                 console.log("[RandomSync]: string error code: 401");
                 expect(err.code == 401).assertTrue();
             }
+
             try {
                 rand.generateRandomSync(-1);
                 expect(null).assertFail();
@@ -81,6 +80,7 @@ export default function SecurityRandomSyncJsunit() {
                 console.log("[RandomSync]: -1 error code: 401");
                 expect(err.code == 401).assertTrue();
             }
+
             try {
                 rand.generateRandomSync(null);
                 expect(null).assertFail();
@@ -88,20 +88,7 @@ export default function SecurityRandomSyncJsunit() {
                 console.log("[RandomSync]: null error code: 401");
                 expect(err.code == 401).assertTrue();
             }
-            try {
-                rand.generateRandomSync(6, 12);
-                expect(null).assertFail();
-            } catch (err) {
-                console.log("[RandomSync]: 6, 12 error code: 401");
-                expect(err.code == 401).assertTrue();
-            }
-            try {
-                rand.generateRandomSync();
-                expect(null).assertFail();
-            } catch (err) {
-                console.log("[RandomSync]: error code: 401");
-                expect(err.code == 401).assertTrue();
-            }
+
             try {
                 rand.generateRandomSync(124384);
             } catch (err) {

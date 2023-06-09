@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -193,26 +193,6 @@ async function initCipher(cipherGenerator, mode, key, params) {
                     err +
                     "mode is " +
                     mode
-                );
-                reject(err);
-            });
-    });
-}
-
-async function updateCipher(cipherGenerator, dataBlob) {
-    return new Promise((resolve, reject) => {
-        cipherGenerator
-            .update(dataBlob)
-            .then(() => {
-                console.log("[Promise] cipherGenerator update success! dataBlob is : " + dataBlob);
-                resolve("update success");
-            })
-            .catch((err) => {
-                console.error(
-                    "[Promise]cipherGenerator update failed. error is " +
-                    err +
-                    "dataBlob is " +
-                    dataBlob
                 );
                 reject(err);
             });

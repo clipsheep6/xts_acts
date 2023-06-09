@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,7 +44,7 @@ async function generateSpecCommonAsyKeyPair(asyKeySpec, type) {
                 resolve(asyKeyPair);
             })
             .catch((err) => {
-                console.error("Security_CryptoFramework [Promise] generateSpecAsyKeyPair failed. error is " + err);
+                console.error("[Promise] generateSpecAsyKeyPair failed. error is " + err);
                 reject(err);
             })
     });
@@ -69,7 +69,7 @@ async function generatePubKeyBySpec(asyKeySpec, type) {
             console.log("Security_CryptoFramework asyKeyPair = " + asyKeyPair)
             resolve(asyKeyPair);
         }).catch((err) => {
-            console.error("Security_CryptoFramework [Promise] generatePriKeyByCommonSpec failed. error is " + err);
+            console.error("[Promise] generatePriKeyByCommonSpec failed. error is " + err);
             reject(err);
         })
     });
@@ -91,7 +91,7 @@ async function generatePriKeyBySpec(asyKeySpec, type) {
             console.log("Security_CryptoFramework asyKeyPair = " + asyKeyPair)
             resolve(asyKeyPair);
         }).catch((err) => {
-            console.error("Security_CryptoFramework [Promise] generateSpecAsyKeyPair failed. error is " + err);
+            console.error("[Promise] generateSpecAsyKeyPair failed. error is " + err);
             reject(err);
         })
     });
@@ -121,7 +121,7 @@ async function generateSpecKeyPair(asyKeySpec, type) {
             console.log("Security_CryptoFramework asyKeyPair = " + asyKeyPair)
             resolve(asyKeyPair);
         }).catch((err) => {
-            console.error("Security_CryptoFramework [Promise] generateSpecAsyKeyPair failed. error is " + err);
+            console.error("[Promise] generateSpecAsyKeyPair failed. error is " + err);
             reject(err);
         })
     });
@@ -155,10 +155,10 @@ async function generateByCommonSpec(asyKeySpec, state) {
     return new Promise((resolve, reject) => {
         let asyKeyPairSpec = createAsyKeyGeneratorBySpec(asyKeySpec);
         generateSpecCommonAsyKeyPair(asyKeyPairSpec, state).then((asyKeyPair) => {
-                console.log("Security_CryptoFramework [Promise] generatorByCommonSpec asyKeyPair " + asyKeyPair)
+                console.log("[Promise] generatorByCommonSpec asyKeyPair " + asyKeyPair)
                 resolve();
             }).catch((err) => {
-                console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+                console.error("[Promise] generatorByCommonSpec failed. error is " + err);
                 reject(err);
             })
     });
@@ -174,7 +174,7 @@ async function generateByKeyPairSpec(asyKeySpec, state) {
             console.log("Security_CryptoFramework generatorByCommonSpec priKey " + priKey)
             return generatePubKeyBySpec(asyKeyPairSpec, state);
         }).then(() => {
-            resolve();
+            resolve(true);
         }).catch((err) => {
             console.error("Security_CryptoFramework generatorByCommonSpec failed. error is " + err);
             reject(err);
@@ -186,7 +186,7 @@ async function generateByPubKeySpec(asyKeySpec, state) {
     return new Promise((resolve, reject) => {
         let asyKeyPairSpec = createAsyKeyGeneratorBySpec(asyKeySpec);
         generateByPubKeyPair(asyKeyPairSpec, state).then(() => {
-            resolve();
+            resolve(true);
         }).catch((err) => {
             console.error("[Promise] generateByPubKeySpec failed. error is " + err);
             reject(err);
@@ -200,7 +200,7 @@ async function generateBySpecKeyPair(asyKeySpec) {
             let globalKeyPair = keyPair;
             resolve(globalKeyPair);
         }).catch((err) => {
-            console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+            console.error("[Promise] generatorByCommonSpec failed. error is " + err);
             reject(err);
         })
     });
@@ -216,7 +216,7 @@ async function rsaPriGetAsyKeySpec(asyKeySpec) {
             console.log("Security_CryptoFramework RSAPUB n:" + n);
             resolve();
         }).catch (err => {
-            console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+            console.error("[Promise] generatorByCommonSpec failed. error is " + err);
             reject(err);
         });
     });
@@ -236,7 +236,7 @@ async function dsaPubGetAsyKeySpec(asyKeySpec) {
             console.log("Security_CryptoFramework DSAPUB g:" + g);
             resolve();
         }).catch(err => {
-            console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+            console.error("[Promise] generatorByCommonSpec failed. error is " + err);
             reject(err);
         });
     });
@@ -268,7 +268,7 @@ async function eccPriGetAsyKeySpec(asyKeySpec) {
             console.log("Security_CryptoFramework ECCPUB fieldSize :" + fieldSize);
             resolve();
         }).catch (err => {
-            console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+            console.error("[Promise] generatorByCommonSpec failed. error is " + err);
             reject(err);
         });
     });
@@ -287,7 +287,7 @@ async function clearMemGetAsyKeySpec(asyKeySpec) {
             gloablPriKey.clearMem();
             resolve(false);
         }catch(err){
-            console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+            console.error("[Promise] generatorByCommonSpec failed. error is " + err);
             reject(err);
         }
     });

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -666,7 +666,7 @@ async function generateSpecKeyPair(asyKeySpec) {
             console.info("Security_CryptoFramework asyKeyPair = " + asyKeyPair)
             resolve(asyKeyPair);
         }).catch((err) => {
-            console.error("Security_CryptoFramework [Promise] generateSpecAsyKeyPair failed. error is " + err);
+            console.error("[Promise] generateSpecAsyKeyPair failed. error is " + err);
             reject(err);
         })
     });
@@ -689,8 +689,6 @@ async function keyGenerationBySpecProcess(asyKeySpec) {
             }).then((conKeyPair) => {
             let conPrikey = conKeyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_SK_BN);
             let conPubkey = conKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_PK_BN);
-            console.log("keyGenerationBySpecProcess conprikey " + conPrikey);
-            console.log("keyGenerationBySpecProcess conpubkey " + conPubkey);
             if(pubkey == conPubkey && prikey == conPrikey) {
                 resolve(true);
             }else{

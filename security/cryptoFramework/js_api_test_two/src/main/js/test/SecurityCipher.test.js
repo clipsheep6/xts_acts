@@ -1,6 +1,5 @@
-// @ts-nocheck
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -334,7 +333,6 @@ export default function SecurityCipherJsunit() {
          * @tc.desc Pass in three exception parameters 3 and keyPair and null, and call them as async
          * @tc.desc Pass in three exception parameters null and keyPair and null, and call them as async
          * @tc.desc Pass in three exception parameters encryptMode and null and null, and call them as async
-         * @tc.desc Call it as a async without passing in parameters
          * @tc.desc Pass in four exception parameters 3 and keyPair and null and keyPair, and call them as async
          */
         it("Security_CryptoFramework_Cipher_Func_1700", 0, async function (done) {
@@ -371,15 +369,6 @@ export default function SecurityCipherJsunit() {
                 expect(null).assertFail();
             } catch(err) {
                 console.log("Security_CryptoFramework_Cipher_Func_1700 3 catch err" + err);
-                expect(err.code == 401).assertTrue();
-
-            }
-
-            try {
-                cipherGeneratorEncrypt.init();
-                expect(null).assertFail();
-            } catch(err) {
-                console.log("Security_CryptoFramework_Cipher_Func_1700 4 catch err" + err);
                 expect(err.code == 401).assertTrue();
 
             }

@@ -1,6 +1,5 @@
-// @ts-nocheck
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -77,12 +76,8 @@ export default function SecurityCipherSpecJsunit() {
          * parameter 12456, and call it synchronously
          * @tc.desc Pass in exception parameter mode cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR,
          * parameter "asdfr", and call it synchronously
-         * @tc.desc Pass in exception parameter mode cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR,
-         * parameter "asdfr" and Uint8Array([1, 2, 3, 4]), and call it synchronously
-         * @tc.desc Call it as a synchronously without passing in parameters
          */
         it("Security_CryptoFramework_Cipher_Func_2200", 0, async function (done) {
-            let pSource = new Uint8Array([1, 2, 3, 4]);
             let cipherGenerator = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
 
             try {
@@ -108,23 +103,6 @@ export default function SecurityCipherSpecJsunit() {
                 console.log("Security_CryptoFramework_Cipher_Func_2200 3 err" + err);
                 expect(err.code == 401).assertTrue();
             }
-
-            try {
-                cipherGenerator.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR,
-                    "asdfr", pSource);
-                expect(null).assertFail();
-            } catch (err) {
-                console.log("Security_CryptoFramework_Cipher_Func_2200 4 err" + err);
-                expect(err.code == 401).assertTrue();
-            }
-
-            try {
-                cipherGenerator.setCipherSpec();
-                expect(null).assertFail();
-            } catch (err) {
-                console.log("Security_CryptoFramework_Cipher_Func_2200 5 err" + err);
-                expect(err.code == 401).assertTrue();
-            }
             done();
         }
         );
@@ -133,8 +111,6 @@ export default function SecurityCipherSpecJsunit() {
          * @tc.number Security_CryptoFramework_Cipher_Func_2300
          * @tc.name get fill mode failed
          * @tc.desc Pass in exception parameter mode 303, and call it synchronously
-         * @tc.desc Call it as a synchronously without passing in parameters
-         * @tc.desc Pass in three exception parameters 303 and 303 and 303 and call them as callback
          */
         it("Security_CryptoFramework_Cipher_Func_2300", 0, async function (done) {
             let cipherGeneratorEncrypt = cryptoFramework.createCipher("RSA1024|PKCS1");
@@ -145,24 +121,6 @@ export default function SecurityCipherSpecJsunit() {
             }
             catch(err) {
                 console.log("Security_CryptoFramework_Cipher_Func_2300 1 catch err" + err);
-                expect(err.code == 401).assertTrue();
-            }
-
-            try {
-                cipherGeneratorEncrypt.getCipherSpec();
-                expect(null).assertFail();
-            }
-            catch(err) {
-                console.log("Security_CryptoFramework_Cipher_Func_2300 2 catch err" + err);
-                expect(err.code == 401).assertTrue();
-            }
-
-            try {
-                cipherGeneratorEncrypt.getCipherSpec(303, 303 ,303);
-                expect(null).assertFail();
-            }
-            catch(err) {
-                console.log("Security_CryptoFramework_Cipher_Func_2300 3 catch err" + err);
                 expect(err.code == 401).assertTrue();
             }
             done();

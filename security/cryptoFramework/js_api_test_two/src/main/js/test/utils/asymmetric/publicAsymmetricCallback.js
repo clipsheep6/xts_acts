@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -214,6 +214,7 @@ async function signForSignFailed(signGenerator, dataBlob, itemType) {
                         resolve(signOutput);
                     }
                 });
+
                 break;
             case 2:
                 signGenerator.sign("", (err, signOutput) => {
@@ -288,7 +289,6 @@ async function verifyForVerifyFailed(verifyGenerator, dataBlob, signDataBlob, ve
             case 0:
                 verifyGenerator.verify(dataBlob, (err, verifyOutput) => {
                     if (err) {
-                        console.error("[Callback]signGenerator sign failed. error is " + err);
                         reject(err);
                     } else {
                         resolve(verifyOutput);
@@ -298,7 +298,6 @@ async function verifyForVerifyFailed(verifyGenerator, dataBlob, signDataBlob, ve
             case 1:
                 verifyGenerator.verify(dataBlob, null, (err, verifyOutput) => {
                     if (err) {
-                        console.error("[Callback]signGenerator sign failed. error is " + err);
                         reject(err);
                     } else {
                         resolve(verifyOutput);
@@ -308,7 +307,6 @@ async function verifyForVerifyFailed(verifyGenerator, dataBlob, signDataBlob, ve
             case 2:
                 verifyGenerator.verify(dataBlob, "", (err, verifyOutput) => {
                     if (err) {
-                        console.error("[Callback]signGenerator sign failed. error is " + err);
                         reject(err);
                     } else {
                         resolve(verifyOutput);
@@ -318,7 +316,6 @@ async function verifyForVerifyFailed(verifyGenerator, dataBlob, signDataBlob, ve
             case 3:
                 verifyGenerator.verify(dataBlob, signDataBlob, signDataBlob, (err, verifyOutput) => {
                     if (err) {
-                        console.error("[Callback]signGenerator sign failed. error is " + err);
                         reject(err);
                     } else {
                         resolve(verifyOutput);
@@ -328,7 +325,6 @@ async function verifyForVerifyFailed(verifyGenerator, dataBlob, signDataBlob, ve
             case 4:
                 verifyGenerator.verify(dataBlob, signDataBlob, (err, verifyOutput) => {
                     if (err) {
-                        console.error("[Callback]signGenerator sign failed. error is " + err);
                         reject(err);
                     } else {
                         resolve(verifyOutput);

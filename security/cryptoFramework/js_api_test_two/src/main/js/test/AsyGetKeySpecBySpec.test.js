@@ -1,6 +1,5 @@
-// @ts-nocheck
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -49,16 +48,14 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0100", 0, async function (done) {
             let rsaKeyPairSpec = genRsa2048KeyPairSpec();
             let asyKeyGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-            await asyKeyGeneratorSpec.generateKeyPair((err, keyPair) => {
-                if (err) {
-                    console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
-                    return (err);
-                } else {
+            await asyKeyGeneratorSpec.generateKeyPair().then((keyPair) => {
                     let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
                     expect(pk == rsaKeyPairSpec.pk).assertTrue();
                     let n = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
                     expect(n == rsaKeyPairSpec.params.n).assertTrue();
-                }
+            }).catch(err => {
+                console.error("Security_CryptoFramework_AsyKeySpec_Func_0100 failed. error is " + err);
+                expect(null).assertFail();
             });
             done();
         });
@@ -83,7 +80,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
                 let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_PK_BN);
                 expect(pk == dsaKeyPairSpec.pk).assertTrue();
             }).catch(err => {
-                console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+                console.error("Security_CryptoFramework_AsyKeySpec_Func_0200 failed. error is " + err);
                 expect(null).assertFail();
             });
             done();
@@ -100,44 +97,36 @@ export default function AsyGetKeySpecBySpecJsunit() {
             let eccKeyPairSpec = genEccKeyTypeSpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
             let asyKeyGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(eccKeyPairSpec);
             let callbackKeyPair;
-            await asyKeyGeneratorSpec.generateKeyPair((err, keyPair) => {
-                if (err) {
-                    console.error("Security_CryptoFramework [Callback] generatorByCommonSpec failed. error is " + err);
-                    return (err);
-                } else {
-                    callbackKeyPair=keyPair;
-                    try {
-                        let p = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-                        expect(p == eccKeyPairSpec.params.field.p).assertTrue();
-                        let a = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
-                        expect(a == eccKeyPairSpec.params.a).assertTrue();
-                        let b = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
-                        expect(b == eccKeyPairSpec.params.b).assertTrue();
-                        let gx = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
-                        expect(gx == eccKeyPairSpec.params.g.x).assertTrue();
-                        let gy = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
-                        expect(gy == eccKeyPairSpec.params.g.y).assertTrue();
-                        let n = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
-                        expect(n == eccKeyPairSpec.params.n).assertTrue();
-                        let h = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
-                        expect(h == eccKeyPairSpec.params.h).assertTrue();
-                        let pkx = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
-                        expect(pkx == eccKeyPairSpec.pk.x).assertTrue();
-                        let pky = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
-                        expect(pky == eccKeyPairSpec.pk.y).assertTrue();
-                        let fieldType = callbackKeyPair.pubKey.getAsyKeySpec(
-                        cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
-                        expect(fieldType == eccKeyPairSpec.params.field.fieldType).assertTrue();
-                        let fieldSize = callbackKeyPair.pubKey.getAsyKeySpec(
-                        cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
-                        expect(fieldSize == 224).assertTrue();
-                        return;
-                    }catch{
-                        expect(null).assertFail();
-                    }
-                }
+            await asyKeyGeneratorSpec.generateKeyPair().then((keyPair) => {
+                callbackKeyPair = keyPair;
+                let p = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+                expect(p == eccKeyPairSpec.params.field.p).assertTrue();
+                let a = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
+                expect(a == eccKeyPairSpec.params.a).assertTrue();
+                let b = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
+                expect(b == eccKeyPairSpec.params.b).assertTrue();
+                let gx = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
+                expect(gx == eccKeyPairSpec.params.g.x).assertTrue();
+                let gy = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
+                expect(gy == eccKeyPairSpec.params.g.y).assertTrue();
+                let n = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
+                expect(n == eccKeyPairSpec.params.n).assertTrue();
+                let h = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
+                expect(h == eccKeyPairSpec.params.h).assertTrue();
+                let pkx = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+                expect(pkx == eccKeyPairSpec.pk.x).assertTrue();
+                let pky = callbackKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+                expect(pky == eccKeyPairSpec.pk.y).assertTrue();
+                let fieldType = callbackKeyPair.pubKey.getAsyKeySpec(
+                cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
+                expect(fieldType == eccKeyPairSpec.params.field.fieldType).assertTrue();
+                let fieldSize = callbackKeyPair.pubKey.getAsyKeySpec(
+                cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
+                expect(fieldSize == 224).assertTrue();
+            }).catch(err => {
+                    console.error("Security_CryptoFramework_AsyKeySpec_Func_0300 failed. error is " + err);
+                expect(null).assertFail();
             });
-
             done();
         });
 
@@ -155,7 +144,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
                 let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_SK_BN);
                 expect(sk == rsaKeyPairSpec.sk).assertTrue();
             }).catch(err => {
-                console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+                console.error("Security_CryptoFramework_AsyKeySpec_Func_0400 failed. error: " + err);
                 expect(null).assertFail();
             });
             done();
@@ -169,24 +158,18 @@ export default function AsyGetKeySpecBySpecJsunit() {
         it("Security_CryptoFramework_AsyKeySpec_Func_0500", 0, async function (done) {
             let dsaKeyPairSpec = genDsa2048KeyPairSpec();
             let asyKeyGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(dsaKeyPairSpec);
-            await asyKeyGeneratorSpec.generateKeyPair((err, keyPair) => {
-                if (err) {
-                    console.error("Security_CryptoFramework [Callback] getAsyKeySpec failed. error is " + err);
-                    return (err);
-                } else {
-                    try {
-                        let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_P_BN);
-                        expect(p == dsaKeyPairSpec.params.p).assertTrue();
-                        let q = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_Q_BN);
-                        expect(q == dsaKeyPairSpec.params.q).assertTrue();
-                        let g = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_G_BN);
-                        expect(g == dsaKeyPairSpec.params.g).assertTrue();
-                        let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_SK_BN);
-                        expect(sk == dsaKeyPairSpec.sk).assertTrue();
-                    }catch {
-                        expect(null).assertFail();
-                    }
-                }
+            await asyKeyGeneratorSpec.generateKeyPair().then((keyPair) => {
+                let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_P_BN);
+                expect(p == dsaKeyPairSpec.params.p).assertTrue();
+                let q = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_Q_BN);
+                expect(q == dsaKeyPairSpec.params.q).assertTrue();
+                let g = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_G_BN);
+                expect(g == dsaKeyPairSpec.params.g).assertTrue();
+                let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_SK_BN);
+                expect(sk == dsaKeyPairSpec.sk).assertTrue();
+            }).catch(err => {
+                console.error("Security_CryptoFramework_AsyKeySpec_Func_0500 failed. error: " + err);
+                expect(null).assertFail();
             });
             done();
         });
@@ -223,7 +206,7 @@ export default function AsyGetKeySpecBySpecJsunit() {
                 expect(fieldSize == 224).assertTrue();
                 return;
             }).catch(err => {
-                console.error("Security_CryptoFramework [Promise] generatorByCommonSpec failed. error is " + err);
+                console.error("Security_CryptoFramework_AsyKeySpec_Func_0600 failed. error is " + err);
                 expect(null).assertFail();
             });
             done();
@@ -241,24 +224,24 @@ export default function AsyGetKeySpecBySpecJsunit() {
             let rsaKeyGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
             var rsaKeyPair;
             await rsaKeyGeneratorSpec.generateKeyPair().then((keyPair) => {
-                    rsaKeyPair = keyPair;
+                rsaKeyPair = keyPair;
             });
-            try{
+            try {
                 rsaKeyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_P_BN);
-                expect(null).assertFalse();;
-            }catch(err){
+                expect(null).assertFalse();
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
-            try{
+            try {
                 rsaKeyPair.pubKey.getAsyKeySpec(1024);
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
-            try{
+            try {
                 rsaKeyPair.pubKey.getAsyKeySpec();
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
             done();
@@ -278,31 +261,31 @@ export default function AsyGetKeySpecBySpecJsunit() {
             let rsaKeyGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
             var rsaKeyPair;
             await rsaKeyGeneratorSpec.generateKeyPair().then((keyPair) => {
-                rsaKeyPair = keyPair
+                rsaKeyPair = keyPair;
             });
-            try{
+            try {
                 rsaKeyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DSA_P_BN);
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
-            try{
+            try {
                 rsaKeyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN,
-                    cryptoFramework.AsyKeySpecItem.RSA_N_BN);
+                cryptoFramework.AsyKeySpecItem.RSA_N_BN);
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
-            try{
+            try {
                 rsaKeyPair.priKey.getAsyKeySpec(1024);
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
-            try{
+            try {
                 rsaKeyPair.priKey.getAsyKeySpec();
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err.code == 401).assertTrue();
             }
             done();
@@ -319,10 +302,10 @@ export default function AsyGetKeySpecBySpecJsunit() {
             await dsaKeyGeneratorSpec.generateKeyPair().then((keyPair) => {
                 dsaKeyPair = keyPair;
             });
-            try{
+            try {
                 dsaKeyPair.pubKey.clearMem();
                 expect(null).assertFalse();
-            }catch(err){
+            } catch (err) {
                 expect(err != null).assertTrue();
             }
             done();

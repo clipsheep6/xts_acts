@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,7 +41,6 @@ async function randomSyncabilityProcess() {
       console.info("testRandomSyncabilityProcess start time is :" + starttimestamp);
       for (let index = 0; index < 1000; index++) {
         console.info("[Callback] testRandomSyncabilityProcess start index:" + index);
-        //sleep(600);
         randomSync(32);
         console.info("[Callback] testRandomSyncabilityProcess index:" + index);
       }
