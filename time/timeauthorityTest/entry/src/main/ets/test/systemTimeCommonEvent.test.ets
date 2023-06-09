@@ -20,37 +20,37 @@ import commonEvent from '@ohos.commonEvent'
 export default function systemTimeCommonEventTest() {
   describe('systemTimeCommonEventTest', function () {
     console.info('====>---------------systemTimeCommonEventTest start-----------------------');
-    
+
     /**
      * @tc.number    SUB_systemTime_commonEnevt_timeChanged_0010
-     * @tc.name      
-     * @tc.desc      
+     * @tc.name
+    * @tc.desc
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it('SUB_systemTime_commonEvent_timeChanged_0010', 0, async function (done) {
       function unSubscriberCallback (err){
-          console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 unSubscriberCallback start");
-          if (err){
-              console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 unSubscriberCallback failed:" +
-              JSON.stringify(err));
-          } else {
-              console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 unSubscriberCallback finish")
-          }
+        console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 unSubscriberCallback start");
+        if (err){
+          console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 unSubscriberCallback failed:" +
+          JSON.stringify(err));
+        } else {
+          console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 unSubscriberCallback finish")
+        }
       }
 
       function subscriberCallback (err, data){
-          console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 subscriberCallback data:"
-          + JSON.stringify(data));
-          commonEvent.unsubscribe(subscriber, unSubscriberCallback);
-          expect(data.event).assertEqual('usual.event.TIME_CHANGED');
-          console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 end")
-          done();
+        console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 subscriberCallback data:"
+        + JSON.stringify(data));
+        commonEvent.unsubscribe(subscriber, unSubscriberCallback);
+        expect(data.event).assertEqual('usual.event.TIME_CHANGED');
+        console.debug("====>SUB_systemTime_commonEvent_timeChanged_0010 end")
+        done();
       }
 
       var commonEventSubscribeInfo = {
-          events: ['usual.event.TIME_CHANGED']
+        events: ['usual.event.TIME_CHANGED']
       }
       var subscriber;
       commonEvent.createSubscriber(commonEventSubscribeInfo).then((data)=>{
@@ -68,34 +68,34 @@ export default function systemTimeCommonEventTest() {
 
     /**
      * @tc.number    SUB_systemTime_commonEvent_timeTick_0010
-     * @tc.name      
-     * @tc.desc      
+     * @tc.name
+    * @tc.desc
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it('SUB_systemTime_commonEvent_timeTick_0010', 0, async function (done) {
       function unSubscriberCallback (err){
-          console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 unSubscriberCallback start");
-          if (err){
-              console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 unSubscriberCallback failed:" +
-              JSON.stringify(err));
-          } else {
-              console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 unSubscriberCallback finish")
-          }
+        console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 unSubscriberCallback start");
+        if (err){
+          console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 unSubscriberCallback failed:" +
+          JSON.stringify(err));
+        } else {
+          console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 unSubscriberCallback finish")
+        }
       }
 
       function subscriberCallback (err, data){
-          console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 subscriberCallback data:"
-          + JSON.stringify(data));
-          commonEvent.unsubscribe(subscriber, unSubscriberCallback);
-          expect(data.event).assertEqual('usual.event.TIME_TICK');
-          console.debug("====>SUB_systemTime_commonEnevt_timeTick_0010 end")
-          done();
+        console.debug("====>SUB_systemTime_commonEvent_timeTick_0010 subscriberCallback data:"
+        + JSON.stringify(data));
+        commonEvent.unsubscribe(subscriber, unSubscriberCallback);
+        expect(data.event).assertEqual('usual.event.TIME_TICK');
+        console.debug("====>SUB_systemTime_commonEnevt_timeTick_0010 end")
+        done();
       }
 
       var commonEventSubscribeInfo = {
-          events: ['usual.event.TIME_TICK']
+        events: ['usual.event.TIME_TICK']
       }
       var subscriber;
       commonEvent.createSubscriber(commonEventSubscribeInfo).then((data)=>{
@@ -115,34 +115,34 @@ export default function systemTimeCommonEventTest() {
 
     /**
      * @tc.number    SUB_systemTime_commonEvent_timezoneChanged_0010
-     * @tc.name      
-     * @tc.desc      
+     * @tc.name
+    * @tc.desc
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it('SUB_systemTime_commonEvent_timezoneChanged_0010', 0, async function (done) {
       function unSubscriberCallback (err){
-          console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 unSubscriberCallback start");
-          if (err){
-              console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 unSubscriberCallback failed:" +
-              JSON.stringify(err));
-          } else {
-              console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 unSubscriberCallback finish")
-          }
+        console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 unSubscriberCallback start");
+        if (err){
+          console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 unSubscriberCallback failed:" +
+          JSON.stringify(err));
+        } else {
+          console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 unSubscriberCallback finish")
+        }
       }
 
       function subscriberCallback (err, data){
-          console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 subscriberCallback data:"
-          + JSON.stringify(data));
-          commonEvent.unsubscribe(subscriber, unSubscriberCallback);
-          expect(data.event).assertEqual('usual.event.TIMEZONE_CHANGED');
-          console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 end")
-          done();
+        console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 subscriberCallback data:"
+        + JSON.stringify(data));
+        commonEvent.unsubscribe(subscriber, unSubscriberCallback);
+        expect(data.event).assertEqual('usual.event.TIMEZONE_CHANGED');
+        console.debug("====>SUB_systemTime_commonEvent_timezoneChanged_0010 end")
+        done();
       }
 
       var commonEventSubscribeInfo = {
-          events: ['usual.event.TIMEZONE_CHANGED']
+        events: ['usual.event.TIMEZONE_CHANGED']
       }
       var subscriber;
       commonEvent.createSubscriber(commonEventSubscribeInfo).then((data)=>{
