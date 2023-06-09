@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../common/MessageManager';
+import systemTime from '@ohos.systemTime';
+import events_emitter from '@ohos.events.emitter';
+import common from '../../../common/Common';
 @Entry
 @Component
 struct SwiperAutoPlay_1Test {
-  messageManager:MessageManager = new MessageManager()
   onPageShow() {
     console.info('SwiperAutoPlay onPageShow');
   }
@@ -41,6 +42,19 @@ struct SwiperAutoPlay_1Test {
       .interval(1000)
       .itemSpace(0)
       .displayCount(1)
+      .onChange((index: number) => {
+        try{
+          systemTime.getCurrentTime().then((data) => {
+            common.emitEvent(data, 10)
+          }).catch((error) => {
+            console.error(`Failed to get systemTime. Cause:` + JSON.stringify(error));
+          });
+          console.info(index.toString())
+          common.emitEvent(index, 11)
+        } catch(error) {
+          console.error(`onChange failed. Cause:` + JSON.stringify(error));
+        }
+      })
     }.margin({ top: 5 })
   }
 }

@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 import {MessageManager,Callback} from '../../../common/MessageManager';
+import events_emitter from '@ohos.events.emitter';
+import common from '../../../common/Common';
+import systemTime from '@ohos.systemTime';
 @Entry
 @Component
 struct SwiperAutoPlay_2Test {
@@ -41,6 +44,18 @@ struct SwiperAutoPlay_2Test {
       .interval(1000)
       .itemSpace(0)
       .displayCount(1)
+      .onChange((index: number) => {
+        try{
+          systemTime.getCurrentTime().then((data) => {
+            common.emitEvent(data, 10)
+            console.log(`data is :` + data);
+          }).catch((error) => {
+            console.error(`Failed to get systemTime. Cause:` + JSON.stringify(error));
+          });
+        } catch(error) {
+          console.error(`onChange failed. Cause:` + JSON.stringify(error));
+        }
+      })
     }.margin({ top: 5 })
   }
 }
