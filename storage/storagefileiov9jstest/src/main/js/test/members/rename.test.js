@@ -15,7 +15,8 @@
 
 import featureAbility from '@ohos.ability.featureAbility';
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect, randomString
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  describe, it, expect, randomString, fileUri,
 } from '../Common';
 
 export default function fileIORename() {
@@ -235,6 +236,55 @@ describe('fileIO_fs_rename', function () {
       fileIO.unlinkSync(fpath);
       console.log('fileIO_test_rename_sync_008 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900016 && e.message == 'Cross-device link').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_RENAME_SYNC_0900
+   * @tc.name fileIO_test_rename_sync_009
+   * @tc.desc Test renameSync() interfaces.
+   * Rename the file by uri, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_rename_sync_009', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_rename_sync_009');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let newf = fpath + 'test';
+      fileIO.renameSync(uri, newf);
+      expect(fileIO.accessSync(newf)).assertTrue();
+      fileIO.unlinkSync(newf);
+    } catch (e) {
+      console.log('fileIO_test_rename_sync_009 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+  
+  /**
+   * @tc.number SUB_DF_FILEIO_RENAME_SYNC_0100
+   * @tc.name fileIO_test_rename_sync_001
+   * @tc.desc Test renameSync() interfaces.
+   * The path uri to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rename_sync_001', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_rename_sync_001');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      fileIO.renameSync(uri, fpath + 'test');
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_rename_sync_001 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
     }
   });
 
@@ -611,6 +661,137 @@ describe('fileIO_fs_rename', function () {
       });
     } catch (e) {
       console.log('fileIO_test_rename_async_013 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_RENAME_ASYNC_1400
+   * @tc.name fileIO_test_rename_async_014
+   * @tc.desc Test rename() interfaces. Promise.
+   * Rename the file by uri, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rename_async_014', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_rename_async_014');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let newf = fpath + '123';
+    let newUri = fileUri.getUriFromPath(newf);
+
+    try {
+      await fileIO.rename(uri, newf);
+      expect(fileIO.accessSync(newf)).assertTrue();
+      await fileIO.rename(newf, uri);
+      expect(fileIO.accessSync(fpath)).assertTrue();
+      await fileIO.rename(uri, newUri);
+      expect(fileIO.accessSync(newf)).assertTrue();
+      fileIO.unlinkSync(newf);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_rename_async_000 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_RENAME_ASYNC_1500
+   * @tc.name fileIO_test_rename_async_015
+   * @tc.desc Test rename() interfaces. Callback.
+   * Rename the file by uri, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rename_async_015', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_rename_async_015');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let newf = fpath + 'aaa';
+    let newUri = fileUri.getUriFromPath(newf);
+
+    try {
+      fileIO.rename(uri, newf, (err) => {
+        if (err) {
+          console.log('fileIO_test_rename_async_015 error package1: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(fileIO.accessSync(newf)).assertTrue();
+        fileIO.rename(newf, uri, (err) => {
+          if (err) {
+            console.log('fileIO_test_rename_async_015 error package2: ' + JSON.stringify(err));
+            expect(false).assertTrue();
+          }
+          expect(fileIO.accessSync(fpath)).assertTrue();
+          fileIO.rename(uri, newUri, (err) => {
+            if (err) {
+              console.log('fileIO_test_rename_async_015 error package3: ' + JSON.stringify(err));
+              expect(false).assertTrue();
+            }
+            expect(fileIO.accessSync(newf)).assertTrue();
+            fileIO.unlinkSync(newf);
+            done();
+          })
+        })
+      })
+    } catch (e) {
+      console.log('fileIO_test_rename_async_015 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_RENAME_ASYNC_1600
+   * @tc.name fileIO_test_rename_async_016
+   * @tc.desc Test rename() interfaces. Promise.
+   * The uri point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rename_async_016', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_rename_async_016');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      await fileIO.rename(uri, fpath + 'bbb');
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_rename_async_016 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_RENAME_ASYNC_0300
+   * @tc.name fileIO_test_rename_async_003
+   * @tc.desc Test rename() interfaces. Callback.
+   * The path point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rename_async_003', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_rename_async_003');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      fileIO.rename(uri, fpath + 'bbb', (err) => {
+        if (err) {
+          console.log('fileIO_test_rename_async_003 error: {message: ' + err.message + ', code: ' + err.code + '}');
+          expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+          done();
+        }
+      });
+    } catch (e) {
+      console.log('fileIO_test_rename_async_003 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });

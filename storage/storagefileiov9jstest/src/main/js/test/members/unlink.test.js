@@ -14,7 +14,7 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect, fileUri,
 } from '../Common';
 
 export default function fileIOUnlink() {
@@ -90,14 +90,62 @@ describe('fileIO_fs_unlink', function () {
    * @tc.number SUB_DF_FILEIO_UNLINK_SYNC_0300
    * @tc.name fileIO_test_unlink_sync_003
    * @tc.desc Test unlinkSync() interfaces.
+   * The uri point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_test_unlink_sync_003', 0, async function () {
+      let fpath = await nextFileName('fileIOTest');
+      let uri = fileUri.getUriFromPath(fpath)
+  
+      try {
+        fileIO.unlinkSync(uri);
+        expect(false).assertTrue();
+      } catch (e) {
+        console.log('fileIO_test_unlink_sync_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
+      }
+    });
+  
+    /**
+     * @tc.number SUB_DF_FILEIO_UNLINK_SYNC_0400
+     * @tc.name fileIO_test_unlink_sync_004
+     * @tc.desc Test unlinkSync() interfaces.
+     * Delete the file by uri, verify the normal function.
+     * @tc.size MEDIUM
+     * @tc.type Functoin
+     * @tc.level Level 0
+     * @tc.require
+     */
+    it('fileIO_test_unlink_sync_004', 0, async function () {
+      let fpath = await nextFileName('fileIO_test_unlink_sync_004');
+      let uri = fileUri.getUriFromPath(fpath);
+      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+  
+      try {
+        expect(fileIO.accessSync(fpath)).assertTrue();
+        fileIO.unlinkSync(uri);
+        expect(!fileIO.accessSync(fpath)).assertTrue();
+      } catch (e) {
+        console.log('fileIO_test_unlink_sync_004 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_UNLINK_SYNC_0500
+   * @tc.name fileIO_test_unlink_sync_005
+   * @tc.desc Test unlinkSync() interfaces.
    * The path refers to a directory, not a file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
    * @tc.require
    */
-  it('fileIO_test_unlink_sync_003', 0, async function () {
-    let dpath = await nextFileName('fileIO_test_unlink_sync_003');
+  it('fileIO_test_unlink_sync_005', 0, async function () {
+    let dpath = await nextFileName('fileIO_test_unlink_sync_005');
     fileIO.mkdirSync(dpath);
 
     try {
@@ -106,7 +154,7 @@ describe('fileIO_fs_unlink', function () {
       expect(false).assertTrue();
     } catch (e) {
       fileIO.rmdirSync(dpath);
-      console.log('fileIO_test_unlink_sync_003 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_test_unlink_sync_005 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900019 && e.message == 'Is a directory').assertTrue();
     }
   });
@@ -291,6 +339,115 @@ describe('fileIO_fs_unlink', function () {
     } catch (e) {
       console.log('fileIO_test_unlink_async_006 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FileIO_UNLINK_ASYNC_0700
+   * @tc.name fileIO_test_unlink_async_007
+   * @tc.desc Test unlinkAsync() interfaces. Promise.
+   * Delete the file by uri, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_unlink_async_007', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_unlink_async_007');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      expect(fileIO.accessSync(fpath)).assertTrue();
+      await fileIO.unlink(uri);
+      expect(!fileIO.accessSync(fpath)).assertTrue();
+      done();
+    } catch (e) {
+      console.log('fileIO_test_unlink_async_007 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FileIO_UNLINK_ASYNC_08 00
+   * @tc.name fileIO_test_unlink_async_008
+   * @tc.desc Test unlinkAsync() interfaces. Callback.
+   * Delete the file by uri, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_unlink_async_008', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_unlink_async_001');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      expect(fileIO.accessSync(fpath)).assertTrue();
+      fileIO.unlink(uri, (err) => {
+        if (err) {
+          console.log('fileIO_test_unlink_async_008 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(!fileIO.accessSync(fpath)).assertTrue();
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_unlink_async_008 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+  
+  /**
+   * @tc.number SUB_DF_FileIO_UNLINK_ASYNC_0900
+   * @tc.name fileIO_test_unlink_async_009
+   * @tc.desc Test unlink() interfaces. Callback.
+   * The uri point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_unlink_async_009', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_unlink_async_009');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      fileIO.unlink(uri, (err) => {
+        if (err) {
+          console.log('fileIO_test_unlink_async_009 error: {message: ' + err.message + ', code: ' + err.code + '}');
+          expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+          done();
+        }
+      });
+    } catch (e) {
+      console.log('fileIO_test_unlink_async_009 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FileIO_UNLINK_ASYNC_1000
+   * @tc.name fileIO_test_unlink_async_010
+   * @tc.desc Test unlink() interfaces. Promise.
+   * The uri point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_unlink_async_010', 0, async function (done) {
+    let fpath = await nextFileName('fileIOTest');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      await fileIO.unlink(uri);
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_unlink_async_010 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
+      done();
     }
   });
 });

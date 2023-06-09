@@ -14,7 +14,8 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, isIntNum, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  isIntNum, describe, it, expect, fileUri,
 } from '../Common';
 
 export default function fileIOAccess() {
@@ -24,7 +25,7 @@ describe('fileIO_fs_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESS_SYNC_0000
    * @tc.name fileIO_test_access_sync_000
    * @tc.desc Test accessSync() interface.
-   * This interface shall work properly in normal case.
+   * This interface shall work properly in normal case by path.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
@@ -52,18 +53,25 @@ describe('fileIO_fs_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESS_SYNC_0100
    * @tc.name fileIO_test_access_sync_001
    * @tc.desc Test accessSync() interface.
-   * The test file is not exist.
+   * This interface shall work properly in normal case by uri.
    * @tc.size MEDIUM
    * @tc.type Function
-   * @tc.level Level 3
+   * @tc.level Level 0
    * @tc.require
    */
   it('fileIO_test_access_sync_001', 0, async function () {
     let fpath = await nextFileName('fileIO_test_access_sync_001');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let ret = fileIO.accessSync(fpath);
-      expect(ret === false).assertTrue();
+      let uri = fileUri.getUriFromPath(fpath);
+      expect(fileIO.accessSync(uri)).assertTrue();
+      let file = fileIO.openSync(fpath);
+      expect(isIntNum(file.fd)).assertTrue();
+      let readlen = fileIO.readSync(file.fd, new ArrayBuffer(4096));
+      expect(readlen == FILE_CONTENT.length).assertTrue();
+      fileIO.closeSync(file);
+      fileIO.unlinkSync(fpath);
     } catch (e) {
       console.log('fileIO_test_access_sync_001 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
@@ -73,6 +81,51 @@ describe('fileIO_fs_access', function () {
   /**
    * @tc.number SUB_DF_FILEIO_ACCESS_SYNC_0200
    * @tc.name fileIO_test_access_sync_002
+   * @tc.desc Test accessSync() interface by path.
+   * The test file is not exist.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_access_sync_002', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_access_sync_002');
+
+    try {
+      let ret = fileIO.accessSync(fpath);
+      expect(ret === false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_access_sync_002 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_ACCESS_SYNC_0300
+   * @tc.name fileIO_test_access_sync_003
+   * @tc.desc Test accessSync() interface by uri.
+   * The test file is not exist.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_access_sync_003', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_access_sync_003');
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      let ret = fileIO.accessSync(uri);
+      expect(ret === false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_access_sync_003 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_ACCESS_SYNC_0400
+   * @tc.name fileIO_test_access_sync_004
    * @tc.desc Test accessSync() interface.
    * The test file path is illegal.
    * @tc.size MEDIUM
@@ -80,13 +133,13 @@ describe('fileIO_fs_access', function () {
    * @tc.level Level 3
    * @tc.require
    */
-  it('fileIO_test_access_sync_002', 0, async function () {
+  it('fileIO_test_access_sync_004', 0, async function () {
 
     try {
       expect(fileIO.accessSync(-1)).assertTrue();
       expect(false).assertTrue();
     } catch (e) {
-      console.log('fileIO_test_access_sync_001 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_test_access_sync_004 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
     }
   });
@@ -95,7 +148,7 @@ describe('fileIO_fs_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0000
    * @tc.name fileIO_test_access_async_000
    * @tc.desc Test access() interface. Promise.
-   * Use promise to test that the file is exist. Sync method reads data from file.
+   * Use promise to test by path that the file is exist. Sync method reads data from file.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
@@ -122,10 +175,10 @@ describe('fileIO_fs_access', function () {
   });
 
   /**
-   * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0100
+   * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0001
    * @tc.name fileIO_test_access_async_001
-   * @tc.desc Test access() interface. Callback.
-   * Use callback to test that the file is exist. Sync method reads data from file.
+   * @tc.desc Test access() interface. Promise.
+   * Use promise to test by uri that the file is exist. Sync method reads data from file.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
@@ -136,9 +189,40 @@ describe('fileIO_fs_access', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+      let uri = fileUri.getUriFromPath(fpath);
+      let ret = await fileIO.access(uri);
+      expect(ret === true).assertTrue();
+      let file = fileIO.openSync(fpath);
+      expect(isIntNum(file.fd)).assertTrue();
+      let readlen = fileIO.readSync(file.fd, new ArrayBuffer(4096));
+      expect(readlen == FILE_CONTENT.length).assertTrue();
+      fileIO.closeSync(file);
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_access_async_001 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0200
+   * @tc.name fileIO_test_access_async_002
+   * @tc.desc Test access() interface. Callback.
+   * Use callback to test by path that the file is exist. Sync method reads data from file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_access_async_002', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_access_async_002');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
       fileIO.access(fpath, (err, ret) => {
         if (err) {
-          console.log('fileIO_test_access_async_001 error package: ' + JSON.stringify(err));
+          console.log('fileIO_test_access_async_002 error package: ' + JSON.stringify(err));
           expect(false).assertTrue();
         }
         expect(ret === true).assertTrue();
@@ -151,29 +235,6 @@ describe('fileIO_fs_access', function () {
       });
       done();
     } catch (e) {
-      console.log('fileIO_test_access_async_001 has failed for ' + e.message + ', code: ' + e.code);
-      expect(false).assertTrue();
-    }
-  });
-
-  /**
-   * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0200
-   * @tc.name fileIO_test_access_async_002
-   * @tc.desc Test access() interface. Promise.
-   * Async test file does not exist.
-   * @tc.size MEDIUM
-   * @tc.type Function
-   * @tc.level Level 3
-   * @tc.require
-   */
-  it('fileIO_test_access_async_002', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_test_access_async_002');
-
-    try {
-      let ret = await fileIO.access(fpath);
-      expect(ret === false).assertTrue();
-      done();
-    } catch (e) {
       console.log('fileIO_test_access_async_002 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
@@ -183,24 +244,32 @@ describe('fileIO_fs_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0300
    * @tc.name fileIO_test_access_async_003
    * @tc.desc Test access() interface. Callback.
-   * Async test file does not exist.
+   * Use callback to test by uri that the file is exist. Sync method reads data from file.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
    * @tc.require
    */
   it('fileIO_test_access_async_003', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_test_access_async_002');
-
+    let fpath = await nextFileName('fileIO_test_access_async_003');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    
+    let uri = fileUri.getUriFromPath(fpath);
     try {
-      fileIO.access(fpath, (err, ret) => {
+      fileIO.access(uri, (err, ret) => {
         if (err) {
           console.log('fileIO_test_access_async_003 error package: ' + JSON.stringify(err));
           expect(false).assertTrue();
         }
-        expect(ret === false).assertTrue();
-        done();
+        expect(ret === true).assertTrue();
+        let file = fileIO.openSync(fpath);
+        expect(isIntNum(file.fd)).assertTrue();
+        let readlen = fileIO.readSync(file.fd, new ArrayBuffer(4096));
+        expect(readlen == FILE_CONTENT.length).assertTrue();
+        fileIO.closeSync(file);
+        fileIO.unlinkSync(fpath);
       });
+      done();
     } catch (e) {
       console.log('fileIO_test_access_async_003 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
@@ -211,21 +280,26 @@ describe('fileIO_fs_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0400
    * @tc.name fileIO_test_access_async_004
    * @tc.desc Test access() interface. Promise.
-   * Invalid path parameter.
+   * Async test file does not exist.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
    * @tc.require
    */
   it('fileIO_test_access_async_004', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_access_async_004');
 
     try {
-      await fileIO.access(-1);
-      expect(false).assertTrue();
+      let ret1 = await fileIO.access(fpath);
+      expect(ret1 === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let ret2 = await fileIO.access(uri);
+      expect(ret2 === false).assertTrue();
+      done();
     } catch (e) {
       console.log('fileIO_test_access_async_004 has failed for ' + e.message + ', code: ' + e.code);
-      expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
-      done();
+      expect(false).assertTrue();
     }
   });
 
@@ -233,20 +307,80 @@ describe('fileIO_fs_access', function () {
    * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0500
    * @tc.name fileIO_test_access_async_005
    * @tc.desc Test access() interface. Callback.
-   * Invalid path parameter.
+   * Async test file does not exist.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
    * @tc.require
    */
   it('fileIO_test_access_async_005', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_access_async_005');
+
+    try {
+      fileIO.access(fpath, (err, ret1) => {
+        if (err) {
+          console.log('fileIO_test_access_async_005 error package1: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(ret1 === false).assertTrue();
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.access(uri, (err, ret2) => {
+        if (err) {
+          console.log('fileIO_test_access_async_005 error package2: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(ret2 === false).assertTrue();
+        done();
+      });
+
+    } catch (e) {
+      console.log('fileIO_test_access_async_005 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0600
+   * @tc.name fileIO_test_access_async_006
+   * @tc.desc Test access() interface. Promise.
+   * Invalid path parameter.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_access_async_006', 0, async function (done) {
+
+    try {
+      await fileIO.access(-1);
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_access_async_006 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_ACCESS_ASYNC_0700
+   * @tc.name fileIO_test_access_async_007
+   * @tc.desc Test access() interface. Callback.
+   * Invalid path parameter.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_access_async_007', 0, async function (done) {
 
     try {
       fileIO.access(-1, (err) => {
         expect(false).assertTrue();
       });
     } catch (e) {
-      console.log('fileIO_test_access_async_005 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_test_access_async_007 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
       done();
     }

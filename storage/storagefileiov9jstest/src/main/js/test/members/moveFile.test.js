@@ -14,7 +14,8 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  describe, it, expect, fileUri,
 } from '../Common';
 
 export default function fileIOMoveFile() {
@@ -24,7 +25,7 @@ export default function fileIOMoveFile() {
    * @tc.number SUB_DF_FILEIO_MOVEFILE_SYNC_0000
    * @tc.name fileIO_test_moveFile_sync_000
    * @tc.desc Test moveFileSync() interface.
-   * Move a single file, shall work properly in normal case.
+   * Move a single file by path, shall work properly in normal case.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
@@ -214,6 +215,100 @@ export default function fileIOMoveFile() {
       fileIO.rmdirSync(dpath);
     } catch (e) {
       console.log('fileIO_test_moveFile_sync_007 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_SYNC_0800
+   * @tc.name fileIO_test_moveFile_sync_008
+   * @tc.desc Test moveFileSync() interface.
+   * Move a single file by uri dest, shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_sync_008', 0, async function () {
+    let dpath = await nextFileName('fileIO_test_moveFile_sync_008');
+    let fpath = dpath + '/file_000.txt';
+    let ddpath = dpath + '/dir_000';
+    let ffpath = ddpath + '/file_000.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriTarget = fileUri.getUriFromPath(ffpath);
+      fileIO.moveFileSync(fpath, uriTarget);
+      let stat = fileIO.statSync(ffpath);
+      expect(stat.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+    } catch (e) {
+      console.log('fileIO_test_moveFile_sync_008 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_SYNC_0900
+   * @tc.name fileIO_test_moveFile_sync_009
+   * @tc.desc Test moveFileSync() interface.
+   * Move a single file by src uri, shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_sync_009', 0, async function () {
+    let dpath = await nextFileName('fileIO_test_moveFile_sync_009');
+    let fpath = dpath + '/file_000.txt';
+    let ddpath = dpath + '/dir_000';
+    let ffpath = ddpath + '/file_000.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.moveFileSync(uri, ffpath);
+      let stat = fileIO.statSync(ffpath);
+      expect(stat.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+    } catch (e) {
+      console.log('fileIO_test_moveFile_sync_009 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_SYNC_1000
+   * @tc.name fileIO_test_moveFile_sync_010
+   * @tc.desc Test moveFileSync() interface.
+   * Move a single file by uri(uri src, uri dest), shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_sync_010', 0, async function () {
+    let dpath = await nextFileName('fileIO_test_moveFile_sync_010');
+    let fpath = dpath + '/file_000.txt';
+    let ddpath = dpath + '/dir_000';
+    let ffpath = ddpath + '/file_000.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      let uriTarget = fileUri.getUriFromPath(ffpath);
+      fileIO.moveFileSync(uri, uriTarget);
+      let stat = fileIO.statSync(ffpath);
+      expect(stat.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+    } catch (e) {
+      console.log('fileIO_test_moveFile_sync_010 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });
@@ -628,6 +723,215 @@ export default function fileIOMoveFile() {
       });
     } catch (e) {
       console.log('fileIO_test_moveFile_async_012 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_ASYNC_1300
+   * @tc.name fileIO_test_moveFile_async_013
+   * @tc.desc Test moveFile() interface. Promise.
+   * Move a single file by uri dest, shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_async_013', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_moveFile_async_013');
+    let fpath = dpath + '/file_005.txt';
+    let ddpath = dpath + '/dir_005';
+    let ffpath = ddpath + '/file_005.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriTarget = fileUri.getUriFromPath(ffpath);
+      await fileIO.moveFile(fpath, uriTarget);
+      let stat = fileIO.statSync(ffpath);
+      expect(stat.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_moveFile_async_013 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_ASYNC_1400
+   * @tc.name fileIO_test_moveFile_async_014
+   * @tc.desc Test moveFile() interface. Callback.
+   * Move a single file by uri dest, shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_async_014', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_moveFile_async_014');
+    let fpath = dpath + '/file_006.txt';
+    let ddpath = dpath + '/dir_006';
+    let ffpath = ddpath + '/file_006.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriTarget = fileUri.getUriFromPath(ffpath);
+      fileIO.moveFile(fpath, uriTarget, (err) => {
+        if (err) {
+          console.log('fileIO_test_moveFile_async_014 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        let stat = fileIO.statSync(ffpath);
+        expect(stat.size == FILE_CONTENT.length).assertTrue();
+        fileIO.rmdirSync(dpath);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_moveFile_async_014 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_ASYNC_1500
+   * @tc.name fileIO_test_moveFile_async_015
+   * @tc.desc Test moveFile() interface. Promise.
+   * Move a single file by uri src, shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_async_015', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_moveFile_async_015');
+    let fpath = dpath + '/file_005.txt';
+    let ddpath = dpath + '/dir_005';
+    let ffpath = ddpath + '/file_005.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      await fileIO.moveFile(uri, ffpath);
+      let stat = fileIO.statSync(ffpath);
+      expect(stat.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_moveFile_async_015 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_ASYNC_1600
+   * @tc.name fileIO_test_moveFile_async_016
+   * @tc.desc Test moveFile() interface. Callback.
+   * Move a single file by uri src, shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_async_016', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_moveFile_async_016');
+    let fpath = dpath + '/file_006.txt';
+    let ddpath = dpath + '/dir_006';
+    let ffpath = ddpath + '/file_006.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.moveFile(uri, ffpath, (err) => {
+        if (err) {
+          console.log('fileIO_test_moveFile_async_016 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        let stat = fileIO.statSync(ffpath);
+        expect(stat.size == FILE_CONTENT.length).assertTrue();
+        fileIO.rmdirSync(dpath);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_moveFile_async_016 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_ASYNC_1700
+   * @tc.name fileIO_test_moveFile_async_017
+   * @tc.desc Test moveFile() interface. Promise.
+   * Move a single file by uri(uri src, uri dest), shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_async_017', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_moveFile_async_017');
+    let fpath = dpath + '/file_005.txt';
+    let ddpath = dpath + '/dir_005';
+    let ffpath = ddpath + '/file_005.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      let uriTarget = fileUri.getUriFromPath(ffpath);
+      await fileIO.moveFile(uri, uriTarget);
+      let stat = fileIO.statSync(ffpath);
+      expect(stat.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_moveFile_async_017 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MOVEFILE_ASYNC_1800
+   * @tc.name fileIO_test_moveFile_async_018
+   * @tc.desc Test moveFile() interface. Callback.
+   * Move a single file by uri(uri src, uri dest), shall work properly in normal case.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_moveFile_async_018', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_moveFile_async_018');
+    let fpath = dpath + '/file_006.txt';
+    let ddpath = dpath + '/dir_006';
+    let ffpath = ddpath + '/file_006.txt';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      let uriTarget = fileUri.getUriFromPath(ffpath);
+      fileIO.moveFile(uri, uriTarget, (err) => {
+        if (err) {
+          console.log('fileIO_test_moveFile_async_018 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        let stat = fileIO.statSync(ffpath);
+        expect(stat.size == FILE_CONTENT.length).assertTrue();
+        fileIO.rmdirSync(dpath);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_moveFile_async_018 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });

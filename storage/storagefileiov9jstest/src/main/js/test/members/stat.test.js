@@ -14,8 +14,8 @@
  */
 
 import {
-    fileIO, FILE_CONTENT, prepareFile, nextFileName, isIntNum, isBigInt,
-    describe, it, expect,
+    fileIO, FILE_CONTENT, prepareFile, nextFileName,
+    isIntNum, isBigInt, describe, it, expect, fileUri,
   } from '../Common';
 
 export default function fileIOStat() {
@@ -25,7 +25,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_0000
    * @tc.name fileIO_stat_sync_000
    * @tc.desc Test statSync() interfaces.
-   * Enter the path or fd parameter to get the file stat.
+   * Enter the path or fd or uri parameter to get the file stat.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -42,6 +42,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2 !== null).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3 !== null).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -54,7 +59,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_0100
    * @tc.name fileIO_stat_sync_001
    * @tc.desc Test statSync() interfaces.
-   * The path point to nothing, no such file.
+   * The path or uri point to nothing, no such file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -75,19 +80,42 @@ describe('fileIO_fs_stat', function () {
   /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_0200
    * @tc.name fileIO_stat_sync_002
+   * @tc.desc Test statSync() interfaces.
+   * The uri point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_stat_sync_002', 0, async function () {
+    let fpath = await nextFileName('fileIO_stat_sync_002');
+
+    try {
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.statSync(uri);
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_stat_sync_002 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_0300
+   * @tc.name fileIO_stat_sync_003
    * @tc.desc Test statSync() interfaces. Missing parameters.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
    * @tc.require
    */
-   it('fileIO_stat_sync_002', 0, async function () {
+   it('fileIO_stat_sync_003', 0, async function () {
 
     try {
       fileIO.statSync();
       expect(false).assertTrue();
     } catch (e) {
-      console.log('fileIO_stat_sync_002 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_stat_sync_003 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
     }
   });
@@ -96,7 +124,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_INO_0000
    * @tc.name fileIO_stat_sync_ino_000
    * @tc.desc Test the ino member of class Stat.
-   * Enter the path or fd parameter to get stat.ino of the file.
+   * Enter the path or fd or uri parameter to get stat.ino of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -113,6 +141,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isBigInt(stat2.ino)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isBigInt(stat3.ino)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -125,7 +158,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_MODE_0000
    * @tc.name fileIO_stat_sync_mode_000
    * @tc.desc Test the mode member of class Stat.
-   * Enter the path or fd parameter to get stat.mode of the file.
+   * Enter the path or fd or uri parameter to get stat.mode of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -142,6 +175,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.mode)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.mode)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -154,7 +192,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_UID_0000
    * @tc.name fileIO_stat_sync_uid_000
    * @tc.desc Test the uid member of class Stat.
-   * Enter the path or fd parameter to get stat.uid of the file.
+   * Enter the path or fd or uri parameter to get stat.uid of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -171,6 +209,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.uid)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.uid)).assertTrue();
+      
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -183,7 +226,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_GID_0000
    * @tc.name fileIO_stat_sync_gid_000
    * @tc.desc Test the gid member of class Stat.
-   * Enter the path or fd parameter to get stat.gid of the file.
+   * Enter the path or fd or uri parameter to get stat.gid of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -200,6 +243,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.gid)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.gid)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -212,7 +260,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_SIZE_0000
    * @tc.name fileIO_stat_sync_size_000
    * @tc.desc Test the size member of class Stat.
-   * Enter the path or fd parameter to get stat.size of the file.
+   * Enter the path or fd or uri parameter to get stat.size of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -229,6 +277,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.size)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.size)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -241,7 +294,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ATIME_0000
    * @tc.name fileIO_stat_sync_atime_000
    * @tc.desc Test the atime member of class Stat.
-   * Enter the path or fd parameter to get stat.atime of the file.
+   * Enter the path or fd or uri parameter to get stat.atime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -258,6 +311,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.atime)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.atime)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -270,7 +328,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_MTIME_0000
    * @tc.name fileIO_stat_sync_mtime_000
    * @tc.desc Test the mtime member of class Stat.
-   * Enter the path or fd parameter to get stat.mtime of the file.
+   * Enter the path or fd or uri parameter to get stat.mtime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -287,6 +345,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.mtime)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.mtime)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -299,7 +362,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_CTIME_0000
    * @tc.name fileIO_stat_sync_ctime_000
    * @tc.desc Test the ctime member of class Stat.
-   * Enter the path or fd parameter to get stat.ctime of the file.
+   * Enter the path or fd or uri parameter to get stat.ctime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -316,6 +379,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(isIntNum(stat2.ctime)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(isIntNum(stat3.ctime)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -345,6 +413,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isBlockDevice() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isBlockDevice() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -400,9 +473,33 @@ describe('fileIO_fs_stat', function () {
       fileIO.unlinkSync(fpath);
       console.log('fileIO_stat_sync_is_block_device_002 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
-      
     }
   });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISBLOCKDEVICE_0300
+   * @tc.name fileIO_stat_sync_is_block_device_003
+   * @tc.desc Test the isBlockDevice() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_sync_is_block_device_003', 0, async function () {
+      let fpath = await nextFileName('fileIO_stat_sync_is_block_device_003');
+      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+      let uri = fileUri.getUriFromPath(fpath);
+  
+      try {
+        fileIO.statSync(uri).isBlockDevice(-1);
+        expect(false).assertTrue();
+      } catch (e) {
+        fileIO.unlinkSync(fpath);
+        console.log('fileIO_stat_sync_is_block_device_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+      }
+    });
 
   /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISCHARACTER_DEVICE_0000
@@ -425,6 +522,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isCharacterDevice() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isCharacterDevice() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -484,6 +586,31 @@ describe('fileIO_fs_stat', function () {
   });
 
   /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISCHARACTER_DEVICE_0300
+   * @tc.name fileIO_stat_sync_is_character_device_003
+   * @tc.desc Test the isCharacterDevice() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_sync_is_character_device_003', 0, async function () {
+      let fpath = await nextFileName('fileIO_stat_sync_is_character_device_003');
+      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+      let uri = fileUri.getUriFromPath(fpath);
+  
+      try {
+        fileIO.statSync(uri).isCharacterDevice(-1);
+        expect(false).assertTrue();
+      } catch (e) {
+        fileIO.unlinkSync(fpath);
+        console.log('fileIO_stat_sync_is_character_device_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+      }
+    });
+
+  /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISDIRECTORY_0000
    * @tc.name fileIO_stat_sync_is_directory_000
    * @tc.desc Test the isDirectory() method of class Stat.
@@ -504,6 +631,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isDirectory() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isDirectory() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -533,6 +665,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(dpath, fileIO.OpenMode.DIR);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isDirectory() === true).assertTrue();
+
+      let uri = fileUri.getUriFromPath(dpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isDirectory() === true).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
     } catch (e) {
@@ -592,6 +729,31 @@ describe('fileIO_fs_stat', function () {
   });
 
   /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISDIRECTORY_0300
+   * @tc.name fileIO_stat_sync_is_directory_003
+   * @tc.desc Test the isDirectory() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_sync_is_directory_003', 0, async function () {
+      let dpath = await nextFileName('fileIO_stat_sync_is_directory_003') + 'd';
+      let uri = fileUri.getUriFromPath(dpath);
+  
+      try {
+        fileIO.mkdirSync(dpath);
+        fileIO.statSync(uri).isDirectory(-1);
+        expect(false).assertTrue();
+      } catch (e) {
+        fileIO.rmdirSync(dpath);
+        console.log('fileIO_stat_sync_is_directory_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+      }
+    });
+
+  /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISFIFO_0000
    * @tc.name fileIO_stat_sync_is_fifo_000
    * @tc.desc Test the isFIFO() method of class Stat.
@@ -612,6 +774,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isFIFO() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isFIFO() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -669,6 +836,32 @@ describe('fileIO_fs_stat', function () {
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
     }
   });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISFIFO_0300
+   * @tc.name fileIO_stat_sync_is_fifo_003
+   * @tc.desc Test the isFIFO() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_sync_is_fifo_003', 0, async function () {
+      let fpath = await nextFileName('fileIO_stat_sync_is_fifo_003');
+      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+      let uri = fileUri.getUriFromPath(fpath);
+  
+      try {
+        fileIO.statSync(uri).isFile(-1);
+        expect(false).assertTrue();
+      } catch (e) {
+        fileIO.unlinkSync(fpath);
+        console.log('fileIO_stat_sync_is_fifo_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+      }
+    });
+
   /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISFILE_0000
    * @tc.name fileIO_stat_sync_is_file_000
@@ -690,6 +883,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isFile() === true).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isFile() === true).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -700,7 +898,7 @@ describe('fileIO_fs_stat', function () {
 
   /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISFILE_0100
-   * @tc.name fileIO_stat_sync_is_file_002
+   * @tc.name fileIO_stat_sync_is_file_001
    * @tc.desc Test the isFile() method of class Stat.
    * This interface shall not treat a directory as a normal file.
    * @tc.size MEDIUM
@@ -719,6 +917,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(dpath, fileIO.OpenMode.DIR);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isFile() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(dpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isFile() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
     } catch (e) {
@@ -778,6 +981,31 @@ describe('fileIO_fs_stat', function () {
   });
 
   /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISFILE_0400
+   * @tc.name fileIO_stat_sync_is_file_004
+   * @tc.desc Test the isFile() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_stat_sync_is_file_004', 0, async function () {
+    let dpath = await nextFileName('fileIO_stat_sync_is_file_004');
+    let uri = fileUri.getUriFromPath(dpath);
+
+    try {
+      fileIO.mkdirSync(dpath);
+      fileIO.statSync(uri).isFile(-1);
+      expect(false).assertTrue();
+    } catch (e) {
+      fileIO.rmdirSync(dpath);
+      console.log('fileIO_stat_sync_is_file_004 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+    }
+  });
+  
+  /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISSOCKET_0000
    * @tc.name fileIO_stat_sync_is_socket_000
    * @tc.desc Test the isSocket() method of class Stat.
@@ -798,6 +1026,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isSocket() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isSocket() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -855,6 +1088,32 @@ describe('fileIO_fs_stat', function () {
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
     }
   });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISSOCKET_0300
+   * @tc.name fileIO_stat_sync_is_socket_003
+   * @tc.desc Test the isSocket() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_stat_sync_is_socket_003', 0, async function () {
+    let fpath = await nextFileName('fileIO_stat_sync_is_socket_003');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      fileIO.statSync(uri).isSocket(-1);
+      expect(false).assertTrue();
+    } catch (e) {
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_stat_sync_is_socket_003 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+    }
+  });
+
   /**
    * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISSYMBOLICLINK_0000
    * @tc.name fileIO_stat_sync_is_symbolic_link_000
@@ -876,6 +1135,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = fileIO.statSync(file.fd);
       expect(stat2.isSymbolicLink() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = fileIO.statSync(uri);
+      expect(stat3.isSymbolicLink() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
     } catch (e) {
@@ -935,6 +1199,31 @@ describe('fileIO_fs_stat', function () {
   });
 
   /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_ISSYMBOLICLINK_0300
+   * @tc.name fileIO_stat_sync_is_symbolic_link_003
+   * @tc.desc Test the isSymbolicLink() method of class Stat.
+   * This interface does not require parameters.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_sync_is_symbolic_link_003', 0, async function () {
+      let fpath = await nextFileName('fileIO_stat_sync_is_symbolic_link_003');
+      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+      let uri = fileUri.getUriFromPath(fpath);
+
+      try {
+        fileIO.statSync(uri).isSymbolicLink(-1);
+        expect(false).assertTrue();
+      } catch (e) {
+        fileIO.unlinkSync(fpath);
+        console.log('fileIO_stat_sync_is_symbolic_link_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
+      }
+    });
+
+  /**
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0000
    * @tc.name fileIO_stat_async_000
    * @tc.desc Test stat() interface. Promise.then().catch()
@@ -964,7 +1253,15 @@ describe('fileIO_fs_stat', function () {
         console.log('fileIO_stat_async_000 error package2: ' + JSON.stringify(err));
         expect(false).assertTrue();
       });
-      fileIO.unlinkSync(fpath);
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri).then((stat3) => {
+        expect(stat3 !== null).assertTrue();
+        fileIO.unlinkSync(fpath);
+      }).catch((err) => {
+        console.log('fileIO_stat_async_000 error package3: ' + JSON.stringify(err));
+        expect(false).assertTrue();
+      });
       done();
     } catch (e) {
       console.log('fileIO_stat_async_000 has failed for ' + e.message + ', code: ' + e.code);
@@ -976,7 +1273,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0100
    * @tc.name fileIO_stat_async_001
    * @tc.desc Test stat() interface. Promise.
-   * Enter the path or fd parameter to get the file stat.
+   * Enter the path or fd or uri parameter to get the file stat.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -993,6 +1290,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2 !== null).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3 !== null).assertTrue();
+      
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1006,7 +1308,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0200
    * @tc.name fileIO_stat_async_002
    * @tc.desc Test stat() interface. Callback.
-   * Enter the path or fd parameter to get the file stat.
+   * Enter the path or fd or uri parameter to get the file stat.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1033,9 +1335,19 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2 !== null).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_002 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3 !== null).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
+
     } catch (e) {
       console.log('fileIO_stat_async_002 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
@@ -1095,8 +1407,36 @@ describe('fileIO_fs_stat', function () {
   /**
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0500
    * @tc.name fileIO_stat_async_005
+   * @tc.desc Test stat() interface. Callback.
+   * The path point to nothing, no such file.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_async_005', 0, async function (done) {
+      let fpath = await nextFileName('fileIO_stat_async_004');
+      let uri = fileUri.getUriFromPath(fpath);
+
+      try {
+        fileIO.stat(uri, (err) => {
+          if (err) {
+            console.log('fileIO_stat_async_005 error: {message: ' + err.message + ', code: ' + err.code + '}');
+            expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+            done();
+          }
+        });
+      } catch (e) {
+        console.log('fileIO_stat_async_005 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0600
+   * @tc.name fileIO_stat_async_006
    * @tc.desc Test stat() interface. Promise.
-   * Invalid path or fd parameter.
+   * Invalid path or fd or uri parameter.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1108,29 +1448,30 @@ describe('fileIO_fs_stat', function () {
       await fileIO.stat(-1)
       expect(false).assertTrue();
     } catch (e) {
-      console.log('fileIO_stat_async_005 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_stat_async_006 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
       done();
     }
   });
+
   /**
-   * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0600
-   * @tc.name fileIO_stat_async_006
+   * @tc.number SUB_DF_FILEIO_STAT_ASYNC_0700
+   * @tc.name fileIO_stat_async_007
    * @tc.desc Test stat() interface. Callback.
-   * Invalid path or fd parameter.
+   * Invalid path or fd or uri parameter.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
    * @tc.require
    */
-  it('fileIO_stat_async_006', 0, async function (done) {
+  it('fileIO_stat_async_007', 0, async function (done) {
 
     try {
       fileIO.stat(-1, (err) => {
         expect(false).assertTrue();
       });
     } catch (e) {
-      console.log('fileIO_stat_async_006 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_stat_async_007 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
       done();
     }
@@ -1157,6 +1498,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isBigInt(stat2.ino)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isBigInt(stat3.ino)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1170,7 +1516,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_INO_0100
    * @tc.name fileIO_stat_async_ino_001
    * @tc.desc Test the ino member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.atime of the file.
+   * Enter the path or fd or uri parameter to get stat.atime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1197,9 +1543,19 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isBigInt(stat2.ino)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_ino_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isBigInt(stat3.ino)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
+      
     } catch (e) {
       console.log('fileIO_stat_async_ino_001 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
@@ -1210,7 +1566,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_MODE_0000
    * @tc.name fileIO_stat_async_mode_000
    * @tc.desc Test the mode member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.mode of the file.
+   * Enter the path or fd or uri parameter to get stat.mode of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1227,6 +1583,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.mode)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.mode)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1240,7 +1601,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_MODE_0100
    * @tc.name fileIO_stat_async_mode_001
    * @tc.desc Test the mode member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.mode of the file.
+   * Enter the path or fd or uri parameter to get stat.mode of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1267,6 +1628,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.mode)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_mode_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.mode)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1280,7 +1650,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_UID_0000
    * @tc.name fileIO_stat_async_uid_000
    * @tc.desc Test the uid member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.uid of the file.
+   * Enter the path or fd or uri parameter to get stat.uid of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1297,6 +1667,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.uid)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.uid)).assertTrue();
+      
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1310,7 +1685,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_UID_0100
    * @tc.name fileIO_stat_async_uid_001
    * @tc.desc Test the uid member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.uid of the file.
+   * Enter the path or fd or uri parameter to get stat.uid of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1337,6 +1712,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.uid)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_uid_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.uid)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1351,7 +1735,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_GID_0000
    * @tc.name fileIO_stat_async_gid_000
    * @tc.desc Test the gid member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.gid of the file.
+   * Enter the path or fd or uri parameter to get stat.gid of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1368,6 +1752,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.gid)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.gid)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1381,7 +1770,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_GID_0100
    * @tc.name fileIO_stat_async_gid_001
    * @tc.desc Test the gid member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.gid of the file.
+   * Enter the path or fd or uri parameter to get stat.gid of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1408,6 +1797,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.gid)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_gid_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.gid)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1421,7 +1819,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_SIZE_0000
    * @tc.name fileIO_stat_async_size_000
    * @tc.desc Test the size member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.size of the file.
+   * Enter the path or fd or uri parameter to get stat.size of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1438,6 +1836,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.size)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.size)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1451,7 +1854,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_SIZE_0100
    * @tc.name fileIO_stat_async_size_001
    * @tc.desc Test the size member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.size of the file.
+   * Enter the path or fd or uri parameter to get stat.size of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1478,6 +1881,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.size)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_size_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.size)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1491,7 +1903,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_ATIME_0000
    * @tc.name fileIO_stat_async_atime_000
    * @tc.desc Test the atime member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.atime of the file.
+   * Enter the path or fd or uri parameter to get stat.atime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1508,6 +1920,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.atime)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.atime)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1521,7 +1938,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_ATIME_0100
    * @tc.name fileIO_stat_async_atime_001
    * @tc.desc Test the atime member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.atime of the file.
+   * Enter the path or fd or uri parameter to get stat.atime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1548,9 +1965,19 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.atime)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_atime_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.atime)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
+
     } catch (e) {
       console.log('fileIO_stat_async_atime_001 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
@@ -1561,7 +1988,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_MTIME_0000
    * @tc.name fileIO_stat_async_mtime_000
    * @tc.desc Test the mtime member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.mtime of the file.
+   * Enter the path or fd or uri parameter to get stat.mtime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1578,6 +2005,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.mtime)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.mtime)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1591,7 +2023,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_MTIME_0100
    * @tc.name fileIO_stat_async_mtime_001
    * @tc.desc Test the mtime member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.mtime of the file.
+   * Enter the path or fd or uri parameter to get stat.mtime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1618,6 +2050,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.mtime)).assertTrue();
         fileIO.closeSync(file);
+      });
+      
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_mtime_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.mtime)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1631,7 +2072,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_CTIME_0000
    * @tc.name fileIO_stat_async_ctime_000
    * @tc.desc Test the ctime member of class Stat. Promise.
-   * Enter the path or fd parameter to get stat.ctime of the file.
+   * Enter the path or fd or uri parameter to get stat.ctime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1648,6 +2089,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(isIntNum(stat2.ctime)).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(isIntNum(stat3.ctime)).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1661,7 +2107,7 @@ describe('fileIO_fs_stat', function () {
    * @tc.number SUB_DF_FILEIO_STAT_ASYNC_CTIME_0100
    * @tc.name fileIO_stat_async_ctime_001
    * @tc.desc Test the ctime member of class Stat. Callback.
-   * Enter the path or fd parameter to get stat.ctime of the file.
+   * Enter the path or fd or uri parameter to get stat.ctime of the file.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -1688,6 +2134,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(isIntNum(stat2.ctime)).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_ctime_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(stat3.ctime)).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1719,6 +2174,10 @@ describe('fileIO_fs_stat', function () {
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isBlockDevice() === false).assertTrue();
       fileIO.closeSync(file);
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isBlockDevice() === false).assertTrue();
       fileIO.unlinkSync(fpath);
       done();
     } catch (e) {
@@ -1758,6 +2217,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isBlockDevice() === false).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_block_device_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isBlockDevice() === false).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1788,6 +2256,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isCharacterDevice() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isCharacterDevice() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1828,6 +2301,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isCharacterDevice() === false).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_character_device_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isCharacterDevice() === false).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -1858,6 +2340,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isDirectory() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isDirectory() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1888,6 +2375,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(dpath, fileIO.OpenMode.DIR);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isDirectory() === true).assertTrue();
+
+      let uri = fileUri.getUriFromPath(dpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isDirectory() === true).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
       done();
@@ -1928,6 +2420,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isDirectory() === true).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(dpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_directory_002 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isDirectory() === true).assertTrue();
         fileIO.rmdirSync(dpath);
         done();
       });
@@ -1958,6 +2459,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isFIFO() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isFIFO() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -1998,6 +2504,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isFIFO() === false).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_fifo_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isFIFO() === false).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -2028,6 +2543,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isFile() === true).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isFile() === true).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -2068,6 +2588,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isFile() === true).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_file_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isFile() === true).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -2099,6 +2628,10 @@ describe('fileIO_fs_stat', function () {
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isFile() === false).assertTrue();
       fileIO.closeSync(file);
+
+      let uri = fileUri.getUriFromPath(dpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isFile() === false).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (e) {
@@ -2128,7 +2661,13 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isSocket() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isSocket() === false).assertTrue();
+
       fileIO.closeSync(file);
+      fileIO.unlinkSync(fpath);
       done();
     } catch (e) {
       console.log('fileIO_stat_async_is_socket_000 has failed for ' + e.message + ', code: ' + e.code);
@@ -2167,6 +2706,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isSocket() === false).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_socket_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isSocket() === false).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -2197,6 +2745,11 @@ describe('fileIO_fs_stat', function () {
       let file = fileIO.openSync(fpath);
       let stat2 = await fileIO.stat(file.fd);
       expect(stat2.isSymbolicLink() === false).assertTrue();
+
+      let uri = fileUri.getUriFromPath(fpath);
+      let stat3 = await fileIO.stat(uri);
+      expect(stat3.isSymbolicLink() === false).assertTrue();
+
       fileIO.closeSync(file);
       fileIO.unlinkSync(fpath);
       done();
@@ -2237,6 +2790,15 @@ describe('fileIO_fs_stat', function () {
         }
         expect(stat2.isSymbolicLink() === false).assertTrue();
         fileIO.closeSync(file);
+      });
+
+      let uri = fileUri.getUriFromPath(fpath);
+      fileIO.stat(uri, (err, stat3) => {
+        if(err) {
+          console.log('fileIO_stat_async_is_symbolic_link_001 error package3: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(stat3.isSymbolicLink() === false).assertTrue();
         fileIO.unlinkSync(fpath);
         done();
       });
@@ -2256,8 +2818,8 @@ describe('fileIO_fs_stat', function () {
    * @tc.level Level 3
    * @tc.require
    */
-  it('fileIO_test_append_file_sync_000', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_test_append_file_sync_000');
+  it('fileIO_stat_sync_append_file_sync_000', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_stat_sync_append_file_sync_000');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -2274,7 +2836,7 @@ describe('fileIO_fs_stat', function () {
       fileIO.unlinkSync(fpath);
       done();
     } catch (e) {
-      console.log('fileIO_test_append_file_sync_000 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_stat_sync_append_file_sync_000 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });
@@ -2289,8 +2851,8 @@ describe('fileIO_fs_stat', function () {
    * @tc.level Level 3
    * @tc.require
    */
-  it('fileIO_test_append_file_sync_001', 0, async function (done) {
-    let fpath = await nextFileName('fileIO_test_append_file_sync_001');
+  it('fileIO_stat_sync_append_file_sync_001', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_stat_sync_append_file_sync_001');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
@@ -2308,9 +2870,43 @@ describe('fileIO_fs_stat', function () {
       fileIO.unlinkSync(fpath);
       done();
     } catch (e) {
-      console.log('fileIO_test_append_file_sync_001 has failed for ' + e.message + ', code: ' + e.code);
+      console.log('fileIO_stat_sync_append_file_sync_001 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STAT_SYNC_APPEND_FILE_SYNC_0200
+   * @tc.name fileIO_stat_sync_append_file_sync_002
+   * @tc.desc Test statSync() interface.
+   * Modify the file, view the file status changes by uri.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_stat_sync_append_file_sync_002', 0, async function (done) {
+      let fpath = await nextFileName('fileIO_stat_sync_append_file_sync_002');
+      expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+  
+      try {
+        let uri = fileUri.getUriFromPath(fpath);
+        let stat = fileIO.statSync(uri);
+        expect(isIntNum(stat.size)).assertTrue();
+  
+        let file = fileIO.openSync(uri, fileIO.OpenMode.APPEND | fileIO.OpenMode.READ_WRITE);
+        expect(isIntNum(file.fd)).assertTrue();
+        expect(fileIO.writeSync(file.fd, FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+        fileIO.closeSync(file);
+  
+        stat = fileIO.statSync(uri);
+        expect(stat.size == FILE_CONTENT.length * 2).assertTrue();
+        fileIO.unlinkSync(fpath);
+        done();
+      } catch (e) {
+        console.log('fileIO_stat_sync_append_file_sync_002 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
 });
 }
