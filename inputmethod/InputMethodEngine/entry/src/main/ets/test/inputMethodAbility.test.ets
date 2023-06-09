@@ -57,7 +57,7 @@ export default function inputMethodAbility() {
       inputServer.name = inputM.packageName;
       inputServer.id = inputM.methodId;
       console.info("====>beforeAll inputMethodStageJSUnit start");
-      let inputDemoService: subtype ={
+      inputDemoService = {
         id: 'inputStageService',
         label: '',
         name: 'com.acts.inputmethodengine.test',
@@ -2562,11 +2562,11 @@ export default function inputMethodAbility() {
                 await inputMethod.switchInputMethod(inputServer);
                 console.info("====>inputMethodAbility_test_091 setTimeout first");
                 let t1 = setTimeout(async () => {
-                  done();
                   console.info("====>inputMethodAbility_test_091 setTimeout second: " + flag);
                   expect(flag).assertTrue();
                   clearTimeout(t1);
                   await inputMethod.switchCurrentInputMethodSubtype(inputDemoService);
+                  done();
                 },1000)
                 clearTimeout(t);
               }, 1000)
