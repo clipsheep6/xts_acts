@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /*
  * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
+
+
 import socket from '@ohos.net.socket';
 
 let sendData = "hello!";
 let instance = undefined;
-
+let a = '';
 let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
