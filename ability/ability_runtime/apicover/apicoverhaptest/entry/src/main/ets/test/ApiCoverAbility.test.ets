@@ -446,12 +446,16 @@ export default function ApiCoverTest() {
       expect("ohos.extra.param.key.form_name").assertEqual(FormInfo.FormParam.NAME_KEY)
       expect("ohos.extra.param.key.form_temporary").assertEqual(FormInfo.FormParam.TEMPORARY_KEY)
       expect("ohos.extra.param.key.form_identity").assertEqual(FormInfo.FormParam.IDENTITY_KEY)
+      expect('ohos.extra.param.key.form_customize').assertEqual(FormInfo.FormParam.PARAM_FORM_CUSTOMIZE_KEY)
+      expect('ohos.extra.param.key.form_launch_reason').assertEqual(FormInfo.FormParam.LAUNCH_REASON_KEY)
       expect(0).assertEqual(FormInfo.FormState.DEFAULT)
       expect(1).assertEqual(FormInfo.FormState.READY)
       expect(-1).assertEqual(FormInfo.FormState.UNKNOWN)
       expect(0).assertEqual(FormInfo.ColorMode.MODE_DARK)
       expect(1).assertEqual(FormInfo.ColorMode.MODE_LIGHT)
       expect(1).assertEqual(FormInfo.FormType.JS);
+      expect(1).assertEqual(FormInfo.LaunchReason.FORM_DEFAULT);
+      expect(2).assertEqual(FormInfo.LaunchReason.FORM_SHARE);
       done();
     });
 
@@ -766,6 +770,51 @@ export default function ApiCoverTest() {
         }
         done();
       })
+    })
+
+    /*
+     * @tc.number  SUB_AA_StartAbility_StartSpecifiedAbility_0200
+     * @tc.name    The form of a callback getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_StartAbility_StartSpecifiedAbility_0200', 0, async function (done) {
+      TAG = 'SUB_AA_StartAbility_StartSpecifiedAbility_0200';
+      globalThis.applicationContext.startAbility({
+        bundleName:"com.example.apicoverhaptest",
+        moduleName:"phone",
+        abilityName:"ThirdAbility"
+      },(err, data) => {
+        console.log(`${TAG} start ThirdAbility :` + JSON.stringify(err));
+        expect(err.code).assertEqual(0)
+      })
+      await sleep(3000)
+      expect( globalThis.onAcceptWantCalledSeq).assertEqual(" ")
+      done()
+    })
+
+    /*
+     * @tc.number  SUB_AA_StartAbility_LaunchReason_0100
+     * @tc.name    The form of a callback getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_StartAbility_LaunchReason_0100', 0, async function (done) {
+      TAG = 'SUB_AA_StartAbility_LaunchReason_0100';
+      globalThis.applicationContext.startAbility({
+        bundleName:"com.example.apicoverhaptest",
+        moduleName:"phone",
+        abilityName:"SecondAbility",
+        parameters:{
+          'ohos.aafwk.param.AbilityAcquireShareData' : true
+        }
+      },(err, data) => {
+        console.log(`${TAG} start ThirdAbility :` + JSON.stringify(err));
+        expect(err.code).assertEqual(0)
+      })
+      await sleep(3000)
+      expect( globalThis.SecondLaunchParm).assertEqual(abilityConstant.LaunchParam.launchReason.SHARE)
+      done()
     })
   })
 }

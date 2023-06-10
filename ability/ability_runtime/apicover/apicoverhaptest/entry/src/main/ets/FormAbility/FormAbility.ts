@@ -43,27 +43,36 @@ export default class FormAbility extends FormExtension {
     onCastToNormalForm(formId) {
         // Called when the form provider is notified that a temporary form is successfully
         // converted to a normal form.
+        console.info("FormAbility onCastToNormalForm===end=== " + formId)
     }
 
     onUpdateForm(formId) {
         // Called to notify the form provider to update a specified form.
+        console.info("FormAbility onUpdateForm===end=== " + formId)
     }
 
     onChangeFormVisibility(newStatus) {
         // Called when the form provider receives form events from the system.
+        console.info("FormAbility onChangeFormVisibility===end=== " + newStatus)
     }
 
     onFormEvent(formId, message) {
         // Called when a specified message event defined by the form provider is triggered.
+        console.info("FormAbility onFormEvent===end=== " + message)
     }
 
     onRemoveForm(formId) {
         // Called to notify the form provider that a specified form has been destroyed.
+        console.info("FormAbility onRemoveForm===end=== " + formId)
     }
 
     onAcquireFormState(want) {
         // Called to return a {@link FormState} object.
         console.info("FormAbility want success" + JSON.stringify(want.parameters))
         return formInfo.FormState.READY;
+    }
+    onConfigurationUpdate(config) {
+        console.log('[Demo] MainAbility onConfigurationUpdate: ' + this.context.config.language)
+        console.log('[Demo] MainAbility onConfigurationUpdate: ' + config.language)
     }
 };

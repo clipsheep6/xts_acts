@@ -32,7 +32,9 @@ export default class MainAbility extends Ability {
         globalThis.abilityContext = this.context;
         windowStage.setUIContent(this.context, "MainAbility/pages/MainAbility_pages", null)
     }
-
+    onWindowStageRestore(windowStage){
+        console.log("[Demo] MainAbility onWindowStageRestore")
+    }
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
         console.log("[Demo] MainAbility onWindowStageDestroy")
