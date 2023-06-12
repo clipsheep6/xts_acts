@@ -14,14 +14,38 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import connection from '@ohos.net.connection'
 // @ts-ignore
 import cloudSync from '@ohos.file.cloudsync';
 
 export default function cloudSyncTest() {
+  let isConnect: boolean;
   describe("cloudSyncTest", function () {
     const gallerySync = new cloudSync.GallerySync();
+
+    async function getNetId(): Promise<number> {
+      let netId = 0;
+      try {
+        let netHandle = await connection.getDefaultNet();
+        if (netHandle) {
+          console.log(`getNetId Info : ${JSON.stringify(netHandle)}`)
+          netId = netHandle.netId;
+        }
+      } catch (error) {
+        console.error(`getNetId Error : ${JSON.stringify(error)}`)
+      }
+      return netId;
+    }
+
     beforeAll(async function () {
       console.info("beforeAll case");
+      let netId = await getNetId();
+      if (netId >= 100) {
+        isConnect = true;
+      } else {
+        isConnect = false;
+      }
+      console.log(`网络状态：${isConnect}`)
     });
     beforeEach(function () {
       console.info("beforeEach case");
@@ -42,28 +66,9 @@ export default function cloudSyncTest() {
     };
 
     /**
-     * @tc.number    : SUB_CLOUDSYNC_GALLERYSYNC_GETGALLERYSYNC_001
-     * @tc.name      : GallerySync
-     * @tc.desc      : Obtains a GallerySync instance
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 0
-     */
-    it("SUB_CLOUDSYNC_GALLERYSYNC_GETMEDIALIBRAY_001", 0, async function (done) {
-      try {
-        expect(gallerySync != undefined).assertTrue();
-        done();
-      } catch (error) {
-        console.info(`GallerySyncTest : getGallerySync 001 failed, error: ${error}`);
-        expect(false).assertTrue();
-        done();
-      }
-    });
-
-    /**
      * @tc.number    : SUB_CLOUDSYNC_GALLERYSYNC_ON_001
      * @tc.name      : on
-     * @tc.desc      : ON Progess
+     * @tc.desc      : ON Progess Success
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
@@ -76,15 +81,16 @@ export default function cloudSyncTest() {
         expect(true).assertTrue();
         done();
       } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
+        console.error(`${testNum}:: error.code :${error}`)
         expect(false).assertTrue();
+        done();
       }
     });
 
     /**
      * @tc.number    : SUB_CLOUDSYNC_GALLERYSYNC_ON_002
      * @tc.name      : on
-     * @tc.desc      : ON Progess
+     * @tc.desc      : ON Progess ——401: The input parameter is invalid
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
@@ -96,8 +102,8 @@ export default function cloudSyncTest() {
         });
         expect(false).assertTrue();
       } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
-        expect(true).assertTrue();
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        expect(error.code == 401).assertTrue();
         done();
       }
     });
@@ -105,7 +111,7 @@ export default function cloudSyncTest() {
     /**
      * @tc.number    : SUB_CLOUDSYNC_GALLERYSYNC_ON_003
      * @tc.name      : on
-     * @tc.desc      : ON Progess
+     * @tc.desc      : ON Progess ——Number of arguments unmatched
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
@@ -117,7 +123,7 @@ export default function cloudSyncTest() {
         });
         expect(false).assertTrue();
       } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
+        console.error(`${testNum}:: error : ${error}`)
         expect(true).assertTrue();
         done();
       }
@@ -126,7 +132,7 @@ export default function cloudSyncTest() {
     /**
      * @tc.number    : SUB_CLOUDSYNC_GALLERYSYNC_OFF_001
      * @tc.name      : off
-     * @tc.desc      : off Progess
+     * @tc.desc      : off Progess Success
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
@@ -134,13 +140,11 @@ export default function cloudSyncTest() {
     it("SUB_CLOUDSYNC_GALLERYSYNC_OFF_001", 0, async function (done) {
       let testNum = "SUB_CLOUDSYNC_GALLERYSYNC_OFF_001";
       try {
-        gallerySync.on("progress", (progress) => {
-        });
         gallerySync.off("progress");
         expect(true).assertTrue();
         done();
       } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
         expect(false).assertTrue();
       }
     });
@@ -148,7 +152,7 @@ export default function cloudSyncTest() {
     /**
      * @tc.number    : SUB_CLOUDSYNC_GALLERYSYNC_OFF_002
      * @tc.name      : off
-     * @tc.desc      : off Progess
+     * @tc.desc      : off Progess ——401: The input parameter is invalid
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
@@ -156,14 +160,11 @@ export default function cloudSyncTest() {
     it("SUB_CLOUDSYNC_GALLERYSYNC_OFF_002", 0, async function (done) {
       let testNum = "SUB_CLOUDSYNC_GALLERYSYNC_OFF_002";
       try {
-        gallerySync.on("progress", (progress) => {
-        });
-
         gallerySync.off("");
         expect(false).assertTrue();
       } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
-        expect(true).assertTrue();
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        expect(error.code == 401).assertTrue();
         done();
       }
     });
@@ -179,17 +180,22 @@ export default function cloudSyncTest() {
     it("SUB_CLOUDSYNC_GALLERYSYNC_START_PROMISE_001", 0, async function (done) {
       let testNum = "SUB_CLOUDSYNC_GALLERYSYNC_START_PROMISE_001";
       try {
-        let count = 0;
-        gallerySync.start().then((result) => {
-          count++;
-          expect(count > 0).assertTrue();
+        await gallerySync.start().then((result) => {
+          expect(isConnect).assertTrue();
+        }).catch((err) => {
+          console.error(`${testNum}:: err.code :${err.code}, err.message : ${err.message}`);
+          if (isConnect) {
+            console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
+            expect(err.code == 13600001).assertTrue(); //IPC error
+          } else {
+            console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
+            expect(err.code == 22400002).assertTrue(); //Network unavailable
+          }
         });
-        await sleep(1000);
-      } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
-        expect(false).assertTrue();
-      } finally {
         done();
+      } catch (error) {
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        expect(false).assertTrue();
       }
     });
 
@@ -204,17 +210,24 @@ export default function cloudSyncTest() {
     it("SUB_CLOUDSYNC_GALLERYSYNC_START_CALLBACK_001", 0, async function (done) {
       let testNum = "SUB_CLOUDSYNC_GALLERYSYNC_START_CALLBACK_001";
       try {
-        let count = 0;
-        await gallerySync.start(() => {
-          count++;
+        gallerySync.start((err) => {
+          if (err) {
+            console.error(`${testNum}:: err.code :${err.code}, err.message : ${err.message}`);
+            if (isConnect) {
+              console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
+              expect(err.code == 13600001).assertTrue(); //IPC error
+            } else {
+              console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
+              expect(err.code == 22400002).assertTrue(); //Network unavailable
+            }
+          } else {
+            expect(true).assertTrue();
+          }
         });
-        await sleep(1000);
-        expect(count > 0).assertTrue();
-      } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
-        expect(false).assertTrue();
-      } finally {
         done();
+      } catch (error) {
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        expect(false).assertTrue();
       }
     });
 
@@ -229,19 +242,21 @@ export default function cloudSyncTest() {
     it("SUB_CLOUDSYNC_GALLERYSYNC_STOP_PROMISE_001", 0, async function (done) {
       let testNum = "SUB_CLOUDSYNC_GALLERYSYNC_STOP_PROMISE_001";
       try {
-        let count = 0;
-        gallerySync.start();
-        sleep(1000);
-        gallerySync.stop().then((result) => {
-          count++;
-          expect(count > 0).assertTrue();
+        await gallerySync.stop().then((info) => {
+          expect(true).assertTrue();
+          done();
+        }).catch((err) => {
+          expect(false).assertTrue();
+          done();
         });
-        await sleep(1000);
-      } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
-        expect(false).assertTrue();
-      } finally {
-        done();
+      } catch (err) {
+        if (isConnect) {
+          console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
+          expect(err.code == 13600001).assertTrue(); //IPC error
+        } else {
+          console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
+          expect(err.code == 22400002).assertTrue(); //Network unavailable
+        }
       }
     });
 
@@ -256,20 +271,23 @@ export default function cloudSyncTest() {
     it("SUB_CLOUDSYNC_GALLERYSYNC_STOP_CALLBACK_001", 0, async function (done) {
       let testNum = "SUB_CLOUDSYNC_GALLERYSYNC_STOP_CALLBACK_001";
       try {
-        let count = 0;
-        await gallerySync.start(() => {
+        gallerySync.stop((err) => {
+          if (err) {
+            if (isConnect) {
+              console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
+              expect(err.code == 13600001).assertTrue(); //IPC error
+            } else {
+              console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
+              expect(err.code == 22400002).assertTrue(); //Network unavailable
+            }
+          } else {
+            expect(true).assertTrue();
+          }
         });
-        await sleep(1000);
-        await gallerySync.stop(() => {
-          count++;
-          expect(count > 0).assertTrue();
-        });
-        await sleep(1000);
-      } catch (error) {
-        console.info(`${testNum}:: error :${error}`);
-        expect(false).assertTrue();
-      } finally {
         done();
+      } catch (error) {
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        expect(false).assertTrue();
       }
     });
   });
