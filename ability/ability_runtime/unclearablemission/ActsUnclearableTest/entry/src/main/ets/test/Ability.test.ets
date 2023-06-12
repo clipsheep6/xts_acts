@@ -9,6 +9,7 @@ let missionBID = 0;
 let missionCID = 0;
 let missionDID = 0;
 
+
 export default function abilityTest() {
   var abilityDelegator = undefined;
   describe('ActsUnclearableTest', function () {
@@ -102,18 +103,16 @@ export default function abilityTest() {
         }
       }
       missionManager.getMissionInfos("", 10, (error, missions) => {
+        var flag = false;
         var i =0;
         for(i;i < missions.length;i++) {
           if(missions[i].want.bundleName == "com.example.missionaapp") {
-            missionAID = missions[i].missionId ;
+            missionAID = missions[i].missionId;
+            flag = true;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
-        missionManager.getMissionInfo("", missionAID, (error, mission) => {
-          expect(mission.unclearable).assertTrue()
-        })
+        expect(flag).assertTrue()
       })
     })
     it('ActsUnclearableTest_3',0, function () {
@@ -140,79 +139,73 @@ export default function abilityTest() {
         }
       }
       missionManager.getMissionInfos("", 10, (error, missions) => {
+        var flag = false;
         var i =0;
         for(i;i < missions.length;i++) {
           if(missions[i].want.bundleName == "com.example.missionbapp") {
-            missionBID = missions[i].missionId ;
+            missionBID = missions[i].missionId;
+            flag = true;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
-        missionManager.getMissionInfo("", missionBID, (error, mission) => {
-          expect(mission.unclearable).assertFalse()
-        })
+        expect(flag).assertFalse()
       })
     })
     it('ActsUnclearableTest_4',0, function () {
       missionManager.clearAllMissions().then(() => {
         console.log("clearAllMissions is called ");
       });
+      for(var j = 0;j<120;j++);
       missionManager.getMissionInfos("", 10, (error, missions) => {
+        var flag = false;
         var i =0;
         for(i;i < missions.length;i++) {
           if(missions[i].want.bundleName == "com.example.missionaapp") {
-            missionAID = missions[i].missionId ;
+            missionAID = missions[i].missionId;
+            flag = true;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
-        missionManager.getMissionInfo("", missionAID, (error, mission) => {
-          expect(mission.unclearable).assertTrue()
-        })
+        expect(flag).assertTrue()
       })
+      for(var j = 0;j<120;j++);
       missionManager.getMissionInfos("", 10, (error, missions) => {
+        var flag = false;
         var i =0;
         for(i;i < missions.length;i++) {
           if(missions[i].want.bundleName == "com.example.missionbapp") {
-            missionBID = missions[i].missionId ;
+            missionBID = missions[i].missionId;
+            flag = true;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
-        missionManager.getMissionInfo("", missionBID, (error, mission) => {
-          expect(mission.unclearable).assertFalse()
-        })
+        expect(flag).assertFalse()
       })
+      for(var j = 0;j<120;j++);
       missionManager.getMissionInfos("", 10, (error, missions) => {
+        var flag = false;
         var i =0;
         for(i;i < missions.length;i++) {
           if(missions[i].want.bundleName == "com.example.missioncapp") {
-            missionCID = missions[i].missionId ;
+            missionCID = missions[i].missionId;
+            flag = true;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
-        missionManager.getMissionInfo("", missionCID, (error, mission) => {
-          expect(mission.unclearable).assertFalse()
-        })
+        expect(flag).assertFalse()
       })
+      for(var j = 0;j<120;j++);
       missionManager.getMissionInfos("", 10, (error, missions) => {
+        var flag = false;
         var i =0;
         for(i;i < missions.length;i++) {
           if(missions[i].want.bundleName == "com.example.missiondapp") {
-            missionDID = missions[i].missionId ;
+            missionDID = missions[i].missionId;
+            flag = true;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
-        missionManager.getMissionInfo("", missionDID, (error, mission) => {
-          expect(mission.unclearable).assertTrue()
-        })
+        expect(flag).assertTrue()
       })
     })
   })
