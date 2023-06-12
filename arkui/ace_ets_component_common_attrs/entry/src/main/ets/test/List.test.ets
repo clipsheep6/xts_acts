@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+import DefaultWebTest from './default/DefaultWebTest.test';
+import DefaultTest from './default/DefaultTest.test';
+import marginStringTest from './margin/MarginStringTest.test';
+import alignRulesTest from './alignRules/AlignRulesTest.test';
+import positionTest from './position/PositionTest.test';
+import markAnchorTest from './markAnchor/MarkAnchorTest.test';
+import offsetTest from './offset/OffsetTest.test';
+import PaddingContainerTest from './padding/PaddingContainerTest.test';
+import PaddingContainerLengthTest from './padding/PaddingContainerLengthTest.test';
+import PaddingBaseTest from './padding/PaddingBaseTest.test';
+import PaddingBaseLengthTest from './padding/PaddingBaseLengthTest.test';
+import layoutWeightRowTest from './layoutWeight/LayoutWeightRowtest.test';
+import layoutWeightFlexTest from './layoutWeight/LayoutWeightFlextest.test';
+import marginLengthTest from './margin/MarginLengthTest.test';
+import layoutWeightTest from './layoutWeight/LayoutWeighttest.test';
+import constraintSizeTest from './constraintSize/ConstraintSizeTest.test';
+import marginTest from './margin/MarginTest.test';
+import widthTest from './width/WidthTest.test';
+import heightTest from './height/HeightTest.test';
+import sizeTest from './size/SizeTest.test';
+
+export default function testsuite() {
+  positionTest();
+  markAnchorTest();
+  offsetTest();
+  alignRulesTest();
+  marginTest();
+  marginLengthTest();
+  marginStringTest();
+  layoutWeightTest();
+  layoutWeightFlexTest();
+  layoutWeightRowTest();
+  constraintSizeTest();
+  widthTest();
+  heightTest();
+  sizeTest();
+  PaddingContainerTest();
+  PaddingBaseTest();
+  PaddingContainerLengthTest();
+  PaddingBaseLengthTest();
+  DefaultTest();
+  DefaultWebTest();
+}
