@@ -905,7 +905,7 @@ export default function UiTest() {
             await scrollBar.scrollToBottom()
             let button = await driver.findComponent(ON.text('bottom'))
             expect(await button.getText() == 'bottom').assertTrue()
-            await driver.scrollToTop()
+            await scrollBar.scrollToTop()
         })
 
         /*
