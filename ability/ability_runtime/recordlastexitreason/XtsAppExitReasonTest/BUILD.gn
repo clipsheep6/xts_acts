@@ -18,7 +18,7 @@ ohos_js_hap_suite("XtsAppExitReasonTest") {
   js_build_mode = "debug"
   deps = [
     ":xtsappexitreasontest_js_assets",
-    ":xtsappexitreasontest_resources"
+    ":xtsappexitreasontest_resources",
   ]
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
