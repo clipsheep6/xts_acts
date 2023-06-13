@@ -2027,7 +2027,6 @@ describe('threadWorkerTest', function () {
 
         ss.postMessage({type: "new", value: 10})
         while (!flag) {
-            ss.postMessage({type: "wait"})
             await promiseCase()
         }
         ss.terminate()
