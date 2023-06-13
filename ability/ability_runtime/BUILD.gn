@@ -60,7 +60,7 @@ group("ability_runtime") {
       "stage:stage",
       "stopserviceextension:stopserviceextension",
       "want:want",
-      "workercontextcover:workercontextcover"
+      "workercontextcover:workercontextcover",
     ]
   }
 }
