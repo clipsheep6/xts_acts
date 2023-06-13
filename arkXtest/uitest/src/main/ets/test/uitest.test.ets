@@ -54,7 +54,6 @@ export default function UiTest() {
             let input_new = await driver.findComponent(BY.type('TextInput'))
             let text = await input_new.getText()
             expect(text == '123').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -74,7 +73,6 @@ export default function UiTest() {
             expect(await Button3.getText() == 'next page').assertTrue()
             let Button4 = await driver.findComponent(BY.text('ext', MatchPattern.CONTAINS))
             expect(await Button4.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -93,7 +91,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'back to index').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -112,7 +109,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'doubleClick').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -131,7 +127,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'longClick').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -145,7 +140,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(BY.key('my-key'))
             expect(await button.getKey() == 'my-key').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -161,7 +155,6 @@ export default function UiTest() {
             let id = await button.getId()
             let button2 = await driver.findComponent(BY.id(id))
             expect(await button2.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -176,7 +169,6 @@ export default function UiTest() {
             let text = await driver.findComponent(BY.type('Text'))
             let type = await text.getType()
             expect(type == 'Text').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -191,7 +183,6 @@ export default function UiTest() {
             let button = await driver.findComponent(BY.text('next page').clickable(false))
             let clickable = await button.isClickable()
             expect(clickable == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -206,7 +197,6 @@ export default function UiTest() {
             let scrollBar = await driver.findComponent(BY.type('Scroll').scrollable(false))
             let scrollable = await scrollBar.isScrollable()
             expect(scrollable == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -221,7 +211,6 @@ export default function UiTest() {
             let button = await driver.findComponent(BY.text('next page').enabled(true))
             let enable = await button.isEnabled()
             expect(enable == true).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -236,7 +225,6 @@ export default function UiTest() {
             let button = await driver.findComponent(BY.text('next page').focused(false))
             let focused = await button.isFocused()
             expect(focused == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -251,7 +239,6 @@ export default function UiTest() {
             let button = await driver.findComponent(BY.text('next page').selected(false))
             let selected = await button.isSelected()
             expect(selected == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -270,7 +257,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button_ori = await driver.findComponent(BY.text('next page'))
             expect(await button_ori.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -284,7 +270,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let buttons = await driver.findComponents(BY.type('Button'))
             expect(await buttons[0].getText() != null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -304,7 +289,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button_ori = await driver.findComponent(BY.text('next page'))
             expect(await button_ori.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -319,7 +303,6 @@ export default function UiTest() {
             let savePath = '/data/local/tmp/1.png'
             let success = await driver.screenCap(savePath)
             expect(success == true).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -332,7 +315,6 @@ export default function UiTest() {
             let driver = UiDriver.create()
             await driver.delayMs(waitUiReadyMs)
             await driver.assertComponentExist(BY.text('next page'))
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -346,7 +328,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(BY.isBefore(BY.text('Click twice')).type('Button'))
             expect(await button.getType() == 'Button').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -360,7 +341,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(BY.isAfter(BY.text('next page')).type('Text'))
             expect(await button.getText() == 'Click twice').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -375,7 +355,7 @@ export default function UiTest() {
             await driver.swipe(300, 600, 300, 300)
             let text = await driver.findComponent(BY.text('next page'))
             expect(text == null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
+            await driver.scrollToTop()
         })
 
         /*
@@ -390,15 +370,10 @@ export default function UiTest() {
             let scrollBar = await driver.findComponent(BY.type('Scroll'))
             let button = await scrollBar.scrollSearch(BY.text('next page'))
             expect(await button.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
     })
 
     describe('UiTest_API9', function () {
-        beforeEach(async function () {
-            await stopApplication('com.uitestScene.acts')
-        })
-
         /*
          * @tc.number: uiTest_9001
          * @tc.name: testInputText
@@ -414,7 +389,6 @@ export default function UiTest() {
             let input_new = await driver.findComponent(ON.type('TextInput'))
             let text = await input_new.getText()
             expect(text == '123').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -434,7 +408,6 @@ export default function UiTest() {
             let input_new = await driver.findComponent(ON.type('TextInput'))
             let text = await input_new.getText()
             expect(text).assertEqual('')
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -449,7 +422,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.checkable(false).type('Checkbox'))
             let checkable = await button.isCheckable()
             expect(checkable == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -464,7 +436,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.checked(false).type('Checkbox'))
             let checked = await button.isChecked()
             expect(checked == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -484,7 +455,6 @@ export default function UiTest() {
             expect(await Button3.getText() == 'next page').assertTrue()
             let Button4 = await driver.findComponent(ON.text('ext',MatchPattern.CONTAINS))
             expect(await Button4.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -504,7 +474,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'back to index').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -524,7 +493,6 @@ export default function UiTest() {
             let text = await button.getText()
             expect(text == 'doubleClick').assertTrue()
             await button.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -544,7 +512,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'longClick').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -563,7 +530,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'back to index').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -582,7 +548,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'doubleClick').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -601,7 +566,6 @@ export default function UiTest() {
             let text = await newButton.getText()
             expect(text == 'longClick').assertTrue()
             await newButton.click()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -615,7 +579,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(ON.id('my-key'))
             expect(await button.getId() == 'my-key').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -630,7 +593,6 @@ export default function UiTest() {
             let text = await driver.findComponent(ON.type('Text'))
             let type = await text.getType()
             expect(type == 'Text').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -645,7 +607,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.text('next page').clickable(false))
             let clickable = await button.isClickable()
             expect(clickable == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -660,7 +621,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.text('next page').longClickable(false))
             let longClickable = await button.isLongClickable()
             expect(longClickable== false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -675,7 +635,6 @@ export default function UiTest() {
             let scrollBar = await driver.findComponent(ON.type('Scroll').scrollable(false))
             let scrollable = await scrollBar.isScrollable()
             expect(scrollable == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -690,7 +649,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.text('next page').enabled(true))
             let enable = await button.isEnabled()
             expect(enable == true).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -705,7 +663,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.text('next page').focused(false))
             let focused = await button.isFocused()
             expect(focused == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -720,7 +677,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.text('next page').selected(false))
             let selected = await button.isSelected()
             expect(selected == false).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -739,7 +695,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button_ori = await driver.findComponent(ON.text('next page'))
             expect(await button_ori.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -753,7 +708,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let buttons = await driver.findComponents(ON.type('Button'))
             expect(await buttons[0].getText() != null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -773,7 +727,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button_ori = await driver.findComponent(ON.text('next page'))
             expect(await button_ori.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -796,7 +749,6 @@ export default function UiTest() {
             await driver.triggerCombineKeys(2072, 2038)
             let text2 = await driver.findComponent(ON.type('TextInput'))
             expect(await text2.getText() == '123123').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -814,7 +766,6 @@ export default function UiTest() {
             expect(bounds !== null).assertTrue()
             expect(bounds.right).assertLarger(bounds.left)
             expect(bounds.bottom).assertLarger(bounds.top)
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -829,7 +780,6 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.text('next page'))
             let point = await button.getBoundsCenter()
             expect(point!== null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -843,7 +793,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.waitForComponent(ON.text('next page'), waitUiReadyMs)
             expect(button !== null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -858,7 +807,6 @@ export default function UiTest() {
             let savePath = '/data/local/tmp/1.png'
             let success = await driver.screenCap(savePath)
             expect(success == true).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -871,7 +819,6 @@ export default function UiTest() {
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
             await driver.assertComponentExist(ON.text('next page'))
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -885,7 +832,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(ON.isBefore(ON.text('Click twice')).type('Button'))
             expect(await button.getType() == 'Button').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -899,7 +845,6 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(ON.isAfter(ON.text('next page')).type('Text'))
             expect(await button.getText() == 'Click twice').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -914,7 +859,7 @@ export default function UiTest() {
             await driver.swipe(300,600,300,300)
             let text = await driver.findComponent(ON.text('next page'))
             expect(text == null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
+            await driver.scrollToTop()
         })
 
         /*
@@ -929,7 +874,7 @@ export default function UiTest() {
             await driver.fling({x:300, y:600},{x:300, y:300}, 20, 600)
             let text = await driver.findComponent(ON.text('next page'))
             expect(text == null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
+            await driver.scrollToTop()
         })
 
         /*
@@ -944,7 +889,6 @@ export default function UiTest() {
             let scrollBar = await driver.findComponent(ON.type('Scroll'))
             let button = await scrollBar.scrollSearch(ON.text('next page'))
             expect(await button.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -961,7 +905,7 @@ export default function UiTest() {
             await scrollBar.scrollToBottom()
             let button = await driver.findComponent(ON.text('bottom'))
             expect(await button.getText() == 'bottom').assertTrue()
-            await stopApplication('com.uitestScene.acts')
+            await driver.scrollToTop()
         })
 
         /*
@@ -979,7 +923,6 @@ export default function UiTest() {
             await scrollBar.scrollToTop()
             let button = await driver.findComponent(ON.text('next page'))
             expect(await button.getText() == 'next page').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1006,7 +949,6 @@ export default function UiTest() {
             let bounds3 = await image3.getBounds()
             expect(bounds3 != bounds2).assertTrue()
             await driver.pressBack()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1052,7 +994,6 @@ export default function UiTest() {
             let bounds2= await image2.getBounds()
             expect(bounds2 != bounds1).assertTrue()
             await driver.pressBack()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1074,7 +1015,6 @@ export default function UiTest() {
                 expect(mode2 == WindowMode.FLOATING).assertTrue()
                 expect(mode2 != WindowMode.SECONDARY).assertTrue()
                 expect(mode2 != WindowMode.PRIMARY).assertTrue()
-                await stopApplication('com.uitestScene.acts')
             }
             catch (err) {
                 if (err.message == 'this device can not support this action') {
@@ -1097,7 +1037,6 @@ export default function UiTest() {
             let window = await driver.findWindow({bundleName:'com.uitestScene.acts'})
             let name = await window.getBundleName()
             expect(name == 'com.uitestScene.acts').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1112,7 +1051,6 @@ export default function UiTest() {
             let window = await driver.findWindow({bundleName:'com.uitestScene.acts'})
             let title = await window.getTitle()
             expect(title == '').assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1135,7 +1073,6 @@ export default function UiTest() {
                 let window2 = await driver.findWindow({bundleName:'com.uitestScene.acts'})
                 let bounds2 = await window2.getBounds()
                 expect(bounds1 != bounds2).assertTrue()
-                await stopApplication('com.uitestScene.acts')
             }
             catch (err) {
                 if (err.message == 'this device can not support this action') {
@@ -1249,7 +1186,6 @@ export default function UiTest() {
             let isActived = await window.isActived()
             expect(isFocused == true).assertTrue()
             expect(isActived == true).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1344,7 +1280,6 @@ export default function UiTest() {
             let s = await driver.getDisplaySize()
             expect(s.x != 0).assertTrue()
             expect(s.y != 0).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1359,7 +1294,6 @@ export default function UiTest() {
             let s = await driver.getDisplayDensity()
             expect(s.x != 0).assertTrue()
             expect(s.y != 0).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1372,7 +1306,6 @@ export default function UiTest() {
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
             await driver.wakeUpDisplay()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1384,10 +1317,9 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
-            await driver.pressHome()
             let button = await driver.findComponent(ON.text('next page'))
+            await driver.pressHome()
             expect(button != null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1401,7 +1333,6 @@ export default function UiTest() {
             await driver.delayMs(2000)
             let idled = await driver.waitForIdle(4000,5000)
             expect(idled = true).assertTrue()
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1424,7 +1355,7 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let text = await driver.findComponent(ON.text('orange').isAfter(ON.text('banana')))
             expect(text != null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
+            await driver.pressBack()
         })
 
         /*
@@ -1445,7 +1376,7 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             let text = await driver.findComponent(ON.text('orange').isAfter(ON.text('banana')))
             expect(text != null).assertTrue()
-            await stopApplication('com.uitestScene.acts')
+            await driver.pressBack()
         })
 
         /*
@@ -1526,7 +1457,6 @@ export default function UiTest() {
                 expect(rotation4 == DisplayRotation.ROTATION_90)
                 await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
             }
-            await stopApplication('com.uitestScene.acts')
         })
 
         /*
@@ -1551,7 +1481,6 @@ export default function UiTest() {
                 expect(rotation2 == DisplayRotation.ROTATION_0)
                 console.info('The device is displayed in horizontal on default')
             }
-            await stopApplication('com.uitestScene.acts')
         })
     })
 }
