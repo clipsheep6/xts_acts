@@ -355,7 +355,7 @@ export default function UiTest() {
             await driver.swipe(300, 600, 300, 300)
             let text = await driver.findComponent(BY.text('next page'))
             expect(text == null).assertTrue()
-            await driver.scrollToTop()
+            await driver.swipe(300, 300, 300, 700)
         })
 
         /*
@@ -859,7 +859,7 @@ export default function UiTest() {
             await driver.swipe(300,600,300,300)
             let text = await driver.findComponent(ON.text('next page'))
             expect(text == null).assertTrue()
-            await driver.scrollToTop()
+            await driver.swipe(300, 300, 300, 700)
         })
 
         /*
@@ -874,7 +874,7 @@ export default function UiTest() {
             await driver.fling({x:300, y:600},{x:300, y:300}, 20, 600)
             let text = await driver.findComponent(ON.text('next page'))
             expect(text == null).assertTrue()
-            await driver.scrollToTop()
+            await driver.swipe(300, 300, 300, 900)
         })
 
         /*
