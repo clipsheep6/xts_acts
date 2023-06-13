@@ -39,6 +39,6 @@ ohos_shared_library("ImagePixelMapNDKTest") {
   ]
 
   output_extension = "so"
-  subsystem_name = "multimedia"
-  part_name = "multimedia_image_framework"
+  subsystem_name = "graphic"
+  part_name = "image_framework"
 }

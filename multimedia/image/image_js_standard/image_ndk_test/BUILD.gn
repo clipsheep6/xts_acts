@@ -24,8 +24,8 @@ ohos_js_hap_suite("image_pixelmap_ndk_hap") {
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsPixelMapNapiEtsTest"
   shared_libraries = [ "./entry/src/main/cpp:imagePixelmap" ]
-  subsystem_name = "multimedia"
-  part_name = "multimedia_image_framework"
+  subsystem_name = "graphic"
+  part_name = "image_framework"
 }
 
 ohos_js_assets("pixelmap_ets_assets") {
