@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WappListAANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import missionManager from '@ohos.app.ability.missionManager'
@@ -9,89 +23,103 @@ let missionBID = 0;
 let missionCID = 0;
 let missionDID = 0;
 
-
 export default function abilityTest() {
   var abilityDelegator = undefined;
   describe('ActsUnclearableTest', function () {
     beforeEach(function () {
       abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      setTimeout(function(){
-        console.info("sleep 500ms");
-      },1000)
+      setTimeout(function () {
+        console.info("sleep 1000ms");
+      }, 1000)
       var cmd = "aa start -b com.example.missionaapp -a EntryAbility ";
       abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       TAGA = 1;
-      setTimeout(function(){
-        console.info("sleep 500ms");
-      },1000)
+      setTimeout(function () {
+        console.info("sleep 1000ms");
+      }, 1000)
       var cmd = "aa start -b com.example.missionaapp -a EntryAbility ";
       abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       TAGB = 1;
-      setTimeout(function(){
-        console.info("sleep 500ms");
-      },1000)
+      setTimeout(function () {
+        console.info("sleep 1000ms");
+      }, 1000)
       var cmd = "aa start -b com.example.missioncapp -a EntryAbility ";
       abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
-      setTimeout(function(){
-        console.info("sleep 500ms");
-      },1000)
+      setTimeout(function () {
+        console.info("sleep 1000ms");
+      }, 1000)
       var cmd = "aa start -b com.example.missiondapp -a EntryAbility ";
       abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
-      setTimeout(function(){
-        console.info("sleep 500ms");
-      },1000)
+      setTimeout(function () {
+        console.info("sleep 1000ms");
+      }, 1000)
     })
-    it('ActsUnclearableTest_1',0, function () {
+
+    /*
+     * @tc.number: ActsUnclearableTest_0100
+     * @tc.name: Support for manually deleting tasks
+     * @tc.desc: Support task configuration not manually deleted by users
+     */
+    it('ActsUnclearableTest_0100', 0, async function (done) {
       missionManager.getMissionInfos("", 10, (error, missions) => {
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missionaapp") {
-            missionAID = missions[i].missionId ;
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missionaapp") {
+            missionAID = missions[i].missionId;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
+        setTimeout(function () {
+          console.info("sleep 1ms");
+        }, 1)
         missionManager.getMissionInfo("", missionAID, (error, mission) => {
           expect(mission.unclearable).assertTrue()
         })
       })
       missionManager.getMissionInfos("", 10, (error, missions) => {
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missionbapp") {
-            missionBID = missions[i].missionId ;
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missionbapp") {
+            missionBID = missions[i].missionId;
             break;
           }
         }
-        for(i;i < 120;i++) {
-        }
+        setTimeout(function () {
+          console.info("sleep 1ms");
+        }, 1)
         missionManager.getMissionInfo("", missionBID, (error, mission) => {
           expect(mission.unclearable).assertFalse()
         })
       })
+      done();
     })
-    it('ActsUnclearableTest_2',0, function () {
+
+    /*
+     * @tc.number: ActsUnclearableTest_0200
+     * @tc.name: Support for manually deleting tasks
+     * @tc.desc: Support task configuration not manually deleted by users
+     */
+    it('ActsUnclearableTest_0200', 0, async function (done) {
       if (TAGA == 1) {
         let longAPri = 0;
         let longAAft = 0;
         missionManager.getMissionInfos("", 10, (error, missions) => {
           longAPri = missions.length;
-          if (missions[1].want.bundleName == "com.example.missionaapp"){
+          if (missions[1].want.bundleName == "com.example.missionaapp") {
             missionManager.clearMission(missions[1].missionId).then(() => {
               console.log("clearMissionA is called ");
               longAAft = missions.length;
             })
           }
-          else{
+          else {
             missionManager.clearMission(missions[2].missionId).then(() => {
               console.log("clearMissionA is called ");
               longAAft = missions.length;
@@ -104,9 +132,9 @@ export default function abilityTest() {
       }
       missionManager.getMissionInfos("", 10, (error, missions) => {
         var flag = false;
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missionaapp") {
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missionaapp") {
             missionAID = missions[i].missionId;
             flag = true;
             break;
@@ -114,20 +142,27 @@ export default function abilityTest() {
         }
         expect(flag).assertTrue()
       })
+      done();
     })
-    it('ActsUnclearableTest_3',0, function () {
+
+    /*
+     * @tc.number: ActsUnclearableTest_0300
+     * @tc.name: Support for manually deleting tasks
+     * @tc.desc: Support task configuration not manually deleted by users
+     */
+    it('ActsUnclearableTest_0300', 0, async function (done) {
       if (TAGB == 1) {
         let longBPri = 0;
         let longBAft = 0;
         missionManager.getMissionInfos("", 10, (error, missions) => {
           longBPri = missions.length;
-          if (missions[1].want.bundleName == "com.example.missionbapp"){
+          if (missions[1].want.bundleName == "com.example.missionbapp") {
             missionManager.clearMission(missions[1].missionId).then(() => {
               console.log("clearMissionB is called ");
               longBAft = missions.length;
             })
           }
-          else{
+          else {
             missionManager.clearMission(missions[2].missionId).then(() => {
               console.log("clearMissionB is called ");
               longBAft = missions.length;
@@ -140,9 +175,9 @@ export default function abilityTest() {
       }
       missionManager.getMissionInfos("", 10, (error, missions) => {
         var flag = false;
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missionbapp") {
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missionbapp") {
             missionBID = missions[i].missionId;
             flag = true;
             break;
@@ -150,17 +185,26 @@ export default function abilityTest() {
         }
         expect(flag).assertFalse()
       })
+      done();
     })
-    it('ActsUnclearableTest_4',0, function () {
+
+    /*
+     * @tc.number: ActsUnclearableTest_0400
+     * @tc.name: Support for manually deleting tasks
+     * @tc.desc: Support task configuration not manually deleted by users
+     */
+    it('ActsUnclearableTest_0400', 0, async function (done) {
       missionManager.clearAllMissions().then(() => {
         console.log("clearAllMissions is called ");
       });
-      for(var j = 0;j<120;j++);
+      setTimeout(function () {
+        console.info("sleep 1ms");
+      }, 1)
       missionManager.getMissionInfos("", 10, (error, missions) => {
         var flag = false;
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missionaapp") {
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missionaapp") {
             missionAID = missions[i].missionId;
             flag = true;
             break;
@@ -168,12 +212,14 @@ export default function abilityTest() {
         }
         expect(flag).assertTrue()
       })
-      for(var j = 0;j<120;j++);
+      setTimeout(function () {
+        console.info("sleep 1ms");
+      }, 1)
       missionManager.getMissionInfos("", 10, (error, missions) => {
         var flag = false;
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missionbapp") {
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missionbapp") {
             missionBID = missions[i].missionId;
             flag = true;
             break;
@@ -181,12 +227,14 @@ export default function abilityTest() {
         }
         expect(flag).assertFalse()
       })
-      for(var j = 0;j<120;j++);
+      setTimeout(function () {
+        console.info("sleep 1ms");
+      }, 1)
       missionManager.getMissionInfos("", 10, (error, missions) => {
         var flag = false;
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missioncapp") {
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missioncapp") {
             missionCID = missions[i].missionId;
             flag = true;
             break;
@@ -194,12 +242,14 @@ export default function abilityTest() {
         }
         expect(flag).assertFalse()
       })
-      for(var j = 0;j<120;j++);
+      setTimeout(function () {
+        console.info("sleep 1ms");
+      }, 1)
       missionManager.getMissionInfos("", 10, (error, missions) => {
         var flag = false;
-        var i =0;
-        for(i;i < missions.length;i++) {
-          if(missions[i].want.bundleName == "com.example.missiondapp") {
+        var i = 0;
+        for (i; i < missions.length; i++) {
+          if (missions[i].want.bundleName == "com.example.missiondapp") {
             missionDID = missions[i].missionId;
             flag = true;
             break;
@@ -207,6 +257,7 @@ export default function abilityTest() {
         }
         expect(flag).assertTrue()
       })
+      done();
     })
   })
 }
