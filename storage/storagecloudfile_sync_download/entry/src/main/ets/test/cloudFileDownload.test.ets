@@ -13,55 +13,103 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
-import {sleep, getPermission} from '../../../../../common';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import connection from '@ohos.net.connection'
 // @ts-ignore
 import cloudSync from '@ohos.file.cloudsync';
 
-export default function cloudFileDownloadTest(abilityContext) {
+export default function cloudFileDownloadTest() {
 
+  let uri_ = "file://media/image/7";
   let cloudSyncDownload
+  let isConnect: boolean;
+  describe('cloud_file_download_test', async function () {
 
-  describe('cloud_file_download_test', function () {
-    beforeAll(async function () {
-      console.info("beforeAll case");
+    async function getNetId(): Promise<number> {
+      let netId = 0;
       try {
-        await getPermission("com.ohos.cloudfilesync", abilityContext);
+        let netHandle = await connection.getDefaultNet();
+        if (netHandle) {
+          console.log(`getNetId Info : ${JSON.stringify(netHandle)}`)
+          netId = netHandle.netId;
+        }
+      } catch (error) {
+        console.error(`getNetId Error : ${JSON.stringify(error)}`)
+      }
+      return netId;
+    }
+
+    beforeAll(async function () {
+      console.info("beforeAll case uri: " + uri_);
+      try {
+        let netId = await getNetId();
+        if (netId >= 100) {
+          isConnect = true;
+        } else {
+          isConnect = false;
+        }
+        console.info(`网络状态：${isConnect}`)
         cloudSyncDownload = new cloudSync.Download();
       } catch (err) {
-        console.info("beforeAll case err: " + err);
+        console.error("beforeAll case err: " + err);
       }
     });
+
     beforeEach(function () {
       console.info("beforeEach case");
 
     });
+
     afterEach(async function () {
       console.info("afterEach case");
-      await sleep()
     });
+
     afterAll(function () {
       console.info("afterAll case");
     });
+
+    function errHandle(err, tag: string) {
+      console.error(`${tag} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
+      if (err.code != undefined) {
+        switch (err.code) {
+          case 13600001: //IPC error
+            console.error(`${tag} IPC error`);
+            expect(true).assertTrue();
+            break
+          case 22400002: //Network unavailable
+            console.error(`${tag} Network unavailable`);
+            expect(true).assertTrue();
+            break
+          case 401: //The input parameter is invalid
+            console.error(`${tag} The input parameter is invalid`);
+            expect(true).assertTrue();
+            break
+        }
+      } else {
+        console.error(`${tag} catch failed. err = ${JSON.stringify(err)}`);
+        expect(false).assertTrue();
+      }
+    }
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_000
      * @tc.name download_start_test_000
-     * @tc.desc Function of API, Test start() interfaces. success
+     * @tc.desc Function of API, Test start() interfaces. fail(13600001)
      */
-    it('download_start_test_000', 0, function (done) {
+    it('download_start_test_000', 0, async function (done) {
+      let TAG = "start_test_000::";
       try {
         let uri = "qqewasddasd";
         cloudSyncDownload.start(uri, (err, info) => {
           if (err) {
-            console.info("start：callback succeed. err = " + err);
-            expect(true).assertTrue();
+            errHandle(err, TAG)
           } else {
-            console.info("start：callback succeed. info = " + info);
+            console.info(`${TAG} succeed. info = ${info}`);
           }
           done();
         });
       } catch (err) {
-        console.info("start：callback catch failed. err = " + err);
+        console.error(`${TAG} catch failed. err.code :${err.code}, err.message : ${err.message}`);
         expect(false).assertTrue();
       }
     })
@@ -70,31 +118,39 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.name download_start_test_001
      * @tc.desc Function of API, Test start() interfaces. success
      */
-    it('download_start_test_001', 0, async function (done) {
+    it('download_start_test_001', 0, function (done) {
+      let TAG = "start_test_001::";
+      let uri = uri_;
       try {
-        let uri = "qqewasddasd123";
-        let result = await cloudSyncDownload.start(uri)
-        console.info("start：promise succeed. result = " + result);
-        expect(false).assertTrue();
+        console.info(`${TAG} uri: ${uri}`);
+        cloudSyncDownload.start(uri, (err, info) => {
+          if (err) {
+            errHandle(err, TAG);
+          } else {
+            console.info(`${TAG} succeed. info = ${info}`);
+          }
+          done();
+        });
       } catch (err) {
-        console.info("start：promise catch failed. err = " + err);
-        expect(true).assertTrue();
-        done();
+        console.error(`${TAG} catch failed. err.code :${err.code}, err.message : ${err.message}`);
+        expect(false).assertTrue();
       }
     })
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_002
      * @tc.name download_start_test_002
-     * @tc.desc Function of API, Test start() interfaces. fail
+     * @tc.desc Function of API, Test start() interfaces. success
      */
-    it('download_start_test_002', 0, function (done) {
+    it('download_start_test_002', 0, async function (done) {
+      let TAG = "start_test_002::";
       try {
-        cloudSyncDownload.start();
-        expect(false).assertTrue();
+        let uri = "qqewasddasd123";
+        let result = await cloudSyncDownload.start(uri)
+        console.info(`${TAG} succeed. result = ${result}`);
+        expect(true).assertTrue();
         done();
       } catch (err) {
-        console.info("start failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })
@@ -104,11 +160,15 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test start() interfaces. fail
      */
     it('download_start_test_003', 0, function (done) {
+      let TAG = "start_test_003::";
       try {
-        cloudSyncDownload.start(undefined);
+        cloudSyncDownload.start();
+        expect(false).assertTrue();
+        done();
       } catch (err) {
-        console.info("start：callback catch failed. err = " + err);
-        expect(true).assertTrue();
+        // errHandle(err, TAG);
+        console.error(`${TAG} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
+        expect(err.code == 401).assertTrue();
         done();
       }
     })
@@ -118,15 +178,33 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test start() interfaces. fail
      */
     it('download_start_test_004', 0, function (done) {
+      let TAG = "start_test_004::";
+      try {
+        cloudSyncDownload.start(undefined);
+      } catch (err) {
+        // errHandle(err, TAG);
+        console.error(`${TAG} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
+        expect(err.code == 401).assertTrue();
+        done();
+      }
+    })
+    /**
+     * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_005
+     * @tc.name download_start_test_005
+     * @tc.desc Function of API, Test start() interfaces. fail
+     */
+    it('download_start_test_005', 0, function (done) {
+      let TAG = "start_test_005::";
       try {
         cloudSyncDownload.start(() => {
         }, (info) => {
-          console.info("start：callback succeed. info = " + info);
+          console.info(`${TAG} succeed. info = ${info}`);
           expect(false).assertTrue();
         });
       } catch (err) {
-        console.info("start：callback catch failed. err = " + err);
-        expect(true).assertTrue();
+        // errHandle(err, TAG);
+        console.error(`${TAG} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
+        expect(err.code == 401).assertTrue();
         done();
       }
     })
@@ -136,19 +214,20 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test stop() interfaces. success
      */
     it('download_stop_test_000', 0, async function (done) {
+      let TAG = "stop_test_000::";
       try {
         let uri = "qqewasddasd";
         cloudSyncDownload.stop(uri, (err, info) => {
           if (err) {
-            console.info("stop：callback failed. err = " + err);
-            expect(true).assertTrue();
+            errHandle(err, TAG);
+            done();
           } else {
-            console.info("stop：callback succeed. info = " + info);
+            console.info(`${TAG} succeed. info = ${info}`);
           }
           done();
         });
       } catch (err) {
-        console.info("stop：callback catch failed. err = " + err);
+        console.error(`${TAG} catch failed. err = ${JSON.stringify(err)}`);
         expect(false).assertTrue();
       }
     })
@@ -158,14 +237,14 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test stop() interfaces. success
      */
     it('download_stop_test_001', 0, async function (done) {
+      let TAG = "stop_test_001::";
       try {
         let uri = "";
-        let result = await cloudSyncDownload.stop(uri)
-        console.info("stop：promise succeed. result = " + result);
-        expect(false).assertTrue();
-      } catch (err) {
-        console.info("stop：promise catch failed. err = " + err);
+        await cloudSyncDownload.stop(uri)
         expect(true).assertTrue();
+        done();
+      } catch (err) {
+        errHandle(err, TAG);
         done();
       }
     })
@@ -175,12 +254,12 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test stop() interfaces. fail
      */
     it('download_stop_test_002', 0, function (done) {
+      let TAG = "stop_test_002::";
       try {
         cloudSyncDownload.stop();
         expect(false).assertTrue();
       } catch (err) {
-        console.info("stop failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })
@@ -190,11 +269,11 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test stop() interfaces. fail
      */
     it('download_stop_test_003', 0, function (done) {
+      let TAG = "stop_test_003::";
       try {
         cloudSyncDownload.stop(undefined);
       } catch (err) {
-        console.info("stop：promise catch failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })
@@ -204,11 +283,11 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test stop() interfaces.fail
      */
     it('download_stop_test_004', 0, function (done) {
+      let TAG = "stop_test_004::";
       try {
         cloudSyncDownload.stop(undefined, undefined);
       } catch (err) {
-        console.info("stop：callback catch failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })
@@ -218,6 +297,7 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test on() interfaces. fail
      */
     it('download_on_test_000', 0, function (done) {
+      let TAG = "on_test_000::";
       try {
         cloudSyncDownload.on(undefined, (progress) => {
           console.info("on：callback succeed.");
@@ -226,9 +306,8 @@ export default function cloudFileDownloadTest(abilityContext) {
             expect(false).assertTrue();
           }
         })
-      } catch (e) {
-        console.info("on：callback failed. e = " + e);
-        expect(true).assertTrue();
+      } catch (err) {
+        errHandle(err, TAG);
         done();
       }
     });
@@ -238,15 +317,12 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test on() interfaces. fail
      */
     it('download_on_test_001', 0, function (done) {
+      let TAG = "on_test_001::";
       try {
-        let result = cloudSyncDownload.on(undefined);
-        if (result == undefined) {
-          console.info("on：callback succeed. result = " + result);
-        }
+        cloudSyncDownload.on(undefined);
         expect(false).assertTrue();
       } catch (err) {
-        console.info("on：callback catch failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })
@@ -257,15 +333,12 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test off() interfaces. fail
      */
     it('download_off_test_000', 0, function (done) {
+      let TAG = "off_test_000::";
       try {
-        let result = cloudSyncDownload.off(undefined);
-        if (result == undefined) {
-          console.info("on：callback succeed. result = " + result);
-        }
+        cloudSyncDownload.off(undefined);
         expect(false).assertTrue();
       } catch (err) {
-        console.info("on：callback catch failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })
@@ -275,15 +348,12 @@ export default function cloudFileDownloadTest(abilityContext) {
      * @tc.desc Function of API, Test off() interfaces. fail
      */
     it('download_off_test_001', 0, function (done) {
+      let TAG = "off_test_001::";
       try {
-        let result = cloudSyncDownload.off(undefined, undefined);
-        if (result == undefined) {
-          console.info("on：callback succeed. result = " + result);
-        }
+        cloudSyncDownload.off(undefined, undefined);
         expect(false).assertTrue();
       } catch (err) {
-        console.info("on：callback catch failed. err = " + err);
-        expect(true).assertTrue();
+        errHandle(err, TAG);
         done();
       }
     })

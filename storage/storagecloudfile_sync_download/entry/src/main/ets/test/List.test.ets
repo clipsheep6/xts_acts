@@ -16,5 +16,5 @@ import cloudSyncTest from './gallerySync.test.ets'
 import cloudFileDownloadTest from './cloudFileDownload.test.ets'
 export default function testsuite() {
     cloudSyncTest(),
-    cloudFileDownloadTest(globalThis.abilityContext)
+    cloudFileDownloadTest()
 }
