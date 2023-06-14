@@ -48,7 +48,7 @@ export default function cloudFileDownloadTest() {
         } else {
           isConnect = false;
         }
-        console.info(`网络状态：${isConnect}`)
+        console.info(`网络状态：${isConnect}`);
         cloudSyncDownload = new cloudSync.Download();
       } catch (err) {
         console.error("beforeAll case err: " + err);
@@ -57,7 +57,6 @@ export default function cloudFileDownloadTest() {
 
     beforeEach(function () {
       console.info("beforeEach case");
-
     });
 
     afterEach(async function () {
@@ -89,7 +88,7 @@ export default function cloudFileDownloadTest() {
         console.error(`${tag} catch failed. err = ${JSON.stringify(err)}`);
         expect(false).assertTrue();
       }
-    }
+    };
 
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_000
@@ -102,7 +101,7 @@ export default function cloudFileDownloadTest() {
         let uri = "qqewasddasd";
         cloudSyncDownload.start(uri, (err, info) => {
           if (err) {
-            errHandle(err, TAG)
+            errHandle(err, TAG);
           } else {
             console.info(`${TAG} succeed. info = ${info}`);
           }
@@ -112,7 +111,8 @@ export default function cloudFileDownloadTest() {
         console.error(`${TAG} catch failed. err.code :${err.code}, err.message : ${err.message}`);
         expect(false).assertTrue();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_001
      * @tc.name download_start_test_001
@@ -135,7 +135,8 @@ export default function cloudFileDownloadTest() {
         console.error(`${TAG} catch failed. err.code :${err.code}, err.message : ${err.message}`);
         expect(false).assertTrue();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_002
      * @tc.name download_start_test_002
@@ -145,7 +146,7 @@ export default function cloudFileDownloadTest() {
       let TAG = "start_test_002::";
       try {
         let uri = "qqewasddasd123";
-        let result = await cloudSyncDownload.start(uri)
+        let result = await cloudSyncDownload.start(uri);
         console.info(`${TAG} succeed. result = ${result}`);
         expect(true).assertTrue();
         done();
@@ -153,7 +154,8 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_003
      * @tc.name download_start_test_003
@@ -166,12 +168,12 @@ export default function cloudFileDownloadTest() {
         expect(false).assertTrue();
         done();
       } catch (err) {
-        // errHandle(err, TAG);
         console.error(`${TAG} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
         expect(err.code == 401).assertTrue();
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_004
      * @tc.name download_start_test_004
@@ -182,12 +184,12 @@ export default function cloudFileDownloadTest() {
       try {
         cloudSyncDownload.start(undefined);
       } catch (err) {
-        // errHandle(err, TAG);
         console.error(`${TAG} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
         expect(err.code == 401).assertTrue();
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_START_TEST_005
      * @tc.name download_start_test_005
@@ -202,12 +204,12 @@ export default function cloudFileDownloadTest() {
           expect(false).assertTrue();
         });
       } catch (err) {
-        // errHandle(err, TAG);
         console.error(`${TAG} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
         expect(err.code == 401).assertTrue();
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_STOP_TEST_000
      * @tc.name download_stop_test_000
@@ -230,7 +232,8 @@ export default function cloudFileDownloadTest() {
         console.error(`${TAG} catch failed. err = ${JSON.stringify(err)}`);
         expect(false).assertTrue();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_STOP_TEST_001
      * @tc.name download_stop_test_001
@@ -240,14 +243,15 @@ export default function cloudFileDownloadTest() {
       let TAG = "stop_test_001::";
       try {
         let uri = "";
-        await cloudSyncDownload.stop(uri)
+        await cloudSyncDownload.stop(uri);
         expect(true).assertTrue();
         done();
       } catch (err) {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_STOP_TEST_002
      * @tc.name download_stop_test_002
@@ -262,7 +266,8 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_STOP_TEST_003
      * @tc.name download_stop_test_003
@@ -276,7 +281,8 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_STOP_TEST_004
      * @tc.name download_stop_test_004
@@ -290,7 +296,8 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_ON_TEST_000
      * @tc.name download_stop_test_000
@@ -311,6 +318,7 @@ export default function cloudFileDownloadTest() {
         done();
       }
     });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_ON_TEST_001
      * @tc.name download_stop_test_001
@@ -325,7 +333,7 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
 
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_OFF_TEST_000
@@ -341,7 +349,8 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
+
     /**
      * @tc.number SUB_STORAGE_DOWNLOAD_OFF_TEST_001
      * @tc.name download_stop_test_001
@@ -356,6 +365,6 @@ export default function cloudFileDownloadTest() {
         errHandle(err, TAG);
         done();
       }
-    })
+    });
   })
 }

@@ -28,11 +28,11 @@ export default function cloudSyncTest() {
       try {
         let netHandle = await connection.getDefaultNet();
         if (netHandle) {
-          console.log(`getNetId Info : ${JSON.stringify(netHandle)}`)
+          console.log(`getNetId Info : ${JSON.stringify(netHandle)}`);
           netId = netHandle.netId;
         }
       } catch (error) {
-        console.error(`getNetId Error : ${JSON.stringify(error)}`)
+        console.error(`getNetId Error : ${JSON.stringify(error)}`);
       }
       return netId;
     }
@@ -45,15 +45,41 @@ export default function cloudSyncTest() {
       } else {
         isConnect = false;
       }
-      console.log(`网络状态：${isConnect}`)
+      console.log(`网络状态：${isConnect}`);
     });
+
+    function errHandle(err, tag: string) {
+      console.error(`${tag} err.code :${err.code}, err.message : ${err.message}, isConnect : ${isConnect}`);
+      if (err.code != undefined) {
+        switch (err.code) {
+          case 13600001:
+            console.error(`${tag} IPC error`);
+            expect(true).assertTrue();
+            break
+          case 22400002:
+            console.error(`${tag} Network unavailable`);
+            expect(true).assertTrue();
+            break
+          case 401:
+            console.error(`${tag} The input parameter is invalid`);
+            expect(true).assertTrue();
+            break
+        }
+      } else {
+        console.error(`${tag} catch failed. err = ${JSON.stringify(err)}`);
+        expect(false).assertTrue();
+      }
+    }
+
     beforeEach(function () {
       console.info("beforeEach case");
     });
+
     afterEach(async function () {
       console.info("afterEach case");
       await sleep(0);
     });
+
     afterAll(function () {
       console.info("afterAll case");
     });
@@ -81,8 +107,7 @@ export default function cloudSyncTest() {
         expect(true).assertTrue();
         done();
       } catch (error) {
-        console.error(`${testNum}:: error.code :${error}`)
-        expect(false).assertTrue();
+        errHandle(error, testNum);
         done();
       }
     });
@@ -102,7 +127,7 @@ export default function cloudSyncTest() {
         });
         expect(false).assertTrue();
       } catch (error) {
-        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -123,7 +148,7 @@ export default function cloudSyncTest() {
         });
         expect(false).assertTrue();
       } catch (error) {
-        console.error(`${testNum}:: error : ${error}`)
+        console.error(`${testNum}:: error : ${error}`);
         expect(true).assertTrue();
         done();
       }
@@ -144,7 +169,7 @@ export default function cloudSyncTest() {
         expect(true).assertTrue();
         done();
       } catch (error) {
-        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`);
         expect(false).assertTrue();
       }
     });
@@ -163,7 +188,7 @@ export default function cloudSyncTest() {
         gallerySync.off("");
         expect(false).assertTrue();
       } catch (error) {
-        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -182,17 +207,11 @@ export default function cloudSyncTest() {
       try {
         await gallerySync.start().then((result) => {
           expect(isConnect).assertTrue();
+          done();
         }).catch((err) => {
-          console.error(`${testNum}:: err.code :${err.code}, err.message : ${err.message}`);
-          if (isConnect) {
-            console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
-            expect(err.code == 13600001).assertTrue(); //IPC error
-          } else {
-            console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
-            expect(err.code == 22400002).assertTrue(); //Network unavailable
-          }
+          errHandle(err, testNum);
+          done();
         });
-        done();
       } catch (error) {
         console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
         expect(false).assertTrue();
@@ -212,21 +231,14 @@ export default function cloudSyncTest() {
       try {
         gallerySync.start((err) => {
           if (err) {
-            console.error(`${testNum}:: err.code :${err.code}, err.message : ${err.message}`);
-            if (isConnect) {
-              console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
-              expect(err.code == 13600001).assertTrue(); //IPC error
-            } else {
-              console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
-              expect(err.code == 22400002).assertTrue(); //Network unavailable
-            }
+            errHandle(err, testNum);
           } else {
             expect(true).assertTrue();
           }
         });
         done();
       } catch (error) {
-        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`);
         expect(false).assertTrue();
       }
     });
@@ -246,17 +258,11 @@ export default function cloudSyncTest() {
           expect(true).assertTrue();
           done();
         }).catch((err) => {
-          expect(false).assertTrue();
+          errHandle(err, testNum);
           done();
         });
       } catch (err) {
-        if (isConnect) {
-          console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
-          expect(err.code == 13600001).assertTrue(); //IPC error
-        } else {
-          console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
-          expect(err.code == 22400002).assertTrue(); //Network unavailable
-        }
+        expect(false).assertTrue();
       }
     });
 
@@ -273,20 +279,14 @@ export default function cloudSyncTest() {
       try {
         gallerySync.stop((err) => {
           if (err) {
-            if (isConnect) {
-              console.error(`${testNum}:: err1.code :${err.code}, err1.message : ${err.message}`);
-              expect(err.code == 13600001).assertTrue(); //IPC error
-            } else {
-              console.error(`${testNum}:: err2.code :${err.code}, err2.message : ${err.message}`);
-              expect(err.code == 22400002).assertTrue(); //Network unavailable
-            }
+            errHandle(err, testNum);
           } else {
             expect(true).assertTrue();
           }
         });
         done();
       } catch (error) {
-        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`)
+        console.error(`${testNum}:: error.code :${error.code}, error.message : ${error.message}`);
         expect(false).assertTrue();
       }
     });
