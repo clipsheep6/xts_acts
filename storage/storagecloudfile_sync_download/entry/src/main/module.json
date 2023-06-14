@@ -41,12 +41,8 @@
                 "reason": "use ohos.permission.CLOUDFILE_SYNC"
             },
             {
-                "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
-                "reason": "use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
-            },
-            {
-                "name": "ohos.permission.FILE_ACCESS_MANAGER",
-                "reason": "use ohos.permission.FILE_ACCESS_MANAGER"
+                "name": "ohos.permission.GET_NETWORK_INFO",
+                "reason": "use ohos.permission.GET_NETWORK_INFO"
             },
             {
                 "name": "ohos.permission.MEDIA_LOCATION",
