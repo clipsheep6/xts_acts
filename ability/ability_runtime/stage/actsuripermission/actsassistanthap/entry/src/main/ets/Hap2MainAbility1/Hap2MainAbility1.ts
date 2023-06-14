@@ -378,7 +378,7 @@ export default class Hap2MainAbility1 extends Ability {
         break;
       }
 
-      case 14: {
+      case 16: {
         let uris : string[] = globalThis.abilityWant1.parameters['ability.params.stream'];
         if (uris == null) {
           console.log('[Demo] Hap2MainAbility1 uris is invalid');
