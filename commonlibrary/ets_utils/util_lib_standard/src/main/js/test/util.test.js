@@ -511,6 +511,65 @@ describe('TextEncoderTest', function () {
         expect(encodingStr).assertEqual('utf-16be')
     })
 
+    /**
+     * @tc.name: testencoding_textdecoder_006
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+     it('testencoding_textdecoder_006', 0, function () {
+        var that = new util.TextDecoder(undefined);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testencoding_textdecoder_007
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testencoding_textdecoder_007', 0, function () {
+        var that = new util.TextDecoder('utf-8', undefined);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testencoding_textdecoder_008
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testencoding_textdecoder_008', 0, function () {
+        var that = new util.TextDecoder(undefined, {ignoreBOM: true});
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testencoding_textdecoder_009
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testencoding_textdecoder_009', 0, function () {
+        var that = new util.TextDecoder(null);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testencoding_textdecoder_010
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testencoding_textdecoder_010', 0, function () {
+        var that = new util.TextDecoder('utf-8', null);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testencoding_textdecoder_011
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testencoding_textdecoder_011', 0, function () {
+        var that = new util.TextDecoder(null, {ignoreBOM: true});
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
 
     /**
      * @tc.name: testFatal001
@@ -826,6 +885,46 @@ describe('TextEncoderTest', function () {
     })
 
     /**
+     * @tc.name: testdecode_testdecode_009
+     * @tc.desc: Returns the result of running encoding's decoder.
+     */
+     it('testdecode_testdecode_009', 0, function () {
+        var that = new  util.TextDecoder('utf-8', { ignoreBOM : true })
+        var arr = new Uint8Array(6)
+        arr[0] = 0xEF;
+        arr[1] = 0xBB;
+        arr[2] = 0xBF;
+        arr[3] = 0x61;
+        arr[4] = 0x62;
+        arr[5] = 0x63;
+        var retStr = that.decode(arr, undefined)
+        var BOM = '\uFEFF'
+        var rel = 'abc'
+        var res = BOM + rel
+        expect(retStr).assertEqual(res);
+    })
+
+    /**
+     * @tc.name: testdecode_testdecode_010
+     * @tc.desc: Returns the result of running encoding's decoder.
+     */
+    it('testdecode_testdecode_010', 0, function () {
+        var that = new  util.TextDecoder('utf-8', { ignoreBOM : true });
+        var arr = new Uint8Array(6);
+        arr[0] = 0xEF;
+        arr[1] = 0xBB;
+        arr[2] = 0xBF;
+        arr[3] = 0x61;
+        arr[4] = 0x62;
+        arr[5] = 0x63;
+        var retStr = that.decode(arr, null);
+        var BOM = '\uFEFF'
+        var rel = 'abc'
+        var res = BOM + rel
+        expect(retStr).assertEqual(res);
+    })
+
+    /**
      * @tc.name: decodeWithStream001
      * @tc.desc: Returns the result of running encoding's decoder.
      */
@@ -916,6 +1015,42 @@ describe('TextEncoderTest', function () {
         var retStr = that.decodeWithStream(arr);
         var rel = 'abc';
         expect(retStr).assertEqual(rel)
+    })
+
+    /**
+     * @tc.name: decodeWithStream006
+     * @tc.desc: Returns the result of running encoding's decoder.
+     */
+     it('decodeWithStream006', 0, function () {
+        var that = new util.TextDecoder('utf-16le')
+        var arr = new Uint8Array(6)
+        arr[0] = 0x61;
+        arr[1] = 0x00;
+        arr[2] = 0x62;
+        arr[3] = 0x00;
+        arr[4] = 0x63;
+        arr[5] = 0x00;
+        var retStr = that.decodeWithStream(arr, undefined);
+        var rel = 'abc'
+        expect(retStr).assertEqual(rel);
+    })
+
+    /**
+     * @tc.name: decodeWithStream007
+     * @tc.desc: Returns the result of running encoding's decoder.
+     */
+    it('decodeWithStream007', 0, function () {
+        var that = new util.TextDecoder('utf-16le')
+        var arr = new Uint8Array(6)
+        arr[0] = 0x61;
+        arr[1] = 0x00;
+        arr[2] = 0x62;
+        arr[3] = 0x00;
+        arr[4] = 0x63;
+        arr[5] = 0x00;
+        var retStr = that.decodeWithStream(arr, null);
+        var rel = 'abc'
+        expect(retStr).assertEqual(rel);
     })
 
     /**
@@ -2082,11 +2217,11 @@ describe('Base64Test', function () {
 
     //base64 EncodeAsync test
     /**
-     * @tc.name: test_encodeSync_base64_001
+     * @tc.name: test_encodeAsync_base64_001
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly
        allocated u8 array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_001', 0, async function () {
+    it('test_encodeAsync_base64_001', 0, async function () {
         var that = await new util.Base64();
         var array = new Uint8Array([115,49,51]);
         var rarray = new Uint8Array([99,122,69,122]);
@@ -2098,11 +2233,11 @@ describe('Base64Test', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_002
+     * @tc.name: test_encodeAsync_base64_002
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly
        allocated u8 array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_002', 0, async function () {
+    it('test_encodeAsync_base64_002', 0, async function () {
         var that = new util.Base64()
         var array = new Uint8Array([66, 97, 115, 101, 54, 52, 32, 78, 111, 100, 101, 46, 106, 115]);
         var rarray = new Uint8Array([81,109,70,122,90,84,89,48,73,69,53,118,90,71,85,117,97,110,77,61]);
@@ -2114,11 +2249,11 @@ describe('Base64Test', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_003
+     * @tc.name: test_encodeAsync_base64_003
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated u8
        array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_003', 0, async function () {
+    it('test_encodeAsync_base64_003', 0, async function () {
         var that = new util.Base64()
         var array = new Uint8Array([66,97,115,101,54,52,32,69,110,99,111,100,105,110,103,32,105,110,32,
         78,111,100,101,46,106,115]);
@@ -2132,11 +2267,11 @@ describe('Base64Test', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_004
+     * @tc.name: test_encodeAsync_base64_004
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated u8
        array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_004', 0, async function () {
+    it('test_encodeAsync_base64_004', 0, async function () {
         var that = new util.Base64()
         var array = new Uint8Array([168, 174, 155, 255]);
         var rarray = new Uint8Array([113,75,54,98,47,119,61,61]);
@@ -2148,11 +2283,11 @@ describe('Base64Test', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_005
+     * @tc.name: test_encodeAsync_base64_005
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated u8
        array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_005', 0, async function () {
+    it('test_encodeAsync_base64_005', 0, async function () {
         var that = new util.Base64()
         var array = new Uint8Array([66, 97, 115, 101, 54, 52]);
         var rarray = new Uint8Array([81, 109, 70, 122, 90, 84, 89, 48]);
@@ -5088,22 +5223,12 @@ describe('TypesTest', function() {
     })
 
     /**
-     * @tc.name: testIsBigUint64Array002
-     * @tc.desc: Check whether the entered value is of biguint64array array array type.
-     */
-     it('testIsBigUint64Array002', 0, function() {
-        var proc = new util.types();
-        var result = proc.isBigUint64Array(new Float64Array([]));
-        expect(result).assertEqual(false);
-    })
-
-    /**
      * @tc.name: testIsBigUint64Array003
      * @tc.desc: Check whether the entered value is of biguint64array array array type.
      */
      it('testIsBigUint64Array003', 0, function() {
         var proc = new util.types();
-        var result = proc.isBigUint64Array(new Uint8Array([]));
+        var result = proc.isBigUint64Array(new Float64Array([]));
         expect(result).assertEqual(false);
     })
 
@@ -5113,7 +5238,7 @@ describe('TypesTest', function() {
      */
      it('testIsBigUint64Array004', 0, function() {
         var proc = new util.types();
-        var result = proc.isBigUint64Array(new BigInt64Array([]));
+        var result = proc.isBigUint64Array(new Uint8Array([]));
         expect(result).assertEqual(false);
     })
 
@@ -5122,6 +5247,16 @@ describe('TypesTest', function() {
      * @tc.desc: Check whether the entered value is of biguint64array array array type.
      */
      it('testIsBigUint64Array005', 0, function() {
+        var proc = new util.types();
+        var result = proc.isBigUint64Array(new BigInt64Array([]));
+        expect(result).assertEqual(false);
+    })
+
+    /**
+     * @tc.name: testIsBigUint64Array006
+     * @tc.desc: Check whether the entered value is of biguint64array array array type.
+     */
+     it('testIsBigUint64Array006', 0, function() {
         var proc = new util.types();
         var result = proc.isBigUint64Array(new Int8Array([]));
         expect(result).assertEqual(false);
