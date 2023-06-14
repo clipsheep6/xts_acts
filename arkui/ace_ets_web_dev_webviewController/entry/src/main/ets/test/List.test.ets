@@ -19,6 +19,7 @@ import webViewOnErrorReceive03Jsunit from './WebViewOnErrorReceive03Jsunit.test'
 import webViewHasImageJsunit from './webViewHasImageJsunit.test'
 import webViewSrollToJsunit from './webViewSrollToJsunit.test'
 import webViewSrollByJsunit from './webViewSrollByJsunit.test'
+import WebViewWebStorageJsunit from './WebViewWebStorageJsunit.test'
 import runJavaScript from './runJavaScript.test'
 import storeWebArchive from './storeWebArchive.test'
 import storeWebArchiveSaveFail from './storeWebArchiveSaveFail.test'
@@ -62,6 +63,7 @@ export default function testsuite() {
        webViewHasImageJsunit()
        webViewSrollToJsunit()
        webViewSrollByJsunit()
+       WebViewWebStorageJsunit()
        runJavaScript()
        storeWebArchive()
        storeWebArchiveSaveFail()

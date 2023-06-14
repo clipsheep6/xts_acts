@@ -7,6 +7,7 @@
         "MainAbility/pages/webViewHasImage",
         "MainAbility/pages/webViewScrollTo",
         "MainAbility/pages/webViewScrollBy",
+	"MainAbility/pages/webStorage",
         "MainAbility/pages/runJavaScript",
         "MainAbility/pages/storeWebArchive",
         "MainAbility/pages/storeWebArchiveSaveFail",
