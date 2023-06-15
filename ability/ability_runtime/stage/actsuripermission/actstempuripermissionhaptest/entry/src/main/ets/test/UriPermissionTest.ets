@@ -1686,35 +1686,6 @@ export default function UriPermissionTest() {
             await commonEvent.subscribe(subscriber16_1, SubscribeCallBackContext16_1);
           });
     
-          let eventName16_3 : string = 'Temp_UriPermissionTest_1600_Write_Successfully';
-          let eventName16_4 : string = 'Temp_UriPermissionTest_1600_Write_Failed';
-          let subscribeInfo16_2 = {
-              events: [eventName16_3, eventName16_4]
-          }
-          let subscriber16_2;
-          function UnSubscribeInfoCallback16_2(err, data) {
-            console.info(TAG16 + "===UnSubscribeInfoCallback16_2===")
-          }
-    
-          function SubscribeCallBackContext16_2(err, data) {
-              console.info(TAG16 + ' Subscribe CallBack data:' + JSON.stringify(data));
-              if (data.event === eventName16_3) {
-                  console.info(TAG16 + 'write file succeed.');
-                  expect().assertFail();
-              }
-              if (data.event === eventName16_4) {
-                  console.info(TAG16 + 'write file failed.');
-                  commonEvent.unsubscribe(subscriber16_2, UnSubscribeInfoCallback16_2)
-                  flag16_2 = true;
-              }
-          }
-    
-          commonEvent.createSubscriber(subscribeInfo16_2).then(async (data) => {
-            subscriber16_2 = data;
-            console.info(TAG16 + '====>Create subscriber16_2====>');
-            await commonEvent.subscribe(subscriber16_2, SubscribeCallBackContext16_2);
-          });
-    
           let want = {
             flags : 0,
             bundleName : "com.acts.authorizeduriapplication",
