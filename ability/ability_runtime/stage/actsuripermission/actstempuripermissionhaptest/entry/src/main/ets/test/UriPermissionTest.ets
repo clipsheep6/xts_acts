@@ -1657,8 +1657,8 @@ export default function UriPermissionTest() {
           let flag16_1 = false;
           let flag16_2 = false;
     
-          let eventName16_1 : string = 'Temp_UriPermissionTest_1600_Read_Successfully';
-          let eventName16_2 : string = 'Temp_UriPermissionTest_1600_Read_Failed';
+          let eventName16_1 : string = 'UriPermissionTest_1600_Write_Successfully';
+          let eventName16_2 : string = 'UriPermissionTest_1600_Write_Failed';
           let subscribeInfo16_1 = {
               events: [eventName16_1, eventName16_2]
           }
