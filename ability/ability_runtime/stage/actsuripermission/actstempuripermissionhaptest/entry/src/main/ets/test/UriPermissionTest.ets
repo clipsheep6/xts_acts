@@ -1720,7 +1720,8 @@ export default function UriPermissionTest() {
             bundleName : "com.acts.authorizeduriapplication",
             abilityName : "Hap2MainAbility1",
             parameters : {
-              'number' : 116
+              'number' : 116,
+              'uri' : uri_16
             }
           }
           await uriPermissionManager.grantUriPermission(uri_16, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, 'com.acts.authorizeduriapplication', (err, data) => {

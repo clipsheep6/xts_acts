@@ -379,24 +379,16 @@ export default class Hap2MainAbility1 extends Ability {
       }
 
       case 116: {
-        let uris : string[] = globalThis.abilityWant1.parameters['ability.params.stream'];
-        if (uris == null) {
-          console.log('[Demo] Hap2MainAbility1 uris is invalid');
-          return;
-        }
-        if (uris[0] == null) {
-          console.log('[Demo] Hap2MainAbility1 uri_0 is invalid');
-          return;
-        }
-        if (uris[1] == null) {
-          console.log('[Demo] Hap2MainAbility1 uri_1 is invalid');
+        let uri : string = globalThis.abilityWant1.parameters['uri'];
+        if (uri == null) {
+          console.log('[Demo] Hap2MainAbility1 uri is invalid');
           return;
         }
         let eventName16_1 : string = 'Temp_UriPermissionTest_1001_Write_Successfully';
         let eventName16_2 : string = 'Temp_UriPermissionTest_1001_Write_Failed';
         let eventName16_3 : string = 'Temp_UriPermissionTest_1002_Write_Successfully';
         let eventName16_4 : string = 'Temp_UriPermissionTest_1002_Write_Failed';
-        fs.open(uris[0], fs.OpenMode.READ_WRITE).then((file) => {
+        fs.open(uri, fs.OpenMode.READ_WRITE).then((file) => {
             console.info('file fd: ' + file.fd);
             commonEvent.publish(eventName16_1, (err) => {
               console.log('Hap2MainAbility1' + eventName16_1);
@@ -405,18 +397,6 @@ export default class Hap2MainAbility1 extends Ability {
             console.info('open file failed with error message: ' + err.message + ', error code: ' + err.code);
             commonEvent.publish(eventName16_2, (err) => {
               console.log('Hap2MainAbility1' + eventName16_2);
-            });
-        });
-
-        fs.open(uris[1], fs.OpenMode.READ_WRITE).then((file) => {
-            console.info('file fd: ' + file.fd);
-            commonEvent.publish(eventName16_3, (err) => {
-              console.log('Hap2MainAbility1' + eventName16_3);
-            });
-        }).catch((err) => {
-            console.info('open file failed with error message: ' + err.message + ', error code: ' + err.code);
-            commonEvent.publish(eventName16_4, (err) => {
-              console.log('Hap2MainAbility1' + eventName16_4);
             });
         });
         break;
