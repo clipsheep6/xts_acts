@@ -1724,7 +1724,7 @@ export default function UriPermissionTest() {
               'uri' : uri_16
             }
           }
-          await uriPermissionManager.grantUriPermission(uri_16, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, 'com.acts.authorizeduriapplication', (err, data) => {
+          await uriPermissionManager.grantUriPermission(uri_16, wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, 'com.acts.authorizeduriapplication', (err, data) => {
             if(err) {
               console.info(TAG16 + "grant error" + err.message);
             }else{
