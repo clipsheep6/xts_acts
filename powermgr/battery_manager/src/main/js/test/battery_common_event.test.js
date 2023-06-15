@@ -3091,7 +3091,7 @@ function createCommonEventPowerSaveModeChangedSubscriber() {
 
 function createCommonEventDeviceIdleModeChangedSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED],
+        events: [commonEvent.Support.COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
