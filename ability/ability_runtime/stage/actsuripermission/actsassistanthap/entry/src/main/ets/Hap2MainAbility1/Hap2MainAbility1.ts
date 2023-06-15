@@ -384,8 +384,8 @@ export default class Hap2MainAbility1 extends Ability {
           console.log('[Demo] Hap2MainAbility1 uri is invalid');
           return;
         }
-        let eventName16_1 : string = 'Temp_UriPermissionTest_1001_Write_Successfully';
-        let eventName16_2 : string = 'Temp_UriPermissionTest_1001_Write_Failed';
+        let eventName16_1 : string = 'Temp_UriPermissionTest_1600_Write_Successfully';
+        let eventName16_2 : string = 'Temp_UriPermissionTest_1600_Write_Failed';
         fs.open(uri, fs.OpenMode.READ_WRITE).then((file) => {
             console.info('file fd: ' + file.fd);
             commonEvent.publish(eventName16_1, (err) => {
