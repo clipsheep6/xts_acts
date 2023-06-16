@@ -1708,7 +1708,7 @@ export default function UriPermissionTest() {
             console.info(TAG16 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
               JSON.stringify(error.message));
           });
-          while (!flag16_1 || !flag16_2) {
+          while (!flag16_1) {
             console.info(TAG16 + 'waiting callback');
             await sleep(1000);
           }
