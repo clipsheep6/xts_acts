@@ -1636,14 +1636,14 @@ export default function UriPermissionTest() {
 
 
         /*
-     * @tc.number  Temp_UriPermissionTest_1600
+     * @tc.number  UriPermissionTest_1600
      * @tc.name    The ability of HAP A grant uri permission to the ability of HAP B
      * @tc.desc    Function test
      * @tc.level   0
      */
-        it("Temp_UriPermissionTest_1600", 0, async function (done) {
-          console.info("---------------Temp_UriPermissionTest_1600 is start---------------")
-          let TAG16 = "Temp_UriPermissionTest_1600";
+        it("UriPermissionTest_1600", 0, async function (done) {
+          console.info("---------------UriPermissionTest_1600 is start---------------")
+          let TAG16 = "UriPermissionTest_1600";
           let filePath : string = abilityContext.filesDir + "/test_16.txt";
           fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
             if (err) {
@@ -1670,13 +1670,13 @@ export default function UriPermissionTest() {
           function SubscribeCallBackContext16_1(err, data) {
               console.info(TAG16 + ' Subscribe CallBack data:' + JSON.stringify(data));
               if (data.event === eventName16_1) {
-                  console.info(TAG16 + 'read file succeed.');
-                  expect().assertFail();
+                  console.info(TAG16 + 'write file succeed.');
+                  flag16_1 = true;
               }
               if (data.event === eventName16_2) {
-                  console.info(TAG16 + 'read file failed.');
+                  console.info(TAG16 + 'write file failed.');
                   commonEvent.unsubscribe(subscriber16_1, UnSubscribeInfoCallback16_1)
-                  flag16_1 = true;
+                  expect().assertFail();
               }
           }
     
@@ -1714,7 +1714,7 @@ export default function UriPermissionTest() {
           }
     
           done()
-          console.info("---------------Temp_UriPermissionTest_1600 is end---------------")
+          console.info("---------------UriPermissionTest_1600 is end---------------")
         });
     
   })
