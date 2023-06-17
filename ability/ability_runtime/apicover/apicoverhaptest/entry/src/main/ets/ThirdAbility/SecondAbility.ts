@@ -57,7 +57,7 @@ export default class SecondAbility extends Ability {
         console.log("[Demo] SecondAbility onBackground")
     }
     onDump(Param){
-
+        return null;
     }
     onShare(wantParam){
         wantParam[wantConstant.Params.CONTENT_TITLE_KEY] = {title:"baidu"},

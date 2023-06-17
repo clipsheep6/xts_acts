@@ -446,16 +446,12 @@ export default function ApiCoverTest() {
       expect("ohos.extra.param.key.form_name").assertEqual(FormInfo.FormParam.NAME_KEY)
       expect("ohos.extra.param.key.form_temporary").assertEqual(FormInfo.FormParam.TEMPORARY_KEY)
       expect("ohos.extra.param.key.form_identity").assertEqual(FormInfo.FormParam.IDENTITY_KEY)
-      expect('ohos.extra.param.key.form_customize').assertEqual(FormInfo.FormParam.PARAM_FORM_CUSTOMIZE_KEY)
-      expect('ohos.extra.param.key.form_launch_reason').assertEqual(FormInfo.FormParam.LAUNCH_REASON_KEY)
       expect(0).assertEqual(FormInfo.FormState.DEFAULT)
       expect(1).assertEqual(FormInfo.FormState.READY)
       expect(-1).assertEqual(FormInfo.FormState.UNKNOWN)
       expect(0).assertEqual(FormInfo.ColorMode.MODE_DARK)
       expect(1).assertEqual(FormInfo.ColorMode.MODE_LIGHT)
       expect(1).assertEqual(FormInfo.FormType.JS);
-      expect(1).assertEqual(FormInfo.LaunchReason.FORM_DEFAULT);
-      expect(2).assertEqual(FormInfo.LaunchReason.FORM_SHARE);
       done();
     });
 
@@ -476,6 +472,8 @@ export default function ApiCoverTest() {
       expect("ohos.extra.param.key.form_identity").assertEqual(formInfoNew.FormParam.IDENTITY_KEY)
       expect("ohos.extra.param.key.bundle_name").assertEqual(formInfoNew.FormParam.BUNDLE_NAME_KEY)
       expect("ohos.extra.param.key.ability_name").assertEqual(formInfoNew.FormParam.ABILITY_NAME_KEY)
+      expect('ohos.extra.param.key.form_customize').assertEqual(FormInfo.FormParam.PARAM_FORM_CUSTOMIZE_KEY)
+      expect('ohos.extra.param.key.form_launch_reason').assertEqual(FormInfo.FormParam.LAUNCH_REASON_KEY)
       expect(0).assertEqual(formInfoNew.FormState.DEFAULT)
       expect(1).assertEqual(formInfoNew.FormState.READY)
       expect(-1).assertEqual(formInfoNew.FormState.UNKNOWN)
@@ -489,6 +487,8 @@ export default function ApiCoverTest() {
       expect(5).assertEqual(formInfoNew.FormDimension.Dimension_2_1)
       expect(1).assertEqual(formInfoNew.FormType.JS);
       expect(2).assertEqual(formInfoNew.FormType.eTS);
+      expect(1).assertEqual(FormInfo.LaunchReason.FORM_DEFAULT);
+      expect(2).assertEqual(FormInfo.LaunchReason.FORM_SHARE);
       expect(1).assertEqual(formInfoNew.VisibilityType.FORM_VISIBLE);
       expect(2).assertEqual(formInfoNew.VisibilityType.FORM_INVISIBLE);
       let formStateInfo: formInfoNew.FormStateInfo = {
@@ -813,7 +813,7 @@ export default function ApiCoverTest() {
         expect(err.code).assertEqual(0)
       })
       await sleep(3000)
-      expect( globalThis.SecondLaunchParm).assertEqual(abilityConstant.LaunchParam.launchReason.SHARE)
+      expect(globalThis.SecondLaunchParm).assertEqual(abilityConstant.LaunchReason.SHARE)
       done()
     })
   })
