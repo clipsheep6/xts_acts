@@ -23,7 +23,7 @@ export default function List() {
 
   apiCoverAbility()
   newApiCoverAbility()
-  //verificationTest()
-  //wantAgentCover()
-  //contextEnvironmentTest(globalThis.applicationContext)
+  verificationTest()
+  wantAgentCover()
+  contextEnvironmentTest(globalThis.applicationContext)
 }
