@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import usb from '@ohos.usb';
+import usbManager from '@ohos.usbManager';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 /* usb core functions test */
@@ -24,13 +24,13 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
 
   beforeAll(function () {
     console.log('*************Usb Unit UsbFunctionsJsFunctionsTestEx Begin*************');
-    var Version = usb.getVersion()
+    var Version = usbManager.getVersion()
     console.info('begin test getversion :' + Version)
     //  17 version host currentMode = 2 device currentMode = 1
-    var usbPortList = usb.getPorts()
+    var usbPortList = usbManager.getPorts()
     if (usbPortList.length > 0) {
       if (usbPortList[0].status.currentMode == 2) {
-        usb.setPortRoles(usbPortList[0].id, usb.SINK, usb.DEVICE).then(data => {
+        usbManager.setPortRoles(usbPortList[0].id, usbManager.SINK, usbManager.DEVICE).then(data => {
           console.info('usb case setPortRoles return: ' + data);
         }).catch(error => {
           console.info('usb case setPortRoles error : ' + error);
@@ -59,9 +59,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0930', 0, function () {
     console.info('usb SUB_USB_JS_0930 begin');
-    var maskCode = usb.NONE
-    console.info('usb case maskCode : ' + usb.NONE);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var maskCode = usbManager.NONE
+    console.info('usb case maskCode : ' + usbManager.NONE);
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('none');
     console.info('usb SUB_USB_JS_0930 :  PASS');
@@ -74,9 +74,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0940', 0, function () {
     console.info('usb SUB_USB_JS_0940 begin');
-    var maskCode = usb.ACM
-    console.info('usb case maskCode : ' + usb.ACM);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var maskCode = usbManager.ACM
+    console.info('usb case maskCode : ' + usbManager.ACM);
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('acm');
     console.info('usb SUB_USB_JS_0940 :  PASS');
@@ -89,9 +89,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0950', 0, function () {
     console.info('usb SUB_USB_JS_0950 begin');
-    var maskCode = usb.ECM
+    var maskCode = usbManager.ECM
     console.info('usb case maskCode : ' + maskCode);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('ecm');
     console.info('usb SUB_USB_JS_0950 :  PASS');
@@ -104,9 +104,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0960', 0, function () {
     console.info('usb SUB_USB_JS_0960 begin');
-    var maskCode = usb.ACM | usb.ECM
+    var maskCode = usbManager.ACM | usbManager.ECM
     console.info('usb case maskCode : ' + maskCode);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('acm,ecm');
     console.info('usb SUB_USB_JS_0960 :  PASS');
@@ -119,9 +119,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0970', 0, function () {
     console.info('usb SUB_USB_JS_0970 begin');
-    var maskCode = usb.HDC
+    var maskCode = usbManager.HDC
     console.info('usb case maskCode : ' + maskCode);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('hdc');
     console.info('usb SUB_USB_JS_0970 :  PASS');
@@ -134,9 +134,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0980', 0, function () {
     console.info('usb SUB_USB_JS_0980 begin');
-    var maskCode = usb.ACM | usb.HDC
+    var maskCode = usbManager.ACM | usbManager.HDC
     console.info('usb case maskCode : ' + maskCode);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('acm,hdc');
     console.info('usb SUB_USB_JS_0980 :  PASS');
@@ -149,9 +149,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
    */
   it('SUB_USB_JS_0990', 0, function () {
     console.info('usb SUB_USB_JS_0990 begin');
-    var maskCode = usb.ECM | usb.HDC
+    var maskCode = usbManager.ECM | usbManager.HDC
     console.info('usb case maskCode : ' + maskCode);
-    var strMaskCode = usb.usbFunctionsToString(maskCode)
+    var strMaskCode = usbManager.usbFunctionsToString(maskCode)
     console.info('usb case maskCode ' + maskCode + ' usbFunctionsToString return int: ' + strMaskCode);
     expect(strMaskCode).assertEqual('ecm,hdc');
     console.info('usb SUB_USB_JS_0990 :  PASS');
@@ -165,7 +165,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_1160', 0, function () {
     console.info('usb SUB_USB_JS_1160 begin');
     try {
-      var maskCode = usb.usbFunctionsToString("invalid");
+      var maskCode = usbManager.usbFunctionsToString("invalid");
       console.info('usb 1160 case usbFunctionsToString return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -184,7 +184,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_1360', 0, function () {
     console.info('usb SUB_USB_JS_1360 begin');
     try {
-      var maskCode = usb.usbFunctionsToString();
+      var maskCode = usbManager.usbFunctionsToString();
       console.info('usb 1360 case usbFunctionsToString return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -202,9 +202,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0860', 0, function () {
     console.info('usb SUB_USB_JS_0860 begin');
     var strMaskCode = 'none'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.NONE);
+    expect(nMaskCode).assertEqual(usbManager.NONE);
     console.info('usb SUB_USB_JS_0860 :  PASS');
   })
 
@@ -216,9 +216,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0870', 0, function () {
     console.info('usb SUB_USB_JS_0870 begin');
     var strMaskCode = 'acm'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.ACM);
+    expect(nMaskCode).assertEqual(usbManager.ACM);
     console.info('usb SUB_USB_JS_0870 :  PASS');
   })
 
@@ -230,9 +230,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0880', 0, function () {
     console.info('usb SUB_USB_JS_0880 begin');
     var strMaskCode = 'ecm'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.ECM);
+    expect(nMaskCode).assertEqual(usbManager.ECM);
     console.info('usb SUB_USB_JS_0880 :  PASS');
   })
 
@@ -244,9 +244,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0890', 0, function () {
     console.info('usb SUB_USB_JS_0890 begin');
     var strMaskCode = 'acm,ecm'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.ACM | usb.ECM);
+    expect(nMaskCode).assertEqual(usbManager.ACM | usbManager.ECM);
     console.info('usb SUB_USB_JS_0890 :  PASS');
   })
 
@@ -258,9 +258,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0900', 0, function () {
     console.info('usb SUB_USB_JS_0900 begin');
     var strMaskCode = 'hdc'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.HDC);
+    expect(nMaskCode).assertEqual(usbManager.HDC);
     console.info('usb SUB_USB_JS_0900 :  PASS');
   })
 
@@ -272,9 +272,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0910', 0, function () {
     console.info('usb SUB_USB_JS_0910 begin');
     var strMaskCode = 'acm,hdc'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.HDC | usb.ACM);
+    expect(nMaskCode).assertEqual(usbManager.HDC | usbManager.ACM);
     console.info('usb SUB_USB_JS_0910 :  PASS');
   })
 
@@ -286,9 +286,9 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_0920', 0, function () {
     console.info('usb SUB_USB_JS_0920 begin');
     var strMaskCode = 'ecm,hdc'
-    var nMaskCode = usb.usbFunctionsFromString(strMaskCode)
+    var nMaskCode = usbManager.usbFunctionsFromString(strMaskCode)
     console.info('usb case strMaskCode ' + strMaskCode + ' usbFunctionsFromString return int: ' + nMaskCode);
-    expect(nMaskCode).assertEqual(usb.HDC | usb.ECM);
+    expect(nMaskCode).assertEqual(usbManager.HDC | usbManager.ECM);
     console.info('usb SUB_USB_JS_0920 :  PASS');
   })
 
@@ -300,7 +300,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_1170', 0, function () {
     console.info('usb SUB_USB_JS_1170 begin');
     try {
-      var maskCode = usb.usbFunctionsFromString(invalidCode);
+      var maskCode = usbManager.usbFunctionsFromString(invalidCode);
       console.info('usb 1170 case usbFunctionsFromString return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -319,7 +319,7 @@ describe('UsbFunctionsJsFunctionsTestEx', function () {
   it('SUB_USB_JS_1370', 0, function () {
     console.info('usb SUB_USB_JS_1370 begin');
     try {
-      var maskCode = usb.usbFunctionsFromString();
+      var maskCode = usbManager.usbFunctionsFromString();
       console.info('usb 1370 case usbFunctionsFromString return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
