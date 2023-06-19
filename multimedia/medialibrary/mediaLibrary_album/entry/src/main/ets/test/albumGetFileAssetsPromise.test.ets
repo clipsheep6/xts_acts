@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -78,7 +78,6 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                 done();
             }
         };
-
         const checkAlbumAssetsNoOps = async function (done, testNum, fetchOp, expectAssetsCount, expectAlbumCount = 1) {
             try {
                 const albumList = await media.getAlbums(fetchOp);
@@ -87,6 +86,7 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                 if (!albumCountPass) return;
 
                 const album = albumList[0];
+
                 let fetchFileResult = await album.getFileAssets();
                 if (fetchFileResult == undefined) {
                     console.info(`${testNum} fetchFileResult undefined`);
@@ -104,7 +104,6 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                 done();
             }
         };
-
         const abnormalAlbumAssetsCount = async function (
             done,
             testNum,
@@ -136,7 +135,6 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                 done();
             }
         };
-
         /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_01
          * @tc.name      : getFileAssets
@@ -149,6 +147,21 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_01';
             let assetsCount = [1];
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Camera']);
+            await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount)
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_02
+         * @tc.name      : getFileAssets
+         * @tc.desc      : check Videos album count,check asset count
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_02', 0, async function (done) {
+            const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_02';
+            let assetsCount = [2];
+            let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Videos']);
             await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount)
         });
 
@@ -186,16 +199,16 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
         /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_05
          * @tc.name      : getFileAssets
-         * @tc.desc      : check albums count,check asset count
+         * @tc.desc      : check two albums count,check asset count
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_05', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_05', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_05';
             let assetsCount = [2, 1];
             const selections = FILEKEY.ALBUM_NAME + '= ? or ' + FILEKEY.ALBUM_NAME + '= ?';
-            const currentFetchOp = fileFetchOption(testNum, selections, ['Screenshots', 'Camera']);
+            const currentFetchOp = fileFetchOption(testNum, selections, ['Videos', 'Camera']);
             let albumCount = 2;
             await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount, albumCount)
         });
@@ -203,17 +216,34 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
         /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_06
          * @tc.name      : getFileAssets
-         * @tc.desc      : check albums count,check asset count
+         * @tc.desc      : check three albums count,check asset count
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_06', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_06', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_06';
-            let assetsCount = [2, 1];
+            let assetsCount = [2, 2, 1];
             const selections = FILEKEY.ALBUM_NAME + '= ? or ' + FILEKEY.ALBUM_NAME + '= ? or ' + FILEKEY.ALBUM_NAME + '= ?';
-            const currentFetchOp = fileFetchOption(testNum, selections, ['Camera', 'ScreenRecordings', 'Screenshots']);
-            let albumCount = 2;
+            const currentFetchOp = fileFetchOption(testNum, selections, ['Camera', 'Videos', 'Screenshots']);
+            let albumCount = 3;
+            await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount, albumCount)
+        });
+
+        /** 
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_07
+         * @tc.name      : getFileAssets
+         * @tc.desc      : check four albums count,check asset count
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_07', 0, async function (done) {
+            const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_001_07';
+            let assetsCount = [2, 2, 1];
+            const selections = FILEKEY.ALBUM_NAME + '= ? or ' + FILEKEY.ALBUM_NAME + '= ? or ' + FILEKEY.ALBUM_NAME + '= ? or ' + FILEKEY.ALBUM_NAME + '= ?';
+            const currentFetchOp = fileFetchOption(testNum, selections, ['Camera', 'Videos', 'Screenshots', 'ScreenRecordings']);
+            let albumCount = 3;
             await checkAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount, albumCount)
         });
 
@@ -223,11 +253,26 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
          * @tc.desc      : Camera album,abnormal option
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_01', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_01', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_01';
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Camera']);
+            let assetsCount = 0;
+            await abnormalAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount)
+        });
+
+        /**
+        * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_02
+        * @tc.name      : getFileAssets
+        * @tc.desc      : Videos album,abnormal option
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 0
+        */
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_02', 0, async function (done) {
+            const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_02';
+            let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Videos']);
             let assetsCount = 0;
             await abnormalAlbumAssetsCount(done, testNum, currentFetchOp, assetsCount)
         });
@@ -238,9 +283,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
         * @tc.desc      : Screenshots album,abnormal option
         * @tc.size      : MEDIUM
         * @tc.type      : Function
-        * @tc.level     : Level 2
+        * @tc.level     : Level 0
         */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_03', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_03', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_03';
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Screenshots']);
             let assetsCount = 0;
@@ -253,9 +298,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
         * @tc.desc      : ScreenRecordings album,abnormal option
         * @tc.size      : MEDIUM
         * @tc.type      : Function
-        * @tc.level     : Level 2
+        * @tc.level     : Level 0
         */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_04', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_04', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_003_04';
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['ScreenRecordings']);
             let assetsCount = 0;
@@ -268,12 +313,27 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
          * @tc.desc      : Camera album,no option
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_01', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_01', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_01';
             let assetsCount = 1;
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Camera']);
+            await checkAlbumAssetsNoOps(done, testNum, currentFetchOp, assetsCount)
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_02
+         * @tc.name      : getFileAssets
+         * @tc.desc      : Videos album,no option
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_02', 0, async function (done) {
+            const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_02';
+            let assetsCount = 2;
+            let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Videos']);
             await checkAlbumAssetsNoOps(done, testNum, currentFetchOp, assetsCount)
         });
 
@@ -283,9 +343,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
          * @tc.desc      : Screenshots album,no option
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_03', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_03', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_03';
             let assetsCount = 2;
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Screenshots']);
@@ -298,9 +358,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
          * @tc.desc      : ScreenRecordings album,no option
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_04', 2, async function (done) {
+        it('SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_04', 0, async function (done) {
             const testNum = 'SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_04';
             let assetsCount = 2;
             let currentFetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['ScreenRecordings']);
@@ -311,11 +371,12 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_05
          * @tc.name      : getFileAssets
          * @tc.desc      : getFileAssets by undefined option
+         * @tc.desc      : ScreenRecordings album,no option
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it("SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_05", 2, async function (done) {
+        it("SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_05", 0, async function (done) {
             const testNum = "SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_05";
             let fetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Camera']);
             try {
@@ -352,9 +413,9 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
          * @tc.desc      : getFileAssets by null option
          * @tc.size      : MEDIUM
          * @tc.type      : Function
-         * @tc.level     : Level 2
+         * @tc.level     : Level 0
          */
-        it("SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_06", 2, async function (done) {
+        it("SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_06", 0, async function (done) {
             const testNum = "SUB_MEDIA_MEDIALIBRARY_ALBUM_GET_ASSETS_PROMISE_004_06";
             let fetchOp = fileFetchOption(testNum, FILEKEY.ALBUM_NAME + "= ?", ['Camera']);
             try {
