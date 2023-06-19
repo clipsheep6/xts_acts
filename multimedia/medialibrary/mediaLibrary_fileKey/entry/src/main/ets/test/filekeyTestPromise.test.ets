@@ -21,10 +21,10 @@ import {
     sleep,
     IMAGE_TYPE,
     AUDIO_TYPE,
+    checkAlbumsCount,
     FILEKEY,
     checkAssetsCount,
     fetchOps,
-    fileFetchOption,
 } from "../../../../../../common";
 
 export default function filekeyTestPromiseTest(abilityContext) {
@@ -242,6 +242,19 @@ export default function filekeyTestPromiseTest(abilityContext) {
         });
 
         /**
+         * @tc.number    : SUB_MEDIA_MEDIALIBRARY_FILE_KEY_PROMISE_012
+         * @tc.name      : getFileAssets
+         * @tc.desc      : filekey widthOp
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it("SUB_MEDIA_MEDIALIBRARY_FILE_KEY_PROMISE_012", 0, async function (done) {
+            let testNum = "SUB_MEDIA_MEDIALIBRARY_FILE_KEY_PROMISE_012";
+            await getFileAssetsBy(done, testNum, "albumId", ALBUM_ID);
+        });
+
+        /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_FILE_KEY_PROMISE_014
          * @tc.name      : getFileAssets
          * @tc.desc      : filekey artistOp
@@ -304,11 +317,17 @@ export default function filekeyTestPromiseTest(abilityContext) {
         it("SUB_MEDIA_MEDIALIBRARY_FILE_KEY_PROMISE_018", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_FILE_KEY_PROMISE_018";
             try {
-                let currentFetchOp = fileFetchOption(testNum, ALBUM_NAME + '= ?', ['Camera']);
+                let albumName = "ImageInfo";
+                let currentFetchOp = {
+                    selections: RELATIVE_PATH + "= ? AND " + ALBUM_NAME + "= ? AND " + MEDIA_TYPE + "= ?",
+                    selectionArgs: ["Pictures/", albumName, IMAGE_TYPE.toString()],
+                };
+                console.info(`${testNum} currentFetchOp : ${JSON.stringify(currentFetchOp)}`);
                 const albumList = await media.getAlbums(currentFetchOp);
-                expect(albumList.length).assertEqual(1);
+                const albumCountPass = await checkAlbumsCount(done, testNum, albumList, 1);
+                if (!albumCountPass) return;
                 const album = albumList[0];
-                expect(album.albumName).assertEqual('Camera');
+                expect(album.albumName).assertEqual(albumName);
                 done();
             } catch (error) {
                 console.info(`${testNum} error : ${error}`);
