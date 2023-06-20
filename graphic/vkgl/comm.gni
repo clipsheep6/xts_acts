@@ -50,6 +50,8 @@ common_include = [
   "//third_party/vk-gl-cts/external/openglcts/modules/gles32",
   "//third_party/vk-gl-cts/external/openglcts/modules/glesext",
   "//third_party/vk-gl-cts/external/openglcts/modules/runner",
+  "//third_party/vk-gl-cts/external/vulkancts/framework/vulkan",
+  "//third_party/vk-gl-cts/build/external/vulkancts/framework/vulkan",
   "//third_party/vk-gl-cts/framework/referencerenderer",
   "//third_party/vk-gl-cts/modules/glshared",
   "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context",

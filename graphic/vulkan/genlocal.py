@@ -3,7 +3,7 @@ import os
 import sys
 from unittest import suite
 
-G_SUITE = ""
+G_SUITE = "../ActsVulkanTests"
 G_MAXCASECNT = 5
 G_MUSTPASSPATH = "mustpass/"
 G_MUSTPASSFILE = ".txt"
@@ -179,7 +179,7 @@ def removedir(rootdir):
 
 def printhelp():
     print("Need testsuite and codepattern:\n")
-    print("For example\n")
+    print("For example:\n")
     print("python3 .\GenerateTestCase.py apilack\n")
     print("codepattern contains: apilack, attrlack\n")
 

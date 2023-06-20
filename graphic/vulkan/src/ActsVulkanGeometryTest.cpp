@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanGeometryTest, TestVulkanGeometryTestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanGeometryTest------\n");
-        system("/data/local/tmp/glcts --deqp-caselist-file=geometry.txt");
+        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/geometry.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanGeometryTest------\n");
     }

@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanSynchronization2Test, TestVulkanSynchronization2TestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanSynchronization2Test------\n");
-        system("/data/local/tmp/glcts --deqp-caselist-file=synchronization2.txt");
+        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/synchronization2.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanSynchronization2Test------\n");
     }
