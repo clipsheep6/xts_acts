@@ -1,0 +1,20 @@
+{
+  "data": {
+    "mini": false,
+    "imagePaddingTop": "12px",
+    "title": "Title",
+    "content": "Introduction",
+    "miniTitle": "Title",
+    "itemTitle": "Title",
+    "itemContent": "Introduction"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "ThirdAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

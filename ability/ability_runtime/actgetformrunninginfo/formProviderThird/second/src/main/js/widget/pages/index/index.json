@@ -1,0 +1,15 @@
+{
+  "data": {
+    "title": "Title",
+    "detail": "Text"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "SecondAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

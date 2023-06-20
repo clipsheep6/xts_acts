@@ -1,0 +1,14 @@
+{
+  "data": {
+    "title": "Hello World"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "EntryAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

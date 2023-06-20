@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ThirdAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ThirdFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "ThirdFormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}

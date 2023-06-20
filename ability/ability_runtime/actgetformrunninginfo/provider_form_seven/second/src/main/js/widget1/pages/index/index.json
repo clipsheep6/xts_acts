@@ -1,0 +1,14 @@
+{
+  "data": {
+    "title": "Hello World"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "SecondAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

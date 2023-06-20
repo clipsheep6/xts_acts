@@ -1,0 +1,52 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.getforminstance",
+        "module-name": "entry_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "ActGetFormRunningInfoTest.hap",
+                "user_form_ten.hap",
+                "provider_form_seven_1.hap",
+                "provider_form_seven_2.hap",
+                "userFormSeventh.hap",
+                "providerFormSixth.hap",
+                "providerFormFifth.hap",
+                "userformeight.hap",
+                "userFormNine.hap",
+                "providerFormFourth_1.hap",
+                "providerFormFourth_2.hap",
+                "userformsixth.hap",
+                "formProviderThird_2.hap",
+                "formProviderThird_1.hap",
+                "formUserfifth.hap",
+                "userFormFourth.hap",
+                "formUser2.hap",
+                "formUser3.hap",
+                "formUser.hap",
+                "formProvider.hap",
+                "formProviderSecond_3.hap",
+                "formProviderSecond_2.hap",
+                "formProviderSecond_1.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D",
+                "setenforce 0"
+            ]
+        }
+    ]
+}
