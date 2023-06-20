@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for key log Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.logtest",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 15000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsKeyLogAssist.hap",
+                "ActsKeyLogTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+              "power-shell wakeup",
+              "power-shell setmode 602",
+              "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+              "hilog -Q pidoff",
+              "hilog -Q domainoff"
+          ]
+        }
+    ] 
+}
