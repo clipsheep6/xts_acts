@@ -1,0 +1,13 @@
+{
+  "/home/xianf/master_open/test/xts/acts/testfwk/uitest/entry/src/ohosTest/ets/TestAbility/pages/index.ets": [
+    "Row",
+    "Column",
+    "Text",
+    "Button"
+  ],
+  "/home/xianf/master_open/test/xts/acts/testfwk/uitest/entry/src/ohosTest/ets/test/uitest.test.ets": [
+    "Button",
+    "Scroll",
+    "If"
+  ]
+}

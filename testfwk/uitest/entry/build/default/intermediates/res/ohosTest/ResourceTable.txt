@@ -1,0 +1,5 @@
+string TestAbility_desc 0x02000000
+string TestAbility_label 0x02000001
+string description_mainability 0x02000002
+string entry_MainAbility 0x02000003
+media icon 0x02000004
