@@ -1,0 +1,42 @@
+{
+  "module": {
+    "name": "feature",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "FeatureAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "FeatureAbility",
+        "launchType": "standard",
+        "srcEntrance": "./ets/featureability/FeatureAbility.ts",
+        "description": "$string:FeatureAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FeatureAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name":"ohos.permission.REQUIRE_FORM"
+      },
+      {
+        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}
