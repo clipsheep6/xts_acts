@@ -502,11 +502,11 @@ export default function NetworkManagerCaPathTest() {
             let httpRequest = http.createHttp();
             httpRequest.request(URL1, httpRequestOptions7).then((data) => {
                 console.info(`${CASE_NAME} httpsRequest success, data: ${JSON.stringify(data)}`);
-                expect(error.code == 2300077).assertTrue();
+                expect(false).assertTrue();
                 done();
             }).catch((error) => {
                 console.info(`${CASE_NAME} httpsRequest fail, err: ${JSON.stringify(error)}`);
-                expect(error).assertFail();
+                expect(error.code == 2300077).assertTrue();
                 done();
             });
         });
@@ -522,14 +522,14 @@ export default function NetworkManagerCaPathTest() {
             httpRequest.request(URL1, httpRequestOptions7, (err, data) => {
                 if (err) {
                     console.info(`${CASE_NAME} httpsRequest fail, err: ${JSON.stringify(err)}`);
-                    expect(err).assertFail();
+                    expect(err.code == 2300077).assertTrue();
                     done();
                 } else {
                     console.info(`${CASE_NAME} httpsRequest success, data: ${JSON.stringify(data)}`);
-                    expect(error.code == 2300077).assertTrue();
+                    expect(false).assertTrue();
                     done();
                 }
             });
-        });
+        });     
     });
 }
