@@ -126,7 +126,7 @@ action("cpvkgl") {
   args = [ "$root_vkgl_path" ]
   deps = [
     ":VKGLCTSTest",
-    "//third_party/vk-gl-cts/framework/platform:glcts",
     "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+    "//third_party/vk-gl-cts/framework/platform:glcts",
   ]
 }

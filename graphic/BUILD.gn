@@ -20,10 +20,10 @@ group("graphic") {
       "graphicColorSpace:ActsColorSpaceManagerTest",
       "graphicnapidrawingtest:ActsGraphicNapiDrawingTest",
       "graphicnapitest:ActsGraphicNapiTest",
+      "vulkan:vulkanTest",
       "webGL:webGL_hap_test",
       "windowStage:ActsWindowStageTest",
       "windowstandard:window_hap_test",
-      "vulkan:vulkanTest",
     ]
     if (!(product_name == "ohcore")) {
       deps += [ "vkgl:cpvkgl" ]
