@@ -36,6 +36,9 @@
         "name":"block_size_height_test",
         "value":"50vp"
       },
-
+      {
+        "name": "sliderTest",
+        "value": "ResourceTest"
+      }
     ]
   }

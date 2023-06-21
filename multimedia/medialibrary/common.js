@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -94,17 +94,14 @@ const fileIdFetchOps = function (testNum, id) {
   return ops;
 };
 
-const albumFetchOps = function (testNum, path, albumName, type, others) {
-  if (!others) {
-    others = { order: FILEKEY.DATE_ADDED + ' DESC' };
-  }
-  let ops = {
-    selections: RELATIVE_PATH + '= ? AND ' + ALBUM_NAME + '= ? AND ' + MEDIA_TYPE + '= ?',
-    selectionArgs: [path, albumName, type.toString()],
-    ...others,
-  };
-  console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
-  return ops;
+const albumFetchOps = function (testNum, albumName, others) {
+    let ops = {
+        selections: ALBUM_NAME + "= ?",
+        selectionArgs: [albumName],
+        ...others,
+    };
+    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
+    return ops;
 };
 
 // albums of two resource types
@@ -138,44 +135,53 @@ const albumTwoTypesFetchOps = function (testNum, paths, albumName, types, others
 
 // albums of three resource types
 const albumThreeTypesFetchOps = function (testNum, paths, albumName, types, others) {
-  if (!others) {
-    others = { order: FILEKEY.DATE_ADDED + ' DESC' };
-  }
-  try {
-    let ops = {
-      selections:
-        '(' +
-        RELATIVE_PATH +
-        '= ? or ' +
-        RELATIVE_PATH +
-        '= ? or ' +
-        RELATIVE_PATH +
-        '= ? ) AND ' +
-        ALBUM_NAME +
-        '= ? AND (' +
-        MEDIA_TYPE +
-        '= ? or ' +
-        MEDIA_TYPE +
-        '= ? or ' +
-        MEDIA_TYPE +
-        '= ?)',
-      selectionArgs: [
-        paths[0],
-        paths[1],
-        paths[2],
-        albumName,
-        types[0].toString(),
-        types[1].toString(),
-        types[2].toString(),
-      ],
-      ...others,
-    };
-    console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
-    return ops;
-  } catch (error) {
-    console.info(`albumThreeTypesFetchOps :: error: ${error}`);
-  }
+    if (!others) {
+        others = { order: FILEKEY.DATE_ADDED + " DESC" };
+    }
+    try {
+        let ops = {
+            selections:
+                "(" +
+                RELATIVE_PATH +
+                "= ? or " +
+                RELATIVE_PATH +
+                "= ? or " +
+                RELATIVE_PATH +
+                "= ? ) AND " +
+                ALBUM_NAME +
+                "= ? AND (" +
+                MEDIA_TYPE +
+                "= ? or " +
+                MEDIA_TYPE +
+                "= ? or " +
+                MEDIA_TYPE +
+                "= ?)",
+            selectionArgs: [
+                paths[0],
+                paths[1],
+                paths[2],
+                albumName,
+                types[0].toString(),
+                types[1].toString(),
+                types[2].toString(),
+            ],
+            ...others,
+        };
+        console.info(`${testNum}: fetchOps ${JSON.stringify(ops)}`);
+        return ops;
+    } catch (error) {
+        console.info(`albumThreeTypesFetchOps :: error: ${error}`);
+    }
 };
+
+const fileFetchOption = function (testNum, selections, selectionArgs) {
+    let ops = {
+        selections: selections,
+        selectionArgs: selectionArgs,
+    };
+    console.info(`${testNum} fetchOps: ${JSON.stringify(ops)}`);
+    return ops;
+}
 
 const checkPresetsAssets = async function (media, hapName) {
   console.info('checkPresetsAssets start');
