@@ -2200,7 +2200,7 @@ export default function abilityTest() {
           moduleName: "entry",
           abilityName: "EntryFormAbility"
         }
-        if (flag = 3) {
+        if (flag == 3) {
           await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
@@ -2296,7 +2296,7 @@ export default function abilityTest() {
           moduleName: "entry",
           abilityName: "EntryFormAbility"
         }
-        if (flag = 3) {
+        if (flag == 3) {
           await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
@@ -2326,100 +2326,6 @@ export default function abilityTest() {
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_3000 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_3000 end ============');
-                appManager.killProcessesByBundleName("com.example.userformfourth");
-                formHost.deleteForm(formIdA);
-                formHost.deleteForm(formIdB);
-                formHost.deleteForm(formIdC);
-                done();
-              });
-            });
-          });
-        }
-      }
-    });
-
-    /**
-     * @tc.number: Acts_QueryFormInformation_3100
-     * @tc.name: get running form infos by filter.
-     * @tc.desc: Verify that the result successfully.
-     */
-    it('Acts_QueryFormInformation_3100', 0, async function (done) {
-      let subscriber;
-      let formIdA;
-      let formIdC;
-      let formIdB;
-      let flag = 0;
-      try {
-        await commonEvent.createSubscriber(ACTS_CARD).then(async(data) => {
-          console.info("====>Acts_QueryFormInformation_3100 Create Subscriber====>");
-          subscriber = data;
-          await commonEvent.subscribe(subscriber, subscribeCallBack);
-          await globalThis.abilityContext.startAbility(
-            {
-              bundleName: "com.example.userformfourth",
-              abilityName: "EntryAbility",
-            }, (err, data) => {
-            console.info("Acts_QueryFormInformation_3100 ====> startAbility err:" + JSON.stringify(err));
-            console.info("Acts_QueryFormInformation_3100 ====> startAbility data:" + JSON.stringify(data));
-          });
-        });
-      } catch (err) {
-        expect(false).assertEqual(true);
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-      }
-      console.info('=============Acts_QueryFormInformation_3100 start ============');
-
-      async function subscribeCallBack(err, data) {
-        sleep(200);
-        console.info("Acts_QueryFormInformation_3100 ====> subscribeCallBack err:" + JSON.stringify(err));
-        console.info("Acts_QueryFormInformation_3100 ====> subscribeCallBack data:" + JSON.stringify(data));
-        if (data.event == "ACTS_FormIdA") {
-          formIdA = data.parameters.formId;
-          flag++;
-        }
-        if (data.event == "ACTS_FormIdB") {
-          formIdB = data.parameters.formId;
-          flag++;
-        }
-        if (data.event == "ACTS_FormIdC") {
-          formIdC = data.parameters.formId;
-          flag++;
-        }
-        let formInstanceFilter = {
-          bundleName: "com.example.formprovidersecond",
-          moduleName: "entry",
-          formName: "widget"
-        }
-        if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
-            console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < dataPromise.length; n++) {
-              expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
-              expect(dataPromise[n].formId).assertEqual(formIdA);
-              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataPromise[n].dimension).assertEqual(2);
-              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovidersecond");
-              expect(dataPromise[n].moduleName).assertEqual("entry");
-              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataPromise[n].formName).assertEqual("widget");
-            }
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
-              console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(1);
-              for (let n = 0; n < dataCallback.length; n++) {
-                expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
-                expect(dataCallback[n].formId).assertEqual(formIdA);
-                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-                expect(dataCallback[n].dimension).assertEqual(2);
-                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovidersecond");
-                expect(dataCallback[n].moduleName).assertEqual("entry");
-                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-                expect(dataCallback[n].formName).assertEqual("widget");
-              }
-              commonEvent.unsubscribe(subscriber, function () {
-                console.log('====>Acts_QueryFormInformation_3100 unsubscribe' + JSON.stringify(data));
-                console.info('=============Acts_QueryFormInformation_3100 end ============');
                 appManager.killProcessesByBundleName("com.example.userformfourth");
                 formHost.deleteForm(formIdA);
                 formHost.deleteForm(formIdB);
@@ -2732,7 +2638,7 @@ export default function abilityTest() {
                 appManager.killProcessesByBundleName("com.example.userformeight");
                 appManager.killProcessesByBundleName("com.example.userformseventh");
                 formHost.deleteForm(formIdA);
-                formHost.deleteForm(formIdB);    
+                formHost.deleteForm(formIdB);
                 formHost.deleteForm(formIdD);
                 formHost.deleteForm(formIdE);
                 done();
@@ -2888,7 +2794,7 @@ export default function abilityTest() {
                 appManager.killProcessesByBundleName("com.example.userformeight");
                 appManager.killProcessesByBundleName("com.example.userformnine");
                 formHost.deleteForm(formIdH);
-                formHost.deleteForm(formIdI);    
+                formHost.deleteForm(formIdI);
                 formHost.deleteForm(formIdD);
                 formHost.deleteForm(formIdE);
                 formHost.deleteForm(formIdG);
@@ -3377,5 +3283,99 @@ export default function abilityTest() {
         });
       }
     });
+
+    /**
+     * @tc.number: Acts_QueryFormInformation_3100
+     * @tc.name: get running form infos by filter.
+     * @tc.desc: Verify that the result successfully.
+     */
+    it('Acts_QueryFormInformation_3100', 0, async function (done) {
+      let subscriber;
+      let formIdA;
+      let formIdC;
+      let formIdB;
+      let flag = 0;
+      try {
+        await commonEvent.createSubscriber(ACTS_CARD).then(async(data) => {
+          console.info("====>Acts_QueryFormInformation_3100 Create Subscriber====>");
+          subscriber = data;
+          await commonEvent.subscribe(subscriber, subscribeCallBack);
+          await globalThis.abilityContext.startAbility(
+            {
+              bundleName: "com.example.userformfourth",
+              abilityName: "EntryAbility",
+            }, (err, data) => {
+            console.info("Acts_QueryFormInformation_3100 ====> startAbility err:" + JSON.stringify(err));
+            console.info("Acts_QueryFormInformation_3100 ====> startAbility data:" + JSON.stringify(data));
+          });
+        });
+      } catch (err) {
+        expect(false).assertEqual(true);
+        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+      }
+      console.info('=============Acts_QueryFormInformation_3100 start ============');
+
+      async function subscribeCallBack(err, data) {
+        console.info("Acts_QueryFormInformation_3100 ====> subscribeCallBack err:" + JSON.stringify(err));
+        console.info("Acts_QueryFormInformation_3100 ====> subscribeCallBack data:" + JSON.stringify(data));
+        if (data.event == "ACTS_FormIdA") {
+          formIdA = data.parameters.formId;
+          flag++;
+        }
+        if (data.event == "ACTS_FormIdB") {
+          formIdB = data.parameters.formId;
+          flag++;
+        }
+        if (data.event == "ACTS_FormIdC") {
+          formIdC = data.parameters.formId;
+          flag++;
+        }
+        let formInstanceFilter = {
+          bundleName: "com.example.formprovidersecond",
+          moduleName: "entry",
+          formName: "widget"
+        }
+        if (flag == 3) {
+          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+            console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
+            expect(dataPromise.length).assertEqual(1);
+            for (let n = 0; n < dataPromise.length; n++) {
+              expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
+              expect(dataPromise[n].formId).assertEqual(formIdA);
+              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+              expect(dataPromise[n].dimension).assertEqual(2);
+              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovidersecond");
+              expect(dataPromise[n].moduleName).assertEqual("entry");
+              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+              expect(dataPromise[n].formName).assertEqual("widget");
+            }
+            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+              console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
+              expect(dataCallback.length).assertEqual(1);
+              for (let n = 0; n < dataCallback.length; n++) {
+                expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
+                expect(dataCallback[n].formId).assertEqual(formIdA);
+                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataCallback[n].dimension).assertEqual(2);
+                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovidersecond");
+                expect(dataCallback[n].moduleName).assertEqual("entry");
+                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataCallback[n].formName).assertEqual("widget");
+              }
+              commonEvent.unsubscribe(subscriber, function () {
+                console.log('====>Acts_QueryFormInformation_3100 unsubscribe' + JSON.stringify(data));
+                console.info('=============Acts_QueryFormInformation_3100 end ============');
+                appManager.killProcessesByBundleName("com.example.userformfourth");
+                formHost.deleteForm(formIdA);
+                formHost.deleteForm(formIdB);
+                formHost.deleteForm(formIdC);
+                done();
+              });
+            });
+          });
+        }
+      }
+    });
+
   })
 }
