@@ -27,14 +27,12 @@ const ERR_FORM_EXTERNAL_PARAM_INVALID = 401;
 const ERR_FORM_EXTERNAL_GET_INFO_FAILED = 16500100;
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    beforeAll(async function () {})
     beforeEach(async function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
+      sleep(500);
     })
-    afterEach(async function () {})
-    afterAll(async function () {})
+    afterEach(async function () {
+      sleep(500);
+    })
 
     function sleep(delay) {
       let start = new Date().getTime();
