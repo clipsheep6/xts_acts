@@ -22,7 +22,7 @@ ohos_hap_assist_suite("ActsQueryFormInfoByPushUserFormSecondTest") {
   ]
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "actsqueryforminfobypushuserformsecondtest"
+  hap_name = "ActsQueryFormInfoByPushUserFormSecondTest"
   subsystem_name = "ability"
   part_name = "ability_runtime"
 }
