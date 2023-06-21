@@ -303,9 +303,9 @@ export default function userfilemgrOffCallback(abilityContext) {
           expect(false).assertTrue();
           done();
         };
-        mgr.on(trashFileAsset.uri, false, callback);
+        mgr.on(trashAlbum.albumUri, false, callback);
         await sleep(100);
-        mgr.off(trashFileAsset.uri, callback);
+        mgr.off(trashAlbum.albumUri, callback);
         await sleep(100);
         await trashAlbum.deletePhotoAssets([trashFileAsset]);
         await sleep(1000);
@@ -565,6 +565,12 @@ export default function userfilemgrOffCallback(abilityContext) {
         let fileAsset1 = await mgr.createPhotoAsset('testCreateFile1' + Date.now() + '.jpg');
         let fileAsset2 = await mgr.createPhotoAsset('testCreateFile2' + Date.now() + '.jpg');
         let fileAsset3 = await mgr.createPhotoAsset('testCreateFile3' + Date.now() + '.jpg');
+        let testFileName4 = 'testCreateFile4' + Date.now() + '.jpg';
+        let fileAsset4 = await mgr.createPhotoAsset(testFileName4);
+        let fd = await fileAsset4.open('rw');
+        await fileAsset4.close(fd);
+        await mgr.delete(fileAsset4.uri);
+        await sleep(500);
         const callback = async (changeData) => {
           listenCount++;
           if (listenCount < 7) {
@@ -586,6 +592,9 @@ export default function userfilemgrOffCallback(abilityContext) {
                 break;
               case 6:
                 console.info(`off_callback_013_6 changeData: ${JSON.stringify(changeData)}`);
+                break;
+              case 7:
+                console.info(`off_callback_013_7 changeData: ${JSON.stringify(changeData)}`);
                 break;
               default:
                 break;
@@ -619,6 +628,17 @@ export default function userfilemgrOffCallback(abilityContext) {
         // 6
         await sleep(500);
         await mgr.deleteAlbums([album]);
+        // 7
+        let trashAlbumList = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
+        let trashAlbum = await trashAlbumList.getFirstObject();
+        let predicates = new dataSharePredicates.DataSharePredicates();
+        let fetchOption = {
+          fetchColumns: [],
+          predicates: predicates.equalTo('display_name', testFileName4),
+        };
+        let trashFetchResult = await trashAlbum.getPhotoAssets(fetchOption);
+        let trashFileAsset = await trashFetchResult.getFirstObject();
+        await trashAlbum.deletePhotoAssets([trashFileAsset]);
         await sleep(1000);
         expect(listenCount).assertEqual(0);
         done();
@@ -644,7 +664,7 @@ export default function userfilemgrOffCallback(abilityContext) {
         let fileAsset = await mgr.createPhotoAsset(testFileName);
         const callback = async (changeData) => {
           listenCount++;
-          if (listenCount < 9) {
+          if (listenCount < 7) {
             switch (listenCount) {
               case 1:
                 console.info(`off_callback_014_1 changeData: ${JSON.stringify(changeData)}`);
@@ -663,12 +683,6 @@ export default function userfilemgrOffCallback(abilityContext) {
                 break;
               case 6:
                 console.info(`off_callback_014_6 changeData: ${JSON.stringify(changeData)}`);
-                break;
-              case 7:
-                console.info(`off_callback_014_7 changeData: ${JSON.stringify(changeData)}`);
-                break;
-              case 8:
-                console.info(`off_callback_014_8 changeData: ${JSON.stringify(changeData)}`);
                 break;
               default:
                 break;
@@ -709,21 +723,6 @@ export default function userfilemgrOffCallback(abilityContext) {
         let trashFetchResult = await trashAlbum.getPhotoAssets(fetchOption);
         let trashFileAsset = await trashFetchResult.getFirstObject();
         await trashAlbum.recoverPhotoAssets([trashFileAsset]);
-        // 7
-        await sleep(500);
-        await mgr.delete(fileAsset.uri);
-        // 8
-        await sleep(500);
-        trashAlbumList = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
-        trashAlbum = await trashAlbumList.getFirstObject();
-        predicates = new dataSharePredicates.DataSharePredicates();
-        fetchOption = {
-          fetchColumns: [],
-          predicates: predicates.equalTo('display_name', testFileName),
-        };
-        trashFetchResult = await trashAlbum.getPhotoAssets(fetchOption);
-        trashFileAsset = await trashFetchResult.getFirstObject();
-        await trashAlbum.deletePhotoAssets([trashFileAsset]);
         await sleep(1000);
         expect(listenCount).assertEqual(0);
         done();
