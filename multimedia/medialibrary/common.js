@@ -94,10 +94,13 @@ const fileIdFetchOps = function (testNum, id) {
     return ops;
 };
 
-const albumFetchOps = function (testNum, albumName, others) {
+const albumFetchOps = function (testNum, path, albumName, type, others) {
+    if (!others) {
+        others = { order: FILEKEY.DATE_ADDED + " DESC" };
+    }
     let ops = {
-        selections: ALBUM_NAME + "= ?",
-        selectionArgs: [albumName],
+        selections: RELATIVE_PATH + "= ? AND " + ALBUM_NAME + "= ? AND " + MEDIA_TYPE + "= ?",
+        selectionArgs: [path, albumName, type.toString()],
         ...others,
     };
     console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
@@ -167,21 +170,12 @@ const albumThreeTypesFetchOps = function (testNum, paths, albumName, types, othe
             ],
             ...others,
         };
-        console.info(`${testNum}: fetchOps ${JSON.stringify(ops)}`);
+        console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
         return ops;
     } catch (error) {
         console.info(`albumThreeTypesFetchOps :: error: ${error}`);
     }
 };
-
-const fileFetchOption = function (testNum, selections, selectionArgs) {
-    let ops = {
-        selections: selections,
-        selectionArgs: selectionArgs,
-    };
-    console.info(`${testNum} fetchOps: ${JSON.stringify(ops)}`);
-    return ops;
-}
 
 const checkPresetsAssets = async function (media, hapName) {
     console.info("checkPresetsAssets start");
@@ -288,7 +282,6 @@ export {
     nameFetchOps,
     idFetchOps,
     albumFetchOps,
-    fileFetchOption,
     albumTwoTypesFetchOps,
     albumThreeTypesFetchOps,
     checkPresetsAssets,
