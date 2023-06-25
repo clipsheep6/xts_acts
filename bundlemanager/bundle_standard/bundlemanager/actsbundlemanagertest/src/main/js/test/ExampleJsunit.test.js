@@ -82,6 +82,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.reqPermissionDetails[0].reason).assertEqual("Need PERMISSION_A");
         expect(datainfo.reqPermissionDetails[0].usedScene.abilities[0]).assertEqual(NAME1 + ".MainAbility");
         expect(datainfo.reqPermissionDetails[0].usedScene.when).assertEqual("always");
+        expect(datainfo.reqPermissionDetails[0].moduleName).assertEqual("com.example.myapplication1.MyApplication1");
         expect(datainfo.compatibleVersion).assertEqual(5);
         expect(datainfo.targetVersion).assertEqual(5);
         expect(datainfo.isCompressNativeLibs).assertEqual(true);
@@ -145,6 +146,7 @@ describe('ActsBundleManagerTest', function () {
         expect(datainfo.reqPermissionDetails[0].reason).assertEqual("Need PERMISSION_A");
         expect(datainfo.reqPermissionDetails[0].usedScene.abilities[0]).assertEqual(NAME1 + ".MainAbility");
         expect(datainfo.reqPermissionDetails[0].usedScene.when).assertEqual("always");
+        expect(datainfo.reqPermissionDetails[0].moduleName).assertEqual("com.example.myapplication1.MyApplication1");
         expect(datainfo.compatibleVersion).assertEqual(5);
         expect(datainfo.targetVersion).assertEqual(5);
         expect(datainfo.isCompressNativeLibs).assertEqual(true);
