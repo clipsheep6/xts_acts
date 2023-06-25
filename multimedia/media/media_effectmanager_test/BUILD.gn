@@ -1,0 +1,64 @@
+# Copyright (c) 2020-2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+module_output_path = "acts/ActsEffectManagerNdkTest"
+MEDIA_ROOT_DIR = "//foundation/multimedia/audio_framework/"
+
+ohos_moduletest_suite("ActsEffectManagerNdkTest") {
+  module_out_path = module_output_path
+  sources = [
+#    "effectmanagerSR2/src/ActsEffectManagerNdkTest.cpp",
+    "effectmanagerSR2/src/EffectManagerLongTimeTest.cpp",
+  ]
+  include_dirs = [
+    "include",
+    "effectmanagerSR2/include",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native/audiomanager/include",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native/audiocommon/include",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native/audiorenderer/include",
+    "$MEDIA_ROOT_DIR/frameworks/native/audiostream/include",
+  ]
+
+  cflags = [
+    "-Werror",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-Wall",
+    "-fno-common",
+    "-fstack-protector-strong",
+    "-Wshadow",
+    "-FPIC",
+    "-FS",
+    "-O2",
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-Wformat=2",
+    "-Wdate-time",
+    "",
+  ]
+
+deps = [
+   "//foundation/multimedia/audio_framework/frameworks/native/audiocapturer:audio_capturer",
+   "//foundation/multimedia/audio_framework/frameworks/native/audiorenderer:audio_renderer",
+   "//foundation/multimedia/audio_framework/services/audio_service:audio_client",
+  ]
+  external_deps = [
+    "c_utils:utils",
+    "hiviewdfx_hilog_native:libhilog",
+  ]
+
+  part_name = "audio_framework"
+  subsystem_name = "multimedia"
+}
