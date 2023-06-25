@@ -12,6 +12,7 @@
         "type": "ShellKit",
         "run-command": [
             "remount",
+			
             "mkdir /data/test"
         ]
     },
