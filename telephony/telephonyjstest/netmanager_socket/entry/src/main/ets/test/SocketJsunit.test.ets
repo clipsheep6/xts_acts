@@ -23,7 +23,6 @@ export default function socketJsunit() {
     console.log("************* socket Test start*************");
 	let tcp = socket.constructTCPSocketInstance();
 	let udp = socket.constructUDPSocketInstance();
-    let envReady = false;
 	
     /*
      * @tc.number    : Telephony_Socket_Socket_constructUDPSocketInstance_0100
@@ -31,11 +30,6 @@ export default function socketJsunit() {
      * @tc.desc      : Creates a UDPSocket object.
      */
     it('Telephony_Socket_Socket_constructUDPSocketInstance_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_Socket_constructUDPSocketInstance_0100 Test start*************");
       var udpSocket = udp;
       expect(udpSocket != null).assertTrue();
@@ -49,11 +43,6 @@ export default function socketJsunit() {
      * @tc.desc      : Creates a TCPSocket object.
      */
     it('Telephony_Socket_Socket_constructTCPSocketInstance_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_Socket_constructTCPSocketInstance_0100 Test start*************");
       var tcpSocket = tcp;
       expect(tcpSocket != null).assertTrue();
@@ -67,11 +56,6 @@ export default function socketJsunit() {
      * @tc.desc      : interface NetAddress
      */
     it('Telephony_Socket_Socket_NetAddress_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_Socket_NetAddress_0100 Test start*************");
       let netAddress = {
         address: "test address",
@@ -91,11 +75,6 @@ export default function socketJsunit() {
      * @tc.desc      : UDPSendOptions.data
      */
     it('Telephony_Socket_UDPSendOptions_data_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSendOptions_data_0100 Test start*************");
       let udpSendOptions = {
         data: "test data",
@@ -116,11 +95,6 @@ export default function socketJsunit() {
      * @tc.desc      : ExtraOptionsBase.receiveBufferSize
      */
     it('Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100 Test start*************");
       let extraOptionsBase = {
         receiveBufferSize: 1,
@@ -139,11 +113,6 @@ export default function socketJsunit() {
      * @tc.desc      : ExtraOptionsBase.sendBufferSize
      */
     it('Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100 Test start*************");
       let extraOptionsBase = {
         receiveBufferSize: 1,
@@ -162,11 +131,6 @@ export default function socketJsunit() {
      * @tc.desc      : ExtraOptionsBase.reuseAddress
      */
     it('Telephony_Socket_ExtraOptionsBase_reuseAddress_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_ExtraOptionsBase_reuseAddress_0100 Test start*************");
       let extraOptionsBase = {
         receiveBufferSize: 1,
@@ -185,11 +149,6 @@ export default function socketJsunit() {
      * @tc.desc      : ExtraOptionsBase.socketTimeout
      */
     it('Telephony_Socket_ExtraOptionsBase_socketTimeout_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_ExtraOptionsBase_socketTimeout_0100 Test start*************");
       let extraOptionsBase = {
         receiveBufferSize: 1,
@@ -208,11 +167,6 @@ export default function socketJsunit() {
      * @tc.desc      : SocketStateBase.isClose
      */
     it('Telephony_Socket_SocketStateBase_isClose_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_SocketStateBase_isClose_0100 Test start*************");
       let socketStateBase = {
         isBound: true,
@@ -230,11 +184,6 @@ export default function socketJsunit() {
      * @tc.desc      : SocketRemoteInfo.port
      */
     it('Telephony_Socket_SocketRemoteInfo_port_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_SocketRemoteInfo_port_0100 Test start*************");
       let socketRemoteInfo = {
         address: "test address",
@@ -253,11 +202,6 @@ export default function socketJsunit() {
      * @tc.desc      : SocketRemoteInfo.size
      */
     it('Telephony_Socket_SocketRemoteInfo_size_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_SocketRemoteInfo_size_0100 Test start*************");
       let socketRemoteInfo = {
         address: "test address",
@@ -276,11 +220,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPConnectOptions.timeout
      */
     it('Telephony_Socket_TCPConnectOptions_timeout_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPConnectOptions_timeout_0100 Test start*************");
       let tcpConnectOptions = {
         address: {
@@ -301,11 +240,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPSendOptions.data
      */
     it('Telephony_Socket_TCPSendOptions_data_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSendOptions_data_0100 Test start*************");
       let tcpSendOptions = {
         data: "test data",
@@ -322,11 +256,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPSendOptions.encoding
      */
     it('Telephony_Socket_TCPSendOptions_encoding_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSendOptions_encoding_0100 Test start*************");
       let tcpSendOptions = {
         data: "test data",
@@ -343,11 +272,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPExtraOptions.keepAlive
      */
     it('Telephony_Socket_TCPExtraOptions_keepAlive_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPExtraOptions_keepAlive_0100 Test start*************");
       let tcpExtraOptions = {
         keepAlive: true,
@@ -369,11 +293,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPExtraOptions.OOBInline
      */
     it('Telephony_Socket_TCPExtraOptions_OOBInline_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPExtraOptions_OOBInline_0100 Test start*************");
       let tcpExtraOptions = {
         keepAlive: true,
@@ -395,11 +314,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPExtraOptions.TCPNoDelay
      */
     it('Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100 Test start*************");
       let tcpExtraOptions = {
         keepAlive: true,
@@ -421,11 +335,6 @@ export default function socketJsunit() {
      * @tc.desc      : TCPExtraOptions.socketLinger
      */
     it('Telephony_Socket_TCPExtraOptions_socketLinger_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPExtraOptions_socketLinger_0100 Test start*************");
       let tcpExtraOptions = {
         keepAlive: true,
@@ -449,11 +358,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number.
      */
     it('Telephony_Socket_UDPSocket_bind_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       let caseName = "Telephony_Socket_UDPSocket_bind_0100"
       console.log("************* Telephony_Socket_UDPSocket_bind_0100 Test start*************");
       let netAddress = {
@@ -481,11 +385,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number.
      */
     it('Telephony_Socket_UDPSocket_bind_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       let caseName = "Telephony_Socket_UDPSocket_bind_0200"
       console.log("************* Telephony_Socket_UDPSocket_bind_0200 Test start*************");
       
@@ -517,11 +416,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number.
      */
     it('Telephony_Socket_UDPSocket_bind_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_bind_0300 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_bind_0300"
       let netAddress = {
@@ -547,11 +441,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number.
      */
     it('Telephony_Socket_UDPSocket_bind_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_bind_0400 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_bind_0400"      
       let netAddress = {
@@ -576,11 +465,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_send_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_send_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_send_0100"      
       let udpSendOptions = {
@@ -611,11 +495,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_send_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_send_0200 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_send_0200"      
       let udpSendOptions = {
@@ -641,11 +520,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_send_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_send_0300 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_send_0300"      
       let udpSendOptions = {
@@ -674,11 +548,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_send_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_send_0400"      
       let udpSendOptions = {
@@ -702,11 +571,6 @@ export default function socketJsunit() {
      * @tc.desc      : Closes a UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_close_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_close_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_close_0100"      
       udp.close((error, data) => {
@@ -728,11 +592,6 @@ export default function socketJsunit() {
      * @tc.desc      : Closes a UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_close_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_close_0200 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_close_0200"      
       udp.close().then(data => {
@@ -750,11 +609,6 @@ export default function socketJsunit() {
      * @tc.desc      : Obtains the status of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_getState_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_getState_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_getState_0100"      
       udp.getState((error, data) => {
@@ -777,11 +631,6 @@ export default function socketJsunit() {
      * @tc.desc      : Obtains the status of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_getState_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_getState_0200 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_getState_0200"      
       udp.getState().then(data => {
@@ -800,11 +649,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_setExtraOptions_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0100"      
       let udpExtraOptions = {
@@ -839,11 +683,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_setExtraOptions_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0200 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0200"
       let udpExtraOptions = {
@@ -867,11 +706,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_setExtraOptions_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0300 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0300"      
       let udpExtraOptions = {}
@@ -895,11 +729,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_setExtraOptions_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0400 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0400"
       let udpExtraOptions = {}
@@ -924,11 +753,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for message receiving events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_on_message_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_on_message_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_on_message_0100"      
       udp.on('message', (data) => {
@@ -946,11 +770,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for message receiving events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_message_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_message_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_off_message_0100"      
       udp.off("message", data => {
@@ -968,11 +787,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for message receiving events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_message_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_message_0200 Test start*************");
       udp.off("message");
       expect(true).assertTrue();
@@ -986,11 +800,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for data packet message events or close events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_on_listening_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_on_listening_0100 Test start*************");
       udp.on("listening", data => {
         expect(true).assertTrue();
@@ -1005,11 +814,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_listening_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0100 Test start*************");
       udp.off("listening", data => {
         expect(true).assertTrue();
@@ -1024,11 +828,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_listening_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0200 Test start*************");
       udp.off("listening");
       expect(true).assertTrue();
@@ -1042,11 +841,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for data packet message events or close events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_on_close_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_on_close_0100 Test start*************");
       udp.on("close", data => {
         expect(true).assertTrue();
@@ -1061,11 +855,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_close_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_close_0100 Test start*************");
       udp.off("close", data => {
         expect(true).assertTrue();
@@ -1080,11 +869,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_close_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_close_0200 Test start*************");
       udp.off("close");
       expect(true).assertTrue();
@@ -1098,11 +882,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for error events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_on_error_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_on_error_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_on_error_0100"      
       udp.on("error", error => {
@@ -1120,11 +899,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for error events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_error_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_error_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_off_error_0100"      
       udp.off("error", error => {
@@ -1142,11 +916,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for error events of the UDPSocket connection.
      */
     it('Telephony_Socket_UDPSocket_off_error_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_UDPSocket_off_error_0200 Test start*************");
       udp.off("error");
       expect(true).assertTrue();
@@ -1160,11 +929,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number
      */
     it('Telephony_Socket_TCPSocket_bind_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_bind_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_bind_0100"
       let netAddress = {
@@ -1192,11 +956,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number
      */
     it('Telephony_Socket_TCPSocket_bind_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_bind_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_bind_0200"      
       let netAddress = {
@@ -1221,11 +980,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number
      */
     it('Telephony_Socket_TCPSocket_bind_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_bind_0300 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_bind_0300"
       let netAddress = {
@@ -1251,11 +1005,6 @@ export default function socketJsunit() {
      * @tc.desc      : Binds the IP address and port number
      */
     it('Telephony_Socket_TCPSocket_bind_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_bind_0400 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_bind_0400"
       
@@ -1279,11 +1028,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_send_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_send_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_send_0100"      
       let tcpSendOptions = {
@@ -1310,11 +1054,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_send_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_send_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_send_0200"      
       let tcpSendOptions = {
@@ -1336,11 +1075,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_send_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_send_0300 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_send_0300"      
       let tcpSendOptions = {
@@ -1366,11 +1100,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_send_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_send_0400 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_send_0400"      
       let tcpSendOptions = {
@@ -1391,11 +1120,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
     it('Telephony_Socket_TCPSocket_connect_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_connect_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_connect_0100"      
       let tcpConnectOptions = {
@@ -1426,11 +1150,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
     it('Telephony_Socket_TCPSocket_connect_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_connect_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_connect_0200"      
       let tcpConnectOptions = {
@@ -1456,11 +1175,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
     it('Telephony_Socket_TCPSocket_connect_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_connect_0300 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_connect_0300"      
       let tcpConnectOptions = {
@@ -1490,11 +1204,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
     it('Telephony_Socket_TCPSocket_connect_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_connect_0400 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_connect_0400"      
       let tcpConnectOptions = {
@@ -1519,11 +1228,6 @@ export default function socketJsunit() {
      * @tc.desc      : Closes a UDPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_close_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_close_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_close_0100"      
       tcp.close((error, data) => {
@@ -1545,11 +1249,6 @@ export default function socketJsunit() {
      * @tc.desc      : Closes a UDPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_close_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_close_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_close_0200"      
       tcp.close().then(data => {
@@ -1567,11 +1266,6 @@ export default function socketJsunit() {
      * @tc.desc      : Obtains the status of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_getState_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_getState_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_getState_0100"      
       tcp.getState((error, data) => {
@@ -1594,11 +1288,6 @@ export default function socketJsunit() {
      * @tc.desc      : Obtains the status of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_getState_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_getState_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_getState_0200"      
       tcp.getState().then(data => {
@@ -1616,11 +1305,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_setExtraOptions_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0100"      
       let tcpExtraOptions = {
@@ -1652,11 +1336,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_setExtraOptions_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0200"      
       let tcpExtraOptions = {
@@ -1689,11 +1368,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_setExtraOptions_0300', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0300 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0300"      
       let tcpExtraOptions = {
@@ -1722,11 +1396,6 @@ export default function socketJsunit() {
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_setExtraOptions_0400', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0400 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0400"      
       let tcpExtraOptions = {
@@ -1756,11 +1425,6 @@ export default function socketJsunit() {
      * @tc.desc      : Obtains the peer address of a TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_getRemoteAddress_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_getRemoteAddress_0100"      
       tcp.getRemoteAddress((error) => {
@@ -1782,11 +1446,6 @@ export default function socketJsunit() {
      * @tc.desc      : Obtains the peer address of a TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_getRemoteAddress_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_getRemoteAddress_0200"      
       tcp.getRemoteAddress().then(data => {
@@ -1804,11 +1463,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for message receiving events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_on_message_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_on_message_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_on_message_0100"      
       tcp.on("message", data => {
@@ -1826,11 +1480,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for message receiving events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_message_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_message_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_off_message_0100"      
       tcp.off("message", data => {
@@ -1848,11 +1497,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for message receiving events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_message_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_message_0200 Test start*************");
       tcp.off("message");
       expect(true).assertTrue();
@@ -1866,11 +1510,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for connection or close events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_on_connect_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_on_connect_0100 Test start*************");
       tcp.on("connect", data => {
         expect(true).assertTrue();
@@ -1885,11 +1524,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_connect_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0100 Test start*************");
       tcp.off("connect", data => {
         expect(true).assertTrue();
@@ -1904,11 +1538,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_connect_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0200 Test start*************");
       tcp.off("connect");
       expect(true).assertTrue();
@@ -1922,11 +1551,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for connection or close events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_on_close_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_on_close_0100 Test start*************");
       tcp.on("close", data => {
         expect(true).assertTrue();
@@ -1941,11 +1565,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_close_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_close_0100 Test start*************");
       tcp.off("close", data => {
         expect(true).assertTrue();
@@ -1960,11 +1579,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_close_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_close_0200 Test start*************");
       tcp.off("close");
       expect(true).assertTrue();
@@ -1978,11 +1592,6 @@ export default function socketJsunit() {
      * @tc.desc      : Listens for error events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_on_error_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_on_error_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_on_error_0100"      
       tcp.on("error", error => {
@@ -2000,11 +1609,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for error events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_error_0100', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_error_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_off_error_0100"      
       tcp.off("error", error => {
@@ -2022,11 +1626,6 @@ export default function socketJsunit() {
      * @tc.desc      : Cancels listening for error events of the TCPSocket connection.
      */
     it('Telephony_Socket_TCPSocket_off_error_0200', 0, function (done) {
-      if (!envReady) {
-        console.info("The environment was not ready");
-        done();
-        return;
-      }
       console.log("************* Telephony_Socket_TCPSocket_off_error_0200 Test start*************");
       tcp.off("error");
       expect(true).assertTrue();
