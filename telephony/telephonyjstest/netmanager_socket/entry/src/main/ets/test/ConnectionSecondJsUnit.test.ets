@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
