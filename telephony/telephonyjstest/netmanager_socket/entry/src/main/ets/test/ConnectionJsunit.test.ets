@@ -364,9 +364,9 @@ export default function connectionJsunit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value success123456: ${JSON.stringify(data.netCaps_)}`);
-              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.netCaps_[0].netCap)}`);
-              expect(data.netCaps_[0].netCap != "").assertTrue();
+              console.log(`${caseName}  get value success123456: ${JSON.stringify(data)}`);
+              console.log(`${caseName}  get value success122222: ${JSON.stringify(data[0].networkCap)}`);
+              expect(data[0].networkCap != "").assertTrue();
               done();
             }
           });

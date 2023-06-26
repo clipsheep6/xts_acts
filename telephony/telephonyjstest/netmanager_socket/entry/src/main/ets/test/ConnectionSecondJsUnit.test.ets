@@ -230,9 +230,9 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " value.dnses.length: " + value.dnses.length);
-              if (value.dnses.length > 0) {
-                expect(value.dnses[0].prefixLength != 0).assertTrue();
+              console.log(caseName + " value.linkAddresses.length: " + value.linkAddresses.length);
+              if (value.linkAddresses.length > 0) {
+                expect(value.linkAddresses[0].prefixLength != 0).assertTrue();
               }
               done();
             }
@@ -284,9 +284,9 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + 'value.linkAddresses.length:' + value.linkAddresses.length);
-              if (value.linkAddresses.length > 0) {
-                expect(value.linkAddresses[0].port != 0).assertTrue();
+              console.log(caseName + 'value.dnses.length:' + value.dnses.length);
+              if (value.dnses.length > 0) {
+                expect(value.dnses[0].port != 0).assertTrue();
               }
               done();
             }

@@ -617,7 +617,7 @@ export default function socketJsunit() {
           return;
         }
         let socketStateBase = data
-        console.log(`${caseName} data:${toString(socketStateBase.isClose)}`);
+        console.log(`${caseName} data:`+JSON.stringify(socketStateBase.isClose));
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_getState_0100 Test end*************");

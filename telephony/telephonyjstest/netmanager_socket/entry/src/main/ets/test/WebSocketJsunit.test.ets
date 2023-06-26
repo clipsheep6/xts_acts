@@ -90,9 +90,8 @@ export default function webSocketJsunit() {
       console.log("************* Telephony_WebSocket_WebSocket_connect_0100 Test start*************");
       let caseName = "Telephony_WebSocket_WebSocket_connect_0100"
       let ws = webSocket.createWebSocket();
-      ws.connect({
-        url: "www.baidu.com"
-      }, (error, data) => {
+      let url = "www.baidu.com"
+      ws.connect(url, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           done();
@@ -311,9 +310,9 @@ export default function webSocketJsunit() {
         });
         expect(true).assertTrue();
         done();
-      } catch (err) {
+      } catch (error) {
         expect(true).assertTrue();
-        console.log(`${caseName} error, catch error:${toString(err)}`);
+        console.log(`${caseName} error, catch error:` + JSON.stringify(error));
         done();
       }
       console.log("************* Telephony_WebSocket_WebSocket_on_open_0100 Test end*************");
