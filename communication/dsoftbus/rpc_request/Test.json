@@ -1,25 +1,20 @@
 {
-    "description": "Configuration for rpc Tests",
-    "driver": {
-        "type": "OHJSUnitTest",
-        "test-timeout": "600000",
-        "shell-timeout": "600000",
-        "testcase-timeout": 60000,
-        "bundle-name":"com.ohos.rpcrequesttest",
-        "package-name": "com.ohos.rpcrequesttest"
-        
-    },
-    "kits": [
-        {
-            "test-file-name": [
-                "ActsRpcRequestHapTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
-        }
-    ]
-
-
-
-
+	"description":"Configuration for rpc Tests",
+	"driver":{
+		"type":"OHJSUnitTest",
+		"test-timeout":"600000",
+		"shell-timeout":"600000",
+		"testcase-timeout":60000,
+		"bundle-name":"com.ohos.rpcrequesttest",
+		"package-name":"com.ohos.rpcrequesttest_test"
+	},
+	"kits":[
+		{
+			"test-file-name":[
+				"ActsRpcRequestHapTest.hap"
+			],
+			"type":"AppInstallKit",
+			"cleanup-apps":true
+		}
+	]
 }
