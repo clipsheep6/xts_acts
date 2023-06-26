@@ -69,7 +69,7 @@ ohos_moduletest_suite("ActsVulkanTests") {
   ]
 
   include_dirs = [ "//test/xts/acts/graphic/vulkan/src" ]
-  deps = []
+  deps = [ "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute"]
   cflags = [ "-Wno-error" ]
 }
 
@@ -77,13 +77,17 @@ action("cpVulkan") {
   testonly = true
   script = "cpVulkan.sh"
   outputs = [ "${target_out_dir}/cpVulkan.log" ]
-  deps = [ ":ActsVulkanTests" ]
+  deps = [ 
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+    ":ActsVulkanTests", 
+    ]
 }
 
 group("vulkanTest") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
       ":ActsVulkanTests",
       ":cpVulkan",
     ]

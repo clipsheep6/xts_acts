@@ -19,7 +19,8 @@
                 "chmod -R 777 /data/local/tmp/vulkan/vk-default/*",
                 "cp -r /data/local/tmp/vulkan/vk-default /data/local/tmp",
                 "cp /data/local/tmp/libdeqp* /system/lib",
-                "cp /data/local/tmp/librosen_context* /system/lib"
+                "cp /data/local/tmp/librosen_context* /system/lib",
+                "cp /data/local/tmp/libskia_canvaskit* /system/lib"
             ],
             
             "push": [
@@ -29,7 +30,8 @@
                 "vulkandata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
                 "vulkandata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
                 "vulkandata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
-                "vulkandata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so",  
+                "vulkandata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so", 
+                "vulkandata/libskia_canvaskit.z.so->/data/local/tmp/libskia_canvaskit.z.so",  
                 "vulkandata/vulkandata.tar.gz->/data/local/tmp/vulkandata.tar.gz"               
             ],
             "type": "PushKit"
