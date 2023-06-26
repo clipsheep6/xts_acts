@@ -58,7 +58,6 @@ group("ability_runtime") {
       "registerjserror:registerjserror",
       "stage:stage",
       "stopserviceextension:stopserviceextension",
-      "supportsresidentapplicationupgrades:supportsresidentapplicationupgrades",
       "unclearablemission:unclearablemission",
       "want:want",
       "workercontextcover:workercontextcover",
