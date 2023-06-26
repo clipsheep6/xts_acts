@@ -35,10 +35,13 @@ export default function connectionJsunit() {
       ;
       type UDPSocket = socket.UDPSocket
       ;
-      expect(typeof HttpRequest == typeof connection.HttpRequest).assertTrue();
-      expect(typeof TCPSocket == typeof connection.TCPSocket).assertTrue();
-      expect(typeof UDPSocket == typeof connection.UDPSocket).assertTrue();
-      done();
+      test(http.createHttp(),socket.constructTCPSocketInstance(),socket.constructUDPSocketInstance());
+      function test(HttpRequest:HttpRequest,tcpSocket:TCPSocket,udpSocket:UDPSocket){
+        expect(typeof HttpRequest == typeof connection.HttpRequest).assertTrue();
+        expect(typeof TCPSocket == typeof connection.TCPSocket).assertTrue();
+        expect(typeof UDPSocket == typeof connection.UDPSocket).assertTrue();
+        done();
+      }
     });
 
     /*
