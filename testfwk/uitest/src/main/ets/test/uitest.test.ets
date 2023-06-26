@@ -1660,8 +1660,9 @@ export default function UiTest() {
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
             await driver.pressHome()
+            await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(ON.text('next page'))
-            expect(button != null).assertTrue()
+            expect(button == null).assertTrue()
             await stopApplication('com.uitestScene.acts')
         })
 
