@@ -304,11 +304,6 @@ export default function connectionSecondJsUnit() {
      */
     it("Telephony_connection_NetCap_0900", 0, function (done) {
       console.log("-----------------------Telephony NetCap Properties Test is starting-----------------------");
-      if (false) {
-        expect(true).assertTrue();
-        done();
-        return;
-      }
       try {
         console.log("Telephony_connection_NetCap_0900 NetCap: " + connection.NetCap);
         expect(0).assertEqual(connection.NetCap.NET_CAPABILITY_MMS);
@@ -363,10 +358,6 @@ export default function connectionSecondJsUnit() {
      */
     it("Telephony_connection_NetBearType_1100", 0, function (done) {
       console.log("-----------------------Telephony NetBearType Properties Test is starting-----------------------");
-      if (false) {
-        expect(true).assertTrue();
-        done();
-      }
       try {
         console.log("Telephony_connection_NetBearType_1100 NetBearType: " + connection.NetBearType);
         expect(0).assertEqual(connection.NetBearType.BEARER_CELLULAR);
