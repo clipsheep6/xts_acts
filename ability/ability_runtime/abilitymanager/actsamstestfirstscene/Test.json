@@ -4,7 +4,7 @@
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
         "bundle-name": "com.example.actsamstestfirstscene",
-        "package-name": "com.example.actsamstestfirstscene",
+        "package-name": "com.example.actsamstestfirstscene_test",
         "shell-timeout": "600000"
     },
     "kits": [

@@ -4,7 +4,7 @@
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
         "bundle-name": "com.example.actsamscallbackfirstscene",
-        "package-name": "com.example.actsamscallbackfirstscene",
+        "package-name": "com.example.actsamscallbackfirstscene_test",
         "shell-timeout": "600000"
     },
     "kits": [
