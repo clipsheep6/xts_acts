@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Copyright (C) 2021 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,55 +13,85 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-pulseaudio_dir = "//third_party/pulseaudio"
-opensles_dir = "//third_party/openSLES"
-opensles_version = "1.0.1"
-module_output_path = "acts/ActsOpenslesNdkTest"
-AUDIO_ROOT_DIR = "//foundation/multimedia/audio_framework/"
-ohos_moduletest_suite("ActsOpenslesNdkTest") {
-  module_out_path = module_output_path
-  sources = [
-    "openslesPlayerNdk/ActsOpenslesPlayerNdkTest.cpp",
-    "openslesRecorderNdk/ActsOpenslesRecoderNdkTest.cpp",
-  ]
+group("multimedia") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "audio/audio_cpp_standard:ActsOpenslesNdkTest",
+      "audio/audio_js_standard/AudioCapturer:audio_capturer_js_hap",
+      "audio/audio_js_standard/AudioCapturerChangeInfo:audio_capturerchangeInfo_js_hap",
+      "audio/audio_js_standard/AudioEventManagement:audio_eventmanagement_js_hap",
+      "audio/audio_js_standard/AudioRendererChangeInfo:audio_rendererchangeInfo_js_hap",
+      "audio/audio_js_standard/audioInterrupt:audio_interrupt_js_hap",
+      "audio/audio_js_standard/audioInterruptRender:audioRenderInterrupt",
+      "audio/audio_js_standard/audioManager:audio_manager_js_hap",
+      "audio/audio_js_standard/audioRenderer:audio_renderer_js_hap",
+      "audio/audio_js_standard/audioVoip:audio_voip_js_hap",
+      "image/image_js_standard/image:image_js_hap",
+      "image/image_js_standard/imageColorspace:image_colorspace_js_hap",
+      "image/image_js_standard/imageCreator:image_creator_js_hap",
+      "image/image_js_standard/imageDecodeOptions:image_DecodeOptions_js_hap",
+      "image/image_js_standard/imageExif:image_exif_js_hap",
+      "image/image_js_standard/imageGetImageProperty:image_getProperty_js_hap",
+      "image/image_js_standard/imageGif:image_gif_js_hap",
+      "image/image_js_standard/imageModifyProperty:image_modifyProperty_js_hap",
+      "image/image_js_standard/imagePacking:image_packing_js_hap",
+      "image/image_js_standard/imagePixelMapFramework:image_pixelmapframework_js_hap",
+      "image/image_js_standard/imagePixelMapNDK:image_pixel_map_ndk_js_hap",
+      "image/image_js_standard/imageRGBA:image_rgba_js_hap",
+      "image/image_js_standard/imageRaw:image_raw_js_hap",
+      "image/image_js_standard/imageReceiver:image_receiver_js_hap",
+      "image/image_js_standard/imageReceiverMultiThread:image_receiver_multi_thread_hap",
+      "image/image_js_standard/imageReceiverNDK:image_receiver_ndk_js_hap",
+      "image/image_js_standard/imageSvg:image_svg_js_hap",
+      "image/image_js_standard/imageWebp:image_webp_js_hap",
+      "image/image_js_standard/imageYUV:image_yuv_js_hap",
+      "image/image_js_standard/image_ndk_test:image_pixelmap_ndk_hap",
+      "media/media_cpp_standard:ActsAvcodecNdkTest",
+      "media/media_js_standard/audioPlayer:audio_player_js_hap",
+      "media/media_js_standard/audioRecorder:audio_recorder_js_hap",
+      "media/media_js_standard/avPlayer:avplayer_js_hap",
+      "media/media_js_standard/avRecorder:av_recorder_js_hap",
+      "media/media_js_standard/recorderFormat:recorder_format_js_hap",
+      "media/media_js_standard/videoPlayer:video_player_js_hap",
+      "medialibrary/mediaLibrary_album:mediaLibrary_album_hap",
+      "medialibrary/mediaLibrary_base:mediaLibrary_base_hap",
+      "medialibrary/mediaLibrary_favorite:mediaLibrary_favorite_hap",
+      "medialibrary/mediaLibrary_file:mediaLibrary_file_hap",
+      "medialibrary/mediaLibrary_fileAsset:mediaLibrary_fileAsset_hap",
+      "medialibrary/mediaLibrary_fileKey:mediaLibrary_fileKey_hap",
+      "medialibrary/mediaLibrary_fileResult:mediaLibrary_fileResult_hap",
+      "medialibrary/mediaLibrary_getExifNoLocation:mediaLibrary_getExifNolocation_hap",
+      "medialibrary/mediaLibrary_getExiflocation:mediaLibrary_getExifLocation_hap",
+      "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
+      "medialibrary/mediaLibrary_mediafetchoptions:mediaLibrary_mediafetchoptions_hap",
+      "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
+    ]
+  } else {
+    deps = [
+      #"audio/audio_hap_test:MediaAudio_test_hap",
+      #"audio/audiotubecore_hap_test:Audiotubecore_test_hap",
+      #"camera/camera_hap_test:camera_test_hap",
+      #"image/AVScannerKit_hap:avscanner_test_hap",
+      #"media/media_hap_test:media_test_hap",
+    ]
+  }
+}
 
-  include_dirs = [
-    "opensles/include",
-    "$opensles_dir/api/$opensles_version",
-    "$pulseaudio_dir/src",
-    "$pulseaudio_dir/confgure/src",
-    "$AUDIO_ROOT_DIR/frameworks/native/opensles",
-    "$AUDIO_ROOT_DIR/interfaces/inner_api/native/audiocommon/include",
-    "//third_party/openSLES/api/1.0.1",
-  ]
+#car
+group("multimedia_ivi") {
+  testonly = true
+  deps = []
+}
 
-  cflags = [
-    "-Werror",
-    "-fno-rtti",
-    "-fno-exceptions",
-    "-Wall",
-    "-fno-common",
-    "-fstack-protector-strong",
-    "-Wshadow",
-    "-FPIC",
-    "-FS",
-    "-O2",
-    "-D_FORTIFY_SOURCE=2",
-    "-fvisibility=hidden",
-    "-Wformat=2",
-    "-Wdate-time",
-    "",
-  ]
+#tv
+group("multimedia_intellitv") {
+  testonly = true
+  deps = []
+}
 
-  deps = [
-    "$AUDIO_ROOT_DIR/frameworks/native/opensles",
-    "//third_party/openSLES:libSLES",
-  ]
-  external_deps = [
-    "c_utils:utils",
-    "hiviewdfx_hilog_native:libhilog",
-  ]
-
-  part_name = "audio_framework"
-  subsystem_name = "multimedia"
+#watch
+group("multimedia_wearable") {
+  testonly = true
+  deps = []
 }
