@@ -20,5 +20,4 @@ ohos_js_app_suite("ActsAmsCallBackFifthSceneTest") {
   certificate_profile = "./signature/openharmony_sx.p7b"
   subsystem_name = "ability"
   part_name = "ability_runtime"
-
 }
