@@ -12,7 +12,6 @@
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
 
-
 ohos_js_app_suite("ActsNotificationShowTest") {
   test_hap = true
   testonly = true
