@@ -747,7 +747,7 @@ export default function getBundleInfoForSelf() {
         expect(data.reqPermissionDetails[0].usedScene.abilities.length).assertEqual(1);
         expect(data.reqPermissionDetails[0].usedScene.abilities[0]).assertEqual("MainAbility");
         expect(data.reqPermissionDetails[0].usedScene.when).assertEqual("always");
-        expect(data.reqPermissionDetails[0].moduleName).assertEqual("com.example.myapplication1.MyApplication1");
+        expect(data.reqPermissionDetails[0].moduleName).assertEqual("shared");
         expect(data.permissionGrantStates[0]).assertEqual(bundle.PermissionGrantState.PERMISSION_GRANTED);
         expect(data.reqPermissionDetails[1].name).assertEqual("ohos.permission.READ_CALENDAR");
         expect(data.reqPermissionDetails[1].reason).assertEqual("$string:permission_reason");
@@ -755,7 +755,7 @@ export default function getBundleInfoForSelf() {
         expect(data.reqPermissionDetails[1].usedScene.abilities.length).assertEqual(1);
         expect(data.reqPermissionDetails[1].usedScene.abilities[0]).assertEqual("MainAbility");
         expect(data.reqPermissionDetails[1].usedScene.when).assertEqual("inuse");
-        expect(data.reqPermissionDetails[1].moduleName).assertEqual("com.example.myapplication1.MyApplication1");
+        expect(data.reqPermissionDetails[1].moduleName).assertEqual("shared");
         expect(data.permissionGrantStates[1]).assertEqual(bundle.PermissionGrantState.PERMISSION_DENIED);
         expect(data.signatureInfo).assertEqual(null);
         done();
@@ -785,7 +785,7 @@ export default function getBundleInfoForSelf() {
         expect(data.reqPermissionDetails[0].usedScene.abilities.length).assertEqual(1);
         expect(data.reqPermissionDetails[0].usedScene.abilities[0]).assertEqual("MainAbility");
         expect(data.reqPermissionDetails[0].usedScene.when).assertEqual("always");
-        expect(data.reqPermissionDetails[0].moduleName).assertEqual("com.example.myapplication1.MyApplication1");
+        expect(data.reqPermissionDetails[0].moduleName).assertEqual("shared");
         expect(data.permissionGrantStates[0]).assertEqual(bundle.PermissionGrantState.PERMISSION_GRANTED);
         expect(data.reqPermissionDetails[1].name).assertEqual("ohos.permission.READ_CALENDAR");
         expect(data.reqPermissionDetails[1].reason).assertEqual("$string:permission_reason");
@@ -793,7 +793,7 @@ export default function getBundleInfoForSelf() {
         expect(data.reqPermissionDetails[1].usedScene.abilities.length).assertEqual(1);
         expect(data.reqPermissionDetails[1].usedScene.abilities[0]).assertEqual("MainAbility");
         expect(data.reqPermissionDetails[1].usedScene.when).assertEqual("inuse");
-        expect(data.reqPermissionDetails[1].moduleName).assertEqual("com.example.myapplication1.MyApplication1");
+        expect(data.reqPermissionDetails[1].moduleName).assertEqual("shared");
         expect(data.permissionGrantStates[1]).assertEqual(bundle.PermissionGrantState.PERMISSION_DENIED);
         expect(data.signatureInfo).assertEqual(null);
         expect(err).assertEqual(null);
