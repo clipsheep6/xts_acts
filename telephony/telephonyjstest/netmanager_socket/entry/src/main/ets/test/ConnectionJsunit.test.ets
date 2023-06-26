@@ -36,10 +36,10 @@ export default function connectionJsunit() {
       type UDPSocket = socket.UDPSocket
       ;
       test(http.createHttp(),socket.constructTCPSocketInstance(),socket.constructUDPSocketInstance());
-      function test(HttpRequest:HttpRequest,tcpSocket:TCPSocket,udpSocket:UDPSocket){
-        expect(typeof HttpRequest == typeof connection.HttpRequest).assertTrue();
-        expect(typeof TCPSocket == typeof connection.TCPSocket).assertTrue();
-        expect(typeof UDPSocket == typeof connection.UDPSocket).assertTrue();
+      function test(httpRequest:HttpRequest,tcpSocket:TCPSocket,udpSocket:UDPSocket){
+        expect(httpRequest != null).assertTrue();
+        expect(tcpSocket != null).assertTrue();
+        expect(udpSocket != null).assertTrue();
         done();
       }
     });
@@ -957,11 +957,6 @@ export default function connectionJsunit() {
      */
     it('Telephony_Connection_Connection_register_0100', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_register_0100 Test start*************");
-      if (false) {
-        expect(true).assertTrue();
-        done();
-        return;
-      }
       let caseName = 'Telephony_Connection_Connection_register_0100';
       let netSpecifier = {
         netCapabilities: {
@@ -995,11 +990,6 @@ export default function connectionJsunit() {
      */
     it('Telephony_Connection_Connection_unregister_0100', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_unregister_0100 Test start*************");
-      if (false) {
-        expect(true).assertTrue();
-        done();
-        return;
-      }
       let caseName = 'Telephony_Connection_Connection_unregister_0100';
       let netSpecifier = {
         netCapabilities: {

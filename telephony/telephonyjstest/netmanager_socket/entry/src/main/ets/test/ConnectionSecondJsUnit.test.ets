@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
@@ -96,15 +95,15 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " ifaceName: " + value.ifaceName);
+              console.log(caseName + " interfaceName: " + value.interfaceName);
               console.log(caseName + " mtu: " + value.mtu);
-              console.log(caseName + " netAddrList.length: " + value.netAddrList.length);
-              expect(value.ifaceName == "").assertTrue();
-              expect(value.domain == "").assertTrue();
+              console.log(caseName + " netAddrList.length: " + value.linkAddresses.length);
+              expect(value.interfaceName == "").assertTrue();
+              expect(value.domains == "").assertTrue();
               expect(value.mtu == 0).assertTrue();
-              expect(value.netAddrList.length == 0).assertTrue();
-              expect(value.dnsList.length == 0).assertTrue();
-              expect(value.routeList.length == 0).assertTrue();
+              expect(value.linkAddresses.length == 0).assertTrue();
+              expect(value.dnses.length == 0).assertTrue();
+              expect(value.routes.length == 0).assertTrue();
               done();
             }
           });
@@ -175,10 +174,10 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " value.routeList.length: " + value.routeList.length);
-              if (value.routeList.length > 0) {
-                expect(value.routeList[0].hasGateway).assertTrue();
-                expect(value.routeList[0].isDefaultRoute).assertTrue();
+              console.log(caseName + " value.routeList.length: " + value.routes.length);
+              if (value.routes.length > 0) {
+                expect(value.routes[0].hasGateway).assertTrue();
+                expect(value.routes[0].isDefaultRoute).assertTrue();
               }
               done();
             }
@@ -231,9 +230,9 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " value.dnsList.length: " + value.dnsList.length);
-              if (value.dnsList.length > 0) {
-                expect(value.dnsList[0].prefixLength != 0).assertTrue();
+              console.log(caseName + " value.dnses.length: " + value.dnses.length);
+              if (value.dnses.length > 0) {
+                expect(value.dnses[0].prefixLength != 0).assertTrue();
               }
               done();
             }
@@ -285,9 +284,9 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + 'value.netAddrList.length:' + value.netAddrList.length);
-              if (value.netAddrList.length > 0) {
-                expect(value.netAddrList[0].port != 0).assertTrue();
+              console.log(caseName + 'value.linkAddresses.length:' + value.linkAddresses.length);
+              if (value.linkAddresses.length > 0) {
+                expect(value.linkAddresses[0].port != 0).assertTrue();
               }
               done();
             }
@@ -346,8 +345,8 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.netCaps_[0].netCap)}`);
-              expect(data.netCaps_[0].netCap != "").assertTrue();
+              console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data[0].networkCap)}`);
+              expect(data[0].networkCap != "").assertTrue();
               done();
             }
           });
@@ -402,8 +401,8 @@ export default function connectionSecondJsUnit() {
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.bearerTypes_[0].bearerType)}`);
-              expect(data.bearerTypes_[0].bearerType != "").assertTrue();
+              console.log(`${caseName}  get value success122222: ${JSON.stringify(data[0].bearerTypes)}`);
+              expect(data[0].bearerTypes != "").assertTrue();
               done();
             }
           });
@@ -424,10 +423,10 @@ export default function connectionSecondJsUnit() {
       connection.getAllNets().then((handle) => {
         connection.getNetCapabilities(handle[0]).then((data) => {
           console.log(`${caseName} getNetCapabilities promiss data suceess: ${JSON.stringify(data)}`);
-          console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.netCaps_[0].netCap)}`);
-          console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data.bearerTypes_[0].bearerType)}`);
-          expect(data.netCaps_[0].netCap != "").assertTrue();
-          expect(data.bearerTypes_[0].bearerType != "").assertTrue();
+          console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data[0].networkCap)}`);
+          console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data[0].bearerTypes)}`);
+          expect(data[0].networkCap != "").assertTrue();
+          expect(data[0].bearerTypes != "").assertTrue();
           console.log("-----------------------Telephony getNetCapabilities Promise Test is end-----------------------");
           done();
         }).catch((error) => {
