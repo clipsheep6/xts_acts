@@ -3376,6 +3376,5 @@ export default function abilityTest() {
         }
       }
     });
-
   })
 }
