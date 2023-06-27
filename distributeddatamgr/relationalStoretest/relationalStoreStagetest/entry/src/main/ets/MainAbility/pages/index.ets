@@ -14,9 +14,6 @@
 */
 import file from '@system.file';
 import router from '@ohos.router';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../../test/List.test'
 
 //InstrumentLog, ReportExtend
 
@@ -26,12 +23,6 @@ struct Index {
 
   aboutToAppear(){
     console.info("start run testcase!!!!")
-    var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        console.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
 
   build() {
