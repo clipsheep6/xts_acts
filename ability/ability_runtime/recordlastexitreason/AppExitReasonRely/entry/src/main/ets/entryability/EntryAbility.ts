@@ -37,7 +37,7 @@ export default class EntryAbility extends Ability {
                 console.log("size = " + missions.length);
                 console.log("missions = " + JSON.stringify(missions));
                 for (let i = 0; i < missions.length; i++) {
-                    if (missions[i].want.bundleName == 'com.example.myapplication') {
+                    if (missions[i].want.bundleName == 'com.example.appexitreasonrely') {
                         missionManager.clearMission(missions[i].missionId).then(() => {
                             console.log("clearMission is called ");
                         });
@@ -49,7 +49,7 @@ export default class EntryAbility extends Ability {
         else if (want.action == 'Normal') {
 
             let wantValue = {
-                bundleName: "com.example.actsregisterjserrortest",
+                bundleName: "com.example.xtsappexitreasontest",
                 abilityName: "TestAbility"
             }
             let resultCode = launchParam.lastExitReason;
@@ -58,10 +58,11 @@ export default class EntryAbility extends Ability {
                 wantValue,
                 resultCode
             }
-            this.context.terminateSelfWithResult(abilityResult, (error) => {
-                console.log("terminateSelfWithResult is called = " + error.code)
-            }
-            );
+            setTimeout(() => {
+                this.context.terminateSelfWithResult(abilityResult, (error) => {
+                    console.log("terminateSelfWithResult is called = " + error.code)
+                });
+            },200)
         }
 
     }
@@ -97,6 +98,12 @@ export default class EntryAbility extends Ability {
         // Ability has brought to foreground
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+        if (globalThis.want.action == 'Jserror') {
+            setTimeout(() => {
+                console.info("JsError logic !")
+                globalThis.contest.startAbilityMM();
+            }, 500);
+        }
     }
 
     onBackground() {
