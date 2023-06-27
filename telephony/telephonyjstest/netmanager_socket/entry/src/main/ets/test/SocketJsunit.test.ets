@@ -15,7 +15,6 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'hypium/index';
 import socket from '@ohos.net.socket'
-import utils from './Utils.ets'
 
 export default function socketJsunit() {
   describe('socketTest', function () {

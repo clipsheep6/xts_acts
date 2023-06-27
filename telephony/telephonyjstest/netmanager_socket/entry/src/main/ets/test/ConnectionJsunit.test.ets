@@ -16,7 +16,6 @@ import {describe, it, expect} from 'hypium/index';
 import connection from '@ohos.net.connection'
 import http from "@ohos.net.http";
 import socket from "@ohos.net.socket";
-import utils from './Utils.ets'
 
 export default function connectionJsunit() {
   describe('connectionTest', function () {
@@ -52,7 +51,7 @@ export default function connectionJsunit() {
     it('Telephony_Connection_Connection_createNetConnection_0100', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_createNetConnection_0100 Test start*************");
       try {
-        connection.createNetConnection(,5000);
+        connection.createNetConnection(,timeout=5000);
         expect(true).assertTrue();
       } catch (error) {
         expect().assertFail();
@@ -69,7 +68,7 @@ export default function connectionJsunit() {
     it('Telephony_Connection_Connection_createNetConnection_0200', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_createNetConnection_0200 Test start*************");
       try {
-        connection.createNetConnection(,3000);
+        connection.createNetConnection(,timeout=3000);
         expect(true).assertTrue();
       } catch (error) {
         expect().assertFail();
@@ -86,7 +85,7 @@ export default function connectionJsunit() {
     it('Telephony_Connection_Connection_createNetConnection_0300', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_createNetConnection_0300 Test start*************");
       try {
-        connection.createNetConnection(,8000);
+        connection.createNetConnection(,timeout=8000);
         expect(true).assertTrue();
       } catch (error) {
         expect().assertFail();

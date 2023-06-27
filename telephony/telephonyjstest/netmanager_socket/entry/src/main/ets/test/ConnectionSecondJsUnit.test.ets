@@ -14,7 +14,6 @@
  */
 import connection from '@ohos.net.connection';
 import {describe, it, expect} from 'hypium/index';
-import utils from './Utils.ets'
 
 export default function connectionSecondJsUnit() {
   describe("connectionSecondJsunit", function () {

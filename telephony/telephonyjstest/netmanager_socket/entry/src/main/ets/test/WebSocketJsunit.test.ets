@@ -15,7 +15,6 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'hypium/index';
 import webSocket from '@ohos.net.webSocket'
-import utils from './Utils.ets'
 
 export default function webSocketJsunit() {
   describe('webSocketTest', function () {
