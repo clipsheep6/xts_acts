@@ -44,57 +44,6 @@ export default function connectionJsunit() {
     });
 
     /*
-     * @tc.number    : Telephony_Connection_Connection_createNetConnection_0100
-     * @tc.name      : createNetConnection
-     * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
-     */
-    it('Telephony_Connection_Connection_createNetConnection_0100', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_createNetConnection_0100 Test start*************");
-      try {
-        connection.createNetConnection(,timeout=5000);
-        expect(true).assertTrue();
-      } catch (error) {
-        expect().assertFail();
-      }
-      console.log("************* Telephony_Connection_Connection_createNetConnection_0100 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_Connection_Connection_createNetConnection_0200
-     * @tc.name      : createNetConnection
-     * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
-     */
-    it('Telephony_Connection_Connection_createNetConnection_0200', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_createNetConnection_0200 Test start*************");
-      try {
-        connection.createNetConnection(,timeout=3000);
-        expect(true).assertTrue();
-      } catch (error) {
-        expect().assertFail();
-      }
-      console.log("************* Telephony_Connection_Connection_createNetConnection_0200 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_Connection_Connection_createNetConnection_0300
-     * @tc.name      : createNetConnection
-     * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
-     */
-    it('Telephony_Connection_Connection_createNetConnection_0300', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_createNetConnection_0300 Test start*************");
-      try {
-        connection.createNetConnection(,timeout=8000);
-        expect(true).assertTrue();
-      } catch (error) {
-        expect().assertFail();
-      }
-      console.log("************* Telephony_Connection_Connection_createNetConnection_0300 Test end*************");
-      done();
-    });
-
-    /*
      * @tc.number    : Telephony_Connection_Connection_createNetConnection_0400
      * @tc.name      : createNetConnection
      * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
