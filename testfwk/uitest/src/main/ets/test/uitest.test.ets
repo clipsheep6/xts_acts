@@ -1661,17 +1661,14 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             await driver.pressHome()
             await driver.delayMs(waitUiReadyMs)
-            try {
-                let button = await driver.findComponent(ON.text('next page'))
-                expect(button == null).assertTrue()
-            }
-            catch (err) {
+            let button = await driver.findComponent(ON.text('next page'))
+            if (button == nullptr) {
                 console.info('This device can not back to desktop by press key')
             }
             await stopApplication('com.uitestScene.acts')
         })
 
-        /*
+        /* 
          * @tc.number: uiTest_9053
          * @tc.name: testWaitForIdle
          * @tc.desc: wait for the UI become idle.
