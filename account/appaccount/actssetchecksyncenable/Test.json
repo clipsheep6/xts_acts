@@ -4,7 +4,7 @@
         "type": "OHJSUnitTest",
         "test-timeout": "60000",
         "bundle-name": "com.example.actssetchecksyncenable",
-        "package-name": "com.example.actssetchecksyncenable",
+        "package-name": "com.example.actssetchecksyncenable_test",
         "shell-timeout": "60000"
     },
     "kits": [
