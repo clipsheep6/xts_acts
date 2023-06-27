@@ -12,7 +12,7 @@
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_app_suite(relationalstore_ets_main_test) {
+ohos_js_app_suite("relationalstore_ets_main_test") {
 testonly = true
 hap_name =  "ActsRelationalStoreStageMainTest"
 subsystem_name =  "distributeddatamgr"
@@ -20,7 +20,7 @@ part_name =  "relational_store"
 certificate_profile = "./signature/openharmony_sx.p7b"
 }
 
-ohos_js_app_suite(relationalstore_ets_test) {
+ohos_js_app_suite("relationalstore_ets_test") {
 test_hap = true
 testonly = true
 hap_name =  "ActsRelationalStoreStageTest"
