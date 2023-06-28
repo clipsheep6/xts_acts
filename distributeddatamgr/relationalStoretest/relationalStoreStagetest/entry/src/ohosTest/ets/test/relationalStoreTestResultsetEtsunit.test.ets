@@ -14,10 +14,16 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore'
-
+import abilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry";
+import Ability from '@ohos.app.ability.UIAbility'
+const  delegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+let context = undefined;
 const TAG = '[RDB_JSKITS_TEST]'
 const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' + 'data1 text,' + 'data2 long, ' + 'data3 double,' + 'data4 blob)';
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 const STORE_CONFIG = {
     name: 'Resultset.db',
     securityLevel: dataRdb.SecurityLevel.S1
@@ -25,10 +31,30 @@ const STORE_CONFIG = {
 const COLOUNM_NAMES = ["id","data1","data2","data3","data4"];
 var rdbStore = undefined;
 
-export default function relationalStoreResultSetTest(context) {
+export default function relationalStoreResultSetTest() {
 describe('relationalStoreResultSetTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
+        let want = {
+            bundleName : bundleName,
+            abilityName : "MainAbility"
+        }
+        let monitor = {
+            abilityName: "MainAbility",
+            onAbilityCreate: function (ability: Ability) {
+                console.log("create on ability," + ability.context.abilityInfo.name);
+                context = ability.context;
+            },
+            onWindowStageCreate: function (ability: Ability) {
+                console.log("onWindowStageCreate," + ability.context.abilityInfo.name);
+                context = ability.context;
+            }
+
+        }
+
+        await delegator.addAbilityMonitor(monitor);
+        await delegator.startAbility(want);
+        await sleep(1000);
         rdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
         await createTest();

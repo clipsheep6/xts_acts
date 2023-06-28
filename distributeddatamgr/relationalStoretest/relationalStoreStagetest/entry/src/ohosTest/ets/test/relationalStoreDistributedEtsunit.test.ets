@@ -16,26 +16,52 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore';
-
+import abilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry";
+ import Ability from '@ohos.app.ability.UIAbility'
+ const  delegator = abilityDelegatorRegistry.getAbilityDelegator();
+ const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const TAG = "[RDB_JSKITS_TEST_Distributed]"
 const STORE_NAME = "distributed_rdb.db"
 var rdbStore = undefined;
-
+ let context = undefined;
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
 const config = {
     "name": STORE_NAME,
     securityLevel: dataRdb.SecurityLevel.S1
 }
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
     + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)"
-export default function relationalStoreDistributedTest(context) {
+export default function relationalStoreDistributedTest() {
 describe('relationalStoreDistributedTest', function () {
     beforeAll(async function () {
-        console.info(TAG + 'beforeAll')
+        console.info(TAG + 'beforeAll');
+        let want = {
+            bundleName : bundleName,
+            abilityName : "MainAbility"
+        }
+        let monitor = {
+            abilityName: "MainAbility",
+            onAbilityCreate: function (ability: Ability) {
+                console.log("create on ability," + ability.context.abilityInfo.name);
+              context = ability.context;
+            },
+            onWindowStageCreate: function (ability: Ability) {
+                console.log("onWindowStageCreate," + ability.context.abilityInfo.name);
+                context = ability.context;
+            }
+
+        }
+
+        await delegator.addAbilityMonitor(monitor);
+        await delegator.startAbility(want);
+        await sleep(1000);
     })
 
     beforeEach(async function () {
-        rdbStore = await dataRdb.getRdbStore(context, config);
-        await rdbStore.executeSql(CREATE_TABLE_TEST, null)
+         rdbStore = await dataRdb.getRdbStore(context, config);
+         await rdbStore.executeSql(CREATE_TABLE_TEST, null)
         console.info(TAG + 'beforeEach')
     })
 

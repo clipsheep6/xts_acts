@@ -5,6 +5,7 @@
 				"description":"$string:MainAbility_desc",
 				"exported":true,
 				"icon":"$media:icon",
+				"launchType": "multiton",
 				"label":"$string:MainAbility_label",
 				"name":"MainAbility",
 				"skills":[
@@ -25,9 +26,9 @@
 		],
 		"deliveryWithInstall":true,
 		"deviceTypes": [
-          "default",
-          "tablet"
-        ],
+			"default",
+			"tablet"
+		],
 		"installationFree":false,
 		"mainElement":"MainAbility",
 		"name":"entry",
