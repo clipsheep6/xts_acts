@@ -54,19 +54,6 @@ async function generateAsyKeyPair(rsaGenerator) {
   });
 }
 
-async function generateSymKeyPair(rsaGenerator) {
-  return new Promise((resolve, reject) => {
-    rsaGenerator.generateSymKey((err, rsaKeyPair) => {
-      if (err) {
-        console.error("[Callback]generateSymKey failed. error is " + err);
-        reject(err);
-      } else {
-        resolve(rsaKeyPair);
-      }
-    });
-  });
-}
-
 async function convertAsyKey(rsaGenerator, pubKeyDataBlob, priKeyDataBlob) {
   return new Promise((resolve, reject) => {
     rsaGenerator.convertKey(
@@ -264,12 +251,7 @@ async function verifyForVerify(verifyGenerator, dataBlob, signDataBlob) {
   });
 }
 
-async function verifyForVerifyFailed(
-  verifyGenerator,
-  dataBlob,
-  signDataBlob,
-  verifyType
-) {
+async function verifyForVerifyFailed(verifyGenerator, dataBlob, signDataBlob, verifyType) {
   return new Promise((resolve, reject) => {
     switch (verifyType) {
       case 0:
@@ -300,18 +282,13 @@ async function verifyForVerifyFailed(
         });
         break;
       case 3:
-        verifyGenerator.verify(
-          dataBlob,
-          signDataBlob,
-          signDataBlob,
-          (err, verifyOutput) => {
+        verifyGenerator.verify(dataBlob, signDataBlob, signDataBlob, (err, verifyOutput) => {
             if (err) {
               reject(err);
             } else {
               resolve(verifyOutput);
             }
-          }
-        );
+          });
         break;
       case 4:
         verifyGenerator.verify(dataBlob, signDataBlob, (err, verifyOutput) => {
@@ -839,6 +816,27 @@ async function keyGenerationBySpecProcess(asyAlgoName) {
   });
 }
 
+async function verifyAbnormalParameterSM2Process(asyKeySpec, verifyAlgoName, verifyType) {
+  var globalRsaKeyPair;
+  var globalSignBlob;
+  var globalText = "This is a sign test";
+  var input = { data: stringTouInt8Array(globalText) };
+  return new Promise((resolve, reject) => {
+    let specGenerator = createAsyKeyGenerator(asyKeySpec);
+    let verifyGenerator = createAsyVerify(verifyAlgoName);
+    let keyPairPromise = specGenerator.generateKeyPair();
+    keyPairPromise.then((keyPair) => {
+      globalRsaKeyPair = keyPair;
+      return initVerify(verifyGenerator, globalRsaKeyPair.pubKey);
+    }).then((initVerifyOut) => {
+      console.log("[Callback] verifyAbnormalParameterProcess initVerifyOut:" + initVerifyOut);
+      resolve(verifyForVerifyFailed(verifyGenerator, input, globalSignBlob, verifyType));
+    }).catch((err) => {
+      reject(err);
+    });
+  });
+}
+
 export {
   encryptAndDecryptNormalProcess,
   signAndVerifyNormalProcess,
@@ -849,4 +847,5 @@ export {
   signAndVerifySetAndGetSpecProcess,
   signAbnormalParameterProcess,
   verifyAbnormalParameterProcess,
+  verifyAbnormalParameterSM2Process,
 };
