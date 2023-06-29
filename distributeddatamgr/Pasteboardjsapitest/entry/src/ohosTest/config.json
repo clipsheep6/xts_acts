@@ -11,28 +11,32 @@
 		
 	},
 	"module":{
-		"package":"com.acts.distributeddatamgr.pasteboardtest",
-		"name":".entry",
-		"mainAbility":".MainAbility",
+		"package":"com.acts.distributeddatamgr.pasteboardtest_test",
+		"name":".entry_test",
+		"mainAbility":".TestAbility",
 		"deviceType":[
 			"tablet",
 			"default",
 			"phone"
 		],
+		"testRunner":{
+			"name":"OpenHarmonyTestRunner",
+			"srcPath":"TestRunner"
+		},
 		"distro":{
 			"deliveryWithInstall":true,
 			"installationFree":true,
-			"moduleName":"entry",
-			"moduleType":"entry"
+			"moduleName":"entry_test",
+			"moduleType":"feature"
 		},
 		"abilities":[
 			{
-				"description":"$string:description_mainability",
+				"description":"$string:TestAbility_desc",
 				"formsEnabled":false,
 				"icon":"$media:icon",
-				"label":"$string:entry_MainAbility",
+				"label":"$string:TestAbility_label",
 				"launchType":"standard",
-				"name":".MainAbility",
+				"name":".TestAbility",
 				"orientation":"unspecified",
 				"skills":[
 					{
@@ -45,7 +49,7 @@
 					}
 				],
 				"srcLanguage":"ets",
-				"srcPath":"MainAbility",
+				"srcPath":"TestAbility",
 				"type":"page",
 				"visible":true
 			}
@@ -56,7 +60,7 @@
 					"syntax":"ets",
 					"type":"pageAbility"
 				},
-				"name":".MainAbility",
+				"name":".TestAbility",
 				"pages":[
 					"pages/index"
 				],
