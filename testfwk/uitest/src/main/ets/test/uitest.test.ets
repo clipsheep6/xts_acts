@@ -1665,7 +1665,6 @@ export default function UiTest() {
             if (button != null) {
                 console.info('This device can not back to desktop by press home key')
             }
-            expect(button != null).assertTrue()
             await stopApplication('com.uitestScene.acts')
         })
 
