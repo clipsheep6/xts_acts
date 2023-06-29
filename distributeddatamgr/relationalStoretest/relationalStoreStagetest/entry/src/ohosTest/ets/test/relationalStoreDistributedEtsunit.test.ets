@@ -45,7 +45,7 @@ describe('relationalStoreDistributedTest', function () {
             abilityName: "MainAbility",
             onAbilityCreate: function (ability: Ability) {
                 console.log("create on ability," + ability.context.abilityInfo.name);
-              context = ability.context;
+                context = ability.context;
             },
             onWindowStageCreate: function (ability: Ability) {
                 console.log("onWindowStageCreate," + ability.context.abilityInfo.name);
