@@ -1660,7 +1660,11 @@ export default function UiTest() {
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
             await driver.pressHome()
+            await driver.delayMs(waitUiReadyMs)
             let button = await driver.findComponent(ON.text('next page'))
+            if (button != null) {
+                console.info('This device can not back to desktop by press home key')
+            }
             expect(button != null).assertTrue()
             await stopApplication('com.uitestScene.acts')
         })
