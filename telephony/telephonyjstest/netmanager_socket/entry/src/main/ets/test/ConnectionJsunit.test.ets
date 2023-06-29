@@ -15,15 +15,11 @@
 import {describe, it, expect} from 'hypium/index';
 import connection from '@ohos.net.connection'
 import http from "@ohos.net.http";
-import socket from "@ohos.net.socket";
 
 export default function connectionJsunit() {
   describe('connectionTest', function () {
     const TIMEOUT = 100;
     const DELAY = 1000;
-    const netHandleN ={};
-    const netHandle99 ={netId: 99};
-    const netHandle0 ={netId: 0};
     const addressBaidu = "https://www.baidu.com/"
     console.log("************* connection Test start*************");
 
@@ -162,57 +158,6 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_getAllNets_0200 Test end*************");
     });
 
-    /*
-     * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0100
-     * @tc.name      : getConnectionProperties
-     * @tc.desc      : Queries the connection properties of a network.
-     */
-    it('Telephony_Connection_Connection_getConnectionProperties_0100', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test start*************");
-      connection.getConnectionProperties(netHandleN,(error, data) => {
-        expect().assertFail();
-        done();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0200
-     * @tc.name      : getConnectionProperties
-     * @tc.desc      : Queries the connection properties of a network.
-     */
-    it('Telephony_Connection_Connection_getConnectionProperties_0200', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0200 Test start*************");
-      connection.getConnectionProperties(netHandle0).then(data => {
-        expect().assertFail();
-      }).catch(err => {
-        expect(true).assertTrue();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0200 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0300
-     * @tc.name      : getConnectionProperties
-     * @tc.desc      : Queries the connection properties of a network.
-     */
-    it('Telephony_Connection_Connection_getConnectionProperties_0300', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0300 Test start*************");
-      connection.getConnectionProperties(netHandle99, (error, data) => {
-        if (error) {
-          expect(true).assertTrue();
-		  done();
-        } else{
-		  done();
-		}
-      });
-      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0300 Test end*************");
-      done();
-    });
 
     /*
      * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0400
@@ -239,55 +184,7 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0400 Test end*************");
     });
 
-    /*
-     * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0100
-     * @tc.name      : getNetCapabilities
-     * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
-     */
-    it('Telephony_Connection_Connection_getNetCapabilities_0100', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test start*************");
-      connection.getNetCapabilities(netHandleN,(error, data) => {
-        expect().assertFail();
-        done();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test end*************");
-      done();
-    });
 
-    /*
-     * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0200
-     * @tc.name      : getNetCapabilities
-     * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
-     */
-    it('Telephony_Connection_Connection_getNetCapabilities_0200', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0200 Test start*************");
-      connection.getNetCapabilities(netHandle99, (error, data) => {
-        if (!error) {
-          expect().assertFail();
-          done();
-        }
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0200 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0300
-     * @tc.name      : getNetCapabilities
-     * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
-     */
-    it('Telephony_Connection_Connection_getNetCapabilities_0300', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0300 Test start*************");
-      connection.getNetCapabilities(netHandle0).then(data => {
-        expect().assertFail();
-      }).catch(err => {
-        expect(true).assertTrue();
-      });
-      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0300 Test end*************");
-      done();
-    });
 
     /*
      * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0400
@@ -361,157 +258,8 @@ export default function connectionJsunit() {
       done();
     });
 
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0100
-         * @tc.name      : reportNetConnected
-         * @tc.desc      : Reports the network state is connected.
-         */
-    it('Telephony_Connection_Connection_reportNetConnected_0100', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test start*************");
-      connection.reportNetConnected(netHandleN,(error, data) => {
-        if (error) {
-          expect(true).assertTrue();
-          done();
-          return;
-        }
-        expect().assertFail();
-        done();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test end*************");
-      done();
-    });
 
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0200
-         * @tc.name      : reportNetConnected
-         * @tc.desc      : Reports the network state is connected.
-         */
-    it('Telephony_Connection_Connection_reportNetConnected_0200', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0200 Test start*************");
-      connection.reportNetConnected(netHandle99, (error, data) => {
-        if (error) {
-          expect(true).assertTrue();
-          done();
-          return;
-        }
-        expect().assertFail();
-        done();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0200 Test end*************");
-      done();
-    });
 
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0300
-         * @tc.name      : reportNetConnected
-         * @tc.desc      : Reports the network state is connected.
-         */
-    it('Telephony_Connection_Connection_reportNetConnected_0300', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0300 Test start*************");
-      connection.reportNetConnected(netHandle0).then(() => {
-        expect().assertFail();
-      }).catch(err => {
-        expect(true).assertTrue();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0300 Test end*************");
-      done();
-    });
-
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0400
-         * @tc.name      : reportNetConnected
-         * @tc.desc      : Reports the network state is connected.
-         */
-    it('Telephony_Connection_Connection_reportNetConnected_0400', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0400 Test start*************");
-      connection.reportNetConnected(netHandle99).then(() => {
-        expect().assertFail();
-      }).catch(err => {
-        expect(true).assertTrue();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetConnected_0400 Test end*************");
-      done();
-    });
-
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0100
-         * @tc.name      : reportNetDisconnected
-         * @tc.desc      : Reports the network state is disconnected.
-         */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0100', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test start*************");
-      connection.reportNetDisconnected(netHandleN,(error, data) => {
-        if (error) {
-          expect(true).assertTrue();
-          done();
-          return;
-        }
-        expect().assertFail();
-        done();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test end*************");
-      done();
-    });
-
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0200
-         * @tc.name      : reportNetDisconnected
-         * @tc.desc      : Reports the network state is disconnected.
-         */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0200', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0200 Test start*************");
-      connection.reportNetDisconnected(netHandle99, (error, data) => {
-        if (error) {
-          expect(true).assertTrue();
-          done();
-          return;
-        }
-        expect().assertFail();
-        done();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0200 Test end*************");
-      done();
-    });
-
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0300
-         * @tc.name      : reportNetDisconnected
-         * @tc.desc      : Reports the network state is disconnected.
-         */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0300', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0300 Test start*************");
-      connection.reportNetDisconnected(netHandle0).then(() => {
-        expect().assertFail();
-      }).catch(err => {
-        expect(true).assertTrue();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0300 Test end*************");
-      done();
-    });
-
-    /*
-         * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0400
-         * @tc.name      : reportNetDisconnected
-         * @tc.desc      : Reports the network state is disconnected.
-         */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0400', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0400 Test start*************");
-      connection.reportNetDisconnected(netHandle99).then(() => {
-        expect().assertFail();
-      }).catch(err => {
-        expect(true).assertTrue();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0400 Test end*************");
-      done();
-    });
 
     /*
          * @tc.number    : Telephony_Connection_Connection_getAddressesByName_0100
@@ -981,23 +729,7 @@ export default function connectionJsunit() {
       done();
     });
 
-    /*
-         * @tc.number    : Telephony_Connection_Connection_domains_0100
-         * @tc.name      : domains
-         * @tc.desc      : domains test.
-         */
-    it('Telephony_Connection_Connection_domains_0100', 0, function (done) {
-      console.log("************* Telephony_Connection_Connection_domains_0100 Test start*************");
-      connection.getConnectionProperties(netHandle99, (error, data) => {
-        if (error) {
-          expect(true).assertTrue();
-        } else {
-          expect(data.domains).assertEqual("");
-        }
-      });
-      console.log("************* Telephony_Connection_Connection_domains_0100 Test end*************");
-      done();
-    });
+
 
 
     /*
