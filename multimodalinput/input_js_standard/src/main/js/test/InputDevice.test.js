@@ -30,7 +30,7 @@ export default function InputDevice_test() {
     }
 
     // 参数正确,返回一个数组
-    it("InputDevice_getDeviceIds_test_01", 0, async function (done) {
+    it("InputDevice_getDeviceList_test_01", 0, async function (done) {
       console.info(`InputDevice_getDeviceIds_test_01 enter`);
       try {
         inputDevice.getDeviceIds((err, data) => {
