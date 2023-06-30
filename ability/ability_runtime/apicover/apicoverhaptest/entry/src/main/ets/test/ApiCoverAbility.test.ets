@@ -472,6 +472,8 @@ export default function ApiCoverTest() {
       expect("ohos.extra.param.key.form_identity").assertEqual(formInfoNew.FormParam.IDENTITY_KEY)
       expect("ohos.extra.param.key.bundle_name").assertEqual(formInfoNew.FormParam.BUNDLE_NAME_KEY)
       expect("ohos.extra.param.key.ability_name").assertEqual(formInfoNew.FormParam.ABILITY_NAME_KEY)
+      // expect('ohos.extra.param.key.form_customize').assertEqual(formInfoNew.FormParam.PARAM_FORM_CUSTOMIZE_KEY)
+      // expect('ohos.extra.param.key.form_launch_reason').assertEqual(formInfoNew.FormParam.LAUNCH_REASON_KEY)
       expect(0).assertEqual(formInfoNew.FormState.DEFAULT)
       expect(1).assertEqual(formInfoNew.FormState.READY)
       expect(-1).assertEqual(formInfoNew.FormState.UNKNOWN)
@@ -485,6 +487,8 @@ export default function ApiCoverTest() {
       expect(5).assertEqual(formInfoNew.FormDimension.Dimension_2_1)
       expect(1).assertEqual(formInfoNew.FormType.JS);
       expect(2).assertEqual(formInfoNew.FormType.eTS);
+      // expect(1).assertEqual(formInfoNew.LaunchReason.FORM_DEFAULT);
+      // expect(2).assertEqual(formInfoNew.LaunchReason.FORM_SHARE);
       expect(1).assertEqual(formInfoNew.VisibilityType.FORM_VISIBLE);
       expect(2).assertEqual(formInfoNew.VisibilityType.FORM_INVISIBLE);
       let formStateInfo: formInfoNew.FormStateInfo = {
@@ -510,6 +514,7 @@ export default function ApiCoverTest() {
       expect(0).assertEqual(abilityConstant.MemoryLevel.MEMORY_LEVEL_MODERATE)
       expect(1).assertEqual(abilityConstant.MemoryLevel.MEMORY_LEVEL_LOW)
       expect(2).assertEqual(abilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL)
+      expect(5).assertEqual(abilityConstant.LaunchReason.SHARE)
       done()
     });
 
