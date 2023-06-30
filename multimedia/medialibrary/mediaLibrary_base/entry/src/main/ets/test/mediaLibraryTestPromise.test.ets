@@ -237,6 +237,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
                 expect(false).assertTrue();
                 done();
             }
+
         };
 
         const getFileAssetsAbnormal = async (done, testNum, fetchOps) => {
