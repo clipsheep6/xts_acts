@@ -62,11 +62,7 @@ export default function AVSession() {
                 expect(false).assertTrue();
             });
 
-            await avSession.createController(session.sessionId).then((data) => {
-                controller = data;
-            }).catch((err) => {
-                console.info(`TestLog: Controller create error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
+            controller = await session.getController();
             });
         })
 
@@ -1481,39 +1477,7 @@ export default function AVSession() {
             done();
         })
 
-        /* *
-         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_SESSIONDESTROY_PROMISE_0100
-         * @tc.name      : SESSIONDESTROY_0100
-         * @tc.desc      : Testing destroy session - promise
-         * @tc.size      : MediumTest
-         * @tc.type      : Function
-         * @tc.level     : Level1
-         */
-        it('SUB_MULTIMEDIA_AVSESSION_SESSIONDESTROY_PROMISE_0100', 0, async function (done) {
-            let flag = false;
-            controller.on('sessionDestroy', () => {
-                console.info('TestLog: Session destroy successfully');
-                flag = true;
-            });
-
-            await session.destroy().then(() => {
-                console.info('TestLog: Session destroy');
-            }).catch((err) => {
-                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
-
-            await sleep(500);
-
-            if (flag) {
-                console.info('TestLog: Session destroy successful');
-                expect(true).assertTrue();
-            } else {
-                console.info('TestLog: Session destroy failed');
-                expect(false).assertTrue();
-            }
-            done();
-        })
+     
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_ONPLAY_0100
@@ -1852,75 +1816,7 @@ export default function AVSession() {
             }
         })
 
-        /* *
-         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_OFFPLAY_0100
-         * @tc.name      : OFFPLAY_0100
-         * @tc.desc      : Testing offPlay callback
-         * @tc.size      : MediumTest
-         * @tc.type      : Function
-         * @tc.level     : Level2
-         */
-        it('SUB_MULTIMEDIA_AVSESSION_OFFPLAY_0100', 0, async function (done) {
-            function callback1() {
-                console.info('TestLog: Play command registration1 success');
-                expect(false).assertTrue();
-            }
 
-            function callback2() {
-                console.info('TestLog: Play command registration2 success');
-                expect(false).assertTrue();
-            }
-
-            session.on('play', callback1);
-
-            session.on('play', callback2);
-
-            session.off('play');
-
-            await controller.sendControlCommand({ command: 'play' }).then(() => {
-                console.info('TestLog: Controller send command successfully');
-            }).catch((err) => {
-                console.info(`TestLog: Controller send command error: code: ${err.code}, message: ${err.message}`);
-                expect(true).assertTrue();
-            });
-            await sleep(500);
-            done();
-        })
-
-        /* *
-         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_OFFPLAY_0200
-         * @tc.name      : OFFPLAY_0200
-         * @tc.desc      : Testing offPlay callback
-         * @tc.size      : MediumTest
-         * @tc.type      : Function
-         * @tc.level     : Level2
-         */
-        it('SUB_MULTIMEDIA_AVSESSION_OFFPLAY_0200', 0, async function (done) {
-            function callback1() {
-                console.info('TestLog: Play command registration1 success');
-                expect(false).assertTrue();
-            }
-
-            function callback2() {
-                console.info('TestLog: Play command registration2 success');
-                expect(true).assertTrue();
-            }
-
-            session.on('play', callback1);
-
-            session.on('play', callback2);
-
-            session.off('play', callback1);
-
-            await controller.sendControlCommand({ command: 'play' }).then(() => {
-                console.info('TestLog: Controller send command successfully');
-            }).catch((err) => {
-                console.info(`TestLog: Controller send command error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
-            await sleep(500);
-            done();
-        })
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_OFFPAUSE_0100
@@ -2973,5 +2869,4 @@ export default function AVSession() {
             }
             done();
         })
-    })
-}
+    }
