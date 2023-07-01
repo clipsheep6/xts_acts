@@ -22,35 +22,11 @@ let ACTS_CrossCallFunction = {
 };
 
 let driver = Driver.create();
-const BUNDLE = 'MyApp_';
 const TAG = '[Sample_MyApp]';
 const DOMAIN = 0xF811;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-// Pop-up collapse button
-// await driver.click(buttonX, buttonY)
-let buttonX = 360;
-let button = 720;
 export default function abilityTest() {
   describe('ActsAppTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
     it('ACTS_NFC_SelectTypes_0100' ,0, async (done) => {
       // 调用startAbility传入want，使其匹配apptest1，apptest2，apptest3这三个应用并在界面上以应用选择框形式弹出，断言检测这三个应用存在并且apptest4不存在
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100 begin');
@@ -78,9 +54,6 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
 
-      /*await driver.findComponents(ON.type("string")).then((data) => {
-        console.info('wldapptexts:' + JSON.stringify(data));
-      })*/
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100: apptest1,apptest2,apptest3 Exist; apptest4 notExist');
       await driver.assertComponentExist(ON.text("apptest1"));
       await driver.assertComponentExist(ON.text("apptest2"));
@@ -345,7 +318,7 @@ export default function abilityTest() {
         // 执行正常业务
         console.info('startAbility succeed');
       }
-      )
+      );
       await driver.delayMs(1000);
       // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
 
@@ -390,7 +363,7 @@ export default function abilityTest() {
           console.info('startAbility succeed');
         }
         );
-      })
+      });
       function subscribeCallBack(err, data) {
         console.info('====>ACTS_NFC_SelectTypes_0900 subscribeCallBack data:' + JSON.stringify(data));
         if (data.event === 'ACTS_CROSS_CALL_EVENT') {
@@ -400,17 +373,11 @@ export default function abilityTest() {
             let cmdkill = 'pkill -f com.example.mytest4';
             await abilityDelegator.executeShellCommand(cmdkill);
             done();
-          })
+          });
         }
       }
-      function unSubscribeCallback() {
-        console.info('====>ACTS_NFC_SelectTypes_0900 unSubscribeCallback kill');
-        let cmdkill = 'pkill -f com.example.mytest4';
-        abilityDelegator.executeShellCommand(cmdkill);
-        done();
-      }
+
       await driver.delayMs(1000);
-      //await driver.click( 360, 1280 );
       // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
 
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 end');
