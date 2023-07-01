@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver,ON } from '@ohos.UiTest'
-import commonEvent from '@ohos.commonEventManager'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver,ON } from '@ohos.UiTest';
+import commonEvent from '@ohos.commonEventManager';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 let ACTS_CrossCallFunction = {
   events: ['ACTS_CROSS_CALL_EVENT']
 };
