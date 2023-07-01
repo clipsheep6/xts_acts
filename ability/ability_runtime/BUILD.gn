@@ -62,7 +62,7 @@ group("ability_runtime") {
         "stopserviceextension:stopserviceextension",
        #"supportsresidentapplicationupgrades:supportsresidentapplicationupgrades",
        #"supportsresidentapplicationupgrades:tmpcopy",
-       "unclearablemission:unclearablemission",
+       #"unclearablemission:unclearablemission",
        "want:want",
         "workercontextcover:workercontextcover",
       
