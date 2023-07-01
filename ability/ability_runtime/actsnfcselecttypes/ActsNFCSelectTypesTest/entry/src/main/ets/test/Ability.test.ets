@@ -53,7 +53,7 @@ export default function abilityTest() {
     })
     it('ACTS_NFC_SelectTypes_0100' ,0, async (done) => {
       // 调用startAbility传入want，使其匹配apptest1，apptest2，apptest3这三个应用并在界面上以应用选择框形式弹出，断言检测这三个应用存在并且apptest4不存在
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100 begin')
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG_FOUND',
         type:'tag-tech/NFcA',
