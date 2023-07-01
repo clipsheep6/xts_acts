@@ -19,9 +19,9 @@ group("actsnfcselecttypes") {
     deps = [
       "ActsNFCSelectTypesTest:ActsNFCSelectTypesTest",
       "ActsNFCSelectTypesTestRelyFirst:ActsNFCSelectTypesTestRelyFirst",
+      "ActsNFCSelectTypesTestRelyFourth:ActsNFCSelectTypesTestRelyFourth",
       "ActsNFCSelectTypesTestRelySecond:ActsNFCSelectTypesTestRelySecond",
       "ActsNFCSelectTypesTestRelyThird:ActsNFCSelectTypesTestRelyThird",
-      "ActsNFCSelectTypesTestRelyFourth:ActsNFCSelectTypesTestRelyFourth",
     ]
   }
 }
