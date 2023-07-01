@@ -17,7 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver,ON } from '@ohos.UiTest'
 import commonEvent from '@ohos.commonEventManager'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var ACTS_CrossCallFunction = {
+let ACTS_CrossCallFunction = {
   events: ['ACTS_CROSS_CALL_EVENT']
 };
 
@@ -25,7 +25,7 @@ let driver = Driver.create()
 const BUNDLE = 'MyApp_'
 const TAG = '[Sample_MyApp]'
 const DOMAIN = 0xF811
-var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 // Pop-up collapse button
 // await driver.click(buttonX, buttonY)
 let buttonX = 360
@@ -373,7 +373,7 @@ export default function abilityTest() {
 
     it('ACTS_NFC_SelectTypes_0900' ,0, async (done) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 begin')
-      var subscriber;
+      let subscriber;
       commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
         subscriber = data;
         hilog.info(DOMAIN, TAG, '%{public}s', 'wld' + '09' + JSON.stringify(data))
@@ -404,7 +404,7 @@ export default function abilityTest() {
           expect(data.parameters.message === 'select').assertTrue()
           commonEvent.unsubscribe(subscriber, async ()=>{
             console.info('====>ACTS_NFC_SelectTypes_0900 unSubscribeCallback kill')
-            var cmdkill = 'pkill -f com.example.mytest4'
+            let cmdkill = 'pkill -f com.example.mytest4'
             await abilityDelegator.executeShellCommand(cmdkill)
             done()
           })
@@ -412,7 +412,7 @@ export default function abilityTest() {
       }
       function unSubscribeCallback() {
         console.info('====>ACTS_NFC_SelectTypes_0900 unSubscribeCallback kill')
-        var cmdkill = 'pkill -f com.example.mytest4'
+        let cmdkill = 'pkill -f com.example.mytest4'
         abilityDelegator.executeShellCommand(cmdkill)
         done()
       }

@@ -1,27 +1,27 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import commonEvent from '@ohos.commonEventManager'
+import commonEvent from '@ohos.commonEventManager';
 
-var message;
-var commonEventData = {
+let message;
+let commonEventData = {
   parameters:{
     message:message,
   }
-}
+};
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability4 onCreate');
-    console.info('Ability4 onCreate' + JSON.stringify(want))
-    var actionStr = want.action;
-    var typestr = want.type;
-    if( actionStr === 'ohos.nfc.tag.action.TAG_FOUND' && typestr === 'a' ){
+    console.info('Ability4 onCreate' + JSON.stringify(want));
+    let actionStr = want.action;
+    let typestr = want.type;
+    if ( actionStr === 'ohos.nfc.tag.action.TAG_FOUND' && typestr === 'a' ){
       hilog.info(0x0000, 'testTag', '%{public}s', 'aAbility ok');
-      commonEventData.parameters.message = 'select'
+      commonEventData.parameters.message = 'select';
       commonEvent.publish('ACTS_CROSS_CALL_EVENT', commonEventData, (err) => {
         console.info('====>' + actionStr + ' apublish err:' + JSON.stringify(err));
         //globalThis.terminate();
-      })
+      });
     }
   }
 
