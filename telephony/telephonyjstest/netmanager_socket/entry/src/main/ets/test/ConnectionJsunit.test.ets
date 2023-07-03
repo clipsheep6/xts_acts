@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, it, expect} from '@ohos/hypium';
+import {describe, it, expect} from 'hypium/index';
 import connection from '@ohos.net.connection'
 import http from "@ohos.net.http";
 import socket from "@ohos.net.socket";

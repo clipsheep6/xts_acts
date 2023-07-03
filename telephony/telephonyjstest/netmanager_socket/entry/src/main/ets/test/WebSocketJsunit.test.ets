@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'hypium/index';
 import webSocket from '@ohos.net.webSocket'
 
 export default function webSocketJsunit() {

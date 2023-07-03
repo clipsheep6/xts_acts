@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import connection from '@ohos.net.connection';
-import {describe, it, expect} from '@ohos/hypium';
+import {describe, it, expect} from 'hypium/index';
 
 export default function connectionSecondJsUnit() {
   describe("connectionSecondJsunit", function () {
