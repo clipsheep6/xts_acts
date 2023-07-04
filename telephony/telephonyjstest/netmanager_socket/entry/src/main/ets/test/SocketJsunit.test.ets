@@ -417,7 +417,9 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_UDPSocket_bind_0300 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_bind_0300"
       let netAddress = {
-        address: "second test address"
+        address: "second test address",
+        family: 1,
+        port: 8080
       }
       udp.bind(netAddress, (error, data) => {
         if (error) {
@@ -426,7 +428,7 @@ export default function socketJsunit() {
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} data, case failed,data:`+JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -981,7 +983,9 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_TCPSocket_bind_0300 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_bind_0300"
       let netAddress = {
-        address: "second test address",
+          address: "second test address",
+          family: 1,
+          port: 8080
       }
       tcp.bind(netAddress, (error, data) => {
         if (error) {
