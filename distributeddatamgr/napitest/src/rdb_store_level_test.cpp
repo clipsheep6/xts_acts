@@ -41,9 +41,7 @@ void RdbNdkStoreLevelTest::SetUpTestCase(void)
 
 void RdbNdkStoreLevelTest::TearDownTestCase(void)
 {
-
-    
-    
+   
 }
 
 void RdbNdkStoreLevelTest::SetUp(void)
@@ -59,8 +57,12 @@ void RdbNdkStoreLevelTest::TearDown(void)
     
 }
 
-
-HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0100, TestSize.Level1)
+/**
+ * @tc.name: SUB_DDM_RDB_StoreLevel_0100
+ * @tc.desc: StoreLevel is S1
+ * @tc.type: FUNC
+ */
+HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_StoreLevel_0100, TestSize.Level1)
 {
     OH_Rdb_Config config;
     config.path = storeLevelTestPath_.c_str();
@@ -105,7 +107,12 @@ HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0100, TestSize.Level1)
     EXPECT_EQ(errCode, 0);
 }
 
-HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0200, TestSize.Level1)
+/**
+ * @tc.name: SUB_DDM_RDB_StoreLevel_0200
+ * @tc.desc: StoreLevel is S2
+ * @tc.type: FUNC
+ */
+HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_StoreLevel_0200, TestSize.Level1)
 {
     OH_Rdb_Config config;
     config.path = storeLevelTestPath_.c_str();
@@ -150,8 +157,12 @@ HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0200, TestSize.Level1)
     EXPECT_EQ(errCode, 0);
 }
 
-
-HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0300, TestSize.Level1)
+/**
+ * @tc.name: SUB_DDM_RDB_StoreLevel_0300
+ * @tc.desc: StoreLevel is S3
+ * @tc.type: FUNC
+ */
+HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_StoreLevel_0300, TestSize.Level1)
 {
     OH_Rdb_Config config;
     config.path = storeLevelTestPath_.c_str();
@@ -196,7 +207,12 @@ HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0300, TestSize.Level1)
     EXPECT_EQ(errCode, 0);
 }
 
-HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_NDK_0400, TestSize.Level1)
+/**
+ * @tc.name: SUB_DDM_RDB_StoreLevel_0400
+ * @tc.desc: StoreLevel is S4
+ * @tc.type: FUNC
+ */
+HWTEST_F(RdbNdkStoreLevelTest, SUB_DDM_RDB_StoreLevel_0400, TestSize.Level1)
 {
     OH_Rdb_Config config;
     config.path = storeLevelTestPath_.c_str();

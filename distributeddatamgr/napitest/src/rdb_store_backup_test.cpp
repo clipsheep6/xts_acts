@@ -69,11 +69,11 @@ void RdbNdkStoreBackupTest::TearDown(void)
 }
 
 /**
- * @tc.name: RDB_NDK_store_test_005
- * @tc.desc: Normal testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0100
+ * @tc.desc: Normal testCase of store for Backup、Restore.
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0100, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0100, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -145,12 +145,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_010
 }
 
 /**
- * @tc.name: RDB_NDK_store_test_005
- * @tc.desc: Exception testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0500
+ * @tc.desc: Exception testCase of store for Backup、Restore.
  * @tc.desc: backup file name is empty 
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0500, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0500, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -180,12 +180,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_050
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0300
- * @tc.desc: Exception testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0300
+ * @tc.desc: Exception testCase of store for Backup、Restore.
  * @tc.desc: backup file name already exists
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0300, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0300, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -260,11 +260,11 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_030
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0300
- * @tc.desc: Exception testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0400
+ * @tc.desc: Exception testCase of store for Backup、Restore.
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0400, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0400, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -318,12 +318,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_040
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0900
- * @tc.desc: Exception testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0900
+ * @tc.desc: Exception testCase of store for Backup、Restore.
  * @tc.desc: Restore file name is empty
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0900, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0900, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -375,12 +375,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_090
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0110
- * @tc.desc: Exception testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0110
+ * @tc.desc: Exception testCase of store for Backup、Restore.
  * @tc.desc: Restore file name is invalid
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0110, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0110, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -433,12 +433,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_011
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0600
- * @tc.desc: Normal testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0600
+ * @tc.desc: Normal testCase of store for Backup、Restore.
  * @tc.desc: backup file name is a space
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0600, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0600, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -509,12 +509,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_060
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0800
- * @tc.desc: Normal testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0800
+ * @tc.desc: Normal testCase of store for Backup、Restore.
  * @tc.desc: Restore file name is a null
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0800, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0800, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
@@ -592,12 +592,12 @@ HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_080
 }
 
 /**
- * @tc.name: SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0700
- * @tc.desc: Normal testCase of NDK store for Backup、Restore.
+ * @tc.name: SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0700
+ * @tc.desc: Normal testCase of store for Backup、Restore.
  * @tc.desc: Backup file name is a null
  * @tc.type: FUNC
  */
-HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_NDK_RdbBackupRestoreCallbackTest_0700, TestSize.Level1)
+HWTEST_F(RdbNdkStoreBackupTest, SUB_DDM_RDB_RdbBackupRestoreCallbackTest_0700, TestSize.Level1)
 {
     int errCode = 0;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();

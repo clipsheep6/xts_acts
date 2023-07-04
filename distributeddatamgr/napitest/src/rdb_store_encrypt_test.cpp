@@ -61,8 +61,12 @@ void RdbNdkStoreEncryptTest::TearDown(void)
     
 }
 
-
-HWTEST_F(RdbNdkStoreEncryptTest, SUB_DDM_RDB_NDK_0100, TestSize.Level1)
+/**
+ * @tc.name: SUB_DDM_RDB_ENCRYPT_0100
+ * @tc.desc: Non-encrypted Access encrypted databases
+ * @tc.type: FUNC
+ */
+HWTEST_F(RdbNdkStoreEncryptTest, SUB_DDM_RDB_ENCRYPT_0100, TestSize.Level1)
 {
     OH_Rdb_Config config2;
     config2.path = storeEncryptTestPath2_.c_str();
@@ -84,7 +88,12 @@ HWTEST_F(RdbNdkStoreEncryptTest, SUB_DDM_RDB_NDK_0100, TestSize.Level1)
     storeEncryptTestRdbStore_ = NULL;
 }
 
-HWTEST_F(RdbNdkStoreEncryptTest, SUB_DDM_RDB_NDK_0200, TestSize.Level1)
+/**
+ * @tc.name: SUB_DDM_RDB_ENCRYPT_0200
+ * @tc.desc: Non-encrypted Access Non-encrypted databases
+ * @tc.type: FUNC
+ */
+HWTEST_F(RdbNdkStoreEncryptTest, SUB_DDM_RDB_ENCRYPT_0200, TestSize.Level1)
 {
     OH_Rdb_Config config;
     config.path = storeEncryptTestPath_.c_str();
