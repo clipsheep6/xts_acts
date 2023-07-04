@@ -1,0 +1,18 @@
+{
+    "description": "Configuration for ActsNdkTest demo Tests",
+    "driver": {
+        "type": "CppTest",
+        "native-test-timeout": "120000",
+        "module-name": "ActsNdkTest",
+        "runtime-hint": "l00s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "kits": [
+        {
+          "push": [
+               "ActsNdkTest->/data/local/tmp/ActsNdkTest"
+           ],
+           "type": "PushKit"
+        }
+    ]
+}
