@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,6 +24,7 @@ import {
     fetchOps,
     getPermission,
     albumFetchOps,
+    fileIdFetchOps,
     checkPresetsAssets,
 } from "../../../../../../common";
 
@@ -47,15 +48,14 @@ export default function trashCallback(abilityContext) {
 
         const media = mediaLibrary.getMediaLibrary(abilityContext);
 
-        async function setTrash(done, testNum, assetOps, albumOps, noAlbum) {
+        async function setTrash(done, testNum, databasefFetchOps, ablumFetchOps, noAlbum) {
             try {
                 // database info
-                let databaseFetchFileResult = await media.getFileAssets(assetOps);
+                let databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                 let count = databaseFetchFileResult.getCount();
-                console.info(`${testNum} count: ${count}`);
                 //album info
                 if (!noAlbum) {
-                    let albumList = await media.getAlbums(albumOps);
+                    let albumList = await media.getAlbums(ablumFetchOps);
                     let album = albumList[0];
                     let albumFetchFileResult = await album.getFileAssets();
                     let albumFilesCount = albumFetchFileResult.getCount();
@@ -64,39 +64,58 @@ export default function trashCallback(abilityContext) {
                 }
                 // file info
                 let asset = await databaseFetchFileResult.getFirstObject();
-                databaseFetchFileResult.close();
+                let id = asset.id;
                 let istrash = await asset.isTrash();
                 expect(istrash).assertFalse();
                 // trash operation
                 asset.trash(true, async (err) => {
-                    try {
+                    if (err) {
+                        console.info(`${testNum} err: ${err}`);
+                        expect(false).assertTrue();
+                        databaseFetchFileResult.close();
+                        done();                        
+                        return;
+                    }
+                    asset.isTrash(async (err, trashState) => {
                         if (err) {
                             console.info(`${testNum} err: ${err}`);
                             expect(false).assertTrue();
-                        } else {
-                            const trashState = await asset.isTrash();
-                            expect(trashState).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
+                            return;
+                        }
+                        expect(trashState).assertTrue();
+                        try {
                             // after trash database info
-                            databaseFetchFileResult = await media.getFileAssets(assetOps);
+                            databaseFetchFileResult.close();
+                            databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                             let databaseCount = databaseFetchFileResult.getCount();
+
                             expect(databaseCount).assertEqual(count - 1);
                             //album info
                             if (!noAlbum) {
-                                let albumList = await media.getAlbums(albumOps);
+                                let albumList = await media.getAlbums(ablumFetchOps);
                                 let album = albumList[0];
                                 let albumFetchFileResult = await album.getFileAssets();
                                 let albumFilesCount = albumFetchFileResult.getCount();
                                 albumFetchFileResult.close();
                                 expect(albumFilesCount).assertEqual(count - 1);
                             }
+                            let assetOpts = fileIdFetchOps(id);
+                            let trashAssetResult = await media.getFileAssets(assetOpts);
+                            let afterTrashAssetConut = trashAssetResult.getCount();
+                            expect(afterTrashAssetConut).assertEqual(0);
                             await asset.trash(false);
                             databaseFetchFileResult.close();
+                            trashAssetResult.close();
+                            done();
+                        } catch (error) {
+                            console.info(`${testNum} error: ${error}`);
+                            expect(false).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
                         }
-                    } catch (error) {
-                        console.info(`${testNum} failed, error: ${error}`);
-                        expect(false).assertTrue();
-                    }
-                    done();
+                    });
                 });
             } catch (error) {
                 console.info(`${testNum} error: ${error}`);
@@ -105,50 +124,80 @@ export default function trashCallback(abilityContext) {
             }
         }
 
-        async function recovery(done, testNum, assetOps, albumOps, noAlbum) {
+        async function recovery(done, testNum, databasefFetchOps, ablumFetchOps, noAlbum) {
             try {
-                let databaseFetchFileResult = await media.getFileAssets(assetOps);
+                let databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                 let count = databaseFetchFileResult.getCount();
                 let asset = await databaseFetchFileResult.getFirstObject();
+                let id = asset.id;
                 await asset.trash(true);
+
                 let istrash = await asset.isTrash();
-                expect(istrash).assertTrue();
+                if (!istrash) {
+                    console.info(`${testNum} istrash failed: ${istrash}`);
+                    expect(istrash).assertFalse();
+                    databaseFetchFileResult.close();
+                    return;
+                }
                 asset.trash(false, async (err) => {
-                    try {
+                    if (err) {
+                        console.info(`${testNum} err: ${err}`);
+                        expect(false).assertTrue();
+                        databaseFetchFileResult.close();
+                        done();
+                        return;
+                    }
+                    asset.isTrash(async (err, trashState) => {
                         if (err) {
                             console.info(`${testNum} err: ${err}`);
                             expect(false).assertTrue();
-                        } else {
-                            let trashState = await asset.isTrash();
-                            expect(!trashState).assertTrue();
-
-                            databaseFetchFileResult = await media.getFileAssets(assetOps);
+                            databaseFetchFileResult.close();
+                            done();
+                            return;
+                        }
+                        expect(trashState).assertFalse();
+                        try {
+                            databaseFetchFileResult.close();
+                            databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                             let databaseCount = databaseFetchFileResult.getCount();
                             expect(databaseCount).assertEqual(count);
+                            //album info
                             if (!noAlbum) {
-                                let albumList = await media.getAlbums(albumOps);
+                                let albumList = await media.getAlbums(ablumFetchOps);
                                 let album = albumList[0];
                                 let albumFetchFileResult = await album.getFileAssets();
                                 let albumFilesCount = albumFetchFileResult.getCount();
                                 expect(albumFilesCount).assertEqual(count);
                                 albumFetchFileResult.close();
                             }
+                            // asset after trash Conut
+                            let assetOpts = fileIdFetchOps(testNum, id);
+                            let recoveryAssetResult = await media.getFileAssets(assetOpts);
+                            let afterRecoveryAssetConut = recoveryAssetResult.getCount();
+                            expect(afterRecoveryAssetConut).assertEqual(1);
+                            let recoveryAsset = await recoveryAssetResult.getFirstObject();
+                            let recoveryAssetState = await recoveryAsset.isTrash();                            
+                            expect(recoveryAssetState).assertFalse();
+                            databaseFetchFileResult.close();
+                            await recoveryAssetResult.close();
+                            done();
+                        } catch (error) {
+                            console.info(`${testNum} error: ${error}`);
+                            expect(false).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
                         }
-                    } catch (error) {
-                        console.info(`${testNum} error: ${error}`);
-                    }
-                    databaseFetchFileResult.close();
-                    done();
+                    });
                 });
             } catch (error) {
-                console.info(`${testNum} failed, error: ${error}`);
+                console.info(`${testNum} error: ${error}`);
                 expect(false).assertTrue();
                 done();
             }
         }
-        async function trashError(done, testNum, assetOps, value) {
+        async function trashError(done, testNum, databasefFetchOps, value) {
             try {
-                let databaseFetchFileResult = await media.getFileAssets(assetOps);
+                let databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                 try {
                     let asset = await databaseFetchFileResult.getFirstObject();
                     let count = databaseFetchFileResult.getCount();
@@ -169,7 +218,7 @@ export default function trashCallback(abilityContext) {
                     } catch (error) {
                         console.info(`${testNum} error: ${error}`);
                         databaseFetchFileResult.close();
-                        databaseFetchFileResult = await media.getFileAssets(assetOps);
+                        databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                         let count2 = databaseFetchFileResult.getCount();
                         expect(count).assertEqual(count2);
                         databaseFetchFileResult.close();
@@ -198,10 +247,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_001", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_001";
-            let assetOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
-            let albumOps = albumFetchOps(testNum, "Camera");
+            let rOps = fetchOps(testNum, "Pictures/trashCb/", IMAGE_TYPE);
+            let aOps = albumFetchOps(testNum, "Pictures/", "trashCb", IMAGE_TYPE);
             let noAlbum = false;
-            await setTrash(done, testNum, assetOps, albumOps, noAlbum);
+            await setTrash(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -214,10 +263,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_002", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_002";
-            let assetOps = fetchOps(testNum, "Videos/ScreenRecordings/", VIDEO_TYPE);
-            let albumOps = albumFetchOps(testNum, "ScreenRecordings");
+            let rOps = fetchOps(testNum, "Videos/trashCb/", VIDEO_TYPE);
+            let aOps = albumFetchOps(testNum, "Videos/", "trashCb", VIDEO_TYPE);
             let noAlbum = false;
-            await setTrash(done, testNum, assetOps, albumOps, noAlbum);
+            await setTrash(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -230,10 +279,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_003", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_003";
-            let assetOps = fetchOps(testNum, "Audios/trashCb/", AUDIO_TYPE);
-            let albumOps = undefined;
-            let noAlbum = true;
-            await setTrash(done, testNum, assetOps, albumOps, noAlbum);
+            let rOps = fetchOps(testNum, "Audios/trashCb/", AUDIO_TYPE);
+            let aOps = albumFetchOps(testNum, "Audios/", "trashCb", AUDIO_TYPE);
+            let noAlbum = false;
+            await setTrash(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -246,10 +295,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_004", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_CALLBACK_01_004";
-            let assetOps = fetchOps(testNum, "Documents/trashCb/", FILE_TYPE);
-            let albumOps = undefined;
+            let rOps = fetchOps(testNum, "Documents/trashCb/", FILE_TYPE);
+            let aOps = albumFetchOps(testNum, "Documents/", "trashCb", FILE_TYPE);
             let noAlbum = true;
-            await setTrash(done, testNum, assetOps, albumOps, noAlbum);
+            await setTrash(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -262,7 +311,7 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_001", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_001";
-            let rOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
+            let rOps = fetchOps(testNum, "Pictures/trashCb/", IMAGE_TYPE);
             let value = 1;
             await trashError(done, testNum, rOps, value);
         });
@@ -277,7 +326,7 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_002", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_002";
-            let rOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
+            let rOps = fetchOps(testNum, "Pictures/trashCb/", IMAGE_TYPE);
             let value = "abc";
             await trashError(done, testNum, rOps, value);
         });
@@ -292,7 +341,7 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_003", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_003";
-            let rOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
+            let rOps = fetchOps(testNum, "Pictures/trashCb/", IMAGE_TYPE);
             let value = { a: 10 };
             await trashError(done, testNum, rOps, value);
         });
@@ -307,7 +356,7 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_004", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_004";
-            let rOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
+            let rOps = fetchOps(testNum, "Pictures/trashCb/", IMAGE_TYPE);
             let value = undefined;
             await trashError(done, testNum, rOps, value);
         });
@@ -322,7 +371,7 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_005", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_ERROR_CALLBACK_02_005";
-            let rOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
+            let rOps = fetchOps(testNum, "Pictures/trashCb/", IMAGE_TYPE);
             let value = null;
             await trashError(done, testNum, rOps, value);
         });
@@ -337,10 +386,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_001", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_001";
-            let assetOps = fetchOps(testNum, "Camera/", IMAGE_TYPE);
-            let albumOps = albumFetchOps(testNum, "Camera");
+            let rOps = fetchOps(testNum, "Pictures/trash/", IMAGE_TYPE);
+            let aOps = albumFetchOps(testNum, "Pictures/", "trash", IMAGE_TYPE);
             let noAlbum = false;
-            await recovery(done, testNum, assetOps, albumOps, noAlbum);
+            await recovery(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -353,10 +402,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_002", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_002";
-            let assetOps = fetchOps(testNum, "Videos/ScreenRecordings/", VIDEO_TYPE);
-            let albumOps = albumFetchOps(testNum, "ScreenRecordings");
+            let rOps = fetchOps(testNum, "Videos/trash/", VIDEO_TYPE);
+            let aOps = albumFetchOps(testNum, "Videos/", "trash", VIDEO_TYPE);
             let noAlbum = false;
-            await recovery(done, testNum, assetOps, albumOps, noAlbum);
+            await recovery(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -369,10 +418,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_003", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_003";
-            let assetOps = fetchOps(testNum, "Audios/trash/", AUDIO_TYPE);
-            let albumOps = undefined;
+            let rOps = fetchOps(testNum, "Audios/trash/", AUDIO_TYPE);
+            let aOps = albumFetchOps(testNum, "Audios/", "trash", AUDIO_TYPE);
             let noAlbum = false;
-            await recovery(done, testNum, assetOps, albumOps, noAlbum);
+            await recovery(done, testNum, rOps, aOps, noAlbum);
         });
 
         /**
@@ -385,10 +434,10 @@ export default function trashCallback(abilityContext) {
          */
         it("SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_004", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_TRASH_RECOVERY_CALLBACK_03_004";
-            let assetOps = fetchOps(testNum, "Documents/trash/", FILE_TYPE);
-            let albumOps = undefined;
+            let rOps = fetchOps(testNum, "Documents/trash/", FILE_TYPE);
+            let aOps = albumFetchOps(testNum, "Documents/", "trash", FILE_TYPE);
             let noAlbum = true;
-            await recovery(done, testNum, assetOps, albumOps, noAlbum);
+            await recovery(done, testNum, rOps, aOps, noAlbum);
         });
     });
 }

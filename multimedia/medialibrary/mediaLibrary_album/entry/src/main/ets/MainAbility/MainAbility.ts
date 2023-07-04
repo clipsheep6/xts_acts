@@ -12,7 +12,7 @@ export default class MainAbility extends Ability {
         console.log("[Demo] MainAbility onDestroy")
     }
 
-    onWindowStageCreate(windowStage) {
+    async onWindowStageCreate(windowStage) {
         console.log("[Demo] MainAbility onWindowStageCreate windowStage=" + windowStage)
         globalThis.windowStage = windowStage
         globalThis.abilityContext = this.context
