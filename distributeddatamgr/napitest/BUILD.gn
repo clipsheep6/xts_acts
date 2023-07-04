@@ -11,8 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/tools/build/suite.gni")
 import("//foundation/distributeddatamgr/relational_store/relational_store.gni")
+import("//test/xts/tools/build/suite.gni")
 
 config("hilogndktest_config") {
   visibility = [ ":*" ]
@@ -25,17 +25,17 @@ config("hilogndktest_config") {
 }
 
 ohos_moduletest_suite("ActsNdkTest") {
-  sources = [ 
-  "./src/rdb_store_backup_test.cpp",
-  "./src/rdb_store_encrypt_test.cpp",
-  "./src/rdb_store_level_test.cpp",
- ]
- 
-  external_deps = [ 
-  "hilog_native:libhilog",
-  "relational_store:native_rdb_ndk",
+  sources = [
+    "./src/rdb_store_backup_test.cpp",
+    "./src/rdb_store_encrypt_test.cpp",
+    "./src/rdb_store_level_test.cpp",
   ]
-  
+
+  external_deps = [
+    "hilog_native:libhilog",
+    "relational_store:native_rdb_ndk",
+  ]
+
   deps = [ "//third_party/googletest:gtest_main" ]
   configs = [ ":hilogndktest_config" ]
 }
