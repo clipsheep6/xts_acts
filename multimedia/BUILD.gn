@@ -70,6 +70,9 @@ group("multimedia") {
       "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
       "medialibrary/mediaLibrary_mediafetchoptions:mediaLibrary_mediafetchoptions_hap",
       "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
+      "userfilemgr/userfilemgr_pendingA:userfilemgr_pending_a_js_hap",
+      "userfilemgr/userfilemgr_pendingB:userfilemgr_pending_b_js_hap",
+      "userfilemgr/userfilemgr_pendingC:userfilemgr_pending_c_js_hap",
     ]
   } else {
     deps = [
