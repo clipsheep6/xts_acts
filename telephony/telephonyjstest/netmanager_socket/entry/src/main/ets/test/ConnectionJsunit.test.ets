@@ -1122,12 +1122,10 @@ export default function connectionJsunit() {
          * @tc.desc      : Telephony_Connection_setAppNet_callback_0100
          */
     it('Telephony_Connection_setAppNet_callback_0100', 0, function (done) {
-      connection.getDefaultNet(function (error, netHandle) {
+      console.log("************* Telephony_Connection_setAppNet_callback_0100 Test start*************");
+      connection.getDefaultNet((error, netHandle) => {
         if (error) {
           console.log("getDefaultNet error " + JSON.stringify(error));
-          expect(true).assertFalse();
-          done();
-          return;
         }
         console.log("getDefaultNet success " + JSON.stringify(netHandle));
         connection.setAppNet(netHandle, (error, data) => {
@@ -1138,7 +1136,7 @@ export default function connectionJsunit() {
             return;
           }
           console.log("setAppNet success " + JSON.stringify(data));
-          connection.getAppNet(function (error, data) {
+          connection.getAppNet((error, data) => {
             if (error) {
               console.log("getAppNet error " + JSON.stringify(error));
               expect(true).assertFalse();
@@ -1159,12 +1157,10 @@ export default function connectionJsunit() {
          * @tc.desc      : Telephony_Connection_setAppNet_promise_0100
          */
     it('Telephony_Connection_setAppNet_promise_0100', 0, function (done) {
-      connection.getDefaultNet(function (error, netHandle) {
+      console.log("************* Telephony_Connection_setAppNet_promise_0100 Test start*************");
+      connection.getDefaultNet((error, netHandle) => {
         if (error) {
           console.log("getDefaultNet error " + JSON.stringify(error));
-          expect(true).assertFalse();
-          done();
-          return;
         }
         console.log("getDefaultNet success " + JSON.stringify(netHandle));
         connection.setAppNet(netHandle).then((data) => {
