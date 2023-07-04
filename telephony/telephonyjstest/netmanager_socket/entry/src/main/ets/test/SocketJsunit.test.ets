@@ -366,7 +366,7 @@ export default function socketJsunit() {
       udp.bind(netAddress, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect().assertTrue();
+          expect(true).assertTrue();
           done();
         }
         expect().assertFail();
@@ -397,7 +397,7 @@ export default function socketJsunit() {
 		      done();
         }).catch((error) => {
           console.log(`${caseName} failed,error:`+JSON.stringify(error));
-          expect().assertTrue();
+          expect(true).assertTrue();
 		      done();
         });
       } catch (error) {
@@ -421,7 +421,7 @@ export default function socketJsunit() {
       udp.bind(netAddress, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect().assertTrue();
+          expect(true).assertTrue();
           done();
         }
         expect().assertFail();
@@ -450,7 +450,7 @@ export default function socketJsunit() {
 		    done();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect().assertTrue();
+        expect(true).assertTrue();
 		    done();
       });
       console.log("************* Telephony_Socket_UDPSocket_bind_0400 Test end*************");
@@ -475,7 +475,7 @@ export default function socketJsunit() {
       udp.send(udpSendOptions, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect().assertTrue();
+          expect(true).assertTrue();
           done();
         }
         expect().assertFail();
@@ -507,7 +507,7 @@ export default function socketJsunit() {
         done();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect().assertTrue();
+        expect(true).assertTrue();
         done();
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0200 Test end*************");
@@ -530,7 +530,7 @@ export default function socketJsunit() {
       udp.send(udpSendOptions, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect().assertTrue();
+          expect(true).assertTrue();
           done();
         }
         expect().assertFail();
@@ -559,7 +559,7 @@ export default function socketJsunit() {
         expect().assertFail();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect().assertTrue();
+        expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test end*************");
     });
@@ -575,7 +575,7 @@ export default function socketJsunit() {
       udp.close((error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect().assertTrue();
+          expect(true).assertTrue();
           done();
         }
         expect().assertFail();
@@ -598,7 +598,7 @@ export default function socketJsunit() {
         done();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect().assertTrue();
+        expect(true).assertTrue();
         done();
       });
       console.log("************* Telephony_Socket_UDPSocket_close_0200 Test end*************");
@@ -659,7 +659,7 @@ export default function socketJsunit() {
 			console.log(`${caseName} error, case failed,error: ` + JSON.stringify(error));
 			done();
 		  } else{
-			expect().assertTrue();
+			expect(true).assertTrue();
 			console.log(`${caseName} error, case success failed`);
 		    done();
 		  }
