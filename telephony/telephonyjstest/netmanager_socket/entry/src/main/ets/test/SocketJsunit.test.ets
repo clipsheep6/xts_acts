@@ -368,9 +368,10 @@ export default function socketJsunit() {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
           expect(true).assertTrue();
           done();
+          return;
         }
-        expect().assertFail();
         console.log(`${caseName} success, case failed,data:`+JSON.stringify(data));
+        expect().assertFail();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_bind_0100 Test end*************");
