@@ -270,6 +270,38 @@ const getPermission = async function (name, context) {
     console.info("getPermission end");
 };
 
+const getPermissionMgr = async function (name, context) {
+  if (!name) {
+    name = 'ohos.acts.multimedia.userfilemgr';
+  }
+  console.info('getPermission start', name);
+
+  let atManager = abilityAccessCtrl.createAtManager();
+  console.info('get permissions ');
+  let getP = false;
+  atManager.requestPermissionsFromUser(
+    context,
+    [
+      'ohos.permission.MEDIA_LOCATION',
+      'ohos.permission.WRITE_IMAGEVIDEO',
+      'ohos.permission.READ_IMAGEVIDEO',
+      'ohos.permission.WRITE_AUDIO',
+      'ohos.permission.READ_AUDIO',
+    ],
+    (err, data) => {
+      getP = true;
+      console.log(`permission data: ${JSON.stringify(data)}`);
+    }
+  );
+  let driver = uitest.Driver.create();
+  for (let i = 0; i < 10; i++) {
+    await sleep(500);
+    let button = await driver.findComponent(uitest.ON.text('允许'));
+    if (button) await button.click();
+    if (getP) break;
+  }
+};
+
 const MODIFY_ERROR_CODE_01 = "-1000";
 
 const isNum = function (value) {
@@ -297,4 +329,5 @@ export {
     MODIFY_ERROR_CODE_01,
     isNum,
     fileIdFetchOps,
+    getPermissionMgr
 };
