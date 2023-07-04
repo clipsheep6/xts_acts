@@ -1,0 +1,46 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http:$base_root/www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/distributeddatamgr/relational_store/relational_store.gni")
+import("//test/xts/tools/build/suite.gni")
+
+config("hilogndktest_config") {
+  visibility = [ ":*" ]
+  include_dirs = [
+    "${relational_store_base_path}/interfaces/ndk/include",
+    "${relational_store_innerapi_path}/rdb/include",
+    "${relational_store_innerapi_path}/appdatafwk/include",
+    "${relational_store_base_path}/interfaces/ndk/src",
+  ]
+}
+
+ohos_moduletest_suite("ActsNdkTest") {
+  sources = [
+    "./src/rdb_store_backup_test.cpp",
+    "./src/rdb_store_encrypt_test.cpp",
+    "./src/rdb_store_level_test.cpp",
+  ]
+
+  external_deps = [
+    "hilog_native:libhilog",
+    "relational_store:native_rdb_ndk",
+  ]
+
+  deps = [ "//third_party/googletest:gtest_main" ]
+  configs = [ ":hilogndktest_config" ]
+}
+
+group("napitest") {
+  testonly = true
+  deps = [ ":ActsNdkTest" ]
+}
