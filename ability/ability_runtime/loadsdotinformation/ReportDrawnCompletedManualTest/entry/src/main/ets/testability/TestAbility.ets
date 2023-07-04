@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.app.ability.UIAbility'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Window from '@ohos.window'
+import Ability from '@ohos.app.ability.UIAbility';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
+import Window from '@ohos.window';
 
 export default class TestAbility extends Ability {
     onCreate(want, launchParam) {
