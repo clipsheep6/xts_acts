@@ -566,6 +566,7 @@ export default function socketJsunit() {
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
         expect(true).assertTrue();
+        done();
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test end*************");
     });
@@ -644,6 +645,7 @@ export default function socketJsunit() {
       udp.getState().then(data => {
         console.log(`${caseName} success,data:`+JSON.stringify(data));
         expect(true).assertTrue();
+        done();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
       });
@@ -807,8 +809,9 @@ export default function socketJsunit() {
     it('Telephony_Socket_UDPSocket_on_listening_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_on_listening_0100 Test start*************");
       udp.on("listening", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
+      done();
       console.log("************* Telephony_Socket_UDPSocket_on_listening_0100 Test end*************");
     });
 
@@ -820,9 +823,10 @@ export default function socketJsunit() {
     it('Telephony_Socket_UDPSocket_off_listening_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0100 Test start*************");
       udp.off("listening", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0100 Test end*************");
+      done();
     });
 
     /*
@@ -835,6 +839,7 @@ export default function socketJsunit() {
       udp.off("listening");
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0200 Test end*************");
+      done();
     });
 
     /*
@@ -845,9 +850,10 @@ export default function socketJsunit() {
     it('Telephony_Socket_UDPSocket_on_close_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_on_close_0100 Test start*************");
       udp.on("close", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_UDPSocket_on_close_0100 Test end*************");
+      done();
     });
 
     /*
@@ -858,8 +864,8 @@ export default function socketJsunit() {
     it('Telephony_Socket_UDPSocket_off_close_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_off_close_0100 Test start*************");
       udp.off("close", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_UDPSocket_off_close_0100 Test end*************");
       done();
     });
@@ -888,6 +894,7 @@ export default function socketJsunit() {
       udp.on("error", error => {
         console.log(`${caseName} fail, error:`+JSON.stringify(error));
         expect().assertFail();
+        done();
       });
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_UDPSocket_on_error_0100 Test end*************");
@@ -905,6 +912,7 @@ export default function socketJsunit() {
       udp.off("error", error => {
         console.log(`${caseName} fail, error:`+JSON.stringify(error));
         expect().assertFail();
+        done();
       });
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_UDPSocket_off_error_0100 Test end*************");
@@ -1491,6 +1499,7 @@ export default function socketJsunit() {
       tcp.off("message");
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_off_message_0200 Test end*************");
+      done();
     });
 
     /*
@@ -1501,9 +1510,10 @@ export default function socketJsunit() {
     it('Telephony_Socket_TCPSocket_on_connect_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_on_connect_0100 Test start*************");
       tcp.on("connect", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_on_connect_0100 Test end*************");
+      done();
     });
 
     /*
@@ -1514,9 +1524,10 @@ export default function socketJsunit() {
     it('Telephony_Socket_TCPSocket_off_connect_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0100 Test start*************");
       tcp.off("connect", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0100 Test end*************");
+      done();
     });
 
     /*
@@ -1529,6 +1540,7 @@ export default function socketJsunit() {
       tcp.off("connect");
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0200 Test end*************");
+      done();
     });
 
     /*
@@ -1539,9 +1551,10 @@ export default function socketJsunit() {
     it('Telephony_Socket_TCPSocket_on_close_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_on_close_0100 Test start*************");
       tcp.on("close", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_on_close_0100 Test end*************");
+      done();
     });
 
     /*
@@ -1552,9 +1565,10 @@ export default function socketJsunit() {
     it('Telephony_Socket_TCPSocket_off_close_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_off_close_0100 Test start*************");
       tcp.off("close", data => {
-        expect(true).assertTrue();
       });
+      expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_off_close_0100 Test end*************");
+      done();
     });
 
     /*
@@ -1567,6 +1581,7 @@ export default function socketJsunit() {
       tcp.off("close");
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_off_close_0200 Test end*************");
+      done();
     });
 
     /*
@@ -1580,9 +1595,11 @@ export default function socketJsunit() {
       tcp.on("error", error => {
         console.log(`${caseName} fail, error:`+JSON.stringify(error));
         expect().assertFail();
+        done();
       });
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_on_error_0100 Test end*************");
+      done();
     });
 
     /*
@@ -1596,9 +1613,11 @@ export default function socketJsunit() {
       tcp.off("error", error => {
         console.log(`${caseName} fail, error:`+JSON.stringify(error));
         expect().assertFail();
+        done();
       });
       expect(true).assertTrue();
       console.log("************* Telephony_Socket_TCPSocket_off_error_0100 Test end*************");
+      done();
     });
 
     /*
