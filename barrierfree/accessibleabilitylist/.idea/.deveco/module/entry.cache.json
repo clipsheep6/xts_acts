@@ -1,0 +1,21 @@
+{
+	"BuildOptions":{
+		"SELECT_BUILD_TARGET":"default",
+		"BUILD_PATH":{
+			"OUTPUT_METADATA_JSON":"D:\\Application\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+			"OUTPUT_PATH":"D:\\Application\\entry\\build\\default\\outputs\\default",
+			"RES_PATH":"D:\\Application\\entry\\build\\default\\intermediates\\res\\default",
+			"ETS_SUPER_VISUAL_PATH":"D:\\Application\\entry\\build\\default\\cache\\default\\default@LegacyCompileArkTS\\jsbundle",
+			"JS_ASSETS_PATH":"D:\\Application\\entry\\build\\default\\intermediates\\loader_out\\default",
+			"INTERMEDIA_PATH":"D:\\Application\\entry\\build\\default\\intermediates",
+			"RES_PROFILE_PATH":"D:\\Application\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+			"WORKER_LOADER":"D:\\Application\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+			"MANIFEST_JSON":"D:\\Application\\entry\\build\\default\\intermediates\\manifest\\default",
+			"JS_LITE_ASSETS_PATH":"D:\\Application\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
+			"JS_SUPER_VISUAL_PATH":"D:\\Application\\entry\\build\\default\\cache\\default\\default@LegacyCompileJS\\jsbundle"
+		}
+	},
+	"CommonInfo":{
+		"current.select.target":"default"
+	}
+}
