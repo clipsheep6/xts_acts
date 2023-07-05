@@ -777,25 +777,38 @@ describe('CameraManagerTest', function () {
     it('SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100', 1, async function (done) {
         console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100--------------");
         if (isEmpty(mCameraManager)) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 mCameraManager == null || undefined")
-          expect().assertFail();
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 mCameraManager == null || undefined")
+            expect().assertFail();
         } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 to operate");
-          mCameraManager.on('cameraStatus', async (err, data) => {
-            if (!err) {
-              expect(true).assertTrue();
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 success");
-            } else {
-              expect().assertFail();
-              console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 FAILED: " + err.message);
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 to operate");
+            mCameraManager.on('cameraStatus', async (err, CameraStatusInfo) => {
+                if (!err) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 camera:" + JSON.stringify(CameraStatusInfo.camera));
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 status:" + JSON.stringify(CameraStatusInfo.status));
+                    expect(true).assertTrue();
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 success");
+                } else {
+                    expect().assertFail();
+                    console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 FAILED: " + err.message);
+                }
+                await sleep(1000);
+                done();
+            })
+            try {
+                let camerasArray = mCameraDevicesArray;
+                let cameraInputPromise = mCameraManager.createCameraInput(camerasArray[0]);
+                await cameraInputPromise.open()
+                await sleep(500)
+                await cameraInputPromise.close()
+            } catch (err) {
+                expect().assertFail();
+                console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 err: " + JSON.stringify(err));
+                done()
             }
-            await sleep(1000);
-            done();
-          })
         }
         await sleep(1000);
         done();
-      })
+    })
 
 })
 }
