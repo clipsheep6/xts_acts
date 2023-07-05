@@ -47,6 +47,14 @@ export default function EmitterTest() {
         expect(eventData.data.content).assertEqual('message_4');
       } else if (eventData.data.id == 5) {
         expect(eventData.data.content).assertEqual('message_5');
+      } else if (eventData.data.id == 6) {
+        expect(eventData.data.content).assertEqual('message_6');
+      } else if (eventData.data.id == 7) {
+        expect(eventData.data.content).assertFalse();
+      } else if (eventData.data.id == 8) {
+        expect(eventData.data.content).assertEqual('message_8');
+      } else if (eventData.data.id == 9) {
+        expect(eventData.data.content).assertFalse();
       }
     }
 
@@ -155,6 +163,90 @@ export default function EmitterTest() {
       emitter.emit(innerEvent, eventData)
       emitter.off(5)
       console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0500 END`)
+      done()
+    })
+
+    /*
+     * @tc.number    : SUB_NOTIFICATION_CES_EMITTER_TEST_0600
+     * @tc.name      : verify on : off(eventId: number, callback: Callback<EventData>): void
+     * @tc.desc      : emitter.EventPriority.IMMEDIATE
+     */
+    it('SUB_NOTIFICATION_CES_EMITTER_TEST_0600', 0, async function (done) {
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0600 START`)
+      innerEvent.eventId = 6
+      innerEvent.priority = emitter.EventPriority.IMMEDIATE
+
+      eventData.data.id = 6
+      eventData.data.content = 'message_6'
+      emitter.on(innerEvent, EmitterCallback)
+
+      eventData.data.content = 'dummy'
+      emitter.off(6, EmitterCallback)
+
+      emitter.emit(innerEvent, eventData)
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0600 END`)
+      done()
+    })
+
+    /*
+     * @tc.number    : SUB_NOTIFICATION_CES_EMITTER_TEST_0700
+     * @tc.name      : verify on : off(eventId: number, callback: Callback<EventData>): void
+     * @tc.desc      : emitter.EventPriority.IMMEDIATE
+     */
+    it('SUB_NOTIFICATION_CES_EMITTER_TEST_0700', 0, async function (done) {
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0700 START`)
+      innerEvent.eventId = 7
+      innerEvent.priority = emitter.EventPriority.IMMEDIATE
+
+      eventData.data.id = 7
+      eventData.data.content = 'message_7'
+      emitter.on(innerEvent, EmitterCallback)
+
+      emitter.off(7, EmitterCallback)
+      emitter.emit(innerEvent, eventData)
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0700 END`)
+      done()
+    })
+
+    /*
+     * @tc.number    : SUB_NOTIFICATION_CES_EMITTER_TEST_0800
+     * @tc.name      : verify on: off(eventId: number, callback: Callback<EventData>): void
+     * @tc.desc      : emitter.EventPriority.IMMEDIATE
+     */
+    it('SUB_NOTIFICATION_CES_EMITTER_TEST_0800', 0, async function (done) {
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0800 START`)
+      innerEvent.eventId = 8
+      innerEvent.priority = emitter.EventPriority.IMMEDIATE
+
+      eventData.data.id = 8
+      eventData.data.content = 'message_8'
+      emitter.once(innerEvent, EmitterCallback)
+
+      eventData.data.content = 'dummy'
+      emitter.off(6, EmitterCallback)
+
+      emitter.emit(innerEvent, eventData)
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0800 END`)
+      done()
+    })
+
+    /*
+     * @tc.number    : SUB_NOTIFICATION_CES_EMITTER_TEST_0900
+     * @tc.name      : verify on : off(eventId: number, callback: Callback<EventData>): void
+     * @tc.desc      : emitter.EventPriority.IMMEDIATE
+     */
+    it('SUB_NOTIFICATION_CES_EMITTER_TEST_0900', 0, async function (done) {
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0900 START`)
+      innerEvent.eventId = 9
+      innerEvent.priority = emitter.EventPriority.IMMEDIATE
+
+      eventData.data.id = 9
+      eventData.data.content = 'message_9'
+      emitter.once(innerEvent, EmitterCallback)
+
+      emitter.off(9, EmitterCallback)
+      emitter.emit(innerEvent, eventData)
+      console.info(`${TAG} SUB_NOTIFICATION_CES_EMITTER_TEST_0900 END`)
       done()
     })
 
