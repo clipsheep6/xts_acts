@@ -1128,6 +1128,7 @@ export default function connectionJsunit() {
           console.log("getDefaultNet error " + JSON.stringify(error));
         }
         console.log("getDefaultNet success " + JSON.stringify(netHandle));
+        netHandle.netId = 101;
         connection.setAppNet(netHandle, (error, data) => {
           if (error) {
             console.log("setAppNet error " + JSON.stringify(error));
@@ -1163,6 +1164,7 @@ export default function connectionJsunit() {
           console.log("getDefaultNet error " + JSON.stringify(error));
         }
         console.log("getDefaultNet success " + JSON.stringify(netHandle));
+        netHandle.netId = 101;
         connection.setAppNet(netHandle).then((data) => {
           console.log("setAppNet success " + JSON.stringify(data));
           connection.getAppNet().then((data) => {
