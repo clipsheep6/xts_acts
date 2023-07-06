@@ -7,7 +7,8 @@
         "mainElement": "Hap4MainAbility1",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -16,10 +17,10 @@
         "pages": "$profile:main_pages",
         "metadata": [
             {
-              "name": "ArkTSPartialUpdate",
-              "value": "false"
+                "name": "ArkTSPartialUpdate",
+                "value": "false"
             }
-          ],
+        ],
         "abilities": [
             {
                 "name": "com.example.lifecycletest.hap4mainability",

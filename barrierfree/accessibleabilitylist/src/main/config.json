@@ -19,9 +19,10 @@
         "mainAbility": ".MainAbility",
         "srcPath": "",
         "deviceType": [
-      "tablet",
-      "default",
-            "phone"
+            "tablet",
+            "default",
+            "phone",
+            "2in1"
         ],
         "distro": {
             "deliveryWithInstall": true,

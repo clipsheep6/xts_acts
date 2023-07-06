@@ -7,7 +7,8 @@
         "mainElement": "com.acts.stabilitystagecontext.MainAbility",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -15,10 +16,10 @@
         "pages": "$profile:main_pages",
         "metadata": [
             {
-              "name": "ArkTSPartialUpdate",
-              "value": "false"
+                "name": "ArkTSPartialUpdate",
+                "value": "false"
             }
-          ],
+        ],
         "abilities": [
             {
                 "name": "com.acts.stabilitystagecontext.MainAbility",
@@ -33,7 +34,7 @@
                         "actions": [
                             "action.system.home"
                         ],
-                        "entities":[
+                        "entities": [
                             "entity.system.home"
                         ]
                     }
@@ -41,18 +42,18 @@
             }
         ],
         "requestPermissions": [
-          {
-            "name":"ohos.permission.CLEAN_BACKGROUND_PROCESSES",
-            "reason":"need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
-          },
-          {
-            "name":"ohos.permission.GET_BUNDLE_INFO",
-            "reason":"need use ohos.permission.GET_BUNDLE_INFO"
-          },
-          {
-            "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
-            "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
-          }
-          ]
+            {
+                "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+                "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+            },
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO",
+                "reason": "need use ohos.permission.GET_BUNDLE_INFO"
+            },
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+                "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+            }
+        ]
     }
 }

@@ -7,7 +7,8 @@
         "mainElement": "MainAbility",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -15,10 +16,10 @@
         "pages": "$profile:main_pages",
         "metadata": [
             {
-              "name": "ArkTSPartialUpdate",
-              "value": "false"
+                "name": "ArkTSPartialUpdate",
+                "value": "false"
             }
-          ],
+        ],
         "abilities": [
             {
                 "name": "com.example.systemcalltest.MainAbility",
@@ -34,32 +35,32 @@
                         "actions": [
                             "action.system.home"
                         ],
-                        "entities":[
+                        "entities": [
                             "entity.system.home"
                         ]
                     }
                 ]
             },
             {
-              "name": "com.example.systemcalltest.SecondAbility",
-              "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
-              "description": "$string:phone_entry_main",
-              "icon": "$media:icon",
-              "label": "$string:entry_label",
-              "visible": true,
-              "launchType": "singleton",
-              "orientation": "portrait"
-          }
+                "name": "com.example.systemcalltest.SecondAbility",
+                "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "singleton",
+                "orientation": "portrait"
+            }
         ],
         "requestPermissions": [
-          {
-            "name":"ohos.permission.GET_BUNDLE_INFO",
-            "reason":"need use ohos.permission.GET_BUNDLE_INFO"
-          },
-          {
-            "name":"ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
-            "reason":"need use ohos.permission.ABILITY_BACKGROUND_COMMUNICATION"
-          }
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO",
+                "reason": "need use ohos.permission.GET_BUNDLE_INFO"
+            },
+            {
+                "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
+                "reason": "need use ohos.permission.ABILITY_BACKGROUND_COMMUNICATION"
+            }
         ]
     }
 }

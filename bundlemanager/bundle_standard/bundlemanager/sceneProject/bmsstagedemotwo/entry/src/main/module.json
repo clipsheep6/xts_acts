@@ -7,7 +7,8 @@
         "mainElement": "MainAbility1",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -15,10 +16,10 @@
         "pages": "$profile:main_pages",
         "metadata": [
             {
-              "name": "ArkTSPartialUpdate",
-              "value": "false"
+                "name": "ArkTSPartialUpdate",
+                "value": "false"
             }
-          ],
+        ],
         "abilities": [
             {
                 "name": "com.acts.bundle.stage.MainAbility1",
@@ -33,7 +34,7 @@
                         "actions": [
                             "action.system.home"
                         ],
-                        "entities":[
+                        "entities": [
                             "entity.system.home"
                         ]
                     }
@@ -43,28 +44,34 @@
                 "name": "MainAbility",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon"
-			},
+            },
             {
                 "name": "MainAbility1",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
-				"orientation": "unspecified",
-				"supportWindowMode": ["fullscreen"]
-			},
-			{
+                "orientation": "unspecified",
+                "supportWindowMode": [
+                    "fullscreen"
+                ]
+            },
+            {
                 "name": "MainAbility2",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
-				"orientation": "landscape",
-				"supportWindowMode": ["split"]
-			},
-			{
+                "orientation": "landscape",
+                "supportWindowMode": [
+                    "split"
+                ]
+            },
+            {
                 "name": "MainAbility3",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "startWindowIcon": "$media:icon",
-				"orientation": "portrait",
-				"supportWindowMode": ["floating"]
-			}
+                "orientation": "portrait",
+                "supportWindowMode": [
+                    "floating"
+                ]
+            }
         ],
         "extensionAbilities": [
             {
@@ -75,8 +82,12 @@
                 "type": "form",
                 "skills": [
                     {
-                        "actions": ["actionQ"],
-                        "entities": ["entitiesQ"]
+                        "actions": [
+                            "actionQ"
+                        ],
+                        "entities": [
+                            "entitiesQ"
+                        ]
                     }
                 ],
                 "metadata": [
@@ -94,8 +105,13 @@
                 "type": "service",
                 "skills": [
                     {
-                        "actions": ["actionW"],
-                        "entities": ["entitiesW","entitiesCommon"]
+                        "actions": [
+                            "actionW"
+                        ],
+                        "entities": [
+                            "entitiesW",
+                            "entitiesCommon"
+                        ]
                     }
                 ],
                 "metadata": [
@@ -104,7 +120,9 @@
                         "resource": "$profile:form_config"
                     }
                 ],
-                "permissions": ["ohos.permission.GET_BUNDLE_INFO"]
+                "permissions": [
+                    "ohos.permission.GET_BUNDLE_INFO"
+                ]
             },
             {
                 "name": "ExtensionAbilityA",
@@ -114,7 +132,9 @@
                 "type": "wallpaper",
                 "skills": [
                     {
-                        "actions": ["action_3"],
+                        "actions": [
+                            "action_3"
+                        ],
                         "uris": [
                             {
                                 "scheme": "https",
@@ -139,7 +159,9 @@
                 "type": "workScheduler",
                 "skills": [
                     {
-                        "actions": ["action_4"],
+                        "actions": [
+                            "action_4"
+                        ],
                         "uris": [
                             {
                                 "scheme": "https",
@@ -157,7 +179,9 @@
                         "resource": "$profile:form_config"
                     }
                 ],
-                "permissions": ["ohos.permission.GET_BUNDLE_INFO"]
+                "permissions": [
+                    "ohos.permission.GET_BUNDLE_INFO"
+                ]
             }
         ]
     }

@@ -6,9 +6,10 @@
         "description": "$string:phone_entry_dsc",
         "mainElement": "MainAbility",
         "deviceTypes": [
-      "tablet",
-      "default",
-            "phone"
+            "tablet",
+            "default",
+            "phone",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -16,10 +17,10 @@
         "pages": "$profile:main_pages",
         "metadata": [
             {
-              "name": "ArkTSPartialUpdate",
-              "value": "false"
+                "name": "ArkTSPartialUpdate",
+                "value": "false"
             }
-          ],
+        ],
         "abilities": [
             {
                 "name": "com.acts.imeability.test.MainAbility",
@@ -35,7 +36,7 @@
                         "actions": [
                             "action.system.home"
                         ],
-                        "entities":[
+                        "entities": [
                             "entity.system.home"
                         ]
                     }
@@ -53,12 +54,12 @@
         ],
         "requestPermissions": [
             {
-              "name":"ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
-              "reason":"need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+                "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+                "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
             },
-          {
-            "name": "ohos.permission.CONNECT_IME_ABILITY"
-          }
+            {
+                "name": "ohos.permission.CONNECT_IME_ABILITY"
+            }
         ]
     }
 }

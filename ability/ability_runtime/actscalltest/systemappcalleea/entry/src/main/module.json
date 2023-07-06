@@ -7,7 +7,8 @@
         "mainElement": "MainAbility",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -15,10 +16,10 @@
         "pages": "$profile:main_pages",
         "metadata": [
             {
-              "name": "ArkTSPartialUpdate",
-              "value": "false"
+                "name": "ArkTSPartialUpdate",
+                "value": "false"
             }
-          ],
+        ],
         "abilities": [
             {
                 "name": "com.example.systemappcalleea.MainAbility",
@@ -34,31 +35,31 @@
                         "actions": [
                             "action.system.home"
                         ],
-                        "entities":[
+                        "entities": [
                             "entity.system.home"
                         ]
                     }
                 ]
             },
             {
-              "name": "com.example.systemappcalleea.SecondAbility",
-              "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
-              "description": "$string:phone_entry_main",
-              "icon": "$media:icon",
-              "label": "$string:entry_label",
-              "visible": true,
-              "orientation": "portrait",
-              "launchType": "singleton"
+                "name": "com.example.systemappcalleea.SecondAbility",
+                "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "launchType": "singleton"
             },
             {
-              "name": "com.example.systemappcalleea.ThirdAbility",
-              "srcEntrance": "./ets/ThirdAbility/ThirdAbility.ts",
-              "description": "$string:phone_entry_main",
-              "icon": "$media:icon",
-              "label": "$string:entry_label",
-              "visible": true,
-              "orientation": "portrait",
-              "launchType": "standard"
+                "name": "com.example.systemappcalleea.ThirdAbility",
+                "srcEntrance": "./ets/ThirdAbility/ThirdAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "launchType": "standard"
             }
         ]
     }
