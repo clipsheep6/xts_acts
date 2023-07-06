@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import commonEvent from '@ohos.commonEventManager';
+import commonEvent from '@ohos.commonEventManager'
 
 let message;
 let commonEventData = {
@@ -23,18 +24,28 @@ let commonEventData = {
     message:message,
   }
 };
+
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability4 onCreate');
-    console.info('Ability4 onCreate' + JSON.stringify(want));
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Abilitytest4 onCreate');
+    globalThis.terminate = () => {
+      setTimeout(() => {
+        this.context.terminateSelf().then(() => {
+          console.info("====>EntryAbility terminateSelf end");
+        }).catch((err) => {
+          console.info("====>EntryAbility terminateSelf err:" + JSON.stringify(err));
+        });
+      }, 50)
+    };
+    console.info('Ability4 onCreate' + JSON.stringify(want))
     let actionStr = want.action;
-    let typestr = want.type;
-    if ( actionStr === 'ohos.nfc.tag.action.TAG_FOUND' && typestr === 'a' ) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'aAbility ok');
+    if (actionStr === 'ohos.nfc.tag.action.TAG_FOUND') {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'a4Ability ok');
       commonEventData.parameters.message = 'select';
       commonEvent.publish('ACTS_CROSS_CALL_EVENT', commonEventData, (err) => {
         console.info('====>' + actionStr + ' apublish err:' + JSON.stringify(err));
-      });
+        globalThis.terminate();
+      })
     }
   }
 

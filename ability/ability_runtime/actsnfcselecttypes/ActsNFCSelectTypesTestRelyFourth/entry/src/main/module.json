@@ -31,10 +31,7 @@
             ],
             "uris": [
               {
-                "type":"a"
-              },
-              {
-                "type":"aa"
+                "type":"tag-tech/Single"
               }
             ]
           }

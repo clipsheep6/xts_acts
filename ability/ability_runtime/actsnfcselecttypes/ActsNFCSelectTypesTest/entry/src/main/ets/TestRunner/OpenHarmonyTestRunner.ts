@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import hilog from '@ohos.hilog';
 import TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let abilityDelegator = undefined;
-let abilityDelegatorArguments = undefined;
+let abilityDelegator = undefined
+let abilityDelegatorArguments = undefined
 
 async function onAbilityCreateCallback() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'onAbilityCreateCallback');
@@ -37,19 +38,19 @@ export default class OpenHarmonyTestRunner implements TestRunner {
 
     async onRun() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'OpenHarmonyTestRunner onRun run');
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-        let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
+        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+        let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
         let lMonitor = {
             abilityName: testAbilityName,
             onAbilityCreate: onAbilityCreateCallback,
         };
-        abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
-        let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
-        let debug = abilityDelegatorArguments.parameters['-D'];
+        abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
+        let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
+        let debug = abilityDelegatorArguments.parameters['-D']
         if (debug == 'true')
         {
-            cmd += ' -D';
+            cmd += ' -D'
         }
         hilog.info(0x0000, 'testTag', 'cmd : %{public}s', cmd);
         abilityDelegator.executeShellCommand(cmd,
@@ -57,7 +58,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
                 hilog.info(0x0000, 'testTag', 'executeShellCommand : err : %{public}s', JSON.stringify(err) ?? '');
                 hilog.info(0x0000, 'testTag', 'executeShellCommand : data : %{public}s', d.stdResult ?? '');
                 hilog.info(0x0000, 'testTag', 'executeShellCommand : data : %{public}s', d.exitCode ?? '');
-            });
+            })
         hilog.info(0x0000, 'testTag', '%{public}s', 'OpenHarmonyTestRunner onRun end');
     }
 }

@@ -20,6 +20,10 @@ group("actsnfcselecttypes") {
       "ActsNFCSelectTypesTest:ActsNFCSelectTypesTest",
       "ActsNFCSelectTypesTestRelyFirst:ActsNFCSelectTypesTestRelyFirst",
       "ActsNFCSelectTypesTestRelyFourth:ActsNFCSelectTypesTestRelyFourth",
+      "ActsNFCSelectTypesTestRelyMultiAbility:ActsNFCSelectTypesTestRelyMultiAbility",
+      "ActsNFCSelectTypesTestRelyMultiHapFirst:ActsNFCSelectTypesTestRelyMultiHapFirst",
+      "ActsNFCSelectTypesTestRelyMultiHapSecond:ActsNFCSelectTypesTestRelyMultiHapSecond",
+      "ActsNFCSelectTypesTestRelyMultiHapThird:ActsNFCSelectTypesTestRelyMultiHapThird",
       "ActsNFCSelectTypesTestRelySecond:ActsNFCSelectTypesTestRelySecond",
       "ActsNFCSelectTypesTestRelyThird:ActsNFCSelectTypesTestRelyThird",
     ]

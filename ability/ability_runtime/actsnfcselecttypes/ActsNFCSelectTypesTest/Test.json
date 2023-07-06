@@ -14,6 +14,10 @@
                 "ActsNFCSelectTypesTest.hap",
                 "ActsNFCSelectTypesTestRelyFirst.hap",
                 "ActsNFCSelectTypesTestRelyFourth.hap",
+                "ActsNFCSelectTypesTestRelyMultiAbility.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapFirst.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapSecond.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapThird.hap",
                 "ActsNFCSelectTypesTestRelySecond.hap",
                 "ActsNFCSelectTypesTestRelyThird.hap"
             ],
