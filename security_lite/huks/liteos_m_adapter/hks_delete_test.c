@@ -48,7 +48,7 @@ LITE_TEST_SUIT(security, securityData, HksDeleteTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -73,7 +73,7 @@ static void ExecHksDeleteTest001(void const *argument)
     HKS_TEST_ASSERT(ret == g_testKeyExistParams[0].expectResult);
 
     TestFreeBlob(&keyAlias);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     LiteTestPrint("HksDeleteTest001 End!\n");
     osThreadExit();
 }

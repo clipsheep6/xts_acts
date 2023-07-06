@@ -96,7 +96,7 @@ LITE_TEST_SUIT(security, securityData, HksModifyKeyTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -343,16 +343,16 @@ static void ExecHksModifyKeyTest001(void const *argument)
     int32_t ret = GenerateKeyTwo(&keyAlias, &g_testCipherParams[index].keyAliasParams,
                   &g_testCipherParams[index].genKeyParamSetParams,
 		  &g_testCipherParams[index].genKeyParamSetParamsOut);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = BaseTestCipherProcess(&keyAlias, 0);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob *plainData = NULL;
     struct HksBlob *cipherData = NULL;
     ret = ConstructDataToBlob(&plainData, &cipherData,
         &g_testCipherParams[index].plainTextParams, &g_testCipherParams[index].cipherTextParams);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     struct HksBlob *ivData = NULL;
     struct HksBlob *nonceData = NULL;
     struct HksBlob *aadData = NULL;
@@ -363,12 +363,12 @@ static void ExecHksModifyKeyTest001(void const *argument)
         plainData, cipherData, &ivData, &nonceData, &aadData, 1
     };
     ret = Encrypt(&testEncryptStruct);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = GenerateKeyTwo(&keyAlias, &g_testCipherParams[index].keyAliasParams,
                          &g_testCipherParams[index].genKeyParamSetParams,
 			 &g_testCipherParams[index].genKeyParamSetParamsOut);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     /* 3. decrypt */
     struct HksBlob *decryptedData = NULL;

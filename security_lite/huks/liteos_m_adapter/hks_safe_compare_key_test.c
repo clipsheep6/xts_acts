@@ -56,7 +56,7 @@ LITE_TEST_SUIT(security, securityData, HksSafeCompareKeyTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -193,26 +193,27 @@ static int32_t CompareKeyData(struct HksBlob *keyAliasOne, struct HksBlob *keyAl
     }
 
     uint32_t sizeRead = HksTestFileRead(g_storePath, "hks_keystore", 0, bufOne, sizeOne);
-    TEST_ASSERT_TRUE(sizeRead > 0);
+    TEST_ASSERT_GREATER_THAN(0, sizeRead);
 
     g_storageImageBuffer.data = bufOne;
     g_storageImageBuffer.size = sizeOne;
 
     int32_t offset1;
     int ret = GetKeyOffsetByKeyAlias(keyAliasOne, (uint32_t *)(&offset1));
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(HKS_SUCCESS, ret);
 
     struct HksStoreKeyInfo *keyInfo1 = (struct HksStoreKeyInfo *)(g_storageImageBuffer.data + offset1);
 
     int32_t offset2;
     ret = GetKeyOffsetByKeyAlias(keyAliasTwo, (uint32_t *)(&offset2));
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(HKS_SUCCESS, ret);
 
     struct HksStoreKeyInfo *keyInfo2 = (struct HksStoreKeyInfo *)(g_storageImageBuffer.data + offset2);
 
-    TEST_ASSERT_TRUE(keyInfo1->keyInfoLen == keyInfo2->keyInfoLen);
+    TEST_ASSERT_EQUAL(keyInfo1->keyInfoLen, keyInfo2->keyInfoLen);
 
     ret = memcmp(keyInfo1, keyInfo2, keyInfo1->keyInfoLen);
+    TEST_ASSERT_EQUAL(EOK, ret);
     HksTestFree(bufOne);
     return ret;
 }
@@ -229,7 +230,7 @@ static void ExcHksSafeCompareKeyTest001(void const *argument)
 
     ret = CompareKeyData(&keyAliasOne, &keyAliasTwo);
     HKS_TEST_ASSERT(ret != 0);
-    TEST_ASSERT_TRUE(ret != 0);
+    TEST_ASSERT_EQUAL(0, ret);
     LiteTestPrint("HksSafeCompareKeyTest001 End!\n");
     osThreadExit();
 }

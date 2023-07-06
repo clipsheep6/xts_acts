@@ -47,7 +47,7 @@ LITE_TEST_SUIT(security, securityData, HksCipherTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }

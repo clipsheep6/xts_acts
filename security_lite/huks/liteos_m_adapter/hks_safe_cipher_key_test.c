@@ -20,12 +20,16 @@
 
 #include <hctest.h>
 
+#include "cmsis_os2.h"
 #include "hks_api.h"
+#include "hks_mem.h"
 #include "hks_param.h"
 #include "hks_test_curve25519.h"
+#include "hks_test_file_operator.h"
 #include "hks_test_log.h"
 #include "hks_test_mem.h"
 #include "stdlib.h"
+#include "unistd.h"
 
 const char *g_storePath = "/storage/";
 const char *g_testEd25519 = "test_ed25519";
@@ -46,7 +50,7 @@ LITE_TEST_SUIT(security, securityData, HksSafeCipherKeyTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -130,17 +134,17 @@ static int32_t CompareTwoKey(const struct HksBlob *keyAliasOne, const struct Hks
 
     int32_t offset1;
     int ret = GetKeyOffsetByKeyAlias(keyAliasOne, &offset1);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksStoreKeyInfo *keyInfo1 = (struct HksStoreKeyInfo *)(g_storageImageBuffer.data + offset1);
 
     int32_t offset2;
     ret = GetKeyOffsetByKeyAlias(keyAliasTwo, &offset2);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksStoreKeyInfo *keyInfo2 = (struct HksStoreKeyInfo *)(g_storageImageBuffer.data + offset2);
 
-    TEST_ASSERT_TRUE(keyInfo1->keyInfoLen == keyInfo2->keyInfoLen);
+    TEST_ASSERT_EQUAL(keyInfo1->keyInfoLen, keyInfo2->keyInfoLen);
 
     ret = memcmp(keyInfo1, keyInfo2, keyInfo1->keyInfoLen);
     HksTestFree(bufOne);
@@ -159,30 +163,30 @@ LITE_TEST_CASE(HksSafeCipherKeyTest, HksSafeCipherKeyTest001, Level1)
     uint32_t pubKeyLen = 32;
     struct HksBlob pubKeyInfo = { pubKeyLen, pubKey };
     int32_t ret = TestGenerateEd25519Key(ed25519Alias);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksExportPublicKey(&ed25519Alias, NULL, &pubKeyInfo);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksDeleteKey(&ed25519Alias, NULL);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob newAliasOne = { strlen("test_ed25519_1"), (uint8_t *)"test_ed25519_1" };
     ret = TestImportEd25519(newAliasOne, &pubKeyInfo);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob newAliasTwo = { strlen("test_ed25519_2"), (uint8_t *)"test_ed25519_2" };
     ret = TestImportEd25519(newAliasTwo, &pubKeyInfo);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = CompareTwoKey(&newAliasOne, &newAliasTwo);
     TEST_ASSERT_TRUE(ret != 0);
 
     ret = HksDeleteKey(&newAliasOne, NULL);
     HKS_TEST_ASSERT(ret == 0);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     ret = HksDeleteKey(&newAliasTwo, NULL);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 }
 RUN_TEST_SUITE(HksSafeCipherKeyTest);
 

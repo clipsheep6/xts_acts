@@ -40,7 +40,7 @@ LITE_TEST_SUIT(security, securityData, HksAesTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -63,7 +63,7 @@ static BOOL HksAesTestSetUp()
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksAgreementTestSetUp End2!\n");
+    LiteTestPrint("HksAesTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -85,7 +85,7 @@ static osPriority_t g_setPriority;
 static void ExecHksAesTest001(void const *argument)
 {
     LiteTestPrint("HksAesTest001 Begin!\n");
-    TEST_ASSERT_TRUE(TestAes256ByAgree() == 0);
+    TEST_ASSERT_EQUAL(0, TestAes256ByAgree());
     LiteTestPrint("HksAesTest001 End!\n");
     osThreadExit();
 }
@@ -93,7 +93,7 @@ static void ExecHksAesTest001(void const *argument)
 static void ExecHksAesTest002(void const *argument)
 {
     LiteTestPrint("HksAesTest002 Begin!\n");
-    TEST_ASSERT_TRUE(TestAes256ByAgree1() == 0);
+    TEST_ASSERT_EQUAL(0, TestAes256ByAgree1());
     LiteTestPrint("HksAesTest002 End!\n");
     osThreadExit();
 }
@@ -101,7 +101,7 @@ static void ExecHksAesTest002(void const *argument)
 static void ExecHksAesTest003(void const *argument)
 {
     LiteTestPrint("HksAesTest003 Begin!\n");
-    TEST_ASSERT_TRUE(TestAes256ByAgree2() == 0);
+    TEST_ASSERT_EQUAL(0, TestAes256ByAgree2());
     LiteTestPrint("HksAesTest003 End!\n");
     osThreadExit();
 }

@@ -44,7 +44,7 @@ LITE_TEST_SUIT(security, securityData, HksGenerateRandomTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -98,16 +98,16 @@ static void ExecHksGenerateRandomTest001(void const *argument)
         g_testGenRandomParams[0].randomParams.blobSize,
         g_testGenRandomParams[0].randomParams.blobDataExist,
         g_testGenRandomParams[0].randomParams.blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateRandomRun(random, 1);
     if (ret != g_testGenRandomParams[0].expectResult) {
         HKS_TEST_LOG_I("HksGenerateRandomRun failed, ret[%u] = %d", g_testGenRandomParams[0].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testGenRandomParams[0].expectResult);
+    TEST_ASSERT_EQUAL(g_testGenRandomParams[0].expectResult, ret);
 
     TestFreeBlob(&random);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     
     LiteTestPrint("HksGenerateRandomTest001 End!\n");
     osThreadExit();
