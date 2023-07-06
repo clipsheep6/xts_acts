@@ -124,6 +124,11 @@ export default function userfilemgrOff(abilityContext) {
         let fd = await fileAsset.open('rw');
         await fileAsset.close(fd);
         let enterOn = false;
+        let favoriteAlbumList = await mgr.getAlbums(
+          userFileManager.AlbumType.SYSTEM,
+          userFileManager.AlbumSubType.FAVORITE
+        );
+        let favoriteAlbum = await favoriteAlbumList.getFirstObject();
         await sleep(500);
         mgr.on(fileAsset.uri, false, async (changeData) => {
           enterOn = true;
@@ -131,8 +136,15 @@ export default function userfilemgrOff(abilityContext) {
           expect(false).assertTrue();
           done();
         });
+        mgr.on(favoriteAlbum.albumUri, false, async (changeData) => {
+          enterOn = true;
+          console.info(`off_002 changeData: ${JSON.stringify(changeData)}`);
+          expect(false).assertTrue();
+          done();
+        });
         await sleep(100);
         mgr.off(fileAsset.uri);
+        mgr.off(favoriteAlbum.albumUri);
         await sleep(100);
         await fileAsset.favorite(true);
         await sleep(1000);
@@ -161,6 +173,11 @@ export default function userfilemgrOff(abilityContext) {
         await fileAsset.close(fd);
         await fileAsset.favorite(true);
         let enterOn = false;
+        let favoriteAlbumList = await mgr.getAlbums(
+          userFileManager.AlbumType.SYSTEM,
+          userFileManager.AlbumSubType.FAVORITE
+        );
+        let favoriteAlbum = await favoriteAlbumList.getFirstObject();
         await sleep(500);
         mgr.on(fileAsset.uri, false, async (changeData) => {
           enterOn = true;
@@ -168,8 +185,15 @@ export default function userfilemgrOff(abilityContext) {
           expect(false).assertTrue();
           done();
         });
+        mgr.on(favoriteAlbum.albumUri, false, async (changeData) => {
+          enterOn = true;
+          console.info(`off_003 changeData: ${JSON.stringify(changeData)}`);
+          expect(false).assertTrue();
+          done();
+        });
         await sleep(100);
         mgr.off(fileAsset.uri);
+        mgr.off(favoriteAlbum.albumUri);
         await sleep(100);
         await fileAsset.favorite(false);
         await sleep(1000);

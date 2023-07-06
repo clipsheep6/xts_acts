@@ -123,19 +123,33 @@ export default function userfilemgrOn(abilityContext) {
         let fileAsset = await mgr.createPhotoAsset(testFileName);
         let fd = await fileAsset.open('rw');
         await fileAsset.close(fd);
-        let enterOn = false;
+        let listenCount = 0;
+        let favoriteAlbumList = await mgr.getAlbums(
+          userFileManager.AlbumType.SYSTEM,
+          userFileManager.AlbumSubType.FAVORITE
+        );
+        let favoriteAlbum = await favoriteAlbumList.getFirstObject();
         await sleep(500);
         mgr.on(fileAsset.uri, false, async (changeData) => {
-          enterOn = true;
+          listenCount++;
           console.info(`on_callback_002 changeData: ${JSON.stringify(changeData)}`);
           expect(changeData.type).assertEqual(NOTIFY_UPDATE);
           expect(changeData.uris[0]).assertEqual(fileAsset.uri);
           done();
         });
+        mgr.on(favoriteAlbum.albumUri, false, async (changeData) => {
+          listenCount++;
+          console.info(`on_callback_002 trashAlbum changeData: ${JSON.stringify(changeData)}`);
+          if (listenCount < 3) {
+            expect(changeData.type).assertEqual(NOTIFY_ALBUM_ADD_ASSET);
+            expect(changeData.subUris[0]).assertEqual(fileAsset.uri);
+          }
+        });
         await fileAsset.favorite(true);
         await sleep(1000);
-        expect(enterOn).assertTrue();
+        expect(listenCount).assertEqual(2);
         mgr.off(fileAsset.uri);
+        mgr.off(favoriteAlbum.albumUri);
         done();
       } catch (error) {
         console.log(`on_callback_002: tryError: $${error}`);
@@ -159,19 +173,33 @@ export default function userfilemgrOn(abilityContext) {
         let fd = await fileAsset.open('rw');
         await fileAsset.close(fd);
         await fileAsset.favorite(true);
-        let enterOn = false;
+        let listenCount = 0;
+        let favoriteAlbumList = await mgr.getAlbums(
+          userFileManager.AlbumType.SYSTEM,
+          userFileManager.AlbumSubType.FAVORITE
+        );
+        let favoriteAlbum = await favoriteAlbumList.getFirstObject();
         await sleep(500);
         mgr.on(fileAsset.uri, false, async (changeData) => {
-          enterOn = true;
+          listenCount++;
           console.info(`on_callback_003 changeData: ${JSON.stringify(changeData)}`);
           expect(changeData.type).assertEqual(NOTIFY_UPDATE);
           expect(changeData.uris[0]).assertEqual(fileAsset.uri);
           done();
         });
+        mgr.on(favoriteAlbum.albumUri, false, async (changeData) => {
+          listenCount++;
+          console.info(`on_callback_003 trashAlbum changeData: ${JSON.stringify(changeData)}`);
+          if (listenCount < 3) {
+            expect(changeData.type).assertEqual(NOTIFY_ALBUM_REMOVE_ASSET);
+            expect(changeData.subUris[0]).assertEqual(fileAsset.uri);
+          }
+        });
         await fileAsset.favorite(false);
         await sleep(1000);
-        expect(enterOn).assertTrue();
+        expect(listenCount).assertEqual(2);
         mgr.off(fileAsset.uri);
+        mgr.off(favoriteAlbum.albumUri);
         done();
       } catch (error) {
         console.log(`on_callback_003: tryError: $${error}`);

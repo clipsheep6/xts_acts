@@ -124,6 +124,11 @@ export default function userfilemgrOffCallback(abilityContext) {
         let fileAsset = await mgr.createPhotoAsset(testFileName);
         let fd = await fileAsset.open('rw');
         await fileAsset.close(fd);
+        let favoriteAlbumList = await mgr.getAlbums(
+          userFileManager.AlbumType.SYSTEM,
+          userFileManager.AlbumSubType.FAVORITE
+        );
+        let favoriteAlbum = await favoriteAlbumList.getFirstObject();
         let enterOn = false;
         await sleep(500);
         const callback = async (changeData) => {
@@ -132,9 +137,17 @@ export default function userfilemgrOffCallback(abilityContext) {
           expect(false).assertTrue();
           done();
         };
+        const callback2 = async (changeData) => {
+          enterOn = true;
+          console.info(`off_callback_002 changeData: ${JSON.stringify(changeData)}`);
+          expect(false).assertTrue();
+          done();
+        };
         mgr.on(fileAsset.uri, false, callback);
+        mgr.on(favoriteAlbum.albumUri, false, callback2);
         await sleep(100);
         mgr.off(fileAsset.uri, callback);
+        mgr.off(favoriteAlbum.albumUri, callback2);
         await sleep(100);
         await fileAsset.favorite(true);
         await sleep(1000);
@@ -162,6 +175,11 @@ export default function userfilemgrOffCallback(abilityContext) {
         let fd = await fileAsset.open('rw');
         await fileAsset.close(fd);
         await fileAsset.favorite(true);
+        let favoriteAlbumList = await mgr.getAlbums(
+          userFileManager.AlbumType.SYSTEM,
+          userFileManager.AlbumSubType.FAVORITE
+        );
+        let favoriteAlbum = await favoriteAlbumList.getFirstObject();
         let enterOn = false;
         await sleep(500);
         const callback = async (changeData) => {
@@ -170,9 +188,17 @@ export default function userfilemgrOffCallback(abilityContext) {
           expect(false).assertTrue();
           done();
         };
+        const callback2 = async (changeData) => {
+          enterOn = true;
+          console.info(`off_callback_003 changeData: ${JSON.stringify(changeData)}`);
+          expect(false).assertTrue();
+          done();
+        };
         mgr.on(fileAsset.uri, false, callback);
+        mgr.on(favoriteAlbum.albumUri, false, callback2);
         await sleep(100);
         mgr.off(fileAsset.uri, callback);
+        mgr.off(favoriteAlbum.albumUri, callback2);
         await sleep(100);
         await fileAsset.favorite(false);
         await sleep(1000);
