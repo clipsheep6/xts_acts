@@ -13,12 +13,18 @@
  * limitations under the License.
  */
 
-import SecurityRandomSyncJsunit from "./SecurityRandomSync.test";
-import SecuritySignatureVerificationJsunit from "./SecuritySignatureVerification.test";
-import SecurityKeyAgreementJsunit from "./SecurityKeyAgreement.test";
-import AsyKeyGeneratorBySpecJsunit from "./AsyKeyGeneratorBySpec.test";
-import AsyGetKeySpecBySpecJsunit from "./AsyGetKeySpecBySpec.test";
-import SecurityCipherJsunit from "./SecurityCipher.test";
+import SecurityRandomSyncJsunit from './SecurityRandomSync.test';
+import SecuritySignatureVerificationJsunit from './SecuritySignatureVerification.test';
+import SecurityKeyAgreementJsunit from './SecurityKeyAgreement.test';
+import AsyKeyGeneratorBySpecJsunit from './AsyKeyGeneratorBySpec.test';
+import AsyGetKeySpecBySpecJsunit from './AsyGetKeySpecBySpec.test';
+import SecurityCipherJsunit from './SecurityCipher.test';
+import SecuritySignatureVerificationSM2Jsunit from './SecuritySignatureVerificationSM2.test';
+import SecurityCipherSM2SM4Jsunit from './SecurityCipherSM2SM4.test';
+import DigestAlgorithmSm3Jsunit from './DigestAlgorithmSm3.test';
+import SecuritySignatureVerificationSM2StabJsunit from './SecuritySignatureVerificationSM2Stab.test';
+import SecurityCipherSM2SM4StabJsunit from './SecurityCipherSM2SM4Stab.test';
+import DigestAlgorithmSm3StabJsunit from './DigestAlgorithmSm3Stab.test';
 
 export default function testsuite() {
   SecurityRandomSyncJsunit();
@@ -27,4 +33,10 @@ export default function testsuite() {
   AsyGetKeySpecBySpecJsunit();
   AsyKeyGeneratorBySpecJsunit();
   SecurityCipherJsunit();
+  SecuritySignatureVerificationSM2Jsunit();
+  SecurityCipherSM2SM4Jsunit();
+  DigestAlgorithmSm3Jsunit();
+  SecuritySignatureVerificationSM2StabJsunit();
+  SecurityCipherSM2SM4StabJsunit();
+  DigestAlgorithmSm3StabJsunit();
 }
