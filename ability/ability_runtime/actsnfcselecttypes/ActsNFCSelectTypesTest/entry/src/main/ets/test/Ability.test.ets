@@ -418,11 +418,9 @@ export default function abilityTest() {
         globalThis.abilitycontext.startAbility(
           want, (err) => {
             if (err.code) {
-              // 处理业务逻辑错误
               console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
               return;
             }
-            // 执行正常业务
             console.info('startAbility succeed');
           }
         );
