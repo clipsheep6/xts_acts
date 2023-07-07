@@ -1,7 +1,7 @@
 {
   "module": {
     "name": "Secondentry",
-    "type": "entry",
+    "type": "feature",
     "description": "$string:module_desc",
     "mainElement": "SecondentryAbility",
     "deviceTypes": [
