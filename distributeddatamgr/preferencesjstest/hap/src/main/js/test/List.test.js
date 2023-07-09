@@ -23,6 +23,7 @@ import storageSyncTest from './StorageSyncJsunit.test.js'
 import systemStorageTest from './SystemStorageJsunit.test.js'
 import preferencesV9CallbackTest from './V9_PreferencesCallBackJsunit.test.js'
 import preferencesV9PromiseTest from './V9_PreferencesPromiseJsunit.test.js'
+import PreferencesSyncTest from './PreferencesSyncJsunit.test.js'
 
 export default function testsuite() {
     storageCallBackTest()
@@ -35,4 +36,5 @@ export default function testsuite() {
     preferencesPromiseTest()
     preferencesV9CallbackTest()
     preferencesV9PromiseTest()
+    PreferencesSyncTest()
 }
