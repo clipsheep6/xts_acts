@@ -16,7 +16,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import commonEvent from '@ohos.commonEventManager'
+import commonEvent from '@ohos.commonEventManager';
 
 let message;
 let commonEventData = {
@@ -31,13 +31,13 @@ export default class EntryAbility extends UIAbility {
     globalThis.terminate = () => {
       setTimeout(() => {
         this.context.terminateSelf().then(() => {
-          console.info("====>EntryAbility terminateSelf end");
+          console.info('====>EntryAbility terminateSelf end');
         }).catch((err) => {
-          console.info("====>EntryAbility terminateSelf err:" + JSON.stringify(err));
+          console.info('====>EntryAbility terminateSelf err:' + JSON.stringify(err));
         });
-      }, 50)
+      }, 50);
     };
-    console.info('Ability4 onCreate' + JSON.stringify(want))
+    console.info('Ability4 onCreate' + JSON.stringify(want));
     let actionStr = want.action;
     if (actionStr === 'ohos.nfc.tag.action.TAG_FOUND') {
       hilog.info(0x0000, 'testTag', '%{public}s', 'a4Ability ok');
@@ -45,7 +45,7 @@ export default class EntryAbility extends UIAbility {
       commonEvent.publish('ACTS_CROSS_CALL_EVENT', commonEventData, (err) => {
         console.info('====>' + actionStr + ' apublish err:' + JSON.stringify(err));
         globalThis.terminate();
-      })
+      });
     }
   }
 
