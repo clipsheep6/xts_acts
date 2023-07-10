@@ -30,7 +30,7 @@
 #include "external/vulkancts/modules/vulkan/vktTestPackage.hpp"
 
 #include "logdefine.h"
-#include "Deqpgles2BaseFunc.h"
+#include "Synchronization2BaseFunc.h"
 
 
 static tcu::TestPackage* createTestPackage (tcu::TestContext& testCtx)

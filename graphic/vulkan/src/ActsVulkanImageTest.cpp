@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanImageTest, TestVulkanImageTestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanImageTest------\n");
-        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/image.txt");
+        system("cd /data/local/tmp/vulkan/vk-default;/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/image.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanImageTest------\n");
     }

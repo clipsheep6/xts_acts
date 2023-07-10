@@ -16,18 +16,16 @@
 set -e
 
 mkdir -p  "suites/acts/testcases/vulkandata"
-cp -rf "../../third_party/vk-gl-cts/external/vulkancts/data" "suites/acts/testcases/vulkandata"
 cp -rf "../../third_party/vk-gl-cts/external/vulkancts/mustpass/master/vk-default" "suites/acts/testcases/vulkandata"
 cp -rf "../../third_party/vk-gl-cts/external/vulkancts/mustpass/master/src/fraction-mandatory-tests.txt" "suites/acts/testcases/vulkandata/vk-default"
 cp -rf "../../third_party/vk-gl-cts/external/vulkancts/mustpass/master/src/master.txt" "suites/acts/testcases/vulkandata/vk-default"
 cp -rf "../../third_party/vk-gl-cts/external/vulkancts/mustpass/master/src/test-issues.txt" "suites/acts/testcases/vulkandata/vk-default"
+cp -rf "../../third_party/vk-gl-cts/external/vulkancts/data/vulkan" "suites/acts/testcases/vulkandata"
 cp -rf "graphic/graphic_standard/deqp_vk_execute" "suites/acts/testcases/vulkandata/vk-default"
 
 tar czvf "vulkandata.tar.gz" -C "suites/acts/testcases/vulkandata" "."
 mv "vulkandata.tar.gz" "suites/acts/testcases/vulkandata"
 
-cp -rf "graphic/graphic_standard/deqp_vk_execute" "suites/acts/testcases/vulkandata"
-cp -rf "../../test/xts/acts/graphic/vulkan/genlocal.py" "suites/acts/testcases/vulkandata"
 cp -rf "common/common/libdeqp_ohos_platform.z.so" "suites/acts/testcases/vulkandata"
 cp -rf "common/common/librosen_context.z.so" "suites/acts/testcases/vulkandata"
 cp -rf "graphic/graphic_standard/libdeqp_amber.z.so" "suites/acts/testcases/vulkandata"

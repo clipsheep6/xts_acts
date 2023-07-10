@@ -13,16 +13,20 @@
  * limitations under the License.
  */
 
-#include <climits>
-#include <gtest/gtest.h>
-#include "../Binding-modelBaseFunc.h"
-#include "../ActsBinding-model0001TestSuite.h"
-#include "shrinkdefine.h"
+#ifndef BINDING_MODEL_FUNC_H
+#define BINDING_MODEL_FUNC_H
 
-using namespace std;
-using namespace testing::ext;
-using namespace OHOS;
+struct FuncRunResult {
+    int numExecuted; // !< Total number of cases executed.
+    int numPassed;     // !< Number of cases passed.
+    int numFailed;     // !< Number of cases failed.
+    int numNotSupported;    // !< Number of cases not supported.
+    int numWarnings; // !< Number of QualityWarning / CompatibilityWarning results.
+    int numWaived;     // !< Number of waived tests.
+    bool isComplete;     // !< Is run complete.
+};
 
-static SHRINK_HWTEST_F(ActsBinding-model0001TS, TC000302, "dEQP-VK.binding_model.dynamic_offset.shader_reuse_differing_layout_compute.*");
+void RegistPackage(void);
+FuncRunResult RunTestKHRGLES(int argc, const char** argv);
 
-static SHRINK_HWTEST_F(ActsBinding-model0001TS, TC000303, "dEQP-VK.binding_model.dynamic_offset.shader_reuse_differing_layout_graphics.*");
+#endif // BINDING_MODEL_FUNC_H

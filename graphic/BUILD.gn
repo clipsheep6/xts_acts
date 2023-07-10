@@ -12,6 +12,8 @@
 # limitations under the License.
 
 import("//build/ohos_var.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//foundation/graphic/graphic_2d/graphic_config.gni")
 group("graphic") {
   testonly = true
   if (is_standard_system) {
@@ -20,13 +22,18 @@ group("graphic") {
       "graphicColorSpace:ActsColorSpaceManagerTest",
       "graphicnapidrawingtest:ActsGraphicNapiDrawingTest",
       "graphicnapitest:ActsGraphicNapiTest",
-      "vulkan:vulkanTest",
       "webGL:webGL_hap_test",
       "windowStage:ActsWindowStageTest",
       "windowstandard:window_hap_test",
     ]
     if (!(product_name == "ohcore")) {
-      deps += [ "vkgl:cpvkgl" ]
+      if(graphic_standard_feature_enable_vulkan){
+        deps += [ 
+          "vkgl:cpvkgl",
+          "vkwithstar:cpvktest",
+          "vulkan:vulkanTest", 
+        ]
+      }
     }
   } else {
     deps = [

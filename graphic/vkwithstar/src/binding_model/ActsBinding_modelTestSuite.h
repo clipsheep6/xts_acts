@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-#ifndef BINDING-MODEL0001_TESTCASE_H
-#define BINDING-MODEL0001_TESTCASE_H
+#ifndef BINDING_MODEL_TESTCASE_H
+#define BINDING_MODEL_TESTCASE_H
 
 #include <gtest/gtest.h>
-#include "Binding-modelBaseFunc.h"
+#include "Binding_modelBaseFunc.h"
 
 namespace OHOS {
-    class ActsBinding-model0001TS : public testing::Test {
+    class ActsBinding_modelTS : public testing::Test {
     public:
         static time_t startTime;
         static time_t endTime;
@@ -37,4 +37,4 @@ namespace OHOS {
     };
 } // namespace OHOS
 
-#endif // BINDING-MODEL0001_TESTCASE_H
+#endif // BINDING_MODEL_TESTCASE_H

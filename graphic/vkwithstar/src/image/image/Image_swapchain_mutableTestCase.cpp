@@ -16,37 +16,37 @@
 #include <climits>
 #include <gtest/gtest.h>
 #include "../ImageBaseFunc.h"
-#include "../ActsImage0005TestSuite.h"
+#include "../ActsImage0002TestSuite.h"
 #include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008664, "dEQP-VK.image.swapchain_mutable.xlib.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008664, "dEQP-VK.image.swapchain_mutable.xlib.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008665, "dEQP-VK.image.swapchain_mutable.xlib.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008665, "dEQP-VK.image.swapchain_mutable.xlib.2d_array.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008666, "dEQP-VK.image.swapchain_mutable.xcb.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008666, "dEQP-VK.image.swapchain_mutable.xcb.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008667, "dEQP-VK.image.swapchain_mutable.xcb.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008667, "dEQP-VK.image.swapchain_mutable.xcb.2d_array.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008668, "dEQP-VK.image.swapchain_mutable.wayland.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008668, "dEQP-VK.image.swapchain_mutable.wayland.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008669, "dEQP-VK.image.swapchain_mutable.wayland.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008669, "dEQP-VK.image.swapchain_mutable.wayland.2d_array.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008670, "dEQP-VK.image.swapchain_mutable.android.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008670, "dEQP-VK.image.swapchain_mutable.android.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008671, "dEQP-VK.image.swapchain_mutable.android.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008671, "dEQP-VK.image.swapchain_mutable.android.2d_array.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008672, "dEQP-VK.image.swapchain_mutable.win32.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008672, "dEQP-VK.image.swapchain_mutable.win32.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008673, "dEQP-VK.image.swapchain_mutable.win32.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008673, "dEQP-VK.image.swapchain_mutable.win32.2d_array.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008674, "dEQP-VK.image.swapchain_mutable.macos.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008674, "dEQP-VK.image.swapchain_mutable.macos.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008675, "dEQP-VK.image.swapchain_mutable.macos.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008675, "dEQP-VK.image.swapchain_mutable.macos.2d_array.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008676, "dEQP-VK.image.swapchain_mutable.headless.2d.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008676, "dEQP-VK.image.swapchain_mutable.headless.2d.*");
 
-static SHRINK_HWTEST_F(ActsImage0005TS, TC008677, "dEQP-VK.image.swapchain_mutable.headless.2d_array.*");
+static SHRINK_HWTEST_F(ActsImage0002TS, TC008677, "dEQP-VK.image.swapchain_mutable.headless.2d_array.*");

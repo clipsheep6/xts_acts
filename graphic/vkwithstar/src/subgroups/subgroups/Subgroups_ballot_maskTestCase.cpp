@@ -16,17 +16,17 @@
 #include <climits>
 #include <gtest/gtest.h>
 #include "../SubgroupsBaseFunc.h"
-#include "../ActsSubgroups0011TestSuite.h"
+#include "../ActsSubgroups0008TestSuite.h"
 #include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static SHRINK_HWTEST_F(ActsSubgroups0011TS, TC020681, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.graphics.*");
+static SHRINK_HWTEST_F(ActsSubgroups0008TS, TC020681, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.graphics.*");
 
-static SHRINK_HWTEST_F(ActsSubgroups0011TS, TC020682, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.compute.*");
+static SHRINK_HWTEST_F(ActsSubgroups0008TS, TC020682, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.compute.*");
 
-static SHRINK_HWTEST_F(ActsSubgroups0011TS, TC020683, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.framebuffer.*");
+static SHRINK_HWTEST_F(ActsSubgroups0008TS, TC020683, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.framebuffer.*");
 
-static SHRINK_HWTEST_F(ActsSubgroups0011TS, TC020684, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.ray_tracing.*");
+static SHRINK_HWTEST_F(ActsSubgroups0008TS, TC020684, "dEQP-VK.subgroups.ballot_mask.ext_shader_subgroup_ballot.ray_tracing.*");

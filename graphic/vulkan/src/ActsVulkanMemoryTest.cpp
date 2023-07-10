@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanMemoryTest, TestVulkanMemoryTestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanMemoryTest------\n");
-        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/memory.txt");
+        system("cd /data/local/tmp/vulkan/vk-default;/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/memory.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanMemoryTest------\n");
     }

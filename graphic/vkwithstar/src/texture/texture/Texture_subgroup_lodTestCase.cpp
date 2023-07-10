@@ -16,15 +16,15 @@
 #include <climits>
 #include <gtest/gtest.h>
 #include "../TextureBaseFunc.h"
-#include "../ActsTexture0004TestSuite.h"
+#include "../ActsTexture0002TestSuite.h"
 #include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static SHRINK_HWTEST_F(ActsTexture0004TS, TC006234, "dEQP-VK.texture.subgroup_lod.texturelod.*");
+static SHRINK_HWTEST_F(ActsTexture0002TS, TC006234, "dEQP-VK.texture.subgroup_lod.texturelod.*");
 
-static SHRINK_HWTEST_F(ActsTexture0004TS, TC006235, "dEQP-VK.texture.subgroup_lod.texturegrad.*");
+static SHRINK_HWTEST_F(ActsTexture0002TS, TC006235, "dEQP-VK.texture.subgroup_lod.texturegrad.*");
 
-static SHRINK_HWTEST_F(ActsTexture0004TS, TC006236, "dEQP-VK.texture.subgroup_lod.texelfetch.*");
+static SHRINK_HWTEST_F(ActsTexture0002TS, TC006236, "dEQP-VK.texture.subgroup_lod.texelfetch.*");

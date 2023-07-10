@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanRay_tracing_pipelineTest, TestVulkanRay_tracing_pipelineTestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanRay_tracing_pipelineTest------\n");
-        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/ray-tracing-pipeline.txt");
+        system("cd /data/local/tmp/vulkan/vk-default;/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/ray-tracing-pipeline.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanRay_tracing_pipelineTest------\n");
     }

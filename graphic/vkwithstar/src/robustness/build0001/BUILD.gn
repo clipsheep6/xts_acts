@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/acts/graphic/vkgl/comm.gni")
+import("//test/xts/acts/graphic/vkwithstar/comm.gni")
 
 config("deqp_platform_ohos_config") {
   cflags_cc = deqp_common_cflags_cc
@@ -25,10 +25,10 @@ config("deqp_platform_ohos_config") {
   defines = deqp_common_defines
 
   # defines -=["DE_PTR_SIZE=8"]
-  defines += [
-    "DE_PTR_SIZE=4",
-    "_XOPEN_SOURCE=600",
-  ]
+  #defines += [
+  # "DE_PTR_SIZE=4",
+  #  "_XOPEN_SOURCE=600",
+  #]
 }
 
 ohos_static_library("librobustnessfunc0001") {
@@ -38,7 +38,7 @@ ohos_static_library("librobustnessfunc0001") {
     "../RobustnessBaseFunc.cpp",
     "logdefine.cpp",
   ]
-
+  include_dirs = common_include
   include_dirs += [
     "//third_party/vk-gl-cts/framework/opengl",
     "//third_party/vk-gl-cts/framework/opengl/wrapper",
@@ -199,7 +199,7 @@ ohos_static_library("librobustnessfunc0001") {
   ]
 
   configs = [ ":deqp_platform_ohos_config" ]
-  public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
+#public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
 }
 
 ohos_moduletest_suite("ActsRobustnessTestSuite0001") {

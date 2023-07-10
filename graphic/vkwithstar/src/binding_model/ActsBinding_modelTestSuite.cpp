@@ -16,19 +16,19 @@
 #include <climits>
 #include <gtest/gtest.h>
 #include <ctime>
-#include "Binding-modelBaseFunc.h"
-#include "ActsBinding-modelTestSuite.h"
+#include "Binding_modelBaseFunc.h"
+#include "ActsBinding_modelTestSuite.h"
 
 namespace OHOS {
     using namespace std;
     using namespace testing::ext;
 
-    time_t ActsBinding-modelTS::startTime;
-    time_t ActsBinding-modelTS::endTime;
-    FuncRunResult ActsBinding-modelTS::runResult;
+    time_t ActsBinding_modelTS::startTime;
+    time_t ActsBinding_modelTS::endTime;
+    FuncRunResult ActsBinding_modelTS::runResult;
 
     // Preset action of the test suite, which is executed before the first test case
-    void ActsBinding-modelTS::SetUpTestCase(void)
+    void ActsBinding_modelTS::SetUpTestCase(void)
     {
         time(&startTime);
         RegistPackage();
@@ -39,7 +39,7 @@ namespace OHOS {
         runResult.numWaived = 0;
     }
     // Test suite cleanup action, which is executed after the last test case
-    void ActsBinding-modelTS::TearDownTestCase(void)
+    void ActsBinding_modelTS::TearDownTestCase(void)
     {
         time(&endTime);
         printf("Test run totals --- Passed[%d]\n", runResult.numPassed);
@@ -47,14 +47,14 @@ namespace OHOS {
         printf("Test run totals --- Notsupport[%d]\n", runResult.numNotSupported);
         printf("Test run totals --- Warnings[%d]\n", runResult.numWarnings);
         printf("Test run totals --- Waved[%d]\n", runResult.numWaived);
-        printf("testmain end --- COST TIME[%lld]\n", (endTime-startTime));
+        printf("testmain end --- COST TIME[%ld]\n", (endTime-startTime));
     }
     // Preset action of the test case
-    void ActsBinding-modelTS::SetUp()
+    void ActsBinding_modelTS::SetUp()
     {
     }
     // Cleanup action of the test case
-    void ActsBinding-modelTS::TearDown()
+    void ActsBinding_modelTS::TearDown()
     {
     }
 }

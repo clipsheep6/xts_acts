@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanImageless_framebufferTest, TestVulkanImageless_framebufferTestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanImageless_framebufferTest------\n");
-        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/imageless-framebuffer.txt");
+        system("cd /data/local/tmp/vulkan/vk-default;/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/imageless-framebuffer.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanImageless_framebufferTest------\n");
     }

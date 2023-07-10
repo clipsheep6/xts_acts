@@ -41,7 +41,7 @@ namespace OHOS {
     HWTEST_F(ActsVulkanFragment_shading_rateTest, TestVulkanFragment_shading_rateTestCase, Function | MediumTest | Level2)
     {
         printf("------start ActsVulkanFragment_shading_rateTest------\n");
-        system("/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/fragment-shading-rate.txt");
+        system("cd /data/local/tmp/vulkan/vk-default;/data/local/tmp/vulkan/vk-default/deqp_vk_execute --deqp-caselist-file=/data/local/tmp/vulkan/vk-default/fragment-shading-rate.txt");
         EXPECT_TRUE(true);
         printf("------end ActsVulkanFragment_shading_rateTest------\n");
     }

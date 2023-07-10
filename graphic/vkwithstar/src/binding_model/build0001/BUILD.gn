@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//test/xts/acts/graphic/vkgl/comm.gni")
+import("//test/xts/acts/graphic/vkwithstar/comm.gni")
 
 config("deqp_platform_ohos_config") {
   cflags_cc = deqp_common_cflags_cc
@@ -25,20 +25,21 @@ config("deqp_platform_ohos_config") {
   defines = deqp_common_defines
 
   # defines -=["DE_PTR_SIZE=8"]
-  defines += [
-    "DE_PTR_SIZE=4",
-    "_XOPEN_SOURCE=600",
-  ]
+  #defines += [
+  #  "DE_PTR_SIZE=4",
+  #  "_XOPEN_SOURCE=600",
+  #]
 }
 
-ohos_static_library("libbinding-modelfunc0001") {
+ohos_static_library("libbinding_modelfunc0001") {
   subsystem_name = "graphic"
   part_name = "graphic_standard"
   sources = [
-    "../Binding-modelBaseFunc.cpp",
+    "../Binding_modelBaseFunc.cpp",
     "logdefine.cpp",
   ]
 
+  include_dirs = common_include
   include_dirs += [
     "//third_party/vk-gl-cts/framework/opengl",
     "//third_party/vk-gl-cts/framework/opengl/wrapper",
@@ -199,22 +200,22 @@ ohos_static_library("libbinding-modelfunc0001") {
   ]
 
   configs = [ ":deqp_platform_ohos_config" ]
-  public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
+  #public_deps = [ "//foundation/ace/ace_engine/build/external_config/flutter/skia:ace_skia_ohos" ]
 }
 
-ohos_moduletest_suite("ActsBinding-modelTestSuite0001") {
+ohos_moduletest_suite("ActsBinding_modelTestSuite0001") {
   subsystem_name = "graphic"
   part_name = "graphic_standard"
 
   sources = [
-    "../ActsBinding-model0001TestSuite.cpp",
-    "../binding_model/Binding-model_buffer_device_addressTestCase.cpp",
-    "../binding_model/Binding-model_descriptor_copyTestCase.cpp",
-    "../binding_model/Binding-model_descriptor_updateTestCase.cpp",
-    "../binding_model/Binding-model_descriptorset_randomTestCase.cpp",
-    "../binding_model/Binding-model_dynamic_offsetTestCase.cpp",
-    "../binding_model/Binding-model_mutable_descriptorTestCase.cpp",
-    "../binding_model/Binding-model_shader_accessTestCase.cpp",
+    "../ActsBinding_model0001TestSuite.cpp",
+    "../binding_model/Binding_model_buffer_device_addressTestCase.cpp",
+    "../binding_model/Binding_model_descriptor_copyTestCase.cpp",
+    "../binding_model/Binding_model_descriptor_updateTestCase.cpp",
+    "../binding_model/Binding_model_descriptorset_randomTestCase.cpp",
+    "../binding_model/Binding_model_dynamic_offsetTestCase.cpp",
+    "../binding_model/Binding_model_mutable_descriptorTestCase.cpp",
+    "../binding_model/Binding_model_shader_accessTestCase.cpp",
   ]
 
   include_dirs = common_include
@@ -299,7 +300,7 @@ ohos_moduletest_suite("ActsBinding-modelTestSuite0001") {
     "//third_party/vk-gl-cts/framework/platform/ohos",
   ]
 
-  deps = [ ":libbinding-modelfunc0001" ]
+  deps = [ ":libbinding_modelfunc0001" ]
 
   cflags = [ "-Wno-error" ]
 }

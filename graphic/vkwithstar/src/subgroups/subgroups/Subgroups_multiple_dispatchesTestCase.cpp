@@ -16,11 +16,11 @@
 #include <climits>
 #include <gtest/gtest.h>
 #include "../SubgroupsBaseFunc.h"
-#include "../ActsSubgroups0011TestSuite.h"
+#include "../ActsSubgroups0009TestSuite.h"
 #include "shrinkdefine.h"
 
 using namespace std;
 using namespace testing::ext;
 using namespace OHOS;
 
-static SHRINK_HWTEST_F(ActsSubgroups0011TS, TC020685, "dEQP-VK.subgroups.multiple_dispatches.uniform_subgroup_size.*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TC020685, "dEQP-VK.subgroups.multiple_dispatches.uniform_subgroup_size.*");
