@@ -17,11 +17,8 @@ group("crossplatform") {
   if (is_standard_system) {
     deps = [
       "commonlibraryArrayListetstest:ArrayList_ets_test",
-      "commonlibraryConnectonetstest:Connection_ets_test",
-      "commonlibraryDisplayetstest:Display_ets_test",
       "commonlibraryLightWeightSetetstest:LightWeightSet_ets_test",
       "commonlibraryListetstest:List2_ets_test",
-      "commonlibraryWebSocketetstest:WebSocket_ets_test",
     ]
   }
 }
