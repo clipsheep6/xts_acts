@@ -12,47 +12,21 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import file from '@system.file';
-import router from '@ohos.router';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../../test/List.test'
-
-//InstrumentLog, ReportExtend
 
 @Entry
 @Component
 struct Index {
-
-  aboutToAppear(){
-    console.info("start run testcase!!!!")
-    var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        console.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-  }
+  @State message: string = 'Hello World'
 
   build() {
-    Flex({ direction:FlexDirection.Column, alignItems:ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text('Hello World')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-      Button() {
-        Text('next page')
-          .fontSize(25)
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top: 20
-      })
-      .backgroundColor('#0D9FFB')
-      .onClick(() => {
-
-      })
+      }
+      .width('100%')
     }
-    .width('100%')
     .height('100%')
   }
 }
