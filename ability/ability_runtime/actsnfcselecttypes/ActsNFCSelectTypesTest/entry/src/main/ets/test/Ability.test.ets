@@ -14,19 +14,20 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON } from '@ohos.UiTest'
-import commonEvent from '@ohos.commonEventManager'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import commonEvent from '@ohos.commonEventManager';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 let ACTS_CrossCallFunction = {
   events: ['ACTS_CROSS_CALL_EVENT']
 };
+// CaseTimeOut is 5000
 const CASE_TIME_OUT = 5000;
-let driver = Driver.create()
-const BUNDLE = 'MyApp_'
-const TAG = '[Sample_MyApp]'
-const DOMAIN = 0xF811
+let driver = Driver.create();
+const BUNDLE = 'MyApp_';
+const TAG = '[Sample_MyApp]';
+const DOMAIN = 0xF811;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 function sleep(time) {
@@ -34,7 +35,7 @@ function sleep(time) {
     setTimeout(() => {
       resolve();
     }, time)
-  })
+  });
 }
 
 export default function abilityTest() {
@@ -76,7 +77,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text("apptest2"));
       await driver.assertComponentExist(ON.text("apptest3"));
       let app4 = await driver.findComponent(ON.text("apptest4"));
-      expect(app4 == null).assertTrue();
+      expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100 end');
@@ -111,9 +112,9 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text("apptest2"));
       await driver.assertComponentExist(ON.text("apptest3"));
       let app1 = await driver.findComponent(ON.text("apptest1"));
-      expect(app1 == null).assertTrue();
+      expect(app1 === null).assertTrue();
       let app4 = await driver.findComponent(ON.text("apptest4"));
-      expect(app4 == null).assertTrue();
+      expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0200 end');
@@ -180,8 +181,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text("apptest3"));
       let app2 = await driver.findComponent(ON.text("apptest2"));
       let app4 = await driver.findComponent(ON.text("apptest4"));
-      expect(app2 == null).assertTrue();
-      expect(app4 == null).assertTrue();
+      expect(app2 === null).assertTrue();
+      expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0400 end');
@@ -220,10 +221,10 @@ export default function abilityTest() {
       let app2 = await driver.findComponent(ON.text("apptest2"));
       let app3 = await driver.findComponent(ON.text("apptest3"));
       let app4 = await driver.findComponent(ON.text("apptest4"));
-      expect(app1 == null).assertTrue();
-      expect(app2 == null).assertTrue();
-      expect(app3 == null).assertTrue();
-      expect(app4 == null).assertTrue();
+      expect(app1 === null).assertTrue();
+      expect(app2 === null).assertTrue();
+      expect(app3 === null).assertTrue();
+      expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("知道了"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500 end');
@@ -260,10 +261,10 @@ export default function abilityTest() {
       let app2 = await driver.findComponent(ON.text("apptest2"));
       let app3 = await driver.findComponent(ON.text("apptest3"));
       let app4 = await driver.findComponent(ON.text("apptest4"));
-      expect(app1 == null).assertTrue();
-      expect(app2 == null).assertTrue();
-      expect(app3 == null).assertTrue();
-      expect(app4 == null).assertTrue();
+      expect(app1 === null).assertTrue();
+      expect(app2 === null).assertTrue();
+      expect(app3 === null).assertTrue();
+      expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("知道了"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0600 end');
@@ -300,7 +301,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text("MulAbFirst"));
       await driver.assertComponentExist(ON.text("MulAbSecond"));
       let AblityThird = await driver.findComponent(ON.text("MulAbThird"));
-      expect(AblityThird == null).assertTrue();
+      expect(AblityThird === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 end');
@@ -339,7 +340,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text("MulHapSecond"));
       console.info('startAbility MulHapSecond exist');
       let HapThird = await driver.findComponent(ON.text("MulHapThird"));
-      expect(HapThird==null).assertTrue();
+      expect(HapThird === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0800 end');
@@ -377,10 +378,10 @@ export default function abilityTest() {
         let app2 = await driver.findComponent(ON.text("apptest2"));
         let app3 = await driver.findComponent(ON.text("apptest3"));
         let app4 = await driver.findComponent(ON.text("apptest4"));
-        expect(app1 == null).assertTrue();
-        expect(app2 == null).assertTrue();
-        expect(app3 == null).assertTrue();
-        expect(app4 == null).assertTrue();
+        expect(app1 === null).assertTrue();
+        expect(app2 === null).assertTrue();
+        expect(app3 === null).assertTrue();
+        expect(app4 === null).assertTrue();
         let cancel = await driver.findComponents(ON.clickable(true));
         await cancel[0].click();
         hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 end');

@@ -24,6 +24,7 @@ let commonEventData = {
     message:message,
   }
 };
+let timeout = 50;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -35,7 +36,7 @@ export default class EntryAbility extends UIAbility {
         }).catch((err) => {
           console.info('====>EntryAbility terminateSelf err:' + JSON.stringify(err));
         });
-      }, 50);
+      }, timeout);
     };
     console.info('Ability4 onCreate' + JSON.stringify(want));
     let actionStr = want.action;
