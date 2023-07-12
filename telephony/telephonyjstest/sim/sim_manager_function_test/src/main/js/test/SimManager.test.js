@@ -496,5 +496,111 @@ describe('SimManagerTest', function () {
           done();
       });
   });
+  /**
+   * @tc.number Telephony_Sim_getSimAccountInfo_CallBack_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sim_getSimAccountInfo_CallBack_0100', 0, async function (done) {
+    sim.getSimAccountInfo(0, (err, data) => {
+      if(err){
+        expect().assertFail();
+        done();
+        return;
+      }
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+      expect(true).assertTrue();
+      done();
+    });
+  });
+  /**
+   * @tc.number Telephony_Sim_getSimAccountInfo_Promise_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sim_getSimAccountInfo_Promise_0100', 0, async function (done) {
+    let promise = sim.getSimAccountInfo(0);
+    promise.then(data => {
+        console.info("Telephony_Sim_getSimAccountInfo_Promise_0100 data = " + JSON.stringify(data));
+        expect(true).assertTrue();
+        done();
+    }).catch(err => {
+        console.info("Telephony_Sim_getSimAccountInfo_Promise_0100 err = " + JSON.stringify(err));
+        expect().assertFail();
+        done();
+    });
+  });
+  /**
+   * @tc.number Telephony_Sim_getActiveSimAccountInfoList_CallBack_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sim_getActiveSimAccountInfoList_CallBack_0100', 0, async function (done) {
+    sim.getActiveSimAccountInfoList(0, (err, data) => {
+      if(err){
+        expect().assertFail();
+        done();
+        return;
+      }
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+      expect(true).assertTrue();
+      done();
+    });
+  });
+  /**
+   * @tc.number Telephony_Sim_getActiveSimAccountInfoList_Promise_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sim_getActiveSimAccountInfoList_Promise_0100', 0, async function (done) {
+    let promise = sim.getActiveSimAccountInfoList();
+    promise.then(data => {
+        console.info("Telephony_Sim_getActiveSimAccountInfoList_Promise_0100 data = " + JSON.stringify(data));
+        expect(true).assertTrue();
+        done();
+    }).catch(err => {
+        console.info("Telephony_Sim_getActiveSimAccountInfoList_Promise_0100 err = " + JSON.stringify(err));
+        expect().assertFail();
+        done();
+    });
+  });
+
+  /**
+   * @tc.number Telephony_Sim_getDefaultVoiceSimId_CallBack_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sim_getDefaultVoiceSimId_CallBack_0100', 0, async function (done) {
+    sim.getDefaultVoiceSimId(0, (err, data) => {
+      if(err){
+        expect().assertFail();
+        done();
+        return;
+      }
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+      expect(true).assertTrue();
+      done();
+    });
+  });
+  /**
+   * @tc.number Telephony_Sim_getDefaultVoiceSimId_Promise_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sim_getDefaultVoiceSimId_Promise_0100', 0, async function (done) {
+    let promise = sim.getDefaultVoiceSimId();
+    promise.then(data => {
+        console.info("Telephony_Sim_getDefaultVoiceSimId_Promise_0100 data = " + JSON.stringify(data));
+        expect(true).assertTrue();
+        done();
+    }).catch(err => {
+        console.info("Telephony_Sim_getDefaultVoiceSimId_Promise_0100 err = " + JSON.stringify(err));
+        expect().assertFail();
+        done();
+    });
+  });
+
+
+
 })
 }

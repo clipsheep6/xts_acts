@@ -120,5 +120,40 @@ export default function smsUiJsunit() {
       expect(sms.ShortMessageClass.FORWARD_MESSAGE == 4).assertTrue();
       done();
     });
+
+      /**
+   * @tc.number Telephony_Sms_getDefaultSmsSimId_CallBack_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sms_getDefaultSmsSimId_CallBack_0100', 0, async function (done) {
+    sms.getDefaultSmsSimId(0, (err, data) => {
+      if(err){
+        expect().assertFail();
+        done();
+        return;
+      }
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+      expect(true).assertTrue();
+      done();
+    });
+  });
+  /**
+   * @tc.number Telephony_Sms_getDefaultSmsSimId_Promise_0100
+   * @tc.name   Test getOpName interface
+   * @tc.desc   
+   */
+  it('Telephony_Sms_getDefaultSmsSimId_Promise_0100', 0, async function (done) {
+    let promise = sms.getDefaultSmsSimId();
+    promise.then(data => {
+        console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 data = " + JSON.stringify(data));
+        expect(true).assertTrue();
+        done();
+    }).catch(err => {
+        console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 err = " + JSON.stringify(err));
+        expect().assertFail();
+        done();
+    });
+  });
   })
 }
