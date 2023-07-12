@@ -25,9 +25,6 @@
 #define TEST_CURVE_256 256
 #define TEST_CURVE_512 512
 
-#define TEST_ALIAS_ED25519_ALICE "test_ed25519_alice"
-#define TEST_ALIAS_ED25519_BOB "test_ed25519_bob"
-
 static uint8_t g_buffer[TEST_CURVE_256];
 static uint32_t g_bufferSize = TEST_CURVE_256;
 static uint8_t g_pubKey[TEST_CURVE_512] = {0};
@@ -227,12 +224,6 @@ static int32_t TestExportImportEd25519SignVerify(struct HksBlob alias)
     return ret;
 }
 
-static int32_t TestEd25519Agree(struct HksBlob aliasAlice, struct HksBlob aliasBob)
-{
-    // TODO 补充用例
-    return HKS_SUCCESS;
-}
-
 int32_t TestCurve25519All()
 {
     struct HksBlob ed25519Alias = { strlen(TEST_ALIAS_ED25519), (uint8_t *)TEST_ALIAS_ED25519 };
@@ -246,11 +237,6 @@ int32_t TestCurve25519All()
     TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestExportImportEd25519SignVerify(ed25519Alias);
-    TEST_ASSERT_EQUAL(0, ret);
-
-    struct HksBlob ed25519AliasAlice = { strlen(TEST_ALIAS_ED25519_ALICE), (uint8_t *)TEST_ALIAS_ED25519_ALICE };
-    struct HksBlob ed25519AliasBob = { strlen(TEST_ALIAS_ED25519_BOB), (uint8_t *)TEST_ALIAS_ED25519_BOB };
-    ret = TestEd25519Agree(ed25519AliasAlice, ed25519AliasBob);
     TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }

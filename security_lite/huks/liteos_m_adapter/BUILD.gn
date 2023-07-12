@@ -56,6 +56,8 @@ hctest_suite("ActsHuksHalFunctionTest") {
     "//base/iothardware/peripheral/interfaces/inner_api",
     "//base/security/huks/frameworks/huks_standard/main/common/include",
     "../common/include",
+
+    "//base/security/huks/utils/crypto_adapter" # hks_client_service_adapter.h for TranslateToX509PublicKey
   ]
 
   deps = [ "//test/xts/acts/security_lite/huks/common:huks_test_common" ]
