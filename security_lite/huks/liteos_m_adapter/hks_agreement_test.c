@@ -123,7 +123,7 @@ static int32_t AgreeKey(const struct HksTestAgreeParamSet *agreeParamSetParams, 
 static void ExecHksAgreementTest001(void const *argument)
 {
     LiteTestPrint("HksAgreementTest001 Begin!\n");
-    
+
       /* 1. generate key */
     struct HksBlob *privateKey = NULL;
     struct HksBlob *peerPubKeyAlias = NULL;
@@ -164,7 +164,7 @@ static void ExecHksAgreementTest001(void const *argument)
     TestFreeBlob(&peerPublicKey);
     TestFreeBlob(&agreeKey);
     TEST_ASSERT_EQUAL(0, ret);
-    
+
     LiteTestPrint("HksAgreementTest001 End!\n");
     osThreadExit();
 }
@@ -172,7 +172,7 @@ static void ExecHksAgreementTest001(void const *argument)
 static void ExecHksAgreementTest002(void const *argument)
 {
     LiteTestPrint("HksAgreementTest002 Begin!\n");
-    
+
       /* 1. generate key */
     struct HksBlob *privateKey = NULL;
     struct HksBlob *peerPubKeyAlias = NULL;
@@ -213,7 +213,7 @@ static void ExecHksAgreementTest002(void const *argument)
     TestFreeBlob(&peerPublicKey);
     TestFreeBlob(&agreeKey);
     TEST_ASSERT_EQUAL(0, ret);
-    
+
     LiteTestPrint("HksAgreementTest002 End!\n");
     osThreadExit();
 }
@@ -224,7 +224,7 @@ static void ExecHksAgreementTest002(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksAgreementTest, HksAgreementTest001, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;

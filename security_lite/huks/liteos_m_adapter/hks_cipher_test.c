@@ -221,7 +221,6 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest002, Level1)
     id = osThreadNew((osThreadFunc_t)ExecHksCipherTest002, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
     LiteTestPrint("HksCipherTest002 End2!\n");
-    
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest003, Level1)
@@ -272,7 +271,7 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest005, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksCipherTest005, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCipherTest005 End2!\n");    
+    LiteTestPrint("HksCipherTest005 End2!\n");
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest006, Level1)
@@ -289,7 +288,7 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest006, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksCipherTest006, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCipherTest006 End2!\n");    
+    LiteTestPrint("HksCipherTest006 End2!\n");
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest007, Level1)
@@ -306,11 +305,11 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest007, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksCipherTest007, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCipherTest007 End2!\n");    
+    LiteTestPrint("HksCipherTest007 End2!\n");
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest008, Level1)
-{ 
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -327,7 +326,7 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest008, Level1)
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest009, Level1)
-{ 
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -344,7 +343,7 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest009, Level1)
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest010, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -357,11 +356,11 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest010, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksCipherTest010, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCipherTest010 End2!\n");    
+    LiteTestPrint("HksCipherTest010 End2!\n");
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest011, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -378,7 +377,7 @@ LITE_TEST_CASE(HksCipherTest, HksCipherTest011, Level1)
 }
 
 LITE_TEST_CASE(HksCipherTest, HksCipherTest012, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;

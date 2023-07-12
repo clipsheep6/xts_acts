@@ -60,10 +60,10 @@ static void ExecHksInitialize(void const *argument)
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
- 
+
 static BOOL HksSafeCompareKeyTestSetUp()
 {
-    LiteTestPrint("setup\n");   
+    LiteTestPrint("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -76,7 +76,7 @@ static BOOL HksSafeCompareKeyTestSetUp()
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksSafeCompareKeyTestSetUp End2!\n"); 
+    LiteTestPrint("HksSafeCompareKeyTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -241,7 +241,7 @@ static void ExcHksSafeCompareKeyTest001(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksSafeCompareKeyTest, HksSafeCompareKeyTest001, Level1)
-{  
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -254,7 +254,7 @@ LITE_TEST_CASE(HksSafeCompareKeyTest, HksSafeCompareKeyTest001, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksSafeCompareKeyTest001, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksSafeCompareKeyTest001 End2!\n");    
+    LiteTestPrint("HksSafeCompareKeyTest001 End2!\n");
 }
 RUN_TEST_SUITE(HksSafeCompareKeyTest);
 

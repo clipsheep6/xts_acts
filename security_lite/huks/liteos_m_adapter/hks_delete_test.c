@@ -129,7 +129,7 @@ LITE_TEST_CASE(HksDeleteTest, HksDeleteTest001, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksDeleteTest001, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksDeleteTest001 End2!\n");    
+    LiteTestPrint("HksDeleteTest001 End2!\n");
 }
 
 RUN_TEST_SUITE(HksDeleteTest);

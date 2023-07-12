@@ -180,7 +180,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest001, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest002, Level1)
-{ 
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -193,7 +193,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest002, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest002, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest002 End2!\n");  
+    LiteTestPrint("HksOthersTest002 End2!\n");
 }
 
 /**
@@ -202,7 +202,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest002, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest003, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -224,7 +224,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest003, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest004, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -259,7 +259,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest005, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest005, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest005 End2!\n"); 
+    LiteTestPrint("HksOthersTest005 End2!\n");
 }
 
 /**
@@ -290,7 +290,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest006, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest007, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;

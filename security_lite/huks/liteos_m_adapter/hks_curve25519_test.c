@@ -121,7 +121,7 @@ static void LocalHksCurve25519Test004(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test001, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -134,7 +134,7 @@ LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test001, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)LocalHksCurve25519Test001, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519Test001 End2!\n");    
+    LiteTestPrint("HksCurve25519Test001 End2!\n");
 }
 
 /**

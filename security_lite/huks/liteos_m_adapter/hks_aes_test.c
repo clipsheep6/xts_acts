@@ -180,7 +180,6 @@ LITE_TEST_CASE(HksAesTest, HksAesTest003, Level1)
     id = osThreadNew((osThreadFunc_t)ExecHksAesTest003, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
     LiteTestPrint("HksAesTest003 End2!\n");
-    
 }
 #endif
 #endif /* _CUT_AUTHENTICATE_ */
@@ -191,7 +190,7 @@ LITE_TEST_CASE(HksAesTest, HksAesTest003, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksAesTest, HksAesTest004, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;

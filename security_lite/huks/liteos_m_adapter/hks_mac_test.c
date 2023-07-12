@@ -376,7 +376,7 @@ static void ExecHksMacTest002(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -399,7 +399,7 @@ LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksMacTest, HksMacTest002, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;

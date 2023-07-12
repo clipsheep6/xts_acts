@@ -74,7 +74,7 @@ static BOOL HksSafeCipherKeyTestSetUp()
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksSafeCipherKeyTestSetUp End2!\n"); 
+    LiteTestPrint("HksSafeCipherKeyTestSetUp End2!\n");
 
     return TRUE;
 }

@@ -91,7 +91,7 @@ static void ExecHksGenerateRandomTest001(void const *argument)
 {
     int32_t ret;
     struct HksBlob *random = NULL;
-    LiteTestPrint("HksGenerateRandomTest001 Begin!\n");  
+    LiteTestPrint("HksGenerateRandomTest001 Begin!\n");
 
     ret = TestConstructBlobOut(&random,
         g_testGenRandomParams[0].randomParams.blobExist,
@@ -108,7 +108,7 @@ static void ExecHksGenerateRandomTest001(void const *argument)
 
     TestFreeBlob(&random);
     TEST_ASSERT_EQUAL(0, ret);
-    
+
     LiteTestPrint("HksGenerateRandomTest001 End!\n");
     osThreadExit();
 }

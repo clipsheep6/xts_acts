@@ -101,7 +101,7 @@ static const struct HksTestGenKeyParams g_testGenKeyParams[] = {
 
 static void ExecHksGenerateKeyTest001(void const *argument)
 {
-    LiteTestPrint("HksGenerateKeyTest001 Begin!\n");  
+    LiteTestPrint("HksGenerateKeyTest001 Begin!\n");
 
     uint32_t times = 1;
     uint32_t index = 0;
@@ -150,7 +150,7 @@ static void ExecHksGenerateKeyTest001(void const *argument)
     HksFreeParamSet(&paramSetOut);
     HKS_TEST_LOG_I("[%u]TestGenerateKey, Testcase_GenerateKey_[%03u] pass!", times, g_testGenKeyParams[index].testId);
     TEST_ASSERT_EQUAL(0, ret);
-    
+
     LiteTestPrint("HksGenerateKeyTest001 End!\n");
     osThreadExit();
 }
