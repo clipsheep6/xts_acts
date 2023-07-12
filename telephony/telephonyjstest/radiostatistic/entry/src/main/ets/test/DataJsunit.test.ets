@@ -165,7 +165,7 @@ export default function dataJsunit() {
        * @tc.desc    Enum value test
        */
     it("Telephony_Data_DefaultCellularDataSimId_DATA_GET_SimId", 0, async function (done) {
-      let caseName = 'Telephony_Data_DataConnectState_DATA_STATE_SUSPENDED';
+      let caseName = 'Telephony_Data_DefaultCellularDataSimId_DATA_GET_SimId';
       console.log(`==========> ${caseName} Test start ==========>`);
       console.log("Result: "+ data.getDefaultCellularDataSimId());
       expect(true).assertTrue();
