@@ -129,11 +129,12 @@ export default function smsUiJsunit() {
   it('Telephony_Sms_getDefaultSmsSimId_CallBack_0100', 0, async function (done) {
     sms.getDefaultSmsSimId((err, data) => {
       if(err){
+        console.info("Telephony_Sms_getDefaultSmsSimId_CallBack_0100 err = " + JSON.stringify(data));
         expect().assertFail();
         done();
         return;
       }
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+      console.log(`Telephony_Sms_getDefaultSmsSimId_CallBack_0100 callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
       expect(true).assertTrue();
       done();
     });
