@@ -1214,7 +1214,7 @@ export default function abilityTest() {
           expect(input_format).assertEqual(mindSporeLite.Format.NHWC);
           let input_dataSize = modelInputs[0].dataSize
           console.log(input_dataSize.toString());
-          expect(input_dataSize.toString()).assertEqual("24330240");
+          expect(input_dataSize.toString()).assertEqual("27648");
           console.log('=========MSLITE resize start=====')
           let new_dim = new Array([1,96,96,1]);
           let resize_result = msliteModel.resize(modelInputs, new_dim);
@@ -1334,7 +1334,7 @@ export default function abilityTest() {
         if (num==10) {
           done();
         }
-       }
+      }
     })
 
     // 异常场景：Build多次
@@ -1430,7 +1430,7 @@ export default function abilityTest() {
             expect(input_format).assertEqual(mindSporeLite.Format.NHWC);
             let input_dataSize = modelInputs[0].dataSize
             console.log(input_dataSize.toString());
-            expect(input_dataSize.toString()).assertEqual("24330240");
+            expect(input_dataSize.toString()).assertEqual("27648");
             modelInputs[0].setData(inputBuffer.buffer);
             let Inputs2 = new Float32Array(modelInputs[0].getData());
             for (var i = 0; i < 5; i++) {
@@ -1498,7 +1498,7 @@ export default function abilityTest() {
               expect(input_format).assertEqual(mindSporeLite.Format.NHWC);
               let input_dataSize = modelInputs[0].dataSize
               console.log(input_dataSize.toString());
-              expect(input_dataSize.toString()).assertEqual("24330240");
+              expect(input_dataSize.toString()).assertEqual("3145728");
 
               console.log(modelInputs[1].name);
               expect(modelInputs[1].name.toString()).assertEqual("b");
@@ -1648,7 +1648,7 @@ export default function abilityTest() {
                 expect(input_format).assertEqual(mindSporeLite.Format.NHWC);
                 let input_dataSize = modelInputs[0].dataSize
                 console.log(input_dataSize.toString());
-                expect(input_dataSize.toString()).assertEqual("24330240");
+                expect(input_dataSize.toString()).assertEqual("49152");
 
                 console.log(modelInputs[1].name);
                 expect(modelInputs[1].name.toString()).assertEqual("batch_normalization_8/batchnorm/add");
@@ -2178,5 +2178,6 @@ export default function abilityTest() {
         done()
       }
     })
+
   })
 }
