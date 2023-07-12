@@ -143,7 +143,7 @@ static void ExecHksGenerateKeyTest001(void const *argument)
     if ((ret == HKS_SUCCESS) &&
         !(g_testGenKeyParams[index].paramSetParams.setKeyStorageFlag == true) &&
         (g_testGenKeyParams[index].paramSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     HksFreeParamSet(&paramSet);

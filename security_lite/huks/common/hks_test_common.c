@@ -63,12 +63,12 @@ int32_t TestConstuctBlob(struct HksBlob **blob, bool blobExist, uint32_t blobSiz
             struct HksBlob tmp;
             tmp.size = HKS_TEST_1024;
             tmp.data = (uint8_t *)HksTestMalloc(tmp.size);
-            HKS_TEST_ASSERT(tmp.data != NULL);
+            TEST_ASSERT_NOT_EQUAL(NULL, tmp.data);
             (void)memset_s(tmp.data, tmp.size, 0, tmp.size);
 
-            HKS_TEST_ASSERT(HksGenerateRandom(NULL, &tmp) == 0);
+            TEST_ASSERT_EQUAL(0, HksGenerateRandom(NULL, &tmp));
 
-            HKS_TEST_ASSERT(memcpy_s((*blob)->data + offset, realBlobDataSize - offset, tmp.data, tmp.size) == EOK);
+            TEST_ASSERT_EQUAL(EOK, memcpy_s((*blob)->data + offset, realBlobDataSize - offset, tmp.data, tmp.size));
             offset += tmp.size;
             HksTestFree(tmp.data);
         }
@@ -77,11 +77,11 @@ int32_t TestConstuctBlob(struct HksBlob **blob, bool blobExist, uint32_t blobSiz
         struct HksBlob tmp;
         tmp.size = remainSize;
         tmp.data = (uint8_t *)HksTestMalloc(tmp.size);
-        HKS_TEST_ASSERT(tmp.data != NULL);
+        TEST_ASSERT_NOT_EQUAL(NULL, tmp.data);
         (void)memset_s(tmp.data, tmp.size, 0, tmp.size);
 
-        HKS_TEST_ASSERT(HksGenerateRandom(NULL, &tmp) == 0);
-        HKS_TEST_ASSERT(memcpy_s((*blob)->data + offset, remainSize, tmp.data, tmp.size) == EOK);
+        TEST_ASSERT_EQUAL(0, HksGenerateRandom(NULL, &tmp));
+        TEST_ASSERT_EQUAL(EOK, memcpy_s((*blob)->data + offset, remainSize, tmp.data, tmp.size));
         offset += tmp.size;
         HksTestFree(tmp.data);
     } else {
@@ -105,7 +105,7 @@ static int32_t TestGenerateKeyParamSetPre(struct GenerateKeyParamSetStructure *p
         algParam.tag = HKS_TAG_ALGORITHM;
         algParam.uint32Param = paramStruct->alg;
         ret = HksAddParams(paramSet, (const struct HksParam *)&algParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setKeySize) {
@@ -113,7 +113,7 @@ static int32_t TestGenerateKeyParamSetPre(struct GenerateKeyParamSetStructure *p
         keySizeParam.tag = HKS_TAG_KEY_SIZE;
         keySizeParam.uint32Param = paramStruct->keySize;
         ret = HksAddParams(paramSet, (const struct HksParam *)&keySizeParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setPurpose) {
@@ -121,7 +121,7 @@ static int32_t TestGenerateKeyParamSetPre(struct GenerateKeyParamSetStructure *p
         purposeParam.tag = HKS_TAG_PURPOSE;
         purposeParam.uint32Param = paramStruct->purpose;
         ret = HksAddParams(paramSet, (const struct HksParam *)&purposeParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setDigest) {
@@ -130,7 +130,7 @@ static int32_t TestGenerateKeyParamSetPre(struct GenerateKeyParamSetStructure *p
         digestParam.uint32Param = paramStruct->digest;
         ret = HksAddParams(paramSet, (const struct HksParam *)&digestParam, 1);
         HKS_TEST_LOG_I("HksAddParams ret = 0x%X", ret);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setPadding) {
@@ -138,7 +138,7 @@ static int32_t TestGenerateKeyParamSetPre(struct GenerateKeyParamSetStructure *p
         paddingParam.tag = HKS_TAG_PADDING;
         paddingParam.uint32Param = paramStruct->padding;
         ret = HksAddParams(paramSet, (const struct HksParam *)&paddingParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
     return ret;
 }
@@ -155,7 +155,7 @@ static int32_t TestGenerateKeyParamSetPost(struct GenerateKeyParamSetStructure *
         keyMode.tag = HKS_TAG_BLOCK_MODE;
         keyMode.uint32Param = paramStruct->mode;
         ret = HksAddParams(paramSet, (const struct HksParam *)&keyMode, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setKeyStorageFlag) {
@@ -163,17 +163,17 @@ static int32_t TestGenerateKeyParamSetPost(struct GenerateKeyParamSetStructure *
         keyStorageFlagParam.tag = HKS_TAG_KEY_STORAGE_FLAG;
         keyStorageFlagParam.uint32Param = paramStruct->keyStorageFlag;
         ret = HksAddParams(paramSet, (const struct HksParam *)&keyStorageFlagParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParam tmpParam = {0};
     tmpParam.tag = HKS_TAG_KEY_ROLE;
     tmpParam.uint32Param = 0xFFFFFFFF;
     ret = HksAddParams(paramSet, (const struct HksParam *)&tmpParam, 1);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksBuildParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     *(paramStruct->outParamSet) = paramSet;
     return ret;
@@ -183,12 +183,12 @@ int32_t TestConstructGenerateKeyParamSet(struct GenerateKeyParamSetStructure *pa
 {
     struct HksParamSet *paramSet = NULL;
     int32_t ret = HksInitParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestGenerateKeyParamSetPre(paramStruct, paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     ret = TestGenerateKeyParamSetPost(paramStruct, paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -236,7 +236,7 @@ int32_t TestAesCipherParamSetPre(struct AesCipherParamSetStructure *paramStruct,
         algParam.tag = HKS_TAG_ALGORITHM;
         algParam.uint32Param = paramStruct->alg;
         ret = HksAddParams(paramSet, (const struct HksParam *)&algParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setPurpose) {
@@ -244,7 +244,7 @@ int32_t TestAesCipherParamSetPre(struct AesCipherParamSetStructure *paramStruct,
         purposeParam.tag = HKS_TAG_PURPOSE;
         purposeParam.uint32Param = paramStruct->purpose;
         ret = HksAddParams(paramSet, (const struct HksParam *)&purposeParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setPadding) {
@@ -252,7 +252,7 @@ int32_t TestAesCipherParamSetPre(struct AesCipherParamSetStructure *paramStruct,
         paddingParam.tag = HKS_TAG_PADDING;
         paddingParam.uint32Param = paramStruct->padding;
         ret = HksAddParams(paramSet, (const struct HksParam *)&paddingParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setBlockMode) {
@@ -260,7 +260,7 @@ int32_t TestAesCipherParamSetPre(struct AesCipherParamSetStructure *paramStruct,
         keyMode.tag = HKS_TAG_BLOCK_MODE;
         keyMode.uint32Param = paramStruct->mode;
         ret = HksAddParams(paramSet, (const struct HksParam *)&keyMode, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setIv) {
@@ -268,7 +268,7 @@ int32_t TestAesCipherParamSetPre(struct AesCipherParamSetStructure *paramStruct,
         ivParam.tag = HKS_TAG_IV;
         ivParam.blob = *(paramStruct->ivBlob);
         ret = HksAddParams(paramSet, (const struct HksParam *)&ivParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
     return ret;
 }
@@ -284,7 +284,7 @@ int32_t TestAesCipherParamSetPost(struct AesCipherParamSetStructure *paramStruct
         nonceParam.tag = HKS_TAG_NONCE;
         nonceParam.blob = *(paramStruct->nonceBlob);
         ret = HksAddParams(paramSet, (const struct HksParam *)&nonceParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setAad) {
@@ -292,7 +292,7 @@ int32_t TestAesCipherParamSetPost(struct AesCipherParamSetStructure *paramStruct
         aadParam.tag = HKS_TAG_ASSOCIATED_DATA;
         aadParam.blob = *(paramStruct->aadBlob);
         ret = HksAddParams(paramSet, (const struct HksParam *)&aadParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setIsKeyAlias) {
@@ -300,17 +300,17 @@ int32_t TestAesCipherParamSetPost(struct AesCipherParamSetStructure *paramStruct
         isKeyAilasParam.tag = HKS_TAG_IS_KEY_ALIAS;
         isKeyAilasParam.boolParam = paramStruct->isKeyAlias;
         ret = HksAddParams(paramSet, (const struct HksParam *)&isKeyAilasParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParam tmpParam = {0};
     tmpParam.tag = HKS_TAG_KEY_ROLE;
     tmpParam.uint32Param = 0xFFFFFFFF;
     ret = HksAddParams(paramSet, (const struct HksParam *)&tmpParam, 1);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksBuildParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     *(paramStruct->outParamSet) = paramSet;
     return ret;
@@ -320,12 +320,12 @@ int32_t TestConstructAesCipherParamSet(struct AesCipherParamSetStructure *paramS
 {
     struct HksParamSet *paramSet = NULL;
     int32_t ret = HksInitParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestAesCipherParamSetPre(paramStruct, paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     ret = TestAesCipherParamSetPost(paramStruct, paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -336,14 +336,14 @@ int32_t TestConstructMacParamSet(struct TestMacParamSetStructure *paramStruct)
     }
     struct HksParamSet *paramSet = NULL;
     int32_t ret = HksInitParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     if (paramStruct->setPurpose) {
         struct HksParam purposeParam = {0};
         purposeParam.tag = HKS_TAG_PURPOSE;
         purposeParam.uint32Param = paramStruct->purpose;
         ret = HksAddParams(paramSet, (const struct HksParam *)&purposeParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setDigest) {
@@ -351,7 +351,7 @@ int32_t TestConstructMacParamSet(struct TestMacParamSetStructure *paramStruct)
         digestParam.tag = HKS_TAG_DIGEST;
         digestParam.uint32Param = paramStruct->digest;
         ret = HksAddParams(paramSet, (const struct HksParam *)&digestParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setKeyAlias) {
@@ -359,17 +359,17 @@ int32_t TestConstructMacParamSet(struct TestMacParamSetStructure *paramStruct)
         keyIsKeyAlias.tag = HKS_TAG_IS_KEY_ALIAS;
         keyIsKeyAlias.boolParam = paramStruct->isKeyAlias;
         ret = HksAddParams(paramSet, (const struct HksParam *)&keyIsKeyAlias, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParam tmpParam = {0};
     tmpParam.tag = HKS_TAG_KEY_ROLE;
     tmpParam.uint32Param = 0xFFFFFFFF;
     ret = HksAddParams(paramSet, (const struct HksParam *)&tmpParam, 1);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksBuildParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     *(paramStruct->outParamSet) = paramSet;
     return ret;
@@ -382,14 +382,14 @@ int32_t TestConstructAgreeParamSet(struct TestAgreeParamSetStructure *paramStruc
     }
     struct HksParamSet *paramSet = NULL;
     int32_t ret = HksInitParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     if (paramStruct->setAlg) {
         struct HksParam algParam = {0};
         algParam.tag = HKS_TAG_ALGORITHM;
         algParam.uint32Param = paramStruct->alg;
         ret = HksAddParams(paramSet, (const struct HksParam *)&algParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setKeySize) {
@@ -397,7 +397,7 @@ int32_t TestConstructAgreeParamSet(struct TestAgreeParamSetStructure *paramStruc
         keySizeParam.tag = HKS_TAG_KEY_SIZE;
         keySizeParam.uint32Param = paramStruct->keySize;
         ret = HksAddParams(paramSet, (const struct HksParam *)&keySizeParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setIsKeyAlias) {
@@ -405,17 +405,17 @@ int32_t TestConstructAgreeParamSet(struct TestAgreeParamSetStructure *paramStruc
         isKeyAliasParam.tag = HKS_TAG_IS_KEY_ALIAS;
         isKeyAliasParam.uint32Param = paramStruct->isKeyAlias;
         ret = HksAddParams(paramSet, (const struct HksParam *)&isKeyAliasParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParam tmpParam = {0};
     tmpParam.tag = HKS_TAG_KEY_ROLE;
     tmpParam.uint32Param = 0xFFFFFFFF;
     ret = HksAddParams(paramSet, (const struct HksParam *)&tmpParam, 1);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksBuildParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     *(paramStruct->outParamSet) = paramSet;
     return ret;
@@ -433,7 +433,7 @@ int32_t TestDeriveParamSetPre(struct TestDeriveParamSetStructure *paramStruct, s
         algParam.tag = HKS_TAG_ALGORITHM;
         algParam.uint32Param = paramStruct->alg;
         ret = HksAddParams(paramSet, (const struct HksParam *)&algParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setPurpose) {
@@ -441,7 +441,7 @@ int32_t TestDeriveParamSetPre(struct TestDeriveParamSetStructure *paramStruct, s
         purposeParam.tag = HKS_TAG_PURPOSE;
         purposeParam.uint32Param = paramStruct->purpose;
         ret = HksAddParams(paramSet, (const struct HksParam *)&purposeParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setDigest) {
@@ -449,7 +449,7 @@ int32_t TestDeriveParamSetPre(struct TestDeriveParamSetStructure *paramStruct, s
         digestParam.tag = HKS_TAG_DIGEST;
         digestParam.uint32Param = paramStruct->digest;
         ret = HksAddParams(paramSet, (const struct HksParam *)&digestParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setIteration) {
@@ -457,7 +457,7 @@ int32_t TestDeriveParamSetPre(struct TestDeriveParamSetStructure *paramStruct, s
         iterationParam.tag = HKS_TAG_ITERATION;
         iterationParam.uint32Param = paramStruct->iteration;
         ret = HksAddParams(paramSet, (const struct HksParam *)&iterationParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
     return ret;
 }
@@ -473,7 +473,7 @@ int32_t TestDeriveParamSetPost(struct TestDeriveParamSetStructure *paramStruct, 
         saltParam.tag = HKS_TAG_SALT;
         saltParam.blob = *(paramStruct->saltBlob);
         ret = HksAddParams(paramSet, (const struct HksParam *)&saltParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setInfo) {
@@ -481,7 +481,7 @@ int32_t TestDeriveParamSetPost(struct TestDeriveParamSetStructure *paramStruct, 
         infoParam.tag = HKS_TAG_INFO;
         infoParam.blob = *(paramStruct->infoBlob);
         ret = HksAddParams(paramSet, (const struct HksParam *)&infoParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if (paramStruct->setIsKeyAlias) {
@@ -489,17 +489,17 @@ int32_t TestDeriveParamSetPost(struct TestDeriveParamSetStructure *paramStruct, 
         isKeyAliasParam.tag = HKS_TAG_IS_KEY_ALIAS;
         isKeyAliasParam.boolParam = paramStruct->isKeyAlias;
         ret = HksAddParams(paramSet, (const struct HksParam *)&isKeyAliasParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParam tmpParam = {0};
     tmpParam.tag = HKS_TAG_KEY_ROLE;
     tmpParam.uint32Param = 0xFFFFFFFF;
     ret = HksAddParams(paramSet, (const struct HksParam *)&tmpParam, 1);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksBuildParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     *(paramStruct->outParamSet) = paramSet;
     return ret;
@@ -509,12 +509,12 @@ int32_t TestConstructDeriveParamSet(struct TestDeriveParamSetStructure *paramStr
 {
     struct HksParamSet *paramSet = NULL;
     int32_t ret = HksInitParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestDeriveParamSetPre(paramStruct, paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     ret = TestDeriveParamSetPost(paramStruct, paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -528,24 +528,24 @@ int32_t TestConstructHashParamSet(
     }
     struct HksParamSet *paramSet = NULL;
     int32_t ret = HksInitParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     if (setDigest) {
         struct HksParam digestParam = {0};
         digestParam.tag = HKS_TAG_DIGEST;
         digestParam.uint32Param = digest;
         ret = HksAddParams(paramSet, (const struct HksParam *)&digestParam, 1);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParam tmpParam = {0};
     tmpParam.tag = HKS_TAG_KEY_ROLE;
     tmpParam.uint32Param = 0xFFFFFFFF;
     ret = HksAddParams(paramSet, (const struct HksParam *)&tmpParam, 1);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksBuildParamSet(&paramSet);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     *outParamSet = paramSet;
     return ret;
@@ -560,7 +560,7 @@ int32_t HuksGenerateKey(struct HksBlob **keyAlias, const struct HksTestBlobParam
         keyAliasParams->blobSize,
         keyAliasParams->blobDataExist,
         keyAliasParams->blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSet = NULL;
     struct GenerateKeyParamSetStructure paramStruct = {
@@ -575,17 +575,17 @@ int32_t HuksGenerateKey(struct HksBlob **keyAlias, const struct HksTestBlobParam
         genKeyParamSetParams->setKeyStorageFlag, genKeyParamSetParams->keyStorageFlag
     };
     ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSetOut = NULL;
     if (genKeyParamSetParamsOut != NULL) {
         ret = TestConstructGenerateKeyParamSetOut(&paramSet,
             genKeyParamSetParamsOut->paramSetExist, genKeyParamSetParamsOut->paramSetSize);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     ret = HksGenerateKey(*keyAlias, paramSet, paramSetOut);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     HksFreeParamSet(&paramSet);
     return ret;
@@ -598,7 +598,7 @@ int32_t GenerateLocalRandomKey(struct HksBlob **keyAlias, const struct HksTestBl
         localKeyParams->blobSize,
         localKeyParams->blobDataExist,
         localKeyParams->blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -645,7 +645,7 @@ int32_t GenerateLocalX25519Key(struct HksBlob **privateKey, struct HksBlob **pub
             localPrivateKeyParams->blobSize,
             localPrivateKeyParams->blobDataExist,
             localPrivateKeyParams->blobDataSize);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     if ((publicKey != NULL) && (localPublicKeyParams != NULL)) {
@@ -654,7 +654,7 @@ int32_t GenerateLocalX25519Key(struct HksBlob **privateKey, struct HksBlob **pub
             localPublicKeyParams->blobSize,
             localPublicKeyParams->blobDataExist,
             localPublicKeyParams->blobDataSize);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     struct HksParamSet *paramSet = NULL;
@@ -664,14 +664,14 @@ int32_t GenerateLocalX25519Key(struct HksBlob **privateKey, struct HksBlob **pub
         false, 0, false, 0, true, HKS_STORAGE_TEMP
     };
     ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSetOut = NULL;
     ret = TestConstructGenerateKeyParamSetOut(&paramSetOut, true, HKS_TEST_COMMON_128);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateKey(NULL, paramSet, paramSetOut);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     if ((publicKey != NULL) && ((*publicKey) != NULL) &&
         (localPublicKeyParams->blobDataExist) &&
@@ -712,7 +712,7 @@ int32_t TestGenDefaultKeyAndGetAlias(struct HksBlob **keyAlias)
         genKeyParam.keyAliasParams.blobSize,
         genKeyParam.keyAliasParams.blobDataExist,
         genKeyParam.keyAliasParams.blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSet = NULL;
     struct GenerateKeyParamSetStructure paramStruct = {
@@ -726,10 +726,10 @@ int32_t TestGenDefaultKeyAndGetAlias(struct HksBlob **keyAlias)
         false, 0
     };
     ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateKey(*keyAlias, paramSet, NULL);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     HksFreeParamSet(&paramSet);
     return ret;

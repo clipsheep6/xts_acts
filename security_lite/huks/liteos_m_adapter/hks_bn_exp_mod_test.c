@@ -113,7 +113,7 @@ static int32_t TestValue()
     int32_t ret = HksBnExpModRun(&tmpX, &tmpA, &tmpE, &tmpN, 1);
     for (int i = 0; i < HKS_TEST_8; ++i) {
         HKS_TEST_LOG_I("%x, %x", tmpBufX[i], bufX[i]);
-        HKS_TEST_ASSERT(tmpBufX[i] == bufX[i]);
+        TEST_ASSERT_EQUAL(bufX[i], tmpBufX[i]);
     }
     return ret;
 }

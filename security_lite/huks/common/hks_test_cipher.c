@@ -415,14 +415,14 @@ static int32_t ConstructDataToBlob(struct HksBlob **inData, struct HksBlob **out
         inTextParams->blobSize,
         inTextParams->blobDataExist,
         inTextParams->blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestConstuctBlob(outData,
         outTextParams->blobExist,
         outTextParams->blobSize,
         outTextParams->blobDataExist,
         outTextParams->blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -447,15 +447,15 @@ static int32_t Encrypt(struct CipherEncryptStructure *encryptStruct)
         uint32_t aadSize = encryptStruct->cipherParms->aadSize;
         if (ivSize != 0) {
             ret = TestConstuctBlob(encryptStruct->ivData, true, ivSize, true, ivSize);
-            HKS_TEST_ASSERT(ret == 0);
+            TEST_ASSERT_EQUAL(0, ret);
         }
         if (nonceSize != 0) {
             ret = TestConstuctBlob(encryptStruct->nonceData, true, nonceSize, true, nonceSize);
-            HKS_TEST_ASSERT(ret == 0);
+            TEST_ASSERT_EQUAL(0, ret);
         }
         if (aadSize != 0) {
             ret = TestConstuctBlob(encryptStruct->aadData, true, aadSize, true, aadSize);
-            HKS_TEST_ASSERT(ret == 0);
+            TEST_ASSERT_EQUAL(0, ret);
         }
         struct AesCipherParamSetStructure enParamStruct = {
             &encryptParamSet,
@@ -470,7 +470,7 @@ static int32_t Encrypt(struct CipherEncryptStructure *encryptStruct)
             encryptStruct->cipherParms->setIsKeyAlias, encryptStruct->cipherParms->isKeyAlias
         };
         ret = TestConstructAesCipherParamSet(&enParamStruct);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     ret = HksEncryptRun(encryptStruct->keyAlias, encryptParamSet, encryptStruct->plainData, encryptStruct->cipherData,
@@ -486,7 +486,7 @@ static int32_t DecryptCipher(struct CipherDecryptStructure *decryptStruct)
         decryptStruct->cipherParms->decryptedTextParams.blobSize,
         decryptStruct->cipherParms->decryptedTextParams.blobDataExist,
         decryptStruct->cipherParms->decryptedTextParams.blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *decryptParamSet = NULL;
     if (decryptStruct->cipherParms->decryptParamSetParams.cipherType == HKS_TEST_CIPHER_TYPE_RSA) {
@@ -522,7 +522,7 @@ static int32_t DecryptCipher(struct CipherDecryptStructure *decryptStruct)
             decryptStruct->cipherParms->decryptParamSetParams.isKeyAlias
         };
         ret = TestConstructAesCipherParamSet(&deParamStruct);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     ret = HksDecryptRun(decryptStruct->keyAlias, decryptParamSet, decryptStruct->cipherData,
@@ -551,15 +551,15 @@ static int32_t Decrypt(struct OnlyDecryptStructure *onlyDecryptStruct)
         uint32_t aadSize = onlyDecryptStruct->cipherParms->aadSize;
         if (ivSize != 0) {
             ret = TestConstuctBlob(onlyDecryptStruct->ivData, true, ivSize, true, ivSize);
-            HKS_TEST_ASSERT(ret == 0);
+            TEST_ASSERT_EQUAL(0, ret);
         }
         if (nonceSize != 0) {
             ret = TestConstuctBlob(onlyDecryptStruct->nonceData, true, nonceSize, true, nonceSize);
-            HKS_TEST_ASSERT(ret == 0);
+            TEST_ASSERT_EQUAL(0, ret);
         }
         if (aadSize != 0) {
             ret = TestConstuctBlob(onlyDecryptStruct->aadData, true, aadSize, true, aadSize);
-            HKS_TEST_ASSERT(ret == 0);
+            TEST_ASSERT_EQUAL(0, ret);
         }
         struct AesCipherParamSetStructure onlyDeParamStruct = {
             &decryptParamSet,
@@ -575,7 +575,7 @@ static int32_t Decrypt(struct OnlyDecryptStructure *onlyDecryptStruct)
         };
         ret = TestConstructAesCipherParamSet(&onlyDeParamStruct);
     }
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksDecryptRun(onlyDecryptStruct->keyAlias, decryptParamSet, onlyDecryptStruct->cipherData,
         onlyDecryptStruct->decryptedData, onlyDecryptStruct->performTimes);
@@ -596,12 +596,12 @@ int32_t BaseTestCipher(uint32_t times, uint32_t index, uint32_t performTimes)
         ret = HuksGenerateKey(&keyAlias, &g_testCipherParams[index].keyAliasParams,
             &g_testCipherParams[index].genKeyParamSetParams, &g_testCipherParams[index].genKeyParamSetParamsOut);
     }
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     struct HksBlob *plainData = NULL;
     struct HksBlob *cipherData = NULL;
     ret = ConstructDataToBlob(&plainData, &cipherData,
         &g_testCipherParams[index].plainTextParams, &g_testCipherParams[index].cipherTextParams);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     struct HksBlob *ivData = NULL;
     struct HksBlob *nonceData = NULL;
     struct HksBlob *aadData = NULL;
@@ -611,7 +611,7 @@ int32_t BaseTestCipher(uint32_t times, uint32_t index, uint32_t performTimes)
         plainData, cipherData, &ivData, &nonceData, &aadData, performTimes
     };
     ret = Encrypt(&testEncryptStruct);
-    HKS_TEST_ASSERT(ret == g_testCipherParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testCipherParams[index].expectResult, ret);
 
     /* 3. decrypt */
     struct HksBlob *decryptedData = NULL;
@@ -620,13 +620,13 @@ int32_t BaseTestCipher(uint32_t times, uint32_t index, uint32_t performTimes)
         &decryptedData, ivData, nonceData, aadData, performTimes
     };
     ret = DecryptCipher(&testDecryptStruct);
-    HKS_TEST_ASSERT(ret == g_testCipherParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testCipherParams[index].expectResult, ret);
 
-    HKS_TEST_ASSERT(plainData->size == decryptedData->size);
-    HKS_TEST_ASSERT(memcmp(plainData->data, decryptedData->data, plainData->size) == 0);
+    TEST_ASSERT_EQUAL(decryptedData->size, plainData->size);
+    TEST_ASSERT_EQUAL(0, memcmp(plainData->data, decryptedData->data, plainData->size));
     if (!((g_testCipherParams[index].genKeyParamSetParams.setKeyStorageFlag) &&
         g_testCipherParams[index].genKeyParamSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     TestFreeBlob(&plainData);
@@ -658,13 +658,13 @@ int32_t BaseTestEncrypt(uint32_t times, uint32_t index, uint32_t performTimes)
                 g_testEncryptParams[index].encryptAliasParams.blobDataSize);
         }
     }
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob *plainData = NULL;
     struct HksBlob *cipherData = NULL;
     ret = ConstructDataToBlob(&plainData, &cipherData,
         &g_testEncryptParams[index].inDataParams, &g_testEncryptParams[index].outDataParams);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob *ivData = NULL;
     struct HksBlob *nonceData = NULL;
@@ -675,11 +675,11 @@ int32_t BaseTestEncrypt(uint32_t times, uint32_t index, uint32_t performTimes)
         &nonceData, &aadData, performTimes
     };
     ret = Encrypt(&encryptStruct);
-    HKS_TEST_ASSERT(ret == g_testEncryptParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testEncryptParams[index].expectResult, ret);
 
     /* 4. delete key */
     if (g_testEncryptParams[index].keyAliasParams.blobExist) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     TestFreeBlob(&plainData);
@@ -710,13 +710,13 @@ int32_t BaseTestDecrypt(uint32_t times, uint32_t index, uint32_t performTimes)
                 g_testDecryptParams[index].decryptAliasParams.blobDataSize);
         }
     }
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob *cipherData = NULL;
     struct HksBlob *decryptedData = NULL;
     ret = ConstructDataToBlob(&cipherData, &decryptedData,
         &g_testDecryptParams[index].inDataParams, &g_testDecryptParams[index].outDataParams);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksBlob *ivData = NULL;
     struct HksBlob *nonceData = NULL;
@@ -727,11 +727,11 @@ int32_t BaseTestDecrypt(uint32_t times, uint32_t index, uint32_t performTimes)
         &nonceData, &aadData, performTimes
     };
     ret = Decrypt(&onlyDecryptStruct);
-    HKS_TEST_ASSERT(ret == g_testDecryptParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testDecryptParams[index].expectResult, ret);
 
     /* 4. delete key */
     if (g_testDecryptParams[index].keyAliasParams.blobExist) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     TestFreeBlob(&decryptedData);

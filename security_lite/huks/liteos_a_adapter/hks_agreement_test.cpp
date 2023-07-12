@@ -86,7 +86,7 @@ static int32_t AgreeKey(const struct HksTestAgreeParamSet *agreeParamSetParams, 
         agreeParamSetParams->setIsKeyAlias, agreeParamSetParams->isKeyAlias
     };
     int32_t ret = TestConstructAgreeParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = HksAgreeKeyRun(agreeParamSet, privateKey, peerPublicKey, agreedKey, 1);
     HksFreeParamSet(&agreeParamSet);

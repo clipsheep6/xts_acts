@@ -66,7 +66,7 @@ static void ExecHksExistTest001(void const *argument)
         TEST_ASSERT_EQUAL(0, TestGenDefaultKeyAndGetAlias(&keyAlias));
         ret = HksKeyExistRun(keyAlias, 1);
         TEST_ASSERT_EQUAL(g_testKeyExistParams[0].expectResult, ret);
-        TEST_ASSERT_TRUE(HksDeleteKey(keyAlias, NULL) == HKS_SUCCESS);
+        TEST_ASSERT_EQUAL(HKS_SUCCESS, HksDeleteKey(keyAlias, NULL));
     } else {
         ret = TestConstuctBlob(&keyAlias,
                                g_testKeyExistParams[0].keyAliasParams.blobExist,

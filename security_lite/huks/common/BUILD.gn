@@ -58,11 +58,19 @@ static_library("huks_test_common") {
     if (ohos_kernel_type == "liteos_m") {
       configs += [ ":hilog_lite_dir" ]
       deps += [ "//base/hiviewdfx/hilog_lite/frameworks/mini:hilog_lite" ]
+      include_dirs += [
+        "//test/xts/tools/lite/hctest/include",
+        "//third_party/unity/src",
+      ]
     } else if (ohos_kernel_type == "liteos_a") {
       configs += [ ":hilog_dir" ]
       deps += [
         "//base/hiviewdfx/hilog_lite/frameworks/featured:hilog_shared",
         "//third_party/bounds_checking_function:libsec_shared",
+      ]
+      include_dirs += [
+        "//third_party/googletest/googletest/include",
+        "//third_party/googletest/googlemock/include",
       ]
     }
   }

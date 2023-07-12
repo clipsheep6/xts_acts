@@ -48,6 +48,8 @@ hctest_suite("ActsHuksHalFunctionTest") {
     # 烧板子第一次跑能过，再重启板子就crash
     # TODO 尚未分析
     "hks_safe_compare_key_test.c", # 第一个跑的话能过 但是重启板子之后就必现crash 1 Tests 0 Failures 0 Ignored
+
+    "hks_x25519_test.c"
   ]
   include_dirs = [
     "//base/security/huks/interfaces/inner_api/huks_standard/main/include",

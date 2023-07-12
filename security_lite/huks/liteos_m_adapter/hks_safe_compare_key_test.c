@@ -128,19 +128,19 @@ static int32_t SafeTestGenerateKey(struct HksBlob *keyAlias)
         g_testGenKeyParams[index].paramSetParams.keyStorageFlag
     };
     int32_t ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSetOut = NULL;
     ret = TestConstructGenerateKeyParamSetOut(&paramSetOut,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetExist,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateKeyRun(keyAlias, paramSet, paramSetOut, performTimes);
     if (ret != g_testGenKeyParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testGenKeyParams[index].testId, ret);
     }
-    HKS_TEST_ASSERT(ret == g_testGenKeyParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testGenKeyParams[index].expectResult, ret);
 
     if (ret == g_testGenKeyParams[index].expectResult) {
         ret = 0;
@@ -223,13 +223,13 @@ static void ExcHksSafeCompareKeyTest001(void const *argument)
     LiteTestPrint("HksSafeCompareKeyTest001 Begin!\n");
     struct HksBlob keyAliasOne = { strlen(g_testOne), (uint8_t *)g_testOne };
     int32_t ret = SafeTestGenerateKey(&keyAliasOne);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     struct HksBlob keyAliasTwo = { strlen(g_testTwo), (uint8_t *)g_testTwo };
     ret = SafeTestGenerateKey(&keyAliasTwo);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = CompareKeyData(&keyAliasOne, &keyAliasTwo);
-    HKS_TEST_ASSERT(ret != 0);
+    TEST_ASSERT_NOT_EQUAL(0, ret);
     TEST_ASSERT_EQUAL(0, ret);
     LiteTestPrint("HksSafeCompareKeyTest001 End!\n");
     osThreadExit();

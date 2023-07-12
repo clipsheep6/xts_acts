@@ -88,7 +88,7 @@ static BOOL HksCipherTestTearDown()
 static void ExecHksCipherTest001(void const *argument)
 {
     LiteTestPrint("HksCipherTest001 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestCipher(1, TEST_INDEX_0, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestCipher(1, TEST_INDEX_0, 1));
     LiteTestPrint("HksCipherTest001 End!\n");
     osThreadExit();
 }
@@ -96,7 +96,7 @@ static void ExecHksCipherTest001(void const *argument)
 static void ExecHksCipherTest002(void const *argument)
 {
     LiteTestPrint("HksCipherTest002 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestCipher(1, TEST_INDEX_0, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestCipher(1, TEST_INDEX_0, 1));
     LiteTestPrint("HksCipherTest002 End!\n");
     osThreadExit();
 }
@@ -104,7 +104,7 @@ static void ExecHksCipherTest002(void const *argument)
 static void ExecHksCipherTest003(void const *argument)
 {
     LiteTestPrint("HksCipherTest003 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestEncrypt(1, TEST_INDEX_0, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestEncrypt(1, TEST_INDEX_0, 1));
     LiteTestPrint("HksCipherTest003 End!\n");
     osThreadExit();
 }
@@ -112,7 +112,7 @@ static void ExecHksCipherTest003(void const *argument)
 static void ExecHksCipherTest004(void const *argument)
 {
     LiteTestPrint("HksCipherTest004 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestEncrypt(1, TEST_INDEX_1, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestEncrypt(1, TEST_INDEX_1, 1));
     LiteTestPrint("HksCipherTest004 End!\n");
     osThreadExit();
 }
@@ -120,7 +120,7 @@ static void ExecHksCipherTest004(void const *argument)
 static void ExecHksCipherTest005(void const *argument)
 {
     LiteTestPrint("HksCipherTest005 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestEncrypt(1, TEST_INDEX_2, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestEncrypt(1, TEST_INDEX_2, 1));
     LiteTestPrint("HksCipherTest005 End!\n");
     osThreadExit();
 }
@@ -128,7 +128,7 @@ static void ExecHksCipherTest005(void const *argument)
 static void ExecHksCipherTest006(void const *argument)
 {
     LiteTestPrint("HksCipherTest006 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestEncrypt(1, TEST_INDEX_3, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestEncrypt(1, TEST_INDEX_3, 1));
     LiteTestPrint("HksCipherTest006 End!\n");
     osThreadExit();
 }
@@ -136,7 +136,7 @@ static void ExecHksCipherTest006(void const *argument)
 static void ExecHksCipherTest007(void const *argument)
 {
     LiteTestPrint("HksCipherTest007 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestEncrypt(1, TEST_INDEX_4, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestEncrypt(1, TEST_INDEX_4, 1));
     LiteTestPrint("HksCipherTest007 End!\n");
     osThreadExit();
 }
@@ -144,7 +144,7 @@ static void ExecHksCipherTest007(void const *argument)
 static void ExecHksCipherTest008(void const *argument)
 {
     LiteTestPrint("HksCipherTest008 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestDecrypt(1, TEST_INDEX_0, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestDecrypt(1, TEST_INDEX_0, 1));
     LiteTestPrint("HksCipherTest008 End!\n");
     osThreadExit();
 }
@@ -152,7 +152,7 @@ static void ExecHksCipherTest008(void const *argument)
 static void ExecHksCipherTest009(void const *argument)
 {
     LiteTestPrint("HksCipherTest009 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestDecrypt(1, TEST_INDEX_1, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestDecrypt(1, TEST_INDEX_1, 1));
     LiteTestPrint("HksCipherTest009 End!\n");
     osThreadExit();
 }
@@ -160,7 +160,7 @@ static void ExecHksCipherTest009(void const *argument)
 static void ExecHksCipherTest010(void const *argument)
 {
     LiteTestPrint("HksCipherTest010 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestDecrypt(1, TEST_INDEX_2, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestDecrypt(1, TEST_INDEX_2, 1));
     LiteTestPrint("HksCipherTest010 End!\n");
     osThreadExit();
 }
@@ -168,7 +168,7 @@ static void ExecHksCipherTest010(void const *argument)
 static void ExecHksCipherTest011(void const *argument)
 {
     LiteTestPrint("HksCipherTest011 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestDecrypt(1, TEST_INDEX_3, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestDecrypt(1, TEST_INDEX_3, 1));
     LiteTestPrint("HksCipherTest011 End!\n");
     osThreadExit();
 }
@@ -176,7 +176,7 @@ static void ExecHksCipherTest011(void const *argument)
 static void ExecHksCipherTest012(void const *argument)
 {
     LiteTestPrint("HksCipherTest012 Begin!\n");
-    TEST_ASSERT_TRUE(BaseTestDecrypt(1, TEST_INDEX_4, 1) == 0);
+    TEST_ASSERT_EQUAL(0, BaseTestDecrypt(1, TEST_INDEX_4, 1));
     LiteTestPrint("HksCipherTest012 End!\n");
     osThreadExit();
 }

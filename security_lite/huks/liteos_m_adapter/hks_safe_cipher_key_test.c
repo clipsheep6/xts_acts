@@ -183,7 +183,7 @@ LITE_TEST_CASE(HksSafeCipherKeyTest, HksSafeCipherKeyTest001, Level1)
     TEST_ASSERT_TRUE(ret != 0);
 
     ret = HksDeleteKey(&newAliasOne, NULL);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     TEST_ASSERT_EQUAL(0, ret);
     ret = HksDeleteKey(&newAliasTwo, NULL);
     TEST_ASSERT_EQUAL(0, ret);

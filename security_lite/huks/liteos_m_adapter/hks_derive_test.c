@@ -173,10 +173,10 @@ static int32_t DeriveKey(const struct HksTestDeriveParamSet *deriveParamSetParam
     uint32_t saltSize = deriveParamSetParams->saltSize;
     uint32_t infoSize = deriveParamSetParams->infoSize;
     if (saltSize != 0) {
-        HKS_TEST_ASSERT(TestConstuctBlob(saltData, true, saltSize, true, saltSize) == 0);
+        TEST_ASSERT_EQUAL(0, TestConstuctBlob(saltData, true, saltSize, true, saltSize));
     }
     if (infoSize != 0) {
-        HKS_TEST_ASSERT(TestConstuctBlob(infoData, true, infoSize, true, infoSize) == 0);
+        TEST_ASSERT_EQUAL(0, TestConstuctBlob(infoData, true, infoSize, true, infoSize));
     }
     struct TestDeriveParamSetStructure paramStruct = {
         &deriveParamSet,
@@ -190,7 +190,7 @@ static int32_t DeriveKey(const struct HksTestDeriveParamSet *deriveParamSetParam
         deriveParamSetParams->setIsKeyAlias, deriveParamSetParams->isKeyAlias
     };
     int32_t ret = TestConstructDeriveParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksDeriveKeyRun(deriveParamSet, masterKey, derivedKey, 1);
     HksFreeParamSet(&deriveParamSet);
@@ -240,7 +240,7 @@ static int32_t BaseTestDerive(uint32_t index)
     if (!(g_testDeriveParams[index].genKeyParamSetParams.setKeyStorageFlag &&
         (g_testDeriveParams[index].genKeyParamSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) &&
         (g_testDeriveParams[index].keyAliasParams.blobExist)) {
-        TEST_ASSERT_TRUE(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     TestFreeBlob(&derivedKey);
