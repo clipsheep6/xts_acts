@@ -127,7 +127,7 @@ export default function smsUiJsunit() {
    * @tc.desc   
    */
   it('Telephony_Sms_getDefaultSmsSimId_CallBack_0100', 0, async function (done) {
-    sms.getDefaultSmsSimId(0, (err, data) => {
+    sms.getDefaultSmsSimId((err, data) => {
       if(err){
         expect().assertFail();
         done();
