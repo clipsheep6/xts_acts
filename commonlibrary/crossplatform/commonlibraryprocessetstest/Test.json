@@ -18,7 +18,7 @@
     "kits": [
         {
             "test-file-name": [
-                "process_ets_test.hap"
+                "ActsCrossplatformProcessTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

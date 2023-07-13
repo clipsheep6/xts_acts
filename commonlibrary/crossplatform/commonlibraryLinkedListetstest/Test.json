@@ -18,7 +18,7 @@
     "kits": [
         {
             "test-file-name": [
-                "LinkedList_ets_test.hap"
+                "ActsCrossplatformLinkedListTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

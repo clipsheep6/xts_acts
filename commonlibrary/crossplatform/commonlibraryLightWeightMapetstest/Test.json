@@ -18,7 +18,7 @@
     "kits": [
         {
             "test-file-name": [
-                "LightWeightMap_ets_test.hap"
+                "ActsCrossplatformLightWeightMapTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
