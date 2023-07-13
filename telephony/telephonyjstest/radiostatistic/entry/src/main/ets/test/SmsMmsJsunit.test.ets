@@ -14,6 +14,7 @@
  */
 import { describe, expect, it } from '@ohos/hypium';
 import sms from '@ohos.telephony.sms';
+import radio from '@ohos.telephony.radio';
 
 export default function smsUiJsunit() {
   describe('smsUiJsunit', function () {
@@ -131,7 +132,7 @@ export default function smsUiJsunit() {
       if(err){
         console.info("Telephony_Sms_getDefaultSmsSimId_CallBack_0100 err = " + JSON.stringify(data));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sms_getDefaultSmsSimId_CallBack_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
@@ -158,7 +159,7 @@ export default function smsUiJsunit() {
     }).catch(err => {
         console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sms_getDefaultSmsSimId_Promise_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }

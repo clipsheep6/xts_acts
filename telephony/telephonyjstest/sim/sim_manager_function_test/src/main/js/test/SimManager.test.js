@@ -14,6 +14,7 @@
  */
 
 import sim from '@ohos.telephony.sim';
+import radio from '@ohos.telephony.radio';
 import * as env from './lib/Const';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 export default function SimManagerTest() {
