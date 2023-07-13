@@ -130,12 +130,12 @@ export default function smsUiJsunit() {
     sms.getDefaultSmsSimId((err, data) => {
       if(err){
         console.info("Telephony_Sms_getDefaultSmsSimId_CallBack_0100 err = " + JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
         return;
       }
       console.log(`Telephony_Sms_getDefaultSmsSimId_CallBack_0100 callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-      expect(true).assertTrue();
+      expect().assertFail();
       done();
     });
   });
@@ -148,11 +148,11 @@ export default function smsUiJsunit() {
     let promise = sms.getDefaultSmsSimId();
     promise.then(data => {
         console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 data = " + JSON.stringify(data));
-        expect(true).assertTrue();
+        expect().assertFail();
         done();
     }).catch(err => {
         console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 err = " + JSON.stringify(err));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
     });
   });

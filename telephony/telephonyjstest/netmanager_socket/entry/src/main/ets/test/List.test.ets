@@ -23,7 +23,6 @@ import networkManagerStatisticsTest from './NetworkManagerStatistics.test'
 
 
 export default function testsuite() {
-  //other
   networkManagerSocketTest();
   socketJsunit();
   webSocketJsunit();
