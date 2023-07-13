@@ -18,8 +18,8 @@ import connectionJsunit from './ConnectionJsunit.test.ets';
 import socketJsunit from './SocketJsunit.test.ets';
 import webSocketJsunit from './WebSocketJsunit.test.ets';
 import connectionSecondJsUnit from './ConnectionSecondJsUnit.test.ets';
-import networkManagerSocketTest from './NetworkManagerSocket.test'
-import networkManagerStatisticsTest from './NetworkManagerStatistics.test'
+import networkManagerSocketTest from './NetworkManagerSocket.test.ets'
+import networkManagerStatisticsTest from './NetworkManagerStatistics.test.ets'
 
 
 export default function testsuite() {
