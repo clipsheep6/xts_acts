@@ -1,16 +1,34 @@
 {
-    "description": "Configuration for storage fileio Tests",
+    "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "60000",
-        "shell-timeout": "60000",
-        "bundle-name": "ohos.acts.storage.fileioerror",
-        "package-name": "ohos.acts.storage.fileioerror"
+        "test-timeout": "180000",
+        "bundle-name": "com.example.fileaccess",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 100000
     },
     "kits": [
         {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/*",
+                "mkdir -p /storage/media/100/local/files/Download",
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "mkdir -pv /data/service/el1/public/storage_daemon/share/public/queryExtDiskTest/",
+                "mkdir -pv /data/service/el1/public/storage_daemon/share/public/queryExtDiskTest/{image,video,audio,file}",
+                "chown -R file_manager /data/service/el1/public/storage_daemon/share/public",
+                "chmod -R 777 /data/service/el1/public/storage_daemon/share/public",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "scanner",
+                "sleep 10"
+            ]
+        },
+        {
             "test-file-name": [
-                "ActsStorageFileIoErrorJsTest.hap"
+                "ActsStorageFileAccessEtsTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
