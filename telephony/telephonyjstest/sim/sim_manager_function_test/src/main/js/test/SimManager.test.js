@@ -507,7 +507,7 @@ describe('SimManagerTest', function () {
       if(err){
         console.info("Telephony_Sim_getSimAccountInfo_CallBack_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sim_getSimAccountInfo_CallBack_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
@@ -534,7 +534,7 @@ describe('SimManagerTest', function () {
     }).catch(err => {
         console.info("Telephony_Sim_getSimAccountInfo_Promise_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sim_getSimAccountInfo_Promise_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
@@ -552,7 +552,7 @@ describe('SimManagerTest', function () {
       if(err){
         console.info("Telephony_Sim_getActiveSimAccountInfoList_CallBack_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sim_getActiveSimAccountInfoList_CallBack_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
@@ -579,7 +579,7 @@ describe('SimManagerTest', function () {
     }).catch(err => {
         console.info("Telephony_Sim_getActiveSimAccountInfoList_Promise_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sim_getActiveSimAccountInfoList_Promise_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
@@ -598,7 +598,7 @@ describe('SimManagerTest', function () {
       if(err){
         console.info("Telephony_Sim_getDefaultVoiceSimId_CallBack_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sim_getDefaultVoiceSimId_CallBack_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
@@ -625,7 +625,7 @@ describe('SimManagerTest', function () {
     }).catch(err => {
         console.info("Telephony_Sim_getDefaultVoiceSimId_Promise_0100 err = " + JSON.stringify(err));
         radio.isRadioOn(0, (err, data) => {
-          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          console.info('Telephony_Sim_getDefaultVoiceSimId_Promise_0100 isRadioOn err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
           if (!err) {
               expect().assertFail();
           }
