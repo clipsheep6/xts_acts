@@ -39,9 +39,9 @@ export default function avVideoRecorderTestOne() {
             audioChannels : 2,
             audioCodec : media.CodecMimeType.AUDIO_AAC,
             audioSampleRate : 48000,
-            fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
+            fileFormat : media.ContainerFormatType.CFT_MPEG_4,
             videoBitrate : 100000, // 视频比特率
-            videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+            videoCodec : media.CodecMimeType.VIDEO_MPEG4,
             videoFrameWidth : 640,  // 视频分辨率的宽
             videoFrameHeight : 480, // 视频分辨率的高
             videoFrameRate : 30 // 视频帧率
@@ -49,7 +49,7 @@ export default function avVideoRecorderTestOne() {
 
         let avConfig = {
             audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES, // 视频源类型，支持YUV和ES两种格式
+            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile : avProfile,
             url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
             rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
@@ -69,7 +69,7 @@ export default function avVideoRecorderTestOne() {
         const STARTRECORDER_CALLBACK_EVENT = 'startCallback';
         const PAUSERECORDER_CALLBACK_EVENT = 'pauseCallback';
         const RESUMERECORDER_CALLBACK_EVENT = 'resumeCallback';
-        const STOPRECORDER_EVENT = 'stopCallback';
+        const STOPRECORDER_CALLBACK_EVENT = 'stopCallback';
         const RESETRECORDER_CALLBACK_EVENT = 'resetCallback';
         const RELEASECORDER_CALLBACK_EVENT = 'releaseCallback';
         const RELEASECAMERA_EVENT = 'releaseCamera';
@@ -110,20 +110,28 @@ export default function avVideoRecorderTestOne() {
             let permissionNames = [permissionName1, permissionName2, permissionName3, permissionName4, permissionName5];
             await mediaTestBase.getPermission(permissionNames);
             await mediaTestBase.msleepAsync(3000);
-            await mediaTestBase.driveFn(3)
+            await mediaTestBase.driveFn(4)
             console.info('beforeAll out');
         })
 
         beforeEach(async function () {
             console.info('beforeEach case');
+            await avRecorderTestBase.sleep(1000);
         })
 
         afterEach(async function () {
             console.info('afterEach case');
+            if (avRecorder != null) {
+                avRecorder.release().then(() => {
+                    console.info(TAG + 'this testCase execution completed')
+                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+            }
+            await mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
+            await avRecorderTestBase.sleep(1000);
         })
 
         afterAll(function () {
-            mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
+            // mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
             console.info('afterAll case');
         })
 
@@ -250,7 +258,6 @@ export default function avVideoRecorderTestOne() {
                 console.info('case success!!');
                 done();
             } else {
-                avVideoRecorderTestBase.sleep(1000)
                 eventEmitter.emit(steps[0], avRecorder, avConfig, recorderTime, steps, done);
             }
         }
@@ -378,8 +385,10 @@ export default function avVideoRecorderTestOne() {
                 if (err == null) {
                     expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.STARTED);
                     console.info('start AVRecorder success');
-                    avVideoRecorderTestBase.sleep(recorderTime);
-                    toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                    setTimeout(() => {
+                        console.info('STARTRECORDER_CALLBACK_EVENT setTimeout success');
+                        toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                    }, 3000);
                 } else {
                     console.info('start AVRecorder failed and error is ' + err.message);
                 }
@@ -391,8 +400,10 @@ export default function avVideoRecorderTestOne() {
             avRecorder.start().then(() => {
                 expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.STARTED);
                 console.info('start success');
-                avVideoRecorderTestBase.sleep(recorderTime);
-                toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                setTimeout(() => {
+                    console.info('STARTRECORDER_PROMISE_EVENT setTimeout success');
+                    toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                }, recorderTime);
             }).catch((err) => {
                 console.info('start failed and catch error is ' + err.message);
             });
@@ -458,7 +469,7 @@ export default function avVideoRecorderTestOne() {
             });
         });
 
-        eventEmitter.on(STOPRECORDER_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
+        eventEmitter.on(STOPRECORDER_CALLBACK_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
             steps.shift();
             let stopValue = true;
             avRecorder.stop((err) => {
@@ -467,12 +478,34 @@ export default function avVideoRecorderTestOne() {
                     expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.STOPPED);
                     console.info('stop AVRecorder success');
                     expect(stopValue).assertEqual(true);
-                    toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                    setTimeout(() => {
+                        console.info('STOPRECORDER_CALLBACK_EVENT setTimeout success');
+                        toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                    }, 500);
                 } else {
                     stopValue = false
                     console.info('stop AVRecorder failed and error is ' + err.message);
-                    //                    expect().assertFail();
-                    //                    console.info('stopValue is ' + resumeValue);
+                    toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                }
+            })
+        });
+
+        eventEmitter.on(STOPRECORDER_PROMISE_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
+            steps.shift();
+            let stopValue = true;
+            avRecorder.stop((err) => {
+                console.info('case stop called');
+                if (err == null) {
+                    expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.STOPPED);
+                    console.info('stop AVRecorder success');
+                    expect(stopValue).assertEqual(true);
+                    setTimeout(() => {
+                        console.info('STOPRECORDER_PROMISE_EVENT setTimeout success');
+                        toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                    }, 500);
+                } else {
+                    stopValue = false
+                    console.info('stop AVRecorder failed and error is ' + err.message);
                     toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                 }
             })
@@ -563,45 +596,55 @@ export default function avVideoRecorderTestOne() {
         });
 
         async function releaseCamera(avRecorder, avConfig, recorderTime, steps, done) {
-	    try{
-		await captureSession.stop()
-		console.info('releaseCamera 001');
-		console.info('captureSession.stop success');
-		await videoOutput.release()
-		console.info('releaseCamera 002');
-		console.info('videoOutput.release success');
-		await previewOutput.release()
-		console.info('releaseCamera 003');
-		console.info('previewOutput.release success');
-		await cameraInput.close()
-		console.info('releaseCamera 004');
-		console.info('cameraInput.close success');
-		await captureSession.release()
-		console.info('releaseCamera 005');
-		console.info('captureSession.release success');
-		captureSession = null
-		console.info('releaseCamera success');
-		toNextStep(avRecorder, avConfig, recorderTime, steps, done);
-	    } catch(err){
-		console.info('releaseCamera failed and catch error is ' + err.message);
-	    }
+            try{
+                await captureSession.stop()
+                console.info('releaseCamera 001');
+                console.info('captureSession.stop success');
+                await cameraInput.close()
+                console.info('releaseCamera 002');
+                console.info('cameraInput.close success');
+                await previewOutput.release()
+                console.info('releaseCamera 003');
+                console.info('previewOutput.release success');
+                await videoOutput.release()
+                console.info('releaseCamera 004');
+                console.info('videoOutput.release success');
+                await captureSession.release()
+                console.info('releaseCamera 005');
+                console.info('captureSession.release success');
+                captureSession = null
+                console.info('releaseCamera success');
+                toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+            } catch(err){
+                console.info('releaseCamera failed and catch error is ' + err.message);
+            }
         }
 
-        /* *
-            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0100
-            * @tc.name      : 001.test 1，record 3s； 2，pause 3，resume 4，stop 5，restart
-            * @tc.desc      : Recorder video 1，record 3s； 2，pause 3，resume 4，stop 5，restart
-            * @tc.size      : MediumTest
-            * @tc.type      : Function test
-            * @tc.level     : Level2
-        */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0100', 0, async function (done) {
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
             fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
-            avVideoRecorderTestBase.avRecorderWithPromise(avConfig, avRecorder, recorderTime, done);
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
+                // pause recorder
+                PAUSERECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
+                // resume recorder
+                STARTCAMERA_EVENT, RESUMERECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0100 end')
         })
 

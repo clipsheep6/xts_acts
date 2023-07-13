@@ -181,23 +181,23 @@ export async function stopCameraOutput() {
 // 释放相机实例
 export async function releaseCamera() {
     try{
-	await captureSession.stop()
-	console.info('releaseCamera 001');
-	console.info('captureSession.stop success');
-	await videoOutput.release()
-	console.info('releaseCamera 002');
-	console.info('videoOutput.release success');
-	await previewOutput.release()
-	console.info('releaseCamera 003');
-	console.info('previewOutput.release success');
-	await cameraInput.close()
-	console.info('releaseCamera 004');
-	console.info('cameraInput.close success');
-	await captureSession.release()
-	console.info('releaseCamera 005');
-	console.info('captureSession.release success');
-	captureSession = null
-	console.info('releaseCamera success');
+        await captureSession.stop()
+        console.info('releaseCamera 001');
+        console.info('captureSession.stop success');
+        await cameraInput.close()
+        console.info('releaseCamera 002');
+        console.info('cameraInput.close success');
+        await previewOutput.release()
+        console.info('releaseCamera 003');
+        console.info('previewOutput.release success');
+        await videoOutput.release()
+        console.info('releaseCamera 004');
+        console.info('videoOutput.release success');
+        await captureSession.release()
+        console.info('releaseCamera 005');
+        console.info('captureSession.release success');
+        captureSession = null
+        console.info('releaseCamera success');
     } catch(err){
         console.info('releaseCamera failed and catch error is ' + err.message);
     }
@@ -396,7 +396,7 @@ export async function pause2PreparePromise(avConfig, avRecorder, recorderTime, d
     await startRecordingProcessPromise(avRecorder, recorderTime);
     await AVRecorderTestBase.pausePromise(avRecorder);
     await prepareErrPromise(avRecorder, avConfig);
-    await stopCameraOutput(); 
+    await stopCameraOutput();
     await releaseRecorderPromise(avRecorder, done);
 }
 
@@ -508,8 +508,6 @@ export async function avRecorderWithPromise(avConfig, avRecorder, recorderTime, 
     await initCamera()
 
     await startRecordingProcessPromise(avRecorder, recorderTime)
-
-    await sleep(3000)
 
     await pauseRecordingProcessPromise(avRecorder)
 
@@ -1127,7 +1125,7 @@ export async function avRecorderWithPromiseStability1(avConfig, avRecorder, reco
     console.info('case avConfig.url is ' + avConfig.url);
 
     setAvRecorderCallback(avRecorder, done)
-    
+
     for (let i = 0; i < 1000; i++) {
         await AVRecorderTestBase.preparePromise(avRecorder, avConfig)
         await getInputSurfacePromise(avRecorder)
@@ -1565,7 +1563,6 @@ export async function avRecorderStopPromise8(avConfig, avRecorder, recorderTime,
 
     await startRecordingProcessPromise(avRecorder, recorderTime)
 
-    await stopCameraOutput()
     await avRecorder.stop().then(() => {
         expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
         expect(stopValue1).assertEqual(true);
@@ -1591,7 +1588,7 @@ export async function avRecorderStopPromise8(avConfig, avRecorder, recorderTime,
         stopValue2 = false
         expect(stopValue1).assertEqual(false);
     });
-
+    await stopCameraOutput()
     await releaseRecorderPromise(avRecorder, done)
 }
 
