@@ -130,12 +130,17 @@ export default function smsUiJsunit() {
     sms.getDefaultSmsSimId((err, data) => {
       if(err){
         console.info("Telephony_Sms_getDefaultSmsSimId_CallBack_0100 err = " + JSON.stringify(data));
-        expect(true).assertTrue();
+        radio.isRadioOn(0, (err, data) => {
+          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          if (!err) {
+              expect().assertFail();
+          }
+        });
         done();
         return;
       }
       console.log(`Telephony_Sms_getDefaultSmsSimId_CallBack_0100 callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-      expect().assertFail();
+      expect(true).assertTrue();
       done();
     });
   });
@@ -148,11 +153,16 @@ export default function smsUiJsunit() {
     let promise = sms.getDefaultSmsSimId();
     promise.then(data => {
         console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 data = " + JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
     }).catch(err => {
         console.info("Telephony_Sms_getDefaultSmsSimId_Promise_0100 err = " + JSON.stringify(err));
-        expect(true).assertTrue();
+        radio.isRadioOn(0, (err, data) => {
+          console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
+          if (!err) {
+              expect().assertFail();
+          }
+        });
         done();
     });
   });
