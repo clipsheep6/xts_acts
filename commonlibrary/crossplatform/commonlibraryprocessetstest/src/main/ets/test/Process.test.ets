@@ -106,12 +106,7 @@ describe('ProcessManager', function () {
             expect(e.toString()).assertEqual("BuisnessError: The type of v must be number.");
         }
     })
-
-
-
     
-
-
     /**
      * @tc.number:TEST_PROCESSMANAGER_GETUIDFORNAME_001
      * @tc.name:  testProcessManagerGetUidForName001
