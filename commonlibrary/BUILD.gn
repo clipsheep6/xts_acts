@@ -12,22 +12,13 @@
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
 
-group("crossplatform") {
+group("commonlibrary") {
   testonly = true
   if (is_standard_system) {
     deps = [
-<<<<<<< HEAD
-      "commonlibraryLightWeightSetetstest:LightWeightSet_ets_test",
-      "commonlibraryListetstest:List2_ets_test",
-      "commonlibraryArrayListetstest:ArrayList_ets_test",
-=======
-      "commonlibraryArrayListetstest:ArrayList_ets_test",
-      "commonlibraryConnectonetstest:Connection_ets_test",
-      "commonlibraryDisplayetstest:Display_ets_test",
-      "commonlibraryLightWeightSetetstest:LightWeightSet_ets_test",
-      "commonlibraryListetstest:List2_ets_test",
-      "commonlibraryWebSocketetstest:WebSocket_ets_test",
->>>>>>> 57f2c4bd38afd3328ed6b97b991c60adf2a6472f
+      "crossplatform:crossplatform",
+      "ets_utils:ets_utils",
+      "toolchain:toolchain",
     ]
   }
 }
