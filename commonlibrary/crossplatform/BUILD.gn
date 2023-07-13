@@ -16,9 +16,15 @@ group("crossplatform") {
   testonly = true
   if (is_standard_system) {
     deps = [
+<<<<<<< HEAD
       "commonlibraryLightWeightSetetstest:LightWeightSet_ets_test",
       "commonlibraryListetstest:List2_ets_test",
       "commonlibraryArrayListetstest:ArrayList_ets_test",
+=======
+      "commonlibraryArrayListetstest:ArrayList_ets_test",
+      "commonlibraryLightWeightSetetstest:LightWeightSet_ets_test",
+      "commonlibraryListetstest:List2_ets_test",
+>>>>>>> 57f2c4bd38afd3328ed6b97b991c60adf2a6472f
     ]
   }
 }
