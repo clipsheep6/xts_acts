@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-=======
->>>>>>> 57f2c4bd38afd3328ed6b97b991c60adf2a6472f
 import ArraylistTest from './ArrayList.test'
 
 export default function testsuite() {
