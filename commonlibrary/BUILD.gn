@@ -15,15 +15,9 @@ group("commonlibrary") {
   testonly = true
   if (is_standard_system) {
     deps = [
-<<<<<<< HEAD
-      "crossplatform/commonlibraryLinkedListetstest:ActsCrossplatformLinkedListTest",
       "crossplatform/commonlibraryLightWeightMapetstest:ActsCrossplatformLightWeightMapTest",
+      "crossplatform/commonlibraryLinkedListetstest:ActsCrossplatformLinkedListTest",
       "crossplatform/commonlibraryprocessetstest:ActsCrossplatformProcessTest",
-=======
-      "crossplatform/commonlibraryLightWeightMapetstest:LightWeightMap_ets_test",
-      "crossplatform/commonlibraryLinkedListetstest:LinkedList_ets_test",
-      "crossplatform/commonlibraryprocessetstest:process_ets_test",
->>>>>>> ab4809da4542d84f495013975903979255165a76
       "ets_utils:ets_utils",
       "toolchain:toolchain",
     ]
