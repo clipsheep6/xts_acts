@@ -13,20 +13,21 @@
  * limitations under the License.
  */
 
-
-import networkManagerSocketTest from './NetworkManagerSocket.test.ets';
-import networkManagerStatisticsTest from './NetworkManagerStatistics.test.ets';
+//other import
 import connectionJsunit from './ConnectionJsunit.test.ets';
 import socketJsunit from './SocketJsunit.test.ets';
 import webSocketJsunit from './WebSocketJsunit.test.ets';
 import connectionSecondJsUnit from './ConnectionSecondJsUnit.test.ets';
+import networkManagerSocketTest from './NetworkManagerSocket.test.ets';
+import networkManagerStatisticsTest from './NetworkManagerStatistics.test.ets';
 
 
 export default function testsuite() {
+  //other
   networkManagerSocketTest();
   socketJsunit();
   webSocketJsunit();
   connectionJsunit();
   connectionSecondJsUnit();
-  networkManagerStatisticsTest();
+  networkManagerStatisticsTest()
 }

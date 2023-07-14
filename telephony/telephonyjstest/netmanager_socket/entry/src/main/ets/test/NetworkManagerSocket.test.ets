@@ -15,7 +15,6 @@
  */
 import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import socket from '@ohos.net.socket';
-import utils from './Utils.ets';
 
 let sendData = "hello!";
 let instance = undefined;
@@ -41,7 +40,7 @@ let options = {
 
 export default function networkManagerSocketTest() {
 
-  describe("networkManagerSocketTest", function () {
+  describe("Telephony_NetworkManager_SocketTest", function () {
 
     beforeAll(async function () {
       console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll start')

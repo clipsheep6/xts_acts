@@ -16,7 +16,6 @@
 
 import { describe, it, expect, beforeAll, afterAll, afterEach } from '@ohos/hypium';
 import statistics from '@ohos.net.statistics';
-import utils from './Utils.ets';
 
 export default function networkManagerStatisticsTest() {
   describe('networkManagerStatisticsTest', function () {
