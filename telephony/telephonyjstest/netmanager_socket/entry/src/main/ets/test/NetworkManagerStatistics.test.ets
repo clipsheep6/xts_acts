@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 
 /*
  * Copyright (C) 2022 Huawei Device Co., Ltd.
