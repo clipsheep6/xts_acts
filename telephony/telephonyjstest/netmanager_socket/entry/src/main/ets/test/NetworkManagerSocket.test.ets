@@ -15,6 +15,7 @@
  */
 import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import socket from '@ohos.net.socket';
+import utils from './Utils.ets';
 
 let sendData = "hello!";
 let instance = undefined;
