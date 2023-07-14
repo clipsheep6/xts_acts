@@ -33,7 +33,7 @@
         TestSuite::runResult.numNotSupported += result.numNotSupported;           \
         TestSuite::runResult.numWarnings += result.numWarnings;                   \
         TestSuite::runResult.numWaived += result.numWaived;                       \
-        if (result.iscomplete){                                                   \
+        if (result.isComplete){                                                   \
             EXPECT_TRUE(result.isComplete){                                        \
             if(result.numPassed==1){                                          \
                 EXPECT_TRUE(result.numPassed ==1);                                  \
