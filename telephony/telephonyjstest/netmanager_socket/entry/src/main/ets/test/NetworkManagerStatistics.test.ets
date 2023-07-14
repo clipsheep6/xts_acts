@@ -18,7 +18,7 @@ import { describe, it, expect, beforeAll, afterAll, afterEach } from '@ohos/hypi
 import statistics from '@ohos.net.statistics';
 
 export default function networkManagerStatisticsTest() {
-  describe('ActsNetworkManagerStatisticsTest', function () {
+  describe('networkManagerStatisticsTest', function () {
     let delayTime = 5000;
     const DATA_0 = 0;
     let code_201 = 201;

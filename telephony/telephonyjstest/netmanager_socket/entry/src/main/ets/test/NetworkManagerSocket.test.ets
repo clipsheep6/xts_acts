@@ -40,7 +40,7 @@ let options = {
 
 export default function networkManagerSocketTest() {
 
-  describe("Telephony_NetworkManager_SocketTest", function () {
+  describe("networkManagerSocketTest", function () {
 
     beforeAll(async function () {
       console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll start')
