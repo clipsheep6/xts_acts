@@ -36,7 +36,7 @@ export default function AVPlayerMultiTrackTest() {
         let surfaceID = globalThis.value;
         let changeRepeatly = false;
 
-        beforeAll(async function() {
+        beforeAll(async function () {
             console.info('beforeAll case');
             await mediaTestBase.getStageFileDescriptor(VIDEO_SOURCE).then((res) => {
                 avFd = res;
@@ -46,14 +46,14 @@ export default function AVPlayerMultiTrackTest() {
             });
         })
 
-        beforeEach(async function() {
+        beforeEach(async function () {
             console.info('beforeEach case');
             audioTrackList = new Array();
             selectedTrack = undefined;
             changeRepeatly = false;
         })
 
-        afterEach(async function() {
+        afterEach(async function () {
             if (avPlayer != null) {
                 await avPlayer.release().then(() => {
                 }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
@@ -61,7 +61,7 @@ export default function AVPlayerMultiTrackTest() {
             console.info('afterEach case');
         })
 
-        afterAll(async function() {
+        afterAll(async function () {
             console.info('afterAll case');
             await mediaTestBase.closeFileDescriptor(VIDEO_SOURCE);
             await mediaTestBase.closeFileDescriptor(VIDEO_NOAUDIO);
@@ -100,14 +100,18 @@ export default function AVPlayerMultiTrackTest() {
         }
 
         async function getCurrentAudioTrack() {
-            await avPlayer.getCurrentTrack(0).then((index) => {
-                console.info(`case current audio track index is ${index}`);
-                currentTrack = index;
-            }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+            avPlayer.getCurrentTrack(0, (err, index) => {
+                if (err == null) {
+                    console.info(`case current audio track index is ${index}`);
+                    trackIndex = index;
+                } else {
+                    console.error('getCurrentTrack failed and error is ' + err.message);
+                }
+            });
         }
 
         async function changeAudioTrack() {
-            for(let i = 0; i < audioTrackList.length; i++) {
+            for (let i = 0; i < audioTrackList.length; i++) {
                 if (audioTrackList[i] != currentTrack) {
                     selectedTrack = audioTrackList[i];
                     console.info('case new audio track is:' + selectedTrack);
@@ -135,7 +139,7 @@ export default function AVPlayerMultiTrackTest() {
 
         async function testChangeTrack(fd, preparedOp, playedOp, stoppedOp, extraOp) {
             await media.createAVPlayer().then((video) => {
-                if (typeof(video) != 'undefined') {
+                if (typeof (video) != 'undefined') {
                     console.info('case createAVPlayer success');
                     avPlayer = video;
                 } else {
@@ -194,7 +198,7 @@ export default function AVPlayerMultiTrackTest() {
                         break;
                     default:
                         break;
-                    }
+                }
             });
             avPlayer.on('trackChange', async (index, isSelection) => {
                 console.info(`case trackChange called, index is ${index}, isSelection is ${isSelection}`);
@@ -211,7 +215,7 @@ export default function AVPlayerMultiTrackTest() {
 
             setSource(avPlayer, fd);
         }
-        
+
         /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_MULTI_AUDIOTRACK_FUNC_0100
             * @tc.name      : 001.test change default audio track
@@ -226,7 +230,7 @@ export default function AVPlayerMultiTrackTest() {
                 await getCurrentAudioTrack();
                 await changeAudioTrack();
                 avPlayer.selectTrack(selectedTrack);
-                expect(currentTrack!=selectedTrack).assertTrue();
+                expect(currentTrack != selectedTrack).assertTrue();
             }
 
             async function playedOperation() {
@@ -336,7 +340,7 @@ export default function AVPlayerMultiTrackTest() {
                     await getCurrentAudioTrack();
                     expect(currentTrack).assertEqual(selectedTrack);
                     await changeAudioTrack();
-                    avPlayer.selectTrack(selectedTrack); 
+                    avPlayer.selectTrack(selectedTrack);
                 } else {
                     console.info('case to play AVPlayer');
                     await avPlayer.play().then(() => {
@@ -446,7 +450,7 @@ export default function AVPlayerMultiTrackTest() {
                     await avPlayer.stop().then(() => {
                         console.info('case stop avplayer success');
                     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                }  
+                }
             }
 
             await testChangeTrack(avFd, preparedOperation, playedOperation, stoppedOperation, extraOperation);
