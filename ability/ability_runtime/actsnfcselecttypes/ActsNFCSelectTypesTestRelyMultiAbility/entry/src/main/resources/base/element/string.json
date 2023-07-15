@@ -27,6 +27,14 @@
     {
       "name": "ThirdEntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "FourthEntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FourthEntryAbility_label",
+      "value": "label"
     }
   ]
 }

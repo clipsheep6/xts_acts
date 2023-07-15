@@ -10,30 +10,30 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "MulAbFirst"
+      "value": "label"
     },
     {
-      "name": "SecondEntryAbility_desc",
+      "name": "EntryAbility1_desc",
       "value": "description"
     },
     {
-      "name": "SecondEntryAbility_label",
-      "value": "MulAbSecond"
+      "name": "EntryAbility1_label",
+      "value": "label"
     },
     {
-      "name": "ThirdEntryAbility_desc",
+      "name": "EntryAbility2_desc",
       "value": "description"
     },
     {
-      "name": "ThirdEntryAbility_label",
-      "value": "MulAbThird"
+      "name": "EntryAbility2_label",
+      "value": "label"
     },
     {
-      "name": "FourthEntryAbility_desc",
+      "name": "EntryAbility3_desc",
       "value": "description"
     },
     {
-      "name": "FourthEntryAbility_label",
+      "name": "EntryAbility3_label",
       "value": "label"
     }
   ]

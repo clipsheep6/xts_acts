@@ -26,6 +26,8 @@ group("actsnfcselecttypes") {
       "ActsNFCSelectTypesTestRelyMultiHapThird:ActsNFCSelectTypesTestRelyMultiHapThird",
       "ActsNFCSelectTypesTestRelySecond:ActsNFCSelectTypesTestRelySecond",
       "ActsNFCSelectTypesTestRelyThird:ActsNFCSelectTypesTestRelyThird",
+      "ActsNFCSelectTypesTestRelyMultiHapFourth:ActsNFCSelectTypesTestRelyMultiHapFourth",
+      "ActsNFCSelectTypesTestRelyFifth:ActsNFCSelectTypesTestRelyFifth",
     ]
   }
 }

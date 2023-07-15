@@ -47,6 +47,8 @@ export default function abilityTest() {
       }, 1000);
     })
 
+
+
     /*
      * @tc.number: ACTS_NFC_SelectTypes_0100
      * @tc.name: NFC supports application selection box display and user click application
@@ -65,12 +67,12 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          console.info('startAbility succeed');
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
+        console.info('startAbility succeed');
+      }
       );
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text("apptest1"));
@@ -83,6 +85,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100 end');
       done();
     })
+
+
 
     /*
      * @tc.number: ACTS_NFC_SelectTypes_0200
@@ -101,12 +105,12 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          console.info('startAbility succeed');
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
+        console.info('startAbility succeed');
+      }
       );
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text("apptest2"));
@@ -117,7 +121,7 @@ export default function abilityTest() {
       expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0200 end');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0400 end');
       done();
     })
 
@@ -127,7 +131,7 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      */
     it('ACTS_NFC_SelectTypes_0300', 0, async (done) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0300 begin');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG_FOUND',
         type: '',
@@ -138,17 +142,17 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          console.info('startAbility succeed');
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
+        console.info('startAbility succeed');
+      }
       );
       await driver.delayMs(1000);
       let cancel = await driver.findComponent(ON.text("知道了"));
       await cancel.click();
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0300 end');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500 end');
       done();
     })
 
@@ -158,7 +162,7 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      */
     it('ACTS_NFC_SelectTypes_0400', 0, async (done) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0400 begin');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0600 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG_FOUND',
         type: 'tag-tech/NFcA',
@@ -169,12 +173,12 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`)
-            return;
-          }
-          console.info('startAbility succeed')
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`)
+          return;
         }
+        console.info('startAbility succeed')
+      }
       );
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text("apptest1"));
@@ -195,7 +199,7 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      */
     it('ACTS_NFC_SelectTypes_0500', 0, async (done) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500 begin');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG',
         type: '',
@@ -208,15 +212,15 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          console.info('startAbility succeed');
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
+        console.info('startAbility succeed');
+      }
       );
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500: apptest1,apptest2,apptest3,apptest4 notExist');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700: apptest1,apptest2,apptest3,apptest4 notExist');
       let app1 = await driver.findComponent(ON.text("apptest1"));
       let app2 = await driver.findComponent(ON.text("apptest2"));
       let app3 = await driver.findComponent(ON.text("apptest3"));
@@ -227,7 +231,7 @@ export default function abilityTest() {
       expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("知道了"));
       await cancel.click();
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500 end');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 end');
       done();
     })
 
@@ -237,7 +241,7 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      */
     it('ACTS_NFC_SelectTypes_0600', 0, async (done) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0600 begin');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0800 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG',
         type: 'tag-tech/NFcA',
@@ -248,15 +252,15 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          console.info('startAbility succeed');
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
+        console.info('startAbility succeed');
+      }
       );
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0600: apptest1,apptest2,apptest3,apptest4 notExist');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0800: apptest1,apptest2,apptest3,apptest4 notExist');
       let app1 = await driver.findComponent(ON.text("apptest1"));
       let app2 = await driver.findComponent(ON.text("apptest2"));
       let app3 = await driver.findComponent(ON.text("apptest3"));
@@ -267,7 +271,7 @@ export default function abilityTest() {
       expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("知道了"));
       await cancel.click();
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0600 end');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 end');
       done();
     })
 
@@ -277,7 +281,7 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      */
     it('ACTS_NFC_SelectTypes_0700', 0, async (done) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 begin');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG_FOUND',
         type: 'tag-tech/NFcA',
@@ -290,12 +294,12 @@ export default function abilityTest() {
       };
       globalThis.abilitycontext.startAbility(
         want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          console.info('startAbility succeed');
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
+        console.info('startAbility succeed');
+      }
       );
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text("MulAbFirst"));
@@ -304,7 +308,7 @@ export default function abilityTest() {
       expect(AblityThird === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 end');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 end');
       done();
     })
 
@@ -314,7 +318,7 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      */
     it('ACTS_NFC_SelectTypes_0800' ,0, async (done) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0800 begin');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 begin');
       let want = {
         action: 'ohos.nfc.tag.action.TAG_FOUND',
         type:'tag-tech/NFcA',
@@ -343,145 +347,239 @@ export default function abilityTest() {
       expect(HapThird === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
       await cancel.click();
-      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0800 end');
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 end');
       done();
     })
 
-      /*
-       * @tc.number: ACTS_NFC_SelectTypes_0900
-       * @tc.name: NFC supports application selection box display and user click application
-       * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
-       */
-      it('ACTS_NFC_SelectTypes_0900', 0, async (done) => {
-        hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 begin');
-        let want = {
-          action: 'ohos.want.action.select',
-          type: 'tag-tech/NFcA',
-          parameters: {
-            'ohos.ability.params.uriTypes': [
-              'tag-tech/NFcA',
-              'tag-tech/IsoDep'
-            ]
-          }
-        };
+    /*
+     * @tc.number: ACTS_NFC_SelectTypes_0900
+     * @tc.name: NFC supports application selection box display and user click application
+     * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
+     */
+    it('ACTS_NFC_SelectTypes_0900', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 begin');
+      let want = {
+        action: 'ohos.want.action.select',
+        type: 'tag-tech/NFcA',
+        parameters: {
+          'ohos.ability.params.uriTypes': [
+            'tag-tech/NFcA',
+            'tag-tech/IsoDep'
+          ]
+        }
+      };
+      globalThis.abilitycontext.startAbility(
+        want, (err) => {
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('startAbility succeed');
+      }
+      );
+      await driver.delayMs(1000);
+      let app1 = await driver.findComponent(ON.text("apptest1"));
+      let app2 = await driver.findComponent(ON.text("apptest2"));
+      let app3 = await driver.findComponent(ON.text("apptest3"));
+      let app4 = await driver.findComponent(ON.text("apptest4"));
+      expect(app1 === null).assertTrue();
+      expect(app2 === null).assertTrue();
+      expect(app3 === null).assertTrue();
+      expect(app4 === null).assertTrue();
+      let cancel = await driver.findComponents(ON.clickable(true));
+      await cancel[0].click();
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 end');
+      done();
+    })
+
+    /*
+     * @tc.number: ACTS_NFC_SelectTypes_1000
+     * @tc.name: NFC supports application selection box display and user click application
+     * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
+     */
+    it('ACTS_NFC_SelectTypes_1000', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 begin');
+      let want = {
+        action: 'ohos.nfc.tag.action.TAG_FOUND',
+        type: '',
+        parameters: {
+          'ohos.ability.params.uriTypes': [
+            'tag-tech/Single'
+          ]
+        }
+      };
+      let subscriber;
+      commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
+        subscriber = data;
+        commonEvent.subscribe(subscriber, subscribeCallBack);
         globalThis.abilitycontext.startAbility(
           want, (err) => {
-            if (err.code) {
-              console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-              return;
-            }
-            console.info('startAbility succeed');
+          if (err.code) {
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
           }
+          console.info('startAbility succeed');
+        }
         );
-        await driver.delayMs(1000);
-        let app1 = await driver.findComponent(ON.text("apptest1"));
-        let app2 = await driver.findComponent(ON.text("apptest2"));
-        let app3 = await driver.findComponent(ON.text("apptest3"));
-        let app4 = await driver.findComponent(ON.text("apptest4"));
-        expect(app1 === null).assertTrue();
-        expect(app2 === null).assertTrue();
-        expect(app3 === null).assertTrue();
-        expect(app4 === null).assertTrue();
-        let cancel = await driver.findComponents(ON.clickable(true));
-        await cancel[0].click();
-        hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 end');
-        done();
-      })
 
-      /*
-       * @tc.number: ACTS_NFC_SelectTypes_1000
-       * @tc.name: NFC supports application selection box display and user click application
-       * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
-       */
-      it('ACTS_NFC_SelectTypes_1000', 0, async (done) => {
-        let want = {
-          action: 'ohos.nfc.tag.action.TAG_FOUND',
-          type: '',
-          parameters: {
-            'ohos.ability.params.uriTypes': [
-              'tag-tech/Single'
-            ]
+      });
+      function subscribeCallBack(err, data) {
+        console.info('====>ACTS_NFC_SelectTypes_1200 subscribeCallBack data:' + JSON.stringify(data));
+        if (data.event === 'ACTS_CROSS_CALL_EVENT') {
+          expect(data.parameters.message === 'select').assertTrue();
+          commonEvent.unsubscribe(subscriber, async () => {
+            console.info('====>ACTS_NFC_SelectTypes_1200 unSubscribeCallback kill');
+            let cmdkill = 'pkill -f com.example.mytest4';
+            await abilityDelegator.executeShellCommand(cmdkill);
+            await driver.delayMs(1000);
+            done();
+          })
+        }
+      }
+      setTimeout(() => {
+      }, CASE_TIME_OUT);
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1200 end');
+    })
+
+    /*
+     * @tc.number: ACTS_NFC_SelectTypes_1100
+     * @tc.name: NFC supports application selection box display and user click application
+     * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
+     */
+    it('ACTS_NFC_SelectTypes_1100', 0, async (done) => {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1300 begin');
+      let want = {
+        action: 'ohos.nfc.tag.action.TAG_FOUND',
+        type: 'tag-tech/Single',
+        parameters: {
+          'ohos.ability.params.uriTypes': [
+          ]
+        }
+      };
+      let subscriber;
+      commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
+        subscriber = data;
+        commonEvent.subscribe(subscriber, subscribeCallBack);
+        globalThis.abilitycontext.startAbility(
+          want, (err) => {
+          if (err.code) {
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
           }
-        };
-        let subscriber;
-        commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
-          subscriber = data;
-          commonEvent.subscribe(subscriber, subscribeCallBack);
-          globalThis.abilitycontext.startAbility(
-            want, (err) => {
-              if (err.code) {
-                console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-                return;
-              }
-              console.info('startAbility succeed');
-            }
-          );
+          console.info('startAbility succeed');
+        }
+        );
+      })
+      function subscribeCallBack(err, data) {
+        console.info('====>ACTS_NFC_SelectTypes_1300 subscribeCallBack data:' + JSON.stringify(data));
+        if (data.event === 'ACTS_CROSS_CALL_EVENT') {
+          expect(data.parameters.message === 'select').assertTrue();
+          commonEvent.unsubscribe(subscriber, async () => {
+            console.info('====>ACTS_NFC_SelectTypes_1300 unSubscribeCallback kill');
+            let cmdkill = 'pkill -f com.example.mytest4';
+            await abilityDelegator.executeShellCommand(cmdkill);
+            await driver.delayMs(1000);
+            done();
+          })
+        }
+      }
+      setTimeout(() => {
+      }, CASE_TIME_OUT);
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1300 end');
+    })
 
+    /*
+    * @tc.number: ACTS_NFC_SelectTypes_1200
+    * @tc.name: NFC supports application selection box display and user click application
+    * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
+    */
+    it('ACTS_NFC_SelectTypes_1200',0, async function (done) {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0200 begin');
+      let want = {
+        action: "ohos.nfc.tag.action.TAG_FOUND",
+        type: '',
+        parameters: {
+          'ohos.ability.params.uriTypes': [
+            'tag-tech/NFCstandard'
+          ]
+        }
+      };
+      globalThis.abilitycontext.startAbility(
+        want, (err) => {
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          expect(true).assertFalse();
+          return;
+        }
+        console.info('startAbility succeed');
+        expect(true).assertTrue()
+      });
+      await sleep(1000);
+      setTimeout(()=> {
+        abilityDelegator.executeShellCommand('pkill -f com.example.mytest4').then(data => {
+          console.log('pkill -f successful ' + JSON.stringify(data))
+        }).catch(err => {
+          console.log('pkill -f err is ' + JSON.stringify(err))
         });
-        function subscribeCallBack(err, data) {
-          console.info('====>ACTS_NFC_SelectTypes_1000 subscribeCallBack data:' + JSON.stringify(data));
-          if (data.event === 'ACTS_CROSS_CALL_EVENT') {
-            expect(data.parameters.message === 'select').assertTrue();
-            commonEvent.unsubscribe(subscriber, async () => {
-              console.info('====>ACTS_NFC_SelectTypes_1000 unSubscribeCallback kill');
-              let cmdkill = 'pkill -f com.example.mytest4';
-              await abilityDelegator.executeShellCommand(cmdkill);
-              await driver.delayMs(1000);
-              done();
-            })
+      },1000)
+      await sleep(1000);
+      setTimeout(()=> {
+        globalThis.abilitycontext.startAbility(
+          want, (err) => {
+          if (err.code) {
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            expect(true).assertFalse();
           }
+          console.info('startAbility succeed');
+          expect(true).assertTrue()
+        });
+      },1000)
+      done();
+    })
+
+    /*
+ * @tc.number: ACTS_NFC_SelectTypes_1300
+ * @tc.name: NFC supports application selection box display and user click application
+ * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
+ */
+    it('ACTS_NFC_SelectTypes_1300',0, async function (done) {
+      hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0100 begin');
+      let want = {
+        action: "ohos.nfc.tag.action.TAG_FOUND",
+        type: '',
+        parameters: {
+          'ohos.ability.params.uriTypes': [
+            'tag-tech/Single'
+          ]
         }
-        setTimeout(() => {
-        }, CASE_TIME_OUT);
-        hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 end');
-      })
-
-      /*
-       * @tc.number: ACTS_NFC_SelectTypes_0200
-       * @tc.name: NFC supports application selection box display and user click application
-       * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
-       */
-      it('ACTS_NFC_SelectTypes_1100', 0, async (done) => {
-        let want = {
-          action: 'ohos.nfc.tag.action.TAG_FOUND',
-          type: 'tag-tech/Single',
-          parameters: {
-            'ohos.ability.params.uriTypes': [
-
-            ]
-          }
-        };
-        let subscriber;
-        commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
-          subscriber = data;
-          commonEvent.subscribe(subscriber, subscribeCallBack);
-          globalThis.abilitycontext.startAbility(
-            want, (err) => {
-              if (err.code) {
-                console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-                return;
-              }
-              console.info('startAbility succeed');
-            }
-          );
-
-        })
-        function subscribeCallBack(err, data) {
-          console.info('====>ACTS_NFC_SelectTypes_1100 subscribeCallBack data:' + JSON.stringify(data));
-          if (data.event === 'ACTS_CROSS_CALL_EVENT') {
-            expect(data.parameters.message === 'select').assertTrue();
-            commonEvent.unsubscribe(subscriber, async () => {
-              console.info('====>ACTS_NFC_SelectTypes_1100 unSubscribeCallback kill');
-              let cmdkill = 'pkill -f com.example.mytest4';
-              await abilityDelegator.executeShellCommand(cmdkill);
-              await driver.delayMs(1000);
-              done();
-            })
-          }
+      };
+      globalThis.abilitycontext.startAbility(
+        want, (err) => {
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          expect(true).assertFalse();
+          return;
         }
-        setTimeout(() => {
-        }, CASE_TIME_OUT);
-        hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 end');
-      })
-     })
-  }
+        console.info('startAbility succeed');
+        expect(true).assertTrue()
+      });
+      setTimeout(()=> {
+        abilityDelegator.executeShellCommand('pkill -f com.example.mytest4').then(data => {
+          console.log('pkill -f successful ' + JSON.stringify(data))
+        }).catch(err => {
+          console.log('pkill -f err is ' + JSON.stringify(err))
+        });
+      },1000)
+      globalThis.abilitycontext.startAbility(
+        want, (err) => {
+        if (err.code) {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          expect(true).assertFalse();
+        }
+        console.info('startAbility succeed');
+        expect(true).assertTrue()
+      });
+      done();
+    })
+  })
+}

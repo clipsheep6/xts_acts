@@ -31,7 +31,7 @@
             ],
             "uris": [
               {
-                "type":"tag-tech/MultiAbilityNFCA"
+                "type": "tag-tech/MultiAbilityNFCA"
               }
             ]
           }
@@ -54,7 +54,7 @@
             ],
             "uris": [
               {
-                "type":"tag-tech/MultiAbilityNFCB"
+                "type": "tag-tech/MultiAbilityNFCB"
               }
             ]
           }
@@ -77,7 +77,30 @@
             ],
             "uris": [
               {
-                "type":"tag-tech/MultiAbilityNFCC"
+                "type": "tag-tech/MultiAbilityNFCC"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FourthEntryAbility",
+        "srcEntry": "./ets/fourthentryability/FourthEntryAbility.ts",
+        "description": "$string:FourthEntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FourthEntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.action.TAG_FOUND"
+            ],
+            "uris": [
+              {
+                "type": "tag-tech/MultiAbilityNFCC"
               }
             ]
           }
