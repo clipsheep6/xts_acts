@@ -20,6 +20,8 @@ import defaultFlexTest from './default/DefaultFlexTest.test';
 import defaultFlexByGridRowTest from './default/DefaultFlexByGridRowTest.test';
 import marginStringTest from './margin/MarginStringTest.test';
 import alignRulesTest from './alignRules/AlignRulesTest.test';
+import directionTest from './direction/DirectionTest.test';
+import alignTest from './align/AlignTest.test';
 import positionTest from './position/PositionTest.test';
 import markAnchorTest from './markAnchor/MarkAnchorTest.test';
 import offsetTest from './offset/OffsetTest.test';
@@ -70,6 +72,8 @@ import stateStylesTest from './stateStyles/StateStylesTest.test';
 
 export default function testsuite() {
   defaultTest();
+//  alignTest();
+//  directionTest();
   defaultFocusValueTest();
   defaultFlexTest();
   defaultFlexByGridRowTest();
