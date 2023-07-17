@@ -1,0 +1,3 @@
+libarkui_android.so
+libhilog_android.so
+libresourcemanager.so
