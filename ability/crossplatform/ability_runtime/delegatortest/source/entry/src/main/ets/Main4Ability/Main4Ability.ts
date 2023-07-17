@@ -4,6 +4,7 @@ import window from '@ohos.window';
 export default class Main4Ability extends UIAbility {
     onCreate(want, launchParam) {
         console.log('testTag', '%{public}s', 'Ability onCreate');
+        globalThis.want = want;
     }
 
     onDestroy() {

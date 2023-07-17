@@ -22,6 +22,7 @@ import window from '@ohos.window';
 export default class TestAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log('onCreate');
+        globalThis.want = want;
         var abilityDelegator: any
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         var abilityDelegatorArguments: any
