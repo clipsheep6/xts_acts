@@ -1,0 +1,2 @@
+libhilog.so
+need install commonTestAbilityApp
