@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef ETSAPP_IOS_ETSAPP_APPDELEGATE_H
+#define ETSAPP_IOS_ETSAPP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -21,3 +22,4 @@
 
 @end
 
+#endif /* ETSAPP_IOS_ETSAPP_APPDELEGATE_H */
