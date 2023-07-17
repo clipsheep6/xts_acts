@@ -1,0 +1,5 @@
+libxml.so
+libutil.so
+libhmicuuc.so
+libcrypto_openssl.so
+libarkui_android.so
