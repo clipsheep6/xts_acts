@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+#ifndef ABILITY_CROSSPLATFORM_ABILITY_RUNTIME_COMMONTESTABILITYAPP_IOS_APP_APPDELEGATE_H
+#define ABILITY_CROSSPLATFORM_ABILITY_RUNTIME_COMMONTESTABILITYAPP_IOS_APP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -20,4 +22,4 @@
 @property (nonatomic, strong) UIWindow *window;
 
 @end
-
+#endif /* ABILITY_CROSSPLATFORM_ABILITY_RUNTIME_COMMONTESTABILITYAPP_IOS_APP_APPDELEGATE_H */
