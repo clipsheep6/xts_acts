@@ -1,0 +1,2 @@
+libintl.so
+libace_plugin_util_android.so
