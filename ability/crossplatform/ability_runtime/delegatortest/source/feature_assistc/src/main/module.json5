@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name": "feature_assistc",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/mainability/MainAbility.ts",
+        "description": "$string:Feature_assistcAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:Feature_assistcAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}
