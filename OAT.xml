@@ -150,6 +150,16 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="ActsAceEtsComponentFiveTest/.*.plist" desc="示例展示无需添加版权头"/>
                 <filteritem type="filepath" name="ActsAceEtsComponentFiveTest/.*.xcworkspacedata" desc="示例展示无需添加版权头"/>
                 <filteritem type="filepath" name="ActsAceEtsComponentFiveTest/.*.pbxproj" desc="示例展示无需添加版权头"/>  
+                <filteritem type="filepath" name=".*/crossplatform/.*/android/gradlew" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.js" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.java" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.ets" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.bat" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.json5" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.plist" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.xcworkspacedata" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.pbxproj" desc="示例展示无需添加版权头"/>  
+                <filteritem type="filepath" name=".*/crossplatform/.*/ohos/hvigorw" desc="示例展示无需添加版权头"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="LaunchScreen.storyboard" desc="示例展示无需添加版权头"/>
@@ -225,6 +235,16 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="ActsAceEtsComponentFiveTest/.*.plist" desc="示例展示无需添加版权头"/>
                 <filteritem type="filepath" name="ActsAceEtsComponentFiveTest/.*.xcworkspacedata" desc="示例展示无需添加版权头"/>
                 <filteritem type="filepath" name="ActsAceEtsComponentFiveTest/.*.pbxproj" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*/android/gradlew" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.js" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.java" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.ets" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.bat" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.json5" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.plist" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.xcworkspacedata" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*.pbxproj" desc="示例展示无需添加版权头"/>
+                <filteritem type="filepath" name=".*/crossplatform/.*/ohos/hvigorw" desc="示例展示无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
