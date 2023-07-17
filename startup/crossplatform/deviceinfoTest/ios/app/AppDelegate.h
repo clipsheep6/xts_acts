@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef STARTUP_CROSSPLATFORM_DEVICEINFOTEST_IOS_APP_APPDELEGATE_H
+#define STARTUP_CROSSPLATFORM_DEVICEINFOTEST_IOS_APP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -20,4 +21,5 @@
 @property (nonatomic, strong) UIWindow *window;
 
 @end
+#endif /* STARTUP_CROSSPLATFORM_DEVICEINFOTEST_IOS_APP_APPDELEGATE_H */
 
