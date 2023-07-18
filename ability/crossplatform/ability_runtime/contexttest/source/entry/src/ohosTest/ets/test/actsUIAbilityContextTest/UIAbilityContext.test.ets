@@ -34,6 +34,8 @@ export default function UIAbilityContext() {
 
     afterEach(async function () {
       console.info('afterEach case');
+      globalThis.list1 = [];
+      globalThis.parameters = null;
     });
 
     afterAll(async function () {
