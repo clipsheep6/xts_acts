@@ -40,7 +40,6 @@ export default function webSocketTest() {
 		console.log(`testCreateWebSocket001 5`);
 	  }
       
-      /*
 	  mWebSocket.close((error, value) => {
         if (!error) {
           console.log(`case success:` + value);
@@ -52,7 +51,6 @@ export default function webSocketTest() {
           done();
         }
       });
-	  */
       done();
 
     });
