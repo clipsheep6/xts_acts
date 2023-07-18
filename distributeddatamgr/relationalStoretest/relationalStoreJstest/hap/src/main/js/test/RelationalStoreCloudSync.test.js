@@ -992,11 +992,17 @@ export default function relationalStoreCloudSyncTest() {
         it('testRdbStorePRIKeyType0010', 0, async function (done) {
             console.log(TAG + "************* testRdbStorePRIKeyType0010 start *************");
             try {
-                relationalStore.PRIKeyType = "name";
-                expect(relationalStore.PRIKeyType == "name").assertTrue();
-                done();
+                relationalStore.PRIKeyType = ["test_key1", "test_key2"];
+                rdbStore.getModifyTime("cloud_text", "num", relationalStore.PRIKeyType, function (err, data) {
+                    console.log(TAG + 'modifyTime:' + JSON.stringify(data) );
+                    expect(err == undefined).assertTrue();
+                    let size = Object.keys(data).length ;
+                    console.log(TAG + 'size=' + size);
+                    expect( size == 2 ).assertTrue();
+                    done();
+                });
             } catch (err) {
-                console.log(TAG + `PRIKeyType fail, err code is ${err.code}, message is ${err.message}.`);
+                console.log(TAG + `get modify time fail, err code is ${err.code}, message is ${err.message}.`);
                 expect(null).assertFail();
                 done();
             }
@@ -1011,11 +1017,16 @@ export default function relationalStoreCloudSyncTest() {
         it('testRdbStorePRIKeyType0020', 0, async function (done) {
             console.log(TAG + "************* testRdbStorePRIKeyType0020 start *************");
             try {
-                relationalStore.PRIKeyType = 8;
-                expect(relationalStore.PRIKeyType == 8).assertTrue();
-                done();
+                relationalStore.PRIKeyType = [2, 4];
+                await rdbStore.getModifyTime("cloud_integer", "num", relationalStore.PRIKeyType).then((data) => {
+                    console.log(TAG + `modifyTime:` + JSON.stringify(data));
+                    let size = Object.keys(data).length ;
+                    console.log(TAG + 'size=' + size);
+                    expect( size == 2 ).assertTrue();
+                    done();
+                });
             } catch (err) {
-                console.log(TAG + `PRIKeyType fail, err code is ${err.code}, message is ${err.message}.`);
+                console.log(TAG + `get modify time fail, err code is ${err.code}, message is ${err.message}.`);
                 expect(null).assertFail();
                 done();
             }
