@@ -14,7 +14,6 @@
  */
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
-import bundle from "@ohos.bundle";
 import uitest from "@ohos.UiTest";
 const presetsCount = {
     ActsMediaLibraryAlbumTest: { albumsCount: 15, assetsCount: 27 },
@@ -238,34 +237,27 @@ const getPermission = async function (name, context) {
     if (!name) {
         name = "ohos.acts.multimedia.mediaLibrary";
     }
-    console.info("getPermission start", name);
 
+    console.info('getPermission start: ' + name);
     let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA"];
-
     let atManager = abilityAccessCtrl.createAtManager();
-    try {
-        atManager.requestPermissionsFromUser(context, permissions, (err, data) => {
-            console.info(`getPermission requestPermissionsFromUser ${JSON.stringify(data)}`);
-        });
-    } catch (err) {
-        console.log(`get permission catch err -> ${JSON.stringify(err)}`);
-    }
-    await sleep(1000);
-    let driver = uitest.Driver.create();
-    
-    await sleep(2000);
-    let button = await driver.findComponent(uitest.ON.text("允许"));
-    await button.click();
-    await sleep(2000);
+    atManager.requestPermissionsFromUser(context, permissions, (err, result) => {
+        if (err) {
+            console.info('getPermission failed: ' + JSON.stringify(err));
+        } else {
+            console.info('getPermission suc: ' + JSON.stringify(result));
+        }
+    });
 
-    let appInfo = await bundle.getApplicationInfo(name, 0, 100);
-    let tokenID = appInfo.accessTokenId;
-    
-    let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
-    let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
-    let isGranted3 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_MEDIA");
-    if (!(isGranted1 == 0 && isGranted2 == 0 && isGranted3 == 0)) {
-        console.info("getPermission failed");
+    let driver = uitest.Driver.create();
+    await sleep(500);
+
+    for (let i = 0; i < 10; i++) {
+        await sleep(500);
+        let button = await driver.findComponent(uitest.ON.text('允许'));
+        if (button != undefined) {
+            await button.click();
+        }
     }
     console.info("getPermission end");
 };
