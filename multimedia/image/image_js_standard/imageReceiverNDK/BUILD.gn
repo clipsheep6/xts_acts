@@ -23,8 +23,8 @@ ohos_js_hap_suite("image_receiver_ndk_js_hap") {
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsImageReceiverNdkJsTest"
-  subsystem_name = "multimedia"
-  part_name = "multimedia_image_framework"
+  subsystem_name = "graphic"
+  part_name = "image_framework"
   shared_libraries = [ "./entry/src/main/cpp:ImageReceiverNDKTest" ]
 }
 
