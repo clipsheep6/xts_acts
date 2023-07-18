@@ -29,9 +29,9 @@ export default function lifecycleTest() {
 
     afterEach(async function (done) {
       console.info('LifeCycleTest after each called');
-      if ("Singlehap_LifeCycleTest_0200" === TAG || "Singlehap_LifeCycleTest_0300" === TAG
-      || "Singlehap_LifeCycleTest_0500" === TAG || "Singlehap_LifeCycleTest_0600" === TAG
-      || "Singlehap_LifeCycleTest_0800" === TAG || "Singlehap_LifeCycleTest_0900" === TAG) {
+      if ("Crossplatform_Singlehap_LifeCycleTest_0200" === TAG || "Crossplatform_Singlehap_LifeCycleTest_0300" === TAG
+      || "Crossplatform_Singlehap_LifeCycleTest_0500" === TAG || "Crossplatform_Singlehap_LifeCycleTest_0600" === TAG
+      || "Crossplatform_Singlehap_LifeCycleTest_0800" === TAG || "Crossplatform_Singlehap_LifeCycleTest_0900" === TAG) {
         var para = {
           resultCode: 2,
           want: {
@@ -78,14 +78,14 @@ export default function lifecycleTest() {
     }
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0100
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0100
      * @tc.name    Register in abilitystage,listen to the lifecycle of abilityA,deregister after listening
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0100", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0100 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0100";
+    it("Crossplatform_Singlehap_LifeCycleTest_0100", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0100 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0100";
       var code;
       var str = {
         "bundleName": "com.example.lifecycle",
@@ -128,21 +128,21 @@ export default function lifecycleTest() {
           expect(exlist[4]).assertEqual("MainAbility2 onWindowStageDestroy");
           expect(exlist[5]).assertEqual("MainAbility2 onAbilityDestroy");
           expect(code).assertEqual(0);
-          console.log("------------Singlehap_LifeCycleTest_0100 END-------------");
+          console.log("------------Crossplatform_Singlehap_LifeCycleTest_0100 END-------------");
           done();
         }, 1000);
       }, 3000);
     })
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0200
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0200
      * @tc.name    Register in abilityA,listen to the lifecycle of abilityB,deregister after listening
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0200", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0200 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0200";
+    it("Crossplatform_Singlehap_LifeCycleTest_0200", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0200 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0200";
       var code;
       var str = {
         "bundleName": "com.example.lifecycle",
@@ -203,21 +203,21 @@ export default function lifecycleTest() {
           expect(exlist1[4]).assertEqual("MainAbility2 onWindowStageDestroy");
           expect(exlist1[5]).assertEqual("MainAbility2 onAbilityDestroy");
           expect(code).assertEqual(0);
-          console.log("------------Singlehap_LifeCycleTest_0200 END-------------");
+          console.log("------------Crossplatform_Singlehap_LifeCycleTest_0200 END-------------");
           done();
         }, 1000);
       }, 4000);
     });
 
     /*
-    * @tc.number  Singlehap_LifeCycleTest_0300
+    * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0300
     * @tc.name    Register in abilityA,listening the lifecycle of abilityB,deregister,repeat the unregister
     * @tc.desc    Function test
     * @tc.level   0
     */
-    it("Singlehap_LifeCycleTest_0300", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0300 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0300";
+    it("Crossplatform_Singlehap_LifeCycleTest_0300", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0300 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0300";
       var code;
       var str = {
         "bundleName": "com.example.lifecycle",
@@ -285,21 +285,21 @@ export default function lifecycleTest() {
           expect(exlist1[4]).assertEqual("MainAbility2 onWindowStageDestroy");
           expect(exlist1[5]).assertEqual("MainAbility2 onAbilityDestroy");
           expect(code).assertEqual(401);
-          console.log("------------Singlehap_LifeCycleTest_0300 END-------------");
+          console.log("------------Crossplatform_Singlehap_LifeCycleTest_0300 END-------------");
           done();
         }, 2000);
       }, 4000);
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0400
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0400
      * @tc.name    Register in abilityA,listening the lifecycle of abilityB,terminate abilityA,unregister
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0400", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0400 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0400";
+    it("Crossplatform_Singlehap_LifeCycleTest_0400", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0400 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0400";
       var code;
       var str = {
         "bundleName": "com.example.lifecycle",
@@ -352,12 +352,6 @@ export default function lifecycleTest() {
           }
         }
         console.log(TAG + " terminateSelfwithresult para: " + JSON.stringify(para));
-        // globalThis.ability3.terminateSelfWithResult(para)
-        //   .then((data) => {
-        //     console.log(TAG + " terminateSelfwithresult successful data: " + JSON.stringify(data));
-        //   }).catch((error) => {
-        //   console.log(TAG + " terminateSelfwithresult error: " + JSON.stringify(error));
-        // });
         globalThis.ability3.terminateSelf()
           .then((data) => {
             console.log(TAG + " terminateSelfwithresult successful data: " + JSON.stringify(data));
@@ -365,12 +359,6 @@ export default function lifecycleTest() {
           console.log(TAG + " terminateSelfwithresult error: " + JSON.stringify(error));
         });
         setTimeout(function () {
-          // globalThis.applicationContext3
-          //   .unregisterAbilityLifecycleCallback(globalThis.callbackid3, (error, data) => {
-          //     console.log(TAG + ": unregisterAbilityLifecycleCallback3 success, err: " + JSON.stringify(error) +
-          //     ",data: " + JSON.stringify(data));
-          //     code = error.code;
-          //   })
           globalThis.applicationContext3.off('abilityLifecycle', globalThis.callbackid3, (error) => {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
             code = error ? error.code : 0;
@@ -388,21 +376,21 @@ export default function lifecycleTest() {
           expect(exlist1[4]).assertEqual("MainAbility2 onWindowStageDestroy");
           expect(exlist1[5]).assertEqual("MainAbility2 onAbilityDestroy");
           expect(code).assertEqual(0);
-          console.log("------------Singlehap_LifeCycleTest_0400 END-------------");
+          console.log("------------Crossplatform_Singlehap_LifeCycleTest_0400 END-------------");
           done();
         }, 1000);
       }, 4000);
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0500
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0500
      * @tc.name    Register in abilityA and abilityB,unregister MainabilityB,then Register in ManinabilityC
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0500", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0500 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0500";
+    it("Crossplatform_Singlehap_LifeCycleTest_0500", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0500 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0500";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility1",
@@ -429,14 +417,7 @@ export default function lifecycleTest() {
       }, 500);
       setTimeout(function () {
         console.log(TAG + " start after callbackid3 : " + JSON.stringify(globalThis.callbackid3));
-        // globalThis.applicationContext3
-        //   .unregisterAbilityLifecycleCallback(globalThis.callbackid3)
-        //   .then((data) => {
-        //     console.info(TAG + ' unregisterAbilityLifecycleCallback3 successful. Data: ' + data);
-        //   })
-        //   .catch((error) => {
-        //     console.error(TAG + ' unregisterAbilityLifecycleCallback3 failed. Cause: ' + JSON.stringify(error));
-        //   });
+
         globalThis.applicationContext3.off('abilityLifecycle', globalThis.callbackid3, (error) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
         })
@@ -475,14 +456,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0600
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0600
      * @tc.name    Register in abilityA,start abilityB、abilityC,terminate abilityB 、abilityC
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0600", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0600 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0600";
+    it("Crossplatform_Singlehap_LifeCycleTest_0600", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0600 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0600";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility1",
@@ -551,13 +532,6 @@ export default function lifecycleTest() {
         expect(exlist2[4]).assertEqual("MainAbility5 onWindowStageDestroy");
         expect(exlist2[5]).assertEqual("MainAbility5 onAbilityDestroy");
 
-        // globalThis.applicationContext1
-        //   .unregisterAbilityLifecycleCallback(globalThis.callbackid1, (error, data) => {
-        //     console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-        //     ",data: " + JSON.stringify(data));
-        //     console.log("------------Singlehap_LifeCycleTest_0600 END-------------");
-        //     done();
-        //   })
         globalThis.applicationContext1.off('abilityLifecycle', globalThis.callbackid1, (error) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
           done();
@@ -566,14 +540,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0700
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0700
      * @tc.name    Multiple registration/unregistration
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0700", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0700 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0700";
+    it("Crossplatform_Singlehap_LifeCycleTest_0700", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0700 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0700";
       var code1;
       var code2;
       var code3;
@@ -679,7 +653,7 @@ export default function lifecycleTest() {
           expect(code1).assertEqual(0);
           expect(code2).assertEqual(0);
           expect(code3).assertEqual(0);
-          console.log("------------Singlehap_LifeCycleTest_0700 END-------------");
+          console.log("------------Crossplatform_Singlehap_LifeCycleTest_0700 END-------------");
           done();
         })
 
@@ -687,14 +661,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0800
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0800
      * @tc.name    Maninability1 Register listening, Repeat starting and termination Ability2
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0800", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0800 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0800";
+    it("Crossplatform_Singlehap_LifeCycleTest_0800", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0800 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0800";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility1",
@@ -792,13 +766,6 @@ export default function lifecycleTest() {
           console.error(`${TAG} startRunning failed: ${JSON.stringify(error)}`);
           done();
         }
-        // globalThis.applicationContext1
-        //   .unregisterAbilityLifecycleCallback(globalThis.callbackid1, (error, data) => {
-        //     console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-        //     ",data: " + JSON.stringify(data));
-        //     console.log("------------Singlehap_LifeCycleTest_0800 END-------------");
-        //     done();
-        //   });
 
         globalThis.applicationContext1.off('abilityLifecycle', globalThis.callbackid1, (error) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
@@ -809,14 +776,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_0900
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_0900
      * @tc.name    Repeat switching Ability1 between front and back
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_0900", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_0900 START-------------");
-      TAG = "Singlehap_LifeCycleTest_0900";
+    it("Crossplatform_Singlehap_LifeCycleTest_0900", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_0900 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_0900";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility1",
@@ -890,13 +857,6 @@ export default function lifecycleTest() {
         expect(exlist1[9]).assertEqual("MainAbility2 onAbilityBackground");
         expect(exlist1[10]).assertEqual("MainAbility2 onWindowStageDestroy");
         expect(exlist1[11]).assertEqual("MainAbility2 onAbilityDestroy");
-        // globalThis.applicationContext1
-        //   .unregisterAbilityLifecycleCallback(globalThis.callbackid1, (error, data) => {
-        //     console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-        //     ",data: " + JSON.stringify(data));
-        //     console.log("------------Singlehap_LifeCycleTest_0900 END-------------");
-        //     done();
-        //   });
 
         globalThis.applicationContext1.off('abilityLifecycle', globalThis.callbackid1, (error) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
@@ -908,14 +868,14 @@ export default function lifecycleTest() {
 
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_1000
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_1000
      * @tc.name    Register listening in abilityA foreground,repeat the registration (standard)
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_1000", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_1000 START-------------");
-      TAG = "Singlehap_LifeCycleTest_1000";
+    it("Crossplatform_Singlehap_LifeCycleTest_1000", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_1000 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_1000";
       var id1;
       var id2;
       var str = {
@@ -956,11 +916,20 @@ export default function lifecycleTest() {
         globalThis.applicationContext8.off('abilityLifecycle', globalThis.callbackid8, (error) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
         })
+        var para = {
+          resultCode: 1,
+          want: {
+            abilityName: "MainAbility8",
+            bundleName: "com.test.lifecycle_crossplatform_xts",
+            moduleName: moduleName,
+          },
+        };
+        console.log(TAG + " terminateSelfwithresult para: " + JSON.stringify(para));
 
         globalThis.ability8.terminateSelf((error, data) => {
           console.log(TAG + " terminateSelfwithresult success, err: " + JSON.stringify(error) +
           ",data: " + JSON.stringify(data));
-          console.log("------------Singlehap_LifeCycleTest_1200 END-------------");
+          console.log("------------Crossplatform_Singlehap_LifeCycleTest_1200 END-------------");
           done();
         });
 
@@ -968,14 +937,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_1100
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_1100
      * @tc.name    The ability of HAP A listens to the ability lifecycle callback of HAP B (standard)
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Singlehap_LifeCycleTest_1100", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_1100 start-------------");
-      TAG = "Singlehap_LifeCycleTest_1100";
+    it("Crossplatform_Singlehap_LifeCycleTest_1100", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_1100 start-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_1100";
       listKeyTemp = [];
       globalThis.abilityContext.startAbility({
         bundleName: "com.example.lifecycle",
@@ -1029,7 +998,7 @@ export default function lifecycleTest() {
           })
         }, 3000)
       });
-      console.log("------------Singlehap_LifeCycleTest_1400 end-------------");
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_1100 end-------------");
     });
   
 
@@ -1037,14 +1006,14 @@ export default function lifecycleTest() {
     var callbackid_errorNum = -1
   
     /*
-     * @tc.number  Singlehap_LifeCycleTest_1200
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_1200
      * @tc.name    input Nonexistent callbackid for unregisterAbilityLifecycleCallback parameter
      * @tc.desc    Function test
      * @tc.level   1
      */
-    it("Singlehap_LifeCycleTest_1200", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_1200 START-------------");
-      TAG = "Singlehap_LifeCycleTest_1200";
+    it("Crossplatform_Singlehap_LifeCycleTest_1200", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_1200 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_1200";
       let code;
 
       globalThis.abilityContext.getApplicationContext().off('abilityLifecycle', callbackid_NA, (error) => {
@@ -1057,14 +1026,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Singlehap_LifeCycleTest_1300
+     * @tc.number  Crossplatform_Singlehap_LifeCycleTest_1300
      * @tc.name    input error callbackid for unregisterAbilityLifecycleCallback parameter
      * @tc.desc    Function test
      * @tc.level   1
      */
-    it("Singlehap_LifeCycleTest_1300", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_1300 START-------------");
-      TAG = "Singlehap_LifeCycleTest_1300";
+    it("Crossplatform_Singlehap_LifeCycleTest_1300", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_1300 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_1300";
       let code;
 
       globalThis.abilityContext.getApplicationContext()
@@ -1078,15 +1047,15 @@ export default function lifecycleTest() {
     });
 
     /*
-    * @tc.number  Singlehap_LifeCycleTest_1400
+    * @tc.number  Crossplatform_Singlehap_LifeCycleTest_1400
     * @tc.name    Register in abilityA,register in abilityB, starting and termination abilityC,
                   termination abilityB、abilityA, Re-register in abilityA、abilityB
     * @tc.desc    Function test
     * @tc.level   0
     */
-    it("Singlehap_LifeCycleTest_1400", 0, async function (done) {
-      console.log("------------Singlehap_LifeCycleTest_1400 START-------------");
-      TAG = "Singlehap_LifeCycleTest_1400";
+    it("Crossplatform_Singlehap_LifeCycleTest_1400", 0, async function (done) {
+      console.log("------------Crossplatform_Singlehap_LifeCycleTest_1400 START-------------");
+      TAG = "Crossplatform_Singlehap_LifeCycleTest_1400";
       let id1;
       let str = {
         "bundleName": "com.example.lifecycle",
@@ -1117,6 +1086,15 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid1 : " + JSON.stringify(globalThis.callbackid1));
         id1 = globalThis.callbackid1;
         console.log(TAG + " firstCallback id1 : " + JSON.stringify(id1));
+        var para = {
+          resultCode: 2100,
+          want: {
+            abilityName: "MainAbility1",
+            bundleName: "com.test.lifecycle_crossplatform_xts",
+            moduleName: moduleName,
+          },
+        };
+        console.log(TAG + " terminateSelfwithresult para: " + JSON.stringify(para));
 
         globalThis.ability1context.terminateSelf()
           .then((data) => {
@@ -1155,14 +1133,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  Multi_LifeCycleTest_0100
+     * @tc.number  Crossplatform_Multi_LifeCycleTest_0100
      * @tc.name    Register in abilitystage,listen to the lifecycle of abilityA, then start other bundle's ablilty
      * @tc.desc    Function test
      * @tc.level   0
     */
-    it("Multi_LifeCycleTest_0100", 0, async function (done) {
-      console.log("------------Multi_LifeCycleTest_0100 START-------------");
-      TAG = "Multi_LifeCycleTest_0100";
+    it("Crossplatform_Multi_LifeCycleTest_0100", 0, async function (done) {
+      console.log("------------Crossplatform_Multi_LifeCycleTest_0100 START-------------");
+      TAG = "Crossplatform_Multi_LifeCycleTest_0100";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility1",
@@ -1196,23 +1174,18 @@ export default function lifecycleTest() {
       let list1 = globalThis.list1;
       console.info(TAG + 'list: ' + list1);
       done();
-      // MainAbility1 onWindowStageCreate,MainAbility1 onAbilityForeground,MainAbility9 onAbilityBackground,MainAbility2 onAbilityCreate
-      // ,MainAbility2 onWindowStageCreate,MainAbility2 onAbilityForeground,MainAbility1 onAbilityBackground,MainAbility1 onAbilityForeground,
-      // MainAbility2 onAbilityBackground,MainAbility2 onWindowStageDestroy,MainAbility2 onAbilityDestroy,MainAbility9 onAbilityForeground,
-      // MainAbility1 onAbilityBackground,MainAbility1 onWindowStageDestroy,MainAbility1 onAbilityDestroy
-      // expect(list1[3]).assertEqual("MainAbility1 onAbilityBackground");
     })
 
     /*
-     * @tc.number  AbilityStage_onCreate_Test_0100
-     * @tc.name    AbilityStage_onCreate_Test_0100
+     * @tc.number  Crossplatform_AbilityStage_onCreate_Test_0100
+     * @tc.name    Crossplatform_AbilityStage_onCreate_Test_0100
      * @tc.desc    Start mainability2, test stage ability onCreate
      * @tc.level   0
      */
-    it("AbilityStage_onCreate_Test_0100", 0, async function (done) {
+    it("Crossplatform_AbilityStage_onCreate_Test_0100", 0, async function (done) {
       console.log(
-        "------------AbilityStage_onCreate_Test_0100 START-------------");
-      TAG = "AbilityStage_onCreate_Test_0100";
+        "------------Crossplatform_AbilityStage_onCreate_Test_0100 START-------------");
+      TAG = "Crossplatform_AbilityStage_onCreate_Test_0100";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility2",
@@ -1233,14 +1206,14 @@ export default function lifecycleTest() {
     })
 
     /*
-     * @tc.number  AbilityStage_Context_Test_0100
-     * @tc.name    AbilityStage_Context_Test_0100
+     * @tc.number  Crossplatform_AbilityStage_Context_Test_0100
+     * @tc.name    Crossplatform_AbilityStage_Context_Test_0100
      * @tc.desc    Start mainability2, test stage ability context
      * @tc.level   0
     */
-    it("AbilityStage_Context_Test_0100", 0, async function (done) {
-      console.log("------------AbilityStage_Context_Test_0100 START-------------");
-      TAG = "AbilityStage_Context_Test_0100";
+    it("Crossplatform_AbilityStage_Context_Test_0100", 0, async function (done) {
+      console.log("------------Crossplatform_AbilityStage_Context_Test_0100 START-------------");
+      TAG = "Crossplatform_AbilityStage_Context_Test_0100";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility2",
@@ -1255,25 +1228,25 @@ export default function lifecycleTest() {
       setTimeout(function () {
         // abilitystage的onCreatre里注册了globalThis.applicationContext，globalThis.applicationContext不为null
         // 则oncreate触发成功,且context能够获取。
-        console.log('AbilityStage_Context_Test_0100 1000');
+        console.log('Crossplatform_AbilityStage_Context_Test_0100 1000');
         expect(globalThis.ability2 != null).assertTrue();
-        console.log('AbilityStage_Context_Test_0100 1001');
+        console.log('Crossplatform_AbilityStage_Context_Test_0100 1001');
         expect(globalThis.ability2.currentHapModuleInfo != null).assertTrue();
-        console.log('AbilityStage_Context_Test_0100 1002');
+        console.log('Crossplatform_AbilityStage_Context_Test_0100 1002');
         expect(globalThis.ability2.config != null).assertTrue();
         done();
       }, 1000);
     })
 
     /*
-     * @tc.number  Multi_LifeCycleTest_0200
-     * @tc.name    Multi_LifeCycleTest_0200
+     * @tc.number  Crossplatform_Multi_LifeCycleTest_0200
+     * @tc.name    Crossplatform_Multi_LifeCycleTest_0200
      * @tc.desc    start multi ability1, then start multi ability1, check life cycle
      * @tc.level   0
     */
-    it("Multi_LifeCycleTest_0200", 0, async function (done) {
-      console.log("------------Multi_LifeCycleTest_0200 START-------------");
-      TAG = "Multi_LifeCycleTest_0200";
+    it("Crossplatform_Multi_LifeCycleTest_0200", 0, async function (done) {
+      console.log("------------Crossplatform_Multi_LifeCycleTest_0200 START-------------");
+      TAG = "Crossplatform_Multi_LifeCycleTest_0200";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MultiMainability1",
@@ -1297,7 +1270,7 @@ export default function lifecycleTest() {
         }
       }
       console.info(TAG + 'list:' + listtemp);
-      // MultiMainability1 onWindowStageCreate,MultiMainability1 onAbilityForeground
+
       expect(listtemp[0]).assertEqual('MultiMainability1 onWindowStageCreate');
       expect(listtemp[1]).assertEqual('MultiMainability1 onAbilityForeground');
 
@@ -1326,14 +1299,14 @@ export default function lifecycleTest() {
     })
 
     /*
-     * @tc.number  LifeCycleTest_on_0100
-     * @tc.name    LifeCycleTest_on_0100
+     * @tc.number  Crossplatform_LifeCycleTest_on_0100
+     * @tc.name    Crossplatform_LifeCycleTest_on_0100
      * @tc.desc    on abilityLifecycle twice in mainability13
      * @tc.level   0
     */
-    it("LifeCycleTest_on_0100", 0, async function (done) {
-      console.log("------------LifeCycleTest_on_0100 START-------------");
-      TAG = "LifeCycleTest_on_0100";
+    it("Crossplatform_LifeCycleTest_on_0100", 0, async function (done) {
+      console.log("------------Crossplatform_LifeCycleTest_on_0100 START-------------");
+      TAG = "Crossplatform_LifeCycleTest_on_0100";
       var str = {
         "bundleName": "com.example.lifecycle",
         "abilityName": "MainAbility13",
@@ -1351,10 +1324,8 @@ export default function lifecycleTest() {
       await sleep(2500);
       console.log(TAG + 'list1:' + globalThis.list13);
       const list1 = globalThis.list13;
-      // MainAbility13 onWindowStageCreate,MainAbility13 onAbilityForeground,TestAbility onAbilityBackground
       console.log(TAG + 'list2:' + globalThis.otherList13);
       const list2 = globalThis.otherList13;
-      // MainAbility13 onWindowStageCreate,MainAbility13 onAbilityForeground,TestAbility onAbilityBackground
 
       expect(list1[0]).assertEqual(list2[0]);
       expect(list1[1]).assertEqual(list2[1]);
@@ -1364,14 +1335,14 @@ export default function lifecycleTest() {
     });
 
     /*
-      * @tc.number  LifeCycleTest_on_0200
-      * @tc.name    LifeCycleTest_on_0200
+      * @tc.number  Crossplatform_LifeCycleTest_on_0200
+      * @tc.name    Crossplatform_LifeCycleTest_on_0200
       * @tc.desc    Function test
       * @tc.level   0
       */
-    it("LifeCycleTest_on_0200", 0, async function (done) {
-      console.log("------------LifeCycleTest_on_0200 START-------------");
-      TAG = "LifeCycleTest_on_0200";
+    it("Crossplatform_LifeCycleTest_on_0200", 0, async function (done) {
+      console.log("------------Crossplatform_LifeCycleTest_on_0200 START-------------");
+      TAG = "Crossplatform_LifeCycleTest_on_0200";
       var listKey14 = [];
       let AbilityLifecycleCallback = {
         onAbilityCreate(ability) {
@@ -1482,7 +1453,7 @@ export default function lifecycleTest() {
           listtemp.push(item);
         }
       }
-      // MainAbility14 onAbilityBackground,MainAbility14 onWindowStageDestroy,MainAbility14 onAbilityDestroy
+
       expect(listtemp[0]).assertEqual('MainAbility14 onAbilityBackground');
       expect(listtemp[1]).assertEqual('MainAbility14 onWindowStageDestroy');
       expect(listtemp[2]).assertEqual('MainAbility14 onAbilityDestroy');
@@ -1490,14 +1461,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  LifeCycleTest_on_0300
-     * @tc.name    LifeCycleTest_on_0300
+     * @tc.number  Crossplatform_LifeCycleTest_on_0300
+     * @tc.name    Crossplatform_LifeCycleTest_on_0300
      * @tc.desc    unregister callback id which is not exists.
      * @tc.level   0
     */
-    it("LifeCycleTest_on_0300", 0, async function (done) {
-      console.log("------------LifeCycleTest_on_0300 START-------------");
-      TAG = "LifeCycleTest_on_0300";
+    it("Crossplatform_LifeCycleTest_on_0300", 0, async function (done) {
+      console.log("------------Crossplatform_LifeCycleTest_on_0300 START-------------");
+      TAG = "Crossplatform_LifeCycleTest_on_0300";
 
       let applicationContext = globalThis.abilityContext.getApplicationContext();
       applicationContext.off('abilityLifecycle', 100, (error) => {
@@ -1508,14 +1479,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  LifeCycleTest_on_0400
-     * @tc.name    LifeCycleTest_on_0400
+     * @tc.number  Crossplatform_LifeCycleTest_on_0400
+     * @tc.name    Crossplatform_LifeCycleTest_on_0400
      * @tc.desc    unregister callback twice.
      * @tc.level   0
     */
-    it("LifeCycleTest_on_0400", 0, async function (done) {
-      console.log("------------LifeCycleTest_on_0400 START-------------");
-      TAG = "LifeCycleTest_on_0400";
+    it("Crossplatform_LifeCycleTest_on_0400", 0, async function (done) {
+      console.log("------------Crossplatform_LifeCycleTest_on_0400 START-------------");
+      TAG = "Crossplatform_LifeCycleTest_on_0400";
 
       var str = {
         "bundleName": "com.example.lifecycle",
@@ -1549,14 +1520,14 @@ export default function lifecycleTest() {
     });
 
     /*
-     * @tc.number  LifeCycleTest_on_0500
-     * @tc.name    LifeCycleTest_on_0500
+     * @tc.number  Crossplatform_LifeCycleTest_on_0500
+     * @tc.name    Crossplatform_LifeCycleTest_on_0500
      * @tc.desc    start other hap's ability in the same app, and register this lifecycle.
      * @tc.level   0
     */
-    it("LifeCycleTest_on_0500", 0, async function (done) {
-      console.log("------------LifeCycleTest_on_0500 START-------------");
-      TAG = "LifeCycleTest_on_0500";
+    it("Crossplatform_LifeCycleTest_on_0500", 0, async function (done) {
+      console.log("------------Crossplatform_LifeCycleTest_on_0500 START-------------");
+      TAG = "Crossplatform_LifeCycleTest_on_0500";
 
       var str = {
         "bundleName": "com.example.lifecycle",

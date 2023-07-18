@@ -53,7 +53,9 @@
             params = item.value;
         }
     }
-
+    if ([StageApplication handleSingleton:bundleName moduleName:moduleName abilityName:abilityName] == YES) {
+        return YES;
+    }
     [self handleOpenUrlWithBundleName:bundleName
                            moduleName:moduleName
                           abilityName:abilityName

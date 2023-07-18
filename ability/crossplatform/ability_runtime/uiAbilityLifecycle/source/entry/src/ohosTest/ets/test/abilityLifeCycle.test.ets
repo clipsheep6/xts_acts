@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import aConstant from '@ohos.app.ability.AbilityConstant'
 
@@ -33,13 +47,13 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_CONTEXT_TEST_0001
-     *@tc.name      : UIAbilityContextTest_0001
+     *@tc.name      : UI_Ability_Context_Test_0001
      *@tc.desc      : Test context.
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-    it('UIAbilityContextTest_0001',0, async (done) => {
+    it('UI_Ability_Context_Test_0001',0, async (done) => {
       console.log("------------UI_ABILITY_CONTEXT_TEST_0001 START-------------");
       TAG = "UI_ABILITY_CONTEXT_TEST_0001";
       expect(globalThis.abilityContext != null).assertTrue();
@@ -48,15 +62,15 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_CONTEXT_TEST_0002
-     *@tc.name      : UIAbilityContextTest_0002
+     *@tc.name      : UI_Ability_Context_Test_0002
      *@tc.desc      : Test context.
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-     it('UIAbilityContextTest_0002',0, async (done) => {
-      console.log("------------UI_ABILITY_CONTEXT_TEST_0002 START-------------");
-      TAG = "UI_ABILITY_CONTEXT_TEST_0002";
+     it('UI_Ability_Context_Test_0002',0, async (done) => {
+      console.log("------------UI_Ability_Context_Test_0002 START-------------");
+      TAG = "UI_Ability_Context_Test_0002";
       expect(globalThis.abilityContext != null).assertTrue();
       expect(globalThis.abilityContext.startAbility != null).assertTrue();
       done();
@@ -86,7 +100,7 @@ export default function abilityTest() {
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-    it('UIAbilityLifeCycleTest0001',0, async (done) => {
+    it('UI_Ability_Life_Cycle_Test_0001',0, async (done) => {
       console.log("------------UI_ABILITY_LIFE_CYCLE_TEST_0001 START-------------");
       TAG = "UI_ABILITY_LIFE_CYCLE_TEST_0001";
 
@@ -119,13 +133,13 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_LIFE_CYCLE_TEST_0002
-     *@tc.name      : UIAbilityLifeCycleTest0002
+     *@tc.name      : UI_Ability_Life_Cycle_Test_0002
      *@tc.desc      : Only start 'MainAbility1'
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-     it('UIAbilityLifeCycleTest0002',0, async (done) => {
+     it('UI_Ability_Life_Cycle_Test_0002',0, async (done) => {
       console.log("------------UI_ABILITY_LIFE_CYCLE_TEST_0002 START-------------");
       TAG = "UI_ABILITY_LIFE_CYCLE_TEST_0002";
 
@@ -160,13 +174,13 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_LIFE_CYCLE_TEST_0003
-     *@tc.name      : UIAbilityLifeCycleTest0003
+     *@tc.name      : UI_Ability_Life_Cycle_Test_0003
      *@tc.desc      : start 'MainAbility2', after MainAbility2 terminated, start MainAbility1, after 2 seconds, terminate MainAbility1.
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-    it('UIAbilityLifeCycleTest0003',0, async (done) => {
+    it('UI_Ability_Life_Cycle_Test_0003',0, async (done) => {
       console.log("------------UI_ABILITY_LIFE_CYCLE_TEST_0003 START-------------");
       TAG = "UI_ABILITY_LIFE_CYCLE_TEST_0003";
 
@@ -223,7 +237,7 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_LIFE_CYCLE_TEST_0004
-     *@tc.name      : UIAbilityLifeCycleTest0004
+     *@tc.name      : UI_Ability_Life_Cycle_Test_0004
      *@tc.desc      : start mainability1, after 1.5 seconds, start mainability2, after 1.5 seconds, mainability2 terminated.
                       after 1 seconds, terminate mainability1.
      *@tc.size      : MediumTest
@@ -301,13 +315,13 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_LIFE_CYCLE_TEST_0005
-     *@tc.name      : UIAbilityLifeCycleTest0005
+     *@tc.name      : UI_Ability_Life_Cycle_Test_0005
      *@tc.desc      : start mainability1, after 1seconds, start other app mainability.
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-     it('UIAbilityLifeCycleTest0005',0, async (done) => {
+     it('UI_Ability_Life_Cycle_Test_0005',0, async (done) => {
       console.log("------------UI_ABILITY_LIFE_CYCLE_TEST_0005 START-------------");
       TAG = "UI_ABILITY_LIFE_CYCLE_TEST_0005";
 
@@ -353,13 +367,13 @@ export default function abilityTest() {
 
     /**
      *@tc.number    : UI_ABILITY_LIFE_CYCLE_TEST_0006
-     *@tc.name      : UIAbilityLifeCycleTest0006
+     *@tc.name      : UI_Ability_Life_Cycle_Test_0006
      *@tc.desc      : start mainability3, after start mainability3 twice, mainability3 is a standard ability.
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-     it('UIAbilityLifeCycleTest0006',0, async (done) => {
+     it('UI_Ability_Life_Cycle_Test_0006',0, async (done) => {
       console.log("------------UI_ABILITY_LIFE_CYCLE_TEST_0006 START-------------");
       TAG = "UI_ABILITY_LIFE_CYCLE_TEST_0006";
 
@@ -379,7 +393,6 @@ export default function abilityTest() {
 
       const result1 = globalThis.list3;
       console.info(TAG + 'result1: ' + JSON.stringify(result1));
-      // ["MainAbility3 onCreate","MainAbility3 onWindowStageCreate","MainAbility3 onForeground"]
       
       expect(result1[0]).assertEqual('MainAbility3 onCreate');
       expect(result1[1]).assertEqual('MainAbility3 onWindowStageCreate');
@@ -394,7 +407,6 @@ export default function abilityTest() {
 
       await sleep(1000);
       const result2 = globalThis.list3;
-      // ["MainAbility3 onCreate","MainAbility3 onWindowStageCreate","MainAbility3 onForeground","MainAbility3 onBackground"]
       console.info(TAG + 'result2: ' + JSON.stringify(result2));
       expect(result2[0]).assertEqual('MainAbility3 onCreate');
       expect(result2[1]).assertEqual('MainAbility3 onWindowStageCreate');
@@ -449,16 +461,16 @@ export default function abilityTest() {
     })
 
     /**
-     *@tc.number    : UIAbilityConstantTest0100
-     *@tc.name      : UIAbilityConstantTest0100
+     *@tc.number    : UI_Ability_Constant_Test_0100
+     *@tc.name      : UI_Ability_Constant_Test_0100
      *@tc.desc      : start mainability1, check ability constant.
      *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 1
     */
-     it("UIAbilityConstantTest0100", 0, async (done) => {
-      console.log("------------UIAbilityConstantTest0100 START-------------");
-      TAG = "UIAbilityConstantTest0100";
+     it("UI_Ability_Constant_Test_0100", 0, async (done) => {
+      console.log("------------UI_Ability_Constant_Test_0100 START-------------");
+      TAG = "UI_Ability_Constant_Test_0100";
 
       var want = {
         bundleName: "com.example.uiabilitylifecycle",
@@ -476,10 +488,7 @@ export default function abilityTest() {
 
       await sleep(1000);
 
-      console.log('UIAbilityConstantTest0100 launchReason' + globalThis.launchParam1.launchReason)
-      console.log('UIAbilityConstantTest0100 lastExitReason' + globalThis.launchParam1.lastExitReason)
-      console.log('UIAbilityConstantTest0100 LaunchReason.UNKNOWN' + aConstant.LaunchReason.UNKNOWN)
-      console.log('UIAbilityConstantTest0100 LastExitReason.UNKNOWN' + aConstant.LastExitReason.UNKNOWN)
+      console.log('UI_Ability_Constant_Test_0100:' + globalThis.launchParam1.lastExitReason)
       expect(globalThis.launchParam1.launchReason == 0).assertTrue();
       expect(globalThis.launchParam1.lastExitReason == 0).assertTrue();
       expect(aConstant.LaunchReason.UNKNOWN == 0).assertTrue();
