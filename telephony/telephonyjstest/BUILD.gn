@@ -19,7 +19,6 @@ group("telephonyjstest") {
     "netmanager_base:netmanager_base",
     "netmanager_http:ActsNetManagerHttpEtsTest",
     "netmanager_socket:ActsNetManagerSocketEtsTest",
-    "networkmanager_statistics:ActsNetManagerStatisticsEtsTest",
     "network_search:network_search",
     "observer:ActsObserverEtsTest",
     "radiostatistic:ActsRadiostatisticEtsTest",
