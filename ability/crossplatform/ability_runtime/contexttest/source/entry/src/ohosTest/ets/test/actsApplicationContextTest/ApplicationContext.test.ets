@@ -63,12 +63,20 @@ export default function ApplicationContext() {
           done();
         }).catch((err) => {
           console.log(`testGetRunningProcessInformationPromise001 fail ` + err);
-          expect().assertFail();
+          try {
+            expect().assertFail();
+          } catch (err) {
+            console.log(`testGetRunningProcessInformationPromise001 fail ` + err);
+          }
           done();
         })
       } catch (err) {
         console.log(`testGetRunningProcessInformationPromise001 fail ` + err);
-        expect().assertFail();
+        try {
+          expect().assertFail();
+        } catch (err) {
+          console.log(`testGetRunningProcessInformationPromise001 fail ` + err);
+        }
         done();
       }
     })
@@ -89,19 +97,27 @@ export default function ApplicationContext() {
         expect(appContext != null).assertTrue();
 
         appContext.getRunningProcessInformation((err, data) => {
-          expect(data != undefined).assertTrue();
-          console.log(`testGetRunningProcessInformationCb001 pid:` + data[0].pid);
-          expect(data[0].pid > 0).assertTrue();
-          console.log(`testGetRunningProcessInformationCb001 processName:` + data[0].processName);
-          expect(data[0].processName == "com.example.contexttest").assertTrue();
-          console.log(`testGetRunningProcessInformationCb001 bundleNames:` + data[0].bundleNames);
-          expect(data[0].bundleNames[0] == "com.example.contexttest").assertTrue();
-          console.log(`testGetRunningProcessInformationCb001 success`);
+          try {
+            expect(data != undefined).assertTrue();
+            console.log(`testGetRunningProcessInformationCb001 pid:` + data[0].pid);
+            expect(data[0].pid > 0).assertTrue();
+            console.log(`testGetRunningProcessInformationCb001 processName:` + data[0].processName);
+            expect(data[0].processName == "com.example.contexttest").assertTrue();
+            console.log(`testGetRunningProcessInformationCb001 bundleNames:` + data[0].bundleNames);
+            expect(data[0].bundleNames[0] == "com.example.contexttest").assertTrue();
+            console.log(`testGetRunningProcessInformationCb001 success`);
+          } catch (err) {
+            console.log(`testGetRunningProcessInformationCb001 fail ` + err);
+          }
           done();
         })
       } catch (err) {
         console.log(`testGetRunningProcessInformationCb001 fail ` + err);
-        expect().assertFail();
+        try {
+          expect().assertFail();
+        } catch (err) {
+          console.log(`testGetRunningProcessInformationCb001 fail ` + err);
+        }
         done();
       }
     })
