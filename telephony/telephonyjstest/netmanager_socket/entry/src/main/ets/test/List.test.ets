@@ -22,7 +22,8 @@ import networkManagerSocketTest from './NetworkManagerSocket.test'
 export default function testsuite() {
   networkManagerSocketTest();
   connectionSecondJsUnit();
-  //socketJsunit();
   webSocketJsunit();
   connectionJsunit();
+  socketJsunit();
+
 }
