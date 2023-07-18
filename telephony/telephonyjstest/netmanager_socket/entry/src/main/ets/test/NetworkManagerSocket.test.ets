@@ -15,6 +15,7 @@
  */
 import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import socket from '@ohos.net.socket';
+import statistics from '@ohos.net.statistics';
 
 let sendData = "hello!";
 let instance = undefined;
@@ -41,6 +42,10 @@ let options = {
 export default function networkManagerSocketTest() {
 
   describe("Telephony_NetworkManager_SocketTest", function () {
+    let delayTime = 5000;
+    const DATA_0 = 0;
+    let code_201 = 201;
+    let errCode_201 = "201";
 
     beforeAll(async function () {
       console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll start')
@@ -488,5 +493,125 @@ export default function networkManagerSocketTest() {
         done();
       }
     })
+
+        /**
+     * @tc.number NetworkManager_statistics_on_0100
+     * @tc.name Test on() interface
+     * @tc.desc Function test
+     */
+    it('NetworkManager_statistics_on_0100', 0, async function (done) {
+      let caseName = 'NetworkManager_statistics_on_0100';
+      try {
+        statistics.on('netStatsChange', (err) => {
+          if (err) {
+            console.log(`${caseName} on netStatsChange fail ${JSON.stringify(err)}`);
+            expect().assertFail();
+            done();
+            return
+          } else {
+            expect().assertFail();
+            done();
+            return
+          }
+        });
+      } catch (error) {
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect(error.code).assertEqual(errCode_201);
+        done();
+        return
+      }
+    });
+
+    /**
+     * @tc.number NetworkManager_statistics_off_0100
+     * @tc.name Test off() interface
+     * @tc.desc Function test
+     */
+    it('NetworkManager_statistics_off_0100', 0, async function (done) {
+      let caseName = 'NetworkManager_statistics_off_0100';
+      try {
+        statistics.off('netStatsChange', (err) => {
+          if (err) {
+            console.log(`${caseName} off netStatsChange fail ${JSON.stringify(err)}`);
+            expect().assertFail();
+            done();
+            return
+          } else {
+            expect().assertFail();
+            done();
+            return
+          }
+        });
+      } catch (error) {
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect(error.code).assertEqual(errCode_201);
+        done();
+        return
+      }
+    });
+
+    /**
+     * @tc.number NetworkManager_getTrafficStatsByIface_Async_0100
+     * @tc.name Test getTrafficStatsByIface() interface
+     * @tc.desc Function test
+     */
+    it('NetworkManager_getTrafficStatsByIface_Async_0100', 0, async function (done) {
+      let caseName = 'NetworkManager_getTrafficStatsByIface_Async_0100';
+      let ifaceInfo = {
+        iface: "eth0",
+        startTime: Date.now() - 60 * 60,
+        endTime: Date.now()
+      };
+      try {
+        statistics.getTrafficStatsByIface(ifaceInfo, (err, data) => {
+          if (err) {
+            console.log(`${caseName} getTrafficStatsByIface fail ${JSON.stringify(err)}`);
+            expect(err.code).assertEqual(code_201);
+            done();
+            return
+          } else {
+            expect().assertFail();
+            done();
+            return
+          }
+        });
+      } catch (error) {
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect().assertFail();
+        done();
+        return;
+      }
+    });
+
+    /**
+     * @tc.number NetworkManager_getTrafficStatsByIface_Promise_0100
+     * @tc.name Test getTrafficStatsByIface() interface
+     * @tc.desc Function test
+     */
+    it('NetworkManager_getTrafficStatsByIface_Promise_0100', 0, async function (done) {
+      let caseName = 'NetworkManager_getTrafficStatsByIface_Promise_0100';
+      let ifaceInfo = {
+        iface: "eth0",
+        startTime: Date.now() - 60 * 60,
+        endTime: Date.now()
+      };
+      try {
+        statistics.getTrafficStatsByIface(ifaceInfo).then((data) => {
+          expect().assertFail();
+          done();
+          return;
+        }).catch((err) => {
+          console.log(`${caseName} getTrafficStatsByIface fail ${JSON.stringify(err)}`);
+          expect(err.code).assertEqual(code_201);
+          done();
+          return;
+        });
+      } catch (error) {
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect().assertFail();
+        done();
+        return;
+      }
+    });
   })
 }
