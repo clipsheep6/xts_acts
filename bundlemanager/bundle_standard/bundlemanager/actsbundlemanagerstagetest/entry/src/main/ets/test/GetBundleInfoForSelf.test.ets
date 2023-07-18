@@ -485,9 +485,9 @@ export default function getBundleInfoForSelf() {
         expect(data.appInfo).assertEqual(null);
         expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
         let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-        expect(extensionList.length).assertEqual(16);
+        expect(extensionList.length).assertEqual(17);
         let count = 0;
-        for (let i = 0;i < 16; i++) {
+        for (let i = 0;i < 17; i++) {
           switch (extensionList[i].name) {
             case "Form":
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -595,10 +595,15 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.PUSH)
               count = count + 16;
               break;
+            case 'sysPicker/mediaControl':
+              console.info("sysPicker/mediaControl" + JSON.stringify(extensionList[i].extensionAbilityType));
+              expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.SYSPICKER_MEDIACONTROL)
+              count = count + 17;
+              break;
           }
           console.info("count" + JSON.stringify(count));
         }
-        expect(count).assertEqual(136);
+        expect(count).assertEqual(153);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
         expect(data.reqPermissionDetails.length).assertEqual(0);
         expect(data.permissionGrantStates.length).assertEqual(0);
@@ -628,7 +633,7 @@ export default function getBundleInfoForSelf() {
           let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
           expect(extensionList.length).assertEqual(16);
           let count = 0;
-          for (let i = 0;i < 16; i++) {
+          for (let i = 0;i < 17; i++) {
             switch (extensionList[i].name) {
               case "Form":
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -736,10 +741,15 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.PUSH)
                 count = count + 16;
                 break;
+              case 'sysPicker/mediaControl':
+                console.info("sysPicker/mediaControl" + JSON.stringify(extensionList[i].extensionAbilityType));
+                expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.SYSPICKER_MEDIACONTROL)
+                count = count + 17;
+                break;
             }
             console.info("count" + JSON.stringify(count));
           }
-          expect(count).assertEqual(136);
+          expect(count).assertEqual(153);
           expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
           expect(data.reqPermissionDetails.length).assertEqual(0);
           expect(data.permissionGrantStates.length).assertEqual(0);
