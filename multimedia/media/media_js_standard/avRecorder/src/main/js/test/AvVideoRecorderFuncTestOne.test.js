@@ -1393,7 +1393,7 @@ export default function avVideoRecorderTestOne() {
                 // init avRecorder
                 CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder and camera
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1421,7 +1421,7 @@ export default function avVideoRecorderTestOne() {
                 // init avRecorder
                 CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder and camera
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1453,7 +1453,7 @@ export default function avVideoRecorderTestOne() {
                 // start recorder
                 STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder and camera
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1488,7 +1488,7 @@ export default function avVideoRecorderTestOne() {
                 //pause recorder
                 PAUSERECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder and camera
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1524,7 +1524,7 @@ export default function avVideoRecorderTestOne() {
                 //resume recorder
                 STARTCAMERA_EVENT,RESUMERECORDER_PROMISE_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder and camera
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1558,7 +1558,7 @@ export default function avVideoRecorderTestOne() {
                 // reset recorder
                 RESETRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder and camera
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1590,7 +1590,7 @@ export default function avVideoRecorderTestOne() {
                 // start recorder
                 STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // release avRecorder
                 RELEASECORDER_PROMISE_EVENT,
                 // end
@@ -1622,11 +1622,11 @@ export default function avVideoRecorderTestOne() {
                 // start recorder
                 STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // stop recorder
-                STOPRECORDER_PRIMISE_EVENT,
+                STOPRECORDER_PROMISE_EVENT,
                 // stop camera
                 STOPCAMERA_EVENT,
                 // release avRecorder and camera
