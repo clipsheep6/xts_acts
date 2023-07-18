@@ -1,0 +1,7 @@
+libarkui_android.so
+libarkui_patternlock.so
+libarkui_relativecontainer.so
+libarkui_qrcode.so
+
+libdcamera_multiview.so
+libdcamera_visual_effect.so
