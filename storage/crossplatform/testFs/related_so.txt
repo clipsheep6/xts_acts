@@ -1,0 +1,5 @@
+libcrypto_openssl.so
+libfile_fs.so
+libhilog_android.so
+libhmicuuc.so
+libutil.so
