@@ -70,7 +70,6 @@ export default function connectionTest() {
 		  return;
         }
       });
-	  done();
       console.log('testHasDefaultNet001 9');
     });
 
@@ -93,7 +92,6 @@ export default function connectionTest() {
         done();
 		return;
       });
-	  done();
     });
 
     /**
@@ -125,7 +123,6 @@ export default function connectionTest() {
           done();
         }
       });
-	  done();
     });
 
     /**
@@ -154,7 +151,6 @@ export default function connectionTest() {
           });
         }
       });
-	  done();
     });
 
     /**
@@ -180,10 +176,7 @@ export default function connectionTest() {
             expect(true).assertTrue();
             done();
           }
-        });
-		
-		done();
-		
+        });	
       } catch (err) {
         console.log(`register failed,errCode:` + err);
         expect().assertFail();
@@ -218,7 +211,6 @@ export default function connectionTest() {
           done();
         }
       });
-	  done();
     });
 
     /**
@@ -247,7 +239,6 @@ export default function connectionTest() {
           done();
         }
       });
-      done();
     });
 
     /**
@@ -276,7 +267,6 @@ export default function connectionTest() {
           done();
         }
       });
-	  done();
     });
 
     /*
@@ -303,7 +293,6 @@ export default function connectionTest() {
           done();
         }
       });
-	  done();
     });
 
     /**
