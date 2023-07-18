@@ -14,9 +14,13 @@
  */
 
 #import <UIKit/UIKit.h>
-#ifndef ETSAPP_IOS_ETSAPP_APPDELEGATE_H
-#define ETSAPP_IOS_ETSAPP_APPDELEGATE_H
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "AppDelegate.h"
 
-@end
-#endif /* ETSAPP_IOS_ETSAPP_APPDELEGATE_H */
+int main(int argc, char * argv[]) {
+    NSString * appDelegateClassName;
+    @autoreleasepool {
+        // Setup code that might create autoreleased objects goes here.
+        appDelegateClassName = NSStringFromClass([AppDelegate class]);
+    }
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
+}

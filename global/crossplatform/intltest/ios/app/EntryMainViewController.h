@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
+#ifndef EntryMainViewController_h
+#define EntryMainViewController_h
 #import <UIKit/UIKit.h>
-#ifndef ETSAPP_IOS_ETSAPP_APPDELEGATE_H
-#define ETSAPP_IOS_ETSAPP_APPDELEGATE_H
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import <libarkui_ios/StageViewController.h>
+@interface EntryMainViewController : StageViewController
+
 
 @end
-#endif /* ETSAPP_IOS_ETSAPP_APPDELEGATE_H */
+
+#endif /* EntryMainViewController_h */
