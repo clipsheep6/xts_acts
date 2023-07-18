@@ -1,0 +1,7 @@
+libprocess.so
+librequest.so
+liburl.so
+libutil.so
+libace_plugin_util_android.so
+libhmicuuc.so
+libcrypto_openssl.so
