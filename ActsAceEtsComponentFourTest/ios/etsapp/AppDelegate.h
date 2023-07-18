@@ -18,7 +18,5 @@
 #define ETSAPP_IOS_ETSAPP_APPDELEGATE_H
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-
 @end
 #endif /* ETSAPP_IOS_ETSAPP_APPDELEGATE_H */
-

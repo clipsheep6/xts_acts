@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef GLOBAL_CROSSPLATFORM_INTLTEST_IOS_APP_APPDELEGATE_H
+#define GLOBAL_CROSSPLATFORM_INTLTEST_IOS_APP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, strong) UIWindow *window;
+@property(nonatomic, strong) UIWindow *window;
 
 @end
-
+#endif /* GLOBAL_CROSSPLATFORM_INTLTEST_IOS_APP_APPDELEGATE_H */
