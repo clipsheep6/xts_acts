@@ -607,17 +607,17 @@ export default function avVideoRecorderTestOne() {
 
         async function releaseCamera(avRecorder, avConfig, recorderTime, steps, done) {
             try{
-                await cameraInput.close()
-                console.info('releaseCamera 001');
-                console.info('cameraInput.close success');
+                // await cameraInput.close()
+                // console.info('releaseCamera 001');
+                // console.info('cameraInput.close success');
                 await videoOutput.release()
-                console.info('releaseCamera 002');
+                console.info('releaseCamera 001');
                 console.info('videoOutput.release success');
                 await previewOutput.release()
-                console.info('releaseCamera 003');
+                console.info('releaseCamera 002');
                 console.info('previewOutput.release success');
                 await captureSession.release()
-                console.info('releaseCamera 004');
+                console.info('releaseCamera 003');
                 console.info('captureSession.release success');
                 captureSession = null
                 console.info('releaseCamera success');
