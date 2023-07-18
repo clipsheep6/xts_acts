@@ -27,14 +27,14 @@ config("deqp_platform_ohos_config") {
 
 ohos_static_library("libkhrgles31func0004") {
   subsystem_name = "graphic"
-  part_name = "graphic_standard"
+  part_name = "graphic_2d"
   sources = common_src
   sources += [ "../Khrgles31BaseFunc.cpp" ]
 
   include_dirs = common_include
   deps = common_depends
   external_deps = [
-    "hilog_native:libhilog",
+    "hilog:libhilog",
     "multimedia_image_framework:image_native",
   ]
   configs = [ ":deqp_platform_ohos_config" ]
@@ -42,7 +42,7 @@ ohos_static_library("libkhrgles31func0004") {
 
 ohos_moduletest_suite("ActsKhrgles31TestSuite0004") {
   subsystem_name = "graphic"
-  part_name = "graphic_standard"
+  part_name = "graphic_2d"
   sources = [
     "../ActsKhrgles310004TestSuite.cpp",
     "../core/Khrgles31teximage3d_r11g11b10fTestCase.cpp",

@@ -27,14 +27,14 @@ config("deqp_platform_ohos_config") {
 
 ohos_static_library("libdeqpgles3func0027") {
   subsystem_name = "graphic"
-  part_name = "graphic_standard"
+  part_name = "graphic_2d"
   sources = common_src
   sources += [ "../Deqpgles3BaseFunc.cpp" ]
 
   include_dirs = common_include
   deps = common_depends
   external_deps = [
-    "hilog_native:libhilog",
+    "hilog:libhilog",
     "multimedia_image_framework:image_native",
   ]
   configs = [ ":deqp_platform_ohos_config" ]
@@ -42,7 +42,7 @@ ohos_static_library("libdeqpgles3func0027") {
 
 ohos_moduletest_suite("ActsDeqpgles3TestSuite0027") {
   subsystem_name = "graphic"
-  part_name = "graphic_standard"
+  part_name = "graphic_2d"
   sources = [
     "../ActsDeqpgles30027TestSuite.cpp",
     "../functional/Deqpgles32d_filteringTestCase.cpp",

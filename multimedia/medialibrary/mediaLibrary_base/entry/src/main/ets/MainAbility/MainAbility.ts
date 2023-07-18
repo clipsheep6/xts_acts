@@ -27,18 +27,10 @@ export default class MainAbility extends Ability {
 
     async onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-
-
-        // var context = this.context
-
-        // let array: Array<string> = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA"];
-        // //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
         console.log("[Demo] MainAbility onWindowStageCreate windowStage=" + windowStage)
         globalThis.windowStage = windowStage
         globalThis.abilityContext = this.context
         windowStage.setUIContent(this.context, "MainAbility/pages/index/index", null)
-        console.info("getPermission 4");
-
     }
 
     onWindowStageDestroy() {
