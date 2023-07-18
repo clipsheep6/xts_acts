@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef DISTRIBUTEDDATAMGR_CROSSPLATFORM_TESTRELATIONALSTORE_IOS_APP_APPDELEGATE_H
+#define DISTRIBUTEDDATAMGR_CROSSPLATFORM_TESTRELATIONALSTORE_IOS_APP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -20,4 +21,4 @@
 @property (nonatomic, strong) UIWindow *window;
 
 @end
-
+#endif /* DISTRIBUTEDDATAMGR_CROSSPLATFORM_TESTRELATIONALSTORE_IOS_APP_APPDELEGATE_H */
