@@ -16,41 +16,37 @@ import image from "@ohos.multimedia.image";
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
-import bundle from "@ohos.bundle";
 import uitest from "@ohos.UiTest";
-
-import { sleep } from "../../../../../../common";
+import { sleep, } from "../../../../../../common";
 
 export default function getExifLocation(abilityContext) {
     describe("getExifLocation", function () {
         beforeAll(async function () {
             console.info("beforeAll case");
-            let atManager = abilityAccessCtrl.createAtManager();
-
-            let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA"];
             try {
-                atManager.requestPermissionsFromUser(abilityContext, permissions, (err, data) => {
-                    console.info(`getPermission requestPermissionsFromUser ${JSON.stringify(data)}`);
+                let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA"];
+                let atManager = abilityAccessCtrl.createAtManager();
+                atManager.requestPermissionsFromUser(abilityContext, permissions, (err, result) => {
+                    if (err) {
+                        console.info('getPermission failed: ' + JSON.stringify(err));
+                    } else {
+                        console.info('getPermission suc: ' + JSON.stringify(result));
+                    }
                 });
-            } catch (err) {
-                console.log(`get permission catch err -> ${JSON.stringify(err)}`);
-            }
-            await sleep(1000);
-
-            let driver = uitest.Driver.create();
-            await sleep(2000);
-
-            let button = await driver.findComponent(uitest.ON.text("允许"));
-            await button.click();
-            await sleep(2000);
-
-            let appInfo = await bundle.getApplicationInfo("ohos.acts.multimedia.mediaLibrary", 0, 100);
-            let tokenID = appInfo.accessTokenId;
             
-            let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
-            let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
-            if (!(isGranted1 == 0 && isGranted2 == 0)) {
-                console.info("getpermission failed");
+                let driver = uitest.Driver.create();
+                await sleep(500);
+            
+                for (let i = 0; i < 10; i++) {
+                    await sleep(500);
+                    let button = await driver.findComponent(uitest.ON.text('允许'));
+                    if (button != undefined) {
+                        await button.click();
+                    }
+                }
+                console.info("getPermission end");
+            } catch (error) {
+                console.info(`getPermission failed, error: ${error}`);
             }
         });
         beforeEach(function () {
