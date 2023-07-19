@@ -4,7 +4,7 @@
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
         "bundle-name": "com.example.actsosaccountthirdpartytest",
-        "package-name": "com.example.actsosaccountthirdpartytest",
+        "package-name": "com.example.actsosaccountthirdpartytest_test",
         "shell-timeout": "60000",
         "testcase-timeout": "100000"
     },

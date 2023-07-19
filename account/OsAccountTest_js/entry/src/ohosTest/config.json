@@ -1,0 +1,86 @@
+{
+	"app":{
+		"bundleName":"ohos.acts.account.osaccount",
+		"vendor":"acts",
+		"version":{
+			"code":1000000,
+			"name":"1.0.0"
+		}
+	},
+	"deviceConfig":{
+		
+	},
+	"module":{
+		"package":"ohos.acts.account.osaccount_test",
+		"name":".entry_test",
+		"mainAbility":".TestAbility",
+		"deviceType": [
+          "tablet",
+          "default"
+        ],
+		"testRunner":{
+			"name":"OpenHarmonyTestRunner",
+			"srcPath":"TestRunner"
+		},
+		"distro":{
+			"deliveryWithInstall":true,
+			"installationFree":false,
+			"moduleName":"entry_test",
+			"moduleType":"feature"
+		},
+		"abilities":[
+			{
+				"description":"$string:TestAbility_desc",
+				"formsEnabled":false,
+				"icon":"$media:icon",
+				"label":"$string:TestAbility_label",
+				"launchType":"standard",
+				"name":".TestAbility",
+				"orientation":"unspecified",
+				"skills":[
+					{
+						"actions":[
+							"action.system.home"
+						],
+						"entities":[
+							"entity.system.home"
+						]
+					}
+				],
+				"srcLanguage":"js",
+				"srcPath":"TestAbility",
+				"type":"page",
+				"visible":true
+			}
+		],
+		"defPermissions": [
+			{
+			  "availableScope": [],
+			  "grantMode": "system_grant",
+			  "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+			}
+		  ],
+		  "reqPermissions": [
+			{
+			  "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
+			  "reason": "ceshi"
+			},
+			{
+			  "name": "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS",
+			  "reason": "ceshi"
+			}
+		  ],
+		"js":[
+			{
+				"name":".TestAbility",
+				"pages":[
+					"pages/index/index"
+				],
+				"window":{
+					"autoDesignWidth":false,
+					"designWidth":720
+				}
+			}
+		]
+	}
+}
