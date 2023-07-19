@@ -51,11 +51,12 @@ export default function connectionJsunit() {
         let netSpecifier = undefined;
         connection.createNetConnection(netSpecifier, 5000);
         expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0100 Test end*************");
-      done();
     });
 
     /*
@@ -69,11 +70,12 @@ export default function connectionJsunit() {
         let netSpecifier = undefined;
         connection.createNetConnection(netSpecifier, 3000);
         expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0200 Test end*************");
-      done();
     });
 
     /*
@@ -87,11 +89,12 @@ export default function connectionJsunit() {
         let netSpecifier = undefined;
         connection.createNetConnection(netSpecifier, 8000);
         expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0300 Test end*************");
-      done();
     });
 
     /*
@@ -112,11 +115,12 @@ export default function connectionJsunit() {
         }
         connection.createNetConnection(netSpecifier, 5000);
         expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0400 Test end*************");
-      done();
     });
 
     /*
@@ -137,11 +141,12 @@ export default function connectionJsunit() {
         }
         connection.createNetConnection(netSpecifier, 5000);
         expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0500 Test end*************");
-      done();
     });
 
     /*
@@ -152,12 +157,15 @@ export default function connectionJsunit() {
     it('Telephony_Connection_Connection_getDefaultNet_0100', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_getDefaultNet_0100 Test start*************");
       connection.getDefaultNet((error, data) => {
+          if (error) {
+            expect(true).assertTrue();
+            done();
+            return;
+          }
         expect().assertFail();
         done();
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_getDefaultNet_0100 Test end*************");
-      done();
     });
 
     /*
@@ -170,12 +178,13 @@ export default function connectionJsunit() {
       connection.getDefaultNet().then(data => {
         console.log("Telephony_Connection_Connection_getDefaultNet_0200 getDefaultNet success, case fail");
         expect().assertFail();
+        done();
       }).catch(err => {
         console.log("Telephony_Connection_Connection_getDefaultNet_0200 getDefaultNet error, case success");
         expect(true).assertTrue();
+        done();
       });
       console.log("************* Telephony_Connection_Connection_getDefaultNet_0200 Test end*************");
-      done();
     });
 
     /*
@@ -188,11 +197,12 @@ export default function connectionJsunit() {
       connection.getAllNets((error, data) => {
         if (error) {
           expect(true).assertTrue();
+        done();
           return;
         }
         expect().assertFail();
+        done();
       });
-      done();
       console.log("************* Telephony_Connection_Connection_getAllNets_0100 Test end*************");
     });
 
@@ -205,11 +215,12 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_getAllNets_0200 Test start*************");
       connection.getAllNets().then(data => {
         expect(true).assertTrue();
+        done();
       }).catch(err => {
         console.log("Telephony_Connection_Connection_getAllNets_0200 getAllNets error ");
         expect().assertFail();
+        done();
       });
-      done();
       console.log("************* Telephony_Connection_Connection_getAllNets_0200 Test end*************");
     });
 
@@ -224,13 +235,16 @@ export default function connectionJsunit() {
         netHandle.netId = undefined;
         console.log('Telephony_Connection_Connection_getConnectionProperties_0100 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.getConnectionProperties(netHandle,(error, data) => {
+          if (error) {
+            expect(true).assertTrue();
+            done();
+            return;
+          }
           expect().assertFail();
           done();
       });
       })
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test end*************");
-      done();
     });
 
     /*
@@ -245,14 +259,13 @@ export default function connectionJsunit() {
         console.log('Telephony_Connection_Connection_getConnectionProperties_0200 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.getConnectionProperties(netHandle).then(data => {
           expect().assertFail();
+        done();
         }).catch(err => {
           expect(true).assertTrue();
+        done();
         });
       })
-
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0200 Test end*************");
-      done();
     });
 
     /*
@@ -266,17 +279,16 @@ export default function connectionJsunit() {
         netHandle.netId = 99;
         console.log('Telephony_Connection_Connection_getConnectionProperties_0300 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.getConnectionProperties(netHandle, (error, data) => {
-
           if (error) {
             expect(true).assertTrue();
             done();
-          } 
+            return;
+          }
           expect().assertFail();
           done();
         });
       });
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0300 Test end*************");
-      done();
     });
 
     /*
@@ -295,12 +307,15 @@ export default function connectionJsunit() {
           connection.getConnectionProperties(value[0], (error, value_2) => {
             if (!error) {
               console.log(`Telephony_Connection_Connection_getConnectionProperties_0400  get value success: ${JSON.stringify(value_2)}`);
+            expect().assertFail();
+            done();
+            return;
             }
+            expect(true).assertTrue();
+            done();
           });
         }
       });
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0400 Test end*************");
     });
 
@@ -316,13 +331,18 @@ export default function connectionJsunit() {
         netHandle.netId = undefined;
         console.log('Telephony_Connection_Connection_getNetCapabilities_0100 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.getNetCapabilities(netHandle,(error, data) => {
-          expect().assertFail();
-          done();
+          if (!error) {
+            console.log("Telephony_Connection_Connection_getNetCapabilities_0100 err"+JSON.stringify(error))
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+        console.log("Telephony_Connection_Connection_getNetCapabilities_0100 data"+JSON.stringify(data))
+        expect().assertFail();
+        done();
         });
       })
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test end*************");
-      done();
     });
 
     /*
@@ -339,12 +359,13 @@ export default function connectionJsunit() {
           if (!error) {
             expect().assertFail();
             done();
+            return;
           }
+          expect(true).assertTrue();
+          done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0200 Test end*************");
-      done();
     });
 
     /*
@@ -359,12 +380,13 @@ export default function connectionJsunit() {
         console.log('Telephony_Connection_Connection_getNetCapabilities_0300 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.getNetCapabilities(netHandle).then(data => {
           expect().assertFail();
+          done();
         }).catch(err => {
           expect(true).assertTrue();
+          done();
         });
       });
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0300 Test end*************");
-      done();
     });
 
     /*
@@ -399,7 +421,6 @@ export default function connectionJsunit() {
         }
       });
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0400 Test end*************");
-      done();
     });
 
     /*
@@ -419,7 +440,6 @@ export default function connectionJsunit() {
         done();
       });
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0100 Test end*************");
-      done();
     });
 
     /*
@@ -431,12 +451,13 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0200 Test start*************");
       connection.hasDefaultNet().then(activated => {
         expect().assertFail();
+        done();
       }).catch(error => {
         console.log(`Telephony_Connection_Connection_hasDefaultNet_0200 hasDefaultNet error,case success,error: ` + JSON.stringify(error));
         expect(true).assertTrue();
+        done();
       })
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0200 Test end*************");
-      done();
     });
 
     /*
@@ -459,9 +480,7 @@ export default function connectionJsunit() {
           done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test end*************");
-      done();
     });
 
     /*
@@ -485,9 +504,7 @@ export default function connectionJsunit() {
           done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0200 Test end*************");
-      done();
     });
 
     /*
@@ -502,13 +519,13 @@ export default function connectionJsunit() {
         console.log('Telephony_Connection_Connection_reportNetConnected_0300 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.reportNetConnected(netHandle).then(() => {
           expect().assertFail();
+          done();
         }).catch(err => {
           expect(true).assertTrue();
+          done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0300 Test end*************");
-      done();
     });
 
     /*
@@ -523,13 +540,13 @@ export default function connectionJsunit() {
         console.log('Telephony_Connection_Connection_reportNetConnected_0400 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.reportNetConnected(netHandle).then(() => {
           expect().assertFail();
+          done();
         }).catch(err => {
           expect(true).assertTrue();
+          done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0400 Test end*************");
-      done();
     });
 
     /*
@@ -553,9 +570,7 @@ export default function connectionJsunit() {
           done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test end*************");
-      done();
     });
 
     /*
@@ -578,9 +593,7 @@ export default function connectionJsunit() {
           done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0200 Test end*************");
-      done();
     });
 
     /*
@@ -595,13 +608,13 @@ export default function connectionJsunit() {
         console.log('Telephony_Connection_Connection_reportNetDisconnected_0300 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.reportNetDisconnected(netHandle).then(() => {
           expect().assertFail();
+        done();
         }).catch(err => {
           expect(true).assertTrue();
+        done();
         });
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0300 Test end*************");
-      done();
     });
 
     /*
@@ -616,13 +629,14 @@ export default function connectionJsunit() {
         console.log('Telephony_Connection_Connection_reportNetDisconnected_0400 getDefaultNet = ' + JSON.stringify(netHandle));
         connection.reportNetDisconnected(netHandle).then(() => {
           expect().assertFail();
+          done();
         }).catch(err => {
           expect(true).assertTrue();
+          done();
         });
       });
       expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0400 Test end*************");
-      done();
     });
 
     /*
@@ -641,9 +655,7 @@ export default function connectionJsunit() {
         expect().assertFail();
         done();
       });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_getAddressesByName_0100 Test end*************");
-      done();
     });
 
     /*
@@ -660,9 +672,9 @@ export default function connectionJsunit() {
       }).catch(error => {
         console.log(`Telephony_Connection_Connection_getAddressesByName_0200 getAddressesByName error,case success,error: ` + JSON.stringify(error));
         expect(true).assertTrue();
+        done();
       })
       console.log("************* Telephony_Connection_Connection_getAddressesByName_0200 Test end*************");
-      done();
     });
 
     /**
@@ -683,11 +695,11 @@ export default function connectionJsunit() {
         netConn.unregister(function (error) {
           console.log("Telephony_Connection_Connection_netAvailable_0100 unregister error = "+JSON.stringify(error))
         })
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_netAvailable_0100 Test end*************");
     })
 
@@ -709,11 +721,11 @@ export default function connectionJsunit() {
         netConn.unregister(function (error) {
           console.log("Telephony_Connection_Connection_netBlockStatusChange_0100 unregister error = "+JSON.stringify(error))
         })
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_netBlockStatusChange_0100 Test end*************");
     })
 
@@ -735,11 +747,11 @@ export default function connectionJsunit() {
         netConn.unregister(function (error) {
           console.log("Telephony_Connection_Connection_netCapabilitiesChange_0100 unregister error = "+JSON.stringify(error))
         })
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_netCapabilitiesChange_0100 Test end*************");
     })
 
@@ -761,11 +773,12 @@ export default function connectionJsunit() {
         netConn.unregister(function (error) {
           console.log("Telephony_Connection_Connection_netConnectionPropertiesChange_0100 unregister error = "+JSON.stringify(error))
         })
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_netConnectionPropertiesChange_0100 Test end*************");
     })
 
@@ -787,11 +800,11 @@ export default function connectionJsunit() {
         netConn.unregister(function (error) {
           console.log("Telephony_Connection_Connection_netLost_0100 unregister error = "+JSON.stringify(error))
         })
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_netLost_0100 Test end*************");
     })
 
@@ -814,11 +827,11 @@ export default function connectionJsunit() {
         netConn.unregister(function (error) {
           console.log("Telephony_Connection_Connection_netUnavailable_0100 unregister error = "+JSON.stringify(error))
         })
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_netUnavailable_0100 Test end*************");
     })
 
@@ -839,11 +852,11 @@ export default function connectionJsunit() {
           }, bearerPrivateIdentifier: '123'
         }
         connection.createNetConnection(netSpecifier, TIMEOUT);
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_NetSpecifier_0100 Test end*************");
     })
 
@@ -863,8 +876,8 @@ export default function connectionJsunit() {
         });
       }).catch((error) => {
         expect(true).assertTrue();
+        done();
       });
-      done();
       console.log("************* Telephony_Connection_Connection_bindSocket_0100 Test end*************");
     })
 
@@ -884,8 +897,8 @@ export default function connectionJsunit() {
         });
       }).catch((error) => {
         expect(true).assertTrue();
+        done();
       });
-      done();
       console.log("************* Telephony_Connection_Connection_NetHandle_getAddressesByName_0100 Test end*************");
     })
 
@@ -899,14 +912,17 @@ export default function connectionJsunit() {
       connection.getDefaultNet().then((handle) => {
         handle.getAddressByName(addressBaidu, (error, value) => {
           if (error) {
+            console.log("Telephony_Connection_Connection_getAddressByName_0100 err ="+JSON.stringify(error))
             expect().assertFail();
+            done();
           }
-          done();
+          console.log("Telephony_Connection_Connection_getAddressByName_0100 value ="+JSON.stringify(value))
         });
       }).catch((error) => {
         expect(true).assertTrue();
+        done();
+        return;
       });
-      done();
       console.log("************* Telephony_Connection_Connection_getAddressByName_0100 Test end*************");
     })
 
@@ -927,11 +943,12 @@ export default function connectionJsunit() {
           }, bearerPrivateIdentifier: '456'
         }
         connection.createNetConnection(netSpecifier, TIMEOUT);
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_linkUpBandwidthKbps_0100 Test end*************");
     })
 
@@ -952,11 +969,12 @@ export default function connectionJsunit() {
           }, bearerPrivateIdentifier: '789'
         }
         connection.createNetConnection(netSpecifier, TIMEOUT);
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_linkDownBandwidthKbps_0100 Test end*************");
     })
 
@@ -977,11 +995,13 @@ export default function connectionJsunit() {
           }, bearerPrivateIdentifier: '321'
         }
         connection.createNetConnection(netSpecifier, TIMEOUT);
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
-      expect(true).assertTrue();
-      done();
+
       console.log("************* Telephony_Connection_Connection_networkCap_0100 Test end*************");
     })
 
@@ -1002,11 +1022,12 @@ export default function connectionJsunit() {
           }, bearerPrivateIdentifier: '876'
         }
         connection.createNetConnection(netSpecifier, TIMEOUT);
+        expect(true).assertTrue();
+        done();
       } catch (error) {
         expect().assertFail();
+        done();
       }
-      expect(true).assertTrue();
-      done();
       console.log("************* Telephony_Connection_Connection_bearerTypes_0100 Test end*************");
     })
 
@@ -1017,30 +1038,31 @@ export default function connectionJsunit() {
      */
     it('Telephony_Connection_Connection_register_0100', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_register_0100 Test start*************");
-      let caseName = 'Telephony_Connection_Connection_register_0100';
-      let netSpecifier = {
-        netCapabilities: {
-          linkUpBandwidthKbps: 0,
-          linkDownBandwidthKbps: 0,
-          bearerTypes: [0],
-          networkCap: [0],
-        }, bearerPrivateIdentifier: '123'
+      try {
+        let caseName = 'Telephony_Connection_Connection_register_0100';
+        let netSpecifier = {
+            netCapabilities: {
+            linkUpBandwidthKbps: 0,
+            linkDownBandwidthKbps: 0,
+            bearerTypes: [0],
+            networkCap: [0],
+            }, bearerPrivateIdentifier: '123'
+        }
+        let callbackdata =(error) => {
+            if (error) {
+            console.log(`${caseName} register fail: ${error}`);
+            }
+        }
+        let netConn = connection.createNetConnection(netSpecifier, TIMEOUT);
+        netConn.register(callbackdata);
+        netConn.unregister(callbackdata);
+        expect(true).assertTrue();
+        done();
+      } catch (error) {
+        expect().assertFail();
+        done();
       }
-      let netConn = connection.createNetConnection(netSpecifier, TIMEOUT);
-      netConn.register((error) => {
-        if (error) {
-          console.log(`${caseName} register fail: ${error}`);
-        }
-      });
-      netConn.unregister((error) => {
-        if (error) {
-          console.log(`${caseName} unregister fail: ${error}`);
-        }
-      });
-      expect(true).assertTrue();
-	  console.log("************* Telephony_Connection_Connection_register_0100 Test end*************");
-      done();
-      
+	  console.log("************* Telephony_Connection_Connection_register_0100 Test end*************");      
     });
 
     /**
@@ -1050,29 +1072,31 @@ export default function connectionJsunit() {
      */
     it('Telephony_Connection_Connection_unregister_0100', 0, function (done) {
       console.log("************* Telephony_Connection_Connection_unregister_0100 Test start*************");
-      let caseName = 'Telephony_Connection_Connection_unregister_0100';
-      let netSpecifier = {
-        netCapabilities: {
-          linkUpBandwidthKbps: 10,
-          linkDownBandwidthKbps: 11,
-          bearerTypes: [0],
-          networkCap: [0],
-        }, bearerPrivateIdentifier: '123'
+      try {
+        let caseName = 'Telephony_Connection_Connection_unregister_0100';
+        let netSpecifier = {
+            netCapabilities: {
+            linkUpBandwidthKbps: 10,
+            linkDownBandwidthKbps: 11,
+            bearerTypes: [0],
+            networkCap: [0],
+            }, bearerPrivateIdentifier: '123'
+        }
+        let callbackdata = (error) => {
+            if (error) {
+            console.log(`${caseName} register fail: ${error}`);
+            }
+        }；
+        let netConn = connection.createNetConnection(netSpecifier, TIMEOUT);
+        netConn.register(callbackdata);
+        netConn.unregister(callbackdata);
+        expect(true).assertTrue();
+        done();
+      } catch (error) {
+        expect().assertFail();
+        done();
       }
-      let netConn = connection.createNetConnection(netSpecifier, TIMEOUT);
-      netConn.register((error) => {
-        if (error) {
-          console.log(`${caseName} register fail: ${error}`);
-        }
-      });
-      netConn.unregister((error) => {
-        if (error) {
-          console.log(`${caseName} unregister fail: ${error}`);
-        }
-      });
-      expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_unregister_0100 Test end*************");
-	  done();
     });
 
     /*
@@ -1090,7 +1114,6 @@ export default function connectionJsunit() {
         }
       });
       console.log("************* Telephony_Connection_Connection_netId_0100 Test end*************");
-      done();
     });
 
     /*
@@ -1112,7 +1135,6 @@ export default function connectionJsunit() {
         });
       });
       console.log("************* Telephony_Connection_Connection_domains_0100 Test end*************");
-      done();
     });
 
 
