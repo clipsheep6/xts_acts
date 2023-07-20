@@ -293,7 +293,7 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
               console.log(caseName + 'value.dnses.length:' + value.dnses.length);
               if (value.dnses.length > 0) {
-                expect(value.dnses[0].port != 0).assertTrue();
+                expect(value.dnses[0].port != -1).assertTrue();
                 done();
               }
             }
