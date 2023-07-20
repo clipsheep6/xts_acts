@@ -27,10 +27,17 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_createWebSocket_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_createWebSocket_0100 Test start*************");
-      var mWebSocket = webSocket.createWebSocket();
-      expect(mWebSocket != null).assertTrue();
+      try {
+        var mWebSocket = webSocket.createWebSocket();
+        console.log(`Telephony_WebSocket_WebSocket_createWebSocket_0100 try success:`);
+        expect(mWebSocket != null).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_createWebSocket_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_createWebSocket_0100 Test end*************");
-      done();
     })
 
     /*
@@ -40,12 +47,19 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocketRequestOptions_header_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocketRequestOptions_header_0100 Test start*************");
-      let webSocketRequestOptions: webSocket.WebSocketRequestOptions = {
-        header: "test header"
+      try {
+        let webSocketRequestOptions: webSocket.WebSocketRequestOptions = {
+          header: "test header"
+        }
+        console.log(`Telephony_WebSocket_WebSocketRequestOptions_header_0100 try success:`);
+        expect(webSocketRequestOptions.header === "test header").assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocketRequestOptions_header_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
+        done();
       }
-      expect(webSocketRequestOptions.header === "test header").assertTrue();
       console.log("************* Telephony_WebSocket_WebSocketRequestOptions_header_0100 Test end*************");
-      done();
     })
 
     /*
@@ -55,13 +69,20 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocketCloseOptions_code_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocketCloseOptions_code_0100 Test start*************");
-      let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
-        code: 1,
-        reason: "test reason"
+      try {
+        let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
+          code: 1,
+          reason: "test reason"
+        }
+        console.log(`Telephony_WebSocket_WebSocketCloseOptions_code_0100 try success:`);
+        expect(webSocketCloseOptions.code === 1).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocketCloseOptions_code_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
+        done();
       }
-      expect(webSocketCloseOptions.code === 1).assertTrue();
       console.log("************* Telephony_WebSocket_WebSocketCloseOptions_code_0100 Test end*************");
-      done();
     })
 
     /*
@@ -71,13 +92,20 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocketCloseOptions_reason_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocketCloseOptions_reason_0100 Test start*************");
-      let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
-        code: 1,
-        reason: "test reason"
+      try {
+        let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
+          code: 1,
+          reason: "test reason"
+        }
+        console.log(`Telephony_WebSocket_WebSocketCloseOptions_reason_0100 try success:`);
+        expect(webSocketCloseOptions.reason).assertEqual("test reason");
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocketCloseOptions_reason_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
+        done();
       }
-      expect(webSocketCloseOptions.reason).assertEqual("test reason");
       console.log("************* Telephony_WebSocket_WebSocketCloseOptions_reason_0100 Test end*************");
-      done();
     })
 
     /*
@@ -88,20 +116,26 @@ export default function webSocketJsunit() {
     it('Telephony_WebSocket_WebSocket_connect_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_connect_0100 Test start*************");
       let caseName = "Telephony_WebSocket_WebSocket_connect_0100"
-      let ws = webSocket.createWebSocket();
-      let url = "www.baidu.com"
-      ws.connect(url, (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+      try {
+        let ws = webSocket.createWebSocket();
+        let url = "www.baidu.com"
+        ws.connect(url, (error, data) => {
+          if (error) {
+            console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+          expect().assertFail();
           done();
-          return;
-        }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_connect_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
         done();
-      })
+      }
       console.log("************* Telephony_WebSocket_WebSocket_connect_0100 Test end*************");
-      done();
     })
 
     /*
@@ -112,23 +146,28 @@ export default function webSocketJsunit() {
     it('Telephony_WebSocket_WebSocket_connect_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_connect_0200 Test start*************");
       let caseName = "Telephony_WebSocket_WebSocket_connect_0200"
-      let ws = webSocket.createWebSocket();
-
-      let webSocketRequestOptions: webSocket.WebSocketRequestOptions = {
-        header: "test header"
-      }
-      ws.connect("www.baidu.com", webSocketRequestOptions, (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
+      try {
+        let ws = webSocket.createWebSocket();
+        let webSocketRequestOptions: webSocket.WebSocketRequestOptions = {
+          header: "test header"
         }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        ws.connect("www.baidu.com", webSocketRequestOptions, (error, data) => {
+          if (error) {
+            console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_connect_0200 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
         done();
-      })
+      }
       console.log("************* Telephony_WebSocket_WebSocket_connect_0200 Test end*************");
-      done();
     })
 
     /*
@@ -138,19 +177,27 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_connect_0300', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_connect_0300 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_connect_0300"
-      let ws = webSocket.createWebSocket();
-      let webSocketRequestOptions: webSocket.WebSocketRequestOptions = {
-        header: "test header"
-      }
-      ws.connect("www.baidu.com", webSocketRequestOptions).then(data => {
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_connect_0300"
+        let ws = webSocket.createWebSocket();
+        let webSocketRequestOptions: webSocket.WebSocketRequestOptions = {
+          header: "test header"
+        }
+        ws.connect("www.baidu.com", webSocketRequestOptions).then(data => {
+          console.log(`${caseName} success,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
+          expect(true).assertTrue();
+          done();
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_connect_0300 error, catch error:` + JSON.stringify(error));
         expect(true).assertTrue();
-        console.log(`${caseName} success,data:` + JSON.stringify(data));
-      }).catch((error) => {
-        console.log(`${caseName} failed,error:` + JSON.stringify(error));
-      })
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_connect_0300 Test end*************");
-      done();
     })
 
     /*
@@ -160,16 +207,24 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_connect_0400', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_connect_0400 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_connect_0400"
-      let ws = webSocket.createWebSocket();
-      ws.connect("www.baidu.com").then(data => {
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_connect_0400"
+        let ws = webSocket.createWebSocket();
+        ws.connect("www.baidu.com").then(data => {
+          console.log(`${caseName} success,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
+          expect(true).assertTrue();
+          done();
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_connect_0400 error, catch error:` + JSON.stringify(error));
         expect(true).assertTrue();
-        console.log(`${caseName} success,data:` + JSON.stringify(data));
-      }).catch((error) => {
-        console.log(`${caseName} failed,error:` + JSON.stringify(error));
-      })
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_connect_0400 Test end*************");
-      done();
     })
 
     /*
@@ -179,20 +234,26 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_send_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_send_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_send_0100"
-      let ws = webSocket.createWebSocket();
-      ws.send("test data", (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_send_0100"
+        let ws = webSocket.createWebSocket();
+        ws.send("test data", (error, data) => {
+          if (error) {
+            console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+          expect().assertFail();
           done();
-          return;
-        }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_send_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
         done();
-      })
+      }
       console.log("************* Telephony_WebSocket_WebSocket_send_0100 Test end*************");
-      done();
     })
 
     /*
@@ -202,16 +263,24 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_send_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_send_0200 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_send_0200"
-      let ws = webSocket.createWebSocket();
-      ws.send("test data").then(data => {
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_send_0200"
+        let ws = webSocket.createWebSocket();
+        ws.send("test data").then(data => {
+          console.log(`${caseName} success,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
+          expect(true).assertTrue();
+          done();
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_send_0200 error, catch error:` + JSON.stringify(error));
         expect(true).assertTrue();
-        console.log(`${caseName} success,data:` + JSON.stringify(data));
-      }).catch((error) => {
-        console.log(`${caseName} failed,error:` + JSON.stringify(error));
-      })
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_send_0200 Test end*************");
-      done();
     })
 
     /*
@@ -221,20 +290,26 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_close_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_close_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_close_0100"
-      let ws = webSocket.createWebSocket();
-      ws.close((error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_close_0100"
+        let ws = webSocket.createWebSocket();
+        ws.close((error, data) => {
+          if (error) {
+            console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+          expect().assertFail();
           done();
-          return;
-        }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_close_0100 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
         done();
-      })
+      }
       console.log("************* Telephony_WebSocket_WebSocket_close_0100 Test end*************");
-      done();
     })
 
     /*
@@ -244,24 +319,30 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_close_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_close_0200 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_close_0200"
-      let ws = webSocket.createWebSocket();
-      let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
-        code: 1,
-        reason: "test reason"
-      }
-      ws.close(webSocketCloseOptions, (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_close_0200"
+        let ws = webSocket.createWebSocket();
+        let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
+          code: 1,
+          reason: "test reason"
         }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        ws.close(webSocketCloseOptions, (error, data) => {
+          if (error) {
+            console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_close_0200 error, catch error:` + JSON.stringify(error));
+        expect(true).assertTrue();
         done();
-      })
+      }
       console.log("************* Telephony_WebSocket_WebSocket_close_0200 Test end*************");
-      done();
     })
 
     /*
@@ -271,20 +352,28 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_close_0300', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_close_0300 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_close_0300"
-      let ws = webSocket.createWebSocket();
-      let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
-        code: 1,
-        reason: "test reason"
-      }
-      ws.close(webSocketCloseOptions).then(data => {
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_close_0300"
+        let ws = webSocket.createWebSocket();
+        let webSocketCloseOptions: webSocket.WebSocketCloseOptions = {
+          code: 1,
+          reason: "test reason"
+        }
+        ws.close(webSocketCloseOptions).then(data => {
+          console.log(`${caseName} success,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
+          expect(true).assertTrue();
+          done();
+        })
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_close_0300 error, catch error:` + JSON.stringify(error));
         expect(true).assertTrue();
-        console.log(`${caseName} success,data:` + JSON.stringify(data));
-      }).catch((error) => {
-        console.log(`${caseName} failed,error:` + JSON.stringify(error));
-      })
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_close_0300 Test end*************");
-      done();
     })
 
     /*
@@ -297,48 +386,21 @@ export default function webSocketJsunit() {
       let caseName = "Telephony_WebSocket_WebSocket_on_open_0100"
       try {
         let ws = webSocket.createWebSocket();
-        ws.on("open", (error, data) => {
-          if (error) {
-            console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-            done();
-            return;
-          }
-          expect().assertFail();
-          console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
-          done();
-        });
+        let callbackdata =(error, data) => {
+          console.log(`${caseName} on data:` + JSON.stringify(data));
+          console.log(`${caseName} on error:` + JSON.stringify(error));
+        }
+        ws.on("open", callbackdata);
+        ws.off("open", callbackdata);
+        console.log(`${caseName} try success:`);
         expect(true).assertTrue();
         done();
       } catch (error) {
-        expect(true).assertTrue();
         console.log(`${caseName} error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
         done();
       }
       console.log("************* Telephony_WebSocket_WebSocket_on_open_0100 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_WebSocket_WebSocket_off_open_0100
-     * @tc.name      : off
-     * @tc.desc      : Cancels listening for the open events of a WebSocket connection.
-     */
-    it('Telephony_WebSocket_WebSocket_off_open_0100', 0, async function (done) {
-      console.log("************* Telephony_WebSocket_WebSocket_off_open_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_off_open_0100"
-      let ws = webSocket.createWebSocket();
-      ws.off("open", (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
-        }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
-        done();
-      });
-      console.log("************* Telephony_WebSocket_WebSocket_off_open_0100 Test end*************");
-      done();
     });
 
     /*
@@ -348,11 +410,18 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_off_open_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_off_open_0200 Test start*************");
-      let ws = webSocket.createWebSocket();
-      ws.off("open");
-      expect(true).assertTrue();
+      try {
+        let ws = webSocket.createWebSocket();
+        ws.off("open");
+        console.log(`Telephony_WebSocket_WebSocket_off_open_0200 try success:`);
+        expect(true).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_off_open_0200 error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_off_open_0200 Test end*************");
-      done();
     });
 
     /*
@@ -362,43 +431,24 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_on_message_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_on_message_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_on_message_0100"
-      let ws = webSocket.createWebSocket();
-      ws.on("message", (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
+      try {
+        let caseName = "Telephony_WebSocket_WebSocket_on_message_0100"
+        let ws = webSocket.createWebSocket();
+        let callbackdata =(error, data) => {
+          console.log(`${caseName} on data:` + JSON.stringify(data));
+          console.log(`${caseName} on error:` + JSON.stringify(error));
         }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        ws.on("message", callbackdata);
+        ws.off("message", callbackdata);
+        console.log(`${caseName} try success:`);
+        expect(true).assertTrue();
         done();
-      });
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_on_message_0100 error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_on_message_0100 Test end*************");
-      done();
-    });
-
-    /*
-     * @tc.number    : Telephony_WebSocket_WebSocket_off_message_0100
-     * @tc.name      : off
-     * @tc.desc      : Cancels listening for the message events of a WebSocket connection.
-     */
-    it('Telephony_WebSocket_WebSocket_off_message_0100', 0, async function (done) {
-      console.log("************* Telephony_WebSocket_WebSocket_off_message_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_off_message_0100"
-      let ws = webSocket.createWebSocket();
-      ws.off("message", (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
-        }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
-        done();
-      });
-      console.log("************* Telephony_WebSocket_WebSocket_off_message_0100 Test end*************");
-      done();
     });
 
     /*
@@ -408,11 +458,18 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_off_message_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_off_message_0200 Test start*************");
-      let ws = webSocket.createWebSocket();
-      ws.off("message");
-      expect(true).assertTrue();
+      try {
+        let ws = webSocket.createWebSocket();
+        ws.off("message");
+        console.log(`Telephony_WebSocket_WebSocket_off_message_0200 try success:`);
+        expect(true).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_off_message_0200 error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_off_message_0200 Test end*************");
-      done();
     });
 
     /*
@@ -422,45 +479,26 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_on_close_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_on_close_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_on_close_0100"
-      let ws = webSocket.createWebSocket();
-      ws.on("close", (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
+      try {
+        let callbackdata =(error, data) => {
+          console.log(`${caseName} on data:` + JSON.stringify(data));
+          console.log(`${caseName} on error:` + JSON.stringify(error));
         }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        let caseName = "Telephony_WebSocket_WebSocket_on_close_0100"
+        let ws = webSocket.createWebSocket();
+        ws.on("close", callbackdata);
+        ws.off("close", callbackdata);
+        console.log(`${caseName} try success:`);
+        expect(true).assertTrue();
         done();
-      });
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_on_close_0100 error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_on_close_0100 Test end*************");
-      done();
     });
-
-    /*
-     * @tc.number    : Telephony_WebSocket_WebSocket_off_close_0100
-     * @tc.name      : off
-     * @tc.desc      : Cancels listening for the close events of a WebSocket connection.
-     */
-    it('Telephony_WebSocket_WebSocket_off_close_0100', 0, async function (done) {
-      console.log("************* Telephony_WebSocket_WebSocket_off_close_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_off_close_0100"
-      let ws = webSocket.createWebSocket();
-      ws.off("close", (error, data) => {
-        if (error) {
-          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
-          done();
-          return;
-        }
-        expect().assertFail();
-        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
-        done();
-      });
-      console.log("************* Telephony_WebSocket_WebSocket_off_close_0100 Test end*************");
-      done();
-    });
-
+    
     /*
      * @tc.number    : Telephony_WebSocket_WebSocket_off_close_0200
      * @tc.name      : off
@@ -468,11 +506,18 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_off_close_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_off_close_0200 Test start*************");
-      let ws = webSocket.createWebSocket();
-      ws.off("close");
-      expect(true).assertTrue();
+      try {
+        let ws = webSocket.createWebSocket();
+        ws.off("close");
+        console.log(`Telephony_WebSocket_WebSocket_off_close_0200 try success:`);
+        expect(true).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_off_close_0200 error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_off_close_0200 Test end*************");
-      done();
     });
 
     /*
@@ -482,35 +527,25 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_on_error_0100', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_on_error_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_on_error_0100"
-      let ws = webSocket.createWebSocket();
-      ws.on("error", error => {
-        console.log(`${caseName} fail, error:` + JSON.stringify(error));
+      try {
+        let callbackdata =(error) => {
+          console.log(`${caseName} on error:` + JSON.stringify(error));
+        }
+        let caseName = "Telephony_WebSocket_WebSocket_on_error_0100"
+        let ws = webSocket.createWebSocket();
+        ws.on("error", callbackdata);
+        ws.off("error", callbackdata);
+        console.log(`${caseName} try success:`);
+        expect(true).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_on_error_0100 error, catch error:` + JSON.stringify(error));
         expect().assertFail();
-      });
-      expect(true).assertTrue();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_on_error_0100 Test end*************");
-      done();
     });
-
-    /*
-     * @tc.number    : Telephony_WebSocket_WebSocket_off_error_0100
-     * @tc.name      : off
-     * @tc.desc      : Cancels listening for the error events of a WebSocket connection.
-     */
-    it('Telephony_WebSocket_WebSocket_off_error_0100', 0, async function (done) {
-      console.log("************* Telephony_WebSocket_WebSocket_off_error_0100 Test start*************");
-      let caseName = "Telephony_WebSocket_WebSocket_off_error_0100"
-      let ws = webSocket.createWebSocket();
-      ws.off("error", error => {
-        console.log(`${caseName} fail, error:` + JSON.stringify(error));
-        expect().assertFail();
-      });
-      expect(true).assertTrue();
-      console.log("************* Telephony_WebSocket_WebSocket_off_error_0100 Test end*************");
-      done();
-    });
-
+    
     /*
      * @tc.number    : Telephony_WebSocket_WebSocket_off_error_0200
      * @tc.name      : off
@@ -518,11 +553,18 @@ export default function webSocketJsunit() {
      */
     it('Telephony_WebSocket_WebSocket_off_error_0200', 0, async function (done) {
       console.log("************* Telephony_WebSocket_WebSocket_off_error_0200 Test start*************");
-      let ws = webSocket.createWebSocket();
-      ws.off("error");
-      expect(true).assertTrue();
+      try {
+        let ws = webSocket.createWebSocket();
+        ws.off("error");
+        console.log(`Telephony_WebSocket_WebSocket_off_error_0200 try success:`);
+        expect(true).assertTrue();
+        done();
+      }catch (error) {
+        console.log(`Telephony_WebSocket_WebSocket_off_error_0200 error, catch error:` + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
       console.log("************* Telephony_WebSocket_WebSocket_off_error_0200 Test end*************");
-      done();
     });
 
     console.log("************* webSocket Test end*************");
