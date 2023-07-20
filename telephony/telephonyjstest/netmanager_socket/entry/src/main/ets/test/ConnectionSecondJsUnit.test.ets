@@ -85,6 +85,7 @@ export default function connectionSecondJsUnit() {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
+          return;
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
           connection.getConnectionProperties(value[0], (error, value) => {
@@ -92,6 +93,7 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
+              return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
               console.log(caseName + " interfaceName: " + value.interfaceName);
@@ -109,7 +111,6 @@ export default function connectionSecondJsUnit() {
         }
       });
       console.log("-----------------------Telephony getConnectionProperties Test end-----------------------");
-	  done();
     });
 
     /**
@@ -164,6 +165,7 @@ export default function connectionSecondJsUnit() {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
+          return;
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
           connection.getConnectionProperties(value[0], (error, value) => {
@@ -171,20 +173,20 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
+              return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
               console.log(caseName + " value.routeList.length: " + value.routes.length);
               if (value.routes.length > 0) {
                 expect(value.routes[0].hasGateway).assertTrue();
                 expect(value.routes[0].isDefaultRoute).assertTrue();
+                done();
               }
-              done();
             }
           });
         }
       });
       console.log("----------------------Telephony getRouteInfo Test end-----------------------");
-	  done();
     });
 
 
@@ -220,6 +222,7 @@ export default function connectionSecondJsUnit() {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
+          return;
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
           connection.getConnectionProperties(value[0], (error, value) => {
@@ -227,19 +230,19 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
+              return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
               console.log(caseName + " value.linkAddresses.length: " + value.linkAddresses.length);
               if (value.linkAddresses.length > 0) {
                 expect(value.linkAddresses[0].prefixLength != 0).assertTrue();
+                done();
               }
-              done();
             }
           });
         }
       });
       console.log("-----------------------Telephony getLinkAddress Test end-----------------------");
-	  done();
     });
 
     /**
@@ -274,6 +277,7 @@ export default function connectionSecondJsUnit() {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
+          return;
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
           connection.getConnectionProperties(value[0], (error, value) => {
@@ -281,19 +285,19 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
+              return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
               console.log(caseName + 'value.dnses.length:' + value.dnses.length);
               if (value.dnses.length > 0) {
                 expect(value.dnses[0].port != 0).assertTrue();
+                done();
               }
-              done();
             }
           });
         }
       });
       console.log("-----------------------Telephony getNetAddress Test end-----------------------");
-	  done();
     });
 
     /**
@@ -330,6 +334,7 @@ export default function connectionSecondJsUnit() {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
+          return;
         } else {
           console.log(`Telephony_connection getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
           connection.getNetCapabilities(value[0], (error, data) => {
@@ -337,6 +342,7 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
+              return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
               console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data[0].networkCap)}`);
@@ -347,7 +353,6 @@ export default function connectionSecondJsUnit() {
         }
       });
       console.log("-----------------------Telephony getNetCap Test is end-----------------------");
-	  done();
     });
 
     /**
@@ -382,6 +387,7 @@ export default function connectionSecondJsUnit() {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
+          return;
         } else {
           console.log(`Telephony_connection getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
           connection.getNetCapabilities(value[0], (error, data) => {
@@ -389,6 +395,7 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
+              return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
               console.log(`${caseName}  get value success122222: ${JSON.stringify(data[0].bearerTypes)}`);
@@ -399,7 +406,6 @@ export default function connectionSecondJsUnit() {
         }
       });
       console.log("-----------------------Telephony getNetBearType Test is end-----------------------");
-	  done();
     });
 
     /**
@@ -429,7 +435,6 @@ export default function connectionSecondJsUnit() {
         expect().assertFail();
         done();
       });
-	  done();
     });
   })
 
