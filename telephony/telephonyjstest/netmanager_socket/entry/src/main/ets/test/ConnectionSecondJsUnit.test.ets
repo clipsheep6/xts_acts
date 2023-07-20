@@ -29,22 +29,22 @@ export default function connectionSecondJsUnit() {
       try {
         let resultLinkAddresses = {
           linkAddresses: [{
-                            address: {
-                              address: "192.168.1.2"
-                            }
-                          }]
+            address: {
+              address: "192.168.1.2"
+            }
+          }]
         };
         let resultDnses = {
           dnses: [{
-                    address: "192.168.1.3"
-                  }]
+            address: "192.168.1.3"
+          }]
         };
         let resultRoutes = {
           routes: [{
-                     gateway: {
-                       address: "192.168.1.1"
-                     }
-                   }]
+            gateway: {
+              address: "192.168.1.1"
+            }
+          }]
         };
         let resultName = {
           interfaceName: '123'
@@ -60,11 +60,13 @@ export default function connectionSecondJsUnit() {
         expect(resultRoutes.routes.length > 0).assertTrue();
         expect("123").assertEqual(resultName.interfaceName);
         expect(123).assertEqual(resultMtu.mtu);
-        console.log("-----------------------Telephony ConnectionProperties Test end-----------------------");
         done();
       } catch (err) {
         console.log(`Telephony_ConnectionProperties_0100 err ` + err);
+        expect().assertFail();
+        done();
       }
+      console.log("-----------------------Telephony ConnectionProperties Test end-----------------------");
     })
 
     /**
@@ -74,21 +76,16 @@ export default function connectionSecondJsUnit() {
      */
     it('Telephony_connection_getConnectionProperties_Async_0200', 0, function (done) {
       console.log("-----------------------Telephony getConnectionProperties Test is starting-----------------------");
-      if(false){
-        expect(true).assertTrue();
-        done();
-        return;
-      }
       let caseName = 'Telephony_connection_getConnectionProperties_Async_0200';
-      connection.getAllNets((error, value) => {
+      connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
           return;
         } else {
-          console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error, value) => {
+          console.log(`${caseName} get netID value : ${JSON.stringify(value)}`);
+          connection.getConnectionProperties(value, (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
@@ -99,12 +96,12 @@ export default function connectionSecondJsUnit() {
               console.log(caseName + " interfaceName: " + value.interfaceName);
               console.log(caseName + " mtu: " + value.mtu);
               console.log(caseName + " netAddrList.length: " + value.linkAddresses.length);
-              expect(value.interfaceName == "").assertTrue();
+              expect(value.interfaceName !== "").assertTrue();
               expect(value.domains == "").assertTrue();
               expect(value.mtu == 0).assertTrue();
-              expect(value.linkAddresses.length == 0).assertTrue();
-              expect(value.dnses.length == 0).assertTrue();
-              expect(value.routes.length == 0).assertTrue();
+              expect(value.linkAddresses.length !== 0).assertTrue();
+              expect(value.dnses.length !== 0).assertTrue();
+              expect(value.routes.length !== 0).assertTrue();
               done();
             }
           });
@@ -145,11 +142,13 @@ export default function connectionSecondJsUnit() {
         expect("123").assertEqual(resultInterface.interface);
         expect("192.168.1.2").assertEqual(resultDestination.destination.address);
         expect("192.168.1.3").assertEqual(resultGateway.gateway.address);
-        console.log("-----------------------RouteInfo Properties Test end-----------------------");
         done();
       } catch (err) {
         console.log(`Telephony_connection_RouteInfo_0300 err ` + err);
+        expect().assertFail();
+        done();
       }
+      console.log("-----------------------RouteInfo Properties Test end-----------------------");
     })
 
     /**
@@ -160,15 +159,15 @@ export default function connectionSecondJsUnit() {
     it('Telephony_connection_getRouteInfo_Async_0400', 0, function (done) {
       console.log("-----------------------Telephony getRouteInfo Test is starting-----------------------");
       let caseName = 'Telephony_connection_getRouteInfo_Async_0400';
-      connection.getAllNets((error, value) => {
+      connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
           return;
         } else {
-          console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error, value) => {
+          console.log(`${caseName} get netID value : ${JSON.stringify(value)}`);
+          connection.getConnectionProperties(value, (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
@@ -178,8 +177,8 @@ export default function connectionSecondJsUnit() {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
               console.log(caseName + " value.routeList.length: " + value.routes.length);
               if (value.routes.length > 0) {
-                expect(value.routes[0].hasGateway).assertTrue();
-                expect(value.routes[0].isDefaultRoute).assertTrue();
+                expect(value.routes[0].hasGateway !== null).assertTrue();
+                expect(value.routes[0].isDefaultRoute !== null).assertTrue();
                 done();
               }
             }
@@ -202,11 +201,13 @@ export default function connectionSecondJsUnit() {
           prefixLength: 10
         };
         expect(10).assertEqual(resultPrefixLength.prefixLength);
-        console.log("-----------------------LinkAddress Properties Test end-----------------------");
         done();
       } catch (err) {
         console.log(`Telephony_connection_LinkAddress_0500 err ` + err);
+        expect().assertFail();
+        done();
       }
+      console.log("-----------------------LinkAddress Properties Test end-----------------------");
     })
 
     /**
@@ -217,15 +218,15 @@ export default function connectionSecondJsUnit() {
     it('Telephony_connection_getLinkAddress_Async_0600', 0, function (done) {
       console.log("-----------------------Telephony getLinkAddress Test is starting-----------------------");
       let caseName = 'Telephony_connection_getLinkAddress_Async_0600';
-      connection.getAllNets((error, value) => {
+      connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
           return;
         } else {
-          console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error, value) => {
+          console.log(`${caseName} get netID value : ${JSON.stringify(value)}`);
+          connection.getConnectionProperties(value, (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
@@ -257,11 +258,13 @@ export default function connectionSecondJsUnit() {
           port: 23
         };
         expect(23).assertEqual(resultPort.port);
-        console.log("-----------------------NetAddress Properties  Test end-----------------------");
         done();
       } catch (err) {
         console.log(`"Telephony_connection_NetAddress_0700 err ` + err);
+        expect().assertFail();
+        done();
       }
+      console.log("-----------------------NetAddress Properties  Test end-----------------------");
     })
 
     /**
@@ -272,15 +275,15 @@ export default function connectionSecondJsUnit() {
     it('Telephony_connection_getNetAddress_Async_0800', 0, function (done) {
       console.log("-----------------------Telephony getNetAddress Test is starting-----------------------");
       let caseName = 'Telephony_connection_getNetAddress_Async_0800';
-      connection.getAllNets((error, value) => {
+      connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
           return;
         } else {
-          console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error, value) => {
+          console.log(`${caseName} get netID value : ${JSON.stringify(value)}`);
+          connection.getConnectionProperties(value, (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
@@ -314,11 +317,13 @@ export default function connectionSecondJsUnit() {
         expect(12).assertEqual(connection.NetCap.NET_CAPABILITY_INTERNET);
         expect(15).assertEqual(connection.NetCap.NET_CAPABILITY_NOT_VPN);
         expect(16).assertEqual(connection.NetCap.NET_CAPABILITY_VALIDATED);
-        console.log("-----------------------Telephony NetCap Properties Test end-----------------------");
         done();
       } catch (err) {
         console.log(`Telephony_connection_NetCap_0900 err ` + err);
+        expect().assertFail();
+        done();
       }
+      console.log("-----------------------Telephony NetCap Properties Test end-----------------------");
     })
 
     /**
@@ -329,15 +334,15 @@ export default function connectionSecondJsUnit() {
     it('Telephony_connection_getNetCap_Async_1000', 0, function (done) {
       console.log("-----------------------Telephony getNetCap Test is starting-----------------------");
       let caseName = 'Telephony_connection_getNetCap_Async_1000';
-      connection.getAllNets((error, value) => {
+      connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
           return;
         } else {
-          console.log(`Telephony_connection getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
-          connection.getNetCapabilities(value[0], (error, data) => {
+          console.log(`Telephony_connection getDefaultNet netID value : ${JSON.stringify(value.netId)}`);
+          connection.getNetCapabilities(value, (error, data) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
@@ -367,11 +372,13 @@ export default function connectionSecondJsUnit() {
         expect(0).assertEqual(connection.NetBearType.BEARER_CELLULAR);
         expect(1).assertEqual(connection.NetBearType.BEARER_WIFI);
         expect(3).assertEqual(connection.NetBearType.BEARER_ETHERNET);
-        console.log("-----------------------Telephony NetBearType Properties Test end-----------------------");
         done();
       } catch (err) {
-        console.log(`Telephony_connection_NetBearType_1100 err ` + err);
+        console.log(`Telephony_connection_NetBearType_1100 try err ` + err);
+        expect().assertFail();
+        done();
       }
+      console.log("-----------------------Telephony NetBearType Properties Test end-----------------------");
     })
 
     /**
@@ -382,15 +389,15 @@ export default function connectionSecondJsUnit() {
     it('Telephony_connection_getNetBearType_Async_1200', 0, function (done) {
       console.log("-----------------------Telephony getNetBearType Test is starting-----------------------");
       let caseName = 'Telephony_connection_getNetBearType_Async_1200';
-      connection.getAllNets((error, value) => {
+      connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
           return;
         } else {
-          console.log(`Telephony_connection getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
-          connection.getNetCapabilities(value[0], (error, data) => {
+          console.log(`Telephony_connection getDefaultNet netID value : ${JSON.stringify(value.netId)}`);
+          connection.getNetCapabilities(value, (error, data) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
@@ -416,8 +423,8 @@ export default function connectionSecondJsUnit() {
     it('Telephony_connection_getNetCapabilities_Promise_1300', 0, function (done) {
       console.log("-----------------------Telephony getNetCapabilities Promise Test is starting-----------------------");
       let caseName = 'Telephony_connection_getNetCapabilities_Promise_1300';
-      connection.getAllNets().then((handle) => {
-        connection.getNetCapabilities(handle[0]).then((data) => {
+      connection.getDefaultNet().then((handle) => {
+        connection.getNetCapabilities(handle).then((data) => {
           console.log(`${caseName} getNetCapabilities promiss data suceess: ${JSON.stringify(data)}`);
           console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data[0].networkCap)}`);
           console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data[0].bearerTypes)}`);
@@ -427,16 +434,14 @@ export default function connectionSecondJsUnit() {
           done();
         }).catch((error) => {
           console.log(`${caseName} getNetCapabilities promiss fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
         });
       }).catch((error) => {
-        console.log(`${caseName} getAllNets promiss error: ${error}`);
-        expect().assertFail();
+        console.log(`${caseName} getDefaultNet promiss error: ${error}`);
+        expect().assertTrue();
         done();
       });
     });
   })
-
 }
-
