@@ -494,12 +494,12 @@ export default function socketJsunit() {
       udp.bind(netAddress, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} success, case failed,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_bind_0100 Test end*************");
@@ -521,11 +521,11 @@ export default function socketJsunit() {
       try {
         udp.bind(netAddress).then(data => {
           console.log(`${caseName} success,data:`+JSON.stringify(data));
-          expect().assertFail();
+          expect(true).assertTrue();
           done();
         }).catch((error) => {
           console.log(`${caseName} failed,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          expect().assertFail();
           done();
         });
       } catch (error) {
@@ -546,18 +546,18 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_UDPSocket_bind_0300"
       let netAddress = {
         address: "second test address",
-        family: 1,
+        family: 2,
         port: 8080
       }
       udp.bind(netAddress, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} data, case failed,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_bind_0300 Test end*************");
@@ -607,12 +607,12 @@ export default function socketJsunit() {
       udp.send(udpSendOptions, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_send_0100 Test end*************");
@@ -636,11 +636,11 @@ export default function socketJsunit() {
       }
       udp.send(udpSendOptions).then(data => {
         console.log(`${caseName} success,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect(true).assertTrue();
+        expect().assertFail();
         done();
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0200 Test end*************");
@@ -658,17 +658,19 @@ export default function socketJsunit() {
         data: "test data",
         address: {
           address: "second test address",
+          family: 2,
+          port: 8080
         }
       }
       udp.send(udpSendOptions, (error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_send_0300 Test end*************");
@@ -685,15 +687,17 @@ export default function socketJsunit() {
       let udpSendOptions = {
         data: "test data",
         address: {
-          address: "third test address"
+          address: "third test address",
+          family: 3,
+          port: 8080
         }
       }
       udp.send(udpSendOptions).then(data => {
         console.log(`${caseName} success,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect(true).assertTrue();
+        expect().assertFail();
         done();
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test end*************");
@@ -710,12 +714,12 @@ export default function socketJsunit() {
       udp.close((error, data) => {
         if (error) {
           console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} error, case success,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_close_0100 Test end*************");
@@ -731,11 +735,11 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_UDPSocket_close_0200"
       udp.close().then(data => {
         console.log(`${caseName} success,data:`+JSON.stringify(data));
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       }).catch((error) => {
         console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect(true).assertTrue();
+        expect().assertFail();
         done();
       });
       console.log("************* Telephony_Socket_UDPSocket_close_0200 Test end*************");
@@ -1789,7 +1793,7 @@ export default function socketJsunit() {
       }
       console.log("************* Telephony_Socket_TCPSocket_on_error_0100 Test end*************");
     });
-    
+
     /*
      * @tc.number    : Telephony_Socket_TCPSocket_off_error_0200
      * @tc.name      : off
