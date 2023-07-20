@@ -159,6 +159,7 @@ export default function networkManagerSocketTest() {
         if (err == undefined) {
           expect().assertFail();
           done();
+          return;
         } else {
           expect(X509CertRawData).assertEqual(undefined);
           expect(err != undefined).assertEqual(true);
@@ -195,6 +196,7 @@ export default function networkManagerSocketTest() {
         if (err == undefined) {
           expect().assertFail();
           done();
+          return;
         } else {
           expect(data).assertEqual(undefined);
           expect(err != undefined).assertEqual(true);
@@ -231,6 +233,7 @@ export default function networkManagerSocketTest() {
         if (err == undefined) {
           expect().assertFail();
           done();
+          return;
         } else {
           expect(data).assertEqual(undefined);
           expect(err != undefined).assertEqual(true);
@@ -267,6 +270,7 @@ export default function networkManagerSocketTest() {
         if (err == undefined) {
           expect().assertFail();
           done();
+          return;
         } else {
           expect(data).assertEqual(undefined);
           expect(err != undefined).assertEqual(true);
@@ -286,6 +290,7 @@ export default function networkManagerSocketTest() {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
+        return;
       }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
@@ -303,6 +308,7 @@ export default function networkManagerSocketTest() {
         if (err == undefined) {
           expect().assertFail();
           done();
+          return;
         } else {
           expect(data).assertEqual(undefined);
           expect(err != undefined).assertEqual(true);
@@ -322,6 +328,7 @@ export default function networkManagerSocketTest() {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
+        return;
       }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
@@ -339,6 +346,7 @@ export default function networkManagerSocketTest() {
         if (err == undefined) {
           expect().assertFail();
           done();
+          return;
         } else {
           expect(err != undefined).assertEqual(true);
           done();
