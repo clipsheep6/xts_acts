@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'hypium/index';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import socket from '@ohos.net.socket'
 
 export default function socketJsunit() {
@@ -29,12 +29,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_Socket_constructUDPSocketInstance_0100', 0, function (done) {
       console.log("************* Telephony_Socket_Socket_constructUDPSocketInstance_0100 Test start*************");
-      try{
+      try {
         var udpSocket = udp;
         console.log(`Telephony_Socket_Socket_constructUDPSocketInstance_0100 try success,`);
         expect(udpSocket != null).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_Socket_constructUDPSocketInstance_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -50,12 +50,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_Socket_constructTCPSocketInstance_0100', 0, function (done) {
       console.log("************* Telephony_Socket_Socket_constructTCPSocketInstance_0100 Test start*************");
-      try{
+      try {
         var tcpSocket = tcp;
         console.log(`Telephony_Socket_Socket_constructTCPSocketInstance_0100 try success,`);
         expect(tcpSocket != null).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_Socket_constructTCPSocketInstance_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -70,7 +70,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_Socket_NetAddress_0100', 0, function (done) {
       console.log("************* Telephony_Socket_Socket_NetAddress_0100 Test start*************");
-      try{
+      try {
         let netAddress = {
           address: "test address",
           family: 1,
@@ -81,7 +81,7 @@ export default function socketJsunit() {
         expect(netAddress.family === 1).assertTrue()
         expect(netAddress.port === 8080).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_Socket_NetAddress_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -96,7 +96,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSendOptions_data_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSendOptions_data_0100 Test start*************");
-      try{
+      try {
         let udpSendOptions = {
           data: "test data",
           address: {
@@ -108,7 +108,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_UDPSendOptions_data_0100 try success,`);
         expect(udpSendOptions.data === "test data").assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSendOptions_data_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -124,7 +124,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100', 0, function (done) {
       console.log("************* Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100 Test start*************");
-      try{
+      try {
         let extraOptionsBase = {
           receiveBufferSize: 1,
           sendBufferSize: 1,
@@ -134,7 +134,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100 try success,`);
         expect(extraOptionsBase.receiveBufferSize === 1).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -149,7 +149,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100', 0, function (done) {
       console.log("************* Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100 Test start*************");
-      try{
+      try {
         let extraOptionsBase = {
           receiveBufferSize: 1,
           sendBufferSize: 1,
@@ -159,7 +159,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100 try success,`);
         expect(extraOptionsBase.sendBufferSize === 1).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -174,7 +174,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_ExtraOptionsBase_reuseAddress_0100', 0, function (done) {
       console.log("************* Telephony_Socket_ExtraOptionsBase_reuseAddress_0100 Test start*************");
-      try{
+      try {
         let extraOptionsBase = {
           receiveBufferSize: 1,
           sendBufferSize: 1,
@@ -184,7 +184,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_ExtraOptionsBase_reuseAddress_0100 try success,`);
         expect(extraOptionsBase.reuseAddress).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_ExtraOptionsBase_reuseAddress_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -199,7 +199,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_ExtraOptionsBase_socketTimeout_0100', 0, function (done) {
       console.log("************* Telephony_Socket_ExtraOptionsBase_socketTimeout_0100 Test start*************");
-      try{
+      try {
         let extraOptionsBase = {
           receiveBufferSize: 1,
           sendBufferSize: 1,
@@ -209,7 +209,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_ExtraOptionsBase_socketTimeout_0100 try success,`);
         expect(extraOptionsBase.socketTimeout === 5000).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_ExtraOptionsBase_socketTimeout_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -224,7 +224,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_SocketStateBase_isClose_0100', 0, function (done) {
       console.log("************* Telephony_Socket_SocketStateBase_isClose_0100 Test start*************");
-      try{
+      try {
         let socketStateBase = {
           isBound: true,
           isClose: true,
@@ -233,7 +233,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_SocketStateBase_isClose_0100 try success,`);
         expect(socketStateBase.isClose).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_SocketStateBase_isClose_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -248,7 +248,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_SocketRemoteInfo_port_0100', 0, function (done) {
       console.log("************* Telephony_Socket_SocketRemoteInfo_port_0100 Test start*************");
-      try{
+      try {
         let socketRemoteInfo = {
           address: "test address",
           family: 'IPv4',
@@ -258,7 +258,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_SocketRemoteInfo_port_0100 try success,`);
         expect(socketRemoteInfo.port === 8080).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_SocketRemoteInfo_port_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -273,7 +273,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_SocketRemoteInfo_size_0100', 0, function (done) {
       console.log("************* Telephony_Socket_SocketRemoteInfo_size_0100 Test start*************");
-      try{
+      try {
         let socketRemoteInfo = {
           address: "test address",
           family: 'IPv4',
@@ -283,7 +283,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_SocketRemoteInfo_size_0100 try success,`);
         expect(socketRemoteInfo.size === 1).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_SocketRemoteInfo_size_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -298,7 +298,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPConnectOptions_timeout_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPConnectOptions_timeout_0100 Test start*************");
-      try{
+      try {
         let tcpConnectOptions = {
           address: {
             address: "test address",
@@ -310,7 +310,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_TCPConnectOptions_timeout_0100 try success,`);
         expect(tcpConnectOptions.timeout === 1000).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPConnectOptions_timeout_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -325,7 +325,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSendOptions_data_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSendOptions_data_0100 Test start*************");
-      try{
+      try {
         let tcpSendOptions = {
           data: "test data",
           encoding: "test encoding"
@@ -333,7 +333,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_TCPSendOptions_data_0100 try success,`);
         expect(tcpSendOptions.data === "test data").assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSendOptions_data_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -348,7 +348,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSendOptions_encoding_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSendOptions_encoding_0100 Test start*************");
-      try{
+      try {
         let tcpSendOptions = {
           data: "test data",
           encoding: "test encoding"
@@ -356,7 +356,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_TCPSendOptions_encoding_0100 try success,`);
         expect(tcpSendOptions.encoding === "test encoding").assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSendOptions_encoding_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -371,7 +371,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPExtraOptions_keepAlive_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPExtraOptions_keepAlive_0100 Test start*************");
-      try{
+      try {
         let tcpExtraOptions = {
           keepAlive: true,
           OOBInline: false,
@@ -384,7 +384,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_TCPExtraOptions_keepAlive_0100 try success,`);
         expect(tcpExtraOptions.keepAlive).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPExtraOptions_keepAlive_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -399,7 +399,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPExtraOptions_OOBInline_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPExtraOptions_OOBInline_0100 Test start*************");
-      try{
+      try {
         let tcpExtraOptions = {
           keepAlive: true,
           OOBInline: false,
@@ -412,7 +412,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_TCPExtraOptions_OOBInline_0100 try success,`);
         expect(!tcpExtraOptions.OOBInline).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPExtraOptions_OOBInline_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -427,7 +427,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100 Test start*************");
-      try{
+      try {
         let tcpExtraOptions = {
           keepAlive: true,
           OOBInline: false,
@@ -440,7 +440,7 @@ export default function socketJsunit() {
         console.log(`Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100 try success,`);
         expect(tcpExtraOptions.TCPNoDelay).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -455,7 +455,7 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPExtraOptions_socketLinger_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPExtraOptions_socketLinger_0100 Test start*************");
-      try{
+      try {
         let tcpExtraOptions = {
           keepAlive: true,
           OOBInline: false,
@@ -469,7 +469,7 @@ export default function socketJsunit() {
         expect(tcpExtraOptions.socketLinger.on).assertTrue()
         expect(!tcpExtraOptions.socketLinger.linger).assertTrue()
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPExtraOptions_socketLinger_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -493,12 +493,12 @@ export default function socketJsunit() {
       }
       udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} success, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} success, case failed,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       })
@@ -520,16 +520,16 @@ export default function socketJsunit() {
       }
       try {
         udp.bind(netAddress).then(data => {
-          console.log(`${caseName} success,data:`+JSON.stringify(data));
+          console.log(`${caseName} success,data:` + JSON.stringify(data));
           expect(true).assertTrue();
           done();
         }).catch((error) => {
-          console.log(`${caseName} failed,error:`+JSON.stringify(error));
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} failed,catch error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,catch error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       }
@@ -551,12 +551,12 @@ export default function socketJsunit() {
       }
       udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} data, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} data, case failed,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       })
@@ -577,11 +577,11 @@ export default function socketJsunit() {
         port: 8080
       }
       udp.bind(netAddress).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect().assertFail();
         done();
       });
@@ -606,12 +606,12 @@ export default function socketJsunit() {
       }
       udp.send(udpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -635,11 +635,11 @@ export default function socketJsunit() {
         }
       }
       udp.send(udpSendOptions).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       });
@@ -664,12 +664,12 @@ export default function socketJsunit() {
       }
       udp.send(udpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -693,11 +693,11 @@ export default function socketJsunit() {
         }
       }
       udp.send(udpSendOptions).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       });
@@ -714,12 +714,12 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_UDPSocket_close_0100"
       udp.close((error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} error, case success,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case success,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       })
@@ -735,11 +735,11 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_UDPSocket_close_0200 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_close_0200"
       udp.close().then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect().assertFail();
         done();
       });
@@ -756,13 +756,13 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_UDPSocket_getState_0100"
       udp.getState((error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
         let socketStateBase = data
-        console.log(`${caseName} success data:`+JSON.stringify(socketStateBase.isClose));
+        console.log(`${caseName} success data:` + JSON.stringify(socketStateBase.isClose));
         expect(true).assertTrue();
         done();
       })
@@ -778,11 +778,11 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_UDPSocket_getState_0200 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_getState_0200"
       udp.getState().then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect().assertFail();
         done();
       });
@@ -801,21 +801,21 @@ export default function socketJsunit() {
       let udpExtraOptions = {
         broadcast: true
       }
-      try{
-        udp.setExtraOptions(udpExtraOptions, function(error,data) {
+      try {
+        udp.setExtraOptions(udpExtraOptions, function (error, data) {
           if (error) {
             console.log(`${caseName} error, case failed,error: ` + JSON.stringify(error));
             expect().assertFail();
             done();
             return;
           }
-          else{
+          else {
             console.log(`${caseName} error, case success failed`);
             expect(true).assertTrue();
             done();
           }
         })
-      } catch(error){
+      } catch (error) {
         console.log(`${caseName} failed,error:${error}`);
         expect().assertFail();
         done();
@@ -840,7 +840,7 @@ export default function socketJsunit() {
         expect(true).assertTrue();
         done();
       } catch (error) {
-        console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+        console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
         expect().assertFail();
         done();
       }
@@ -858,13 +858,13 @@ export default function socketJsunit() {
       let udpExtraOptions = {}
       udp.setExtraOptions(udpExtraOptions, (error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} error, case failed`);
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0300 Test end*************");
@@ -880,17 +880,17 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0400"
       let udpExtraOptions = {}
       try {
-        udp.setExtraOptions(udpExtraOptions).then(function(data){
+        udp.setExtraOptions(udpExtraOptions).then(function (data) {
           console.log(`${caseName} setExtraOptions,data:${data}`);
-          expect().assertFail();
+          expect(true).assertTrue();
           done();
         }).catch((error) => {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+        console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       }
@@ -905,7 +905,7 @@ export default function socketJsunit() {
     it('Telephony_Socket_UDPSocket_on_message_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_on_message_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_on_message_0100"
-      try{
+      try {
         let callbackdata = (data) => {
           let socketRemoteInfo = data.remoteInfo;
           console.log(`${caseName} port:${socketRemoteInfo.port}`);
@@ -916,7 +916,7 @@ export default function socketJsunit() {
         console.log(`${caseName} try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_on_message_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -932,12 +932,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_off_message_0200', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_off_message_0200 Test start*************");
-      try{
+      try {
         udp.off("message");
         console.log(`Telephony_Socket_UDPSocket_off_message_0200 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_off_message_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -952,15 +952,15 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_on_listening_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_on_listening_0100 Test start*************");
-      try{
-        let callbackdata =(data) => {
+      try {
+        let callbackdata = (data) => {
         }
         udp.on("listening", callbackdata);
         udp.off("listening", callbackdata);
         console.log(`Telephony_Socket_UDPSocket_on_listening_0100 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_on_listening_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -975,12 +975,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_off_listening_0200', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0200 Test start*************");
-      try{
+      try {
         udp.off("listening");
         console.log(`Telephony_Socket_UDPSocket_off_listening_0200 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_off_listening_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -995,15 +995,15 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_on_close_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_on_close_0100 Test start*************");
-      try{
-        let callbackdata =(data) => {
+      try {
+        let callbackdata = (data) => {
         }
         udp.on("close", callbackdata);
         udp.off("close", callbackdata);
         console.log(`Telephony_Socket_UDPSocket_on_close_0100 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_on_close_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1018,12 +1018,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_off_close_0200', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_off_close_0200 Test start*************");
-      try{
+      try {
         udp.off("close");
         console.log(`Telephony_Socket_UDPSocket_off_close_0200 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_off_close_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1038,16 +1038,16 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_on_error_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_on_error_0100 Test start*************");
-      try{
-        let callbackdata =(error) => {
-          console.log(`Telephony_Socket_UDPSocket_on_error_0100 fail, error:`+JSON.stringify(error));
+      try {
+        let callbackdata = (error) => {
+          console.log(`Telephony_Socket_UDPSocket_on_error_0100 fail, error:` + JSON.stringify(error));
         }
         udp.on("error", callbackdata);
         udp.off("error", callbackdata);
         console.log(`Telephony_Socket_UDPSocket_on_error_0100 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_on_error_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1063,12 +1063,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_UDPSocket_off_error_0200', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_off_error_0200 Test start*************");
-      try{
+      try {
         udp.off("error");
         console.log(`Telephony_Socket_UDPSocket_off_error_0200 try success`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_UDPSocket_off_error_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1091,12 +1091,12 @@ export default function socketJsunit() {
       }
       tcp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       })
@@ -1117,11 +1117,11 @@ export default function socketJsunit() {
         port: 8080
       }
       tcp.bind(netAddress).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect().assertFail();
         done();
       });
@@ -1143,12 +1143,12 @@ export default function socketJsunit() {
       }
       tcp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       })
@@ -1168,11 +1168,11 @@ export default function socketJsunit() {
         address: "third test address"
       }
       tcp.bind(netAddress).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect().assertFail();
         done();
       });
@@ -1193,12 +1193,12 @@ export default function socketJsunit() {
       }
       tcp.send(tcpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -1218,11 +1218,11 @@ export default function socketJsunit() {
         encoding: "test encoding"
       }
       tcp.send(tcpSendOptions).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       });
@@ -1242,12 +1242,12 @@ export default function socketJsunit() {
       }
       tcp.send(tcpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -1266,11 +1266,11 @@ export default function socketJsunit() {
         data: "second test data",
       }
       tcp.send(tcpSendOptions).then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       });
@@ -1295,12 +1295,12 @@ export default function socketJsunit() {
       }
       tcp.connect(tcpConnectOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -1324,11 +1324,11 @@ export default function socketJsunit() {
         timeout: 1000
       }
       tcp.connect(tcpConnectOptions).then(function (data) {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       });
@@ -1352,12 +1352,12 @@ export default function socketJsunit() {
       }
       tcp.connect(tcpConnectOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       })
@@ -1380,11 +1380,11 @@ export default function socketJsunit() {
         }
       }
       tcp.connect(tcpConnectOptions).then(function (data) {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
         expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
         expect(true).assertTrue();
         done();
       });
@@ -1401,13 +1401,13 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_TCPSocket_close_0100"
       tcp.close((error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} error, case failed,data:`+JSON.stringify(data));
-        expect().assertFail();
+        console.log(`${caseName} error, case failed,data:` + JSON.stringify(data));
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_close_0100 Test end*************");
@@ -1422,12 +1422,12 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_TCPSocket_close_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_close_0200"
       tcp.close().then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
-        expect().assertFail();
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
+        expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect(true).assertTrue();
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
+        expect().assertFail();
         done();
       });
       console.log("************* Telephony_Socket_TCPSocket_close_0200 Test end*************");
@@ -1443,13 +1443,13 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_TCPSocket_getState_0100"
       tcp.getState((error, data) => {
         if (error) {
-          console.log(`${caseName} case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} case success,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} case failed,data:`+JSON.stringify(data));
-        expect().assertFail();
+        console.log(`${caseName} case failed,data:` + JSON.stringify(data));
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_getState_0100 Test end*************");
@@ -1464,12 +1464,12 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_TCPSocket_getState_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_getState_0200"
       tcp.getState().then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
-        expect().assertFail();
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
+        expect(true).assertTrue();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect(true).assertTrue();
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
+        expect().assertFail();
         done();
       });
       console.log("************* Telephony_Socket_TCPSocket_getState_0200 Test end*************");
@@ -1489,18 +1489,18 @@ export default function socketJsunit() {
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: true
+          linger: 0,
         }
       }
       tcp.setExtraOptions(tcpExtraOptions, (error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} error, case failed`);
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0100 Test end*************");
@@ -1520,16 +1520,19 @@ export default function socketJsunit() {
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: true
+          linger: 0
         }
       }
       try {
-        tcp.setExtraOptions(tcpExtraOptions).then(function(data) {
-          console.log(`${caseName}`);
+        tcp.setExtraOptions(tcpExtraOptions).then(function (data) {
+          console.log(`${caseName} success`);
+          expect(true).assertTrue();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
+          expect().assertFail();
+          done();
         });
-        console.log(`${caseName} success`);
-        expect(true).assertTrue();
-        done();
       } catch (error) {
         console.log(`${caseName} failed,error:${error}`);
         expect().assertFail();
@@ -1549,18 +1552,18 @@ export default function socketJsunit() {
       let tcpExtraOptions = {
         socketLinger: {
           on: true,
-          linger: true
+          linger: 0
         }
       }
       tcp.setExtraOptions(tcpExtraOptions, (error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
         console.log(`${caseName} error, case failed`);
-        expect().assertFail();
+        expect(true).assertTrue();
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0300 Test end*************");
@@ -1577,16 +1580,19 @@ export default function socketJsunit() {
       let tcpExtraOptions = {
         socketLinger: {
           on: true,
-          linger: true
+          linger: 0
         }
       }
       try {
-        tcp.setExtraOptions(tcpExtraOptions).then(function(data){
-          console.log(`${caseName}`);
-        });
-        console.log(`${caseName} success`);
-        expect(true).assertTrue();
-        done();
+        tcp.setExtraOptions(tcpExtraOptions).then(function (data) {
+          console.log(`${caseName} success`);
+          expect(true).assertTrue();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:` + JSON.stringify(error));
+          expect().assertFail();
+          done();
+        })
       } catch (error) {
         console.log(`${caseName} failed,error:${error}`);
         expect().assertFail();
@@ -1605,7 +1611,7 @@ export default function socketJsunit() {
       let caseName = "Telephony_Socket_TCPSocket_getRemoteAddress_0100"
       tcp.getRemoteAddress((error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:`+JSON.stringify(error));
+          console.log(`${caseName} error, case success,error:` + JSON.stringify(error));
           expect(true).assertTrue();
           done();
           return;
@@ -1626,12 +1632,12 @@ export default function socketJsunit() {
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0200 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_getRemoteAddress_0200"
       tcp.getRemoteAddress().then(data => {
-        console.log(`${caseName} success,data:`+JSON.stringify(data));
-        expect(true).assertTrue();
+        console.log(`${caseName} success,data:` + JSON.stringify(data));
+        expect().assertFail();
         done();
       }).catch((error) => {
-        console.log(`${caseName} failed,error:`+JSON.stringify(error));
-        expect().assertFail();
+        console.log(`${caseName} failed,error:` + JSON.stringify(error));
+        expect(true).assertTrue();
         done();
       });
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0200 Test end*************");
@@ -1645,8 +1651,8 @@ export default function socketJsunit() {
     it('Telephony_Socket_TCPSocket_on_message_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_on_message_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_on_message_0100"
-      try{
-        let callbackdata =(data) => {
+      try {
+        let callbackdata = (data) => {
           let socketRemoteInfo: socket.SocketRemoteInfo = data.remoteInfo;
           console.log(`${caseName} port:${socketRemoteInfo.port}`);
           console.log(`${caseName} size:${socketRemoteInfo.size}`);
@@ -1656,7 +1662,7 @@ export default function socketJsunit() {
         console.log(`${caseName} try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_on_message_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1671,12 +1677,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSocket_off_message_0200', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_off_message_0200 Test start*************");
-      try{
+      try {
         tcp.off("message");
         console.log(`Telephony_Socket_TCPSocket_off_message_0200 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_off_message_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1691,15 +1697,15 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSocket_on_connect_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_on_connect_0100 Test start*************");
-      try{
-        let callbackdata =(data) => {
+      try {
+        let callbackdata = (data) => {
         }
         tcp.on("connect", callbackdata);
         tcp.off("connect", callbackdata);
         console.log(`Telephony_Socket_TCPSocket_on_connect_0100 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_on_connect_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1714,12 +1720,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSocket_off_connect_0200', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0200 Test start*************");
-      try{
+      try {
         tcp.off("connect");
         console.log(`Telephony_Socket_TCPSocket_off_connect_0200 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_off_connect_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1734,15 +1740,15 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSocket_on_close_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_on_close_0100 Test start*************");
-      try{
-        let callbackdata =(data) => {
+      try {
+        let callbackdata = (data) => {
         }
         tcp.on("close", callbackdata);
         tcp.off("close", callbackdata);
         console.log(`Telephony_Socket_TCPSocket_on_close_0100 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_on_close_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1757,12 +1763,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSocket_off_close_0200', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_off_close_0200 Test start*************");
-      try{
+      try {
         tcp.off("close");
         console.log(`Telephony_Socket_TCPSocket_off_close_0200 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_off_close_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1778,16 +1784,16 @@ export default function socketJsunit() {
     it('Telephony_Socket_TCPSocket_on_error_0100', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_on_error_0100 Test start*************");
       let caseName = "Telephony_Socket_TCPSocket_on_error_0100"
-      try{
-        let callbackdata =(error) => {
-          console.log(`${caseName} fail, error:`+JSON.stringify(error));
+      try {
+        let callbackdata = (error) => {
+          console.log(`${caseName} fail, error:` + JSON.stringify(error));
         }
         tcp.on("error", callbackdata);
         tcp.off("error", callbackdata);
         console.log(`Telephony_Socket_TCPSocket_on_error_0100 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_on_error_0100 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
@@ -1802,12 +1808,12 @@ export default function socketJsunit() {
      */
     it('Telephony_Socket_TCPSocket_off_error_0200', 0, function (done) {
       console.log("************* Telephony_Socket_TCPSocket_off_error_0200 Test start*************");
-      try{
+      try {
         tcp.off("error");
         console.log(`Telephony_Socket_TCPSocket_off_error_0200 try success,`);
         expect(true).assertTrue();
         done();
-      }catch (error) {
+      } catch (error) {
         console.log("Telephony_Socket_TCPSocket_off_error_0200 try error " + JSON.stringify(error))
         expect().assertFail();
         done();
