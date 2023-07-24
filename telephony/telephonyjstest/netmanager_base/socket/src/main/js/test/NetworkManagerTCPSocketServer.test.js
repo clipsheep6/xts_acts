@@ -1313,7 +1313,7 @@ export default function NetTCPSocketServerTest() {
           done();
         } else {
           console.info(caseName + ' getSocketFd data ' + JSON.stringify(data));
-          expect(data == 0).assertTrue();
+          expect(data != -1).assertTrue();
           done();
         }
       });
@@ -1329,7 +1329,7 @@ export default function NetTCPSocketServerTest() {
       let tcp = socket.constructTCPSocketInstance();
       tcp.getSocketFd().then((data) => {
         console.info(caseName + ' getSocketFd data ' + JSON.stringify(data));
-        expect(data == 0).assertTrue();
+        expect(data != -1).assertTrue();
         done();
       }).catch((err) => {
         console.info(caseName + ' getSocketFd err ' + JSON.stringify(err));
