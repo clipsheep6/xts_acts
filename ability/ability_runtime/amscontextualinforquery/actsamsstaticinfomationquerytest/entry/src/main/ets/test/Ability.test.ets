@@ -287,7 +287,13 @@ export default function abilityTest() {
             expect(typeof (data.icon)).assertEqual("string");
             expect(typeof (data.iconId)).assertEqual("number");
             expect(typeof (data.process)).assertEqual("string");
+<<<<<<< HEAD
+            expect(typeof (data.supportedModes)).assertEqual("number");
             expect(Array.isArray(data.permissions)).assertEqual(true);
+            expect(Array.isArray(data.moduleInfos)).assertEqual(true);
+=======
+            expect(Array.isArray(data.permissions)).assertEqual(true);
+>>>>>>> hw/master
             expect(typeof (data.codePath)).assertEqual("string");
             expect(typeof (data.removable)).assertEqual("boolean");
             expect(typeof (data.accessTokenId)).assertEqual("number");
@@ -309,10 +315,19 @@ export default function abilityTest() {
             expect(data.label).assertEqual("$string:app_name");
             expect(data.labelId).assertLarger(0);
             expect(data.icon).assertEqual("$media:icon");
+<<<<<<< HEAD
+            expect(data.iconId.length).assertLarger(0);
+            expect(data.process).assertEqual("com.example.staticinfomationquery");
+            expect(data.supportedModes).assertEqual(0);
+            expect(data.moduleInfos.length).assertEqual(1);
+            expect(data.moduleInfos[0].moduleName).assertEqual("com.example.staticinfomationquery");
+            expect(data.codePath).assertEqual("/data/app/el1/bundle/public/com.example.staticinfomationquery")
+=======
             expect(data.iconId).assertLarger(0);
             expect(data.process).assertEqual("com.acts.staticinfomationquery");
             expect(data.permissions.length).assertEqual(0);
             expect(data.codePath).assertEqual("/data/app/el1/bundle/public/com.acts.staticinfomationquery")
+>>>>>>> hw/master
             expect(data.removable).assertEqual(true);
             expect(data.accessTokenId).assertLarger(0);
             expect(data.uid).assertLarger(0);

@@ -96,7 +96,11 @@ export default function cameraEnumTest() {
         */
         it('SUB_MULTIMEDIA_CAMERA_ENUM_CAMERATYPE_0100', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_ENUM_CAMERATYPE_0100--------------");
+<<<<<<< HEAD
+            console.info("CameraType: "+ JSON.stringify(camera.CameraType));
+=======
             console.info("CameraType: " + JSON.stringify(camera.CameraType));
+>>>>>>> hw/master
             expect(camera.CameraType.CAMERA_TYPE_DEFAULT == 0).assertTrue();
             expect(camera.CameraType.CAMERA_TYPE_WIDE_ANGLE == 1).assertTrue();
             expect(camera.CameraType.CAMERA_TYPE_ULTRA_WIDE == 2).assertTrue();
@@ -301,6 +305,18 @@ export default function cameraEnumTest() {
          * @tc.level     : Level 2
        */
         it('SUB_MULTIMEDIA_CAMERA_ENUM_CAMERAERRORCODE_0100', 2, async function (done) {
+<<<<<<< HEAD
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_ENUM_CAMERAERRORCODE_0100--------------");
+            expect(camera.CameraErrorCode.INVALID_ARGUMENT == 7400101).assertTrue();
+            expect(camera.CameraErrorCode.OPERATION_NOT_ALLOWED == 7400102).assertTrue();
+            expect(camera.CameraErrorCode.SESSION_NOT_CONFIG == 7400103).assertTrue();
+            expect(camera.CameraErrorCode.SESSION_NOT_RUNNING == 7400104).assertTrue();
+            expect(camera.CameraErrorCode.SESSION_CONFIG_LOCKED == 7400105).assertTrue();
+            expect(camera.CameraErrorCode.DEVICE_SETTING_LOCKED == 7400106).assertTrue();
+            expect(camera.CameraErrorCode.CONFILICT_CAMERA == 7400107).assertTrue();
+            expect(camera.CameraErrorCode.DEVICE_DISABLED == 7400108).assertTrue();
+            expect(camera.CameraErrorCode.SERVICE_FATAL_ERROR == 7400201).assertTrue();
+=======
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_ENUM_CAMERAERRORCODE_0100--------------");
             expect(camera.CameraErrorCode.INVALID_ARGUMENT == 7400101).assertTrue();
             console.info(TAG + "--------------INVALID_ARGUMENT--------------");
@@ -322,6 +338,7 @@ export default function cameraEnumTest() {
             console.info(TAG + "--------------DEVICE_PREEMPTED --------------");
             expect(camera.CameraErrorCode.SERVICE_FATAL_ERROR == 7400201).assertTrue();
             console.info(TAG + "--------------SERVICE_FATAL_ERROR--------------");
+>>>>>>> hw/master
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ENUM_CAMERAERRORCODE_0100 ends here");
             done();
         })

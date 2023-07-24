@@ -383,6 +383,8 @@ describe('AccessTokenTest', function () {
     })
 
     /**
+<<<<<<< HEAD
+=======
      * @tc.number Test_checkAccessToken_006
      * @tc.name Test atManager.checkAccessToken.
      * @tc.desc After the installation, user_grant permission is not granted by default(Promise).
@@ -563,6 +565,7 @@ describe('AccessTokenTest', function () {
     })
 	
 	 /**
+>>>>>>> hw/master
      * @tc.number Test_requestPermissionsFromUser_0100
      * @tc.name Test_requestPermissionsFromUser_001.
      * @tc.desc RequestPermissionsFromUser normal scenario(Promise).
@@ -651,6 +654,10 @@ describe('AccessTokenTest', function () {
         }
         done();
     })
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> hw/master
 })
 }

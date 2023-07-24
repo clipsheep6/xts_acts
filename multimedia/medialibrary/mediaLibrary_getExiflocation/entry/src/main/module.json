@@ -8,8 +8,12 @@
         "deviceTypes": [
             "tablet",
             "default",
+<<<<<<< HEAD
+            "phone"
+=======
             "phone",
             "2in1"
+>>>>>>> hw/master
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -38,6 +42,25 @@
         ],
         "requestPermissions": [
             {
+<<<<<<< HEAD
+                "name": "ohos.permission.GET_BUNDLE_INFO",
+                "reason": "use ohos.permission.GET_BUNDLE_INFO"
+            },
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+                "reason": "use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+            },
+            {
+                "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",
+                "reason": "use ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
+            },
+            {
+                "name": "ohos.permission.REVOKE_SENSITIVE_PERMISSIONS",
+                "reason": "use ohos.permission.REVOKE_SENSITIVE_PERMISSIONS"
+            },
+            {
+=======
+>>>>>>> hw/master
                 "name": "ohos.permission.MEDIA_LOCATION",
                 "reason": "use ohos.permission.MEDIA_LOCATION"
             },

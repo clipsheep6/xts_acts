@@ -508,6 +508,8 @@ export default function stageContextPropertiesTest(abilityContext) {
             }
         });
 
+<<<<<<< HEAD
+=======
         /**
         * @tc.number: Acts_ReportDrawnCompleted_AsyncCallback_1400
         * @tc.name: Load management
@@ -607,6 +609,7 @@ export default function stageContextPropertiesTest(abilityContext) {
         }, 4000);
         })
 
+>>>>>>> hw/master
         function checkApplicationContextDir(applicationContext) {
             expect(applicationContext.cacheDir).assertEqual("/data/storage/el2/base/cache");
             expect(applicationContext.tempDir).assertEqual("/data/storage/el2/base/temp");

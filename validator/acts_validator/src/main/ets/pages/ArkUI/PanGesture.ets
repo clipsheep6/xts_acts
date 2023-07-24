@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer3';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -21,8 +24,12 @@ struct PanGestureExample {
   @State X: number = 0;
   @State Y: number = 0;
   @State name: string = 'PanGesture';
+<<<<<<< HEAD
+  @State StepTips: string = '操作步骤：用至少一根手指拖动图像（最多十根手指）'+'\n'+'预期结果：图片正常拖动，偏移坐标显示正常';
+=======
   @State StepTips: string = '操作步骤：手指拖动图像'+'\n'+'预期结果：图片正常拖动，偏移坐标显示正常';
   @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -37,7 +44,10 @@ struct PanGestureExample {
       PanGesture({})
         .onActionStart((event: GestureEvent) => {
           console.info('Pan start');
+<<<<<<< HEAD
+=======
           this.Vue = true;
+>>>>>>> hw/master
         })
         .onActionUpdate((event: GestureEvent) => {
           this.X = event.offsetX;
@@ -59,6 +69,12 @@ struct PanGestureExample {
         StepTips:this.StepTips,
         content: this.specificNoParam,
         X:$X, Y:$Y,
+<<<<<<< HEAD
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         name:$name,
         Vue: $Vue,
       })
@@ -69,4 +85,5 @@ struct PanGestureExample {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

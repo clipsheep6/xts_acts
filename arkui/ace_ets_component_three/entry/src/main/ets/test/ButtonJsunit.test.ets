@@ -310,6 +310,12 @@ export default function buttonJsunit() {
         let event = JSON.parse(eventData.data.event);
         console.info("[testButton12] get event state result is: " + Math.trunc(event.screenY));
         console.info("[testButton12] get event state result is: " + Math.trunc(event.screenX));
+<<<<<<< HEAD
+        expect(event.screenX).assertEqual(185)
+        expect(event.screenY).assertEqual(485)
+        expect(event.x).assertEqual(100)
+        expect(event.y).assertEqual(50)
+=======
         try {
           if(density.x == 1080){
             expect(Math.trunc(event.screenX)).assertEqual(185)
@@ -326,6 +332,7 @@ export default function buttonJsunit() {
             console.info("[testButton12_] expection err : " + JSON.stringify(err));
             expect().assertFail();
         }
+>>>>>>> hw/master
         done();
       }
       var innerEvent = {
@@ -419,7 +426,11 @@ export default function buttonJsunit() {
       let callback = (indexEvent) => {
         console.info("testButton15 get state result is: " + JSON.stringify(indexEvent))
         console.info("testButton15 indexEvent.data.fontColorValue is: " + indexEvent.data.fontColorValue)
+<<<<<<< HEAD
+        expect(indexEvent.data.fontColorValue).assertEqual('ab996')
+=======
         expect(indexEvent.data.fontColorValue).assertEqual("ab996")
+>>>>>>> hw/master
         console.info('[testButton15] END');
         done();
       }

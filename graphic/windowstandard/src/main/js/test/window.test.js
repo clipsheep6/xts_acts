@@ -1284,6 +1284,16 @@ export default function window_test() {
      * @tc.name			Test create_Test_001.
      * @tc.desc			To verify the function of creating an application subwindow.
      */
+<<<<<<< HEAD
+    it('create_Test_001', 0, async function (done) {
+        console.log('windowTest CreateTest1 begin');
+        window.create('subWindow3', window.WindowType.TYPE_APP).then(wnd => {
+            console.log('windowTest CreateTest1 create success wnd' + wnd);
+            expect(wnd != null).assertTrue();
+            wnd.resetSize(400, 400).then(() => {
+                console.log('windowTest resetSize wnd.resetSize(400, 400) success');
+                wnd.destroy();
+=======
         it('create_Test_001', 0, async function (done) {
             let msgStr = 'create_Test_001';
             console.log(msgStr + ' begin');
@@ -1305,6 +1315,7 @@ export default function window_test() {
             }, (err) => {
                 console.log(msgStr + ' create failed, err :' + JSON.stringify(err));
                 expect().assertFail();
+>>>>>>> hw/master
                 done();
             })
         })
@@ -1314,6 +1325,21 @@ export default function window_test() {
      * @tc.name      Test create_Test_002
      * @tc.desc      To verify the function of creating an application subwindow
      */
+<<<<<<< HEAD
+    it('create_Test_002', 0, async function (done) {
+        console.log('windowTest CreateTest2 begin');
+        window.create('subWindow4', window.WindowType.TYPE_APP, (err, data) => {
+            if (err.code != 0) {
+                console.log('windowTest CreateTest2 create callback fail' + JSON.stringify(err.code));
+                expect().assertFail();
+                done();
+            } else {
+                expect(data != null).assertTrue();
+                console.log('windowTest CreateTest2 callback create success data' + data);
+                data.resetSize(400, 400).then(() => {
+                    console.log('windowTest resetSize wnd.resetSize(400, 400) success');
+                    data.destroy();
+=======
         it('create_Test_002', 0, async function (done) {
             let msgStr = 'create_Test_002';
             console.log(msgStr + ' begin');
@@ -1321,6 +1347,7 @@ export default function window_test() {
                 if (err.code != 0) {
                     console.log(msgStr + ' create callback fail' + JSON.stringify(err.code));
                     expect().assertFail();
+>>>>>>> hw/master
                     done();
                 } else {
                     expect(data != null).assertTrue();
@@ -2001,6 +2028,20 @@ export default function window_test() {
      * @tc.name			Test enumWindowStageEventType_Test_001.
      * @tc.desc			To test the enum value of WindowStageEventType.
      */
+<<<<<<< HEAD
+    it('enumWindowStageEventType_Test_001', 0, async function (done) {
+        console.log('test the enum value of WindowStageEventType begin');
+        try {
+            expect(1).assertEqual(window.WindowStageEventType.SHOWN);
+            expect(2).assertEqual(window.WindowStageEventType.ACTIVE);
+            expect(3).assertEqual(window.WindowStageEventType.INACTIVE);
+            expect(4).assertEqual(window.WindowStageEventType.HIDDEN);
+            done();
+        } catch (err) {
+            console.log('test enum value of windowStageEventType error ' + JSON.stringify(err));
+        }
+    })
+=======
         it('enumWindowStageEventType_Test_001', 0, async function (done) {
             let msgStr = 'enumWindowStageEventType_Test_001';
             console.log(msgStr + ' begin');
@@ -2014,6 +2055,7 @@ export default function window_test() {
                 console.log(msgStr + ' error ' + JSON.stringify(err));
             }
         })
+>>>>>>> hw/master
 
         /**
     * @tc.number		SUB_WMS_ENUM_WINDOWCOLORSPACE_JSAPI_001

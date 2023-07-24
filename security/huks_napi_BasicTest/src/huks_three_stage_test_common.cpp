@@ -691,6 +691,8 @@ OH_Huks_Result HuksAgreeKey(const struct OH_Huks_ParamSet *paramSet, const struc
         return ret;
     }
     return ret;
+<<<<<<< HEAD
+=======
 }
 
 bool checkUseSoftware()
@@ -706,4 +708,5 @@ bool checkUseSoftware()
         return true;
     }
     return false;
+>>>>>>> hw/master
 }

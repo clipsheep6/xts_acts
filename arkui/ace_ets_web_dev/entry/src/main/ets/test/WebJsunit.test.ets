@@ -473,6 +473,29 @@ export default function webJsunit() {
       sendEventByKey('webcomponent',10,'');
     })
     /*
+<<<<<<< HEAD
+     *tc.number SUB_ACE_BASIC_ETS_API_047
+     *tc.name setCookie
+     *tc.desic  Sets the cookie
+     */
+    it('setCookie',0,async function(done){
+      emitKey="emitGetCookie";
+      Utils.registerEvent("setCookie","e=f",76,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+     *tc.number SUB_ACE_BASIC_ETS_API_048
+     *tc.name getCookie
+     *tc.desic Gets all cookies for the given URL
+     */
+    it('getCookie',0,async function(done){
+      emitKey="emitZoom";
+      Utils.registerEvent("getCookie","e=f",69,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+=======
+>>>>>>> hw/master
      *tc.number SUB_ACE_BASIC_ETS_API_049
      *tc.name zoom
      *tc.desic Let the Web zoom by
@@ -483,6 +506,49 @@ export default function webJsunit() {
       sendEventByKey('webcomponent',10,'');
     })
     /*
+<<<<<<< HEAD
+     *tc.number SUB_ACE_BASIC_ETS_API_050
+     *tc.name zoomOut
+     *tc.desic Let the Web zoom out
+     */
+    it('zoomOut',0,async function(done){
+      emitKey="emitZoomIn";
+      Utils.registerEvent("zoomOut",true,78,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+     *tc.number SUB_ACE_BASIC_ETS_API_051
+     *tc.name zoomIn
+     *tc.desic Let the Web zoom in
+     */
+    it('zoomIn',0,async function(done){
+      emitKey="emitDeleteEntireCookie";
+      Utils.registerEvent("zoomIn",false,79,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+     *tc.number SUB_ACE_BASIC_ETS_API_052
+     *tc.name deleteEntireCookie
+     *tc.desic Delete all cookies
+     */
+    it('deleteEntireCookie',0,async function(done){
+      emitKey="emitSaveCookieSync";
+      Utils.registerEvent("deleteEntireCookie","",80,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+     *tc.number SUB_ACE_BASIC_ETS_API_053
+     *tc.name saveCookieSync
+     *tc.desic  Saves the cookies
+     */
+    it('saveCookieSync',0,async function(done){
+      emitKey="emitClearHistory";
+      Utils.registerEvent("saveCookieSync",true,81,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+=======
+>>>>>>> hw/master
      *tc.number SUB_ACE_BASIC_ETS_API_054
      *tc.name clearHistory
      *tc.desic Clears the history in the Web
@@ -548,6 +614,19 @@ export default function webJsunit() {
      *tc.desic Sets whether the Web allows JavaScript scripts to execute
      */
     it('javaScriptAccess',0,async function(done){
+<<<<<<< HEAD
+      emitKey="emitGetCookieManager";
+      Utils.registerEvent("javaScriptAccess",true,88,done);
+      sendEventByKey('webcomponent',10,'');
+    })
+    /*
+     *tc.number SUB_ACE_BASIC_ETS_API_061
+     *tc.name getCookieManager
+     *tc.desic Gets network cookie manager
+     */
+    it('getCookieManager',0,async function(done){
+=======
+>>>>>>> hw/master
       emitKey="emitWebVisibility";
       Utils.registerEvent("javaScriptAccess",true,88,done);
       sendEventByKey('webcomponent',10,'');

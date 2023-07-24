@@ -53,6 +53,18 @@ function resolveIP(ip) {
     return (ip>>24 & 0xFF) + "." + (ip>>16 & 0xFF) + "." + (ip>>8 & 0xFF) + "." + (ip & 0xFF);
 }
 
+<<<<<<< HEAD
+let wifiSecurityType = {
+    WIFI_SEC_TYPE_INVALID: 0,
+    WIFI_SEC_TYPE_EAP: 5,
+    WIFI_SEC_TYPE_EAP_SUITE_B: 6,
+    WIFI_SEC_TYPE_OWE:7 ,
+    WIFI_SEC_TYPE_WAPI_CERT:8 ,
+    WIFI_SEC_TYPE_WAPI_PSK:9 ,
+}
+
+=======
+>>>>>>> hw/master
 export default function actsWifiManagerCandidateNetWorkTest() {
     describe('actsWifiManagerCandidateNetWorkTest', function () {
         beforeAll(async function (done) {
@@ -381,4 +393,5 @@ export default function actsWifiManagerCandidateNetWorkTest() {
         })
     })
 }
+
 

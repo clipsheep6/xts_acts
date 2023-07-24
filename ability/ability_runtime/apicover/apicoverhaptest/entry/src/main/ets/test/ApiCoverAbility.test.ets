@@ -18,7 +18,13 @@ import FormInfo from '@ohos.application.formInfo';
 import formInfoNew from '@ohos.app.form.formInfo';
 import formError from '@ohos.application.formError';
 import formHost from '@ohos.application.formHost';
+<<<<<<< HEAD
+import errorManager from '@ohos.app.ability.errorManager';
 import abilityConstant from '@ohos.app.ability.AbilityConstant'
+import appManager from '@ohos.application.appManager'
+=======
+import abilityConstant from '@ohos.app.ability.AbilityConstant'
+>>>>>>> hw/master
 import appManagerNew from '@ohos.app.ability.appManager'
 import commonEvent from '@ohos.commonEvent';
 import ability from '@ohos.ability.ability';
@@ -312,7 +318,11 @@ export default function ApiCoverTest() {
      */
     it('SUB_AA_ABILITY_Extension_API_012', 0, async function (done) {
       try {
+<<<<<<< HEAD
+        let info: appManagerNew.ProcessRunningInfo;
+=======
         let info: appManagerNew.ProcessInformation;
+>>>>>>> hw/master
         let stageContext: common.AbilityStageContext = globalThis.stageContext;
         let abilityContext: common.UIAbilityContext = globalThis.abilityContext;
         let appContext: common.ApplicationContext = abilityContext.getApplicationContext();
@@ -555,7 +565,11 @@ export default function ApiCoverTest() {
           console.info("SUB_AA_FMS_AbilityStage_0100===SubscribeInfoCallback===" + JSON.stringify(data))
             expect(data.parameters["config"]).assertEqual(-1)
             expect(data.parameters["config"]).assertEqual(directions)
+<<<<<<< HEAD
+            expect(pointer).assertFalse()
+=======
             expect(typeof(pointer)).assertEqual("boolean")
+>>>>>>> hw/master
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
             await sleep(4000)
             done()

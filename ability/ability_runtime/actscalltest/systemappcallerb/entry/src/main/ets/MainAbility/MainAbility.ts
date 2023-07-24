@@ -22,9 +22,14 @@ var caller;
 var event_getcaller = "getcaller.com.example.systemcalltest.SecondAbility";
 var event_call = "call.com.example.systemcalltest.SecondAbility";
 var event_release = "release.com.example.systemcalltest.SecondAbility";
+<<<<<<< HEAD
+var subscribeInfo = {
+    events: [event_getcaller, event_call, event_release, ],
+=======
 var event_onRemoteStateChangeCall = "onRemoteStateChangeCall.com.example.systemcalltest.SecondAbility";
 var subscribeInfo = {
     events: [event_getcaller, event_call, event_release, event_onRemoteStateChangeCall],
+>>>>>>> hw/master
 };
 
 class MySequenceable {
@@ -101,6 +106,8 @@ function releaseCallee() {
     commonEvent.unsubscribe(subscriber, unsubscribeCallback);
 }
 
+<<<<<<< HEAD
+=======
 function onRemoteStateChangeCall(){
   function OnRemoteStateChangeCallback (msg){
     console.log('SystemAppCallerB MainAbility onRemoteStateChange  ' + msg);
@@ -108,6 +115,7 @@ function onRemoteStateChangeCall(){
   caller.onRemoteStateChange(OnRemoteStateChangeCallback)
 }
 
+>>>>>>> hw/master
 function startNext(context) {
     let want = {
         bundleName: "com.example.systemappcallerc",
@@ -130,9 +138,12 @@ export default class MainAbility extends Ability {
             case event_release:
                 releaseCallee();
                 break;
+<<<<<<< HEAD
+=======
             case event_onRemoteStateChangeCall:
                 onRemoteStateChangeCall();
                 break;
+>>>>>>> hw/master
             default:
                 console.log('SystemAppCallerB MainAbility subscribeCallBack event error:' + data.event);
                 break;

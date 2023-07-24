@@ -42,7 +42,11 @@ export default function abilityTest() {
                     console.log("====>getCurrentTopAbility_0200 err:" + JSON.stringify(err) + " data:" + JSON.stringify(data));
                     ability = data;
                     abilityDelegator.doAbilityBackground(ability, (err)=>{
+<<<<<<< HEAD
+                        console.debug("====>doAbilityBackground_0200 data:" + JSON.stringify(err));
+=======
                         console.log("====>doAbilityBackground_0200 data:" + JSON.stringify(err));
+>>>>>>> hw/master
                         expect(err.code).assertEqual(0);
                     })
                 })
@@ -106,6 +110,16 @@ export default function abilityTest() {
                     let state = abilityDelegator.getAbilityState(ability);
                     console.log("====>ACTS_GetAbilityState_0300 state:" + state);
                     expect(state).assertEqual(AbilityDelegatorRegistry.AbilityLifecycleState.FOREGROUND);
+<<<<<<< HEAD
+                    expect(state != AbilityDelegatorRegistry.AbilityLifecycleState.CREATE).assertTrue()
+                    expect(state != AbilityDelegatorRegistry.AbilityLifecycleState.DESTROY).assertTrue()
+                    abilityDelegator.doAbilityBackground(ability, (err)=>{
+                        console.debug("====>doAbilityBackground_0300 data:" + JSON.stringify(err));
+                        expect(err.code).assertEqual(0);
+                        console.debug("====>ACTS_GetAbilityState_0300 end====");
+                        flag=false;
+                        done();
+=======
                     expect(state != AbilityDelegatorRegistry.AbilityLifecycleState.CREATE).assertTrue();
                     expect(state != AbilityDelegatorRegistry.AbilityLifecycleState.DESTROY).assertTrue();
                     abilityDelegator.doAbilityBackground(ability, (err)=>{
@@ -113,6 +127,7 @@ export default function abilityTest() {
                         expect(err.code).assertEqual(0);
                         console.log("====>ACTS_GetAbilityState_0300 end====");
                         commonEvent.unsubscribe(subscriber, UnSubscribeCallback);
+>>>>>>> hw/master
                     })
                 })
                 }

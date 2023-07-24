@@ -1322,7 +1322,11 @@ export default function cameraSessionExposureTest() {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 start for camera[" + i + "]");
                     let exposureBias = mExposureBiasRangeArray[i][0];
+<<<<<<< HEAD
+                    if (exposureBias == 0) {
+=======
                     if (exposureBias == 0 || isNaN(exposureBias)) {
+>>>>>>> hw/master
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 exposureBias is 0");
                     } else {
                         await startCameraSession(i);
@@ -1336,7 +1340,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
                             await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         await stopCameraSession();
@@ -1384,7 +1391,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
                             await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         await sleep(500);
@@ -1433,7 +1443,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
                             await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         await stopCameraSession();
@@ -1482,7 +1495,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
                             await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         
@@ -1533,7 +1549,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
                             await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         

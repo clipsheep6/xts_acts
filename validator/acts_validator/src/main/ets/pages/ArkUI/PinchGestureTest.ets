@@ -12,16 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
 @Component
 struct PinchGuestureTest {
   @State X: number = 1;
+<<<<<<< HEAD
+  @State name: string = 'PinchGuesture';
+  @State StepTips: string = '操作步骤：用手指触摸捏合图片（至少2根手指，最大为5指）'+'\n'+'预期结果：图片能够被正常捏合放缩';
+=======
   @State name: string = 'PinchGesture';
   @State StepTips: string = '操作步骤：两根手指触摸捏合图片'+'\n'+'预期结果：图片能够被正常捏合放缩';
   @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -36,7 +44,10 @@ struct PinchGuestureTest {
       PinchGesture()
         .onActionUpdate((event: GestureEvent) => {
           this.X = event.scale;
+<<<<<<< HEAD
+=======
           this.Vue = true;
+>>>>>>> hw/master
         })
       )
       Text('捏合放缩比例:'+this.X).fontColor(Color.Black)
@@ -48,6 +59,16 @@ struct PinchGuestureTest {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
+        Url:'pages/ArkUI/ArkUI_index',
+        StepTips:this.StepTips,
+        content: this.specificNoParam,
+        X:$X,
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         Url: 'pages/ArkUI/ArkUI_index',
         StepTips: this.StepTips,
         content: this.specificNoParam,
@@ -62,4 +83,5 @@ struct PinchGuestureTest {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

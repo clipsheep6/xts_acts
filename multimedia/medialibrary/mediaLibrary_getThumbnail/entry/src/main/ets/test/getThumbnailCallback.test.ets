@@ -87,6 +87,23 @@ export default function getThumbnailCallback(abilityContext) {
                 if (size == "default") {
                     size = { width: 256, height: 256 };
                     asset.getThumbnail(async (err, pixelmap) => {
+<<<<<<< HEAD
+                        await pixelmap.getImageInfo((err, info) => {
+                            expect(info.size.width).assertEqual(size.width);
+                            expect(info.size.height).assertEqual(size.height);
+                            fetchFileResult.close();
+                            done();
+                        });
+                    });
+                } else {
+                    asset.getThumbnail(size, async (err, pixelmap) => {
+                        await pixelmap.getImageInfo((err, info) => {
+                            expect(info.size.width).assertEqual(size.width);
+                            expect(info.size.height).assertEqual(size.height);
+                            fetchFileResult.close();
+                            done();
+                        });
+=======
                         try {
                             if (err) {
                                 console.info(`${testNum}:: err :${err}`);
@@ -116,6 +133,7 @@ export default function getThumbnailCallback(abilityContext) {
                             console.info(`${testNum}:: error2 :${error}`);
                         }
                         done();
+>>>>>>> hw/master
                     });
                 }
             } catch (error) {

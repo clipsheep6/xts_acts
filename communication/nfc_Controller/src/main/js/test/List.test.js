@@ -34,5 +34,10 @@ if (info != "false")
     nfcMifareUltralightTag();
     nfcNDEFTagTest();
     nfcTagABFVTest();
+<<<<<<< HEAD
 }
 }
+=======
+}
+}
+>>>>>>> hw/master

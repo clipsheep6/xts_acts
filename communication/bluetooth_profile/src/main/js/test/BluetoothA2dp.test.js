@@ -17,8 +17,13 @@ import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 
+<<<<<<< HEAD
+export default function bluetoothhostTest_host_1() {
+describe('bluetoothhostTest_host_1', function () {
+=======
 export default function btA2dpConnTest() {
 describe('btA2dpConnTest', function () {
+>>>>>>> hw/master
     function sleep(delay) {
         return new Promise(resovle => setTimeout(resovle, delay))
     }
@@ -136,7 +141,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_0400', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_0400', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         console.info('[bluetooth_js]a2dp get profile result:' + JSON.stringify(a2dpSrc));
         let conn = a2dpSrc.disconnect('test');
@@ -152,7 +161,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+      it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_0500', 0, async function (done) {
+=======
       it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_0500', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrcConn = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         console.info('[bluetooth_js]get a2dp result:' + JSON.stringify(a2dpSrcConn));
         expect(a2dpSrcConn).assertEqual(bluetooth.ProfileConnectionState.STATE_DISCONNECTED);
@@ -166,7 +179,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_0600', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_0600', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrc = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         let conn = a2dpSrc.connect('test');
         console.info('[bluetooth_js]a2dp invaild connect:' + JSON.stringify(conn));
@@ -181,7 +198,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_0700', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_0700', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         console.info('[bluetooth_js]a2dp get profile result:' + JSON.stringify(a2dpSrc));
         let ret = a2dpSrc.getDeviceState('11:22:33:44:55:66');
@@ -196,7 +217,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_0800', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_0800', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         console.info('[bluetooth_js]a2dp get profile result:' + JSON.stringify(a2dpSrc));
         let ret = a2dpSrc.getDeviceState('test');
@@ -211,7 +236,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_0900', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_0900', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         console.info('[bluetooth_js]a2dp get profile result:' + JSON.stringify(a2dpSrc));
         let state = a2dpSrc.getPlayingState('11:22:33:44:55:66');
@@ -228,7 +257,11 @@ describe('btA2dpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 1
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_A2DP_Conn_1000', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_A2DPCONN_1000', 0, async function (done) {
+>>>>>>> hw/master
         let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
         console.info('[bluetooth_js]a2dp get profile result:' + JSON.stringify(a2dpSrc));
         let retArray = a2dpSrc.getConnectionDevices();
@@ -239,4 +272,10 @@ describe('btA2dpConnTest', function () {
 
 })
 
+<<<<<<< HEAD
 }
+
+
+=======
+}
+>>>>>>> hw/master

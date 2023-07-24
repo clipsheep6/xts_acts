@@ -19,6 +19,10 @@
         {
             "type": "ShellKit",
             "run-command": [
+<<<<<<< HEAD
+                "hilog -Q pidoff",
+=======
+>>>>>>> hw/master
                 "power-shell wakeup",
                 "power-shell setmode 602"
             ]

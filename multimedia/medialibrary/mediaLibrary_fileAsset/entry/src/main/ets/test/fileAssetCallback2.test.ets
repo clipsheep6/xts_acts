@@ -56,6 +56,14 @@ export default function fileAssetCallback2Test(abilityContext) {
                 asset[prop] = val;
                 const id = asset.id;
                 asset.commitModify(async (err) => {
+<<<<<<< HEAD
+                    if (err) {
+                        console.info(`${testNum} err : ${err}`);
+                        expect().assertFail();
+                        fetchFileResult.close();
+                        done();
+                        return;
+=======
                     try {
                         if (err) {
                             console.info(`${testNum} err : ${err}`);
@@ -73,10 +81,15 @@ export default function fileAssetCallback2Test(abilityContext) {
                     } catch (error) {
                         console.info(`${testNum} failed, error : ${error}`);
                         expect(false).assertTrue();
+>>>>>>> hw/master
                     }
                     asset[prop] = oldVal;
                     await asset.commitModify();
                     fetchFileResult.close();
+<<<<<<< HEAD
+                    await fetchFileResultById.close();
+=======
+>>>>>>> hw/master
                     done();
                 });
             } catch (error) {

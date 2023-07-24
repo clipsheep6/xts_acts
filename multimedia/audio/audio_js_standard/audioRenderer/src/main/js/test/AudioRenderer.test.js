@@ -2533,7 +2533,7 @@ describe('audioRenderer', function () {
             done();
         }
     })
-
+    
     /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0200
      * @tc.name      : AudioRenderer - getAudioStreamId
@@ -8893,6 +8893,9 @@ describe('audioRenderer', function () {
         done();
     })
 
+<<<<<<< HEAD
+})
+=======
     /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8900
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - SetALARM
@@ -10406,3 +10409,4 @@ describe('audioRenderer', function () {
         done();
     })
 })
+>>>>>>> hw/master

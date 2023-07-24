@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CanvasCustomContainer1';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -22,6 +25,9 @@ struct SetCircle {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   @State FillColor: string = '#FF000000';
   @State name: string = 'CanvasGlobalCompositeOperation';
+<<<<<<< HEAD
+  @State StepTips: string = '操作步骤：点击不同的合成操作的方式'+'\n'+'预期结果：原本默认合成方式会随点击变化';
+=======
   @State StepTips: string = '操作步骤：点击不同的合成操作的方式'+'\n'+'预期结果：原本默认合成方式会随点击变化（红色为先绘制内容，蓝色为后绘制内容）';
   @State Vue: boolean = false;
   @State num1: number = 0;
@@ -35,6 +41,7 @@ struct SetCircle {
   @State num9: number = 0;
   @State num10: number = 0;
   @State num11: number = 0;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -45,17 +52,27 @@ struct SetCircle {
           Text('').fontSize(0).border({width:0}).size({width:'0%',height:'2%'})
         }
         Row({space:10}){
+<<<<<<< HEAD
+          Text('s-over').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+          .onClick(()=>{
+=======
           Toggle({type:ToggleType.Button, isOn:false}){
             Text('s-over').fontSize(13)
           }
           .size({width:'18%',height:'20%'})
           .onChange(()=>{
+>>>>>>> hw/master
             this.context.clearRect(0, 10, 350, 300);
             this.context.fillStyle = 'rgb(255,0,0)';
             this.context.fillRect(150, 150, 50, 50);
             this.context.globalCompositeOperation = 'source-over';
             this.context.fillStyle = 'rgb(0,0,255)';
             this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+          })
+          Text('s-atop').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=>{
+=======
             this.context.clearRect(0, 10, 350, 300);
             this.context.fillStyle = 'rgb(255,0,0)';
             this.context.fillRect(150, 150, 50, 50);
@@ -80,12 +97,18 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'source-atop';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+          Text('s-in').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=>{
+=======
               this.num2 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -104,12 +127,18 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'source-in';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+          Text('s-out').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=>{
+=======
               this.num3 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -128,12 +157,20 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'source-out';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+        }
+        Row({space:10}){
+          Text('d-over').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+          .onClick(()=> {
+=======
               this.num4 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -154,12 +191,18 @@ struct SetCircle {
             this.context.globalCompositeOperation = 'source-over';
             this.context.fillStyle = 'rgb(0,0,255)';
             this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
             this.context.clearRect(0, 10, 350, 300);
             this.context.fillStyle = 'rgb(255,0,0)';
             this.context.fillRect(150, 150, 50, 50);
             this.context.globalCompositeOperation = 'destination-over';
             this.context.fillStyle = 'rgb(0,0,255)';
             this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+          })
+          Text('d-atop').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=> {
+=======
             this.num5 = 1;
             if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
             && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -178,12 +221,18 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'destination-atop';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+          Text('d-in').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=> {
+=======
               this.num6 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -202,12 +251,18 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'destination-in';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+          Text('d-out').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=> {
+=======
               this.num7 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -226,12 +281,20 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'destination-out';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+        }
+        Row({space:10}){
+          Text('lighter').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=> {
+=======
               this.num8 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -252,12 +315,18 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'lighter';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+          Text('copy').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=> {
+=======
               this.num9 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -276,12 +345,18 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'copy';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+            })
+          Text('xor').fontSize(13).border({width:2}).size({width:'18%',height:'20%'})
+            .onClick(()=> {
+=======
               this.num10 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
@@ -300,18 +375,22 @@ struct SetCircle {
               this.context.globalCompositeOperation = 'source-over';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+>>>>>>> hw/master
               this.context.clearRect(0, 10, 350, 300);
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 50, 50);
               this.context.globalCompositeOperation = 'xor';
               this.context.fillStyle = 'rgb(0,0,255)';
               this.context.fillRect(180, 180, 50, 50);
+<<<<<<< HEAD
+=======
               this.num11 = 1;
               if( this.num1 == 1 && this.num2 == 1 && this.num3 == 1 && this.num4 == 1 && this.num5 == 1
               && this.num6 == 1 && this.num7 == 1 && this.num8 == 1 && this.num9 == 1 && this.num10 == 1
               && this.num11 == 1 ){
                 this.Vue = true;
               }
+>>>>>>> hw/master
             })
           Text('').fontSize(0).border({width:0}).size({width:'18%',height:'20%'})
         }
@@ -322,6 +401,14 @@ struct SetCircle {
           .height('100%')
           .backgroundColor('#ffffffff')
           .onReady(() =>{
+<<<<<<< HEAD
+            this.context.fillStyle = 'rgb(255,0,0)';
+            this.context.fillRect(150, 150, 50, 50);
+            this.context.globalCompositeOperation = 'source-over';
+            this.context.fillStyle = 'rgb(0,0,255)';
+            this.context.fillRect(180, 180, 50, 50);
+=======
+>>>>>>> hw/master
           })
       }.width('100%').height('70%')
     }.width('100%').height('80%').backgroundColor(Color.White)
@@ -330,6 +417,16 @@ struct SetCircle {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
+        Url:'pages/ArkUI/ArkUI_index',
+        StepTips:this.StepTips,
+        content: this.specificNoParam,
+        FillColor:$FillColor,
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         Url: 'pages/ArkUI/ArkUI_index',
         StepTips: this.StepTips,
         content: this.specificNoParam,
@@ -344,4 +441,5 @@ struct SetCircle {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

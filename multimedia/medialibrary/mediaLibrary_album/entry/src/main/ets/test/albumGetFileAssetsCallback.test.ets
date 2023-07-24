@@ -78,6 +78,14 @@ export default function albumGetFileAssetsCallbackTest(abilityContext) {
                             expect(count).assertEqual(albumList.length);
                             done();
                         }
+<<<<<<< HEAD
+                        count++;
+                        console.info(`${testNum}, expectAssetsCount: ${expectAssetsCount} 
+                                    getCount: ${fetchFileResult.getCount()}`)
+                        expect(fetchFileResult.getCount()).assertEqual(expectAssetsCount);
+                        fetchFileResult.close();
+=======
+>>>>>>> hw/master
                     });
                     await sleep(100);
                 }

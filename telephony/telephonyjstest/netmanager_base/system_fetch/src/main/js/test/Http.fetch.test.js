@@ -29,6 +29,19 @@ export default function Telephony_NetStack_HttpFetchTest() {
             fetch.fetch({
                 url : "https://httpbin.org/anything",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack fetch success "+JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done()
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack fetch success "+JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     done();
@@ -40,6 +53,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -53,6 +67,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
             fetch.fetch({
                 url : "https://httpbin.org/user-agent",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack fetch success "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(JSON.parse(data.data.toString())["user-agent"] == "libcurl-agent/1.0").assertTrue();
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack fetch complete")
+=======
                     console.info("NetStack fetch success "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -67,6 +95,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack fetch complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -81,6 +110,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 url : "https://httpbin.org/user-agent",
                 responseType : "json",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack fetch success "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(data.data["user-agent"] == "libcurl-agent/1.0").assertTrue();
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack fetch complete")
+=======
                     console.info("NetStack fetch success "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -95,6 +138,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack fetch complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -108,6 +152,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
             fetch.fetch({
                 url : "https://httpbin.org/headers",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack Fetch Success "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(JSON.parse(data.data.toString())["headers"]["Content-Type"] === "application/json").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack Fetch Success "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -122,6 +180,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -136,6 +195,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 url : "https://httpbin.org/headers",
                 responseType : "json",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack Fetch Success "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(data.data["headers"]["Content-Type"] === "application/json").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack Fetch Success "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -150,6 +223,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -165,6 +239,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 method : "POST",
                 data : "MineMine",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(JSON.parse(data.data.toString())["data"] === "MineMine").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done()
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -179,6 +267,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -195,6 +284,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 data : "MineMine",
                 responseType : "json",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(data.data["data"] === "MineMine").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -209,6 +312,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -224,6 +328,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 method : "PUT",
                 data : "MineMine",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(JSON.parse(data.data.toString())["data"] === "MineMine").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack "+ JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -238,6 +356,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -254,6 +373,20 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 data : "MineMine",
                 responseType : "json",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack "+ JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(data.data["data"] === "MineMine").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done();
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack "+ JSON.stringify(data));
                     if (data.code === 200) {
                         expect(data.code === 200 || data.code > 500).assertTrue();
@@ -268,6 +401,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -285,6 +419,23 @@ export default function Telephony_NetStack_HttpFetchTest() {
                     "name2" : "mine2",
                 },
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack "+JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(JSON.parse(data.data.toString())["key1"] === "val1").assertTrue()
+                    expect(JSON.parse(data.data.toString())["key2"] === "val2").assertTrue()
+                    expect(JSON.parse(data.data.toString())["name1"] === "mine1").assertTrue()
+                    expect(JSON.parse(data.data.toString())["name2"] === "mine2").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done()
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack "+JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -302,6 +453,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });
@@ -320,6 +472,23 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 responseType : "json",
                 success : function(data){
+<<<<<<< HEAD
+                    console.info("NetStack "+JSON.stringify(data))
+                    expect(data.code === 200).assertTrue()
+                    expect(data.data["key1"] === "val1").assertTrue()
+                    expect(data.data["key2"] === "val2").assertTrue()
+                    expect(data.data["name1"] === "mine1").assertTrue()
+                    expect(data.data["name2"] === "mine2").assertTrue()
+                    done();
+                },
+                fail : function(){
+                    console.info("NetStack Fetch Failed")
+                    expect().assertFail()
+                    done()
+                },
+                complete : function(){
+                    console.info("NetStack Fetch Complete")
+=======
                     console.info("NetStack "+JSON.stringify(data));
                     expect(data.code === 200 || data.code > 500).assertTrue();
                     if (data.code === 200) {
@@ -337,6 +506,7 @@ export default function Telephony_NetStack_HttpFetchTest() {
                 },
                 complete : function(){
                     console.info("NetStack Fetch Complete");
+>>>>>>> hw/master
                 }
             })
         });

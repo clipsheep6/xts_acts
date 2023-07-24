@@ -82,6 +82,46 @@ export default function audioManagerApi9() {
             await sleep(100);
         })
 
+<<<<<<< HEAD
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_COMUNICATIONDEVICETYPE_0100
+     *@tc.name      : COMUNICATIONDEVICETYPE
+     *@tc.desc      : COMUNICATIONDEVICETYPE
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 2
+     */
+    it('SUB_MULTIMEDIA_COMUNICATIONDEVICETYPE_0100', 2, async function (done) {
+        expect(audio.CommunicationDeviceType.SPEAKER).assertEqual(2);
+        await sleep(50);
+        done();
+    })
+    
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_0100
+     * @tc.name      : getVolumeGroupManager - callback
+     * @tc.desc      : getVolumeGroupManager
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_0100', 3, async function (done) {
+        let  audioVolumeManager = audioManager.getVolumeManager();
+        audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID, (err,groupManager)=>{
+            if (err) {
+                console.error(`audioManagerApi9Test: failed to getGroupManager: Callback:  ${err.message}`);
+                expect(false).assertTrue();
+            } else {
+                if((typeof groupManager) == 'object'){
+                    console.info('audioManagerApi9Test: Promise: getGroupManager  :  PASS');
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.info('audioManagerApi9Test: Promise: getGroupManager  :  FAIL');
+                    expect(false).assertTrue();
+                }
+            }
+=======
         afterEach(async function () {
             console.info(`${TagFrmwk}: afterEach: Test case-level clearance conditions`);
             await sleep(100);
@@ -137,9 +177,36 @@ export default function audioManagerApi9() {
         it('SUB_MULTIMEDIA_DEFAULT_INTERRUPT_GROUP_ID_0100', 2, async function (done) {
             expect(audio.DEFAULT_INTERRUPT_GROUP_ID).assertEqual(1);
             await sleep(50);
+>>>>>>> hw/master
             done();
         })
 
+<<<<<<< HEAD
+    
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_0200
+     * @tc.name      : getVolumeGroupManager - prmiose
+     * @tc.desc      : getVolumeGroupManager
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_0200', 3, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            if((typeof groupManager) == 'object'){
+                console.info('audioManagerApi9Test: Promise: getGroupManager  :  PASS');
+                expect(true).assertTrue();
+            }
+            else{
+                console.info('audioManagerApi9Test: Promise: getGroupManager  :  FAIL');
+                expect(false).assertTrue();
+            }
+        }catch(err){
+            console.info('audioManagerApi9Test: getGroupManager: parameter err:'+ err.message);
+            expect(false).assertTrue();
+=======
         /**
          *@tc.number    : SUB_MULTIMEDIA_COMUNICATIONDEVICETYPE_0100
          *@tc.name      : COMUNICATIONDEVICETYPE
@@ -151,9 +218,92 @@ export default function audioManagerApi9() {
         it('SUB_MULTIMEDIA_COMUNICATIONDEVICETYPE_0100', 2, async function (done) {
             expect(audio.CommunicationDeviceType.SPEAKER).assertEqual(2);
             await sleep(50);
+>>>>>>> hw/master
             done();
         })
 
+<<<<<<< HEAD
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETVOLUME_0100
+     * @tc.name      : group manager getVolume - MEDIA - Callback
+     * @tc.desc      : group manager getvolume
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETVOLUME_0100', 3, async function (done) {
+        let groupManager;
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        }catch(err){
+            console.info('audioManagerApi9Test: getVolumeGroupManager : err:'+ err.message);
+            expect(false).assertTrue();
+            done();
+        }
+        groupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+            if (err) {
+                console.error(`audioManagerApi9Test: callback : Meida: failed to get volume ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else if (value >= minVol && value <= maxVol) {
+                console.info('audioManagerApi9Test: callback : Meida getVolume: PASS :' + value);
+                expect(true).assertTrue();
+            }
+            else {
+                console.info('audioManagerApi9Test: callback : Meida getVolume: FAIL :' + value);
+                expect(false).assertTrue();
+            }
+            done();
+        });
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETVOLUME_0200
+     * @tc.name      : group manager getVolume - MEDIA - Promise
+     * @tc.desc      : group manager getvolume
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETVOLUME_0200', 3, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            let value = await groupManager.getVolume(audio.AudioVolumeType.MEDIA);
+            if (value >= minVol && value <= maxVol) {
+                console.info('audioManagerApi9Test: callback : Meida getVolume: PASS :' + value);
+                expect(true).assertTrue();
+            }
+            else {
+                console.info('audioManagerApi9Test: callback : Meida getVolume: FAIL :' + value);
+                expect(false).assertTrue();
+            }
+            done();
+        }catch(err){
+            console.info('audioManagerApi9Test: getVolumeGroupManager : err:'+ err.message);
+            expect(false).assertTrue();
+            done();
+        }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMAXVOLUME_0100
+     * @tc.name      : getMaxVolume - RINGTONE - Callback
+     * @tc.desc      : getMaxVolume
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMAXVOLUME_0100', 3, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            groupManager.getMaxVolume(audio.AudioVolumeType.RINGTONE, (err, data) => {
+                if (err) {
+                    console.error(`audioManagerApi9Test: failed to getMaxVolume: Callback:  ${err.message}`);
+                    expect(false).assertTrue();
+=======
         /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_0100
          * @tc.name      : getVolumeGroupManager - callback
@@ -198,6 +348,7 @@ export default function audioManagerApi9() {
                 if ((typeof groupManager) == 'object') {
                     console.info('audioManagerApi9Test: Promise: getGroupManager  :  PASS');
                     expect(true).assertTrue();
+>>>>>>> hw/master
                 }
                 else {
                     console.info('audioManagerApi9Test: Promise: getGroupManager  :  FAIL');
@@ -211,6 +362,27 @@ export default function audioManagerApi9() {
             done();
         })
 
+<<<<<<< HEAD
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMAXVOLUME_0200
+     * @tc.name      : getMaxVolume - RINGTONE - Promise
+     * @tc.desc      : getMaxVolume
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMAXVOLUME_0200', 3, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            let maxVolume = await groupManager.getMaxVolume(audio.AudioVolumeType.RINGTONE);
+            if (maxVolume == maxVol) {
+                console.info('audioManagerApi9Test: promise : Ringtone getMaxVolume: PASS :' + maxVolume);
+                expect(true).assertTrue();
+            }
+            else {
+                console.info('audioManagerApi9Test: promise : Ringtone getMaxVolume: FAIL :' + maxVolume);
+=======
         /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETVOLUME_0100
          * @tc.name      : group manager getVolume - MEDIA - Callback
@@ -226,10 +398,34 @@ export default function audioManagerApi9() {
                 groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
             } catch (err) {
                 console.info('audioManagerApi9Test: getVolumeGroupManager : err:' + err.message);
+>>>>>>> hw/master
                 expect(false).assertTrue();
                 done();
             }
+<<<<<<< HEAD
+        }catch(err){
+            console.info('audioManagerApi9Test: getVolumeGroupManager : err:'+ err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMINVOLUME_0100
+     * @tc.name      : getMinVolume - RINGTONE - Callback
+     * @tc.desc      : getMinVolume
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMINVOLUME_0100', 2, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            groupManager.getMinVolume(audio.AudioVolumeType.RINGTONE, (err, data) => {
+=======
             groupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+>>>>>>> hw/master
                 if (err) {
                     console.error(`audioManagerApi9Test: callback : Meida: failed to get volume ${err.message}`);
                     expect(false).assertTrue();
@@ -246,6 +442,27 @@ export default function audioManagerApi9() {
             });
         })
 
+<<<<<<< HEAD
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMINVOLUME_0200
+     * @tc.name      : getMaxVolume - RINGTONE - Promise
+     * @tc.desc      : getMaxVolume
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMINVOLUME_0200', 3, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            let minVolume = await groupManager.getMinVolume(audio.AudioVolumeType.RINGTONE);
+            if (minVolume == minVol) {
+                console.info('audioManagerApi9Test: promise : Ringtone getMinVolume: PASS :' + minVolume);
+                expect(true).assertTrue();
+            }
+            else {
+                console.info('audioManagerApi9Test: promise : Ringtone getMinVolume: FAIL :' + minVolume);
+=======
         /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETVOLUME_0200
          * @tc.name      : group manager getVolume - MEDIA - Promise
@@ -270,11 +487,128 @@ export default function audioManagerApi9() {
                 done();
             } catch (err) {
                 console.info('audioManagerApi9Test: getVolumeGroupManager : err:' + err.message);
+>>>>>>> hw/master
                 expect(false).assertTrue();
                 done();
             }
         })
 
+<<<<<<< HEAD
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ISMUTE_0100
+     * @tc.name      : group manager ismute - RINGTONE - Callback
+     * @tc.desc      : ismute - RINGTONE - Callback
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ISMUTE_0100', 3, async function (done) {
+        let groupManager;
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        }catch(err){
+            console.info('audioManagerApi9Test: getGroupManager mute : parameter err:'+ err.message);
+            expect(false).assertTrue();
+            done();
+        }
+
+        groupManager.isMute(audio.AudioVolumeType.RINGTONE, (err, data)=>{
+            if (err) {
+                console.error(`audioManagerApi9Test: failed to isMute : Callback:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                console.log(`audioManagerApi9Test: Promise:
+                    Is Stream GroupManager Mute RINGTONE: FALSE: PASS:`+data);
+                expect(true).assertTrue();
+            }
+            done();
+        })
+    })
+ 
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ISMUTE_0200
+     * @tc.name      : group manager ismute - RINGTONE - Promise
+     * @tc.desc      : ismute - RINGTONE - Promise
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ISMUTE_0200', 3, async function (done) {
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            await groupManager.isMute(audio.AudioVolumeType.RINGTONE).then(function (data) {
+                console.log(`audioManagerApi9Test: Promise:
+                    Is Stream GroupManager Mute RINGTONE: FALSE: PASS:`+data);
+                expect(true).assertTrue();
+                done();
+            }).catch((err) => {
+                console.info(`audioManagerApi9Test: Promise:
+                    Is Stream GroupManager Mute RINGTONE: FALSE: ERROR:` + err.message);
+                expect(false).assertTrue();
+                done();
+            });
+        }catch(err){
+            console.info('audioManagerApi9Test: getGroupManager ismute : parameter err:'+ err.message);
+            expect(false).assertTrue();
+            done();
+        }
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ON_VOLUMECHANGE_0100
+     *@tc.name      : OnVolumeChange - setVolume - MEDIA
+     *@tc.desc      : OnVolumeChange - setVolume - MEDIA
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ON_VOLUMECHANGE_0100', 3, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        audioVolumeManager.on('volumeChange', (VolumeEvent) => {});
+        expect(true).assertTrue();
+        done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETRINGERMODE_0100
+     * @tc.name      : group manager getRingerMode - RINGTONE - Callback
+     * @tc.desc      : getRingerMode - RINGTONE - Callback
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETRINGERMODE_0100', 3, async function (done) {
+        let groupManager;
+        try{
+            let audioVolumeManager = audioManager.getVolumeManager();
+            groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        }catch(err){
+            console.info('audioManagerApi9Test: getGroupManager mute : parameter err:'+ err.message);
+            expect(false).assertTrue();
+            done();
+        }
+        groupManager.getRingerMode((err, data)=>{
+            if (err) {
+                console.error(`audioManagerApi9Test: failed to getRingerMode : Callback:  ${err.message}`);
+                expect(false).assertTrue();
+            }
+            else {
+                if( data == audio.AudioRingMode.RINGER_MODE_SILENT  ||
+                    data == audio.AudioRingMode.RINGER_MODE_VIBRATE ||
+                    data == audio.AudioRingMode.RINGER_MODE_NORMAL){
+                    console.log(`audioManagerApi9Test: Promise:
+                    getRingerMode : PASS:`+data);
+                    expect(true).assertTrue();
+                }
+                else{
+                    console.log(`audioManagerApi9Test: Promise:
+                    getRingerMode : FAIL: `+data);
+                    expect(false).assertTrue();
+                }
+=======
         /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMAXVOLUME_0100
          * @tc.name      : getMaxVolume - RINGTONE - Callback
@@ -372,9 +706,33 @@ export default function audioManagerApi9() {
                 console.info('audioManagerApi9Test: getVolumeGroupManager : err:' + err.message);
                 expect(false).assertTrue();
                 done();
+>>>>>>> hw/master
             }
+            done();
         })
 
+<<<<<<< HEAD
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_SETRINGERMODE_0200
+     *@tc.name      : setRingerMode - Normal Mode - Promise - ENAME
+     *@tc.desc      : setRingerMode - Set Ring more to Normal Mode
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_SETRINGERMODE_0200', 3, async function (done) {
+        try {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            let value = await groupManager.getRingerMode();
+            if (value == audio.AudioRingMode.RINGER_MODE_SILENT  ||
+                value == audio.AudioRingMode.RINGER_MODE_VIBRATE ||
+                value == audio.AudioRingMode.RINGER_MODE_NORMAL) {
+                console.info(`${TagFrmwk}: Promise: setRingerMode RINGER_MODE_NORMAL: PASS :${value}`);
+                expect(true).assertTrue();
+            } else {
+                console.info(`${TagFrmwk}: Promise: setRingerMode RINGER_MODE_NORMAL: FAIL :${value}`);
+=======
         /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETMINVOLUME_0200
          * @tc.name      : getMaxVolume - RINGTONE - Promise
@@ -398,11 +756,50 @@ export default function audioManagerApi9() {
                 }
             } catch (err) {
                 console.info('audioManagerApi9Test: getVolumeGroupManager : err:' + err.message);
+>>>>>>> hw/master
                 expect(false).assertTrue();
             }
             done();
         })
 
+<<<<<<< HEAD
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ONRINGMODECHANGE_0100
+     *@tc.name      : OnRingMode - RINGER_MODE_NORMAL
+     *@tc.desc      : OnRingMode - RINGER_MODE_NORMAL
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ONRINGMODECHANGE_0100', 3, async function (done) {
+        try {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            groupManager.on('ringerModeChange', (AudioRingMode) => {});
+            expect(true).assertTrue();
+            done();
+        } catch (err) {
+            console.log('err :' + err.message)
+            expect(false).assertTrue();
+            done();
+        }
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_SETMICROPHONEMUTE_0100
+     *@tc.name      : setMicrophoneMute - true - Callback
+     *@tc.desc      : Enable mic mute
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_SETMICROPHONEMUTE_0100', 3, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        groupManager.setMicrophoneMute(true,(err, data)=>{
+            if (err) {
+                console.error(`audioManagerApi9Test: failed to setMicrophoneMute : Callback:  ${err.message}`);
+=======
         /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ISMUTE_0100
          * @tc.name      : group manager ismute - RINGTONE - Callback
@@ -496,6 +893,7 @@ export default function audioManagerApi9() {
                 groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
             } catch (err) {
                 console.info('audioManagerApi9Test: getGroupManager mute : parameter err:' + err.message);
+>>>>>>> hw/master
                 expect(false).assertTrue();
                 done();
             }
@@ -618,6 +1016,45 @@ export default function audioManagerApi9() {
      *@tc.type      : Function
      *@tc.level     : Level 3
      */
+<<<<<<< HEAD
+     it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_SETMICROPHONEMUTE_0200', 3, async function (done) {
+        try {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+            await groupManager.setMicrophoneMute(true);
+            let data = await groupManager.isMicrophoneMute();
+            if (data == true) {
+                console.log(`${TagFrmwk}: Promise: isMicrophoneMute: TRUE: PASS:${data}`);
+                expect(true).assertTrue();
+            } else {
+                console.log(`${TagFrmwk}: Promise: isMicrophoneMute: TRUE: FAIL: ${data}`);
+                expect(false).assertTrue();
+            }
+        } catch (err) {
+            console.log('err :' + err.message);
+            expect(false).assertTrue();
+        }
+        done();
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ONMICSTATECHANGE_0100
+     *@tc.name      : OnMicStateChange
+     *@tc.desc      : OnMicStateChange
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ONMICSTATECHANGE_0100', 2, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        let groupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        try {
+            await groupManager.setMicrophoneMute(false);
+            console.info('setMicrophoneMute success')
+        } catch (err) {
+            console.log('err :' + err.message)
+            expect(false).assertTrue();
+=======
         it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_SETMICROPHONEMUTE_0200', 3, async function (done) {
             try {
                 let audioVolumeManager = audioManager.getVolumeManager();
@@ -635,6 +1072,7 @@ export default function audioManagerApi9() {
                 console.log('err :' + err.message);
                 expect(false).assertTrue();
             }
+>>>>>>> hw/master
             done();
         })
 
@@ -1153,7 +1591,27 @@ export default function audioManagerApi9() {
                 expect(err.code).assertEqual("6800104");
                 done();
             }
+<<<<<<< HEAD
+        });
+    })
+
+    /**
+    *@tc.number    : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0100
+    *@tc.name      : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0100
+    *@tc.desc      : micStateChange
+    *@tc.size      : MEDIUM
+    *@tc.type      : Function
+    *@tc.level     : Level 2
+    */
+    it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0100', 2, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        let count = 0;
+        console.info('getVolumeGroupManager Callback START.');
+        VolumeGroupManager.on('micStateChange', async (micStateChange) => {
+=======
         })
+>>>>>>> hw/master
 
         /**
         *@tc.number    : SUB_MULTIMEDIA_AUDIO_MANAGER_MUTE_3000
@@ -1201,6 +1659,24 @@ export default function audioManagerApi9() {
             }
         })
 
+<<<<<<< HEAD
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0200
+     *@tc.name      : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0200
+     *@tc.desc      : micStateChange
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0200', 2, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        console.info('getVolumeGroupManager Callback START.');
+        let count = 0;
+        VolumeGroupManager.on('micStateChange', async (micStateChange) => {
+            console.info("Updated micState:" + JSON.stringify(micStateChange));
+            count++;
+=======
         /**
         *@tc.number    : SUB_MULTIMEDIA_AUDIO_MANAGER_MUTE_2901
         *@tc.name      : mute - ACCESSIBILITY - Promise - SetVolume
@@ -1245,8 +1721,27 @@ export default function audioManagerApi9() {
                 expect(false).assertTrue();
                 done();
             }
+>>>>>>> hw/master
         })
 
+<<<<<<< HEAD
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0300
+     *@tc.name      : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0300
+     *@tc.desc      : micStateChange
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0300', 2, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        console.info('getVolumeGroupManager Callback START.');
+        let count = 0;
+        VolumeGroupManager.on('micStateChange', async (micStateChange) => {
+            console.info("Updated micState:" + JSON.stringify(micStateChange));
+            count++;
+=======
         /**
         *@tc.number    : SUB_MULTIMEDIA_AUDIO_MANAGER_MUTE_2902
         *@tc.name      : mute - ACCESSIBILITY - Promise - SetVolume
@@ -1292,8 +1787,48 @@ export default function audioManagerApi9() {
                 expect(err.code).assertEqual("6800104");
                 done();
             }
+>>>>>>> hw/master
         })
 
+<<<<<<< HEAD
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0400
+     *@tc.name      : SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0400
+     *@tc.desc      : micStateChange
+     *@tc.size      : MEDIUM
+     *@tc.type      : Function
+     *@tc.level     : Level 2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0400', 2, async function (done) {
+        let audioVolumeManager = audioManager.getVolumeManager();
+        let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
+        let count = 0;
+        try {
+            console.info("enter SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0400");
+            VolumeGroupManager.on('micStateChange', async (micStateChange1) => {
+                console.info("Updated micState--001:" + JSON.stringify(micStateChange1));
+                VolumeGroupManager.on('micStateChange', async (micStateChange) => {
+                    console.info("Updated micState--002:" + JSON.stringify(micStateChange));
+                    count++
+                })
+                let data = await audioManager.isMicrophoneMute();
+                console.info('Second Promise isMicrophoneMute PASS:' + data);
+                await audioManager.setMicrophoneMute(!data);
+                console.info('Second:Promise setMicrophoneMute PASS:' + (!data));
+            })
+            let data = await audioManager.isMicrophoneMute();
+            console.info('First Promise isMicrophoneMute PASS:' + data);
+            await audioManager.setMicrophoneMute(!data);
+            console.info('First:Promise setMicrophoneMute PASS:' + (!data));
+        } catch (err) {
+            console.log('ERROR:' + JSON.stringify(err))
+            expect(false).assertTrue();
+            done();
+        }
+        await sleep(2000);
+        expect(count).assertEqual(1);
+        done();
+=======
         /**
       *@tc.number    : SUB_MULTIMEDIA_AUDIO_MANAGER_MUTE_2903
       *@tc.name      : mute - ACCESSIBILITY - Promise - SetVolume
@@ -1340,5 +1875,6 @@ export default function audioManagerApi9() {
                 done();
             }
         })
+>>>>>>> hw/master
     })
 }

@@ -92,7 +92,10 @@ extern "C"
         const struct OH_Huks_Blob *keyAlias,
         const struct OH_Huks_Blob *peerPublicKey,
         struct OH_Huks_Blob *agreedKey);
+<<<<<<< HEAD
+=======
     bool checkUseSoftware();
+>>>>>>> hw/master
 #ifdef __cplusplus
 }
 #endif

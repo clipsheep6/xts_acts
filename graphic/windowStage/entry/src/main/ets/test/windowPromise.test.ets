@@ -1057,6 +1057,12 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
       });
     })
     /**
+<<<<<<< HEAD
+    * @tc.number     SUB_WINDOW_LOADCONTENT_JSAPI_001
+    * @tc.name       Test loadContentTest1
+    * @tc.desc       Verify the scenario of loading an existing page
+    */
+=======
      * @tc.number     SUB_WINDOW_CREATE_JSAPI_004
      * @tc.name       Test createTest4
      * @tc.desc       Verify the scenario of creating a window with duplicate IDs
@@ -1088,6 +1094,7 @@ export default function windowPromiseTest(context, windowStage, abilityStorage) 
      * @tc.name       Test loadContentTest1
      * @tc.desc       Verify the scenario of loading an existing page
      */
+>>>>>>> hw/master
     it('loadContentTest1', 0, async function (done) {
       let caseName = 'loadContentTest1';
       let msgStr = 'jsunittest ' + caseName + ' ';

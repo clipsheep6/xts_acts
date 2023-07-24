@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CanvasCustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -23,7 +26,10 @@ struct SetCircle {
   @State FillColor: string = '#FF000000';
   @State name: string = 'CanvasLineWidth';
   @State StepTips: string = '操作步骤：拖动滑块向右移动'+'\n'+'预期结果：边框会随着移动距离而变粗，并显示边框粗细';
+<<<<<<< HEAD
+=======
   @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -36,6 +42,13 @@ struct SetCircle {
           .gesture(
           PanGesture({})
             .onActionStart((event: GestureEvent) => {
+<<<<<<< HEAD
+              this.context.clearRect(100, 100, 250, 200);
+              console.info('Pan start');
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              this.X = event.offsetX;
+=======
               console.info('Pan start');
               this.Vue = true;
             })
@@ -50,32 +63,57 @@ struct SetCircle {
               this.X = event.offsetX;
               this.context.lineWidth = (this.X)*0.1;
               this.context.strokeRect(120, 120, 120, 120);
+>>>>>>> hw/master
             })
             .onActionEnd(() => {
               console.info('Pan end');
             })
           )
+<<<<<<< HEAD
+        Text('边框粗细: ' + (this.X)*0.05 )
+      }.width('70%').height('30%')
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+=======
 
       }.width('70%').height('30%')
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Text('边框粗细: ' + (this.X)*0.1 )
       }.width('100%').height('20%')
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+>>>>>>> hw/master
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffffffff')
           .onReady(() =>{
+<<<<<<< HEAD
+            this.context.lineWidth = (this.X)*0.05;
+            this.context.strokeRect(120, 120, 120, 120);
+          })
+      }.width('100%').height('70%')
+=======
             this.context.lineWidth = 1;
             this.context.strokeRect(120, 120, 120, 120);
           })
       }.width('100%').height('50%')
+>>>>>>> hw/master
     }.width('100%').height('80%').backgroundColor(Color.White)
   }
   build() {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
+        Url:'pages/ArkUI/ArkUI_index',
+        StepTips:this.StepTips,
+        content: this.specificNoParam,
+        FillColor:$FillColor,
+        X:$X,
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         Url: 'pages/ArkUI/ArkUI_index',
         StepTips: this.StepTips,
         content: this.specificNoParam,
@@ -91,4 +129,5 @@ struct SetCircle {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

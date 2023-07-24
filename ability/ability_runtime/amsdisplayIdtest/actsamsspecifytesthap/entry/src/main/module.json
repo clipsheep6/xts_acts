@@ -45,5 +45,22 @@
                 "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
             }
         ]
+<<<<<<< HEAD
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO",
+        "reason": "need use ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      }
+    ]
+  }
+}
+=======
     }
 }
+>>>>>>> hw/master

@@ -481,6 +481,7 @@ export default function cameraSessionTest() {
         })
 
 
+<<<<<<< HEAD
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_BEGIN_CONFIG_0100
@@ -504,6 +505,73 @@ export default function cameraSessionTest() {
                 done();   
             }
         })
+=======
+>>>>>>> hw/master
+
+ 
+
+        /**
+<<<<<<< HEAD
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_COMMIT_CONFIG_0100
+        * @tc.name      : Check capture session commit config
+        * @tc.desc      : Check capture session commit config
+=======
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_BEGIN_CONFIG_0100
+        * @tc.name      : Check capture session begin config 
+        * @tc.desc      : Check capture session begin config
+>>>>>>> hw/master
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+<<<<<<< HEAD
+         it('SUB_MULTIMEDIA_CAMERA_SESSION_COMMIT_CONFIG_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_COMMIT_CONFIG_0100--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_COMMIT_CONFIG_0100 FAILED with NoCamera");
+=======
+         it('SUB_MULTIMEDIA_CAMERA_SESSION_BEGIN_CONFIG_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_BEGIN_CONFIG_0100--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_BEGIN_CONFIG_0100 FAILED with NoCamera");
+>>>>>>> hw/master
+                expect().assertFail();
+                done();
+            }
+            else {
+<<<<<<< HEAD
+                await createInput(0);
+                createOutput(0);
+                if (!isEmpty(mCameraInput)) {
+                    console.info(TAG + "Start to addInput");
+                    mCameraSession.addInput(mCameraInput);
+                }
+                
+                if (!isEmpty(mPreviewOutput)) {
+                    console.info(TAG + "Start to addOutput mPreviewOutput");
+                    mCameraSession.addOutput(mPreviewOutput);
+                }
+                
+                if (!isEmpty(mPhotoOutput)) {
+                    console.info(TAG + "Start to addOutput mPhotoOutput");
+                    mCameraSession.addOutput(mPhotoOutput);
+                }
+                await mCameraSession.commitConfig(); 
+                
+                await stopCameraSession();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_COMMIT_CONFIG_0100 PASSED");
+=======
+                mCameraSession.beginConfig();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_BEGIN_CONFIG_0100 PASSED");
+>>>>>>> hw/master
+                done();   
+            }
+        })
+
+<<<<<<< HEAD
+
 
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100
@@ -524,6 +592,27 @@ export default function cameraSessionTest() {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100 start for camera[" + i + "]");
 
+=======
+        /**
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100
+        * @tc.name      : Check capture session can add input with promise or not
+        * @tc.desc      : Check capture session can add input with promise or not
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+         it('SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100--------------");
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            }
+            else {
+                for (let i = 0; i < mCameraNum; i++) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ADD_REMOVE_INPUT_PROMISE_0100 start for camera[" + i + "]");
+
+>>>>>>> hw/master
                     await createInput(i);
                     mCameraSession.addInput(mCameraInput);
                     mCameraSession.removeInput(mCameraInput);
@@ -596,11 +685,19 @@ export default function cameraSessionTest() {
 
                     await mCameraSession.start();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_START_STOP_PROMISE_0100 start PASSED");
+<<<<<<< HEAD
+                    await sleep(2000);
+
+                    await mCameraSession.stop();
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_START_STOP_PROMISE_0100 stop PASSED");
+                    await sleep(500);
+=======
                     await sleep(20);
 
                     await mCameraSession.stop();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_START_STOP_PROMISE_0100 stop PASSED");
                     await sleep(20);
+>>>>>>> hw/master
 
                     await stopCameraSession();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_START_STOP_PROMISE_0100 end for camera[" + i + "]");
@@ -612,6 +709,8 @@ export default function cameraSessionTest() {
         })
 
         /**
+<<<<<<< HEAD
+=======
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_COMMIT_CONFIG_0100
         * @tc.name      : Check capture session commit config
         * @tc.desc      : Check capture session commit config
@@ -653,6 +752,7 @@ export default function cameraSessionTest() {
         })
 
         /**
+>>>>>>> hw/master
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_RELEASE_PROMISE_0100
         * @tc.name      : Check capture session release with promise or not
         * @tc.desc      : Check capture session release with promise or not

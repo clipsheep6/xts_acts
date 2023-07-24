@@ -50,7 +50,11 @@ class MySequenceable {
 function testCall(data) {
     let recvSequence = new MySequenceable(0, '', '');
     console.log('======>SystemAppCalleeA MainAbility on testCall <======')
+<<<<<<< HEAD
+    data.readSequenceable(recvSequence);
+=======
     data.readParcelable(recvSequence);
+>>>>>>> hw/master
     var result = recvSequence.str + 'processed';
     var commonEventData = {
         code: 0,
@@ -71,7 +75,11 @@ function testCall(data) {
 function testCallWithResult(data) {
     let recvSequence = new MySequenceable(0, '', '');
     console.log('======>SystemAppCalleeA MainAbility on testCall <======')
+<<<<<<< HEAD
+    data.readSequenceable(recvSequence);
+=======
     data.readParcelable(recvSequence);
+>>>>>>> hw/master
     let result = recvSequence.str + 'processed';
     recvSequence.setMySequence(recvSequence.num, recvSequence.str, result);
 
@@ -82,7 +90,11 @@ export default class SecondAbility extends Ability {
     test2200(data) {
         console.log("SystemAppCalleeA SecondAbility test2200");
         let recvData = new MySequenceable(0, '', '');
+<<<<<<< HEAD
+        data.readSequenceable(recvData);
+=======
         data.readParcelable(recvData);
+>>>>>>> hw/master
         let result = new MySequenceable(recvData.num + 1, recvData.str + "SystemAppCalleeA", '');
         return result;
     }

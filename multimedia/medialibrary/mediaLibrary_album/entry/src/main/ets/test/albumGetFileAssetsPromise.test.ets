@@ -65,12 +65,19 @@ export default function albumGetFileAssetsPromiseTest(abilityContext) {
                         return;
                     }
                     count++;
+<<<<<<< HEAD
+                    console.info(`${testNum}, expectAssetsCount: ${expectAssetsCount}
+                                getCount: ${fetchFileResult.getCount()}`);
+                    expect(fetchFileResult.getCount()).assertEqual(expectAssetsCount);
+                    fetchFileResult.close();
+=======
                     expect(fetchFileResult.getCount()).assertEqual(expectAssetsCount[i]);
                     fetchFileResult.close();
                     if (i + 1 === albumList.length) {
                         expect(count).assertEqual(albumList.length);
                         done();
                     }
+>>>>>>> hw/master
                 }
             } catch (error) {
                 console.info(`${testNum}, error: ${error}`);

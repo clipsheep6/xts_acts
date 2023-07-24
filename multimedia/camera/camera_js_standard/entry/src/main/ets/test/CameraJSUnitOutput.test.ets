@@ -412,7 +412,11 @@ export default function cameraJSUnitOutput() {
       * @tc.type      : Function
       * @tc.level     : Level 1
     */
+<<<<<<< HEAD
+     it('SUB_MULTIMEDIA_CAMERA_CREATE_METADATA_OUTPUT_0100', 1, async function (done) {
+=======
     it('SUB_MULTIMEDIA_CAMERA_CREATE_METADATA_OUTPUT_0100', 1, async function (done) {
+>>>>>>> hw/master
       console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_CREATE_METADATA_OUTPUT_CALLBACK_0100--------------");
       if (isEmpty(cameraManager)) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CREATE_METADATA_OUTPUT_CALLBACK_0100 cameraManager == null || undefined")
@@ -574,7 +578,11 @@ export default function cameraJSUnitOutput() {
       * @tc.type      : Function
       * @tc.level     : Level 1
     */
+<<<<<<< HEAD
+     it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_METADATA_OUTPUT_0100', 1, async function (done) {
+=======
     it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_METADATA_OUTPUT_0100', 1, async function (done) {
+>>>>>>> hw/master
       console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_METADATA_OUTPUT_CALLBACK_0100--------------");
       if (isEmpty(captureSession)) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_METADATA_OUTPUT_CALLBACK_0100 captureSession == null || undefined")
@@ -1226,6 +1234,13 @@ export default function cameraJSUnitOutput() {
       } else {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_START_0100 to operate");
         let count = 0;
+<<<<<<< HEAD
+        photoOutput.on('captureStart', async (data) => {
+          count++;
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_START_0100 success");
+          await sleep(1000);
+          done();
+=======
         photoOutput.on('captureStart', async (err, data) => {
           if (!err) {
             expect(true).assertTrue();
@@ -1238,6 +1253,7 @@ export default function cameraJSUnitOutput() {
             expect().assertFail();
             console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_START_0100 FAILED: " + err.message);
           }
+>>>>>>> hw/master
         })
         await sleep(1000);
         photoOutput.capture();
@@ -1305,6 +1321,15 @@ export default function cameraJSUnitOutput() {
       } else {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100 to operate");
         let count = 0;
+<<<<<<< HEAD
+        photoOutput.on('captureEnd', async (data) => {
+        count++;
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100 success");
+        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100, captureId = " + data.captureId);
+        console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100, frameCount = " + data.frameCount);
+        await sleep(1000);
+        done();
+=======
         photoOutput.on('captureEnd', async (err, data) => {
           if (!err) {
             count++;
@@ -1315,6 +1340,7 @@ export default function cameraJSUnitOutput() {
             expect().assertFail();
             console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100 FAILED: " + err.message);
           }
+>>>>>>> hw/master
         })
         await sleep(1000);
         done();

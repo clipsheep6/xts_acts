@@ -13,6 +13,11 @@
 
 group("ai") {
   testonly = true
+<<<<<<< HEAD
+  deps = [ "neural_network_runtime:neural_network_runtime" ]
+  if (is_standard_system) {
+    deps += [ "mindspore:ActsMindSporeTest" ]
+=======
   deps = [
     "neural_network_runtime/v1_0:neural_network_runtime",
     "neural_network_runtime/v2_0:neural_network_runtime",
@@ -22,5 +27,6 @@ group("ai") {
       "mindspore/mindsporectest:ActsMindSporeTest",
       "mindspore/mindsporejstest:ActsMindsporeJSTest",
     ]
+>>>>>>> hw/master
   }
 }

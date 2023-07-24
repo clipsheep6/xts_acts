@@ -85,4 +85,8 @@ export default function webTwoJsunit() {
       sendEventByKey('webcomponenttwo',10,'');
     })
   })
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> hw/master

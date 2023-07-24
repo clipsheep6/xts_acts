@@ -43,5 +43,11 @@
                 "reason": "need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
             }
         ]
+<<<<<<< HEAD
+      }
+    ]
+  }
+=======
     }
+>>>>>>> hw/master
 }

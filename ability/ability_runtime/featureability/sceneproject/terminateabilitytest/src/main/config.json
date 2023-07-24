@@ -21,6 +21,21 @@
             "tablet",
             "2in1"
         ],
+<<<<<<< HEAD
+        "name": "com.example.terminateabilitytest.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "singleton",
+        "visible": true
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+=======
         "distro": {
             "deliveryWithInstall": true,
             "moduleName": "entry",
@@ -46,6 +61,7 @@
                 "launchType": "singleton",
                 "visible": true
             }
+>>>>>>> hw/master
         ],
         "js": [
             {

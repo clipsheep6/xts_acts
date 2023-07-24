@@ -280,7 +280,11 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
+<<<<<<< HEAD
+     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1780
+=======
      * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1740
+>>>>>>> hw/master
      * @tc.name batterylevel_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -351,10 +355,17 @@ describe('BatteryUnitTest', function () {
      * @tc.name enum_level_state_JSTest_critical
      * @tc.desc Battry Present Interface Test
      */
+<<<<<<< HEAD
+    it('remainingChargeTime_JSTest', 0, function () {
+        let remainingChargeTime = batteryInfo.estimatedRemainingChargeTime;
+        console.info('remainingChargeTime = ' + remainingChargeTime);
+        expect(remainingChargeTime >= -1).assertTrue();
+=======
     it('enum_level_state_JSTest_critical', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_CRITICAL;
         console.info('batteryLevelState = ' + batteryLevelState);
         expect(batteryLevelState == 6).assertTrue();
+>>>>>>> hw/master
     })
 
     /**

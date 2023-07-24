@@ -44,7 +44,10 @@ let outPlainKeyEncData;
 let outKekEncData;
 let outKekEncTag;
 let outAgreeKeyEncTag;
+<<<<<<< HEAD
+=======
 let useSoftware = true;
+>>>>>>> hw/master
 
 let mask = [0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000];
 function subUint8ArrayOf(arrayBuf, start, end) {
@@ -820,6 +823,7 @@ async function publicImportWrappedKeyPromise(keyAlias, wrappingKeyAlias, huksOpt
         console.error(`callback: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
         expect(null).assertFail();
     }
+<<<<<<< HEAD
 }
 
 async function publicInitFunc(srcKeyAlias, HuksOptions) {
@@ -888,6 +892,76 @@ async function publicUpdateSessionFunction(handle, HuksOptions) {
     return outData;
 }
 
+=======
+}
+
+async function publicInitFunc(srcKeyAlias, HuksOptions) {
+    let handle;
+    console.info(`enter promise doInit`);
+    try {
+        await huks.initSession(srcKeyAlias, HuksOptions)
+            .then((data) => {
+                console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
+                handle = data.handle;
+            })
+            .catch(error => {
+                console.error(`promise: doInit key failed, code: ${error.code}, msg: ${error.message}`);
+                expect(null).assertFail();
+            });
+    } catch (error) {
+        console.error(`promise: doInit input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        expect(null).assertFail();
+    }
+    return handle;
+}
+
+async function publicUpdateSessionFunction(handle, HuksOptions) {
+    const maxUpdateSize = 64;
+    const inData = HuksOptions.inData;
+    const lastInDataPosition = inData.length - 1;
+    let inDataSegSize = maxUpdateSize;
+    let inDataSegPosition = 0;
+    let isFinished = false;
+    let outData = [];
+
+    while (inDataSegPosition <= lastInDataPosition) {
+        if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
+            isFinished = true;
+            inDataSegSize = lastInDataPosition - inDataSegPosition + 1;
+            console.error(`enter promise doUpdate`);
+            break;
+        }
+        HuksOptions.inData = new Uint8Array(
+            Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
+        );
+        console.error(`enter promise doUpdate`);
+        try {
+            await huks.updateSession(handle, HuksOptions)
+                .then((data) => {
+                    console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+                    outData = outData.concat(Array.from(data.outData));
+                })
+                .catch(error => {
+                    console.error(`promise: doUpdate failed, code: ${error.code}, msg: ${error.message}`);
+                    expect(null).assertFail();
+                });
+        } catch (error) {
+            console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
+            expect(null).assertFail();
+        }
+        if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
+            console.log(`update size invalid isFinished = ${isFinished}`);
+            console.log(`inDataSegPosition = ${inDataSegPosition}`);
+            console.log(`lastInDataPosition = ${lastInDataPosition}`);
+            expect(null).assertFail();
+            return;
+        }
+        inDataSegPosition += maxUpdateSize;
+    }
+    return outData;
+}
+
+>>>>>>> hw/master
 async function publicFinishSession(handle, HuksOptions, inData) {
     let outData = [];
     console.info(`enter promise doFinish`);
@@ -1098,6 +1172,20 @@ export function SecurityHuksImportJsunit() {
 
         it('HUKS_Basic_Capability_Import_Reformed_0300', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
+<<<<<<< HEAD
+            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+            await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
+
+            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
+            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+            importWrappedAes192Params.inData = wrappedData;
+            await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
+            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
+            await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
+            await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+=======
             if (useSoftware) {
                 await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
                 await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -1112,11 +1200,26 @@ export function SecurityHuksImportJsunit() {
                 await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
                 await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
             }
+>>>>>>> hw/master
             done();
         });
 
         it('HUKS_Basic_Capability_Import_Reformed_0400', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0400';
+<<<<<<< HEAD
+            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParamsX25519, false);
+            await generateAndExportPublicKey(callerKeyAlias, genCallerX25519Params, true);
+
+            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParamsX25519);
+            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+            importWrappedAes192ParamsX25519.inData = wrappedData;
+            await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192ParamsX25519);
+            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParamsX25519);
+            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerX25519Params);
+            await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192ParamsX25519);
+            await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+=======
             if (useSoftware) {
                 await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParamsX25519, false);
                 await generateAndExportPublicKey(callerKeyAlias, genCallerX25519Params, true);
@@ -1131,6 +1234,7 @@ export function SecurityHuksImportJsunit() {
                 await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192ParamsX25519);
                 await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
             }
+>>>>>>> hw/master
             done();
         });
 
@@ -1560,6 +1664,21 @@ export function SecurityHuksImportJsunit() {
 
         it('HUKS_Basic_Capability_Import_Reformed_2600', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
+<<<<<<< HEAD
+            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+            await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
+
+            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
+            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+            importWrappedAes192Params.inData = wrappedData;
+            await publicImportWrappedKeyPromise(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
+            await publicImportWrappedKeyPromise(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
+            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
+            await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
+            await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
+=======
             if (useSoftware) {
                 await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
                 await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -1575,11 +1694,35 @@ export function SecurityHuksImportJsunit() {
                 await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
                 await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
             }
+>>>>>>> hw/master
             done();
         });
 
         it('HUKS_Basic_Capability_Import_Reformed_2700', 0, async function (done) {
             const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_2700';
+<<<<<<< HEAD
+            await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+            await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
+            await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
+            await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
+            let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+            importWrappedAes192ParamsX25519.inData = wrappedData;
+            try {
+                await importWrappedKeyItem(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192ParamsX25519)
+                    .then((data) => {
+                        console.info(`callback: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
+                    })
+                    .catch(error => {
+                        console.error(`callback: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                        expect(error.code == 12000006).assertTrue();
+                    });
+            } catch (error) {
+                console.error(`callback: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+                expect(null).assertFail();
+            }
+            await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+            await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
+=======
             if (useSoftware) {
                 await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
                 await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -1603,6 +1746,7 @@ export function SecurityHuksImportJsunit() {
                 await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
                 await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
             }
+>>>>>>> hw/master
             done();
         });
 

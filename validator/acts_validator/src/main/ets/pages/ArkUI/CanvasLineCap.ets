@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CanvasCustomContainer1';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -23,10 +26,13 @@ struct SetCircle {
   @State FillColor: string = '#FF000000';
   @State name: string = 'CanvasLineCap';
   @State StepTips: string = '操作步骤：点击不同的端点样式控件'+'\n'+'预期结果：原本默认端点样式会随点击变化';
+<<<<<<< HEAD
+=======
   @State Vue: boolean = false;
   @State num1: number = 0;
   @State num2: number = 0;
   @State num3: number = 0;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -42,10 +48,13 @@ struct SetCircle {
             this.context.moveTo(100, 100);
             this.context.lineTo(250, 100);
             this.context.stroke();
+<<<<<<< HEAD
+=======
             this.num1 = 1;
             if ( this.num1 == this.num3 && this.num2 == 1 ){
               this.Vue = true;
             }
+>>>>>>> hw/master
           })
         Text('round').fontSize(16).border({width:2}).size({width:'25%',height:'20%'})
           .onClick(()=>{
@@ -56,10 +65,13 @@ struct SetCircle {
             this.context.moveTo(100, 100);
             this.context.lineTo(250, 100);
             this.context.stroke();
+<<<<<<< HEAD
+=======
             this.num2 = 1;
             if ( this.num1 == 1 && this.num3 == this.num2 ){
               this.Vue = true;
             }
+>>>>>>> hw/master
           })
         Text('square').fontSize(16).border({width:2}).size({width:'25%',height:'20%'})
           .onClick(()=>{
@@ -70,10 +82,13 @@ struct SetCircle {
             this.context.moveTo(100, 100);
             this.context.lineTo(250, 100);
             this.context.stroke();
+<<<<<<< HEAD
+=======
             this.num3 = 1;
             if ( this.num1 == 1 && this.num3 == this.num2 ){
               this.Vue = true;
             }
+>>>>>>> hw/master
           })
       }.width('70%').height('30%')
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -96,6 +111,16 @@ struct SetCircle {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
+        Url:'pages/ArkUI/ArkUI_index',
+        StepTips:this.StepTips,
+        content: this.specificNoParam,
+        FillColor:$FillColor,
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         Url: 'pages/ArkUI/ArkUI_index',
         StepTips: this.StepTips,
         content: this.specificNoParam,
@@ -110,4 +135,5 @@ struct SetCircle {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

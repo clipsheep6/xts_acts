@@ -3,8 +3,13 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "700000",
+<<<<<<< HEAD
+		"bundle-name": "com.open.harmony.acetesttwo",
+        "package-name": "com.open.harmony.acetesttwo",
+=======
 	"bundle-name": "com.open.harmony.acetesttwo",
 	"module-name": "phone",
+>>>>>>> hw/master
         "shell-timeout": "700000",
         "testcase-timeout":"10000"
     },

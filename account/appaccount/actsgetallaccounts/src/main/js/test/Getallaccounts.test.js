@@ -328,6 +328,33 @@ export default function ActsGetAllAccounts() {
                     },
                 },
             );
+<<<<<<< HEAD
+            setTimeout(async function(){
+                console.debug("====>getAllAccounts 1000 start====");
+                try{
+                    var data = await appAccountManager.getAllAccounts(selfBundle);
+                }
+                catch(err){
+                    console.error("====>getAllAccounts 1000 fail err:" + JSON.stringify(err));
+                    expect().assertFail();
+                    done();
+                }
+                console.debug("====>getAllAccounts 1000 data:" + JSON.stringify(data));
+                try{
+                    expect(data[0].name).assertEqual("Account_application_promise");
+                    expect(data[0].owner).assertEqual("com.example.actsgetallaccounts");
+                }
+                catch(err){
+                    console.error("====>check data 1000 fail err:" + JSON.stringify(err));
+                    expect().assertFail();
+                    done();
+                }
+                console.debug("====>delete account 1000 start====");
+                await appAccountManager.deleteAccount("Account_application_promise");
+                console.debug("====>ActsGetAllAccounts_1000 end====");
+                done();
+            }, TIMEOUT); 
+=======
             await sleep(TIMEOUT)
             console.debug("====>getAllAccounts 1000 start====");
             try{
@@ -352,6 +379,7 @@ export default function ActsGetAllAccounts() {
             await appAccountManager.deleteAccount("Account_application_promise");
             console.debug("====>ActsGetAllAccounts_1000 end====");
             done();
+>>>>>>> hw/master
         });       
 
         /*

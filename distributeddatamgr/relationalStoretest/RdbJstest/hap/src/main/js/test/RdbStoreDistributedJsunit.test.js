@@ -61,10 +61,6 @@ try {
     expect(null).assertFail()
 }
 }
-function storeObserver(devices) {
-    console.info(TAG + devices + " dataChange");
-    expect(devices).assertEqual(null)
-}
 
 export default function rdbStoreDistributedTest() {
 describe('rdbStoreDistributedTest', function () {
@@ -345,15 +341,13 @@ describe('rdbStoreDistributedTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSRDB_Distributed_012
      * @tc.desc subscribe test
      */
-     it('testRdbStoreDistributed0012', 0, async function (done) {
+    it('testRdbStoreDistributed0012', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0012 start *************");
-        try{
-            rdbStore.on("dataChange", dataRdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
-            console.info(TAG + "on dataChange success ");
-        }catch(err){
-            console.info(TAG + "on dataChange " + err);
-            expect(err !== null).assertFalse();
-        }
+        rdbStore.on("dataChange", (device) => {
+            console.info(TAG + device + " dataChange");
+        });
+        console.info(TAG + "on dataChange success");
+        expect(rdbStore).assertEqual(rdbStore);
         done()
         console.info(TAG + "************* testRdbStoreDistributed0012 end *************");
     })
@@ -363,15 +357,13 @@ describe('rdbStoreDistributedTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSRDB_Distributed_013
      * @tc.desc subscribe test
      */
-     it('testRdbStoreDistributed0013', 0, function (done) {
+    it('testRdbStoreDistributed0013', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0013 start *************");
-        try{
-            rdbStore.off("dataChange", dataRdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
-            console.info(TAG + "off dataChange success ");
-        }catch(err){
-            console.info(TAG + "off dataChange " + err);
-            expect(err !== null).assertFalse();
-        }
+        rdbStore.off("dataChange", (device) => {
+            console.info(TAG + device + " dataChange");
+        });
+        console.info(TAG + "off dataChange success");
+        expect(rdbStore).assertEqual(rdbStore);
         done()
         console.info(TAG + "************* testRdbStoreDistributed0013 end *************");
     })

@@ -710,7 +710,11 @@ export default function objectStoreTest() {
             expect(totalTime < baseLine).assertEqual(true);
             complexObject.setSessionId("");
             done();
+<<<<<<< HEAD
+            console.log(TAG + "************* testPerformance001 end *************");
+=======
             console.info(TAG + "************* testPerformance001 end *************");
+>>>>>>> hw/master
             
         })
        /**
@@ -720,6 +724,28 @@ export default function objectStoreTest() {
          */
         it('testSave001', 0, async function (done) {
             console.info(TAG + "************* testSave001 start *************");
+<<<<<<< HEAD
+
+            var gObject = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            gObject.setSessionId("tmpsession01");
+            let result = await gObject.save("local");
+            done();
+            expect(result.sessionId == "tmpsession01").assertEqual(true);
+            expect(result.version == gObject.__version).assertEqual(true);
+            expect(result.deviceId == "local").assertEqual(true);
+
+            gObject.setSessionId("");
+            gObject.name = undefined;
+            gObject.age = undefined;
+            gObject.isVis = undefined;
+
+            gObject.setSessionId("tmpsession01");
+            expect(gObject.name == "Amy").assertEqual(true);
+            expect(gObject.age == 18).assertEqual(true);
+            expect(gObject.isVis == false).assertEqual(true);
+            gObject.setSessionId("");
+            done();
+=======
             var g_object = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
             expect(g_object == undefined).assertEqual(false);
     
@@ -746,6 +772,7 @@ export default function objectStoreTest() {
                 expect("801").assertEqual(err.code.toString());
                 done();
             });
+>>>>>>> hw/master
             console.info(TAG + "************* testSave001 end *************");
         })
 
@@ -754,6 +781,40 @@ export default function objectStoreTest() {
          * @tc.desc: Save object
          * @tc.number: SUB_DDM_AppDataFWK_Object_Api_Save_002
          */
+<<<<<<< HEAD
+        it('testSave002', 0, function (done) {
+            console.info(TAG + "************* testSave002 start *************");
+            var gObject = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            if (gObject != undefined && gObject != null) {
+                gObject.setSessionId("tmpsession02");
+                console.info(TAG + "testSave002 joinSession tmpsession02 success:"+ gObject.__sessionId);
+            }
+            gObject.save("local", (result) => {
+                console.info("save callback");
+                expect(result.sessionId == "tmpsession02").assertEqual(true);
+                expect(result.version == gObject.__version).assertEqual(true);
+                expect(result.deviceId == "local").assertEqual(true);
+                console.info("save end");
+                console.info("save success");
+                gObject.setSessionId("");
+                gObject.name = undefined;
+                gObject.age = undefined;
+                gObject.isVis = undefined;
+        
+                console.info("save setSessionId");
+                gObject.setSessionId("tmpsession02");
+                expect(gObject.name == "Amy").assertEqual(true);
+                expect(gObject.age == 18).assertEqual(true);
+                expect(gObject.isVis == false).assertEqual(true);
+    
+                gObject.setSessionId("");
+            
+            });
+            done();
+            console.info(TAG + "************* testSave002 end *************");
+        })
+
+=======
          it('testSave002', 0, async function (done) {
             console.info(TAG + "************* testSave002 start *************");
             var g_object = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
@@ -786,11 +847,38 @@ export default function objectStoreTest() {
             })
             console.info(TAG + "************* testSave002 end *************");
         })
+>>>>>>> hw/master
         /**
          * @tc.name: testRevokeSave001
          * @tc.desc: Revoke save object <Promise>
          * @tc.number: SUB_DDM_AppDataFWK_Object_Api_RevokeSave_001
          */
+<<<<<<< HEAD
+        it('testRevokeSave001', 0, async function (done) {
+            console.info(TAG + "************* testRevokeSave001 start *************");
+            var RObject = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            RObject.setSessionId("tmpsession03");
+            expect("tmpsession03" == RObject.__sessionId).assertEqual(true);
+            let result = await RObject.save("local");
+            done();
+            expect(result.sessionId == "tmpsession03").assertEqual(true);
+            expect(result.version == RObject.__version).assertEqual(true);
+            expect(result.deviceId == "local").assertEqual(true);
+
+            result = await RObject.revokeSave();
+
+            RObject.setSessionId("");
+            RObject.name = undefined;
+            RObject.age = undefined;
+            RObject.isVis = undefined;
+
+            RObject.setSessionId("tmpsession03");
+            expect(RObject.name == "Amy").assertEqual(false);
+            expect(RObject.age == 18).assertEqual(false);
+            expect(RObject.isVis == false).assertEqual(false);
+            RObject.setSessionId("");
+            done();
+=======
          it('testRevokeSave001', 0, async function (done) {
             console.info(TAG + "************* testRevokeSave001 start *************");
             var g_object = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
@@ -829,6 +917,7 @@ export default function objectStoreTest() {
                 })
             });
     
+>>>>>>> hw/master
             console.info(TAG + "************* testRevokeSave001 end *************");
         })
 
@@ -837,6 +926,33 @@ export default function objectStoreTest() {
          * @tc.desc: Revoke save object <Callback>
          * @tc.number: SUB_DDM_AppDataFWK_Object_Api_RevokeSave_002
          */
+<<<<<<< HEAD
+        it('testRevokeSave002', 0, async function (done) {
+            console.info(TAG + "************* testRevokeSave002 start *************");
+            var RObject = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
+            RObject.setSessionId("tmpsession04");
+            expect("tmpsession04" == RObject.__sessionId).assertEqual(true);
+            let result = await RObject.save("local");
+            done();
+            RObject.revokeSave((response)=>{
+                console.info(TAG +"revokeSave callback");
+                console.info("revokeSave sessionId: " + response.sessionId);
+                console.info(TAG +"revokeSave end");
+                RObject.setSessionId("");
+                RObject.name = undefined;
+                RObject.age = undefined;
+                RObject.isVis = undefined;
+                    
+                RObject.setSessionId("tmpsession04");
+                expect(RObject.name == "Amy").assertEqual(false);
+                expect(RObject.age == 18).assertEqual(false);
+                expect(RObject.isVis == false).assertEqual(false);
+                RObject.setSessionId("");
+            });
+            done();
+            console.info(TAG + "************* testRevokeSave002 end *************");
+        })
+=======
          it('testRevokeSave002', 0, async function () {
             console.info(TAG + "************* testRevokeSave002 start *************");
             var g_object = distributedObject.createDistributedObject({ name: "Amy", age: 18, isVis: false });
@@ -880,6 +996,7 @@ export default function objectStoreTest() {
             console.info(TAG + "************* testRevokeSave002 end *************");
         })
     
+>>>>>>> hw/master
         console.info(TAG + "*************Unit Test End*************");
     })
 }

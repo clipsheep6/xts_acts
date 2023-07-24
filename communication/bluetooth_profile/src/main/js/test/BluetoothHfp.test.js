@@ -17,8 +17,13 @@ import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 
+<<<<<<< HEAD
+export default function bluetoothhostTest_host_3() {
+describe('bluetoothhostTest_host_3', function () {
+=======
 export default function btHfpConnTest() {
 describe('btHfpConnTest', function () {
+>>>>>>> hw/master
     function sleep(delay) {
         return new Promise(resovle => setTimeout(resovle, delay))
     }
@@ -86,7 +91,11 @@ describe('btHfpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_HFP_Conn_1200', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_HFPCONN_1200', 0, async function (done) {
+>>>>>>> hw/master
         let hfpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
         let ret = hfpSrc.getDeviceState('11:22:33:44:55:66');
         console.info('[bluetooth_js]hfp getDeviceState:' + JSON.stringify(ret));
@@ -101,7 +110,11 @@ describe('btHfpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_HFP_Conn_1300', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_HFPCONN_1300', 0, async function (done) {
+>>>>>>> hw/master
         let hfpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
         let ret = hfpSrc.getDeviceState('bluetooth1');
         console.info('[bluetooth_js]hfp get valid mac DeviceState:' + JSON.stringify(ret));
@@ -162,7 +175,11 @@ describe('btHfpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_HFP_Conn_1600', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_HFPCONN_1600', 0, async function (done) {
+>>>>>>> hw/master
         let hfpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
         let conn1 = hfpSrc.connect('test');
         console.info('[bluetooth_js]hfp vaild MAC disconnect :' + JSON.stringify(conn1));
@@ -177,7 +194,11 @@ describe('btHfpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 3
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_HFP_Conn_1700', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_HFPCONN_1700', 0, async function (done) {
+>>>>>>> hw/master
         let hfpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
         console.info('[bluetooth_js]hfp get profile result:' + JSON.stringify(hfpSrc));
         let conn = hfpSrc.disconnect('test');
@@ -193,7 +214,11 @@ describe('btHfpConnTest', function () {
      * @tc.type Function
      * @tc.level Level 1
      */
+<<<<<<< HEAD
+    it('SUB_COMMUNICATION_BLUETOOTH_BR_HFP_Conn_1800', 0, async function (done) {
+=======
     it('SUB_COMMUNICATION_BLUETOOTH_HFPCONN_1800', 0, async function (done) {
+>>>>>>> hw/master
         let hfpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
         let retArray = hfpSrc.getConnectionDevices();
         console.info('[bluetooth_js]hfp getConnectionDevices:' + JSON.stringify(retArray));
@@ -204,4 +229,10 @@ describe('btHfpConnTest', function () {
 
 })
 
+<<<<<<< HEAD
 }
+
+
+=======
+}
+>>>>>>> hw/master

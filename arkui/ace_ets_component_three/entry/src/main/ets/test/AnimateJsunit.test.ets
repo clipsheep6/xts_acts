@@ -57,11 +57,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_0100 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.duration).assertEqual('100')
+=======
         try {
               expect(indexEvent.data.duration == 100).assertTrue();
         } catch (err) {
             console.info("animateTest_0100 get state result is errr: " + JSON.stringify(err));
         }
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -105,12 +109,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_0300 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.iteration).assertEqual('1')
+=======
         try {
              expect(indexEvent.data.iterations == 1).assertTrue();
         } catch (err) {
             console.info("animateTest_0300 get state result err is: " + JSON.stringify(err))
         }
        
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -177,11 +185,15 @@ export default function animateJsunit() {
        }
       let callback = (indexEvent) => {
         console.info("animateTest_0600 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.duration).assertEqual(2000)
+=======
         try {
              expect(indexEvent.data.duration == 2000).assertTrue();
         } catch (err) {
             console.info("animateTest_0600 get state result err is: " + JSON.stringify(err));
         }     
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -204,11 +216,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_0700 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.curve).assertEqual('Linear')
+=======
         try {
              expect(indexEvent.data.curve).assertEqual('Linear');
         } catch (err) {
             console.info("animateTest_0700 get state result err is: " + JSON.stringify(err))
         }     
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -231,12 +247,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_0800 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.iteration).assertEqual('2')
+=======
         try {
              expect(indexEvent.data.iterations).assertEqual(2)
         } catch (err) {
             console.info("animateTest_0800 get state result err is: " + JSON.stringify(err))
         }     
         
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -259,12 +279,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_0900 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.tempo).assertEqual('20000')
+=======
          try {
              expect(indexEvent.data.tempo).assertEqual('20000');
          } catch (err) {
             console.info("animateTest_0900 get state result err is: " + JSON.stringify(err))
          }   
         
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -287,11 +311,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1000 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.playmode).assertEqual('alternate')
+=======
          try {
               expect(indexEvent.data.playmode).assertEqual('alternate');
         } catch (err) {
             console.info("animateTest_1000 get state result err is: " + JSON.stringify(err))
         }   
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -314,12 +342,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1100 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.duration).assertEqual('-1000')
+=======
         try {
                expect(indexEvent.data.duration).assertEqual(-1000);
         } catch (err) {
             console.info("animateTest_1100 get state result err is: " + JSON.stringify(err))
         } 
        
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -342,11 +374,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1200 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.duration).assertEqual('100000000')
+=======
         try {
                expect(indexEvent.data.duration).assertEqual(100000000);
         } catch (err) {
             console.info("animateTest_1200 get state result err is: " + JSON.stringify(err))
         }  
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -369,12 +405,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1300 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.curve).assertEqual('123')
+=======
         try {
               expect(indexEvent.data.curve).assertEqual('123');
         } catch (err) {
             console.info("animateTest_1300 get state result err is: " + JSON.stringify(err))
         }  
        
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -397,11 +437,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1400 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.curve).assertEqual('abc')
+=======
         try {
             expect(indexEvent.data.curve).assertEqual('abc')
         } catch (err) {
             console.info("animateTest_1400 get state result err is: " + JSON.stringify(err))
         }    
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -424,11 +468,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1500 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.iteration).assertEqual('121212121212')
+=======
         try {
              expect(indexEvent.data.iteration).assertEqual(121);
         } catch (err) {
             console.info("animateTest_1500 get state result err is: " + JSON.stringify(err))
         } 
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -451,11 +499,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1600 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.iteration).assertEqual('-5')
+=======
         try {
              expect(indexEvent.data.iteration).assertEqual(-5);
         } catch (err) {
             console.info("animateTest_1600 get state result err is: " + JSON.stringify(err))
         } 
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -478,12 +530,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1700 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.tempo).assertEqual('12121212121212')
+=======
         try {
              expect(indexEvent.data.tempo).assertEqual('12121212121212');
         } catch (err) {
             console.info("animateTest_1700 get state result err is: " + JSON.stringify(err))
         } 
         
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -506,11 +562,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1800 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.tempo).assertEqual('-5')
+=======
         try {
               expect(indexEvent.data.tempo).assertEqual('-5')
         } catch (err) {
             console.info("animateTest_1800 get state result err is: " + JSON.stringify(err))
         } 
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -533,11 +593,15 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_1900 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.playmode).assertEqual('aaa')
+=======
          try {
               expect(indexEvent.data.playmode).assertEqual(-6);
         } catch (err) {
             console.info("animateTest_1900 get state result err is: " + JSON.stringify(err))
         } 
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -561,12 +625,16 @@ export default function animateJsunit() {
       }
       let callback = (indexEvent) => {
         console.info("animateTest_2000 get state result is: " + JSON.stringify(indexEvent))
+<<<<<<< HEAD
+        expect(indexEvent.data.playmode).assertEqual('123456')
+=======
         try {
               expect(indexEvent.data.playmode).assertEqual(123456);
         } catch (err) {
             console.info("animateTest_2000 get state result err is: " + JSON.stringify(err));
         } 
         
+>>>>>>> hw/master
       }
       try {
         events_emitter.on(indexEvent, callback);

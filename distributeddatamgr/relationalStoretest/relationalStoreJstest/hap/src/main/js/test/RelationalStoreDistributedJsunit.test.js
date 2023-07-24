@@ -17,7 +17,10 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '
 import data_Rdb from '@ohos.data.relationalStore';
 import ability_featureAbility from '@ohos.ability.featureAbility';
 
+<<<<<<< HEAD
+=======
 const ERRCODE = 801;
+>>>>>>> hw/master
 var context = ability_featureAbility.getContext();
 var sqlStatement = "CREATE TABLE IF NOT EXISTS employee (" +
 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -63,6 +66,8 @@ try {
     expect(null).assertFail()
 }
 }
+<<<<<<< HEAD
+=======
 async function executeSql3() {
     let sqlStatement = "CREATE TABLE IF NOT EXISTS test (" +
     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -83,29 +88,47 @@ function storeObserver(devices) {
     console.info(TAG + devices + " dataChange");
     expect(devices).assertEqual(null)
 }
+>>>>>>> hw/master
 
 export default function relationalStoreDistributedTest() {
 describe('relationalStoreDistributedTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
+<<<<<<< HEAD
+        rdbStore = await data_Rdb.getRdbStore(context, config);
+        console.info(TAG + "create RelationalStore store success")
+        await executeSql1()
+        await executeSql2()
+=======
+>>>>>>> hw/master
     })
 
     beforeEach(async function () {
         console.info(TAG + 'beforeEach')
+<<<<<<< HEAD
+=======
         rdbStore = await data_Rdb.getRdbStore(context, config);
         console.info(TAG + "create RelationalStore store success")
         await executeSql1();
         await executeSql2();
         await executeSql3();
+>>>>>>> hw/master
     })
 
     afterEach(async function () {
         console.info(TAG + 'afterEach')
+<<<<<<< HEAD
+=======
         await data_Rdb.deleteRdbStore(context, STORE_NAME);
+>>>>>>> hw/master
     })
 
     afterAll(async function () {
         console.info(TAG + 'afterAll')
+<<<<<<< HEAD
+        await data_Rdb.deleteRdbStore(context, STORE_NAME);
+=======
+>>>>>>> hw/master
     })
 
     console.info(TAG + "*************Unit Test Begin*************");
@@ -122,8 +145,13 @@ describe('relationalStoreDistributedTest', function () {
             console.info(TAG + "set none to be distributed table success");
             expect(rdbStore).assertEqual(rdbStore)
         } catch (err) {
+<<<<<<< HEAD
+            console.info(TAG + "set none to be distributed table failed");
+            expect(null).assertFail();
+=======
             console.info(TAG + "setDistributed002 failed"+ `, error code is ${err.code}, message is ${err.message}`);
             expect(err.code).assertEqual(ERRCODE);
+>>>>>>> hw/master
         }
         done()
         console.info(TAG + "************* testRdbStoreDistributed002 end *************");
@@ -141,8 +169,13 @@ describe('relationalStoreDistributedTest', function () {
             console.info(TAG + "set employee to be distributed table success");
             expect(rdbStore).assertEqual(rdbStore)
         } catch (err) {
+<<<<<<< HEAD
+            console.info(TAG + "set employee to be distributed table failed");
+            expect(null).assertFail();
+=======
             console.info(TAG + "setDistributed003 failed"+ `, error code is ${err.code}, message is ${err.message}`);
             expect(err.code).assertEqual(ERRCODE);
+>>>>>>> hw/master
         }
         done()
         console.info(TAG + "************* testRdbStoreDistributed003 end *************");
@@ -160,8 +193,13 @@ describe('relationalStoreDistributedTest', function () {
             console.info(TAG + "set employee and product to be distributed table success");
             expect(rdbStore).assertEqual(rdbStore)
         } catch (err) {
+<<<<<<< HEAD
+            console.info(TAG + "set employee and product to be distributed table failed");
+            expect(null).assertFail();
+=======
             console.info(TAG + "setDistributed004 failed"+ `, error code is ${err.code}, message is ${err.message}`);
             expect(err.code).assertEqual(ERRCODE);
+>>>>>>> hw/master
         }
         done()
         console.info(TAG + "************* testRdbStoreDistributed004 end *************");
@@ -197,6 +235,12 @@ describe('relationalStoreDistributedTest', function () {
      */
     it('testRdbStoreDistributed0006', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed006 start *************");
+<<<<<<< HEAD
+        const record = {
+            "name": "Jim",
+            "age": 30,
+        }
+=======
         const record1 = {
             "name": "Jim",
             "age": 20,
@@ -206,11 +250,16 @@ describe('relationalStoreDistributedTest', function () {
             "age": 30,
         }
         await rdbStore.insert("employee", record1);
+>>>>>>> hw/master
         try {
             let predicate = new data_Rdb.RdbPredicates("employee");
             predicate.equalTo("id", 1);
             try {
+<<<<<<< HEAD
+                let rowId = await rdbStore.update(record, predicate);
+=======
                 let rowId = await rdbStore.update(record2, predicate);
+>>>>>>> hw/master
                 console.info(TAG + "update one record success " + rowId)
                 expect(1).assertEqual(rowId)
             } catch (err) {
@@ -232,11 +281,14 @@ describe('relationalStoreDistributedTest', function () {
      */
     it('testRdbStoreDistributed0007', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0007 start *************");
+<<<<<<< HEAD
+=======
         const record1 = {
             "name": "Jim",
             "age": 30,
         }
         await rdbStore.insert("employee", record1);
+>>>>>>> hw/master
         try {
             let predicates = new data_Rdb.RdbPredicates("employee")
             let resultSet = await rdbStore.query(predicates)
@@ -271,11 +323,14 @@ describe('relationalStoreDistributedTest', function () {
      */
     it('testRdbStoreDistributed0008', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0008 start *************");
+<<<<<<< HEAD
+=======
         const record1 = {
             "name": "Jim",
             "age": 20,
         }
         await rdbStore.insert("employee", record1);
+>>>>>>> hw/master
         let predicates = new data_Rdb.RdbPredicates("employee")
         try {
             let number = await rdbStore.delete(predicates)
@@ -379,6 +434,15 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSRelationalStore_Distributed_012
      * @tc.desc subscribe test
      */
+<<<<<<< HEAD
+    it('testRdbStoreDistributed0012', 0, async function (done) {
+        console.info(TAG + "************* testRdbStoreDistributed0012 start *************");
+        rdbStore.on("dataChange", (device) => {
+            console.info(TAG + device + " dataChange");
+        });
+        console.info(TAG + "on dataChange success");
+        expect(rdbStore).assertEqual(rdbStore);
+=======
      it('testRdbStoreDistributed0012', 0, async function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0012 start *************");
         try{
@@ -388,6 +452,7 @@ describe('relationalStoreDistributedTest', function () {
             console.info(TAG + "on dataChange " + err);
             expect(err !== null).assertFalse();
         }
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStoreDistributed0012 end *************");
     })
@@ -397,6 +462,15 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.number SUB_DDM_AppDataFWK_JSRelationalStore_Distributed_013
      * @tc.desc subscribe test
      */
+<<<<<<< HEAD
+    it('testRdbStoreDistributed0013', 0, async function (done) {
+        console.info(TAG + "************* testRdbStoreDistributed0013 start *************");
+        rdbStore.off("dataChange", (device) => {
+            console.info(TAG + device + " dataChange");
+        });
+        console.info(TAG + "off dataChange success");
+        expect(rdbStore).assertEqual(rdbStore);
+=======
     it('testRdbStoreDistributed0013', 0, function (done) {
         console.info(TAG + "************* testRdbStoreDistributed0013 start *************");
         try{
@@ -406,6 +480,7 @@ describe('relationalStoreDistributedTest', function () {
             console.info(TAG + "off dataChange " + err);
             expect(err !== null).assertFalse();
         }
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStoreDistributed0013 end *************");
     })
@@ -449,6 +524,9 @@ describe('relationalStoreDistributedTest', function () {
         }
         expect(errInfo.code).assertEqual("401")
         done();
+<<<<<<< HEAD
+    })
+=======
      })
     
     /**
@@ -692,6 +770,7 @@ describe('relationalStoreDistributedTest', function () {
         }
     })
 
+>>>>>>> hw/master
 	
     console.info(TAG + "*************Unit Test End*************");
 })

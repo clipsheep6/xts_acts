@@ -42,6 +42,37 @@ export function prepareFile(fpath, content) {
 export function prepare200MFile(fpath) {
   try {
     let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE)
+<<<<<<< HEAD
+    fileio.closeSync(file.fd)
+    return true
+  }
+  catch (e) {
+    console.log('Failed to prepareFile for ' + e)
+    return false
+  }
+}
+
+export function fileToReadOnly(fpath) {
+  try {
+    let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE)
+    fileio.fchmodSync(file.fd, 0o444)
+    fileio.fsyncSync(file.fd)
+    fileio.closeSync(file.fd)
+    return true
+  }
+  catch (e) {
+    console.log('Failed to fileToReadOnly for ' + e);
+    return false
+  }
+}
+
+export function fileToWriteOnly(fpath) {
+  try {
+    let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.WRITE_ONLY)
+    fileio.fchmodSync(file.fd, 0o222)
+    fileio.fsyncSync(file.fd)
+    fileio.closeSync(file.fd)
+=======
     fileIO.truncateSync(file.fd)
     let bf = new ArrayBuffer(1024 * 1024 * 20);
     for (let i = 0; i < 10; i++) {
@@ -50,6 +81,7 @@ export function prepare200MFile(fpath) {
     }
     fileIO.fsyncSync(file.fd)
     fileIO.closeSync(file)
+>>>>>>> hw/master
     return true
   }
   catch (e) {
@@ -89,6 +121,13 @@ function isIntNum(val) {
 
 function isBigInt(val) {
   return typeof val === 'bigint';
+<<<<<<< HEAD
+}
+
+function isString(str) {
+  return (typeof str == 'string') && str.constructor == String;
+=======
+>>>>>>> hw/master
 }
 
 function isString(str) {

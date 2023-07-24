@@ -16,13 +16,42 @@ import image from "@ohos.multimedia.image";
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
+<<<<<<< HEAD
+import bundle from "@ohos.bundle";
+import uitest from "@ohos.uitest";
+
+import { sleep } from "../../../../../../common";
+=======
 import uitest from "@ohos.UiTest";
 import { sleep, } from "../../../../../../common";
+>>>>>>> hw/master
 
 export default function getExifLocation(abilityContext) {
     describe("getExifLocation", function () {
         beforeAll(async function () {
             console.info("beforeAll case");
+<<<<<<< HEAD
+
+            let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA"];
+            abilityContext.requestPermissionsFromUser(permissions, (data) => {
+                console.info(`getPermission requestPermissionsFromUser ${JSON.stringify(data)}`);
+            });
+            await sleep(200);
+
+            let driver = uitest.Driver.create();
+            await sleep(200);
+
+            let button = await driver.findComponent(uitest.ON.text("允许"));
+            await button.click();
+
+            let appInfo = await bundle.getApplicationInfo("ohos.acts.multimedia.mediaLibrary", 0, 100);
+            let tokenID = appInfo.accessTokenId;
+            let atManager = abilityAccessCtrl.createAtManager();
+            let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
+            let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
+            if (!(isGranted1 == 0 && isGranted2 == 0)) {
+                console.info("getpermission failed");
+=======
             try {
                 let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA"];
                 let atManager = abilityAccessCtrl.createAtManager();
@@ -47,6 +76,7 @@ export default function getExifLocation(abilityContext) {
                 console.info("getPermission end");
             } catch (error) {
                 console.info(`getPermission failed, error: ${error}`);
+>>>>>>> hw/master
             }
         });
         beforeEach(function () {

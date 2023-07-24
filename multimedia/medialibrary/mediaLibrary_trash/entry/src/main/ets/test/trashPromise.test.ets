@@ -63,7 +63,11 @@ export default function trashPromise(abilityContext) {
                 await asset.trash(true);
                 let istrash = await asset.isTrash();
                 console.info(`${testNum} istrash: ${istrash}`);
+<<<<<<< HEAD
+                databaseFetchFileResult.close();
+=======
                 expect(istrash).assertTrue();
+>>>>>>> hw/master
                 databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                 let databaseCount = databaseFetchFileResult.getCount();
                 expect(databaseCount).assertEqual(count - 1);
@@ -79,6 +83,10 @@ export default function trashPromise(abilityContext) {
 
                 await asset.trash(false);
                 databaseFetchFileResult.close();
+<<<<<<< HEAD
+                await trashAssetResult.close();
+=======
+>>>>>>> hw/master
                 done();
             } catch (error) {
                 console.info(`${testNum} error: ${error}`);
@@ -140,7 +148,20 @@ export default function trashPromise(abilityContext) {
                 let databaseCount = databaseFetchFileResult.getCount();
                 expect(databaseCount).assertEqual(count - 1);
 
+<<<<<<< HEAD
+                let istrash = await asset.isTrash();
+                if (!istrash) {
+                    console.info(`${testNum} istrash failed: ${istrash}`);
+                    expect(istrash).assertFalse();
+                    databaseFetchFileResult.close();
+                    return;
+                }
                 await asset.trash(false);
+
+                databaseFetchFileResult.close();
+=======
+                await asset.trash(false);
+>>>>>>> hw/master
                 databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
                 databaseCount = databaseFetchFileResult.getCount();
                 expect(databaseCount).assertEqual(count);
@@ -154,7 +175,20 @@ export default function trashPromise(abilityContext) {
                     albumFetchFileResult.close();
                 }
 
+<<<<<<< HEAD
+                // asset after trash Conut
+                let assetOpts = fileIdFetchOps(testNum, id);
+                let recoveryAssetResult = await media.getFileAssets(assetOpts);
+                let afterRecoveryAssetConut = recoveryAssetResult.getCount();
+                expect(afterRecoveryAssetConut).assertEqual(1);
+                let recoveryAsset = await recoveryAssetResult.getFirstObject();
+                let recoveryAssetState = await recoveryAsset.isTrash();
+                expect(recoveryAssetState).assertFalse();
                 databaseFetchFileResult.close();
+                await recoveryAssetResult.close();
+=======
+                databaseFetchFileResult.close();
+>>>>>>> hw/master
                 done();
             } catch (error) {
                 console.info(`${testNum} error: ${error}`);

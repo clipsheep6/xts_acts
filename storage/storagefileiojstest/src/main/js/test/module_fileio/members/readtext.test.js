@@ -220,7 +220,11 @@ describe('fileio_readtext', function () {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+<<<<<<< HEAD
+      fileio.readText(fpath, { position: pos, length: len, encoding: 'UTF-8' }, function (err, str) {
+=======
       fileio.readText(fpath, { position: pos, length: len, encoding: 'utf-8' }, function (err, str) {
+>>>>>>> hw/master
         expect(str == FILE_CONTENT.substr(pos, len)).assertTrue();
         fileio.unlinkSync(fpath);
         done();

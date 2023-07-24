@@ -192,12 +192,42 @@ export default function stateManagementGetSharedJsunit() {
     });
 
     /*
+<<<<<<< HEAD
+     * @tc.number       SUB_ACE_BASIC_ETS_API_0007
+     * @tc.name         test_setAndLink_0001
+     * @tc.desc         bind localStorage
+    */
+    it('test_setAndLink_0001', 0, async function (done) {
+      console.info('test_setAndLink_0001 START');
+      await Utils.sleep(2000);
+      try {
+        let storage = new LocalStorage()
+        storage.setAndLink<string>('storageSimpleProp', '121');
+        let size = storage.size()
+        expect(size == 1).assertTrue();
+        done();
+      } catch (err) {
+        console.info("test_setAndLink_0001  err : " + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /*
+     * @tc.number       SUB_ACE_BASIC_ETS_API_0008
+     * @tc.name         test_setAndProp_0001
+     * @tc.desc         bind localStorage
+     */
+    it('test_setAndProp_0001', 0, async function (done) {
+      console.info('test_setAndProp_0001 START');
+=======
      * @tc.number       SUB_ACE_BASIC_ETS_API_0008
      * @tc.name         test_setAndProp_0002
      * @tc.desc         bind localStorage
      */
     it('test_setAndProp_0002', 0, async function (done) {
       console.info('test_setAndProp_0002 START');
+>>>>>>> hw/master
       await Utils.sleep(2000);
       try {
         let storage = new LocalStorage()
@@ -206,7 +236,11 @@ export default function stateManagementGetSharedJsunit() {
         expect(size == 1).assertTrue();
         done();
       } catch (err) {
+<<<<<<< HEAD
+        console.info("test_setAndProp_0001  err : " + JSON.stringify(err));
+=======
         console.info("test_setAndProp_0002  err : " + JSON.stringify(err));
+>>>>>>> hw/master
         expect().assertFail();
         done();
       }

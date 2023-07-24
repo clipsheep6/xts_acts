@@ -171,11 +171,22 @@ describe('relationalStoreEncryptTest', function () {
          * @tc.number SUB_DDM_RelationalStore_JS_RdbEncryptTest_0040
          * @tc.desc RelationalStore Encrypt function test
          */
+<<<<<<< HEAD
+        it('RdbEncryptTest_0040', 0, async function (done) {
+=======
          it('RdbEncryptTest_0040', 0, async function (done) {
+>>>>>>> hw/master
             console.info(TAG + "************* RdbEncryptTest_0040 start *************")
             context = ability_featureAbility.getContext()
             rdbStore = await CreatRdbStore(context, STORE_CONFIG_ENCRYPT)
             rdbStore = null
+<<<<<<< HEAD
+            rdbStore = await CreatRdbStore(context, STORE_CONFIG_WRONG)
+            expect(rdbStore).assertNull
+
+            done()
+            console.info(TAG + "************* RdbEncryptTest_0040 end *************")
+=======
             try {
                 rdbStore = await CreatRdbStore(context, STORE_CONFIG_WRONG)
                 expect(rdbStore !== null).assertFalse()
@@ -185,6 +196,7 @@ describe('relationalStoreEncryptTest', function () {
                 done()
                 console.info(TAG + "************* RdbEncryptTest_0040 end *************")
             }
+>>>>>>> hw/master
         })
         console.info(TAG + "*************Unit Test End*************")
     }

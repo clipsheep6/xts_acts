@@ -16,6 +16,14 @@ import("//build/ohos_var.gni")
 group("telephony_base") {
   testonly = true
   if (is_standard_system) {
+<<<<<<< HEAD
+    deps = [
+      "call_manager:ActsBaseCallManagerTest",
+      "cellular_data:ActsBaseCellularDataTest",
+      "sms_mms:ActsBaseSmsMmsTest",
+    ]
+=======
     deps = [ "call_manager:ActsBaseCallManagerTest" ]
+>>>>>>> hw/master
   }
 }

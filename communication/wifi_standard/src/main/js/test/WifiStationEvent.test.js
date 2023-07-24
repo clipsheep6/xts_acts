@@ -17,6 +17,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 import wifi from '@ohos.wifi'
 import wifiext from '@ohos.wifiext'
+<<<<<<< HEAD
+
+=======
 import osaccount from '@ohos.account.osAccount'
 import bundle from '@ohos.bundle'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
@@ -41,6 +44,7 @@ async function applyPermission() {
         console.info('[permission] case apply permission failed, createAtManager failed');
     }
 }
+>>>>>>> hw/master
 
 function sleep(delay) {
     return new Promise(resovle => setTimeout(resovle, delay))
@@ -53,6 +57,14 @@ function resolveIP(ip) {
     return (ip>>24 & 0xFF) + "." + (ip>>16 & 0xFF) + "." + (ip>>8 & 0xFF) + "." + (ip & 0xFF);
 }
 
+<<<<<<< HEAD
+let powerModel = {
+    SLEEPING : 0,
+    GENERAL : 1,
+    THROUGH_WALL : 2,
+}
+=======
+>>>>>>> hw/master
 
 export default function actsWifiEventTest() {
     describe('actsWifiEventTest', function() {
@@ -356,6 +368,8 @@ export default function actsWifiEventTest() {
                 console.info("SUB_Communication_WiFi_SysCaps_Test_0007 canIUse isAccessToken error: " + e);
             }
             console.info('SUB_Communication_WiFi_SysCaps_Test_0007 end');
+<<<<<<< HEAD
+=======
             let SLEEPING = wifiext.PowerModel.SLEEPING;
             console.info("[wifi_test]SLEEPING : " + JSON.stringify(SLEEPING));
             expect(true).assertEqual( SLEEPING == 0);
@@ -365,9 +379,11 @@ export default function actsWifiEventTest() {
             let THROUGH = wifiext.PowerModel.THROUGH_WALL;
             console.info("[wifi_test]THROUGH : " + JSON.stringify(THROUGH));
             expect(true).assertEqual( THROUGH == 2);
+>>>>>>> hw/master
             done();
         })
         console.log("*************[wifi_test] start wifi js unit test end*************");
     })
 }
+
 

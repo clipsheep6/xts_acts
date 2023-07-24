@@ -900,6 +900,10 @@ describe('ActsFeatureAbilityTest', function () {
         expect(info.enabled).assertEqual(true);
         expect(info.label).assertEqual("$string:app_name");
         expect(info.icon).assertEqual("$media:icon");
+<<<<<<< HEAD
+        //            expect(info.iconId).assertEqual(0);   //create by DevEco when building HAP.
+=======
+>>>>>>> hw/master
         expect(info.process).assertEqual("com.example.actsfeatureabilitytest");
         expect(info.supportedModes).assertEqual(0);
         expect(info.moduleInfos[0].moduleName).assertEqual("entry");

@@ -13,6 +13,12 @@
             "type": "ShellKit",
             "pre-push": [],
             "run-command": [
+<<<<<<< HEAD
+                "rm -rf /storage/media/100/local/files/*",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.MediaLibraryDataA/*",
+                "mkdir -pv /storage/media/100/local/files/{Pictures,Videos,Audios,Documents}",
+                "mkdir -p /storage/media/100/local/temp",
+=======
                 "rm -rf /storage/media/100/local/files/Audios/*",
                 "rm -rf /storage/media/100/local/files/Audios/.*",
                 "rm -rf /storage/media/100/local/files/Camera/*",
@@ -31,6 +37,7 @@
                 "scanner",
                 "sleep 5",
                 "mkdir /storage/media/100/local/temp",
+>>>>>>> hw/master
                 "param set persist.ace.testmode.enabled 1",
                 "power-shell wakeup",
                 "uinput  -T -d 300 600 -m 300 600 300 100 -u 300 100",

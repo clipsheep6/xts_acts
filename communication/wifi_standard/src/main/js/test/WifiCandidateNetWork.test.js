@@ -53,6 +53,18 @@ function resolveIP(ip) {
     return (ip>>24 & 0xFF) + "." + (ip>>16 & 0xFF) + "." + (ip>>8 & 0xFF) + "." + (ip & 0xFF);
 }
 
+<<<<<<< HEAD
+let wifiSecurityType = {
+    WIFI_SEC_TYPE_INVALID: 0,
+    WIFI_SEC_TYPE_OPEN: 1,
+    WIFI_SEC_TYPE_WEP: 2,
+    WIFI_SEC_TYPE_PSK: 3,
+    WIFI_SEC_TYPE_SAE: 4,
+}
+
+export default function actsWifiCandidateNetWorkTest() {
+    describe('actsWifiCandidateNetWorkTest', function () {
+=======
 export default function actsWifiCandidateNetWorkTest() {
     describe('actsWifiCandidateNetWorkTest', function () {
         beforeAll(async function (done) {
@@ -61,6 +73,7 @@ export default function actsWifiCandidateNetWorkTest() {
             done();
         })
 
+>>>>>>> hw/master
         beforeEach(function () {
             checkWifiPowerOn();
         })
@@ -159,4 +172,5 @@ export default function actsWifiCandidateNetWorkTest() {
         })
     })
 }
+
 

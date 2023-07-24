@@ -183,7 +183,11 @@ export default function abilityTest() {
       caller.callWithResult('testCallWithResult', param).then((data) => {
         console.log('ACTS_CommonComponent_Call_0400 call success');
         var result = new MySequenceable(0, '', '');
+<<<<<<< HEAD
+        data.readSequenceable(result);
+=======
         data.readParcelable(result);
+>>>>>>> hw/master
         expect(result.num).assertEqual(400);
         expect(result.str).assertEqual('ACTS_CommonComponent_Call_0400');
         expect(result.result).assertEqual('ACTS_CommonComponent_Call_0400processed');
@@ -282,7 +286,11 @@ export default function abilityTest() {
       caller2.callWithResult('testCallWithResult', param).then((data) => {
         console.log('ACTS_CommonComponent_Call_0600 call success');
         var result = new MySequenceable(0, '', '');
+<<<<<<< HEAD
+        data.readSequenceable(result);
+=======
         data.readParcelable(result);
+>>>>>>> hw/master
         expect(result.num).assertEqual(600);
         expect(result.str).assertEqual('ACTS_CommonComponent_Call_0600');
         expect(result.result).assertEqual('ACTS_CommonComponent_Call_0600processed');
@@ -392,7 +400,11 @@ export default function abilityTest() {
             caller.callWithResult('testCallWithResult', param).then((data) => {
               console.log('ACTS_CommonComponent_Call_0800 call success');
               var result = new MySequenceable(0, '', '');
+<<<<<<< HEAD
+              data.readSequenceable(result);
+=======
               data.readParcelable(result);
+>>>>>>> hw/master
               expect(result.num).assertEqual(800);
               expect(result.str).assertEqual('ACTS_CommonComponent_Call_0800');
               expect(result.result).assertEqual('ACTS_CommonComponent_Call_0800processed');
@@ -492,7 +504,11 @@ export default function abilityTest() {
       caller.callWithResult('testCallWithResult', param).then((data) => {
         console.log('ACTS_CommonComponent_Call_1000 call success');
         var result = new MySequenceable(0, '', '');
+<<<<<<< HEAD
+        data.readSequenceable(result);
+=======
         data.readParcelable(result);
+>>>>>>> hw/master
         expect(result.num).assertEqual(1000);
         expect(result.str).assertEqual('ACTS_CommonComponent_Call_1000');
         expect(result.result).assertEqual('ACTS_CommonComponent_Call_1000processed');
@@ -517,6 +533,15 @@ export default function abilityTest() {
         bundleName: systemAppCalleeABundleName,
         abilityName: systemAppCalleeAThirdAbilityName,
       }).then(data => {
+<<<<<<< HEAD
+        expect().assertFail();
+        done();
+      }).catch(err => {
+        console.log('ACTS_CommonComponent_Call_1700 call err.code: ' + JSON.stringify(err.code) +
+          ' err.msg: ' + JSON.stringify(err.message));
+        expect(err.code).assertEqual(ERROR_CODE_TYPE_ERROR);
+        exceptionFlag = true;
+=======
         console.log('ACTS_CommonComponent_Call_1700 call ok return is ' + JSON.stringify(data));
         if (data != null) {
           exceptionFlag = true;
@@ -524,6 +549,7 @@ export default function abilityTest() {
       }).catch(err => {
         expect().assertFail();
         done();
+>>>>>>> hw/master
       });
 
       expect(exceptionFlag).assertEqual(true);
@@ -927,6 +953,15 @@ export default function abilityTest() {
     it('ACTS_CommonComponent_Call_5700', 0, async function (done) {
       console.log('ACTS_CommonComponent_Call_5700 begin');
 
+<<<<<<< HEAD
+      function releaseCallback(data) {
+        console.log('ACTS_CommonComponent_Call_5700 releaseCallBack:' + data);
+        expect(data).assertEqual("died");
+        done();
+      }
+
+=======
+>>>>>>> hw/master
       let bundleNameCallee = "com.example.systemappcalleea";
       let abilityNameCallee = "com.example.systemappcalleea.MainAbility";
       let want = {
@@ -939,11 +974,20 @@ export default function abilityTest() {
         expect().assertFail();
         done();
       }
+<<<<<<< HEAD
+      let flag = false;
+      try {
+        caller.off('release');
+      } catch (e) {
+        console.log('ACTS_CommonComponent_Call_5700 Caller onRelease fail ' + e);
+        flag = true;
+=======
       let releaseCallback = "NotFunction";
       try {
         caller.off('release', releaseCallback);
       } catch (e) {
         console.log('ACTS_CommonComponent_Call_5700 Caller onRelease fail ' + e);
+>>>>>>> hw/master
         done();
       }
     })
@@ -1011,6 +1055,8 @@ export default function abilityTest() {
         done();
       }
     })
+<<<<<<< HEAD
+=======
 
     /**
      * @tc.number: ACTS_CommonComponent_Call_6000
@@ -1041,5 +1087,6 @@ export default function abilityTest() {
         done();
       }
     })
+>>>>>>> hw/master
   })
 }

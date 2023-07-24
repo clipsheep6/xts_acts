@@ -69,6 +69,28 @@ export default function trashCallback(abilityContext) {
                 expect(istrash).assertFalse();
                 // trash operation
                 asset.trash(true, async (err) => {
+<<<<<<< HEAD
+                    if (err) {
+                        console.info(`${testNum} err: ${err}`);
+                        expect(false).assertTrue();
+                        databaseFetchFileResult.close();
+                        done();                        
+                        return;
+                    }
+                    asset.isTrash(async (err, trashState) => {
+                        if (err) {
+                            console.info(`${testNum} err: ${err}`);
+                            expect(false).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
+                            return;
+                        }
+                        expect(trashState).assertTrue();
+                        try {
+                            // after trash database info
+                            databaseFetchFileResult.close();
+                            databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
+=======
                     try {
                         if (err) {
                             console.info(`${testNum} err: ${err}`);
@@ -78,6 +100,7 @@ export default function trashCallback(abilityContext) {
                             expect(trashState).assertTrue();
                             // after trash database info
                             databaseFetchFileResult = await media.getFileAssets(assetOps);
+>>>>>>> hw/master
                             let databaseCount = databaseFetchFileResult.getCount();
                             expect(databaseCount).assertEqual(count - 1);
                             //album info
@@ -91,6 +114,16 @@ export default function trashCallback(abilityContext) {
                             }
                             await asset.trash(false);
                             databaseFetchFileResult.close();
+<<<<<<< HEAD
+                            trashAssetResult.close();
+                            done();
+                        } catch (error) {
+                            console.info(`${testNum} error: ${error}`);
+                            expect(false).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
+=======
+>>>>>>> hw/master
                         }
                     } catch (error) {
                         console.info(`${testNum} failed, error: ${error}`);
@@ -112,6 +145,34 @@ export default function trashCallback(abilityContext) {
                 let asset = await databaseFetchFileResult.getFirstObject();
                 await asset.trash(true);
                 let istrash = await asset.isTrash();
+<<<<<<< HEAD
+                if (!istrash) {
+                    console.info(`${testNum} istrash failed: ${istrash}`);
+                    expect(istrash).assertFalse();
+                    databaseFetchFileResult.close();
+                    return;
+                }
+                asset.trash(false, async (err) => {
+                    if (err) {
+                        console.info(`${testNum} err: ${err}`);
+                        expect(false).assertTrue();
+                        databaseFetchFileResult.close();
+                        done();
+                        return;
+                    }
+                    asset.isTrash(async (err, trashState) => {
+                        if (err) {
+                            console.info(`${testNum} err: ${err}`);
+                            expect(false).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
+                            return;
+                        }
+                        expect(trashState).assertFalse();
+                        try {
+                            databaseFetchFileResult.close();
+                            databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
+=======
                 expect(istrash).assertTrue();
                 asset.trash(false, async (err) => {
                     try {
@@ -123,6 +184,7 @@ export default function trashCallback(abilityContext) {
                             expect(!trashState).assertTrue();
 
                             databaseFetchFileResult = await media.getFileAssets(assetOps);
+>>>>>>> hw/master
                             let databaseCount = databaseFetchFileResult.getCount();
                             expect(databaseCount).assertEqual(count);
                             if (!noAlbum) {
@@ -133,6 +195,25 @@ export default function trashCallback(abilityContext) {
                                 expect(albumFilesCount).assertEqual(count);
                                 albumFetchFileResult.close();
                             }
+<<<<<<< HEAD
+                            // asset after trash Conut
+                            let assetOpts = fileIdFetchOps(testNum, id);
+                            let recoveryAssetResult = await media.getFileAssets(assetOpts);
+                            let afterRecoveryAssetConut = recoveryAssetResult.getCount();
+                            expect(afterRecoveryAssetConut).assertEqual(1);
+                            let recoveryAsset = await recoveryAssetResult.getFirstObject();
+                            let recoveryAssetState = await recoveryAsset.isTrash();                            
+                            expect(recoveryAssetState).assertFalse();
+                            databaseFetchFileResult.close();
+                            await recoveryAssetResult.close();
+                            done();
+                        } catch (error) {
+                            console.info(`${testNum} error: ${error}`);
+                            expect(false).assertTrue();
+                            databaseFetchFileResult.close();
+                            done();
+=======
+>>>>>>> hw/master
                         }
                     } catch (error) {
                         console.info(`${testNum} error: ${error}`);
@@ -148,7 +229,11 @@ export default function trashCallback(abilityContext) {
         }
         async function trashError(done, testNum, assetOps, value) {
             try {
+<<<<<<< HEAD
+                let databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
+=======
                 let databaseFetchFileResult = await media.getFileAssets(assetOps);
+>>>>>>> hw/master
                 try {
                     let asset = await databaseFetchFileResult.getFirstObject();
                     let count = databaseFetchFileResult.getCount();
@@ -169,7 +254,11 @@ export default function trashCallback(abilityContext) {
                     } catch (error) {
                         console.info(`${testNum} error: ${error}`);
                         databaseFetchFileResult.close();
+<<<<<<< HEAD
+                        databaseFetchFileResult = await media.getFileAssets(databasefFetchOps);
+=======
                         databaseFetchFileResult = await media.getFileAssets(assetOps);
+>>>>>>> hw/master
                         let count2 = databaseFetchFileResult.getCount();
                         expect(count).assertEqual(count2);
                         databaseFetchFileResult.close();

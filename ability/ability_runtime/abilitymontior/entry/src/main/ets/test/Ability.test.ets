@@ -655,6 +655,9 @@ export default function abilityTest() {
                 console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
                 Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
                     console.info("===ACTS_AddAbilityMonitor_1000===createSubscriber" + JSON.stringify(data));
+<<<<<<< HEAD
+                    var AddAbility = data
+=======
                     AddAbility = data
                     Subscriber.subscribe(AddAbility, (err, data) => {
                         console.log('===ACTS_AddAbilityMonitor_1000CallBack==='
@@ -676,11 +679,35 @@ export default function abilityTest() {
                             }, 2500)
                         }
                     })
+>>>>>>> hw/master
                     Delegator.getCurrentTopAbility().then((ability) => {
                         console.info("===ACTS_AddAbilityMonitor_1000===ability" + JSON.stringify(ability).length);
                         Delegator.doAbilityBackground(ability).then(async () => {
                             console.info("===ACTS_AddAbilityMonitor_1000===data succeed.");
                             expect(true).assertTrue();
+<<<<<<< HEAD
+                            await Subscriber.subscribe(AddAbility, (err, data) => {
+                                console.log('===ACTS_AddAbilityMonitor_1000CallBack==='
+                                    + err.code + JSON.stringify(data))
+                                Subscriber.unsubscribe(AddAbility, () => {
+                                    console.log('===UnSubscribeCallBack===')
+                                    Subscriber.unsubscribe(subscriber, UnSubscribeCallback);
+                                })
+                                if (data.code == 1) {
+                                    expect(data.code).assertEqual(1);
+                                    setTimeout(() => {
+                                        done();
+                                    }, 2500)
+                                }
+                                else {
+                                    expect().assertFail();
+                                    setTimeout(() => {
+                                        done();
+                                    }, 2500)
+                                }
+                            })
+=======
+>>>>>>> hw/master
                         }).catch(() => {
                             console.info("===ACTS_AddAbilityMonitor_1000===data succeed.");
                             expect(false).assertTrue();

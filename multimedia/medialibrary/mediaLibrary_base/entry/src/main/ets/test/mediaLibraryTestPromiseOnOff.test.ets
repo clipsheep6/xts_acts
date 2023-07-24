@@ -59,7 +59,11 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 asset.title = testNum + asset.title;
                 await asset.commitModify();
                 await sleep(1000);
+<<<<<<< HEAD
+                expect(count > 0).assertTrue();
+=======
                 expect(count).assertEqual(1);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -213,8 +217,17 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 const asset = await fetchFileResult.getFirstObject();
                 asset.title = testNum + asset.title;
                 await asset.commitModify();
+<<<<<<< HEAD
+                await new Promise((res) => {
+                    setTimeout(() => {
+                        res(true);
+                    }, 1000);
+                });
+                expect(count == 0).assertTrue();
+=======
                 await sleep(1000);
                 expect(count).assertEqual(0);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -382,7 +395,17 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 media.off("deviceChange");
                 await sleep(1000);
                 await asset.commitModify();
+<<<<<<< HEAD
+                await new Promise((res) => {
+                    setTimeout(() => {
+                        res(true);
+                    }, 1000);
+                });
+                console.info("MediaLibraryTest : off 006 passed");
+                expect(true).assertTrue();
+=======
                 await sleep(1000);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -419,7 +442,17 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 asset.title = testNum + asset.title;
                 await sleep(1000);
                 await asset.commitModify();
+<<<<<<< HEAD
+                await new Promise((res) => {
+                    setTimeout(() => {
+                        res(true);
+                    }, 1000);
+                });
+                console.info("MediaLibraryTest : off 007 passed");
+                expect(true).assertTrue();
+=======
                 await sleep(1000);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {

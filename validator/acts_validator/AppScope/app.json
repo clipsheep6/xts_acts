@@ -10,7 +10,11 @@
     "keepAlive": true,
         "singleUser": true,
         "minAPIVersion": 9,
+<<<<<<< HEAD
+        "targetAPIVersion": 9,
+=======
         "targetAPIVersion": 10,
+>>>>>>> hw/master
         "car": {
             "apiCompatibleVersion": 9,
             "singleUser": false

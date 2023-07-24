@@ -12,7 +12,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+<<<<<<< HEAD
+import relationalStoreBackupRestoreCallbackTest from './RelationalStoreBackupRestoreCallbackJsunit.test.js'
+import relationalStoreBackupRestoreWithFAContextTest from './RelationalStoreBackupRestoreWithFAContextJsunit.test.js'
+=======
 import relationalStoreCloudSyncTest from './RelationalStoreCloudSync.test.js'
+>>>>>>> hw/master
 import relationalStoreDeleteTest from './RelationalStoreDeleteJsunit.test.js'
 import relationalStoreDistributedTest from './RelationalStoreDistributedJsunit.test.js'
 import relationalStoreInsertTest from './RelationalStoreInsertJsunit.test.js'
@@ -26,11 +31,17 @@ import relationalStoreUpdateTest from './RelationalStoreUpdateJsunit.test.js'
 import relationalStoreQueryTest from './RelationalStoreQuery.test.js'
 import relationalStoreEncryptionTest from './RelationalStoreEncryptionJsunit.test.js'
 import relationalStorePredicatesComplexFiledTest from './RelationalStorePredicatesComplexFiledJsunit.test.js'
+<<<<<<< HEAD
+export default function testsuite() {
+    relationalStoreBackupRestoreCallbackTest()
+    relationalStoreBackupRestoreWithFAContextTest()
+=======
 import relationalStoreBackupRestoreWithFAContextTest from './RelationalStoreBackupRestoreWithFAContextJsunit.test.js'
 import relationalStoreBackupRestoreCallbackTest from './RelationalStoreBackupRestoreCallbackJsunit.test.js'
 import relationalStoreAssetResultSetTest from './RelationalStoreAssetResultSetJsunit.test.js'
 export default function testsuite() {
     relationalStoreCloudSyncTest()
+>>>>>>> hw/master
     relationalStoreDeleteTest()
     relationalStoreDistributedTest()
     relationalStoreInsertTest()
@@ -44,7 +55,10 @@ export default function testsuite() {
     relationalStoreQueryTest()
     relationalStoreEncryptionTest()
     relationalStorePredicatesComplexFiledTest()
+<<<<<<< HEAD
+=======
     relationalStoreBackupRestoreWithFAContextTest()
     relationalStoreBackupRestoreCallbackTest()
     relationalStoreAssetResultSetTest()
+>>>>>>> hw/master
 }

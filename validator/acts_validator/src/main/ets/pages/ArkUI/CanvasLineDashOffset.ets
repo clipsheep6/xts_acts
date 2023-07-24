@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CanvasCustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -24,7 +27,10 @@ struct SetCircle {
   @State X: number = 0;
   @State name: string = 'CanvasLineDashOffset';
   @State StepTips: string = '操作步骤：拖动滑块向右移动'+'\n'+'预期结果：虚线偏移量随着拖拽距离而改变，并显示偏移量';
+<<<<<<< HEAD
+=======
   @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -36,6 +42,13 @@ struct SetCircle {
           .gesture(
           PanGesture({})
             .onActionStart((event: GestureEvent) => {
+<<<<<<< HEAD
+              this.context.clearRect(100, 100, 250, 200);
+              console.info('Pan start');
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              this.X = event.offsetX;
+=======
               console.info('Pan start');
               this.Vue = true;
             })
@@ -53,29 +66,55 @@ struct SetCircle {
               this.context.arc(180, 150, 50, 0, 6.28);
               this.context.lineDashOffset = (this.X) * 0.2;
               this.context.stroke();
+>>>>>>> hw/master
             })
             .onActionEnd(() => {
               console.info('Pan end');
             })
           )
+<<<<<<< HEAD
+        Text('虚线偏移量: ' + (this.X)*0.1 )
+      }.width('70%').height('30%')
+=======
       }.width('70%').height('25%')
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Text('虚线偏移量: ' + (this.X)*0.2 )
       }.width('100%').height('20%')
+>>>>>>> hw/master
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffffffff')
           .onReady(() =>{
+<<<<<<< HEAD
+            this.context.arc(180, 150, 50, 0, 6.28);
+            this.context.setLineDash([20,30]);
+            this.context.lineDashOffset = (this.X)*0.1;
+            this.context.stroke();
+          })
+      }.width('100%').height('70%')
+=======
           })
       }.width('100%').height('55%')
+>>>>>>> hw/master
     }.width('100%').height('80%').backgroundColor(Color.White)
   }
   build() {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
+        Url:'pages/ArkUI/ArkUI_index',
+        StepTips:this.StepTips,
+        content: this.specificNoParam,
+        FillColor:$FillColor,
+        X:$X,
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         Url: 'pages/ArkUI/ArkUI_index',
         StepTips: this.StepTips,
         content: this.specificNoParam,
@@ -91,4 +130,5 @@ struct SetCircle {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

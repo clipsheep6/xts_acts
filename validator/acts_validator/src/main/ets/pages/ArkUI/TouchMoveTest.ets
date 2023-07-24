@@ -31,6 +31,22 @@ struct CustomContainer1 {
   title : string = '';
   StepTips: string = '';
   Url : string = '';
+<<<<<<< HEAD
+  @BuilderParam content: () => void;
+  @Builder
+  PassBtn(text: Resource, isFullScreen: boolean) {
+    Button() {
+      Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
+    }.width('30%').height('30vp').backgroundColor(Color.Grey)
+    .onClick(()=>{
+      router.back({
+        url:this.Url,
+        params: {result : 'Pass', title : this.name,
+        }
+      })
+      this.getScreen(isFullScreen);
+    })
+=======
   @Link Vue : boolean;
   @BuilderParam content: () => void;
   @Builder
@@ -59,6 +75,7 @@ struct CustomContainer1 {
         });
       })
     }
+>>>>>>> hw/master
   }
   @Builder
   FailBtn(text: Resource, isFullScreen: boolean) {
@@ -68,6 +85,12 @@ struct CustomContainer1 {
     .onClick(()=>{
       router.back({
         url:this.Url,
+<<<<<<< HEAD
+        params: {result : 'Fail',title : this.name,
+        }
+      })
+      this.getScreen(isFullScreen);
+=======
         params: {result : 'false',title : this.name,
         }
       })
@@ -75,6 +98,7 @@ struct CustomContainer1 {
       prompt.showToast({
         message: '失败', duration: 1000
       });
+>>>>>>> hw/master
     })
   }
   build() {
@@ -82,7 +106,11 @@ struct CustomContainer1 {
       Row() {
         Button(){
           Image($r('app.media.ic_public_back')).width('20vp').height('18vp').margin({left:'20vp'})
+<<<<<<< HEAD
+        }.backgroundColor(Color.Black)
+=======
         }.backgroundColor(Color.Black).size({ width: '40vp', height: '30vp' })
+>>>>>>> hw/master
         .onClick(()=>{
           router.back({
             url:this.Url,
@@ -126,7 +154,11 @@ struct CustomContainer1 {
     };
     let name = this.name;
     let displayName = `${info.prefix}${name}${info.suffix}`;
+<<<<<<< HEAD
+    let dirPath = path + '/' + displayName;
+=======
     let dirPath = path + '/screenshot' + '/' + displayName;
+>>>>>>> hw/master
     let imagePackerApi = image.createImagePacker();
     let arrayBuffer = await imagePackerApi.packing(data, packOpts);
     let fd = fileio.openSync(dirPath,0o102,0o666);
@@ -138,6 +170,12 @@ struct CustomContainer1 {
     }
     await fileio.close(fd);
     Logger.info(TAG, `write done`);
+<<<<<<< HEAD
+    prompt.showToast({
+      message: '结果保存成功', duration: 1000
+    });
+=======
+>>>>>>> hw/master
   }
   getScreen = (isFullScreen: boolean) => {
     let screenshotOptions: screenshot.ScreenshotOptions = {
@@ -170,7 +208,10 @@ struct CustomContainer1 {
 struct SetCircle {
   @State x: number = 0;
   @State y: number = 0;
+<<<<<<< HEAD
+=======
   @State Vue: boolean = false;
+>>>>>>> hw/master
   @State isshow: Visibility = Visibility.None;
   @State name: string = 'TouchMove';
   @State StepTips: string = '操作步骤：手指触摸屏幕并滑动' + '\n' + '预期结果：在手指触摸处出现红色圆圈，并跟随手指滑动';
@@ -198,10 +239,15 @@ struct SetCircle {
       else if (event.type === TouchType.Up) {
         this.isshow = Visibility.None;
       }
+<<<<<<< HEAD
+    })
+    .width('100%').height('80%').backgroundColor(Color.White)
+=======
       this.Vue = true;
     })
     .width('100%').height('80%').backgroundColor(Color.White)
 
+>>>>>>> hw/master
   }
 
   build() {
@@ -214,6 +260,14 @@ struct SetCircle {
         x: $x,
         y: $y,
         isshow: $isshow,
+<<<<<<< HEAD
+        name: $name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+}
+
+=======
         name: $name,
         Vue: $Vue,
       })
@@ -225,3 +279,4 @@ struct SetCircle {
     })
   }
 }
+>>>>>>> hw/master

@@ -27,7 +27,10 @@ group("ability_runtime") {
       "actsabilityusertest:ActsAbilityuserTest",
       "actscalldataabilitytest:ActsCallDataAbilityTest",
       "actscalltest:actscalltest",
+<<<<<<< HEAD
+=======
       "actscrosscall:actscrosscall",
+>>>>>>> hw/master
       "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
       "actsfwkdataaccessortest:dataability",
       "actsmultiplecall:actsmultiplecall",
@@ -55,7 +58,10 @@ group("ability_runtime") {
       "featureability:featureability",
       "formmanager:formmanager",
       "freeinstalltest:freeinstalltest",
+<<<<<<< HEAD
+=======
       "getrunningprocessinformation:getrunningprocessinformation",
+>>>>>>> hw/master
       "newwant:newwant",
       "non_concurrent:non_concurrent",
       "registerjserror:registerjserror",

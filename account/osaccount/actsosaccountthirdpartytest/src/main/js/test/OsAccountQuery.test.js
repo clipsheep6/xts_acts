@@ -626,7 +626,11 @@ export default function ActsOsAccountThirdPartyTest_third_4() {
             var data = await AccountManager.getCurrentOsAccount();
             console.debug("====>getCurrentOsAccount data:" + JSON.stringify(data));
             expect(data.localId).assertEqual(100);
+<<<<<<< HEAD
+            expect(data.type).assertEqual(0);
+=======
              expect(data.type).assertEqual(0);
+>>>>>>> hw/master
             var serialNumberStr = data.serialNumber.toString();
             var serialIntercept = serialNumberStr.substring(8);
             console.debug("====>truncate the last eight characters: " + serialIntercept);

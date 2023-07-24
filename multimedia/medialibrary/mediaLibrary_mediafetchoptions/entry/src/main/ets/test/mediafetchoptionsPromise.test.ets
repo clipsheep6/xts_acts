@@ -184,8 +184,20 @@ export default function mediafetchoptionsPromise(abilityContext) {
                     selectionArgs: ["Pictures/", IMAGE_TYPE.toString()],
                     networkId: "93db533035b33a1ca118a2759c1fbb8654ce57061430effaf0b51bbe03388b8b",
                 };
+<<<<<<< HEAD
+                try {
+                    const fetchFileResult = await media.getFileAssets(currentFetchOps);
+                    expect(false).assertTrue();
+                    fetchFileResult.close();
+                    done();
+                } catch (err) {
+                    expect(true).assertTrue();
+                    done();
+                }
+=======
                 await media.getFileAssets(currentFetchOps);
                 done();
+>>>>>>> hw/master
             } catch (error) {
                 console.info(`${testNum} failed error: ${error}`);
                 expect(false).assertTrue();

@@ -16,6 +16,10 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 import wifiMg from '@ohos.wifiManager'
+<<<<<<< HEAD
+
+=======
+>>>>>>> hw/master
 import wifiManagerExt from '@ohos.wifiManagerExt'
 import osaccount from '@ohos.account.osAccount'
 import bundle from '@ohos.bundle'
@@ -159,11 +163,19 @@ export default function actsWifiManagerEventTest() {
         })
 
         /**
+<<<<<<< HEAD
+        * @tc.number SUB_Communication_WiFi_SysCaps_Test_0008
+        * @tc.name testenableHotspot
+        * @tc.desc Test enableHotspot api.
+        * @tc.type Function
+        */
+=======
          * @tc.number SUB_Communication_WiFi_SysCaps_Test_0008
          * @tc.name testenableHotspot
          * @tc.desc Test enableHotspot api.
          * @tc.type Function
          */
+>>>>>>> hw/master
         it('SUB_Communication_WiFi_SysCaps_Test_0008', 0, async function (done) {
             console.info('SUB_Communication_WiFi_SysCaps_Test_0008 start');
             let ret = false;
@@ -360,4 +372,5 @@ export default function actsWifiManagerEventTest() {
         console.log("*************[wifi_test] start wifi js unit test end*************");
     })
 }
+
 

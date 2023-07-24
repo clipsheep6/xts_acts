@@ -18,6 +18,13 @@ import fileio from '@ohos.fileio';
 import xml from '@ohos.xml';
 import fileIO from '@ohos.fileio';
 import util from '@ohos.util';
+<<<<<<< HEAD
+
+const TAG = 'ParseXML';
+let path = globalThis.dir;
+let path1;
+path1 = path + '/report1';
+=======
 import data_preferences from '@ohos.data.preferences';
 
 const TAG = 'ParseXML';
@@ -28,17 +35,27 @@ let VarColor = [];
 let ColorBackPath = path + '/ArkUIColorBack.txt';
 let txtPath = path1 + '/ArkUIReport.txt';
 let xmlPath =path1 + '/ArkUITest.xml';
+>>>>>>> hw/master
 
 @Entry
 @Component
 struct IndexPage {
+<<<<<<< HEAD
+  @State BackColor: string = '#ff808080';
+=======
+>>>>>>> hw/master
   @State ClearAll : boolean = false;
   private current : number = undefined;
   @State count : number = 0;
   @State result : string = '';
+<<<<<<< HEAD
+  private TestCaseList = [
+    {title:'Scroll List',uri:'pages/ArkUI/ScrollListTest'},
+=======
   @State TEST : number = 0;
   private TestCaseList = [
     {title:'ScrollingList',uri:'pages/ArkUI/ScrollListTest'},
+>>>>>>> hw/master
     {title:'TouchMove',uri:'pages/ArkUI/TouchMoveTest'},
     {title:'PinchGesture',uri:'pages/ArkUI/PinchGestureTest'},
     {title:'RotationGesture',uri:'pages/ArkUI/RotationGestureTest'},
@@ -51,9 +68,15 @@ struct IndexPage {
     {title:'CanvasStrokeStyle',uri:'pages/ArkUI/CanvasStrokeStyle'},
     {title:'CanvasLineCap',uri:'pages/ArkUI/CanvasLineCap'},
     {title:'CanvasLineJoin',uri:'pages/ArkUI/CanvasLineJoin'},
+<<<<<<< HEAD
+    {title:'CanvasMiterLimit',uri:'pages/ArkUI/CanvasMiterLimit'},
+    {title:'CanvasFont',uri:'pages/ArkUI/CanvasFont'},
+    {title:'CanvasTextAlign',uri:'pages/ArkUI/CanvasTextAlign'},
+=======
     {title:'CanvasFont',uri:'pages/ArkUI/CanvasFont'},
     {title:'CanvasTextAlign',uri:'pages/ArkUI/CanvasTextAlign'},
     {title:'CanvasTextBaseline',uri:'pages/ArkUI/CanvasTextBaseline'},
+>>>>>>> hw/master
     {title:'CanvasGlobalAlpha',uri:'pages/ArkUI/CanvasGlobalAlpha'},
     {title:'CanvasLineDashOffset',uri:'pages/ArkUI/CanvasLineDashOffset'},
     {title:'CanvasGlobalCompositeOperation',uri:'pages/ArkUI/CanvasGlobalCompositeOperation'},
@@ -61,6 +84,14 @@ struct IndexPage {
     {title:'CanvasShadowColor',uri:'pages/ArkUI/CanvasShadowColor'},
     {title:'CanvasShadowOffsetX',uri:'pages/ArkUI/CanvasShadowOffsetX'},
     {title:'CanvasShadowOffsetY',uri:'pages/ArkUI/CanvasShadowOffsetY'},
+<<<<<<< HEAD
+    {title:'CanvasImageSmoothingEnabled',uri:'pages/ArkUI/CanvasImageSmoothingEnabled'},
+  ]
+  @State ColorObject : string[] = ['#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080',
+  '#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080',
+  '#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080','#ff808080']
+  onPageShow(){
+=======
   ]
   @State ColorObject : string[] = VarColor;
   async onPageShow(){
@@ -107,11 +138,27 @@ struct IndexPage {
     }
     fileio.closeSync(opt);
 
+>>>>>>> hw/master
     if (this.count === 1){
       this.result = router.getParams()['result'];
       let titles = router.getParams()['title'];
       let name1 = '刚刚点进了哪个用例：'+ titles;
       let results = this.result;
+<<<<<<< HEAD
+      if (this.result === 'Pass'){
+        this.ColorObject[this.current] = '#ff008000';
+        filewrite(name1,results,titles)
+      }
+      else if (this.result === 'Fail'){
+        this.ColorObject[this.current] = '#ffff0000';
+        filewrite(name1,results,titles);
+      }
+      else if (this.result === 'None'){
+        this.ColorObject[this.current] = this.ColorObject[this.current];
+      }
+    }
+
+=======
       let WriteTitle = (titles).toString();
       let number = WriteTitle.length + 11;
       let Index = ColorBack.indexOf(WriteTitle);
@@ -148,13 +195,18 @@ struct IndexPage {
         this.ColorObject[this.current] = this.ColorObject[this.current];
       }
     }
+>>>>>>> hw/master
   }
   build(){
     Column(){
       Row() {
         Button() {
           Image($r('app.media.ic_public_back')).width('20vp').height('18vp')
+<<<<<<< HEAD
+        }.backgroundColor(Color.Black)
+=======
         }.backgroundColor(Color.Black).size({ width: '40vp', height: '30vp' })
+>>>>>>> hw/master
         .onClick(() => {
           router.back();
         })
@@ -170,6 +222,16 @@ struct IndexPage {
               .height('30vp')
           }.backgroundColor(Color.Black)
           .onClick(() => {
+<<<<<<< HEAD
+            this.ClearAll = true;
+            this.ColorObject.forEach((value, index) => {
+              this.ColorObject[index] =  '#ff808080';
+            });
+            this.ClearText();
+            prompt.showToast({
+              message: '结果已删除', duration: 1000
+            });
+=======
             AlertDialog.show(
               {
                 message: "是否删除所有记录",
@@ -197,6 +259,7 @@ struct IndexPage {
                 }
               }
             )
+>>>>>>> hw/master
           })
           Button(){
             Image($r('app.media.ic_public_save'))
@@ -206,6 +269,10 @@ struct IndexPage {
           }.backgroundColor(Color.Black)
           .onClick(() => {
             this.ReadTextParseXml();
+<<<<<<< HEAD
+            prompt.showToast({
+              message: '报告已生成', duration: 1000
+=======
             AlertDialog.show({
               message: "报告已生成，如需查看通过命令行输入'hdc_std file recv /data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/ArkUI/ArkUITest.xml -本地路径'",
               confirm:{
@@ -221,6 +288,7 @@ struct IndexPage {
                   message: '报告已生成', duration: 1000
                 });
               }
+>>>>>>> hw/master
             })
           })
         }
@@ -230,7 +298,12 @@ struct IndexPage {
           ListItem(){
             Row(){
               Text(item.title).fontSize(16).fontColor(Color.Black)
+<<<<<<< HEAD
+              Text(this.BackColor.toString()).visibility(Visibility.None)
+            }.width('100%').height(50).alignItems(VerticalAlign.Center).backgroundColor(this.ColorObject[index])
+=======
             }.width('100%').height(50).alignItems(VerticalAlign.Center).backgroundColor(this.count===0&&this.TEST===0?'#ff808080':this.ColorObject[index])
+>>>>>>> hw/master
             .onClick(( )=>{
               this.count = 1;
               this.ClearAll=false;
@@ -247,6 +320,11 @@ struct IndexPage {
   ClearText(){
     fileio.rmdirSync(path1);
     fileio.mkdirSync(path1);
+<<<<<<< HEAD
+  }
+  ReadTextParseXml(){
+    let ReportPath = path1 + '/report1.txt';
+=======
     let fd = fileio.openSync(ColorBackPath, 0o102, 0o666);
     for(let i = 0; i < this.TestCaseList.length; i++) {
       let log = (this.TestCaseList[i].title+';'+'#ff808080'+';').toString();
@@ -255,6 +333,7 @@ struct IndexPage {
   }
   ReadTextParseXml(){
     let ReportPath = path1 + '/ArkUIReport.txt';
+>>>>>>> hw/master
     let dir = fileio.opendirSync(path1);
     console.info("ssssss"+dir);
     while (dir) {
@@ -274,6 +353,8 @@ struct IndexPage {
         title[i] = str1[i*2];
         result[i] = str1[i*2+1];
       }
+<<<<<<< HEAD
+=======
       let FailIndex = report.indexOf('false');
       let FailNum = 0;
       while (FailIndex != -1) {
@@ -291,12 +372,19 @@ struct IndexPage {
       }
       let TestNum = FailNum + PassNum;
       let testNum = (TestNum).toString();
+>>>>>>> hw/master
       let arrayBuffer = new ArrayBuffer(40960);
       let bufView = new DataView(arrayBuffer);
       let serializer = new xml.XmlSerializer(bufView);
       serializer.setDeclaration();
       serializer.startElement("testsuite");
       serializer.setAttributes("name","ActsArkUITest");
+<<<<<<< HEAD
+      for(let i=0; i<title.length; i++){
+        serializer.startElement("testcase");
+        serializer.setAttributes("name",String(title[i]));
+        serializer.setAttributes("result",String(result[i]));
+=======
       serializer.setAttributes("time", "*");
       serializer.setAttributes("errors", "0");
       serializer.setAttributes("disabled", "0");
@@ -314,6 +402,7 @@ struct IndexPage {
         serializer.setAttributes("result", String(result[i]));
         serializer.setAttributes("level", "*");
         serializer.setAttributes("message", "*");
+>>>>>>> hw/master
         serializer.endElement();
       }
       serializer.endElement();
@@ -321,6 +410,10 @@ struct IndexPage {
       let that = new util.TextDecoder('utf-8');
       let array = new Uint8Array(arrayBuffer);
       let serializerStr = that.decode(array);
+<<<<<<< HEAD
+      let xmlPath = path1 + "/ArkUITest.xml";
+=======
+>>>>>>> hw/master
       console.info(xmlPath);
       try{
         console.error(TAG,"write xmlPath =" +xmlPath);
@@ -336,14 +429,23 @@ struct IndexPage {
   }
 }
 function filewrite(name1,results,titles){
+<<<<<<< HEAD
+  let txtpath = path1 + '/report1.txt';
+  let fd = fileio.openSync(txtpath, 0o100 | 0o2002, 0o664);
+=======
   let fd = fileio.openSync(txtPath, 0o100 | 0o2002, 0o664);
+>>>>>>> hw/master
   let buf = new ArrayBuffer(4096);
   let RD = fileio.readSync(fd,buf);
   console.info("RRRRRRRRRRd"+RD);
   let report = String.fromCharCode.apply(null,new Uint8Array(buf));
   let WriteTitle = (titles).toString();
+<<<<<<< HEAD
+  let number = WriteTitle.length + 6;
+=======
   let WriteResult = (results).toString();
   let number = WriteTitle.length + WriteResult.length + 2;
+>>>>>>> hw/master
   let Index = report.indexOf(WriteTitle);
   let Log = (titles+";"+results+";").toString();
   if (Index == -1){
@@ -351,13 +453,21 @@ function filewrite(name1,results,titles){
   }
   else if (Index != -1){
     let key = report.substring(Index,Index+number);
+<<<<<<< HEAD
+    let FD = fileio.openSync(txtpath, 0o102, 0o666);
+=======
     let FD = fileio.openSync(txtPath, 0o102, 0o666);
+>>>>>>> hw/master
     report = report.replace(key,Log);
     let buffer = new ArrayBuffer(4096);
     let rd = fileio.readSync(FD,buffer);
     let Report = report.substring(0,rd);
     fileio.closeSync(FD);
+<<<<<<< HEAD
+    let Fd = fileio.openSync(txtpath, 0o102, 0o666);
+=======
     let Fd = fileio.openSync(txtPath, 0o102, 0o666);
+>>>>>>> hw/master
     fileio.writeSync(Fd,Report);
   }
 }

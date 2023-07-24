@@ -7,8 +7,12 @@
         "mainElement": "MainAbility",
         "deviceTypes": [
             "default",
+<<<<<<< HEAD
+            "tablet"
+=======
             "tablet",
             "2in1"
+>>>>>>> hw/master
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -29,13 +33,41 @@
                         "actions": [
                             "action.system.home"
                         ],
+<<<<<<< HEAD
+                        "entities":[
+=======
                         "entities": [
+>>>>>>> hw/master
                             "entity.system.home"
                         ]
                     }
                 ]
             },
             {
+<<<<<<< HEAD
+              "name": "com.example.systemappcallera.SecondAbility",
+              "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
+              "description": "$string:phone_entry_main",
+              "icon": "$media:icon",
+              "label": "$string:entry_label",
+              "visible": true,
+              "orientation": "portrait",
+              "launchType": "singleton"
+            },
+            {
+              "name": "com.example.systemappcallera.ThirdAbility",
+              "srcEntrance": "./ets/ThirdAbility/ThirdAbility.ts",
+              "description": "$string:phone_entry_main",
+              "icon": "$media:icon",
+              "label": "$string:entry_label",
+              "visible": true,
+              "orientation": "portrait",
+              "launchType": "standard"
+            }
+        ]
+    }
+}
+=======
                 "name": "com.example.systemappcallera.SecondAbility",
                 "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
                 "description": "$string:phone_entry_main",
@@ -58,3 +90,4 @@
         ]
     }
 }
+>>>>>>> hw/master

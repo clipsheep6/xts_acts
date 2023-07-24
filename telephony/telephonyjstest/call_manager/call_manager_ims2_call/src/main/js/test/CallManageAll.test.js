@@ -14,7 +14,10 @@
  */
 
 import call from '@ohos.telephony.call';
+<<<<<<< HEAD
+=======
 import radio from '@ohos.telephony.radio';
+>>>>>>> hw/master
 import { afterEach, describe, expect, it } from '@ohos/hypium';
 const AUTO_ACCEPT_NUMBER = '10010';
 const CALL_STATUS_DIALING = 2;
@@ -108,10 +111,13 @@ export default function CallManageImsCall() {
                     done();
                     return;
                 }
+<<<<<<< HEAD
+=======
                 expect(call.CallState.CALL_STATE_UNKNOWN).assertEqual(-1);
                 expect(call.CallState.CALL_STATE_IDLE).assertEqual(0);
                 expect(call.CallState.CALL_STATE_RINGING).assertEqual(1);
                 expect(call.CallState.CALL_STATE_OFFHOOK).assertEqual(2);
+>>>>>>> hw/master
                 console.log("Telephony_CallManager_getCallState_Async_0100 : data =" + JSON.stringify(data));
                 done();
             });
@@ -383,8 +389,14 @@ export default function CallManageImsCall() {
         it('Telephony_CallManager_Dial_Async_0100', 0, async function (done) {
             let CaseName = 'Telephony_CallManager_Dial_Async_0100';
             try {
+<<<<<<< HEAD
+                call.dial(CALL_NUMBER, (err, data) => {
+                    console.info(CaseName + " case success" + JSON.stringify(data));
+                    expect(data == true).assertTrue();
+=======
                 call.dial("", (err, data) => {
                     console.info(CaseName + " case success" + JSON.stringify(data));
+>>>>>>> hw/master
                     done();
                     return;
                 });
@@ -404,10 +416,18 @@ export default function CallManageImsCall() {
         it('Telephony_CallManager_Dial_Async_0200', 0, async function (done) {
             let CaseName = 'Telephony_CallManager_Dial_Async_0200';
             try {
+<<<<<<< HEAD
+                call.dial(CALL_NUMBER, {
+                    extras: false
+                }, (err, data) => {
+                    console.info(CaseName + " case success" + JSON.stringify(data));
+                    expect(data == true).assertTrue();
+=======
                 call.dial("", {
                     extras: false
                 }, (err, data) => {
                     console.info(CaseName + " case success" + JSON.stringify(data));
+>>>>>>> hw/master
                     done();
                     return;
                 });
@@ -435,12 +455,16 @@ export default function CallManageImsCall() {
                 return;
             }).catch((err) => {
                 console.info(CaseName + ' case error' + JSON.stringify(err));
+<<<<<<< HEAD
+                expect().assertFail();
+=======
                 radio.isRadioOn(0, (err, data) => {
                     console.info(CaseName + ' err' + JSON.stringify(err) + ' data ' + JSON.stringify(data));
                     if (!err) {
                         expect().assertFail();
                     }
                 });
+>>>>>>> hw/master
                 done();
             });
         });

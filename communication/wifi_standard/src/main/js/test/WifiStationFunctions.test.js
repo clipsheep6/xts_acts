@@ -20,6 +20,12 @@ import osaccount from '@ohos.account.osAccount'
 import bundle from '@ohos.bundle'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
+<<<<<<< HEAD
+function sleep(delay) {
+    return new Promise(resovle => setTimeout(resovle, delay))
+}
+
+=======
 async function applyPermission() {
     let osAccountManager = osaccount.getAccountManager();
     console.info("=== getAccountManager finish");
@@ -45,6 +51,7 @@ function sleep(delay) {
     return new Promise(resovle => setTimeout(resovle, delay))
 }
 
+>>>>>>> hw/master
 function checkWifiPowerOn(){
     console.info("[wifi_test]wifi status:" + wifi.isWifiActive());
 }
@@ -74,6 +81,11 @@ export default function actsWifiFunctionsTest() {
         * @tc.level Level 0
         */
         it('Communication_WiFi_XTS_Sta_0002', 0, async function (done) {
+<<<<<<< HEAD
+            let scan = wifi.scan();
+            await sleep(3000);
+=======
+>>>>>>> hw/master
             await wifi.getScanInfos()
                 .then(result => {
                     let clen = Object.keys(result).length;
@@ -296,3 +308,7 @@ export default function actsWifiFunctionsTest() {
     })
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> hw/master

@@ -33,7 +33,11 @@ export default function SecurityHuksECCBasicFinish63KBCallbackJsunit() {
           HuksSignVerifyECC.HuksKeyAlgECC,
           HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
           HuksSignVerifyECC.HuksTagECCDigestNONE,
+<<<<<<< HEAD
+          HuksSignVerifyECC.HuksKeyECCSize224
+=======
           HuksSignVerifyECC.HuksKeyECCSize256
+>>>>>>> hw/master
         ),
         inData: srcData63AfterSha256,
       };
@@ -43,7 +47,11 @@ export default function SecurityHuksECCBasicFinish63KBCallbackJsunit() {
           HuksSignVerifyECC.HuksKeyAlgECC,
           HuksSignVerifyECC.HuksKeyECCPurposeVERIFY,
           HuksSignVerifyECC.HuksTagECCDigestNONE,
+<<<<<<< HEAD
+          HuksSignVerifyECC.HuksKeyECCSize224
+=======
           HuksSignVerifyECC.HuksKeyECCSize256
+>>>>>>> hw/master
         ),
         inData: finishOutData,
       };

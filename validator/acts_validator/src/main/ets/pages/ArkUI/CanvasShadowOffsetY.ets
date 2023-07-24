@@ -12,7 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
 import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CanvasCustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -24,7 +27,10 @@ struct SetCircle {
   @State X: number = 0;
   @State name: string = 'CanvasShadowOffsetY';
   @State StepTips: string = '操作步骤：拖动滑块向右移动'+'\n'+'预期结果：阴影会随着拖动距离增大而向下偏移，并显示偏移数值';
+<<<<<<< HEAD
+=======
   @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -36,10 +42,19 @@ struct SetCircle {
           .gesture(
           PanGesture({})
             .onActionStart((event: GestureEvent) => {
+<<<<<<< HEAD
+              this.context.clearRect(10, 50, 400, 300);
+=======
+>>>>>>> hw/master
               this.context.shadowColor = 'rgb(0,0,0)';
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 100, 100);
               console.info('Pan start');
+<<<<<<< HEAD
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              this.X = event.offsetX;
+=======
               this.Vue = true;
             })
             .onActionUpdate((event: GestureEvent) => {
@@ -56,15 +71,21 @@ struct SetCircle {
               this.context.shadowColor = 'rgb(0,0,0)';
               this.context.fillStyle = 'rgb(255,0,0)';
               this.context.fillRect(150, 150, 100, 100);
+>>>>>>> hw/master
             })
             .onActionEnd(() => {
               console.info('Pan end');
             })
           )
+<<<<<<< HEAD
+        Text('阴影偏移: ' + (this.X)*0.05 )
+      }.width('70%').height('30%')
+=======
       }.width('70%').height('25%')
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }){
         Text('阴影偏移: ' + (this.X)*0.05 )
       }.width('100%').height('20%')
+>>>>>>> hw/master
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
@@ -72,17 +93,37 @@ struct SetCircle {
           .backgroundColor('#ffffffff')
           .onReady(() =>{
             this.context.shadowBlur = 10;
+<<<<<<< HEAD
+            this.context.shadowOffsetY = (this.X)*0.05;
+=======
             this.context.shadowOffsetY = 0;
+>>>>>>> hw/master
             this.context.shadowColor = 'rgb(0,0,0)';
             this.context.fillStyle = 'rgb(255,0,0)';
             this.context.fillRect(150, 150, 100, 100);
           })
+<<<<<<< HEAD
+      }.width('100%').height('70%')
+=======
       }.width('100%').height('55%')
+>>>>>>> hw/master
     }.width('100%').height('80%').backgroundColor(Color.White)
   }
   build() {
     Column() {
       CustomContainer({
+<<<<<<< HEAD
+        title:this.name,
+        Url:'pages/ArkUI/ArkUI_index',
+        StepTips:this.StepTips,
+        content: this.specificNoParam,
+        FillColor:$FillColor,
+        X:$X,
+        name:$name
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+=======
         title: this.name,
         Url: 'pages/ArkUI/ArkUI_index',
         StepTips: this.StepTips,
@@ -99,4 +140,5 @@ struct SetCircle {
       url:'pages/ArkUI/ArkUI_index',
     })
   }
+>>>>>>> hw/master
 }

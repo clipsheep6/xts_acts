@@ -53,6 +53,18 @@ function resolveIP(ip) {
     return (ip>>24 & 0xFF) + "." + (ip>>16 & 0xFF) + "." + (ip>>8 & 0xFF) + "." + (ip & 0xFF);
 }
 
+<<<<<<< HEAD
+let wifiChannelWidth = {
+    WIDTH_20MHZ : 0,
+    WIDTH_40MHZ : 1,
+    WIDTH_80MHZ : 2,
+    WIDTH_160MHZ : 3,
+    WIDTH_80MHZ_PLUS : 4,
+    WIDTH_INVALID:null,
+}
+
+=======
+>>>>>>> hw/master
 export default function actsWifiManagerFunctionsTest() {
     describe('actsWifiManagerFunctionsTest', function() {
         beforeAll(async function (done) {
@@ -298,6 +310,58 @@ export default function actsWifiManagerFunctionsTest() {
            done();
        })
 
+<<<<<<< HEAD
+            function getLinked(){
+                return new Promise((resolve, reject) => {
+                    wifiMg.getLinkedInfo(
+                        (err, result) => {
+                            if(err) {
+                                console.log("[wifi_test]wifi getLinkedInfo failed " + err);
+                            }
+                            let clen = Object.keys(result).length;
+                            expect(clen).assertLarger(0);
+                            console.info("[wifi_test]getLinkedInfo callback result: " + JSON.stringify(result));
+                            console.info("ssid: " + result.ssid + "bssid:" + result.bssid + "band: " + result.band +
+                            "isHidden: " + result.isHidden + "isRestricted: " + result.isRestricted +
+                            "chload: " + result.chload + "rssi " + result.rssi + "netWorkId: " + result.netWorkId +
+                            "linkSpeed: " + result.linkSpeed + "frequency:"
+                            + result.frequency + "snr:" + result.snr +
+                            "macAddress: " + result.macAddress + "ipAddress: " + result.ipAddress +
+                            "suppState: " + result.suppState + "connState: " + result.connState
+                            + "macType: " + result.macType);
+                            let state = wifiMg.getLinkedInfo().ConnState;
+                            if (state == wifiMg.connState.SCANNING) {
+                                expect(true).assertEqual(state == 0);
+                            }
+                            if (state == wifiMg.connState.CONNECTING) {
+                                expect(true).assertEqual(state == 1);
+                            }
+                            if (state == wifiMg.connState.AUTHENTICATING) {
+                                expect(true).assertEqual(state == 2);
+                            }
+                            if (state == wifiMg.connState.OBTAINING_IPADDR) {
+                                expect(true).assertEqual(state == 3);
+                            }
+                            if (state == wifiMg.connState.CONNECTED) {
+                                expect(true).assertEqual(state == 4);
+                            }
+                            if (state == wifiMg.connState.DISCONNECTING) {
+                                expect(true).assertEqual(state == 5);
+                            }
+                            if (state == wifiMg.connState.DISCONNECTED) {
+                                expect(true).assertEqual(state == 6);
+                            }
+                            if (state == wifiMg.connState.UNKNOWN) {
+                                expect(true).assertEqual(state == 7);
+                            }
+                            resolve();
+                        });
+                });
+            }
+            await getLinked();
+            done();
+        })
+=======
        /**
        * @tc.number SUB_Communication_WiFi_XTS_Sta_0034
        * @tc.name testgetScanResultsSync
@@ -328,6 +392,7 @@ export default function actsWifiManagerFunctionsTest() {
            }
            done();
        })
+>>>>>>> hw/master
 
         /**
         * @tc.number SUB_Communication_WiFi_XTS_Sta_0035
@@ -361,4 +426,5 @@ export default function actsWifiManagerFunctionsTest() {
         console.log("*************[wifi_test] start wifi js unit test end*************");
     })
 }
+
 

@@ -5001,11 +5001,19 @@ export default function actsRpcClientJsTest() {
         it("SUB_Softbus_IPC_Compatibility_MessageSequence_13600", 0, async function(done){
             console.info("---------------------start SUB_Softbus_IPC_Compatibility_MessageSequence_13600---------------------------");
             try{
+<<<<<<< HEAD
+                let data = rpc.MessageSequence.create();
+                expect(data.getRawDataCapacity()).assertEqual(128*M);
+                let rawdata = [1, 2, 3];
+                let option = new rpc.MessageOption();
+                let reply = rpc.MessageSequence.create();
+=======
                 var data = rpc.MessageSequence.create();
                 expect(data.getRawDataCapacity()).assertEqual(128*M);
                 let rawdata = [1, 2, 3];
                 let option = new rpc.MessageOption();
                 var reply = rpc.MessageSequence.create();
+>>>>>>> hw/master
                 data.writeInt(rawdata.length);
                 data.writeRawData(rawdata, rawdata.length);
                 expect(gIRemoteObject != undefined).assertTrue();

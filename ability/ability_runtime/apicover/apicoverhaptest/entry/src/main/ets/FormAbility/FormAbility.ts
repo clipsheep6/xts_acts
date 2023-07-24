@@ -47,7 +47,10 @@ export default class FormAbility extends FormExtension {
     }
 
     onUpdateForm(formId) {
+<<<<<<< HEAD
+=======
       console.info("FormAbility onUpdateForm===end=== " + formId)
+>>>>>>> hw/master
         // Called to notify the form provider to update a specified form.
         let formData = {};
         let proxies = [
@@ -61,17 +64,26 @@ export default class FormAbility extends FormExtension {
     }
 
     onChangeFormVisibility(newStatus) {
+<<<<<<< HEAD
+=======
       console.info("FormAbility onChangeFormVisibility===end=== " + newStatus)
+>>>>>>> hw/master
         // Called when the form provider receives form events from the system.
     }
 
     onFormEvent(formId, message) {
+<<<<<<< HEAD
+=======
       console.info("FormAbility onFormEvent===end=== " + message)
+>>>>>>> hw/master
         // Called when a specified message event defined by the form provider is triggered.
     }
 
     onRemoveForm(formId) {
+<<<<<<< HEAD
+=======
       console.info("FormAbility onRemoveForm===end=== " + formId)
+>>>>>>> hw/master
         // Called to notify the form provider that a specified form has been destroyed.
     }
 

@@ -1148,6 +1148,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         unexpectedError(err, caseName, 'ohosWindow.create', done);
       })
     })
+<<<<<<< HEAD
+=======
 
     /**
      * @tc.number SUB_WINDOW_CREATE_JSAPI_008
@@ -1198,6 +1200,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         }
       })
     })
+>>>>>>> hw/master
     /**
      * @tc.number SUB_WINDOW_ON_OFF_JSAPI_005
      * @tc.name Test listenerTest5
@@ -1271,17 +1274,26 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
     it('setWindowTypeTest3', 0, async function (done) {
       let caseName = 'setWindowTypeTest3';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = 1;
-      let windowId = 'setWindowTypeTest3';
       console.log(msgStr + 'begin');
       console.log(msgStr + 'newWindowObj 2: ' + JSON.stringify(newWindowObj));
       let tempWnd = null
+<<<<<<< HEAD
+      let tempTypeArr = [];
+        try {
+          let data = windowStage.getMainWindowSync();
+          console.log(msgStr + 'ohosWindow.create data' + JSON.stringify(data));
+          console.log(msgStr + 'ohosWindow.create !!data' + !!data);
+          if (!!data) {
+            tempWnd = data
+//            console.log(msgStr + 'ohosWindow.create ' + baseWndType + ' wnd: ' + tempWnd);
+=======
       let loopCount1 = systemWindowTypeArr;
       console.log(msgStr + 'ohosWindow.windowType' + JSON.stringify(loopCount1))
 
       function createWin() {
         return new Promise(function (resolve, reject) {
           ohosWindow.create(context, windowId, baseWndType, (err, data) => {
+>>>>>>> hw/master
             try {
               if (!!data) {
                 resolve(data)
@@ -1305,6 +1317,12 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               console.log(msgStr + 'tempWnd.setWindowType success' + tempType);
               resolve(true)
             }
+<<<<<<< HEAD
+          }
+        } catch (err) {
+          console.log(msgStr + 'ohosWindow.create catch err: ' + JSON.stringify(err));
+        }
+=======
           })
         })
       }
@@ -1338,6 +1356,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           done();
         }
       }
+>>>>>>> hw/master
     })
     /**
      * @tc.number SUB_WINDOW_SETWINDOWTYPE_JSAPI_004
@@ -1347,15 +1366,30 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
     it('setWindowTypeTest4', 0, async function (done) {
       let caseName = 'setWindowTypeTest4';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = 1;
       let changedWndType = null;
-      let windowId = 'setWindowTypeTest4';
       console.log(msgStr + 'begin');
       let tempWnd = null
+<<<<<<< HEAD
+      let data = windowStage.getMainWindowSync();
+        console.log(msgStr + 'ohosWindow.create data' + JSON.stringify(data));
+        console.log(msgStr + 'ohosWindow.create !!data' + !!data);
+        if (!!data) {
+          tempWnd = data
+          try {
+            expect(!!tempWnd).assertTrue();
+          } catch (error) {
+            console.info(`ohosWindow.create catch error: ${JSON.stringify(error)}`)
+          }
+          tempWnd.setWindowType(changedWndType, (err, data) => {
+            console.log(msgStr + 'tempWnd.setWindowType err' + JSON.stringify(err));
+            console.log(msgStr + 'tempWnd.setWindowType data' + JSON.stringify(data));
+            console.log(msgStr + 'tempWnd.setWindowType !!data' + !!data);
+=======
 
       function createWin() {
         return new Promise(function (resolve, reject) {
           ohosWindow.create(context, windowId, baseWndType, (err, data) => {
+>>>>>>> hw/master
             if (!!data) {
               resolve(data)
             }
@@ -1363,6 +1397,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               reject(null)
             }
           })
+<<<<<<< HEAD
+        } 
+=======
         })
       }
 
@@ -1387,6 +1424,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         }
       })
 
+>>>>>>> hw/master
     })
     /**
      * @tc.number SUB_WINDOW_DESTROY_JSAPI_002
@@ -2273,6 +2311,61 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       }
 
       await setAspectRatio()
+    })
+    /**
+     * @tc.number     SUB_WINDOW_CREATE_JSAPI_008
+     * @tc.name       Test createTest8
+     * @tc.desc       Verify the scenario of creating a window with duplicate IDs
+     */
+    it('createTest8', 0, done => {
+      let caseName = 'createTest8';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let windowId = 'sameid'
+      ohosWindow.create(context, windowId, 1, (err, data) => {
+        console.log(msgStr + 'ohosWindow.create 1 once err: ' + JSON.stringify(err));
+        if (err && err.code) {
+          unexpectedError(err, caseName, 'ohosWindow.create', done);
+        }
+        expect(!!data).assertTrue();
+        ohosWindow.create(context, windowId, 1, (err, data) => {
+          console.log(msgStr + 'ohosWindow.create 1 twice err: ' + JSON.stringify(err));
+          if (err && err.code) {
+            console.log(msgStr + 'ohosWindow.create 1 twice data: ' + JSON.stringify(data));
+            try {
+              expect(err.code).assertEqual(1001)
+            } catch (error) {
+              console.info(`tempWnd.show catch error: ${JSON.stringify(error)}`)
+            }
+            done();
+          } else {
+            unexpectedError(err, caseName, 'ohosWindow.create', done);
+            console.log(msgStr + 'ohosWindow.create 1 twice data: ' + JSON.stringify(data));
+          }
+        })
+      })
+    })
+    /**
+     * @tc.number     SUB_WINDOW_CREATE_JSAPI_004
+     * @tc.name       Test createTest4
+     * @tc.desc       Verify the scenario of creating a window with duplicate IDs
+     */
+    it('createTest4', 0, async function (done) {
+      let caseName = 'createTest4';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let windowId = 'sameids'
+      let ohosData = await ohosWindow.create(context, windowId, 1).catch((err) => {
+        console.log(msgStr + 'ohosWindow.create 1 once err: ' + JSON.stringify(err));
+        unexpectedError(err, caseName, 'ohosWindow.create', done);
+      })
+      expect(!!ohosData).assertTrue();
+      let ohosDataError = await ohosWindow.create(context, windowId, 1).catch((err) => {
+        console.log(msgStr + 'ohosWindow.create 1 twice err: ' + JSON.stringify(err));
+        expect(err.code).assertEqual(1001)
+        done();
+      })
+      console.log(msgStr + 'ohosWindow.create 1 twice ohosDataError: ' + JSON.stringify(ohosDataError));
     })
   })
 }
