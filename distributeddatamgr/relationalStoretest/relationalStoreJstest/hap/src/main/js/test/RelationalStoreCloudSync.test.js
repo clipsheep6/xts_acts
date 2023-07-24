@@ -983,5 +983,212 @@ export default function relationalStoreCloudSyncTest() {
             }
             console.log(TAG + "************* testRdbStoreCloudSyncTable0012 end *************");
         })
+
+        /**
+         * @tc.name test PRIKeyType string
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_PRIKeyType_0010
+         * @tc.desc test PRIKeyType string
+         */
+        it('testRdbStorePRIKeyType0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStorePRIKeyType0010 start *************");
+            try {
+                relationalStore.PRIKeyType = ["test_key1", "test_key2"];
+                rdbStore.getModifyTime("cloud_text", "num", relationalStore.PRIKeyType, function (err, data) {
+                    console.log(TAG + 'modifyTime:' + JSON.stringify(data) );
+                    expect(err == undefined).assertTrue();
+                    let size = Object.keys(data).length ;
+                    console.log(TAG + 'size=' + size);
+                    expect( size == 2 ).assertTrue();
+                    done();
+                });
+            } catch (err) {
+                console.log(TAG + `get modify time fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStorePRIKeyType0010 end *************");
+        })
+
+        /**
+         * @tc.name test PRIKeyType number
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_PRIKeyType_0020
+         * @tc.desc test PRIKeyType number
+         */
+        it('testRdbStorePRIKeyType0020', 0, async function (done) {
+            console.log(TAG + "************* testRdbStorePRIKeyType0020 start *************");
+            try {
+                relationalStore.PRIKeyType = [2, 4];
+                await rdbStore.getModifyTime("cloud_integer", "num", relationalStore.PRIKeyType).then((data) => {
+                    console.log(TAG + `modifyTime:` + JSON.stringify(data));
+                    let size = Object.keys(data).length ;
+                    console.log(TAG + 'size=' + size);
+                    expect( size == 2 ).assertTrue();
+                    done();
+                });
+            } catch (err) {
+                console.log(TAG + `get modify time fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStorePRIKeyType0020 end *************");
+        })
+
+        /**
+         * @tc.name test UTCTime type
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_UTCTime_0010
+         * @tc.desc test UTCTime type
+         */
+        it('testRdbStoreUTCTime0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreUTCTime0010 start *************");
+            try {
+                let time = new Date();
+                relationalStore.UTCTime = time;
+                expect(relationalStore.UTCTime == time).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreUTCTime0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreUTCTime0010 end *************");
+        })
+
+        /**
+         * @tc.name test ModifyTime type
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_ModifyTime_0010
+         * @tc.desc test ModifyTime type
+         */
+        it('testRdbStoreModifyTime0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreModifyTime0010 start *************");
+            try {
+                let time1 = new Date();
+                let time2 = new Date();
+                relationalStore.ModifyTime = {"test_key1":time1,"test_key2":time2};
+                expect(relationalStore.ModifyTime["test_key1"] == time1).assertTrue();
+                expect(relationalStore.ModifyTime["test_key2"] == time2).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreModifyTime0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreModifyTime0010 end *************");
+        })
+        /**
+         * @tc.name test Progress type
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_Progress_0010
+         * @tc.desc test Progress type
+         */
+        it('testRdbStoreProgress0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreProgress0010 start *************");
+            try {
+                expect(relationalStore.Progress.SYNC_BEGIN == 0).assertTrue();
+                expect(relationalStore.Progress.SYNC_IN_PROGRESS == 1).assertTrue();
+                expect(relationalStore.Progress.SYNC_FINISH == 2).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreProgress0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreProgress0010 end *************");
+        })
+        /**
+         * @tc.name test Statistic
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_Statistic_0010
+         * @tc.desc test Statistic
+         */
+        it('testRdbStoreStatistic0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreStatistic0010 start *************");
+            try {
+                relationalStore.Statistic = {"total":10, "success":6, "failed":3, "remained":1};
+                expect(relationalStore.Statistic.total == 10 ).assertTrue();
+                expect(relationalStore.Statistic.success == 6 ).assertTrue();
+                expect(relationalStore.Statistic.failed == 3 ).assertTrue();
+                expect(relationalStore.Statistic.remained == 1 ).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreStatistic0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreStatistic0010 end *************");
+        })
+
+        /**
+         * @tc.name test TableDetails
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_TableDetails_0010
+         * @tc.desc test TableDetails
+         */
+        it('testRdbStoreTableDetails0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreTableDetails0010 start *************");
+            try {
+                relationalStore.Statistic1 = {"total":10, "success":6, "failed":3, "remained":1};
+                relationalStore.Statistic2 = {"total":100, "success":60, "failed":30, "remained":10};
+                relationalStore.TableDetails = {"upload": relationalStore.Statistic1, "download": relationalStore.Statistic2};
+
+                expect(relationalStore.TableDetails.upload == relationalStore.Statistic1 ).assertTrue();
+                expect(relationalStore.TableDetails.download == relationalStore.Statistic2 ).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreTableDetails0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreTableDetails0010 end *************");
+        })
+
+        /**
+         * @tc.name test ProgressCode
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_ProgressCode_0010
+         * @tc.desc test ProgressCode
+         */
+        it('testRdbStoreProgressCode0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreProgressCode0010 start *************");
+            try {
+                console.log(TAG + "SUCCESS=" + relationalStore.ProgressCode.SUCCESS);
+
+                expect(relationalStore.ProgressCode.SUCCESS == 0).assertTrue();
+                expect(relationalStore.ProgressCode.UNKNOWN_ERROR == 1).assertTrue();
+                expect(relationalStore.ProgressCode.NETWORK_ERROR == 2).assertTrue();
+                expect(relationalStore.ProgressCode.CLOUD_DISABLED == 3).assertTrue();
+                expect(relationalStore.ProgressCode.LOCKED_BY_OTHERS == 4).assertTrue();
+                expect(relationalStore.ProgressCode.RECORD_LIMIT_EXCEEDED == 5).assertTrue();
+                expect(relationalStore.ProgressCode.NO_SPACE_FOR_ASSET == 6).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreProgressCode0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreProgressCode0010 end *************");
+        })
+
+        /**
+         * @tc.name test ProgressDetails
+         * @tc.number SUB_DDM_AppDataFWK_JSRDB_ProgressDetails_0010
+         * @tc.desc test ProgressDetails
+         */
+        it('testRdbStoreProgressDetails0010', 0, async function (done) {
+            console.log(TAG + "************* testRdbStoreProgressDetails0010 start *************");
+            try {
+                relationalStore.Statistic1 = {"total":10, "success":6, "failed":3, "remained":1};
+                relationalStore.Statistic2 = {"total":100, "success":60, "failed":30, "remained":10};
+                relationalStore.TableDetails = {"upload": relationalStore.Statistic1, "download": relationalStore.Statistic2};
+
+                relationalStore.ProgressDetails = {"schedule":2,"code":0,"details":relationalStore.TableDetails};
+                expect(relationalStore.ProgressDetails.schedule == 2).assertTrue();
+                expect(relationalStore.ProgressDetails.code == 0).assertTrue();
+                expect(relationalStore.ProgressDetails.details == relationalStore.TableDetails).assertTrue();
+                done();
+            } catch (err) {
+                console.log(TAG + `testRdbStoreProgressDetails0010 fail, err code is ${err.code}, message is ${err.message}.`);
+                expect(null).assertFail();
+                done();
+            }
+            console.log(TAG + "************* testRdbStoreProgressDetails0010 end *************");
+        })
+
+
         console.log(TAG + "*************Unit Test End*************");
     })}
