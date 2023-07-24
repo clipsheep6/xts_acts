@@ -46,6 +46,13 @@
         "MainAbility/pages/NavDestinationPage",
         "MainAbility/pages/NavigationPage",
         "MainAbility/pages/GridItemPage",
-        "MainAbility/pages/GridColoffsetPage"
+        "MainAbility/pages/GridColoffsetPage",
+		"MainAbility/pages/ClickMouseTouchEvent",
+        "MainAbility/pages/DragEvent",
+        "MainAbility/pages/MenuItemGroupOptions",
+        "MainAbility/pages/PanGestureEvent",
+        "MainAbility/pages/RotateOptions",
+        "MainAbility/pages/ShadowTypeStyle",
+        "MainAbility/pages/TransitionEffect"
     ]
 }
