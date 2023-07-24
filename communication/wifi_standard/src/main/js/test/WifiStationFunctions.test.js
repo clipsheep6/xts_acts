@@ -16,11 +16,42 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 import wifi from '@ohos.wifi'
+import osaccount from '@ohos.account.osAccount'
+import bundle from '@ohos.bundle'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+
+<<<<<<< HEAD
+function sleep(delay) {
+    return new Promise(resovle => setTimeout(resovle, delay))
+}
+
+=======
+async function applyPermission() {
+    let osAccountManager = osaccount.getAccountManager();
+    console.info("=== getAccountManager finish");
+    let localId = await osAccountManager.getOsAccountLocalIdFromProcess();
+    console.info("LocalId is :" + localId);
+    let appInfo = await bundle.getApplicationInfo('ohos.acts.communication.wifi.wifidevice', 0, localId);
+    let atManager = abilityAccessCtrl.createAtManager();
+    if (atManager != null) {
+        let tokenID = appInfo.accessTokenId;
+        console.info('[permission] case accessTokenID is ' + tokenID);
+        let permissionName1 = 'ohos.permission.LOCATION';
+        await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+            console.info('[permission] case grantUserGrantedPermission success :' + JSON.stringify(result));
+        }).catch((err) => {
+            console.info('[permission] case grantUserGrantedPermission failed :' + JSON.stringify(err));
+        });
+    } else {
+        console.info('[permission] case apply permission failed, createAtManager failed');
+    }
+}
 
 function sleep(delay) {
     return new Promise(resovle => setTimeout(resovle, delay))
 }
 
+>>>>>>> hw/master
 function checkWifiPowerOn(){
     console.info("[wifi_test]wifi status:" + wifi.isWifiActive());
 }
@@ -30,6 +61,12 @@ function resolveIP(ip) {
 
 export default function actsWifiFunctionsTest() {
     describe('actsWifiFunctionsTest', function() {
+        beforeAll(async function (done) {
+            console.info('beforeAll case');
+            await applyPermission();
+            done();
+        })
+
         beforeEach(function () {
             checkWifiPowerOn();
         })
@@ -44,8 +81,11 @@ export default function actsWifiFunctionsTest() {
         * @tc.level Level 0
         */
         it('Communication_WiFi_XTS_Sta_0002', 0, async function (done) {
+<<<<<<< HEAD
             let scan = wifi.scan();
             await sleep(3000);
+=======
+>>>>>>> hw/master
             await wifi.getScanInfos()
                 .then(result => {
                     let clen = Object.keys(result).length;
@@ -268,4 +308,7 @@ export default function actsWifiFunctionsTest() {
     })
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> hw/master

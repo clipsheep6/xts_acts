@@ -12,28 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, afterEach, it, expect } from '@ohos/hypium'
 
-import formProvider from '@ohos.application.formProvider';
 import FormInfo from '@ohos.application.formInfo';
 import formInfoNew from '@ohos.app.form.formInfo';
 import formError from '@ohos.application.formError';
 import formHost from '@ohos.application.formHost';
+<<<<<<< HEAD
 import errorManager from '@ohos.app.ability.errorManager';
 import abilityConstant from '@ohos.app.ability.AbilityConstant'
 import appManager from '@ohos.application.appManager'
+=======
+import abilityConstant from '@ohos.app.ability.AbilityConstant'
+>>>>>>> hw/master
 import appManagerNew from '@ohos.app.ability.appManager'
 import commonEvent from '@ohos.commonEvent';
 import ability from '@ohos.ability.ability';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import common from '@ohos.app.ability.common';
+import contextConstant from "@ohos.app.ability.contextConstant"
+import wantConstant from "@ohos.app.ability.wantConstant"
+import formBindingData from '@ohos.application.formBindingData';
 
-var EXTENSION_INFO_ERR = 16000001
-var INNER_ERROR = 16000050
-var CROSS_USER_DENY = 201
-var INVALID_PARAM = 401
-var trueInfo;
-var array = new Array();
+let EXTENSION_INFO_ERR = 16000001;
+let INNER_ERROR = 16000050;
+let CROSS_USER_DENY = 201;
+let array = new Array();
+let TAG = '';
 function sleep(time) {
   return new Promise((resolve)=>setTimeout(resolve,time));
 }
@@ -313,22 +318,23 @@ export default function ApiCoverTest() {
      */
     it('SUB_AA_ABILITY_Extension_API_012', 0, async function (done) {
       try {
+<<<<<<< HEAD
         let info: appManagerNew.ProcessRunningInfo;
+=======
+        let info: appManagerNew.ProcessInformation;
+>>>>>>> hw/master
         let stageContext: common.AbilityStageContext = globalThis.stageContext;
         let abilityContext: common.UIAbilityContext = globalThis.abilityContext;
         let appContext: common.ApplicationContext = abilityContext.getApplicationContext();
         let baseContext: common.BaseContext = stageContext;
         let context: common.Context = stageContext;
-        let el1 = common.AreaMode.EL1;
-        let el2 = common.AreaMode.EL2;
+        let el1 = contextConstant.AreaMode.EL1;
+        let el2 = contextConstant.AreaMode.EL2;
         let eventHub: common.EventHub = context.eventHub;
         let abilityResult: common.AbilityResult;
         let connectOptions: common.ConnectOptions;
 
-        appContext.killProcessesBySelf();
-        appContext.killProcessesBySelf((err, data) => {
-            console.log(`killProcessesBySelf, err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}`);
-        })
+        console.log("killAllProcesses:" + JSON.stringify(appContext.killAllProcesses));
         let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
         abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
         let abilityDelegatorArgs: abilityDelegatorRegistry.AbilityDelegatorArgs;
@@ -378,13 +384,13 @@ export default function ApiCoverTest() {
      })
     })
 
-	/*
+	  /*
      * @tc.number  SUB_AA_AMS_Context_0200
      * @tc.name    Register the listener of Ability and cancel the listener.
      * @tc.desc    Function test
      * @tc.level   3
      */
-	it('SUB_AA_AMS_Context_0200', 0, async function (done) {
+	  it('SUB_AA_AMS_Context_0200', 0, async function (done) {
       await globalThis.abilityContext.eventHub.on("contextEvent", func1)
       globalThis.abilityContext.eventHub.emit("contextEvent", "aa", "bb")
       await sleep(500)
@@ -478,6 +484,10 @@ export default function ApiCoverTest() {
       expect("ohos.extra.param.key.form_identity").assertEqual(formInfoNew.FormParam.IDENTITY_KEY)
       expect("ohos.extra.param.key.bundle_name").assertEqual(formInfoNew.FormParam.BUNDLE_NAME_KEY)
       expect("ohos.extra.param.key.ability_name").assertEqual(formInfoNew.FormParam.ABILITY_NAME_KEY)
+      expect('ohos.extra.param.key.form_customize').assertEqual(formInfoNew.FormParam.PARAM_FORM_CUSTOMIZE_KEY)
+      expect('ohos.extra.param.key.form_launch_reason').assertEqual(formInfoNew.FormParam.LAUNCH_REASON_KEY)
+      expect(1).assertEqual(formInfoNew.LaunchReason.FORM_DEFAULT);
+      expect(2).assertEqual(formInfoNew.LaunchReason.FORM_SHARE);
       expect(0).assertEqual(formInfoNew.FormState.DEFAULT)
       expect(1).assertEqual(formInfoNew.FormState.READY)
       expect(-1).assertEqual(formInfoNew.FormState.UNKNOWN)
@@ -513,9 +523,22 @@ export default function ApiCoverTest() {
       expect(1).assertEqual(abilityConstant.LaunchReason.START_ABILITY)
       expect(1).assertEqual(abilityConstant.LastExitReason.ABILITY_NOT_RESPONDING)
       expect(2).assertEqual(abilityConstant.LastExitReason.NORMAL)
+      expect(3).assertEqual(abilityConstant.LastExitReason.CPP_CRASH)
+      expect(4).assertEqual(abilityConstant.LastExitReason.JS_ERROR)
+      expect(5).assertEqual(abilityConstant.LastExitReason.APP_FREEZE)
+      expect(6).assertEqual(abilityConstant.LastExitReason.PERFORMANCE_CONTROL)
+      expect(7).assertEqual(abilityConstant.LastExitReason.RESOURCE_CONTROL)
+      expect(8).assertEqual(abilityConstant.LastExitReason.UPGRADE)
       expect(0).assertEqual(abilityConstant.MemoryLevel.MEMORY_LEVEL_MODERATE)
       expect(1).assertEqual(abilityConstant.MemoryLevel.MEMORY_LEVEL_LOW)
       expect(2).assertEqual(abilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL)
+      expect(5).assertEqual(abilityConstant.LaunchReason.SHARE)
+      expect(0).assertEqual(abilityConstant.ContinueState.ACTIVE)
+      expect(1).assertEqual(abilityConstant.ContinueState.INACTIVE)
+      expect('ohos.extra.param.key.contentTitle').assertEqual(wantConstant.Params.CONTENT_TITLE_KEY)
+      expect('ohos.extra.param.key.shareAbstract').assertEqual(wantConstant.Params.SHARE_ABSTRACT_KEY)
+      expect('ohos.extra.param.key.shareUrl').assertEqual(wantConstant.Params.SHARE_URL_KEY)
+      expect('ohos.ability.params.abilityRecoveryRestart').assertEqual(wantConstant.Params.ABILITY_RECOVERY_RESTART)
       done()
     });
 
@@ -542,7 +565,11 @@ export default function ApiCoverTest() {
           console.info("SUB_AA_FMS_AbilityStage_0100===SubscribeInfoCallback===" + JSON.stringify(data))
             expect(data.parameters["config"]).assertEqual(-1)
             expect(data.parameters["config"]).assertEqual(directions)
+<<<<<<< HEAD
             expect(pointer).assertFalse()
+=======
+            expect(typeof(pointer)).assertEqual("boolean")
+>>>>>>> hw/master
             commonEvent.unsubscribe(subscriber, UnSubscribeInfoCallback)
             await sleep(4000)
             done()
@@ -661,6 +688,172 @@ export default function ApiCoverTest() {
         console.info("SUB_AA_FormDisplaySpecifications_0200===deleteForm failed===" + JSON.stringify(err))
         expect().assertFail()
         done()
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_AbilityAppManager_0100
+     * @tc.name    The form of a promise getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_AbilityAppManager_0100', 0, async function (done) {
+      TAG = 'SUB_AA_AbilityAppManager_0100';
+      await appManagerNew.getRunningProcessInformation().then((data)=>{
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
+      }).catch((err)=>{
+        console.log(`${TAG} getRunningProcessInformation err  ${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_AbilityAppManager_0200
+     * @tc.name    The form of a callback getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_AbilityAppManager_0200', 0, async function (done) {
+      TAG = 'SUB_AA_AbilityAppManager_0100';
+      appManagerNew.getRunningProcessInformation((err, data) => {
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}
+        err: ${JSON.stringify(err)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+          expect(typeof data[i].state).assertEqual("number");
+          expect(data[i].state).assertLarger(0);
+        }
+        done();
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_ApplicationContext_0100
+     * @tc.name    The form of a promise getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_ApplicationContext_0100', 0, async function (done) {
+      TAG = 'SUB_AA_ApplicationContext_0100';
+      await globalThis.applicationContext.getRunningProcessInformation().then((data)=>{
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
+      }).catch((err)=>{
+        console.log(`${TAG} getRunningProcessInformation err  ${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      })
+    })
+
+    /*
+     * @tc.number  SUB_AA_ApplicationContext_0200
+     * @tc.name    The form of a callback getRunningProcessInformation
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_ApplicationContext_0200', 0, async function (done) {
+      TAG = 'SUB_AA_ApplicationContext_0200';
+      globalThis.applicationContext.getRunningProcessInformation((err, data) => {
+        console.log(`${TAG} getRunningProcessInformation data  ${JSON.stringify(data.length)}
+        err: ${JSON.stringify(err)}`);
+        for (let i = 0; i < data.length; i++) {
+          console.log(`${TAG} getRunningProcessInformation${i} : JSON.stringify(data[i])`);
+          expect(typeof (data[i].pid)).assertEqual("number");
+          expect(data[i].pid).assertLarger(0);
+          expect(typeof (data[i].uid)).assertEqual("number");
+          expect(data[i].uid).assertLarger(0);
+          expect(typeof (data[i].processName)).assertEqual("string");
+          expect(data[i].processName.length).assertLarger(0);
+          expect(Array.isArray(data[i].bundleNames)).assertEqual(true);
+          expect(data[i].bundleNames.length).assertLarger(0);
+        }
+        done();
+      })
+    })
+    /*
+     * @tc.number  SUB_AA_Form_formBindingData_0100
+     * @tc.name    Create FormBindingData
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_Form_formBindingData_0100', 0, async function (done) {
+      TAG = 'SUB_AA_Form_formBindingData_0100';
+      let formData = {};
+      let proxies = [
+        {
+          "key": "detail",
+          "subscriberId": "11"
+        }
+      ]
+      let formBinding = formBindingData.createFormBindingData(formData);
+      formBinding["proxies"] = proxies;
+      expect(formBinding != undefined).assertTrue()
+      done()
+    })
+
+     /*
+     * @tc.number  SUB_AA_UIAbilityContext_setMissionContinueState_0100
+     * @tc.name    setMissionContinueState with callback for Ability.
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+     it('SUB_AA_UIAbilityContext_setMissionContinueState_0100', 0, async function (done) {
+      TAG = 'SUB_AA_UIAbilityContext_setMissionContinueState_0100';
+      globalThis.abilityContext.setMissionContinueState(0, (err, data)=>{
+        console.log(`${TAG} setMissionContinueState data  ${JSON.stringify(err)}`);
+        expect(data).assertEqual(undefined);
+        done();
+      })
+    })
+
+      /*
+     * @tc.number  SUB_AA_UIAbilityContext_setMissionContinueState_0200
+     * @tc.name    setMissionContinueState with promise for Ability.
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+     it('SUB_AA_UIAbilityContext_setMissionContinueState_0200', 0, async function (done) {
+      TAG = 'SUB_AA_UIAbilityContext_setMissionContinueState_0200';
+      globalThis.abilityContext.setMissionContinueState(0).then((data)=>{
+        console.log(`${TAG} setMissionContinueState data  ${JSON.stringify(data)}`);
+        expect(data).assertEqual(undefined);
+        done();
+      }).catch((err)=>{
+        console.log(`${TAG} setMissionContinueState promise err  ${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
       })
     })
   })

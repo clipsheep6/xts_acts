@@ -49,6 +49,7 @@ describe("WorkSchedulerJsTest", function () {
     beforeAll(function() {
 
         workStart(workInfo,function(data) {
+            let WorkSchedulerExtensionContext = this.context;
             console.info("onWorkStart finish,result: " + data)
         })
         /*
@@ -226,10 +227,10 @@ describe("WorkSchedulerJsTest", function () {
         try {
             workScheduler.startWork(workInfo);
             workScheduler.stopWork(workInfo, 111);
-        } catch ( err) {
-            console.info("---------------- err: " +  err.code);
-            expect( err.code).assertEqual("401");
+            expect(workScheduler.stopWork(workInfo, 111)).assertNull();
             done();
+        } catch ( err) {
+            console.info("WorkSchedulerJsTest007 ---------------- err: " +  err.code);
         };
     })
 
@@ -421,15 +422,13 @@ describe("WorkSchedulerJsTest", function () {
         console.info('----------------------WorkSchedulerJsTest014---------------------------');
         workScheduler.isLastWorkTimeOut(14, (err, res) =>{
             if (err) {
-                expect(false).assertEqual(true)
+                console.info('WorkSchedulerJsTest014 isLastWorkTimeOut callback failed, err:' + err.code);
+                expect(err.code).assertEqual(9700004);
+                done();
             } else {
                 console.info('WorkSchedulerJsTest014 isLastWorkTimeOut callback success, data is:' + res);
-                expect(true).assertEqual(true)
             }
         });
-        setTimeout(()=>{
-            done();
-        }, 500);
     })
 
     /*
@@ -442,14 +441,12 @@ describe("WorkSchedulerJsTest", function () {
         workScheduler.isLastWorkTimeOut(15)
             .then(res => {
                 console.info('WorkSchedulerJsTest015 isLastWorkTimeOut promise success, data is:' + res);
-                expect(true).assertEqual(true)
             })
             .catch(err =>  {
-                expect(false).assertEqual(true)
+                console.info('WorkSchedulerJsTest015 isLastWorkTimeOut promise failed, err:' + err.code);
+                expect(err.code).assertEqual(9700004);
+                done();
         });
-        setTimeout(()=>{
-            done();
-        }, 500);
     })
 
     /*

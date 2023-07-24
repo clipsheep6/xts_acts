@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 // @ts-nocheck
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 
 export default function dividerJsunit() {
@@ -32,7 +32,7 @@ export default function dividerJsunit() {
   describe('dividerTest', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/Divider',
+        uri: 'MainAbility/pages/Divider',
       }
       try {
         router.clear();
@@ -72,7 +72,7 @@ export default function dividerJsunit() {
       console.log("cd divider strokeWidth" + JSON.stringify(obj.$attrs.strokeWidth));
       console.log("cd divider vertical" + JSON.stringify(obj.$attrs.vertical));
       console.log("cd divider lineCap" + JSON.stringify(obj.$attrs.lineCap));
-      expect(obj.$attrs.strokeWidth).assertEqual("7.000000")
+      expect(obj.$attrs.strokeWidth).assertEqual("7.00vp")
       expect(obj.$attrs.vertical).assertEqual('true')
       expect(obj.$attrs.lineCap == LineCapStyle.Square)
       console.info('cd dividerInspectorByKey END');

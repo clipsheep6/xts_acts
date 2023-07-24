@@ -56,7 +56,7 @@ export default function pasteBoardTest(){
 			var systemPasteBoard = pasteboard.getSystemPasteboard();
             await systemPasteBoard.clear().then(async () => {
                 let prop = pasteData.getProperty();
-				prop.shareOption = pasteboard.ShareOption.InApp;
+				prop.shareOption = pasteboard.ShareOption.INAPP;
 				pasteData.setProperty(prop);
                 var property = pasteData.getProperty();
 				expect(0).assertEqual(property.shareOption)
@@ -78,7 +78,7 @@ export default function pasteBoardTest(){
 			var systemPasteBoard = pasteboard.getSystemPasteboard();
             await systemPasteBoard.clear().then(async () => {
                 let prop = pasteData.getProperty();
-				prop.shareOption = pasteboard.ShareOption.LocalDevice;
+				prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
 				pasteData.setProperty(prop);
                 var property = pasteData.getProperty();
 				expect(1).assertEqual(property.shareOption)
@@ -100,7 +100,7 @@ export default function pasteBoardTest(){
 			var systemPasteBoard = pasteboard.getSystemPasteboard();
             await systemPasteBoard.clear().then(async () => {
                 let prop = pasteData.getProperty();
-				prop.shareOption = pasteboard.ShareOption.CrossDevice;
+				prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
 				pasteData.setProperty(prop);
                 var property = pasteData.getProperty();
 				expect(2).assertEqual(property.shareOption)
@@ -206,218 +206,73 @@ export default function pasteBoardTest(){
         })
 
         /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0100
-         * @tc.name      convertToTextV9
+         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0100
+         * @tc.name      toPlainText
          * @tc.desc      Successfully cast string record to text
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
         */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0100', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0100 start")
+         it('SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0100', 0, async function (done) {
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0100 start")
             let pasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN,"valueType")
-            await pasteDataRecord.convertToTextV9((err, data) => {
-                if(err != null){
-                    console.info("Cast string record to text error, error message is: " + err)
-                    expect(false).assertTrue();
-                }else{
-                    console.info("Cast string record to text success,result is: " + data)
-                    expect(data).assertEqual("valueType")
-                }
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0100 end")
+            var str = await pasteDataRecord.toPlainText();
+            expect(str).assertEqual("valueType")
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0100 end")
             done();
         })
 
         /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0200
-         * @tc.name      convertToTextV9
+         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0200
+         * @tc.name      toPlainText
          * @tc.desc      Successfully cast pixelMap record to text
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
         */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0200', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0200 start")
-            let pasteDataRecord =undefined;
+         it('SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0200', 0, async function (done) {
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0200 start")
+            let pasteDataRecord = undefined;
             await image.createPixelMap(color, opt).then((pixelMap) => {
                 pasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP,pixelMap);
             })
-            await pasteDataRecord.convertToTextV9((err, data) => {
-                if(err != null){
-                    console.info("Cast pixelMap record to text error, error message is: " + err)
-                    expect(false).assertTrue();
-                }else{
-                    console.info("Cast pixelMap record to text success,result is: " + data)
-                    expect(data).assertEqual("")
-                }
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0200 end")
+            var str = await pasteDataRecord.toPlainText();
+            expect(str).assertEqual("");
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0200 end")
             done();
         })
 
         /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0300
-         * @tc.name      convertToTextV9
+         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0300
+         * @tc.name      toPlainText
          * @tc.desc      Successfully cast want record to text
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
         */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0300', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0300 start")
+         it('SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0300', 0, async function (done) {
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0300 start")
             let pasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_WANT,WANT)
-            await pasteDataRecord.convertToTextV9((err, data) => {
-                if(err != null){
-                    console.info("Cast want record to text error, error message is: " + err)
-                    expect(false).assertTrue();
-                }else{
-                    console.info("Cast want record to text success,result is: " + data)
-                    expect(data).assertEqual("")
-                }
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0300 end")
+            var str = await pasteDataRecord.toPlainText();
+            expect(str).assertEqual("");
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0300 end")
             done();
         })
 
         /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0400
-         * @tc.name      convertToTextV9
+         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0400
+         * @tc.name      toPlainText
          * @tc.desc      Successfully cast arrayBuffer record to text
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
         */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0400', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0400 start")
+         it('SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0400', 0, async function (done) {
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0400 start")
             let pasteDataRecord = pasteboard.createRecord("ArrayBuffer",ARRAY_BUFFER)
-            await pasteDataRecord.convertToTextV9((err, data) => {
-                if(err != null){
-                    console.info("Cast arrayBuffer record to text error, error message is: " + err)
-                    expect(false).assertTrue();
-                }else{
-                    console.info("Cast arrayBuffer record to text success,result is: " + data)
-                    expect(data).assertEqual("")
-                }
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0400 end")
-            done();
-        })
-
-        /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0500
-         * @tc.name      convertToTextV9
-         * @tc.desc      Cast arrayBuffer record to text failed,
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
-        */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0500', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0500 start")
-            let pasteDataRecord = pasteboard.createRecord("string",ARRAY_BUFFER)
-            function convert(callBack){
-                pasteDataRecord.convertToTextV9(callBack)
-            }
-            try{
-                convert("callback")
-            }catch(err){
-                console.info("Cast string record to text error, error code is: " + err.code)
-                error = err
-                expect(err.code).assertEqual("401")
-            }
-            expect(error != undefined).assertTrue();
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_CALLBACK_0500 end")
-            done();
-        })
-
-        /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0100
-         * @tc.name      convertToTextV9
-         * @tc.desc      Successfully cast string record to text
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
-        */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0100', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0100 start")
-            let pasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN,"valueType")
-            await pasteDataRecord.convertToTextV9().then((data) => {
-                console.info("Cast string record to text success,result is: " + data)
-                expect(data).assertEqual("valueType")
-            }).catch((err) => {
-                console.info("Cast string record to text error, error message is: " + err)
-                expect(false).assertTrue();
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0100 end")
-            done();
-        })
-
-        /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0200
-         * @tc.name      convertToTextV9
-         * @tc.desc      Successfully cast pixelMap record to text
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
-        */  
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0200', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0200 start")
-            let pasteDataRecord =undefined;
-            await image.createPixelMap(color, opt).then((pixelMap) => {
-                pasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP,pixelMap);
-            })
-            await pasteDataRecord.convertToTextV9().then((data) => {
-                console.info("Cast pixelMap record to text success,result is: " + data)
-                expect(data).assertEqual("")
-            }).catch((err) => {
-                console.info("Cast pixelMap record to text error, error message is: " + err)
-                expect(false).assertTrue();
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0200 end")
-            done();
-        })
-
-        /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0300
-         * @tc.name      convertToTextV9
-         * @tc.desc      Successfully cast want record to text
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
-        */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0300', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0300 start")
-            let pasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_WANT,WANT)
-            await pasteDataRecord.convertToTextV9().then((data) => {
-                console.info("Cast want record to text success,result is: " + data)
-                expect(data).assertEqual("")
-            }).catch(err => {
-                console.info("Cast want record to text error, error message is: " + err)
-                expect(false).assertTrue();
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0300 end")
-            done();
-        })
-
-        /**
-         * @tc.number    SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0400
-         * @tc.name      convertToTextV9
-         * @tc.desc      Successfully cast arrayBuffer record to text
-         * @tc.size      : MEDIUM
-         * @tc.type      : Function
-         * @tc.level     : Level 2
-        */
-         it('SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0400', 0, async function (done) {
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0400 start")
-            let pasteDataRecord = pasteboard.createRecord("ArrayBuffer",ARRAY_BUFFER)
-            await pasteDataRecord.convertToTextV9().then((data) => {
-                console.info("Cast arrayBuffer record to text success,result is: " + data)
-                expect(data).assertEqual("")
-            }).catch(err => {
-                console.info("Cast arrayBuffer record to text error, error message is: " + err)
-                expect(false).assertTrue();
-            })
-            console.info("SUB_PASTEBOARD_FUNCTION_ETS_CONVERTTOTEXTV9_PROMISE_0400 end")
+            var str = await pasteDataRecord.toPlainText();
+            expect(str).assertEqual("")
+            console.info("SUB_PASTEBOARD_FUNCTION_ETS_TOPLAINTEXT_0400 end")
             done();
         })
 

@@ -26,13 +26,21 @@ let finishOutData;
 export default function SecurityHuksECCBasicFinish65KBCallbackJsunit() {
   describe('SecurityHuksECCBasicFinish65KBCallbackJsunit', function () {
     it('testReformedSignVerifyECC003', 0, async function (done) {
+<<<<<<< HEAD
       const srcKeyAlies = 'testSignVerifyECCSize224SIGNNONEKeyAlias003';
+=======
+      const srcKeyAlies = 'testSignVerifyECCSize256SIGNNONEKeyAlias003';
+>>>>>>> hw/master
       let HuksOptions = {
         properties: new Array(
           HuksSignVerifyECC.HuksKeyAlgECC,
           HuksSignVerifyECC.HuksKeyECCPurposeSIGN,
           HuksSignVerifyECC.HuksTagECCDigestNONE,
+<<<<<<< HEAD
           HuksSignVerifyECC.HuksKeyECCSize224
+=======
+          HuksSignVerifyECC.HuksKeyECCSize256
+>>>>>>> hw/master
         ),
         inData: srcData65Sha256,
       };
@@ -42,7 +50,11 @@ export default function SecurityHuksECCBasicFinish65KBCallbackJsunit() {
           HuksSignVerifyECC.HuksKeyAlgECC,
           HuksSignVerifyECC.HuksKeyECCPurposeVERIFY,
           HuksSignVerifyECC.HuksTagECCDigestNONE,
+<<<<<<< HEAD
           HuksSignVerifyECC.HuksKeyECCSize224
+=======
+          HuksSignVerifyECC.HuksKeyECCSize256
+>>>>>>> hw/master
         ),
         inData: finishOutData,
       };

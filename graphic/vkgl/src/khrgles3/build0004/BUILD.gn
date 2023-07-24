@@ -26,19 +26,23 @@ config("deqp_platform_ohos_config") {
 }
 
 ohos_static_library("libkhrgles3func0004") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
   sources = common_src
   sources += [ "../Khrgles3BaseFunc.cpp" ]
 
   include_dirs = common_include
   deps = common_depends
   external_deps = [
-    "hilog_native:libhilog",
-    "multimedia_image_framework:image_native",
+    "hilog:libhilog",
+    "image_framework:image_native",
   ]
   configs = [ ":deqp_platform_ohos_config" ]
 }
 
 ohos_moduletest_suite("ActsKhrgles3TestSuite0004") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
   sources = [
     "../ActsKhrgles30004TestSuite.cpp",
     "../copy_tex_image_conversions/Khrgles3copy_tex_image_conversions_forbiddenTestCase.cpp",
@@ -66,7 +70,7 @@ ohos_moduletest_suite("ActsKhrgles3TestSuite0004") {
     "../parallel_shader_compile/Khrgles3KHR-GLES3_parallel_shader_compileTestCase.cpp",
   ]
 
-  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+  include_dirs = [ "../../../src" ]
 
   deps = [ ":libkhrgles3func0004" ]
 

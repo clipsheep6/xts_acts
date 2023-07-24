@@ -12,14 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
+import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
 @Component
 struct RotationGuestureTest {
   @State X: number = 0;
+<<<<<<< HEAD
   @State name: string = 'RotationGuesture';
   @State StepTips: string = '操作步骤：用至少两根手指旋转图像（最多五根手指）'+'\n'+'预期结果：图片能够正常旋转';
+=======
+  @State name: string = 'RotationGesture';
+  @State StepTips: string = '操作步骤：两根手指旋转图像'+'\n'+'预期结果：图片能够正常旋转且文本旋转角度显示正常';
+  @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -35,6 +45,10 @@ struct RotationGuestureTest {
       RotationGesture()
         .onActionUpdate((event: GestureEvent) => {
           this.X = event.angle;
+<<<<<<< HEAD
+=======
+          this.Vue = true;
+>>>>>>> hw/master
         })
       )
       Text('旋转角度:' + this.X)
@@ -44,6 +58,7 @@ struct RotationGuestureTest {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
         Url:'pages/ArkUI/ArkUI_index',
         StepTips:this.StepTips,
         content: this.specificNoParam,
@@ -52,4 +67,20 @@ struct RotationGuestureTest {
       })
     }.width('100%').height('100%').backgroundColor(Color.Black)
   }
+=======
+        Url: 'pages/ArkUI/ArkUI_index',
+        StepTips: this.StepTips,
+        content: this.specificNoParam,
+        X: $X,
+        name: $name,
+        Vue: $Vue,
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+  onBackPress(){
+    router.replaceUrl({
+      url:'pages/ArkUI/ArkUI_index',
+    })
+  }
+>>>>>>> hw/master
 }

@@ -11,10 +11,16 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsBluetoothProFileJsTest.hap"
+                "ActsBluetoothProFileHapTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "svc bluetooth enable"
+            ]
         }
     ]
 }

@@ -385,7 +385,7 @@ export default function DeviceInfoTest() {
 
             expect(securityPatchTagInfo).assertInstanceOf('String');
             if (securityPatchTagInfo != "" && securityPatchTagInfo != null && securityPatchTagInfo != undefined) {
-                let str = /[\w-\.\(\)]/g;
+                let str = /[\w\/\.\(\)]/g;
                 let arr = securityPatchTagInfo.match(str);
                 let bufferstr = arr.join('');
                 console.info('the value of the bufferstr is :' + bufferstr);
@@ -1571,7 +1571,7 @@ export default function DeviceInfoTest() {
             let securityPatchTagInfo = deviceinfo.securityPatchTag;
             console.info('the value of the deviceinfo securityPatchTag is :' + securityPatchTagInfo);
 
-            let reFormat = /^(\d{4})-(\d{2})-(\d{2})$/;
+            let reFormat = /^(\d{4})\/(\d{2})\/(\d{2})$/;
             let re = securityPatchTagInfo.match(reFormat);
 
             if (re != null) {
@@ -1633,6 +1633,142 @@ export default function DeviceInfoTest() {
             console.info('the value of the different build host of the same baseline code characters is :' + len);
             expect(len).assertLess(MAX_CHARACTERS_NUM_TWO)
             console.info('device_info_test_064 : end');
+        })
+        /**
+         * @tc.number    SUB_STARTUP_JS_DEVCEINFO_0665
+         * @tc.name     testGetdistributionOSName01
+         * @tc.desc      Get the distributionOSName name represented by an empty string.
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('device_info_test_0665', 0, function () {
+            console.info('device_info_test_0665 start');
+
+            let distributionOSNameInfo = deviceinfo.distributionOSName;
+            console.info('the value of the distributionOSNameInfo is :' + distributionOSNameInfo);
+            expect(distributionOSNameInfo).assertInstanceOf('String');
+            if (distributionOSNameInfo != "" && distributionOSNameInfo != null && distributionOSNameInfo != undefined) {
+                let str = /[\w-\.\(\)]/g;
+                let arr = distributionOSNameInfo.match(str);
+                let bufferstr = arr.join('');
+                console.info('the value of the bufferstr is :' + bufferstr);
+                expect(distributionOSNameInfo).assertEqual(bufferstr);
+            } else {
+                console.info('the return value is null and the type is :' + typeof (distributionOSNameInfo));
+                expect(distributionOSNameInfo == "").assertTrue();
+            }
+            console.info('device_info_test_0665 ：end');
+        })
+        /**
+         * @tc.number    SUB_STARTUP_JS_DEVCEINFO_0666
+         * @tc.name     testGetdistributionOSVersion01
+         * @tc.desc      Get the operating system full name and the return value is not null.
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('device_info_test_0666', 0, function () {
+            console.info('device_info_test_0666 start');
+
+            let distributionOSVersionInfo = deviceinfo.distributionOSVersion;
+            console.info('the value of the deviceinfo distributionOSVersion is :' + distributionOSVersionInfo);
+
+            expect(distributionOSVersionInfo).assertInstanceOf('String');
+            if (distributionOSVersionInfo != "" && distributionOSVersionInfo != null && distributionOSVersionInfo != undefined) {
+                let str = /[\w-\.\(\)]/g;
+                let arr = distributionOSVersionInfo.match(str);
+                let bufferstr = arr.join('');
+                console.info('the value of the bufferstr is :' + bufferstr);
+                expect(distributionOSVersionInfo).assertEqual(bufferstr);
+            } else {
+                console.info('the return value is null or incorrect.');
+                expect().assertFail();
+            }
+
+            console.info('device_info_test_0666 ：end');
+        })
+        /**
+         * @tc.number    SUB_STARTUP_JS_DEVCEINFO_0667
+         * @tc.name      testGetdistributionOSVersion02
+         * @tc.desc      Get a string representing the operating system full name which has a maximum of 32 characters.
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('device_info_test_0667', 0, function () {
+            console.info('device_info_test_0667 start');
+            let distributionOSVersionInfo = deviceinfo.distributionOSVersion;
+            console.info('the value of the deviceinfo distributionOSVersion is :' + distributionOSVersionInfo);
+
+            let len = distributionOSVersionInfo.length;
+            console.info('the value of the operating system full name characters is :' + len);
+            expect(len).assertLess(MAX_CHARACTERS_NUM_ONE);
+
+            let str = /[\w-\.\(\)]/g;
+            let arr = distributionOSVersionInfo.match(str);
+            let bufferstr = arr.join('');
+            console.info('the value of the bufferstr is :' + bufferstr);
+            expect(distributionOSVersionInfo).assertEqual(bufferstr);
+
+            console.info('device_info_test_0667 ：end');
+        })
+        /**
+       * @tc.number    SUB_STARTUP_JS_DEVCEINFO_0668
+       * @tc.name     testGetdistributionOSApiVersion01
+       * @tc.desc    Get the API version number, which return value type is number and return value is greater than 0.
+       * @tc.size    : MEDIUM
+       * @tc.type    : Function
+       * @tc.level   : Level 0
+       */
+        it('device_info_test_0668', 0, function () {
+            console.info('device_info_test_0668 start');
+            let ret = false;
+            let distributionOSApiVersionInfo = deviceinfo.distributionOSApiVersion;
+            console.info('the value of the deviceinfo distributionOSApiVersion is :' + distributionOSApiVersionInfo);
+
+            expect(distributionOSApiVersionInfo).assertInstanceOf('Number');
+            if (distributionOSApiVersionInfo >= 0) {
+                ret = true;
+            }
+            expect(ret).assertTrue();
+
+            let str = /[\w-\.\(\)]/g;
+            let arr = distributionOSApiVersionInfo.toString().match(str);
+            let substr = arr.join('');
+            let numstr = parseInt(substr);
+            console.info('the value of the bufferstr is :' + numstr);
+            expect(distributionOSApiVersionInfo).assertEqual(numstr);
+
+            console.info('device_info_test_0668 ：end');
+        })
+        /**
+         * @tc.number    SUB_STARTUP_JS_DEVCEINFO_0669
+         * @tc.name     testGetOSReleaserType01
+         * @tc.desc      Get the OS release type represented by a string and the return value is not null.
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('device_info_test_0669', 0, function () {
+            console.info('device_info_test_0669 start');
+
+            let distributionOSReleaseTypeInfo = deviceinfo.distributionOSReleaseType;
+            console.info('the value of the deviceinfo distributiondistributionOSReleaseType is :' + distributionOSReleaseTypeInfo);
+
+            expect(distributionOSReleaseTypeInfo).assertInstanceOf('String');
+            if (distributionOSReleaseTypeInfo != "" && distributionOSReleaseTypeInfo != null && distributionOSReleaseTypeInfo != undefined) {
+                let str = /[\w-\.\(\)]/g;
+                let arr = distributionOSReleaseTypeInfo.match(str);
+                let bufferstr = arr.join('');
+                console.info('the value of the bufferstr is :' + bufferstr);
+                expect(distributionOSReleaseTypeInfo).assertEqual(bufferstr);
+            } else {
+                console.info('the return value is null or incorrect.');
+                expect().assertFail();
+            }
+
+            console.info('device_info_test_0669 ：end');
         })
     })
 }

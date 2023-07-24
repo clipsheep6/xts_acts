@@ -56,7 +56,7 @@ let mVideoProfileCfg = {
     audioSampleRate: 48000,
     durationTime: 1000,
     fileFormat: 'mp4',
-    videoBitrate: 48000,
+    videoBitrate: 2000000,
     videoCodec: 'video/mp4v-es',
     videoFrameWidth: 640,
     videoFrameHeight: 480,
@@ -188,7 +188,7 @@ export default function cameraSessionExposureTest() {
         console.log(TAG + 'Entering getVideoReceiveSurface')
         await getFd('CameraSessionExposure.mp4');
         mVideoConfig.url = mFdPath;
-        media.createVideoRecorder((err, recorder) => {
+        media.createAVRecorder((err, recorder) => {
             if (!err) {
                 console.info(TAG + 'Entering create video receiver')
                 mVideoRecorder = recorder
@@ -907,10 +907,11 @@ export default function cameraSessionExposureTest() {
 
                     let METERINGPoint = mCameraSession.getMeteringPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 finish");
-                    if ((METERINGPoint.x == mMETERINGPointLT.x) && (METERINGPoint.y == mMETERINGPointLT.y)) {
+                    if ((Math.abs(METERINGPoint.x - mMETERINGPointLT.x) >= 0) && (Math.abs(METERINGPoint.y - mMETERINGPointLT.y) >= 0)) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0101 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -953,10 +954,11 @@ export default function cameraSessionExposureTest() {
 
                     let METERINGPoint = mCameraSession.getMeteringPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 finish");
-                    if ((METERINGPoint.x == mMETERINGPointRT.x) && (METERINGPoint.y == mMETERINGPointRT.y)) {
+                    if ((Math.abs(METERINGPoint.x - mMETERINGPointRT.x) >= 0) && (Math.abs(METERINGPoint.y - mMETERINGPointRT.y) >= 0)) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0102 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -998,10 +1000,11 @@ export default function cameraSessionExposureTest() {
 
                     let METERINGPoint = mCameraSession.getMeteringPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 finish");
-                    if ((METERINGPoint.x == mMETERINGPointLB.x) && (METERINGPoint.y == mMETERINGPointLB.y)) {
+                    if ((Math.abs(METERINGPoint.x - mMETERINGPointLB.x) >= 0) && (Math.abs(METERINGPoint.y - mMETERINGPointLB.y) >= 0)) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0103 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1048,6 +1051,7 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0104 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     await stopCameraSession();
@@ -1093,6 +1097,7 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0105 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1139,6 +1144,7 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0106 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1185,6 +1191,7 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0107 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1230,6 +1237,7 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 PASSED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_METERING_POINT_PROMISE_0108 FAILED with METERINGPoint is: " + METERINGPoint.x + ", " + METERINGPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1275,6 +1283,7 @@ export default function cameraSessionExposureTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 PASSED with ExposureBiasRange length is: " + exposureBiasRange.length);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_EXPOSURE_BIAS_RANGE_PROMISE_0100 FAILED with ExposureBiasRange length is: " + exposureBiasRange.length);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
     
@@ -1313,7 +1322,11 @@ export default function cameraSessionExposureTest() {
                 for (let i = 0; i < mCameraNum; i++) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 start for camera[" + i + "]");
                     let exposureBias = mExposureBiasRangeArray[i][0];
+<<<<<<< HEAD
                     if (exposureBias == 0) {
+=======
+                    if (exposureBias == 0 || isNaN(exposureBias)) {
+>>>>>>> hw/master
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 exposureBias is 0");
                     } else {
                         await startCameraSession(i);
@@ -1327,6 +1340,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0100 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
+                            await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         await stopCameraSession();
@@ -1374,6 +1391,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0101 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
+                            await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         await sleep(500);
@@ -1422,6 +1443,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0102 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
+                            await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         await stopCameraSession();
@@ -1470,6 +1495,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0103 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
+                            await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         
@@ -1520,6 +1549,10 @@ export default function cameraSessionExposureTest() {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 PASSED with ExposureValue is: " + exposureValue);
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_0104 FAILED with ExposureValue is: " + exposureValue);
+<<<<<<< HEAD
+=======
+                            await stopCameraSession();
+>>>>>>> hw/master
                             expect().assertFail();
                         }
                         

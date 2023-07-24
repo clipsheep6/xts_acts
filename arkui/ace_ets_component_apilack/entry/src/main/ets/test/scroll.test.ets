@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
 import events_emitter from '@ohos.events.emitter';
 
@@ -23,7 +23,7 @@ export default function scrollOnScrollBeginJsunit() {
     beforeAll(async function (done) {
       console.info("flex beforeEach start");
       let options = {
-        uri: 'pages/scroll',
+        uri: 'MainAbility/pages/scroll',
       }
       try {
         router.clear();
@@ -126,7 +126,7 @@ export default function scrollOnScrollBeginJsunit() {
       console.info("[testscrollOnScrollBegin0005] component align strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$type).assertEqual('Scroll');
-      expect(obj.$attrs.scrollBarWidth).assertEqual("30.00px");
+      expect(obj.$attrs.scrollBarWidth).assertEqual("30.00vp");
       console.info("[testscrollOnScrollBegin0005] scrollBarWidth value :" + obj.$attrs.scrollBarWidth);
       done();
     });

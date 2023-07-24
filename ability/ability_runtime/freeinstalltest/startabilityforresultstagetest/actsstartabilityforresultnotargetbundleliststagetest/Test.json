@@ -20,13 +20,16 @@
             "type": "ShellKit",
             "run-command": [
                 "remount",
-                "mkdir /data/test/"
+                "mkdir /data/test/",
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
             ]
         },
         {
             "type": "PushKit",
             "push":[
-                "atomizationresultstageentry.hap -> /data/test/AtomizationResultStageEntry.hap",
+                "AtomizationResultStageEntry.hap -> /data/test/AtomizationResultStageEntry.hap",
                 "MockService.hap -> /data/test/MockService.hap"
             ]
         }

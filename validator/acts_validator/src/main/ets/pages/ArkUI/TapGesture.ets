@@ -12,6 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
+import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer4';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -19,7 +23,12 @@ import FirstDialog from '../model/FirstDialog';
 struct TapGestureExample {
   @State value: string = '';
   @State name: string = 'TapGesture';
+<<<<<<< HEAD
   @State StepTips: string = '操作步骤：用至少一根手指连续双击图像（最多十根手指）'+'\n'+'预期结果：双击图片后文本提示正常弹出';
+=======
+  @State StepTips: string = '操作步骤：手指连续双击图像'+'\n'+'预期结果：双击图片后文本提示正常弹出';
+  @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -33,6 +42,10 @@ struct TapGestureExample {
       TapGesture({ count: 2 })
         .onAction(() => {
           this.value = 'TapGesture onAction';
+<<<<<<< HEAD
+=======
+          this.Vue = true;
+>>>>>>> hw/master
         })
       )
       Text(this.value)
@@ -43,6 +56,7 @@ struct TapGestureExample {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
         StepTips:this.StepTips,
         Url:'pages/ArkUI/ArkUI_index',
         content: this.specificNoParam,
@@ -51,4 +65,20 @@ struct TapGestureExample {
       })
     }.width('100%').height('100%').backgroundColor(Color.Black)
   }
+=======
+        StepTips: this.StepTips,
+        Url: 'pages/ArkUI/ArkUI_index',
+        content: this.specificNoParam,
+        value: $value,
+        name: $name,
+        Vue: $Vue,
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+  onBackPress(){
+    router.replaceUrl({
+      url:'pages/ArkUI/ArkUI_index',
+    })
+  }
+>>>>>>> hw/master
 }

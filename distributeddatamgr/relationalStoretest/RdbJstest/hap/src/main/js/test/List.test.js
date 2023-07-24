@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+=======
+* Copyright (c) 2021-2023 Huawei Device Co., Ltd.
+>>>>>>> hw/master
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -12,8 +16,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+<<<<<<< HEAD
 import rdbStoreBackupRestoreCallbackTest from './RdbstoreBackupRestoreCallbackJsunit.test.js'
 import rdbStoreBackupRestoreWithFAContextTest from './RdbstoreBackupRestoreWithFAContextJsunit.test.js'
+=======
+
+>>>>>>> hw/master
 import rdbStoreDeleteTest from './RdbstoreDeleteJsunit.test.js'
 import rdbStoreDistributedTest from './RdbStoreDistributedJsunit.test.js'
 import rdbstoreInsertTest from './RdbstoreInsertJsunit.test.js'
@@ -24,12 +32,19 @@ import rdbResultSetTest from './RdbStoreResultSetJsunit.test.js'
 import rdbstoreStoreExcuteSqlTest from './RdbstoreStoreExcuteSqlJsunit.test.js'
 import rdbstoreTransactionTest from './RdbstoreTransactionJsunit.test.js'
 import rdbStoreUpdateTest from './RdbstoreUpdateJsunit.test.js'
+<<<<<<< HEAD
 import rdbstoreQueryTest from './RdbstoreQuery.test.js'
 import rdbStoreEncryptionTest from './RdbstoreEncryptionJsunit.test.js'
 import rdbStorePredicatesComplexFiledTest from './RdbstorePredicatesComplexFiledJsunit.test.js'
 export default function testsuite() {
     rdbStoreBackupRestoreCallbackTest()
     rdbStoreBackupRestoreWithFAContextTest()
+=======
+import rdbStoreEncryptionTest from './RdbstoreEncryptionJsunit.test.js'
+import rdbStorePredicatesComplexFiledTest from './RdbstorePredicatesComplexFiledJsunit.test.js'
+
+export default function testsuite() {
+>>>>>>> hw/master
     rdbStoreDeleteTest()
     rdbStoreDistributedTest()
     rdbstoreInsertTest()
@@ -40,7 +55,10 @@ export default function testsuite() {
     rdbstoreStoreExcuteSqlTest()
     rdbstoreTransactionTest()
     rdbStoreUpdateTest()
+<<<<<<< HEAD
     rdbstoreQueryTest()
+=======
+>>>>>>> hw/master
     rdbStoreEncryptionTest()
     rdbStorePredicatesComplexFiledTest()
 }

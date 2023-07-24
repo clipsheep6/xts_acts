@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
@@ -23,7 +23,7 @@ export default function shapeClippingJsunit() {
     beforeEach(async function (done) {
       console.info("shapeClipping beforeEach start");
       let options = {
-        uri: 'pages/shapeClipping',
+        uri: 'MainAbility/pages/shapeClipping',
       }
       try {
         router.clear();
@@ -68,7 +68,9 @@ export default function shapeClippingJsunit() {
       let strJson = getInspectorByKey('image_mask');
       let obj = JSON.parse(strJson);
       console.info("[testShapeClipping002] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.mask.shape).assertEqual('Rect');
+      console.info("[testShapeClipping002] component mask obj is: " + JSON.stringify(obj.$attrs.mask));
+      let mask = JSON.parse(JSON.stringify(obj.$attrs.mask)); 
+      expect(mask.shape).assertEqual('Rect'); 
       expect(obj.$attrs.clip).assertEqual('false');
       console.info('[testShapeClipping002] END');
       done();
@@ -95,7 +97,9 @@ export default function shapeClippingJsunit() {
       let strJsonNew = getInspectorByKey('image_mask');
       let objNew = JSON.parse(strJsonNew);
       console.info("[testShapeClipping003] component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.mask.shape).assertEqual('Circle');
+      console.info("[testShapeClipping003] component mask obj is: " + JSON.stringify(objNew.$attrs.mask));
+      let mask = JSON.parse(JSON.stringify(objNew.$attrs.mask)); 
+      expect(mask.shape).assertEqual('Circle'); 
       console.info('[testShapeClipping003] END');
       done();
     });

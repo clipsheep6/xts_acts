@@ -3,6 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "1500000",
+        "testcase-timeout": "20000",
         "bundle-name": "ohos.acts.multimedia.audio.audiocapturerchangeInfo",
         "package-name": "ohos.acts.multimedia.audio.audiocapturerchangeInfo",
         "shell-timeout": "60000"
@@ -18,7 +19,6 @@
 		{
             "type": "ShellKit",
             "run-command": [
-                "hilog -Q pidoff",
                 "power-shell wakeup",
                 "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
                 "power-shell setmode 602"

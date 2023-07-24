@@ -19,17 +19,15 @@ ohos_js_hap_suite("ActslocationJsTest") {
     ":geolocation_resources",
   ]
 
-  #  shared_libraries = [
-  #    "//third_party/giflib:libgif",
-  #    "//third_party/libpng:libpng",
-  #  ]
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActslocationJSApiTest"
   part_name = "location"
   subsystem_name = "location"
 }
 ohos_js_assets("geolocation_js_assets") {
-  source_dir = "./src/main/js/default"
+  js2abc = true
+  hap_profile = "./src/main/config.json"
+  source_dir = "./src/main/js"
 }
 ohos_resources("geolocation_resources") {
   sources = [ "./src/main/resources" ]

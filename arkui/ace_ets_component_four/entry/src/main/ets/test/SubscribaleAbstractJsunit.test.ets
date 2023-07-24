@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
 
 export default function SubscribaleAbstractJsunit() {
   describe('SubscribaleAbstract', function () {
@@ -99,24 +99,7 @@ export default function SubscribaleAbstractJsunit() {
       console.info('[stateManagement_IPropertySubscriber_0100] END');
       done();
     });
-
-    /**
-    * @tc.number  stateManagement_IPropertySubscriber_0100
-    * @tc.name    stateManagement IPropertySubscriber   validation
-    * @tc.desc    Function test
-    */
-    it('stateManagement_IPropertySubscriber_0100', 0, function (done) {
-      done();
-      return;
-      console.info('[stateManagement_IPropertySubscriber_0100] Start');
-      let iPropertySubscriber =new IPropertySubscriber();
-      let id = iPropertySubscriber.id();
-      let aboutToBeDeleted = iPropertySubscriber.aboutToBeDeleted();
-      expect(true).assertTrue();
-      console.info('[stateManagement_IPropertySubscriber_0100] END');
-      done();
-    });
-
+    
     /**
     * @tc.number  stateManagement_SyncedPropertyOneWay_0100
     * @tc.name    stateManagement stateManagement_SyncedPropertyOneWay_0100   validation

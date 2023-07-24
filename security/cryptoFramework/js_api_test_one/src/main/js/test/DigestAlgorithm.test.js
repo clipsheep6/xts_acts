@@ -17,19 +17,15 @@ import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
 import {
   testHMACDigestPromise,
   testMDDigestPromise,
-  testHMACErrorAlgorithm,
-  testHMACDigestPromiseErrorKey,
-  testHMACDigestPromiseDatablobNull,
-  testHMACDigestPromiseDatablobLong,
 } from "./utils/digestalgorithm/publicDigestPromise";
 import {
   testHMACDigestCallback,
   testMDDigestCallback,
-  testMDErrorAlgorithm,
-  testMDErrorAlgorithmNull,
   testMDDigestCallbackLen,
-  testMDDigestCallbackLenNull,
 } from "./utils/digestalgorithm/publicDigestCallback";
+
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { stringTouInt8Array } from "./utils/common/publicDoString";
 
 export default function DigestAlgorithmJsunit() {
   describe("DigestAlgorithmJsunit", function () {
@@ -137,32 +133,30 @@ export default function DigestAlgorithmJsunit() {
     /**
      * @tc.number Security_crypto_framework_MD_0700
      * @tc.name The encryption and decryption framework supports MD calculation, and the algorithm parameters are abnormal
-     * @tc.desc Use the Callback Style of Interface
+     * @tc.desc Input SHA5
      */
     it("Security_crypto_framework_MD_0700", 0, async function (done) {
-      await testMDErrorAlgorithm("SHA5")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
+      try {
+        cryptoFramework.createMd("SHA5");
+        expect(null).assertFail();
+      } catch (err) {
+        expect(err.code == 801).assertTrue();
+      }
       done();
     });
 
     /**
      * @tc.number Security_crypto_framework_MD_0800
      * @tc.name The encryption and decryption framework supports MD calculation, and the algorithm parameter is NULL
-     * @tc.desc Use the Callback Style of Interface
+     * @tc.desc Input null
      */
     it("Security_crypto_framework_MD_0800", 0, async function (done) {
-      await testMDErrorAlgorithmNull(null)
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
+      try {
+        cryptoFramework.createMd(null);
+        expect(null).assertFail();
+      } catch (err) {
+        expect(err.code == 401).assertTrue();
+      }
       done();
     });
 
@@ -188,13 +182,33 @@ export default function DigestAlgorithmJsunit() {
      * @tc.desc Use the Callback Style of Interface
      */
     it("Security_crypto_framework_MD_1000", 0, async function (done) {
-      await testMDDigestCallbackLenNull("SHA224")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
+      let mdGenerator = cryptoFramework.createMd("SHA224");
+      try {
+        await new Promise((resolve, reject) => {
+          mdGenerator.update(null, (err) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
+          });
         });
+        expect(null).assertFail();
+      } catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      try {
+        await mdGenerator.update(0);
+        expect(null).assertFail();
+      } catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      try {
+        await mdGenerator.digest();
+      } catch (err) {
+        console.error("err is " + err.code);
+        expect(err.code).assertEqual(401);
+      }
       done();
     });
 
@@ -284,13 +298,24 @@ export default function DigestAlgorithmJsunit() {
      * @tc.desc Use the Promise Style of Interface
      */
     it("Security_crypto_framework_HMAC_0600", 0, async function (done) {
-      await testHMACErrorAlgorithm("SHA5", null)
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
+      try {
+        cryptoFramework.createMac("SHA5");
+        expect(null).assertFail();
+      } catch (err) {
+        console.error(
+          "[Promise]: error code: " + err.code + ", message is: " + err.message
+        );
+        expect(err.code).assertEqual(801);
+      }
+      try {
+        cryptoFramework.createMac(null);
+        expect(null).assertFail();
+      } catch (err) {
+        console.error(
+          "[Promise]: error code: " + err.code + ", message is: " + err.message
+        );
+        expect(err.code).assertEqual(401);
+      }
       done();
     });
 
@@ -300,13 +325,34 @@ export default function DigestAlgorithmJsunit() {
      * @tc.desc Use the Promise Style of Interface
      */
     it("Security_crypto_framework_HMAC_0700", 0, async function (done) {
-      await testHMACDigestPromiseErrorKey("SHA512", "RSA1024|PRIMES_2")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
+      let globalHMAC = cryptoFramework.createMac("SHA512");
+      let globalsymKeyGenerator =
+        cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let key = globalsymKeyGenerator.generateKeyPair();
+      try {
+        await globalHMAC.init(key);
+        expect(null).assertFail();
+      } catch (err) {
+        console.error(
+          "[Promise]init(key): error code: " +
+            err.code +
+            ", message is: " +
+            err.message
+        );
+        expect(err.code).assertEqual(401);
+      }
+      try {
+        await globalHMAC.init(null);
+        expect(null).assertFail();
+      } catch (err) {
+        console.error(
+          "[Promise]init(null): error code: " +
+            err.code +
+            ", message is: " +
+            err.message
+        );
+        expect(err.code).assertEqual(401);
+      }
       done();
     });
 
@@ -316,13 +362,23 @@ export default function DigestAlgorithmJsunit() {
      * @tc.desc Use the Promise Style of Interface
      */
     it("Security_crypto_framework_HMAC_0800", 0, async function (done) {
-      await testHMACDigestPromiseDatablobNull("SHA512", "3DES192")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
+      let globalHMAC = cryptoFramework.createMac("SHA512");
+      let globalsymKeyGenerator =
+        cryptoFramework.createSymKeyGenerator("3DES192");
+      let key = await globalsymKeyGenerator.generateSymKey();
+      await globalHMAC.init(key);
+      try {
+        await globalHMAC.update(null);
+        expect(null).assertFail();
+      } catch (err) {
+        console.error(
+          "[Promise]init(null): error code: " +
+            err.code +
+            ", message is: " +
+            err.message
+        );
+        expect(err.code).assertEqual(401);
+      }
       done();
     });
 
@@ -332,13 +388,25 @@ export default function DigestAlgorithmJsunit() {
      * @tc.desc Use the Promise Style of Interface
      */
     it("Security_crypto_framework_HMAC_0900", 0, async function (done) {
-      await testHMACDigestPromiseDatablobLong("SHA512", "3DES192", 10000)
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
+      let globalText = "";
+      let t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz0123456789";
+      for (let i = 0; i < 10000; i++) {
+        globalText += t.charAt(Math.floor(Math.random() * t.length));
+      }
+      console.log("Datablob = " + globalText);
+      let inBlob = {
+        data: stringTouInt8Array(globalText),
+      };
+      try {
+        let macObj = cryptoFramework.createMac("SHA512");
+        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("3DES192");
+        let symKey = await symKeyGenerator.generateSymKey();
+        await macObj.init(symKey);
+        await macObj.update(inBlob);
+        await macObj.doFinal();
+      } catch (err) {
+        expect(null).assertFail();
+      }
       done();
     });
   });

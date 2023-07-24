@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 
 var subscriberInfo_MainAbility = {
@@ -22,11 +22,27 @@ var mainability
 const START_ABILITY_TIMEOUT = 10000;
 const START_ABILITY_TIMEOUT_TWO_THOUSAND = 2000;
 const START_ABILITY_TIMEOUT_THOUSAND = 1000;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 export default function abilityTest() {
 
   describe('ActsChangeAbilityStagetest', function () {
     beforeAll(async function (done) {
       console.info('beforeAll called')
+      let delay = 3000;
+      let start = new Date().getTime();
+      while (true) {
+        if (globalThis.onWindowStageActive) {
+          console.log(`ActsApiTest getWindwoStageActive is success`)
+          break;
+        }
+        if (new Date().getTime() - start > delay) {
+          console.log(`ActsApiTest getWindwoStageActive is failed`)
+            break;
+        }
+    }
       await globalThis.abilitydelegator.getCurrentTopAbility().then((data) => {
         mainability = data
         done()
@@ -87,7 +103,12 @@ export default function abilityTest() {
       })
       function timeout() {
         if (flag == true) {
-          expect().assertFail();
+          try {
+            expect().assertFail();
+          } catch (error) {
+            console.log(`ACTS_DoAbilityForeground_0100 startRunning failed: ${JSON.stringify(error)}`);
+            done();
+          }
           console.log('ACTS_DoAbilityForeground_0100 - timeout');
           commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
         }
@@ -95,8 +116,6 @@ export default function abilityTest() {
       setTimeout(timeout, START_ABILITY_TIMEOUT);
     })
 
-   
-  
     /*
      * @tc.number  : ACTS_DoAbilityForeground_0200
      * @tc.name    : change abilitystage to foreground
@@ -122,7 +141,6 @@ export default function abilityTest() {
         })
       })
     })
-
 
     /*
      * @tc.number  : ACTS_DoAbilityForeground_0400

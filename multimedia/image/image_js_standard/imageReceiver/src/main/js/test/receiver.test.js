@@ -17,11 +17,14 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 export default function ImageReceiver() {
     describe("ImageReceiver", function () {
+        let globalreceiver;
+        let globalImg;
         const WIDTH = 8192;
         const HEIGHT = 8;
         const CAPACITY = 8;
         const RGBA = 12;
         const Jpg_Stride = 1;
+        const DEVICE_CODE = 801;
         const { JPEG: FORMATJPEG } = image.ImageFormat;
         const { JPEG } = image.ComponentType;
         beforeAll(async function () {
@@ -33,6 +36,22 @@ export default function ImageReceiver() {
         });
 
         afterEach(async function () {
+            if (globalImg != undefined) {
+                console.info("globalImg release start");
+                try {
+                    await globalImg.release();
+                } catch (error) {
+                    console.info("globalImg release fail");
+                }
+            }
+            if (globalreceiver != undefined) {
+                console.info("globalreceiver release start");
+                try {
+                    await globalreceiver.release();
+                } catch (error) {
+                    console.info("globalreceiver release fail");
+                }
+            }
             console.info("afterEach case");
         });
 
@@ -53,10 +72,12 @@ export default function ImageReceiver() {
                 image.createImageReceiver(wid, hei, fmt, cap);
                 expect(false).assertTrue();
                 done();
+                return;
             } catch (error) {
                 expect(error.code == 1).assertTrue();
                 console.info(`${testNum} err message` + error);
                 done();
+                return;
             }
         }
 
@@ -66,7 +87,15 @@ export default function ImageReceiver() {
             if (receiver == undefined) {
                 expect(false).assertTrue();
                 done();
+                return;
             } else {
+                globalreceiver = receiver;
+                var error = receiver.checkDeviceTest;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                    return;
+                }
                 receiver.on("imageArrival", () => {
                     if (once) {
                         return;
@@ -76,7 +105,9 @@ export default function ImageReceiver() {
                         if (img == undefined) {
                             expect(false).assertTrue();
                             done();
+                            return;
                         } else {
+                            globalImg = img;
                             expect(img.size.width == WIDTH).assertTrue();
                             expect(img.size.height == HEIGHT).assertTrue();
                             console.log(`${testNum} img.format: ${img.format}`)
@@ -88,10 +119,12 @@ export default function ImageReceiver() {
                                 await img.getComponent(param);
                                 expect(false).assertTrue();
                                 done();
+                                return;
                             } catch (error) {
                                 expect(error.code == 1).assertTrue();
                                 console.log(`${testNum} error msg: ` + error);
                                 done();
+                                return;
                             }
                         }
                     });
@@ -107,7 +140,15 @@ export default function ImageReceiver() {
             if (receiver == undefined) {
                 expect(false).assertTrue();
                 done();
+                return;
             } else {
+                globalreceiver = receiver;
+                var error = receiver.checkDeviceTest;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                    return;
+                }
                 receiver.on("imageArrival", () => {
                     if (once) {
                         return;
@@ -117,7 +158,9 @@ export default function ImageReceiver() {
                         if (img == undefined) {
                             expect(false).assertTrue();
                             done();
+                            return;
                         } else {
+                            globalImg = img;
                             expect(img.size.width == WIDTH).assertTrue();
                             expect(img.size.height == HEIGHT).assertTrue();
                             console.log(`${testNum} img.format: ${img.format}`)
@@ -129,11 +172,13 @@ export default function ImageReceiver() {
                                 img.getComponent(param, (err, component) => {
                                     expect(false).assertTrue();
                                     done();
+                                    return;
                                 });
                             } catch (error) {
                                 expect(error.code == 1).assertTrue();
                                 console.log(`${testNum} error msg: ` + error);
                                 done();
+                                return;
                             }
                         }
                     });
@@ -150,6 +195,13 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 return;
             }
+            globalreceiver = receiver;
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             receiver.on("imageArrival", () => {
                 if (once) {
                     return;
@@ -159,7 +211,9 @@ export default function ImageReceiver() {
                     if (err) {
                         expect(false).assertTrue();
                         done();
+                        return;
                     } else {
+                        globalImg = img;
                         expect(img.size.width == WIDTH).assertTrue();
                         expect(img.size.height == HEIGHT).assertTrue();
                         checkFormat(img.format);
@@ -178,11 +232,13 @@ export default function ImageReceiver() {
                                 expect(component.byteBuffer != undefined).assertTrue();
                                 checkStride(component.rowStride, component.pixelStride);
                                 done();
+                                return;
                             })
                             .catch((error) => {
                                 console.log(`${testNum} error:` + error);
                                 expect(false).assertTrue();
                                 done();
+                                return;
                             });
                     }
                 });
@@ -199,6 +255,12 @@ export default function ImageReceiver() {
                 done();
                 return;
             }
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             receiver.on("imageArrival", () => {
                 if (once) {
                     return;
@@ -208,7 +270,9 @@ export default function ImageReceiver() {
                     if (err) {
                         expect(false).assertTrue();
                         done();
+                        return;
                     } else {
+                        globalImg = img;
                         expect(img.size.width == WIDTH).assertTrue();
                         expect(img.size.height == HEIGHT).assertTrue();
                         checkFormat(img.format);
@@ -221,12 +285,14 @@ export default function ImageReceiver() {
                                 expect(false).assertTrue();
                                 console.log(`${testNum} geterror: ` + err);
                                 done();
+                                return;
                             } else {
                                 expect(component != undefined).assertTrue();
                                 expect(component.componentType == param).assertTrue();
                                 expect(component.byteBuffer != undefined).assertTrue();
                                 checkStride(component.rowStride, component.pixelStride);
                                 done();
+                                return;
                             }
                         });
                     }
@@ -242,8 +308,16 @@ export default function ImageReceiver() {
             if (receiver == undefined) {
                 expect(false).assertTrue();
                 done();
+                return;
             } else {
+                globalreceiver = receiver;
                 try {
+                    var error = receiver.checkDeviceTest;
+                    if (DEVICE_CODE == error) {
+                        expect(error == DEVICE_CODE).assertTrue();
+                        done();
+                        return;
+                    }
                     receiver.on(param, () => {
                         expect(false).assertTrue();
                     });
@@ -251,6 +325,7 @@ export default function ImageReceiver() {
                     expect(error.code == 1).assertTrue();
                     console.log(`${testNum} error msg: ` + error);
                     done();
+                    return;
                 }
                 var dummy = receiver.test;
             }
@@ -276,12 +351,15 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 console.info("receiver_001 undefined");
                 done();
+                return;
             } else {
+                globalreceiver = receiver;
                 expect(receiver.size.width == WIDTH).assertTrue();
                 expect(receiver.size.height == HEIGHT).assertTrue();
                 expect(receiver.capacity == CAPACITY).assertTrue();
                 expect(receiver.format == FORMATJPEG).assertTrue();
                 done();
+                return;
             }
         });
 
@@ -490,12 +568,15 @@ export default function ImageReceiver() {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_CREATEIMAGERECEIVER_0400 undefined");
                 done();
+                return;
             } else {
+                globalreceiver = receiver;
                 expect(receiver.size.width == WIDTH).assertTrue();
                 expect(receiver.size.height == HEIGHT).assertTrue();
                 expect(receiver.capacity == CAPACITY).assertTrue();
                 expect(receiver.format == FORMATJPEG).assertTrue();
                 done();
+                return;
             }
         });
 
@@ -512,6 +593,7 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_GETRECEIVINGSURFACEID_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver
                     .getReceivingSurfaceId()
                     .then((id) => {
@@ -522,15 +604,18 @@ export default function ImageReceiver() {
                         );
                         expect(isString(id)).assertTrue();
                         done();
+                        return;
                     })
                     .catch((error) => {
                         console.log("SUB_GRAPHIC_IMAGE_RECEIVER_GETRECEIVINGSURFACEID_PROMISE_0100 error: " + error);
                         expect(false).assertTrue();
                         done();
+                        return;
                     });
             } else {
                 expect(false).assertTrue();
                 done();
+                return;
             }
         });
 
@@ -547,6 +632,7 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_GETRECEIVINGSURFACEID_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver.getReceivingSurfaceId((err, id) => {
                     console.info(
                         "SUB_GRAPHIC_IMAGE_RECEIVER_GETRECEIVINGSURFACEID_CALLBACK_0100 getReceivingSurfaceId call back [" +
@@ -555,11 +641,13 @@ export default function ImageReceiver() {
                     );
                     expect(isString(id)).assertTrue();
                     done();
+                    return;
                 });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_GETRECEIVINGSURFACEID_CALLBACK_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -575,21 +663,25 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver
                     .release()
                     .then(() => {
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0100 release ");
                         expect(true).assertTrue();
                         done();
+                        return;
                     })
                     .catch((error) => {
                         expect(false).assertTrue();
                         done();
+                        return;
                     });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -605,21 +697,25 @@ export default function ImageReceiver() {
         it("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver.release((err) => {
                     if (err) {
                         expect(false).assertTrue();
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_CALLBACK_0100 release fail");
                         done();
+                        return;
                     } else {
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_CALLBACK_0100 release call back");
                         expect(true).assertTrue();
                         done();
+                        return;
                     }
                 });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_CALLBACK_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -635,24 +731,35 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             var dummy = receiver.test;
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver
                     .readLatestImage()
                     .then((img) => {
+                        globalImg = img;
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 readLatestImage Success");
                         expect(img != undefined).assertTrue();
                         done();
+                        return;
                     })
                     .catch((error) => {
                         console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 error: " + error);
                         expect(false).assertTrue();
                         done();
+                        return;
                     });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_PROMISE_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -668,19 +775,29 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             var dummy = receiver.test;
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver.readLatestImage((err, img) => {
+                    globalImg = img;
                     console.info(
                         "SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100 readLatestImage call back Success"
                     );
                     expect(img != undefined).assertTrue();
                     done();
+                    return;
                 });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READLATESTIMAGE_CALLBACK_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -696,25 +813,36 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             var dummy = receiver.test;
             expect(receiver != undefined).assertTrue();
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver
                     .readNextImage()
                     .then((img) => {
+                        globalImg = img;
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 readNextImage Success");
                         expect(img != undefined).assertTrue();
                         done();
+                        return;
                     })
                     .catch((error) => {
                         console.log("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 error: " + error);
                         expect(false).assertTrue();
                         done();
+                        return;
                     });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_PROMISE_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -730,24 +858,35 @@ export default function ImageReceiver() {
          */
         it("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             var dummy = receiver.test;
             if (receiver != undefined) {
+                globalreceiver = receiver;
                 receiver.readNextImage((err, img) => {
                     if (err) {
                         expect(false).assertTrue();
                         done();
+                        return;
                     } else {
+                        globalImg = img;
                         console.info(
                             "SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100 readNextImage call back Success"
                         );
                         expect(img != undefined).assertTrue();
                         done();
+                        return;
                     }
                 });
             } else {
                 expect(false).assertTrue();
                 console.info("SUB_GRAPHIC_IMAGE_RECEIVER_READNEXTIMAGE_CALLBACK_0100 finished");
                 done();
+                return;
             }
         });
 
@@ -823,13 +962,22 @@ export default function ImageReceiver() {
             if (receiver == undefined) {
                 expect(false).assertTrue();
                 done();
+                return;
             } else {
+                globalreceiver = receiver;
+                var error = receiver.checkDeviceTest;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                    return;
+                }
                 let pass = false;
                 receiver.on("imageArrival", (err) => {
                     if (err) {
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0100 on err" + err);
                         expect(false).assertTrue();
                         done();
+                        return;
                     } else {
                         pass = true;
                         console.info("SUB_GRAPHIC_IMAGE_RECEIVER_RECEIVERON_0100 on call back IN");
@@ -840,6 +988,7 @@ export default function ImageReceiver() {
                 await sleep(2000);
                 expect(pass).assertTrue();
                 done();
+                return;
             }
         });
 
@@ -862,7 +1011,13 @@ export default function ImageReceiver() {
                 done();
                 return;
             }
-
+            globalreceiver = receiver;
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             receiver.on("imageArrival", () => {
                 expect(true).assertTrue();
             });
@@ -875,7 +1030,9 @@ export default function ImageReceiver() {
                     if (img == undefined) {
                         expect(false).assertTrue();
                         done();
+                        return;
                     } else {
+                        globalImg = img;
                         expect(img.size.width == WIDTH).assertTrue();
                         expect(img.size.height == HEIGHT).assertTrue();
                         expect(img.format == RGBA).assertTrue();
@@ -888,11 +1045,13 @@ export default function ImageReceiver() {
                             .then(() => {
                                 expect(true).assertTrue();
                                 done();
+                                return;
                             })
                             .catch((error) => {
                                 console.log("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0200 err" + error);
                                 expect(false).assertTrue();
                                 done();
+                                return;
                             });
                     }
                 })
@@ -900,6 +1059,7 @@ export default function ImageReceiver() {
                     console.log("SUB_GRAPHIC_IMAGE_RECEIVER_RELEASE_PROMISE_0200 readLatestImage err" + error);
                     expect(false).assertTrue();
                     done();
+                    return;
                 });
         });
 
@@ -922,20 +1082,24 @@ export default function ImageReceiver() {
                 done();
                 return;
             }
-
+            globalreceiver = receiver;
+            var error = receiver.checkDeviceTest;
+            if (DEVICE_CODE == error) {
+                expect(error == DEVICE_CODE).assertTrue();
+                done();
+                return;
+            }
             receiver.on("imageArrival", () => {
                 expect(true).assertTrue();
             });
-
             var dummy = receiver.test;
-
             receiver.readLatestImage((err, img) => {
                 if (img == undefined) {
                     expect(false).assertTrue();
                     done();
                     return;
                 }
-
+                globalImg = img;
                 expect(img.size.width == WIDTH).assertTrue();
                 expect(img.size.height == HEIGHT).assertTrue();
                 expect(img.format == RGBA).assertTrue();
@@ -948,9 +1112,11 @@ export default function ImageReceiver() {
                     if (err) {
                         expect(false).assertTrue();
                         done();
+                        return;
                     } else {
                         expect(true).assertTrue();
                         done();
+                        return;
                     }
                 });
             });

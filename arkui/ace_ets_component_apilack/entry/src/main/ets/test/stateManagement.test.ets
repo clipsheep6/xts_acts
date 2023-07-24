@@ -15,7 +15,7 @@
 
 import events_emitter from '@ohos.events.emitter';
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
 
 export default function stateManagementGetSharedJsunit() {
@@ -23,7 +23,7 @@ export default function stateManagementGetSharedJsunit() {
     beforeAll(async function (done) {
       console.info("flex beforeEach start");
       let options = {
-        uri: 'pages/stateManagement',
+        uri: 'MainAbility/pages/stateManagement',
       }
       try {
         router.clear();
@@ -192,6 +192,7 @@ export default function stateManagementGetSharedJsunit() {
     });
 
     /*
+<<<<<<< HEAD
      * @tc.number       SUB_ACE_BASIC_ETS_API_0007
      * @tc.name         test_setAndLink_0001
      * @tc.desc         bind localStorage
@@ -219,6 +220,14 @@ export default function stateManagementGetSharedJsunit() {
      */
     it('test_setAndProp_0001', 0, async function (done) {
       console.info('test_setAndProp_0001 START');
+=======
+     * @tc.number       SUB_ACE_BASIC_ETS_API_0008
+     * @tc.name         test_setAndProp_0002
+     * @tc.desc         bind localStorage
+     */
+    it('test_setAndProp_0002', 0, async function (done) {
+      console.info('test_setAndProp_0002 START');
+>>>>>>> hw/master
       await Utils.sleep(2000);
       try {
         let storage = new LocalStorage()
@@ -227,7 +236,11 @@ export default function stateManagementGetSharedJsunit() {
         expect(size == 1).assertTrue();
         done();
       } catch (err) {
+<<<<<<< HEAD
         console.info("test_setAndProp_0001  err : " + JSON.stringify(err));
+=======
+        console.info("test_setAndProp_0002  err : " + JSON.stringify(err));
+>>>>>>> hw/master
         expect().assertFail();
         done();
       }

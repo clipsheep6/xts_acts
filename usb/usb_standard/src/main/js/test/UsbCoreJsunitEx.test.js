@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import usb from '@ohos.usb';
+import usbManager from '@ohos.usbManager';
 import CheckEmptyUtils from './CheckEmptyUtils.js';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
@@ -28,15 +28,19 @@ describe('UsbCoreJsFunctionsTestEx', function () {
 
   beforeAll(function () {
     console.log('*************Usb Unit UsbCoreJsFunctionsTestEx Begin*************');
-    var Version = usb.getVersion()
+    var Version = usbManager.getVersion()
     console.info('begin test getversion :' + Version)
     // version > 17  host currentMode = 2 device currentMode = 1
-    var usbPortList = usb.getPorts()
-    gDeviceList = usb.getDevices();
+    var usbPortList = usbManager.getPorts()
+    if (usbPortList == undefined) {
+      portCurrentMode = 1;
+      return
+    }
+    gDeviceList = usbManager.getDevices();
     if (usbPortList.length > 0) {
       if (gDeviceList.length > 0) {
         if (usbPortList[0].status.currentMode == 1) {
-          usb.setPortRoles(usbPortList[0].id, usb.SOURCE, usb.HOST).then(data => {
+          usbManager.setPortRoles(usbPortList[0].id, usbManager.SOURCE, usbManager.HOST).then(data => {
             portCurrentMode = 2
             console.info('usb case setPortRolesEx return: ' + data);
           }).catch(error => {
@@ -79,9 +83,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb JS_0100 requestRight error:' + error);
       });
@@ -92,7 +96,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.devAddress = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -121,9 +125,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb JS_0110 requestRight error:' + error);
       });
@@ -134,7 +138,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.busNum = 2 + 1000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -162,9 +166,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb JS_0120 requestRight error:' + error);
       });
@@ -175,7 +179,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.serial = 'asdfsd'
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -183,7 +187,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) +
       ' serial ' + device.serial);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0120 :  PASS');
@@ -206,9 +210,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb JS_0130 requestRight error:' + error);
       });
@@ -219,7 +223,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.name = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -246,9 +250,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb JS_0140 requestRight error:' + error);
       });
@@ -259,7 +263,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.manufacturerName = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -287,9 +291,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb SUB_USB_JS_0150 requestRight error:' + error);
       });
@@ -300,7 +304,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.productName = 'sdfsdfe'
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -308,7 +312,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) +
       ' productName ' + device.productName);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0150 :  PASS');
@@ -331,9 +335,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb SUB_USB_JS_0160 requestRight error:' + error);
       });
@@ -344,7 +348,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.version = 'gwefsdf'
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -352,7 +356,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) +
       ' version ' + device.version);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0160 :  PASS');
@@ -375,9 +379,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb SUB_USB_JS_0170 requestRight error:' + error);
       });
@@ -388,7 +392,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.vendorId = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -396,7 +400,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) +
       ' vendorId ' + device.vendorId);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0170 :  PASS');
@@ -419,9 +423,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb SUB_USB_JS_0180 requestRight error:' + error);
       });
@@ -432,7 +436,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.productId = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
@@ -440,7 +444,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) +
       ' productId ' + device.productId);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0180 :  PASS');
@@ -463,9 +467,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb SUB_USB_JS_0190 requestRight error:' + error);
       });
@@ -476,14 +480,14 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.clazz = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
     }
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) + ' clazz ' + device.clazz);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0190 :  PASS');
@@ -506,9 +510,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
         console.info('usb SUB_USB_JS_0200 requestRight hasRight: ' + hasRight);
       }).catch(error => {
         console.info('usb SUB_USB_JS_0200 requestRight error:' + error);
@@ -520,14 +524,14 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.subClass = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
     }
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) + ' subClass ' + device.subClass);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0200 :  PASS');
@@ -550,9 +554,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
       }).catch(error => {
         console.info('usb SUB_USB_JS_0210 requestRight error:' + error);
       });
@@ -563,14 +567,14 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     var device = JSON.parse(JSON.stringify(gDeviceList[0]));
     device.protocol = 2 + 10000
     try {
-      var usbDevicePipe = usb.connectDevice(device)
+      var usbDevicePipe = usbManager.connectDevice(device)
     } catch (err) {
       expect(true).assertTrue();
       console.info('usb connectDevice fail：' + err);
     }
     console.info('usb case connectDevice ret: ' + JSON.stringify(usbDevicePipe) + ' protocol ' + device.protocol);
     expect(CheckEmptyUtils.isEmpty(usbDevicePipe)).assertFalse();
-    var isPipClose = usb.closePipe(usbDevicePipe);
+    var isPipClose = usbManager.closePipe(usbDevicePipe);
     console.info('usb case closePipe ret: ' + isPipClose);
     expect(isPipClose).assertEqual(0);
     console.info('usb SUB_USB_JS_0210 :  PASS');
@@ -593,9 +597,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
         console.info('usb 1040 requestRight hasRight:' + hasRight);
       }).catch(error => {
         console.info('usb 1040 requestRight error:' + error);
@@ -603,7 +607,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       CheckEmptyUtils.sleep(5000)
     }
     try {
-      var maskCode = usb.connectDevice("invalid");
+      var maskCode = usbManager.connectDevice("invalid");
       console.info('usb 1040 case connectDevice return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -630,9 +634,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(false).assertTrue();
       return
     }
-    var isRight = usb.hasRight(gDeviceList[0].name);
+    var isRight = usbManager.hasRight(gDeviceList[0].name);
     if (!isRight) {
-      usb.requestRight(gDeviceList[0].name).then(hasRight => {
+      usbManager.requestRight(gDeviceList[0].name).then(hasRight => {
         console.info('usb 1240 requestRight hasRight:' + hasRight);
       }).catch(error => {
         console.info('usb 1240 requestRight error:' + error);
@@ -640,7 +644,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       CheckEmptyUtils.sleep(5000)
     }
     try {
-      var maskCode = usb.connectDevice();
+      var maskCode = usbManager.connectDevice();
       console.info('usb 1240 case connectDevice return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -648,46 +652,6 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       expect(err.code).assertEqual(401);
       console.info('usb SUB_USB_JS_1240 :  PASS');
     }
-  })
-
-  /**
-   * @tc.number: SUB_USB_JS_1220
-   * @tc.name: connectDevice
-   * @tc.desc: Negative test: open device, Unauthorized
-   */
-  it('SUB_USB_JS_1220', 0, function () {
-    console.info('usb SUB_USB_JS_1220 begin');
-    if (portCurrentMode == 1) {
-      console.info('usb case get_device port is device')
-      expect(false).assertFalse();
-      return
-    }
-    if (gDeviceList.length == 0) {
-      console.info('usb case get_device_list is null')
-      expect(false).assertTrue();
-      return
-    }
-    var isRight = usb.hasRight(gDeviceList[0].name);
-    if (isRight) {
-      var remRight = usb.removeRight(gDeviceList[0].name);
-      console.info('usb 1220 removeRight remRight:' + remRight);
-    }
-    try {
-      var maskCode = usb.connectDevice(gDeviceList[0]);
-      console.info('usb 1220 case connectDevice return: ' + maskCode);
-      expect(false).assertTrue();
-    } catch (err) {
-      console.info('usb 1220 catch err code: ' + err.code + ' message: ' + err.message);
-      expect(err.code).assertEqual(14400001);
-      console.info('usb SUB_USB_JS_1220 :  PASS');
-    }
-    usb.requestRight(gDeviceList[0].name).then(hasRight => {
-      console.info('usb 1220 requestRight hasRight:' + hasRight);
-      expect(hasRight).assertTrue();
-    }).catch(error => {
-      console.info('usb 1220 requestRight error:' + error);
-    });
-    CheckEmptyUtils.sleep(5000)
   })
 
   /**
@@ -711,9 +675,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     for (var i = 0; i < gDeviceList.length; i++) {
       var deviceName = gDeviceList[i].name
       deviceName = deviceName + '$#'
-      var hasRight = usb.hasRight(deviceName)
+      var hasRight = usbManager.hasRight(deviceName)
       console.info('usb has_right ret :' + hasRight);
-      expect(hasRight).assertFalse();
+      expect(hasRight).assertTrue();
     }
     console.info('usb SUB_USB_JS_0720 :  PASS');
   })
@@ -739,9 +703,9 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     for (var i = 0; i < gDeviceList.length; i++) {
       var deviceName = gDeviceList[i].name
       deviceName = deviceName + 'abcdg'
-      var hasRight = usb.hasRight(deviceName)
+      var hasRight = usbManager.hasRight(deviceName)
       console.info('usb hasRight ret :' + hasRight);
-      expect(hasRight).assertFalse();
+      expect(hasRight).assertTrue();
     }
     console.info('usb SUB_USB_JS_0730 :  PASS');
   })
@@ -764,7 +728,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.hasRight(invalidCode);
+      var maskCode = usbManager.hasRight(invalidCode);
       console.info('usb 1020 case hasRight return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -792,7 +756,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.hasRight();
+      var maskCode = usbManager.hasRight();
       console.info('usb 1250 case hasRight return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -823,7 +787,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     for (var i = 0; i < gDeviceList.length; i++) {
       var diviceName = gDeviceList[i].name
       diviceName = diviceName + '@#'
-      usb.requestRight(diviceName).then(hasRight => {
+      usbManager.requestRight(diviceName).then(hasRight => {
         console.info('usb request_right ret :' + hasRight);
         expect(hasRight).assertFalse();
         console.info('usb SUB_USB_JS_0690 :  PASS');
@@ -856,7 +820,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
     for (var i = 0; i < gDeviceList.length; i++) {
       var diviceName = gDeviceList[i].name
       diviceName = diviceName + '123'
-      usb.requestRight(diviceName).then(hasRight => {
+      usbManager.requestRight(diviceName).then(hasRight => {
         console.info('usb request_right ret :' + hasRight);
         expect(hasRight).assertFalse();
         console.info('usb SUB_USB_JS_0700 :  PASS');
@@ -886,7 +850,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.requestRight(invalidCode);
+      var maskCode = usbManager.requestRight(invalidCode);
       console.info('usb 1030 case requestRight return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -915,7 +879,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.requestRight();
+      var maskCode = usbManager.requestRight();
       console.info('usb 1260 case requestRight return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -939,7 +903,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.getDevices("invalid");
+      var maskCode = usbManager.getDevices("invalid");
       console.info('usb 1010 case getDevices return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -967,7 +931,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.closePipe("invalid");
+      var maskCode = usbManager.closePipe("invalid");
       console.info('usb 1050 case closePipe return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -995,7 +959,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.closePipe();
+      var maskCode = usbManager.closePipe();
       console.info('usb 1270 case closePipe return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -1023,7 +987,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.getRawDescriptor("invalid");
+      var maskCode = usbManager.getRawDescriptor("invalid");
       console.info('usb 1060 case getRawDescriptor return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -1052,7 +1016,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.getRawDescriptor();
+      var maskCode = usbManager.getRawDescriptor();
       console.info('usb 1280 case getRawDescriptor return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -1080,7 +1044,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.removeRight(invalidCode);
+      var maskCode = usbManager.removeRight(invalidCode);
       console.info('usb 1090 case removeRight return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {
@@ -1109,7 +1073,7 @@ describe('UsbCoreJsFunctionsTestEx', function () {
       return
     }
     try {
-      var maskCode = usb.removeRight();
+      var maskCode = usbManager.removeRight();
       console.info('usb 1290 case removeRight return: ' + maskCode);
       expect(false).assertTrue();
     } catch (err) {

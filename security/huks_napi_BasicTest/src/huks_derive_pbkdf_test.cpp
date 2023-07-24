@@ -48,7 +48,9 @@ void HuksDerivePBKDFTest::TearDown()
 {
 }
 
-uint8_t g_saltdata1[16] = {0};
+uint8_t g_saltgen[16] = {
+    0x14, 0x10, 0x11, 0x3a, 0x27, 0x9e, 0xc8, 0x5f, 0xe0, 0xf3, 0x36, 0x17, 0x57, 0x42, 0x8e, 0xff
+};
 
 static struct OH_Huks_Param g_genParams001[] = {
     {
@@ -62,7 +64,16 @@ static struct OH_Huks_Param g_genParams001[] = {
         .uint32Param = OH_HUKS_DIGEST_SHA256
     }, {
         .tag = OH_HUKS_TAG_KEY_SIZE,
-        .uint32Param = 256
+        .uint32Param = OH_HUKS_AES_KEY_SIZE_256
+    }, {
+        .tag = OH_HUKS_TAG_ITERATION,
+        .uint32Param = 1000
+    }, {
+        .tag = OH_HUKS_TAG_SALT,
+        .blob = {
+            sizeof(g_saltgen),
+            (uint8_t *)g_saltgen
+        }
     }
 };
 static struct OH_Huks_Param g_pbkdf2Params001[] = {
@@ -84,8 +95,8 @@ static struct OH_Huks_Param g_pbkdf2Params001[] = {
     }, {
         .tag = OH_HUKS_TAG_SALT,
         .blob = {
-            sizeof(g_saltdata1),
-            (uint8_t *)g_saltdata1
+            sizeof(g_saltgen),
+            (uint8_t *)g_saltgen
         }
     }, {
         .tag = OH_HUKS_TAG_DERIVE_KEY_SIZE,
@@ -136,10 +147,6 @@ HWTEST_F(HuksDerivePBKDFTest, Security_HUKS_NAPI_Derive_pbkdf_0100, TestSize.Lev
     struct OH_Huks_ParamSet *pbkdf2FinishParamSet = nullptr;
     ret = InitParamSet(&pbkdf2ParamSet, g_pbkdf2Params001, sizeof(g_pbkdf2Params001) / sizeof(OH_Huks_Param));
     EXPECT_EQ(ret.errorCode, (int32_t)OH_HUKS_SUCCESS) << "InitParamSet failed.";
-    struct OH_Huks_Param *saltParam = nullptr;
-    OH_Huks_GetParam(pbkdf2ParamSet, OH_HUKS_TAG_SALT, &saltParam);
-    int32_t ret1 = HksGenerateRandom(NULL, (struct HksBlob *)&(saltParam->blob));
-    EXPECT_EQ(ret1, (int32_t)OH_HUKS_SUCCESS) << "GenerateRandom failed.";
     // Finish paramset
     ret = InitParamSet(&pbkdf2FinishParamSet, g_pbkdf2FinishParams001,
         sizeof(g_pbkdf2FinishParams001) / sizeof(OH_Huks_Param));

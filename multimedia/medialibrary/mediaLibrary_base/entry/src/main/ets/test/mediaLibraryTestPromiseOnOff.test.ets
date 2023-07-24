@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,8 +24,9 @@ import {
     checkAssetsCount,
     fetchOps,
     albumFetchOps,
-    getPermission,
     checkAlbumsCount,
+    FILEKEY,
+    fileFetchOption,
 } from "../../../../../../common";
 
 export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
@@ -55,10 +56,14 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, 1);
                 if (!checkAssetCountPass) return;
                 const asset = await fetchFileResult.getFirstObject();
-                asset.title = asset.title + "changename";
+                asset.title = testNum + asset.title;
                 await asset.commitModify();
                 await sleep(1000);
+<<<<<<< HEAD
                 expect(count > 0).assertTrue();
+=======
+                expect(count).assertEqual(1);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {
@@ -71,16 +76,19 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
             try {
                 let count = 0;
                 media.on(type, () => {
+                    console.info(`${testNum}:: on`);
                     count++;
                 });
                 const fetchFileResult = await media.getFileAssets(fetchOps);
+                console.info(`${testNum}:: fetchFileResult :${fetchFileResult.getCount()}`);
                 let checkAssetCountPass = await checkAssetsCount(done, testNum, fetchFileResult, 1);
                 if (!checkAssetCountPass) return;
                 const asset = await fetchFileResult.getFirstObject();
-                asset.title = asset.title + "changename";
+                asset.title = testNum + asset.title;
                 media.off(type);
                 await asset.commitModify();
                 await sleep(1000);
+                console.info(`${testNum}:: count :${count}`);
                 expect(count).assertEqual(0);
                 fetchFileResult.close();
                 done();
@@ -165,18 +173,21 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 media.on("albumChange", () => {
                     count++;
                 });
-                let currentFetchOps = albumFetchOps(testNum, "Pictures/", "OnAlbum", IMAGE_TYPE);
-                const albumList = await media.getAlbums(currentFetchOps);
+                const selections = FILEKEY.ALBUM_NAME + '= ?';
+                const currentFetchOp = fileFetchOption(testNum, selections, ['Screenshots']);
+                const albumList = await media.getAlbums(currentFetchOp);
+                console.info(`${testNum} albumList: ${albumList.length}`)
                 const albumCountPass = await checkAlbumsCount(done, testNum, albumList, 1);
                 if (!albumCountPass) return;
                 const album = albumList[0];
                 const oldName = album.albumName;
-                album.albumName = album.albumName + "changename";
+                console.info(`${testNum} oldName: ${oldName}`)
+                album.albumName = testNum + album.albumName;
                 await album.commitModify();
                 await sleep(1000);
-                expect(count > 0).assertTrue();
                 album.albumName = oldName;
                 await album.commitModify();
+                expect(count).assertEqual(1);
                 done();
             } catch (error) {
                 console.info(`${testNum}:: error :${error}`);
@@ -197,27 +208,30 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_PROMISE_ON_006";
             try {
                 let count = 0;
-                expect(true).assertTrue();
-                done();
                 media.on("deviceChange", () => {
                     console.info("MediaLibraryTest : on 006 callback");
                     count++;
                 });
-                let currentFetchOps = fetchOps(testNum, "Documents/On/", FILE_TYPE);
+                let currentFetchOps = fetchOps(testNum, "Documents/deviceOn/", FILE_TYPE);
                 const fetchFileResult = await media.getFileAssets(currentFetchOps);
                 const asset = await fetchFileResult.getFirstObject();
-                asset.title = asset.title + "changename";
+                asset.title = testNum + asset.title;
                 await asset.commitModify();
+<<<<<<< HEAD
                 await new Promise((res) => {
                     setTimeout(() => {
                         res(true);
                     }, 1000);
                 });
                 expect(count == 0).assertTrue();
+=======
+                await sleep(1000);
+                expect(count).assertEqual(0);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {
-                console.info(`MediaLibraryTest : on 006 failed, error: ${error}`);
+                console.info(`${testNum}:: error :${error}`);
                 expect(false).assertTrue();
                 media.off("deviceChange");
                 done();
@@ -236,28 +250,22 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_PROMISE_ON_007";
             try {
                 let count = 0;
-                expect(true).assertTrue();
-                done();
                 media.on("remoteFileChange", () => {
                     console.info("MediaLibraryTest : on 007 callback");
                     count++;
                 });
 
-                let currentFetchOps = fetchOps(testNum, "Documents/On/", FILE_TYPE);
+                let currentFetchOps = fetchOps(testNum, "Documents/remoteOn/", FILE_TYPE);
                 const fetchFileResult = await media.getFileAssets(currentFetchOps);
                 const asset = await fetchFileResult.getFirstObject();
-                asset.title = asset.title + "changename";
+                asset.title = testNum + asset.title;
                 await asset.commitModify();
-                await new Promise((res) => {
-                    setTimeout(() => {
-                        res(true);
-                    }, 1000);
-                });
+                await sleep(1000);
                 expect(count == 0).assertTrue();
                 fetchFileResult.close();
                 done();
             } catch (error) {
-                console.info(`MediaLibraryTest : on 007 failed, error: ${error}`);
+                console.info(`${testNum}:: error :${error}`);
                 expect(false).assertTrue();
                 media.off("remoteFileChange");
                 done();
@@ -341,13 +349,13 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 });
                 await sleep(300);
                 media.off("albumChange");
-                let currentFetchOps = albumFetchOps(testNum, "Pictures/", "OffAlbum", IMAGE_TYPE);
+                let currentFetchOps = albumFetchOps(testNum, "Screenshots");
                 const albumList = await media.getAlbums(currentFetchOps);
                 const albumCountPass = await checkAlbumsCount(done, testNum, albumList, 1);
                 if (!albumCountPass) return;
                 const album = albumList[0];
                 const oldName = album.albumName;
-                album.albumName = album.albumName + "changename";
+                album.albumName = album.albumName + testNum;
                 await sleep(1000);
                 await album.commitModify();
                 await sleep(300);
@@ -361,6 +369,7 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 done();
             }
         });
+
         /**
          * @tc.number    : SUB_MEDIA_MEDIALIBRARY_PROMISE_OFF_006
          * @tc.name      : off
@@ -373,27 +382,20 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_PROMISE_OFF_006";
             try {
                 media.on("deviceChange", () => {
-                    console.info("MediaLibraryTest : off 006 failed");
+                    console.info(`${testNum}:: failed`);
                     expect(false).assertTrue();
                     media.off("deviceChange");
                     done();
                 });
-                await new Promise((res) => {
-                    setTimeout(() => {
-                        res(true);
-                    }, 300);
-                });
+                await sleep(1000);
                 let currentFetchOps = fetchOps(testNum, "Documents/On/", FILE_TYPE);
                 const fetchFileResult = await media.getFileAssets(currentFetchOps);
                 const asset = await fetchFileResult.getFirstObject();
-                asset.title = asset.title + "deviceChange";
+                asset.title = testNum + asset.title;
                 media.off("deviceChange");
-                await new Promise((res) => {
-                    setTimeout(() => {
-                        res(true);
-                    }, 600);
-                });
+                await sleep(1000);
                 await asset.commitModify();
+<<<<<<< HEAD
                 await new Promise((res) => {
                     setTimeout(() => {
                         res(true);
@@ -401,10 +403,13 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 });
                 console.info("MediaLibraryTest : off 006 passed");
                 expect(true).assertTrue();
+=======
+                await sleep(1000);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {
-                console.info(`MediaLibraryTest : off 006 failed, error: ${error}`);
+                console.info(`${testNum}:: error :${error}`);
                 expect(false).assertTrue();
                 media.off("fileChange");
                 done();
@@ -423,28 +428,21 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_PROMISE_OFF_007";
             try {
                 media.on("remoteFileChange", () => {
-                    console.info("MediaLibraryTest : off 007 failed");
+                    console.info(`${testNum} failed`);
                     expect(false).assertTrue();
                     media.off("remoteFileChange");
                     done();
                 });
-                await new Promise((res) => {
-                    setTimeout(() => {
-                        res(true);
-                    }, 300);
-                });
+                await sleep(1000);
 
                 media.off("remoteFileChange");
                 let currentFetchOps = fetchOps(testNum, "Documents/On/", FILE_TYPE);
                 const fetchFileResult = await media.getFileAssets(currentFetchOps);
                 const asset = await fetchFileResult.getFirstObject();
-                asset.title = asset.title + "remoteFileChange";
-                await new Promise((res) => {
-                    setTimeout(() => {
-                        res(true);
-                    }, 600);
-                });
+                asset.title = testNum + asset.title;
+                await sleep(1000);
                 await asset.commitModify();
+<<<<<<< HEAD
                 await new Promise((res) => {
                     setTimeout(() => {
                         res(true);
@@ -452,6 +450,9 @@ export default function mediaLibraryTestPromiseOnOffTest(abilityContext) {
                 });
                 console.info("MediaLibraryTest : off 007 passed");
                 expect(true).assertTrue();
+=======
+                await sleep(1000);
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {

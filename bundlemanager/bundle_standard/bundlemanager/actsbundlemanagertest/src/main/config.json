@@ -7,8 +7,8 @@
             "name": "1.0"
         },
         "apiVersion": {
-            "compatible": 5,
-            "target": 5,
+            "compatible": 8,
+            "target": 8,
             "releaseType": "Beta1"
         }
     },
@@ -18,7 +18,8 @@
         "name": ".entry",
         "deviceType": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "distro": {
             "deliveryWithInstall": true,

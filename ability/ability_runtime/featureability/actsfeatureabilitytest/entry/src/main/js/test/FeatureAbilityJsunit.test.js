@@ -896,13 +896,14 @@ describe('ActsFeatureAbilityTest', function () {
 
         expect(info.name).assertEqual("com.example.actsfeatureabilitytest");
         expect(info.description).assertEqual("descriptionTest");
-        //            expect(info.descriptionId).assertEqual(0);    //create by DevEco when building HAP.
         expect(info.systemApp).assertEqual(true);
         expect(info.enabled).assertEqual(true);
         expect(info.label).assertEqual("$string:app_name");
-        //            expect(info.labelId).assertEqual(0);  //create by DevEco when building HAP.
         expect(info.icon).assertEqual("$media:icon");
+<<<<<<< HEAD
         //            expect(info.iconId).assertEqual(0);   //create by DevEco when building HAP.
+=======
+>>>>>>> hw/master
         expect(info.process).assertEqual("com.example.actsfeatureabilitytest");
         expect(info.supportedModes).assertEqual(0);
         expect(info.moduleInfos[0].moduleName).assertEqual("entry");

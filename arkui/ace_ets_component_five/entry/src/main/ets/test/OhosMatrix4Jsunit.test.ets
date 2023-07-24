@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -23,7 +23,7 @@ export default function ohosMatrix4Jsunit() {
     beforeEach(async function (done) {
       console.info("ohosMatrix4 beforeEach start");
       let options = {
-        uri: 'pages/ohosMatrix4',
+        uri: 'MainAbility/pages/ohosMatrix4',
       }
       try {
         router.clear();
@@ -169,9 +169,7 @@ export default function ohosMatrix4Jsunit() {
       let objNew = JSON.parse(strJsonNew);
       console.info("[test_OhosMatrix4_006] component objNew is: " + JSON.stringify(objNew));
       console.info("[test_OhosMatrix4_006] component transform is: " + JSON.stringify(objNew.$attrs.transform));
-      expect(JSON.stringify(objNew.$attrs.transform)).assertEqual('{"type":"matrix",' +
-      '"matrix":"0.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,' +
-      '0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,0.000000,"}');      
+      expect(JSON.stringify(objNew.$attrs.transform)).assertEqual('{"type":"matrix","matrix":"3.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,0.000000,0.000000,0.000000,1.000000,0.000000,900.000000,0.000000,0.000000,1.000000,"}');      
       done();
     });
   })

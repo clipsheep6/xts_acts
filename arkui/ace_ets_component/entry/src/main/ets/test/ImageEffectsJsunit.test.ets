@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
@@ -22,7 +22,7 @@ export default function imageEffectsJsunit() {
   describe('imageEffectsTest', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/imageEffects',
+        uri: 'MainAbility/pages/imageEffects',
       }
       try {
         router.clear();
@@ -140,7 +140,7 @@ export default function imageEffectsJsunit() {
       try {
         var eventData = {
           data: {
-            "blurValue": 'error'
+            "blurValue": '0'
           }
         }
         var innerEvent = {
@@ -864,6 +864,167 @@ export default function imageEffectsJsunit() {
       let objNew = JSON.parse(strJsonNew);
       console.info("[testImageEffects035] component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.hueRotate).assertEqual(0);
+      done();
+    });
+
+    it('testImageEffects036', 0, async function (done) {
+      console.info('[testImageEffects036] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "shadowStyleValue": ShadowStyle.OuterDefaultXS
+          }
+        }
+        var innerEvent = {
+          eventId: 20,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testImageEffects036] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testImageEffects036] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJsonNew = getInspectorByKey('shadowDefaultShadow');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testImageEffects036] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.shadow).assertEqual("ShadowStyle.OuterDefaultXS");
+      done();
+    });
+
+    it('testImageEffects037', 0, async function (done) {
+      console.info('[testImageEffects037] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "shadowStyleValue": ShadowStyle.OuterDefaultSM
+          }
+        }
+        var innerEvent = {
+          eventId: 20,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testImageEffects037] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testImageEffects037] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      
+      let strJsonNew = getInspectorByKey('shadowDefaultShadow');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testImageEffects037] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.shadow).assertEqual("ShadowStyle.OuterDefaultSM");
+      done();
+    });
+
+    it('testImageEffects038', 0, async function (done) {
+      console.info('[testImageEffects038] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "shadowStyleValue": ShadowStyle.OuterDefaultMD
+          }
+        }
+        var innerEvent = {
+          eventId: 20,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testImageEffects038] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testImageEffects038] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      
+      let strJsonNew = getInspectorByKey('shadowDefaultShadow');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testImageEffects038] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.shadow).assertEqual("ShadowStyle.OuterDefaultMD");
+      done();
+    });
+
+    it('testImageEffects039', 0, async function (done) {
+      console.info('[testImageEffects039] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "shadowStyleValue": ShadowStyle.OuterDefaultLG
+          }
+        }
+        var innerEvent = {
+          eventId: 20,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testImageEffects039] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testImageEffects039] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      
+      let strJsonNew = getInspectorByKey('shadowDefaultShadow');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testImageEffects039] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.shadow).assertEqual("ShadowStyle.OuterDefaultLG");
+      done();
+    });
+
+    it('testImageEffects040', 0, async function (done) {
+      console.info('[testImageEffects040] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "shadowStyleValue": ShadowStyle.OuterFloatingSM
+          }
+        }
+        var innerEvent = {
+          eventId: 20,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testImageEffects040] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testImageEffects040] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      
+      let strJsonNew = getInspectorByKey('shadowDefaultShadow');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testImageEffects040] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.shadow).assertEqual("ShadowStyle.OuterFloatingSM");
+      done();
+    });
+
+    it('testImageEffects041', 0, async function (done) {
+      console.info('[testImageEffects041] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "shadowStyleValue": ShadowStyle.OuterFloatingMD
+          }
+        }
+        var innerEvent = {
+          eventId: 20,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testImageEffects041] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testImageEffects041] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      
+      let strJsonNew = getInspectorByKey('shadowDefaultShadow');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testImageEffects041] component objNew is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.shadow).assertEqual("ShadowStyle.OuterFloatingMD");
       done();
     });
   })

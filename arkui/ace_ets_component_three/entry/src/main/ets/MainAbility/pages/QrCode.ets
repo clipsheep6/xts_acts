@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,9 +28,9 @@ struct QrCode {
       var colorValue = eventData.data.color;
       if (colorValue != null && colorValue.length != 0) {
         this.qrCodeColor = colorValue;
-        console.info("qrCodeColor:" + qrCodeColor);
+        console.info("qrCodeColor:" + this.qrCodeColor);
       } else {
-        console.info("qrCodeColor is null or empty " + qrCodeColor);
+        console.info("qrCodeColor is null or empty " + this.qrCodeColor);
       }
     } else {
       console.info("qrCode page color not change called:" + JSON.stringify(eventData));
@@ -42,9 +42,9 @@ struct QrCode {
       var backgroundColorValue = eventData.data.backgroundColor;
       if (backgroundColorValue != null && backgroundColorValue.length != 0) {
         this.qrCodeBackgroundColor = backgroundColorValue;
-        console.info("qrCodeBackgroundColor:" + qrCodeBackgroundColor);
+        console.info("qrCodeBackgroundColor:" + this.qrCodeBackgroundColor);
       } else {
-        console.info("backgroundColorValue is null or empty " + qrCodeColor);
+        console.info("backgroundColorValue is null or empty " + this.qrCodeColor);
       }
     } else {
       console.info("qrCode page backgroundColorValue not change called:" + JSON.stringify(eventData));
@@ -114,6 +114,12 @@ struct QrCode {
         .width(197)
         .height(197)
         .key("QrCodeBackgroundColor")
+      QRCode(`${this.qrCodeValue}`)
+        .color($r('sys.color.ohos_id_color_foreground'))
+        .backgroundColor($r('sys.color.ohos_id_color_background'))
+        .width(197)
+        .height(197)
+        .key("QrCodeDefault")
     }
     .width('100%')
     .height('100%')

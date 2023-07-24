@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils.ets';
@@ -23,7 +23,7 @@ export default function appearJsunit() {
     beforeEach(async function (done) {
       console.info("appear beforeEach start");
       let options = {
-        uri: 'pages/appear',
+        uri: 'MainAbility/pages/appear',
       }
       let result;
       try {
@@ -65,6 +65,7 @@ export default function appearJsunit() {
         console.info("testAppear01 on appearEvent err : " + JSON.stringify(err));
       }
       console.info("testAppear01 click result is: " + JSON.stringify(sendEventByKey('appear', 10, "")));
+      await Utils.sleep(1000);
       console.info('[testAppear01] END');
 
       console.info('[testAppear02] START');

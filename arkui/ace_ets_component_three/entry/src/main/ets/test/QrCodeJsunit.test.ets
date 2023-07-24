@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -22,7 +22,7 @@ export default function qrCodeJsunit() {
   describe('qrCodeTest', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/QrCode',
+        uri: 'MainAbility/pages/QrCode',
       }
       try {
         router.clear();
@@ -129,9 +129,12 @@ export default function qrCodeJsunit() {
       }
       await Utils.sleep(2000);
       var strJson = getInspectorByKey('QrCodeColor');
+      var strJsonDefault = getInspectorByKey('QrCodeDefault');
       var obj = JSON.parse(strJson);
+      var objDefault = JSON.parse(strJsonDefault);
       console.info("[test_qrCode_004] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.color).assertEqual('#FF000000');
+      console.info("[test_qrCode_004] component objDefault is: " + JSON.stringify(objDefault));
+      expect(obj.$attrs.color).assertEqual(objDefault.$attrs.color);
       done();
     });
 
@@ -181,10 +184,13 @@ export default function qrCodeJsunit() {
       }
       await Utils.sleep(2000);
       var strJson = getInspectorByKey('QrCodeColor');
+      var strJsonDefault = getInspectorByKey('QrCodeDefault');
       var obj = JSON.parse(strJson);
+      var objDefault = JSON.parse(strJsonDefault);
       console.info("[test_qrCode_006] component obj is: " + JSON.stringify(obj));
+      console.info("[test_qrCode_006] component objDefault is: " + JSON.stringify(objDefault));
       // 非法入参默认初始值
-      expect(obj.$attrs.backgroundColor).assertEqual('#FFFFFFFF');
+      expect(obj.$attrs.backgroundColor).assertEqual(objDefault.$attrs.backgroundColor);
       done();
     });
 

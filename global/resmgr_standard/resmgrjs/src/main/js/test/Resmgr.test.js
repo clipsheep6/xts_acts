@@ -120,42 +120,6 @@ describe('resMgrTest', function () {
     })
 
     /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_0620
-    * @tc.name    test getString method with resource param in callback mode
-    * @tc.desc    get the string in callback mode
-    */
-    it('getStringValue_test_001', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getStringValue({ bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000008}, (err, value) => {
-                expect(value !== null).assertTrue();
-                console.log('getStringValue_test_001 ' + value);
-                done();
-            })
-        })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_0640
-    * @tc.name    test getString method with resource param in promise mode
-    * @tc.desc    get the string in promise mode
-    */
-    it('getStringValue_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            console.info(`getStringValue_test_002 ${JSON.stringify(mgr)}`)
-            mgr.getStringValue({ bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000008}).then(value => {
-                console.info(`getStringValue_test_002 promise ${JSON.stringify(error)}`)
-                expect(value !== null).assertTrue();
-                console.log('getStringValue_test_002 ' + value);
-            })
-        })
-        done();
-    })
-
-    /* *
     * @tc.number  SUB_GLOBAL_RESMGR_JS_0500
     * @tc.name    test getString method in callback mode
     * @tc.desc    get the string in callback mode
@@ -462,40 +426,6 @@ describe('resMgrTest', function () {
     })
 
     /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_0820
-    * @tc.name    test getStringArray method with resource param in callback mode
-    * @tc.desc    get the string array in callback mode
-    */
-    it('getStringArrayValue_test_001', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getStringArrayValue({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x0100000a}, (err, value) => {
-                expect(value !== null).assertTrue();
-                console.log('getStringArrayValue_test_001 ' + value);
-                done();
-            })
-        })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_0840
-    * @tc.name    test getStringArray method with resource param in promise mode
-    * @tc.desc    get the string array in promise mode
-    */
-    it('getStringArrayValue_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-             mgr.getStringArrayValue({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x0100000a}).then(value => {
-                expect(value !== null).assertTrue();
-                console.log('getStringArrayValue_test_002 ' + value);
-            })
-        })
-        done();
-    })
-
-    /* *
     * @tc.number  SUB_GLOBAL_RESMGR_JS_0700
     * @tc.name    test getStringArray method in callback mode
     * @tc.desc    get the string array in callback mode
@@ -546,7 +476,7 @@ describe('resMgrTest', function () {
     */
     it('getMedia_test_001', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMedia(0x01000017, (err, value) => {
+            mgr.getMedia(0x0100001c, (err, value) => {
                 console.log('getMedia_test_001 ' + value.length);
                 expect(value.length > 0).assertTrue();
                 done();
@@ -562,46 +492,12 @@ describe('resMgrTest', function () {
     */
     it('getMedia_test_002', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMedia(0x01000017).then(value => {
+            mgr.getMedia(0x0100001c).then(value => {
                 console.log('getMedia_test_002 ' + value.length);
                 expect(value.length > 0).assertTrue();
                 done();
             })
         })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_1020
-    * @tc.name    test getMedia method with resource param in callback mode
-    * @tc.desc    get the media in callback mode
-    */
-    it('getMediaContent_test_001', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContent({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000017}, (err, value) => {
-                expect(value !== null).assertTrue();
-                console.log('getMediaContent_test_001 ' + value);
-                done();
-            })
-        })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_1040
-    * @tc.name    test getMedia method with resource param in promise mode
-    * @tc.desc    get the media in promise mode
-    */
-    it('getMediaContent_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContent({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000017}).then(value => {
-                expect(value !== null).assertTrue();
-                console.log('getMediaContent_test_002 ' + value);
-            })
-        })
-        done();
     })
 
     /* *
@@ -611,7 +507,7 @@ describe('resMgrTest', function () {
     */
     it('getMediaContent_test_003', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContent(0x01000017, (err, value) => {
+            mgr.getMediaContent(0x0100001c, (err, value) => {
                 console.log('getMediaContent_test_003 ' + value.length);
                 expect(value.length > 0).assertTrue();
                 done();
@@ -626,7 +522,7 @@ describe('resMgrTest', function () {
     */
     it('getMediaContent_test_004', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContent(0x01000017).then(value => {
+            mgr.getMediaContent(0x0100001c).then(value => {
                 console.log('getMediaContent_test_004 ' + value.length);
                 expect(value.length > 0).assertTrue();
                 done();
@@ -641,7 +537,7 @@ describe('resMgrTest', function () {
     */
     it('getMediaBase64_test_001', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaBase64(0x01000017, (err, value) => {
+            mgr.getMediaBase64(0x0100001c, (err, value) => {
                 expect(value.length > 0).assertTrue();
                 console.log('getMediaBase64_test_001 ' + value);
                 done();
@@ -656,46 +552,12 @@ describe('resMgrTest', function () {
     */
     it('getMediaBase64_test_002', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaBase64(0x01000017).then(value => {
+            mgr.getMediaBase64(0x0100001c).then(value => {
                 expect(value.length > 0).assertTrue();
                 console.log('getMediaBase64_test_002 ' + value);
                 done();
             })
         })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_1220
-    * @tc.name    test getMediaBase64 method with resource param in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    */
-    it('getMediaContentBase64_test_001', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContentBase64({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000017}, (err, value) => {
-                expect(value !== null).assertTrue();
-                console.log('getMediaContentBase64_test_001 ' + value);
-                done();
-            })
-        })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_1240
-    * @tc.name    test getMediaBase64 method with resource param in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    */
-    it('getMediaContentBase64_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContentBase64({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000017}).then(value => {
-                expect(value !== null).assertTrue();
-                console.log('getMediaContentBase64_test_002 ' + value);
-            })
-        })
-        done();
     })
 
     /* *
@@ -705,7 +567,7 @@ describe('resMgrTest', function () {
     */
     it('getMediaContentBase64_test_003', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContentBase64(0x01000017, (err, value) => {
+            mgr.getMediaContentBase64(0x0100001c, (err, value) => {
                 expect(value.length > 0).assertTrue();
                 console.log('getMediaContentBase64_test_003 ' + value);
                 done();
@@ -720,7 +582,7 @@ describe('resMgrTest', function () {
     */
     it('getMediaContentBase64_test_004', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getMediaContentBase64(0x01000017).then(value => {
+            mgr.getMediaContentBase64(0x0100001c).then(value => {
                 expect(value.length > 0).assertTrue();
                 console.log('getMediaContentBase64_test_004 ' + value);
                 done();
@@ -1026,7 +888,7 @@ describe('resMgrTest', function () {
     */
     it('getPluralString_test_001', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getPluralString(0x01000012, 1, (error, value) => {
+            mgr.getPluralString(0x01000017, 1, (error, value) => {
                 expect(value !== null).assertTrue();
                 console.log('getPluralString_test_001 ' + value);
                 expect(value).assertEqual('1 test other');
@@ -1042,7 +904,7 @@ describe('resMgrTest', function () {
     */
     it('getPluralString_test_002', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getPluralString(0x01000012, 1).then(value => {
+            mgr.getPluralString(0x01000017, 1).then(value => {
                 expect(value !== null).assertTrue();
                 console.log('getPluralString_test_002 ' + value);
                 expect(value).assertEqual('1 test other');
@@ -1052,47 +914,13 @@ describe('resMgrTest', function () {
     })
 
     /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_1820
-    * @tc.name    test getPluralString method with resource param in callback mode
-    * @tc.desc    get the plural string in callback mode
-    */
-    it('getPluralStringValue_test_001', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getPluralStringValue({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000012}, 1, (error, value) => {
-                expect(value !== null).assertTrue();
-                console.log('getPluralStringValue_test_001 ' + value);
-                done();
-            })
-        })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_1840
-    * @tc.name    test getPluralString method with resource param in promise mode
-    * @tc.desc    get the plural string in promise mode
-    */
-    it('getPluralStringValue_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            mgr.getPluralStringValue({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000012}, 1).then(value => {
-                expect(value !== null).assertTrue();
-                console.log('getPluralStringValue_test_002 ' + value);
-            })
-        })
-        done();
-    })
-
-    /* *
     * @tc.number  SUB_GLOBAL_RESMGR_JS_1700
     * @tc.name    test getPluralString method in callback mode
     * @tc.desc    get the plural string in callback mode
     */
     it('getPluralStringValue_test_003', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getPluralStringValue(0x01000012, 1, (error, value) => {
+            mgr.getPluralStringValue(0x01000017, 1, (error, value) => {
                 expect(value !== null).assertTrue();
                 console.log('getPluralStringValue_test_003 ' + value);
                 expect(value).assertEqual('1 test other');
@@ -1108,7 +936,7 @@ describe('resMgrTest', function () {
     */
     it('getPluralStringValue_test_004', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            mgr.getPluralStringValue(0x01000012, 1).then(value => {
+            mgr.getPluralStringValue(0x01000017, 1).then(value => {
                 expect(value !== null).assertTrue();
                 console.log('getPluralStringValue_test_004 ' + value);
                 expect(value).assertEqual('1 test other');
@@ -1566,22 +1394,6 @@ describe('resMgrTest', function () {
     })
 
     /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_3450
-    * @tc.name    test getStringSync method with resource param
-    * @tc.desc    get the string in sync mode
-    */
-    it('getStringSync_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            let value = mgr.getStringSync({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000008});
-            expect(value !== null).assertTrue();
-            console.log('getStringSync_test_002 ' + value);
-        })
-        done();
-    })
-
-    /* *
     * @tc.number  SUB_GLOBAL_RESMGR_JS_3500
     * @tc.name    test getStringByNameSync method
     * @tc.desc    get the string in sync mode
@@ -1633,22 +1445,6 @@ describe('resMgrTest', function () {
     })
 
     /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_3650
-    * @tc.name    test getBoolean method with resource param
-    * @tc.desc    get the boolean value
-    */
-    it('getBoolean_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            let value = mgr.getBoolean({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x0100000c});
-            console.log('getBoolean_test_002 ' + value);
-            expect(value !== null).assertTrue();
-            done();
-        })
-    })
-
-    /* *
     * @tc.number  SUB_GLOBAL_RESMGR_JS_3700
     * @tc.name    test getBooleanByName method
     * @tc.desc    get the boolean value
@@ -1679,22 +1475,6 @@ describe('resMgrTest', function () {
     })
 
     /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_3850
-    * @tc.name    test getNumber method with interger resource param
-    * @tc.desc    get the interger value
-    */
-    it('getinteger_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            let value = mgr.getNumber({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000000});
-            console.log('getinteger_test_002 ' + value);
-            expect(value !== null).assertTrue();
-            done();
-        })
-    })
-
-    /* *
     * @tc.number  SUB_GLOBAL_RESMGR_JS_3900
     * @tc.name    test getNumberByName with interger
     * @tc.desc    get the interger value
@@ -1715,25 +1495,9 @@ describe('resMgrTest', function () {
     */
     it('getfloat_test_001', 0, async function (done) {
         resmgr.getResourceManager((error, mgr) => {
-            let value = mgr.getNumber(0x01000015);
+            let value = mgr.getNumber(0x0100001a);
             console.log('getfloat_test_001 ' + value);
             expect(value > 0).assertTrue();
-            done();
-        })
-    })
-
-    /* *
-    * @tc.number  SUB_GLOBAL_RESMGR_JS_4050
-    * @tc.name    test getNumber with float resource param
-    * @tc.desc    get the float value
-    */
-    it('getfloat_test_002', 0, async function (done) {
-        resmgr.getResourceManager((error, mgr) => {
-            let value = mgr.getNumber({bundleName:"ohos.resmgr.test",
-                moduleName:"entry",
-                id:0x01000015});
-            console.log('getfloat_test_002 ' + value);
-            expect(value !== null).assertTrue();
             done();
         })
     })
@@ -1749,6 +1513,1545 @@ describe('resMgrTest', function () {
             console.log('getfloatByName_test_001 ' + value);
             expect(value > 0).assertTrue();
             done();
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0100
+     * @tc.name getDrawableDescriptor with normal pic
+     * @tc.desc test the getDrawableDescriptor method
+     */
+     it('getDrawableDescriptor_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001c);
+                console.log('getDrawableDescriptor_test_0100 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0100 ' + error.code);
+                console.log('getDrawableDescriptor_test_0100 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0120
+     * @tc.name getDrawableDescriptor with undefined density
+     * @tc.desc test the getDrawableDescriptor method
+     */
+     it('getDrawableDescriptor_test_0120', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001c, undefined);
+                console.log('getDrawableDescriptor_test_0120 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0120 ' + error.code);
+                console.log('getDrawableDescriptor_test_0120 ' + error.message);
+            }
+            done();
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0140
+     * @tc.name getDrawableDescriptor with null density
+     * @tc.desc test the getDrawableDescriptor method
+     */
+     it('getDrawableDescriptor_test_0140', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001c, null);
+                console.log('getDrawableDescriptor_test_0140 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0140 ' + error.code);
+                console.log('getDrawableDescriptor_test_0140 ' + error.message);
+            }
+            done();
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0200
+     * @tc.name getDrawableDescriptor with normal pic and density
+     * @tc.desc test the getDrawableDescriptor method
+     */
+    it('getDrawableDescriptor_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001c,120);
+                console.log('getDrawableDescriptor_test_0200 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0200 ' + error.code);
+                console.log('getDrawableDescriptor_test_0200 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0300
+     * @tc.name getDrawableDescriptor with json style pic
+     * @tc.desc test the getDrawableDescriptor method
+     */
+    it('getDrawableDescriptor_test_0300', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001d);
+                console.log('getDrawableDescriptor_test_0300 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0300 ' + error.code);
+                console.log('getDrawableDescriptor_test_0300 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0400
+     * @tc.name getDrawableDescriptor with json style pic and density
+     * @tc.desc test the getDrawableDescriptor method
+     */
+    it('getDrawableDescriptor_test_0400', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001d, 240);
+                console.log('getDrawableDescriptor_test_0400 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0400 ' + error.code);
+                console.log('getDrawableDescriptor_test_0400 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0500
+     * @tc.name getDrawableDescriptor with string param
+     * @tc.desc test the getDrawableDescriptor method return 401
+     */
+    it('getDrawableDescriptor_test_0500', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor('0x0100001d');
+                console.log('getDrawableDescriptor_test_0500 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0500 ' + error.code);
+                console.log('getDrawableDescriptor_test_0500 ' + error.message);
+                expect(error.code == 401).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0600
+     * @tc.name getDrawableDescriptor with not exist resource id
+     * @tc.desc test the getDrawableDescriptor method return 9001001
+     */
+    it('getDrawableDescriptor_test_0600', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x01110000);
+                console.log('getDrawableDescriptor_test_0600 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0600 ' + error.code);
+                console.log('getDrawableDescriptor_test_0600 ' + error.message);
+                expect(error.code == 9001001).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0700
+     * @tc.name getDrawableDescriptor with string resource id
+     * @tc.desc test the getDrawableDescriptor method return 9001002
+     */
+    it('getDrawableDescriptor_test_0700', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x01000000);
+                console.log('getDrawableDescriptor_test_0700 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0700 ' + error.code);
+                console.log('getDrawableDescriptor_test_0700 ' + error.message);
+                expect(error.code == 9001002).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0800
+     * @tc.name getDrawableDescriptor with not exist density
+     * @tc.desc test the getDrawableDescriptor method return 401
+     */
+    it('getDrawableDescriptor_test_0800', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001d, 130);
+                console.log('getDrawableDescriptor_test_0800 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0800 ' + error.code);
+                console.log('getDrawableDescriptor_test_0800 ' + error.message);
+                expect(error.code == 401).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_0900
+     * @tc.name getDrawableDescriptor with string type density
+     * @tc.desc test the getDrawableDescriptor method return 401
+     */
+    it('getDrawableDescriptor_test_0900', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001d, '120');
+                console.log('getDrawableDescriptor_test_0900 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_0900 ' + error.code);
+                console.log('getDrawableDescriptor_test_0900 ' + error.message);
+                expect(error.code == 401).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1000
+     * @tc.name getDrawableDescriptor with 0 density
+     * @tc.desc test the getDrawableDescriptor method
+     */
+    it('getDrawableDescriptor_test_1000', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptor(0x0100001d, 0);
+                console.log('getDrawableDescriptor_test_1000 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1000 ' + error.code);
+                console.log('getDrawableDescriptor_test_1000 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1100
+     * @tc.name getDrawableDescriptorByName with normal pic
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+    it('getDrawableDescriptor_test_1100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('icon');
+                console.log('getDrawableDescriptor_test_1100 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1100 ' + error.code);
+                console.log('getDrawableDescriptor_test_1100 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1120
+     * @tc.name getDrawableDescriptorByName with undefined density
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+     it('getDrawableDescriptor_test_1120', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('icon', undefined);
+                console.log('getDrawableDescriptor_test_1120 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1120 ' + error.code);
+                console.log('getDrawableDescriptor_test_1120 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1140
+     * @tc.name getDrawableDescriptorByName with null density
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+     it('getDrawableDescriptor_test_1140', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('icon', null);
+                console.log('getDrawableDescriptor_test_1140 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1140 ' + error.code);
+                console.log('getDrawableDescriptor_test_1140 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1200
+     * @tc.name getDrawableDescriptorByName with normal pic and density
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+    it('getDrawableDescriptor_test_1200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('icon',120);
+                console.log('getDrawableDescriptor_test_1200 ' + JSON.stringify(value));
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1200 ' + error.code);
+                console.log('getDrawableDescriptor_test_1200 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1300
+     * @tc.name getDrawableDescriptorByName with json style pic
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+    it('getDrawableDescriptor_test_1300', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('stratify');
+                console.log('getDrawableDescriptor_test_1300 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1300 ' + error.code);
+                console.log('getDrawableDescriptor_test_1300 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1400
+     * @tc.name getDrawableDescriptorByName with json style pic and density
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+    it('getDrawableDescriptor_test_1400', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('stratify', 240);
+                console.log('getDrawableDescriptor_test_1400 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1400 ' + error.code);
+                console.log('getDrawableDescriptor_test_1400 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1500
+     * @tc.name getDrawableDescriptorByName with number param
+     * @tc.desc test the getDrawableDescriptorByName method return 401
+     */
+    it('getDrawableDescriptor_test_1500', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName(0x0100001d);
+                console.log('getDrawableDescriptor_test_1500 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1500 ' + error.code);
+                console.log('getDrawableDescriptor_test_1500 ' + error.message);
+                expect(error.code == 401).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1600
+     * @tc.name getDrawableDescriptorByName with not exist pic name
+     * @tc.desc test the getDrawableDescriptorByName method return 9001003
+     */
+    it('getDrawableDescriptor_test_1600', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('stratify1');
+                console.log('getDrawableDescriptor_test_1600 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1600 ' + error.code);
+                console.log('getDrawableDescriptor_test_1600 ' + error.message);
+                expect(error.code == 9001003).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1800
+     * @tc.name getDrawableDescriptorByName with not exist density
+     * @tc.desc test the getDrawableDescriptorByName method return 401
+     */
+    it('getDrawableDescriptor_test_1800', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('stratify', 130);
+                console.log('getDrawableDescriptor_test_1800 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1800 ' + error.code);
+                console.log('getDrawableDescriptor_test_1800 ' + error.message);
+                expect(error.code == 401).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_1900
+     * @tc.name getDrawableDescriptorByName with string type density
+     * @tc.desc test the getDrawableDescriptorByName method return 401
+     */
+    it('getDrawableDescriptor_test_1900', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('stratify', '120');
+                console.log('getDrawableDescriptor_test_1900 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_1900 ' + error.code);
+                console.log('getDrawableDescriptor_test_1900 ' + error.message);
+                expect(error.code == 401).assertTrue();
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_DRAWABLE_JS_2000
+     * @tc.name getDrawableDescriptorByName with 0 density
+     * @tc.desc test the getDrawableDescriptorByName method
+     */
+    it('getDrawableDescriptor_test_2000', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getDrawableDescriptorByName('stratify', 0);
+                console.log('getDrawableDescriptor_test_2000 ' + value);
+                expect(value != null).assertTrue();
+            }catch(error){
+                console.log('getDrawableDescriptor_test_2000 ' + error.code);
+                console.log('getDrawableDescriptor_test_2000 ' + error.message);
+            }
+        })
+        done();
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_RAWFILELIST_JS_0100
+     * @tc.name getRawFileList with callback method
+     * @tc.desc test the getRawFileList method
+     */
+    it('getRawFileList_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getRawFileList("", (err, value) => {
+                    if(err){
+                        console.log('getRawFileList_test_0100 err.code' + err.code);
+                        console.log('getRawFileList_test_0100 err.message' + err.message);
+                        done();
+                    }else{
+                        expect(value !== null).assertTrue();
+                        console.log('getRawFileList_test_0100 ' + value);
+                        done();
+                    }
+                })
+            }catch(e){
+                console.log('getRawFileList_test_0100 e.code' + e.code);
+                console.log('getRawFileList_test_0100 e.message' + e.message);
+            }
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_RAWFILELIST_JS_0110
+     * @tc.name getRawFileList with callback method
+     * @tc.desc test the getRawFileList method
+     */
+    it('getRawFileList_test_0110', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getRawFileList("bb", (err, value) => {
+                    if(err){
+                        console.log('getRawFileList_test_0110 err.code' + err.code);
+                        console.log('getRawFileList_test_0110 err.message' + err.message);
+                        expect(err.code == 9001005).assertTrue();
+                    }else{
+                        expect(value !== null).assertTrue();
+                        console.log('getRawFileList_test_0110 ' + value);
+                    }
+                    done();
+                })
+            }catch(e){
+                console.log('getRawFileList_test_0110 e.code' + e.code);
+                console.log('getRawFileList_test_0110 e.message' + e.message);
+                done();
+            }
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_RAWFILELIST_JS_0120
+     * @tc.name getRawFileList with callback method
+     * @tc.desc test the getRawFileList method
+     */
+    it('getRawFileList_test_0120', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getRawFileList(12345, (err, value) => {
+                    if(err){
+                        console.log('getRawFileList_test_0120 err.code' + err.code);
+                        console.log('getRawFileList_test_0120 err.message' + err.message);
+                    }else{
+                        expect(value !== null).assertTrue();
+                        console.log('getRawFileList_test_0120 ' + value);
+                    }
+                    done();
+                })
+            }catch(e){
+                console.log('getRawFileList_test_0120 e.code' + e.code);
+                console.log('getRawFileList_test_0120 e.message' + e.message);
+                expect(e.code == 401).assertTrue();
+                done();
+            }
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_RAWFILELIST_JS_0200
+     * @tc.name getRawFileList with promise method
+     * @tc.desc test the getRawFileList method
+     */
+    it('getRawFileList_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getRawFileList("").then(value => {
+                    expect(value !== null).assertTrue();
+                    console.log('getRawFileList_test_0200 ' + value);
+                    done();
+                }).catch(error => {
+                    console.log('getRawFileList_test_0200 error.code' + error.code);
+                    console.log('getRawFileList_test_0200 error.message' + error.message);
+                    done();
+                })
+            } catch (err){
+                console.log('getRawFileList_test_0200 err.code' + err.code);
+                console.log('getRawFileList_test_0200 err.message' + err.message);
+                done();
+            }
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_RAWFILELIST_JS_0210
+     * @tc.name getRawFileList with promise method
+     * @tc.desc test the getRawFileList method
+     */
+    it('getRawFileList_test_0210', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getRawFileList("bb").then(value => {
+                    expect(value !== null).assertTrue();
+                    console.log('getRawFileList_test_0210 ' + value);
+                    done();
+                }).catch(error => {
+                    console.log('getRawFileList_test_0210 error.code' + error.code);
+                    console.log('getRawFileList_test_0210 error.message' + error.message);
+                    expect(error.code == 9001005).assertTrue();
+                    done();
+                })
+            } catch (err){
+                console.log('getRawFileList_test_0210 err.code' + err.code);
+                console.log('getRawFileList_test_0210 err.message' + err.message);
+                done();
+            }
+        })
+    })
+
+    /**
+     * @tc.number SUB_GLOBAL_RESMGR_RAWFILELIST_JS_0220
+     * @tc.name getRawFileList with promise method
+     * @tc.desc test the getRawFileList method
+     */
+    it('getRawFileList_test_0220', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getRawFileList(12345).then(value => {
+                    expect(value !== null).assertTrue();
+                    console.log('getRawFileList_test_0220 ' + value);
+                    done();
+                }).catch(error => {
+                    console.log('getRawFileList_test_0220 error.code' + error.code);
+                    console.log('getRawFileList_test_0220 error.message' + error.message);
+                    done();
+                })
+            } catch (err){
+                console.log('getRawFileList_test_0220 err.code' + err.code);
+                console.log('getRawFileList_test_0220 err.message' + err.message);
+                expect(err.code == 401).assertTrue();
+                done();
+            }
+        })
+    })
+
+    /**
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0100
+    * @tc.name    test getMediaByName method in callback mode with density
+    * @tc.desc    get the media in callback mode
+    */
+    it('getMediaByName_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaByName('icon', 0 , (err, value) => {
+                console.log('getMediaByName_test_0100 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0200
+    * @tc.name    test getMediaByName method in promise mode with density
+    * @tc.desc    get the media in promise mode
+    */
+    it('getMediaByName_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaByName('icon', 0).then(value => {
+                console.log('getMediaByName_test_0200 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0300
+    * @tc.name    test getMediaBase64ByName method in callback mode with density
+    * @tc.desc    get the media in callback mode
+    */
+    it('getMediaBase64ByName_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaBase64ByName('icon', 0 , (err, value) => {
+                console.log('getMediaBase64ByName_test_0100 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0400
+    * @tc.name    test getMediaBase64ByName method in promise mode with density
+    * @tc.desc    get the media in promise mode
+    */
+    it('getMediaBase64ByName_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaBase64ByName('icon', 0).then(value => {
+                console.log('getMediaBase64ByName_test_0200 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0500
+    * @tc.name    test getMediaContent method in callback mode with density
+    * @tc.desc    get the media in callback mode
+    */
+    it('getMediaContent_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaContent(0x0100001c, 0 , (err, value) => {
+                console.log('getMediaContent_test_0100 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0600
+    * @tc.name    test getMediaContent method in promise mode with density
+    * @tc.desc    get the media in promise mode
+    */
+    it('getMediaContent_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaContent(0x0100001c, 0).then(value => {
+                console.log('getMediaContent_test_0200 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0700
+    * @tc.name    test getMediaContentBase64 method in callback mode with density
+    * @tc.desc    get the media in callback mode
+    */
+    it('getMediaContentBase64_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaContentBase64(0x0100001c, 0 , (err, value) => {
+                console.log('getMediaContentBase64_test_0100 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_DENSITY_JS_0800
+    * @tc.name    test getMediaContentBase64 method in promise mode with density
+    * @tc.desc    get the media in promise mode
+    */
+    it('getMediaContentBase64_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getMediaContentBase64(0x0100001c, 0).then(value => {
+                console.log('getMediaContentBase64_test_0200 ' + value);
+                expect(value.length > 0).assertTrue();
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETSYSTEMRESOURCEMANAGER_JS_0100
+    * @tc.name    test getSystemResourceManager method
+    * @tc.desc    get the SystemResourceManager
+    */
+    it('getSystemResourceManager_test_0100', 0, async function (done) {
+        let value = resmgr.getSystemResourceManager();
+        console.log('getSystemResourceManager_test_0100 ' + value);
+        expect(value !== null).assertTrue();
+        done();
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0100
+    * @tc.name    test getColor method in callback mode
+    * @tc.desc    get the color in callback mode
+    */
+    it('getColor_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getColor(0x01000010, (err, value) => {
+                expect(value !== null).assertTrue();
+                console.log('getColor_test_001 ' + value);
+                expect(value).assertEqual(4294902015);
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0110
+    * @tc.name    test getColor method in callback mode
+    * @tc.desc    get the color in callback mode
+    */
+    it('getColor_test_0110', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor('color_test1', (err, value) => {
+                    done();
+                })
+            }catch(err){
+                console.log('getColor_test_0110 err.code' + err.code);
+                console.log('getColor_test_0110 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0120
+    * @tc.name    test getColor method in callback mode
+    * @tc.desc    get the color in callback mode
+    */
+    it('getColor_test_0120', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x21000014, (err, value) => {
+                    console.log('getColor_test_0120 err.code ' + err.code + '-');
+                    console.log('getColor_test_0120 err.message ' + err.message + '-');
+                    expect(err.code == 9001001).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0120 error.code' + error.code);
+                console.log('getColor_test_0120 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0130
+    * @tc.name    test getColor method in callback mode
+    * @tc.desc    get the color in callback mode
+    */
+    it('getColor_test_0130', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x01000000, (err, value) => {
+                    console.log('getColor_test_0130 err.code ' + err.code + '-');
+                    console.log('getColor_test_0130 err.message ' + err.message + '-');
+                    expect(err.code == 9001002).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0130 error.code' + error.code);
+                console.log('getColor_test_0130 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0140
+    * @tc.name    test getColor method in callback mode
+    * @tc.desc    get the color in callback mode
+    */
+    it('getColor_test_0140', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x01000014, (err, value) => {
+                    console.log('getColor_test_0140 err.code ' + err.code + '-');
+                    console.log('getColor_test_0140 err.message ' + err.message + '-');
+                    expect(err.code == 9001002).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0140 error.code' + error.code);
+                console.log('getColor_test_0140 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0150
+    * @tc.name    test getColor method in callback mode
+    * @tc.desc    get the color in callback mode
+    */
+    it('getColor_test_0150', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x01000012, (err, value) => {
+                    console.log('getColor_test_0150 err.code ' + err.code + '-');
+                    console.log('getColor_test_0150 err.message ' + err.message + '-');
+                    expect(err.code == 9001006).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0150 error.code' + error.code);
+                console.log('getColor_test_0150 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0200
+    * @tc.name    test getColor method in promise mode
+    * @tc.desc    get the color in promise mode
+    */
+    it('getColor_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getColor(0x01000010).then(value => {
+                expect(value !== null).assertTrue();
+                console.log('getColor_test_0200 ' + value);
+                expect(value).assertEqual(4294902015);
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0210
+    * @tc.name    test getColor method in promise mode
+    * @tc.desc    get the color in promise mode
+    */
+    it('getColor_test_0210', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor('color_test1').then(value => {
+                    done();
+                })
+            }catch(err){
+                console.log('getColor_test_0210 err.code' + err.code);
+                console.log('getColor_test_0210 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0220
+    * @tc.name    test getColor method in promise mode
+    * @tc.desc    get the color in promise mode
+    */
+    it('getColor_test_0220', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x21000014).then(value => {
+                }).catch(err => {
+                    console.log('getColor_test_0220 err.code ' + err.code + '-');
+                    console.log('getColor_test_0220 err.message ' + err.message + '-');
+                    expect(err.code == 9001001).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0220 error.code' + error.code);
+                console.log('getColor_test_0220 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0230
+    * @tc.name    test getColor method in promise mode
+    * @tc.desc    get the color in promise mode
+    */
+    it('getColor_test_0230', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x01000000).then(value => {
+                }).catch(err => {
+                    console.log('getColor_test_0230 err.code ' + err.code + '-');
+                    console.log('getColor_test_0230 err.message ' + err.message + '-');
+                    expect(err.code == 9001002).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0230 error.code' + error.code);
+                console.log('getColor_test_0230 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0240
+    * @tc.name    test getColor method in promise mode
+    * @tc.desc    get the color in promise mode
+    */
+    it('getColor_test_0240', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x01000014).then(value => {
+                }).catch(err => {
+                    console.log('getColor_test_0240 err.code ' + err.code + '-');
+                    console.log('getColor_test_0240 err.message ' + err.message + '-');
+                    expect(err.code == 9001002).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0240 error.code' + error.code);
+                console.log('getColor_test_0240 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLOR_JS_0250
+    * @tc.name    test getColor method in promise mode
+    * @tc.desc    get the color in promise mode
+    */
+    it('getColor_test_0250', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColor(0x01000012).then(value => {
+                }).catch(err => {
+                    console.log('getColor_test_0250 err.code ' + err.code + '-');
+                    console.log('getColor_test_0250 err.message ' + err.message + '-');
+                    expect(err.code == 9001006).assertTrue();
+                    expect(err.message).assertEqual('GetColorById failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColor_test_0250 error.code' + error.code);
+                console.log('getColor_test_0250 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORSYNC_JS_0100
+    * @tc.name    test getColorSync method
+    * @tc.desc    get the sync color
+    */
+    it('getColorSync_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            let value = mgr.getColorSync(0x01000010);
+            expect(value !== null).assertTrue();
+            console.log('getColorSync_test_001 ' + value);
+            expect(value).assertEqual(4294902015);
+            done();
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORSYNC_JS_0200
+    * @tc.name    test getColorSync method
+    * @tc.desc    get the sync color
+    */
+    it('getColorSync_test_002', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorSync('color_test1');
+            }catch(err){
+                console.log('getColorSync_test_002 err.code' + err.code);
+                console.log('getColorSync_test_002 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORSYNC_JS_0300
+    * @tc.name    test getColorSync method
+    * @tc.desc    get the sync color
+    */
+    it('getColorSync_test_003', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorSync(0x21000014);
+            }catch(err){
+                console.log('getColorSync_test_003 err.code' + err.code);
+                console.log('getColorSync_test_003 err.message' + err.message);
+                expect(err.code).assertEqual('9001001');
+                expect(err.message).assertEqual('Resource id invalid');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORSYNC_JS_0400
+    * @tc.name    test getColorSync method
+    * @tc.desc    get the sync color
+    */
+    it('getColorSync_test_004', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorSync(0x01000000);
+            }catch(err){
+                console.log('getColorSync_test_004 err.code' + err.code);
+                console.log('getColorSync_test_004 err.message' + err.message);
+                expect(err.code).assertEqual('9001002');
+                expect(err.message).assertEqual('Resource not found by id');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORSYNC_JS_0500
+    * @tc.name    test getColorSync method
+    * @tc.desc    get the sync color
+    */
+    it('getColorSync_test_005', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorSync(0x01000014);
+            }catch(err){
+                console.log('getColorSync_test_005 err.code' + err.code);
+                console.log('getColorSync_test_005 err.message' + err.message);
+                expect(err.code).assertEqual('9001002');
+                expect(err.message).assertEqual('Resource not found by id');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORSYNC_JS_0600
+    * @tc.name    test getColorSync method
+    * @tc.desc    get the sync color
+    */
+    it('getColorSync_test_006', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorSync(0x01000012);
+            }catch(err){
+                console.log('getColorSync_test_006 err.code' + err.code);
+                console.log('getColorSync_test_006 err.message' + err.message);
+                expect(err.code).assertEqual('9001006');
+                expect(err.message).assertEqual('Resource re-ref too much');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0100
+    * @tc.name    test getColorByName method in callback mode
+    * @tc.desc    get the color by name in callback mode
+    */
+    it('getColorByName_test_0100', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getColorByName('color_test1', (err, value) => {
+                expect(value !== null).assertTrue();
+                console.log('getColorByName_test_0100 ' + value);
+                expect(value).assertEqual(4294902015);
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0110
+    * @tc.name    test getColorByName method in callback mode
+    * @tc.desc    get the color by name in callback mode
+    */
+    it('getColorByName_test_0110', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName(0x01000010, (err, value) => {
+                    done();
+                })
+            }catch(err){
+                console.log('getColorByName_test_0110 err.code' + err.code);
+                console.log('getColorByName_test_0110 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0120
+    * @tc.name    test getColorByName method in callback mode
+    * @tc.desc    get the color by name in callback mode
+    */
+    it('getColorByName_test_0120', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('color_notexist', (err, value) => {
+                    console.log('getColorByName_test_0120 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0120 err.message ' + err.message + '-');
+                    expect(err.code == 9001003).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0120 error.code' + error.code);
+                console.log('getColorByName_test_0120 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0130
+    * @tc.name    test getColorByName method in callback mode
+    * @tc.desc    get the color by name in callback mode
+    */
+    it('getColorByName_test_0130', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('integer_1', (err, value) => {
+                    console.log('getColorByName_test_0130 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0130 err.message ' + err.message + '-');
+                    expect(err.code == 9001003).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0130 error.code' + error.code);
+                console.log('getColorByName_test_0130 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0140
+    * @tc.name    test getColorByName method in callback mode
+    * @tc.desc    get the color by name in callback mode
+    */
+    it('getColorByName_test_0140', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('color_test5', (err, value) => {
+                    console.log('getColorByName_test_0140 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0140 err.message ' + err.message + '-');
+                    expect(err.code == 9001004).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0140 error.code' + error.code);
+                console.log('getColorByName_test_0140 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0150
+    * @tc.name    test getColorByName method in callback mode
+    * @tc.desc    get the color by name in callback mode
+    */
+    it('getColorByName_test_0150', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('color_test3', (err, value) => {
+                    console.log('getColorByName_test_0150 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0150 err.message ' + err.message + '-');
+                    expect(err.code == 9001006).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0150 error.code' + error.code);
+                console.log('getColorByName_test_0150 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0200
+    * @tc.name    test getColorByName method in promise mode
+    * @tc.desc    get the color by name in promise mode
+    */
+    it('getColorByName_test_0200', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            mgr.getColorByName('color_test1').then(value => {
+                expect(value !== null).assertTrue();
+                console.log('getColorByName_test_0200 ' + value);
+                expect(value).assertEqual(4294902015);
+                done();
+            })
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0210
+    * @tc.name    test getColorByName method in promise mode
+    * @tc.desc    get the color by name in promise mode
+    */
+    it('getColorByName_test_0210', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName(0x01000010).then(value => {
+                    done();
+                })
+            }catch(err){
+                console.log('getColorByName_test_0210 err.code' + err.code);
+                console.log('getColorByName_test_0210 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0220
+    * @tc.name    test getColorByName method in promise mode
+    * @tc.desc    get the color by name in promise mode
+    */
+    it('getColorByName_test_0220', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('color_notexist').then(value => {
+                }).catch(err => {
+                    console.log('getColorByName_test_0220 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0220 err.message ' + err.message + '-');
+                    expect(err.code == 9001003).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0220 error.code' + error.code);
+                console.log('getColorByName_test_0220 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0230
+    * @tc.name    test getColorByName method in promise mode
+    * @tc.desc    get the color by name in promise mode
+    */
+    it('getColorByName_test_0230', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('integer_1').then(value => {
+                }).catch(err => {
+                    console.log('getColorByName_test_0230 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0230 err.message ' + err.message + '-');
+                    expect(err.code == 9001003).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0230 error.code' + error.code);
+                console.log('getColorByName_test_0230 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0240
+    * @tc.name    test getColorByName method in promise mode
+    * @tc.desc    get the color by name in promise mode
+    */
+    it('getColorByName_test_0240', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('color_test5').then(value => {
+                }).catch(err => {
+                    console.log('getColorByName_test_0240 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0240 err.message ' + err.message + '-');
+                    expect(err.code == 9001004).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0240 error.code' + error.code);
+                console.log('getColorByName_test_0240 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAME_JS_0250
+    * @tc.name    test getColorByName method in promise mode
+    * @tc.desc    get the color by name in promise mode
+    */
+    it('getColorByName_test_0250', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.getColorByName('color_test3').then(value => {
+                }).catch(err => {
+                    console.log('getColorByName_test_0250 err.code ' + err.code + '-');
+                    console.log('getColorByName_test_0250 err.message ' + err.message + '-');
+                    expect(err.code == 9001006).assertTrue();
+                    expect(err.message).assertEqual('getColorByNameFunc failed state');
+                    done();
+                })
+            }catch(error){
+                console.log('getColorByName_test_0250 error.code' + error.code);
+                console.log('getColorByName_test_0250 error.message' + error.message);
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAMESYNC_JS_0100
+    * @tc.name    test getColorByNameSync method
+    * @tc.desc    get the sync color by name
+    */
+    it('getColorByNameSync_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            let value = mgr.getColorByNameSync('color_test1');
+            expect(value !== null).assertTrue();
+            console.log('getColorByNameSync_test_001 ' + value);
+            expect(value).assertEqual(4294902015);
+            done();
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAMESYNC_JS_0200
+    * @tc.name    test getColorByNameSync method
+    * @tc.desc    get the sync color by name
+    */
+    it('getColorByNameSync_test_002', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorByNameSync(0x01000010);
+            }catch(err){
+                console.log('getColorByNameSync_test_002 err.code' + err.code);
+                console.log('getColorByNameSync_test_002 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAMESYNC_JS_0300
+    * @tc.name    test getColorByNameSync method
+    * @tc.desc    get the sync color by name
+    */
+    it('getColorByNameSync_test_003', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorByNameSync('color_notexist');
+            }catch(err){
+                console.log('getColorByNameSync_test_003 err.code' + err.code);
+                console.log('getColorByNameSync_test_003 err.message' + err.message);
+                expect(err.code).assertEqual('9001003');
+                expect(err.message).assertEqual('Resource name invalid');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAMESYNC_JS_0400
+    * @tc.name    test getColorByNameSync method
+    * @tc.desc    get the sync color by name
+    */
+    it('getColorByNameSync_test_004', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorByNameSync('integer_1');
+            }catch(err){
+                console.log('getColorByNameSync_test_004 err.code' + err.code);
+                console.log('getColorByNameSync_test_004 err.message' + err.message);
+                expect(err.code).assertEqual('9001003');
+                expect(err.message).assertEqual('Resource name invalid');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAMESYNC_JS_0500
+    * @tc.name    test getColorByNameSync method
+    * @tc.desc    get the sync color by name
+    */
+    it('getColorByNameSync_test_005', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorByNameSync('color_test5');
+            }catch(err){
+                console.log('getColorByNameSync_test_005 err.code' + err.code);
+                console.log('getColorByNameSync_test_005 err.message' + err.message);
+                expect(err.code).assertEqual('9001004');
+                expect(err.message).assertEqual('Resource not found by name');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_GETCOLORBYNAMESYNC_JS_0600
+    * @tc.name    test getColorByNameSync method
+    * @tc.desc    get the sync color by name
+    */
+    it('getColorByNameSync_test_006', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                let value = mgr.getColorByNameSync('color_test3');
+            }catch(err){
+                console.log('getColorByNameSync_test_006 err.code' + err.code);
+                console.log('getColorByNameSync_test_006 err.message' + err.message);
+                expect(err.code).assertEqual('9001006');
+                expect(err.message).assertEqual('Resource re-ref too much');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_ADDRESOURCE_JS_0100
+    * @tc.name    test addResource method with int param
+    * @tc.desc    addResource
+    */
+    it('addResource_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.addResource(123);
+            }catch(err){
+                console.log('addResource_test_001 err.code' + err.code);
+                console.log('addResource_test_001 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_ADDRESOURCE_JS_0200
+    * @tc.name    test addResource method with not exist path
+    * @tc.desc    addResource
+    */
+    it('addResource_test_002', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.addResource('123');
+            }catch(err){
+                console.log('addResource_test_002 err.code' + err.code);
+                console.log('addResource_test_002 err.message' + err.message);
+                expect(err.code).assertEqual('9001010');
+                expect(err.message).assertEqual('Overlay resource path is invalid');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_REMOVERESOURCE_JS_0100
+    * @tc.name    test removeResource method with int param
+    * @tc.desc    removeResource
+    */
+    it('removeResource_test_001', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.removeResource(123);
+            }catch(err){
+                console.log('removeResource_test_001 err.code' + err.code);
+                console.log('removeResource_test_001 err.message' + err.message);
+                expect(err.code).assertEqual('401');
+                expect(err.message).assertEqual('Invalid input parameter');
+                done();
+            }
+        })
+    })
+
+    /* *
+    * @tc.number  SUB_GLOBAL_RESMGR_REMOVERESOURCE_JS_0200
+    * @tc.name    test removeResource method with not exist path
+    * @tc.desc    removeResource
+    */
+    it('removeResource_test_002', 0, async function (done) {
+        resmgr.getResourceManager((error, mgr) => {
+            try{
+                mgr.removeResource('123');
+            }catch(err){
+                console.log('removeResource_test_002 err.code' + err.code);
+                console.log('removeResource_test_002 err.message' + err.message);
+                expect(err.code).assertEqual('9001010');
+                expect(err.message).assertEqual('Overlay resource path is invalid');
+                done();
+            }
         })
     })
 

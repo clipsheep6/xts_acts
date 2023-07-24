@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,6 @@ import {
     FILEKEY,
     checkAssetsCount,
     fetchOps,
-    getPermission,
     isNum,
 } from "../../../../../../common";
 
@@ -127,7 +126,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
 
         const props = {
             image: {
-                mimeType: "image/*",
+                mimeType: "image/jpeg",
                 displayName: "01.jpg",
                 relativePath: "Pictures/Static/",
                 size: 348113,
@@ -162,8 +161,8 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
                 orientation: 0,
                 duration: "219600",
             },
-            file: {
-                mimeType: "file/*",
+            application: {
+                mimeType: "application/octet-stream",
                 displayName: "01.dat",
                 relativePath: "Documents/Static/",
                 size: 10,
@@ -393,7 +392,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
         it("SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_004", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_004";
             let currentFetchOps = fetchOps(testNum, "Documents/Static/", FILE_TYPE);
-            let type = "file";
+            let type = "application";
             let count = 1;
             await checkFileAssetAttr(done, testNum, currentFetchOps, type, count, null);
         });
@@ -411,7 +410,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
             let currentFetchOps = imageAndVideofetchOp;
             let type = "video";
             let count = 2;
-            let typesArr = ["image/*", "video/mp4"];
+            let typesArr = ["image/jpeg", "video/mp4"];
             await checkFileAssetAttr(done, testNum, currentFetchOps, type, count, typesArr);
         });
 
@@ -426,9 +425,9 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
         it("SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_006", 0, async function (done) {
             let testNum = "SUB_MEDIA_MEDIALIBRARY_PROMISE_GETFILEASSETS_006";
             let currentFetchOps = imageAndVideoAndfilefetchOp;
-            let type = "file";
+            let type = "application";
             let count = 3;
-            let typesArr = ["image/*", "video/mp4", "file/*"];
+            let typesArr = ["image/jpeg", "video/mp4", "application/octet-stream"];
             await checkFileAssetAttr(done, testNum, currentFetchOps, type, count, typesArr);
         });
 
@@ -445,7 +444,7 @@ export default function mediaLibraryTestPromiseTest(abilityContext) {
             let currentFetchOps = imageAndVideoAndfileAndAudiofetchOp;
             let type = "audio";
             let count = 4;
-            let typesArr = ["image/*", "video/mp4", "file/*", "audio/mpeg"];
+            let typesArr = ["image/jpeg", "video/mp4", "application/octet-stream", "audio/mpeg"];
             await checkFileAssetAttr(done, testNum, currentFetchOps, type, count, typesArr);
         });
 

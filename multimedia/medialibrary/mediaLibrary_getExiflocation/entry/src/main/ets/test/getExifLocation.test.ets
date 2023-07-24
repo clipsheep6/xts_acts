@@ -16,15 +16,21 @@ import image from "@ohos.multimedia.image";
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
+<<<<<<< HEAD
 import bundle from "@ohos.bundle";
 import uitest from "@ohos.uitest";
 
 import { sleep } from "../../../../../../common";
+=======
+import uitest from "@ohos.UiTest";
+import { sleep, } from "../../../../../../common";
+>>>>>>> hw/master
 
 export default function getExifLocation(abilityContext) {
     describe("getExifLocation", function () {
         beforeAll(async function () {
             console.info("beforeAll case");
+<<<<<<< HEAD
 
             let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA"];
             abilityContext.requestPermissionsFromUser(permissions, (data) => {
@@ -45,6 +51,32 @@ export default function getExifLocation(abilityContext) {
             let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
             if (!(isGranted1 == 0 && isGranted2 == 0)) {
                 console.info("getpermission failed");
+=======
+            try {
+                let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA"];
+                let atManager = abilityAccessCtrl.createAtManager();
+                atManager.requestPermissionsFromUser(abilityContext, permissions, (err, result) => {
+                    if (err) {
+                        console.info('getPermission failed: ' + JSON.stringify(err));
+                    } else {
+                        console.info('getPermission suc: ' + JSON.stringify(result));
+                    }
+                });
+            
+                let driver = uitest.Driver.create();
+                await sleep(500);
+            
+                for (let i = 0; i < 10; i++) {
+                    await sleep(500);
+                    let button = await driver.findComponent(uitest.ON.text('允许'));
+                    if (button != undefined) {
+                        await button.click();
+                    }
+                }
+                console.info("getPermission end");
+            } catch (error) {
+                console.info(`getPermission failed, error: ${error}`);
+>>>>>>> hw/master
             }
         });
         beforeEach(function () {

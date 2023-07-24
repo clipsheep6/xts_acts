@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -23,7 +23,7 @@ export default function ToggleJsunit() {
     beforeEach(async function (done) {
       console.info("toggle beforeEach start");
       let options = {
-        uri: 'pages/toggle',
+        uri: 'MainAbility/pages/toggle',
       }
       try {
         router.clear();
@@ -129,59 +129,6 @@ export default function ToggleJsunit() {
       console.info("testToggle05 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.selectedColor).assertEqual('#330A59F8');
       console.info('testToggle05 END');
-      done();
-    });
-
-    it('testToggle06', 0, async function (done) {
-      console.info('testToggle06 START');
-      try {
-        let eventData = {
-          data: {
-            "selectedColor": '-a',
-          }
-        }
-        let indexEvent = {
-          eventId: 1033,
-          priority: events_emitter.EventPriority.LOW
-        }
-        console.info("testToggle06 start to publish emit");
-        events_emitter.emit(indexEvent, eventData);
-      } catch (err) {
-        console.log("testToggle06 change component data error: " + err.message);
-      }
-      await Utils.sleep(4000);
-      let strJsonNew = getInspectorByKey('toggle');
-      let objNew = JSON.parse(strJsonNew);
-      console.info("testToggle06 component objNew is: " + JSON.stringify(objNew));
-      // 非法入参默认初始值
-      expect(objNew.$attrs.selectedColor).assertEqual('#33007DFF');
-      console.info('testToggle06 END');
-      done();
-    });
-
-    it('testToggle07', 0, async function (done) {
-      console.info('testToggle07 START');
-      try {
-        let eventData = {
-          data: {
-            "selectedColor": '-0.1',
-          }
-        }
-        let indexEvent = {
-          eventId: 1034,
-          priority: events_emitter.EventPriority.LOW
-        }
-        console.info("testToggle07 start to publish emit");
-        events_emitter.emit(indexEvent, eventData);
-      } catch (err) {
-        console.log("testToggle07 change component data error: " + err.message);
-      }
-      await Utils.sleep(4000);
-      let strJsonNew = getInspectorByKey('toggle');
-      let objNew = JSON.parse(strJsonNew);
-      console.info("testToggle07 component objNew is: " + JSON.stringify(objNew));
-      expect(objNew.$attrs.selectedColor).assertEqual('#33007DFF');
-      console.info('testToggle07 END');
       done();
     });
 

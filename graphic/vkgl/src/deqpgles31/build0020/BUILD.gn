@@ -26,19 +26,23 @@ config("deqp_platform_ohos_config") {
 }
 
 ohos_static_library("libdeqpgles31func0020") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
   sources = common_src
   sources += [ "../Deqpgles31BaseFunc.cpp" ]
 
   include_dirs = common_include
   deps = common_depends
   external_deps = [
-    "hilog_native:libhilog",
-    "multimedia_image_framework:image_native",
+    "hilog:libhilog",
+    "image_framework:image_native",
   ]
   configs = [ ":deqp_platform_ohos_config" ]
 }
 
 ohos_moduletest_suite("ActsDeqpgles31TestSuite0020") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
   sources = [
     "../ActsDeqpgles310020TestSuite.cpp",
     "../functional/Deqpgles31color_tex2dTestCase.cpp",
@@ -92,7 +96,7 @@ ohos_moduletest_suite("ActsDeqpgles31TestSuite0020") {
     "../functional/Deqpgles31no_attachments_sizeTestCase.cpp",
   ]
 
-  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+  include_dirs = [ "../../../src" ]
 
   deps = [ ":libdeqpgles31func0020" ]
 

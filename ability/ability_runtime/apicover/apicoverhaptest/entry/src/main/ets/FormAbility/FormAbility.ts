@@ -43,21 +43,47 @@ export default class FormAbility extends FormExtension {
     onCastToNormalForm(formId) {
         // Called when the form provider is notified that a temporary form is successfully
         // converted to a normal form.
+        console.info("FormAbility onCastToNormalForm===end=== " + formId)
     }
 
     onUpdateForm(formId) {
+<<<<<<< HEAD
+=======
+      console.info("FormAbility onUpdateForm===end=== " + formId)
+>>>>>>> hw/master
         // Called to notify the form provider to update a specified form.
+        let formData = {};
+        let proxies = [
+          {
+            "key": "detail",
+            "subscriberId": "11"
+          }
+        ]
+        let formBinding = formBindingData.createFormBindingData(formData);
+        formBinding["proxies"] = proxies;
     }
 
     onChangeFormVisibility(newStatus) {
+<<<<<<< HEAD
+=======
+      console.info("FormAbility onChangeFormVisibility===end=== " + newStatus)
+>>>>>>> hw/master
         // Called when the form provider receives form events from the system.
     }
 
     onFormEvent(formId, message) {
+<<<<<<< HEAD
+=======
+      console.info("FormAbility onFormEvent===end=== " + message)
+>>>>>>> hw/master
         // Called when a specified message event defined by the form provider is triggered.
     }
 
     onRemoveForm(formId) {
+<<<<<<< HEAD
+=======
+      console.info("FormAbility onRemoveForm===end=== " + formId)
+>>>>>>> hw/master
         // Called to notify the form provider that a specified form has been destroyed.
     }
 
@@ -66,4 +92,9 @@ export default class FormAbility extends FormExtension {
         console.info("FormAbility want success" + JSON.stringify(want.parameters))
         return formInfo.FormState.READY;
     }
+
+    onConfigurationUpdate(config) {
+      console.log('[Demo] MainAbility onConfigurationUpdate: ' + this.context.config.language)
+      console.log('[Demo] MainAbility onConfigurationUpdate: ' + config.language)
+  }
 };

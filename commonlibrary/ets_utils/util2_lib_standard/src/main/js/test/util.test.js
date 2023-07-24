@@ -886,7 +886,7 @@ describe('TextEncoderTest', function () {
         var result = util.randomUUID(true);
         expect(result.length).assertEqual(36);
     })
-    
+
     /**
      * @tc.name: testUtilRandomUUID002
      * @tc.desc: Generate a random RFC 4122 version 4 UUID.
@@ -945,6 +945,42 @@ describe('TextEncoderTest', function () {
         } catch(e) {
             expect(e.message).assertEqual('Syntax Error.Invalid 84Wdf796-66cc-4655-9b89-d6218d100f9c string');
         }
+    })
+
+    /**
+     * @tc.name: testUtilgenerateRandomUUID001
+     * @tc.desc: Generate a random RFC 4122 version 4 UUID.
+     */
+    it('testUtilgenerateRandomUUID001', 0, async function () {
+        var result = util.generateRandomUUID(true);
+        expect(result.length).assertEqual(36);
+    })
+
+    /**
+     * @tc.name: testUtilgenerateRandomUUID002
+     * @tc.desc: Generate a random RFC 4122 version 4 UUID.
+     */
+    it('testUtilgenerateRandomUUID002', 0, async function () {
+        var result = util.generateRandomUUID(false);
+        expect(result.length).assertEqual(36);
+    })
+
+    /**
+     * @tc.name: testUtilgenerateRandomBinaryUUID001
+     * @tc.desc: Generate a random RFC 4122 version 4 UUID.
+     */
+    it('testUtilgenerateRandomBinaryUUID001', 0, async function () {
+        var result = util.generateRandomBinaryUUID(true);
+        expect(result.length).assertEqual(16);
+    })
+
+    /**
+     * @tc.name: testUtilgenerateRandomBinaryUUID002
+     * @tc.desc: Generate a random RFC 4122 version 4 UUID.
+     */
+    it('testUtilgenerateRandomBinaryUUID002', 0, async function () {
+        var result = util.generateRandomBinaryUUID(false);
+        expect(result.length).assertEqual(16);
     })
 })
 
@@ -1598,6 +1634,21 @@ describe('LRUCacheTest', function () {
     })
 
     /**
+     * @tc.name: testLRUCacheUpdateGetCapacity006
+     * @tc.desc: Updates the buffer capacity to a specified capacity.
+     */
+    it('testLRUCacheUpdateGetCapacity006', 0, function () {
+        var that = new util.LRUCache(200)
+        try {
+            that.updateCapacity('a');
+        } catch(e) {
+            expect(e.toString()).assertEqual('BusinessError: Parameter error.The type of a must be number');
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual("Parameter error.The type of a must be number");
+        }
+    })
+
+    /**
      * @tc.name: testLRUCacheGet001
      * @tc.desc: Obtains the value associated with a specified key.
      */
@@ -1676,6 +1727,23 @@ describe('LRUCacheTest', function () {
     })
 
     /**
+     * @tc.name: testLRUCacheGet006
+     * @tc.desc: Obtains the value associated with a specified key.
+     */
+    it('testLRUCacheGet006', 0, function () {
+        var that = new util.LRUCache()
+        let un = undefined;
+        that.put(20,'cdjcaxb')
+        try {
+            var result1 = that.get(un);
+        } catch(e) {
+            expect(e.toString()).assertEqual('BusinessError: Parameter error.The type of undefined must be Object');
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual("Parameter error.The type of undefined must be Object");
+        }
+    })
+
+    /**
      * @tc.name: testLRUCachePut001
      * @tc.desc: Adds a key-value pair to the buffer.
      */
@@ -1750,6 +1818,22 @@ describe('LRUCacheTest', function () {
         expect(temp3).assertEqual(12)
         expect(temp4).assertEqual(5)
         expect(temp5).assertEqual(22)
+    })
+
+    /**
+     * @tc.name: testLRUCachePut006
+     * @tc.desc: Adds a key-value pair to the buffer.
+     */
+    it('testLRUCachePut006', 0, function () {
+        var that = new util.LRUCache()
+        let un = undefined;
+        try {
+            that.put(un,'bcjdshc')
+          } catch(e) {
+            expect(e.toString()).assertEqual('BusinessError: Parameter error.The type of undefined must be Object');
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual("Parameter error.The type of undefined must be Object");
+          }
     })
 
     /**
@@ -2496,6 +2580,23 @@ describe('LRUCacheTest', function () {
     })
 
     /**
+     * @tc.name: testLRUCacheContains006
+     * @tc.desc: Checks whether the current buffer contains a specified key.
+     */
+    it('testLRUCacheContains006', 0, function () {
+        var that = new util.LRUCache()
+        that.put('abc','abc')
+        let un = undefined;
+        try {
+            that.contains(un)
+        } catch(e) {
+            expect(e.toString()).assertEqual('BusinessError: Parameter error.The type of undefined must be Object');
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual("Parameter error.The type of undefined must be Object");
+        }
+    })
+
+    /**
      * @tc.name: testLRUCacheRemove001
      * @tc.desc: Deletes a specified key and its associated value from the current buffer.
      */
@@ -2565,6 +2666,23 @@ describe('LRUCacheTest', function () {
     })
 
     /**
+     * @tc.name: testLRUCacheRemove006
+     * @tc.desc: Deletes a specified key and its associated value from the current buffer.
+     */
+    it('testLRUCacheRemove006', 0, function () {
+        var that = new util.LRUCache()
+        that.put(1,2)
+        let un = undefined;
+        try {
+            that.remove(un)
+        } catch(e) {
+            expect(e.toString()).assertEqual('BusinessError: Parameter error.The type of undefined must be Object');
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual("Parameter error.The type of undefined must be Object");
+        }
+    })
+
+    /**
      * @tc.name: testLRUCacheCreateDefault001
      * @tc.desc: Executes subsequent operations if miss to compute a value for the specific key.
      */
@@ -2614,6 +2732,22 @@ describe('LRUCacheTest', function () {
         var result2 = that.createDefault('ab')
         expect(result1).assertEqual(undefined)
         expect(result2).assertEqual(undefined)
+    })
+
+    /**
+     * @tc.name: testLRUCacheCreateDefault006
+     * @tc.desc: Executes subsequent operations if miss to compute a value for the specific key.
+     */
+    it('testLRUCacheCreateDefault006', 0, function () {
+        var that = new util.LRUCache()
+        let un = undefined;
+        try {
+            that.createDefault(un);
+        } catch(e) {
+            expect(e.toString()).assertEqual('BusinessError: Parameter error.The type of undefined must be Object');
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual("Parameter error.The type of undefined must be Object");
+        }
     })
 
     /**
@@ -3546,11 +3680,9 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Creates a RationalNumber object based on a given string.
      */
     it('test_parseRationalNumber_001', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(1, 2)
-        var res = pro.createRationalFromString('+2:-4')
-        var result1 = res.valueOf()
-        expect(result1).assertEqual(-0.5)
+        var res = util.RationalNumber.parseRationalNumber(2, 1)
+        var result = res.valueOf()
+        expect(result).assertEqual(2)
     })
 
     /**
@@ -3559,11 +3691,9 @@ describe('RationalNumberTest', function () {
      */
     it('test_parseRationalNumberThrowError_001', 0, function () {
         try {
-            var pro = new util.RationalNumber()
-            pro.parseRationalNumber('str', 2)
-            var res = pro.createRationalFromString('+2:-4')
-            var result1 = res.valueOf()
-            expect(result1).assertEqual(-0.5)
+            var pro = util.RationalNumber.parseRationalNumber('str', 2)
+            var result = res.valueOf()
+            expect(result).assertEqual(2)
         } catch (e) {
             expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of str must be number");
         }
@@ -3574,11 +3704,9 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Creates a RationalNumber object based on a given string.
      */
     it('test_createRationalFromString_001', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(1,2)
-        var res = pro.createRationalFromString('-1:2')
-        var result1 = res.valueOf()
-        expect(result1).assertEqual(-0.5)
+        var res = util.RationalNumber.createRationalFromString('-1:2')
+        var result = res.valueOf()
+        expect(result).assertEqual(-0.5)
     })
 
     /**
@@ -3586,11 +3714,9 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Creates a RationalNumber object based on a given string.
      */
     it('test_createRationalFromString_002', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(1,2)
-        var res = pro.createRationalFromString('+3/4')
-        var result1 = res.valueOf()
-        expect(result1).assertEqual(0.75)
+        var res = util.RationalNumber.createRationalFromString('+3/4')
+        var result = res.valueOf()
+        expect(result).assertEqual(0.75)
     })
 
     /**
@@ -3598,11 +3724,9 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Creates a RationalNumber object based on a given string.
      */
     it('test_createRationalFromString_003', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(1,2)
-        var res = pro.createRationalFromString('+3:-4')
-        var result1 = res.valueOf()
-        expect(result1).assertEqual(-0.75)
+        var res = util.RationalNumber.createRationalFromString('+3:-4')
+        var result = res.valueOf()
+        expect(result).assertEqual(-0.75)
     })
 
     /**
@@ -3610,11 +3734,9 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Creates a RationalNumber object based on a given string.
      */
     it('test_createRationalFromString_004', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(1,2)
-        var res = pro.createRationalFromString('+2:4')
-        var result1 = res.valueOf()
-        expect(result1).assertEqual(0.5)
+        var res = util.RationalNumber.createRationalFromString('+2:4')
+        var result = res.valueOf()
+        expect(result).assertEqual(0.5)
     })
 
     /**
@@ -3622,11 +3744,9 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Creates a RationalNumber object based on a given string.
      */
     it('test_createRationalFromString_005', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(1,2)
-        var res = pro.createRationalFromString('+2:-4')
-        var result1 = res.valueOf()
-        expect(result1).assertEqual(-0.5)
+        var res = util.RationalNumber.createRationalFromString('+2:-4')
+        var result = res.valueOf()
+        expect(result).assertEqual(-0.5)
     })
 
     /**
@@ -3635,11 +3755,9 @@ describe('RationalNumberTest', function () {
      */
     it('test_createRationalFromStringThrowError_001', 0, function () {
         try {
-            var pro = new util.RationalNumber()
-            pro.parseRationalNumber(1, 2)
-            var res = pro.createRationalFromString(123)
-            var result1 = res.valueOf()
-            expect(result1).assertEqual(-0.5)
+            var res = util.RationalNumber.createRationalFromString(123)
+            var result = res.valueOf()
+            expect(result).assertEqual(-0.5)
         } catch (e) {
             expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
         }
@@ -3650,10 +3768,8 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Compares the current RationalNumber object with a given object.
      */
     it('test_compare_001', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(2, 1)
-        var proc = new util.RationalNumber()
-        proc.parseRationalNumber(3, 4)
+        var pro = util.RationalNumber.parseRationalNumber(2, 1)
+        var proc = util.RationalNumber.parseRationalNumber(3, 4)
         var res = pro.compare(proc)
         expect(res).assertEqual(1)
     })
@@ -3663,10 +3779,8 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Compares the current RationalNumber object with a given object.
      */
     it('test_compare_002', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(2, 1)
-        var proc = new util.RationalNumber()
-        proc.parseRationalNumber(0, 0)
+        var pro = util.RationalNumber.parseRationalNumber(2, 1)
+        var proc = util.RationalNumber.parseRationalNumber(0, 0)
         var res = pro.compare(proc)
         expect(res).assertEqual(-1)
     })
@@ -3676,10 +3790,8 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Compares the current RationalNumber object with a given object.
      */
     it('test_compare_003', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(2, 1)
-        var proc = new util.RationalNumber()
-        proc.parseRationalNumber(8, 3)
+        var pro = util.RationalNumber.parseRationalNumber(2, 1)
+        var proc = util.RationalNumber.parseRationalNumber(8, 3)
         var res = pro.compare(proc)
         expect(res).assertEqual(-1)
     })
@@ -3689,10 +3801,8 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Compares the current RationalNumber object with a given object.
      */
     it('test_compare_004', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(2, 1)
-        var proc = new util.RationalNumber()
-        proc.parseRationalNumber(2, 1)
+        var pro = util.RationalNumber.parseRationalNumber(2, 1)
+        var proc = util.RationalNumber.parseRationalNumber(2, 1)
         var res = pro.compare(proc)
         expect(res).assertEqual(0)
     })
@@ -3702,10 +3812,8 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Compares the current RationalNumber object with a given object.
      */
     it('test_compare_005', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(0, 0)
-        var proc = new util.RationalNumber()
-        proc.parseRationalNumber(2, 1)
+        var pro = util.RationalNumber.parseRationalNumber(0, 0)
+        var proc = util.RationalNumber.parseRationalNumber(2, 1)
         var res = pro.compare(proc)
         expect(res).assertEqual(1)
     })
@@ -3716,8 +3824,7 @@ describe('RationalNumberTest', function () {
      */
     it('test_compareThrowError_001', 0, function () {
         try {
-            var pro = new util.RationalNumber()
-            pro.parseRationalNumber(2, 1)
+            var pro = util.RationalNumber.parseRationalNumber(2, 1)
             var proc = 'str'
             var res = pro.compare(proc)
             expect(res).assertEqual(1)
@@ -3731,9 +3838,7 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Obtains the greatest common divisor of two specified numbers.
      */
     it('testgetCommonFactor001', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(0, 0)
-        var res = pro.getCommonFactor(4, 8)
+        var res = util.RationalNumber.getCommonFactor(4, 8)
         expect(res).assertEqual(4)
     })
 
@@ -3742,9 +3847,7 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Obtains the greatest common divisor of two specified numbers.
      */
     it('testgetCommonFactor002', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(0, 0)
-        var res = pro.getCommonFactor(10, 15)
+        var res = util.RationalNumber.getCommonFactor(10, 15)
         expect(res).assertEqual(5)
     })
 
@@ -3753,9 +3856,7 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Obtains the greatest common divisor of two specified numbers.
      */
     it('testgetCommonFactor003', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(0, 0)
-        var res = pro.getCommonFactor(8, 4)
+        var res = util.RationalNumber.getCommonFactor(8, 4)
         expect(res).assertEqual(4)
     })
 
@@ -3764,9 +3865,7 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Obtains the greatest common divisor of two specified numbers.
      */
     it('testgetCommonFactor004', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(0, 0)
-        var res = pro.getCommonFactor(8, 16)
+        var res = util.RationalNumber.getCommonFactor(8, 16)
         expect(res).assertEqual(8)
     })
 
@@ -3775,9 +3874,7 @@ describe('RationalNumberTest', function () {
      * @tc.desc: Obtains the greatest common divisor of two specified numbers.
      */
     it('testgetCommonFactor005', 0, function () {
-        var pro = new util.RationalNumber()
-        pro.parseRationalNumber(0, 0)
-        var res = pro.getCommonFactor(2, 16)
+        var res = util.RationalNumber.getCommonFactor(2, 16)
         expect(res).assertEqual(2)
     })
 
@@ -3787,9 +3884,7 @@ describe('RationalNumberTest', function () {
      */
     it('testgetCommonFactorThrowError001', 0, function () {
         try {
-            var pro = new util.RationalNumber()
-            pro.parseRationalNumber(0, 0)
-            var res = pro.getCommonFactor('str', 8)
+            var res = util.RationalNumber.getCommonFactor('str', 8)
             expect(res).assertEqual(4)
         } catch (e) {
             expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of str must be number");
@@ -4115,11 +4210,11 @@ describe('Base64HelperTest', function () {
 
     //base64 EncodeAsync test
     /**
-     * @tc.name: test_encodeSync_base64_001
+     * @tc.name: test_encodeAsync_base64_001
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly
          allocated u8 array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_001', 0, async function () {
+    it('test_encodeAsync_base64_001', 0, async function () {
         var that = await new util.Base64Helper();
         var array = new Uint8Array([115,49,51]);
         var rarray = new Uint8Array([99,122,69,122]);
@@ -4131,11 +4226,11 @@ describe('Base64HelperTest', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_002
+     * @tc.name: test_encodeAsync_base64_002
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly
          allocated u8 array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_002', 0, async function () {
+    it('test_encodeAsync_base64_002', 0, async function () {
         var that = new util.Base64Helper()
         var array = new Uint8Array([66, 97, 115, 101, 54, 52, 32, 78, 111, 100, 101, 46, 106, 115]);
         var rarray = new Uint8Array([81,109,70,122,90,84,89,48,73,69,53,118,90,71,85,117,97,110,77,61]);
@@ -4147,11 +4242,11 @@ describe('Base64HelperTest', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_003
+     * @tc.name: test_encodeAsync_base64_003
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated u8
         array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_003', 0, async function () {
+    it('test_encodeAsync_base64_003', 0, async function () {
         var that = new util.Base64Helper()
         var array = new Uint8Array([66,97,115,101,54,52,32,69,110,99,111,100,105,110,103,32,105,110,32,
         78,111,100,101,46,106,115]);
@@ -4165,11 +4260,11 @@ describe('Base64HelperTest', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_004
+     * @tc.name: test_encodeAsync_base64_004
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated u8
         array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_004', 0, async function () {
+    it('test_encodeAsync_base64_004', 0, async function () {
         var that = new util.Base64Helper()
         var array = new Uint8Array([168, 174, 155, 255]);
         var rarray = new Uint8Array([113,75,54,98,47,119,61,61]);
@@ -4181,11 +4276,11 @@ describe('Base64HelperTest', function () {
     })
 
     /**
-     * @tc.name: test_encodeSync_base64_005
+     * @tc.name: test_encodeAsync_base64_005
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated u8
         array using the Base64 encoding scheme.
      */
-    it('test_encodeSync_base64_005', 0, async function () {
+    it('test_encodeAsync_base64_005', 0, async function () {
         var that = new util.Base64Helper()
         var array = new Uint8Array([66, 97, 115, 101, 54, 52]);
         var rarray = new Uint8Array([81, 109, 70, 122, 90, 84, 89, 48]);
@@ -4463,72 +4558,254 @@ describe('Base64HelperTest', function () {
             expect(e.toString()).assertEqual("BuisnessError: The type of Parameter must be Uint8Array or string")
         }
     })
+
+    /**
+     * @tc.name: test_encodeToStringSync_mime_base64_001
+     * @tc.desc: Encodes the specified byte array into a String using the Base64 encoding scheme.
+     */
+	it('test_encodeToStringSync_mime_base64_001', 0, function () {
+        var that = new util.Base64Helper()
+        var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        var result = that.encodeToStringSync(array, util.Type.MIME);
+        expect(result).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n')
+    })
+
+    /**
+     * @tc.name: test_decodeSync_mime_base64_002
+     * @tc.desc: Decodes a Base64 encoded String or input u8 array into a newly-allocated u8
+        array using the Base64 encoding scheme.
+     */
+    it('test_decodeSync_mime_base64_002', 0, function () {
+        var that = new util.Base64Helper()
+        var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+        var rarray = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        var result = that.decodeSync(buff, util.Type.MIME);
+        for (var i = 0; i < rarray.length; i++) {
+            expect(result[i]).assertEqual(rarray[i]);
+        }
+    })
+
+    /**
+     * @tc.name: test_encodeToString_mime_base64_003
+     * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 encoding scheme.
+     */
+    it('test_encodeToString_mime_base64_003', 0, async function () {
+        var that = new util.Base64Helper()
+        var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        that.encodeToString(array, util.Type.MIME).then(val=>{
+            expect(val).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n');
+        })
+    })
+
+    /**
+     * @tc.name: test_decode_mime_base64_004
+     * @tc.desc: Use the Base64 encoding scheme to asynchronously decode a Base64-encoded string or input u8
+        array into a newly allocated u8 array.
+     */
+    it('test_encodeToString_mime_base64_004', 0, async function () {
+        var that = new util.Base64Helper()
+        var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
+        var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        that.decode(buff, util.Type.MIME).then(val=>{
+            for (var i = 0; i < array.length; i++) {
+                expect(val[i]).assertEqual(array[i]);
+            }
+        })
+    })
+
+    /**
+     * @tc.name: test_encodeToStringSync_basic_base64_001
+     * @tc.desc: Encodes the specified byte array into a String using the Base64 encoding scheme.
+     */
+     it('test_encodeToStringSync_basic_base64_001', 0, function () {
+      var that = new util.Base64Helper()
+      var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+      var result = that.encodeToStringSync(array, util.Type.BASIC);
+      expect(result).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=')
+  })
+
+    /**
+     * @tc.name: test_decodeSync_basic_base64_002
+     * @tc.desc: Decodes a Base64 encoded String or input u8 array into a newly-allocated u8
+        array using the Base64 encoding scheme.
+     */
+        it('test_decodeSync_basic_base64_002', 0, function () {
+          var that = new util.Base64Helper()
+          var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=';
+          var rarray = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+          var result = that.decodeSync(buff, util.Type.BASIC);
+          for (var i = 0; i < rarray.length; i++) {
+              expect(result[i]).assertEqual(rarray[i]);
+          }
+      })
+
+      /**
+       * @tc.name: test_encodeToString_basic_base64_003
+       * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 encoding scheme.
+       */
+      it('test_encodeToString_basic_base64_003', 0, async function () {
+          var that = new util.Base64Helper()
+          var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+          that.encodeToString(array, util.Type.BASIC).then(val=>{
+              expect(val).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=');
+          })
+      })
+
+      /**
+       * @tc.name: test_decode_basic_base64_004
+       * @tc.desc: Use the Base64 encoding scheme to asynchronously decode a Base64-encoded string or input u8
+          array into a newly allocated u8 array.
+       */
+      it('test_encodeToString_basic_base64_004', 0, async function () {
+          var that = new util.Base64Helper()
+          var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=';
+          var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+          that.decode(buff, util.Type.BASIC).then(val=>{
+              for (var i = 0; i < array.length; i++) {
+                  expect(val[i]).assertEqual(array[i]);
+              }
+          })
+      })
 })
 
 describe('DecodeEncodeTest', function () {
     /**
-     * @tc.name: testencoding_textdecoder_001
+     * @tc.name: testTextDecoderCreate001
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_001', 0, function () {
-        var  that = new util.TextDecoder()
-        that.create('utf-8', { ignoreBOM : true })
+    it('testTextDecoderCreate001', 0, function () {
+        var  that = util.TextDecoder.create('utf-8', { ignoreBOM : true })
         var retStr = that.encoding
         expect(retStr).assertEqual('utf-8')
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_002
+     * @tc.name: testTextDecoderCreate002
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_002', 0, function () {
-        var that = new util.TextDecoder()
-        that.create('utf-16le')
+    it('testTextDecoderCreate002', 0, function () {
+        var that = util.TextDecoder.create('utf-16le')
         var encodingStr = that.encoding
         expect(encodingStr).assertEqual('utf-16le')
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_003
+     * @tc.name: testTextDecoderCreate003
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_003', 0, function () {
-        var that = new util.TextDecoder()
-        that.create('utf-16be')
+    it('testTextDecoderCreate003', 0, function () {
+        var that = util.TextDecoder.create('utf-16be')
         var encodingStr = that.encoding
         expect(encodingStr).assertEqual('utf-16be')
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_004
+     * @tc.name: testTextDecoderCreate004
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_004', 0, function () {
-        var that = new util.TextDecoder()
-        that.create('utf-16be', { ignoreBOM : true })
+    it('testTextDecoderCreate004', 0, function () {
+        var that = util.TextDecoder.create('utf-16be', { ignoreBOM : true })
         var encodingStr = that.encoding
         expect(encodingStr).assertEqual('utf-16be')
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_005
+     * @tc.name: testTextDecoderCreate005
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_005', 0, function () {
-        var that = new util.TextDecoder()
-        that.create('utf-16be', { ignoreBOM : false })
+    it('testTextDecoderCreate005', 0, function () {
+        var that = util.TextDecoder.create('utf-16be', { ignoreBOM : false })
         var encodingStr = that.encoding
         expect(encodingStr).assertEqual('utf-16be')
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_ThrowError_001
+     * @tc.name: testTextDecoderCreate006
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_ThrowError_001', 0, function () {
+    it('testTextDecoderCreate006', 0, function () {
+        var that = util.TextDecoder.create()
+        var encodingStr = that.encoding
+        expect(encodingStr).assertEqual('utf-8')
+    })
+
+    /**
+     * @tc.name: testTextDecoderCreate007
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreate007', 0, function () {
+        var that = util.TextDecoder.create({ ignoreBOM : false })
+        var encodingStr = that.encoding
+        expect(encodingStr).assertEqual('utf-8')
+    })
+
+    /**
+     * @tc.name: testTextDecoderCreate008
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+     it('testTextDecoderCreate008', 0, function () {
+        var that = util.TextDecoder.create(undefined);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testTextDecoderCreate009
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreate009', 0, function () {
+        var that = util.TextDecoder.create('utf-8', undefined);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+/**
+     * @tc.name: testTextDecoderCreate0010
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreate0010', 0, function () {
+        var that = util.TextDecoder.create(undefined, { ignoreBOM : true });
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testTextDecoderCreate011
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreate011', 0, function () {
+        var that = util.TextDecoder.create(null);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testTextDecoderCreate012
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreate012', 0, function () {
+        var that = util.TextDecoder.create('utf-8', null);
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+/**
+     * @tc.name: testTextDecoderCreate0013
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreate0013', 0, function () {
+        var that = util.TextDecoder.create(null, { ignoreBOM : true });
+        var encodingStr = that.encoding;
+        expect(encodingStr).assertEqual('utf-8');
+    })
+
+    /**
+     * @tc.name: testTextDecoderCreateThrowError001
+     * @tc.desc: The source encoding's name, lowercased.
+     */
+    it('testTextDecoderCreateThrowError001', 0, function () {
         try {
-            var that = new util.TextDecoder()
-            that.create(123, { ignoreBOM : false })
+            var that = util.TextDecoder.create(123, { ignoreBOM : false })
             var encodingStr = that.encoding
             expect(encodingStr).assertEqual('utf-16be')
         } catch (e) {
@@ -4537,13 +4814,12 @@ describe('DecodeEncodeTest', function () {
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_ThrowError_002
+     * @tc.name: testTextDecoderCreateThrowError002
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_ThrowError_002', 0, function () {
+    it('testTextDecoderCreateThrowError002', 0, function () {
         try {
-            var that = new util.TextDecoder()
-            that.create('utf-16be', 'ignoreBOM')
+            var that = util.TextDecoder.create('utf-16be', 'ignoreBOM')
             var encodingStr = that.encoding
             expect(encodingStr).assertEqual('utf-16be')
         } catch (e) {
@@ -4552,13 +4828,12 @@ describe('DecodeEncodeTest', function () {
     })
 
     /**
-     * @tc.name: testencoding_textdecoder_ThrowError_003
+     * @tc.name: testTextDecoderCreateThrowError003
      * @tc.desc: The source encoding's name, lowercased.
      */
-    it('testencoding_textdecoder_ThrowError_003', 0, function () {
+    it('testTextDecoderCreateThrowError003', 0, function () {
         try {
-            var that = new util.TextDecoder()
-            that.create('utf-16be', 123)
+            var that = util.TextDecoder.create('utf-16be', 123)
             var encodingStr = that.encoding
             expect(encodingStr).assertEqual('utf-16be')
         } catch (e) {

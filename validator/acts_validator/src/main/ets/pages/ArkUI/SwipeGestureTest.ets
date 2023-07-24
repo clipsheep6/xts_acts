@@ -12,6 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
+import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer3';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -20,7 +24,12 @@ struct SwipeGestureTest {
   @State X : number = 0;
   @State Y : number = 0;
   @State name: string = 'SwipeGesture';
+<<<<<<< HEAD
   @State StepTips: string = '操作步骤：用至少一根手指滑动图像（最多十根手指）'+'\n'+'预期结果：图片正常滑动，手势滑动角度及速度显示正常';
+=======
+  @State StepTips: string = '操作步骤：手指上下滑动图像'+'\n'+'预期结果：图片正常滑动，手势滑动角度及速度显示正常';
+  @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -36,6 +45,10 @@ struct SwipeGestureTest {
         .onAction((event: GestureEvent) => {
           this.Y = event.speed;
           this.X = event.angle;
+<<<<<<< HEAD
+=======
+          this.Vue = true;
+>>>>>>> hw/master
         })
       )
       Flex({direction:FlexDirection.Column,alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }){
@@ -51,6 +64,7 @@ struct SwipeGestureTest {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
         Url:'pages/ArkUI/ArkUI_index',
         StepTips:this.StepTips,
         content: this.specificNoParam,
@@ -59,5 +73,21 @@ struct SwipeGestureTest {
       })
     }.width('100%').height('100%').backgroundColor(Color.Black)
   }
+=======
+        Url: 'pages/ArkUI/ArkUI_index',
+        StepTips: this.StepTips,
+        content: this.specificNoParam,
+        X: $X, Y: $Y,
+        name: $name,
+        Vue: $Vue,
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+  onBackPress(){
+    router.replaceUrl({
+      url:'pages/ArkUI/ArkUI_index',
+    })
+  }
+>>>>>>> hw/master
 }
 

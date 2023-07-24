@@ -14,9 +14,15 @@
  */
 
 import WorkerTest from './WorkerTest.test.js'
+<<<<<<< HEAD
 import threadWorkerTest from './ThreadWorker.test.js'
 
 export default function List() {
   WorkerTest()
   threadWorkerTest()
+=======
+
+export default function List() {
+  WorkerTest()
+>>>>>>> hw/master
 }

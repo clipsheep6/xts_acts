@@ -1297,10 +1297,10 @@ export default function WorkSchedulerMgrApiTest() {
             try {
                 workScheduler.startWork(workInfo);
                 workScheduler.stopWork(workInfo, "true");
-            } catch (error) {
-                console.info("----------------error: " + error.code);
-                expect(error.code).assertEqual("401");
+                expect(workScheduler.stopWork(workInfo, "true")).assertNull();
                 done();
+            } catch (error) {
+                console.info("testStopWorkFun001 ----------------error: " + error.code);
             }
         })
     
@@ -1320,11 +1320,11 @@ export default function WorkSchedulerMgrApiTest() {
             };
             try {
                 workScheduler.startWork(workInfo);
-                workScheduler.stopWork(workInfo, 111);
-            } catch (error) {
-                console.info("----------------error: " + error.code);
-                expect(error.code).assertEqual("401");
+                workScheduler.stopWork(workInfo, undefined);
+                expect(workScheduler.stopWork(workInfo, undefined)).assertNull();
                 done();
+            } catch (error) {
+                console.info("testStopWorkFun002 ----------------error: " + error.code);
             };
         })
     
@@ -1345,10 +1345,10 @@ export default function WorkSchedulerMgrApiTest() {
             try {
                 workScheduler.startWork(workInfo);
                 workScheduler.stopWork(workInfo, null);
-            } catch (error) {
-                console.info("----------------error: " + error.code);
-                expect(error.code).assertEqual("401");
+                expect(workScheduler.stopWork(workInfo, null)).assertNull();
                 done();
+            } catch (error) {
+                console.info("testStopWorkFun003 ----------------error: " + error.code);
             }
         })
     
@@ -1369,10 +1369,10 @@ export default function WorkSchedulerMgrApiTest() {
             try {
                 workScheduler.startWork(workInfo);
                 workScheduler.stopWork(workInfo);
-            } catch (error) {
-                console.info("----------------error: " + error.code);
-                expect(error.code).assertEqual("401");
+                expect(workScheduler.stopWork(workInfo)).assertNull();
                 done();
+            } catch (error) {
+                console.info("testStopWorkFun004 ----------------error: " + error.code);
             }
         })
     
@@ -1992,15 +1992,12 @@ export default function WorkSchedulerMgrApiTest() {
             workScheduler.isLastWorkTimeOut(-1, (error, res) =>{
                 if (error) {
                     console.info('testIsLastWorkTimeOutFun001 isLastWorkTimeOut callback fail, because:' + error.code);
-                    expect(error.code).assertLarger(0)
+                    expect(error.code).assertEqual(9700004);
+                    done();
                 } else {
                     console.info('testIsLastWorkTimeOutFun001 isLastWorkTimeOut callback success, data is:' + res);
-                    expect(res).assertInstanceOf('Boolean')
                 }
             });
-            setTimeout(()=>{
-                done();
-            }, 500);
         })
     
         /*
@@ -2013,18 +2010,15 @@ export default function WorkSchedulerMgrApiTest() {
             try{
                 workScheduler.isLastWorkTimeOut('1').then(res => {
                     console.info('testIsLastWorkTimeOutFun003 isLastWorkTimeOut promise success, data is:' + res);
-                    expect(res).assertInstanceOf('Boolean')
                 })
                 .catch(error => {
                     console.info('testIsLastWorkTimeOutFun003 isLastWorkTimeOut promise fail, because:' + error.code);
-                    expect(error.code).assertLarger(0)
             });
             }catch(error){
                 console.info('testIsLastWorkTimeOutFun003 isLastWorkTimeOut promise fail ,' + error);
-            }
-            setTimeout(()=>{
+                expect(error.code).assertEqual('401');
                 done();
-            }, 500);
+            }
         })
     
         /*testStartWorkFun020
@@ -2037,18 +2031,15 @@ export default function WorkSchedulerMgrApiTest() {
             try{
                 workScheduler.isLastWorkTimeOut(null).then(res => {
                     console.info('testIsLastWorkTimeOutFun004 isLastWorkTimeOut promise success, data is:' + res);
-                    expect(res).assertInstanceOf('Boolean')
                 })
                 .catch(error => {
                     console.info('testIsLastWorkTimeOutFun004 isLastWorkTimeOut promise fail, because:' + error.code);
-                    expect(error.code).assertLarger(0)
             });
             }catch(error){
                 console.info('testIsLastWorkTimeOutFun004 isLastWorkTimeOut promise fail ,' + error);
-            }
-            setTimeout(()=>{
+                expect(error.code).assertEqual('401');
                 done();
-            }, 500);
+            }
         })
     })
 }

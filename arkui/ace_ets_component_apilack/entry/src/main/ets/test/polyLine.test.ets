@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
 
 export default function polyLineNeJsunit() {
@@ -22,7 +22,7 @@ export default function polyLineNeJsunit() {
     beforeAll(async function (done) {
       console.info("flex beforeEach start");
       let options = {
-        uri: 'pages/polyLine',
+        uri: 'MainAbility/pages/polyLine',
       }
       try {
         router.clear();
@@ -56,7 +56,7 @@ export default function polyLineNeJsunit() {
       let strJson = getInspectorByKey('Polyline');
       console.info("[testpolyLineNe0001] component width strJson:" + strJson);
       let obj = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('Shape');
+      expect(obj.$type).assertEqual('Polyline');
       expect(obj.$attrs.width).assertEqual("100.00px");
       console.info("[testpolyLineNe0001] width value :" + obj.$attrs.width);
       done();
@@ -73,7 +73,7 @@ export default function polyLineNeJsunit() {
       let strJson = getInspectorByKey('Polyline');
       console.info("[testpolyLineNe0002] component height strJson:" + strJson);
       let obj = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('Shape');
+      expect(obj.$type).assertEqual('Polyline');
       expect(obj.$attrs.height).assertEqual("100.00px");
       console.info("[testpolyLineNe0002] height value :" + obj.$attrs.height);
       done();

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2021-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -137,6 +137,7 @@ export default function fileAssetTestPromiseTest(abilityContext) {
                 let write = await fileio.write(fd, buf);
                 console.info(`${testNum} :: write: ${write}`);
                 expect(write).assertEqual(assetProps.write);
+<<<<<<< HEAD
                 let buf1 = new ArrayBuffer(4096);
                 try {
                     await fileio.read(fd, buf1);
@@ -144,6 +145,8 @@ export default function fileAssetTestPromiseTest(abilityContext) {
                 } catch (error) {
                     expect(true).assertTrue();
                 }
+=======
+>>>>>>> hw/master
                 fetchFileResult.close();
                 done();
             } catch (error) {

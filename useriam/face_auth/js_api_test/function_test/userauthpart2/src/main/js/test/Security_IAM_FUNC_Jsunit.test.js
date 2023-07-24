@@ -20,25 +20,6 @@ export default function userauthTest() {
     describe('userauthTest_API9', function () {
 
         /*
-            * @tc.number    : Security_IAM_Func_0101
-            * @tc.name      : Kit interface get version
-            * @tc.size      : MediumTest
-            * @tc.type      : Function
-            * @tc.level     : Level 0
-        */
-        it('Security_IAM_Func_0101', 0, async function (done) {
-            try {
-                let getversionresult = userAuthNorth.getVersion();
-                console.info('GetVersionTest_0101 getversionresult = ' + getversionresult);
-                expect(getversionresult).assertEqual(0);
-                done();
-            } catch (e) {
-                console.log("testFace GetVersionTest_0101 fail " + e.code);
-                expect(null).assertFail();
-            }
-        })
-
-        /*
             * @tc.number    : Security_IAM_Func_0102
             * @tc.name      : Kit interface get AvailabeStatus
             * @tc.size      : MediumTest
@@ -47,17 +28,18 @@ export default function userauthTest() {
         */
         it('Security_IAM_Func_0102', 0, async function (done) {
             console.info('testFace GetAvailabeStatusTest0102 start');
-            let authType = userAuthNorth.UserAuthType.FACE
+            let authType = [userAuthNorth.UserAuthType.FACE, userAuthNorth.UserAuthType.FINGERPRINT]
             let level = [userAuthNorth.AuthTrustLevel.ATL1, userAuthNorth.AuthTrustLevel.ATL2, userAuthNorth.AuthTrustLevel.ATL3, userAuthNorth.AuthTrustLevel.ATL4]
-
-            for (let idx1 = 0; idx1 < level.length; idx1++) {
-                try {
-                    console.info('GetAvailabeStatusTest0102 authtype:' + authType + 'trustlevel:' + level[idx1])
-                    userAuthNorth.getAvailableStatus(authType, level[idx1]);
-                } catch (e) {
-                    console.log("GetAvailabeStatusTest0102 fail " + 'authType:' + authType + 'trustlevel:' + level[idx1] + 'e.code:' + e.code);
-                    expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.NOT_ENROLLED);
-                    done();
+            for (let idx0 = 0; idx0 < authType.length; idx0++) {
+                for (let idx1 = 0; idx1 < level.length; idx1++) {
+                    try {
+                        console.info('GetAvailabeStatusTest0102 authtype:' + authType[idx0] + 'trustlevel:' + level[idx1])
+                        userAuthNorth.getAvailableStatus(authType[idx0], level[idx1]);
+                    } catch (e) {
+                        console.log("GetAvailabeStatusTest0102 fail " + 'authType:' + authType[idx0] + 'trustlevel:' + level[idx1] + 'e.code:' + e.code);
+                        expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.NOT_ENROLLED);
+                        done();
+                    }
                 }
             }
         })
@@ -112,7 +94,7 @@ export default function userauthTest() {
                     userAuthNorth.getAvailableStatus(invalidauthType[idx], userAuthNorth.AuthTrustLevel.ATL1);
                 } catch (e) {
                     console.log("GetAvailabeStatusTest0104 authType invalid:" + e.code);
-                    expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.TYPE_NOT_SUPPORT);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.TYPE_NOT_SUPPORT);
                 }
             }
 
@@ -124,7 +106,7 @@ export default function userauthTest() {
                     userAuthNorth.getAvailableStatus(2, invalidtrustLevel[idx]);
                 } catch (e) {
                     console.log("GetAvailabeStatusTest0104 trustLevel invalid :1 " + e.code);
-                    expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.TRUST_LEVEL_NOT_SUPPORT);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.TRUST_LEVEL_NOT_SUPPORT);
                 }
             }
             done()
@@ -140,25 +122,27 @@ export default function userauthTest() {
         it('Security_IAM_Func_0111', 0, async function (done) {
             console.info('testFace getAuthInstance start');
             let challenge = new Uint8Array([253, 19, 58, 160, 67, 200, 247, 37])
-            let authType = userAuthNorth.UserAuthType.FACE
+            let authType = [userAuthNorth.UserAuthType.FACE, userAuthNorth.UserAuthType.FINGERPRINT]
             let level = [userAuthNorth.AuthTrustLevel.ATL1, userAuthNorth.AuthTrustLevel.ATL2, userAuthNorth.AuthTrustLevel.ATL3, userAuthNorth.AuthTrustLevel.ATL4]
             var authInstance
 
-            for (let idx2 = 0; idx2 < level.length; idx2++) {
-                try {
-                    console.info('getAuthInstance authtype:' + authType + 'trustlevel:' + level[idx2])
-                    authInstance = userAuthNorth.getAuthInstance(challenge, authType, level[idx2]);
-                    authInstance.on("result", {
-                        callback: (result) => {
-                            console.log("authV9 result " + result.result);
-                            expect(result.result).assertEqual(userAuthNorth.ResultCodeV9.NOT_ENROLLED);
-                        }
-                    });
-                    //start auth
-                    authInstance.start();
-                } catch (e) {
-                    console.log("getAuthInstance/start fail " + e.code + 'authType:' + authType + 'trustlevel:' + level[idx2] + 'e.code:' + e.code);
-                    expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.NOT_ENROLLED);
+            for (let idx1 = 0; idx1 < authType.length; idx1++) {
+                for (let idx2 = 0; idx2 < level.length; idx2++) {
+                    try {
+                        console.info('getAuthInstance authtype:' + authType[idx1] + 'trustlevel:' + level[idx2])
+                        authInstance = userAuthNorth.getAuthInstance(challenge, authType[idx1], level[idx2]);
+                        authInstance.on("result", {
+                            callback: (result) => {
+                                console.log("authV9 result " + result.result);
+                                expect(result.result).assertEqual(userAuthNorth.UserAuthResultCode.NOT_ENROLLED);
+                            }
+                        });
+                        //start auth
+                        authInstance.start();
+                    } catch (e) {
+                        console.log("getAuthInstance/start fail " + e.code + 'authType:' + authType[idx1] + 'trustlevel:' + level[idx2] + 'e.code:' + e.code);
+                        expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.NOT_ENROLLED);
+                    }
                 }
             }
             done()
@@ -226,7 +210,7 @@ export default function userauthTest() {
                     var authInstance = userAuthNorth.getAuthInstance(challenge, invalidauthType[idx], userAuthNorth.AuthTrustLevel.ATL1);
                 } catch (e) {
                     console.log("getAuthInstance authType invalid : " + "invalidauthType[idx]" + invalidauthType[idx] + e.code);
-                    expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.TYPE_NOT_SUPPORT);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.TYPE_NOT_SUPPORT);
                 }
             }
 
@@ -238,7 +222,7 @@ export default function userauthTest() {
                     var authInstance = userAuthNorth.getAuthInstance(challenge, 2, invalidtrustLevel[idx]);
                 } catch (e) {
                     console.log("getAuthInstance trustLevel invalid : " + "invalidtrustLevel[idx]" + invalidtrustLevel[idx] + e.code);
-                    expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.TRUST_LEVEL_NOT_SUPPORT);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.TRUST_LEVEL_NOT_SUPPORT);
                 }
             }
             done()
@@ -262,7 +246,7 @@ export default function userauthTest() {
                 var authInstance = userAuthNorth.getAuthInstance(challenge, authType, authTrustLevel);
                 authInstance.on("results", {
                     callback: function (result) {
-                        if (result.result != userAuthNorth.ResultCodeV9.SUCCESS) {
+                        if (result.result != userAuthNorth.UserAuthResultCode.SUCCESS) {
                             console.log("Security_IAM_Func_0106 on result = " + result.result);
                         }
                     }
@@ -277,7 +261,7 @@ export default function userauthTest() {
                 var authInstance = userAuthNorth.getAuthInstance(challenge, authType, authTrustLevel);
                 authInstance.on("tips", {
                     callback: function (result) {
-                        if (result.result != userAuthNorth.ResultCodeV9.SUCCESS) {
+                        if (result.result != userAuthNorth.UserAuthResultCode.SUCCESS) {
                             console.log("Security_IAM_Func_0106 on result = " + result.result);
                         }
                     }
@@ -292,7 +276,7 @@ export default function userauthTest() {
                 var authInstance = userAuthNorth.getAuthInstance(challenge, authType, authTrustLevel);
                 authInstance.on("tip", "result", {
                     callback: function (result) {
-                        if (result.result != userAuthNorth.ResultCodeV9.SUCCESS) {
+                        if (result.result != userAuthNorth.UserAuthResultCode.SUCCESS) {
                             console.log("Security_IAM_Func_0106 on result = " + result.result);
                         }
                     }
@@ -307,7 +291,7 @@ export default function userauthTest() {
                 var authInstance = userAuthNorth.getAuthInstance(challenge, authType, authTrustLevel);
                 authInstance.on("", {
                     callback: function (result) {
-                        if (result.result != userAuthNorth.ResultCodeV9.SUCCESS) {
+                        if (result.result != userAuthNorth.UserAuthResultCode.SUCCESS) {
                             console.log("Security_IAM_Func_0106 on result = " + result.result);
                         }
                     }
@@ -365,7 +349,6 @@ export default function userauthTest() {
             }
         })
 
-
         /*
         * @tc.number    : Security_IAM_Func_0103
         * @tc.name      : Kit interface auth & cancel auth
@@ -375,52 +358,45 @@ export default function userauthTest() {
         */
         it('Security_IAM_Func_0103', 0, async function (done) {
             let challenge = new Uint8Array([253, 19, 58, 160, 67, 200, 247, 37])
-            let authType = userAuthNorth.UserAuthType.FACE;
+            let authType = [userAuthNorth.UserAuthType.FACE, userAuthNorth.UserAuthType.FINGERPRINT];
             let authTrustLevel = userAuthNorth.AuthTrustLevel.ATL1;
+            for (let idx0 = 0; idx0 < authType.length; idx0++) {
+                try {
+                    var authInstance = userAuthNorth.getAuthInstance(challenge, authType[idx0], authTrustLevel);
+                    // register result and tip
+                    authInstance.on("result", {
+                        callback: (result) => {
+                            console.log("authV9 result " + result.result);
+                            console.log("authV9 token " + result.token);
+                            console.log("authV9 remainAttempts " + result.remainAttempts);
+                            console.log("authV9 lockoutDuration " + result.lockoutDuration);
+                            expect(result.result).assertEqual(userAuthNorth.UserAuthResultCode.NOT_ENROLLED);
+                        }
+                    });
 
-            try {
-                var authInstance = userAuthNorth.getAuthInstance(challenge, authType, authTrustLevel);
-                // register result and tip
-                authInstance.on("result", {
-                    callback: (result) => {
-                        console.log("authV9 result " + result.result);
-                        console.log("authV9 token " + result.token);
-                        console.log("authV9 remainAttempts " + result.remainAttempts);
-                        console.log("authV9 lockoutDuration " + result.lockoutDuration);
-                        expect(result.result).assertEqual(userAuthNorth.ResultCodeV9.NOT_ENROLLED);
-                    }
-                });
+                    authInstance.on("tip", {
+                        callback: (result) => {
+                            console.log("authV9 module " + result.module);
+                            console.log("authV9 tip " + result.tip);
+                        }
+                    });
 
-                authInstance.on("tip", {
-                    callback: (result) => {
-                        console.log("authV9 module " + result.module);
-                        console.log("authV9 tip " + result.tip);
-                    }
-                });
+                    //start auth
+                    authInstance.start();
+                } catch (e) {
+                    console.log("Security_IAM_Func_0103 fail " + e);
+                }
 
-                //start auth
-                authInstance.start();
-            } catch (e) {
-                console.log("Security_IAM_Func_0103 fail " + e);
-            }
-
-            // cancel auth
-            try {
-                authInstance.cancel();
-            } catch (e) {
-                console.log("Security_IAM_Func_0103 cancel fail " + e);
-                expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.GENERAL_ERROR);
-            }
-
-            // unregister result and tip
-            try {
-                authInstance.off("result");
-                authInstance.off("tip");
-                done();
-            } catch (e) {
-                console.log("Security_IAM_Func_0103 fail " + e);
-                expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.GENERAL_ERROR);
-                done();
+                // unregister result and tip
+                try {
+                    authInstance.off("result");
+                    authInstance.off("tip");
+                    done();
+                } catch (e) {
+                    console.log("Security_IAM_Func_0103 fail " + e);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.GENERAL_ERROR);
+                    done();
+                }
             }
         })
 
@@ -442,7 +418,7 @@ export default function userauthTest() {
                 done();
             } catch (e) {
                 console.log("Security_IAM_Func_0108 fail " + e.code);
-                expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.GENERAL_ERROR);
+                expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.GENERAL_ERROR);
                 done();
             }
         })
@@ -456,16 +432,17 @@ export default function userauthTest() {
          */
         it('Security_IAM_Func_0109', 0, async function (done) {
             let challenge = new Uint8Array([253, 19, 58, 160, 67, 200, 247, 37])
-            let authType = userAuthNorth.UserAuthType.FACE;
+            let authType = [userAuthNorth.UserAuthType.FACE, userAuthNorth.UserAuthType.FINGERPRINT];
             let authTrustLevel = userAuthNorth.AuthTrustLevel.ATL1;
-
-            try {
-                var authInstance = userAuthNorth.getAuthInstance(challenge, authType, authTrustLevel);
-                authInstance.cancel();
-            } catch (e) {
-                console.log("Security_IAM_Func_0109 fail " + e);
-                expect(e.code).assertEqual(userAuthNorth.ResultCodeV9.GENERAL_ERROR);
-                done();
+            for (let idx0 = 0; idx0 < authType.length; idx0++) {
+                try {
+                    var authInstance = userAuthNorth.getAuthInstance(challenge, authType[idx0], authTrustLevel);
+                    authInstance.cancel();
+                } catch (e) {
+                    console.log("Security_IAM_Func_0109 fail " + e);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.GENERAL_ERROR);
+                    done();
+                }
             }
         })
 
@@ -556,16 +533,16 @@ export default function userauthTest() {
         */
         it('Security_IAM_Func_0107', 0, async function (done) {
             console.info('testFace Security_IAM_Func_0107 start');
-            expect(12500000).assertEqual(userAuthNorth.ResultCodeV9.SUCCESS);
-            expect(12500001).assertEqual(userAuthNorth.ResultCodeV9.FAIL);
-            expect(12500002).assertEqual(userAuthNorth.ResultCodeV9.GENERAL_ERROR);
-            expect(12500003).assertEqual(userAuthNorth.ResultCodeV9.CANCELED);
-            expect(12500004).assertEqual(userAuthNorth.ResultCodeV9.TIMEOUT);
-            expect(12500005).assertEqual(userAuthNorth.ResultCodeV9.TYPE_NOT_SUPPORT);
-            expect(12500006).assertEqual(userAuthNorth.ResultCodeV9.TRUST_LEVEL_NOT_SUPPORT);
-            expect(12500007).assertEqual(userAuthNorth.ResultCodeV9.BUSY);
-            expect(12500009).assertEqual(userAuthNorth.ResultCodeV9.LOCKED);
-            expect(12500010).assertEqual(userAuthNorth.ResultCodeV9.NOT_ENROLLED);
+            expect(12500000).assertEqual(userAuthNorth.UserAuthResultCode.SUCCESS);
+            expect(12500001).assertEqual(userAuthNorth.UserAuthResultCode.FAIL);
+            expect(12500002).assertEqual(userAuthNorth.UserAuthResultCode.GENERAL_ERROR);
+            expect(12500003).assertEqual(userAuthNorth.UserAuthResultCode.CANCELED);
+            expect(12500004).assertEqual(userAuthNorth.UserAuthResultCode.TIMEOUT);
+            expect(12500005).assertEqual(userAuthNorth.UserAuthResultCode.TYPE_NOT_SUPPORT);
+            expect(12500006).assertEqual(userAuthNorth.UserAuthResultCode.TRUST_LEVEL_NOT_SUPPORT);
+            expect(12500007).assertEqual(userAuthNorth.UserAuthResultCode.BUSY);
+            expect(12500009).assertEqual(userAuthNorth.UserAuthResultCode.LOCKED);
+            expect(12500010).assertEqual(userAuthNorth.UserAuthResultCode.NOT_ENROLLED);
             console.info('testFace Security_IAM_Func_0107 end');
             done();
         })

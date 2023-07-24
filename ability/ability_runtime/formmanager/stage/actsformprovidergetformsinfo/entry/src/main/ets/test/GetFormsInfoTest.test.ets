@@ -22,6 +22,7 @@ let module1FormInfo: formInfo.FormInfo = {
     moduleName: "module1",
     abilityName: "FormAbility",
     name: "module1_widget",
+    descriptionId: 0,
     description: "This is a service widget.",
     type:1,
     jsComponentName: "",
@@ -29,13 +30,13 @@ let module1FormInfo: formInfo.FormInfo = {
     isDefault: true,
     updateEnabled: true,
     formVisibleNotify: true,
-    relatedBundleName : "com.example.getformsinfotest",
     scheduledUpdateTime: "10:30",
     formConfigAbility: "ability://xxxxx",
     updateDuration: 1,
     defaultDimension:2,
     supportDimensions:[2],
-    customizeData: {}
+    customizeData: {},
+    isDynamic: true
 }
 
 let module2FormInfo: formInfo.FormInfo = {
@@ -43,6 +44,7 @@ let module2FormInfo: formInfo.FormInfo = {
     moduleName: "module2",
     abilityName: "FormAbility",
     name: "module2_widget",
+    descriptionId: 0,
     description: "This is a service widget.",
     type:1,
     jsComponentName: "",
@@ -50,13 +52,13 @@ let module2FormInfo: formInfo.FormInfo = {
     isDefault: true,
     updateEnabled: true,
     formVisibleNotify: true,
-    relatedBundleName : "com.example.getformsinfotest",
     scheduledUpdateTime: "10:30",
     formConfigAbility: "ability://xxxxx",
     updateDuration: 1,
     defaultDimension:2,
     supportDimensions:[2],
-    customizeData: {}
+    customizeData: {},
+    isDynamic: true
 }
 
 const ERR_ADD_INVALID_PARAM = 401;
@@ -119,6 +121,7 @@ export default function abilityTest() {
         });
 
         /**
+<<<<<<< HEAD
          * @tc.number: SUB_AA_OpenHarmony_ProviderGetForsInfo_0400
          * @tc.name: SUB_AA_OpenHarmony_ProviderGetForsInfo_0400
          * @tc.desc: #4 getFormsInfo(undefined, callback)
@@ -140,6 +143,8 @@ export default function abilityTest() {
         });
 
         /**
+=======
+>>>>>>> hw/master
          * @tc.number: SUB_AA_OpenHarmony_ProviderGetForsInfo_0500
          * @tc.name: SUB_AA_OpenHarmony_ProviderGetForsInfo_0500
          * @tc.desc: #5 getFormsInfo(filter, callback) where filter = {}
@@ -396,8 +401,6 @@ export default function abilityTest() {
         expect(expectInfo.isDefault).assertEqual(result.isDefault);
         console.info("formProvider::GetFormsInfoTest: formVisibleNotify expect " + expectInfo.formVisibleNotify);
         expect(expectInfo.formVisibleNotify).assertEqual(result.formVisibleNotify);
-        console.info("formProvider::GetFormsInfoTest: relatedBundleName expect " + expectInfo.relatedBundleName);
-        expect(expectInfo.relatedBundleName).assertEqual(result.relatedBundleName);
         console.info("formProvider::GetFormsInfoTest: scheduledUpdateTime expect " + expectInfo.scheduledUpdateTime);
         expect(expectInfo.scheduledUpdateTime).assertEqual(result.scheduledUpdateTime);
         console.info("formProvider::GetFormsInfoTest: formConfigAbility expect " + expectInfo.formConfigAbility);

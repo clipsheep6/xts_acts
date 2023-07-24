@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 // @ts-nocheck
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 
 export default function progressJsunit() {
@@ -32,7 +32,7 @@ export default function progressJsunit() {
   describe('progressTest', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/Progress',
+        uri: 'MainAbility/pages/Progress',
       }
       try {
         router.clear();
@@ -133,7 +133,7 @@ export default function progressJsunit() {
      * @tc.name      testGetProgressAttr050
      * @tc.desc      aceEtsTest
      */
-    it('testGetProgressAttr020', 0, async function (done) {
+    it('testGetProgressAttr050', 0, async function (done) {
       console.info('testGetProgressAttr5 START');
       let strJson = getInspectorByKey('progress5');
       let obj = JSON.parse(strJson);

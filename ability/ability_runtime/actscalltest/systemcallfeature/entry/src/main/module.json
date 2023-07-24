@@ -8,7 +8,12 @@
         "mainElement": "MainAbility",
         "deviceTypes": [
             "default",
+<<<<<<< HEAD
             "tablet"
+=======
+            "tablet",
+            "2in1"
+>>>>>>> hw/master
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -29,7 +34,11 @@
                         "actions": [
                             "action.system.home"
                         ],
+<<<<<<< HEAD
                         "entities":[
+=======
+                        "entities": [
+>>>>>>> hw/master
                             "entity.system.home"
                         ]
                     }
@@ -37,4 +46,8 @@
             }
         ]
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> hw/master

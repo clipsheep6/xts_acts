@@ -12,6 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
+import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -19,9 +23,18 @@ import FirstDialog from '../model/FirstDialog';
 struct CustomContainerUser {
   private listArr: number[] = Array.from(new Array(50).keys());
   @State name: string = 'ScrollingList';
+<<<<<<< HEAD
   @State StepTips: string = '操作步骤：滑动列表观察是否能正常滑动'+'\n'+'预期结果：列表滑动正常';
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
+=======
+  @State StepTips: string = '操作步骤：滑动列表观察是否能上下滑动'+'\n'
+  +'预期结果：列表从Item#1滑动至Item#50，并且从#Item50滑动至#Item1，滑动正常，无卡顿';
+  @State Vue: boolean = false;
+  async aboutToAppear(){
+    await FirstDialog.ChooseDialog(this.StepTips,this.name);
+    this.Vue = true;
+>>>>>>> hw/master
   }
   @Builder specificNoParam() {
     Column() {
@@ -37,6 +50,7 @@ struct CustomContainerUser {
   build() {
     Column() {
       CustomContainer({
+<<<<<<< HEAD
         title:this.name,
         Url:'pages/ArkUI/ArkUI_index',
         StepTips:this.StepTips,
@@ -45,4 +59,20 @@ struct CustomContainerUser {
       })
     }.width('100%').height('100%').backgroundColor(Color.Black)
   }
+=======
+        title: this.name,
+        Url: 'pages/ArkUI/ArkUI_index',
+        StepTips: this.StepTips,
+        content: this.specificNoParam.bind(this),
+        name: $name,
+        Vue: $Vue,
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+  onBackPress(){
+    router.replaceUrl({
+      url:'pages/ArkUI/ArkUI_index',
+    })
+  }
+>>>>>>> hw/master
 }

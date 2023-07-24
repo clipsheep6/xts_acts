@@ -14,7 +14,7 @@
  */
 
 import request from "@ohos.request";
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import fileio from '@ohos.fileio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function requestDownloadJSUnit() {
@@ -49,81 +49,6 @@ export default function requestDownloadJSUnit() {
       console.info('====>afterAll: Test suite-level cleanup condition is executed');
     });
 
-    let downloadTask;
-
-    /**
-     * @tc.number    SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001
-     * @tc.desc      Starts a download session.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001', 0, async function (done) {
-      console.info("====>------------------SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001 is starting-----------------------");
-      let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001.txt`
-      console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001.txt`)
-      let downloadConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-        header: {
-          headers: 'http'
-        },
-        enableMetered: false,
-        enableRoaming: false,
-        description: 'XTS download test!',
-        networkType: request.NETWORK_WIFI,
-        filePath: downloadFilePath,
-        title: 'XTS download test!',
-        background: false
-      }      
-      request.download(globalThis.abilityContext,  downloadConfig, async (err, data)=>{
-        downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001 downloadTask: " + downloadTask);
-        try {
-          expect(true).assertEqual(downloadTask != undefined);
-          await downloadTask.delete()
-        } catch (err) {
-          console.info("====>SUB_REQUEST_DOWNLOAD_STAGE_API_CALLBACK_0001 error: " + err);
-        }
-        done();
-      });
-      
-    });
-
-    /**
-     * @tc.number    SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001
-     * @tc.desc      Starts a download session.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001', 0, async function (done) {
-      console.info("====>------------------SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001 is starting-----------------------");
-      let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001.txt`
-      console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001.txt`)
-      let downloadConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-        header: {
-          headers: 'http'
-        },
-        enableMetered: false,
-        enableRoaming: false,
-        description: 'XTS download test!',
-        networkType: request.NETWORK_WIFI,
-        filePath: downloadFilePath,
-        title: 'XTS download test!',
-        background: false
-      }
-      request.download(globalThis.abilityContext,  downloadConfig).then(async (data) => {
-        downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001 downloadTask: " + downloadTask);
-        expect(true).assertEqual(downloadTask != undefined);        
-        await downloadTask.delete()
-        done();
-      }).catch(err => {
-        console.info("====>SUB_REQUEST_DOWNLOAD_STAGE_API_PROMISE_0001 error: " + err);
-        done();
-      })
-    });
 
     /**
      * @tc.number    SUB_REQUEST_downloadFile_STAGE_API_CALLBACK_0001
@@ -137,7 +62,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_downloadFile_STAGE_API_CALLBACK_0001.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_downloadFile_STAGE_API_CALLBACK_0001.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -149,18 +74,18 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, data)=>{
-        downloadTask = data;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask)=>{
         console.info("====>SUB_REQUEST_downloadFile_STAGE_API_CALLBACK_0001 downloadTask: " + downloadTask);
         try{
-          expect(true).assertEqual(downloadTask != undefined);
-          await downloadTask.delete()
+          expect(downloadTask != undefined).assertEqual(true);
         }catch(e){
           console.info("====>SUB_REQUEST_downloadFile_STAGE_API_CALLBACK_0001 except error: " + e);
         }
+        await downloadTask.delete();
+        fileio.unlinkSync(downloadFilePath);
         console.info("-----------------------SUB_REQUEST_downloadFile_STAGE_API_CALLBACK_0001 end-----------------------");
         done();
-      });      
+      });
     });
 
     /**
@@ -175,7 +100,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_downloadFile_STAGE_API_PROMISE_0001.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_downloadFile_STAGE_API_PROMISE_0001.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -188,21 +113,22 @@ export default function requestDownloadJSUnit() {
         background: false
       }
       try{
-        request.downloadFile(globalThis.abilityContext, downloadFileConfig).then(async (data) => {
-          downloadTask = data;
+        request.downloadFile(globalThis.abilityContext, downloadFileConfig).then(async (downloadTask) => {
           console.info("====>SUB_REQUEST_downloadFile_STAGE_API_PROMISE_0001 downloadTask: " + downloadTask);
-          expect(true).assertEqual(downloadTask != undefined);
-          await downloadTask.delete()
+          expect(downloadTask != undefined).assertEqual(true);
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
         }).catch(err => {
           console.error("====>SUB_REQUEST_downloadFile_STAGE_API_PROMISE_0001 error: " + err);
+          fileio.unlinkSync(downloadFilePath);
           done();
         })
       }catch(err){
         console.error("====>SUB_REQUEST_downloadFile_STAGE_API_PROMISE_0001 catch error: " + err);
+        fileio.unlinkSync(downloadFilePath);
         done();
       }
-      
     });
 
     /**
@@ -217,7 +143,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_DELETE_0001.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_DELETE_0001.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -229,26 +155,30 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_DELETE_0001 downloadTask: " + downloadTask);        
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_DELETE_0001 downloadTask: " + downloadTask);
         try {
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.delete((err, data) => {
+          downloadTask.delete(async (err, data) => {
             try{
               if (err) {
                 console.error('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0001 Failed to delete the download task.');
+                await downloadTask.delete();
                 expect().assertFail();
               }
               console.info('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0001 Download task delete success.');
               expect(typeof data == "boolean").assertTrue();
             }catch(err){
+              await downloadTask.delete();
               console.error('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0001 delete throw error' + err);
             }
+            fileio.unlinkSync(downloadFilePath);
             done();
           });
         } catch (error) {
           console.error('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0001 delete catch error' + error);
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
         }
       })
@@ -266,7 +196,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_DELETE_0002.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_DELETE_0002.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -277,27 +207,31 @@ export default function requestDownloadJSUnit() {
         filePath: downloadFilePath,
         title: 'XTS download test!',
         background: false
-      }      
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
+      }
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_DELETE_0002 downloadTask: " + downloadTask);
         try {
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.delete().then(data => {
+          downloadTask.delete().then(async data => {
             console.info('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0002 Download task delete success.');
             expect(data).assertEqual(true);
             console.info("====>-----------------------SUB_REQUEST_DOWNLOAD_API_DELETE_0002 end-----------------------");
+            fileio.unlinkSync(downloadFilePath);
             done();
-          }).catch((err) => {
+          }).catch(async (err) => {
             console.info('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0002 Failed to delete the download task.');
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
             expect().assertFail();
             done();
           })
         } catch (error) {
           console.error('====>SUB_REQUEST_DOWNLOAD_API_DELETE_0002 delete catch error');
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
-        }        
-      })   
+        }
+      })
     });
 
     /**
@@ -312,7 +246,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -324,30 +258,32 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.suspend((err, data) => {
+          downloadTask.suspend(async (err, data) => {
             try{
               if (err) {
-              console.error('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001 Failed to suspend the download task.');
-              expect().assertFail();
+                console.error('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001 Failed to suspend the download task.');
+                expect().assertFail();
               }
               console.info('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001 Download task suspend success.');
               expect(data == true).assertTrue();
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001 throw_error: " + JSON.stringify(err));
             }
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
             done();
           });
         }catch(err){
           console.error('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0001 suspend catch error' + JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
         }
       })
-      
     });
 
     /**
@@ -362,7 +298,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_SUSPEND_0002.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_SUSPEND_0002.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -374,24 +310,26 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0002 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.suspend().then(data => {
-            console.info('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0002 Download task suspend success.');
+          try{
+            let data = await downloadTask.suspend();
             expect(data == true).assertTrue();
-            done();
-          }).catch((err) => {
+          }catch(err){
             console.info('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0002 throw_err:' + JSON.stringify(err));
-            done();
-          })
+          }
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
+          done();
         }catch(err){
           console.error('====>SUB_REQUEST_DOWNLOAD_API_SUSPEND_0002 suspend catch error' + JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
-        }      
-      })      
+        }
+      })
     });
 
     /**
@@ -406,7 +344,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_RESTORE_0001.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_RESTORE_0001.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -418,12 +356,11 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0001 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.restore((err, data) => {
+          downloadTask.restore(async (err, data) => {
             try{
               if (err) {
                 console.error('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0001 Failed to restore the download task.');
@@ -434,12 +371,16 @@ export default function requestDownloadJSUnit() {
             }catch(err){
               console.info('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0001 throw_err:' + JSON.stringify(err));
             }
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
             done();
           });
         }catch(err){
           console.error('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0001 restore catch error' + JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
-        }     
+        }
       });
     });
 
@@ -455,51 +396,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_RESTORE_0002.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_RESTORE_0002.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
-        header: {
-          headers: 'http'
-        },
-        enableMetered: false,
-        enableRoaming: false,
-        description: 'XTS download test!',
-        networkType: request.NETWORK_WIFI,
-        filePath: downloadFilePath,
-        title: 'XTS download test!',
-        background: false
-      }   
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 downloadTask: " + downloadTask);
-        try{
-          expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.restore().then(data => {
-            console.info('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 Download task restore.');
-            expect(data == true).assertTrue();
-            done();
-          }).catch((err) => {
-            console.info('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 Failed to restore the download task.');
-            done();
-          });
-        }catch(err){
-          console.error('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 restore catch error' +JSON.stringify(err));
-          done();
-        }    
-      });
-    });
-
-    /**
-     * @tc.number SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001
-     * @tc.desc Get the download task info
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001', 0, async function (done) {
-      console.info("====>---------------------SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001 is starting---------------------"); 
-      let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001.txt`
-      console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001.txt`)
-      let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -511,12 +408,60 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 downloadTask: " + downloadTask);
+        try{
+          expect(downloadTask != undefined).assertEqual(true);
+          downloadTask.restore().then(async data => {
+            console.info('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 Download task restore.');
+            expect(data == true).assertTrue();
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
+            done();
+          }).catch(async (err) => {
+            console.info('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 Failed to restore the download task.');
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
+            done();
+          });
+        }catch(err){
+          console.error('====>SUB_REQUEST_DOWNLOAD_API_RESTORE_0002 restore catch error' +JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
+          done();
+        }
+      });
+    });
+
+    /**
+     * @tc.number SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001
+     * @tc.desc Get the download task info
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001', 0, async function (done) {
+      console.info("====>---------------------SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001 is starting---------------------");
+      let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001.txt`
+      console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001.txt`)
+      let downloadFileConfig = {
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
+        header: {
+          headers: 'http'
+        },
+        enableMetered: false,
+        enableRoaming: false,
+        description: 'XTS download test!',
+        networkType: request.NETWORK_WIFI,
+        filePath: downloadFilePath,
+        title: 'XTS download test!',
+        background: false
+      }
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.getTaskInfo((err, data) => {
+          downloadTask.getTaskInfo(async (err, data) => {
             try{
               if (err) {
                 console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001 Failed to getTaskInfo the download task.');
@@ -526,14 +471,18 @@ export default function requestDownloadJSUnit() {
               expect(typeof data == "object").assertTrue();
             }catch(err){
               console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001 throw_error' +JSON.stringify(err));
-            }  
-            done();          
+            }
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
+            done();
           });
         }catch(err){
           console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0001 getTaskInfo catch error' + JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -548,7 +497,7 @@ export default function requestDownloadJSUnit() {
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -560,24 +509,29 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
-        console.info("====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002 downloadTask: " + downloadTask);        
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
+        console.info("====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.getTaskInfo().then(data => {
+          downloadTask.getTaskInfo().then(async data => {
             console.info('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002 Download task getTaskInfo success.');
             expect(typeof data == "object").assertTrue();
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
             done();
-          }).catch((err) => {
-            console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002 Failed to getTaskInfo the download task.');            
+          }).catch(async (err) => {
+            console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002 Failed to getTaskInfo the download task.');
+            await downloadTask.delete();
+            fileio.unlinkSync(downloadFilePath);
             done();
           });
         }catch(err){
           console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKINFO_0002 getTaskInfo catch error' + JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
         }
-      });      
+      });
     });
 
     /**
@@ -588,11 +542,11 @@ export default function requestDownloadJSUnit() {
      * @tc.level     : Level 2
      */
     it('SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001', 0, async function (done) {
-      console.info("====>---------------------SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 is starting---------------------"); 
+      console.info("====>---------------------SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 is starting---------------------");
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -604,18 +558,21 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, (err, data) => {
-        downloadTask = data;
+      let flag = false;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
-          downloadTask.on('progress',(data1, data2) => {
+          downloadTask.on('progress', async (data1, data2) => {
             try{
-              if (data1 > 0){
+              if (data1 > 0 && flag == false){
+                flag = true;
+                downloadTask.off('progress');
                 downloadTask.getTaskMimeType(async (err, data)=>{
                   try{
                     if(err) {
                       console.error('====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 err:'+ JSON.stringify(err));
+                      fileio.unlinkSync(downloadFilePath);
                       expect().assertFail();
                       done();
                     }
@@ -624,26 +581,33 @@ export default function requestDownloadJSUnit() {
                       expect(typeof data == "string").assertTrue();
                     } else {
                       console.error("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 error: " + JSON.stringify(err));
-                      expect().assertFail(); 
+                      expect().assertFail();
                     }
                   }catch(err){
                     console.error("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 throw_error: " + JSON.stringify(err));
                   }
-                  setTimeout(()=>{
+                  let t = setTimeout(async ()=>{
+                    await downloadTask.delete();
+                    fileio.unlinkSync(downloadFilePath);
+                    clearTimeout(t);
                     done();
-                  },1000)             
+                  },1000)
                 });
               }
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 error: " + JSON.stringify(err));
+              await downloadTask.delete();
+              fileio.unlinkSync(downloadFilePath);
               done();
-            }            
-          })          
+            }
+          })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0001 error: " + JSON.stringify(err));
+          await downloadTask.delete();
+          fileio.unlinkSync(downloadFilePath);
           done();
-        }       
-      })     
+        }
+      })
     });
 
     /**
@@ -654,11 +618,11 @@ export default function requestDownloadJSUnit() {
      * @tc.level     : Level 2
      */
     it('SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002', 0, async function (done) {
-      console.info("====>-------------------SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002 is starting----------------------"); 
+      console.info("====>-------------------SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002 is starting----------------------");
       let downloadFilePath = `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002.txt`
       console.debug("====>downloadFileConfig:" + `${globalThis.abilityContext.tempDir}/SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002.txt`)
       let downloadFileConfig = {
-        url: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         header: {
           headers: 'http'
         },
@@ -670,31 +634,39 @@ export default function requestDownloadJSUnit() {
         title: 'XTS download test!',
         background: false
       }
-      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, data) => {
-        downloadTask = data;
+      let flag = false;
+      request.downloadFile(globalThis.abilityContext, downloadFileConfig, async (err, downloadTask) => {
         console.info("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002 downloadTask: " + downloadTask);
         try{
           expect(downloadTask != undefined).assertEqual(true);
           downloadTask.on('progress', async (data1, data2) => {
             try{
-              if(data1 > 0){
+              if(data1 > 0 && flag == false){
+                flag = true;
+                downloadTask.off('progress');
                 let data = await downloadTask.getTaskMimeType()
                 console.info('====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002 data:' + JSON.stringify(data));
-                expect(typeof data == "string").assertTrue();                  
+                expect(typeof data == "string").assertTrue();
               }
-              setTimeout(()=>{
+              let t = setTimeout(async ()=>{
+                await downloadTask.delete();
+                fileio.unlinkSync(downloadFilePath);
+                clearTimeout(t);
                 done();
-              },1000) 
+              },1000)
             }catch(err){
               console.error("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002 throw_error: " + JSON.stringify(err));
+              await downloadTask.delete();
+              fileio.unlinkSync(downloadFilePath);
               done();
-            }            
-          })          
+            }
+          })
         }catch(err){
           console.error("====>SUB_REQUEST_DOWNLOAD_API_GETTASKMIMETYPE_0002 error: " + JSON.stringify(err));
+          await downloadTask.delete();
           done();
-        }  
-      })     
+        }
+      })
     });
   });
 }

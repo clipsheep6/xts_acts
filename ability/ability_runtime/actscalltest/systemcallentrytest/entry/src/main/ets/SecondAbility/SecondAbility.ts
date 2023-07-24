@@ -74,7 +74,11 @@ class MySequenceable {
 function testCall(data) {
     let recvSequence = new MySequenceable(0, '', '');
     console.log('======>SystemCallTest SecondAbility on testCall <======')
+<<<<<<< HEAD
     data.readSequenceable(recvSequence);
+=======
+    data.readParcelable(recvSequence);
+>>>>>>> hw/master
     var result = recvSequence.str + 'processed';
     var commonEventData = {
         code: 0,
@@ -94,7 +98,11 @@ function testCall(data) {
 function testCall2(data) {
     let recvSequence = new MySequenceable(0, '', '');
     console.log('======>SystemCallTest SecondAbility on testCall <======')
+<<<<<<< HEAD
     data.readSequenceable(recvSequence);
+=======
+    data.readParcelable(recvSequence);
+>>>>>>> hw/master
     var result = recvSequence.str + 'processed2';
     var commonEventData = {
         code: 0,
@@ -114,7 +122,11 @@ function testCall2(data) {
 function testCallWithResult(data) {
     let recvSequence = new MySequenceable(0, '', '');
     console.log('======>SystemCallTest SecondAbility on testCall <======')
+<<<<<<< HEAD
     data.readSequenceable(recvSequence);
+=======
+    data.readParcelable(recvSequence);
+>>>>>>> hw/master
     let result = recvSequence.str + 'processed';
     recvSequence.setMySequence(recvSequence.num, recvSequence.str, result);
 
@@ -132,7 +144,11 @@ export default class SecondAbility extends Ability {
 
     test2100(data) {
         let recvData = new MySequenceable(0, '', '');
+<<<<<<< HEAD
         data.readSequenceable(recvData);
+=======
+        data.readParcelable(recvData);
+>>>>>>> hw/master
         let want = {
             bundleName: "com.example.systemcalltest",
             abilityName: "com.example.systemcalltest.MainAbility",
@@ -144,7 +160,11 @@ export default class SecondAbility extends Ability {
             caller.onRelease(test2100ReleaseCallback);
             for (let start=Date.now(); Date.now() - start <= 200;);
             caller.callWithResult('test2100', param).then((data2) => {
+<<<<<<< HEAD
                 data2.readSequenceable(resultData);
+=======
+                data2.readParcelable(resultData);
+>>>>>>> hw/master
                 caller.release();
                 for (let start=Date.now(); Date.now() - start <= 200;);
                 resultData.result = test2100ReleaseFlag;
@@ -166,13 +186,21 @@ export default class SecondAbility extends Ability {
 
     testOff(data) {
         let recvSequence = new MySequenceable(0, '', '');
+<<<<<<< HEAD
         data.readSequenceable(recvSequence);
+=======
+        data.readParcelable(recvSequence);
+>>>>>>> hw/master
         return recvSequence;
     }
 
     stressMethod(data) {
         let recvData = new MySequenceable(0, '', '');
+<<<<<<< HEAD
         data.readSequenceable(recvData);
+=======
+        data.readParcelable(recvData);
+>>>>>>> hw/master
         console.log('SystemCallTest SecondAbility stressMethod caller ' + recvData.str);
         if (recvData.str == callerA) {
             callSeqA.push(recvData.num);
@@ -206,7 +234,11 @@ export default class SecondAbility extends Ability {
 
     loopMethod(data) {
         let recvData = new MySequenceable(0, '', '');
+<<<<<<< HEAD
         data.readSequenceable(recvData);
+=======
+        data.readParcelable(recvData);
+>>>>>>> hw/master
         return new MySequenceable(recvData.num + 1, recvData.str, '');
     }
 

@@ -29,6 +29,7 @@ export struct CustomContainer {
   title : string = '';
   StepTips: string = '';
   Url : string = '';
+<<<<<<< HEAD
   @BuilderParam content: () => void;
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
@@ -43,6 +44,36 @@ export struct CustomContainer {
       })
       this.getScreen(isFullScreen);
     })
+=======
+  @Link Vue : boolean;
+  @BuilderParam content: () => void;
+  @Builder
+  PassBtn(text: Resource, isFullScreen: boolean) {
+    if(this.Vue == false){
+      Button({stateEffect:this.Vue}) {
+        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
+      }.width('30%').height('30vp').backgroundColor(Color.Grey).opacity(0.4)
+      .onClick(()=>{
+
+      })
+    }
+    else{
+      Button({stateEffect:this.Vue}) {
+        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
+      }.width('30%').height('30vp').backgroundColor(Color.Grey)
+      .onClick(()=>{
+        router.back({
+          url:this.Url,
+          params: {result : 'true ', title : this.name,
+          }
+        })
+        this.getScreen(isFullScreen);
+        prompt.showToast({
+          message: '通过', duration: 1000
+        });
+      })
+    }
+>>>>>>> hw/master
   }
   @Builder
   FailBtn(text: Resource, isFullScreen: boolean) {
@@ -52,10 +83,20 @@ export struct CustomContainer {
     .onClick(()=>{
       router.back({
         url:this.Url,
+<<<<<<< HEAD
         params: {result : 'Fail',title : this.name,
         }
       })
       this.getScreen(isFullScreen);
+=======
+        params: {result : 'false',title : this.name,
+        }
+      })
+      this.getScreen(isFullScreen);
+      prompt.showToast({
+        message: '失败', duration: 1000
+      });
+>>>>>>> hw/master
     })
   }
   build() {
@@ -63,7 +104,11 @@ export struct CustomContainer {
       Row() {
         Button(){
           Image($r('app.media.ic_public_back')).width('20vp').height('18vp').margin({left:'20vp'})
+<<<<<<< HEAD
         }.backgroundColor(Color.Black)
+=======
+        }.backgroundColor(Color.Black).size({ width: '40vp', height: '30vp' })
+>>>>>>> hw/master
         .onClick(()=>{
           router.back({
             url:this.Url,
@@ -105,7 +150,11 @@ export struct CustomContainer {
     };
     let name = this.name;
     let displayName = `${info.prefix}${name}${info.suffix}`;
+<<<<<<< HEAD
     let dirPath = path + '/' + displayName;
+=======
+    let dirPath = path + '/screenshot' + '/' + displayName;
+>>>>>>> hw/master
     let imagePackerApi = image.createImagePacker();
     let arrayBuffer = await imagePackerApi.packing(data, packOpts);
     let fd = fileio.openSync(dirPath,0o102,0o666);
@@ -117,9 +166,12 @@ export struct CustomContainer {
     }
     await fileio.close(fd);
     Logger.info(TAG, `write done`);
+<<<<<<< HEAD
     prompt.showToast({
       message: '结果保存成功', duration: 1000
     });
+=======
+>>>>>>> hw/master
   }
   getScreen = (isFullScreen: boolean) => {
     let screenshotOptions: screenshot.ScreenshotOptions = {

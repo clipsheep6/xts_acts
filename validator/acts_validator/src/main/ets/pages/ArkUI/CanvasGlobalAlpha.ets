@@ -12,6 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
+import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CanvasCustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -23,6 +27,10 @@ struct SetCircle {
   @State X: number = 20;
   @State name: string = 'CanvasGlobalAlpha';
   @State StepTips: string = '操作步骤：拖动滑块向右移动'+'\n'+'预期结果：透明度随着拖拽距离而改变，并显示透明度';
+<<<<<<< HEAD
+=======
+  @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -35,24 +43,54 @@ struct SetCircle {
           .gesture(
           PanGesture({})
             .onActionStart((event: GestureEvent) => {
+<<<<<<< HEAD
               this.context.clearRect(100, 100, 250, 200);
               console.info('Pan start');
             })
             .onActionUpdate((event: GestureEvent) => {
               this.X = event.offsetX;
+=======
+              console.info('Pan start');
+              this.Vue = true;
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              this.context.clearRect(100, 100, 250, 200);
+              if(event.offsetX>200){
+                event.offsetX = 200;
+              }
+              else if (event.offsetX < 20){
+                event.offsetX = 20;
+              }
+              this.X = event.offsetX;
+              this.context.globalAlpha = (this.X)*0.005;
+              this.context.fillStyle = 'rgb(255,0,0)';
+              this.context.fillRect(150, 150, 50, 50);
+              this.context.globalAlpha = (this.X)*0.005;
+              this.context.fillStyle = 'rgb(0,0,255)';
+              this.context.fillRect(200, 200, 50, 50);
+>>>>>>> hw/master
             })
             .onActionEnd(() => {
               console.info('Pan end');
             })
           )
+<<<<<<< HEAD
         Text('透明度: ' + (this.X)*0.005 )
       }.width('70%').height('30%')
+=======
+
+      }.width('70%').height('25%')
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }){
+        Text('透明度: ' + (this.X)*0.005 )
+      }.width('100%').height('20%')
+>>>>>>> hw/master
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffffffff')
           .onReady(() =>{
+<<<<<<< HEAD
             this.context.fillStyle = 'rgb(255,0,0)';
             this.context.fillRect(150, 150, 50, 50);
             this.context.globalAlpha = (this.X)*0.005;
@@ -60,12 +98,23 @@ struct SetCircle {
             this.context.fillRect(200, 200, 50, 50);
           })
       }.width('100%').height('70%')
+=======
+            this.context.globalAlpha = 0.05;
+            this.context.fillStyle = 'rgb(255,0,0)';
+            this.context.fillRect(150, 150, 50, 50);
+            this.context.globalAlpha = 0.05;
+            this.context.fillStyle = 'rgb(0,0,255)';
+            this.context.fillRect(200, 200, 50, 50);
+          })
+      }.width('100%').height('55%')
+>>>>>>> hw/master
     }.width('100%').height('80%').backgroundColor(Color.White)
   }
   build() {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
         Url:'pages/ArkUI/ArkUI_index',
         StepTips:this.StepTips,
         content: this.specificNoParam,
@@ -75,4 +124,21 @@ struct SetCircle {
       })
     }.width('100%').height('100%').backgroundColor(Color.Black)
   }
+=======
+        Url: 'pages/ArkUI/ArkUI_index',
+        StepTips: this.StepTips,
+        content: this.specificNoParam,
+        FillColor: $FillColor,
+        X: $X,
+        name: $name,
+        Vue: $Vue,
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+  onBackPress(){
+    router.replaceUrl({
+      url:'pages/ArkUI/ArkUI_index',
+    })
+  }
+>>>>>>> hw/master
 }

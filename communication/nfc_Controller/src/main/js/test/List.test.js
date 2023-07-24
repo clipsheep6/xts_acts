@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import nfcATagSessionTest from './nfc.ATagSession.js'
-import nfcControllerTest from './nfc.Controller.js'
-import nfcIsoDepTagTest from './nfc.IsoDepTag.js'
-import nfcMifareClassicTag from './nfc.MifareClassicTag.js'
-import nfcMifareUltralightTag from './nfc.MifareUltralightTag.js'
-import nfcTagABFVTest from './nfc.TagABFV.js'
-import nfcNDEFTagTest from './nfc.NDEFTag.js'
-import ConnectedTagTest from './nfc.ConnectedTag.js'
+import nfcATagSessionTest from './ATagSession.test.js';
+import nfcControllerTest from './Controller.test.js';
+import nfcIsoDepTagTest from './IsoDepTag.test.js';
+import nfcMifareClassicTag from './MifareClassicTag.test.js';
+import nfcMifareUltralightTag from './MifareUltralightTag.test.js';
+import nfcTagABFVTest from './TagABFV.test.js';
+import nfcNDEFTagTest from './NDEFTag.test.js';
+import ConnectedTagTest from './ConnectedTag.test.js';
 import parameter from '@ohos.systemparameter';
 let info = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
 export default function testsuite() {
@@ -34,5 +34,10 @@ if (info != "false")
     nfcMifareUltralightTag();
     nfcNDEFTagTest();
     nfcTagABFVTest();
+<<<<<<< HEAD
 }
 }
+=======
+}
+}
+>>>>>>> hw/master

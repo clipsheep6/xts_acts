@@ -26,19 +26,23 @@ config("deqp_platform_ohos_config") {
 }
 
 ohos_static_library("libkhrglesextfunc0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
   sources = common_src
   sources += [ "../KhrglesextBaseFunc.cpp" ]
 
   include_dirs = common_include
   deps = common_depends
   external_deps = [
-    "hilog_native:libhilog",
-    "multimedia_image_framework:image_native",
+    "hilog:libhilog",
+    "image_framework:image_native",
   ]
   configs = [ ":deqp_platform_ohos_config" ]
 }
 
 ohos_moduletest_suite("ActsKhrglesextTestSuite0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
   sources = [
     "../ActsKhrglesext0001TestSuite.cpp",
     "../disjoint_timer_query/KhrglesextKHR-GLESEXT_disjoint_timer_queryTestCase.cpp",
@@ -85,7 +89,7 @@ ohos_moduletest_suite("ActsKhrglesextTestSuite0001") {
     "../viewport_array/KhrglesextKHR-GLESEXT_viewport_arrayTestCase.cpp",
   ]
 
-  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+  include_dirs = [ "../../../src" ]
 
   deps = [ ":libkhrglesextfunc0001" ]
 

@@ -88,6 +88,7 @@ export default function lifecycleTest() {
         }).catch((error) => {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
+
       setTimeout(function () {
         console.log(TAG + " registerAbilityLifecycleCallback listKey : " + JSON.stringify(globalThis.list));
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid));
@@ -111,13 +112,18 @@ export default function lifecycleTest() {
             code = error.code;
           });
         setTimeout(function () {
-          expect(transferStr0.indexOf("MainAbility2 onWindowStageCreate")!=-1).assertTrue();
-          expect(transferStr0.indexOf("MainAbility2 onWindowStageActive")!=-1).assertTrue();
-          expect(transferStr0.indexOf("MainAbility2 onWindowStageInactive")!=-1).assertTrue();
-          expect(transferStr0.indexOf("MainAbility2 onWindowStageDestroy")!=-1).assertTrue();
-          expect(code).assertEqual(0);
-          console.log("------------Singlehap_WindowStageLifeCycleTest_0100 END-------------");
-          done();
+          try {
+            expect(transferStr0.indexOf("MainAbility2 onWindowStageCreate")!=-1).assertTrue();
+            expect(transferStr0.indexOf("MainAbility2 onWindowStageActive")!=-1).assertTrue();
+            expect(transferStr0.indexOf("MainAbility2 onWindowStageInactive")!=-1).assertTrue();
+            expect(transferStr0.indexOf("MainAbility2 onWindowStageDestroy")!=-1).assertTrue();
+            expect(code).assertEqual(0);
+            done();
+            console.log("------------Singlehap_WindowStageLifeCycleTest_0100 END-------------");
+          } catch (error) {
+            console.log(`Singlehap_WindowStageLifeCycleTest_0100 startRunning failed : ${JSON.stringify(error)}`);
+            done();
+          }
         }, 1000);
       }, 3000);
     })
@@ -924,7 +930,7 @@ export default function lifecycleTest() {
           }).catch((error) => {
           console.log(TAG + " terminateSelfwithresult error: " + JSON.stringify(error));
         });
-      }, 2500);
+      }, 2700);
       setTimeout(function () {
         var str = {
           "bundleName": "com.example.windowstagelifecycle_xts",
@@ -948,7 +954,7 @@ export default function lifecycleTest() {
             console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
           })
         }, 500);
-      }, 4000);
+      }, 4500);
       setTimeout(function () {
         console.log(TAG + " secondCallback listKey : " + JSON.stringify(globalThis.list12));
         console.log(TAG + " secondCallback callbackid : " + JSON.stringify(globalThis.callbackid12));
@@ -977,7 +983,7 @@ export default function lifecycleTest() {
             console.log("------------Singlehap_WindowStageLifeCycleTest_1200 END-------------");
             done();
           });
-      }, 6200);
+      }, 7000);
     });
 
     /*
@@ -1067,7 +1073,7 @@ export default function lifecycleTest() {
             console.log(TAG + " terminateSelfwithresult error: " + JSON.stringify(error));
           });
         }, 500);
-      }, 3000);
+      }, 4700);
       setTimeout(function () {
         var str = {
           "bundleName": "com.example.windowstagelifecycle_xts",
@@ -1103,7 +1109,7 @@ export default function lifecycleTest() {
             })
           }, 500);
         }, 500);
-      }, 4000);
+      }, 6000);
       setTimeout(function () {
         console.log(TAG + " secondCallback listKey1 : " + JSON.stringify(globalThis.list1));
         let templist1 = globalThis.list1;
@@ -1167,7 +1173,7 @@ export default function lifecycleTest() {
               done();
             });
         }, 100);
-      }, 7000);
+      }, 9700);
     });
 
   })

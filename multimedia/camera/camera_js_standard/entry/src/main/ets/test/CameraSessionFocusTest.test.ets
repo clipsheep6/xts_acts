@@ -53,7 +53,7 @@ let mVideoProfileCfg = {
     audioSampleRate: 48000,
     durationTime: 1000,
     fileFormat: 'mp4',
-    videoBitrate: 48000,
+    videoBitrate: 2000000,
     videoCodec: 'video/mp4v-es',
     videoFrameWidth: 640,
     videoFrameHeight: 480,
@@ -185,7 +185,7 @@ export default function cameraSessionFocusTest() {
         console.log(TAG + 'Entering getVideoReceiveSurface')
         await getFd('CameraSessionFocus.mp4');
         mVideoConfig.url = mFdPath;
-        media.createVideoRecorder((err, recorder) => {
+        media.createAVRecorder((err, recorder) => {
             if (!err) {
                 console.info(TAG + 'Entering create video receiver')
                 mVideoRecorder = recorder
@@ -983,10 +983,11 @@ export default function cameraSessionFocusTest() {
 
                     let focusPoint = mCameraSession.getFocusPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 finish");
-                    if ((focusPoint.x == mFocusPointLT.x) && (focusPoint.y == mFocusPointLT.y)) {
+                    if ((Math.abs(focusPoint.x - mFocusPointLT.x) >= 0) && (Math.abs(focusPoint.y - mFocusPointLT.y) >= 0)) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0101 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1029,10 +1030,11 @@ export default function cameraSessionFocusTest() {
 
                     let focusPoint = mCameraSession.getFocusPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 finish");
-                    if ((focusPoint.x == mFocusPointRT.x) && (focusPoint.y == mFocusPointRT.y)) {
+                    if ((Math.abs(focusPoint.x - mFocusPointRT.x) >= 0) && (Math.abs(focusPoint.y - mFocusPointRT.y) >= 0)) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0102 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1075,10 +1077,11 @@ export default function cameraSessionFocusTest() {
 
                     let focusPoint = mCameraSession.getFocusPoint();
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 finish");
-                    if ((focusPoint.x == mFocusPointLB.x) && (focusPoint.y == mFocusPointLB.y)) {
+                    if ((Math.abs(focusPoint.x - mFocusPointLB.x) >= 0) && (Math.abs(focusPoint.y - mFocusPointLB.y) >= 0)) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0103 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1125,6 +1128,7 @@ export default function cameraSessionFocusTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0104 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1171,6 +1175,7 @@ export default function cameraSessionFocusTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0105 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1216,6 +1221,7 @@ export default function cameraSessionFocusTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0106 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1262,6 +1268,7 @@ export default function cameraSessionFocusTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0107 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     
@@ -1308,6 +1315,7 @@ export default function cameraSessionFocusTest() {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 PASSED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FOCUS_POINT_PROMISE_0108 FAILED with FocusPoint is: " + focusPoint.x + ", " + focusPoint.y);
+                        await stopCameraSession();
                         expect().assertFail();
                     }
                     

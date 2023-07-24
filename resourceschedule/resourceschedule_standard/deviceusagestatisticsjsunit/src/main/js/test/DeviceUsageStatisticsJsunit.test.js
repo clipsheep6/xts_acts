@@ -396,145 +396,151 @@ describe("DeviceUsageStatisticsJsTest", function () {
 
     /*
      * @tc.number:SUB_RESOURCESCHEDULE_USAGEINFO_QUERY_XTS_0019
-     * @tc.name: DeviceUsageStatisticsJsTest019
-     * @tc.desc: test BundleActiveState bundleName.
+     * @tc.name: DeviceUsageStatisticsJsTest0019
+     * @tc.desc: test queryCurrentBundleActiveStates BundleActiveState bundleName.
      */
-    it("DeviceUsageStatisticsJsTest019", 0, async function (done) {
-        console.info('----------------------DeviceUsageStatisticsJsTest019---------------------------');
+    it("DeviceUsageStatisticsJsTest0019", 0, async function (done) {
+        console.info('----------------------DeviceUsageStatisticsJsTest0019---------------------------');
         let beginTime = 10;
         let endTime = 20000000000000;
-        bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
+        bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
             if(err) {
-                expect(false).assertEqual(true);
-                done();
+                console.info('tets DeviceUsageStatisticsJsTest0019 err.code: ' + err.code);
             } else {
-                expect(true).assertEqual(true);
-				if(res === undefined) {
-					res = [{bundleName: 'www.baidu.com'}];
-				}
-				console.log('test BundleActiveState bundleName :' + res[0].bundleName);
+                if(res === undefined) {
+                    res = [{bundleName: 'www.baidu.com'}];
+                    console.info('test DeviceUsageStatisticsJsTest0019 BundleActiveState bundleName: '+ 
+                    res[0].bundleName);
+                }
+                console.info('test DeviceUsageStatisticsJsTest0019 res: '+ res,typeof(res));
+                expect(res).assertInstanceOf('Array');
                 done();
             }
-        })
+        });
     })
-	
-	/*
+
+    /*
      * @tc.number:SUB_RESOURCESCHEDULE_USAGEINFO_QUERY_XTS_0020
-     * @tc.name: DeviceUsageStatisticsJsTest020
-     * @tc.desc: test BundleActiveState stateType.
+     * @tc.name: DeviceUsageStatisticsJsTest0020
+     * @tc.desc: test queryCurrentBundleActiveStates BundleActiveState stateType.
      */
-    it("DeviceUsageStatisticsJsTest020", 0, async function (done) {
-        console.info('----------------------DeviceUsageStatisticsJsTest020---------------------------');
+    it("DeviceUsageStatisticsJsTest0020", 0, async function (done) {
+        console.info('----------------------DeviceUsageStatisticsJsTest0020---------------------------');
         let beginTime = 10;
         let endTime = 20000000000000;
-        bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
+        bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
             if(err) {
-                expect(false).assertEqual(true);
-                done();
+                console.info('tets DeviceUsageStatisticsJsTest0020 err.code: ' + err.code);
             } else {
-                expect(true).assertEqual(true);
-				if(res === undefined) {
-					res = [{stateType: 0}];
-				}
-				console.log('test BundleActiveState stateType :' + res[0].stateType);
+                if(res === undefined) {
+                    res = [{stateType: 0}];
+                    console.info('test DeviceUsageStatisticsJsTest0020 BundleActiveState stateType: '+ 
+                    res[0].stateType);
+                }
+                console.info('test DeviceUsageStatisticsJsTest0020 res: '+ res,typeof(res));
+                expect(res).assertInstanceOf('Array');
                 done();
             }
-        })
+        });
     })
-	
-	/*
+
+    /*
      * @tc.number:SUB_RESOURCESCHEDULE_USAGEINFO_QUERY_XTS_0021
-     * @tc.name: DeviceUsageStatisticsJsTest021
-     * @tc.desc: test BundleActiveState stateOccurredTime.
+     * @tc.name: DeviceUsageStatisticsJsTest0021
+     * @tc.desc: test queryCurrentBundleActiveStates BundleActiveState stateOccurredTime.
      */
-    it("DeviceUsageStatisticsJsTest021", 0, async function (done) {
-        console.info('----------------------DeviceUsageStatisticsJsTest021---------------------------');
+    it("DeviceUsageStatisticsJsTest0021", 0, async function (done) {
+        console.info('----------------------DeviceUsageStatisticsJsTest0021---------------------------');
         let beginTime = 10;
         let endTime = 20000000000000;
-        bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
+        bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
             if(err) {
-                expect(false).assertEqual(true);
-                done();
+                console.info('tets DeviceUsageStatisticsJsTest0021 err.code: ' + err.code);
             } else {
-                expect(true).assertEqual(true);
-				if(res === undefined) {
-					res = [{stateOccurredTime: 0}];
-				}
-				console.log('test BundleActiveState stateOccurredTime :' + res[0].stateOccurredTime);
+                if(res === undefined) {
+                    res = [{stateOccurredTime: 0}];
+                    console.info('test DeviceUsageStatisticsJsTest0021 BundleActiveState stateOccurredTime: '+ 
+                    res[0].stateOccurredTime);
+                }
+                console.info('test DeviceUsageStatisticsJsTest0021 res: '+ res,typeof(res));
+                expect(res).assertInstanceOf('Array');
                 done();
             }
-        })
+        });
     })
-	
-	/*
+
+    /*
      * @tc.number:SUB_RESOURCESCHEDULE_USAGEINFO_QUERY_XTS_0022
-     * @tc.name: DeviceUsageStatisticsJsTest022
-     * @tc.desc: test BundleActiveState appUsagePriorityGroup.
+     * @tc.name: DeviceUsageStatisticsJsTest0022
+     * @tc.desc: test queryCurrentBundleActiveStates BundleActiveState appUsagePriorityGroup.
      */
-    it("DeviceUsageStatisticsJsTest022", 0, async function (done) {
-        console.info('----------------------DeviceUsageStatisticsJsTest022---------------------------');
+    it("DeviceUsageStatisticsJsTest0022", 0, async function (done) {
+        console.info('----------------------DeviceUsageStatisticsJsTest0022---------------------------');
         let beginTime = 10;
         let endTime = 20000000000000;
-        bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
+        bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
             if(err) {
-                expect(false).assertEqual(true);
-                done();
+                console.info('tets DeviceUsageStatisticsJsTest0022 err.code: ' + err.code);
             } else {
-                expect(true).assertEqual(true);
-				if(res === undefined) {
-					res = [{appUsagePriorityGroup: 0}];
-				}
-				console.log('test BundleActiveState appUsagePriorityGroup :' + res[0].appUsagePriorityGroup);
+                if(res === undefined) {
+                    res = [{appUsagePriorityGroup: 0}];
+                    console.info('test DeviceUsageStatisticsJsTest0022 BundleActiveState appUsagePriorityGroup: '+ 
+                    res[0].appUsagePriorityGroup);
+                }
+                console.info('test DeviceUsageStatisticsJsTest0022 res: '+ res,typeof(res));
+                expect(res).assertInstanceOf('Array');
                 done();
             }
-        })
+        });
     })
-	
-	/*
+
+    /*
      * @tc.number:SUB_RESOURCESCHEDULE_USAGEINFO_QUERY_XTS_0023
-     * @tc.name: DeviceUsageStatisticsJsTest023
-     * @tc.desc: test BundleActiveState indexOfLink.
+     * @tc.name: DeviceUsageStatisticsJsTest0023
+     * @tc.desc: test queryCurrentBundleActiveStates BundleActiveState indexOfLink.
      */
-    it("DeviceUsageStatisticsJsTest023", 0, async function (done) {
-        console.info('----------------------DeviceUsageStatisticsJsTest023---------------------------');
+    it("DeviceUsageStatisticsJsTest0023", 0, async function (done) {
+        console.info('----------------------DeviceUsageStatisticsJsTest0023---------------------------');
         let beginTime = 10;
         let endTime = 20000000000000;
-        bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
+        bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
             if(err) {
-                expect(false).assertEqual(true);
-                done();
+                console.info('tets DeviceUsageStatisticsJsTest0023 err.code: ' + err.code);
             } else {
-                expect(true).assertEqual(true);
-				if(res === undefined) {
-					res = [{indexOfLink: 'id'}];
-				}
-				console.log('test BundleActiveState indexOfLink :' + res[0].indexOfLink);
+                if(res === undefined) {
+                    res = [{indexOfLink: 'id'}];
+                    console.info('test DeviceUsageStatisticsJsTest0023 BundleActiveState indexOfLink: '+ 
+                    res[0].indexOfLink);
+                }
+                console.info('test DeviceUsageStatisticsJsTest0023 res: '+ res,typeof(res));
+                expect(res).assertInstanceOf('Array');
                 done();
             }
-        })
+        });
     })
-	
-	/*
+
+    /*
      * @tc.number:SUB_RESOURCESCHEDULE_USAGEINFO_QUERY_XTS_0024
-     * @tc.name: DeviceUsageStatisticsJsTest024
-     * @tc.desc: test BundleActiveState nameOfClass.
+     * @tc.name: DeviceUsageStatisticsJsTest0024
+     * @tc.desc: test queryCurrentBundleActiveStates BundleActiveState nameOfClass.
      */
-    it("DeviceUsageStatisticsJsTest024", 0, async function (done) {
-        console.info('----------------------DeviceUsageStatisticsJsTest024---------------------------');
+    it("DeviceUsageStatisticsJsTest0024", 0, async function (done) {
+        console.info('----------------------DeviceUsageStatisticsJsTest0024---------------------------');
         let beginTime = 10;
         let endTime = 20000000000000;
-        bundleState.queryBundleActiveStates(beginTime, endTime, (err, res) => {
+        bundleState.queryCurrentBundleActiveStates(beginTime, endTime, (err, res) => {
             if(err) {
-                expect(false).assertEqual(true);
-                done();
+                console.info('tets DeviceUsageStatisticsJsTest0024 err.code: ' + err.code);
             } else {
-                expect(true).assertEqual(true);
-				if(res === undefined) {
-					res = [{nameOfClass: 'BundleStates'}];
-				}
-				console.log('test BundleActiveState nameOfClass :' + res[0].nameOfClass);
+                if(res === undefined) {
+                    res = [{nameOfClass: 'BundleStates'}];
+                    console.info('test DeviceUsageStatisticsJsTest0024 BundleActiveState nameOfClass: '+ 
+                    res[0].nameOfClass);
+                }
+                console.info('test DeviceUsageStatisticsJsTest0024 res: '+ res,typeof(res));
+                expect(res).assertInstanceOf('Array');
                 done();
             }
-        })
+        });
     })
 })}

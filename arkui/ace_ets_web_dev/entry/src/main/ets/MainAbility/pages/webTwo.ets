@@ -45,6 +45,10 @@ struct Second {
                     console.info("key==>"+this.str);
                     switch(this.str){
                         case "emitOverviewModeAccessTrue":{
+<<<<<<< HEAD
+=======
+                            this.controller.loadUrl({url:"resource://rawfile/overview.html"})
+>>>>>>> hw/master
                             this.controller.runJavaScript({script:"getViewResult()",callback:(res)=>{
                                 console.info("getViewResult==>"+res);
                                 this.overviewScale=res;
@@ -70,4 +74,8 @@ struct Second {
             .overviewModeAccess(this.overviewModeAccess)
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> hw/master

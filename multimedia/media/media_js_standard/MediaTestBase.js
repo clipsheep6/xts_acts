@@ -19,8 +19,8 @@ import router from '@system.router'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
-import { UiDriver, BY, PointerMatrix } from '@ohos.uitest'
-
+import { UiDriver, BY, PointerMatrix } from '@ohos.UiTest'
+const CODECMIMEVALUE = ['video/avc', 'audio/mp4a-latm', 'audio/mpeg']
 const context = featureAbility.getContext();
 
 export async function getPermission(permissionNames) {
@@ -45,6 +45,42 @@ export async function driveFn(num) {
     await msleepAsync(2000)
 }
 
+export async function getAvRecorderFd(pathName, fileType) {
+    console.info('case come in getAvRecorderFd')
+    let fdObject = {
+        fileAsset : null,
+        fdNumber : null
+    }
+    let displayName = pathName;
+    console.info('[mediaLibrary] displayName is ' + displayName);
+    console.info('[mediaLibrary] fileType is ' + fileType);
+    const mediaTest = mediaLibrary.getMediaLibrary();
+    let fileKeyObj = mediaLibrary.FileKey;
+    let mediaType;
+    let publicPath;
+    if (fileType == 'audio') {
+        mediaType = mediaLibrary.MediaType.AUDIO;
+        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
+    } else {
+        mediaType = mediaLibrary.MediaType.VIDEO;
+        publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+    }
+    console.info('[mediaLibrary] publicPath is ' + publicPath);
+    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
+    if (dataUri != undefined) {
+        let args = dataUri.id.toString();
+        let fetchOp = {
+            selections : fileKeyObj.ID + "=?",
+            selectionArgs : [args],
+        }
+        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+        fdObject.fileAsset = await fetchFileResult.getAllObject();
+        fdObject.fdNumber = await fdObject.fileAsset[0].open('rw');
+        console.info('case getFd number is: ' + fdObject.fdNumber);
+    }
+    return fdObject;
+}
+
 // File operation
 export async function getFileDescriptor(fileName) {
     let fileDescriptor = undefined;
@@ -58,7 +94,17 @@ export async function getFileDescriptor(fileName) {
     });
     return fileDescriptor;
 }
-
+export async function getStageFileDescriptor(fileName) {
+    let fileDescriptor = undefined;
+    let mgr = globalThis.abilityContext.resourceManager
+    await mgr.getRawFileDescriptor(fileName).then(value => {
+        fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length};
+        console.log('case getRawFileDescriptor success fileName: ' + fileName);
+    }).catch(error => {
+        console.log('case getRawFileDescriptor err: ' + error);
+    });
+    return fileDescriptor;
+}
 export async function closeFileDescriptor(fileName) {
     await resourceManager.getResourceManager().then(async (mgr) => {
         await mgr.closeRawFileDescriptor(fileName).then(()=> {
@@ -112,6 +158,12 @@ export function printError(error, done) {
     done();
 }
 
+export function assertErr(opera, err, done) {
+    console.info(`case ${opera} error,errMessage is ${err.message}`);
+    expect().assertFail();
+    done();
+}
+
 // callback function for promise call back error
 export function failureCallback(error) {
     expect().assertFail();
@@ -125,6 +177,26 @@ export function catchCallback(error) {
 }
 
 export function checkDescription(actualDescription, descriptionKey, descriptionValue) {
+    for (let i = 0; i < descriptionKey.length; i++) {
+        let property = actualDescription[descriptionKey[i]];
+        console.info('case key is  '+ descriptionKey[i]);
+        console.info('case actual value is  '+ property);
+        console.info('case hope value is  '+ descriptionValue[i]);
+        if (descriptionKey[i] == 'codec_mime') {
+            console.info('CODECMIMEVALUE[descriptionValue[i]] value is  '+ CODECMIMEVALUE[descriptionValue[i]]);
+            if(property == "video/x-h264"){
+                console.info('property attribute is:'+ property);
+            }else{
+                expect(property).assertEqual(CODECMIMEVALUE[descriptionValue[i]]);
+            }
+        } else {
+            expect(property).assertEqual(descriptionValue[i]);
+        }
+        
+    }
+}
+
+export function checkOldDescription(actualDescription, descriptionKey, descriptionValue) {
     for (let i = 0; i < descriptionKey.length; i++) {
         let property = actualDescription[descriptionKey[i]];
         console.info('case key is  '+ descriptionKey[i]);

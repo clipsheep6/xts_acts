@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,8 +14,7 @@
  */
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
-import bundle from "@ohos.bundle";
-import uitest from "@ohos.uitest";
+import uitest from "@ohos.UiTest";
 const presetsCount = {
     ActsMediaLibraryAlbumTest: { albumsCount: 15, assetsCount: 27 },
     ActsMediaLibraryBaseTest: { albumsCount: 11, assetsCount: 14 },
@@ -94,13 +93,10 @@ const fileIdFetchOps = function (testNum, id) {
     return ops;
 };
 
-const albumFetchOps = function (testNum, path, albumName, type, others) {
-    if (!others) {
-        others = { order: FILEKEY.DATE_ADDED + " DESC" };
-    }
+const albumFetchOps = function (testNum, albumName, others) {
     let ops = {
-        selections: RELATIVE_PATH + "= ? AND " + ALBUM_NAME + "= ? AND " + MEDIA_TYPE + "= ?",
-        selectionArgs: [path, albumName, type.toString()],
+        selections: ALBUM_NAME + "= ?",
+        selectionArgs: [albumName],
         ...others,
     };
     console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
@@ -170,12 +166,21 @@ const albumThreeTypesFetchOps = function (testNum, paths, albumName, types, othe
             ],
             ...others,
         };
-        console.info(`${testNum}: fetchOps${JSON.stringify(ops)}`);
+        console.info(`${testNum}: fetchOps ${JSON.stringify(ops)}`);
         return ops;
     } catch (error) {
         console.info(`albumThreeTypesFetchOps :: error: ${error}`);
     }
 };
+
+const fileFetchOption = function (testNum, selections, selectionArgs) {
+    let ops = {
+        selections: selections,
+        selectionArgs: selectionArgs,
+    };
+    console.info(`${testNum} fetchOps: ${JSON.stringify(ops)}`);
+    return ops;
+}
 
 const checkPresetsAssets = async function (media, hapName) {
     console.info("checkPresetsAssets start");
@@ -232,30 +237,37 @@ const getPermission = async function (name, context) {
     if (!name) {
         name = "ohos.acts.multimedia.mediaLibrary";
     }
-    console.info("getPermission start", name);
 
-    let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA"];
-    context.requestPermissionsFromUser(permissions, (data) => {
-        console.info(`getPermission requestPermissionsFromUser ${JSON.stringify(data)}`);
-    });
-    await sleep(200);
+    try {
+        console.info('getPermission start: ' + name);
+        let isGetPermission = false;
+        let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA"];
+        let atManager = abilityAccessCtrl.createAtManager();
+        atManager.requestPermissionsFromUser(context, permissions, (err, result) => {
+            if (err) {
+                console.info('getPermission failed: ' + JSON.stringify(err));
+            } else {
+                console.info('getPermission suc: ' + JSON.stringify(result));
+                isGetPermission = true;
+            }
+        });
 
-    let driver = uitest.Driver.create();
-    await sleep(200);
-
-    let button = await driver.findComponent(uitest.ON.text("允许"));
-    await button.click();
-
-    let appInfo = await bundle.getApplicationInfo(name, 0, 100);
-    let tokenID = appInfo.accessTokenId;
-    let atManager = abilityAccessCtrl.createAtManager();
-    let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
-    let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_MEDIA");
-    let isGranted3 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_MEDIA");
-    if (!(isGranted1 == 0 && isGranted2 == 0 && isGranted3 == 0)) {
-        console.info("getPermission failed");
+        let driver = uitest.Driver.create();
+        await sleep(500);
+        for (let i = 0; i < 10; i++) {
+            if (isGetPermission) {
+                break;
+            }
+            await sleep(500);
+            let button = await driver.findComponent(uitest.ON.text('允许'));
+            if (button != undefined) {
+                await button.click();
+            }
+        }
+        console.info("getPermission end");
+    } catch (error) {
+        console.info('getPermission error: ' + error);
     }
-    console.info("getPermission end");
 };
 
 const MODIFY_ERROR_CODE_01 = "-1000";
@@ -276,6 +288,7 @@ export {
     nameFetchOps,
     idFetchOps,
     albumFetchOps,
+    fileFetchOption,
     albumTwoTypesFetchOps,
     albumThreeTypesFetchOps,
     checkPresetsAssets,

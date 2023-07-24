@@ -41,13 +41,13 @@ describe('VideoPlayerAPICallbackTest', function () {
     const SETVOLUME_EVENT = 'volume';
     const SETSPEED_EVENT = 'speed';
     const FINISH_EVENT = 'finish';
-    const ERROR_EVENT = 'error';
+    const ERROR_EVENT = 'errorEvent';
     const END_EVENT = 'end';
     const VOLUME_VALUE = 1;
     const SPEED_VALUE = 1;
     const NEXT_FRAME_TIME = 8333;
     const PREV_FRAME_TIME = 4166;
-    const DELTA_TIME = 100;
+    const DELTA_TIME = 300;
     let surfaceID = '';
     let fileDescriptor = null;
     const pagePath1 = 'pages/surfaceTest/surfaceTest';
@@ -386,6 +386,10 @@ describe('VideoPlayerAPICallbackTest', function () {
     eventEmitter.on(FINISH_EVENT, (videoPlayer, steps, done) => {
         steps.shift();
         console.info('case wait for playbackCompleted');
+    });
+
+    eventEmitter.on(ERROR_EVENT, (videoPlayer, steps, done) => {
+        console.info('case wait for error')
     });
 
     /* *

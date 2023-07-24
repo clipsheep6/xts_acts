@@ -17,5 +17,9 @@ group("time") {
   deps = [
     "dateTimeTest:ActsDateTimeAPITest",
     "timeTest:ActsTimeAPITest",
+<<<<<<< HEAD
+=======
+    "timeauthorityTest:ActsTimeAuthorityAPITest",
+>>>>>>> hw/master
   ]
 }

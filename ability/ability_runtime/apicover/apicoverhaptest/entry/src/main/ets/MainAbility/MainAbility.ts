@@ -33,6 +33,10 @@ export default class MainAbility extends Ability {
         windowStage.setUIContent(this.context, "MainAbility/pages/MainAbility_pages", null)
     }
 
+    onWindowStageRestore(windowStage){
+      console.log("[Demo] MainAbility onWindowStageRestore")
+    }
+
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
         console.log("[Demo] MainAbility onWindowStageDestroy")
@@ -46,5 +50,29 @@ export default class MainAbility extends Ability {
     onBackground() {
         // Ability has back to background
         console.log("[Demo] MainAbility onBackground")
+    }
+
+    onConfigurationUpdate(config) {
+        console.log('[Demo] MainAbility onConfigurationUpdate: ' + this.context.config.language)
+        console.log('[Demo] MainAbility onConfigurationUpdate: ' + config.language)
+        if (globalThis.UpdateConfiguration_0200_prepare_resolve) {
+            globalThis.UpdateConfiguration_0200_prepare_resolve();
+        }
+
+        if (!globalThis.UpdateConfiguration_0200_resolve) {
+            console.log("[Demo] MainAbility invalid resolve")
+            return;
+        }
+
+        if (!globalThis.UpdateConfiguration_0200_reject) {
+            console.log("[Demo] MainAbility invalid reject")
+            return;
+        }
+
+        if (this.context.config.language == "English" && config.language == "zh-Hans") {
+            globalThis.UpdateConfiguration_0200_resolve();
+        } else {
+            globalThis.UpdateConfiguration_0200_reject();
+        }
     }
 };

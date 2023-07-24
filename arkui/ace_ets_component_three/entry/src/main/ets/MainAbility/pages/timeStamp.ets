@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,7 +25,7 @@ struct ClickExample {
       Button('Click').backgroundColor(0x2788D9)
         .key('button')
         .onClick((event: ClickEvent) => {
-          this.text = event.timestamp
+          this.text = event.timestamp.toString()
           console.info(this.text)
           try {
             var backData = {

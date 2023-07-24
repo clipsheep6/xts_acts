@@ -14,7 +14,11 @@
  */
 
 import router from '@ohos.router';
+<<<<<<< HEAD
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+=======
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+>>>>>>> hw/master
 import Utils from './Utils.ets'
 
 export default function ohosrouterJsunit() {

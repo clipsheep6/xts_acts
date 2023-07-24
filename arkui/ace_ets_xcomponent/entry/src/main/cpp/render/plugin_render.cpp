@@ -230,9 +230,9 @@ void PluginRender::DispatchTouchEvent(OH_NativeXComponent* component, void* wind
             OH_NativeXComponent_TouchPointToolType toolType = OH_NativeXComponent_TouchPointToolType::OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN;
             float tiltX = 123.0;
             float tiltY = 321.0;
-            int32_t ret1;
-            int32_t ret2;
-            int32_t ret3;
+            [[maybe_unused]] int32_t ret1;
+            [[maybe_unused]] int32_t ret2;
+            [[maybe_unused]] int32_t ret3;
             ret1 = OH_NativeXComponent_GetTouchPointToolType(component, i, &toolType);
             ret2 = OH_NativeXComponent_GetTouchPointTiltX(component, i, &tiltX);
             ret3 = OH_NativeXComponent_GetTouchPointTiltY(component, i, &tiltY);
@@ -294,7 +294,7 @@ napi_value PluginRender::NapiChangeShape(napi_env env, napi_callback_info info)
     LOGE("NapiChangeShape");
     napi_value exportInstance;
     napi_value thisArg;
-    napi_status status;
+    [[maybe_unused]] napi_status status;
     OH_NativeXComponent *nativeXComponent = nullptr;
 
     int32_t ret;
@@ -403,7 +403,7 @@ napi_value PluginRender::NapiChangeColor(napi_env env, napi_callback_info info)
 napi_value PluginRender::TestGetXComponentId(napi_env env, napi_callback_info info)
 {
     napi_value thisArg;
-    napi_status status;
+    [[maybe_unused]] napi_status status;
     napi_value exportInstance;
     OH_NativeXComponent *nativeXComponent = nullptr;
 
@@ -413,7 +413,15 @@ napi_value PluginRender::TestGetXComponentId(napi_env env, napi_callback_info in
 
     NAPI_CALL(env, napi_get_cb_info(env, info, NULL, NULL, &thisArg, NULL));
     status = napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
+    if (status != napi_ok) {
+        return nullptr;
+    };
+
     status = napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+    if (status != napi_ok) {
+        return nullptr;
+    };
+
     ret = OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
     if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         return nullptr;

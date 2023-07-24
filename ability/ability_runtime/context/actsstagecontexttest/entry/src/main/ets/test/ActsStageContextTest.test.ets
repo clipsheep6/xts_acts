@@ -149,6 +149,7 @@ export default function actsStageContextTest() {
                 done()
             })
         })
+<<<<<<< HEAD
 
         /*
         * @tc.number    : ACTS_StageContext_1500
@@ -187,5 +188,7 @@ export default function actsStageContextTest() {
                 done()
             })
         })
+=======
+>>>>>>> hw/master
     })
 }

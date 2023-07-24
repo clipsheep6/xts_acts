@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index";
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -22,7 +22,7 @@ export default function scrollCodeJsunit() {
   describe('scrollCodeTest', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/scrollCode',
+        uri: 'MainAbility/pages/scrollCode',
       }
       try {
         router.clear();
@@ -55,7 +55,7 @@ export default function scrollCodeJsunit() {
       expect(obj.$attrs.scrollable).assertEqual('ScrollDirection.Vertical');
       expect(obj.$attrs.scrollBar).assertEqual('BarState.On');
       expect(obj.$attrs.scrollBarColor).assertEqual('#FF0000FF');
-      expect(obj.$attrs.scrollBarWidth).assertEqual('30.00px');
+      expect(obj.$attrs.scrollBarWidth).assertEqual('30.00vp');
       done();
     });
 
@@ -159,7 +159,7 @@ export default function scrollCodeJsunit() {
       let strJson = getInspectorByKey('ScrollCode');
       let obj = JSON.parse(strJson);
       console.info("[test_scrollCode_005] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.scrollBarWidth).assertEqual('40.00px');
+      expect(obj.$attrs.scrollBarWidth).assertEqual('40.00vp');
       done();
     });
 

@@ -120,7 +120,11 @@ describe('relationalStoreInsertTest', function () {
         } catch (e) {
             console.info("insert1 error " + e);
         }
+<<<<<<< HEAD
         resultSet = null
+=======
+        resultSet.close();
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStoreInsert0001 end *************");
     })
@@ -263,6 +267,10 @@ describe('relationalStoreInsertTest', function () {
         } catch (e) {
             console.info("BatchInsert1 error " + e);
         }
+<<<<<<< HEAD
+=======
+        resultSet.close();
+>>>>>>> hw/master
         predicates = new data_Rdb.RdbPredicates("test1");
         predicates.equalTo("name", "lisi")
         resultSet = await rdbStore.query(predicates)
@@ -283,7 +291,11 @@ describe('relationalStoreInsertTest', function () {
         } catch (e) {
             console.info("BatchInsert1 error " + e);
         }
+<<<<<<< HEAD
         resultSet = null
+=======
+        resultSet.close();
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStorebatchInsertPromise0001 end *************");
     })
@@ -332,6 +344,10 @@ describe('relationalStoreInsertTest', function () {
             const age = resultSet.getLong(resultSet.getColumnIndex("age"))
             const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
             const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+<<<<<<< HEAD
+=======
+            resultSet.close();
+>>>>>>> hw/master
             console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
             expect(2).assertEqual(id);
             expect("lisi").assertEqual(name)
@@ -343,11 +359,18 @@ describe('relationalStoreInsertTest', function () {
                 resultSet = await rdbStore.query(predicates).catch((err) =>{
                     expect(err != null).assertTrue();
                 })
+<<<<<<< HEAD
+=======
+                resultSet.close();
+>>>>>>> hw/master
             })
         } catch (e) {
             console.info("BatchInsert2 error " + e);
         }
+<<<<<<< HEAD
         resultSet = null
+=======
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStorebatchInsertPromise0002 end *************");
     })
@@ -397,6 +420,10 @@ describe('relationalStoreInsertTest', function () {
             const age = resultSet.getLong(resultSet.getColumnIndex("age"))
             const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
             const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+<<<<<<< HEAD
+=======
+            resultSet.close();
+>>>>>>> hw/master
             console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
             expect(1).assertEqual(id);
             expect("zhangsan").assertEqual(name)
@@ -419,6 +446,10 @@ describe('relationalStoreInsertTest', function () {
             const age = resultSet.getLong(resultSet.getColumnIndex("age"))
             const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
             const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+<<<<<<< HEAD
+=======
+            resultSet.close();
+>>>>>>> hw/master
             console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
             expect(2).assertEqual(id);
             expect("lisi").assertEqual(name)
@@ -441,6 +472,10 @@ describe('relationalStoreInsertTest', function () {
                 const name = resultSet.getString(resultSet.getColumnIndex("name"))
                 const age = resultSet.getLong(resultSet.getColumnIndex("age"))
                 const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+<<<<<<< HEAD
+=======
+                resultSet.close();
+>>>>>>> hw/master
                 console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
                 expect(4).assertEqual(id);
                 expect("zhangmaowen").assertEqual(name)
@@ -452,7 +487,10 @@ describe('relationalStoreInsertTest', function () {
         } catch (e) {
             console.info("BatchInsert1 error " + e);
         }
+<<<<<<< HEAD
         resultSet = null
+=======
+>>>>>>> hw/master
         done();
         console.info(TAG + "************* testRdbStorebatchInsertPromise0003 end *************");
     })
@@ -494,6 +532,10 @@ describe('relationalStoreInsertTest', function () {
             const age = resultSet.getLong(resultSet.getColumnIndex("age"))
             const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
             const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+<<<<<<< HEAD
+=======
+            resultSet.close();
+>>>>>>> hw/master
             console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
             expect(56).assertEqual(id);
             expect("zhangsan55").assertEqual(name)
@@ -505,7 +547,10 @@ describe('relationalStoreInsertTest', function () {
         } catch (e) {
             console.info("BatchInsert1 error " + e);
         }
+<<<<<<< HEAD
         resultSet = null;
+=======
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStorebatchInsertPromise0004 end *************");
     })
@@ -565,7 +610,11 @@ describe('relationalStoreInsertTest', function () {
             } catch (e) {
                 console.info("BatchInsert1 error " + e);
             }
+<<<<<<< HEAD
             resultSet = null;
+=======
+            resultSet.close();
+>>>>>>> hw/master
             done();
             console.info(TAG + "************* testRdbStorebatchInsertPromise0005 end *************");
         })
@@ -690,6 +739,10 @@ describe('relationalStoreInsertTest', function () {
                     } catch (e) {
                         console.info("BatchInsert1 error " + e);
                     }
+<<<<<<< HEAD
+=======
+                    resultSet.close();
+>>>>>>> hw/master
                     predicates = new data_Rdb.RdbPredicates("testcallback1");
                     predicates.equalTo("name", "lisi")
                     resultSet = await rdbStore.query(predicates)
@@ -710,10 +763,17 @@ describe('relationalStoreInsertTest', function () {
                     } catch (e) {
                         console.info("BatchInsert1 error " + e);
                     }
+<<<<<<< HEAD
                 }
                 done();
             })
             resultSet = null
+=======
+                    resultSet.close();
+                }
+                done();
+            })
+>>>>>>> hw/master
         })
         await sleep(2000)
         done()
@@ -764,6 +824,10 @@ describe('relationalStoreInsertTest', function () {
                         const age = resultSet.getLong(resultSet.getColumnIndex("age"))
                         const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
                         const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+<<<<<<< HEAD
+=======
+                        resultSet.close();
+>>>>>>> hw/master
                         console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
                         expect(2).assertEqual(id);
                         expect("lisi").assertEqual(name)
@@ -775,6 +839,10 @@ describe('relationalStoreInsertTest', function () {
                             resultSet = await rdbStore.query(predicates).catch((err) =>{
                                 expect(err != null).assertTrue();
                             })
+<<<<<<< HEAD
+=======
+                            resultSet.close();
+>>>>>>> hw/master
                         })
                     } catch (e) {
                         console.info("BatchInsert2 error " + e);
@@ -784,7 +852,10 @@ describe('relationalStoreInsertTest', function () {
             })
         })
         await sleep(2000)
+<<<<<<< HEAD
         resultSet = null
+=======
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStorebatchInsertCallback0002 end *************");
     })
@@ -832,6 +903,10 @@ describe('relationalStoreInsertTest', function () {
                         const name = resultSet.getString(resultSet.getColumnIndex("name"))
                         const age = resultSet.getLong(resultSet.getColumnIndex("age"))
                         const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+<<<<<<< HEAD
+=======
+                        resultSet.close();
+>>>>>>> hw/master
                         console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary);
                         expect(1).assertEqual(id);
                         expect("zhangsan").assertEqual(name)
@@ -850,6 +925,10 @@ describe('relationalStoreInsertTest', function () {
                         const name = resultSet.getString(resultSet.getColumnIndex("name"))
                         const age = resultSet.getLong(resultSet.getColumnIndex("age"))
                         const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+<<<<<<< HEAD
+=======
+                        resultSet.close();
+>>>>>>> hw/master
                         console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary);
                         expect(2).assertEqual(id);
                         expect("lisi").assertEqual(name)
@@ -872,6 +951,10 @@ describe('relationalStoreInsertTest', function () {
                             const name = resultSet.getString(resultSet.getColumnIndex("name"))
                             const age = resultSet.getLong(resultSet.getColumnIndex("age"))
                             const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+<<<<<<< HEAD
+=======
+                            resultSet.close();
+>>>>>>> hw/master
                             console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary);
                             expect(4).assertEqual(id);
                             expect("zhangmaowen").assertEqual(name)
@@ -888,7 +971,10 @@ describe('relationalStoreInsertTest', function () {
             })
         })
         await sleep(2000)
+<<<<<<< HEAD
         resultSet = null
+=======
+>>>>>>> hw/master
         done();
         console.info(TAG + "************* testRdbStorebatchInsertCallback0003 end *************");
     })
@@ -928,6 +1014,10 @@ describe('relationalStoreInsertTest', function () {
                         const name = resultSet.getString(resultSet.getColumnIndex("name"))
                         const age = resultSet.getLong(resultSet.getColumnIndex("age"))
                         const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+<<<<<<< HEAD
+=======
+                        resultSet.close();
+>>>>>>> hw/master
                         console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary);
                         expect(56).assertEqual(id);
                         expect("zhangsan55").assertEqual(name)
@@ -941,7 +1031,10 @@ describe('relationalStoreInsertTest', function () {
             })
         })
         await sleep(2000)
+<<<<<<< HEAD
         resultSet = null;
+=======
+>>>>>>> hw/master
         done()
         console.info(TAG + "************* testRdbStorebatchInsertCallback0004 end *************");
     })
@@ -1000,12 +1093,19 @@ describe('relationalStoreInsertTest', function () {
                     } catch (e) {
                         console.info("BatchInsert1 error " + e);
                     }
+<<<<<<< HEAD
+=======
+                    resultSet.close();
+>>>>>>> hw/master
                 }
                 done();
             })
         })
         await sleep(2000)
+<<<<<<< HEAD
         resultSet = null;
+=======
+>>>>>>> hw/master
         done();
         console.info(TAG + "************* testRdbStorebatchInsertCallback0005 end *************");
     })
@@ -1088,6 +1188,347 @@ describe('relationalStoreInsertTest', function () {
         console.info(TAG + "************* testRdbStorebatchInsertCallback0007 end *************");
     })
 
+<<<<<<< HEAD
     console.info(TAG + "*************Unit Test End*************");
+=======
+    /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0001
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+     it('InsertWithConflictResolution0001', 0, async function (done) {
+        console.log(TAG + " ************* InsertWithConflictResolution0001 start *************");
+        var u8 = new Uint8Array([1, 2, 3])
+        {
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_NONE);
+        }
+
+        {
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            try {
+                let insertPromise = rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_NONE);
+                insertPromise.then(async (ret) => {
+                    expect(1).assertEqual(ret);
+                    console.log(TAG + " InsertWithConflictResolution0001 insert first done: " + ret);
+                    expect(null).assertFail();
+                }).catch((err) => {
+                    console.log(TAG + " InsertWithConflictResolution0001 insert with wrong valuebucket and ConflictResolution is default")
+                    done();
+                })
+            } catch(err) {
+                console.log(TAG + " InsertWithConflictResolution0001 catch err: failed, err: code=" + err.code + " message=" + err.message)
+                expect("401").assertEqual(err.code);
+                expect(null).assertFail();
+            }
+        }
+
+        console.log(TAG + " ************* InsertWithConflictResolution_0001 end   *************");
+    })
+
+    /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0002
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+    it('InsertWithConflictResolution0002', 0, async function (done) {
+        console.log(TAG + " ************* InsertWithConflictResolution0002 start *************");
+        var u8 = new Uint8Array([1, 2, 3])
+        {
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_ROLLBACK);
+        }
+
+        {
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            try {
+                let insertPromise = rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_ROLLBACK);
+                insertPromise.then(async (ret) => {
+                    expect(1).assertEqual(ret)
+                    console.log(TAG + " InsertWithConflictResolution0002 insert first done: " + ret)
+                    expect(null).assertFail()
+                }).catch((err) => {
+                    console.log(TAG + " InsertWithConflictResolution0002 insert with wrong valuebucket and ConflictResolution is ON_CONFLICT_ROLLBACK")
+                    done()
+                })
+            } catch(err) {
+                console.log(TAG + " InsertWithConflictResolution0002 catch err: failed, err: code=" + err.code + " message=" + err.message)
+                expect("401").assertEqual(err.code)
+                expect(null).assertFail()
+            }
+        }
+
+        console.log(TAG + " ************* InsertWithConflictResolution_0002 end   *************");
+    })
+
+    /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0003
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+    it('InsertWithConflictResolution0003', 0, async function (done) {
+        console.log(TAG + " ************* InsertWithConflictResolution0003 start *************");
+        var u8 = new Uint8Array([1, 2, 3])
+        {
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_IGNORE);
+        }
+
+        {
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_IGNORE);
+        }
+        let predicates = new data_Rdb.RdbPredicates("test");
+        predicates.equalTo("name", "zhangsan")
+        let resultSet = await rdbStore.query(predicates)
+        try {
+            console.log(TAG + " InsertWithConflictResolution0003 resultSet query done");
+            expect(true).assertEqual(resultSet.goToFirstRow())
+            const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+            const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+            console.log(TAG + " InsertWithConflictResolution0004 id=" + id + ", salary=" + salary );
+            expect(1).assertEqual(id);
+            expect(100.5).assertEqual(salary)
+            expect(false).assertEqual(resultSet.goToNextRow())
+        } catch (err) {
+            console.log(TAG + " InsertWithConflictResolution0003 insert error" + err);
+        }
+        resultSet.close();
+        done()
+        console.log(TAG + " ************* InsertWithConflictResolution_0003 end  *************");
+    })
+
+    /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0004
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+    it('InsertWithConflictResolution0004', 0, async function (done) {
+        console.log(TAG + " ************* InsertWithConflictResolution0004 start *************");
+        {
+            var u8 = new Uint8Array([1, 2, 3])
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 100.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_REPLACE);
+        }
+        let predicates = new data_Rdb.RdbPredicates("test");
+        predicates.equalTo("name", "zhangsan")
+        let resultSet = await rdbStore.query(predicates)
+        try {
+            console.log(TAG + " InsertWithConflictResolution0004 resultSet query done");
+            expect(true).assertEqual(resultSet.goToFirstRow())
+            const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+            expect(1).assertEqual(id);
+            expect(false).assertEqual(resultSet.goToNextRow())
+        } catch (err) {
+            console.log(TAG + " InsertWithConflictResolution0004 insert error" + err);
+        }
+        resultSet.close();
+
+        {
+            var u8 = new Uint8Array([4, 5, 6])
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_REPLACE);
+        }
+        resultSet = await rdbStore.query(predicates)
+        try {
+            console.log(TAG + " InsertWithConflictResolution0004 resultSet query done");
+            expect(true).assertEqual(resultSet.goToFirstRow())
+            const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+            const name = resultSet.getString(resultSet.getColumnIndex("name"))
+            const age = resultSet.getLong(resultSet.getColumnIndex("age"))
+            const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+            const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+            console.log(TAG + " InsertWithConflictResolution0004 id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
+            expect(1).assertEqual(id);
+            expect("zhangsan").assertEqual(name)
+            expect(18).assertEqual(age)
+            expect(200.5).assertEqual(salary)
+            expect(4).assertEqual(blobType[0])
+            expect(5).assertEqual(blobType[1])
+            expect(6).assertEqual(blobType[2])
+            expect(false).assertEqual(resultSet.goToNextRow())
+        } catch (err) {
+            console.log(TAG + " InsertWithConflictResolution0004 resultSet query error " + err);
+        }
+        resultSet.close();
+        done()
+        console.log(TAG + " ************* InsertWithConflictResolution_0004 end   *************");
+    })
+
+    /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0005
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+    it('InsertWithConflictResolution0005', 0, async function (done) {
+        console.log(TAG + " ************* InsertWithConflictResolution0005 start *************");
+        {
+            var u8 = new Uint8Array([4, 5, 6])
+            const valueBucket = {
+                "id": 1,
+                "name": "zhangsan",
+                "age": 18,
+                "salary": 200.5,
+                "blobType": u8,
+            }
+            try {
+                rdbStore.insert("test", valueBucket, 6);
+                expect(null).assertFail()
+            } catch(err) {
+                console.log(TAG + " InsertWithConflictResolution0005 catch err: failed, err: code=" + err.code + " message=" + err.message)
+                expect("401").assertEqual(err.code)
+                done()
+            }
+        }
+
+        console.log(TAG + " ************* InsertWithConflictResolution_0005 end   *************");
+    })
+
+        /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0006
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+         it('InsertWithConflictResolution0006', 0, async function (done) {
+            console.log(TAG + " ************* InsertWithConflictResolution0006 start *************");
+            var u8 = new Uint8Array([1, 2, 3])
+            {
+                const valueBucket = {
+                    "id": 1,
+                    "name": "zhangsan",
+                    "age": 18,
+                    "salary": 100.5,
+                    "blobType": u8,
+                }
+                await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_ABORT);
+            }
+    
+            {
+                const valueBucket = {
+                    "id": 1,
+                    "name": "zhangsan",
+                    "age": 18,
+                    "salary": 200.5,
+                    "blobType": u8,
+                }
+                try {
+                    let insertPromise = rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_ABORT);
+                    insertPromise.then(async (ret) => {
+                        expect(1).assertEqual(ret)
+                        console.log(TAG + " InsertWithConflictResolution0006 insert first done: " + ret)
+                        expect(null).assertFail()
+                    }).catch((err) => {
+                        console.log(TAG + " InsertWithConflictResolution0006 insert with wrong valuebucket and ConflictResolution is ON_CONFLICT_ABORT")
+                        done()
+                    })
+                } catch(err) {
+                    console.log(TAG + " InsertWithConflictResolution0006 catch err: failed, err: code=" + err.code + " message=" + err.message)
+                    expect("401").assertEqual(err.code)
+                    expect(null).assertFail()
+                }
+            }
+    
+            console.log(TAG + " ************* InsertWithConflictResolution0006 end   *************");
+        })
+    
+
+        /**
+     * @tc.name rdb inserttWithConflictResolution test
+     * @tc.number SUB_DDM_AppDataFWK_JSRDB_InsertWithConflictResolution_0007
+     * @tc.desc rdb insertWithConflictResolution test
+     */
+         it('InsertWithConflictResolution0007', 0, async function (done) {
+            console.log(TAG + " ************* InsertWithConflictResolution0007 start *************");
+            var u8 = new Uint8Array([1, 2, 3])
+            {
+                const valueBucket = {
+                    "id": 1,
+                    "name": "zhangsan",
+                    "age": 18,
+                    "salary": 100.5,
+                    "blobType": u8,
+                }
+                await rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_FAIL);
+            }
+    
+            {
+                const valueBucket = {
+                    "id": 1,
+                    "name": "zhangsan",
+                    "age": 18,
+                    "salary": 200.5,
+                    "blobType": u8,
+                }
+                try {
+                    let insertPromise = rdbStore.insert("test", valueBucket, data_Rdb.ConflictResolution.ON_CONFLICT_FAIL);
+                    insertPromise.then(async (ret) => {
+                        expect(1).assertEqual(ret)
+                        console.log(TAG + " InsertWithConflictResolution0007 insert first done: " + ret)
+                        expect(null).assertFail()
+                    }).catch((err) => {
+                        console.log(TAG + " InsertWithConflictResolution0007 insert with wrong valuebucket and ConflictResolution is ON_CONFLICT_FAIL")
+                        done()
+                    })
+                } catch(err) {
+                    console.log(TAG + " InsertWithConflictResolution0007 catch err: failed, err: code=" + err.code + " message=" + err.message)
+                    expect("401").assertEqual(err.code)
+                    expect(null).assertFail()
+                }
+            }
+    
+            console.log(TAG + " ************* InsertWithConflictResolution0007 end   *************");
+        })
+
+
+    console.info(TAG + " *************Unit Test End*************");
+>>>>>>> hw/master
 })
 }

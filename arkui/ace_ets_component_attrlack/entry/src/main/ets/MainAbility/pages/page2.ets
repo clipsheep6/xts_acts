@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,7 +25,7 @@ const TAG = 'ets_apiLack_add';
 struct Second {
   private content: string = "这是第二页"
   @State text: string = router.getParams()['text']
-  @State data: any = router.getParams()['data']
+  @State data: number[] = router.getParams()['data']
   @State secondData : string = ''
 
   build() {
@@ -37,7 +37,7 @@ struct Second {
         .fontSize(30)
         .key("SingleDataText")
         .onClick(()=>{
-          this.secondData = (this.data.array[1]).toString()
+          this.secondData = (this.data[1]).toString()
           try {
             var backData = {
               data: {

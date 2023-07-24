@@ -101,7 +101,7 @@ export default function webJsunit() {
      */
     it('loadUrl',0,async function(done){
       emitKey="emitRunJavaScript";
-      Utils.registerContainEvent("loadUrl","代码托管和研发协作平台",110,done);
+      Utils.registerContainEvent("loadUrl","index",110,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -148,28 +148,8 @@ export default function webJsunit() {
      *tc.desic Gets the id for the current Web
      */
     it('getWebId',0,async function(done){
-      emitKey="emitGetTitle";
-      Utils.registerEvent("getWebId","webId",120,done);
-      sendEventByKey('webcomponent',10,'');
-    })
-    /*
-     *tc.number SUB_ACE_BASIC_ETS_API_012
-     *tc.name getTitle
-     *tc.desic Gets the title of current Web page
-     */
-    it('getTitle',0,async function(done){
-      emitKey="emitGetPageHeight";
-      Utils.registerEvent("getTitle","index",122,done);
-      sendEventByKey('webcomponent',10,'');
-    })
-    /*
-     *tc.number SUB_ACE_BASIC_ETS_API_013
-     *tc.name getPageHeight
-     *tc.desic Gets the content height of current Web page
-     */
-    it('getPageHeight',0,async function(done){
       emitKey="emitGetRequestFocus";
-      Utils.registerEventTwo("getPageHeight",124,done);
+      Utils.registerEvent("getWebId","webId",120,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -219,7 +199,7 @@ export default function webJsunit() {
      */
     it('backward',0,async function(done){
       emitKey="emitForward";
-      Utils.registerEvent("backward","index",134,done);
+      Utils.registerEvent("backward","\"index\"",134,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -228,18 +208,8 @@ export default function webJsunit() {
      *tc.desic Goes forward in the history of the web page
      */
     it('forward',0,async function(done){
-      emitKey="emitBackOrForward";
-      Utils.registerEvent("forward","second",136,done);
-      sendEventByKey('webcomponent',10,'');
-    })
-    /*
-     *tc.number SUB_ACE_BASIC_ETS_API_020
-     *tc.name backOrForward
-     *tc.desic Goes forward or back backOrForward in the history of the web page
-     */
-    it('backOrForward',0,async function(done){
       emitKey="emitGeolocationAccessFalse";
-      Utils.registerEvent("backOrForward","index",138,done);
+      Utils.registerEvent("forward","resource://rawfile/index.html",136,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -379,7 +349,7 @@ export default function webJsunit() {
      */
     it('cacheModeDefault',0,async function(done){
       emitKey="emitMixedModeNone";
-      Utils.registerContainEvent("cacheModeDefault","OpenHarmony",184,done);
+      Utils.registerContainEvent("cacheModeDefault","index",184,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -469,7 +439,7 @@ export default function webJsunit() {
      */
     it('onErrorReceive',0,async function(done){
       emitKey="emitOnHttpErrorReceive";
-      Utils.registerEvent("onErrorReceive","http://192.168.5.40:9006/sso_web/html/H5/doctor/aboutUs.html",65,done);
+      Utils.registerEvent("onErrorReceive","http://bianixnbo.com/",65,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -479,7 +449,7 @@ export default function webJsunit() {
      */
     it('onHttpErrorReceive',0,async function(done){
       emitKey="emitOnTitleReceive";
-      Utils.registerEvent("onHttpErrorReceive",404,66,done);
+      Utils.registerEvent("onHttpErrorReceive",true,66,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
@@ -498,11 +468,12 @@ export default function webJsunit() {
      *tc.desic Triggered when starting to download
      */
     it('onDownloadStart',0,async function(done){
-      emitKey="emitSetCookie";
+      emitKey="emitZoom";
       Utils.registerEvent("onDownloadStart","https://consumer.huawei.com/content/dam/huawei-cbg-site/cn/mkt/mobileservices/2022/download/PC107f1b3947c942ffaa14334a879065d8.2107261020.exe",68,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
+<<<<<<< HEAD
      *tc.number SUB_ACE_BASIC_ETS_API_047
      *tc.name setCookie
      *tc.desic  Sets the cookie
@@ -523,16 +494,19 @@ export default function webJsunit() {
       sendEventByKey('webcomponent',10,'');
     })
     /*
+=======
+>>>>>>> hw/master
      *tc.number SUB_ACE_BASIC_ETS_API_049
      *tc.name zoom
      *tc.desic Let the Web zoom by
      */
     it('zoom',0,async function(done){
-      emitKey="emitZoomOut";
+      emitKey="emitClearHistory";
       Utils.registerEvent("zoom",true,77,done);
       sendEventByKey('webcomponent',10,'');
     })
     /*
+<<<<<<< HEAD
      *tc.number SUB_ACE_BASIC_ETS_API_050
      *tc.name zoomOut
      *tc.desic Let the Web zoom out
@@ -573,6 +547,8 @@ export default function webJsunit() {
       sendEventByKey('webcomponent',10,'');
     })
     /*
+=======
+>>>>>>> hw/master
      *tc.number SUB_ACE_BASIC_ETS_API_054
      *tc.name clearHistory
      *tc.desic Clears the history in the Web
@@ -638,6 +614,7 @@ export default function webJsunit() {
      *tc.desic Sets whether the Web allows JavaScript scripts to execute
      */
     it('javaScriptAccess',0,async function(done){
+<<<<<<< HEAD
       emitKey="emitGetCookieManager";
       Utils.registerEvent("javaScriptAccess",true,88,done);
       sendEventByKey('webcomponent',10,'');
@@ -648,11 +625,12 @@ export default function webJsunit() {
      *tc.desic Gets network cookie manager
      */
     it('getCookieManager',0,async function(done){
+=======
+>>>>>>> hw/master
       emitKey="emitWebVisibility";
-      Utils.registerEvent("getCookieManager","a=b",89,done);
+      Utils.registerEvent("javaScriptAccess",true,88,done);
       sendEventByKey('webcomponent',10,'');
     })
-
     /*
      *tc.number SUB_ACE_BASIC_ETS_API_062
      *tc.name webVisibility

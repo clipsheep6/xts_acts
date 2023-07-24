@@ -42,7 +42,7 @@ let mVideoProfileCfg = {
     audioSampleRate: 48000,
     durationTime: 1000,
     fileFormat: 'mp4',
-    videoBitrate: 48000,
+    videoBitrate: 2000000,
     videoCodec: 'video/mp4v-es',
     videoFrameWidth: 640,
     videoFrameHeight: 480,
@@ -111,7 +111,7 @@ export default function cameraManagerTest() {
         console.log(TAG + 'Entering getVideoReceiveSurface')
         await getFd('CameraManager.mp4');
         mVideoConfig.url = mFdPath;
-        media.createVideoRecorder((err, recorder) => {
+        media.createAVRecorder((err, recorder) => {
             if (!err) {
                 console.info(TAG + 'Entering create video receiver')
                 mVideoRecorder = recorder
@@ -216,9 +216,15 @@ export default function cameraManagerTest() {
             expect().assertFail();
             return undefined;
         }
+<<<<<<< HEAD
 
         let outputCapability = mCameraManager.getSupportedOutputCapability(cameraDevice);
 
+=======
+
+        let outputCapability = mCameraManager.getSupportedOutputCapability(cameraDevice);
+
+>>>>>>> hw/master
         if (isEmpty(outputCapability)) {
             console.info(TAG + "Entering getSupportedOutputCapability outputCapability == null || undefined")
         } else {
@@ -775,6 +781,7 @@ describe('CameraManagerTest', function () {
       * @tc.level     : Level 1
     */
     it('SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100', 1, async function (done) {
+<<<<<<< HEAD
         console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100--------------");
         if (isEmpty(mCameraManager)) {
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 mCameraManager == null || undefined")
@@ -797,5 +804,38 @@ describe('CameraManagerTest', function () {
         done();
       })
 
+=======
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100--------------");
+            if (isEmpty(mCameraManager)) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 mCameraManager == null || undefined")
+                expect().assertFail();
+            } else {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 to operate");
+                mCameraManager.on('cameraStatus', async (err, CameraStatusInfo) => {
+                    if (!err) {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 camera:" + JSON.stringify(CameraStatusInfo.camera));
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 status:" + JSON.stringify(CameraStatusInfo.status));
+                        expect(true).assertTrue();
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 success");
+                    } else {
+                        expect().assertFail();
+                        console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 FAILED: " + err.message);
+                    }
+                    done();
+                })
+                try {
+                    let camerasArray = mCameraDevicesArray;
+                    let cameraInputPromise = mCameraManager.createCameraInput(camerasArray[0]);
+                    await cameraInputPromise.open()
+                    await sleep(500)
+                    await cameraInputPromise.close()
+                } catch (err) {
+                    expect().assertFail();
+                    console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_CAMERASTATUS_0100 err: " + JSON.stringify(err));
+                    done()
+                }
+            }
+    })
+>>>>>>> hw/master
 })
 }

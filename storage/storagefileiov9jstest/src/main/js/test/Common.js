@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import fileio from '@ohos.fileio';
 import fileIO from '@ohos.file.fs';
 import util from '@ohos.util';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -30,8 +29,8 @@ export function prepareFile(fpath, content) {
     let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE)
     fileIO.truncateSync(file.fd)
     fileIO.writeSync(file.fd, content)
-    fileio.fsyncSync(file.fd)
-    fileio.closeSync(file.fd)
+    fileIO.fsyncSync(file.fd)
+    fileIO.closeSync(file)
     return true
   } 
   catch (e) {
@@ -40,9 +39,10 @@ export function prepareFile(fpath, content) {
   }
 }
 
-export function prepareEmptyFile(fpath) {
+export function prepare200MFile(fpath) {
   try {
     let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE)
+<<<<<<< HEAD
     fileio.closeSync(file.fd)
     return true
   }
@@ -72,10 +72,20 @@ export function fileToWriteOnly(fpath) {
     fileio.fchmodSync(file.fd, 0o222)
     fileio.fsyncSync(file.fd)
     fileio.closeSync(file.fd)
+=======
+    fileIO.truncateSync(file.fd)
+    let bf = new ArrayBuffer(1024 * 1024 * 20);
+    for (let i = 0; i < 10; i++) {
+      let offset = bf.byteLength * i;
+      let writeLen = fileIO.writeSync(file.fd, bf, { offset: offset, length: bf.byteLength, encoding: 'utf-8' });
+    }
+    fileIO.fsyncSync(file.fd)
+    fileIO.closeSync(file)
+>>>>>>> hw/master
     return true
   }
   catch (e) {
-    console.log('Failed to fileToWriteOnly ' + e)
+    console.log('Failed to prepare200MFile for ' + e)
     return false
   }
 }
@@ -105,43 +115,30 @@ export function randomString(num) {
   return pwd;
 }
 
-export function forceRemoveDir(path, num) {
-  for (let i = num; i >= 0; i--) {
-    if (i < num) {
-      path = path.replace(`/d${i}`, "");
-    }
-    fileio.rmdirSync(path);
-  }
-}
-
 function isIntNum(val) {
   return typeof val === 'number' && val % 1 === 0;
 }
 
 function isBigInt(val) {
   return typeof val === 'bigint';
+<<<<<<< HEAD
+}
+
+function isString(str) {
+  return (typeof str == 'string') && str.constructor == String;
+=======
+>>>>>>> hw/master
 }
 
 function isString(str) {
   return (typeof str == 'string') && str.constructor == String;
 }
 
-function isBoolean(val) {
-  return typeof val == 'boolean';
-}
-
-function isInclude(error, message) {
-  return error.toString().indexOf(message) != -1;
-}
-
 export {
-  fileio,
   fileIO,
   isIntNum,
   isBigInt,
   isString,
-  isBoolean,
-  isInclude,
   describe,
   it,
   expect,

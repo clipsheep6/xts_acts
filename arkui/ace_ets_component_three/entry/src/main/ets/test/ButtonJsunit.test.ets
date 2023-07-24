@@ -1,6 +1,6 @@
-// @ts-nocheck
+
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function buttonJsunit() {
   describe('buttonTest', function () {
     beforeEach(async function (done) {
       console.info("button beforeEach start");
       let options = {
-        uri: 'pages/button',
+        uri: 'MainAbility/pages/button',
       }
       let result;
       try {
@@ -299,6 +300,9 @@ export default function buttonJsunit() {
     });
 
     it('testButton12', 0, async function (done) {
+      let driver = Driver.create();
+      let density = await driver.getDisplayDensity();
+      console.info("[testButton12] getDisplayDensity is: " + JSON.stringify(density));
       await Utils.sleep(1000);
       var callback = (eventData) => {
         console.info("[testButton12] get event state result is: " + JSON.stringify(eventData));
@@ -306,10 +310,29 @@ export default function buttonJsunit() {
         let event = JSON.parse(eventData.data.event);
         console.info("[testButton12] get event state result is: " + Math.trunc(event.screenY));
         console.info("[testButton12] get event state result is: " + Math.trunc(event.screenX));
+<<<<<<< HEAD
         expect(event.screenX).assertEqual(185)
         expect(event.screenY).assertEqual(485)
         expect(event.x).assertEqual(100)
         expect(event.y).assertEqual(50)
+=======
+        try {
+          if(density.x == 1080){
+            expect(Math.trunc(event.screenX)).assertEqual(185)
+            expect(Math.trunc(event.screenY)).assertEqual(533)
+            expect(Math.trunc(event.x)).assertEqual(100)
+            expect(Math.trunc(event.y)).assertEqual(50)
+          }else{
+            expect(Math.trunc(event.screenX)).assertEqual(185)
+            expect(Math.trunc(event.screenY)).assertEqual(523)
+            expect(Math.trunc(event.x)).assertEqual(100)
+            expect(Math.trunc(event.y)).assertEqual(50)
+          }
+        } catch (err) {
+            console.info("[testButton12_] expection err : " + JSON.stringify(err));
+            expect().assertFail();
+        }
+>>>>>>> hw/master
         done();
       }
       var innerEvent = {
@@ -332,7 +355,7 @@ export default function buttonJsunit() {
       try {
         var eventData = {
           data: {
-            "buttonTypeValue": qaq,
+            "buttonTypeValue": "qaq",
           }
         }
         var innerEvent = {
@@ -403,7 +426,11 @@ export default function buttonJsunit() {
       let callback = (indexEvent) => {
         console.info("testButton15 get state result is: " + JSON.stringify(indexEvent))
         console.info("testButton15 indexEvent.data.fontColorValue is: " + indexEvent.data.fontColorValue)
+<<<<<<< HEAD
         expect(indexEvent.data.fontColorValue).assertEqual('ab996')
+=======
+        expect(indexEvent.data.fontColorValue).assertEqual("ab996")
+>>>>>>> hw/master
         console.info('[testButton15] END');
         done();
       }

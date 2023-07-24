@@ -16,9 +16,35 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 import wifi from '@ohos.wifi'
-
 import wifiext from '@ohos.wifiext'
+<<<<<<< HEAD
 
+=======
+import osaccount from '@ohos.account.osAccount'
+import bundle from '@ohos.bundle'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+
+async function applyPermission() {
+    let osAccountManager = osaccount.getAccountManager();
+    console.info("=== getAccountManager finish");
+    let localId = await osAccountManager.getOsAccountLocalIdFromProcess();
+    console.info("LocalId is :" + localId);
+    let appInfo = await bundle.getApplicationInfo('ohos.acts.communication.wifi.wifidevice', 0, localId);
+    let atManager = abilityAccessCtrl.createAtManager();
+    if (atManager != null) {
+        let tokenID = appInfo.accessTokenId;
+        console.info('[permission] case accessTokenID is ' + tokenID);
+        let permissionName1 = 'ohos.permission.LOCATION';
+        await atManager.grantUserGrantedPermission(tokenID, permissionName1, 1).then((result) => {
+            console.info('[permission] case grantUserGrantedPermission success :' + JSON.stringify(result));
+        }).catch((err) => {
+            console.info('[permission] case grantUserGrantedPermission failed :' + JSON.stringify(err));
+        });
+    } else {
+        console.info('[permission] case apply permission failed, createAtManager failed');
+    }
+}
+>>>>>>> hw/master
 
 function sleep(delay) {
     return new Promise(resovle => setTimeout(resovle, delay))
@@ -31,14 +57,23 @@ function resolveIP(ip) {
     return (ip>>24 & 0xFF) + "." + (ip>>16 & 0xFF) + "." + (ip>>8 & 0xFF) + "." + (ip & 0xFF);
 }
 
+<<<<<<< HEAD
 let powerModel = {
     SLEEPING : 0,
     GENERAL : 1,
     THROUGH_WALL : 2,
 }
+=======
+>>>>>>> hw/master
 
 export default function actsWifiEventTest() {
     describe('actsWifiEventTest', function() {
+        beforeAll(async function (done) {
+            console.info('beforeAll case');
+            await applyPermission();
+            done();
+        })
+
         beforeEach(function () {
             checkWifiPowerOn();
         })
@@ -333,6 +368,18 @@ export default function actsWifiEventTest() {
                 console.info("SUB_Communication_WiFi_SysCaps_Test_0007 canIUse isAccessToken error: " + e);
             }
             console.info('SUB_Communication_WiFi_SysCaps_Test_0007 end');
+<<<<<<< HEAD
+=======
+            let SLEEPING = wifiext.PowerModel.SLEEPING;
+            console.info("[wifi_test]SLEEPING : " + JSON.stringify(SLEEPING));
+            expect(true).assertEqual( SLEEPING == 0);
+            let GENERAL = wifiext.PowerModel.GENERAL;
+            console.info("[wifi_test]GENERAL : " + JSON.stringify(GENERAL));
+            expect(true).assertEqual( GENERAL == 1);
+            let THROUGH = wifiext.PowerModel.THROUGH_WALL;
+            console.info("[wifi_test]THROUGH : " + JSON.stringify(THROUGH));
+            expect(true).assertEqual( THROUGH == 2);
+>>>>>>> hw/master
             done();
         })
         console.log("*************[wifi_test] start wifi js unit test end*************");

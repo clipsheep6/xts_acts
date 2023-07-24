@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 
 export default function appStorageJsunit() {
@@ -22,7 +21,7 @@ export default function appStorageJsunit() {
   function sleep(time) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve()
+        resolve('ok')
       }, time * 1000)
     }).then(() => {
       console.info(`sleep ${time} over...`)
@@ -32,7 +31,7 @@ export default function appStorageJsunit() {
   describe('appStorageTest', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/AppStorage',
+        uri: 'MainAbility/pages/AppStorage',
       }
       try {
         router.clear();
@@ -44,7 +43,7 @@ export default function appStorageJsunit() {
           console.info("push AppStorage page success " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push AppStorage page error " + JSON.stringify(result));
+        console.error("push AppStorage page error " + JSON.stringify(err));
       }
       await sleep(2)
       done()
@@ -194,7 +193,7 @@ export default function appStorageJsunit() {
      * @tc.name      appStorageTest009
      * @tc.desc      aceEtsTest
      */
-    it('appStorageTest008', 0, async function (done) {
+    it('appStorageTest009', 0, async function (done) {
       console.info('AppStorageTest009 START');
       let strJson = getInspectorByKey('Button0_9');
       let obj = JSON.parse(strJson);

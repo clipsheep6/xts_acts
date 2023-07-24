@@ -45,6 +45,7 @@ export default function ActsCommonEventManagerSupportTest() {
       expect(commonEventManager.Support.COMMON_EVENT_BATTERY_OKAY).assertEqual('usual.event.BATTERY_OKAY')
       expect(commonEventManager.Support.COMMON_EVENT_POWER_CONNECTED).assertEqual('usual.event.POWER_CONNECTED')
       expect(commonEventManager.Support.COMMON_EVENT_POWER_DISCONNECTED).assertEqual('usual.event.POWER_DISCONNECTED')
+      expect(commonEventManager.Support.COMMON_EVENT_CHARGE_TYPE_CHANGED).assertEqual('usual.event.CHARGE_TYPE_CHANGED')
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_0200 END`)
     })
 
@@ -185,7 +186,7 @@ export default function ActsCommonEventManagerSupportTest() {
      */
     it('SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1100', 0, async  function () {
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1100 START`)
-    expect(commonEventManager.Support.COMMON_EVENT_WIFI_POWER_STATE).assertEqual('usual.event.wifi.POWER_STATE')
+      expect(commonEventManager.Support.COMMON_EVENT_WIFI_POWER_STATE).assertEqual('usual.event.wifi.POWER_STATE')
       expect(commonEventManager.Support.COMMON_EVENT_WIFI_SCAN_FINISHED).assertEqual('usual.event.wifi.SCAN_FINISHED')
       expect(commonEventManager.Support.COMMON_EVENT_WIFI_RSSI_VALUE).assertEqual('usual.event.wifi.RSSI_VALUE')
       expect(commonEventManager.Support.COMMON_EVENT_WIFI_CONN_STATE).assertEqual('usual.event.wifi.CONN_STATE')
@@ -203,7 +204,7 @@ export default function ActsCommonEventManagerSupportTest() {
     })
 
     /*
-     * @tc.number    : SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1300
+     * @tc.number    : SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1200
      * @tc.name      : commonEventManager.Support
      * @tc.desc      : Bluetooth
      */
@@ -292,7 +293,9 @@ export default function ActsCommonEventManagerSupportTest() {
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_1600 START`)
       expect(commonEventManager.Support.COMMON_EVENT_DISCHARGING).assertEqual('usual.event.DISCHARGING')
       expect(commonEventManager.Support.COMMON_EVENT_CHARGING).assertEqual('usual.event.CHARGING')
+      expect(commonEventManager.Support.COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED).assertEqual('usual.event.CHARGE_IDLE_MODE_CHANGED')
       expect(commonEventManager.Support.COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED).assertEqual('usual.event.DEVICE_IDLE_MODE_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED).assertEqual('usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED')
       expect(commonEventManager.Support.COMMON_EVENT_POWER_SAVE_MODE_CHANGED).assertEqual('usual.event.POWER_SAVE_MODE_CHANGED')
       expect(commonEventManager.Support.COMMON_EVENT_USER_ADDED).assertEqual('usual.event.USER_ADDED')
       expect(commonEventManager.Support.COMMON_EVENT_USER_REMOVED).assertEqual('usual.event.USER_REMOVED')
@@ -376,10 +379,58 @@ export default function ActsCommonEventManagerSupportTest() {
       expect(commonEventManager.Support.COMMON_EVENT_SLOT_CHANGE).assertEqual('usual.event.SLOT_CHANGE')
       expect(commonEventManager.Support.COMMON_EVENT_SPN_INFO_CHANGED).assertEqual('usual.event.SPN_INFO_CHANGED')
       expect(commonEventManager.Support.COMMON_EVENT_QUICK_FIX_APPLY_RESULT).assertEqual('usual.event.QUICK_FIX_APPLY_RESULT')
+<<<<<<< HEAD
       expect(commonEventManager.Support.COMMON_EVENT_USER_INFO_UPDATED ).assertEqual('usual.event.USER_INFO_UPDATED')
+=======
+      expect(commonEventManager.Support.COMMON_EVENT_USER_INFO_UPDATED).assertEqual('usual.event.USER_INFO_UPDATED')
+      expect(commonEventManager.Support.COMMON_EVENT_HTTP_PROXY_CHANGE).assertEqual('usual.event.HTTP_PROXY_CHANGE')
+      expect(commonEventManager.Support.COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED ).assertEqual('usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_QUICK_FIX_REVOKE_RESULT ).assertEqual('usual.event.QUICK_FIX_REVOKE_RESULT')
+>>>>>>> hw/master
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2000 END`)
     })
 
+    /*
+     * @tc.number    : SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2100
+     * @tc.name      : commonEventManager.Support
+     * @tc.desc      : SIM common event
+     */
+    it('SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2100', 0, async  function () {
+      console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2100 START`)
+      expect(commonEventManager.Support.COMMON_EVENT_SIM_STATE_CHANGED).assertEqual('usual.event.SIM_STATE_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED).assertEqual('usual.event.SIM.DEFAULT_SMS_SUBSCRIPTION_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED).assertEqual('usual.event.SIM.DEFAULT_DATA_SUBSCRIPTION_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED).assertEqual('usual.event.SIM.DEFAULT_MAIN_SUBSCRIPTION_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED).assertEqual('usual.event.SIM.DEFAULT_VOICE_SUBSCRIPTION_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED).assertEqual('usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED')
+      expect(commonEventManager.Support.COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED).assertEqual('usual.event.SMS_CB_RECEIVE_COMPLETED')
+      expect(commonEventManager.Support.COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED).assertEqual('usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED')
+      expect(commonEventManager.Support.COMMON_EVENT_OPERATOR_CONFIG_CHANGED).assertEqual('usual.event.OPERATOR_CONFIG_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_CALL_STATE_CHANGED).assertEqual('usual.event.CALL_STATE_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_INCOMING_CALL_MISSED).assertEqual('usual.event.INCOMING_CALL_MISSED')
+      expect(commonEventManager.Support.COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED).assertEqual('usual.event.CELLULAR_DATA_STATE_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_NETWORK_STATE_CHANGED).assertEqual('usual.event.NETWORK_STATE_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_SIGNAL_INFO_CHANGED).assertEqual('usual.event.SIGNAL_INFO_CHANGED')
+      console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2100 END`)
+    })
+
+    /*
+     * @tc.number    : SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2200
+     * @tc.name      : commonEventManager.Support
+     * @tc.desc      : STK common event
+     */
+    it('SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2200', 0, async  function () {
+      console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2200 START`)
+      expect(commonEventManager.Support.COMMON_EVENT_STK_COMMAND).assertEqual('usual.event.STK_COMMAND')
+      expect(commonEventManager.Support.COMMON_EVENT_STK_SESSION_END).assertEqual('usual.event.STK_SESSION_END')
+      expect(commonEventManager.Support.COMMON_EVENT_STK_CARD_STATE_CHANGED).assertEqual('usual.event.STK_CARD_STATE_CHANGED')
+      expect(commonEventManager.Support.COMMON_EVENT_STK_ALPHA_IDENTIFIER).assertEqual('usual.event.STK_ALPHA_IDENTIFIER')
+      expect(commonEventManager.Support.COMMON_EVENT_RADIO_STATE_CHANGE).assertEqual('usual.event.RADIO_STATE_CHANGE')
+      expect(commonEventManager.Support.COMMON_EVENT_SCREEN_UNLOCKED).assertEqual('usual.event.SCREEN_UNLOCKED')
+      expect(commonEventManager.Support.COMMON_EVENT_SCREEN_LOCKED).assertEqual('usual.event.SCREEN_LOCKED')
+      console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2200 END`)
+    })   
+    
     console.info(`${TAG} SUB_NOTIFICATION_CES_SUPPORT_ENUM_TEST END`)
   })
 

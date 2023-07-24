@@ -159,7 +159,10 @@ void NativeImageTest::InitEglContext()
         return;
     }
 
-    eglMakeCurrent(eglDisplay_, EGL_NO_SURFACE, EGL_NO_SURFACE, eglContext_);
+    EGLint attribs[] = {EGL_WIDTH, 1, EGL_HEIGHT, 1, EGL_NONE};
+    EGLSurface pbufferSurface_ = eglCreatePbufferSurface(eglDisplay_, config_, attribs);
+
+    eglMakeCurrent(eglDisplay_, pbufferSurface_, pbufferSurface_, eglContext_);
 
     BLOGW("Create EGL context successfully, version %{public}d.%{public}d", major, minor);
 }
@@ -316,7 +319,7 @@ HWTEST_F(NativeImageTest, OHNativeImageUpdateSurfaceImage003, Function | MediumT
         std::cout << "NativeWindowHandleOpt SET_STRIDE failed" << std::endl;
     }
     code = SET_FORMAT;
-    int32_t format = PIXEL_FMT_RGBA_8888;
+    int32_t format = GRAPHIC_PIXEL_FMT_RGBA_8888;
     ret = NativeWindowHandleOpt(nativeWindow, code, format);
     if (ret != GSERROR_OK) {
         std::cout << "NativeWindowHandleOpt SET_FORMAT failed" << std::endl;

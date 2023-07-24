@@ -15,7 +15,10 @@
     "pages/ArkUI/CanvasStrokeStyle",
     "pages/ArkUI/CanvasLineCap",
     "pages/ArkUI/CanvasLineJoin",
+<<<<<<< HEAD
     "pages/ArkUI/CanvasMiterLimit",
+=======
+>>>>>>> hw/master
     "pages/ArkUI/CanvasFont",
     "pages/ArkUI/CanvasTextAlign",
     "pages/ArkUI/CanvasTextBaseline",
@@ -23,6 +26,7 @@
     "pages/ArkUI/CanvasShadowBlur",
     "pages/ArkUI/CanvasShadowColor",
     "pages/ArkUI/CanvasShadowOffsetX",
+<<<<<<< HEAD
     "pages/ArkUI/CanvasImageSmoothingEnabled",
     "pages/ArkUI/CanvasGlobalAlpha",
     "pages/ArkUI/CanvasLineDashOffset",
@@ -56,5 +60,47 @@
     "pages/MediaLibrary/storeMediaAssetPromise3",
     "pages/MediaLibrary/storeMediaAssetPromise4",
     "pages/MediaLibrary/storeMediaAssetPromise5"
+=======
+    "pages/ArkUI/CanvasGlobalAlpha",
+    "pages/ArkUI/CanvasLineDashOffset",
+    "pages/ArkUI/CanvasShadowOffsetY",
+    "pages/Camera/Camera_index",
+    "pages/Camera/CameraPreviewFormat",
+    "pages/Camera/CameraPhotoFormat",
+    "pages/Camera/CameraOrientation",
+    "pages/Camera/CameraSerialPhoto",
+    "pages/Camera/CameraVideo",
+    "pages/Camera/CameraFlash",
+    "pages/Audio/Audio_index",
+    "pages/Audio/AudioInputRoutingWiredHeadset",
+    "pages/Audio/AudioInputRoutingTypeC",
+    "pages/Audio/AudioOutputRoutingWiredHeadset",
+    "pages/Audio/AudioOutputRoutingTypeC",
+    "pages/Audio/AudioOutputRoutingBT",
+    "pages/Player/Player_index",
+    "pages/Experience/Experience_index",
+    "pages/Experience/PhotoFps",
+    "pages/Experience/DeskFps",
+    "pages/Experience/ContactsColdStartTest",
+    "pages/Experience/ContactsHotStartTest",
+    "pages/Experience/MmsColdStartTest",
+    "pages/Experience/MmsHotStartTest",
+    "pages/Experience/PhotosColdStartTest",
+    "pages/Experience/PhotosHotStartTest",
+    "pages/Experience/SettingsColdStartTest",
+    "pages/Experience/SettingsHotStartTest",
+    "pages/Experience/CameraColdStartTest",
+    "pages/Experience/ViewPhotoTest",
+    "pages/Experience/KeyboardDisplayTest",
+    "pages/Experience/StartTaskManager",
+    "pages/Experience/StartBackgroundTask",
+    "pages/Experience/StartNotification",
+    "pages/Experience/ScrollPhotosList",
+    "pages/Experience/KeyboardInputTest",
+    "pages/Player/PlayAudio",
+    "pages/Player/PlayVideo",
+    "pages/Player/PlayAudioList",
+    "pages/Player/PlayVideoList"
+>>>>>>> hw/master
   ]
 }

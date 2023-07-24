@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils.ets';
@@ -23,7 +23,7 @@ export default function imageAnimatorJsunit(){
     beforeEach(async function (done) {
       console.info("imageAnimator beforeEach start");
       let options = {
-        uri: 'pages/imageAnimator',
+        uri: 'MainAbility/pages/imageAnimator',
       }
       let result;
       try{
@@ -49,22 +49,23 @@ export default function imageAnimatorJsunit(){
 
     it('imageAnimatorTest_0100', 0, async function (done) {
       console.info('imageAnimatorTest_0100 START');
-      await Utils.sleep(500);
+      await Utils.sleep(1500);
       let callback = (indexEvent) => {
-        console.info("imageAnimatorTest_0100 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.state).assertEqual(1);
+        console.info("imageAnimatorTest_0100 get state result is: " + JSON.stringify(indexEvent.data.state));
+        expect(indexEvent.data.state).assertEqual(AnimationStatus.Running);
         done();
       }
       let indexEvent = {
-        eventId: 115,
+        eventId: 1150,
         priority: events_emitter.EventPriority.LOW
       }
       try {
         events_emitter.on(indexEvent, callback);
-        console.info("imageAnimatorTest_0100 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
       } catch (err) {
         console.info("imageAnimatorTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
+      console.info("imageAnimatorTest_0100 click result is: " + JSON.stringify(sendEventByKey('button_0',10,"")));
+      await Utils.sleep(1000);
       console.info('imageAnimatorTest_0100 END');
     });
 
@@ -163,7 +164,7 @@ export default function imageAnimatorJsunit(){
       await Utils.sleep(1500);
       let callback = (indexEvent) => {
         console.info("imageAnimatorTest_0600 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.string).assertEqual('repeat');
+        expect(indexEvent.data.string).assertEqual('Repeat');
       }
       let indexEvent = {
         eventId: 114,

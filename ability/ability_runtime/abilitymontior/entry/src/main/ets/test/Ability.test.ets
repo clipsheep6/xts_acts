@@ -115,36 +115,35 @@ export default function abilityTest() {
                     }
                 }, (async (err) => {
                     console.debug("====>ACTS_AddAbilityMonitor_0200 success====>" + err.code);
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_0200===createSubscriber" + JSON.stringify(data));
+                        var AddAbility = data
+                        await Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_0200CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                console.log('===UnSubscribeCallBack===' + err.code)
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility2'
                         }).then(async () => {
                             console.debug("====>0200startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_0200===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_0200CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                        console.log('===UnSubscribeCallBack===' + err.code)
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 }))
         })
@@ -268,36 +267,35 @@ export default function abilityTest() {
                     onAbilityDestroy: onAbilityDestroy
                 }, (async (err) => {
                     console.debug("====>ACTS_AddAbilityMonitor_0400 success====>" + err.code);
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_0400===createSubscriber" + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_0400CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                console.log('===UnSubscribeCallBack===' + err.code)
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility4'
                         }).then(async () => {
                             console.debug("====>0400startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_0400===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_0400CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                        console.log('===UnSubscribeCallBack===' + err.code)
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 }))
         })
@@ -332,36 +330,36 @@ export default function abilityTest() {
                     onWindowStageCreate: onWindowStageCreate
                 }, (async (err) => {
                     console.debug("====>ACTS_AddAbilityMonitor_0500 success====>" + err.code);
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_0500===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_0500CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                console.log('===UnSubscribeCallBacke===' + err.code)
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility2'
                         }).then(async () => {
                             console.debug("====>0500startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_0500===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_0500CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                        console.log('===UnSubscribeCallBacke===' + err.code)
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 }))
         })
@@ -396,36 +394,36 @@ export default function abilityTest() {
                     onWindowStageDestroy: onWindowStageDestroy
                 }, (async (err) => {
                     console.debug("====>ACTS_AddAbilityMonitor_0600 success====>" + err.code);
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_0600===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_0600CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, () => {
+                                console.log('===UnSubscribeCallBackf===')
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility4'
                         }).then(async () => {
                             console.debug("====>0600startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_0600===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_0600CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, () => {
-                                        console.log('===UnSubscribeCallBackf===')
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 }))
         })
@@ -468,36 +466,36 @@ export default function abilityTest() {
                             onAbilityCreate: onAbilityCreate
                         }, (async (err) => {
                             console.debug("====>ACTS_AddAbilityMonitor_0700 addAbilityMonitorsec====>" + err.code);
+                            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                                console.info("===ACTS_AddAbilityMonitor_0700===createSubscriber"
+                                    + JSON.stringify(data));
+                                var AddAbility = data
+                                Subscriber.subscribe(AddAbility, (err, data) => {
+                                    console.log('===ACTS_AddAbilityMonitor_0700CallBack==='
+                                        + err.code + JSON.stringify(data))
+                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                        console.log('===UnSubscribeCallBacka===' + err.code)
+                                    })
+                                    if (data.code == 1) {
+                                        expect(data.code).assertEqual(1);
+                                        setTimeout(() => {
+                                            done();
+                                        }, 2500)
+                                    }
+                                    else {
+                                        expect().assertFail();
+                                        setTimeout(() => {
+                                            done();
+                                        }, 2500)
+                                    }
+                                })
+                            })
                             await globalThis.abilitydelegator.startAbility(
                                 {
                                     bundleName: 'com.example.abilitymonitortest',
                                     abilityName: 'MainAbility2'
                                 }).then(async () => {
-                                    console.debug("====>0700startAbility success====>");
-                                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                        console.info("===ACTS_AddAbilityMonitor_0700===createSubscriber"
-                                            + JSON.stringify(data));
-                                        var AddAbility = data
-                                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                                            console.log('===ACTS_AddAbilityMonitor_0700CallBack==='
-                                                + err.code + JSON.stringify(data))
-                                            Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                                console.log('===UnSubscribeCallBacka===' + err.code)
-                                            })
-                                            if (data.code == 1) {
-                                                expect(data.code).assertEqual(1);
-                                                setTimeout(() => {
-                                                    done();
-                                                }, 2500)
-                                            }
-                                            else {
-                                                expect().assertFail();
-                                                setTimeout(() => {
-                                                    done();
-                                                }, 2500)
-                                            }
-                                        })
-                                    })
+                                    console.debug("====>0700startAbility success====>"); 
                                 })
                         }))
                 }))
@@ -533,36 +531,36 @@ export default function abilityTest() {
                     onAbilityCreate: onAbilityCreatePromise
                 }).then(() => {
                     console.debug("====>ACTS_AddAbilityMonitor_0800 success====>");
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_0800===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(AddAbility, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_0800CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                console.log('===UnSubscribeCallBack===' + err.code)
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility2'
                         }).then(async () => {
                             console.debug("====>0800startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_0800===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(AddAbility, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_0800CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                        console.log('===UnSubscribeCallBack===' + err.code)
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 })
         })
@@ -597,36 +595,36 @@ export default function abilityTest() {
                     onAbilityForeground: onAbilityForegroundPromise
                 }).then(async () => {
                     console.debug("====>ACTS_AddAbilityMonitor_0900 success====>");
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_0900===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(AddAbility, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_0900CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, () => {
+                                console.log('===UnSubscribeCallBack===')
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility2'
                         }).then(async () => {
                             console.debug("====>0900startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_0900===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(AddAbility, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_0900CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, () => {
-                                        console.log('===UnSubscribeCallBack===')
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 })
         })
@@ -652,16 +650,42 @@ export default function abilityTest() {
             function UnSubscribeCallback() {
                 console.debug("====>commonEvent_foreground UnSubscribeCallback====>");
             }
+            var AddAbility
             function SubscribeCallBack(err, data) {
                 console.debug("====>Subscribe CallBack data:====>" + JSON.stringify(data));
                 Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
                     console.info("===ACTS_AddAbilityMonitor_1000===createSubscriber" + JSON.stringify(data));
+<<<<<<< HEAD
                     var AddAbility = data
+=======
+                    AddAbility = data
+                    Subscriber.subscribe(AddAbility, (err, data) => {
+                        console.log('===ACTS_AddAbilityMonitor_1000CallBack==='
+                            + err.code + JSON.stringify(data))
+                        Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBack===')
+                            Subscriber.unsubscribe(subscriber, UnSubscribeCallback);
+                        })
+                        if (data.code == 1) {
+                            expect(data.code).assertEqual(1);
+                            setTimeout(() => {
+                                done();
+                            }, 2500)
+                        }
+                        else {
+                            expect().assertFail();
+                            setTimeout(() => {
+                                done();
+                            }, 2500)
+                        }
+                    })
+>>>>>>> hw/master
                     Delegator.getCurrentTopAbility().then((ability) => {
                         console.info("===ACTS_AddAbilityMonitor_1000===ability" + JSON.stringify(ability).length);
                         Delegator.doAbilityBackground(ability).then(async () => {
                             console.info("===ACTS_AddAbilityMonitor_1000===data succeed.");
                             expect(true).assertTrue();
+<<<<<<< HEAD
                             await Subscriber.subscribe(AddAbility, (err, data) => {
                                 console.log('===ACTS_AddAbilityMonitor_1000CallBack==='
                                     + err.code + JSON.stringify(data))
@@ -682,6 +706,8 @@ export default function abilityTest() {
                                     }, 2500)
                                 }
                             })
+=======
+>>>>>>> hw/master
                         }).catch(() => {
                             console.info("===ACTS_AddAbilityMonitor_1000===data succeed.");
                             expect(false).assertTrue();
@@ -750,36 +776,36 @@ export default function abilityTest() {
                     onAbilityDestroy: onAbilityDestroyPromise
                 }).then(async () => {
                     console.debug("====>ACTS_AddAbilityMonitor_1100 success====>");
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_1100===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_1100CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                console.log('===UnSubscribeCallBack===' + err.code)
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility4'
                         }).then(async () => {
                             console.debug("====>1100startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_1100===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_1100CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                        console.log('===UnSubscribeCallBack===' + err.code)
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 })
         })
@@ -814,36 +840,36 @@ export default function abilityTest() {
                     onWindowStageCreate: onWindowStageCreatePromise
                 }).then(async () => {
                     console.debug("====>ACTS_AddAbilityMonitor_1200 success====>");
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_1200===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_1200CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                console.log('===UnSubscribeCallBack===' + err.code)
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility2'
                         }).then(async () => {
                             console.debug("====>1200startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_1200===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_1200CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                        console.log('===UnSubscribeCallBack===' + err.code)
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 })
         })
@@ -878,36 +904,36 @@ export default function abilityTest() {
                     onWindowStageDestroy: onWindowStageDestroyPromsie
                 }).then(async () => {
                     console.debug("====>ACTS_AddAbilityMonitor_1300 success====>");
+                    Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                        console.info("===ACTS_AddAbilityMonitor_1300===createSubscriber"
+                            + JSON.stringify(data));
+                        var AddAbility = data
+                        Subscriber.subscribe(data, (err, data) => {
+                            console.log('===ACTS_AddAbilityMonitor_1300CallBack==='
+                                + err.code + JSON.stringify(data))
+                            Subscriber.unsubscribe(AddAbility, () => {
+                                console.log('===UnSubscribeCallBack===')
+                            })
+                            if (data.code == 1) {
+                                expect(data.code).assertEqual(1);
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                            else {
+                                expect().assertFail();
+                                setTimeout(() => {
+                                    done();
+                                }, 2500)
+                            }
+                        })
+                    })
                     await globalThis.abilitydelegator.startAbility(
                         {
                             bundleName: 'com.example.abilitymonitortest',
                             abilityName: 'MainAbility4'
                         }).then(async () => {
                             console.debug("====>1300startAbility success====>");
-                            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                console.info("===ACTS_AddAbilityMonitor_1300===createSubscriber"
-                                    + JSON.stringify(data));
-                                var AddAbility = data
-                                await Subscriber.subscribe(data, (err, data) => {
-                                    console.log('===ACTS_AddAbilityMonitor_1300CallBack==='
-                                        + err.code + JSON.stringify(data))
-                                    Subscriber.unsubscribe(AddAbility, () => {
-                                        console.log('===UnSubscribeCallBack===')
-                                    })
-                                    if (data.code == 1) {
-                                        expect(data.code).assertEqual(1);
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                    else {
-                                        expect().assertFail();
-                                        setTimeout(() => {
-                                            done();
-                                        }, 2500)
-                                    }
-                                })
-                            })
                         })
                 })
         })
@@ -947,36 +973,36 @@ export default function abilityTest() {
                             abilityName: 'MainAbility2',
                             onAbilityCreate: onAbilityCreate
                         }).then(async () => {
+                          Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                                console.info("===ACTS_AddAbilityMonitor_1400===createSubscriber"
+                                    + JSON.stringify(data));
+                                var AddAbility = data
+                                Subscriber.subscribe(AddAbility, (err, data) => {
+                                    console.log('===ACTS_AddAbilityMonitor_1400CallBack==='
+                                        + err.code + JSON.stringify(data))
+                                    Subscriber.unsubscribe(AddAbility, (err, data) => {
+                                        console.log('===UnSubscribeCallBack===' + err.code)
+                                    })
+                                    if (data.code == 1) {
+                                        expect(data.code).assertEqual(1);
+                                        setTimeout(() => {
+                                            done();
+                                        }, 2500)
+                                    }
+                                    else {
+                                        expect().assertFail();
+                                        setTimeout(() => {
+                                            done();
+                                        }, 2500)
+                                    }
+                                })
+                            })
                             await globalThis.abilitydelegator.startAbility(
                                 {
                                     bundleName: 'com.example.abilitymonitortest',
                                     abilityName: 'MainAbility2'
                                 }).then(async () => {
                                     console.debug("====>1400startAbility success====>");
-                                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                                        console.info("===ACTS_AddAbilityMonitor_1400===createSubscriber"
-                                            + JSON.stringify(data));
-                                        var AddAbility = data
-                                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                                            console.log('===ACTS_AddAbilityMonitor_1400CallBack==='
-                                                + err.code + JSON.stringify(data))
-                                            Subscriber.unsubscribe(AddAbility, (err, data) => {
-                                                console.log('===UnSubscribeCallBack===' + err.code)
-                                            })
-                                            if (data.code == 1) {
-                                                expect(data.code).assertEqual(1);
-                                                setTimeout(() => {
-                                                    done();
-                                                }, 2500)
-                                            }
-                                            else {
-                                                expect().assertFail();
-                                                setTimeout(() => {
-                                                    done();
-                                                }, 2500)
-                                            }
-                                        })
-                                    })
                                 })
                         })
                 })
@@ -1599,33 +1625,34 @@ export default function abilityTest() {
                 expect(err.code).assertEqual(0)
                 console.debug("====>ACTS_WaitAbilityMonitor_Callback_0100 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Callback_0100===createSubscriber" + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Callback_0100===' + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBack===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Callback_0100===createSubscriber" + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Callback_0100===' + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBack===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Callback_0100 startAbility success====>");
                 })
         })
 
@@ -1703,35 +1730,36 @@ export default function abilityTest() {
                 expect(err.code).assertEqual(0)
                 console.debug("====>ACTS_WaitAbilityMonitor_Callback_0300 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Callback_0300===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Callback_0300==='
+                        + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBack===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Callback_0300===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Callback_0300==='
-                                + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBack===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Callback_0300 startAbility success====>");
                 })
         })
 
@@ -1809,35 +1837,36 @@ export default function abilityTest() {
                 expect(err.code).assertEqual(0)
                 console.debug("====>ACTS_WaitAbilityMonitor_Callback_0500 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Callback_0500===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Callback_0500===' + err.code
+                        + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBackU===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Callback_0500===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Callback_0500===' + err.code
-                                + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBackU===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Callback_0500 startAbility success====>");
                 })
         })
 
@@ -1875,35 +1904,36 @@ export default function abilityTest() {
                 expect(err.code).assertEqual(0)
                 console.debug("====>ACTS_WaitAbilityMonitor_Callback_0600 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Callback_0600===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Callback_0600==='
+                        + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBackU===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Callback_0600===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Callback_0600==='
-                                + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBackU===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Callback_0600 startAbility success====>");
                 })
         })
 
@@ -1938,35 +1968,36 @@ export default function abilityTest() {
             data.waitAbilityMonitor(monitor).then(async (data) => {
                 console.debug("====>ACTS_WaitAbilityMonitor_Promise_0100 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Promise_0100===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Promise_0100==='
+                        + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBack===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Promise_0100===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Promise_0100==='
-                                + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBack===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Promise_0100 startAbility success====>");
                 })
         })
 
@@ -2039,35 +2070,36 @@ export default function abilityTest() {
             data.waitAbilityMonitor(monitor, 1000).then(async (data) => {
                 console.debug("====>ACTS_WaitAbilityMonitor_Promise_0300 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Promise_0300===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Promise_0300==='
+                        + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBackM===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Promise_0300===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Promise_0300==='
-                                + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBackM===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Promise_0300 startAbility success====>");
                 })
         })
 
@@ -2141,35 +2173,36 @@ export default function abilityTest() {
             data.waitAbilityMonitor(monitor, 100).then(async (data) => {
                 console.debug("====>ACTS_WaitAbilityMonitor_Promise_0500 success====>");
             })
+            await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Promise_0500===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                await Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Promise_0500==='
+                        + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBack===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Promise_0500===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Promise_0500==='
-                                + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBack===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Promise_0500 startAbility success====>");
                 })
         })
 
@@ -2205,35 +2238,36 @@ export default function abilityTest() {
             data.waitAbilityMonitor(monitor, -1).then(async (data) => {
                 console.debug("====>ACTS_WaitAbilityMonitor_Promise_0600 success====>");
             })
+            Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
+                console.info("===ACTS_WaitAbilityMonitor_Promise_0600===createSubscriber"
+                    + JSON.stringify(data));
+                var AddAbility = data
+                Subscriber.subscribe(AddAbility, (err, data) => {
+                    console.log('===ACTS_WaitAbilityMonitor_Promise_0600==='
+                        + err.code + JSON.stringify(data))
+                    Subscriber.unsubscribe(AddAbility, () => {
+                        console.log('===UnSubscribeCallBack===')
+                    })
+                    if (data.code == 1) {
+                        expect(data.code).assertEqual(1);
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                    else {
+                        expect().assertFail();
+                        setTimeout(() => {
+                            done();
+                        }, 2500)
+                    }
+                })
+            })
             await globalThis.abilitydelegator.startAbility(
                 {
                     bundleName: 'com.example.abilitymonitortest',
                     abilityName: 'MainAbility2'
                 }).then(async () => {
-                    await Subscriber.createSubscriber(commonEventSubscribeInfo, async (err, data) => {
-                        console.info("===ACTS_WaitAbilityMonitor_Promise_0600===createSubscriber"
-                            + JSON.stringify(data));
-                        var AddAbility = data
-                        await Subscriber.subscribe(AddAbility, (err, data) => {
-                            console.log('===ACTS_WaitAbilityMonitor_Promise_0600==='
-                                + err.code + JSON.stringify(data))
-                            Subscriber.unsubscribe(AddAbility, () => {
-                                console.log('===UnSubscribeCallBack===')
-                            })
-                            if (data.code == 1) {
-                                expect(data.code).assertEqual(1);
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                            else {
-                                expect().assertFail();
-                                setTimeout(() => {
-                                    done();
-                                }, 2500)
-                            }
-                        })
-                    })
+                    console.debug("====>ACTS_WaitAbilityMonitor_Promise_0600 startAbility success====>");
                 })
         })
 

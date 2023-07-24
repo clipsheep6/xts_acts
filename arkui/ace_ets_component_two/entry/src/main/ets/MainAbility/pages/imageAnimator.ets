@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -77,7 +77,7 @@ struct ImageAnimatorExample {
           try {
             var backData = {
               data: {
-                "string": 'Repeat'
+                "string": "Repeat"
               }
             }
             var backEvent = {
@@ -97,7 +97,7 @@ struct ImageAnimatorExample {
           console.info('Finish')
         })
       Row() {
-        Button('start').key('button').width(100).padding(5).onClick(() => {
+        Button('start').key('button_0').width(100).padding(5).onClick(() => {
           this.state = AnimationStatus.Running
           try {
             var backData = {
@@ -106,7 +106,7 @@ struct ImageAnimatorExample {
               }
             }
             var backEvent = {
-              eventId: 115,
+              eventId: 1150,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("imageAnimator 115 button start to emit action state")

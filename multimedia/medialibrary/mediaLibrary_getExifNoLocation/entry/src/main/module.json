@@ -8,7 +8,12 @@
         "deviceTypes": [
             "tablet",
             "default",
+<<<<<<< HEAD
             "phone"
+=======
+            "phone",
+            "2in1"
+>>>>>>> hw/master
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -37,6 +42,7 @@
         ],
         "requestPermissions": [
             {
+<<<<<<< HEAD
                 "name": "ohos.permission.GET_BUNDLE_INFO",
                 "reason": "use ohos.permission.GET_BUNDLE_INFO"
             },
@@ -53,6 +59,8 @@
                 "reason": "use ohos.permission.REVOKE_SENSITIVE_PERMISSIONS"
             },
             {
+=======
+>>>>>>> hw/master
                 "name": "ohos.permission.READ_MEDIA",
                 "reason": "use ohos.permission.READ_MEDIA"
             }

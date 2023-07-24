@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
 import events_emitter from '@ohos.events.emitter';
 import measure from '@ohos.measure'
@@ -24,7 +24,7 @@ export default function alertDialogCenterStartJsunit() {
     beforeEach(async function (done) {
       console.info("flex beforeEach start");
       let options = {
-        uri: 'pages/alertDialog',
+        uri: 'MainAbility/pages/alertDialog',
       }
       try {
         router.clear();
@@ -63,7 +63,7 @@ export default function alertDialogCenterStartJsunit() {
         var callback = (eventData) => {
           console.info("testalertDialogCenterStart0001 get event data is: " + JSON.stringify(eventData));
           expect(eventData.data.Result).assertEqual(true);
-          console.info('testalertDialogCenterStart0011 END');
+          console.info('testalertDialogCenterStart0001 END');
           done();
         }
         console.info("testalertDialogCenterStart0001 click result is: " + JSON.stringify(sendEventByKey('CenterStartButton', 10, "")));
@@ -84,7 +84,12 @@ export default function alertDialogCenterStartJsunit() {
       try {
            let measureOptions = {textContent : "alertDialog-CenterStart"};
            let width = measure.measureText(measureOptions);
+<<<<<<< HEAD
            expect(width > 0).assertFalse();
+=======
+           console.info("++++++++++++++++++++++" + width.toString());
+           expect(width > 0).assertTrue();
+>>>>>>> hw/master
            done();
       } catch (err) {
         console.info("testMeasureText0001 err : " + JSON.stringify(err));

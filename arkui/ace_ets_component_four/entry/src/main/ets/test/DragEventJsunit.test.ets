@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
@@ -22,7 +22,7 @@ export default function dragEventJsunit(){
   describe('dragEventTest', function (){
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/dragEvent',
+        uri: 'MainAbility/pages/dragEvent',
       }
       try {
         router.clear();
@@ -86,8 +86,8 @@ export default function dragEventJsunit(){
       await Utils.drag(downX, downY, upX, upY, 10)
       let callback = (indexEvent) => {
         console.info("dragEventTest_0200 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.pointX).assertNotEqual(Null);
-        expect(indexEvent.data.pointY).assertNotEqual(Null);
+        expect(Number.isNaN(indexEvent.data.pointX)).assertFalse();
+        expect(Number.isNaN(indexEvent.data.pointY)).assertFalse();
       }
       let indexEvent = {
         eventId: 87,
@@ -115,7 +115,7 @@ export default function dragEventJsunit(){
       await Utils.drag(downX, downY, upX, upY, 10)
       let callback = (indexEvent) => {
         console.info("dragEventTest_0300 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.ACTION).assertEqual('onDragMove onAction');
+        expect(indexEvent.data.ACTION).assertEqual("onDragMove onAction");
       }
       let indexEvent = {
         eventId: 88,
@@ -143,7 +143,7 @@ export default function dragEventJsunit(){
       await Utils.drag(downX, downY, upX, upY, 10)
       let callback = (indexEvent) => {
         console.info("dragEventTest_0400 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.ACTION).assertEqual('onDragLeave onAction');
+        expect(indexEvent.data.ACTION).assertEqual("onDragLeave onAction");
       }
       let indexEvent = {
         eventId: 89,
@@ -171,7 +171,7 @@ export default function dragEventJsunit(){
       await Utils.drag(downX, downY, upX, upY, 10)
       let callback = (indexEvent) => {
         console.info("dragEventTest_0500 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.ACTION).assertEqual('onDrop onAction');
+        expect(indexEvent.data.ACTION).assertEqual("onDrop onAction");
       }
       let indexEvent = {
         eventId: 90,

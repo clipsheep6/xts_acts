@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,6 +22,7 @@ struct ImageEffectsExample {
   @State blurValue: string = 100;
   @State backdropBlueValue: string= 30;
   @State shadowValue: object= { radius: 10, color: Color.Gray, offsetX: 5, offsetY: 5 }
+  @State shadowStyleValue: ShadowStyle = ShadowStyle.OuterDefaultXS;
   @State grayscaleValue: string= 10;
   @State brightnessValue: string= 20;
   @State saturateValue: string= 50;
@@ -36,6 +37,9 @@ struct ImageEffectsExample {
       }
       if (eventData.data.shadowValue != null) {
         this.shadowValue = JSON.parse(eventData.data.shadowValue);
+      }
+      if (eventData.data.shadowStyleValue != null) {
+        this.shadowStyleValue = eventData.data.shadowStyleValue;
       }
       if (eventData.data.grayscaleValue != null) {
         this.grayscaleValue = eventData.data.grayscaleValue;
@@ -107,6 +111,12 @@ struct ImageEffectsExample {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent8, this.stateChangCallBack);
+
+    var stateChangeEvent9 = {
+      eventId: 20,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent9, this.stateChangCallBack);
   }
 
   build() {
@@ -137,6 +147,13 @@ struct ImageEffectsExample {
         .height(40)
         .shadow(this.shadowValue)
         .key('centerRow3')
+
+      Text('shadow--枚举类型').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      Image('/images/download.png')
+        .width('90%')
+        .height(40)
+        .shadow(this.shadowStyleValue)
+        .key('shadowDefaultShadow')
 
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image('/images/download.png')

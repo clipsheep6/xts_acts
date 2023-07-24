@@ -14,6 +14,10 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import wantAgent from '@ohos.app.ability.wantAgent';
+<<<<<<< HEAD
+=======
+import wantConstant from '@ohos.app.ability.wantConstant'
+>>>>>>> hw/master
 
 var TAG
 export default function wantAgentCoverTest() {
@@ -60,6 +64,8 @@ export default function wantAgentCoverTest() {
                     });
 
                     setTimeout(() => {
+                        expect(wantConstant.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK)
+                        .assertEqual('ability.params.backToOtherMissionStack');
                         expect(status).assertTrue();
                         expect(code1).assertEqual(2);
                         done()

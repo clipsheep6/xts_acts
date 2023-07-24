@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets'
 
@@ -23,7 +23,7 @@ export default function appVersionCodeJsunit() {
     beforeEach(async function (done) {
       console.info("flex beforeEach start");
       let options = {
-        uri: 'pages/app',
+        uri: 'MainAbility/pages/app',
       }
       try {
         router.clear();
@@ -56,7 +56,7 @@ export default function appVersionCodeJsunit() {
         }
         var callback = (eventData) => {
           console.info("testappVersionCode_0011 get event state result is: " + JSON.stringify(eventData));
-          expect(eventData.data.Code).assertEqual("1");
+          expect(eventData.data.Code).assertEqual(1000000);
         }
         console.info("testappVersion click result is: " + JSON.stringify(sendEventByKey('versionCodeText', 10, "")));
         events_emitter.on(innerEvent, callback);

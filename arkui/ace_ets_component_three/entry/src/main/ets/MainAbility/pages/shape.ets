@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,7 +41,7 @@ struct ShapeExample {
         this.strokeLineJoin = eventData.data.strokeLineJoin;
       }
       if (eventData.data.strokeMiterLimit != null) {
-        this.strokeMiterLimit = parseInt(eventData.data.strokeMiterLimit);
+        this.strokeMiterLimit = eventData.data.strokeMiterLimit;
       }
       if (eventData.data.strokeOpacity != null) {
         this.strokeOpacity = parseInt(eventData.data.strokeOpacity);

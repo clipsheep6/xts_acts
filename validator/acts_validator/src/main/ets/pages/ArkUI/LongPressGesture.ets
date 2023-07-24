@@ -12,6 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
+=======
+import router from '@ohos.router';
+>>>>>>> hw/master
 import {CustomContainer} from '../common/CustomContainer2';
 import FirstDialog from '../model/FirstDialog';
 @Entry
@@ -19,7 +23,12 @@ import FirstDialog from '../model/FirstDialog';
 struct LongPressGestureExample {
   @State X: number = 0;
   @State name: string = 'LongPressGesture';
+<<<<<<< HEAD
   @State StepTips: string = '操作步骤：用至少一根手指长按图像（最多十根手指）'+'\n'+'预期结果：长按动作触发计数增加';
+=======
+  @State StepTips: string = '操作步骤：手指长按图像'+'\n'+'预期结果：长按动作触发计数增加，显示计数可大于10';
+  @State Vue: boolean = false;
+>>>>>>> hw/master
   async aboutToAppear(){
     await FirstDialog.ChooseDialog(this.StepTips,this.name);
   }
@@ -34,6 +43,12 @@ struct LongPressGestureExample {
         .onAction((event: GestureEvent) => {
           if (event.repeat) {
             this.X++;
+<<<<<<< HEAD
+=======
+            if(this.X >= 10){
+              this.Vue = true;
+            }
+>>>>>>> hw/master
           }
         })
         .onActionEnd(() => {
@@ -48,6 +63,7 @@ struct LongPressGestureExample {
     Column() {
       CustomContainer({
         title: this.name,
+<<<<<<< HEAD
         Url:'pages/ArkUI/ArkUI_index',
         content: this.specificNoParam,
         StepTips:this.StepTips,
@@ -56,4 +72,20 @@ struct LongPressGestureExample {
       })
     }.width('100%').height('100%').backgroundColor(Color.Black)
   }
+=======
+        Url: 'pages/ArkUI/ArkUI_index',
+        content: this.specificNoParam,
+        StepTips: this.StepTips,
+        X: $X,
+        name: $name,
+        Vue: $Vue,
+      })
+    }.width('100%').height('100%').backgroundColor(Color.Black)
+  }
+  onBackPress(){
+    router.replaceUrl({
+      url:'pages/ArkUI/ArkUI_index',
+    })
+  }
+>>>>>>> hw/master
 }

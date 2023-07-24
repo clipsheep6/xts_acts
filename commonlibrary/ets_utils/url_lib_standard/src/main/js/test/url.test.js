@@ -206,6 +206,19 @@ describe('UrlFunTest', function () {
             expect(err.message).assertEqual(`Parameter error.The type of 4 must be string`);
         }
     })
+
+    /**
+     * @tc.name: testNewURLParams001
+     * @tc.desc: The input parameter for New URLParams is undefined or null.
+     */
+    it('testNewURLParams001', 0, function () {
+        let params = new Url.URLParams(undefined);
+        let result = params.toString();
+        expect(result).assertEqual('');
+        let params1 = new Url.URLParams(null);
+        let result1 = params1.toString();
+        expect(result1).assertEqual('');
+    })
     
     /**
      * @tc.name: testParamsEntries001
@@ -489,6 +502,27 @@ describe('UrlFunTest', function () {
     })
 
     /**
+    * @tc.name: testParamsForEach007
+    * @tc.desc: The second parameter of forEach is undefined or null.
+    */
+    it('testParamsForEach007', 0, function () {
+        let params = new Url.URLParams("key1=value1&key2=value2")
+        var arr = {};
+        var i = 0;
+        function func(value, key, SearchParams)
+        {
+            arr[i] = value + " " + key + " " + (params === SearchParams)
+            i++
+        }
+        params.forEach(func, undefined);
+        expect(arr[0]).assertEqual("value1 key1 true");
+        arr = {};
+        i = 0;
+        params.forEach(func, null);
+        expect(arr[0]).assertEqual("value1 key1 true");
+    })
+
+    /**
      * @tc.name: testParamsGet001
      * @tc.desc: Returns the first value associated to the given search parameter.
      */
@@ -544,7 +578,7 @@ describe('UrlFunTest', function () {
      * @tc.name: testParamsGet006
      * @tc.desc: get throw BusinessError: Parameter error.
      */
-    it('testParamsGet005', 0, function () {
+    it('testParamsGet006', 0, function () {
         try{
             let params = new Url.URLParams("key1=value1&key2=value2")
             params.append("jss","JL")
@@ -681,6 +715,22 @@ describe('UrlFunTest', function () {
         params.append("￥","ACA")
         var result =  params.has("￥11")
         expect(result).assertEqual(false)
+    })
+
+    /**
+     * @tc.name: testParamsHas006
+     * @tc.desc: Returns a Boolean that indicates whether a parameter with the specified name exists.
+     */
+    it('testParamsHas006', 0, function () {
+        let params = new Url.URLParams("小=value1&￥=value2&key3=大")
+        try {
+            var a = 1;
+            params.has(a);
+        } catch(e) {
+            expect(e.toString()).assertEqual(`BusinessError: Parameter error.The type of ${a} must be string`);
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual(`Parameter error.The type of ${a} must be string`);
+        }
     })
 
     /**
@@ -1171,6 +1221,19 @@ describe('UrlFunTest', function () {
     })
 
     /**
+     * @tc.name: testNewURLSearchParams
+     * @tc.desc: The input parameter for New URLSearchParams is undefined or null.
+     */
+    it('testNewURLSearchParams', 0, function () {
+        let params = new Url.URLSearchParams(undefined);
+        let result = params.toString()
+        expect(result).assertEqual('')
+        let params1 = new Url.URLSearchParams(null);
+        let result2 = params1.toString()
+        expect(result2).assertEqual('')
+    })
+
+    /**
      * @tc.name: testUrlAppend001
      * @tc.desc: Appends a specified key/value pair as a new search parameter.
      */
@@ -1228,6 +1291,23 @@ describe('UrlFunTest', function () {
         params.append("123","456")
         var result = params.toString()
         expect(result).assertEqual("foo=1&bar=2&123=456")
+    })
+
+    /**
+     * @tc.name: testUrlAppend006
+     * @tc.desc: Appends a specified key/value pair as a new search parameter.
+     */
+    it('testUrlAppend006', 0, function () {
+        let that = new Url.URL('https://example.com?foo=1&bar=2')
+        let params = new Url.URLSearchParams(that.search)
+        try {
+            var a = 1;
+            params.append(a, "123")
+        } catch(e) {
+            expect(e.toString()).assertEqual(`BusinessError: Parameter error.The type of ${a} must be string`);
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual(`Parameter error.The type of ${a} must be string`);
+        }
     })
 
     /**
@@ -1553,6 +1633,27 @@ describe('UrlFunTest', function () {
     })
 
     /**
+    * @tc.name: testUrlForEach006
+    * @tc.desc: The second parameter of forEach is undefined or null.
+    */
+       it('testUrlForEach006', 0, function () {
+        let params = new Url.URLSearchParams("key1=value1&key2=value2")
+        var arr = {};
+        var i = 0;
+        function func(value, key, SearchParams)
+        {
+            arr[i] = value + " " + key + " " + (params === SearchParams)
+            i++
+        }
+        params.forEach(func, undefined);
+        expect(arr[0]).assertEqual("value1 key1 true");
+        arr = {}
+        i = 0;
+        params.forEach(func, null);
+        expect(arr[0]).assertEqual("value1 key1 true");
+    })
+
+    /**
      * @tc.name: testUrlGet001
      * @tc.desc: Returns the first value associated to the given search parameter.
      */
@@ -1712,6 +1813,23 @@ describe('UrlFunTest', function () {
     })
 
     /**
+     * @tc.name: testUrlHas006
+     * @tc.desc: Returns a Boolean that indicates whether a parameter with the specified name exists.
+     */
+    it('testUrlHas006', 0, function () {
+        let params = new Url.URLSearchParams("小=value1&￥=value2&key3=大")
+        params.append("￥","ACA")
+        try {
+            var a = 1;
+            params.has(a);
+        } catch(e) {
+            expect(e.toString()).assertEqual(`BusinessError: Parameter error.The type of ${a} must be string`);
+            expect(e.code).assertEqual(401)
+            expect(e.message).assertEqual(`Parameter error.The type of ${a} must be string`);
+        }
+    })
+
+    /**
      * @tc.name: testUrlKeys001
      * @tc.desc: Returns an iterator allowing to go through all keys contained in this object.
      */
@@ -1851,6 +1969,24 @@ describe('UrlFunTest', function () {
         params.set('12','BBB');
         var res = params.toString();
         expect(res).assertEqual("1=value1&2=value2&key3=3&12=BBB");
+    })
+
+    /**
+     * @tc.name: testUrlSet006
+     * @tc.desc: Sets the value associated with a given search parameter to the given value.
+     * If there were several matching values, this method deletes the others.
+     * If the search parameter doesn't exist, this method creates it.
+     */
+    it('testUrlSet006', 0, function () {
+        try {
+            let params = new Url.URLSearchParams("1=value1&2=value2&key3=3");
+            var a = 12;
+            params.set(a, 'BBB');
+        } catch(err) {
+            expect(err.toString()).assertEqual(`BusinessError: Parameter error.The type of ${a} must be string`)
+            expect(err.code).assertEqual(401)
+            expect(err.message).assertEqual(`Parameter error.The type of ${a} must be string`);
+        }
     })
 
     /**
@@ -2124,6 +2260,19 @@ describe('UrlFunTest', function () {
         params.append('abcde','fghki')
         var paramsResult = params.toString()
         expect(paramsResult).assertEqual('abcde=fghki')
+    })
+
+    /**
+     * @tc.name: testNewUrl001
+     * @tc.desc: The second parameter of Url construction is undefined or null.
+     */
+    it('testNewUrl001', 0, function () {
+        let params = new Url.URL('http://username:password@host:8080/directory/file?query#fragment', undefined)
+        let result = params.toString()
+        expect(result).assertEqual("http://username:password@host:8080/directory/file?query#fragment")
+        let params1 = new Url.URL('http://username:password@host:8080/directory/file?query#fragment', null)
+        let result2 = params1.toString()
+        expect(result2).assertEqual("http://username:password@host:8080/directory/file?query#fragment")
     })
 
     /**
@@ -3257,5 +3406,20 @@ describe('UrlFunTest', function () {
             expect(err.code).assertEqual(10200002)
             expect(err.message).assertEqual(`Syntax Error. Invalid Url string`);
         }
+    })
+
+    /**
+     * @tc.name: testUrlparseURL011
+     * @tc.desc: The second parameter of parseURL is undefined or null.
+    */
+    it('testUrlparseURL011', 0, function () {
+        let params = new Url.URL()
+        expect(params != null).assertTrue()
+        let params1 =  Url.URL.parseURL('https://developer.mozilla.org', undefined)
+        let result = params1.href
+        expect(result).assertEqual('https://developer.mozilla.org/')
+        let params2 =  Url.URL.parseURL('https://developer.mozilla.org', null)
+        let result1 = params2.href
+        expect(result1).assertEqual('https://developer.mozilla.org/')
     })
 })}

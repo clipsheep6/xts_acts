@@ -18,7 +18,7 @@
     },
     "deviceConfig": {
         "default": {
-            "debug": true
+            "debug": false
         }
     },
     "module": {
@@ -48,7 +48,8 @@
         ],
         "deviceType": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "mainAbility": "com.example.l2jsdemo.MainAbility",
         "distro": {

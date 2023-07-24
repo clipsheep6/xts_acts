@@ -16,7 +16,7 @@
 import cameraObj from '@ohos.multimedia.camera';
 import featureAbility from '@ohos.ability.featureAbility';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
-import {UiDriver, BY} from '@ohos.uitest'
+import {UiDriver, BY} from '@ohos.UiTest'
 
 const TAG = "CameraInputTest: ";
 

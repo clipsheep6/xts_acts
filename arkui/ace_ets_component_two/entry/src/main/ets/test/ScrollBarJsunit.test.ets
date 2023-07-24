@@ -1,6 +1,6 @@
-// @ts-nocheck
+
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -22,7 +22,7 @@ export default function scrollBarJsunit() {
   describe('appInfoTest_two_8', function () {
     beforeEach(async function (done) {
       let options = {
-        uri: 'pages/scrollBar',
+        uri: 'MainAbility/pages/scrollBar',
       }
       try {
         router.clear();
@@ -59,7 +59,7 @@ export default function scrollBarJsunit() {
     it('testScrollBar002', 0, async function (done) {
       console.info('[testScrollBar002] START');
       let object = {
-        "directionValue": ScrollBarDirection.Horizontal
+        "directionValue": "ScrollBarDirection.Horizontal"
       };
       try {
         var eventData = {
@@ -101,7 +101,7 @@ export default function scrollBarJsunit() {
       try {
         let eventData = {
           data: {
-            "stateValue":"BarState.On"
+            "stateValue": BarState.On
           }
         }
         let indexEvent = {
@@ -118,7 +118,7 @@ export default function scrollBarJsunit() {
       console.info("[testScrollBar004] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       console.info("[testScrollBar004] state:" + obj.$attrs.state);
-      expect(obj.$attrs.state).assertEqual('BarState.Off');
+      expect(obj.$attrs.state).assertEqual("BarState.On");
       done();
     });
 
@@ -144,7 +144,7 @@ export default function scrollBarJsunit() {
       console.info("[testScrollBar005] component strJson:" + strJson);
       let obj = JSON.parse(strJson);
       console.info("[testScrollBar005] state:" + obj.$attrs.state);
-      expect(obj.$attrs.state).assertEqual('BarState.Off');
+      expect(obj.$attrs.state).assertEqual("BarState.Auto");
       done();
     });
   })

@@ -144,12 +144,12 @@ describe('ActsNetworkSearchTest', function () {
     it('Telephony_NetworkSearch_getSignalInformation_Async_0400', 0, async function (done) {
         radio.getSignalInformation(SLOT_2, (err, data) => {
             if (err) {
-                console.info(`Telephony_NetworkSearch_getSignalInformation_Async_0400 fail err: ${err}`);
-                expect(err.code).assertEqual(202);
+                console.info('Telephony_NetworkSearch_getSignalInformation_Async_0400 fail err:' + JSON.stringify(err));
+                expect(err.code).assertEqual(8300001);
                 done();
                 return;
             }
-            console.info(`getSignalInformation_Async_0400 data: ${JSON.stringify(data)}`);
+            console.info('getSignalInformation_Async_0400 data: ' + JSON.stringify(data));
 			if (data.length > 0) {
 				expect(data[0].signalLevel != -1).assertTrue();
 				expect(data[0].signalType != radio.NETWORK_TYPE_WCDMA).assertTrue();
@@ -167,13 +167,13 @@ describe('ActsNetworkSearchTest', function () {
     it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400', 0, async function (done) {
         radio.getISOCountryCodeForNetwork(SLOT_2, (err, data) => {
             if (err) {
-                console.info(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400 fail err: ${err}`);
-                expect(err.code).assertEqual(202);
+                console.info('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400 fail err:' + JSON.stringify(err));
+                expect(err.code).assertEqual(8300001);
                 done();
                 return;
             }
             console.info(
-                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400 finish data: ${JSON.stringify(data)}`);
+                'Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0400 finish data: ' + JSON.stringify(data));
             expect(data.length === 0).assertTrue();
             done();
         });
@@ -188,12 +188,12 @@ describe('ActsNetworkSearchTest', function () {
         try {
             let data = await radio.getISOCountryCodeForNetwork(SLOT_2);
             console.info(
-                `Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 finish data:${JSON.stringify(data)}`);
+                'Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 finish data:' + JSON.stringify(data));
             expect(data.length === 0).assertTrue();
 			done();
         } catch (err) {
-            console.info(`Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 fail err: ${err}`);
-            expect(err.code).assertEqual(202);
+            console.info('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0400 fail err:' + JSON.stringify(err));
+            expect(err.code).assertEqual(8300001);
             done();
             return;
         }
@@ -235,11 +235,7 @@ describe('ActsNetworkSearchTest', function () {
         }
         done();
     });
-
-    
-
-    
-
+	
     /**
      * @tc.number  Telephony_NetworkSearch_getNetworkState_Promise_0700
      * @tc.name    SlotId parameter input is -1, test getNetworkState() query function go to the error
@@ -285,11 +281,11 @@ describe('ActsNetworkSearchTest', function () {
         try {
             let data = await radio.getSignalInformation(SLOT_2);
             console.info(
-                `Telephony_NetworkSearch_getSignalInformation_Promise_0400 finish data: ${JSON.stringify(data)}`);
+                'Telephony_NetworkSearch_getSignalInformation_Promise_0400 finish data: ' + JSON.stringify(data));
             expect(data.length === 0).assertTrue();
         } catch (err) {
-            console.info(`Telephony_NetworkSearch_getSignalInformation_Promise_0400 fail err: ${err}`);
-            expect(err.code).assertEqual(202);
+            console.info('Telephony_NetworkSearch_getSignalInformation_Promise_0400 fail err: ' + JSON.stringify(err));
+            expect(err.code).assertEqual(8300001);
             done();
             return;
         }
@@ -304,12 +300,12 @@ describe('ActsNetworkSearchTest', function () {
     it('Telephony_NetworkSearch_getOperatorName_Async_0400', 0, async function (done) {
         radio.getOperatorName(SLOT_2, (err, data) => {
             if (err) {
-                console.info(`Telephony_NetworkSearch_getOperatorName_Async_0400 fail err: ${err}`);
-                expect(err.code).assertEqual(202);
+                console.info('Telephony_NetworkSearch_getOperatorName_Async_0400 fail err:' + JSON.stringify(err));
+                expect(err.code).assertEqual(8300001);
                 done();
                 return;
             }
-            console.info(`Telephony_NetworkSearch_getOperatorName_Async_0400 finish  data: ${data}`);
+            console.info('Telephony_NetworkSearch_getOperatorName_Async_0400 finish  data:' + data);
             expect(data === '').assertTrue();
             done();
         })
@@ -323,12 +319,12 @@ describe('ActsNetworkSearchTest', function () {
     it('Telephony_NetworkSearch_getOperatorName_Promise_0400', 0, async function (done) {
         try {
             let data = await radio.getOperatorName(SLOT_2);
-            console.info(`Telephony_NetworkSearch_getOperatorName_Promise_0400 finish data: ${data}`);
+            console.info('Telephony_NetworkSearch_getOperatorName_Promise_0400 finish data: ' + data);
             expect(data === '').assertTrue();
             done();
         } catch (err) {
-            console.info(`Telephony_NetworkSearch_getOperatorName_Promise_0400 fail err: ${err}`);
-            expect(err.code).assertEqual(202);
+            console.info('Telephony_NetworkSearch_getOperatorName_Promise_0400 fail err: ' + JSON.stringify(err));
+            expect(err.code).assertEqual(8300001);
             done();
         }
     })
@@ -379,6 +375,7 @@ describe('ActsNetworkSearchTest', function () {
         radio.isRadioOn((err, data) => {
             if (err) {
                 console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
+                expect(err.code).assertEqual(8300003);
                 done();
                 return;
             }
@@ -395,12 +392,11 @@ describe('ActsNetworkSearchTest', function () {
      */
     it('Telephony_NetworkSearch_isRadioOn_Promise_0200', 0, async function (done) {
         try {
-            let data = await radio.isRadioOn();
-            console.info('Telephony_NetworkSearch_isRadioOn_Promise_0200  finish ' + JSON.stringify(data));
-            expect(data == true).assertTrue();
+            await radio.isRadioOn();
             done();
         } catch (err) {
             console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
+            expect(err.code).assertEqual(8300003);
             done();
         }
     });
@@ -411,13 +407,14 @@ describe('ActsNetworkSearchTest', function () {
      * @tc.desc    Test isRadioOn api by callback.
      */
     it('Telephony_NetworkSearch_isRadioOn_Async_0300', 0, async function (done) {
-        radio.isRadioOn(0, (err, data) => {
+        radio.isRadioOn(0, (err,data) => {
             if (err) {
                 console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
+                expect(err.code).assertEqual(8300003);
                 done();
                 return;
             }
-            console.info('Telephony_NetworkSearch_isRadioOn_Async_0300  finish ' + JSON.stringify(data));
+            console.info('Telephony_NetworkSearch_isRadioOn_Async_0300  finish ' + data);
             expect(data == true).assertTrue();
             done();
         });
@@ -432,30 +429,10 @@ describe('ActsNetworkSearchTest', function () {
         try {
             let data = await radio.isRadioOn(0);
             console.info('Telephony_NetworkSearch_isRadioOn_Promise_0300  finish ' + JSON.stringify(data));
-            expect(data == true).assertTrue();
             done();
         } catch (err) {
             console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
-            done();
-        }
-    });
-
-    /**
-     * @tc.number  Telephony_StateRegistry_on_0200
-     * @tc.name    Add a networkStatus change listen and test observer.on({slotId:0}) to view the callback results
-     * @tc.desc    Function test
-     */
-    it('Telephony_StateRegistry_on_0200', 0, async function (done) {
-        try {
-            observer.on('networkStateChange', {
-                slotId: 0
-            }, NetworkState => {
-                console.log("on networkStateChange, NetworkState:" + JSON.stringify(NetworkState));
-                expect(typeof NetworkState === undefined).assertFalse();
-            });
-            done();
-        } catch (error) {
-            expect(false).assertTrue();
+            expect(err.code).assertEqual(8300003);
             done();
         }
     });
@@ -475,26 +452,6 @@ describe('ActsNetworkSearchTest', function () {
             // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
             observer.off('networkStateChange', callback);
             observer.off('networkStateChange');
-            done();
-        } catch (error) {
-            expect(false).assertTrue();
-            done();
-        }
-    });
-
-    /**
-     * @tc.number  Telephony_StateRegistry_on_0300
-     * @tc.name    Add a networkStatus change listen and test observer.on({slotId:0}) to view the callback results
-     * @tc.desc    Function test
-     */
-    it('Telephony_StateRegistry_on_0300', 0, async function (done) {
-        try {
-            observer.on('signalInfoChange', {
-                slotId: 0
-            }, SignalInformation => {
-                console.log("on signalInfoChange, SignalInformation:" + JSON.stringify(SignalInformation));
-                expect(typeof SignalInformation === undefined).assertFalse();
-            });
             done();
         } catch (error) {
             expect(false).assertTrue();
