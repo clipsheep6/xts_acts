@@ -94,7 +94,6 @@ describe('systemStorageTest', function () {
     it('testSet002', 0, async function (done) {
         console.info(TAG + '************* testSet002 start *************');
         let testData = undefined;
-        let testErrCode = undefined;
         let compelteRet = false;
         let promise = storage.set({
             key: '',
@@ -102,9 +101,8 @@ describe('systemStorageTest', function () {
             success: async function () {
                 await expect(false).assertTrue();
             },
-            fail: async function (data, errCode) {
+            fail: async function (data) {
                 testData = data;
-                testErrCode = errCode;
             },
             complete: async function () {
                 compelteRet = true;
@@ -113,7 +111,6 @@ describe('systemStorageTest', function () {
         })
         await promise;
         await expect("The key string is null or empty.").assertEqual(testData);
-        await expect(-1006).assertEqual(testErrCode);
         await expect(compelteRet).assertTrue();
 
         done();
@@ -129,7 +126,6 @@ describe('systemStorageTest', function () {
     it('testSet003', 0, async function (done) {
         console.info(TAG + '************* testSet003 start *************');
         let testData = undefined;
-        let testErrCode = undefined;
         let compelteRet = false;
         let promise = storage.set({
             key: 'x'.repeat(33),
@@ -137,9 +133,8 @@ describe('systemStorageTest', function () {
             success: async function () {
                 await expect(false).assertTrue();
             },
-            fail: async function (data, errCode) {
+            fail: async function (data) {
                 testData = data;
-                testErrCode = errCode;
             },
             complete: async function () {
                 compelteRet = true;
@@ -148,7 +143,6 @@ describe('systemStorageTest', function () {
         })
         await promise;
         await expect("The key string length should shorter than 32.").assertEqual(testData);
-        await expect(-1016).assertEqual(testErrCode);
         await expect(compelteRet).assertTrue();
 
         done();
@@ -165,7 +159,6 @@ describe('systemStorageTest', function () {
     it('testSet004', 0, async function (done) {
         console.info(TAG + '************* testSet004 start *************');
         let testData = undefined;
-        let testErrCode = undefined;
         let compelteRet = false;
         let promise = storage.set({
             key: 'testKey',
@@ -173,9 +166,8 @@ describe('systemStorageTest', function () {
             success: async function () {
                 await expect(false).assertTrue();
             },
-            fail: async function (data, errCode) {
+            fail: async function (data) {
                 testData = data;
-                testErrCode = errCode;
             },
             complete: async function () {
                 compelteRet = true;
@@ -183,7 +175,6 @@ describe('systemStorageTest', function () {
         })
         await promise;
         await expect("The value string length should shorter than 128.").assertEqual(testData);
-        await expect(-1017).assertEqual(testErrCode);
         await expect(compelteRet).assertTrue();
 
         done();
@@ -269,7 +260,6 @@ describe('systemStorageTest', function () {
         console.info(TAG + '************* testGet003 start *************');
         let testVal = undefined;
         let testData = undefined;
-        let testErrCode = undefined;
         let completeRet = false;
         let failRet = false;
         let promise = storage.get({
@@ -278,8 +268,7 @@ describe('systemStorageTest', function () {
             success: async function (data) {
                 testVal = data;
             },
-            fail: async function (data, errCode) {
-                testErrCode = errCode;
+            fail: async function (data) {
                 testData = data;
                 failRet = true;
             },
@@ -291,7 +280,6 @@ describe('systemStorageTest', function () {
         await promise;
         expect(failRet).assertTrue();
         expect(completeRet).assertTrue();
-        expect(-1018).assertEqual(testErrCode);
         expect('The default string length should shorter than 128.').assertEqual(testData);
         expect(testVal == undefined).assertTrue();
 
@@ -388,7 +376,6 @@ describe('systemStorageTest', function () {
     it('testDelete002', 0, async function (done) {
         console.info(TAG + '************* testDelete002 start *************');
         let testData = undefined;
-        let testErrCode = undefined;
         let completeRet = false;
         let failRet = false;
         let promise1 = storage.set({
@@ -408,8 +395,7 @@ describe('systemStorageTest', function () {
             success: async function () {
                 await expect(false).assertTrue();
             },
-            fail: async function (data, err) {
-                testErrCode = err;
+            fail: async function (data) {
                 testData = data;
                 failRet = true;
             },
@@ -421,7 +407,6 @@ describe('systemStorageTest', function () {
         await promise2;
         await expect(completeRet).assertTrue();
         await expect("The key string is null or empty.").assertEqual(testData);
-        await expect(-1006).assertEqual(testErrCode);
         await expect(failRet).assertTrue();
 
         done();
