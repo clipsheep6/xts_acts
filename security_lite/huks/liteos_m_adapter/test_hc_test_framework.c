@@ -6,7 +6,7 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE      0x2000
+#define TEST_TASK_STACK_SIZE      0x800000
 #define WAIT_TO_TEST_DONE         4
 
 static void TestOsThread(void const *argument)
