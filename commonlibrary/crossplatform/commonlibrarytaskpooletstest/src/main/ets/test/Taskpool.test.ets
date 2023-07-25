@@ -1643,7 +1643,7 @@ export default function TaskPoolTest() {
             }
             catch (e) {
                 expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                    "BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1673,7 +1673,7 @@ export default function TaskPoolTest() {
             }
             catch (e) {
                 expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                    "BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1718,7 +1718,7 @@ export default function TaskPoolTest() {
             }
             catch (e) {
                 expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                    "BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1764,8 +1764,78 @@ export default function TaskPoolTest() {
             }
             catch (e) {
                 expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                    "BusinessError: The task does not exist when it is canceled");
             }
+            done();
+        })
+
+         /**
+         * @tc.number    : TEST_TASK_IS_CANCELED_001
+         * @tc.name      : testTaskIsCanceled001
+         * @tc.desc      : To test isCancel, do not cancel task
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+         */
+        it('testTaskIsCanceled001', 0,  async function (done) {
+            function inspectStatus(arg) {
+                "use concurrent"
+                let start = new Date().getTime();
+                while (new Date().getTime() - start < 1000) {
+                    continue;
+                }
+                return arg;
+            }
+
+            let task1 = new taskpool.Task(inspectStatus, 100);
+            let task2 = new taskpool.Task(inspectStatus, 200);
+            let task3 = new taskpool.Task(inspectStatus, 300);
+            let task4 = new taskpool.Task(inspectStatus, 400);
+
+            taskpool.execute(task1);
+            taskpool.execute(task2);
+            taskpool.execute(task3);
+            taskpool.execute(task4);
+            setTimeout(()=>{
+                taskpool.cancel(task4);}, 500);
+            expect(taskpool.Task.isCanceled() == false);
+            done();
+        })
+
+         /**
+         * @tc.number    : TEST_TASK_IS_CANCELED_002
+         * @tc.name      : testTaskIsCanceled002
+         * @tc.desc      : To test IsCancel, cancel a task after 1 seconds.
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+         */
+        it('testTaskIsCanceled002', 0, async function (done) {
+            function inspectStatus(arg) {
+                "use concurrent"
+                return arg;
+            }
+
+            try {
+                let task1 = new taskpool.Task(inspectStatus, 100);
+                let task2 = new taskpool.Task(inspectStatus, 200);
+                let task3 = new taskpool.Task(inspectStatus, 300);
+                let task4 = new taskpool.Task(inspectStatus, 400);
+                let task5 = new taskpool.Task(inspectStatus, 500);
+                let task6 = new taskpool.Task(inspectStatus, 600);
+                let res1 = taskpool.execute(task1);
+                let res2 = taskpool.execute(task2);
+                let res3 = taskpool.execute(task3);
+                let res4 = taskpool.execute(task4);
+                let res5 = taskpool.execute(task5);
+                let res6 = taskpool.execute(task6);
+
+                taskpool.execute(task1);
+                taskpool.cancel(task1);
+            } catch(e) {
+                expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
+            }
+            expect(taskpool.Task.isCanceled() == false);
             done();
         })
     })
