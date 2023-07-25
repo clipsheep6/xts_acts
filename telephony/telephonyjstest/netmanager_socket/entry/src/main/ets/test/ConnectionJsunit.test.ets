@@ -237,36 +237,36 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_getAllNets_0200 Test end*************");
     });
 
-    // /*
-    //  * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0100
-    //  * @tc.name      : getConnectionProperties
-    //  * @tc.desc      : Queries the connection properties of a network.
-    //  */
-    // it('Telephony_Connection_Connection_getConnectionProperties_0100', 0, function (done) {
-    //   console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test start*************");
-    //   connection.getDefaultNet((error, netHandle) => {
-    //     if (error) {
-    //       console.log("Telephony_Connection_Connection_getConnectionProperties_0100 getDefaultNet error " + JSON.stringify(error))
-    //       expect().assertFail();
-    //       done();
-    //       return;
-    //     }
-    //     netHandle.netId = undefined;
-    //     console.log('Telephony_Connection_Connection_getConnectionProperties_0100 getDefaultNet = ' + JSON.stringify(netHandle));
-    //     connection.getConnectionProperties(netHandle, (error, data) => {
-    //       if (error) {
-    //         console.log("Telephony_Connection_Connection_getConnectionProperties_0100 getConnectionProperties error " + JSON.stringify(error))
-    //         expect(true).assertTrue();
-    //         done();
-    //         return;
-    //       }
-    //       console.log("Telephony_Connection_Connection_getConnectionProperties_0100 getConnectionProperties data " + JSON.stringify(data))
-    //       expect().assertFail();
-    //       done();
-    //     });
-    //   })
-    //   console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test end*************");
-    // });
+    /*
+     * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0100
+     * @tc.name      : getConnectionProperties
+     * @tc.desc      : Queries the connection properties of a network.
+     */
+    it('Telephony_Connection_Connection_getConnectionProperties_0100', 0, function (done) {
+      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test start*************");
+      connection.getDefaultNet((error, netHandle) => {
+        if (error) {
+          console.log("Telephony_Connection_Connection_getConnectionProperties_0100 getDefaultNet error " + JSON.stringify(error))
+          expect().assertFail();
+          done();
+          return;
+        }
+        netHandle.netId = undefined;
+        console.log('Telephony_Connection_Connection_getConnectionProperties_0100 getDefaultNet = ' + JSON.stringify(netHandle));
+        connection.getConnectionProperties(netHandle, (error, data) => {
+          if (error) {
+            console.log("Telephony_Connection_Connection_getConnectionProperties_0100 getConnectionProperties error " + JSON.stringify(error))
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log("Telephony_Connection_Connection_getConnectionProperties_0100 getConnectionProperties data " + JSON.stringify(data))
+          expect().assertFail();
+          done();
+        });
+      })
+      console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test end*************");
+    });
 
     /*
      * @tc.number    : Telephony_Connection_Connection_getConnectionProperties_0200
@@ -364,36 +364,36 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0400 Test end*************");
     });
 
-    // /*
-    //  * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0100
-    //  * @tc.name      : getNetCapabilities
-    //  * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
-    //  */
-    // it('Telephony_Connection_Connection_getNetCapabilities_0100', 0, function (done) {
-    //   console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test start*************");
-    //   connection.getDefaultNet((error, netHandle) => {
-    //     if (error) {
-    //       console.log("Telephony_Connection_Connection_getNetCapabilities_0100 getDefaultNet error " + JSON.stringify(error))
-    //       expect().assertFail();
-    //       done();
-    //       return;
-    //     }
-    //     netHandle.netId = undefined;
-    //     console.log('Telephony_Connection_Connection_getNetCapabilities_0100 getDefaultNet = ' + JSON.stringify(netHandle));
-    //     connection.getNetCapabilities(netHandle, (error, data) => {
-    //       if (error) {
-    //         console.log("Telephony_Connection_Connection_getNetCapabilities_0100 err" + JSON.stringify(error))
-    //         expect(true).assertTrue();
-    //         done();
-    //         return;
-    //       }
-    //       console.log("Telephony_Connection_Connection_getNetCapabilities_0100 data" + JSON.stringify(data))
-    //       expect().assertFail();
-    //       done();
-    //     });
-    //   })
-    //   console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test end*************");
-    // });
+    /*
+     * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0100
+     * @tc.name      : getNetCapabilities
+     * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
+     */
+    it('Telephony_Connection_Connection_getNetCapabilities_0100', 0, function (done) {
+      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test start*************");
+      connection.getDefaultNet((error, netHandle) => {
+        if (error) {
+          console.log("Telephony_Connection_Connection_getNetCapabilities_0100 getDefaultNet error " + JSON.stringify(error))
+          expect().assertFail();
+          done();
+          return;
+        }
+        netHandle.netId = undefined;
+        console.log('Telephony_Connection_Connection_getNetCapabilities_0100 getDefaultNet = ' + JSON.stringify(netHandle));
+        connection.getNetCapabilities(netHandle, (error, data) => {
+          if (error) {
+            console.log("Telephony_Connection_Connection_getNetCapabilities_0100 err" + JSON.stringify(error))
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log("Telephony_Connection_Connection_getNetCapabilities_0100 data" + JSON.stringify(data))
+          expect().assertFail();
+          done();
+        });
+      })
+      console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test end*************");
+    });
 
     /*
      * @tc.number    : Telephony_Connection_Connection_getNetCapabilities_0200
@@ -533,36 +533,36 @@ export default function connectionJsunit() {
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0200 Test end*************");
     });
 
-    // /*
-    //      * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0100
-    //      * @tc.name      : reportNetConnected
-    //      * @tc.desc      : Reports the network state is connected.
-    //      */
-    // it('Telephony_Connection_Connection_reportNetConnected_0100', 0, function (done) {
-    //   console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test start*************");
-    //   connection.getDefaultNet((error, netHandle) => {
-    //     if (error) {
-    //       console.log("Telephony_Connection_Connection_reportNetConnected_0100 getDefaultNet error " + JSON.stringify(error))
-    //       expect().assertFail();
-    //       done();
-    //       return;
-    //     }
-    //     netHandle.netId = undefined;
-    //     console.log('Telephony_Connection_Connection_reportNetConnected_0100 getDefaultNet = ' + JSON.stringify(netHandle));
-    //     connection.reportNetConnected(netHandle, (error, data) => {
-    //       if (error) {
-    //         console.log("Telephony_Connection_Connection_reportNetConnected_0100 reportNetConnected error " + JSON.stringify(error))
-    //         expect(true).assertTrue();
-    //         done();
-    //         return;
-    //       }
-    //       console.log("Telephony_Connection_Connection_reportNetConnected_0100 reportNetConnected data " + JSON.stringify(data))
-    //       expect().assertFail();
-    //       done();
-    //     });
-    //   });
-    //   console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test end*************");
-    // });
+    /*
+         * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0100
+         * @tc.name      : reportNetConnected
+         * @tc.desc      : Reports the network state is connected.
+         */
+    it('Telephony_Connection_Connection_reportNetConnected_0100', 0, function (done) {
+      console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test start*************");
+      connection.getDefaultNet((error, netHandle) => {
+        if (error) {
+          console.log("Telephony_Connection_Connection_reportNetConnected_0100 getDefaultNet error " + JSON.stringify(error))
+          expect().assertFail();
+          done();
+          return;
+        }
+        netHandle.netId = undefined;
+        console.log('Telephony_Connection_Connection_reportNetConnected_0100 getDefaultNet = ' + JSON.stringify(netHandle));
+        connection.reportNetConnected(netHandle, (error, data) => {
+          if (error) {
+            console.log("Telephony_Connection_Connection_reportNetConnected_0100 reportNetConnected error " + JSON.stringify(error))
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log("Telephony_Connection_Connection_reportNetConnected_0100 reportNetConnected data " + JSON.stringify(data))
+          expect().assertFail();
+          done();
+        });
+      });
+      console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test end*************");
+    });
 
     /*
          * @tc.number    : Telephony_Connection_Connection_reportNetConnected_0200
@@ -653,37 +653,37 @@ export default function connectionJsunit() {
       });
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0400 Test end*************");
     });
-    //
-    // /*
-    //      * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0100
-    //      * @tc.name      : reportNetDisconnected
-    //      * @tc.desc      : Reports the network state is disconnected.
-    //      */
-    // it('Telephony_Connection_Connection_reportNetDisconnected_0100', 0, function (done) {
-    //   console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test start*************");
-    //   connection.getDefaultNet((error, netHandle) => {
-    //     if (error) {
-    //       console.log("Telephony_Connection_Connection_reportNetDisconnected_0100 getDefaultNet error " + JSON.stringify(error))
-    //       expect().assertFail();
-    //       done();
-    //       return;
-    //     }
-    //     netHandle.netId = undefined;
-    //     console.log('Telephony_Connection_Connection_reportNetDisconnected_0100 getDefaultNet = ' + JSON.stringify(netHandle));
-    //     connection.reportNetDisconnected(netHandle, (error, data) => {
-    //       if (error) {
-    //         console.log("Telephony_Connection_Connection_reportNetDisconnected_0100 reportNetDisconnected error " + JSON.stringify(error))
-    //         expect(true).assertTrue();
-    //         done();
-    //         return;
-    //       }
-    //       console.log("Telephony_Connection_Connection_reportNetDisconnected_0100 reportNetDisconnected data " + JSON.stringify(data))
-    //       expect().assertFail();
-    //       done();
-    //     });
-    //   });
-    //   console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test end*************");
-    // });
+
+    /*
+         * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0100
+         * @tc.name      : reportNetDisconnected
+         * @tc.desc      : Reports the network state is disconnected.
+         */
+    it('Telephony_Connection_Connection_reportNetDisconnected_0100', 0, function (done) {
+      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test start*************");
+      connection.getDefaultNet((error, netHandle) => {
+        if (error) {
+          console.log("Telephony_Connection_Connection_reportNetDisconnected_0100 getDefaultNet error " + JSON.stringify(error))
+          expect().assertFail();
+          done();
+          return;
+        }
+        netHandle.netId = undefined;
+        console.log('Telephony_Connection_Connection_reportNetDisconnected_0100 getDefaultNet = ' + JSON.stringify(netHandle));
+        connection.reportNetDisconnected(netHandle, (error, data) => {
+          if (error) {
+            console.log("Telephony_Connection_Connection_reportNetDisconnected_0100 reportNetDisconnected error " + JSON.stringify(error))
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log("Telephony_Connection_Connection_reportNetDisconnected_0100 reportNetDisconnected data " + JSON.stringify(data))
+          expect().assertFail();
+          done();
+        });
+      });
+      console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test end*************");
+    });
 
     /*
          * @tc.number    : Telephony_Connection_Connection_reportNetDisconnected_0200
