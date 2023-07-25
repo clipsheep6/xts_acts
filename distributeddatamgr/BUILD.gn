@@ -23,6 +23,7 @@ group("distributeddatamgr") {
       "dataSharejstest/hap:dataShare_js_test",
       "distributedKVStoretest:distributedKVStoretest",
       "kvStoretest:kvStoretest",
+      "napitest:napitest",
       "preferencesjstest/hap:preferences_js_test",
       "relationalStoretest:relationalStoretest",
     ]
