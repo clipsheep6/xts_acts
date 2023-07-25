@@ -80,7 +80,7 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
           return;
         } else {
@@ -153,7 +153,7 @@ export default function connectionSecondJsUnit() {
 
     /**
      * @tc.name: 'Telephony_connection_getRouteInfo_Async_0400
-     * @tc.desc:  getRouteInfo Properties detection
+     * @tc.desc: getRouteInfo Properties detection
      * @tc.author: kangyuntao
      */
     it('Telephony_connection_getRouteInfo_Async_0400', 0, function (done) {
@@ -162,7 +162,7 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
           return;
         } else {
@@ -221,7 +221,7 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
           return;
         } else {
@@ -278,7 +278,7 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
           return;
         } else {
@@ -337,7 +337,7 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
           return;
         } else {
@@ -350,8 +350,7 @@ export default function connectionSecondJsUnit() {
               return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data[0].networkCap)}`);
-              expect(data[0].networkCap != "").assertTrue();
+              expect(data.networkCap != []).assertTrue();
               done();
             }
           });
@@ -392,7 +391,7 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
-          expect().assertTrue();
+          expect().assertFail();
           done();
           return;
         } else {
@@ -405,8 +404,8 @@ export default function connectionSecondJsUnit() {
               return;
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value success122222: ${JSON.stringify(data[0].bearerTypes)}`);
-              expect(data[0].bearerTypes != "").assertTrue();
+              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.bearerTypes)}`);
+              expect(data.bearerTypes != []).assertTrue();
               done();
             }
           });
@@ -426,10 +425,10 @@ export default function connectionSecondJsUnit() {
       connection.getDefaultNet().then((handle) => {
         connection.getNetCapabilities(handle).then((data) => {
           console.log(`${caseName} getNetCapabilities promiss data suceess: ${JSON.stringify(data)}`);
-          console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data[0].networkCap)}`);
-          console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data[0].bearerTypes)}`);
-          expect(data[0].networkCap != "").assertTrue();
-          expect(data[0].bearerTypes != "").assertTrue();
+          console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.networkCap)}`);
+          console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data.bearerTypes)}`);
+          expect(data.networkCap != []).assertTrue();
+          expect(data.bearerTypes != []).assertTrue();
           console.log("-----------------------Telephony getNetCapabilities Promise Test is end-----------------------");
           done();
         }).catch((error) => {
