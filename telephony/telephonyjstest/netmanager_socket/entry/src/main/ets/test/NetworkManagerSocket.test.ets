@@ -52,10 +52,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_constructTLSSocketInstance_0100
-    * @tc.name    Test create TLSSocket object
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_constructTLSSocketInstance_0100
+     * @tc.name    Test create TLSSocket object
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_constructTLSSocketInstance_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       if (instance != "") {
@@ -68,10 +68,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_connect_Async_0100
-    * @tc.name    Test connect() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_connect_Async_0100
+     * @tc.name    Test connect() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_connect_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.connect(options, (err) => {
@@ -99,10 +99,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_connect_Promise_0100
-    * @tc.name    Test connect() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_connect_Promise_0100
+     * @tc.name    Test connect() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_connect_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.connect(options).then(() => {
@@ -115,10 +115,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_close_Async_0100
-    * @tc.name    Test close() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_close_Async_0100
+     * @tc.name    Test close() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_close_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.close((err) => {
@@ -133,10 +133,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_close_Promise_0100
-    * @tc.name    Test close() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_close_Promise_0100
+     * @tc.name    Test close() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_close_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.close().then(() => {
@@ -149,10 +149,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getCertificate_Async_0100
-    * @tc.name    Test getCertificate() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getCertificate_Async_0100
+     * @tc.name    Test getCertificate() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getCertificate_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getCertificate((err, X509CertRawData) => {
@@ -169,10 +169,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getCertificate_Promise_0100
-    * @tc.name    Test getCertificate() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getCertificate_Promise_0100
+     * @tc.name    Test getCertificate() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getCertificate_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getCertificate().then((data) => {
@@ -186,10 +186,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getRemoteCertificate_Async_0100
-    * @tc.name    Test getRemoteCertificate() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getRemoteCertificate_Async_0100
+     * @tc.name    Test getRemoteCertificate() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getRemoteCertificate_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getRemoteCertificate((err, data) => {
@@ -206,10 +206,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getRemoteCertificate_Promise_0100
-    * @tc.name    Test getRemoteCertificate() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getRemoteCertificate_Promise_0100
+     * @tc.name    Test getRemoteCertificate() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getRemoteCertificate_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getRemoteCertificate().then((data) => {
@@ -223,10 +223,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getProtocol_Async_0100
-    * @tc.name    Test getProtocol() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getProtocol_Async_0100
+     * @tc.name    Test getProtocol() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getProtocol_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getProtocol((err, data) => {
@@ -243,10 +243,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getProtocol_Promise_0100
-    * @tc.name    Test getProtocol() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getProtocol_Promise_0100
+     * @tc.name    Test getProtocol() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getProtocol_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getProtocol().then((data) => {
@@ -260,10 +260,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getCipherSuites_Async_0100
-    * @tc.name    Test getCipherSuite() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getCipherSuites_Async_0100
+     * @tc.name    Test getCipherSuite() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getCipherSuites_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getCipherSuite((err, data) => {
@@ -280,10 +280,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getCipherSuites_Promise_0100
-    * @tc.name    Test getCipherSuite() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getCipherSuites_Promise_0100
+     * @tc.name    Test getCipherSuite() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getCipherSuites_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getCipherSuite().then((data) => {
@@ -298,10 +298,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getSignatureAlgorithms_Async_0100
-    * @tc.name    Test getSignatureAlgorithms() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getSignatureAlgorithms_Async_0100
+     * @tc.name    Test getSignatureAlgorithms() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getSignatureAlgorithms_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getSignatureAlgorithms((err, data) => {
@@ -318,10 +318,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100
-    * @tc.name    Test getSignatureAlgorithms() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100
+     * @tc.name    Test getSignatureAlgorithms() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.getSignatureAlgorithms().then((data) => {
@@ -336,10 +336,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_send_Async_0100
-    * @tc.name    Test send() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_send_Async_0100
+     * @tc.name    Test send() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_send_Async_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.send(sendData, (err) => {
@@ -355,10 +355,10 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-    * @tc.number  Telephony_NetworkManager_send_Promise_0100
-    * @tc.name    Test send() interface
-    * @tc.desc    Function test
-    */
+     * @tc.number  Telephony_NetworkManager_send_Promise_0100
+     * @tc.name    Test send() interface
+     * @tc.desc    Function test
+     */
     it('Telephony_NetworkManager_send_Promise_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
       instance.send(sendData).then(() => {
