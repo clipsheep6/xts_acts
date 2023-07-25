@@ -1,3 +1,0 @@
-libace_plugin_util_android.so
-libhilog.so
-libhilog_android.so
