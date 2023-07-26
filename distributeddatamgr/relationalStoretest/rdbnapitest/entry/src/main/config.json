@@ -15,8 +15,9 @@
     "deviceConfig": {},
     "module": {
         "package": "com.acts.rdb.napitest",
-        "name": ".MyApplication",
-        "mainAbility": "com.acts.rdb.napitest.MainAbility",
+        "name": ".entry",
+        "mainAbility": ".MainAbility",
+        "srcPath": "",
         "deviceType": [
             "tablet",
             "default",
@@ -58,7 +59,7 @@
                 "visible": true,
                 "srcPath": "TestAbility",
                 "name": ".TestAbility",
-                "srcLanguage": "ets",
+                "srcLanguage": "js",
                 "icon": "$media:icon",
                 "description": "$string:TestAbility_desc",
                 "formsEnabled": false,

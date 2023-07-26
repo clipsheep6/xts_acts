@@ -24,7 +24,7 @@ ohos_js_hap_suite("ActsRdbNapiEtsTest") {
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsRdbNapiEtsTest"
   subsystem_name = "distributeddatamgr"
-  part_name = "napi"
+  part_name = "relational_store"
   shared_libraries = [ "./entry/src/main/cpp:backup" ]
 }
 
