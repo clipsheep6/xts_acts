@@ -15,6 +15,9 @@ import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
 import("//foundation/distributeddatamgr/relational_store/relational_store.gni")
 
+relational_store_base_path = "//foundation/distributeddatamgr/relational_store"
+relational_store_innerapi_path ="${relational_store_base_path}/interfaces/inner_api"
+relational_store_ndk_path ="${relational_store_base_path}/interfaces"
 config("config") {
   visibility = [ ":*" ]
 
@@ -29,15 +32,28 @@ config("config") {
 ohos_shared_library("backup") {
   subsystem_name = "distributeddatamgr"
   part_name = "relational_store"
-  sources = [ "./napi/rdb_store_backup_test.cpp" ]
+  sources = [ 
+    "./napi/rdb_store_backup_test.cpp",
+ #     "src/relational_cursor.cpp",
+#      "src/relational_predicates.cpp",
+ #     "src/relational_store.cpp",
+  #    "src/relational_value_object.cpp",
+ #     "src/relational_values_bucket.cpp",
+     ]
   if (!(product_name == "m40")) {
     libs = [ rebase_path(libcxx_ndk_shared_file) ]
   }
 
-  include_dirs = [ "../cpp" ]
+  include_dirs = [
+     "../cpp" ,
+      "${relational_store_common_path}/include",
+      "${relational_store_native_path}/rdb/include",
+     ]
   configs = [ ":config" ]
-
-  external_deps = [ "relational_store:native_rdb_ndk" ]
+#  deps = [ "${relational_store_ndk_path}/ndk:native_rdb_ndk" ]
+  external_deps = [ 
+    "relational_store:native_rdb_ndk",
+     ]
 
   output_extension = "so"
 }
