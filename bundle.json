@@ -20,6 +20,7 @@
         "deps": {
             "components": [],
             "third_party": [
+                "libpng",
                 "glslang",
                 "vkglcts",
                 "amber_source",
