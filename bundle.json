@@ -20,6 +20,7 @@
         "deps": {
             "components": [],
             "third_party": [
+                "vkglcts",
                 "amber_source",
                 "libdeqp_amber",
                 "amberenginevulkan_source",
