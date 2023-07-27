@@ -17,7 +17,7 @@ import("//foundation/distributeddatamgr/relational_store/relational_store.gni")
 
 relational_store_base_path = "//foundation/distributeddatamgr/relational_store"
 relational_store_innerapi_path ="${relational_store_base_path}/interfaces/inner_api"
-relational_store_ndk_path ="${relational_store_base_path}/interfaces"
+#relational_store_ndk_path ="${relational_store_base_path}/interfaces"
 config("config") {
   visibility = [ ":*" ]
 
