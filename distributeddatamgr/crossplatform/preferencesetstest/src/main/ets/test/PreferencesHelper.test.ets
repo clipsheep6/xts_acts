@@ -276,7 +276,7 @@ export default function preferencesHelperTest() {
         };
         mPreferences.on(null, observer);
       } catch (err) {
-        console.info("Failed to testPreferencesOn003. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to testPreferencesOn003. code =" + err.code + ", message =" + err.message + "type" + typeof(err.code));
         expect(err.code === "401").assertTrue();
       }
     });
@@ -298,7 +298,7 @@ export default function preferencesHelperTest() {
         };
         mPreferences.on("", observer);
       } catch (err) {
-        console.info("Failed to testPreferencesOn004. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to testPreferencesOn004. code =" + err.code + ", message =" + err.message + "type" + typeof(err.code));
         expect(err.code === "401").assertTrue();
       }
     });
@@ -378,7 +378,7 @@ export default function preferencesHelperTest() {
         mPreferences.on("change", observer);
         mPreferences.off(null);
       } catch (err) {
-        console.info("Failed to testPreferencesOff003. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to testPreferencesOff003. code =" + err.code + ", message =" + err.message + "type" + typeof(err.code));
         expect(err.code === "401").assertTrue();
       }
     });
@@ -402,7 +402,7 @@ export default function preferencesHelperTest() {
         mPreferences.on("change", observer);
         mPreferences.off("");
       } catch (err) {
-        console.info("Failed to testPreferencesOff004. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to testPreferencesOff004. code =" + err.code + ", message =" + err.message + "type" + typeof(err.code));
         expect(err.code === "401").assertTrue();
       }
     });
