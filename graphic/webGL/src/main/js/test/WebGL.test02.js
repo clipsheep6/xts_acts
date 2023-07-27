@@ -63,6 +63,8 @@ export default function webgl1Test_webgl2(){
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl2(){
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl2(){
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -298,6 +303,7 @@ export default function webgl1Test_webgl2(){
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
 			expect(isQuery1).assertEqual(true);
+			gl2.deleteQuery(query);
 			done();
 		});
 
@@ -316,6 +322,7 @@ export default function webgl1Test_webgl2(){
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
 			expect(isQuery1).assertEqual(true);
+			gl2.deleteQuery(query);
 			done();
 		});
 
@@ -332,6 +339,7 @@ export default function webgl1Test_webgl2(){
 			const isQuery1 = gl2.isQuery(query);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
 			expect(isQuery1).assertEqual(false);
+			gl2.deleteQuery(query);
 			done();
 		});
 
@@ -357,6 +365,7 @@ export default function webgl1Test_webgl2(){
 			const isQuery2 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery2: " + isQuery2);
 			expect(isQuery2).assertEqual(true);
+			gl2.deleteQuery(query);
 
 			done();
 		});
@@ -382,6 +391,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createQuery beginQuery getQueryParameter: " + result);
 			expect(typeof(result)).assertEqual("boolean");
+			gl2.deleteQuery(query);
 			done();
 		});
 
@@ -406,6 +416,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createQuery beginQuery getQueryParameter: " + result);
 			expect(typeof(result)).assertEqual("number");
+			gl2.deleteQuery(query);
 			done();
 		});
 
@@ -432,6 +443,7 @@ export default function webgl1Test_webgl2(){
 			console.info("webgltest createQuery deleteQuery isQuery2: " + isQuery2);
 
 			expect(isQuery2).assertEqual(false);
+			gl2.deleteQuery(query);
 			done();
 		});
 
@@ -616,6 +628,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter_1: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -635,6 +648,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -654,6 +668,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -673,6 +688,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -692,6 +708,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -711,6 +728,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -730,6 +748,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -749,6 +768,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest createSampler getSamplerParameter: " + samplerParameter);
 			expect(typeof(samplerParameter)).assertEqual("number");
+			gl2.deleteSampler(sampler);
 			
 			done();
 		});
@@ -802,6 +822,7 @@ export default function webgl1Test_webgl2(){
 				status == gl.CONDITION_SATISFIED || status == gl.WAIT_FAILED) {
 				statusFlag = true;}
 			expect(statusFlag).assertEqual(true);
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -822,6 +843,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -872,6 +894,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest fenceSync getSyncParameter: " + syncParameter);
 			expect(syncParameter).assertEqual(0x9116);
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -903,6 +926,7 @@ export default function webgl1Test_webgl2(){
 				syncParameterFlag = true;
 			}
 			expect(syncParameterFlag).assertEqual(true);
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -927,6 +951,7 @@ export default function webgl1Test_webgl2(){
 
 			console.info("webgltest fenceSync getSyncParameter: " + syncParameter);
 			expect(syncParameter).assertEqual(0x9117);
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -954,6 +979,7 @@ export default function webgl1Test_webgl2(){
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -1100,6 +1126,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl2.deleteTransformFeedback(transformFeedback);
 			
 			done();
 		});
@@ -1178,6 +1205,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest getFragDataLocation getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1229,6 +1259,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform1ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1252,6 +1285,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform1ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1303,6 +1337,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform2ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1325,6 +1362,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform2ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1376,6 +1414,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform3ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1399,6 +1440,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform3ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1450,6 +1492,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform4ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1473,6 +1518,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform4ui getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1523,6 +1569,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform1uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1545,6 +1594,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform1uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1596,6 +1646,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform2uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1620,6 +1673,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform2uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1671,6 +1725,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform3uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1695,6 +1752,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform3uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1746,6 +1804,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform4uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1769,6 +1830,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform4uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1820,6 +1882,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix3x2fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1844,6 +1909,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix3x2fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1894,6 +1960,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix4x2fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1917,6 +1986,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix4x2fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -1967,6 +2037,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix2x3fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -1989,6 +2062,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix2x3fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -2039,6 +2113,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix4x3fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -2062,6 +2139,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix4x3fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -2112,6 +2190,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix2x4fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -2134,6 +2215,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix2x4fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -2184,6 +2266,9 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix3x4fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -2207,6 +2292,7 @@ export default function webgl1Test_webgl2(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniformMatrix3x4fv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteProgram(programObj);
 			
 			done();
 		});
@@ -2421,6 +2507,7 @@ export default function webgl1Test_webgl2(){
 			expect(errorCode).assertEqual(gl.NO_ERROR);
 
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteBuffer(indexBuffer);
 			
 			done();
 		});
@@ -2445,6 +2532,7 @@ export default function webgl1Test_webgl2(){
 			expect(errorCode).assertEqual(gl.NO_ERROR);
 
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteBuffer(indexBuffer);
 			
 			done();
 		});
@@ -2593,6 +2681,7 @@ export default function webgl1Test_webgl2(){
 			const index = gl.getAttribLocation(program, 'webgl_Color');
 			console.info('getAttribLocation  index' + index);
 			expect(index).assertEqual(-1);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -2623,6 +2712,9 @@ export default function webgl1Test_webgl2(){
 
 			const aVertexPosition = gl.getAttribLocation(programObj, "a_Position");
 			expect(aVertexPosition).assertEqual(0);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			done();
 		});
 
@@ -2640,6 +2732,7 @@ export default function webgl1Test_webgl2(){
 			const bufferSize = gl.getBufferParameter(gl.ARRAY_BUFFER, gl.BUFFER_SIZE);
 			console.info('bufferSize' + bufferSize);
 			expect(bufferSize).assertEqual(1024);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -2658,6 +2751,7 @@ export default function webgl1Test_webgl2(){
 			const bufferUsage = gl.getBufferParameter(gl.ARRAY_BUFFER, gl.BUFFER_USAGE);
 			console.info('bufferUsage' + bufferUsage);
 			expect(bufferUsage).assertEqual(gl.STATIC_DRAW);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -2717,6 +2811,7 @@ export default function webgl1Test_webgl2(){
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2753,6 +2848,8 @@ export default function webgl1Test_webgl2(){
 			console.info('attachedShaders' + attachedShaders);
 			const type = (attachedShaders === 1);
 			expect(type).assertEqual(false);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
 			done();
 		});
 
@@ -2774,6 +2871,7 @@ export default function webgl1Test_webgl2(){
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -2792,6 +2890,7 @@ export default function webgl1Test_webgl2(){
 
 			const width = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_WIDTH);
 			expect(width).assertEqual(256);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 })

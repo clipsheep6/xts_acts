@@ -63,6 +63,8 @@ export default function webgl1Test_webgl13() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl13() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl13() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -461,6 +466,7 @@ export default function webgl1Test_webgl13() {
 			console.info("webgltest fenceSync clientWaitSync: " + status);
 
 			expect(status).assertEqual(0);
+			gl2.deleteSync(sync);
 
 			
 			done();
@@ -486,6 +492,7 @@ export default function webgl1Test_webgl13() {
 
 			console.info("webgltest fenceSync getSyncParameter: " + syncParameter);
 			expect(syncParameter).assertEqual(gl2.SYNC_FENCE);
+			gl2.deleteSync(sync);
 			
 			done();
 		});
@@ -1052,6 +1059,7 @@ export default function webgl1Test_webgl13() {
 			const transformFeedbackVaryingsError = gl.getError();
 			console.info("transformFeedbackVaryingsError: " + transformFeedbackVaryingsError);
 			expect(transformFeedbackVaryingsError).assertEqual(0);
+			gl.deleteProgram(program);
 			done();
 		})
 
@@ -1069,6 +1077,7 @@ export default function webgl1Test_webgl13() {
 			const isBuffer = gl.isBuffer(bufferVertexAttrib);
 			console.info("getVertexAttrib: bufferVertexAttrib" + bufferVertexAttrib);
 			expect(isBuffer).assertEqual(false);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -1086,6 +1095,7 @@ export default function webgl1Test_webgl13() {
 			const isBuffer = gl.isBuffer(bufferVertexAttrib);
 			console.info("getVertexAttrib: bufferVertexAttrib" + bufferVertexAttrib);
 			expect(isBuffer).assertEqual(false);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -1104,6 +1114,7 @@ export default function webgl1Test_webgl13() {
 			const isBuffer = gl.isBuffer(bufferVertexAttrib);
 			console.info("getVertexAttrib: bufferVertexAttrib" + bufferVertexAttrib);
 			expect(isBuffer).assertEqual(false);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -1121,6 +1132,7 @@ export default function webgl1Test_webgl13() {
 			const isBuffer = gl.isBuffer(bufferVertexAttrib);
 			console.info("getVertexAttrib: bufferVertexAttrib" + bufferVertexAttrib);
 			expect(isBuffer).assertEqual(false);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -1139,6 +1151,7 @@ export default function webgl1Test_webgl13() {
 
 			const width = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_INTERNAL_FORMAT);
 			expect(width).assertEqual(gl.DEPTH_COMPONENT16);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1156,6 +1169,7 @@ export default function webgl1Test_webgl13() {
 
 			const width = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_INTERNAL_FORMAT);
 			expect(width).assertEqual(gl.STENCIL_INDEX8);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1942,6 +1956,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1965,6 +1980,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1988,6 +2004,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2011,6 +2028,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2034,6 +2052,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2057,6 +2076,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2080,6 +2100,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2103,6 +2124,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -2126,6 +2148,7 @@ export default function webgl1Test_webgl13() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 	})

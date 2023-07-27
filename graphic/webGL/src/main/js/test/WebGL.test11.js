@@ -63,6 +63,8 @@ export default function webgl1Test_webgl11() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl11() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl11() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -298,6 +303,7 @@ export default function webgl1Test_webgl11() {
 			const errorCode = gl.getError();
 			console.info("webgl2test bufferData getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -315,6 +321,7 @@ export default function webgl1Test_webgl11() {
 			const errorCode = gl.getError();
 			console.info("webgl2test bufferData getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -332,6 +339,7 @@ export default function webgl1Test_webgl11() {
 			const errorCode = gl.getError();
 			console.info("webgl2test bufferData getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -349,6 +357,7 @@ export default function webgl1Test_webgl11() {
 			const errorCode = gl.getError();
 			console.info("webgl2test bufferData getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -366,6 +375,7 @@ export default function webgl1Test_webgl11() {
 			const errorCode = gl.getError();
 			console.info("webgl2test bufferData getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -765,6 +775,7 @@ export default function webgl1Test_webgl11() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -784,6 +795,7 @@ export default function webgl1Test_webgl11() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -801,6 +813,7 @@ export default function webgl1Test_webgl11() {
 
 			const width = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_INTERNAL_FORMAT);
 			expect(width).assertEqual(gl.RGBA4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -935,6 +948,7 @@ export default function webgl1Test_webgl11() {
 			} else {
 			    expect(isFrameBuffer2).assertEqual(false);
 			}
+			gl.deleteFramebuffer(framebuffer);
 			
 			done();
 		});
@@ -968,6 +982,7 @@ export default function webgl1Test_webgl11() {
 			} else {
 			    expect(isFrameBuffer2).assertEqual(false);
 			}
+			gl.deleteFramebuffer(framebuffer);
 			
 			done();
 		});
@@ -986,6 +1001,7 @@ export default function webgl1Test_webgl11() {
 
 			const height = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_HEIGHT);
 			expect(height).assertEqual(256);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1003,6 +1019,7 @@ export default function webgl1Test_webgl11() {
 
 			const size = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_BLUE_SIZE);
 			expect(size).assertEqual(4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1020,6 +1037,7 @@ export default function webgl1Test_webgl11() {
 
 			const size = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_RED_SIZE);
 			expect(size).assertEqual(4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1037,6 +1055,7 @@ export default function webgl1Test_webgl11() {
 
 			const size = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_ALPHA_SIZE);
 			expect(size).assertEqual(4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1053,6 +1072,7 @@ export default function webgl1Test_webgl11() {
 			gl.renderbufferStorage(gl.RENDERBUFFER, gl.RGBA4, 256, 256);
 			const size = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_DEPTH_SIZE);
 			expect(size).assertEqual(0);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1069,6 +1089,7 @@ export default function webgl1Test_webgl11() {
 			gl2.renderbufferStorageMultisample(gl2.RENDERBUFFER, 4, gl.RBGA4, 256, 256);
 			const size = gl.getRenderbufferParameter(gl2.RENDERBUFFER, gl2.RENDERBUFFER_SAMPLES);
 			expect(size).assertEqual();
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1086,6 +1107,7 @@ export default function webgl1Test_webgl11() {
 
 			const size = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_STENCIL_SIZE);
 			expect(size).assertEqual(0);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1213,6 +1235,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1233,6 +1256,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1253,6 +1277,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1273,6 +1298,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1293,6 +1319,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1313,6 +1340,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1333,6 +1361,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1353,6 +1382,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1373,6 +1403,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1393,6 +1424,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1413,6 +1445,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1432,6 +1465,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1452,6 +1486,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1472,6 +1507,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1492,6 +1528,7 @@ export default function webgl1Test_webgl11() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
