@@ -354,7 +354,7 @@ export default function preferencesHelperTest() {
         await sleep(1000);
         expect(isTrigger === false).assertTrue();
       } catch (err) {
-        console.info("Failed to testPreferencesOff001. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to testPreferencesOff001. code =" + err.code + ", message =" + err.message+ "type" + typeof(err.code));
         expect(!err).assertTrue();
       }
     });
