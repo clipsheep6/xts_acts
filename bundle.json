@@ -14,7 +14,11 @@
         "subsystem": "xts",
         "syscap": [],
         "features": [],
-        "adapted_system_type": [],
+        "adapted_system_type": [
+          "mini",
+          "small",
+          "standard"
+        ],
         "rom": "~256KB",
         "ram": "0KB",
         "deps": {
@@ -24,7 +28,7 @@
         "build": {
             "sub_component": [],
             "inner_kits": [],
-            "test": [ "//test/xts/acts/build:acts" ]
+            "test": [ "//test/xts/acts/build:acts_group" ]
         }
     }
 }
