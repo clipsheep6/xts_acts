@@ -639,8 +639,11 @@ export default function avVideoRecorderTestOne() {
                 await previewOutput.release()
                 console.info('releaseCamera 002');
                 console.info('previewOutput.release success');
-                await captureSession.release()
+                await captureSession.stop()
                 console.info('releaseCamera 003');
+                console.info('captureSession.stop success');
+                await captureSession.release()
+                console.info('releaseCamera 004');
                 console.info('captureSession.release success');
                 captureSession = null
                 console.info('releaseCamera success');
@@ -1082,1115 +1085,1115 @@ export default function avVideoRecorderTestOne() {
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0500 end')
         })
 
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100
-        //     * @tc.name      : 001.test create-resume
-        //     * @tc.desc      : Recorder video create-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     console.info('avRecorderResumeCallBack1 test start');
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_CALLBACK_EVENT,
-        //         // release avRecorder
-        //         RELEASECORDER_CALLBACK_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200
-        //     * @tc.name      : 001.test prepare-resume
-        //     * @tc.desc      : Recorder video prepare-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_CALLBACK_EVENT,
-        //         // release avRecorder
-        //         RELEASECORDER_CALLBACK_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300
-        //     * @tc.name      : 001.test start-resume
-        //     * @tc.desc      : Recorder video start-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_CALLBACK_EVENT,
-        //         // stop camera
-        //         STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700
-        //     * @tc.name      : 001.test create-prepare-getInputSurface-resume
-        //     * @tc.desc      : Recorder create-prepare-getInputSurface-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // getInputSurface
-        //         GETINPUTSURFACE_CALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700 end')
-        // })
-        //
-        //
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100
-        //     * @tc.name      : 001.test start-resume
-        //     * @tc.desc      : Recorder video start-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_PROMISE_EVENT,
-        //         // stop camera
-        //         STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200
-        //     * @tc.name      : 001.test start-resume
-        //     * @tc.desc      : Recorder video start-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_PROMISE_EVENT,
-        //         // stop camera
-        //         STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300
-        //     * @tc.name      : 001.test start-resume
-        //     * @tc.desc      : Recorder video start-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_PROMISE_EVENT,
-        //         // stop camera
-        //         STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700
-        //     * @tc.name      : 001.test start-resume
-        //     * @tc.desc      : Recorder video start-resume
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // resume recorder
-        //         STARTCAMERA_EVENT, RESUMERECORDER_PROMISE_EVENT,
-        //         // stop camera
-        //         STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700 end')
-        // })
-        //
-        //
-        //
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300
-        //     * @tc.name      : 001.test start-stop
-        //     * @tc.desc      : Recorder video start-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400
-        //     * @tc.name      : 001.test start-pause-stop
-        //     * @tc.desc      : Recorder video start-pause-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // pause recorder
-        //         PAUSERECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400 end')
-        // })
-        //
-        //
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600
-        //     * @tc.name      : 001.test start-reset-stop
-        //     * @tc.desc      : Recorder start-reset-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800
-        //     * @tc.name      : 001.test start-stop-stop-stop
-        //     * @tc.desc      : Recorder start-stop-stop-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100
-        //     * @tc.name      : 001.test create-stop
-        //     * @tc.desc      : Recorder video create-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200
-        //     * @tc.name      : 001.test prepare-stop
-        //     * @tc.desc      : Recorder video prepare-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300
-        //     * @tc.name      : 001.test start-stop
-        //     * @tc.desc      : Recorder video start-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300 end')
-        // })
-        //
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400
-        //     * @tc.name      : 001.test pause-stop
-        //     * @tc.desc      : Recorder video pause-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
-        //         //pause recorder
-        //         PAUSERECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400 end')
-        // })
-        //
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600
-        //     * @tc.name      : 001.test reset-stop
-        //     * @tc.desc      : Recorder video reset-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700
-        //     * @tc.name      : 001.test getInputSurface-stop
-        //     * @tc.desc      : Recorder video getInputSurface-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT,
-        //         // start recorder
-        //         STARTRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // release avRecorder
-        //         RELEASECORDER_PROMISE_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800
-        //     * @tc.name      : 001.test start-stop-stop-stop
-        //     * @tc.desc      : Recorder video start-stop-stop-stop
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,
-        //         // stop camera
-        //         STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100
-        //     * @tc.name      : 001.test create-reset
-        //     * @tc.desc      : Recorder video create-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     console.info('avRecorderResumeCallBack1 test start');
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder
-        //         RELEASECORDER_CALLBACK_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200
-        //     * @tc.name      : 001.test prepare-reset
-        //     * @tc.desc      : Recorder video prepare-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder
-        //         RELEASECORDER_CALLBACK_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300
-        //     * @tc.name      : 001.test start-reset
-        //     * @tc.desc      : Recorder video start-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // stop camera
-        //         STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400
-        //     * @tc.name      : 001.test start-pause-reset
-        //     * @tc.desc      : Recorder video start-pause-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // pause recorder
-        //         PAUSERECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500
-        //     * @tc.name      : 001.test start-resume-reset
-        //     * @tc.desc      : Recorder video start-resume-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // resume recorder
-        //         RESUMERECORDER_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600
-        //     * @tc.name      : 001.test start-stop-reset
-        //     * @tc.desc      : Recorder video start-stop-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700
-        //     * @tc.name      : 001.test create-prepare-getInputSurface-reset
-        //     * @tc.desc      : Recorder create-prepare-getInputSurface-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // getInputSurface
-        //         GETINPUTSURFACE_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder
-        //         RELEASECORDER_CALLBACK_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800
-        //     * @tc.name      : 001.test create-prepare-getInputSurface-start-reset-reset-reset
-        //     * @tc.desc      : Recorder create-prepare-getInputSurface-start-reset-reset-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_CALLBACK_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100
-        //     * @tc.name      : 001.test create-reset
-        //     * @tc.desc      : Recorder video create-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200
-        //     * @tc.name      : 001.test prepare-reset
-        //     * @tc.desc      : Recorder video prepare-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_PROMISE_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300
-        //     * @tc.name      : 001.test start-reset
-        //     * @tc.desc      : Recorder video start-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400
-        //     * @tc.name      : 001.test start-pause-reset
-        //     * @tc.desc      : Recorder video start-pause-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
-        //         // pause recorder
-        //         PAUSERECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400 end')
-        // })
-        //
-        //
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600
-        //     * @tc.name      : 001.test start-stop-reset
-        //     * @tc.desc      : Recorder video start-stop-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700
-        //     * @tc.name      : 001.test create-prepare-getInputSurface-reset
-        //     * @tc.desc      : Recorder create-prepare-getInputSurface-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700 end')
-        // })
-        //
-        // /* *
-        //     * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800
-        //     * @tc.name      : 001.test create-prepare-getInputSurface-start-reset-reset-reset
-        //     * @tc.desc      : Recorder create-prepare-getInputSurface-start-reset-reset-reset
-        //     * @tc.size      : MediumTest
-        //     * @tc.type      : Function test
-        //     * @tc.level     : Level2
-        // */
-        // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800', 0, async function (done) {
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800 start')
-        //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
-        //     fdPath = "fd://" + fdObject.fdNumber;
-        //     avConfig.url = fdPath;
-        //     let mySteps = new Array(
-        //         // init avRecorder
-        //         CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
-        //         // init camera
-        //         GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
-        //         // start recorder
-        //         STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
-        //         // stop recorder
-        //         STOPRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // reset recorder
-        //         RESETRECORDER_PROMISE_EVENT,
-        //         // release avRecorder and camera
-        //         RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
-        //         // end
-        //         END_EVENT
-        //     );
-        //     eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
-        //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800 end')
-        // })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100
+            * @tc.name      : 001.test create-resume
+            * @tc.desc      : Recorder video create-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            console.info('avRecorderResumeCallBack1 test start');
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_CALLBACK_EVENT,
+                // release avRecorder
+                RELEASECORDER_CALLBACK_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200
+            * @tc.name      : 001.test prepare-resume
+            * @tc.desc      : Recorder video prepare-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_CALLBACK_EVENT,
+                // release avRecorder
+                RELEASECORDER_CALLBACK_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300
+            * @tc.name      : 001.test start-resume
+            * @tc.desc      : Recorder video start-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_CALLBACK_EVENT,
+                // stop camera
+                STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700
+            * @tc.name      : 001.test create-prepare-getInputSurface-resume
+            * @tc.desc      : Recorder create-prepare-getInputSurface-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // getInputSurface
+                GETINPUTSURFACE_CALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700 end')
+        })
+
+
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100
+            * @tc.name      : 001.test start-resume
+            * @tc.desc      : Recorder video start-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_PROMISE_EVENT,
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200
+            * @tc.name      : 001.test start-resume
+            * @tc.desc      : Recorder video start-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_PROMISE_EVENT,
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300
+            * @tc.name      : 001.test start-resume
+            * @tc.desc      : Recorder video start-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
+                // resume recorder
+                RESUMERECORDER_PROMISE_EVENT,
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700
+            * @tc.name      : 001.test start-resume
+            * @tc.desc      : Recorder video start-resume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // resume recorder
+                STARTCAMERA_EVENT, RESUMERECORDER_PROMISE_EVENT,
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700 end')
+        })
+
+
+
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300
+            * @tc.name      : 001.test start-stop
+            * @tc.desc      : Recorder video start-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400
+            * @tc.name      : 001.test start-pause-stop
+            * @tc.desc      : Recorder video start-pause-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // pause recorder
+                PAUSERECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400 end')
+        })
+
+
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600
+            * @tc.name      : 001.test start-reset-stop
+            * @tc.desc      : Recorder start-reset-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800
+            * @tc.name      : 001.test start-stop-stop-stop
+            * @tc.desc      : Recorder start-stop-stop-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100
+            * @tc.name      : 001.test create-stop
+            * @tc.desc      : Recorder video create-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200
+            * @tc.name      : 001.test prepare-stop
+            * @tc.desc      : Recorder video prepare-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300
+            * @tc.name      : 001.test start-stop
+            * @tc.desc      : Recorder video start-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300 end')
+        })
+
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400
+            * @tc.name      : 001.test pause-stop
+            * @tc.desc      : Recorder video pause-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
+                //pause recorder
+                PAUSERECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400 end')
+        })
+
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600
+            * @tc.name      : 001.test reset-stop
+            * @tc.desc      : Recorder video reset-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT,STARTRECORDER_PROMISE_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700
+            * @tc.name      : 001.test getInputSurface-stop
+            * @tc.desc      : Recorder video getInputSurface-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT,
+                // start recorder
+                STARTRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // release avRecorder
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800
+            * @tc.name      : 001.test start-stop-stop-stop
+            * @tc.desc      : Recorder video start-stop-stop-stop
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100
+            * @tc.name      : 001.test create-reset
+            * @tc.desc      : Recorder video create-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            console.info('avRecorderResumeCallBack1 test start');
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // release avRecorder
+                RELEASECORDER_CALLBACK_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200
+            * @tc.name      : 001.test prepare-reset
+            * @tc.desc      : Recorder video prepare-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // release avRecorder
+                RELEASECORDER_CALLBACK_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300
+            * @tc.name      : 001.test start-reset
+            * @tc.desc      : Recorder video start-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // stop camera
+                STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400
+            * @tc.name      : 001.test start-pause-reset
+            * @tc.desc      : Recorder video start-pause-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // pause recorder
+                PAUSERECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500
+            * @tc.name      : 001.test start-resume-reset
+            * @tc.desc      : Recorder video start-resume-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // resume recorder
+                RESUMERECORDER_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600
+            * @tc.name      : 001.test start-stop-reset
+            * @tc.desc      : Recorder video start-stop-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700
+            * @tc.name      : 001.test create-prepare-getInputSurface-reset
+            * @tc.desc      : Recorder create-prepare-getInputSurface-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // getInputSurface
+                GETINPUTSURFACE_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // release avRecorder
+                RELEASECORDER_CALLBACK_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800
+            * @tc.name      : 001.test create-prepare-getInputSurface-start-reset-reset-reset
+            * @tc.desc      : Recorder create-prepare-getInputSurface-start-reset-reset-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_CALLBACK_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100
+            * @tc.name      : 001.test create-reset
+            * @tc.desc      : Recorder video create-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200
+            * @tc.name      : 001.test prepare-reset
+            * @tc.desc      : Recorder video prepare-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,PREPARE_PROMISE_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300
+            * @tc.name      : 001.test start-reset
+            * @tc.desc      : Recorder video start-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400
+            * @tc.name      : 001.test start-pause-reset
+            * @tc.desc      : Recorder video start-pause-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
+                // pause recorder
+                PAUSERECORDER_PROMISE_EVENT, STOPCAMERA_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400 end')
+        })
+
+
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600
+            * @tc.name      : 001.test start-stop-reset
+            * @tc.desc      : Recorder video start-stop-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700
+            * @tc.name      : 001.test create-prepare-getInputSurface-reset
+            * @tc.desc      : Recorder create-prepare-getInputSurface-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800
+            * @tc.name      : 001.test create-prepare-getInputSurface-start-reset-reset-reset
+            * @tc.desc      : Recorder create-prepare-getInputSurface-start-reset-reset-reset
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfig.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_PROMISE_EVENT,
+                // stop recorder
+                STOPRECORDER_PROMISE_EVENT,STOPCAMERA_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // reset recorder
+                RESETRECORDER_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800 end')
+        })
     })
 }
