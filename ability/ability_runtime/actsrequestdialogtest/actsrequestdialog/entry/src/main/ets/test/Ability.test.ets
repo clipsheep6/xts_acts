@@ -157,5 +157,68 @@ export default function abilityTest() {
       id = setTimeout(timeout, CASE_TIMEOUT);
       console.log('Start  ACTS_requestDialog_0200 timer id : ' + id);
     })
+
+    /*
+    * @tc.number: ACTS_requestDialog_0300
+    * @tc.name: Start Recent Ability with no permission.
+    * @tc.desc: reguest dialog service
+    */
+    it('ACTS_requestDialog_0300', 0, async function (done) {
+      console.log('ACTS_requestDialog_0300====<begin');
+      var subscriber;
+      let id;
+      let resultCode;
+
+      async function subscribeCallBack(err, data) {
+        console.info("====>ACTS_requestDialog_0300 Subscribe CallBack data:====>" + JSON.stringify(data));
+
+        async function processInfoCheck(data) {
+          console.info('====> ACTS_requestDialog_0300 processInfoCheck=====>');
+          expect(globalThis.requestDialogSuccess).assertTrue();
+          expect(globalThis.validRequestInfo).assertTrue();
+          expect(globalThis.validRequestCallback).assertTrue();
+          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+          done();
+        }
+
+        if (data.event == "ACTS_REQUEST_DIALOG_EVENT1") {
+          console.info('====> ACTS_requestDialog_0300 ACTS_StartAbility_CommonEvent1 success=====>');
+
+          await sleep(500);
+          processInfoCheck(data);
+        }
+      }
+
+      commonEvent.createSubscriber(subscriberInfo).then(async (data) => {
+        console.info("====>ACTS_requestDialog_0300 Create Subscriber====>");
+        subscriber = data;
+        commonEvent.subscribe(subscriber, subscribeCallBack);
+        try {
+            await globalThis.abilityContext.requestDialogService(
+            {
+                bundleName: 'com.acts.example.requestdialog',
+                abilityName: 'com.acts.example.requestdialog.MainAbility2',
+            }).then((data) => {
+                console.info("====>ACTS_requestDialog_0300 request end + data:" + JSON.stringify(data));
+                resultCode = data.result;
+            })
+        } catch (paramError) {
+            console.info("====>ACTS_requestDialog_0300 requestDialogSerivce paramError====>");
+        }
+      })
+
+      function unSubscribeCallback() {
+        console.info("====>UnSubscribe0300 CallBack====>");
+      }
+
+      function timeout() {
+        console.log('ACTS_requestDialog_0300 timeout.');
+        done();
+      }
+
+      id = setTimeout(timeout, CASE_TIMEOUT);
+      console.log('Start  ACTS_requestDialog_0300 timer id : ' + id);
+    })
+
   })
 }
