@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef REQUEST_CROSSPLATFORM_REQUESTTEST__ARKUI_X_IOS_APP_APPDELEGATE_H 
+#define REQUEST_CROSSPLATFORM_REQUESTTEST__ARKUI_X_IOS_APP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -20,4 +21,4 @@
 @property (nonatomic, strong) UIWindow *window;
 
 @end
-
+#endif /* REQUEST_CROSSPLATFORM_REQUESTTEST__ARKUI_X_IOS_APP_APPDELEGATE_H  */
