@@ -1518,49 +1518,26 @@ export default function TaskPoolTest() {
          * @tc.level     : Level 2
          */
         it('testTaskPoolCancel001', 0, async function (done) {
-            function addition(arg) {
+            function inspectStatus(arg) {
                 "use concurrent"
-                return arg + 1;
-            }
-            function additionDelay(arg) {
-                "use concurrent"
-                var start = new Date().getTime();
-                while (new Date().getTime() - start < 200) {
+                let start = new Date().getTime();
+                  while (new Date().getTime() - start < 1000) {
                     continue;
                 }
-                return arg + 1;
+                return arg;
             }
             try {
-                var task1 = new taskpool.Task(additionDelay, 100);
-                var task2 = new taskpool.Task(additionDelay, 200);
-                var task3 = new taskpool.Task(additionDelay, 200);
-                var task4 = new taskpool.Task(additionDelay, 200);
-                var task5 = new taskpool.Task(additionDelay, 200);
-                var task6 = new taskpool.Task(additionDelay, 200);
-                var task7 = new taskpool.Task(additionDelay, 200);
-                var task8 = new taskpool.Task(additionDelay, 200);
-                var task9 = new taskpool.Task(additionDelay, 200);
-                var task10 = new taskpool.Task(additionDelay, 200);
-                var task11 = new taskpool.Task(addition, 300);
+                let task1 = new taskpool.Task(inspectStatus, 100);
+                let task2 = new taskpool.Task(inspectStatus, 200);
+                let task3 = new taskpool.Task(inspectStatus, 300);
+                let task4 = new taskpool.Task(inspectStatus, 400);
 
-                var result1 = taskpool.execute(task1);
-                var result2 = taskpool.execute(task2);
-                var result3 = taskpool.execute(task3);
-                var result4 = taskpool.execute(task4);
-                var result5 = taskpool.execute(task5);
-                var result6 = taskpool.execute(task6);
-                var result7 = taskpool.execute(task7);
-                var result8 = taskpool.execute(task8);
-                var result9 = taskpool.execute(task9);
-                var result10 = taskpool.execute(task10);
-                var result11 = taskpool.execute(task11);
-
-                var start = new Date().getTime();
-                while (new Date().getTime() - start < 20) {
-                    continue;
-                }
-
-                taskpool.cancel(task11);
+                taskpool.execute(task1);
+                taskpool.execute(task2);
+                taskpool.execute(task3);
+                taskpool.execute(task4);
+                setTimeout(()=>{
+                  taskpool.cancel(task4);}, 500);
             }
             catch (e) {
                 expect(e.toString()).assertEqual("");
@@ -1577,37 +1554,29 @@ export default function TaskPoolTest() {
          * @tc.level     : Level 2
          */
         it('testTaskPoolCancel002', 0, async function (done) {
-            function addition(arg) {
+            function inspectStatus(arg) {
                 "use concurrent"
-                return arg + 1;
+                return arg;
             }
-            function additionDelay(arg) {
-                "use concurrent"
-                var start = new Date().getTime();
-                while (new Date().getTime() - start < 3000) {
-                    continue;
-                }
-                return arg + 1;
-            }
+
             try {
-                var task1 = new taskpool.Task(additionDelay, 100);
-                var task2 = new taskpool.Task(additionDelay, 200);
-                var task3 = new taskpool.Task(addition, 300);
+                let task1 = new taskpool.Task(inspectStatus, 100);
+                let task2 = new taskpool.Task(inspectStatus, 200);
+                let task3 = new taskpool.Task(inspectStatus, 300);
+                let task4 = new taskpool.Task(inspectStatus, 400);
+                let task5 = new taskpool.Task(inspectStatus, 500);
+                let task6 = new taskpool.Task(inspectStatus, 600);
+                let res1 = taskpool.execute(task1);
+                let res2 = taskpool.execute(task2);
+                let res3 = taskpool.execute(task3);
+                let res4 = taskpool.execute(task4);
+                let res5 = taskpool.execute(task5);
+                let res6 = taskpool.execute(task6);
 
-                var result1 = taskpool.execute(task1);
-                var result2 = taskpool.execute(task2);
-                var result3 = taskpool.execute(task3);
-
-                var start = new Date().getTime();
-                while (new Date().getTime() - start < 1000) {
-                    continue;
-                }
-
+                taskpool.execute(task1);
                 taskpool.cancel(task1);
-            }
-            catch (e) {
-                expect(e.toString()).assertEqual(
-                    "BusinessError: The task is executing when it is canceled, taskpool:: can not cancel the running task");
+            } catch(e) {
+                expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1642,8 +1611,7 @@ export default function TaskPoolTest() {
                 taskpool.cancel(task1);
             }
             catch (e) {
-                expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1672,8 +1640,7 @@ export default function TaskPoolTest() {
                 taskpool.cancel(task3);
             }
             catch (e) {
-                expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1717,8 +1684,7 @@ export default function TaskPoolTest() {
                 taskpool.cancel(task3);
             }
             catch (e) {
-                expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
@@ -1763,8 +1729,7 @@ export default function TaskPoolTest() {
                 taskpool.cancel(task2);
             }
             catch (e) {
-                expect(e.toString()).assertEqual(
-                    "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+                expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
             }
             done();
         })
