@@ -15,7 +15,9 @@ import("//build/ohos.gni")
 import("//test/xts/acts/xts_acts_config.gni")
 
 group("acts_group") {
+  testonly = true
   deps = []
+
   if (os_level == "standard") {
     deps += [ "${xts_acts_path}:acts" ]
   } else {
