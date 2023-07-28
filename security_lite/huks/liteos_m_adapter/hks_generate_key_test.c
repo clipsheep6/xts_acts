@@ -45,7 +45,7 @@ LITE_TEST_SUIT(security, securityData, HksGenerateKeyTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -101,7 +101,7 @@ static const struct HksTestGenKeyParams g_testGenKeyParams[] = {
 
 static void ExecHksGenerateKeyTest001(void const *argument)
 {
-    LiteTestPrint("HksGenerateKeyTest001 Begin!\n");  
+    LiteTestPrint("HksGenerateKeyTest001 Begin!\n");
 
     uint32_t times = 1;
     uint32_t index = 0;
@@ -112,7 +112,7 @@ static void ExecHksGenerateKeyTest001(void const *argument)
         g_testGenKeyParams[index].keyAliasParams.blobSize,
         g_testGenKeyParams[index].keyAliasParams.blobDataExist,
         g_testGenKeyParams[index].keyAliasParams.blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSet = NULL;
     struct GenerateKeyParamSetStructure paramStruct = { &paramSet,
@@ -126,31 +126,31 @@ static void ExecHksGenerateKeyTest001(void const *argument)
         g_testGenKeyParams[index].paramSetParams.setKeyStorageFlag,
         g_testGenKeyParams[index].paramSetParams.keyStorageFlag };
     ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSetOut = NULL;
     ret = TestConstructGenerateKeyParamSetOut(&paramSetOut,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetExist,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateKeyRun(keyAlias, paramSet, paramSetOut, performTimes);
     if (ret != g_testGenKeyParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testGenKeyParams[index].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testGenKeyParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testGenKeyParams[index].expectResult, ret);
 
     if ((ret == HKS_SUCCESS) &&
         !(g_testGenKeyParams[index].paramSetParams.setKeyStorageFlag == true) &&
         (g_testGenKeyParams[index].paramSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     HksFreeParamSet(&paramSet);
     HksFreeParamSet(&paramSetOut);
     HKS_TEST_LOG_I("[%u]TestGenerateKey, Testcase_GenerateKey_[%03u] pass!", times, g_testGenKeyParams[index].testId);
-    TEST_ASSERT_TRUE(ret == 0);
-    
+    TEST_ASSERT_EQUAL(0, ret);
+
     LiteTestPrint("HksGenerateKeyTest001 End!\n");
     osThreadExit();
 }

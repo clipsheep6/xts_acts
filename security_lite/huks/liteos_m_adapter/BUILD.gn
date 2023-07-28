@@ -19,35 +19,51 @@ import("//test/xts/tools/lite/build/suite_lite.gni")
 hctest_suite("ActsHuksHalFunctionTest") {
   suite_name = "acts"
   sources = [
-    "hks_aes_test.c",
-    "hks_agreement_test.c",
-    "hks_bn_exp_mod_test.c",
-    "hks_cipher_test.c",
-    "hks_curve25519_test.c",
-    "hks_delete_test.c",
-    "hks_derive_test.c",
-    "hks_exist_test.c",
-    "hks_generate_key_test.c",
-    "hks_generate_random_test.c",
-    "hks_hash_test.c",
-    "hks_mac_test.c",
-    "hks_modify_key_test.c",
-    "hks_others_test.c",
-    "hks_safe_cipher_key_test.c",
-    "hks_safe_compare_key_test.c",
+    "test_hc_test_framework.c",
+    "hks_aes_test.c", # 第一个跑的话能过
+    "hks_agreement_test.c", # 第一个跑的话能过
+    "hks_bn_exp_mod_test.c", # 第一个跑的话能过
+    "hks_cipher_test.c", # 第一个跑的话能过
+    "hks_curve25519_test.c", # 第一个跑的话能过 4 Tests 0 Failures 0 Ignored
+    "hks_delete_test.c", # 第一个跑的话能过
+    "hks_derive_test.c", # 第一个跑的话能过 3 Tests 0 Failures 0 Ignored
+    "hks_exist_test.c", # 第一个跑的话能过 1 Tests 0 Failures 0 Ignored
+    "hks_generate_key_test.c", # 第一个跑的话能过 1 Tests 0 Failures 0 Ignored
+    "hks_generate_random_test.c", # 第一个跑的话能过 1 Tests 0 Failures 0 Ignored
+
+    # TODO -> 分析结论：mbedtls sha384跑不过，已反馈给恒玄
+    "hks_hash_test.c", # 第一个跑的话有一个失败了 3 Tests 1 Failures 0 Ignored
+
+    "hks_mac_test.c", # 第一个跑的话能过 2 Tests 0 Failures 0 Ignored
+    "hks_modify_key_test.c", # 第一个跑的话能过 1 Tests 0 Failures 0 Ignored
+
+    # 注释最后一个，只跑前7个能跑过 7 Tests 0 Failures 0 Ignored
+    # 注释前7个，单跑最后一个也能过 1 Tests 0 Failures 0 Ignored
+    # 但是中间注释几个跑不过
+    # TODO -> 分析结论：感觉还是跟多线程实现有关系，目前不能确定，不过单个跑都能过
+    "hks_others_test.c", # 第一个跑的话也不能完全跑过，最后的HksOthersTest008用例crash了，可能是多线程问题
+
+    "hks_safe_cipher_key_test.c", # 第一个跑的话能过 1 Tests 0 Failures 0 Ignored
+
+    # 烧板子第一次跑能过，再重启板子就crash
+    # TODO 尚未分析
+    "hks_safe_compare_key_test.c", # 第一个跑的话能过 但是重启板子之后就必现crash 1 Tests 0 Failures 0 Ignored
+
+    "hks_x25519_test.c"
   ]
   include_dirs = [
     "//base/security/huks/interfaces/inner_api/huks_standard/main/include",
     "//base/iothardware/peripheral/interfaces/inner_api",
     "//base/security/huks/frameworks/huks_standard/main/common/include",
     "../common/include",
+
+    "//base/security/huks/utils/crypto_adapter" # hks_client_service_adapter.h for TranslateToX509PublicKey
   ]
 
   deps = [ "//test/xts/acts/security_lite/huks/common:huks_test_common" ]
 
   cflags = [
-    "-D_CUT_ED25519_",
-    "-D_CUT_LOG_",
+    "-Werror=implicit-function-declaration"
   ]
   if (disable_authenticate == true) {
     cflags += [ "-D_CUT_AUTHENTICATE_" ]

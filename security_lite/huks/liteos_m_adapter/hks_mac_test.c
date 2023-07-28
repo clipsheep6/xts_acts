@@ -214,7 +214,7 @@ LITE_TEST_SUIT(security, securityData, HksMacTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -260,14 +260,14 @@ static int32_t ConstructDataToBlob(struct HksBlob **srcData, struct HksBlob **ma
         srcDataParams->blobSize,
         srcDataParams->blobDataExist,
         srcDataParams->blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestConstuctBlob(macData,
         macDataParams->blobExist,
         macDataParams->blobSize,
         macDataParams->blobDataExist,
         macDataParams->blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -293,7 +293,7 @@ static int32_t Mac(const struct HksBlob *key, const struct HksBlob *srcData, str
         };
         ret = TestConstructMacParamSet(&paramStructFalse);
     }
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksMacRun(key, macParamSet, srcData, macData, 1);
     HksFreeParamSet(&macParamSet);
@@ -324,26 +324,26 @@ static int32_t BaseTestMac(uint32_t index)
                 g_testMacParams[index].keyParams.blobDataSize);
         }
     }
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     /* 2. mac */
     struct HksBlob *srcData = NULL;
     struct HksBlob *macData = NULL;
     ret = ConstructDataToBlob(&srcData, &macData,
         &g_testMacParams[index].srcDataParams, &g_testMacParams[index].macParams);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = Mac(key, srcData, macData, &g_testMacParams[index].macParamSetParams, g_testMacParams[index].macType);
     if (ret != g_testMacParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testMacParams[index].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testMacParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testMacParams[index].expectResult, ret);
 
     /* 3. deletekey */
     if ((g_testMacParams[index].macType == HKS_TEST_MAC_TYPE_TEE) &&
         (g_testMacParams[index].keyAliasParams.blobExist)) {
         ret = HksDeleteKey(key, NULL);
-        TEST_ASSERT_TRUE(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
     TestFreeBlob(&key);
     TestFreeBlob(&srcData);
@@ -355,7 +355,7 @@ static void ExecHksMacTest001(void const *argument)
 {
     LiteTestPrint("HksMacTest001 Begin!\n");
     int32_t ret = BaseTestMac(0);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     LiteTestPrint("HksMacTest001 End!\n");
     osThreadExit();
 }
@@ -364,7 +364,7 @@ static void ExecHksMacTest002(void const *argument)
 {
     LiteTestPrint("HksMacTest002 Begin!\n");
     int32_t ret = BaseTestMac(1);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     ret = BaseTestMacAnswer();
     LiteTestPrint("HksMacTest002 End!\n");
     osThreadExit();
@@ -376,7 +376,7 @@ static void ExecHksMacTest002(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -399,7 +399,7 @@ LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksMacTest, HksMacTest002, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;

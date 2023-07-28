@@ -56,14 +56,14 @@ LITE_TEST_SUIT(security, securityData, HksSafeCompareKeyTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
- 
+
 static BOOL HksSafeCompareKeyTestSetUp()
 {
-    LiteTestPrint("setup\n");   
+    LiteTestPrint("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -76,7 +76,7 @@ static BOOL HksSafeCompareKeyTestSetUp()
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksSafeCompareKeyTestSetUp End2!\n"); 
+    LiteTestPrint("HksSafeCompareKeyTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -128,19 +128,19 @@ static int32_t SafeTestGenerateKey(struct HksBlob *keyAlias)
         g_testGenKeyParams[index].paramSetParams.keyStorageFlag
     };
     int32_t ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSetOut = NULL;
     ret = TestConstructGenerateKeyParamSetOut(&paramSetOut,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetExist,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetSize);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateKeyRun(keyAlias, paramSet, paramSetOut, performTimes);
     if (ret != g_testGenKeyParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testGenKeyParams[index].testId, ret);
     }
-    HKS_TEST_ASSERT(ret == g_testGenKeyParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testGenKeyParams[index].expectResult, ret);
 
     if (ret == g_testGenKeyParams[index].expectResult) {
         ret = 0;
@@ -193,26 +193,27 @@ static int32_t CompareKeyData(struct HksBlob *keyAliasOne, struct HksBlob *keyAl
     }
 
     uint32_t sizeRead = HksTestFileRead(g_storePath, "hks_keystore", 0, bufOne, sizeOne);
-    TEST_ASSERT_TRUE(sizeRead > 0);
+    TEST_ASSERT_GREATER_THAN(0, sizeRead);
 
     g_storageImageBuffer.data = bufOne;
     g_storageImageBuffer.size = sizeOne;
 
     int32_t offset1;
     int ret = GetKeyOffsetByKeyAlias(keyAliasOne, (uint32_t *)(&offset1));
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(HKS_SUCCESS, ret);
 
     struct HksStoreKeyInfo *keyInfo1 = (struct HksStoreKeyInfo *)(g_storageImageBuffer.data + offset1);
 
     int32_t offset2;
     ret = GetKeyOffsetByKeyAlias(keyAliasTwo, (uint32_t *)(&offset2));
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(HKS_SUCCESS, ret);
 
     struct HksStoreKeyInfo *keyInfo2 = (struct HksStoreKeyInfo *)(g_storageImageBuffer.data + offset2);
 
-    TEST_ASSERT_TRUE(keyInfo1->keyInfoLen == keyInfo2->keyInfoLen);
+    TEST_ASSERT_EQUAL(keyInfo1->keyInfoLen, keyInfo2->keyInfoLen);
 
     ret = memcmp(keyInfo1, keyInfo2, keyInfo1->keyInfoLen);
+    TEST_ASSERT_EQUAL(EOK, ret);
     HksTestFree(bufOne);
     return ret;
 }
@@ -222,14 +223,14 @@ static void ExcHksSafeCompareKeyTest001(void const *argument)
     LiteTestPrint("HksSafeCompareKeyTest001 Begin!\n");
     struct HksBlob keyAliasOne = { strlen(g_testOne), (uint8_t *)g_testOne };
     int32_t ret = SafeTestGenerateKey(&keyAliasOne);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     struct HksBlob keyAliasTwo = { strlen(g_testTwo), (uint8_t *)g_testTwo };
     ret = SafeTestGenerateKey(&keyAliasTwo);
-    HKS_TEST_ASSERT(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = CompareKeyData(&keyAliasOne, &keyAliasTwo);
-    HKS_TEST_ASSERT(ret != 0);
-    TEST_ASSERT_TRUE(ret != 0);
+    TEST_ASSERT_NOT_EQUAL(0, ret);
+    TEST_ASSERT_EQUAL(0, ret);
     LiteTestPrint("HksSafeCompareKeyTest001 End!\n");
     osThreadExit();
 }
@@ -240,7 +241,7 @@ static void ExcHksSafeCompareKeyTest001(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksSafeCompareKeyTest, HksSafeCompareKeyTest001, Level1)
-{  
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -253,7 +254,7 @@ LITE_TEST_CASE(HksSafeCompareKeyTest, HksSafeCompareKeyTest001, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksSafeCompareKeyTest001, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksSafeCompareKeyTest001 End2!\n");    
+    LiteTestPrint("HksSafeCompareKeyTest001 End2!\n");
 }
 RUN_TEST_SUITE(HksSafeCompareKeyTest);
 

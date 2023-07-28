@@ -48,7 +48,7 @@ LITE_TEST_SUIT(security, securityData, HksDeleteTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -59,21 +59,21 @@ static void ExecHksDeleteTest001(void const *argument)
     int32_t ret;
     struct HksBlob *keyAlias = NULL;
     if (g_testKeyExistParams[0].isGenKey) {
-        HKS_TEST_ASSERT(TestGenDefaultKeyAndGetAlias(&keyAlias) == 0);
+        TEST_ASSERT_EQUAL(0, TestGenDefaultKeyAndGetAlias(&keyAlias));
     } else {
         ret = TestConstuctBlob(&keyAlias,
                                g_testKeyExistParams[0].keyAliasParams.blobExist,
                                g_testKeyExistParams[0].keyAliasParams.blobSize,
                                g_testKeyExistParams[0].keyAliasParams.blobDataExist,
                                g_testKeyExistParams[0].keyAliasParams.blobDataSize);
-        HKS_TEST_ASSERT(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
 
     ret = HksDeleteKeyRun(keyAlias, 1);
-    HKS_TEST_ASSERT(ret == g_testKeyExistParams[0].expectResult);
+    TEST_ASSERT_EQUAL(g_testKeyExistParams[0].expectResult, ret);
 
     TestFreeBlob(&keyAlias);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     LiteTestPrint("HksDeleteTest001 End!\n");
     osThreadExit();
 }
@@ -129,7 +129,7 @@ LITE_TEST_CASE(HksDeleteTest, HksDeleteTest001, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksDeleteTest001, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksDeleteTest001 End2!\n");    
+    LiteTestPrint("HksDeleteTest001 End2!\n");
 }
 
 RUN_TEST_SUITE(HksDeleteTest);

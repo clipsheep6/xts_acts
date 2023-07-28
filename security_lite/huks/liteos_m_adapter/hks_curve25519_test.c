@@ -28,6 +28,7 @@
 #include "securec.h"
 #include "cmsis_os2.h"
 #include "ohos_types.h"
+#include "unistd.h"
 
 #define TEST_TASK_STACK_SIZE      0x2000
 #define WAIT_TO_TEST_DONE         4
@@ -45,7 +46,7 @@ LITE_TEST_SUIT(security, securityData, HksCurve25519Test);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -85,7 +86,7 @@ static BOOL HksCurve25519TestTearDown()
 static void LocalHksCurve25519Test001(void const *argument)
 {
     LiteTestPrint("HksCurve25519Test001 Begin!\n");
-    TEST_ASSERT_TRUE(TestCurve25519All() == 0);
+    TEST_ASSERT_EQUAL(0, TestCurve25519All());
     LiteTestPrint("HksCurve25519Test001 End!\n");
     osThreadExit();
 }
@@ -93,7 +94,7 @@ static void LocalHksCurve25519Test001(void const *argument)
 static void LocalHksCurve25519Test002(void const *argument)
 {
     LiteTestPrint("HksCurve25519Test002 Begin!\n");
-    TEST_ASSERT_TRUE(TestEd25519SignTeeVerifyLocal() == 0);
+    TEST_ASSERT_EQUAL(0, TestEd25519SignTeeVerifyLocal());
     LiteTestPrint("HksCurve25519Test002 End!\n");
     osThreadExit();
 }
@@ -101,7 +102,7 @@ static void LocalHksCurve25519Test002(void const *argument)
 static void LocalHksCurve25519Test003(void const *argument)
 {
     LiteTestPrint("HksCurve25519Test003 Begin!\n");
-    TEST_ASSERT_TRUE(TestCurve25519SignWrong() == 0);
+    TEST_ASSERT_EQUAL(0, TestCurve25519SignWrong());
     LiteTestPrint("HksCurve25519Test003 End!\n");
     osThreadExit();
 }
@@ -109,7 +110,7 @@ static void LocalHksCurve25519Test003(void const *argument)
 static void LocalHksCurve25519Test004(void const *argument)
 {
     LiteTestPrint("HksCurve25519Test004 Begin!\n");
-    TEST_ASSERT_TRUE(TestCurve25519verifyWrong() == 0);
+    TEST_ASSERT_EQUAL(0, TestCurve25519verifyWrong());
     LiteTestPrint("HksCurve25519Test004 End!\n");
     osThreadExit();
 }
@@ -120,7 +121,7 @@ static void LocalHksCurve25519Test004(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test001, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -133,7 +134,7 @@ LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test001, Level1)
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)LocalHksCurve25519Test001, NULL, &attr);
     sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519Test001 End2!\n");    
+    LiteTestPrint("HksCurve25519Test001 End2!\n");
 }
 
 /**

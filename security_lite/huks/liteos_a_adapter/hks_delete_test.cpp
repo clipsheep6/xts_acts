@@ -70,18 +70,18 @@ HWTEST_F(HksDeleteTest, HksDeleteTest001, TestSize.Level1)
     int32_t ret;
     struct HksBlob *keyAlias = NULL;
     if (g_testKeyExistParams[0].isGenKey) {
-        HKS_TEST_ASSERT(TestGenDefaultKeyAndGetAlias(&keyAlias) == 0);
+        EXPECT_EQ(0, TestGenDefaultKeyAndGetAlias(&keyAlias));
     } else {
         ret = TestConstuctBlob(&keyAlias,
                                g_testKeyExistParams[0].keyAliasParams.blobExist,
                                g_testKeyExistParams[0].keyAliasParams.blobSize,
                                g_testKeyExistParams[0].keyAliasParams.blobDataExist,
                                g_testKeyExistParams[0].keyAliasParams.blobDataSize);
-        HKS_TEST_ASSERT(ret == 0);
+        EXPECT_EQ(0, ret);
     }
 
     ret = HksDeleteKeyRun(keyAlias, 1);
-    HKS_TEST_ASSERT(ret == g_testKeyExistParams[0].expectResult);
+    EXPECT_EQ(g_testKeyExistParams[0].expectResult, ret);
 
     TestFreeBlob(&keyAlias);
     ASSERT_TRUE(ret == 0);

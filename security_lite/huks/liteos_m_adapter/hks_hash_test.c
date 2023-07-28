@@ -51,7 +51,7 @@ LITE_TEST_SUIT(security, securityData, HksHashTest);
 static void ExecHksInitialize(void const *argument)
 {
     LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
+    TEST_ASSERT_EQUAL(0, HksInitialize());
     LiteTestPrint("HksInitialize End!\n");
     osThreadExit();
 }
@@ -117,33 +117,33 @@ static void ExecHksHashTestCommon(int index)
     int32_t ret = TestConstructHashParamSet(&paramSet,
         g_testHashParams[index].paramSetParams.paramSetExist,
         g_testHashParams[index].paramSetParams.setDigest, g_testHashParams[index].paramSetParams.digest);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestConstuctBlob(&srcData,
         g_testHashParams[index].srcDataParams.blobExist,
         g_testHashParams[index].srcDataParams.blobSize,
         g_testHashParams[index].srcDataParams.blobDataExist,
         g_testHashParams[index].srcDataParams.blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestConstructBlobOut(&hash,
         g_testHashParams[index].hashParams.blobExist,
         g_testHashParams[index].hashParams.blobSize,
         g_testHashParams[index].hashParams.blobDataExist,
         g_testHashParams[index].hashParams.blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksHashRun(paramSet, srcData, hash, 1);
     if (ret != g_testHashParams[index].expectResult) {
         HKS_TEST_LOG_I("HksHashRun failed, ret[%u] = %d", g_testHashParams[index].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testHashParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testHashParams[index].expectResult, ret);
 
     HksFreeParamSet(&paramSet);
     TestFreeBlob(&srcData);
     TestFreeBlob(&hash);
     HKS_TEST_LOG_I("[%u]TestHash, Testcase_Hash_[%03u] pass!", 1, g_testHashParams[index].testId);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 }
 
 static void ExecHksHashTest001(void const *argument)
