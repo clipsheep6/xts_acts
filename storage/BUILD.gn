@@ -16,6 +16,7 @@ group("storage") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "storagecloudfile_sync_download:storageCloudSyncDownloadEtsHap",
       "crossplatform/storagefsetstest:ActsCrossplatformFsTest",
       "storagefileioerrorjstest:storagefileioerror_js_test",
       "storagefileiojstest:storagefileio_js_test",

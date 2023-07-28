@@ -1,0 +1,63 @@
+{
+    "description": "Configuration for cloudSync Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "bundle-name": "com.ohos.cloudfilesync",
+        "module-name": "phone",
+        "shell-timeout": "60000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/Audios/*",
+                "rm -rf /storage/media/100/local/files/Camera/*",
+                "rm -rf /storage/media/100/local/files/Documents/*",
+                "rm -rf /storage/media/100/local/files/Download/*",
+                "rm -rf /storage/media/100/local/files/Pictures/*",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "mkdir -p /storage/media/100/local/cloud",
+                "scanner",
+                "setenforce 0",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/dfs_service/test.jpg ->/storage/media/100/local/cloud"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "cp /storage/media/100/local/cloud/test.jpg /storage/media/100/local/files/Pictures/test.jpg",
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "scanner",
+                "sleep 10"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /storage/media/100/local/files/Audios/*",
+                "rm -rf /storage/media/100/local/files/Camera/*",
+                "rm -rf /storage/media/100/local/files/Documents/*",
+                "rm -rf /storage/media/100/local/files/Download/*",
+                "rm -rf /storage/media/100/local/files/Pictures/*",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "rm -rf /storage/media/100/local/cloud",
+                "scanner"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsStorageCloudSyncEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
