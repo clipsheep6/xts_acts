@@ -1,3 +1,0 @@
-libdata_preferences.so
-libhilog_android.so
-libxml2.so
