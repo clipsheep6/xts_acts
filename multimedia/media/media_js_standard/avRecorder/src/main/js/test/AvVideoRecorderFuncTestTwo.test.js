@@ -687,6 +687,7 @@ export default function avVideoRecorderTestTwo() {
                 STOPRECORDER_EVENT, STOPCAMERA_EVENT,
                 // releaseRecorderPromise
                 RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
                 END_EVENT
             );
             eventEmitter.emit(mySteps[0], avRecorder, avConfig, recorderTime, mySteps, done);
