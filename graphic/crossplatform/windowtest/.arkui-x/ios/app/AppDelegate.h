@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#ifndef GRAPHIC_CROSSPLATFORM_WINDOWTEST__ARKUI_X_IOS_APP_APPDELEGATE_H
-#define GRAPHIC_CROSSPLATFORM_WINDOWTEST__ARKUI_X_IOS_APP_APPDELEGATE_H
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -22,5 +20,4 @@
 @property (nonatomic, strong) UIWindow *window;
 
 @end
-#endif /* GRAPHIC_CROSSPLATFORM_WINDOWTEST__ARKUI_X_IOS_APP_APPDELEGATE_H */
 
