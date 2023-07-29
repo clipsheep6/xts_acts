@@ -14,8 +14,8 @@
  */
 
 #import "AppDelegate.h"
-#import "EntryMain1ViewController.h"
-#import "EntryMainViewController.h"
+#import "EntryMain1AbilityViewController.h"
+#import "EntryEntryAbilityViewController.h"
 #import <libarkui_ios/StageApplication.h>
 
 #define BUNDLE_DIRECTORY @"arkui-x"
@@ -32,7 +32,7 @@
     [StageApplication launchApplication];
     
     NSString *instanceName = [NSString stringWithFormat:@"%@:%@:%@",BUNDLE_NAME, @"entry", @"EntryAbility"];
-    EntryMainViewController *mainView = [[EntryMainViewController alloc] initWithInstanceName:instanceName];
+    EntryEntryAbilityViewController *mainView = [[EntryEntryAbilityViewController alloc] initWithInstanceName:instanceName];
     [self setNavRootVC:mainView];
     return YES;
 }
@@ -77,16 +77,15 @@
     
     if ([moduleName isEqualToString:@"entry"] && [abilityName isEqualToString:@"EntryAbility"]) {
         NSString *instanceName = [NSString stringWithFormat:@"%@:%@:%@",bundleName, moduleName, abilityName];
-        EntryMainViewController *entryOtherVC = [[EntryMainViewController alloc] initWithInstanceName:instanceName];
+        EntryEntryAbilityViewController *entryOtherVC = [[EntryEntryAbilityViewController alloc] initWithInstanceName:instanceName];
         entryOtherVC.params = params;
-        subStageVC = (EntryMainViewController *)entryOtherVC;
+        subStageVC = (EntryEntryAbilityViewController *)entryOtherVC;
     } else if ([moduleName isEqualToString:@"entry"] && [abilityName isEqualToString:@"Main1Ability"]) {
         NSString *instanceName = [NSString stringWithFormat:@"%@:%@:%@",bundleName, moduleName, abilityName];
-        EntryMain1ViewController *entryOtherVC = [[EntryMain1ViewController alloc] initWithInstanceName:instanceName];
+        EntryMain1AbilityViewController *entryOtherVC = [[EntryMain1AbilityViewController alloc] initWithInstanceName:instanceName];
         entryOtherVC.params = params;
-        subStageVC = (EntryMain1ViewController *)entryOtherVC;
+        subStageVC = (EntryMain1AbilityViewController *)entryOtherVC;
     } // other ViewController
-
     
     if (!subStageVC) {
         return NO;

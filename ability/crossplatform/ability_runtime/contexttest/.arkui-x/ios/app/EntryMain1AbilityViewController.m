@@ -13,13 +13,24 @@
  * limitations under the License.
  */
 
-#ifndef EntryMain1ViewController_h
-#define EntryMain1ViewController_h
-#import <UIKit/UIKit.h>
-#import <libarkui_ios/StageViewController.h>
-@interface EntryMain1ViewController : StageViewController
+#import "EntryMain1AbilityViewController.h"
 
+@interface EntryMain1AbilityViewController ()
 
 @end
 
-#endif /* EntryMain1ViewController_h */
+@implementation EntryMain1AbilityViewController
+- (instancetype)initWithInstanceName:(NSString *)instanceName {
+    self = [super initWithInstanceName:instanceName];
+    if (self) {
+
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = YES;
+}
+@end

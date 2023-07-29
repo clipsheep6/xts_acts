@@ -51,6 +51,11 @@ export default function BundleManager() {
         done();
       } catch (err) {
         console.log('testLaunchType001 fail' + err);
+        try {
+          expect().assertFail();
+        } catch (err) {
+          console.log('testLaunchType001 fail2' + err);
+        }
         done();
       }
     })
@@ -71,6 +76,11 @@ export default function BundleManager() {
         done();
       } catch (err) {
         console.log('testLaunchType002 fail' + err);
+        try {
+          expect().assertFail();
+        } catch (err) {
+          console.log('testLaunchType002 fail2' + err);
+        }
         done();
       }
     })
