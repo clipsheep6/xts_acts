@@ -1,4 +1,0 @@
-libarkui_android.so
-libdata_relationalstore.so
-libhilog_android.so
-libhmicuuc.so
