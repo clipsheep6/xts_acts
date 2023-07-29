@@ -15,8 +15,10 @@
 
 import crossplatformRequestDownloadTest from './requestDownload.test';
 import crossplatformRequestConstantTest from './requestConstant.test';
+import crossplatformRequestUploadTest from './RequestUpload.test';
 
 export default function testsuite() {  
   crossplatformRequestDownloadTest();
   crossplatformRequestConstantTest();
+  crossplatformRequestUploadTest();
 }
