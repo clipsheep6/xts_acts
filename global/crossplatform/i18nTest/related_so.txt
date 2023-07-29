@@ -1,3 +1,0 @@
-libace_plugin_util_android.so
-libarkui_android.so
-libi18n.so
