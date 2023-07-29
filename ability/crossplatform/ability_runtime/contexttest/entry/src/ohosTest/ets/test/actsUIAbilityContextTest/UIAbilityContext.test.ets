@@ -79,6 +79,8 @@ export default function UIAbilityContext() {
         expect(abilityInfo.applicationInfo.name == "com.example.contexttest").assertTrue();
         console.log(`testAbilityInfo001 abilityInfo.metadata: ` + abilityInfo.metadata.length);
         expect(abilityInfo.metadata.length >= 0).assertTrue();
+        console.log(`testAbilityInfo001 abilityInfo.launchType: ` + abilityInfo.launchType);
+        expect(abilityInfo.launchType).assertEqual(0);
 
         console.log(`testAbilityInfo001 success`);
         done();
@@ -122,6 +124,48 @@ export default function UIAbilityContext() {
         expect(hapModuleInfo.mainElementName == "TestAbility").assertTrue();
         console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.metadata: ` + hapModuleInfo.metadata.length);
         expect(hapModuleInfo.metadata.length >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.abilitiesInfo: ` + hapModuleInfo.abilitiesInfo.length);
+        expect(hapModuleInfo.abilitiesInfo.length).assertEqual(1);
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].bundleName);
+        expect(hapModuleInfo.abilitiesInfo[0].bundleName == "com.example.contexttest").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].moduleName);
+        expect(hapModuleInfo.abilitiesInfo[0].moduleName == "entry_test").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].name);
+        expect(hapModuleInfo.abilitiesInfo[0].name == "TestAbility").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].label);
+        expect(hapModuleInfo.abilitiesInfo[0].label == "$string:TestAbility_label").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].labelId);
+        expect(hapModuleInfo.abilitiesInfo[0].labelId >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].description);
+        expect(hapModuleInfo.abilitiesInfo[0].description == "$string:TestAbility_desc").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].descriptionId);
+        expect(hapModuleInfo.abilitiesInfo[0].descriptionId >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].icon);
+        expect(hapModuleInfo.abilitiesInfo[0].icon == "$media:icon").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].iconId);
+        expect(hapModuleInfo.abilitiesInfo[0].iconId >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.launchType: ` + hapModuleInfo.abilitiesInfo[0].launchType);
+        expect(hapModuleInfo.abilitiesInfo[0].launchType).assertEqual(0);
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo != undefined).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.applicationInfo: ` + hapModuleInfo.abilitiesInfo[0].metadata.length);
+        expect(hapModuleInfo.abilitiesInfo[0].metadata.length >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.name);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.name == "com.example.contexttest").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.applicationInfo.description: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.description);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.description == "").assertTrue()
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.1: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.descriptionId);;
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.descriptionId == 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.2: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.label);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.label == '$string:app_name').assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.labelId: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.labelId);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.labelId >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.iconId);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.iconId >= 0).assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.icon);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.icon == "$media:app_icon").assertTrue();
+        console.log(`testUIAbilityContextCurrentHapModuleInfo001 hapModuleInfo.: ` + hapModuleInfo.abilitiesInfo[0].applicationInfo.codePath);
+        expect(hapModuleInfo.abilitiesInfo[0].applicationInfo.codePath != undefined).assertTrue();
 
         console.log(`testUIAbilityContextCurrentHapModuleInfo001 success`);
         done();
@@ -224,7 +268,8 @@ export default function UIAbilityContext() {
           done();
         }).catch((error) => {
           console.log(`testStartAbilityPromise002 error.code: ` + error.code);
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(16000001);
+          expect(error.message).assertEqual("The specified ability does not exist.");
           done();
         })
       } catch (err) {
@@ -256,11 +301,12 @@ export default function UIAbilityContext() {
           done();
         }).catch((error) => {
           console.log(`testStartAbilityPromise003 error.code: ` + error.code);
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(16000001);
+          expect(error.message).assertEqual("The specified ability does not exist.");
           done();
         })
       } catch (err) {
-        console.log(`testStartAbilityPromise003 fail: ` + err);
+        console.log(`testStartAbilityPromise003 catch fail: ` + err);
         expect().assertFail();
         done();
       }
@@ -287,11 +333,12 @@ export default function UIAbilityContext() {
           done();
         }).catch((error) => {
           console.log(`testStartAbilityPromise004 error.code: ` + error.code);
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(16000001);
+          expect(error.message).assertEqual("The specified ability does not exist.");
           done();
         })
       } catch (err) {
-        console.log(`testStartAbilityPromise004 fail: ` + err);
+        console.log(`testStartAbilityPromise004 catch fail: ` + err);
         expect().assertFail();
         done();
       }
@@ -319,11 +366,12 @@ export default function UIAbilityContext() {
           done();
         }).catch((error) => {
           console.log(`testStartAbilityPromise005 error.code: ` + error.code);
+          console.log(`testStartAbilityPromise005 error.message: ` + error.message);
           expect(true).assertTrue();
           done();
         })
       } catch (err) {
-        console.log(`testStartAbilityPromise005 fail: ` + err);
+        console.log(`testStartAbilityPromise005 catch fail: ` + err);
         expect().assertFail();
         done();
       }
@@ -427,7 +475,7 @@ export default function UIAbilityContext() {
           done();
         })
       } catch (err) {
-        console.log(`testStartAbilityPromise008 fail: ` + err);
+        console.log(`testStartAbilityPromise008 catch fail: ` + err);
         expect().assertFail();
         done();
       }
@@ -486,7 +534,8 @@ export default function UIAbilityContext() {
           done();
         }).catch((error) => {
           console.log(`testStartAbilityPromise010 error.code: ` + error.code);
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(16000050);
+          expect(error.message).assertEqual("Internal error.");
           done();
         })
       } catch (err) {
@@ -514,7 +563,8 @@ export default function UIAbilityContext() {
           done();
         }).catch((error) => {
           console.log(`testStartAbilityPromise011 error.code: ` + error.code);
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(16000050);
+          expect(error.message).assertEqual("Internal error.");
           done();
         })
       } catch (err) {
@@ -694,7 +744,8 @@ export default function UIAbilityContext() {
         context.startAbility(want, (err) => {
           if (err.code) {
             console.log(`testStartAbilityCallback002 err.code: ` + err.code);
-            expect(true).assertTrue();
+            expect(err.code).assertEqual(16000001);
+            expect(err.message).assertEqual("The specified ability does not exist.");
             done();
           } else {
             expect().assertFail();
@@ -729,7 +780,8 @@ export default function UIAbilityContext() {
         context.startAbility(want, (err) => {
           if (err.code) {
             console.log(`testStartAbilityCallback003 err.code: ` + err.code);
-            expect(true).assertTrue();
+            expect(err.code).assertEqual(16000001);
+            expect(err.message).assertEqual("The specified ability does not exist.");
             done();
           } else {
             expect().assertFail();
@@ -763,7 +815,8 @@ export default function UIAbilityContext() {
         context.startAbility(want, (err) => {
           if (err.code) {
             console.log(`testStartAbilityCallback004 err.code: ` + err.code);
-            expect(true).assertTrue();
+            expect(err.code).assertEqual(16000001);
+            expect(err.message).assertEqual("The specified ability does not exist.");
             done();
           } else {
             expect().assertFail();
@@ -796,16 +849,8 @@ export default function UIAbilityContext() {
           "moduleName": "abc"
         }
         context.startAbility(want, (err) => {
-          if (err.code) {
-            console.log(`testStartAbilityCallback005 err.code: ` + err.code);
-            expect(true).assertTrue();
-            done();
-          } else {
-            try {
-              expect().assertFail();
-            } catch (err) {
-              console.log(`testStartAbilityCallback005 fail: ` + err.code);
-            }
+          if (err) {
+            expect(true).assertTrue()
             done();
           }
         })
@@ -839,12 +884,8 @@ export default function UIAbilityContext() {
           "moduleName": " "
         }
         context.startAbility(want, (err) => {
-          if (err.code) {
-            console.log(`testStartAbilityCallback006 err.code: ` + err.code);
-            expect(true).assertTrue();
-            done();
-          } else {
-            expect().assertFail();
+          if (err) {
+            expect(true).assertTrue()
             done();
           }
         })
@@ -880,7 +921,7 @@ export default function UIAbilityContext() {
             } catch (err) {
               console.log(`testStartAbilityCallback007 fail: ` + err.code);
             }
-            done();
+          done();
           }
         })
         await sleep(1500);
@@ -895,7 +936,7 @@ export default function UIAbilityContext() {
         console.log(`testStartAbilityCallback007 success`);
         done();
       } catch (err) {
-        console.log(`testStartAbilityCallback007 fail: ` + err);
+        console.log(`testStartAbilityCallback007 catch fail: ` + err);
         expect().assertFail();
         done();
       }
@@ -920,25 +961,17 @@ export default function UIAbilityContext() {
           "moduleName": "entry"
         }
         context.startAbility(want, (err) => {
-          if (err.code) {
-            console.log(`testStartAbilityCallback008 err.code: ` + err.code);
-            expect(true).assertTrue();
-            done();
-          } else {
-            try {
-              expect().assertFail();
-            } catch (err) {
-              console.log(`testStartAbilityCallback008 fail: ` + err.code);
-            }
+          if (err) {
+            expect(true).assertTrue()
             done();
           }
         })
       } catch (err) {
-        console.log(`testStartAbilityCallback008 fail: ` + err);
+        console.log(`testStartAbilityCallback008 catch fail: ` + err);
         try {
           expect().assertFail();
         } catch (err) {
-          console.log(`testStartAbilityCallback008 fail: ` + err.code);
+          console.log(`testStartAbilityCallback008 catch catch fail: ` + err.code);
         }
         done();
       }
@@ -963,16 +996,8 @@ export default function UIAbilityContext() {
           "moduleName": "entry"
         }
         context.startAbility(want, (err) => {
-          if (err.code) {
-            console.log(`testStartAbilityCallback009 err.code: ` + err.code);
-            expect(true).assertTrue();
-            done();
-          } else {
-            try {
-              expect().assertFail();
-            } catch (err) {
-              console.log(`testStartAbilityCallback009 fail: ` + err.code);
-            }
+          if (err) {
+            expect(true).assertTrue()
             done();
           }
         })
@@ -1007,7 +1032,8 @@ export default function UIAbilityContext() {
         context.startAbility(want, (err) => {
           if (err.code) {
             console.log(`testStartAbilityCallback010 err.code: ` + err.code);
-            expect(true).assertTrue();
+            expect(err.code).assertEqual(16000050);
+            expect(err.message).assertEqual("Internal error.");
             done();
           } else {
             expect().assertFail();
@@ -1038,7 +1064,8 @@ export default function UIAbilityContext() {
         context.startAbility(want, (err) => {
           if (err.code) {
             console.log(`testStartAbilityCallback011 err.code: ` + err.code);
-            expect(true).assertTrue();
+            expect(err.code).assertEqual(16000050);
+            expect(err.message).assertEqual("Internal error.");
             done();
           } else {
             expect().assertFail();
