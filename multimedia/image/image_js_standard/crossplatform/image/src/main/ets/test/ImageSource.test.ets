@@ -3845,7 +3845,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb044", 0, async function (done) {
-            await getFileFd("test.png", testPng);
+            await getFileFd("test.png", testJpg);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(
@@ -3869,16 +3869,14 @@ export default function ImageSource() {
                             "testCreatePixelMapOptionsCb044 createPixelMap error  " +
                             JSON.stringify(err)
                         );
-                    }
-
-                    if (pixelmap != undefined) {
+                        expect(false).assertTrue();
+                        done();
+                    } else {
                         globalpixelmap = pixelmap;
                         console.info("testCreatePixelMapOptionsCb044 success ");
                         expect(pixelmap != undefined).assertTrue();
                         done();
                     }
-                    console.info("testCreatePixelMapOptionsCb044 end ");
-                    expect(true).assertTrue();
                 });
             }
         });
