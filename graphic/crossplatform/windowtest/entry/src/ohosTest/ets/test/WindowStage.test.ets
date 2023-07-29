@@ -291,15 +291,15 @@ export default function WindowStage() {
     })
 
     /**
-     * @tc.number    : TEST_LOADCONTENT_PROMISE_001
-     * @tc.name      : testLoadContentPromise001
+     * @tc.number    : TEST_WINDOWSTAGE_LOADCONTENT_PROMISE_001
+     * @tc.name      : testWindowStageLoadContentPromise001
      * @tc.desc      : Verify the scenario of loading an existing page
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentPromise001', 0, async function (done) {
-      let caseName = 'testLoadContentPromise001';
+    it('testWindowStageLoadContentPromise001', 0, async function (done) {
+      let caseName = 'testWindowStageLoadContentPromise001';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       await sleep(500);
@@ -316,15 +316,15 @@ export default function WindowStage() {
       done();
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_PROMISE_002
-     * @tc.name      : testLoadContentPromise002
+     * @tc.number    : TEST_WINDOWSTAGE_LOADCONTENT_PROMISE_002
+     * @tc.name      : testWindowStageLoadContentPromise002
      * @tc.desc      : Verify the scenario of loading an null page
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentPromise002', 0, async function (done) {
-      let caseName = 'testLoadContentPromise002';
+    it('testWindowStageLoadContentPromise002', 0, async function (done) {
+      let caseName = 'testWindowStageLoadContentPromise002';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       try {
@@ -341,15 +341,15 @@ export default function WindowStage() {
       done();
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_PROMISE_003
-     * @tc.name      : testLoadContentPromise003
+     * @tc.number    : TEST_WINDOWSTAGE_LOADCONTENT_PROMISE_003
+     * @tc.name      : testWindowStageLoadContentPromise003
      * @tc.desc      : Verify the scenario of loading an null page with storage
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentPromise003', 0, async function (done) {
-      let caseName = 'testLoadContentPromise003';
+    it('testWindowStageLoadContentPromise003', 0, async function (done) {
+      let caseName = 'testWindowStageLoadContentPromise003';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       try {
@@ -366,15 +366,15 @@ export default function WindowStage() {
       done();
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_PROMISE_004
-     * @tc.name      : testLoadContentPromise004
+     * @tc.number    : TEST_WINDOWSTAGE_LOADCONTENT_PROMISE_004
+     * @tc.name      : testWindowStageLoadContentPromise004
      * @tc.desc      : Verify the scenario of loading an page and storage of null
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentPromise004', 0, async function (done) {
-      let caseName = 'testLoadContentPromise004';
+    it('testWindowStageLoadContentPromise004', 0, async function (done) {
+      let caseName = 'testWindowStageLoadContentPromise004';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       await sleep(500);
@@ -392,15 +392,15 @@ export default function WindowStage() {
     })
 
     /**
-     * @tc.number    : TEST_LOADCONTENT_CB_001
-     * @tc.name      : testLoadContentCb001
+     * @tc.number    : TEST_WINDOWSTAGE_LOADCONTENT_CB_001
+     * @tc.name      : testWindowStageLoadContentCb001
      * @tc.desc      : Verify the scenario of loading an existing page
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentCb001', 0, async function (done) {
-      let caseName = 'testLoadContentCb001';
+    it('testWindowStageLoadContentCb001', 0, async function (done) {
+      let caseName = 'testWindowStageLoadContentCb001';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       await sleep(500);
@@ -422,15 +422,15 @@ export default function WindowStage() {
       })
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_CB_002
-     * @tc.name      : testLoadContentCb002
+     * @tc.number    : TEST_WINDOWSTAGE_LOADCONTENT_CB_002
+     * @tc.name      : testWindowStageLoadContentCb002
      * @tc.desc      : Verify the scenario of loading an null page
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentCb002', 0, async function (done) {
-      let caseName = 'testLoadContentCb002';
+    it('testWindowStageLoadContentCb002', 0, async function (done) {
+      let caseName = 'testWindowStageLoadContentCb002';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 

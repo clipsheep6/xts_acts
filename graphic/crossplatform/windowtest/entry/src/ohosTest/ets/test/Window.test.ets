@@ -1323,17 +1323,17 @@ export default function Window() {
     })
 
     /**
-     * @tc.number    : TEST_LOADCONTENT_PROMISE_001
-     * @tc.name      : testLoadContentPromise001
+     * @tc.number    : TEST_WINDOW_LOADCONTENT_PROMISE_001
+     * @tc.name      : testWindowLoadContentPromise001
      * @tc.desc      : Verify the scenario of loading an existing page
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentPromise001', 0, async function (done) {
-      let caseName = 'testLoadContentPromise001';
+    it('testWindowLoadContentPromise001', 0, async function (done) {
+      let caseName = 'testWindowLoadContentPromise001';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let windowId = 'testLoadContentPromise001';
+      let windowId = 'testWindowLoadContentPromise001';
       console.log(msgStr + 'begin');
       let tempWnd = null;
       tempWnd = await windowStage.createSubWindow(windowId);
@@ -1349,17 +1349,17 @@ export default function Window() {
       });
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_PROMISE_002
-     * @tc.name      : testLoadContentPromise002
+     * @tc.number    : TEST_WINDOW_LOADCONTENT_PROMISE_002
+     * @tc.name      : testWindowLoadContentPromise002
      * @tc.desc      : Verify the scene of loading the page with illegal values
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentPromise002', 0, async function (done) {
-      let caseName = 'testLoadContentPromise002';
+    it('testWindowLoadContentPromise002', 0, async function (done) {
+      let caseName = 'testWindowLoadContentPromise002';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let windowId = 'testLoadContentPromise002';
+      let windowId = 'testWindowLoadContentPromise002';
       console.log(msgStr + 'begin');
       let tempWnd = null;
       tempWnd = await windowStage.createSubWindow(windowId);
@@ -1376,26 +1376,26 @@ export default function Window() {
       }
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_CB_001
-     * @tc.name      : testLoadContentCb001
+     * @tc.number    : TEST_WINDOW_LOADCONTENT_CB_001
+     * @tc.name      : testWindowLoadContentCb001
      * @tc.desc      : Verify the scenario of loading an existing page
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentCb001', 0, async function (done) {
-      let caseName = 'testLoadContentCb001';
+    it('testWindowLoadContentCb001', 0, async function (done) {
+      let caseName = 'testWindowLoadContentCb001';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let windowId = 'testLoadContentCb001';
+      let windowId = 'testWindowLoadContentCb001';
       console.log(msgStr + 'begin');
       let tempWnd = null
       try {
         tempWnd = await windowStage.createSubWindow(windowId);
         expect(!!tempWnd).assertTrue();
-        console.log(msgStr + 'tempWnd.aaaaaaaaaaaaaaaaaaaa() success');
+        console.log(msgStr + 'tempWnd() success');
         tempWnd.loadContent('testability/pages/index1', storage, async (err) => {
           if (err && err.code) {
-            console.log(msgStr + 'tempWnd.loadContesssssssssssssssnt() success');
+            console.log(msgStr + 'tempWnd.loadContent() success');
 
             unexpectedError(err, caseName, 'tempWnd.loadContent', done);
           } else {
@@ -1415,17 +1415,17 @@ export default function Window() {
       }
     })
     /**
-     * @tc.number    : TEST_LOADCONTENT_CB_002
-     * @tc.name      : testLoadContentCb002
+     * @tc.number    : TEST_WINDOW_LOADCONTENT_CB_002
+     * @tc.name      : testWindowLoadContentCb002
      * @tc.desc      : Verify the scene of loading the page with illegal values
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('testLoadContentCb002', 0, async function (done) {
-      let caseName = 'testLoadContentCb002';
+    it('testWindowLoadContentCb002', 0, async function (done) {
+      let caseName = 'testWindowLoadContentCb002';
       let msgStr = 'jsunittest ' + caseName + ' ';
-      let windowId = 'testLoadContentCb002';
+      let windowId = 'testWindowLoadContentCb002';
       console.log(msgStr + 'begin');
       let tempWnd = null
       tempWnd = await windowStage.createSubWindow(windowId);
