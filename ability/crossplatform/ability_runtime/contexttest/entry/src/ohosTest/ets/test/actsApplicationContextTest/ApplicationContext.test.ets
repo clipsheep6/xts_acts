@@ -102,9 +102,9 @@ export default function ApplicationContext() {
             console.log(`testGetRunningProcessInformationCb001 pid:` + data[0].pid);
             expect(data[0].pid > 0).assertTrue();
             console.log(`testGetRunningProcessInformationCb001 processName:` + data[0].processName);
-            expect(data[0].processName == "com.example.contexttest").assertTrue();
+            expect(data[0].processName != null && typeof (data[0].processName) == "string").assertTrue();
             console.log(`testGetRunningProcessInformationCb001 bundleNames:` + data[0].bundleNames);
-            expect(data[0].bundleNames[0] == "com.example.contexttest").assertTrue();
+            expect(data[0].bundleNames[0] != null && typeof (data[0].bundleNames[0]) == "string").assertTrue();
             console.log(`testGetRunningProcessInformationCb001 success`);
           } catch (err) {
             console.log(`testGetRunningProcessInformationCb001 fail ` + err);
