@@ -90,8 +90,8 @@ export default function widthTest() {
     'GridItem',
     'RelativeContainer',
     'Navigator',
-    'Menu',
-    'MenuItem',
+//    'Menu',
+//    'MenuItem',
 //    'MenuItemGroup'
   ]
 
