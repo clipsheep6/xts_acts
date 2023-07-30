@@ -2110,33 +2110,6 @@ describe('threadWorkerTest', function () {
         done()
     })
 
-    function CreateArray(type,b) {
-        switch(type) {
-            case 0 :
-                return new Int8Array(b);
-            case 1 :
-                return new Int16Array(b);
-            case 2 :
-                return new Int32Array(b);
-            case 3 :
-                return new Uint8Array(b);
-            case 4 :
-                return new Uint16Array(b);
-            case 5 :
-                return new Uint32Array(b);
-            case 6 :
-                return new Float32Array(b);
-            case 7 :
-                return new Float64Array(b);
-            case 8 :
-                return new BigInt64Array(b);
-            case 9 :
-                return new BigUint64Array(b);
-            default :
-                return;
-        }
-    }
-
     // Check the transmission types supported by Worker is ok.
     /**
      * @tc.name: threadWorker_support_types_test_001
@@ -2145,9 +2118,16 @@ describe('threadWorkerTest', function () {
     it('threadWorker_support_types_test_001', 0, async function (done) {
         let ss = new worker.ThreadWorker("entry/ets/workers/newworker_016.js");
         let array = []
-        for (let i = 0; i < 10; i++) {
-            array[i] = CreateArray(i, 65);
-        }
+        array[0] = new Int8Array(8);
+        array[1] = new Int16Array(16);
+        array[2] = new Int32Array(32);
+        array[3] = new Uint8Array(8);
+        array[4] = new Uint16Array(16);
+        array[5] = new Uint32Array(32);
+        array[6] = new Float32Array(32);
+        array[7] = new Float64Array(64);
+        array[8] = new BigInt64Array(513);
+        array[9] = new BigUint64Array(513);
 
         let res = 0;
         let flag = 0;
@@ -2172,7 +2152,7 @@ describe('threadWorkerTest', function () {
         while (!isTerminate) {
             await promiseCase();
         }
-        expect(res).assertEqual(650)
+        expect(res).assertEqual(1234)
 
         done();
     })
@@ -2434,6 +2414,60 @@ describe('threadWorkerTest', function () {
         }
 
         expect(result).assertEqual("unInit");
+        done();
+    })
+
+    // Check the transmission types supported by Worker is ok.
+    /**
+     * @tc.name: threadWorker_support_types_test_010
+     * @tc.desc: Check the transmission types supported by Worker is ok.
+     */
+    it('threadWorker_support_types_test_010', 0, async function (done) {
+        let ss = new worker.ThreadWorker("entry/ets/workers/newworker_028.js");
+        let result = "";
+        let isTerminate = false;
+
+        class MyModel
+        {
+            size = 10;
+            name = "module";
+            title = "Worker Module";
+            version = 9;
+            isAvailable = true;
+            GetName() {
+              return this.name;
+            }
+            GetSize() {
+              return this.size;
+            }
+            SetName(name) {
+              this.name = name;
+            }
+            SetSize(size) {
+              this.size = size;
+            }
+        }
+
+        let myModel = new MyModel();
+        var obj = {
+          name : "worker",
+          model : myModel,
+        }
+
+        ss.onmessage = function (e){
+          let data = e.data;
+          result = data.title;
+          ss.terminate()
+        }
+        ss.onexit = function() {
+          isTerminate = true;
+        }
+        ss.postMessage(obj);
+        while (!isTerminate) {
+          await promiseCase();
+        }
+
+        expect(result).assertEqual("Worker Module");
         done();
     })
 
