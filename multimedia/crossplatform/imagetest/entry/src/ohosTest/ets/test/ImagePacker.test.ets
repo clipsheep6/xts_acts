@@ -66,7 +66,7 @@ export default function ImagePacker() {
                     if (pixelmap == undefined) {
                         try {
                             expect(false).assertTrue();
-                        } catch (err){
+                        } catch (err) {
                             console.info(`${testNum} create pixelmap fail` + err);
                         }
                         done();
@@ -75,7 +75,7 @@ export default function ImagePacker() {
                         if (imagePackerApi == undefined) {
                             try {
                                 expect(false).assertTrue();
-                            } catch (err){
+                            } catch (err) {
                                 console.info(`${testNum} create imagepacker fail`);
                             }
                             done();
@@ -104,7 +104,7 @@ export default function ImagePacker() {
                     console.info(`${testNum} create pixelmap fail` + error);
                     try {
                         expect().assertFail();
-                    } catch (err){
+                    } catch (err) {
                         console.info(`${testNum} create pixelmap fail ` + error);
                     }
                     done();
@@ -155,7 +155,7 @@ export default function ImagePacker() {
                     console.log(`${testNum} createpixelmap error: ` + error);
                     try {
                         expect().assertFail();
-                    }catch (err){
+                    } catch (err) {
                         console.log(`${testNum} createpixelmap error: ` + err);
                     }
                     done();
@@ -193,7 +193,7 @@ export default function ImagePacker() {
                     console.log(`${testNum} createpixelmap error:` + error);
                     try {
                         expect().assertFail();
-                    } catch (err){
+                    } catch (err) {
                         console.info(`${testNum} create pixelmap fail ` + error);
                     }
                     done();
@@ -240,7 +240,7 @@ export default function ImagePacker() {
                     console.log("createpixelmap error: " + error);
                     try {
                         expect().assertFail();
-                    } catch (err){
+                    } catch (err) {
                         console.info(`${testNum} create pixelmap fail ` + error);
                     }
                     done();

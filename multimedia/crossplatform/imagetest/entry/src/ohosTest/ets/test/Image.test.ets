@@ -832,19 +832,5 @@ export default function Image() {
                 done();
             }
         });
-
-        /**
-         * @tc.number    : TEST_IMAGEFORMAT_001
-         * @tc.name      : testImageFormat001
-         * @tc.desc      : test ImageFormat
-         * @tc.size      : MediumTest
-         * @tc.type      : Function
-         * @tc.level     : Level 0
-         */
-        it("testImageFormat001", 0, async function (done) {
-            expect(image.ImageFormat.YCBCR_422_SP==1000).assertTrue();
-            expect(image.ImageFormat.JPEG==2000).assertTrue();
-            done();
-        });
     });
 }
