@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "faRely"
+    },
+    {
+      "name": "PageAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PageAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DataAbility_desc",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "FormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}
