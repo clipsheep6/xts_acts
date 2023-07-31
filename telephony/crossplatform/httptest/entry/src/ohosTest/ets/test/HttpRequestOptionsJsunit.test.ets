@@ -856,11 +856,6 @@ export default function HttpRequestOptionsJsunit() {
           done();
         }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
-          try {
-
-          } catch (error) {
-
-          }
           expect(error.code == 2300028).assertTrue();
           expect(error.message == 'Timeout was reached').assertTrue();
           done();
