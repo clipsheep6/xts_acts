@@ -23,12 +23,12 @@ export default class EntryAbility extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    console.info("=====> terminateSelf begin");
+    console.info('=====> terminateSelf begin');
     let context = this.context;
     context.terminateSelf().then(() => {
-      console.info("=====> terminateSelf OK end");
+      console.info('=====> terminateSelf OK end');
     }).catch((err) => {
-      console.info("=====> terminateSelf err " + JSON.stringify(err) + " end");
+      console.info('=====> terminateSelf err ' + JSON.stringify(err) + ' end');
     });
   }
 

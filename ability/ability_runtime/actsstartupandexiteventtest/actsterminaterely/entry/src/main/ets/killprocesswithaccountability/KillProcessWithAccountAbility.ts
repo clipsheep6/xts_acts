@@ -25,11 +25,12 @@ export default class KillProcessWithAccountAbility extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    console.info("=====> killProcessWithAccount begin");
-    AppManager.killProcessWithAccount('com.example.actsterminaterely', 100).then(() => {
-      console.info("=====> killProcessWithAccount OK end");
+    console.info('=====> killProcessWithAccount begin');
+    let timeOutDelay = 100;
+    AppManager.killProcessWithAccount('com.example.actsterminaterely', timeOutDelay).then(() => {
+      console.info('=====> killProcessWithAccount OK end');
     }).catch((err) => {
-      console.info("=====> killProcessWithAccount err " + JSON.stringify(err) + " end");
+      console.info('=====> killProcessWithAccount err ' + JSON.stringify(err) + ' end');
     });
   }
 
