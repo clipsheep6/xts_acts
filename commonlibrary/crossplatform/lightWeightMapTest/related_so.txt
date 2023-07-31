@@ -1,2 +1,0 @@
-libarkui_android.so
-libutil_lightweightmap.so
