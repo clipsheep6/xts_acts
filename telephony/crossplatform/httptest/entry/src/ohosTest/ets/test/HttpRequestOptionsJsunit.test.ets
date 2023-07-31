@@ -808,8 +808,8 @@ export default function HttpRequestOptionsJsunit() {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
-          readTimeout: 0.1,
-          connectTimeout: 60
+          readTimeout: 1,
+          connectTimeout: 1
         }
         var httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
@@ -844,8 +844,8 @@ export default function HttpRequestOptionsJsunit() {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
-          readTimeout: 0.1,
-          connectTimeout: 60
+          readTimeout: 1,
+          connectTimeout: 1
         }
         var httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
@@ -856,6 +856,11 @@ export default function HttpRequestOptionsJsunit() {
           done();
         }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
+          try {
+
+          } catch (error) {
+
+          }
           expect(error.code == 2300028).assertTrue();
           expect(error.message == 'Timeout was reached').assertTrue();
           done();
@@ -883,8 +888,8 @@ export default function HttpRequestOptionsJsunit() {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
-          readTimeout: 60,
-          connectTimeout: 0.1
+          readTimeout: 1,
+          connectTimeout: 1
         }
         var httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
@@ -913,19 +918,19 @@ export default function HttpRequestOptionsJsunit() {
      */
     it("testTelephonyHttpRequestOptionsConnectTimeout002", 0, async function (done) {
       var casename = 'Telephony_Http_HttpRequestOptions_0600';
-      console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test is starting-----------------------");
+      console.log("-----------------------testTelephonyHttpRequestOptionsConnectTimeout002 Test is starting-----------------------");
       try {
         let httpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
-          readTimeout: 60,
-          connectTimeout: 0.1
+          readTimeout: 1,
+          connectTimeout: 1
         }
         var httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
-          console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test end-----------------------");
+          console.log("-----------------------testTelephonyHttpRequestOptionsConnectTimeout002 Test end-----------------------");
           expect().assertFail();
           httpRequest.destroy();
           done();

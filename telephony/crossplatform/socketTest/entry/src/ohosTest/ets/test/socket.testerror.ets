@@ -758,8 +758,8 @@ export default function socketTest() {
     });
 
     /**
-     * @tc.number: TEST_SOCKET_TLS_BIND_001
-     * @tc.name  : test_Socket_Tls_Bind_001
+     * @tc.number: TEST_SOCKET_UDP_BIND_001
+     * @tc.name  : test_Socket_Udp_Bind_001
      * @tc.desc  : Connect to the specified IP address and port. Use the callback method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
@@ -780,14 +780,14 @@ export default function socketTest() {
     })
 
     /**
-     * @tc.number: test_Socket_TLS_Bind_002
-     * @tc.name  : test_Socket_Tls_Bind_002
+     * @tc.number: test_Socket_UDP_Bind_002
+     * @tc.name  : test_Socket_Udp_Bind_002
      * @tc.desc  : Connect to the specified IP address and port. Use the promise method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tls_Bind_002', 0,async function (done) {
+    it('test_Socket_Udp_Bind_002', 0,async function (done) {
 
       let tls = socket.constructUDPSocketInstance();
       try{
@@ -803,51 +803,51 @@ export default function socketTest() {
     })
 
     /**
-     * @tc.number: test_Socket_Close_TLS_Error_001
-     * @tc.name  : test_Socket_Close_Tls_Error_001
+     * @tc.number: test_Socket_Close_UDP_Error_001
+     * @tc.name  : test_Socket_Close_Udp_Error_001
      * @tc.desc  : Send data through the Tls Socket connection. Use the callback method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
     it('test_Socket_Close_Tls_Error_001', 0, function (done) {
-      let tls = socket.constructUDPSocketInstance();
-      tls.close(err => {
+      let udp = socket.constructUDPSocketInstance();
+      udp.close(err => {
         expect(err == undefined).assertTrue();
         done();
       })
     });
 
     /**
-     * @tc.number: test_Socket_Close_TLS_Error_002
-     * @tc.name  : test_Socket_Close_Tls_Error_002
+     * @tc.number: test_Socket_Close_UDP_Error_002
+     * @tc.name  : test_Socket_Close_Udp_Error_002
      * @tc.desc  : Send data through the TLS Socket connection. Use the promise method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Close_Tls_Error_002', 0, function (done) {
-      let tls = socket.constructUDPSocketInstance();
-      let promise = tls.close();
+    it('test_Socket_Close_Udp_Error_002', 0, function (done) {
+      let udp = socket.constructUDPSocketInstance();
+      let promise = udp.close();
       promise.then((err) => {
-        console.log('test_Socket_Close_tls_Error_002' + JSON.stringify(err));
+        console.log('test_Socket_Close_Udp_Error_002' + JSON.stringify(err));
         expect(err == undefined).assertTrue();
         done();
       })
     });
 
     /**
-     * @tc.number: test_Socket_Send_TLS_Error_001
-     * @tc.name  : test_Socket_Send_Tls_Error_001
+     * @tc.number: test_Socket_Send_UDP_Error_001
+     * @tc.name  : test_Socket_Send_Udp_Error_001
      * @tc.desc  : Send data through the Tls Socket connection. Use the callback method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Send_Tls_Error_001', 0, function (done) {
+    it('test_Socket_Send_Udp_Error_001', 0, function (done) {
 
-      let tls = socket.constructUDPSocketInstance();
-      tls.send({
+      let udp = socket.constructUDPSocketInstance();
+      udp.send({
         data: '你好!123,string',
         address: {
           address: serverIpAddressError,
@@ -855,7 +855,7 @@ export default function socketTest() {
           family: 1
         }
       }, err => {
-        console.log('test_Socket_Send_Tls_Error_001 err' + JSON.stringify(err))
+        console.log('test_Socket_Send_Udp_Error_001 err' + JSON.stringify(err))
         expect(err.code == 2301032).assertTrue();
         done();
       })
