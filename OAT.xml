@@ -57,24 +57,6 @@ Note:If the text contains special characters, please escape them according to th
         <filefilterlist>
             <filefilter name="binaryFileTypePolicyFilter" desc="eTSHelloWorld二进制文件校验策略的过滤条件" >
                 <filteritem type="filename" name=".DS_Store" desc="工程自编译生成的二进制文件"/>
-                <filteritem type="filename" name="UserInterfaceState.xcuserstate" desc="ios依赖的二进制文件"/>
-                <filteritem type="filename" name="libgrid.so" desc="来源于代码仓foundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libhmicuuc.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="librouter.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libhmicui18n.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libmediaquery.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="alibsec_shared.so" desc="来源于代码仓oundation/ace/ace_engin"/>
-                <filteritem type="filename" name="gradle-wrapper.jar" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="ace_android_adapter.jar" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libsec_shared.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libace_android.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libdevice.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libglobal_resmgr.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libprompt.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libace_napi.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libace_napi_quickjs.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libconfiguration.so" desc="来源于代码仓oundation/ace/ace_engine"/>
-                <filteritem type="filename" name="libace_ndk.so" desc="来源于代码仓oundation/ace/ace_engine"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="LaunchScreen.storyboard" desc="示例展示无需添加版权头"/>
