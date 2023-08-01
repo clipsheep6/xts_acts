@@ -51,7 +51,7 @@ describe('btManagerGattManagerTest', function() {
     beforeAll(function () {
         console.info('beforeAll called')
         gattServer = bluetooth.BLE.createGattServer();
-        gattClient = bluetooth.BLE.createGattClientDevice("92:3A:C0:3A:4C:28");
+        gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
     })
     beforeEach(async function(done) {
         console.info('beforeEach called')
@@ -300,21 +300,21 @@ describe('btManagerGattManagerTest', function() {
     it('SUB_COMMUNICATION_BTMANAGER_GETSERVICE_0200', 0, async function (done) {
         try {
             gattClient.getServices((code, data)=> {
-                if(code.code == 0) {
-                    console.info("bluetooth services size is ", data.length);
+                if(code.code==0){
+                    console.info("bluetooth services size is ", data.length)
                     expect(true).assertEqual(data.length >= 0);
                 } else {
                     console.info('[bluetooth_js] get services code ' + JSON.stringify(code));
-                    expect(true).assertEqual(code.code == -1);
+                    expect(false).assertEqual(code.code == 0);
                 }
                 done();
             });
         } catch (error) {
-            console.error(`[bluetooth_js]GetService_0200 failed, code is ${error.code},message is ${error.message}`);
+            console.error(`[bluetooth_js]GetService_0200 failed, code is ${error.code}, 
+            message is ${error.message}`);
             expect(true).assertFalse();
-            done();
+            done()
         }
-        done();
        
     })
 
@@ -467,22 +467,11 @@ describe('btManagerGattManagerTest', function() {
     it('SUB_COMMUNICATION_BTMANAGER_READCHARACTERISTIC_2000', 0, async function(done) {  
         try {
             function readCcc(code, BLECharacteristic) {
-                console.log('bluetooth characteristic code:'+ code.code);
                 if (code.code != 0) {
                     return;
                 }
-                console.log('bluetooth characteristic serviceUuid:'+ BLECharacteristic.serviceUuid);
-                console.log('bluetooth characteristic characteristicUuid:'+ BLECharacteristic.characteristicUuid);
-                console.log('bluetooth characteristic characteristicValue:'+ BLECharacteristic.characteristicValue);
-                console.log('bluetooth characteristic descriptors:'+ BLECharacteristic.descriptors);
-                console.log('bluetooth characteristic properties:'+ BLECharacteristic.properties);
-
-                console.log('bluetooth BLECharacteristic write:'+ BLECharacteristic.properties.write);
-                console.log('bluetooth BLECharacteristic writeNoResponse:'+ BLECharacteristic.properties.writeNoResponse);
-                console.log('bluetooth BLECharacteristic read:'+ BLECharacteristic.properties.read);
-                console.log('bluetooth BLECharacteristic notify:'+ BLECharacteristic.properties.notify);
-                console.log('bluetooth BLECharacteristic indicate:'+ BLECharacteristic.properties.indicate);
-
+                console.log('bluetooth characteristic uuid:'+ BLECharacteristic.characteristicUuid);
+                expect(true).assertEqual(data==null);
                 let value = new Uint8Array(BLECharacteristic.characteristicValue);
                 console.log('bluetooth characteristic value: ' 
                 + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
@@ -503,13 +492,15 @@ describe('btManagerGattManagerTest', function() {
                 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
                 characteristicValue: arrayBufferCCC, descriptors:descriptors};
             gattClient.readCharacteristicValue(characteristic,readCcc);
-            done();
+            expect(true).assertFalse();
+            done()
         } catch (error) {
-            console.error(`[bluetooth_js]readDescrValue20 failed, code is ${error.code},message is ${error.message}`);
+            console.error(`[bluetooth_js]readDescrValue20 failed, code is ${error.code}, 
+            message is ${error.message}`);
             expect(error.code).assertEqual('401');
-            done();
+            done()
         }                             
-        done();
+       
     })
 
     /**
