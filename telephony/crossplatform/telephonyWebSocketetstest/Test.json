@@ -5,7 +5,7 @@
         "test-timeout": "600000",
         "shell-timeout": "600000",
         "bundle-name": "ohos.acts.telephony.crossplatform.WebSocket.normal",
-        "module-name": "entry_test"
+        "module-name": "entry_test",
         "testcase-timeout": 10000
     },
     "kits": [
