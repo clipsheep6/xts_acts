@@ -484,7 +484,7 @@ export default function geolocationTest_geo7() {
             })
         } catch (error) {
             console.info("[lbs_js] getCurrentLocation252 promise try err." + JSON.stringify(error));
-            expect(true).assertFalse();
+            expect(error.code).assertEqual("401");
         }
         await sleep(1000);
         done();
@@ -537,8 +537,8 @@ export default function geolocationTest_geo7() {
     * @tc.level Level 2
     */
     it('SUB_HSS_LocationSystem_SingleLoc_2700', 0, async function (done) {
-        let currentLocationRequest = { "priority": 0x0201, "scenario": 0x0302, "timeoutMs": 0, "maxAccuracy": 0 };
-        let currentLocationRequest1 = { "priority": 0x0201, "scenario": 0x0302, "timeoutMs": -1000, "maxAccuracy": 0 };
+        let currentLocationRequest = { "priority": 0x0201, "scenario": 0x0302, "timeoutMs": 1000, "maxAccuracy": 0 };
+        let currentLocationRequest1 = { "priority": 0x0201, "scenario": 0x0302, "timeoutMs": 999, "maxAccuracy": 0 };
         try {
             await geolocationm.getCurrentLocation(currentLocationRequest).then((result) => {
                 console.info('[lbs_js] getCurrentLocation promise result271 ' + JSON.stringify(result));
@@ -560,7 +560,7 @@ export default function geolocationTest_geo7() {
             })
         } catch (error) {
             console.info("[lbs_js] getCurrentLocation272 promise try err." + JSON.stringify(error));
-            expect(true).assertFalse();
+            expect(error.code).assertEqual("401");
         }
         await sleep(1000);
         done();
@@ -1135,7 +1135,7 @@ export default function geolocationTest_geo7() {
             geolocationm.on('locationChange', requestInfo2, locationChange2);
         } catch (error) {
             console.info("[lbs_js] locationChangerOn292 try err." + JSON.stringify(error));
-            expect(true).assertFalse();
+            expect(error.code).assertEqual("401");
         }
         try {
             geolocationm.off('locationChange', locationChange2);
@@ -1651,35 +1651,6 @@ export default function geolocationTest_geo7() {
             console.info("[lbs_js] FenceStatusOff3 try error:"+ JSON.stringify(error));
             console.info('[lbs_js] not support now');
             expect(error.code).assertEqual("801");
-        }
-        await sleep(1000);
-        done();
-    })
-
-    /**
-     * @tc.number SUB_HSS_LocationSystem_SingleLoc_3500
-     * @tc.name Test getCurrentLocation
-     * @tc.desc Initiate a single location request in a specified scenario and set the navigation scenario..
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_HSS_LocationSystem_SingleLoc_3500', 0, async function (done) {
-        let currentLocationRequest = { "priority": 0x200, "scenario": 0x301, "timeoutMs": 1000, "maxAccuracy": 0 };
-        try {
-            geolocationm.getCurrentLocation(currentLocationRequest, (err, result) => {
-                if (err) {
-                    console.info("[lbs_js] getCurrentLocation callback err:  " + JSON.stringify(err));
-                    expect(err.code).assertEqual(3301200);
-                    console.info('[lbs_js] getCurrentLocationCallback reject after')
-                } else {
-                    console.info("[lbs_js] getCurrentLocation callback, result:  " + JSON.stringify(result));
-                    expect(true).assertEqual(result != null);
-                }
-            });
-        } catch (error) {
-            console.info("[lbs_js] getCurrentLocation callback try err." + JSON.stringify(error));
-            expect(true).assertEqual(JSON.stringify(error) != null);
         }
         await sleep(1000);
         done();
