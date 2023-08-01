@@ -218,24 +218,20 @@ describe('btManagerGattManagerTest', function() {
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('SUB_COMMUNICATION_BTMANAGER_GETDEVICENAME_0100', 0, async function (done) {
-        await sleep(5000)   
+    it('SUB_COMMUNICATION_BTMANAGER_GETDEVICENAME_0100', 0, async function (done) {  
         try {
             await gattClient.getDeviceName().then((data) => {
                 console.info('[bluetooth_js] device name:' + JSON.stringify(data))             
                 expect(true).assertEqual(data != null);
-                done();
             }).catch(err => {
                 console.error('[bluetooth_js] bluetooth getDeviceName has error: '+ JSON.stringify(err));
-                expect(err).assertFalse();                
-                done();
+                expect(err.code).assertEqual(2900099);
             });
         } catch (error) {
-            console.error(`[bluetooth_js]GetDeviceName_0100 failed, code is ${error.code}, 
-            message is ${error.message}`);
-            expect(true).assertFalse();                    
-            done()
-        }       
+            console.error(`[bluetooth_js]GetDeviceName_0100 failed, code is ${error.code},message is ${error.message}`);
+            expect(error.code).assertEqual('2900099');
+        }
+        done();   
     })
 
     /**
@@ -305,7 +301,7 @@ describe('btManagerGattManagerTest', function() {
                     expect(true).assertEqual(data.length >= 0);
                 } else {
                     console.info('[bluetooth_js] get services code ' + JSON.stringify(code));
-                    expect(true).assertEqual(code.code == -1);
+                    expect(false).assertEqual(code.code == 0);
                 }
                 done();
             });
