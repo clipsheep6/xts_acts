@@ -63,6 +63,8 @@ export default function webgl1Test_webgl5() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl5() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl5() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -322,6 +327,7 @@ export default function webgl1Test_webgl5() {
 			const type = gl.getVertexAttrib(0, gl.VERTEX_ATTRIB_ARRAY_ENABLED);
 			console.info("getVertexAttrib: type" + type);
 			expect(type).assertEqual(true);
+			gl.deleteBuffer(vertexBuffer);
 			done();
 		});
 
@@ -340,6 +346,7 @@ export default function webgl1Test_webgl5() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -357,6 +364,7 @@ export default function webgl1Test_webgl5() {
 			const bufferSize = gl.getBufferParameter(gl.ELEMENT_ARRAY_BUFFER, gl.BUFFER_SIZE);
 			console.info('bufferSize' + bufferSize);
 			expect(bufferSize).assertEqual(8);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -524,6 +532,7 @@ export default function webgl1Test_webgl5() {
 			let errorCode = gl.getError();
 			console.info("webgltest endTransformFeedback getError: " + errorCode);
 			expect(errorCode).assertLarger(gl.NO_ERROR);
+			gl2.deleteTransformFeedback(transformFeedback);
 			done();
 		});
 	})

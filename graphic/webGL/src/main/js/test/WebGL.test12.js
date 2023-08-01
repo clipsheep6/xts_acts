@@ -63,6 +63,8 @@ export default function webgl1Test_webgl12() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl12() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl12() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}

@@ -63,6 +63,8 @@ export default function webgl1Test_webgl3() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl3() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl3() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -298,6 +303,7 @@ export default function webgl1Test_webgl3() {
 
 			const width = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_INTERNAL_FORMAT);
 			expect(width).assertEqual(gl.RGBA4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -316,6 +322,7 @@ export default function webgl1Test_webgl3() {
 			const internalFormat = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl
 				.RENDERBUFFER_INTERNAL_FORMAT);
 			expect(internalFormat).assertEqual(gl.RGBA4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -333,6 +340,7 @@ export default function webgl1Test_webgl3() {
 			gl.renderbufferStorage(gl.RENDERBUFFER, gl.RGBA4, 256, 256);
 			const greenSize = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_GREEN_SIZE);
 			expect(greenSize).assertEqual(4);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -348,6 +356,7 @@ export default function webgl1Test_webgl3() {
 			gl.bindRenderbuffer(gl.RENDERBUFFER, renderBuffer);
 			const greenSize = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_GREEN_SIZE);
 			expect(greenSize).assertEqual(0);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -363,6 +372,7 @@ export default function webgl1Test_webgl3() {
 			const deleteStatus = gl.getShaderParameter(vertexShader, gl.DELETE_STATUS);
 			console.info('deleteStatus' + deleteStatus);
 			expect(deleteStatus).assertEqual(false);
+			gl.deleteShader(vertexShader);
 			done();
 		});
 
@@ -380,6 +390,7 @@ export default function webgl1Test_webgl3() {
 			const compileStatus = gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS);
 			console.info('compileStatus' + compileStatus);
 			expect(compileStatus).assertEqual(true);
+			gl.deleteShader(vertexShader);
 			done();
 		});
 
@@ -398,6 +409,7 @@ export default function webgl1Test_webgl3() {
 			const compileStatus = gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS);
 			console.info('compileStatus' + compileStatus);
 			expect(compileStatus).assertEqual(true);
+			gl.deleteShader(fragmentShader);
 			done();
 		});
 
@@ -414,6 +426,7 @@ export default function webgl1Test_webgl3() {
 			console.info('compileStatus' + compileStatus);
 			const type = (compileStatus === true)
 			expect(type).assertEqual(false);
+			gl.deleteShader(fragmentShader);
 			done();
 		});
 
@@ -508,6 +521,7 @@ export default function webgl1Test_webgl3() {
 			const uniform = gl.getUniform(programObj, uniformLocation);
 			console.info('getUniformLocation uniform' + uniform);
 			expect(uniform).assertEqual(undefined);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -535,6 +549,7 @@ export default function webgl1Test_webgl3() {
 			const uniform = gl.getUniform(programObj, uniformLocation);
 			console.info('getUniformLocation uniform' + uniform);
 			expect(uniform).assertEqual(undefined);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -591,6 +606,7 @@ export default function webgl1Test_webgl3() {
 			const isFramebuffer = gl.isFramebuffer(framebufferParameter);
 			console.info("isFramebuffer: " + isFramebuffer);
 			expect(isFramebuffer).assertEqual(true);
+			gl.deleteFramebuffer(framebuffer);
 			done();
 		});
 
@@ -628,6 +644,7 @@ export default function webgl1Test_webgl3() {
 			const isTexture = gl.isTexture(textureParameter);
 			console.info("isTexture: " + isTexture);
 			expect(isTexture).assertEqual(true);
+			gl.deleteTexture(texture);
 			done();
 		});
 
@@ -727,6 +744,7 @@ export default function webgl1Test_webgl3() {
 			console.info("unpackValue: " + unpackValue);
 			expect(packValue).assertEqual(2);
 			expect(unpackValue).assertEqual(8);
+			gl.deleteTexture(tex);
 			done();
 		});
 
@@ -783,6 +801,7 @@ export default function webgl1Test_webgl3() {
 			const isBuffer = gl.isBuffer(bufferVertexAttrib);
 			console.info("getVertexAttrib: bufferVertexAttrib" + bufferVertexAttrib);
 			expect(isBuffer).assertEqual(false);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -820,6 +839,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -857,6 +877,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -895,6 +916,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -931,6 +953,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -969,6 +992,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -1006,6 +1030,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -1043,6 +1068,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -1080,6 +1106,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -1166,6 +1193,7 @@ export default function webgl1Test_webgl3() {
 			const isBuffer = gl.isBuffer(buffer);
 			console.info('isBuffer' + isBuffer);
 			expect(isBuffer).assertEqual(true);
+			gl.deleteBuffer(buffer);
 			done();
 		});
 
@@ -1284,6 +1312,7 @@ export default function webgl1Test_webgl3() {
 			const width = gl.getRenderbufferParameter(gl.RENDERBUFFER, gl.RENDERBUFFER_WIDTH);
 			console.info("getRenderbufferParameter width: " + width);
 			expect(width).assertEqual(256);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1404,6 +1433,7 @@ export default function webgl1Test_webgl3() {
 			var source = gl.getShaderSource(shader);
 			console.info("shaderSource source: " + source);
 			expect(source).assertEqual('originalSource');
+			gl.deleteShader(shader);
 			done();
 		});
 
@@ -1421,6 +1451,7 @@ export default function webgl1Test_webgl3() {
 			var source = gl.getShaderSource(shader);
 			console.info("getShaderSource source: " + source);
 			expect(source).assertEqual('originalSource');
+			gl.deleteShader(shader);
 			done();
 		});
 
@@ -1441,6 +1472,7 @@ export default function webgl1Test_webgl3() {
 			console.info("getShaderInfoLog message: " + message);
 			expect(message != null).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteShader(shader);
 			done();
 		});
 
@@ -1479,6 +1511,7 @@ export default function webgl1Test_webgl3() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteProgram(program);
 			done();
 		});
 
@@ -1521,6 +1554,7 @@ export default function webgl1Test_webgl3() {
 			const isVertexArray = gl2.isVertexArray(vao);
 			console.info("isVertexArray" + isVertexArray);
 			expect(isVertexArray).assertEqual(true);
+			gl2.deleteVertexArray(vao);
 			done();
 		});
 
@@ -1539,6 +1573,7 @@ export default function webgl1Test_webgl3() {
 			const isVertexArray = gl2.isVertexArray(vao);
 			console.info("isVertexArray" + isVertexArray);
 			expect(isVertexArray).assertEqual(true);
+			gl2.deleteVertexArray(vao);
 			done();
 		});
 
@@ -1555,10 +1590,10 @@ export default function webgl1Test_webgl3() {
 			gl2.bindVertexArray(vao);
 			const isVertexArray1 = gl2.isVertexArray(vao);
 			console.info("isVertexArray1" + isVertexArray1);
-			gl2.deleteVertexArray(vao);
 			const isVertexArray = gl2.isVertexArray(vao);
 			console.info("isVertexArray" + isVertexArray);
 			expect(isVertexArray).assertEqual(false);
+			gl2.deleteVertexArray(vao);
 			done();
 		});
 
@@ -1616,6 +1651,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1634,6 +1670,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1652,6 +1689,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1671,6 +1709,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1690,6 +1729,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1709,6 +1749,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1727,6 +1768,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1802,6 +1844,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1895,6 +1938,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(programObj);
 			done();
 		});
 
@@ -1989,6 +2033,7 @@ export default function webgl1Test_webgl3() {
 			const error = gl.getError();
 			console.info("error: " + error);
 			expect(error).assertEqual(1282);
+			gl.deleteProgram(programObj);
 			done();
 		});
 	})

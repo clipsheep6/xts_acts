@@ -63,6 +63,8 @@ export default function webgl1Test_webgl14() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl14() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl14() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -304,6 +309,7 @@ export default function webgl1Test_webgl14() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -327,6 +333,7 @@ export default function webgl1Test_webgl14() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -350,6 +357,7 @@ export default function webgl1Test_webgl14() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -373,6 +381,7 @@ export default function webgl1Test_webgl14() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -396,6 +405,7 @@ export default function webgl1Test_webgl14() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteFramebuffer(framebuffer);
 			
 			done();
 		});
@@ -420,6 +430,7 @@ export default function webgl1Test_webgl14() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteFramebuffer(framebuffer);
 			
 			done();
 		});
@@ -444,6 +455,7 @@ export default function webgl1Test_webgl14() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteFramebuffer(framebuffer);
 			
 			done();
 		});
@@ -467,6 +479,7 @@ export default function webgl1Test_webgl14() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteFramebuffer(framebuffer);
 			
 			done();
 		});
@@ -492,6 +505,7 @@ export default function webgl1Test_webgl14() {
 			const type = gl.getVertexAttrib(0, gl.CURRENT_VERTEX_ATTRIB);
 			console.info("getVertexAttrib: type" + type);
 			expect(type.toString()).assertEqual([2.799999952316284, 0, 0, 1].toString());
+			gl.deleteBuffer(vertexBuffer);
 			done();
 		});
 
@@ -558,6 +572,7 @@ export default function webgl1Test_webgl14() {
 			const type = gl.getVertexAttrib(0, gl2.VERTEX_ATTRIB_ARRAY_INTEGER);
 			console.info("getVertexAttrib: type" + type);
 			expect(type).assertEqual(false);
+			gl.deleteBuffer(vertexBuffer);
 			done();
 		});
 
@@ -585,6 +600,7 @@ export default function webgl1Test_webgl14() {
 			const notCrash = true;
 			expect(notCrash).assertTrue();
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteBuffer(vertexBuffer);
 			done();
 		});
 
@@ -862,6 +878,7 @@ export default function webgl1Test_webgl14() {
 			const type = (errorCode === gl.OUT_OF_MEMORY)
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(type).assertEqual(false);
+			gl.deleteRenderbuffer(renderBuffer);
 			done();
 		});
 
@@ -1008,6 +1025,8 @@ export default function webgl1Test_webgl14() {
 
 			var y8 = gl.ACTIVE_ATTRIBUTES;
 			expect(y8).assertEqual(35721);
+
+			gl.deleteBuffer(buffer);
 
 			done();
 		});

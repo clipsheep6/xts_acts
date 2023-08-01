@@ -63,6 +63,8 @@ export default function webgl1Test_webgl1(){
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl1(){
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl1(){
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -419,6 +424,9 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest attachShader getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -469,6 +477,9 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest bindAttribLocation getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -491,6 +502,7 @@ export default function webgl1Test_webgl1(){
 			const isBufferValue = gl.isBuffer(buffer);
 			console.info("isBufferValue: " + isBufferValue);
 			expect(isBufferValue).assertEqual(true);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -519,6 +531,7 @@ export default function webgl1Test_webgl1(){
 			const isBufferValue = gl.isBuffer(buffer);
 			console.info("isBufferValue: " + isBufferValue);
 			expect(isBufferValue).assertEqual(true);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -547,6 +560,7 @@ export default function webgl1Test_webgl1(){
 			console.info("createFramebuffer --> bindFramebuffer --> isFrameBuffer2: " +
 				isFrameBuffer2);
 			expect(isFrameBuffer2).assertEqual(true);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -576,6 +590,7 @@ export default function webgl1Test_webgl1(){
 			console.info("createRenderbuffer --> bindRenderbuffer --> isRenderbuffer: " +
 				isRenderBuffer1);
 			expect(isRenderBuffer1).assertEqual(true);
+			gl.deleteRenderbuffer(renderbuffer);
 
 			
 			done();
@@ -602,6 +617,7 @@ export default function webgl1Test_webgl1(){
 			const isTexture1 = gl.isTexture(texture);
 			console.info("createTexture --> bindTexture --> isTexture: " + isTexture1);
 			expect(isTexture1).assertEqual(true);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -776,6 +792,7 @@ export default function webgl1Test_webgl1(){
 			console.info("createFramebuffer --> bindFramebuffer --> checkFramebufferStatus: " +
 				checkFramebufferStatus);
 			expect(checkFramebufferStatus).assertEqual(gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -801,6 +818,7 @@ export default function webgl1Test_webgl1(){
 				"createFramebuffer --> bindFramebuffer --> deleteFramebuffer --> checkFrameBufferStatus2: " +
 				checkFrameBufferStatus2);
 			expect(checkFrameBufferStatus2).assertEqual(gl.FRAMEBUFFER_COMPLETE);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -987,6 +1005,7 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest compileShader getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteShader(shader);
 
 			
 			done();
@@ -1083,6 +1102,7 @@ export default function webgl1Test_webgl1(){
 
 			console.info("webgltest createBuffer bindBuffer isBuffer: " + isBufferValue);
 			expect(isBufferValue).assertEqual(true);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -1104,6 +1124,7 @@ export default function webgl1Test_webgl1(){
 
 			console.info("webgltest createBuffer bindBuffer isBuffer: " + isBufferValue);
 			expect(isBufferValue).assertEqual(false);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -1126,6 +1147,7 @@ export default function webgl1Test_webgl1(){
 			console.info("webgltest createFramebuffer --> bindFramebuffer --> isFramebuffer: " +
 				isFramebuffer);
 			expect(isFramebuffer).assertEqual(true);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -1147,6 +1169,7 @@ export default function webgl1Test_webgl1(){
 			console.info("webgltest createFramebuffer --> bindFramebuffer --> isFramebuffer: " +
 				isFramebuffer);
 			expect(isFramebuffer).assertEqual(false);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -1165,6 +1188,7 @@ export default function webgl1Test_webgl1(){
 			const isProgram = gl.isProgram(program);
 			console.info("webgltest createProgram isProgram: " + isProgram);
 			expect(isProgram).assertEqual(true);
+			gl.deleteProgram(program);
 			
 			done();
 		});
@@ -1186,6 +1210,7 @@ export default function webgl1Test_webgl1(){
 				"createRenderbuffer --> bindRenderbuffer --> getParameter --> isRenderbuffer: " +
 				isRenderBuffer);
 			expect(isRenderBuffer).assertEqual(true);
+			gl.deleteRenderbuffer(renderbuffer);
 
 			
 			done();
@@ -1207,6 +1232,7 @@ export default function webgl1Test_webgl1(){
 				"createRenderbuffer --> bindRenderbuffer --> getParameter --> isRenderbuffer: " +
 				isRenderBuffer);
 			expect(isRenderBuffer).assertEqual(false);
+			gl.deleteRenderbuffer(renderbuffer);
 
 			
 			done();
@@ -1226,6 +1252,7 @@ export default function webgl1Test_webgl1(){
 			const isShader = gl.isShader(shader);
 			console.info("webgltest createShader isShader: " + isShader);
 			expect(isShader).assertEqual(true);
+			gl.deleteShader(shader);
 
 			
 			done();
@@ -1246,6 +1273,7 @@ export default function webgl1Test_webgl1(){
 			const isTexture = gl.isTexture(texture);
 			console.info("webgltest createTexture isTexture: " + isTexture);
 			expect(isTexture).assertEqual(true);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -1265,6 +1293,7 @@ export default function webgl1Test_webgl1(){
 			const isTexture = gl.isTexture(texture);
 			console.info("webgltest createTexture isTexture: " + isTexture);
 			expect(isTexture).assertEqual(false);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -1351,6 +1380,7 @@ export default function webgl1Test_webgl1(){
 			const isBuffer2 = gl.isBuffer(buffer);
 			console.info("webgltest createBuffer bindBuffer deleteBuffer isBuffer2: " + isBuffer2);
 			expect(isBuffer2).assertEqual(false);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -1376,6 +1406,7 @@ export default function webgl1Test_webgl1(){
 			const isBuffer2 = gl.isBuffer(buffer);
 			console.info("webgltest createBuffer bindBuffer deleteBuffer isBuffer2: " + isBuffer2);
 			expect(isBuffer2).assertEqual(false);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -1405,6 +1436,7 @@ export default function webgl1Test_webgl1(){
 			console.info("webgltest createFramebuffer bindFramebuffer isFramebuffer2: " +
 				isFramebuffer2);
 			expect(isFramebuffer2).assertEqual(false);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -1450,6 +1482,7 @@ export default function webgl1Test_webgl1(){
 			const isProgram2 = gl.isProgram(program);
 			console.info("webgltest getExtension: " + isProgram2);
 			expect(isProgram2).assertEqual(false);
+			gl.deleteProgram(program);
 
 			
 			done();
@@ -1479,6 +1512,7 @@ export default function webgl1Test_webgl1(){
 				"webgltest createRenderbuffer bindRenderbuffer  deleteRenderbuffer isRenderbuffer2: " +
 				isRenderbuffer2);
 			expect(isRenderbuffer2).assertEqual(false);
+			gl.deleteRenderbuffer(renderbuffer);
 
 			
 			done();
@@ -1856,6 +1890,9 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest uniform3uiv getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(program);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 
 			
 			done();
@@ -2014,6 +2051,7 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest drawArrays getError: " + errorCode);
 			expect(errorCode).assertEqual(1280);
+			gl.deleteBuffer(indexBuffer);
 			
 			done();
 		});
@@ -2135,6 +2173,9 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest enableVertexAttribArray getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 
 			
 			done();
@@ -2191,6 +2232,7 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -2211,6 +2253,7 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -2231,6 +2274,7 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -2252,6 +2296,7 @@ export default function webgl1Test_webgl1(){
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -2462,6 +2507,7 @@ export default function webgl1Test_webgl1(){
 
 			console.info("webgltest createQuery isQuery: " + isQuery);
 			expect(isQuery).assertEqual(true);
+			gl2.deleteQuery(query);
 			
 			done();
 		});
@@ -2482,6 +2528,7 @@ export default function webgl1Test_webgl1(){
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
 			expect(isQuery1).assertEqual(true);
+			gl2.deleteQuery(query);
 			
 			done();
 		});

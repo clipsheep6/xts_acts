@@ -63,6 +63,8 @@ export default function webgl1Test_webgl9() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl9() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl9() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -300,6 +305,7 @@ export default function webgl1Test_webgl9() {
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
 			expect(isQuery1).assertEqual(true);
+			gl2.deleteQuery(query);
 			
 			done();
 		});
@@ -327,6 +333,7 @@ export default function webgl1Test_webgl9() {
 			const isQuery2 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery2: " + isQuery2);
 			expect(isQuery2).assertEqual(true);
+			gl2.deleteQuery(query);
 
 			
 			done();
@@ -355,6 +362,7 @@ export default function webgl1Test_webgl9() {
 			const isQuery2 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery2: " + isQuery2);
 			expect(isQuery2).assertEqual(true);
+			gl2.deleteQuery(query);
 
 			
 			done();
@@ -952,6 +960,7 @@ export default function webgl1Test_webgl9() {
 			const pixelStoreiError = gl.getError();
 			console.info("pixelStoreiError: " + pixelStoreiError);
 			expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -971,6 +980,7 @@ export default function webgl1Test_webgl9() {
 			const pixelStoreiError = gl.getError();
 			console.info("pixelStoreiError: " + pixelStoreiError);
 			expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -990,6 +1000,7 @@ export default function webgl1Test_webgl9() {
 			const pixelStoreiError = gl.getError();
 			console.info("pixelStoreiError: " + pixelStoreiError);
 			expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1016,6 +1027,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1042,6 +1054,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1068,6 +1081,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1094,6 +1108,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1120,6 +1135,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1146,6 +1162,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1172,6 +1189,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1198,6 +1216,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteTexture(tex);
 			done();
 		})
 
@@ -1216,6 +1235,7 @@ export default function webgl1Test_webgl9() {
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
 			expect(bufferDataError).assertEqual(0);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1240,6 +1260,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1264,6 +1285,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1288,6 +1310,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1312,6 +1335,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1336,6 +1360,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1360,6 +1385,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1377,6 +1403,7 @@ export default function webgl1Test_webgl9() {
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
 			expect(bufferDataError).assertEqual(0);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1401,6 +1428,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1425,6 +1453,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1449,6 +1478,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1473,6 +1503,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1497,6 +1528,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1521,6 +1553,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1545,6 +1578,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1562,6 +1596,7 @@ export default function webgl1Test_webgl9() {
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
 			expect(bufferDataError).assertEqual(0);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1586,6 +1621,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1610,6 +1646,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1634,6 +1671,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1658,6 +1696,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1682,6 +1721,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1706,6 +1746,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1723,6 +1764,7 @@ export default function webgl1Test_webgl9() {
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
 			expect(bufferDataError).assertEqual(0);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1747,6 +1789,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1771,6 +1814,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1795,6 +1839,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1819,6 +1864,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1843,6 +1889,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1867,6 +1914,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1891,6 +1939,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1909,6 +1958,7 @@ export default function webgl1Test_webgl9() {
 			const bufferSubDataError = gl.getError();
 			console.info("bufferSubDataError: " + bufferSubDataError);
 			expect(bufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1927,6 +1977,7 @@ export default function webgl1Test_webgl9() {
 			const bufferSubDataError = gl.getError();
 			console.info("bufferSubDataError: " + bufferSubDataError);
 			expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1952,6 +2003,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -1977,6 +2029,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -2002,6 +2055,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -2027,6 +2081,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -2052,6 +2107,7 @@ export default function webgl1Test_webgl9() {
 			} else {
 			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -2069,6 +2125,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
 			expect(compressedTexImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2086,6 +2143,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
 			expect(compressedTexImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2103,6 +2161,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
 			expect(compressedTexImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2120,6 +2179,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
 			expect(compressedTexImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2137,6 +2197,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
 			expect(compressedTexImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2154,6 +2215,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
 			expect(compressedTexImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2173,6 +2235,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
 			expect(compressedTexSubImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2192,6 +2255,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
 			expect(compressedTexSubImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2211,6 +2275,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
 			expect(compressedTexSubImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2230,6 +2295,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
 			expect(compressedTexSubImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2249,6 +2315,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
 			expect(compressedTexSubImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -2268,6 +2335,7 @@ export default function webgl1Test_webgl9() {
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
 			expect(compressedTexSubImage2DError).assertEqual(0);
+			gl.deleteTexture(texture);
 			done();
 		})
 

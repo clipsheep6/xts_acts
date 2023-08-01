@@ -63,6 +63,8 @@ export default function webgl1Test_webgl10() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl10() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl10() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -491,6 +496,8 @@ export default function webgl1Test_webgl10() {
 			const copyBufferSubDataError = gl.getError();
 			console.info("copyBufferSubDataError: " + copyBufferSubDataError);
 			expect(copyBufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(srcBuffer);
+			gl.deleteBuffer(dstBuffer);
 			done();
 		})
 
@@ -516,6 +523,8 @@ export default function webgl1Test_webgl10() {
 			const copyBufferSubDataError = gl.getError();
 			console.info("copyBufferSubDataError: " + copyBufferSubDataError);
 			expect(copyBufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(srcBuffer);
+			gl.deleteBuffer(dstBuffer);
 			done();
 		})
 
@@ -541,6 +550,8 @@ export default function webgl1Test_webgl10() {
 			const copyBufferSubDataError = gl.getError();
 			console.info("copyBufferSubDataError: " + copyBufferSubDataError);
 			expect(copyBufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(srcBuffer);
+			gl.deleteBuffer(dstBuffer);
 			done();
 		})
 
@@ -566,6 +577,8 @@ export default function webgl1Test_webgl10() {
 			const copyBufferSubDataError = gl.getError();
 			console.info("copyBufferSubDataError: " + copyBufferSubDataError);
 			expect(copyBufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(srcBuffer);
+			gl.deleteBuffer(dstBuffer);
 			done();
 		})
 
@@ -591,6 +604,8 @@ export default function webgl1Test_webgl10() {
 			const copyBufferSubDataError = gl.getError();
 			console.info("copyBufferSubDataError: " + copyBufferSubDataError);
 			expect(copyBufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(srcBuffer);
+			gl.deleteBuffer(dstBuffer);
 			done();
 		})
 
@@ -616,6 +631,8 @@ export default function webgl1Test_webgl10() {
 			const copyBufferSubDataError = gl.getError();
 			console.info("copyBufferSubDataError: " + copyBufferSubDataError);
 			expect(copyBufferSubDataError).assertEqual(0);
+			gl.deleteBuffer(srcBuffer);
+			gl.deleteBuffer(dstBuffer);
 			done();
 		})
 
@@ -636,6 +653,7 @@ export default function webgl1Test_webgl10() {
 			const getBufferSubDataError = gl.getError();
 			console.info("getBufferSubDataError: " + getBufferSubDataError);
 			expect(getBufferSubDataError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -656,6 +674,7 @@ export default function webgl1Test_webgl10() {
 			const getBufferSubDataError = gl.getError();
 			console.info("getBufferSubDataError: " + getBufferSubDataError);
 			expect(getBufferSubDataError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -676,6 +695,7 @@ export default function webgl1Test_webgl10() {
 			const getBufferSubDataError = gl.getError();
 			console.info("getBufferSubDataError: " + getBufferSubDataError);
 			expect(getBufferSubDataError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -696,6 +716,7 @@ export default function webgl1Test_webgl10() {
 			const getBufferSubDataError = gl.getError();
 			console.info("getBufferSubDataError: " + getBufferSubDataError);
 			expect(getBufferSubDataError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -716,6 +737,7 @@ export default function webgl1Test_webgl10() {
 			const getBufferSubDataError = gl.getError();
 			console.info("getBufferSubDataError: " + getBufferSubDataError);
 			expect(getBufferSubDataError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -736,6 +758,7 @@ export default function webgl1Test_webgl10() {
 			const getBufferSubDataError = gl.getError();
 			console.info("getBufferSubDataError: " + getBufferSubDataError);
 			expect(getBufferSubDataError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteBuffer(buffer);
 			done();
 		})
 
@@ -764,6 +787,8 @@ export default function webgl1Test_webgl10() {
 			} else {
 			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteFramebuffer(framebuffer);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -792,6 +817,8 @@ export default function webgl1Test_webgl10() {
 			} else {
 			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteFramebuffer(framebuffer);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -820,6 +847,8 @@ export default function webgl1Test_webgl10() {
 			} else {
 			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_OPERATION);
 			}
+			gl.deleteFramebuffer(framebuffer);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -848,6 +877,8 @@ export default function webgl1Test_webgl10() {
 			} else {
 			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_OPERATION);
 			}
+			gl.deleteFramebuffer(framebuffer);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -876,6 +907,8 @@ export default function webgl1Test_webgl10() {
 			} else {
 			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_ENUM);
 			}
+			gl.deleteFramebuffer(framebuffer);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -1228,6 +1261,7 @@ export default function webgl1Test_webgl10() {
 				const bindBufferBaseError = gl.getError();
 				console.info("bindBufferBaseError: " + bindBufferBaseError);
 				expect(bindBufferBaseError).assertEqual(0);
+				gl.deleteBuffer(buffer);
 				
 				done();
 			} catch (e) {
@@ -1250,6 +1284,7 @@ export default function webgl1Test_webgl10() {
 				const bindBufferRangeError = gl.getError();
 				console.info("bindBufferRangeError: " + bindBufferRangeError);
 				expect(bindBufferRangeError).assertEqual(0);
+				gl.deleteBuffer(buffer);
 				
 				done();
 			} catch (e) {
@@ -1501,6 +1536,9 @@ export default function webgl1Test_webgl10() {
 				const vertexAttribPointerError = gl.getError();
 				console.info("vertexAttribPointerError: " + vertexAttribPointerError);
 				expect(vertexAttribPointerError).assertEqual(gl.INVALID_VALUE);
+				gl.deleteProgram(programObj);
+				gl.deleteShader(vertexShader);
+				gl.deleteShader(fragmentShader);
 				
 				done();
 			} catch (e) {
@@ -1555,6 +1593,9 @@ export default function webgl1Test_webgl10() {
 				const vertexAttribPointerError = gl.getError();
 				console.info("vertexAttribPointerError: " + vertexAttribPointerError);
 				expect(vertexAttribPointerError).assertEqual(gl.INVALID_VALUE);
+				gl.deleteProgram(programObj);
+				gl.deleteShader(vertexShader);
+				gl.deleteShader(fragmentShader);
 				
 				done();
 			} catch (e) {
@@ -1608,6 +1649,9 @@ export default function webgl1Test_webgl10() {
 				const vertexAttribPointerError = gl.getError();
 				console.info("vertexAttribPointerError: " + vertexAttribPointerError);
 				expect(vertexAttribPointerError).assertEqual(gl.INVALID_VALUE);
+				gl.deleteProgram(programObj);
+				gl.deleteShader(vertexShader);
+				gl.deleteShader(fragmentShader);
 				
 				done();
 			} catch (e) {
@@ -1944,6 +1988,7 @@ export default function webgl1Test_webgl10() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(0);
+			gl.deleteRenderbuffer(renderbuffer);
 			done();
 		});
 
@@ -1967,6 +2012,7 @@ export default function webgl1Test_webgl10() {
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
 			expect(errorCode).assertEqual(0);
+			gl.deleteRenderbuffer(renderbuffer);
 			done();
 		});
 

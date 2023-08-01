@@ -63,6 +63,8 @@ export default function webgl1Test_webgl8() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -98,6 +100,8 @@ export default function webgl1Test_webgl8() {
 			gl.attachShader(programObj, fragmentShader);
 			gl.linkProgram(programObj);
 			gl.useProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			return programObj;
 		}
 
@@ -225,6 +229,7 @@ export default function webgl1Test_webgl8() {
 
 			// 连接a_Position变量与分配给它的缓冲区对象
 			gl.enableVertexAttribArray(aPosition);
+			gl.deleteBuffer(vertexBuffer);
 
 			return n;
 		}
@@ -298,6 +303,7 @@ export default function webgl1Test_webgl8() {
 			console.info("framebufferTextureLayerError: " + framebufferTextureLayerError);
 			expect(framebufferTextureLayerError).assertLarger(gl.NO_ERROR);
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
+			gl.deleteShader(shader);
 			done();
 		})
 
@@ -326,6 +332,8 @@ export default function webgl1Test_webgl8() {
 			} else {
 			    expect(framebufferTextureLayerError).assertEqual(gl.INVALID_OPERATION);
 			}
+			gl.deleteFramebuffer(framebuffer);
+			gl.deleteTexture(texture);
 			done();
 		})
 
@@ -524,6 +532,7 @@ export default function webgl1Test_webgl8() {
 			const transformFeedbackVaryingsError = gl.getError();
 			console.info("transformFeedbackVaryingsError: " + transformFeedbackVaryingsError);
 			expect(transformFeedbackVaryingsError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteProgram(program);
 			done();
 		})
 
@@ -541,6 +550,7 @@ export default function webgl1Test_webgl8() {
 			const transformFeedbackVaryingsError = gl.getError();
 			console.info("transformFeedbackVaryingsError: " + transformFeedbackVaryingsError);
 			expect(transformFeedbackVaryingsError).assertEqual(gl.INVALID_ENUM);
+			gl.deleteProgram(program);
 			done();
 		})
 
@@ -560,6 +570,7 @@ export default function webgl1Test_webgl8() {
 				const getTransformFeedbackVaryingError = gl.getError();
 				console.info("getTransformFeedbackVaryingError: " + getTransformFeedbackVaryingError);
 				expect(getTransformFeedbackVaryingError).assertEqual(gl.NO_ERROR);
+				gl.deleteProgram(programObj);
 				
 				done();
 			} catch (e) {
@@ -582,6 +593,7 @@ export default function webgl1Test_webgl8() {
 				const bindBufferBaseError = gl.getError();
 				console.info("bindBufferBaseError: " + bindBufferBaseError);
 				expect(bindBufferBaseError).assertEqual(gl.INVALID_ENUM);
+				gl.deleteBuffer(buffer);
 				
 				done();
 			} catch (e) {
@@ -604,6 +616,7 @@ export default function webgl1Test_webgl8() {
 				const bindBufferBaseError = gl.getError();
 				console.info("bindBufferBaseError: " + bindBufferBaseError);
 				expect(bindBufferBaseError).assertEqual(gl.INVALID_ENUM);
+				gl.deleteProgram(programobject);
 				
 				done();
 			} catch (e) {
@@ -627,6 +640,7 @@ export default function webgl1Test_webgl8() {
 				const getTransformFeedbackVaryingError = gl.getError();
 				console.info("getTransformFeedbackVaryingError: " + getTransformFeedbackVaryingError);
 				expect(getTransformFeedbackVaryingError).assertLarger(gl.NO_ERROR);
+				gl.deleteProgram(programObj);
 				
 				done();
 			} catch (e) {
@@ -650,6 +664,7 @@ export default function webgl1Test_webgl8() {
 				const bindBufferRangeError = gl.getError();
 				console.info("bindBufferRangeError: " + bindBufferRangeError);
 				expect(bindBufferRangeError).assertEqual(0);
+				gl.deleteBuffer(buffer);
 				
 				done();
 			} catch (e) {
@@ -673,6 +688,7 @@ export default function webgl1Test_webgl8() {
 				const bindBufferRangeError = gl.getError();
 				console.info("bindBufferRangeError: " + bindBufferRangeError);
 				expect(bindBufferRangeError).assertLarger(gl.NO_ERROR);
+				gl.deleteBuffer(buffer);
 				
 				done();
 			} catch (e) {
@@ -696,6 +712,7 @@ export default function webgl1Test_webgl8() {
 				const bindBufferRangeError = gl.getError();
 				console.info("bindBufferRangeError: " + bindBufferRangeError);
 				expect(bindBufferRangeError).assertEqual(gl.INVALID_ENUM);
+				gl.deleteBuffer(buffer);
 				
 				done();
 			} catch (e) {
@@ -717,6 +734,7 @@ export default function webgl1Test_webgl8() {
 			const isShader = gl.isShader(-0);
 			console.info("createShader --> isShader: " + isShader);
 			expect(isShader).assertEqual(false);
+			gl.deleteProgram(programobject);
 			done();
 		})
 
@@ -733,6 +751,7 @@ export default function webgl1Test_webgl8() {
 			const linkProgramError = gl.getError();
 			console.info("linkProgramError: " + linkProgramError);
 			expect(linkProgramError).assertEqual(gl.INVALID_OPERATION);
+			gl.deleteShader(fragmentShader);
 			done();
 		})
 
@@ -753,6 +772,7 @@ export default function webgl1Test_webgl8() {
 				const pauseTransformFeedbackError = gl.getError();
 				console.info("pauseTransformFeedbackError: " + pauseTransformFeedbackError);
 				expect(pauseTransformFeedbackError == gl.INVALID_OPERATION).assertEqual(true);
+				gl2.deleteTransformFeedback(transformFeedback);
 				
 				done();
 			} catch (e) {
@@ -882,6 +902,9 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest bindAttribLocation getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.INVALID_VALUE);
+			gl.deleteProgram(programObj);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
 			
 			done();
 		});
@@ -904,6 +927,7 @@ export default function webgl1Test_webgl8() {
 			const isBufferValue = gl.isBuffer(buffer);
 			console.info("isBufferValue: " + isBufferValue);
 			expect(isBufferValue).assertEqual(true);
+			gl.deleteBuffer(buffer);
 
 			
 			done();
@@ -930,6 +954,7 @@ export default function webgl1Test_webgl8() {
 			const isTexture1 = gl.isTexture(texture);
 			console.info("createTexture --> bindTexture --> isTexture: " + isTexture1);
 			expect(isTexture1).assertEqual(true);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -1120,6 +1145,7 @@ export default function webgl1Test_webgl8() {
 			console.info("createFramebuffer --> bindFramebuffer --> checkFramebufferStatus: " +
 			checkFramebufferStatus);
 			expect(checkFramebufferStatus).assertEqual(gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT);
+			gl.deleteFramebuffer(framebuffer);
 
 			
 			done();
@@ -1289,6 +1315,7 @@ export default function webgl1Test_webgl8() {
 			const isShader = gl.isShader(shader);
 			console.info("webgltest createShader isShader: " + isShader);
 			expect(isShader).assertEqual(true);
+			gl.deleteShader(shader);
 
 			
 			done();
@@ -1894,6 +1921,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1915,6 +1943,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1936,6 +1965,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1957,6 +1987,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteRenderbuffer(renderbuffer);
 			
 			done();
 		});
@@ -1977,6 +2008,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -1998,6 +2030,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -2019,6 +2052,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -2040,6 +2074,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -2061,6 +2096,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
@@ -2082,6 +2118,7 @@ export default function webgl1Test_webgl8() {
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
 			expect(errorCode).assertEqual(gl.NO_ERROR);
+			gl.deleteTexture(texture);
 
 			
 			done();
