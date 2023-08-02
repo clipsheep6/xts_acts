@@ -60,6 +60,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missionaapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommand aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
           TAGA = 1;
         })
       },0)
@@ -69,6 +70,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missionbapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommand aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
           TAGB = 1;
         })
       },100)
@@ -128,6 +130,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missionaapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommand aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
         })
       },0)
       setTimeout(() => {
@@ -181,6 +184,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missionbapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommand aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
         })
       },0)
       setTimeout(() => {
@@ -236,6 +240,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missionaapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommanda aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
         })
       },30)
       setTimeout(() => {
@@ -243,6 +248,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missionbapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommandb aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
         })
       },200)
 
@@ -252,6 +258,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missioncapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommandc aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
         })
       },400)
       setTimeout(() => {
@@ -259,6 +266,7 @@ export default function abilityTest() {
         var cmd = "aa start -b com.example.missiondapp -a EntryAbility";
         abilityDelegator.executeShellCommand(cmd, async (err: any, d: any) => {
           console.info("executeShellCommandd aacommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+          expect(err.code).assertEqual(0);
         })
       },600)
 
