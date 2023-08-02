@@ -44,6 +44,6 @@ ohos_shared_library("imagePixelmap") {
   ]
 
   output_extension = "so"
-  subsystem_name = "multimedia"
+  subsystem_name = "graphic"
   part_name = "image_framework"
 }

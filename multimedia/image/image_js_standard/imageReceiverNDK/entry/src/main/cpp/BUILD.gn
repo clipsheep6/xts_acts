@@ -41,6 +41,6 @@ ohos_shared_library("ImageReceiverNDKTest") {
   ]
 
   output_extension = "so"
-  subsystem_name = "multimedia"
+  subsystem_name = "graphic"
   part_name = "image_framework"
 }
