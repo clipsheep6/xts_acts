@@ -7,14 +7,6 @@ XTS是为了保证ArkUI-x提供框架能力在不同平台一致性的测试套�
 ## 目录说明
 
 ```
-├─ ActsAceEtsComponentFiveTest           #旧框架XTS用例
-├─ ActsAceEtsComponentFourTest
-├─ ActsAceEtsComponentThreeTest
-├─ ActsAceEtsComponentTwoTest
-├─ ActsAceEtsStTest
-├─ ActsAceEtsTest
-├─ ActsAceEtsThirdTest
-├─ ArkUIComponentTest
 ├─ ability                               #新框架XTS用例(元能力模块)                               
 │  └─ crossplatform                      #跨平台标识
 │     └─ ability_runtime                 
@@ -203,51 +195,6 @@ ace test app --b com.example.demo --m entry_test --unittest OpenHarmonyTestRunne
 ![ace_test_report](./pic/ace_test_report.png)
 
 其中run表示测试的用例总数，Failure表示测试的用例失败数，Error表示测试的用例错误数，Pass表示测试的用例通过数，Ignore表示测试的用例忽略数。OpenHarmony平台测试用例编写指导方式请见对应[使用指南](https://gitee.com/openharmony/docs/blob/672aed3fd1184490e31b08224119819386a92fc2/zh-cn/application-dev/application-test/arkxtest-guidelines.md)。
-
-
-## 历史XTS用例执行
-
-### Android平台XTS执行说明
-
-#### 环境配置
-
-如果您使用的是Ubuntu系统直接通过USB连接的Android真机，可跳过此步骤。本章节针对在Windows连接Linux服务器或虚拟机的场景，此场景下，Android真机是通过USB直接连接的Windows平台，因此需要对adb端口进行转发，保证在Linux服务器或虚拟机上能通过adb连接Android真机
-
-* 获取adbportforward,并分别在Windows和Linux中分别放置一份
-
-```
-git clone https://github.com/p2401kumar/AdbPortForward.git
-```
-
-* Windows配置
-
-在Windows中解压缩adbportforward，并在lib目录下新建批处理脚本，脚本内容如下
-
-```
-java -jar adbportforward.jar server adblocation=path/to/adb
-pause
-```
-
-执行此脚本
-
-* Linux配置
-
-同样，在Linux中解压缩adbportforward，并在lib目录下新建shell脚本，内容如下
-
-```
-java -jar adbportforward.jar client adblocation=path/to/adb remotehost=192.168.0.159
-
-```
-
-运行此脚本，新建一个终端窗口，并可通过adb访问Android真机
-
-#### 用例执行
-
-进入到android/xts_2.0目录下，执行以下命令便可执行单测试套
-
-```
-./run.sh {模块名}
-```
 
 ## 下一步计划
 
