@@ -261,26 +261,29 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_0600 startAbility err:' + JSON.stringify(err));
       });
-      setTimeout(async function () {
-        let newlog = "'\"domain_\":\"AAFWK\",\"name_\":\"PROCESS_EXIT\",\"type_\":4'";
-        let cmd = "hilog -x | grep " + newlog;
-        await abilityDelegator.executeShellCommand(cmd).then((data) => {
-          expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
-          expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
-          expect(data.stdResult).assertContain('\"EXIT_RESULT\":0');
-          abilityDelegator.executeShellCommand('pkill -f com.example.actsterminaterely').then((data) => {
-            console.log('====>Acts_StartupAndExitEventReport_0600 pkill data:' + JSON.stringify(data));
-            done();
-          }).catch((err) => {
+      setTimeout(function () {
+        let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
+        let cmd = "hilog -x | grep " + grepLog;
+        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+          if (data.stdResult !== '') {
+            try {
+              expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
+              expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
+              expect(data.stdResult).assertContain('\"EXIT_RESULT\":0');
+            } catch {
+              console.log('====>Acts_StartupAndExitEventReport_0600 assert exception');
+              expect().assertFail();
+            }
+          } else {
+            console.log('====>Acts_StartupAndExitEventReport_0600 cmd err:' + JSON.stringify(err));
+            expect().assertFail();
+          }
+          abilityDelegator.executeShellCommand('pkill -f com.example.actsterminaterely', (err, data) => {
             console.log('====>Acts_StartupAndExitEventReport_0600 pkill err:' + JSON.stringify(err));
             done();
-          })
-        }).catch((err) => {
-          console.log('====>Acts_StartupAndExitEventReport_0600 cmd err' + JSON.stringify(err));
-          expect().assertFail();
-          done();
-        })
-      }, 5000);
+          });
+        });
+      }, 4000);
     })
 
     /*
@@ -332,12 +335,12 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_0800', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_0800 start');
-      let aaCommand = 'aa test -b com.example.actstestability -m entry_test ' +
+      let startAbility = 'aa test -b com.example.actstestability -m entry_test ' +
       '-s unittest OpenHarmonyTestRunner -s class ActsAbilityTest';
-      await abilityDelegator.executeShellCommand(aaCommand).then((data) => {
-        console.log('====>Acts_StartupAndExitEventReport_0800 aaCommand data:' + JSON.stringify(data));
+      await abilityDelegator.executeShellCommand(startAbility).then((data) => {
+        console.log('====>Acts_StartupAndExitEventReport_0800 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
-        console.log('====>Acts_StartupAndExitEventReport_0800 aaCommand err:' + JSON.stringify(err));
+        console.log('====>Acts_StartupAndExitEventReport_0800 startAbility err:' + JSON.stringify(err));
       });
       setTimeout(function () {
         let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
@@ -368,8 +371,8 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_0900', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_0900 start');
-      let aaCommand = 'aa start -b ohos.samples.distributedcalc -a ohos.samples.distributedcalc.MainAbility';
-      await abilityDelegator.executeShellCommand(aaCommand).then((data) => {
+      let startAbilityCommand = 'aa start -b com.ohos.contacts -a com.ohos.contacts.MainAbility';
+      await abilityDelegator.executeShellCommand(startAbilityCommand).then((data) => {
         setTimeout(function () {
           let grepLog = "'\"name_\":\"PROCESS_START\"'";
           let cmd = "hilog -x | grep " + grepLog;
@@ -390,12 +393,12 @@ export default function abilityTest() {
               console.log('====>Acts_StartupAndExitEventReport_0900 cmd err:' + JSON.stringify(err));
               expect().assertFail();
             }
-            abilityDelegator.executeShellCommand('pkill -f ohos.samples.distributedcalc', (err, data) => {
+            abilityDelegator.executeShellCommand('pkill -f com.ohos.contacts', (err, data) => {
               console.log('====>Acts_StartupAndExitEventReport_0900 pkill err:' + JSON.stringify(err));
               done();
             });
           });
-        }, 500);
+        }, 2000);
       })
     })
 
@@ -406,16 +409,16 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_1000', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_1000 start');
-      let startDistributedCal = 'aa start -b ohos.samples.distributedcalc -a ohos.samples.distributedcalc.MainAbility';
-      await abilityDelegator.executeShellCommand(startDistributedCal).then((data) => {
-        console.log('====>Acts_StartupAndExitEventReport_1000 data:' + JSON.stringify(data));
+      let startAbility = 'aa start -b com.example.actsstagerely -a EntryAbility';
+      await abilityDelegator.executeShellCommand(startAbility).then((data) => {
+        console.log('====>Acts_StartupAndExitEventReport_1000 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
-        console.log('====>Acts_StartupAndExitEventReport_1000 err:' + JSON.stringify(err));
+        console.log('====>Acts_StartupAndExitEventReport_1000 startAbility err:' + JSON.stringify(err));
       });
       setTimeout(function () {
         let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
         let cmd = "hilog -x | grep " + grepLog;
-        let forceStopCmd = 'aa force-stop ohos.samples.distributedcalc';
+        let forceStopCmd = 'aa force-stop com.example.actsstagerely';
         abilityDelegator.executeShellCommand(forceStopCmd, (err, data) => {
           if (data.stdResult !== '') {
             abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -433,7 +436,7 @@ export default function abilityTest() {
                 console.log('====>Acts_StartupAndExitEventReport_1000 cmd err:' + JSON.stringify(err));
                 expect().assertFail();
               }
-              abilityDelegator.executeShellCommand('pkill -f ohos.samples.distributedcalc', (err, data) => {
+              abilityDelegator.executeShellCommand('pkill -f com.example.actsstagerely', (err, data) => {
                 console.log('====>Acts_StartupAndExitEventReport_1000 pkill err:' + JSON.stringify(err));
                 done();
               });
@@ -453,16 +456,16 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_1100', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_1100 start');
-      let startDistributedCal = 'aa start -b ohos.samples.distributedcalc -a ohos.samples.distributedcalc.MainAbility';
-      await abilityDelegator.executeShellCommand(startDistributedCal).then((data) => {
-        console.log('====>Acts_StartupAndExitEventReport_1100 aa start data:' + JSON.stringify(data));
+      let startAbility = 'aa start -b com.example.actsstagerely -a EntryAbility';
+      await abilityDelegator.executeShellCommand(startAbility).then((data) => {
+        console.log('====>Acts_StartupAndExitEventReport_1100 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
-        console.log('====>Acts_StartupAndExitEventReport_1100 aa start err:' + JSON.stringify(err));
+        console.log('====>Acts_StartupAndExitEventReport_1100 startAbility err:' + JSON.stringify(err));
       });
       setTimeout(function () {
         let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
         let cmd = "hilog -x | grep " + grepLog;
-        let pkillCmd = 'pkill -f ohos.samples.distributedcalc';
+        let pkillCmd = 'pkill -f com.example.actsstagerely';
         abilityDelegator.executeShellCommand(pkillCmd, (err, data) => {
           abilityDelegator.executeShellCommand(cmd, (err, data) => {
             if (data.stdResult !== '') {
@@ -478,7 +481,7 @@ export default function abilityTest() {
               console.log('====>Acts_StartupAndExitEventReport_1100 cmd err:' + JSON.stringify(err));
               expect().assertFail();
             }
-            abilityDelegator.executeShellCommand('pkill -f ohos.samples.distributedcalc', (err, data) => {
+            abilityDelegator.executeShellCommand('pkill -f com.example.actsstagerely', (err, data) => {
               console.log('====>Acts_StartupAndExitEventReport_1100 pkill err:' + JSON.stringify(err));
               done();
             });
@@ -494,11 +497,11 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_1200', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_1200 start');
-      let startCmd = 'aa start -b com.example.actsterminaterely -a TestAbility';
-      await abilityDelegator.executeShellCommand(startCmd).then((data) => {
-        console.log('====>Acts_StartupAndExitEventReport_1200 aa start data:' + JSON.stringify(data));
+      let startAbility = 'aa start -b com.example.actsterminaterely -a TestAbility';
+      await abilityDelegator.executeShellCommand(startAbility).then((data) => {
+        console.log('====>Acts_StartupAndExitEventReport_1200 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
-        console.log('====>Acts_StartupAndExitEventReport_1200 aa start err:' + JSON.stringify(err));
+        console.log('====>Acts_StartupAndExitEventReport_1200 startAbility err:' + JSON.stringify(err));
       });
       await abilityDelegator.executeShellCommand('bm uninstall -n com.example.actsterminaterely').then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 bm uninstall data:' + JSON.stringify(data));
