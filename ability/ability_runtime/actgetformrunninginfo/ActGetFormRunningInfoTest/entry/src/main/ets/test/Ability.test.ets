@@ -1281,7 +1281,7 @@ export default function abilityTest() {
         if (data.event == "ACTS_FormIdA") {
           formId = data.parameters.formId;
         }
-        await formHost.getRunningFormInfoById(formId).then(async dataPromise => {
+        await formObserver.getRunningFormInfoById(formId).then(async dataPromise => {
           console.info('getRunningFormInfoById data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.hostBundleName).assertEqual("com.example.formuser");
           expect(dataPromise.formId).assertEqual(formId);
@@ -1292,7 +1292,7 @@ export default function abilityTest() {
           expect(dataPromise.abilityName).assertEqual("EntryFormAbility");
           expect(dataPromise.formName).assertEqual("widget");
           console.info("Acts_QueryFormInformation_1800 form id ====>" + formId);
-          await formHost.getRunningFormInfoById(formId, (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById(formId, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.hostBundleName).assertEqual("com.example.formuser");
             expect(dataPromise.formId).assertEqual(formId);
@@ -1348,13 +1348,13 @@ export default function abilityTest() {
         }
         console.info("Acts_QueryFormInformation_1900 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_1900 ====> subscribeCallBack data:" + JSON.stringify(data));
-        await formHost.getRunningFormInfoById("111").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("111").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_1900 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfoById("111",  (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("111",  (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
             commonEvent.unsubscribe(subscriber, function () {
@@ -1377,14 +1377,14 @@ export default function abilityTest() {
     it('Acts_QueryFormInformation_2000', 0, async function (done) {
       console.info('=============Acts_QueryFormInformation_2000 start ============');
       try{
-        await formHost.getRunningFormInfoById("").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("").then(dataPromise => {
           console.info('getRunningFormInfoById return error');
           expect(false).assertTrue();
         });
       } catch(error) {
         expect(error.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
         try{
-          await formHost.getRunningFormInfoById("", (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("", (err, dataPromise) => {
             console.info('getRunningFormInfoById return error');
             expect(false).assertTrue();
           });
@@ -1403,14 +1403,14 @@ export default function abilityTest() {
      */
     it('Acts_QueryFormInformation_2100', 0, async function (done) {
       try {
-        await formHost.getRunningFormInfoById(undefined).then(dataPromise => {
+        await formObserver.getRunningFormInfoById(undefined).then(dataPromise => {
           console.info('getRunningFormInfoById return err :');
           expect(false).assertTrue();
         });
       } catch(error) {
         expect(error.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
         try {
-          await formHost.getRunningFormInfoById(undefined, (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById(undefined, (err, dataPromise) => {
             console.info('getRunningFormInfoById return err :');
             expect(false).assertTrue();
           });
@@ -3047,7 +3047,7 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4100 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4100 ====> subscribeCallBack data:" + JSON.stringify(data));
         try{
-          await formHost.getRunningFormInfoById("abc").then(dataPromise => {
+          await formObserver.getRunningFormInfoById("abc").then(dataPromise => {
             console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
             expect(false).assertTrue();
           }).catch(err => {
@@ -3057,7 +3057,7 @@ export default function abilityTest() {
         } catch (err) {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           try {
-            await formHost.getRunningFormInfoById("abc", (err, dataPromise) => {
+            await formObserver.getRunningFormInfoById("abc", (err, dataPromise) => {
               console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
               expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             });
@@ -3111,13 +3111,13 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4200 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4200 ====> subscribeCallBack data:" + JSON.stringify(data));
 
-        await formHost.getRunningFormInfoById("-1").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("-1").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           console.info("Acts_QueryFormInformation_4200 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfoById("-1", (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("-1", (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             commonEvent.unsubscribe(subscriber, function () {
@@ -3167,13 +3167,13 @@ export default function abilityTest() {
         }
         console.info("Acts_QueryFormInformation_4300 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4300 ====> subscribeCallBack data:" + JSON.stringify(data));
-        await formHost.getRunningFormInfoById("0").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("0").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           console.info("Acts_QueryFormInformation_4300 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfoById("0", (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("0", (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             commonEvent.unsubscribe(subscriber, function () {
