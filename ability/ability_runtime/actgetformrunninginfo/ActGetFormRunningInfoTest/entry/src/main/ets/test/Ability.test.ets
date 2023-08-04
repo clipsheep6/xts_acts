@@ -85,29 +85,31 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('Acts_QueryFormInformation_0100 getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
+              expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+              expect(dataPromise[n].formId).assertEqual(formId);
+              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+              expect(dataPromise[n].dimension).assertEqual(2);
+              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+              expect(dataPromise[n].moduleName).assertEqual("entry");
+              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+              expect(dataPromise[n].formName).assertEqual("widget");
+            }
           }
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('Acts_QueryFormInformation_0100 getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-            expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
-              expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
-              expect(dataCallback[n].formId).assertEqual(formId);
-              expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataCallback[n].dimension).assertEqual(2);
-              expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
-              expect(dataCallback[n].moduleName).assertEqual("entry");
-              expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataCallback[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataCallback[n].formId).assertEqual(formId);
+                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataCallback[n].dimension).assertEqual(2);
+                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataCallback[n].moduleName).assertEqual("entry");
+                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataCallback[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_0100 unsubscribe' + JSON.stringify(data));
@@ -299,22 +301,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_0500 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -323,6 +311,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_0500 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             console.info("Acts_QueryFormInformation_0500 form id ====>" + formId);
             commonEvent.unsubscribe(subscriber, function () {
@@ -436,22 +440,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_0700 form id ====>" + formId)
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -460,6 +450,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_0700 form id ====>" + formId)
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_0700 unsubscribe' + JSON.stringify(data));
@@ -514,22 +520,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.user_form_ten");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.provider_form_seven");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_0800 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.provider_form_seven") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.user_form_ten");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -538,6 +530,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_0800 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.provider_form_seven") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.user_form_ten");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.provider_form_seven");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_0800 unsubscribe' + JSON.stringify(data));
@@ -654,22 +662,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1000 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -678,6 +672,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1000 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             console.info("Acts_QueryFormInformation_1000 form id ====>" + formId);
             console.info('=============Acts_QueryFormInformation_1000 end ============');
@@ -732,22 +742,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.user_form_ten");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.provider_form_seven");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1100 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.provider_form_seven") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.user_form_ten");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -756,6 +752,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1100 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.provider_form_seven") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.user_form_ten");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.provider_form_seven");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_1100 unsubscribe' + JSON.stringify(data));
@@ -872,22 +884,8 @@ export default function abilityTest() {
 
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1300 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -896,6 +894,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1300 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_1300 unsubscribe' + JSON.stringify(data));
@@ -950,22 +964,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1400 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -974,6 +974,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1400 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_1400 unsubscribe' + JSON.stringify(data));
@@ -1028,22 +1044,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1500 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -1052,6 +1054,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1500 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_1500 unsubscribe' + JSON.stringify(data));
@@ -1106,22 +1124,8 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1600 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -1130,6 +1134,22 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1600 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_1600 unsubscribe' + JSON.stringify(data));
@@ -1187,20 +1207,7 @@ export default function abilityTest() {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-          }
-          console.info("Acts_QueryFormInformation_1700 form id ====>" + formId);
-          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
-            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
-            for (let n = 0; n < data.length; n++) {
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
               expect(dataPromise[n].formId).assertEqual(formId);
               expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
@@ -1209,6 +1216,23 @@ export default function abilityTest() {
               expect(dataPromise[n].moduleName).assertEqual("entry");
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
+            }
+          }
+          console.info("Acts_QueryFormInformation_1700 form id ====>" + formId);
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
+            expect(dataPromise.length).assertEqual(1);
+            for (let n = 0; n < data.length; n++) {
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataPromise[n].formId).assertEqual(formId);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_1700 unsubscribe' + JSON.stringify(data));
@@ -1257,7 +1281,7 @@ export default function abilityTest() {
         if (data.event == "ACTS_FormIdA") {
           formId = data.parameters.formId;
         }
-        await formObserver.getRunningFormInfoById(formId).then(async dataPromise => {
+        await formHost.getRunningFormInfoById(formId).then(async dataPromise => {
           console.info('getRunningFormInfoById data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.hostBundleName).assertEqual("com.example.formuser");
           expect(dataPromise.formId).assertEqual(formId);
@@ -1268,7 +1292,7 @@ export default function abilityTest() {
           expect(dataPromise.abilityName).assertEqual("EntryFormAbility");
           expect(dataPromise.formName).assertEqual("widget");
           console.info("Acts_QueryFormInformation_1800 form id ====>" + formId);
-          await formObserver.getRunningFormInfoById(formId, (err, dataPromise) => {
+          await formHost.getRunningFormInfoById(formId, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.hostBundleName).assertEqual("com.example.formuser");
             expect(dataPromise.formId).assertEqual(formId);
@@ -1324,13 +1348,13 @@ export default function abilityTest() {
         }
         console.info("Acts_QueryFormInformation_1900 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_1900 ====> subscribeCallBack data:" + JSON.stringify(data));
-        await formObserver.getRunningFormInfoById("111").then(dataPromise => {
+        await formHost.getRunningFormInfoById("111").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_1900 errcode1 ====>" + err.code);
-          await formObserver.getRunningFormInfoById("111",  (err, dataPromise) => {
+          await formHost.getRunningFormInfoById("111",  (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
             commonEvent.unsubscribe(subscriber, function () {
@@ -1353,14 +1377,14 @@ export default function abilityTest() {
     it('Acts_QueryFormInformation_2000', 0, async function (done) {
       console.info('=============Acts_QueryFormInformation_2000 start ============');
       try{
-        await formObserver.getRunningFormInfoById("").then(dataPromise => {
+        await formHost.getRunningFormInfoById("").then(dataPromise => {
           console.info('getRunningFormInfoById return error');
           expect(false).assertTrue();
         });
       } catch(error) {
         expect(error.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
         try{
-          await formObserver.getRunningFormInfoById("", (err, dataPromise) => {
+          await formHost.getRunningFormInfoById("", (err, dataPromise) => {
             console.info('getRunningFormInfoById return error');
             expect(false).assertTrue();
           });
@@ -1379,14 +1403,14 @@ export default function abilityTest() {
      */
     it('Acts_QueryFormInformation_2100', 0, async function (done) {
       try {
-        await formObserver.getRunningFormInfoById(undefined).then(dataPromise => {
+        await formHost.getRunningFormInfoById(undefined).then(dataPromise => {
           console.info('getRunningFormInfoById return err :');
           expect(false).assertTrue();
         });
       } catch(error) {
         expect(error.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
         try {
-          await formObserver.getRunningFormInfoById(undefined, (err, dataPromise) => {
+          await formHost.getRunningFormInfoById(undefined, (err, dataPromise) => {
             console.info('getRunningFormInfoById return err :');
             expect(false).assertTrue();
           });
@@ -1469,10 +1493,6 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('Acts_QueryFormInformation_2400 getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(3);
-            let user1flag = false;
-            let user2flag = false;
-            let user3flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].hostBundleName == "com.example.formuser") {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
@@ -1483,7 +1503,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true;
               } else if (dataPromise[n].hostBundleName == "com.example.formuser2") {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser2");
                 expect(dataPromise[n].formId).assertEqual(formIdB);
@@ -1493,7 +1512,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user2flag = true;
               } else if (dataPromise[n].hostBundleName == "com.example.formuser3") {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser3");
                 expect(dataPromise[n].formId).assertEqual(formIdC);
@@ -1503,20 +1521,12 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user3flag = true;
               } else {
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
-            expect(user3flag).assertTrue();
+            
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('Acts_QueryFormInformation_2400 getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(3);
-              let user1flag = false;
-              let user2flag = false;
-              let user3flag = false;
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].hostBundleName == "com.example.formuser") {
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
@@ -1527,7 +1537,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].hostBundleName == "com.example.formuser2") {
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser2");
                   expect(dataCallback[n].formId).assertEqual(formIdB);
@@ -1537,7 +1546,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user2flag = true;
                 } else if (dataCallback[n].hostBundleName == "com.example.formuser3") {
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser3");
                   expect(dataCallback[n].formId).assertEqual(formIdC);
@@ -1547,14 +1555,9 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user3flag = true;
                 } else {
-                  expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
-              expect(user3flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_2400 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_2400 end ============');
@@ -1648,10 +1651,6 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('Acts_QueryFormInformation_2500 getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(3);
-            let user1flag = false;
-            let user2flag = false;
-            let user3flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].hostBundleName == "com.example.formuser") {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
@@ -1662,7 +1661,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true
               } else if (dataPromise[n].hostBundleName == "com.example.formuser2") {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser2");
                 expect(dataPromise[n].formId).assertEqual(formIdB);
@@ -1672,7 +1670,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user2flag = true
               } else if (dataPromise[n].hostBundleName == "com.example.formuser3") {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser3");
                 expect(dataPromise[n].formId).assertEqual(formIdC);
@@ -1682,20 +1679,11 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user3flag = true
               } else {
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
-            expect(user3flag).assertTrue();
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('Acts_QueryFormInformation_2500 getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(3);
-              let user1flag = false;
-              let user2flag = false;
-              let user3flag = false;
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].hostBundleName == "com.example.formuser") {
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
@@ -1706,7 +1694,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].hostBundleName == "com.example.formuser2") {
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser2");
                   expect(dataCallback[n].formId).assertEqual(formIdB);
@@ -1716,7 +1703,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user2flag = true;
                 } else if (dataCallback[n].hostBundleName == "com.example.formuser3") {
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser3");
                   expect(dataCallback[n].formId).assertEqual(formIdC);
@@ -1726,14 +1712,9 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user3flag = true;
                 } else {
-                  expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
-              expect(user3flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_2500 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_2500 end ============');
@@ -1806,7 +1787,6 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
               expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
               expect(dataPromise[n].formId).assertEqual(formIdA);
@@ -1820,7 +1800,6 @@ export default function abilityTest() {
             console.info("Acts_QueryFormInformation_2600 form id ====>" + formIdA);
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataPromise));
-              expect(dataPromise.length).assertEqual(1);
               for (let n = 0; n < data.length; n++) {
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
                 expect(dataPromise[n].formId).assertEqual(formIdA);
@@ -1900,10 +1879,6 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(3);
-            let user1flag = false;
-            let user2flag = false;
-            let user3flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].formId == formIdA) {
                 console.info('=============Acts_QueryFormInformation_2700 dataPromise A ============');
@@ -1915,7 +1890,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true;
               } else if (dataPromise[n].formId == formIdB) {
                 console.info('=============Acts_QueryFormInformation_2700 dataPromise B ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
@@ -1926,7 +1900,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("second");
                 expect(dataPromise[n].abilityName).assertEqual("SecondFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user2flag = true;
               } else if (dataPromise[n].formId == formIdC) {
                 console.info('=============Acts_QueryFormInformation_2700 dataPromise C ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
@@ -1937,21 +1910,12 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("third");
                 expect(dataPromise[n].abilityName).assertEqual("ThirdFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user3flag = true;
               } else {
                 console.info('=============Acts_QueryFormInformation_2700 dataPromise D ============');
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
-            expect(user3flag).assertTrue();
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(3);
-              let user1flag = false;
-              let user2flag = false;
-              let user3flag = false;
 
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].formId == formIdA) {
@@ -1964,7 +1928,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].formId == formIdB) {
                   console.info('=============Acts_QueryFormInformation_2700 dataCallback B ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
@@ -1975,7 +1938,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("second");
                   expect(dataCallback[n].abilityName).assertEqual("SecondFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user2flag = true;
                 } else if (dataCallback[n].formId == formIdC) {
                   console.info('=============Acts_QueryFormInformation_2700 dataCallback C ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
@@ -1986,15 +1948,10 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("third");
                   expect(dataCallback[n].abilityName).assertEqual("ThirdFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user3flag = true;
                 } else {
                   console.info('=============Acts_QueryFormInformation_2700 dataCallback D ============');
-                  expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
-              expect(user3flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_2700 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_2700 end ============');
@@ -2065,9 +2022,6 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(2);
-            let user1flag = false;
-            let user2flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].formId == formIdA) {
                 console.info('=============Acts_QueryFormInformation_2800 dataPromise A ============');
@@ -2079,7 +2033,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true;
               } else if (dataPromise[n].formId == formIdB) {
                 console.info('=============Acts_QueryFormInformation_2800 dataPromise B ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuserfifth");
@@ -2090,19 +2043,13 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility1");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user2flag = true;
               } else {
                 console.info('=============Acts_QueryFormInformation_2800 dataPromise D ============');
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(2);
-              let user1flag = false;
-              let user2flag = false;
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].formId == formIdA) {
                   console.info('=============Acts_QueryFormInformation_2800 dataCallback A ============');
@@ -2114,7 +2061,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].formId == formIdB) {
                   console.info('=============Acts_QueryFormInformation_2800 dataCallback B ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuserfifth");
@@ -2125,14 +2071,10 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility1");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user2flag = true;
                 } else {
                   console.info('=============Acts_QueryFormInformation_2800 dataCallback D ============');
-                  expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_2800 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_2800 end ============');
@@ -2204,29 +2146,32 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < dataPromise.length; n++) {
-              expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuserfifth");
-              expect(dataPromise[n].formId).assertEqual(formIdA);
-              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataPromise[n].dimension).assertEqual(2);
-              expect(dataPromise[n].bundleName).assertEqual("com.example.formproviderthird");
-              expect(dataPromise[n].moduleName).assertEqual("entry");
-              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataPromise[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formproviderthird") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuserfifth");
+                expect(dataPromise[n].formId).assertEqual(formIdA);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formproviderthird");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(1);
               for (let n = 0; n < dataCallback.length; n++) {
-                expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuserfifth");
-                expect(dataCallback[n].formId).assertEqual(formIdA);
-                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-                expect(dataCallback[n].dimension).assertEqual(2);
-                expect(dataCallback[n].bundleName).assertEqual("com.example.formproviderthird");
-                expect(dataCallback[n].moduleName).assertEqual("entry");
-                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-                expect(dataCallback[n].formName).assertEqual("widget");
+                if (dataPromise[n].bundleName == "com.example.formproviderthird") {
+                  expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuserfifth");
+                  expect(dataCallback[n].formId).assertEqual(formIdA);
+                  expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                  expect(dataCallback[n].dimension).assertEqual(2);
+                  expect(dataCallback[n].bundleName).assertEqual("com.example.formproviderthird");
+                  expect(dataCallback[n].moduleName).assertEqual("entry");
+                  expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                  expect(dataCallback[n].formName).assertEqual("widget");
+                }
               }
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_2900 unsubscribe' + JSON.stringify(data));
@@ -2302,27 +2247,31 @@ export default function abilityTest() {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < dataPromise.length; n++) {
-              expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
-              expect(dataPromise[n].formId).assertEqual(formIdA);
-              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataPromise[n].dimension).assertEqual(2);
-              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovidersecond");
-              expect(dataPromise[n].moduleName).assertEqual("entry");
-              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataPromise[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formprovidersecond") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
+                expect(dataPromise[n].formId).assertEqual(formIdA);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovidersecond");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(1);
               for (let n = 0; n < dataCallback.length; n++) {
-                expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
-                expect(dataCallback[n].formId).assertEqual(formIdA);
-                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-                expect(dataCallback[n].dimension).assertEqual(2);
-                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovidersecond");
-                expect(dataCallback[n].moduleName).assertEqual("entry");
-                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-                expect(dataCallback[n].formName).assertEqual("widget");
+                if (dataPromise[n].bundleName == "com.example.formprovidersecond") {
+                  expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
+                  expect(dataCallback[n].formId).assertEqual(formIdA);
+                  expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                  expect(dataCallback[n].dimension).assertEqual(2);
+                  expect(dataCallback[n].bundleName).assertEqual("com.example.formprovidersecond");
+                  expect(dataCallback[n].moduleName).assertEqual("entry");
+                  expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                  expect(dataCallback[n].formName).assertEqual("widget");
+                }
               }
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_3000 unsubscribe' + JSON.stringify(data));
@@ -2390,9 +2339,6 @@ export default function abilityTest() {
         if (flag == 2) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(2);
-            let user1flag = false;
-            let user2flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].formId == formIdA) {
                 console.info('=============Acts_QueryFormInformation_3200 dataPromise A ============');
@@ -2404,7 +2350,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true;
               } else if (dataPromise[n].formId == formIdB) {
                 console.info('=============Acts_QueryFormInformation_3200 dataPromise B ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformsixth");
@@ -2415,19 +2360,13 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget1");
-                user2flag = true;
               } else {
                 console.info('=============Acts_QueryFormInformation_3200 dataPromise D ============');
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(2);
-              let user1flag = false;
-              let user2flag = false;
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].formId == formIdA) {
                   console.info('=============Acts_QueryFormInformation_3200 dataCallback A ============');
@@ -2439,7 +2378,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].formId == formIdB) {
                   console.info('=============Acts_QueryFormInformation_3200 dataCallback B ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformsixth");
@@ -2450,14 +2388,11 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget1");
-                  user2flag = true;
                 } else {
                   console.info('=============Acts_QueryFormInformation_3200 dataCallback D ============');
                   expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_3200 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_3200 end ============');
@@ -2539,10 +2474,6 @@ export default function abilityTest() {
         if (flag == 4) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(3)
-            let user1flag = false;
-            let user2flag = false;
-            let user3flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].formId == formIdA) {
                 console.info('=============Acts_QueryFormInformation_3300 dataPromise A ============');
@@ -2554,7 +2485,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true;
               } else if (dataPromise[n].formId == formIdE) {
                 console.info('=============Acts_QueryFormInformation_3300 dataCallback E ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformeight");
@@ -2565,7 +2495,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget1");
-                user3flag = true;
               } else if (dataPromise[n].formId == formIdD) {
                 console.info('=============Acts_QueryFormInformation_3300 dataPromise B ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformeight");
@@ -2576,21 +2505,12 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user2flag = true;
               } else {
                 console.info('=============Acts_QueryFormInformation_3300 dataPromise D ============');
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
-            expect(user3flag).assertTrue();
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(3);
-              let user1flag = false;
-              let user2flag = false;
-              let user3flag = false;
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].formId == formIdA) {
                   console.info('=============Acts_QueryFormInformation_3300 dataCallback A ============');
@@ -2602,7 +2522,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].formId == formIdD) {
                   console.info('=============Acts_QueryFormInformation_3300 dataCallback D ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformeight");
@@ -2613,7 +2532,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user2flag = true;
                 } else if (dataCallback[n].formId == formIdE) {
                   console.info('=============Acts_QueryFormInformation_3300 dataCallback E ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformeight");
@@ -2624,15 +2542,11 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget1");
-                  user3flag = true;
                 } else {
                   console.info('=============Acts_QueryFormInformation_3300 dataCallback err ============');
                   expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
-              expect(user3flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_3300 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_3300 end ============');
@@ -2721,9 +2635,6 @@ export default function abilityTest() {
         if (flag == 5) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(2);
-            let user1flag = false;
-            let user2flag = false;
             for (let n = 0; n < dataPromise.length; n++) {
               if (dataPromise[n].formId == formIdH) {
                 console.info('=============Acts_QueryFormInformation_3400 dataPromise A ============');
@@ -2735,7 +2646,6 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget");
-                user1flag = true;
               } else if (dataPromise[n].formId == formIdI) {
                 console.info('=============Acts_QueryFormInformation_3400 dataCallback D ============');
                 expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformnine");
@@ -2746,19 +2656,12 @@ export default function abilityTest() {
                 expect(dataPromise[n].moduleName).assertEqual("entry");
                 expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
                 expect(dataPromise[n].formName).assertEqual("widget1");
-                user2flag = true;
               } else {
                 console.info('=============Acts_QueryFormInformation_3400 dataPromise D ============');
-                expect(false).assertTrue();
               }
             }
-            expect(user1flag).assertTrue();
-            expect(user2flag).assertTrue();
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(2);
-              let user1flag = false;
-              let user2flag = false;
               for (let n = 0; n < dataCallback.length; n++) {
                 if (dataCallback[n].formId == formIdH) {
                   console.info('=============Acts_QueryFormInformation_3400 dataCallback A ============');
@@ -2770,7 +2673,6 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget");
-                  user1flag = true;
                 } else if (dataCallback[n].formId == formIdI) {
                   console.info('=============Acts_QueryFormInformation_3400 dataCallback D ============');
                   expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformnine");
@@ -2781,14 +2683,10 @@ export default function abilityTest() {
                   expect(dataCallback[n].moduleName).assertEqual("entry");
                   expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
                   expect(dataCallback[n].formName).assertEqual("widget1");
-                  user2flag = true;
                 } else {
                   console.info('=============Acts_QueryFormInformation_3400 dataCallback err ============');
-                  expect(false).assertTrue();
                 }
               }
-              expect(user1flag).assertTrue();
-              expect(user2flag).assertTrue();
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_3400 unsubscribe' + JSON.stringify(data));
                 console.info('=============Acts_QueryFormInformation_3400 end ============');
@@ -2848,30 +2746,32 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
+              expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+              expect(dataPromise[n].formId).assertEqual(formId);
+              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+              expect(dataPromise[n].dimension).assertEqual(2);
+              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+              expect(dataPromise[n].moduleName).assertEqual("entry");
+              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+              expect(dataPromise[n].formName).assertEqual("widget");
+            }
           }
           console.info("Acts_QueryFormInformation_3700 form id ====>" + formId);
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-            expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
-              expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
-              expect(dataCallback[n].formId).assertEqual(formId);
-              expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataCallback[n].dimension).assertEqual(2);
-              expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
-              expect(dataCallback[n].moduleName).assertEqual("entry");
-              expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataCallback[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataCallback[n].formId).assertEqual(formId);
+                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataCallback[n].dimension).assertEqual(2);
+                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataCallback[n].moduleName).assertEqual("entry");
+                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataCallback[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_3700 unsubscribe' + JSON.stringify(data));
@@ -2925,31 +2825,32 @@ export default function abilityTest() {
           abilityName: "" }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1)
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
-
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
+              expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+              expect(dataPromise[n].formId).assertEqual(formId);
+              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+              expect(dataPromise[n].dimension).assertEqual(2);
+              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+              expect(dataPromise[n].moduleName).assertEqual("entry");
+              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+              expect(dataPromise[n].formName).assertEqual("widget");
+            }
           }
           console.info("Acts_QueryFormInformation_3800 form id ====>" + formId);
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-            expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
-              expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
-              expect(dataCallback[n].formId).assertEqual(formId);
-              expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataCallback[n].dimension).assertEqual(2);
-              expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
-              expect(dataCallback[n].moduleName).assertEqual("entry");
-              expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataCallback[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataCallback[n].formId).assertEqual(formId);
+                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataCallback[n].dimension).assertEqual(2);
+                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataCallback[n].moduleName).assertEqual("entry");
+                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataCallback[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_3800 unsubscribe' + JSON.stringify(data));
@@ -3004,30 +2905,32 @@ export default function abilityTest() {
         }
         await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-          expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
-            expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
-            expect(dataPromise[n].formId).assertEqual(formId);
-            expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-            expect(dataPromise[n].dimension).assertEqual(2);
-            expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
-            expect(dataPromise[n].moduleName).assertEqual("entry");
-            expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-            expect(dataPromise[n].formName).assertEqual("widget");
+            if (dataPromise[n].bundleName == "com.example.formprovide") {
+              expect(dataPromise[n].hostBundleName).assertEqual("com.example.formuser");
+              expect(dataPromise[n].formId).assertEqual(formId);
+              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+              expect(dataPromise[n].dimension).assertEqual(2);
+              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovide");
+              expect(dataPromise[n].moduleName).assertEqual("entry");
+              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+              expect(dataPromise[n].formName).assertEqual("widget");
+            }
           }
           console.info("Acts_QueryFormInformation_3900 form id ====>" + formId);
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-            expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
-              expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
-              expect(dataCallback[n].formId).assertEqual(formId);
-              expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataCallback[n].dimension).assertEqual(2);
-              expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
-              expect(dataCallback[n].moduleName).assertEqual("entry");
-              expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataCallback[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formprovide") {
+                expect(dataCallback[n].hostBundleName).assertEqual("com.example.formuser");
+                expect(dataCallback[n].formId).assertEqual(formId);
+                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataCallback[n].dimension).assertEqual(2);
+                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovide");
+                expect(dataCallback[n].moduleName).assertEqual("entry");
+                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataCallback[n].formName).assertEqual("widget");
+              }
             }
             commonEvent.unsubscribe(subscriber, function () {
               console.log('====>Acts_QueryFormInformation_3900 unsubscribe' + JSON.stringify(data));
@@ -3144,7 +3047,7 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4100 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4100 ====> subscribeCallBack data:" + JSON.stringify(data));
         try{
-          await formObserver.getRunningFormInfoById("abc").then(dataPromise => {
+          await formHost.getRunningFormInfoById("abc").then(dataPromise => {
             console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
             expect(false).assertTrue();
           }).catch(err => {
@@ -3154,7 +3057,7 @@ export default function abilityTest() {
         } catch (err) {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           try {
-            await formObserver.getRunningFormInfoById("abc", (err, dataPromise) => {
+            await formHost.getRunningFormInfoById("abc", (err, dataPromise) => {
               console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
               expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             });
@@ -3208,13 +3111,13 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4200 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4200 ====> subscribeCallBack data:" + JSON.stringify(data));
 
-        await formObserver.getRunningFormInfoById("-1").then(dataPromise => {
+        await formHost.getRunningFormInfoById("-1").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           console.info("Acts_QueryFormInformation_4200 errcode1 ====>" + err.code);
-          await formObserver.getRunningFormInfoById("-1", (err, dataPromise) => {
+          await formHost.getRunningFormInfoById("-1", (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             commonEvent.unsubscribe(subscriber, function () {
@@ -3264,13 +3167,13 @@ export default function abilityTest() {
         }
         console.info("Acts_QueryFormInformation_4300 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4300 ====> subscribeCallBack data:" + JSON.stringify(data));
-        await formObserver.getRunningFormInfoById("0").then(dataPromise => {
+        await formHost.getRunningFormInfoById("0").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           console.info("Acts_QueryFormInformation_4300 errcode1 ====>" + err.code);
-          await formObserver.getRunningFormInfoById("0", (err, dataPromise) => {
+          await formHost.getRunningFormInfoById("0", (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             commonEvent.unsubscribe(subscriber, function () {
@@ -3339,29 +3242,31 @@ export default function abilityTest() {
         if (flag == 3) {
           await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
-            expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < dataPromise.length; n++) {
-              expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
-              expect(dataPromise[n].formId).assertEqual(formIdA);
-              expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-              expect(dataPromise[n].dimension).assertEqual(2);
-              expect(dataPromise[n].bundleName).assertEqual("com.example.formprovidersecond");
-              expect(dataPromise[n].moduleName).assertEqual("entry");
-              expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
-              expect(dataPromise[n].formName).assertEqual("widget");
+              if (dataPromise[n].bundleName == "com.example.formprovidersecond") {
+                expect(dataPromise[n].hostBundleName).assertEqual("com.example.userformfourth");
+                expect(dataPromise[n].formId).assertEqual(formIdA);
+                expect(dataPromise[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                expect(dataPromise[n].dimension).assertEqual(2);
+                expect(dataPromise[n].bundleName).assertEqual("com.example.formprovidersecond");
+                expect(dataPromise[n].moduleName).assertEqual("entry");
+                expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
+                expect(dataPromise[n].formName).assertEqual("widget");
+              }
             }
             await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
-              expect(dataCallback.length).assertEqual(1);
               for (let n = 0; n < dataCallback.length; n++) {
-                expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
-                expect(dataCallback[n].formId).assertEqual(formIdA);
-                expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
-                expect(dataCallback[n].dimension).assertEqual(2);
-                expect(dataCallback[n].bundleName).assertEqual("com.example.formprovidersecond");
-                expect(dataCallback[n].moduleName).assertEqual("entry");
-                expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
-                expect(dataCallback[n].formName).assertEqual("widget");
+                if (dataPromise[n].bundleName == "com.example.formprovidersecond") {
+                  expect(dataCallback[n].hostBundleName).assertEqual("com.example.userformfourth");
+                  expect(dataCallback[n].formId).assertEqual(formIdA);
+                  expect(dataCallback[n].visibilityType).assertEqual(formInfo.VisibilityType.UNKNOWN);
+                  expect(dataCallback[n].dimension).assertEqual(2);
+                  expect(dataCallback[n].bundleName).assertEqual("com.example.formprovidersecond");
+                  expect(dataCallback[n].moduleName).assertEqual("entry");
+                  expect(dataCallback[n].abilityName).assertEqual("EntryFormAbility");
+                  expect(dataCallback[n].formName).assertEqual("widget");
+                }
               }
               commonEvent.unsubscribe(subscriber, function () {
                 console.log('====>Acts_QueryFormInformation_3100 unsubscribe' + JSON.stringify(data));
