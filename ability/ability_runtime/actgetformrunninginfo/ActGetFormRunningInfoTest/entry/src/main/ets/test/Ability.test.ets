@@ -15,7 +15,8 @@
 
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import formHost from '@ohos.app.form.formObserver';
+import formHost from '@ohos.app.form.formHost';
+import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 import commonEvent from '@ohos.commonEventManager'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
@@ -82,7 +83,7 @@ export default function abilityTest() {
         let formInstanceFilter = {
           bundleName: "com.example.formprovide",
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('Acts_QueryFormInformation_0100 getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -95,7 +96,7 @@ export default function abilityTest() {
             expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
             expect(dataPromise[n].formName).assertEqual("widget");
           }
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('Acts_QueryFormInformation_0100 getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
             expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -157,13 +158,13 @@ export default function abilityTest() {
         let formInstanceFilter = {
           bundleName: "com.example.test"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_0900 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataCallback));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
             console.info("Acts_QueryFormInformation_0200 form id ====>" + formId);
@@ -191,7 +192,7 @@ export default function abilityTest() {
         let formInstanceFilter = {
           bundleName: undefined
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
           console.info("Acts_QueryFormInformation_0300 run error ====>");
           expect(false).assertTrue();
           done();
@@ -205,7 +206,7 @@ export default function abilityTest() {
           let formInstanceFilter = {
             bundleName: undefined
           }
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info("Acts_QueryFormInformation_0300 run error ====>");
             expect(false).assertTrue();
             done();
@@ -229,7 +230,7 @@ export default function abilityTest() {
         let formInstanceFilter = {
           bundleName: ""
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
           console.info("Acts_QueryFormInformation_0400 run error ====>");
           expect(false).assertTrue();
           done();
@@ -242,7 +243,7 @@ export default function abilityTest() {
           let formInstanceFilter = {
             bundleName: ""
           }
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info("Acts_QueryFormInformation_0400 run error ====>");
             expect(false).assertTrue();
             done();
@@ -296,7 +297,7 @@ export default function abilityTest() {
           bundleName: "com.example.formprovide",
           moduleName: "entry"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -310,7 +311,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_0500 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -374,12 +375,12 @@ export default function abilityTest() {
           bundleName: "com.example.formprovide",
           moduleName: "testmodule"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_0900 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
             console.info("Acts_QueryFormInformation_0600 form id ====>" + formId);
@@ -433,7 +434,7 @@ export default function abilityTest() {
           bundleName: "com.example.formprovide",
           moduleName: undefined
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -447,7 +448,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_0700 form id ====>" + formId)
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -511,7 +512,7 @@ export default function abilityTest() {
           bundleName: "com.example.provider_form_seven",
           abilityName: "EntryFormAbility"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -525,7 +526,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_0800 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -589,7 +590,7 @@ export default function abilityTest() {
           abilityName: "AbilityTest"
         }
 
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
           console.info("Acts_QueryFormInformation_0900 errcode ====>" + err.code);
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
@@ -597,7 +598,7 @@ export default function abilityTest() {
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_0900 errcode ====>" + err.code);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             console.info("Acts_QueryFormInformation_0900 errcode ====>" + err.code);
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
@@ -651,7 +652,7 @@ export default function abilityTest() {
           bundleName: "com.example.formprovide",
           abilityName: undefined
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -665,7 +666,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1000 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -729,7 +730,7 @@ export default function abilityTest() {
           bundleName: "com.example.provider_form_seven",
           formName: "widget"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -743,7 +744,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1100 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -807,14 +808,14 @@ export default function abilityTest() {
           formName: "test"
         }
 
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(true).assertFalse();
           console.info("Acts_QueryFormInformation_1200 form id ====>" + formId);
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_0900 errcode promise ====>" + err.code);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info("Acts_QueryFormInformation_0900 errcode callback ====>" + err.code);
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
             console.info('=============Acts_QueryFormInformation_1200 end ============');
@@ -869,7 +870,7 @@ export default function abilityTest() {
           formName: undefined
         }
 
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -883,7 +884,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1300 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -947,7 +948,7 @@ export default function abilityTest() {
           moduleName: "entry",
           abilityName: "EntryFormAbility"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -961,7 +962,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1400 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -1025,7 +1026,7 @@ export default function abilityTest() {
           moduleName: "entry",
           formName: "widget"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -1039,7 +1040,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1500 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -1103,7 +1104,7 @@ export default function abilityTest() {
           abilityName: "EntryFormAbility",
           formName: "widget"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -1117,7 +1118,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1600 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -1182,7 +1183,7 @@ export default function abilityTest() {
           formName: "widget",
           moduleName: "entry"
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -1196,7 +1197,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_1700 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -1256,7 +1257,7 @@ export default function abilityTest() {
         if (data.event == "ACTS_FormIdA") {
           formId = data.parameters.formId;
         }
-        await formHost.getRunningFormInfoById(formId).then(async dataPromise => {
+        await formObserver.getRunningFormInfoById(formId).then(async dataPromise => {
           console.info('getRunningFormInfoById data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.hostBundleName).assertEqual("com.example.formuser");
           expect(dataPromise.formId).assertEqual(formId);
@@ -1267,7 +1268,7 @@ export default function abilityTest() {
           expect(dataPromise.abilityName).assertEqual("EntryFormAbility");
           expect(dataPromise.formName).assertEqual("widget");
           console.info("Acts_QueryFormInformation_1800 form id ====>" + formId);
-          await formHost.getRunningFormInfoById(formId, (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById(formId, (err, dataPromise) => {
             console.info('getRunningFormInfosByFilter data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.hostBundleName).assertEqual("com.example.formuser");
             expect(dataPromise.formId).assertEqual(formId);
@@ -1323,13 +1324,13 @@ export default function abilityTest() {
         }
         console.info("Acts_QueryFormInformation_1900 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_1900 ====> subscribeCallBack data:" + JSON.stringify(data));
-        await formHost.getRunningFormInfoById("111").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("111").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
           console.info("Acts_QueryFormInformation_1900 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfoById("111",  (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("111",  (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_GET_INFO_FAILED);
             commonEvent.unsubscribe(subscriber, function () {
@@ -1352,14 +1353,14 @@ export default function abilityTest() {
     it('Acts_QueryFormInformation_2000', 0, async function (done) {
       console.info('=============Acts_QueryFormInformation_2000 start ============');
       try{
-        await formHost.getRunningFormInfoById("").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("").then(dataPromise => {
           console.info('getRunningFormInfoById return error');
           expect(false).assertTrue();
         });
       } catch(error) {
         expect(error.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
         try{
-          await formHost.getRunningFormInfoById("", (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("", (err, dataPromise) => {
             console.info('getRunningFormInfoById return error');
             expect(false).assertTrue();
           });
@@ -1378,14 +1379,14 @@ export default function abilityTest() {
      */
     it('Acts_QueryFormInformation_2100', 0, async function (done) {
       try {
-        await formHost.getRunningFormInfoById(undefined).then(dataPromise => {
+        await formObserver.getRunningFormInfoById(undefined).then(dataPromise => {
           console.info('getRunningFormInfoById return err :');
           expect(false).assertTrue();
         });
       } catch(error) {
         expect(error.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
         try {
-          await formHost.getRunningFormInfoById(undefined, (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById(undefined, (err, dataPromise) => {
             console.info('getRunningFormInfoById return err :');
             expect(false).assertTrue();
           });
@@ -1466,7 +1467,7 @@ export default function abilityTest() {
           flag++;
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('Acts_QueryFormInformation_2400 getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(3);
             let user1flag = false;
@@ -1510,7 +1511,7 @@ export default function abilityTest() {
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
             expect(user3flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('Acts_QueryFormInformation_2400 getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(3);
               let user1flag = false;
@@ -1645,7 +1646,7 @@ export default function abilityTest() {
           flag++;
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('Acts_QueryFormInformation_2500 getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(3);
             let user1flag = false;
@@ -1689,7 +1690,7 @@ export default function abilityTest() {
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
             expect(user3flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('Acts_QueryFormInformation_2500 getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(3);
               let user1flag = false;
@@ -1803,7 +1804,7 @@ export default function abilityTest() {
           moduleName: "entry"
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -1817,7 +1818,7 @@ export default function abilityTest() {
               expect(dataPromise[n].formName).assertEqual("widget");
             }
             console.info("Acts_QueryFormInformation_2600 form id ====>" + formIdA);
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataPromise) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataPromise));
               expect(dataPromise.length).assertEqual(1);
               for (let n = 0; n < data.length; n++) {
@@ -1897,7 +1898,7 @@ export default function abilityTest() {
           bundleName: "com.example.formprovidersecond",
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(3);
             let user1flag = false;
@@ -1945,7 +1946,7 @@ export default function abilityTest() {
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
             expect(user3flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(3);
               let user1flag = false;
@@ -2062,7 +2063,7 @@ export default function abilityTest() {
           moduleName: "entry"
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(2);
             let user1flag = false;
@@ -2097,7 +2098,7 @@ export default function abilityTest() {
             }
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(2);
               let user1flag = false;
@@ -2201,7 +2202,7 @@ export default function abilityTest() {
           abilityName: "EntryFormAbility"
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < dataPromise.length; n++) {
@@ -2214,7 +2215,7 @@ export default function abilityTest() {
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
             }
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(1);
               for (let n = 0; n < dataCallback.length; n++) {
@@ -2297,7 +2298,7 @@ export default function abilityTest() {
           abilityName: "EntryFormAbility"
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < dataPromise.length; n++) {
@@ -2310,7 +2311,7 @@ export default function abilityTest() {
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
             }
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(1);
               for (let n = 0; n < dataCallback.length; n++) {
@@ -2387,7 +2388,7 @@ export default function abilityTest() {
           abilityName: "EntryFormAbility"
         }
         if (flag == 2) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(2);
             let user1flag = false;
@@ -2422,7 +2423,7 @@ export default function abilityTest() {
             }
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(2);
               let user1flag = false;
@@ -2536,7 +2537,7 @@ export default function abilityTest() {
           bundleName: "com.example.providerformfifth",
         }
         if (flag == 4) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(3)
             let user1flag = false;
@@ -2584,7 +2585,7 @@ export default function abilityTest() {
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
             expect(user3flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(3);
               let user1flag = false;
@@ -2718,7 +2719,7 @@ export default function abilityTest() {
           bundleName: "com.example.providerformsixth",
         }
         if (flag == 5) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(2);
             let user1flag = false;
@@ -2753,7 +2754,7 @@ export default function abilityTest() {
             }
             expect(user1flag).assertTrue();
             expect(user2flag).assertTrue();
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(2);
               let user1flag = false;
@@ -2845,7 +2846,7 @@ export default function abilityTest() {
           bundleName: "com.example.formprovide",
           moduleName: ""
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -2859,7 +2860,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_3700 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
             expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -2922,7 +2923,7 @@ export default function abilityTest() {
         let formInstanceFilter = {
           bundleName: "com.example.formprovide",
           abilityName: "" }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1)
           for (let n = 0; n < data.length; n++) {
@@ -2937,7 +2938,7 @@ export default function abilityTest() {
 
           }
           console.info("Acts_QueryFormInformation_3800 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
             expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -3001,7 +3002,7 @@ export default function abilityTest() {
           bundleName: "com.example.formprovide",
           formName: ""
         }
-        await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+        await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
           console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
           expect(dataPromise.length).assertEqual(1);
           for (let n = 0; n < data.length; n++) {
@@ -3015,7 +3016,7 @@ export default function abilityTest() {
             expect(dataPromise[n].formName).assertEqual("widget");
           }
           console.info("Acts_QueryFormInformation_3900 form id ====>" + formId);
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
             console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
             expect(dataCallback.length).assertEqual(1);
             for (let n = 0; n < data.length; n++) {
@@ -3075,7 +3076,7 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4000 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4000 ====> subscribeCallBack data:" + JSON.stringify(data));
         try {
-          await formHost.getRunningFormInfosByFilter(undefined).then(dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(undefined).then(dataPromise => {
             console.info("Acts_QueryFormInformation_4000 run error ====>");
             expect(false).assertTrue();
             done();
@@ -3085,7 +3086,7 @@ export default function abilityTest() {
           console.info("Acts_QueryFormInformation_4000 err.code ====>" + err.code);
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID)
           try {
-            await formHost.getRunningFormInfosByFilter(undefined, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(undefined, (err, dataCallback) => {
               console.info("Acts_QueryFormInformation_4000 run error ====>");
               expect(false).assertTrue();
               done();
@@ -3143,7 +3144,7 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4100 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4100 ====> subscribeCallBack data:" + JSON.stringify(data));
         try{
-          await formHost.getRunningFormInfoById("abc").then(dataPromise => {
+          await formObserver.getRunningFormInfoById("abc").then(dataPromise => {
             console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
             expect(false).assertTrue();
           }).catch(err => {
@@ -3153,7 +3154,7 @@ export default function abilityTest() {
         } catch (err) {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           try {
-            await formHost.getRunningFormInfoById("abc", (err, dataPromise) => {
+            await formObserver.getRunningFormInfoById("abc", (err, dataPromise) => {
               console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
               expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             });
@@ -3207,13 +3208,13 @@ export default function abilityTest() {
         console.info("Acts_QueryFormInformation_4200 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4200 ====> subscribeCallBack data:" + JSON.stringify(data));
 
-        await formHost.getRunningFormInfoById("-1").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("-1").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           console.info("Acts_QueryFormInformation_4200 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfoById("-1", (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("-1", (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             commonEvent.unsubscribe(subscriber, function () {
@@ -3263,13 +3264,13 @@ export default function abilityTest() {
         }
         console.info("Acts_QueryFormInformation_4300 ====> subscribeCallBack err:" + JSON.stringify(err));
         console.info("Acts_QueryFormInformation_4300 ====> subscribeCallBack data:" + JSON.stringify(data));
-        await formHost.getRunningFormInfoById("0").then(dataPromise => {
+        await formObserver.getRunningFormInfoById("0").then(dataPromise => {
           console.info('getRunningFormInfoById data promise is :' + JSON.stringify(dataPromise));
           expect(false).assertTrue();
         }).catch(async err => {
           expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
           console.info("Acts_QueryFormInformation_4300 errcode1 ====>" + err.code);
-          await formHost.getRunningFormInfoById("0", (err, dataPromise) => {
+          await formObserver.getRunningFormInfoById("0", (err, dataPromise) => {
             console.info('getRunningFormInfoById data callback is :' + JSON.stringify(dataPromise));
             expect(err.code).assertEqual(ERR_FORM_EXTERNAL_PARAM_INVALID);
             commonEvent.unsubscribe(subscriber, function () {
@@ -3336,7 +3337,7 @@ export default function abilityTest() {
           formName: "widget"
         }
         if (flag == 3) {
-          await formHost.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
+          await formObserver.getRunningFormInfosByFilter(formInstanceFilter).then(async dataPromise => {
             console.info('getRunningFormInfosByFilter promise data is :' + JSON.stringify(dataPromise));
             expect(dataPromise.length).assertEqual(1);
             for (let n = 0; n < dataPromise.length; n++) {
@@ -3349,7 +3350,7 @@ export default function abilityTest() {
               expect(dataPromise[n].abilityName).assertEqual("EntryFormAbility");
               expect(dataPromise[n].formName).assertEqual("widget");
             }
-            await formHost.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
+            await formObserver.getRunningFormInfosByFilter(formInstanceFilter, (err, dataCallback) => {
               console.info('getRunningFormInfosByFilter callback data is :' + JSON.stringify(dataCallback));
               expect(dataCallback.length).assertEqual(1);
               for (let n = 0; n < dataCallback.length; n++) {
