@@ -55,10 +55,6 @@ export async function initCamera() {
         console.error("camera.getCameraManager error")
         return;
     }
-    cameraManager.on('cameraStatus', (cameraStatusInfo) => {
-        console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-        console.log(`status: ${cameraStatusInfo.status}`);
-    })
 
     // 获取相机列表
     let cameras = cameraManager.getSupportedCameras();
@@ -78,7 +74,6 @@ export async function initCamera() {
     } catch (error) {
         console.error('Failed to createCameraInput errorCode = ' + error.code);
     }
-
     // 监听cameraInput错误信息
     cameraInput.on('error', cameraDevice, (error) => {
         console.log(`Camera input error code: ${error.code}`);
@@ -368,266 +363,6 @@ export async function prepareErrPromise(avRecorder, avConfig) {
     });
 }
 
-export async function avRecorderWithPromise(avConfig, avRecorder, recorderTime, done) {
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startRecordingProcessPromise(avRecorder, recorderTime)
-
-    await sleep(3000)
-
-    await pauseRecordingProcessPromise(avRecorder)
-
-    await resumeRecordingProcessPromise(avRecorder);
-
-    await stopRecordingProcessPromise(avRecorder)
-
-    await releaseRecorderPromise(avRecorder, done)
-}
-
-export async function avRecorderResumePromise1(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startCameraOutput()
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-    }).catch((err) => {
-        resumeValue = false
-        console.info('avRecorderResumePromise1 resumeValue is ' + resumeValue);
-        console.info('resume avRecorderResumePromise1 failed and error is ' + err.message);
-        expect(resumeValue).assertEqual(false);
-        releaseRecorderPromise(avRecorder, done)
-    });
-}
-
-export async function avRecorderResumePromise2(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startCameraOutput()
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-    }).catch((err) => {
-        resumeValue = false
-        console.info('avRecorderResumePromise2 resumeValue is ' + resumeValue);
-        console.info('resume avRecorderResumePromise2 failed and error is ' + err.message);
-        expect(resumeValue).assertEqual(false);
-        releaseRecorderPromise(avRecorder, done)
-    });
-}
-
-export async function avRecorderResumePromise3(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-    await startRecordingProcessPromise(avRecorder, recorderTime)
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-        console.info('avRecorderResumePromise3 resumeValue is ' + resumeValue);
-        expect(resumeValue).assertEqual(true);
-    }).catch((err) => {
-        console.info('resume AVRecorder failed and catch error is ' + err.message);
-    });
-
-    await releaseRecorderPromise(avRecorder, done)
-}
-
-export async function avRecorderResumePromise4(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startRecordingProcessPromise(avRecorder, recorderTime)
-    await pauseRecordingProcessPromise(avRecorder)
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-        console.info('avRecorderResumePromise4 resumeValue is ' + resumeValue);
-        expect(resumeValue).assertEqual(true);
-        startCameraOutput()
-    }).catch((err) => {
-        console.info('resume AVRecorder failed and catch error is ' + err.message);
-    });
-
-    await releaseRecorderPromise(avRecorder, done)
-}
-
-export async function avRecorderResumePromise5(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startRecordingProcessPromise(avRecorder, recorderTime)
-    await stopRecordingProcessPromise(avRecorder)
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-    }).catch((err) => {
-        resumeValue = false
-        console.info('resume avRecorderResumePromise5 failed and error is ' + err.message);
-        console.error(TAG + 'error avRecorderResumePromise5, error message is ' + err.message);
-        console.info('avRecorderResumePromise5 resumeValue is ' + resumeValue);
-        expect(resumeValue).assertEqual(false);
-    });
-
-    await releaseRecorderPromise(avRecorder, done)
-}
-
-export async function avRecorderResumePromise6(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startRecordingProcessPromise(avRecorder, recorderTime)
-    await AVRecorderTestBase.resetPromise(avRecorder) ;
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-        console.info('avRecorderResumePromise6 resumeValue is ' + resumeValue);
-    }).catch((err) => {
-        resumeValue = false
-        console.info('resume avRecorderResumePromise6 failed and error is ' + err.message);
-        console.error(TAG + 'error avRecorderResumePromise6, error message is ' + err.message);
-        expect(resumeValue).assertEqual(false);
-    });
-
-    await releaseRecorderPromise(avRecorder, done)
-}
-
-export async function avRecorderResumePromise7(avConfig, avRecorder, recorderTime, done) {
-    let resumeValue = true
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await avRecorder.resume().then(() => {
-        console.info('resume AVRecorder success');
-        console.info('avRecorderResumePromise7 resumeValue is ' + resumeValue);
-    }).catch((err) => {
-        resumeValue = false
-        console.info('resume avRecorderResumePromise7 failed and error is ' + err.message);
-        console.error(TAG + 'error avRecorderResumePromise7, error message is ' + err.message);
-        expect(resumeValue).assertEqual(false);
-    });
-
-    await releaseRecorderPromise(avRecorder, done)
-
-}
-
-export async function avRecorderResumePromise8(avConfig, avRecorder, recorderTime, done) {
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await initCamera()
-
-    await startRecordingProcessPromise(avRecorder, recorderTime)
-    await pauseRecordingProcessPromise(avRecorder)
-
-    await resumeRecordingProcessCallback(avRecorder)
-    await resumeRecordingProcessCallback(avRecorder)
-    await resumeRecordingProcessCallback(avRecorder)
-
-    await releaseRecorderPromise(avRecorder, done)
-}
-
-export async function avRecorderStopPromise1(avConfig, avRecorder, recorderTime, done) {
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-
-    await avRecorder.stop().then(() => {
-        console.info('stop avRecorderStopPromise1 success');
-    }).catch((err) => {
-        console.info('stop avRecorderStopPromise1 error');
-        console.info('stop avRecorderStopPromise1 failed and catch error is ' + err.message);
-    });
-    await AVRecorderTestBase.releaseDone(avRecorder, done)
-}
-
-export async function avRecorderStopPromise2(avConfig, avRecorder, recorderTime, done) {
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await avRecorder.stop().then(() => {
-        console.info('stop avRecorderStopPromise2 success');
-    }).catch((err) => {
-        console.info('stop avRecorderStopPromise2 failed and catch error is ' + err.message);
-    });
-    await AVRecorderTestBase.releaseDone(avRecorder, done)
-}
-
-export async function avRecorderStopPromise7(avConfig, avRecorder, recorderTime, done) {
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-
-    await avRecorder.stop().then(() => {
-        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
-        console.info('stop avRecorderStopPromise7 success');
-    }).catch((err) => {
-        console.info('stop avRecorderStopPromise7 failed and catch error is ' + err.message);
-    });
-
-    await AVRecorderTestBase.releaseDone(avRecorder, done)
-}
-
-export async function avRecorderResetPromise7(avConfig, avRecorder, recorderTime, done) {
-    avRecorder = await AVRecorderTestBase.idle(avRecorder);
-    console.info('case avConfig.url is ' + avConfig.url);
-    setAvRecorderCallback(avRecorder, done)
-    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
-    await getInputSurfacePromise(avRecorder)
-    await avRecorder.reset().then(() => {
-        console.info('reset avRecorderResetPromise7 success');
-        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.IDLE);
-    }).catch((err) => {
-        console.info('reset AVRecorder failed and catch error is ' + err.message);
-    });
-    await AVRecorderTestBase.releaseDone(avRecorder, done)
-}
-
 // Promise  prepare
 export async function create2PreparePromise(avConfig, avRecorder, done) {
     avRecorder = await AVRecorderTestBase.idle(avRecorder);
@@ -762,6 +497,25 @@ export async function avRecorderWithPromise2(avConfig, avRecorder, recorderTime,
     await stopRecordingProcessPromise(avRecorder)
 
     await releaseRecorderCallBack(avRecorder, done)
+}
+
+export async function avRecorderWithPromise(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await resumeRecordingProcessPromise(avRecorder);
+
+    await stopRecordingProcessPromise(avRecorder)
+
+    await releaseRecorderPromise(avRecorder, done)
 }
 
 export async function getInputSurfaceErrPromise(avRecorder) {
@@ -1238,4 +992,761 @@ export async function recordStart2reset2WithPromise(avConfig, avRecorder, record
     await releaseRecorderPromise(avRecorder, done);
 }
 
+// stability test
+export async function prepare1000TimesPromise(avRecorder, avConfig, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case prepare1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+        await AVRecorderTestBase.resetPromise(avRecorder);
+        loopTimes--;
+    }
+    await AVRecorderTestBase.releasePromise(avRecorder);
+    done();
+}
 
+export async function start1000TimesPromise(avRecorder, avConfig, recorderTime, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case start1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder);
+    await initCamera();
+    await startCameraOutput()
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.startPromise(avRecorder, recorderTime);
+        await AVRecorderTestBase.resetPromise(avRecorder);
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+        await getInputSurfacePromise(avRecorder);
+        loopTimes--;
+    }
+    await releaseRecorderPromise(avRecorder, done);
+}
+
+export async function pause1000TimesPromise(avRecorder, avConfig, recorderTime, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case pause1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder);
+    await initCamera();
+    await startRecordingProcessPromise(avRecorder, recorderTime);
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.pausePromise(avRecorder);
+        await AVRecorderTestBase.resumePromise(avRecorder);
+        loopTimes--;
+    }
+    await releaseRecorderPromise(avRecorder, done);
+}
+
+export async function resume1000TimesPromise(avRecorder, avConfig, recorderTime, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case resume1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder);
+    await initCamera();
+    await startRecordingProcessPromise(avRecorder, recorderTime);
+    await AVRecorderTestBase.pausePromise(avRecorder);
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.resumePromise(avRecorder);
+        await AVRecorderTestBase.pausePromise(avRecorder, avConfig);
+        loopTimes--;
+    }
+    await releaseRecorderPromise(avRecorder, done);
+}
+
+export async function stop1000TimesPromise(avRecorder, avConfig, recorderTime, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case pause1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder);
+    await initCamera();
+    await startRecordingProcessPromise(avRecorder, recorderTime);
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.stopPromise(avRecorder);
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+        await AVRecorderTestBase.startPromise(avRecorder, avConfig);
+        loopTimes--;
+    }
+    await releaseRecorderPromise(avRecorder, done);
+}
+
+export async function reset1000TimesPromise(avRecorder, avConfig, recorderTime, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case reset1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder);
+    await initCamera();
+    await startRecordingProcessPromise(avRecorder, recorderTime);
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.resetPromise(avRecorder);
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+        await AVRecorderTestBase.startPromise(avRecorder, avConfig);
+        loopTimes--;
+    }
+    await releaseRecorderPromise(avRecorder, done);
+}
+
+export async function release1000TimesPromise(avRecorder, avConfig, recorderTime, done) {
+    let loopTimes = 1000;
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case release1000TimesPromise avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done);
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder);
+    await initCamera();
+    await startRecordingProcessPromise(avRecorder, recorderTime);
+    while (loopTimes > 0) {
+        await AVRecorderTestBase.releasePromise(avRecorder);
+        releaseCamera();
+        avRecorder = await AVRecorderTestBase.idle(avRecorder);
+        setAvRecorderCallback(avRecorder, done);
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+        await getInputSurfacePromise(avRecorder);
+        await initCamera();
+        await startRecordingProcessPromise(avRecorder, recorderTime);
+        loopTimes--;
+    }
+    done();
+}
+
+export async function avRecorderWithPromiseStability1(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+
+    setAvRecorderCallback(avRecorder, done)
+
+    for (let i = 0; i < 1000; i++) {
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig)
+        await getInputSurfacePromise(avRecorder)
+        await initCamera()
+
+        await startRecordingProcessPromise(avRecorder, recorderTime)
+
+        await resetRecordingProcessPromise(avRecorder)
+    }
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderWithPromiseStability2(avConfig, avRecorder, recorderTime, done) {
+    console.info('case avConfig.url is ' + avConfig.url);
+
+    for (let i = 0; i < 1000; i++) {
+        console.info('iter ' + (i+1))
+
+        avRecorder = await AVRecorderTestBase.idle(avRecorder);
+        setAvRecorderCallback(avRecorder, done)
+
+        await AVRecorderTestBase.preparePromise(avRecorder, avConfig)
+        await getInputSurfacePromise(avRecorder)
+        await initCamera()
+
+        await startRecordingProcessPromise(avRecorder, recorderTime)
+
+        await resetRecordingProcessPromise(avRecorder)
+
+        await releaseRecorderPromiseNotDone(avRecorder)
+    }
+
+    done()
+}
+
+export async function avRecorderWithPromiseStability3(avConfig, avRecorder, recorderTime, done) {
+    let success = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+
+    setAvRecorderCallback(avRecorder, done)
+
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig)
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    for (let i = 0; i < 1000; i++) {
+        console.info('iter ' + (i+1))
+
+        // await startRecordingProcessPromise(avRecorder, recorderTime)
+        await startCameraOutput()
+        await avRecorder.start().then(() => {
+            expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STARTED);
+            console.info('start success');
+            if (recorderTime != undefined) {
+                sleep(recorderTime);
+            }
+        }).catch((err) => {
+            console.info('start failed and catch error is ' + err.message);
+            success = false
+        });
+        if (!success) {
+            break
+        }
+
+        await stopRecordingProcessPromise(avRecorder)
+    }
+
+    if (success) {
+        console.info('case success!!!');
+    } else {
+        console.error('case failed!!!');
+    }
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderWithPromiseStability4(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+
+    setAvRecorderCallback(avRecorder, done)
+
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig)
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    for (let i = 0; i < 1000; i++) {
+        console.info('iter ' + (i+1))
+
+        await AVRecorderTestBase.pausePromise(avRecorder);
+        await stopCameraOutput();
+
+        await startCameraOutput()
+        await AVRecorderTestBase.resumePromise(avRecorder);
+    }
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderWithPromiseStability5(avConfig, avRecorder, recorderTime, done) {
+    console.info('case avConfig.url is ' + avConfig.url);
+
+    for (let i = 0; i < 1000; i++) {
+        console.info('iter ' + (i+1))
+
+        avRecorder = await AVRecorderTestBase.idle(avRecorder);
+        setAvRecorderCallback(avRecorder, done)
+
+        await AVRecorderTestBase.releasePromise(avRecorder)
+    }
+
+    done()
+}
+
+export async function avRecorderResumePromise1(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startCameraOutput()
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+    }).catch((err) => {
+        resumeValue = false
+        console.info('avRecorderResumePromise1 resumeValue is ' + resumeValue);
+        console.info('resume avRecorderResumePromise1 failed and error is ' + err.message);
+        expect(resumeValue).assertEqual(false);
+        releaseRecorderPromise(avRecorder, done)
+    });
+}
+
+export async function avRecorderResumePromise2(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startCameraOutput()
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+    }).catch((err) => {
+        resumeValue = false
+        console.info('avRecorderResumePromise2 resumeValue is ' + resumeValue);
+        console.info('resume avRecorderResumePromise2 failed and error is ' + err.message);
+        expect(resumeValue).assertEqual(false);
+        releaseRecorderPromise(avRecorder, done)
+    });
+}
+
+export async function avRecorderResumePromise3(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+        console.info('avRecorderResumePromise3 resumeValue is ' + resumeValue);
+        expect(resumeValue).assertEqual(true);
+    }).catch((err) => {
+        console.info('resume AVRecorder failed and catch error is ' + err.message);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResumePromise4(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+        console.info('avRecorderResumePromise4 resumeValue is ' + resumeValue);
+        expect(resumeValue).assertEqual(true);
+        startCameraOutput()
+    }).catch((err) => {
+        console.info('resume AVRecorder failed and catch error is ' + err.message);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResumePromise5(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+    await stopRecordingProcessPromise(avRecorder)
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+    }).catch((err) => {
+        resumeValue = false
+        console.info('resume avRecorderResumePromise5 failed and error is ' + err.message);
+        console.error(TAG + 'error avRecorderResumePromise5, error message is ' + err.message);
+        console.info('avRecorderResumePromise5 resumeValue is ' + resumeValue);
+        expect(resumeValue).assertEqual(false);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResumePromise6(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+    await AVRecorderTestBase.resetPromise(avRecorder) ;
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+        console.info('avRecorderResumePromise6 resumeValue is ' + resumeValue);
+    }).catch((err) => {
+        resumeValue = false
+        console.info('resume avRecorderResumePromise6 failed and error is ' + err.message);
+        console.error(TAG + 'error avRecorderResumePromise6, error message is ' + err.message);
+        expect(resumeValue).assertEqual(false);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResumePromise7(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await avRecorder.resume().then(() => {
+        console.info('resume AVRecorder success');
+        console.info('avRecorderResumePromise7 resumeValue is ' + resumeValue);
+    }).catch((err) => {
+        resumeValue = false
+        console.info('resume avRecorderResumePromise7 failed and error is ' + err.message);
+        console.error(TAG + 'error avRecorderResumePromise7, error message is ' + err.message);
+        expect(resumeValue).assertEqual(false);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+
+}
+
+export async function avRecorderResumePromise8(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await resumeRecordingProcessCallback(avRecorder)
+    await resumeRecordingProcessCallback(avRecorder)
+    await resumeRecordingProcessCallback(avRecorder)
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+
+export async function avRecorderStopPromise1(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+
+    await avRecorder.stop().then(() => {
+        console.info('stop avRecorderStopPromise1 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise1 error');
+        console.info('stop avRecorderStopPromise1 failed and catch error is ' + err.message);
+    });
+    await AVRecorderTestBase.releaseDone(avRecorder, done)
+}
+
+export async function avRecorderStopPromise2(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await avRecorder.stop().then(() => {
+        console.info('stop avRecorderStopPromise2 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise2 failed and catch error is ' + err.message);
+    });
+    await AVRecorderTestBase.releaseDone(avRecorder, done)
+}
+
+export async function avRecorderStopPromise3(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await avRecorder.stop().then(() => {
+        console.info('stop avRecorderStopPromise3 success');
+        expect(avRecorder.state).assertEqual("stopped");
+        stopCameraOutput()
+        releaseRecorderPromise(avRecorder, done)
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise3 failed and catch error is ' + err.message);
+    });
+}
+
+export async function avRecorderStopPromise4(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await avRecorder.stop().then(() => {
+        console.info('stop avRecorderStopPromise4 success');
+        expect(avRecorder.state).assertEqual("stopped");
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise4 failed and catch error is ' + err.message);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderStopPromise5(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await resumeRecordingProcessPromise(avRecorder);
+
+    await stopRecordingProcessPromise(avRecorder)
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderStopPromise6(avConfig, avRecorder, recorderTime, done) {
+    let resumeValue = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await AVRecorderTestBase.resetPromise(avRecorder) ;
+
+    await avRecorder.stop().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
+        console.info('stop avRecorderStopPromise6 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise6 failed and catch error is ' + err.message);
+    });
+    await stopCameraOutput()
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderStopPromise7(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+
+    await avRecorder.stop().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
+        console.info('stop avRecorderStopPromise7 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise7 failed and catch error is ' + err.message);
+    });
+
+    await AVRecorderTestBase.releaseDone(avRecorder, done)
+}
+
+export async function avRecorderStopPromise8(avConfig, avRecorder, recorderTime, done) {
+    let stopValue1 = true
+    let stopValue2 = true
+    let stopValue3 = true
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await avRecorder.stop().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
+        expect(stopValue1).assertEqual(true);
+        console.info('stop avRecorderStopPromise8 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise8 failed and catch error is ' + err.message);
+    });
+
+    await avRecorder.stop().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
+        console.info('stop avRecorderStopPromise8 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise8 failed and catch error is ' + err.message);
+        stopValue2 = false
+        expect(stopValue1).assertEqual(false);
+    });
+
+    await avRecorder.stop().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.STOPPED);
+        console.info('stop avRecorderStopPromise8 success');
+    }).catch((err) => {
+        console.info('stop avRecorderStopPromise8 failed and catch error is ' + err.message);
+        stopValue2 = false
+        expect(stopValue1).assertEqual(false);
+    });
+    await stopCameraOutput()
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResetPromise1(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    await setAvRecorderCallback(avRecorder, done)
+
+    await avRecorder.reset().then(() => {
+        console.info('reset avRecorderResetPromise1 success');
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.IDLE);
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise1 error');
+        console.info('reset avRecorderResetPromise1 failed and catch error is ' + err.message);
+    })
+    await AVRecorderTestBase.releaseDone(avRecorder, done)
+}
+
+export async function avRecorderResetPromise2(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await avRecorder.reset().then(() => {
+        console.info('reset avRecorderResetPromise2 success');
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise2 failed and catch error is ' + err.message);
+    });
+    await AVRecorderTestBase.releaseDone(avRecorder, done)
+}
+
+export async function avRecorderResetPromise3(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await avRecorder.reset().then(() => {
+        console.info('reset avRecorderResetPromise3 success');
+        expect(avRecorder.state).assertEqual("idle");
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise3 failed and catch error is ' + err.message);
+    });
+    await stopCameraOutput()
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResetPromise4(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await avRecorder.reset().then(() => {
+        console.info('reset avRecorderResetPromise4 success');
+        expect(avRecorder.state).assertEqual("idle");
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise4 failed and catch error is ' + err.message);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResetPromise5(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await pauseRecordingProcessPromise(avRecorder)
+
+    await resumeRecordingProcessPromise(avRecorder);
+
+    await resetRecordingProcessPromise(avRecorder)
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResetPromise6(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await stopRecordingProcessPromise(avRecorder)
+
+    await avRecorder.reset().then(() => {
+        console.info('reset avRecorderResetPromise6 success');
+        expect(avRecorder.state).assertEqual("idle");
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise6 failed and catch error is ' + err.message);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
+
+export async function avRecorderResetPromise7(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await avRecorder.reset().then(() => {
+        console.info('reset avRecorderResetPromise7 success');
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.IDLE);
+    }).catch((err) => {
+        console.info('reset AVRecorder failed and catch error is ' + err.message);
+    });
+    await AVRecorderTestBase.releaseDone(avRecorder, done)
+}
+
+export async function avRecorderResetPromise8(avConfig, avRecorder, recorderTime, done) {
+    avRecorder = await AVRecorderTestBase.idle(avRecorder);
+    console.info('case avConfig.url is ' + avConfig.url);
+    setAvRecorderCallback(avRecorder, done)
+    await AVRecorderTestBase.preparePromise(avRecorder, avConfig);
+    await getInputSurfacePromise(avRecorder)
+    await initCamera()
+
+    await startRecordingProcessPromise(avRecorder, recorderTime)
+
+    await avRecorder.reset().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.IDLE);
+        console.info('reset avRecorderResetPromise8 success');
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise8 failed and catch error is ' + err.message);
+    });
+    await stopCameraOutput()
+
+    await avRecorder.reset().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.IDLE);
+        console.info('reset avRecorderResetPromise8 success');
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise8 failed and catch error is ' + err.message);
+    });
+
+    await avRecorder.reset().then(() => {
+        expect(avRecorder.state).assertEqual(AV_RECORDER_STATE.IDLE);
+        console.info('reset avRecorderResetPromise8 success');
+    }).catch((err) => {
+        console.info('reset avRecorderResetPromise8 failed and catch error is ' + err.message);
+    });
+
+    await releaseRecorderPromise(avRecorder, done)
+}
