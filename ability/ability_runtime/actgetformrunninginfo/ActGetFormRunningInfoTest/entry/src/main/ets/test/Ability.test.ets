@@ -15,7 +15,7 @@
 
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import formHost from '@ohos.app.form.formHost';
+import formHost from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 import commonEvent from '@ohos.commonEventManager'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
