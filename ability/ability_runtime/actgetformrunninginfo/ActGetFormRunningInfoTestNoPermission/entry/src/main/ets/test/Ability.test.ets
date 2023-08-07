@@ -15,7 +15,7 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import formHost from '@ohos.app.form.formHost';
-import formObserver from '@ohos.app.form.formObserver';
+import formObserver from '@ohos.app.form.formHost';
 import formInfo from '@ohos.app.form.formInfo';
 import commonEvent from '@ohos.commonEventManager'
 const ERR_FORM_EXTERNAL_PERMISSION_DENIED = 201;
