@@ -14,9 +14,9 @@
  */
 
 #include "napi/native_api.h"
-#include "raw_file_manager.h"
-#include "raw_file.h"
-#include "raw_dir.h"
+#include "rawfile/raw_file_manager.h"
+#include "rawfile/raw_file.h"
+#include "rawfile/raw_dir.h"
 #include "hilog/log.h"
 #include <js_native_api.h>
 #include <js_native_api_types.h>
