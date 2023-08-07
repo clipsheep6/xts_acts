@@ -13,7 +13,9 @@
 
 import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
-
+hilogcompath = "../../../../../../../../../../base/hiviewdfx/hilog"
+ffrtcompath = 
+    "../../../../../../../../../../foundation/resourceschedule/ffrt"
 config("config") {
   visibility = [ ":*" ]
 
@@ -35,16 +37,20 @@ ohos_shared_library("ffrtndk") {
   }
   subsystem_name = "resourceschedule"
   part_name = "ffrt"
-  include_dirs = [ "./" ]
+  include_dirs = [
+    "./",
+    "$hilogcompath",
+    "$ffrtcompath/interfaces/kits",
+  ]
   configs = [ ":config" ]
 
   external_deps = [ "napi:ace_napi" ]
 
-  deps = [ 
-    "//base/hiviewdfx/hilog/frameworks/hilog_ndk:hilog_ndk",
-    "//base/hiviewdfx/hilog/interfaces/native/kits:libhilog_ndk",
-    "//foundation/resourceschedule/ffrt/interfaces/kits:libffrt_ndk",
-    "//foundation/resourceschedule/ffrt:ffrt_ndk"
+  deps = [
+    "$hilogcompath/frameworks/hilog_ndk:hilog_ndk",
+    "$hilogcompath/interfaces/native/kits:libhilog_ndk",
+    "$ffrtcompath:ffrt_ndk",
+    "$ffrtcompath/interfaces/kits:libffrt_ndk",
   ]
 
   output_extension = "so"

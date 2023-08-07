@@ -20,7 +20,8 @@
 
     "deviceType": [
       "default",
-      "tablet"
+      "tablet",
+      "phone"
     ],
     "distro": {
       "deliveryWithInstall": true,
