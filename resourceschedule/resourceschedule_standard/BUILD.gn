@@ -23,6 +23,7 @@ group("resourceschedule_standard") {
       "reminderagent:resourceschedule_reminderagent_js_test",
       "reminderagentManager:resourceschedule_reminderagentmgr_js_test",
       "workscheduler:resourceschedule_workscheduler_js_test",
+      "ffrt:resourceschedule_ffrt_js_test",
     ]
   }
 }
