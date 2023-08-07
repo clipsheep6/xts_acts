@@ -54,6 +54,12 @@
       },
       {
         "name": "ohos.permission.START_ABILIIES_FROM_BACKGROUND"
+      },
+      {
+        "name":"ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+      },
+      {
+        "name":"ohos.permission.GET_LOCAL_ACCOUNTS"
       }
     ]
   }

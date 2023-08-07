@@ -16,8 +16,6 @@
 import hilog from '@ohos.hilog';
 import Ability from '@ohos.app.ability.UIAbility';
 import type Window from '@ohos.window';
-import AppManager from '@ohos.application.appManager';
-
 
 export default class KillProcessWithAccountAbility extends Ability {
   onCreate(want, launchParam) {
@@ -25,13 +23,6 @@ export default class KillProcessWithAccountAbility extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    console.info('=====> killProcessWithAccount begin');
-    let timeOutDelay = 100;
-    AppManager.killProcessWithAccount('com.example.actsterminaterely', timeOutDelay).then(() => {
-      console.info('=====> killProcessWithAccount OK end');
-    }).catch((err) => {
-      console.info('=====> killProcessWithAccount err ' + JSON.stringify(err) + ' end');
-    });
   }
 
   onDestroy() {

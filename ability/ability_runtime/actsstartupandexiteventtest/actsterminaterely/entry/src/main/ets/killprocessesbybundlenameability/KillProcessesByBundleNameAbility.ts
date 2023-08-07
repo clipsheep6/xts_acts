@@ -25,7 +25,7 @@ export default class KillProcessesByBundleNameAbility extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
     console.info('=====> killProcessesByBundleName begin');
-    AppManager.killProcessesByBundleName('com.example.actsterminaterely').then(() => {
+    AppManager.killProcessesByBundleName('com.acts.actsterminaterely').then(() => {
       console.info('=====> killProcessesByBundleName OK end');
     }).catch((err) => {
       console.info('=====> killProcessesByBundleName err' + JSON.stringify(err) + ' end');

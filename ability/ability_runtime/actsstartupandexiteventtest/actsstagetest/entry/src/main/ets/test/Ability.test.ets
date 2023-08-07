@@ -15,11 +15,50 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import appManager from "@ohos.application.appManager";
+import osaccount from '@ohos.account.osAccount';
+
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
+function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time))
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
+
+    beforeAll(async function (done) {
+      await sleep(2000);
+      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+      let cmdInstallActsDataRely = "bm install -p data/test/ActsDataRely.hap";
+      let cmdInstallActsFaRely = "bm install -p data/test/ActsFaRely.hap";
+      let cmdActsStageRely = "bm install -p data/test/ActsStageRely.hap";
+      let cmdActsTerminateRely = "bm install -p data/test/ActsTerminateRely.hap";
+      let cmdActsTestAbilityRely = "bm install -p data/test/ActsTestAbilityRely.hap";
+      console.info("cmd : " + cmdInstallActsDataRely)
+      await abilityDelegator.executeShellCommand(cmdInstallActsDataRely, (err: any, d: any) => {
+        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+      });
+      await sleep(2000);
+      await abilityDelegator.executeShellCommand(cmdInstallActsFaRely, (err: any, d: any) => {
+        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+      });
+      await sleep(2000);
+      await abilityDelegator.executeShellCommand(cmdActsStageRely, (err: any, d: any) => {
+        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+      });
+      await sleep(2000);
+      await abilityDelegator.executeShellCommand(cmdActsTerminateRely, (err: any, d: any) => {
+        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+      });
+      await sleep(2000);
+      await abilityDelegator.executeShellCommand(cmdActsTestAbilityRely, (err: any, d: any) => {
+        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+      });
+      await sleep(2000);
+    });
+
     beforeEach(async function (done) {
       await abilityDelegator.executeShellCommand('hilog -r');
       await setTimeout(done(), 500);
@@ -51,8 +90,8 @@ export default function abilityTest() {
               expect(data.stdResult).assertContain('"domain_":"AAFWK"');
               expect(data.stdResult).assertContain('"name_":"PROCESS_START"');
               expect(data.stdResult).assertContain('"STARTUP_ABILITY_TYPE":1');
-              expect(data.stdResult).assertContain('"CALLER_BUNDLE_NAME":"com.example.actsstagetest"');
-              expect(data.stdResult).assertContain('"CALLER_PROCESS_NAME":"com.example.actsstagetest"');
+              expect(data.stdResult).assertContain('"CALLER_BUNDLE_NAME":"com.acts.actsstagetest"');
+              expect(data.stdResult).assertContain('"CALLER_PROCESS_NAME":"com.acts.actsstagetest"');
             } catch {
               console.log('====>Acts_StartupAndExitEventReport_0100 assert exception');
               expect().assertFail();
@@ -95,8 +134,8 @@ export default function abilityTest() {
                 expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
                 expect(data.stdResult).assertContain('\"name_\":\"PROCESS_START\"');
                 expect(data.stdResult).assertContain('\"STARTUP_ABILITY_TYPE\":3');
-                expect(data.stdResult).assertContain('\"CALLER_BUNDLE_NAME\":\"com.example.actsstagetest\"');
-                expect(data.stdResult).assertContain('\"CALLER_PROCESS_NAME\":\"com.example.actsstagetest\"');
+                expect(data.stdResult).assertContain('\"CALLER_BUNDLE_NAME\":\"com.acts.actsstagetest\"');
+                expect(data.stdResult).assertContain('\"CALLER_PROCESS_NAME\":\"com.acts.actsstagetest\"');
               } catch {
               console.log('====>Acts_StartupAndExitEventReport_0200 assert exception');
               expect().assertFail();
@@ -167,7 +206,7 @@ export default function abilityTest() {
       console.log('====>Acts_StartupAndExitEventReport_0400 start');
       let want = {
         'deviceId': '',
-        'bundleName': 'com.example.actsstagerely',
+        'bundleName': 'com.acts.actsstagerely',
         'abilityName': 'EntryAbility'
       };
       await globalThis.abilityContext.startAbility(want).then((data) => {
@@ -184,8 +223,8 @@ export default function abilityTest() {
                 expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
                 expect(data.stdResult).assertContain('\"name_\":\"PROCESS_START\"');
                 expect(data.stdResult).assertContain('\"STARTUP_ABILITY_TYPE\":1');
-                expect(data.stdResult).assertContain('\"CALLER_BUNDLE_NAME\":\"com.example.actsstagetest\"');
-                expect(data.stdResult).assertContain('\"CALLER_PROCESS_NAME\":\"com.example.actsstagetest\"');
+                expect(data.stdResult).assertContain('\"CALLER_BUNDLE_NAME\":\"com.acts.actsstagetest\"');
+                expect(data.stdResult).assertContain('\"CALLER_PROCESS_NAME\":\"com.acts.actsstagetest\"');
               } catch {
               console.log('====>Acts_StartupAndExitEventReport_0400 assert exception');
               expect().assertFail();
@@ -194,7 +233,7 @@ export default function abilityTest() {
             console.log('====>Acts_StartupAndExitEventReport_0400 cmd err:' + JSON.stringify(err));
             expect().assertFail();
           }
-          abilityDelegator.executeShellCommand('pkill -f com.ohos.contacts', (err, data) => {
+          abilityDelegator.executeShellCommand('pkill -f com.acts.actsstagerely', (err, data) => {
             console.log('====>Acts_StartupAndExitEventReport_0400 pkill err:' + JSON.stringify(err));
             done();
           });
@@ -211,13 +250,26 @@ export default function abilityTest() {
       console.log('====>Acts_StartupAndExitEventReport_0500 start');
       let want = {
         'deviceId': '',
-        'bundleName': 'com.example.actsterminaterely',
-        'abilityName': 'EntryAbility'
+        'bundleName': 'com.acts.actsterminaterely',
+        'abilityName': 'KillProcessWithAccountAbility'
       };
       await globalThis.abilityContext.startAbility(want).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_0500 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_0500 startAbility err:' + JSON.stringify(err));
+      });
+      let accountId = 100;
+      let AccountManager = osaccount.getAccountManager();
+      await AccountManager.getCurrentOsAccount().then((data) => {
+        accountId = data.localId;
+        console.log('====>Acts_StartupAndExitEventReport_0500 getCurrentOsAccount:' + JSON.stringify(data.localId));
+      }).catch((err) => {
+        console.log('====>Acts_StartupAndExitEventReport_0500 getCurrentOsAccount: err:' + JSON.stringify(err));
+      });
+      await appManager.killProcessWithAccount('com.acts.actsterminaterely', accountId).then(() => {
+        console.info('=====> killProcessWithAccount OK end');
+      }).catch((err) => {
+        console.info('=====> killProcessWithAccount err ' + JSON.stringify(err) + ' end');
       });
       setTimeout(function () {
         let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
@@ -236,7 +288,7 @@ export default function abilityTest() {
             console.log('====>Acts_StartupAndExitEventReport_0500 cmd err:' + JSON.stringify(err));
             expect().assertFail();
           }
-          abilityDelegator.executeShellCommand('pkill -f com.example.actsterminaterely', (err, data) => {
+          abilityDelegator.executeShellCommand('pkill -f com.acts.actsterminaterely', (err, data) => {
             console.log('====>Acts_StartupAndExitEventReport_0500 pkill err:' + JSON.stringify(err));
             done();
           });
@@ -253,8 +305,8 @@ export default function abilityTest() {
       console.log('====>Acts_StartupAndExitEventReport_0600 start');
       let want = {
         'deviceId': '',
-        'bundleName': 'com.example.actsterminaterely',
-        'abilityName': 'KillProcessWithAccountAbility'
+        'bundleName': 'com.acts.actsterminaterely',
+        'abilityName': 'KillProcessesByBundleNameAbility'
       };
       await globalThis.abilityContext.startAbility(want).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_0600 startAbility data:' + JSON.stringify(data));
@@ -278,7 +330,7 @@ export default function abilityTest() {
             console.log('====>Acts_StartupAndExitEventReport_0600 cmd err:' + JSON.stringify(err));
             expect().assertFail();
           }
-          abilityDelegator.executeShellCommand('pkill -f com.example.actsterminaterely', (err, data) => {
+          abilityDelegator.executeShellCommand('pkill -f com.acts.actsterminaterely', (err, data) => {
             console.log('====>Acts_StartupAndExitEventReport_0600 pkill err:' + JSON.stringify(err));
             done();
           });
@@ -287,16 +339,16 @@ export default function abilityTest() {
     })
 
     /*
-     * @tc.number: Acts_StartupAndExitEventReport_0700.
-     * @tc.name: When the application starts and exits, the dot information is reported.
-     * @tc.desc: Verify that dot information is reported when the application exits.
-     */
+ * @tc.number: Acts_StartupAndExitEventReport_0700.
+ * @tc.name: When the application starts and exits, the dot information is reported.
+ * @tc.desc: Verify that dot information is reported when the application exits.
+ */
     it('Acts_StartupAndExitEventReport_0700', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_0700 start');
       let want = {
         'deviceId': '',
-        'bundleName': 'com.example.actsterminaterely',
-        'abilityName': 'KillProcessesByBundleNameAbility'
+        'bundleName': 'com.acts.actsterminaterely',
+        'abilityName': 'EntryAbility'
       };
       await globalThis.abilityContext.startAbility(want).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_0700 startAbility data:' + JSON.stringify(data));
@@ -309,10 +361,11 @@ export default function abilityTest() {
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
           if (data.stdResult !== '') {
             try {
-              expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
-              expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
-              expect(data.stdResult).assertContain('\"EXIT_RESULT\":0');
-            } catch {
+                  expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
+                  expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
+                  expect(data.stdResult).assertContain('\"EXIT_RESULT\":0');
+                  done();
+                } catch {
               console.log('====>Acts_StartupAndExitEventReport_0700 assert exception');
               expect().assertFail();
             }
@@ -320,12 +373,12 @@ export default function abilityTest() {
             console.log('====>Acts_StartupAndExitEventReport_0700 cmd err:' + JSON.stringify(err));
             expect().assertFail();
           }
-          abilityDelegator.executeShellCommand('pkill -f com.example.actsterminaterely', (err, data) => {
+          abilityDelegator.executeShellCommand('pkill -f com.acts.actsterminaterely', (err, data) => {
             console.log('====>Acts_StartupAndExitEventReport_0700 pkill err:' + JSON.stringify(err));
             done();
           });
         });
-      }, 4000);
+      }, 3000);
     })
 
     /*
@@ -335,7 +388,7 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_0800', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_0800 start');
-      let startAbility = 'aa test -b com.example.actstestability -m entry_test ' +
+      let startAbility = 'aa test -b com.acts.actstestability -m entry_test ' +
       '-s unittest OpenHarmonyTestRunner -s class ActsAbilityTest';
       await abilityDelegator.executeShellCommand(startAbility).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_0800 startAbility data:' + JSON.stringify(data));
@@ -398,7 +451,7 @@ export default function abilityTest() {
               done();
             });
           });
-        }, 2000);
+        }, 4000);
       })
     })
 
@@ -409,7 +462,7 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_1000', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_1000 start');
-      let startAbility = 'aa start -b com.example.actsstagerely -a EntryAbility';
+      let startAbility = 'aa start -b com.acts.actsstagerely -a EntryAbility';
       await abilityDelegator.executeShellCommand(startAbility).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1000 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
@@ -418,7 +471,7 @@ export default function abilityTest() {
       setTimeout(function () {
         let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
         let cmd = "hilog -x | grep " + grepLog;
-        let forceStopCmd = 'aa force-stop com.example.actsstagerely';
+        let forceStopCmd = 'aa force-stop com.acts.actsstagerely';
         abilityDelegator.executeShellCommand(forceStopCmd, (err, data) => {
           if (data.stdResult !== '') {
             abilityDelegator.executeShellCommand(cmd, (err, data) => {
@@ -436,7 +489,7 @@ export default function abilityTest() {
                 console.log('====>Acts_StartupAndExitEventReport_1000 cmd err:' + JSON.stringify(err));
                 expect().assertFail();
               }
-              abilityDelegator.executeShellCommand('pkill -f com.example.actsstagerely', (err, data) => {
+              abilityDelegator.executeShellCommand('pkill -f com.acts.actsstagerely', (err, data) => {
                 console.log('====>Acts_StartupAndExitEventReport_1000 pkill err:' + JSON.stringify(err));
                 done();
               });
@@ -456,38 +509,43 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_1100', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_1100 start');
-      let startAbility = 'aa start -b com.example.actsstagerely -a EntryAbility';
+      let startAbility = 'aa start -b com.acts.actsstagerely -a EntryAbility';
       await abilityDelegator.executeShellCommand(startAbility).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1100 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_1100 startAbility err:' + JSON.stringify(err));
       });
+      sleep(2000);
+      let pkillCmd = 'pkill -f com.acts.actsstagerely';
+      await abilityDelegator.executeShellCommand(pkillCmd).then((data) => {
+        console.log('====>Acts_StartupAndExitEventReport_1100 pkill data:' + JSON.stringify(data));
+      }).catch((err) => {
+        console.log('====>Acts_StartupAndExitEventReport_1100 pkill err:' + JSON.stringify(err));
+      });
+      let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
+      let cmd = "hilog -x | grep " + grepLog;
       setTimeout(function () {
-        let grepLog = "'\"name_\":\"PROCESS_EXIT\"'";
-        let cmd = "hilog -x | grep " + grepLog;
-        let pkillCmd = 'pkill -f com.example.actsstagerely';
-        abilityDelegator.executeShellCommand(pkillCmd, (err, data) => {
-          abilityDelegator.executeShellCommand(cmd, (err, data) => {
-            if (data.stdResult !== '') {
-              try {
+        abilityDelegator.executeShellCommand(cmd, (err, data) => {
+          if (data.stdResult !== '') {
+            0
+            try {
                   expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
                   expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
                   expect(data.stdResult).assertContain('\"EXIT_RESULT\":0');
                 } catch {
-                console.log('====>Acts_StartupAndExitEventReport_1100 assert exception');
-                expect().assertFail();
-              }
-            } else {
-              console.log('====>Acts_StartupAndExitEventReport_1100 cmd err:' + JSON.stringify(err));
+              console.log('====>Acts_StartupAndExitEventReport_1100 assert exception');
               expect().assertFail();
             }
-            abilityDelegator.executeShellCommand('pkill -f com.example.actsstagerely', (err, data) => {
-              console.log('====>Acts_StartupAndExitEventReport_1100 pkill err:' + JSON.stringify(err));
-              done();
-            });
+          } else {
+            console.log('====>Acts_StartupAndExitEventReport_1100 cmd err:' + JSON.stringify(err));
+            expect().assertFail();
+          }
+          abilityDelegator.executeShellCommand('pkill -f com.acts.actsstagerely', (err, data) => {
+            console.log('====>Acts_StartupAndExitEventReport_1100 pkill err:' + JSON.stringify(err));
+            done();
           });
         });
-      }, 2000);
+      }, 3000);
     })
 
     /*
@@ -497,13 +555,14 @@ export default function abilityTest() {
      */
     it('Acts_StartupAndExitEventReport_1200', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_1200 start');
-      let startAbility = 'aa start -b com.example.actsterminaterely -a TestAbility';
+      let startAbility = 'aa start -b com.acts.actsterminaterely -a TestAbility';
       await abilityDelegator.executeShellCommand(startAbility).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 startAbility data:' + JSON.stringify(data));
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 startAbility err:' + JSON.stringify(err));
       });
-      await abilityDelegator.executeShellCommand('bm uninstall -n com.example.actsterminaterely').then((data) => {
+      sleep(2000);
+      await abilityDelegator.executeShellCommand('bm uninstall -n com.acts.actsterminaterely').then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 bm uninstall data:' + JSON.stringify(data));
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 bm uninstall err:' + JSON.stringify(err));
@@ -528,7 +587,7 @@ export default function abilityTest() {
           }
           done();
         });
-      }, 1000);
+      }, 2000);
     })
   })
 }
