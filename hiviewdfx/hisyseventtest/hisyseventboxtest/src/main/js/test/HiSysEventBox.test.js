@@ -46,49 +46,25 @@ describe('hiSysEventBoxTest', function () {
 	/**
 	 * @tc.number DFX_DFT_HiSysevent_SandBox_0400
 	 * @tc.name testHiSysEventBox04
-	 * @tc.desc 验证调用exportSysEvents接口，QueryRule11条，抛出错误码11200301
+	 * @tc.desc 验证调用exportSysEvents接口，QueryRule101条，抛出错误码11200301
 	 */
 	it('testHiSysEventBox04', 1, async function (done) {
 		console.info('testHiSysEventBox04 start')
+		let msgArray = []
+		for (let i = 0; i < 101; i++) {
+			msgArray[i] = {
+				domain: "RELIABILITY",
+				names: ["STACK"],
+			}
+		}
 		try {
 			let time = hiSysEvent.exportSysEvents({
 				beginTime: -1,
 				endTime: -1,
 				maxEvents: 1,
-			}, [{
-				domain: "RELIABILITY",
-				names: ["STACK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["SERVICE_BLOCK_REPORT"],
-			},{
-				domain: "RELIABILITY",
-				names: ["SERVICE_TIMEOUT_REPORT"],
-			},{
-				domain: "RELIABILITY",
-				names: ["CPP_CRASH_NO_LOG"],
-			},{
-				domain: "RELIABILITY",
-				names: ["RUST_PANIC"],
-			},{
-				domain: "RELIABILITY",
-				names: ["MEMORY_LEAK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["FD_LEAK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["THREAD_LEAK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["ADDR_SANITIZER"],
-			},{
-				domain: "RELIABILITY",
-				names: ["CPP_CRASH"],
-			},{
-				domain: "RELIABILITY",
-				names: ["APP_FREEZE"],
-			}])
+			},
+				msgArray
+			)
 			expect().assertFail()
 			done();
 		} catch (error) {
@@ -206,10 +182,17 @@ describe('hiSysEventBoxTest', function () {
 	/**
 	 * @tc.number DFX_DFT_HiSysevent_SandBox_1000
 	 * @tc.name testHiSysEventBox10
-	 * @tc.desc 验证设备重启后exportSysEvents接口一小时内可调用一次，QueryRule10条，返回值为调用时间戳，沙箱路径存在导出的文件
+	 * @tc.desc 验证设备重启后exportSysEvents接口一小时内可调用一次，QueryRule100条，返回值为调用时间戳，沙箱路径存在导出的文件
 	 */
 	it('testHiSysEventBox10', 3, async function (done) {
 		console.info('testHiSysEventBox10 start')
+		let msgArray = []
+		for (let i = 0; i < 100; i++) {
+			msgArray[i] = {
+				domain: "RELIABILITY",
+				names: ["STACK"],
+			}
+		}
 		try {
 			hiSysEvent.write({
 				domain: "RELIABILITY",
@@ -233,37 +216,9 @@ describe('hiSysEventBoxTest', function () {
 				beginTime: -1,
 				endTime: -1,
 				maxEvents: 1,
-			}, [{
-				domain: "RELIABILITY",
-				names: ["STACK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["SERVICE_BLOCK_REPORT"],
-			},{
-				domain: "RELIABILITY",
-				names: ["SERVICE_TIMEOUT_REPORT"],
-			},{
-				domain: "RELIABILITY",
-				names: ["CPP_CRASH_NO_LOG"],
-			},{
-				domain: "RELIABILITY",
-				names: ["RUST_PANIC"],
-			},{
-				domain: "RELIABILITY",
-				names: ["MEMORY_LEAK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["FD_LEAK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["THREAD_LEAK"],
-			},{
-				domain: "RELIABILITY",
-				names: ["ADDR_SANITIZER"],
-			},{
-				domain: "RELIABILITY",
-				names: ["CPP_CRASH"],
-			}])
+			},
+				msgArray
+			)
 			// 延迟读取本次导出的事件
 			sleep(5000);
 			let eventDir = '/data/storage/el2/base/cache/hiview/event';
