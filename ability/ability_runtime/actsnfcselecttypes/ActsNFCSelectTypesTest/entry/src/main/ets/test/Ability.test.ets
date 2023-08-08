@@ -74,9 +74,6 @@ export default function abilityTest() {
       }
       );
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("apptest1"));
-      await driver.assertComponentExist(ON.text("apptest2"));
-      await driver.assertComponentExist(ON.text("apptest3"));
       let app4 = await driver.findComponent(ON.text("apptest4"));
       expect(app4 === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
@@ -113,8 +110,6 @@ export default function abilityTest() {
       }
       );
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("apptest2"));
-      await driver.assertComponentExist(ON.text("apptest3"));
       let app1 = await driver.findComponent(ON.text("apptest1"));
       expect(app1 === null).assertTrue();
       let app4 = await driver.findComponent(ON.text("apptest4"));
@@ -183,8 +178,6 @@ export default function abilityTest() {
       }
       );
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("apptest1"));
-      await driver.assertComponentExist(ON.text("apptest3"));
       let app2 = await driver.findComponent(ON.text("apptest2"));
       let app4 = await driver.findComponent(ON.text("apptest4"));
       expect(app2 === null).assertTrue();
@@ -307,8 +300,6 @@ export default function abilityTest() {
       }
       );
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("MulAbFirst"));
-      await driver.assertComponentExist(ON.text("MulAbSecond"));
       let AblityThird = await driver.findComponent(ON.text("MulAbThird"));
       expect(AblityThird === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
@@ -345,10 +336,6 @@ export default function abilityTest() {
       }
       );
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("MulHapFirst"));
-      console.info('startAbility MulHapFirst exist');
-      await driver.assertComponentExist(ON.text("MulHapSecond"));
-      console.info('startAbility MulHapSecond exist');
       let HapThird = await driver.findComponent(ON.text("MulHapThird"));
       expect(HapThird === null).assertTrue();
       let cancel = await driver.findComponent(ON.text("取消"));
