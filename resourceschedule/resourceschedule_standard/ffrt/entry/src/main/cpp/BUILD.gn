@@ -35,8 +35,7 @@ ohos_shared_library("ffrtndk") {
   if (!(product_name == "m40")) {
     libs = [ rebase_path(libcxx_ndk_shared_file) ]
   }
-  subsystem_name = "resourceschedule"
-  part_name = "ffrt"
+
   include_dirs = [
     "./",
     "$hilogcompath",
@@ -44,7 +43,9 @@ ohos_shared_library("ffrtndk") {
   ]
   configs = [ ":config" ]
 
-  external_deps = [ "napi:ace_napi" ]
+  external_deps = [
+    "napi:ace_napi",
+  ]
 
   deps = [
     "$hilogcompath/frameworks/hilog_ndk:hilog_ndk",
