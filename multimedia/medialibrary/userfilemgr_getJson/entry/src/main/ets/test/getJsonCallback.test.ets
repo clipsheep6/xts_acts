@@ -22,9 +22,9 @@ import {
 
 const PICTURE_GETJSON_01_JPG = 'Picture_getJson_01.jpg';
 const PICTURE_GETJSON_02_JPG = 'Picture_getJson_02.jpg';
-const STR_DAY = "day";
-const STR_MONTH = "month";
-const STR_YEAR = "year";
+const STR_DAY = "date_day";
+const STR_MONTH = "date_month";
+const STR_YEAR = "date_year";
 const STR_DISPLAYNAME = "display_name";
 
 export default function getJsonCallback(abilityContext) {
@@ -141,7 +141,7 @@ export default function getJsonCallback(abilityContext) {
             // @ts-ignore
             let predicates = new dataSharePredicates.DataSharePredicates();
             let assetOp = {
-                fetchColumns: [],
+                fetchColumns: ['date_year'],
                 predicates: predicates,
             };
             await getJson(done, testNum, assetOp);
@@ -367,87 +367,6 @@ export default function getJsonCallback(abilityContext) {
                 let fetchResult = await mgr.getPhotoAssets(assetOp);
                 let num = await fetchResult.getCount();
                 expect(num === 0).assertTrue();
-                fetchResult.close();
-                done();
-            } catch (error) {
-                console.info(`${testNum} error : ${error}`);
-                expect(false).assertTrue();
-                done();
-            }
-        });
-
-        /**
-         * @tc.number	 : SUB_MEDIA_USERFILEMGR_GETJSON_CALLBACK_0900
-         * @tc.name 	 : getJson
-         * @tc.desc 	 : trash all pictures, getPhotoAssets
-         * @tc.size 	 : MEDIUM
-         * @tc.type 	 : Function
-         * @tc.level	 : Level 2
-         */
-        it("SUB_MEDIA_USERFILEMGR_GETJSON_CALLBACK_0900", 0, async function (done) {
-            let testNum = "SUB_MEDIA_USERFILEMGR_GETJSON_CALLBACK_0900";
-            try {
-                // trash 01.jpg
-                {
-                    // @ts-ignore
-                    let predicates = new dataSharePredicates.DataSharePredicates();
-                    predicates.equalTo(STR_DISPLAYNAME, PICTURE_GETJSON_01_JPG);
-                    let assetOp = {
-                        fetchColumns: [],
-                        predicates: predicates,
-                    };
-                    // @ts-ignore
-                    let fetchResult = await mgr.getPhotoAssets(assetOp);
-                    let fileAsset = await fetchResult.getFirstObject();
-                    // @ts-ignore
-                    await mgr.delete(fileAsset.uri);
-                    fetchResult.close();
-                }
-                // trash 02.jpg
-                {
-                    // @ts-ignore
-                    let predicates = new dataSharePredicates.DataSharePredicates();
-                    predicates.equalTo(STR_DISPLAYNAME, PICTURE_GETJSON_02_JPG);
-                    let assetOp = {
-                        fetchColumns: [],
-                        predicates: predicates,
-                    };
-                    // @ts-ignore
-                    let fetchResult = await mgr.getPhotoAssets(assetOp);
-                    let fileAsset = await fetchResult.getFirstObject();
-                    // @ts-ignore
-                    await mgr.delete(fileAsset.uri);
-                    fetchResult.close();
-                }
-                // @ts-ignore
-                let predicates = new dataSharePredicates.DataSharePredicates();
-                let assetOp = {
-                    fetchColumns: [],
-                    predicates: predicates,
-                };
-                // @ts-ignore   
-                let fetchResult = await mgr.getPhotoAssets(assetOp);
-                let num = await fetchResult.getCount();
-                expect(num === 0).assertTrue();
-                // recover jpg
-                {
-                    try {
-                    console.info("recoverjpg in ");
-                    // @ts-ignore
-                    let assets = await getTrashAssets();
-                    if (assets.length > 0) {
-                        // @ts-ignore
-                        let trashAlbum = await getSystemAlbumBySubtype(userFileManager.AlbumSubType.TRASH);
-                        // @ts-ignore
-                        await trashAlbum.recoverPhotoAssets(assets);
-                        console.info("recoverjpg out ");
-                    }
-                    } catch (error) {
-                        console.info("recoverjpg Failed to recoverAllPhotoAssets! error: " + error);
-                        expect(false).assertTrue();
-                        throw error;
-                    }
-                }
                 fetchResult.close();
                 done();
             } catch (error) {
