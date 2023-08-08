@@ -515,7 +515,7 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_1100 startAbility err:' + JSON.stringify(err));
       });
-      sleep(2000);
+      await sleep(2000);
       let pkillCmd = 'pkill -f com.acts.actsstagerely';
       await abilityDelegator.executeShellCommand(pkillCmd).then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1100 pkill data:' + JSON.stringify(data));
@@ -527,7 +527,6 @@ export default function abilityTest() {
       setTimeout(function () {
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
           if (data.stdResult !== '') {
-            0
             try {
                   expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
                   expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
@@ -540,12 +539,9 @@ export default function abilityTest() {
             console.log('====>Acts_StartupAndExitEventReport_1100 cmd err:' + JSON.stringify(err));
             expect().assertFail();
           }
-          abilityDelegator.executeShellCommand('pkill -f com.acts.actsstagerely', (err, data) => {
-            console.log('====>Acts_StartupAndExitEventReport_1100 pkill err:' + JSON.stringify(err));
-            done();
-          });
+          done();
         });
-      }, 3000);
+      }, 4000);
     })
 
     /*
@@ -561,7 +557,7 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 startAbility err:' + JSON.stringify(err));
       });
-      sleep(2000);
+      await sleep(2000);
       await abilityDelegator.executeShellCommand('bm uninstall -n com.acts.actsterminaterely').then((data) => {
         console.log('====>Acts_StartupAndExitEventReport_1200 bm uninstall data:' + JSON.stringify(data));
       }).catch((err) => {
@@ -587,7 +583,7 @@ export default function abilityTest() {
           }
           done();
         });
-      }, 2000);
+      }, 4000);
     })
   })
 }
