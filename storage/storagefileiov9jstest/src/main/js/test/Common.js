@@ -45,8 +45,8 @@ export function prepare200MFile(fpath) {
     fileIO.truncateSync(file.fd)
     let bf = new ArrayBuffer(1024 * 1024 * 20);
     for (let i = 0; i < 10; i++) {
-      let position = bf.byteLength * i;
-      let writeLen = fileIO.writeSync(file.fd, bf, { offset: 0, length: bf.byteLength, position: position, encoding: 'utf-8' });
+      let offset = bf.byteLength * i;
+      let writeLen = fileIO.writeSync(file.fd, bf, { offset: offset, length: bf.byteLength, encoding: 'utf-8' });
     }
     fileIO.fsyncSync(file.fd)
     fileIO.closeSync(file)
@@ -81,6 +81,13 @@ export function randomString(num) {
     pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
   }
   return pwd;
+}
+
+export async function sleep(times) {
+  if (!times) {
+      times = 10;
+  }
+  await new Promise((res) => setTimeout(res, times));
 }
 
 function isIntNum(val) {

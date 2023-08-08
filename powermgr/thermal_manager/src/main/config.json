@@ -16,8 +16,8 @@
         "package": "com.example.mythermalapp",
         "name": ".entry",
         "deviceType": [
-      "tablet",
-      "default",
+            "tablet",
+            "default",
             "phone"
         ],
         "distro": {

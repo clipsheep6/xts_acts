@@ -14,7 +14,6 @@
  */
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
-import bundle from "@ohos.bundle";
 import uitest from "@ohos.UiTest";
 const presetsCount = {
     ActsMediaLibraryAlbumTest: { albumsCount: 15, assetsCount: 27 },
@@ -251,8 +250,17 @@ const getPermission = async function (name, context) {
 
     let atManager = abilityAccessCtrl.createAtManager();
     try {
-        atManager.requestPermissionsFromUser(context, permissions, (err, data) => {
-            console.info(`getPermission requestPermissionsFromUser ${JSON.stringify(data)}`);
+        console.info('getPermission start: ' + name);
+        let isGetPermission = false;
+        let permissions = ["ohos.permission.MEDIA_LOCATION", "ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA"];
+        let atManager = abilityAccessCtrl.createAtManager();
+        atManager.requestPermissionsFromUser(context, permissions, (err, result) => {
+            if (err) {
+                console.info('getPermission failed: ' + JSON.stringify(err));
+            } else {
+                console.info('getPermission suc: ' + JSON.stringify(result));
+                isGetPermission = true;
+            }
         });
     } catch (err) {
         console.info(`getPermission catch err -> ${JSON.stringify(err)}`);
@@ -279,7 +287,6 @@ const getPermission = async function (name, context) {
     if (!(isGranted1 == 0 && isGranted2 == 0 && isGranted3 == 0 && isGranted4 == 0 && isGranted5 == 0)) {
         console.info("getPermission failed");
     }
-    console.info("getPermission end");
 };
 
 const MODIFY_ERROR_CODE_01 = "-1000";

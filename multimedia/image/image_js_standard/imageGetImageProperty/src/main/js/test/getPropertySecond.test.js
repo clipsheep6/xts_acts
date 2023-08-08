@@ -22,7 +22,7 @@ export default function imageGetImagePropertySecond() {
         const { DATE_TIME, GPS_TIME_STAMP, GPS_DATE_STAMP, IMAGE_DESCRIPTION, MAKE, MODEL, SENSITIVITY_TYPE,
             RECOMMENDED_EXPOSURE_INDEX, ISO_SPEED, APERTURE_VALUE, EXPOSURE_BIAS_VALUE, METERING_MODE, LIGHT_SOURCE,
             FLASH, FOCAL_LENGTH, USER_COMMENT, PIXEL_X_DIMENSION, PIXEL_Y_DIMENSION, WHITE_BALANCE,
-            FOCAL_LENGTH_IN_35_MM_FILM } = image.PropertyKey;
+            FOCAL_LENGTH_IN_35_MM_FILM, PHOTO_MODE, STANDARD_OUTPUT_SENSITIVITY, CAPTURE_MODE, PHYSICAL_APERTURE } = image.PropertyKey;
         const props = {
             DateTime: "2019:11:15 20:48:30",
             GPSTimeStamp: "13:31:27.00",
@@ -147,6 +147,26 @@ export default function imageGetImagePropertySecond() {
                         done();
                     }
                 });
+            }
+        }
+
+        async function getImagePropertyErr(done, testNum, tag) {
+            await getFd("test_hw.jpg");
+            let imageSourceApi = image.createImageSource(fdNumber);
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                try {
+                    await imageSourceApi.getImageProperty(tag);
+                    expect(false).assertTrue();
+                    done();
+                } catch (error) {
+                    expect(error.code != 0).assertTrue();
+                    console.log(`${testNum} error msg: ` + error);
+                    done();
+                }
             }
         }
 
@@ -970,6 +990,62 @@ export default function imageGetImagePropertySecond() {
          */
         it("SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_CALLBACK2_2000", 0, async function (done) {
             getImagePropertyCb2(done, "SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_CALLBACK2_2000", FOCAL_LENGTH_IN_35_MM_FILM);
+        });
+
+        /**
+         * @tc.number    : SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0100
+         * @tc.name      : getImageProperty(PHOTO_MODE)
+         * @tc.desc      : 1.create imagesource
+         *                 2.set property
+         *                 3.call getImageProperty(PHOTO_MODE)
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0100", 0, async function (done) {
+            getImagePropertyErr(done, "SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0100", PHOTO_MODE);
+        });
+
+        /**
+         * @tc.number    : SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0200
+         * @tc.name      : getImageProperty(STANDARD_OUTPUT_SENSITIVITY)
+         * @tc.desc      : 1.create imagesource
+         *                 2.set property
+         *                 3.call getImageProperty(STANDARD_OUTPUT_SENSITIVITY)
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0200", 0, async function (done) {
+            getImagePropertyErr(done, "SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0200", STANDARD_OUTPUT_SENSITIVITY);
+        });
+
+        /**
+         * @tc.number    : SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0300
+         * @tc.name      : getImageProperty(CAPTURE_MODE)
+         * @tc.desc      : 1.create imagesource
+         *                 2.set property
+         *                 3.call getImageProperty(CAPTURE_MODE)
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0300", 0, async function (done) {
+            getImagePropertyErr(done, "SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0300 ", CAPTURE_MODE);
+        });
+
+        /**
+         * @tc.number    : SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0400
+         * @tc.name      : getImageProperty(PHYSICAL_APERTURE)
+         * @tc.desc      : 1.create imagesource
+         *                 2.set property
+         *                 3.call getImageProperty(PHYSICAL_APERTURE)
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0400", 0, async function (done) {
+            getImagePropertyErr(done, "SUB_GRAPHIC_IMAGE_GETIMAGEPROPERTY_ERR_0400 ", PHYSICAL_APERTURE);
         });
     });
 }

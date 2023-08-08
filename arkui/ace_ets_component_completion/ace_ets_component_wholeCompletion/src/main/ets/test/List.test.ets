@@ -32,6 +32,14 @@ import stageAnimatorTest from './stageAnimator.test';
 import textSpanFontTest from './textSpanFont.test';
 import gridScrollbarUpdateTest from './gridScrollbarUpdate.test';
 import sidebarTypeTest from './sidebarType.test';
+import noBarrierComponentsTest from './noBarrierComponents.test';
+import noBarriersGroupTest from './noBarriersGroup.test';
+import assemblyCallbackTest from './assemblyCallback.test';
+import ActsGridTest from './Grid.test';
+import ActsListTest from './Listitem.test';
+import ActsSwiperTest from './Swiper.test';
+import ActsRichEditorTest from './richeditor.test'
+
 
 export default function testsuite() {
   stageFontTest()
@@ -53,4 +61,11 @@ export default function testsuite() {
   textSpanFontTest()
   gridScrollbarUpdateTest()
   sidebarTypeTest()
+  noBarrierComponentsTest()
+  noBarriersGroupTest()
+  assemblyCallbackTest()
+  ActsGridTest()
+  ActsListTest()
+  ActsSwiperTest()
+  ActsRichEditorTest()
 }

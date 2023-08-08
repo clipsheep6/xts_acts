@@ -13,24 +13,28 @@
         "installationFree": false,
         "pages": "$profile:main_pages",
         "uiSyntax": "ets",
-        "abilities": [{
-            "name": ".MainAbility",
-            "srcEntrance": "./ets/MainAbility/MainAbility.ts",
-            "description": "$string:MainAbility_desc",
-            "icon": "$media:icon",
-            "label": "$string:MainAbility_label",
-            "startWindowIcon": "$media:icon",
-            "startWindowBackground": "$color:white",
-            "visible": true,
-            "orientation": "portrait",
-            "skills": [{
-                "entities": [
-                    "entity.system.home"
-                ],
-                "actions": [
-                    "action.system.home"
+        "abilities": [
+            {
+                "name": ".MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:MainAbility_desc",
+                "icon": "$media:icon",
+                "label": "$string:MainAbility_label",
+                "startWindowIcon": "$media:icon",
+                "startWindowBackground": "$color:white",
+                "visible": true,
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "entities": [
+                            "entity.system.home"
+                        ],
+                        "actions": [
+                            "action.system.home"
+                        ]
+                    }
                 ]
-            }]
-        }]
+            }
+        ]
     }
 }
