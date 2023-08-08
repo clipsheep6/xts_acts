@@ -25,7 +25,6 @@ group("componentAttrssTest") {
       "ace_ets_component_common_attrss_flex:ActsAceEtsComponentCommonflexTest",
       "ace_ets_component_common_attrss_focusable:ActsAceEtsComponentCommonfocusableTest",
       "ace_ets_component_common_attrss_focusableDefault:ActsAceEtsComponentCommonfocusableDefaultTest",
-
     ]
   }
 }
