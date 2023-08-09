@@ -38,6 +38,9 @@ async function stopApplication(bundleName: string) {
 }
 
 export default function UiTest() {
+    beforeEach(async function () {
+      await stopApplication('com.uitestScene.acts')
+    })
     
     describe('UiTest_API10', function () {
         /*
