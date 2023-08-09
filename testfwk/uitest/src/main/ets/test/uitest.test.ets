@@ -38,6 +38,9 @@ async function stopApplication(bundleName: string) {
 }
 
 export default function UiTest() {
+    beforeEach(async function () {
+      await stopApplication('com.uitestScene.acts')
+    })
     
     describe('UiTest_API10', function () {
         /*
@@ -154,13 +157,13 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
-            let Scroll = await driver.findComponent(ON.type('Scroll'))
-            let center = await Scroll.getBoundsCenter()
-            await driver.mouseScroll(center,true,30)
+            let textInScroll = await driver.findComponent(ON.text('1').within(ON.type('Scroll')))
+            let scrollPoint = await textInScroll.getBoundsCenter()
+            await driver.mouseScroll(scrollPoint,true,30)
             await driver.delayMs(waitUiReadyMs)
             let button1 = await driver.findComponent(ON.text('next page'))
             expect(button1 == null).assertTrue()
-            await driver.mouseScroll(center,false,30,2072,2048)
+            await driver.mouseScroll(scrollPoint,false,30,2072,2048)
             await driver.delayMs(waitUiReadyMs)
             let button2 = await driver.findComponent(ON.text('next page'))
             expect(button2 != null).assertTrue()
