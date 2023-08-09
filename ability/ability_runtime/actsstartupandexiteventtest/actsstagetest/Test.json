@@ -10,6 +10,13 @@
     },
     "kits": [
         {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.suspend_manager_enabled false",
+                "reboot"
+            ]
+        },
+        {
             "test-file-name": [
                 "ActsDataRely.hap",
                 "ActsFaRely.hap",
@@ -24,8 +31,6 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "param set persist.sys.suspend_manager_enabled false",
-                "reboot",
                 "power-shell wakeup",
                 "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
                 "power-shell setmode 602",

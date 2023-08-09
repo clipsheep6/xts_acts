@@ -21,43 +21,43 @@ import osaccount from '@ohos.account.osAccount';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time))
-}
+// function sleep(time) {
+//   return new Promise((resolve) => setTimeout(resolve, time))
+// }
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
 
-    beforeAll(async function (done) {
-      await sleep(2000);
-      abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-      let cmdInstallActsDataRely = "bm install -p data/test/ActsDataRely.hap";
-      let cmdInstallActsFaRely = "bm install -p data/test/ActsFaRely.hap";
-      let cmdActsStageRely = "bm install -p data/test/ActsStageRely.hap";
-      let cmdActsTerminateRely = "bm install -p data/test/ActsTerminateRely.hap";
-      let cmdActsTestAbilityRely = "bm install -p data/test/ActsTestAbilityRely.hap";
-      console.info("cmd : " + cmdInstallActsDataRely)
-      await abilityDelegator.executeShellCommand(cmdInstallActsDataRely, (err: any, d: any) => {
-        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
-      });
-      await sleep(2000);
-      await abilityDelegator.executeShellCommand(cmdInstallActsFaRely, (err: any, d: any) => {
-        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
-      });
-      await sleep(2000);
-      await abilityDelegator.executeShellCommand(cmdActsStageRely, (err: any, d: any) => {
-        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
-      });
-      await sleep(2000);
-      await abilityDelegator.executeShellCommand(cmdActsTerminateRely, (err: any, d: any) => {
-        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
-      });
-      await sleep(2000);
-      await abilityDelegator.executeShellCommand(cmdActsTestAbilityRely, (err: any, d: any) => {
-        console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
-      });
-      await sleep(2000);
-    });
+    // beforeAll(async function (done) {
+    //   await sleep(2000);
+    //   abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    //   let cmdInstallActsDataRely = "bm install -p data/test/ActsDataRely.hap";
+    //   let cmdInstallActsFaRely = "bm install -p data/test/ActsFaRely.hap";
+    //   let cmdActsStageRely = "bm install -p data/test/ActsStageRely.hap";
+    //   let cmdActsTerminateRely = "bm install -p data/test/ActsTerminateRely.hap";
+    //   let cmdActsTestAbilityRely = "bm install -p data/test/ActsTestAbilityRely.hap";
+    //   console.info("cmd : " + cmdInstallActsDataRely)
+    //   await abilityDelegator.executeShellCommand(cmdInstallActsDataRely, (err: any, d: any) => {
+    //     console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+    //   });
+    //   await sleep(2000);
+    //   await abilityDelegator.executeShellCommand(cmdInstallActsFaRely, (err: any, d: any) => {
+    //     console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+    //   });
+    //   await sleep(2000);
+    //   await abilityDelegator.executeShellCommand(cmdActsStageRely, (err: any, d: any) => {
+    //     console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+    //   });
+    //   await sleep(2000);
+    //   await abilityDelegator.executeShellCommand(cmdActsTerminateRely, (err: any, d: any) => {
+    //     console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+    //   });
+    //   await sleep(2000);
+    //   await abilityDelegator.executeShellCommand(cmdActsTestAbilityRely, (err: any, d: any) => {
+    //     console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
+    //   });
+    //   await sleep(2000);
+    // });
 
     beforeEach(async function (done) {
       await abilityDelegator.executeShellCommand('hilog -r');
