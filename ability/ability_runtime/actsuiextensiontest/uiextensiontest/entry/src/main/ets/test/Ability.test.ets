@@ -144,5 +144,55 @@ export default function abilityTest() {
         done();
       })
     })
+
+    /**
+     * tc.number: 
+     * 
+     */
+    it('SUB_AA_Extension_UIServiceExtensionAbility_Context_0100',0, async function (done) {
+      let TAG = 'SUB_AA_Extenion_UIServiceExtenionAbility_Context_0100 === ';
+      console.log(TAG + 'start');
+
+      let event1 = '0100_UIExtensionAbilityContext';
+      var subscriber1;
+      var subscribeInfo1 = {
+        events: [event1]
+      }
+      await commonEventManager.createSubscriber(subscribeInfo1).then((data) => {
+        console.log(TAG + "createSubscriber data : " + JSON.stringify(data));
+        subscriber1 = data;
+
+        commonEventManager.subscribe(subscriber1, async (err, data) => {
+          console.log(TAG + "SubscribeInfoCallback : " + JSON.stringify(data));
+          expect(data.parameters.cacheDir).assertEqual('');
+          expect(data.parameters.tempDir).assertEqual('');
+          expect(data.parameters.tempDir).assertEqual('');
+          expect(data.parameters.databaseDir).assertEqual('');
+          expect(data.parameters.preferencesDir).assertEqual('');
+          expect(data.parameters.bundleCodeDir).assertEqual('');
+          expect(data.parameters.distributedFilesDir).assertEqual('');
+          expect(data.parameters.stageMode).assertEqual('');
+          expect(data.parameters.area).assertEqual('');
+          expect(data.parameters.eventHub).assertEqual('');
+          done();
+        });
+      }).catch((error) => {
+        console.log(TAG + "createSubscriber err : " + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      })
+
+      let options = {
+        url: 'TestAbility/pages/p1',
+      }
+      let result;
+      try {
+        result = await router.pushUrl(options);
+      } catch (err) {
+        console.error(TAG + 'pushUrl catch error: ' + err.code);
+        expect().assertFail();
+        done();
+      }
+    })
   })
 }
