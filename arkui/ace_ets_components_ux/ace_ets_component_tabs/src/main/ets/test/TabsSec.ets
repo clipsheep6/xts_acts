@@ -17,6 +17,7 @@ import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
+import {MessageManager,Callback} from './MessageManager';
 
 export default function tabsSec() {
   describe('ActsAceTabsTestSec', function () {
@@ -506,21 +507,8 @@ export default function tabsSec() {
       console.info("ArkUI_Tabs_BarBackgroundColor start");
       let strJson = getInspectorByKey('BarBackgroundColorResource');
       console.info("ArkUI_Tabs_BarBackgroundColor: " + JSON.stringify(strJson))
-      try {
-        var eventData = {
-          data: {
-            "barBackgroundColorResource": $r("sys.color.ohos_toggle_bg"),
-          }
-        }
-        var innerEvent = {
-          eventId: 183,
-          priority: events_emitter.EventPriority.LOW
-        }
-        console.info("[ArkUI_Tabs_BarBackgroundColor_0500] start to publish emit");
-        events_emitter.emit(innerEvent, eventData);
-      } catch (err) {
-        console.log("[ArkUI_Tabs_BarBackgroundColor_0500] change component data error: " + err.message);
-      }
+      let barBackgroundColorResource = $r("sys.color.ohos_toggle_bg");
+      globalThis.value.message.notify({name:'barBackgroundColorResource',value:barBackgroundColorResource});
       await Utils.sleep(2000);
       let newJson = getInspectorByKey('BarBackgroundColorResource');
       let obj = JSON.parse(newJson);
