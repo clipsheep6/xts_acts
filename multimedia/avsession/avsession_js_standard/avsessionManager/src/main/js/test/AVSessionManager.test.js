@@ -42,13 +42,7 @@ export default function AVSessionManager() {
         })
 
         afterAll(function () {
-            console.info('TestLog: Destroy Session And Controller');
-            session.destroy().then(() => {
-                console.info('TestLog: Session destroy success');
-            }).catch((err) => {
-                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
+            console.info('TestLog: End testing describe');
         })
 
         /* *
@@ -308,8 +302,6 @@ export default function AVSessionManager() {
                 }).catch(async(err) => {
                     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
                     expect(err.code == 6600101).assertTrue();
-                    await currentAVSession.destroy();
-                    done();
                 });
             } catch (error) {
                 console.error(`getCurrentItem BusinessError2: code: ${error.code}, message: ${error.message}`)
@@ -319,6 +311,8 @@ export default function AVSessionManager() {
 
                 }
             }
+            await currentAVSession.destroy();
+            sleep(1000);
             done();
         })
         /* *
