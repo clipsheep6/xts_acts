@@ -277,9 +277,13 @@ export default function abilityTest() {
         abilityDelegator.executeShellCommand(cmd, (err, data) => {
           if (data.stdResult !== '') {
             try {
+              console.log('====>Acts_StartupAndExitEventReport_0500 assert start');
               expect(data.stdResult).assertContain('\"domain_\":\"AAFWK\"');
+              console.log('====>Acts_StartupAndExitEventReport_0500 assert two');
               expect(data.stdResult).assertContain('\"name_\":\"PROCESS_EXIT\"');
+              console.log('====>Acts_StartupAndExitEventReport_0500 assert three');
               expect(data.stdResult).assertContain('\"EXIT_RESULT\":0');
+              console.log('====>Acts_StartupAndExitEventReport_0500 assert end');
             } catch {
               console.log('====>Acts_StartupAndExitEventReport_0500 assert exception');
               expect().assertFail();
