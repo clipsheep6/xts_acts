@@ -42,7 +42,13 @@ export default function AVSessionManager() {
         })
 
         afterAll(function () {
-            console.info('TestLog: End testing describe');
+            console.info('TestLog: Destroy Session And Controller');
+            session.destroy().then(() => {
+                console.info('TestLog: Session destroy success');
+            }).catch((err) => {
+                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
+                expect(false).assertTrue();
+            });
         })
 
         /* *
@@ -188,6 +194,8 @@ export default function AVSessionManager() {
                     expect(true).assertTrue()
                 }
             }
+            await sleep(10000);
+            await currentAVSession.destroy();
             done();
         })
 
