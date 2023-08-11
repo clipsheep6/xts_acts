@@ -15,8 +15,6 @@
 
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
 import Logger from '../model/Logger'
-import commonEventManager from '@ohos.commonEventManager';
-s
 const TAG: string = '[UIExtAbility]'
 
 export default class UIExtAbility extends UIExtensionAbility {
@@ -38,24 +36,6 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     onSessionCreate(want, session) {
         Logger.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-
-        let options = {
-          parameters: {
-            cacheDir: this.context.cacheDir,
-            tempDir: this.context.tempDir,
-            filesDir: this.context.filesDir,
-            databaseDir: this.context.databaseDir,
-            preferencesDir: this.context.preferencesDir,
-            bundleCodeDir: this.context.bundleCodeDir,
-            distributedFilesDir: this.context.distributedFilesDir,
-            stageMode: this.context.stageMode,
-            area: this.context.area,
-            eventHub: this.context.eventHub
-          }
-        }
-        commonEventManager.publish('0100_UIExtensionAbilityContext', options, (err) => {
-          console.log('SUB_AA_Extension_UIServiceExtensionAbility_Context_0100 commonEventManager 0100_UIExtensionAbilityContext');
-        })
 
         let storage: LocalStorage = new LocalStorage({
             'session': session

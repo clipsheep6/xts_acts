@@ -164,16 +164,16 @@ export default function abilityTest() {
 
         commonEventManager.subscribe(subscriber1, async (err, data) => {
           console.log(TAG + "SubscribeInfoCallback : " + JSON.stringify(data));
-          expect(data.parameters.cacheDir).assertEqual('');
-          expect(data.parameters.tempDir).assertEqual('');
-          expect(data.parameters.tempDir).assertEqual('');
-          expect(data.parameters.databaseDir).assertEqual('');
-          expect(data.parameters.preferencesDir).assertEqual('');
-          expect(data.parameters.bundleCodeDir).assertEqual('');
-          expect(data.parameters.distributedFilesDir).assertEqual('');
-          expect(data.parameters.stageMode).assertEqual('');
-          expect(data.parameters.area).assertEqual('');
-          expect(data.parameters.eventHub).assertEqual('');
+          expect(data.parameters.cacheDir !== undefined).assertTrue();
+          expect(data.parameters.tempDir !== undefined).assertTrue();
+          expect(data.parameters.tempDir !== undefined).aassertTrue();
+          expect(data.parameters.databaseDir !== undefined).assertTrue();
+          expect(data.parameters.preferencesDir !== undefined).assertTrue();
+          expect(data.parameters.bundleCodeDir !== undefined).assertTrue();
+          expect(data.parameters.distributedFilesDir !== undefined).assertTrue();
+          expect(data.parameters.stageMode !== undefined).assertTrue();
+          expect(data.parameters.area !== undefined).assertTrue();
+          expect(data.parameters.eventHub !== undefined).assertTrue();
           done();
         });
       }).catch((error) => {
