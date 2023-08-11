@@ -194,6 +194,8 @@ export default function AVSessionManager() {
                     expect(true).assertTrue()
                 }
             }
+            await sleep(10000);
+            await currentAVSession.destroy();
             done();
         })
 
@@ -308,8 +310,6 @@ export default function AVSessionManager() {
                 }).catch(async(err) => {
                     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
                     expect(err.code == 6600101).assertTrue();
-                    await currentAVSession.destroy();
-                    done();
                 });
             } catch (error) {
                 console.error(`getCurrentItem BusinessError2: code: ${error.code}, message: ${error.message}`)
@@ -319,6 +319,8 @@ export default function AVSessionManager() {
 
                 }
             }
+            await currentAVSession.destroy();
+            sleep(1000);
             done();
         })
         /* *
