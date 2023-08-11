@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// @ts-nocheck
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
@@ -80,6 +81,8 @@ export function photoFetchOption(testNum, key, value) : photoAccessHelper.FetchO
       photoKeys.POSITION,
       photoKeys.DATE_TRASHED,
       photoKeys.HIDDEN,
+      photoKeys.USER_COMMENT,
+      'all_exif',
     ],
     predicates: predicates
   };
