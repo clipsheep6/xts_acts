@@ -5951,7 +5951,7 @@ function createWifiPowerStateSubscriber() {
 
 function createHwidLogOffSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_LOGOFF],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
@@ -6003,7 +6003,7 @@ function createHwidLogOffSubscriber() {
 
 function createHwidTokenInvalidSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_TOKEN_INVALID],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
@@ -6055,7 +6055,7 @@ function createHwidTokenInvalidSubscriber() {
 
 function createHwidLogoutSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_LOGOUT],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
@@ -6107,7 +6107,7 @@ function createHwidLogoutSubscriber() {
 
 function createHwidLoginSubscriber() {
     var commonEventSubscribeInfo = {
-        events: [commonEvent.Support.COMMON_EVENT_HWID_LOGIN],
+        events: [commonEvent.Support.COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN],
     };
     commonEvent.createSubscriber(commonEventSubscribeInfo)
         .then(subscriber => {
