@@ -1,0 +1,72 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+module_performance_output_path = "acts/ActsScreenCaptureNdkPerformanceTest"
+MEDIA_ROOT_DIR = "//foundation/multimedia/player_framework/"
+
+ohos_moduletest_suite("ActsScreenCaptureNdkPerformanceTest") {
+  module_out_path = module_performance_output_path
+  sources = [
+    "../ActsScreenCaptureNdkPerformanceTest/ActsScreenCaptureNdkPerformanceTest.cpp",
+    "../src/ScreenCaptureNdkSample.cpp",
+    "../src/ScreenCaptureNdkSampleFactory.cpp",
+  ]
+  include_dirs = [
+    "../include",
+    "../src",
+    "../../include/",
+    "$MEDIA_ROOT_DIR/frameworks/native/capi/common",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native/",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c",
+    "$MEDIA_ROOT_DIR/frameworks/native/capi/common",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c",
+  ]
+
+  cflags = [
+    "-Werror",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-Wall",
+    "-fno-common",
+    "-fstack-protector-strong",
+    "-Wshadow",
+    "-FPIC",
+    "-FS",
+    "-O2",
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-Wformat=2",
+    "-Wdate-time",
+    "",
+  ]
+
+  deps = [
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native:media_client",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_avscreen_capture",
+  ]
+  external_deps = [
+    "access_token:libaccesstoken_sdk",
+    "access_token:libnativetoken",
+    "access_token:libtoken_setproc",
+    "c_utils:utils",
+    "graphic_2d:surface",
+    "hilog:libhilog",
+    "window_manager:libdm",
+  ]
+
+  part_name = "player_framework"
+  subsystem_name = "multimedia"
+}
