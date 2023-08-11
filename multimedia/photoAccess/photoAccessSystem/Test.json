@@ -39,6 +39,7 @@
             "pre-push": [],
             "push": [
                 "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/01.jpg",
+                "./resource/medialibrary/01.jpg ->/storage/media/100/local/temp/getExif.jpg",
                 "./resource/medialibrary/01.mp4 ->/storage/media/100/local/temp/01.mp4"
             ]
         },
@@ -126,6 +127,13 @@
                 "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/addPro02.jpg",
                 "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/addPro04.jpg",
                 "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/removePro02.jpg",
+
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/userCommentCb01.jpg",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/userCommentCb02.jpg",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/userCommentPro01.jpg",
+                "cp /storage/media/100/local/temp/01.jpg /storage/media/100/local/files/Pictures/userCommentPro02.jpg",
+
+                "cp /storage/media/100/local/temp/getExif.jpg /storage/media/100/local/files/Pictures/getExif.jpg",
                 "chmod -R 777 /storage/media/100/local/files/*",
                 "hilog -p off",
                 "hilog -Q pidoff",
