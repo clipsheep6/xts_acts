@@ -185,6 +185,35 @@ export default function connectionTest() {
     });
 
     /**
+     * @tc.number: TEST_ON_NET_CAPABILITIES_CHANGE_001
+     * @tc.name  : testOn_NetCapabilitiesChange001
+     * @tc.desc  : Subscribe to network capability change events.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('testOn_NetCapabilitiesChange001', 0, function (done) {
+      let netConn = connection.createNetConnection();
+      netConn.register((error) => {
+        if (!error) {
+          netConn.on('netCapabilitiesChange', (data) => {
+            console.log("testOn_NetCapabilitiesChange001 success11:" + data);
+            expect(data.netCap.bearerTypes.length >= 0).assertTrue();
+          });
+          netConn.unregister((error) => {
+            console.log("testOn_NetCapabilitiesChange001 result11:" + error);
+          });
+          expect(true).assertTrue();
+          done();
+        } else {
+          console.log(`testOn_NetCapabilitiesChange001 register failed,errCode:` + error.code);
+          expect().assertFail();
+          done();
+        }
+      });
+    });
+
+    /**
      * @tc.number: TEST_ON_NET_LOST_001
      * @tc.name  : testOn_NetLost001
      * @tc.desc  : Subscribe to network loss events.
