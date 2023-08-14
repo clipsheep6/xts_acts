@@ -1,6 +1,8 @@
 {
   "src": [
     "MainAbility/pages/index/Index",
+    "MainAbility/pages/align/AlignPage",
+    "MainAbility/pages/direction/DirectionPage",
     "MainAbility/pages/position/PositionPage",
     "MainAbility/pages/markAnchor/MarkAnchorPage",
     "MainAbility/pages/offset/OffsetPage",
