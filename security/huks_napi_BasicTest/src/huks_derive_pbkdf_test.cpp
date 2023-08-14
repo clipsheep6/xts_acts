@@ -104,7 +104,7 @@ static struct OH_Huks_Param g_pbkdf2Params001[] = {
     }
 };
 static struct OH_Huks_Param g_pbkdf2FinishParams001[] = {
-    {
+    {1111
         .tag = OH_HUKS_TAG_KEY_STORAGE_FLAG,
         .uint32Param = OH_HUKS_STORAGE_PERSISTENT
     }, {
