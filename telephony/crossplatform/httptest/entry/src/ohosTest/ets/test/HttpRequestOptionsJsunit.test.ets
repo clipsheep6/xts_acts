@@ -812,7 +812,7 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 1
         }
         var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
+        httpRequest.request("https://github.com", httpRequestOptions, (err, data) => {
           console.log(casename + ' error:' + JSON.stringify(err) + " data: " + JSON.stringify(data));
            expect(err.code == 2300028).assertTrue();
            expect(err.message == 'Timeout was reached').assertTrue();
@@ -848,7 +848,7 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 1
         }
         var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
+        httpRequest.request("https://github.com", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           console.log("-----------------------HttpRequestOptions_readTimeout_02 Test end-----------------------");
           expect().assertFail();
@@ -887,7 +887,7 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 1
         }
         var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
+        httpRequest.request("https://github.com", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(err.code == 2300028).assertTrue();
           expect(err.message == 'Timeout was reached').assertTrue();
@@ -923,7 +923,7 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 1
         }
         var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
+        httpRequest.request("https://github.com", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           console.log("-----------------------testTelephonyHttpRequestOptionsConnectTimeout002 Test end-----------------------");
           expect().assertFail();
