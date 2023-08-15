@@ -1131,6 +1131,7 @@ export default function UiTest() {
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
             await driver.fling({x:300, y:600},{x:300, y:300}, 20, 600)
+            await driver.delayMs(2000)
             let text = await driver.findComponent(ON.text('next page'))
             expect(text == null).assertTrue()
             let scrollBar = await driver.findComponent(ON.type('Scroll'))
