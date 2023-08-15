@@ -620,17 +620,32 @@ export default function socketJsunit() {
           port: 8080
         }
       }
-      udp.send(udpSendOptions, (error, data) => {
+      let netAddress = {
+        address: "test address",
+        family: 1,
+        port: 8080
+      }
+      udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error,error:` + JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} bind,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} error, data:` + JSON.stringify(data));
-        expect().assertFail();
-        done();
+        console.log(`${caseName} bind success, data:` + JSON.stringify(data));
+        udp.send(udpSendOptions, (error, data) => {
+          if (error) {
+            console.log(`${caseName} send error,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} send , data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        })
       })
+
       console.log("************* Telephony_Socket_UDPSocket_send_0100 Test end*************");
     });
 
@@ -650,15 +665,29 @@ export default function socketJsunit() {
           port: 8080
         }
       }
-      udp.send(udpSendOptions).then(data => {
-        console.log(`${caseName} success,data:` + JSON.stringify(data));
-        expect().assertFail();
-        done();
-      }).catch((error) => {
-        console.log(`${caseName} failed,error:` + JSON.stringify(error));
-        expect(true).assertTrue();
-        done();
-      });
+      let netAddress = {
+        address: "test address",
+        family: 1,
+        port: 8080
+      }
+      udp.bind(netAddress, (error, data) => {
+        if (error) {
+          console.log(`${caseName} bind,error:` + JSON.stringify(error));
+          expect().assertFail();
+          done();
+          return;
+        }
+        console.log(`${caseName} bind success, data:` + JSON.stringify(data));
+        udp.send(udpSendOptions).then(data => {
+          console.log(`${caseName} send success,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} send failed,error:` + JSON.stringify(error));
+          expect(true).assertTrue();
+          done();
+        });
+      })
       console.log("************* Telephony_Socket_UDPSocket_send_0200 Test end*************");
     });
 
@@ -678,16 +707,30 @@ export default function socketJsunit() {
           port: 8080
         }
       }
-      udp.send(udpSendOptions, (error, data) => {
+      let netAddress = {
+        address: "test address",
+        family: 1,
+        port: 8080
+      }
+      udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error,error:` + JSON.stringify(error));
-          expect(true).assertTrue();
+          console.log(`${caseName} bind,error:` + JSON.stringify(error));
+          expect().assertFail();
           done();
           return;
         }
-        console.log(`${caseName} error, data:` + JSON.stringify(data));
-        expect().assertFail();
-        done();
+        console.log(`${caseName} bind success, data:` + JSON.stringify(data));
+        udp.send(udpSendOptions, (error, data) => {
+          if (error) {
+            console.log(`${caseName} send error,error:` + JSON.stringify(error));
+            expect(true).assertTrue();
+            done();
+            return;
+          }
+          console.log(`${caseName} send, data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        })
       })
       console.log("************* Telephony_Socket_UDPSocket_send_0300 Test end*************");
     });
@@ -708,15 +751,29 @@ export default function socketJsunit() {
           port: 8080
         }
       }
-      udp.send(udpSendOptions).then(data => {
-        console.log(`${caseName} success,data:` + JSON.stringify(data));
-        expect().assertFail();
-        done();
-      }).catch((error) => {
-        console.log(`${caseName} failed,error:` + JSON.stringify(error));
-        expect(true).assertTrue();
-        done();
-      });
+      let netAddress = {
+        address: "test address",
+        family: 1,
+        port: 8080
+      }
+      udp.bind(netAddress, (error, data) => {
+        if (error) {
+          console.log(`${caseName} bind,error:` + JSON.stringify(error));
+          expect().assertFail();
+          done();
+          return;
+        }
+        console.log(`${caseName} bind success, data:` + JSON.stringify(data));
+        udp.send(udpSendOptions).then(data => {
+          console.log(`${caseName} send success,data:` + JSON.stringify(data));
+          expect().assertFail();
+          done();
+        }).catch((error) => {
+          console.log(`${caseName} send failed,error:` + JSON.stringify(error));
+          expect(true).assertTrue();
+          done();
+        });
+      })
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test end*************");
     });
 
