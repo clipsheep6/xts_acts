@@ -855,17 +855,31 @@ export default function socketJsunit() {
     it('Telephony_Socket_UDPSocket_getState_0100', 0, function (done) {
       console.log("************* Telephony_Socket_UDPSocket_getState_0100 Test start*************");
       let caseName = "Telephony_Socket_UDPSocket_getState_0100"
-      udp.getState((error, data) => {
+      let netAddress = {
+        address: "test address",
+        family: 1,
+        port: 8080
+      }
+      udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error,error:` + JSON.stringify(error));
+          console.log(`${caseName} bind,error:` + JSON.stringify(error));
           expect().assertFail();
           done();
           return;
         }
-        let socketStateBase = data
-        console.log(`${caseName} success data:` + JSON.stringify(socketStateBase.isClose));
-        expect(true).assertTrue();
-        done();
+        console.log(`${caseName} bind success, data:` + JSON.stringify(data));
+        udp.getState((error, data) => {
+          if (error) {
+            console.log(`${caseName} getState,error:` + JSON.stringify(error));
+            expect().assertFail();
+            done();
+            return;
+          }
+          let socketStateBase = data
+          console.log(`${caseName} getState data:` + JSON.stringify(socketStateBase.isClose));
+          expect(true).assertTrue();
+          done();
+        })
       })
       console.log("************* Telephony_Socket_UDPSocket_getState_0100 Test end*************");
     });
