@@ -74,7 +74,7 @@ export default function abilityTest() {
         console.error("ACTS_InterfaceMultiUsers afterEach called");
         setTimeout(function() {
             done();
-        }, 500);
+        }, 1000);
     })
 
     console.debug("====>in ACTS_InterfaceMultiUsers====>");

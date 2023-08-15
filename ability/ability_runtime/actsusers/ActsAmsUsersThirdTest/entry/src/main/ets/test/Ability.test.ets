@@ -113,6 +113,7 @@ export default function abilityTest() {
      * @tc.desc    : Start an ability with the parameter startability with options succeeded.(callback)
      */
     it('ACTS_ThirdPartyStartAbility_0300', 0, async function (done) {
+      await sleep(2000)
       let Subscriber
       var flag = true
       var startresult = false
@@ -193,6 +194,7 @@ export default function abilityTest() {
      * @tc.desc    : Starting mainability2 with startability succeeded.(promise)
      */
     it('ACTS_ThirdPartyStartAbility_0500', 0, async function (done) {
+      await sleep(2000)
       let Subscriber
       var flag = true
       var startresult = false
@@ -265,6 +267,7 @@ export default function abilityTest() {
      * @tc.desc    : Starting mainability2 with startability succeeded.(callback)
      */
     it('ACTS_ThirdPartyStartAbility_0700', 0, async function (done) {
+      await sleep(2000)
       let Subscriber
       var flag = true
       var startresult = false
