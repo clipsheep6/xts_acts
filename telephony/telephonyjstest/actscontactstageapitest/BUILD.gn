@@ -14,11 +14,11 @@
 import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("ActsContactStageAPITest") {
-  hap_profile = "./entry/src/main/config.json"
+  hap_profile = "entry/src/main/config.json"
   deps = [
-    ":ace_demo_ets_assets",
-    ":ace_demo_ets_resources",
-    ":ace_demo_ets_test_assets",
+    ":hjs_demo_ets_assets",
+    ":hjs_demo_ets_resources",
+    ":hjs_demo_ets_test_assets",
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
@@ -26,13 +26,13 @@ ohos_js_hap_suite("ActsContactStageAPITest") {
   part_name = "sms_mms"
   subsystem_name = "telephony"
 }
-ohos_js_assets("ace_demo_ets_assets") {
-  source_dir = "./entry/src/main/ets/MainAbility"
+ohos_js_assets("hjs_demo_ets_assets") {
+  source_dir = "entry/src/main/ets/MainAbility"
 }
-ohos_js_assets("ace_demo_ets_test_assets") {
-  source_dir = "./entry/src/main/ets/TestAbility"
+ohos_js_assets("hjs_demo_ets_test_assets") {
+  source_dir = "entry/src/main/ets/TestAbility"
 }
-ohos_resources("ace_demo_ets_resources") {
-  sources = [ "./entry/src/main/resources" ]
-  hap_profile = "./entry/src/main/config.json"
+ohos_resources("hjs_demo_ets_resources") {
+  sources = [ "entry/src/main/resources" ]
+  hap_profile = "entry/src/main/config.json"
 }
