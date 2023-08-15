@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import events_emitter from '@ohos.events.emitter';
 export default class CommonFunc {
   static rect_left;
   static rect_top;
@@ -44,6 +44,35 @@ export default class CommonFunc {
    };
    console.info(JSON.stringify(this.rect_value));
    return this.rect_value;
+  }
+  static registerEvent(callback, eventId) {
+    try {
+      let backEvent={
+        eventId:eventId,
+        priority:events_emitter.EventPriority.LOW
+      }
+      events_emitter.on(backEvent, callback)
+    }catch (err) {
+      console.info("registerEvent err: " + JSON.stringify(err));
+    }
+  }
+
+  static emitEvent(actualValue,eventId){
+    try {
+      let backData = {
+        data: {
+          "ACTION": actualValue
+        }
+      }
+      let backEvent = {
+        eventId:eventId,
+        priority:events_emitter.EventPriority.LOW
+      }
+      console.info("start to emit action state");
+      events_emitter.emit(backEvent, backData);
+    } catch (err) {
+      console.info("emit action state err: " + JSON.stringify(err));
+    }
   }
 }
 

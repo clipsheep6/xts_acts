@@ -19,11 +19,39 @@ import CommonFunc from "../../../MainAbility/common/Common";
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton } from '@ohos.UiTest';
 export default function swiperAutoPlay_2() {
   describe('swiperAutoPlayTest', function () {
+    let sliderCount = 0;
+    let oldPageTime = 0;
+    let timeIntervalCount = 0;
+    function timeChangeCallBack(eventData){
+      try {
+        console.info("swiperAutoPlay_2 page timeChangeCallBack");
+        if(eventData != null){
+          let timeInterval = 0;
+          let time = eventData.data.ACTION
+          sliderCount++;
+          console.info("timeChangeCallBack:"+ JSON.stringify(eventData));
+          if (sliderCount < 2) {
+            oldPageTime = time;
+          }else{
+            timeInterval = (time - oldPageTime) / 1000;
+            oldPageTime = time;
+          }
+          console.info("timeInterval:"+ timeInterval);
+          if (Math.round(timeInterval) > 1){ //auto Sliding interval is 1s
+            timeIntervalCount++;
+            console.info("timeInterval is:"+ Math.round(timeInterval));
+          }
+        }
+      } catch(error) {
+        console.error(`timeChangeCallBack failed. Cause:` + JSON.stringify(error));
+      }
+    }
     beforeEach(async function (done) {
       let options = {
         uri: 'MainAbility/pages/Swiper/Swiper_ParmsChange/swiperAutoPlay_2',
       }
       try {
+        CommonFunc.registerEvent(timeChangeCallBack, 10);
         router.clear();
         await CommonFunc.sleep(1000);
         let pages = router.getState();
@@ -50,27 +78,6 @@ export default function swiperAutoPlay_2() {
       console.info('new testSwiperAutoPlaySetting_2 START');
       let strJson = getInspectorByKey('autoPlay02');
       let obj = JSON.parse(strJson);
-      let autoPlay02 = CommonFunc.getComponentRect('autoPlay02');
-      let autoPlay02_1 = CommonFunc.getComponentRect('autoPlay02_1');
-      let autoPlay02_2 = CommonFunc.getComponentRect('autoPlay02_2');
-      let autoPlay02_3 = CommonFunc.getComponentRect('autoPlay02_3');
-      let autoPlay02_4 = CommonFunc.getComponentRect('autoPlay02_4');
-      let autoPlay02_5 = CommonFunc.getComponentRect('autoPlay02_5');
-      let autoPlay02_6 = CommonFunc.getComponentRect('autoPlay02_6');
-      // Automatic page flipping failed.
-      console.info("Autoplay page turning , the autoPlay02.left value is " + JSON.stringify(autoPlay02.left));
-      console.info("Autoplay page turning , the autoPlay02_1.left value is " + JSON.stringify(autoPlay02_1.left));
-      expect(autoPlay02.left).assertEqual(autoPlay02_1.left);
-      expect(autoPlay02.right).assertEqual(autoPlay02_1.right);
-      expect(autoPlay02.top).assertEqual(autoPlay02_1.top);
-      expect(autoPlay02.bottom).assertEqual(autoPlay02_1.bottom);
-      console.info("The type value is " + JSON.stringify(obj.$type));
-      console.info("The index value is " + JSON.stringify(obj.$attrs.index));
-      console.info("The autoPlay value is " + JSON.stringify(obj.$attrs.autoPlay));
-      console.info("The loop value is " + JSON.stringify(obj.$attrs.loop));
-      console.info("The itemSpace value is " + JSON.stringify(obj.$attrs.itemSpace));
-      console.info("The displayCount value is " + JSON.stringify(obj.$attrs.displayCount));
-      console.info("The interval value is " + JSON.stringify(obj.$attrs.interval));
       expect(obj.$type).assertEqual('Swiper');
       expect(obj.$attrs.index).assertEqual('0');
       expect(obj.$attrs.autoPlay).assertEqual('false');
@@ -78,6 +85,39 @@ export default function swiperAutoPlay_2() {
       expect(obj.$attrs.itemSpace).assertEqual('0.00vp');
       expect(obj.$attrs.displayCount).assertEqual(1);
       expect(obj.$attrs.interval).assertEqual('1000');
+      let autoPlay02 = CommonFunc.getComponentRect('autoPlay02');
+      let autoPlay02_1 = CommonFunc.getComponentRect('autoPlay02_1');
+      let driver = await Driver.create();
+      await driver.swipe(440,340,10,340)
+      let autoPlay02_2 = CommonFunc.getComponentRect('autoPlay02_2');
+      await CommonFunc.sleep(1000);
+      await driver.swipe(440,340,10,340)
+      let autoPlay02_3 = CommonFunc.getComponentRect('autoPlay02_3');
+      await CommonFunc.sleep(1000);
+      await driver.swipe(440,340,10,340)
+      let autoPlay02_4 = CommonFunc.getComponentRect('autoPlay02_4');
+      await CommonFunc.sleep(1000);
+      await driver.swipe(440,340,10,340)
+      let autoPlay02_5 = CommonFunc.getComponentRect('autoPlay02_5');
+      await CommonFunc.sleep(1000);
+      await driver.swipe(440,340,10,340)
+      let autoPlay02_6 = CommonFunc.getComponentRect('autoPlay02_6');
+      expect(autoPlay02.right - autoPlay02.left).assertEqual(vp2px(300));
+      expect(autoPlay02.bottom - autoPlay02.top).assertEqual(vp2px(300));
+      expect(autoPlay02_1.right - autoPlay02_1.left).assertEqual(vp2px(300));
+      expect(autoPlay02_1.bottom - autoPlay02_1.top).assertEqual(vp2px(300));
+      expect(autoPlay02_2.right - autoPlay02_2.left).assertEqual(vp2px(300));
+      expect(autoPlay02_2.bottom - autoPlay02_2.top).assertEqual(vp2px(300));
+      expect(autoPlay02_3.right - autoPlay02_3.left).assertEqual(vp2px(300));
+      expect(autoPlay02_3.bottom - autoPlay02_3.top).assertEqual(vp2px(300));
+      expect(autoPlay02_4.right - autoPlay02_4.left).assertEqual(vp2px(300));
+      expect(autoPlay02_4.bottom - autoPlay02_4.top).assertEqual(vp2px(300));
+      expect(autoPlay02_5.right - autoPlay02_5.left).assertEqual(vp2px(300));
+      expect(autoPlay02_5.bottom - autoPlay02_5.top).assertEqual(vp2px(300));
+      expect(autoPlay02_6.right - autoPlay02_6.left).assertEqual(vp2px(300));
+      expect(autoPlay02_6.bottom - autoPlay02_6.top).assertEqual(vp2px(300));
+      expect(timeIntervalCount).assertEqual(3);
+      expect(sliderCount).assertEqual(4);
       console.info('new testSwiperAutoPlaySetting_2 END');
       done();
     });

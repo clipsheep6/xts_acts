@@ -75,7 +75,10 @@ import swiperIndex from './Swiper/Swiper_ParmsChange/swiperIndex.test.ets';
 import swiperVertical from './Swiper/Swiper_ParmsChange/swiperVertical.test.ets';
 import swiperLoopTrue from './Swiper/Swiper_ParmsChange/swiperLoopTrue.test.ets';
 import swiperLoopFalse from './Swiper/Swiper_ParmsChange/swiperLoopFalse.test.ets';
-
+import swiperAutoPlay_1 from './Swiper/Swiper_ParmsChange/swiperAutoPlay_1.test.ets';
+import swiperAutoPlay_2 from './Swiper/Swiper_ParmsChange/swiperAutoPlay_2.test.ets';
+import swiperAutoPlay_3 from './Swiper/Swiper_ParmsChange/swiperAutoPlay_3.test.ets';
+import swiperAutoPlay_4 from './Swiper/Swiper_ParmsChange/swiperAutoPlay_4.test.ets';
 import swiperItemSpace from './Swiper/Swiper_ParmsChange/swiperItemSpace.test.ets';
 import swiperPadding from './Swiper/Swiper_ParmsChange/swiperPadding.test.ets';
 import swiperMargin from './Swiper/Swiper_ParmsChange/swiperMargin.test.ets';
@@ -471,7 +474,10 @@ swiperIndex()
 swiperVertical()
 swiperLoopTrue()
 swiperLoopFalse()
-
+swiperAutoPlay_1()
+swiperAutoPlay_2()
+swiperAutoPlay_3()
+swiperAutoPlay_4()
 swiperItemSpace()
 swiperPadding()
 swiperMargin()
