@@ -53,12 +53,11 @@ export default class OpenHarmonyTestRunner implements TestRunner {
         console.log('OpenHarmonyTestRunner onRun run')
         abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
+        let testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility';
         let lMonitor = {
             abilityName: testAbilityName,
             onAbilityCreate: onAbilityCreateCallback,
         };
-        let testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility';
         abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
         let cmd = 'aa start -d 0 -a ' + testAbilityName + ' -b ' + abilityDelegatorArguments.bundleName;
         cmd += ' '+translateParamsToString(abilityDelegatorArguments.parameters);
