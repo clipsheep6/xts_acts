@@ -21,7 +21,23 @@ export default function socketJsunit() {
     console.log("************* socket Test start*************");
     let tcp = socket.constructTCPSocketInstance();
     let udp = socket.constructUDPSocketInstance();
-
+    beforeEach(async function (done) {
+      console.log('socket beforeEach start')
+      udp.close((error, data) => {
+        if (error) {
+          console.log(`socket beforeEach udpconsole.error():` + JSON.stringify(error));
+        }
+        console.log(`socket beforeEach udpconsole ,data:` + JSON.stringify(data));
+        tcp.close((error, data) => {
+          if (error) {
+            console.log(`socket beforeEach tcpconsole.error():` + JSON.stringify(error));
+          }
+          console.log(`socket beforeEach tcpconsole ,data:` + JSON.stringify(data));
+          console.log('socket beforeEach end')
+          done();
+        })
+      })
+    })
     /*
      * @tc.number    : Telephony_Socket_Socket_constructUDPSocketInstance_0100
      * @tc.name      : constructUDPSocketInstance
