@@ -27,7 +27,7 @@ group("ActsAceEtsLayoutTest") {
       "ace_ets_layout_stack_test:ActsAceEtsLayoutStackTest",
       "ace_ets_layout_swiper_test:ActsAceEtsLayoutSwiperTest",
       "ace_ets_layout_tabs_test:ActsAceEtsLayoutTabsTest",
-       "ace_ets_layout_waterflow_test:ActsAceEtsLayoutWaterflowTest",
+      "ace_ets_layout_waterflow_test:ActsAceEtsLayoutWaterflowTest",
     ]
   }
 }
