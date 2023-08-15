@@ -68,10 +68,10 @@
       }
     ],
     "reqPermissions": [
-	    {
+      {
         "name":"ohos.permission.READ_CONTACTS"
       },
-	    {
+      {
         "name":"ohos.permission.WRITE_CONTACTS"
       }
     ],

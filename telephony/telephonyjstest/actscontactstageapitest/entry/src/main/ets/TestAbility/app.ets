@@ -25,7 +25,7 @@ export default {
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     console.info('start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-	globalThis.context = this.context;
+    globalThis.context = this.context;
   },
   onDestroy() {
     console.info('Application onDestroy')
