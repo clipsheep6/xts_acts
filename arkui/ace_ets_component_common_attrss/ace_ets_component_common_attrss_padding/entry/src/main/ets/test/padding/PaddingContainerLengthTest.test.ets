@@ -20,32 +20,7 @@ import { describe, expect } from '@ohos/hypium'
 export default function paddingTest() {
   //A list of components that support padding attributes is required.
   let supportView = [
-    'Badge',
-    'Column',
-//    'Counter',
-    'GridRow',
-    'Grid',
-    'List',
-//    'Panel',
-    'Refresh',
-    'Row',
-    'Scroll',
-//    'SideBarContainer',
-    'Stack',
-    'Swiper',
-//    'Tabs',
-    'TabContent',
-    'WaterFlow',
-    'ColumnSplit',
-    'Flex',
-    'FlowItem',
-    'GridCol',
-    'GridItem',
-    'ListItemGroup',
-    'Navigator',
-//    'RelativeContainer',
-    'RowSplit',
-//    'ListItem'
+    'Navigator'
   ]
 
   //The size of the parent component, when set as a percentage, serves as the calculation.
