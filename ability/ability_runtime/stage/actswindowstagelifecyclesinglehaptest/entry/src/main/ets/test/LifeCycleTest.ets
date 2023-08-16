@@ -646,7 +646,7 @@ export default function lifecycleTest() {
           "bundleName": "com.example.windowstagelifecycle_xts",
           "abilityName": "MainAbility2",
         }
-        globalThis.globalThis.abilityContext.startAbility(str1)
+        globalThis.globalThis.ability6.startAbility(str1)
           .then((data) => {
             console.info(TAG + ' start successful. Data: ' + data);
           }).catch((error) => {
