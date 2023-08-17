@@ -52,6 +52,7 @@ _all_test_packages = [
   "${ACTS_ROOT}/xts:xts",
   "${ACTS_ROOT}/driver:driver",
   "${ACTS_ROOT}/msdp:msdp",
+  "${ACTS_ROOT}/hdf:hdf",
   "${ACTS_ROOT}/arkcompiler:arkcompiler",
 ]
 
