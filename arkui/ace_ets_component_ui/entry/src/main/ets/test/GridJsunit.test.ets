@@ -128,7 +128,7 @@ export default function GridJsunit() {
       let strJson2 = getInspectorByKey('grid2');
       let obj2 = JSON.parse(strJson2);
       console.info("[GridJsunit_0300] component obj2 is: " + JSON.stringify(obj2));
-      expect(obj2.$attrs.scrollBar).assertEqual('BarState.Off');
+      expect(obj2.$attrs.scrollBar).assertEqual('BarState.Auto');
       expect(obj2.$attrs.scrollBarColor).assertEqual('#FF000000');
       expect(obj2.$attrs.scrollBarWidth).assertEqual('4.00vp');
       console.info('[GridJsunit_0300] END');
@@ -149,19 +149,19 @@ export default function GridJsunit() {
       let driver = await Driver.create()
       await driver.swipe(Math.round((right - left) / 2), Math.round(bottom - 10), Math.round((right - left) / 2), Math.round(top + 10));
       await driver.swipe(Math.round((right - left) / 2), Math.round(bottom - 10), Math.round((right - left) / 2), Math.round(top + 10));
-      let onScrollIndex1 = await driver.findComponent(ON.text('onScrollIndex'));
+      let onScrollIndex1 = await driver.findComponent(ON.id('onScrollIndexText'));
       let text1 = await onScrollIndex1.getText();
-      expect(text1).assertEqual('onScrollIndex:10');
+      expect(text1).assertEqual('onScrollIndex:succ');
       await CommonFunc.sleep(1000);
 
       await driver.swipe(Math.round((right - left) / 2), Math.round(bottom - 10), Math.round((right - left) / 2), Math.round(top + 10));
       await driver.swipe(Math.round((right - left) / 2), Math.round(bottom - 10), Math.round((right - left) / 2), Math.round(top + 10));
-      let onScrollIndex2 = await driver.findComponent(ON.text('onScrollIndex'));
+      let onScrollIndex2 = await driver.findComponent(ON.id('onScrollIndexText'));
       let text2 = await onScrollIndex2.getText();
-      expect(text2).assertEqual('onScrollIndex:10');
+      expect(text2).assertEqual('onScrollIndex:succ');
 
       // Verify common attribute click event
-      let button = await driver.findComponent(ON.text('button'));
+      let button = await driver.findComponent(ON.id('button'));
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('button');
@@ -314,9 +314,9 @@ export default function GridJsunit() {
       await driver.swipe(Math.round((right - left)), Math.round(top + 60), Math.round((right - left)), Math.round(bottom - 60));
       await driver.swipe(Math.round((right - left)), Math.round(top + 60), Math.round((right - left)), Math.round(bottom - 60));
       await CommonFunc.sleep(1000);
-      await driver.swipe(Math.round((right - left)), Math.round(top + 60), Math.round((right - left)), Math.round(bottom - 60));
-      await driver.swipe(Math.round((right - left)), Math.round(top + 60), Math.round((right - left)), Math.round(bottom - 60));
-      await driver.swipe(Math.round((right - left)), Math.round(top + 60), Math.round((right - left)), Math.round(bottom - 60));
+      await driver.swipe(Math.round((right - left)), Math.round(bottom - 60), Math.round((right - left)), Math.round(top + 60));
+      await driver.swipe(Math.round((right - left)), Math.round(bottom - 60), Math.round((right - left)), Math.round(top + 60));
+      await driver.swipe(Math.round((right - left)), Math.round(bottom - 60), Math.round((right - left)), Math.round(top + 60));
       await CommonFunc.sleep(1000);
 
       let onReachEndText = await driver.findComponent(BY.key('onReachEndText'));

@@ -33,7 +33,6 @@ struct GridPage {
   @State cellLength: number = 40
   @State multiSelectable: boolean = false
   @State supportAnimation: boolean = false
-  @State onScrollIndex: number = 2
   @State buttonName: string = 'next page'
   @State onItemDragStart: string = 'onItemDragStart'
   @State onItemDragEnter: string = 'onItemDragEnter'
@@ -197,10 +196,6 @@ struct GridPage {
       .scrollBar(this.scrollBar)
       .scrollBarColor(this.scrollBarColor)
       .scrollBarWidth(this.scrollBarWidth)
-      .onScrollIndex((first: number) => {
-        this.onScrollIndex = first
-        console.info(first.toString())
-      })
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(200)
@@ -240,7 +235,6 @@ struct GridPage {
           this.buttonName = 'clicked'
           this.scroller.scrollPage({ next: true })
         })
-      Text('onScrollIndex:' + this.onScrollIndex).key('onScrollIndex')
       Text(this.onItemDragStart).key('onItemDragStart')
       Text(this.onItemDragEnter).key('onItemDragEnter')
       Text(this.onItemDragMove).key('onItemDragMove')
