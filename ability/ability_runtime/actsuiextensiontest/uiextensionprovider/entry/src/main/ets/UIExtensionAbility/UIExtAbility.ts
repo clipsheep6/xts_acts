@@ -15,12 +15,12 @@
 
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
 import Logger from '../model/Logger'
-
 const TAG: string = '[UIExtAbility]'
 
 export default class UIExtAbility extends UIExtensionAbility {
     onCreate() {
-        Logger.log(TAG, `UIExtAbility onCreate`)
+        Logger.log(TAG, `UIExtAbility onCreate`);
+        let UiExtensionContext:common.UIExtensionContext = this.context;
     }
 
     onForeground() {
@@ -37,6 +37,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     onSessionCreate(want, session) {
         Logger.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
+
         let storage: LocalStorage = new LocalStorage({
             'session': session
         });

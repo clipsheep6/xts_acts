@@ -15,9 +15,9 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEventManager from '@ohos.commonEventManager'
+import common from '@ohos.app.ability.common'
 import router from '@ohos.router'
 import Utils from './Utils'
-
 export default function abilityTest() {
   describe('ACTS_UIExtension', function () {
     let TAG = "";
@@ -98,7 +98,6 @@ export default function abilityTest() {
     it('ACTS_UIExtension_UIExtensionSendData_001',0, async function (done) {
       TAG = 'ACTS_UIExtension_UIExtensionSendData_001 == ';
       console.log(TAG + "begin");
-
       let appearEvent = 'ACTS_UIExtension_AboutToAppear';
       let onReceiveEvent = 'ACTS_UIExtension_OnReceive';
       let sendDataEvent = 'ACTS_UIExtension_SendData';
