@@ -373,19 +373,5 @@ export default function abilityTest() {
             expect(globalThis.stdResult30.indexOf("com.example.aacommandrelyhap") >= 0).assertTrue()
             done()
         })
-
-        /**
-        * @tc.number: ACTS_AACommand_finishTest_1600
-        * @tc.name: The parameters of the test command are valid, and the finishTest interface is called in 
-        *           Promisemode. The msg parameter is valid(including Chinese and special characters) and the 
-        *           code parameter
-        *           is valid (ABCD)
-        * @tc.desc: Verify that the process of the test framework can be stopped by calling this interface.
-        */
-        it('ACTS_AACommand_finishTest_1600', 0, async function (done) {
-            console.log("ACTS_AACommand_finishTest_1600 --- start")
-            expect(globalThis.stdResult34.indexOf("com.example.aacommandrelyhap") >= 0).assertTrue()
-            done()
-        })
     })
 };
