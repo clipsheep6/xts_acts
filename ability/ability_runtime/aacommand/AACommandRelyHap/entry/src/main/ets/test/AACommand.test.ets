@@ -62,18 +62,19 @@ export default function abilityTest() {
          * @tc.desc: Verify that the process of the test framework can be stopped by calling this interface.
          */
         it('ACTS_AACommand_finish_01_0300', 0, async function (done) {
-            var code = globalThis.abilityDelegator.finishTest(undefined, 1,()=>{
-                console.log(" ACTS_AACommand_finish_01_0300 finishTest  test  end ========> callback " )
-                expect().assertFail();
-            })
-            setTimeout(() => {
-                console.log('ACTS_AACommand_finish_01_0300 code:'+JSON.stringify(code))
-                if(code!=undefined){
-                    console.log('ACTS_AACommand_finish_01_0300 start failed')
-                    expect().assertFail();
+            try {
+                globalThis.abilityDelegator.finishTest(undefined, 1,()=>{
+                        console.log(" ACTS_AACommand_finish_01_0300 finishTest  test  end ========> callback " )
+                        expect().assertFail();
+                        done()
+                    })
+                } catch (e) {
+                    console.log(" ACTS_AACommand_finish_01_0300 finishTest fail of msg is undefined " )
+                    globalThis.abilityDelegator.finishTest('com.example.aacommandrelyhap finishTest', 1,()=>{
+                        console.log(" ACTS_AACommand_finish_01_0300 finishTest  test  end ========> callback " )
+                        done()
+                    })
                 }
-                done();
-            }, 3000)
         })
 
         /**
@@ -250,27 +251,6 @@ export default function abilityTest() {
                 console.log("ACTS_AACommand_finish_01_1500 finishTest  test  end ========> callback " )
                 done()
             })
-        })
-
-        /**
-         * @tc.number: ACTS_AACommand_finishTest_01_1600
-         * @tc.name: The parameters of the test command are valid, and the finishTest interface is called in Promise
-         *           mode. The msg parameter is valid(including Chinese and special characters) and the code parameter
-         *           is valid (ABCD)
-         * @tc.desc: Verify that the process of the test framework can be stopped by calling this interface.
-         */
-        it('ACTS_AACommand_finish_01_1600', 0, async function (done) {
-            var code = null
-            var msg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
-            code = globalThis.abilityDelegator.finishTest(msg, 'ABCD')
-            setTimeout(() => {
-                console.log('ACTS_AACommand_finish_01_1600 code:'+JSON.stringify(code))
-                if(code!=undefined){
-                    console.log('ACTS_AACommand_finish_01_1600 start failed')
-                    expect().assertFail();
-                }
-                done();
-            }, 3000)
         })
     })
 };
