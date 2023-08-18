@@ -15,6 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEventManager from '@ohos.commonEventManager'
+import common from '@ohos.app.ability.common'
 import router from '@ohos.router'
 import Utils from './Utils'
 
