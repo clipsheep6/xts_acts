@@ -72,15 +72,11 @@ describe('btPairTest', function() {
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0100', 0, async function (done) {
-        try{
-            let result = bluetooth.pairDevice("11:22:55:66:33:44");
-            await sleep(3000);
-            expect(true).assertEqual(result == false);
-        } catch(err) {
-            console.error("pairDevice errCode:" + err.code + ",errMessage:" + err.message);
-            expect(err.code).assertEqual('2900099');
-        }
-        done();
+        let result = bluetooth.pairDevice("11:22:55:66:33:44");
+        await sleep(32000);
+        console.info("[bluetooth_js] onStartpair001 -> " + JSON.stringify(result));
+        expect(result).assertTrue();
+        done()
     })
 
     /**
@@ -229,19 +225,15 @@ describe('btPairTest', function() {
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0700', 0, async function (done) {
         function PinRequiredParam(data) {
             console.info("[bluetooth_js] pinRequired on:" + JSON.stringify(data));
-            bluetooth.setDevicePairingConfirmation(data.deviceId, false);
+            bluetooth.setDevicePairingConfirmation(data.deviceId,false);
         }
-        try {
-            bluetooth.BLE.on('pinRequired', PinRequiredParam);
-            let result = bluetooth.pairDevice("11:22:55:66:33:44");
-            await sleep(2000);
-            expect(true).assertEqual(result == false);
-            bluetooth.BLE.off('pinRequired', PinRequiredParam);
-        } catch(err) {
-            console.error("errCode:" + err.code + ",errMessage:" + err.message);
-            expect(err.code).assertEqual('2900099');
-        }
-        done();
+        bluetooth.BLE.on('pinRequired', PinRequiredParam);
+        let result = bluetooth.pairDevice("11:22:55:66:33:44");
+        await sleep(32000);
+        console.info("[bluetooth_js] onStartpair007 -> " + JSON.stringify(result));
+        expect(result).assertTrue();
+        bluetooth.BLE.off('pinRequired', PinRequiredParam);
+        done()
     })
 
     /**
@@ -254,19 +246,15 @@ describe('btPairTest', function() {
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0800', 0, async function (done) {
         function PinRequiredParam(data) {
             console.info("[bluetooth_js] pinRequired on:" + JSON.stringify(data));
-            bluetooth.setDevicePairingConfirmation(data.deviceId, true);
+            bluetooth.setDevicePairingConfirmation(data.deviceId,true);
         }
-        try {
-            bluetooth.BLE.on('pinRequired', PinRequiredParam);
-            let result = bluetooth.pairDevice("11:22:55:66:33:44");
-            await sleep(2000);
-            expect(true).assertEqual(result == false);
-            bluetooth.BLE.off('pinRequired', PinRequiredParam);
-        } catch(err) {
-            console.error("errCode:" + err.code + ",errMessage:" + err.message);
-            expect(err.code).assertEqual('2900099');
-        }
-        done();
+        bluetooth.BLE.on('pinRequired', PinRequiredParam);
+        let result = bluetooth.pairDevice("11:22:55:66:33:44");
+        await sleep(32000);
+        console.info("[bluetooth_js] onStartpair008 -> " + JSON.stringify(result));
+        expect(result).assertTrue();
+        bluetooth.BLE.off('pinRequired', PinRequiredParam);
+        done()
     })
 
     /**
