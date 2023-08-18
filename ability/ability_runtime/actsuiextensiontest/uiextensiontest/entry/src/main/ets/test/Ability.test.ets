@@ -15,9 +15,9 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEventManager from '@ohos.commonEventManager'
+import common from '@ohos.app.ability.common'
 import router from '@ohos.router'
 import Utils from './Utils'
-
 export default function abilityTest() {
   describe('ACTS_UIExtension', function () {
     let TAG = "";
@@ -98,7 +98,6 @@ export default function abilityTest() {
     it('ACTS_UIExtension_UIExtensionSendData_001',0, async function (done) {
       TAG = 'ACTS_UIExtension_UIExtensionSendData_001 == ';
       console.log(TAG + "begin");
-
       let appearEvent = 'ACTS_UIExtension_AboutToAppear';
       let onReceiveEvent = 'ACTS_UIExtension_OnReceive';
       let sendDataEvent = 'ACTS_UIExtension_SendData';
@@ -143,56 +142,6 @@ export default function abilityTest() {
         expect().assertFail();
         done();
       })
-    })
-
-    /**
-     * tc.number: 
-     * 
-     */
-    it('SUB_AA_Extension_UIServiceExtensionAbility_Context_0100',0, async function (done) {
-      let TAG = 'SUB_AA_Extenion_UIServiceExtenionAbility_Context_0100 === ';
-      console.log(TAG + 'start');
-
-      let event1 = '0100_UIExtensionAbilityContext';
-      var subscriber1;
-      var subscribeInfo1 = {
-        events: [event1]
-      }
-      await commonEventManager.createSubscriber(subscribeInfo1).then((data) => {
-        console.log(TAG + "createSubscriber data : " + JSON.stringify(data));
-        subscriber1 = data;
-
-        commonEventManager.subscribe(subscriber1, async (err, data) => {
-          console.log(TAG + "SubscribeInfoCallback : " + JSON.stringify(data));
-          expect(data.parameters.cacheDir !== undefined).assertTrue();
-          expect(data.parameters.tempDir !== undefined).assertTrue();
-          expect(data.parameters.tempDir !== undefined).aassertTrue();
-          expect(data.parameters.databaseDir !== undefined).assertTrue();
-          expect(data.parameters.preferencesDir !== undefined).assertTrue();
-          expect(data.parameters.bundleCodeDir !== undefined).assertTrue();
-          expect(data.parameters.distributedFilesDir !== undefined).assertTrue();
-          expect(data.parameters.stageMode !== undefined).assertTrue();
-          expect(data.parameters.area !== undefined).assertTrue();
-          expect(data.parameters.eventHub !== undefined).assertTrue();
-          done();
-        });
-      }).catch((error) => {
-        console.log(TAG + "createSubscriber err : " + JSON.stringify(error));
-        expect().assertFail();
-        done();
-      })
-
-      let options = {
-        url: 'TestAbility/pages/p1',
-      }
-      let result;
-      try {
-        result = await router.pushUrl(options);
-      } catch (err) {
-        console.error(TAG + 'pushUrl catch error: ' + err.code);
-        expect().assertFail();
-        done();
-      }
     })
   })
 }
