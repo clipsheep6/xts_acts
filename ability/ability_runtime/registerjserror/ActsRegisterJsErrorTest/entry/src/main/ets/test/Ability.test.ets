@@ -185,19 +185,18 @@ export default function abilityTest() {
     /*
      * @tc.number: Acts_RegisterJsErrorCallback_0500
      * @tc.name: JsError callback enhancement
-     * @tc.desc: When registering JS exception listening interface parameter observer is undefined, no abnormal
-     *           error in interface execution.
+     * @tc.desc: When registering JS exception listening interface parameter observer is undefined, throw error.
      */
     it('Acts_RegisterJsErrorCallback_0500',0, async function (done) {
       console.info("====>Acts_RegisterJsErrorCallback_0500 start");
       try {
         ErrorManager.on("error", undefined);
-        expect(true).assertTrue();
+        expect().assertFail();
         console.info("====>Acts_RegisterJsErrorCallback_0500 end");
         done();
       } catch (err) {
         console.info("====>Acts_RegisterJsErrorCallback_0500 catch " + JSON.stringify(err));
-        expect().assertFail();
+        expect(err.code).assertEqual(401);
         done();
       }
     })
@@ -205,19 +204,18 @@ export default function abilityTest() {
     /*
      * @tc.number: Acts_RegisterJsErrorCallback_0600
      * @tc.name: JsError callback enhancement
-     * @tc.desc: When registering JS exception listening interface parameter observer is null, no abnormal
-     *           error in interface execution.
+     * @tc.desc: When registering JS exception listening interface parameter observer is null, throw error.
      */
     it('Acts_RegisterJsErrorCallback_0600',0, async function (done) {
       console.info("====>Acts_RegisterJsErrorCallback_0600 start");
       try {
         ErrorManager.on("error", null);
-        expect(true).assertTrue();
+        expect().assertFail();
         console.info("====>Acts_RegisterJsErrorCallback_0600 end");
         done();
       } catch (err) {
         console.info("====>Acts_RegisterJsErrorCallback_0600 catch " + JSON.stringify(err));
-        expect().assertFail();
+        expect(err.code).assertEqual(401);
         done();
       }
     })
@@ -277,37 +275,50 @@ export default function abilityTest() {
     /*
      * @tc.number: Acts_UnregisterJsErrorCallback_0300
      * @tc.name: JsError callback enhancement
-     * @tc.desc: When unregistering JS exception listening interface parameter observerId is undefined, returns error.
+     * @tc.desc: When unregistering JS exception listening interface parameter observerId is undefined, throw error.
      */
     it('Acts_UnregisterJsErrorCallback_0300',0, async function (done) {
       console.info("====>Acts_UnregisterJsErrorCallback_0300 start");
-      ErrorManager.off("error", undefined).then(()=>{
-        console.info("====>Acts_UnregisterJsErrorCallback_0300 success");
-        expect().assertFail();
-        done();
-      }).catch((err)=>{
-        console.info("====>Acts_UnregisterJsErrorCallback_0300 err: " + JSON.stringify(err));
+      try {
+        ErrorManager.off("error", undefined).then(()=>{
+          console.info("====>Acts_UnregisterJsErrorCallback_0300 success");
+          expect().assertFail();
+          done();
+        }).catch((err)=>{
+          console.info("====>Acts_UnregisterJsErrorCallback_0300 err: " + JSON.stringify(err));
+          expect(err.code).assertEqual(401);
+          done();
+        })
+      } catch (err) {
+        console.info("====>Acts_UnregisterJsErrorCallback_0300 catch: " + JSON.stringify(err));
         expect(err.code).assertEqual(401);
+        console.info("====>Acts_UnregisterJsErrorCallback_0300 end");
         done();
-      })
+      }
     })
 
     /*
      * @tc.number: Acts_UnregisterJsErrorCallback_0400
      * @tc.name: JsError callback enhancement
-     * @tc.desc: When unregistering JS exception listening interface parameter observerId is null, returns error.
+     * @tc.desc: When unregistering JS exception listening interface parameter observerId is null, throw error.
      */
     it('Acts_UnregisterJsErrorCallback_0400',0, async function (done) {
       console.info("====>Acts_UnregisterJsErrorCallback_0400 start");
-      ErrorManager.off("error", null).then(()=>{
-        console.info("====>Acts_UnregisterJsErrorCallback_0400 success");
-        expect().assertFail();
-        done();
-      }).catch((err)=>{
+      try {
+        ErrorManager.off("error", null).then(()=>{
+          console.info("====>Acts_UnregisterJsErrorCallback_0400 success");
+          expect().assertFail();
+          done();
+        }).catch((err)=>{
+          console.info("====>Acts_UnregisterJsErrorCallback_0400 err: " + JSON.stringify(err));
+          expect(err.code).assertEqual(401);
+          done();
+        })
+      } catch (err) {
         console.info("====>Acts_UnregisterJsErrorCallback_0400 err: " + JSON.stringify(err));
         expect(err.code).assertEqual(401);
         done();
-      })
+      }
     })
 
     /*
