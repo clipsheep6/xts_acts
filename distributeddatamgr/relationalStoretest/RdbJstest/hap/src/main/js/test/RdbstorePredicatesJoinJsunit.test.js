@@ -143,7 +143,7 @@ describe('rdbStorePredicatesJoinTest', function () {
     it('testRdbJoin002', 0, async function (done) {
         console.info(TAG + "testRdbJoin002 begin.");
         let resultSet = await rdbStore.querySql("" +
-            "SELECT * FROM user  CROSS JOIN Book USING(userId) WHERE Book.name = 'sanguo'");
+            "SELECT * FROM user  CROSS JOIN Book ON user.userId = Book.id WHERE Book.name = 'sanguo'");
 
         expect(1).assertEqual(resultSet.rowCount);
 
@@ -168,7 +168,7 @@ describe('rdbStorePredicatesJoinTest', function () {
     it('testRdbJoin003', 0, async function (done) {
         console.info(TAG + "testRdbJoin003 begin.");
         let resultSet = await rdbStore.querySql("" +
-            "SELECT * FROM user LEFT OUTER JOIN Book USING(userId) WHERE Book.name = 'sanguo'");
+            "SELECT * FROM user LEFT OUTER JOIN Book ON user.userId = Book.id WHERE Book.name = 'sanguo'");
 
         expect(1).assertEqual(resultSet.rowCount);
 
