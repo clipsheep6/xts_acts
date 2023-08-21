@@ -3859,7 +3859,7 @@ export default function ImageSource() {
                     editable: true,
                     desiredSize: { width: 1, height: 2 },
                     rotate: 10,
-                    desiredPixelFormat: RGB_565,
+                    desiredPixelFormat: 2,
                     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
                     index: 0,
                 };
