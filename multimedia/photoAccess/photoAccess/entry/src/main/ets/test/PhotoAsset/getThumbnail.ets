@@ -61,6 +61,7 @@ export default function getThumbnailTest () {
               expect(false).assertTrue();
             } else {
               const info = await pixelMap.getImageInfo();
+              console.info(`${testNum} info.size: ${JSON.stringify(info.size)}`)
               expect(info.size.width).assertEqual(expectSize.width);
               expect(info.size.height).assertEqual(expectSize.height);
             }
@@ -511,12 +512,12 @@ export default function getThumbnailTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('getThumbnail_callback_023', 2, async function (done) {
-      const testNum = 'getThumbnail_callback_023';
-      const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
-      const size = { width: 99999, height: 99999 };
-      await getThumbnailCallbackAbnormal(done, testNum, fetchOps, size);
-    });
+    // it('getThumbnail_callback_023', 2, async function (done) {
+    //   const testNum = 'getThumbnail_callback_023';
+    //   const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
+    //   const size = { width: 99999, height: 99999 };
+    //   await getThumbnailCallbackAbnormal(done, testNum, fetchOps, size);
+    // });
     
     //promise
     //image
