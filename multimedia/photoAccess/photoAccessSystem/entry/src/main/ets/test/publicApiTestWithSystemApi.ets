@@ -916,36 +916,50 @@ export default function publicApiTestWithSystemApiTest () {
           switch (listenCount) {
             case 1:
               console.info(`${testNum} 1 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 1 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 1 NOTIFY_ADD: ${NOTIFY_ADD}`);
               expect(changeData.type).assertEqual(NOTIFY_ADD);
               expect(changeData.uris[0]).assertEqual(albumUri);
               break;
             case 2:
               console.info(`${testNum} 2 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 2 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 2 NOTIFY_UPDATE: ${NOTIFY_UPDATE}`);
               expect(changeData.type).assertEqual(NOTIFY_UPDATE);
               expect(changeData.uris[0]).assertEqual(albumUri);
               break;
             case 3:
               console.info(`${testNum} 3 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 3 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 3 NOTIFY_ALBUM_ADD_ASSET: ${NOTIFY_ALBUM_ADD_ASSET}`);
               expect(changeData.type).assertEqual(NOTIFY_ALBUM_ADD_ASSET);
               expect(changeData.uris[0]).assertEqual(albumUri);
               break;
             case 4:
               console.info(`${testNum} 4 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 4 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 4 NOTIFY_UPDATE: ${NOTIFY_UPDATE}`);
               expect(changeData.type).assertEqual(NOTIFY_UPDATE);
               expect(changeData.uris[0]).assertEqual(albumUri);
               break;
             case 5:
               console.info(`${testNum} 5 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 5 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 5 NOTIFY_ALBUM_REMOVE_ASSET: ${NOTIFY_ALBUM_REMOVE_ASSET}`);
               expect(changeData.type).assertEqual(NOTIFY_ALBUM_REMOVE_ASSET);
               expect(changeData.uris[0]).assertEqual(albumUri);
               break;
             case 6:
               console.info(`${testNum} 6 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 6 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 6 NOTIFY_REMOVE: ${NOTIFY_REMOVE}`);
               expect(changeData.type).assertEqual(NOTIFY_REMOVE);
               expect(changeData.uris[0]).assertEqual(albumUri);
               break;
             case 7:
               console.info(`${testNum} 7 changeData: ${JSON.stringify(changeData)}`);
+              console.info(`${testNum} 7 changeData.type: ${changeData.type}`);
+              console.info(`${testNum} 7 NOTIFY_ALBUM_REMOVE_ASSET: ${NOTIFY_ALBUM_REMOVE_ASSET}`);
               expect(changeData.uris[0]).assertEqual(trashAlbumUri);
               expect(changeData.type).assertEqual(NOTIFY_ALBUM_REMOVE_ASSET);
               expect(changeData.extraUris[0]).assertEqual(trashFileAssetUri);
@@ -1003,6 +1017,8 @@ export default function publicApiTestWithSystemApiTest () {
         console.log(`${testNum}: trashFileAssetUri: ${trashFileAssetUri}`);
         await trashAlbum.deleteAssets([trashFileAsset]);
         await sleep(1000);
+        console.info(`${testNum} listenCount: ${listenCount}`);
+        console.info(`${testNum} testCount: ${testCount}`);
 
         expect(listenCount).assertEqual(testCount);
         done();
