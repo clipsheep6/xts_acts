@@ -15,20 +15,85 @@
 
 import pointer from '@ohos.multimodalInput.pointer'
 import window from '@ohos.window'
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level, Core } from '@ohos/hypium'
+
 export default function Pointer_test() {
   describe('Pointer_test', function () {
 
     const errCode = {
       COMMON_PARAMETER_CODE: 401
     }
+
     const errMsg = {
+      PARAMETER_STYLE_VALUE_MSG: `Parameter error. Invalid cursor style value.`,
+      PARAMETER_PATH_VALUE_MSG: `Parameter error. Invalid or inaccessible file path.`,
       PARAMETER_COUNT_MSG: `Parameter count error`,
       PARAMETER_TYPE_MSG: `Parameter error. The type of type must be string.`,
       PARAMETER_VISIBLE_TYPE_MSG: `Parameter error. The type of visible must be boolean.`,
       PARAMETER_SPEED_TYPE_MSG: `Parameter error. The type of speed must be number.`,
+      PARAMETER_SIZE_TYPE_MSG: `Parameter error. The type of size must be number.`,
+      PARAMETER_IMAGES_TYPE_MSG: `Parameter error. The type of images must be array.`,
+      PARAMETER_IMAGES_ELEMENT_TYPE_MSG: `Parameter error. The type of images element must be PointerImage.`,
+      PARAMETER_STYLE_TYPE_MSG: `Parameter error. The type of style must be number.`,
+      PARAMETER_IMAGE_TYPE_MSG: `Parameter error. The type of image must be string.`,
       PARAMETER_WINDOWID_TYPE_MSG: `Parameter error. The type of windowId must be number.`,
       PARAMETER_CALLBACK_TYPE_MSG: `Parameter error. The type of callback must be function.`
+    }
+
+    const sizes = {
+      DEFAULT_SIZE_VALUE: -1,
+      MIN_SIZE_VALUE: 40,
+      MAX_SIZE_VALUE: 60
+    }
+
+    afterAll(function () {
+      const core = Core.getInstance();
+      const config = core.getDefaultService('config');
+      if (pointer.dumpCoverage && config.coverage) {
+        console.info('Dump coverage')
+        pointer.dumpCoverage()
+      } else {
+        console.info('No coverage')
+      }
+    })
+
+    class AsyncHelper {
+      constructor() {
+        let ah = this;
+        this.promise = new Promise((res) => { ah.resolve = res; });
+      }
+
+      callback() {
+        let ah = this;
+        return function(err, data) { ah.resolve([err, data]); };
+      }
+
+      async verify(verifier) {
+        await this.promise.then(verifier, () => { expect().assertFail(); });
+        let ah = this;
+        this.promise = new Promise((res) => { ah.resolve = res; });
+      }
+
+      async verifyOk(value) {
+        await this.verify((data) => {
+          expect(data[0]).assertUndefined();
+          expect(data[1]).assertDeepEquals(value);
+        });
+      }
+
+      async verifyError(code, message) {
+        await this.verify((data) => {
+          expect(data[0].code).assertEqual(code);
+          expect(data[0].message).assertEqual(message);
+        });
+      }
+    }
+
+    async function assertPromiseError(promise, code, message) {
+      await promise.then(() => {expect().assertFail()}, (error) => {
+        expect(error.code).assertEqual(code);
+        expect(error.message).assertEqual(message);
+      });
     }
 
     it('Pointer_PointerVisibleTest_001', 0, async function (done) {
@@ -574,6 +639,200 @@ export default function Pointer_test() {
         expect(error.message).assertEqual(errMsg.PARAMETER_WINDOWID_TYPE_MSG);
       }
       console.info(`Pointer_PointerStyleTest_Exception_Test_002 exit`);
+      done();
+    })
+
+    it('Pointer_PointerSizeTest_PositiveCB', 0, async function (done) {
+      let ah = new AsyncHelper();
+
+      console.info("Set pointer size value 1");
+      expect(pointer.setPointerSize(40, ah.callback())).assertUndefined();
+      await ah.verifyOk(undefined);
+
+      console.info("Get pointer size value 1");
+      expect(pointer.getPointerSize(ah.callback())).assertUndefined();
+      await ah.verifyOk(40);
+
+      console.info("Set pointer size value 2");
+      expect(pointer.setPointerSize(50, ah.callback())).assertUndefined();
+      await ah.verifyOk(undefined);
+
+      console.info("Get pointer size value 2");
+      expect(pointer.getPointerSize(ah.callback())).assertUndefined();
+      await ah.verifyOk(50);
+
+      console.info("Set default pointer size");
+      expect(pointer.setPointerSize(sizes.DEFAULT_SIZE_VALUE, ah.callback())).assertUndefined();
+      await ah.verifyOk(undefined);
+
+      console.info("Get default pointer size");
+      expect(pointer.getPointerSize(ah.callback())).assertUndefined();
+      await ah.verifyOk(sizes.DEFAULT_SIZE_VALUE);
+
+      done();
+    })
+
+    it('Pointer_PointerSizeTest_PositivePromise', 0, async function (done) {
+      console.info("Set pointer size value 1");
+      expect(await pointer.setPointerSize(40)).assertUndefined();
+
+      console.info("Get pointer size value 1");
+      expect(await pointer.getPointerSize()).assertEqual(40);
+
+      console.info("Set pointer size value 1");
+      expect(await pointer.setPointerSize(50)).assertUndefined();
+
+      console.info("Get pointer size value 1");
+      expect(await pointer.getPointerSize()).assertEqual(50);
+
+      console.info("Set default pointer size");
+      expect(await pointer.setPointerSize(sizes.DEFAULT_SIZE_VALUE)).assertUndefined();
+      console.info("Get default pointer size");
+      expect(await pointer.getPointerSize()).assertEqual(sizes.DEFAULT_SIZE_VALUE);
+
+      done();
+    })
+
+    it('Pointer_PointerSizeTest_Errors', 0, async function (done) {
+      console.info("Calling setPointerSize() with ivalid argument type 1");
+      expect(() => {pointer.setPointerSize()}).assertThrowError(errMsg.PARAMETER_SIZE_TYPE_MSG);
+      console.info("Calling setPointerSize() with ivalid argument type 2");
+      expect(() => {pointer.setPointerSize("")}).assertThrowError(errMsg.PARAMETER_SIZE_TYPE_MSG);
+      console.info("Calling setPointerSize() with ivalid argument type 3");
+      expect(() => {pointer.setPointerSize(0, "")}).assertThrowError(errMsg.PARAMETER_CALLBACK_TYPE_MSG);
+      console.info("Calling getPointerSize() with ivalid argument type");
+      expect(() => {pointer.getPointerSize(0)}).assertThrowError(errMsg.PARAMETER_CALLBACK_TYPE_MSG);
+
+      done();
+    })
+
+    it('Pointer_PointerSizeTest_NegativeCB', 0, async function (done) {
+      let ah = new AsyncHelper();
+
+      console.info("Calling setPointerSize() with ivalid argument value 1");
+      pointer.setPointerSize(0, ah.callback());
+      await ah.verifyOk(undefined);
+
+      console.info("Calling getPointerSize() 1");
+      pointer.getPointerSize(ah.callback());
+      await ah.verifyOk(sizes.MIN_SIZE_VALUE);
+
+      console.info("Calling setPointerSize() with ivalid argument value 2");
+      pointer.setPointerSize(10000, ah.callback());
+      await ah.verifyOk(undefined);
+
+      console.info("Calling getPointerSize() 2");
+      pointer.getPointerSize(ah.callback());
+      await ah.verifyOk(sizes.MAX_SIZE_VALUE);
+
+      console.info("Restore default size");
+      expect(pointer.setPointerSize(sizes.DEFAULT_SIZE_VALUE, ah.callback())).assertUndefined();
+      await ah.verifyOk(undefined);
+      expect(pointer.getPointerSize(ah.callback())).assertUndefined();
+      await ah.verifyOk(sizes.DEFAULT_SIZE_VALUE);
+
+      done();
+    })
+
+    it('Pointer_PointerSizeTest_NegativePromise', 0, async function (done) {
+      console.info("Calling setPointerSize() with ivalid argument value 1");
+      expect(await pointer.setPointerSize(0)).assertUndefined();
+
+      console.info("Calling getPointerSize() 1");
+      expect(await pointer.getPointerSize()).assertEqual(sizes.MIN_SIZE_VALUE);
+
+      console.info("Calling setPointerSize() with ivalid argument value 2");
+      expect(await pointer.setPointerSize(10000)).assertUndefined();
+
+      console.info("Calling getPointerSize() 2");
+      expect(await pointer.getPointerSize()).assertEqual(sizes.MAX_SIZE_VALUE);
+
+      console.info("Restore default size");
+      expect(await pointer.setPointerSize(sizes.DEFAULT_SIZE_VALUE)).assertUndefined();
+      expect(await pointer.getPointerSize()).assertEqual(sizes.DEFAULT_SIZE_VALUE);
+
+      done();
+    })
+
+    it('Pointer_PointerImagesTest_PositiveCB', 0, async function (done) {
+      let ah = new AsyncHelper();
+
+      console.info("Calling setPointerImages() with value 1");
+      expect(pointer.setPointerImages([], ah.callback())).assertUndefined();
+      await ah.verifyOk(undefined);
+
+      console.info("Calling setPointerImages() with value 2");
+      let val = {style: pointer.PointerStyle.DEFAULT, image: "/system/etc/multimodalinput/mouse_icon/Default.svg"};
+      expect(pointer.setPointerImages([val], ah.callback())).assertUndefined();
+      await ah.verifyOk(undefined);
+
+      done();
+    })
+
+    it('Pointer_PointerImagesTest_NegativeCB', 0, async function (done) {
+      let ah = new AsyncHelper();
+
+      console.info("Calling setPointerImages() with value 1");
+      let val1 = {style: -1, image: "/system/etc/multimodalinput/mouse_icon/Default.svg"};
+      expect(pointer.setPointerImages([val1], ah.callback())).assertUndefined();
+      await ah.verifyError(errCode.COMMON_PARAMETER_CODE, errMsg.PARAMETER_STYLE_VALUE_MSG);
+
+      console.info("Calling setPointerImages() with value 2");
+      let val2 = {style: pointer.PointerStyle.DEFAULT, image: ""};
+      expect(pointer.setPointerImages([val2], ah.callback())).assertUndefined();
+      await ah.verifyError(errCode.COMMON_PARAMETER_CODE, errMsg.PARAMETER_PATH_VALUE_MSG);
+
+      done();
+    })
+
+    it('Pointer_PointerImagesTest_PositivePromise', 0, async function (done) {
+      console.info("Calling setPointerImages() with value 1");
+      expect(await pointer.setPointerImages([])).assertUndefined();
+
+      console.info("Calling setPointerImages() with value 2");
+      let val = {style: pointer.PointerStyle.DEFAULT, image: "/system/etc/multimodalinput/mouse_icon/Default.svg"};
+      expect(await pointer.setPointerImages([val])).assertUndefined();
+
+      done();
+    })
+
+    it('Pointer_PointerImagesTest_NegativePromise', 0, async function (done) {
+      let ah = new AsyncHelper();
+
+      console.info("Calling setPointerImages() with value 1");
+      let val1 = {style: -1, image: "/system/etc/multimodalinput/mouse_icon/Default.svg"};
+      await assertPromiseError(pointer.setPointerImages([val1]), errCode.COMMON_PARAMETER_CODE,
+          errMsg.PARAMETER_STYLE_VALUE_MSG);
+
+      console.info("Calling setPointerImages() with value 2");
+      let val2 = {style: pointer.PointerStyle.DEFAULT, image: ""};
+      await assertPromiseError(pointer.setPointerImages([val2]), errCode.COMMON_PARAMETER_CODE,
+          errMsg.PARAMETER_PATH_VALUE_MSG);
+
+      done();
+    })
+
+    it('Pointer_PointerImagesTest_Errors', 0, async function (done) {
+      console.info("Calling setPointerImages() with ivalid argument type 1");
+      expect(() => {pointer.setPointerImages()}).assertThrowError(errMsg.PARAMETER_IMAGES_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 2");
+      expect(() => {pointer.setPointerImages(0)}).assertThrowError(errMsg.PARAMETER_IMAGES_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 3");
+      expect(() => {pointer.setPointerImages({})}).assertThrowError(errMsg.PARAMETER_IMAGES_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 4");
+      expect(() => {pointer.setPointerImages([], "")}).assertThrowError(errMsg.PARAMETER_CALLBACK_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 5");
+      expect(() => {pointer.setPointerImages([{}], "")}).assertThrowError(errMsg.PARAMETER_IMAGES_ELEMENT_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 6");
+      expect(() => {pointer.setPointerImages([{style: 0}], "")})
+          .assertThrowError(errMsg.PARAMETER_IMAGES_ELEMENT_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 7");
+      expect(() => {pointer.setPointerImages([{style: "", image: ""}], "")})
+          .assertThrowError(errMsg.PARAMETER_STYLE_TYPE_MSG);
+      console.info("Calling setPointerImages() with ivalid argument type 8");
+      expect(() => {pointer.setPointerImages([{style: 0, image: 0}], "")})
+          .assertThrowError(errMsg.PARAMETER_IMAGE_TYPE_MSG);
+
       done();
     })
   })
