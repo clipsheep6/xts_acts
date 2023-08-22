@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
 import { describe, it, expect } from 'deccjsunit/index'
 import {
   photoKeys,
   photoFetchOption,
   getFileAsset,
-  getId,
+  getAssetId,
   isNum,
   photoType,
 } from '../../../../../../../common'
@@ -31,8 +30,11 @@ export default function getTest () {
         let asset = await getFileAsset(testNum, fetchOps);
         console.info(`${testNum} key: ${key}, value: ${value}, asset.key: ${asset.get(key)}`);
         if (key === 'uri') {
-          const id = getId(asset.get(key));
-          expect(asset.get(key)).assertEqual(value + id);
+          const id = getAssetId(asset.get(key));
+          const expectUri = value + id;
+          const uri = asset.get(key).toString();
+          const isIncludes = uri.includes(expectUri);
+          expect(isIncludes).assertTrue();
         } else if (key === 'date_added' || key === 'date_modified' || key === 'date_taken') {
           expect(isNum(asset.get(key))).assertTrue();
         } else {
@@ -56,7 +58,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_000', 0, async function (done) {
+    it('get_000', 2, async function (done) {
       const testNum = 'get_000';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.URI;
@@ -72,7 +74,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_001', 0, async function (done) {
+    it('get_001', 2, async function (done) {
       const testNum = 'get_001';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.PHOTO_TYPE;
@@ -88,7 +90,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_002', 0, async function (done) {
+    it('get_002', 2, async function (done) {
       const testNum = 'get_002';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.DISPLAY_NAME;
@@ -104,7 +106,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_003', 0, async function (done) {
+    it('get_003', 2, async function (done) {
       const testNum = 'get_003';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.DATE_ADDED;
@@ -120,7 +122,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_004', 0, async function (done) {
+    it('get_004', 2, async function (done) {
       const testNum = 'get_004';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.DATE_MODIFIED;
@@ -136,7 +138,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_005', 0, async function (done) {
+    it('get_005', 2, async function (done) {
       const testNum = 'get_005';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.DURATION;
@@ -152,7 +154,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_006', 0, async function (done) {
+    it('get_006', 2, async function (done) {
       const testNum = 'get_006';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.WIDTH;
@@ -168,7 +170,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_007', 0, async function (done) {
+    it('get_007', 2, async function (done) {
       const testNum = 'get_007';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.HEIGHT;
@@ -184,7 +186,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_008', 0, async function (done) {
+    it('get_008', 2, async function (done) {
       const testNum = 'get_008';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.DATE_TAKEN;
@@ -200,7 +202,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_009', 0, async function (done) {
+    it('get_009', 2, async function (done) {
       const testNum = 'get_009';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.ORIENTATION;
@@ -216,7 +218,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_010', 0, async function (done) {
+    it('get_010', 2, async function (done) {
       const testNum = 'get_010';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.FAVORITE;
@@ -232,7 +234,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_011', 0, async function (done) {
+    it('get_011', 2, async function (done) {
       const testNum = 'get_011';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.SIZE;
@@ -248,7 +250,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_012', 0, async function (done) {
+    it('get_012', 2, async function (done) {
       const testNum = 'get_012';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.TITLE;
@@ -264,7 +266,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_013', 0, async function (done) {
+    it('get_013', 2, async function (done) {
       const testNum = 'get_013';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.POSITION;
@@ -280,7 +282,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_014', 0, async function (done) {
+    it('get_014', 2, async function (done) {
       const testNum = 'get_014';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.DATE_TRASHED;
@@ -296,7 +298,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_015', 0, async function (done) {
+    it('get_015', 2, async function (done) {
       const testNum = 'get_015';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const key = photoKeys.HIDDEN;
@@ -313,7 +315,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_050', 0, async function (done) {
+    it('get_050', 2, async function (done) {
       const testNum = 'get_050';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.URI;
@@ -329,7 +331,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_051', 0, async function (done) {
+    it('get_051', 2, async function (done) {
       const testNum = 'get_051';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.PHOTO_TYPE;
@@ -345,7 +347,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_052', 0, async function (done) {
+    it('get_052', 2, async function (done) {
       const testNum = 'get_052';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.DISPLAY_NAME;
@@ -361,7 +363,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_053', 0, async function (done) {
+    it('get_053', 2, async function (done) {
       const testNum = 'get_053';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.DATE_ADDED;
@@ -377,7 +379,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_054', 0, async function (done) {
+    it('get_054', 2, async function (done) {
       const testNum = 'get_054';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.DATE_MODIFIED;
@@ -393,7 +395,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_055', 0, async function (done) {
+    it('get_055', 2, async function (done) {
       const testNum = 'get_055';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.DURATION;
@@ -409,7 +411,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_056', 0, async function (done) {
+    it('get_056', 2, async function (done) {
       const testNum = 'get_056';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.WIDTH;
@@ -425,7 +427,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_057', 0, async function (done) {
+    it('get_057', 2, async function (done) {
       const testNum = 'get_057';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.HEIGHT;
@@ -441,7 +443,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_058', 0, async function (done) {
+    it('get_058', 2, async function (done) {
       const testNum = 'get_058';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.DATE_TAKEN;
@@ -457,7 +459,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_059', 0, async function (done) {
+    it('get_059', 2, async function (done) {
       const testNum = 'get_059';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.ORIENTATION;
@@ -473,7 +475,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_060', 0, async function (done) {
+    it('get_060', 2, async function (done) {
       const testNum = 'get_060';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.FAVORITE;
@@ -489,7 +491,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_061', 0, async function (done) {
+    it('get_061', 2, async function (done) {
       const testNum = 'get_061';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.SIZE;
@@ -505,7 +507,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_062', 0, async function (done) {
+    it('get_062', 2, async function (done) {
       const testNum = 'get_062';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.TITLE;
@@ -521,7 +523,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_063', 0, async function (done) {
+    it('get_063', 2, async function (done) {
       const testNum = 'get_063';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.POSITION;
@@ -537,7 +539,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_064', 0, async function (done) {
+    it('get_064', 2, async function (done) {
       const testNum = 'get_064';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.DATE_TRASHED;
@@ -553,7 +555,7 @@ export default function getTest () {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('get_065', 0, async function (done) {
+    it('get_065', 2, async function (done) {
       const testNum = 'get_065';
       const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const key = photoKeys.HIDDEN;

@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import { describe, it, expect } from 'deccjsunit/index'
 import {
@@ -21,8 +20,9 @@ import {
   albumSubtype,
   fetchOption,
   getFileAsset,
-  getId,
-  photoKeys
+  getAlbumId,
+  photoKeys,
+  albumKeys
 } from '../../../../../../../common'
 
 export default function checkAlbumAttrTest () {
@@ -35,11 +35,17 @@ export default function checkAlbumAttrTest () {
         expect(album.albumType).assertEqual(albumType.USER);
         expect(album.albumSubtype).assertEqual(albumSubtype.USER_GENERIC);
         expect(album.albumName).assertEqual(testNum);
-        const id = getId(album.albumUri);
+        const id = getAlbumId(album.albumUri);
         expect(album.albumUri).assertEqual('file://media/PhotoAlbum/' + id);
         const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
         const asset = await getFileAsset(testNum, fetchOps);
         await album.addAssets([asset]);
+        const fetchAlbumOps = fetchOption(testNum, albumKeys.URI, album.albumUri);
+        const fetchResult = await helper.getAlbums(albumType.USER, albumSubtype.USER_GENERIC, fetchAlbumOps);
+        const newAlbum = await fetchResult.getFirstObject();
+        console.info(`${testNum} count: ${newAlbum.count}, coverUri: ${newAlbum.coverUri}`)
+        expect(newAlbum.count).assertEqual(1);
+        expect(newAlbum.coverUri).assertEqual(asset.uri);
         done();
       } catch (error) {
         console.info(`${testNum} failed; error: ${error}`);

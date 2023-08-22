@@ -982,7 +982,7 @@ describe('ActsAbilityTest', function () {
     })
 
     /**
-     * @tc.number    : TaskPoolTestClass049
+     * @tc.number    : TaskPoolTestClass050
      * @tc.name      : Async Function about priority task
      * @tc.desc      : Execute priority tasks
      * @tc.size      : MEDIUM
@@ -1173,12 +1173,25 @@ describe('ActsAbilityTest', function () {
     it('TaskPoolTestClass056', 0, async function (done) {
         function inspectStatus(arg) {
             "use concurrent"
+            let start = new Date().getTime();
+              while (new Date().getTime() - start < 1000) {
+                continue;
+            }
             return arg;
         }
 
-        let task = new taskpool.Task(inspectStatus, 100);
-        taskpool.execute(task);
-        taskpool.cancel(task);
+        let task1 = new taskpool.Task(inspectStatus, 100);
+        let task2 = new taskpool.Task(inspectStatus, 200);
+        let task3 = new taskpool.Task(inspectStatus, 300);
+        let task4 = new taskpool.Task(inspectStatus, 400);
+
+        taskpool.execute(task1);
+        taskpool.execute(task2);
+        taskpool.execute(task3);
+        taskpool.execute(task4);
+        setTimeout(()=>{
+          taskpool.cancel(task4);}, 500);
+
         expect(taskpool.Task.isCanceled() == false);
         done();
     })
@@ -1214,8 +1227,7 @@ describe('ActsAbilityTest', function () {
             taskpool.execute(task1);
             taskpool.cancel(task1);
         } catch(e) {
-            expect(e.toString()).assertEqual(
-                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+            expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
         }
         expect(taskpool.Task.isCanceled() == false);
         done();
@@ -1251,8 +1263,7 @@ describe('ActsAbilityTest', function () {
             taskpool.cancel(task1);
         }
         catch (e) {
-            expect(e.toString()).assertEqual(
-                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+            expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
         }
         done();
     })
@@ -1281,8 +1292,7 @@ describe('ActsAbilityTest', function () {
             taskpool.cancel(task3);
         }
         catch (e) {
-            expect(e.toString()).assertEqual(
-                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+            expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
         }
         done();
     })
@@ -1300,17 +1310,9 @@ describe('ActsAbilityTest', function () {
             "use concurrent"
             return arg + 1;
         }
-        function additionDelay(arg) {
-            "use concurrent"
-            let start = new Date().getTime();
-            while (new Date().getTime() - start < 3000) {
-                continue;
-            }
-            return arg + 1;
-        }
         try {
-            let task1 = new taskpool.Task(additionDelay, 100);
-            let task2 = new taskpool.Task(additionDelay, 200);
+            let task1 = new taskpool.Task(addition, 100);
+            let task2 = new taskpool.Task(addition, 200);
             let task3 = new taskpool.Task(addition, 300);
 
             let result1 = taskpool.execute(task1);
@@ -1326,8 +1328,7 @@ describe('ActsAbilityTest', function () {
             taskpool.cancel(task3);
         }
         catch (e) {
-            expect(e.toString()).assertEqual(
-                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+            expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
         }
         done();
     })
@@ -1372,8 +1373,7 @@ describe('ActsAbilityTest', function () {
             taskpool.cancel(task2);
         }
         catch (e) {
-            expect(e.toString()).assertEqual(
-                "BusinessError: The task does not exist when it is canceled, taskpool:: can not find the task");
+            expect(e.toString()).assertEqual("BusinessError: The task does not exist when it is canceled");
         }
         done();
     })
@@ -1472,8 +1472,7 @@ describe('ActsAbilityTest', function () {
 
             taskpool.cancel(taskGroup);
         } catch (e) {
-            expect(e.toString()).assertEqual(
-                "BusinessError: The task group does not exist when it is canceled, taskpool:: can not find the taskGroup");
+            expect(e.toString()).assertEqual("BusinessError: The task group does not exist when it is canceled");
         }
         done();
     })
@@ -1513,10 +1512,163 @@ describe('ActsAbilityTest', function () {
           try {
             taskpool.cancel(taskGroup1);
           } catch (e) {
-              expect(e.toString()).assertEqual(
-                  "BusinessError: The task group does not exist when it is canceled, taskpool:: can not find the taskGroup");
+              expect(e.toString()).assertEqual("BusinessError: The task group does not exist when it is canceled");
           }
         }, 3000);
+        done();
+    })
+
+    /**
+     * @tc.number    : TaskPoolTestClass066
+     * @tc.name      : Async Function GetTaskPoolInfo
+     * @tc.desc      : Get the taskPoolInfo
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass066', 0, async function (done) {
+        async function currentFun() {
+            "use concurrent"
+            await new Promise((resolve, reject) => {
+              setTimeout(resolve, 500, "async operation 1")
+            });
+            await new Promise((resolve, reject) => {
+              setTimeout(resolve, 500, "async operation 2")
+            });
+        }
+
+        let highCount = 0;
+        let mediumCount = 0;
+        let lowCount = 0;
+        let allCount = 100;
+        for (let i = 0; i < allCount; i++) {
+          let task1 = new taskpool.Task(currentFun);
+          let task2 = new taskpool.Task(currentFun);
+          let task3 = new taskpool.Task(currentFun);
+          taskpool.execute(task1, taskpool.Priority.LOW).then(() => {
+            lowCount++;
+          }).catch((e) => {
+            console.error("low task error: " + e);
+          })
+          taskpool.execute(task2, taskpool.Priority.MEDIUM).then(() => {
+            mediumCount++;
+          }).catch((e) => {
+            console.error("medium task error: " + e);
+          })
+          taskpool.execute(task3, taskpool.Priority.HIGH).then(() => {
+            highCount++;
+          }).catch((e) => {
+            console.error("high task error: " + e);
+          })
+        }
+
+        let start = new Date().getTime();
+        while (new Date().getTime() - start < 1000) {
+            continue;
+        }
+
+        let taskpoolInfo = taskpool.getTaskPoolInfo();
+
+        let tid = 0;
+        let taskIds = [];
+        let priority = 0;
+        let taskId = 0;
+        let state = 0;
+        let duration = 0;
+
+        for (let threadInfo of taskpoolInfo.threadInfos) {
+          tid += threadInfo.tid;
+          taskIds.length += threadInfo.taskIds.length;
+          priority += threadInfo.priority;
+        }
+
+        for (let taskInfo of taskpoolInfo.taskInfos) {
+          taskId += taskInfo.taskId;
+          state += taskInfo.state;
+          duration += taskInfo.duration;
+        }
+        console.info("task duration is: " + duration);
+        expect(tid != 0).assertTrue();
+        expect(taskIds.length != 0).assertTrue();
+        expect(priority != -1).assertTrue();
+        expect(taskId != 0).assertTrue();
+        expect(state != 0).assertTrue();
+        done();
+    })
+
+    /**
+     * @tc.number    : TaskPoolTestClass067
+     * @tc.name      : sync Function GetTaskPoolInfo
+     * @tc.desc      : Get the taskPoolInfo
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass067', 0, async function (done) {
+        function delay() {
+            "use concurrent"
+            let start = new Date().getTime();
+            while (new Date().getTime() - start < 500) {
+              continue;
+            }
+        }
+
+        let highCount = 0;
+        let mediumCount = 0;
+        let lowCount = 0;
+        let allCount = 100;
+        for (let i = 0; i < allCount; i++) {
+          let task1 = new taskpool.Task(delay);
+          let task2 = new taskpool.Task(delay);
+          let task3 = new taskpool.Task(delay);
+          taskpool.execute(task1, taskpool.Priority.LOW).then(() => {
+            lowCount++;
+          }).catch((e) => {
+            console.error("low task error: " + e);
+          })
+          taskpool.execute(task2, taskpool.Priority.MEDIUM).then(() => {
+            mediumCount++;
+          }).catch((e) => {
+            console.error("medium task error: " + e);
+          })
+          taskpool.execute(task3, taskpool.Priority.HIGH).then(() => {
+            highCount++;
+          }).catch((e) => {
+            console.error("high task error: " + e);
+          })
+        }
+
+        let start = new Date().getTime();
+        while (new Date().getTime() - start < 1000) {
+            continue;
+        }
+
+        let taskpoolInfo = taskpool.getTaskPoolInfo();
+
+        let tid = 0;
+        let taskIds = [];
+        let priority = 0;
+        let taskId = 0;
+        let state = 0;
+        let duration = 0;
+
+        for(let threadInfo of taskpoolInfo.threadInfos) {
+          tid += threadInfo.tid;
+          taskIds.length += threadInfo.taskIds.length;
+          priority += threadInfo.priority;
+        }
+
+        for(let taskInfo of taskpoolInfo.taskInfos) {
+          taskId += taskInfo.taskId;
+          state += taskInfo.state;
+          duration += taskInfo.duration;
+        }
+        console.info("task duration is: " + duration);
+        expect(tid != 0).assertTrue();
+        expect(taskIds.length != 0).assertTrue();
+        expect(priority != -1).assertTrue();
+        expect(taskId != 0).assertTrue();
+        expect(state != 0).assertTrue();
         done();
     })
 })

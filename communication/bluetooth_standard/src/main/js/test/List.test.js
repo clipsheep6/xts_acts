@@ -13,15 +13,24 @@
  * limitations under the License.
  */
 
-import bluetoothhostTest1 from './BRSetLocalName.test.js'
-import bluetoothhostTest2 from './BRScanMode.test.js'
-import bluetoothhostTest3 from './BRDiscovery.test.js'
-import bluetoothhostTest4 from './BRSpp.test.js'
-import bluetoothhostTest from './BRSwitch.test.js'
+import btAccessTest from './BluetoothAccess.test.js'
+import btManagerSwitchTest from './BtManagerSetSwitch.test.js'
+import btLocalNameTest from './BtSetLocalName.test.js'
+import btSwitchTest from './BtSetSwitch.test.js'
+import btSppTest from './BtSpp.test.js'
+import btSubscBleTest from './BtSysSubscBle.test.js'
+import btManagerSppTest from './BtManagerSpp.test.js'
+import btSocketTest from './BtSocket.test.js'
+import btConstantTest from './BluetoothConstant.test.js'
+
 export default function testsuite() {
-bluetoothhostTest1()
-bluetoothhostTest2()
-bluetoothhostTest3()
-bluetoothhostTest4()
-bluetoothhostTest()
+    btAccessTest()
+    btConstantTest()
+    btSocketTest()
+    btLocalNameTest()
+    btSwitchTest()
+    btSppTest()
+    btSubscBleTest()
+    btManagerSppTest()
+    btManagerSwitchTest()
 }

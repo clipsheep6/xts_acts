@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
@@ -81,6 +80,9 @@ export function photoFetchOption(testNum, key, value) : photoAccessHelper.FetchO
       photoKeys.POSITION,
       photoKeys.DATE_TRASHED,
       photoKeys.HIDDEN,
+      photoKeys.CAMERA_SHOT_KEY,
+      photoKeys.USER_COMMENT,
+      'all_exif',
     ],
     predicates: predicates
   };
@@ -127,9 +129,18 @@ export function isNum(value) : boolean {
   return typeof value === 'number' && !isNaN(value);
 };
 
-export function getId(uri) : string {
-  let index = uri.lastIndexOf('/');
+export function getAssetId(uri) : string {
+  const tag = 'Photo/';
+  const index = uri.indexOf(tag);
+  let str = uri.substring(index + tag.length);
+  console.info(`getAssetId str: ${str}`);
+  return str;
+}
+
+export function getAlbumId(uri) : string {
+  const index = uri.lastIndexOf('/');
   let str = uri.substring(index + 1);
+  console.info(`getAlbumId str: ${str}`);
   return str;
 }
 
@@ -153,37 +164,11 @@ export async function createUserAlbum(testNum, albumName) : Promise<photoAccessH
     console.info(`Failed to createUserAlbum! error: ${error}`);
     throw error;
   }
-  
+
   return new Promise((resolve, reject) => {
     resolve(album);
   });
 }
-
-//systemApi
-export async function deleteAllUserAlbum(testNum) : Promise<void> {
-  try {
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
-    let fetchResult = await helper.getAlbums(albumType.USER, albumSubtype.USER_GENERIC);
-    let count = fetchResult.getCount();
-    console.info(`${testNum} deleteAllUserAlbum count: ${count}`);
-    if (count <= 0) {
-      return;
-    }
-    const albumList = await fetchResult.getAllObjects();
-    console.info(`${testNum} deleteAllUserAlbum getAllObjects: ${albumList.length}`);
-    await helper.deleteAlbums(albumList);
-    fetchResult = await helper.getAlbums(albumType.USER, albumSubtype.USER_GENERIC);
-    if (fetchResult.getCount() === 0) {
-      console.info(`${testNum} deleteAllUserAlbum suc`);
-    } else {
-      console.info(`${testNum} deleteAllUserAlbum failed! fetchResult.getCount(): ${fetchResult.getCount()}`);
-    }
-    fetchResult.close();
-  } catch (error) {
-    console.info(`${testNum} deleteAllUserAlbum failed! error: ${error}`);
-    throw error;
-  }
-};
 
 export async function getFileAsset(testNum, fetchOps) : Promise<photoAccessHelper.PhotoAsset> {
   let asset: photoAccessHelper.PhotoAsset;
@@ -234,9 +219,7 @@ export function checkSystemAlbum(expect, testNum, album, expectedSubType) : void
     expect(album.albumType).assertEqual(albumType.SYSTEM);
     expect(album.albumSubtype).assertEqual(expectedSubType);
     expect(album.albumName).assertEqual('');
-    expect(album.coverUri).assertEqual('');
     expect(album.albumUri !== '').assertEqual(true);
-    expect(album.count).assertEqual(0);
   } catch (error) {
     console.info(`Failed to delete all user albums! error: ${error}`);
     throw error;

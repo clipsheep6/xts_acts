@@ -165,11 +165,12 @@ bool allclose(float *a, float *b, uint64_t count, float rtol = 1e-05,
     if (i == count - 1) {
       printf("     ……\n");
       printf("\n *** Total fail_count: %u\n", fail_count);
-      printf("\n     fabs(a[i] - b[i])/(fabs(b[i])+1) : %f\n",
-             tol / fail_count);
-      printf("\n     fabs(a[i] - b[i]) : %f\n", tol1 / fail_count);
-      printf("\n     fabs(a[i] - b[i])/fabs(b[i]) : %f\n", tol2 / fail_count);
-
+      if (fail_count != 0) {
+        printf("\n     fabs(a[i] - b[i])/(fabs(b[i])+1) : %f\n",
+              tol / fail_count);
+        printf("\n     fabs(a[i] - b[i]) : %f\n", tol1 / fail_count);
+        printf("\n     fabs(a[i] - b[i])/fabs(b[i]) : %f\n", tol2 / fail_count);
+      }
       c = c + count;
       printf("\n     avg : %f\n", sum / count);
       printf("\n     min : %f\n", minimum);
@@ -254,10 +255,12 @@ bool allclose_int8(uint8_t *a, uint8_t *b, uint64_t count, float rtol = 1e-05,
     if (i == count - 1) {
       printf("     ……\n");
       printf("\n *** Total fail_count: %u\n", fail_count);
-      printf("\n     fabs(a[i] - b[i])/(fabs(b[i])+1) : %f\n",
-             tol / fail_count);
-      printf("\n     fabs(a[i] - b[i]) : %f\n", tol1 / fail_count);
-      printf("\n     fabs(a[i] - b[i])/fabs(b[i]) : %f\n", tol2 / fail_count);
+      if (fail_count != 0) {
+        printf("\n     fabs(a[i] - b[i])/(fabs(b[i])+1) : %f\n",
+              tol / fail_count);
+        printf("\n     fabs(a[i] - b[i]) : %f\n", tol1 / fail_count);
+        printf("\n     fabs(a[i] - b[i])/fabs(b[i]) : %f\n", tol2 / fail_count);
+      }
 
       c = c + count;
       printf("\n     avg : %f\n", sum / count);
@@ -326,10 +329,14 @@ bool compFp32WithTData(float *actualOutputData, const std::string& expectedDataF
   }
   printf("\n");
   if (isquant) {
-    return allclose(actualOutputData, expectedOutputData, data_size, rtol, atol,
+    bool ret = allclose(actualOutputData, expectedOutputData, data_size, rtol, atol,
                     true);
+    free(expectedOutputData);
+    return ret;
   }
-  return allclose(actualOutputData, expectedOutputData, data_size, rtol, atol);
+  bool ret =  allclose(actualOutputData, expectedOutputData, data_size, rtol, atol);
+  free(expectedOutputData);
+  return ret;
 }
 
 bool compUint8WithTData(uint8_t *actualOutputData, const std::string& expectedDataFile,
@@ -354,11 +361,15 @@ bool compUint8WithTData(uint8_t *actualOutputData, const std::string& expectedDa
   }
   printf("\n");
   if (isquant) {
-    return allclose_int8(actualOutputData, expectedOutputData, data_size, rtol,
+    bool ret =  allclose_int8(actualOutputData, expectedOutputData, data_size, rtol,
                          atol, true);
+    free(expectedOutputData);
+    return ret;
   }
-  return allclose_int8(actualOutputData, expectedOutputData, data_size, rtol,
+  bool ret =  allclose_int8(actualOutputData, expectedOutputData, data_size, rtol,
                        atol);
+  free(expectedOutputData);
+  return ret;
 }
 
 /*
