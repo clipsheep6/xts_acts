@@ -39,7 +39,6 @@ describe('relationalStoreInsertTest', function () {
         console.info(TAG + 'beforeAll')
         rdbStore = await data_Rdb.getRdbStore(context, STORE_CONFIG);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null)
-        await rdbStore.executeSql(CREATE_TABLE_BATCHINSERT_TEST, null);
     })
 
     beforeEach(async function () {
@@ -53,7 +52,6 @@ describe('relationalStoreInsertTest', function () {
 
     afterAll(async function () {
         console.info(TAG + 'afterAll')
-        rdbStore = null
         await data_Rdb.deleteRdbStore(context, "InsertTest.db").then(() => {
             sleep(2)
         });

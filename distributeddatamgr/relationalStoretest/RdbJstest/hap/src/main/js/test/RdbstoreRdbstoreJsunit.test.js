@@ -40,7 +40,6 @@ describe('rdbStoreTest', function () {
 
     afterEach(async function () {
         console.info(TAG + 'afterAll')
-        rdbStore = null
         await dataRdb.deleteRdbStore("rdbstore.db");
     })
 
