@@ -22,6 +22,7 @@
           "MainAbility/pages/touchAble",
           "MainAbility/pages/touch",
           "MainAbility/pages/visibility",
-          "MainAbility/pages/zIndex"
+          "MainAbility/pages/zIndex",
+		  "MainAbility/pages/Panel",
     ]
 }
