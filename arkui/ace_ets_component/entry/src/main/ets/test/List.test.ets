@@ -33,6 +33,8 @@ import touchAbleJsunit from './TouchAbleJsunit.test.ets';
 import touchJsunit from './TouchJsunit.test.ets';
 import visibilityJsunit from './VisibilityJsunit.test.ets';
 import zIndexJsunit from './ZIndexJsunit.test.ets';
+import PanelJsunit from './PanelJsunit.test.ets';
+
 
 export default function testsuite() {
   touchAbleJsunit();
@@ -55,4 +57,6 @@ export default function testsuite() {
   textStyleJsunit();
   touchJsunit();
   gridSettingsJsunit();
+  PanelJsunit();
+
 }
