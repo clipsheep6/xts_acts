@@ -26,6 +26,11 @@ export default function imageJsTest() {
         let filePath;
         let fdNumber;
         let globalpixelmap;
+        async function getFileFd(fileName, imageArray) {
+            filePath = context.cacheDir + '/' + fileName;
+            fileFd = await prepareImageFileFd(filePath, imageArray);
+            expect(fileFd != null).assertTrue();
+        }
         class MySequence1 {
             pixel_map;
             constructor(pixelmap) {
