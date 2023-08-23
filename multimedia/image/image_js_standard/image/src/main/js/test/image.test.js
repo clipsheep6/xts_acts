@@ -461,6 +461,7 @@ export default function imageJsTest() {
                 if (pixelmap == undefined) {
                     console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0100 createPixelMap failed');
                     expect(false).assertTrue();
+                    ArkTools.forceFullGC()
                     done();
                 } else {
                     const readBuffer = new ArrayBuffer(96);
@@ -472,6 +473,7 @@ export default function imageJsTest() {
                                 res = false;
                                 console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0100 failed');
                                 expect(false).assertTrue();
+                                ArkTools.forceFullGC()
                                 done();
                                 break;
                             }
@@ -479,6 +481,7 @@ export default function imageJsTest() {
                         if (res) {
                             console.info('SUB_GRAPHIC_IMAGE_READPIXELSTOBUFFER_CALLBACK_0100 success');
                             expect(true).assertTrue()
+                            ArkTools.forceFullGC()
                             done();
                         }
                     })
