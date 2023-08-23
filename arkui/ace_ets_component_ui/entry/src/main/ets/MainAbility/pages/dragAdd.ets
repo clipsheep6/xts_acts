@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import udmf from '@ohos.data.unifiedDataChannel';
-import udmfType from '@ohos.data.uniformTypeDescriptor';
+import udmf from '@ohos.data.UDMF';
 import promptAction from '@ohos.promptAction';
 @Entry
 @Component
@@ -58,9 +57,9 @@ struct Index {
           .margin({left: 15})
           .visibility(this.imgState)
           .onDragEnd((event)=>{
-            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+            if (event.getResult() === DragRet.DRAG_SUCCESS) {
               promptAction.showToast({duration: 100, message: 'Drag Success'});
-            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+            } else if (event.getResult() === DragRet.DRAG_FAILED) {
               promptAction.showToast({duration: 100, message: 'Drag failed'});
             }
           })
@@ -117,7 +116,7 @@ struct Index {
           .draggable(true)
           .margin({left: 15})
           .border({color: Color.Black, width: 1})
-          .allowDrop([udmfType.UniformDataType.IMAGE])
+          .allowDrop([udmf.UnifiedDataType.IMAGE])
           .onDrop((dragEvent: DragEvent)=> {
             this.getDataFromUdmfRetry(dragEvent, (event)=>{
               let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
@@ -131,7 +130,7 @@ struct Index {
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
               })
-              event.setResult(DragResult.DRAG_SUCCESSFUL);
+              event.setResult(DragRet.DRAG_SUCCESS);
             })
           })
 
@@ -140,7 +139,7 @@ struct Index {
           .height(100)
           .border({color: Color.Black, width: 1})
           .margin(15)
-          .allowDrop([udmfType.UniformDataType.TEXT])
+          .allowDrop([udmf.UnifiedDataType.TEXT])
           .onDrop((dragEvent: DragEvent)=>{
             console.info("the getDisplayX " + dragEvent.getDisplayX());
             console.info("the getDisplayY " + dragEvent.getDisplayY());
@@ -160,13 +159,13 @@ struct Index {
           .width('100%')
           .height(200)
           .controls(true)
-          .allowDrop([udmfType.UniformDataType.VIDEO])
+          .allowDrop([udmf.UnifiedDataType.VIDEO])
 
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
-        .allowDrop([udmfType.UniformDataType.PLAIN_TEXT])
+        .allowDrop([udmf.UnifiedDataType.PLAIN_TEXT])
         .onDrop((dragEvent)=>{
           this.getDataFromUdmfRetry(dragEvent, event=>{
             let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();

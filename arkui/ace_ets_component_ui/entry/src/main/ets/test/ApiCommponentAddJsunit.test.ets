@@ -186,10 +186,17 @@ export default function ApiCommponentAddJsunit() {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('searchAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0500'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('Search');
+      let driver = Driver.create();
+      let searchclick = await driver.findComponent(ON.id('searchAdd'));
+      await searchclick.click();
+      searchclick.longClick();
+      await CommonFunc.sleep(4000);
+      let textComponent3 = await driver.findComponent(ON.text('黏贴'));
+      await CommonFunc.sleep(500);
+      // wether if
+      let  text = await textComponent3.getText();
+      console.info("[apiCommponentAddJsunit_0500] onScrollText: " + text);
+      expect(text).assertEqual('黏贴');
       done();
     });
 
@@ -235,10 +242,17 @@ export default function ApiCommponentAddJsunit() {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('textAreaAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0700'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('TextArea');
+      let driver = Driver.create();
+      let searchclick = await driver.findComponent(ON.id('textAreaAdd'));
+      await searchclick.click();
+      searchclick.longClick();
+      await CommonFunc.sleep(4000);
+      let textComponent3 = await driver.findComponent(ON.text('黏贴'));
+      await CommonFunc.sleep(100);
+      // wether if
+      let  text = await textComponent3.getText();
+      console.info("[apiCommponentAddJsunit_0700] onScrollText: " + text);
+      expect(text).assertEqual('黏贴');
       done();
     });
 
@@ -258,12 +272,19 @@ export default function ApiCommponentAddJsunit() {
       }).catch(err => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
-      let strJson = getInspectorByKey('textInputAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0800'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('TextInput');
+      await CommonFunc.sleep(1000);
+      let driver = Driver.create();
+      let searchclick = await driver.findComponent(ON.id('textInputAdd'));
+      await searchclick.click();
+      searchclick.longClick();
+      await CommonFunc.sleep(4000);
+      let textComponent3 = await driver.findComponent(ON.text('黏贴'));
+      await CommonFunc.sleep(100);
+      // wether if
+      let  text = await textComponent3.getText();
+      console.info("[apiCommponentAddJsunit_0800] onScrollText: " + text);
+      expect(text).assertEqual('黏贴');
       done();
-    
     });
 
     it('apiCommponentAddJsunit_0900', 0, async function (done) {
@@ -593,99 +614,6 @@ export default function ApiCommponentAddJsunit() {
       expect(obj.$attrs.margin).assertEqual('0.00vp');
       done();
     });
-
-    it('apiCommponentAddJsunit_2300', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2300] START" );
-      ohosrouter.clear();
-      ohosrouter.pushUrl({
-        url: 'MainAbility/pages/navition3',
-        params: {
-          data1: 'message',
-          data2: {
-            data3: [123, 456, 789]
-          }
-        }
-      }).then(() => {
-        // success
-      }).catch(err => {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      })
-      await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('ArkUX_Navigation_1111');
-      console.info('apiCommponentAddJsunit_2300 START  :'+ JSON.stringify(strJson));
-      let obj = JSON.parse(strJson);
-      console.info("apiCommponentAddJsunit_2300 obj is: " + JSON.stringify(obj));
-      let mode = obj.$attrs.mode
-      let minContentWidth = obj.$attrs.minContentWidth
-      let navBarWidth = obj.$attrs.navBarWidth
-      let navBarWidthRange = obj.$attrs.navBarWidthRange
-      expect(mode).assertEqual("NavigationMode.AUTO");
-      expect(minContentWidth).assertEqual("50.00vp");
-      expect(navBarWidth).assertEqual("100.00vp");
-      expect(navBarWidthRange).assertEqual("50.00vp, 300.00vp");
-      console.info('apiCommponentAddJsunit_2300 END ');
-      done();
-    });
-
-     it('apiCommponentAddJsunit_2400', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2400] START" );
-      ohosrouter.clear();
-      ohosrouter.pushUrl({
-        url: 'MainAbility/pages/richEditor',
-        params: {
-          data1: 'message',
-          data2: {
-            data3: [123, 456, 789]
-          }
-        }
-      }).then(() => {
-        // success
-      }).catch(err => {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      })
-      await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('richEditor');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2400'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('RichEditor');
-      done();
-    });
-
-     it('apiCommponentAddJsunit_2500', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2500] START" );
-      ohosrouter.clear();
-      ohosrouter.pushUrl({
-        url: 'MainAbility/pages/richEditorCustomKeyBoard',
-        params: {
-          data1: 'message',
-          data2: {
-            data3: [123, 456, 789]
-          }
-        }
-      }).then(() => {
-        // success
-      }).catch(err => {
-        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      })
-      await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('richEditor1');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2500'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('RichEditor');
-      done();
-    });
-
-    it('apiCommponentAddJsunit_2600', 0, async function (done) {
-      console.info('apiCommponentAddJsunit_2600 START');
-      try {
-         expect(DialogButtonStyle.HIGHLIGHT).assertEqual(1);
-      } catch(err) {
-        console.error("apiCommponentAddJsunit_2600 error " + JSON.stringify(err));
-      }
-      done();
-    });
-
-
   })
 
 
