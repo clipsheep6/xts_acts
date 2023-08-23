@@ -248,5 +248,168 @@ export default function overLayJsunit() {
       console.info('testOverlay08 END');
       done();
     });
+
+    it('testOverlay09', 0, async function (done) {
+      console.info('[testOverlay09] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "align": "Alignment.Top"
+          }
+        }
+        var innerEvent = {
+          eventId: 143,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testOverlay09] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testOverlay09] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('overlay');
+      let obj = JSON.parse(strJson);
+      console.info("[testOverlay09] obj is: " + JSON.stringify(obj.$attrs.overlay));
+      expect(obj.$attrs.overlay.options.align).assertEqual("Alignment.Top");
+      console.info('testOverlay09 END');
+      done();
+    });
+
+    it('testOverlay10', 0, async function (done) {
+      console.info('[testOverlay10] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "align": "Alignment.TopEnd"
+          }
+        }
+        var innerEvent = {
+          eventId: 143,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testOverlay10] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testOverlay10] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('overlay');
+      let obj = JSON.parse(strJson);
+      console.info("[testOverlay10] obj is: " + JSON.stringify(obj.$attrs.overlay));
+      expect(obj.$attrs.overlay.options.align).assertEqual("Alignment.TopEnd");
+      console.info('testOverlay10 END');
+      done();
+    });
+
+    it('testOverlay11', 0, async function (done) {
+      console.info('[testOverlay11] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "align": "Alignment.Start"
+          }
+        }
+        var innerEvent = {
+          eventId: 143,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testOverlay11] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testOverlay11] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('overlay');
+      let obj = JSON.parse(strJson);
+      console.info("[testOverlay11] obj is: " + JSON.stringify(obj.$attrs.overlay));
+      expect(obj.$attrs.overlay.options.align).assertEqual("Alignment.Start");
+      console.info('testOverlay11 END');
+      done();
+    });
+
+    it('testOverlay12', 0, async function (done) {
+      console.info('[testOverlay12] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "align": "Alignment.End"
+          }
+        }
+        var innerEvent = {
+          eventId: 143,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testOverlay12] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testOverlay12] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('overlay');
+      let obj = JSON.parse(strJson);
+      console.info("[testOverlay12] obj is: " + JSON.stringify(obj.$attrs.overlay));
+      expect(obj.$attrs.overlay.options.align).assertEqual("Alignment.End");
+      console.info('testOverlay12 END');
+      done();
+    });
+
+    it('testOverlay13', 0, async function (done) {
+      console.info('[testOverlay13] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "align": "Alignment.BottomEnd"
+          }
+        }
+        var innerEvent = {
+          eventId: 143,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testOverlay13] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testOverlay13] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('overlay');
+      let obj = JSON.parse(strJson);
+      console.info("[testOverlay13] obj is: " + JSON.stringify(obj.$attrs.overlay));
+      expect(obj.$attrs.overlay.options.align).assertEqual("Alignment.BottomEnd");
+      console.info('testOverlay13 END');
+      done();
+    });
+
+    it('testOverlay14', 0, async function (done) {
+      console.info('[testOverlay14] START');
+      await Utils.sleep(1000);
+      try {
+        var eventData = {
+          data: {
+            "align": "Alignment.BottomStart"
+          }
+        }
+        var innerEvent = {
+          eventId: 143,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[testOverlay14] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[testOverlay14] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('overlay');
+      let obj = JSON.parse(strJson);
+      console.info("[testOverlay14] obj is: " + JSON.stringify(obj.$attrs.overlay));
+      expect(obj.$attrs.overlay.options.align).assertEqual("Alignment.BottomStart");
+      console.info('testOverlay14 END');
+      done();
+    });
+
   })
 }

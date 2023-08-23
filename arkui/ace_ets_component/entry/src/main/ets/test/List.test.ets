@@ -55,4 +55,5 @@ export default function testsuite() {
   textStyleJsunit();
   touchJsunit();
   gridSettingsJsunit();
+  PanelJsunit();
 }
