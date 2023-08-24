@@ -1513,6 +1513,16 @@ export default function getBundleInfoForSelf() {
       done();
     })
 
+    /**
+     * @tc.number isApplicationEnabledSync_0100
+     * @tc.name testIsApplicationEnabledSync
+     * @tc.desc Test isApplicationEnabledSync
+     */
+    it('isApplicationEnabledSync_0100', 0, async function (done) {
+      let data = bundle.isApplicationEnabledSync(BUNDLE_NAME);
+      expect(data).assertTrue();
+      done();
+    })
 
     function checkCommonBundleInfo(data) {
       expect(data.name).assertEqual(BUNDLE_NAME);
