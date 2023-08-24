@@ -23,11 +23,23 @@ struct DatePickerDialogOptions0 {
         .margin(20)
         .onClick(() => {
           DatePickerDialog.show({
+            alignment: DialogAlignment.TopStart,
+            offset: { dx: 10, dy: 100 },
+            maskRect: { x: 0, y: 90, width: 1000, height: 250  },
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: new Date("2023-7-24"),
-            lunarSwitch: true
-          }).id("DatePickerDialogOptions0")
+            lunarSwitch: true,
+            onAccept: (value: DatePickerResult)=> {
+              console.info("DatePickerDialog: onAccept()" + JSON.stringify(value))
+            },
+            onCancel:()=> {
+              console.info("DatePickerDialog: onCancel()")
+            },
+            onChange: (value: DatePickerResult)=> {
+              console.info("DatePickerDialog: onChange()" + JSON.stringify(value))
+            }
+          }).key('DatePickerDialog')
         })
     }.width('100%')
   }
