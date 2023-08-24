@@ -23,6 +23,8 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 export default function imageJsTest() {
     describe('imageJsTest', function () {
+        let context;
+        let fileFd = null;
         let filePath;
         let fdNumber;
         let globalpixelmap;
