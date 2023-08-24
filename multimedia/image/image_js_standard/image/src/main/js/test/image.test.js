@@ -24,15 +24,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 export default function imageJsTest() {
     describe('imageJsTest', function () {
         let context;
-        let fileFd = null;
         let filePath;
         let fdNumber;
         let globalpixelmap;
-        async function getFileFd(fileName, imageArray) {
-            filePath = context.cacheDir + '/' + fileName;
-            fileFd = await prepareImageFileFd(filePath, imageArray);
-            expect(fileFd != null).assertTrue();
-        }
         let globalimageSource;
         let globalpacker;
         class MySequence1 {
@@ -133,8 +127,8 @@ export default function imageJsTest() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb044", 0, async function (done) {
-            await getFileFd("test.png", testPng);
-            const imageSourceApi = image.createImageSource(fileFd);
+            await getFd("test.png");
+            const imageSourceApi = image.createImageSource(fdNumber);
             if (imageSourceApi == undefined) {
                 console.info(
                     "testCreatePixelMapOptionsCb044 create image source failed"
