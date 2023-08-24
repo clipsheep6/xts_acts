@@ -235,6 +235,186 @@ export default function documentPickerCallback(abilityContext) {
         });
 
         /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_0800
+         * @tc.name 	 : documentpicker_select_select_008
+         * @tc.desc 	 : select with option maxSelectNumber 0
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_008", 3, async function (done) {
+            let testNum = "documentpicker_select_select_008";
+            let option = new picker.DocumentSelectOptions();
+            option.maxSelectNumber = 0;
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_0900
+         * @tc.name 	 : documentpicker_select_select_009
+         * @tc.desc 	 : select with option maxSelectNumber 501
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_009", 3, async function (done) {
+            let testNum = "documentpicker_select_select_009";
+            let option = new picker.DocumentSelectOptions();
+            option.maxSelectNumber = 501;
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1000
+         * @tc.name 	 : documentpicker_select_select_010
+         * @tc.desc 	 : select with option maxSelectNumber empty string
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("documentpicker_select_select_010", 2, async function (done) {
+            let testNum = "documentpicker_select_select_010";
+            let option = new picker.DocumentSelectOptions();
+            option.maxSelectNumber = '';
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1100
+         * @tc.name 	 : documentpicker_select_select_011
+         * @tc.desc 	 : select with option maxSelectNumber undefined
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("documentpicker_select_select_011", 2, async function (done) {
+            let testNum = "documentpicker_select_select_011";
+            let option = new picker.DocumentSelectOptions();
+            option.maxSelectNumber = undefined;
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1200
+         * @tc.name 	 : documentpicker_select_select_012
+         * @tc.desc 	 : select with option defaultFilePathUri empty String
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_012", 3, async function (done) {
+            let testNum = "documentpicker_select_select_012";
+            let option = new picker.DocumentSelectOptions();
+            option.defaultFilePathUri = "";
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1300
+         * @tc.name 	 : documentpicker_select_select_013
+         * @tc.desc 	 : select with option defaultFilePathUri incomplete string
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_013", 3, async function (done) {
+            let testNum = "documentpicker_select_select_013";
+            let option = new picker.DocumentSelectOptions();
+            option.defaultFilePathUri = "file://";
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1400
+         * @tc.name 	 : documentpicker_select_select_014
+         * @tc.desc 	 : select with option defaultFilePathUri error string
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_014", 3, async function (done) {
+            let testNum = "documentpicker_select_select_014";
+            let option = new picker.DocumentSelectOptions();
+            option.defaultFilePathUri = "file://xxx";
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1500
+         * @tc.name 	 : documentpicker_select_select_015
+         * @tc.desc 	 : select with option defaultFilePathUri undefined
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("documentpicker_select_select_015", 2, async function (done) {
+            let testNum = "documentpicker_select_select_015";
+            let option = new picker.DocumentSelectOptions();
+            option.defaultFilePathUri = undefined;
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1600
+         * @tc.name 	 : documentpicker_select_select_016
+         * @tc.desc 	 : select with option fileSuffixFilters null
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_016", 3, async function (done) {
+            let testNum = "documentpicker_select_select_016";
+            let option = new picker.DocumentSelectOptions();
+            option.fileSuffixFilters = [];
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1700
+         * @tc.name 	 : documentpicker_select_select_017
+         * @tc.desc 	 : select with option fileSuffixFilters error name
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_017", 3, async function (done) {
+            let testNum = "documentpicker_select_select_017";
+            let option = new picker.DocumentSelectOptions();
+            option.fileSuffixFilters = ['xxx'];
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1800
+         * @tc.name 	 : documentpicker_select_select_018
+         * @tc.desc 	 : select with option fileSuffixFilters oversize
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 3
+         */
+        it("documentpicker_select_select_018", 3, async function (done) {
+            let testNum = "documentpicker_select_select_018";
+            let option = new picker.DocumentSelectOptions();
+            option.fileSuffixFilters = ['.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'];
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SELECT_CALLBACK_1900
+         * @tc.name 	 : documentpicker_select_select_019
+         * @tc.desc 	 : select with option fileSuffixFilters undefined
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 2
+         */
+        it("documentpicker_select_select_019", 2, async function (done) {
+            let testNum = "documentpicker_select_select_019";
+            let option = new picker.DocumentSelectOptions();
+            option.fileSuffixFilters = undefined;
+            await selectWithOption(testNum, done, option);
+        });
+
+        /**
          * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_0000
          * @tc.name 	 : documentpicker_save_callback_000
          * @tc.desc 	 : save image in Pictures
@@ -306,11 +486,11 @@ export default function documentPickerCallback(abilityContext) {
             let testNum = "documentpicker_save_callback_004";
             await saveWithoutSelect(testNum, done);
         });
-        
+
         /**
          * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_0500
          * @tc.name 	 : documentpicker_save_callback_005
-         * @tc.desc 	 : save png in Pictures
+         * @tc.desc 	 : save uri in Pictures
          * @tc.size 	 : MEDIUM
          * @tc.type 	 : Function
          * @tc.level	 : Level 1
@@ -318,14 +498,14 @@ export default function documentPickerCallback(abilityContext) {
         it("documentpicker_save_callback_005", 1, async function (done) {
             let testNum = "documentpicker_save_callback_005";
             let option = new picker.DocumentSaveOptions();
-            option.defaultFilePathUri = "file://docs/storage/Users/currentUser/test/test1/202308171505.png";
+            option.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
             await saveWithOption(testNum, done, option);
         });
 
         /**
          * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_0600
          * @tc.name 	 : documentpicker_save_callback_006
-         * @tc.desc 	 : save suffix in Pictures
+         * @tc.desc 	 : save png in Pictures
          * @tc.size 	 : MEDIUM
          * @tc.type 	 : Function
          * @tc.level	 : Level 1
@@ -333,14 +513,14 @@ export default function documentPickerCallback(abilityContext) {
         it("documentpicker_save_callback_006", 1, async function (done) {
             let testNum = "documentpicker_save_callback_006";
             let option = new picker.DocumentSaveOptions();
-            option.fileSuffixChoices = ['.png', '.jpg'];
+            option.defaultFilePathUri = "file://docs/storage/Users/currentUser/test/test1/202308171505.png";
             await saveWithOption(testNum, done, option);
         });
 
         /**
          * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_0700
          * @tc.name 	 : documentpicker_save_callback_007
-         * @tc.desc 	 : save suffix in Documents
+         * @tc.desc 	 : save suffix in Pictures
          * @tc.size 	 : MEDIUM
          * @tc.type 	 : Function
          * @tc.level	 : Level 1
@@ -348,14 +528,14 @@ export default function documentPickerCallback(abilityContext) {
         it("documentpicker_save_callback_007", 1, async function (done) {
             let testNum = "documentpicker_save_callback_007";
             let option = new picker.DocumentSaveOptions();
-            option.fileSuffixChoices = ['.pptx', '.docx', '.xlsx', '.txt'];
+            option.fileSuffixChoices = ['.png', '.jpg'];
             await saveWithOption(testNum, done, option);
         });
 
         /**
          * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_0800
          * @tc.name 	 : documentpicker_save_callback_008
-         * @tc.desc 	 : save mp4 in Videos
+         * @tc.desc 	 : save suffix in Documents
          * @tc.size 	 : MEDIUM
          * @tc.type 	 : Function
          * @tc.level	 : Level 1
@@ -363,20 +543,35 @@ export default function documentPickerCallback(abilityContext) {
         it("documentpicker_save_callback_008", 1, async function (done) {
             let testNum = "documentpicker_save_callback_008";
             let option = new picker.DocumentSaveOptions();
-            option.fileSuffixChoices = ['.mp4'];
+            option.fileSuffixChoices = ['.pptx', '.docx', '.xlsx', '.txt'];
             await saveWithOption(testNum, done, option);
         });
 
         /**
          * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_0900
          * @tc.name 	 : documentpicker_save_callback_009
-         * @tc.desc 	 : save mp3 in Audios
+         * @tc.desc 	 : save mp4 in Videos
          * @tc.size 	 : MEDIUM
          * @tc.type 	 : Function
          * @tc.level	 : Level 1
          */
         it("documentpicker_save_callback_009", 1, async function (done) {
             let testNum = "documentpicker_save_callback_009";
+            let option = new picker.DocumentSaveOptions();
+            option.fileSuffixChoices = ['.mp4'];
+            await saveWithOption(testNum, done, option);
+        });
+
+        /**
+         * @tc.number	 : SUB_STORAGE_DOCUMENTPICKER_SAVE_CALLBACK_1000
+         * @tc.name 	 : documentpicker_save_callback_010
+         * @tc.desc 	 : save mp3 in Audios
+         * @tc.size 	 : MEDIUM
+         * @tc.type 	 : Function
+         * @tc.level	 : Level 1
+         */
+        it("documentpicker_save_callback_010", 1, async function (done) {
+            let testNum = "documentpicker_save_callback_010";
             let option = new picker.DocumentSaveOptions();
             option.fileSuffixChoices = ['.mp3'];
             await saveWithOption(testNum, done, option);
