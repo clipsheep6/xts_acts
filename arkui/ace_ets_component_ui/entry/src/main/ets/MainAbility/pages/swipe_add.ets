@@ -66,7 +66,7 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        showBackground:true,
+        isShowBackground:true,
         isSidebarMiddle:true,
         backgroundSize:24,
         backgroundColor:Color.White,

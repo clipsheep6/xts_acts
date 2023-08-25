@@ -90,12 +90,13 @@ struct CustomDialogUser {
       }
     }),
     cancel: this.existApp,
-    autoCancel: true,
-    alignment: DialogAlignment.Default,
-    offset: { dx: 0, dy: -20 },
+    alignment: DialogAlignment.Top,
+    offset: { dx: 10, dy: 100 },
+    maskRect: { x: 0, y: 100, width: '100%', height: '80%'  },
+    cornerRadius: "5vp",
     gridCount: 4,
     customStyle: false
-  })
+  }).key('CustomDialog')
 
   // 在自定义组件即将析构销毁时将dialogControlle删除和置空
   aboutToDisappear() {

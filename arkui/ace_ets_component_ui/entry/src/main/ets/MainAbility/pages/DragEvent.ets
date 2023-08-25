@@ -12,11 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dragController from "@ohos.arkui.dragController"
-import UDMF from '@ohos.data.unifiedDataChannel';
+
+
 import promptAction from '@ohos.promptAction';
-
-
 @Entry
 @Component
 struct DragEvent {
@@ -29,26 +27,17 @@ struct DragEvent {
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
   @State dragBehavior: string = "dragBehavior";
-  @State dragResult: string = "dragResult";
+  @State dragRet: string = "dragRet";
   @State useCustomDropAnimation1: string = "useCustomDropAnimation";
   @State imgState: Visibility = Visibility.Visible;
 
-  @Builder DraggingBuilder() {
-    Column() {
-      Text("DraggingBuilder")
-    }
-    .width(100)
-    .height(100)
-    .backgroundColor(Color.Blue)
-  }
 
   build() {
     Row() {
       Column() {
         Text(this.dragBehavior).id("dragBehavior").margin(5)
-        Text(this.dragResult).id("dragResult").margin(5)
+        Text(this.dragRet).id("dragRet").margin(5)
         Text(this.useCustomDropAnimation1).id("useCustomDropAnimation").margin(5)
-
         Image($r('app.media.icon')).margin(5)
           .width(100)
           .height(100)
@@ -56,8 +45,7 @@ struct DragEvent {
           .margin({left: 15})
           .visibility(this.imgState)
           .onDragStart((event)=>{
-            event.dragBehavior = DragBehavior.COPY
-            event.setResult(DragResult.DRAG_SUCCESSFUL);
+            event.setResult(DragRet.DRAG_SUCCESS);
           })
           .onDragEnd((event)=>{
             event.dragBehavior = DragBehavior.MOVE
@@ -67,38 +55,16 @@ struct DragEvent {
               this.useCustomDropAnimation1 = "true"
               promptAction.showToast({duration: 100, message: 'useCustomDropAnimation==true'});
             }
-            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({duration: 100, message: 'Drag DRAG_SUCCESSFUL'});
-            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+            if (event.getResult() === DragRet.DRAG_SUCCESS) {
+              promptAction.showToast({duration: 100, message: 'Drag Success'});
+            } else if (event.getResult() === DragRet.DRAG_FAILED) {
               promptAction.showToast({duration: 100, message: 'Drag Failed'});
-            } else if (event.getResult() === DragResult.DRAG_CANCELED) {
+            } else if (event.getResult() === DragRet.DRAG_CANCELED) {
               promptAction.showToast({duration: 100, message: 'Drag Canceled'});
-            } else if (event.getResult() === DragResult.DROP_DISABLED) {
+            } else if (event.getResult() === DragRet.DROP_DISABLED) {
               promptAction.showToast({duration: 100, message: 'Drop Disabled'});
-            }else if (event.getResult() === DragResult.DROP_ENABLED) {
-              promptAction.showToast({duration: 100, message: 'Drop Enabled'});
             }
-            this.dragResult = event.getResult().toString()
-          })
-
-        Button('touch to execute drag')
-          .onTouch((event) => {
-            if (event.type == TouchType.Down) {
-              let text = new UDMF.Text()
-              let unifiedData = new UDMF.UnifiedData(text)
-              let dragInfo: dragController.DragInfo = {
-                pointerId: 0,
-                data: unifiedData,
-                extraParams: ''
-              }
-              dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
-                if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
-                } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
-                }
-              })
-            }
+            this.dragRet = event.getResult().toString()
           })
       }.width('90%')
       .height('100%')

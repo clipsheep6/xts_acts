@@ -15,32 +15,29 @@
 
 @Entry
 @Component
-struct DatePickerDialogOptions0 {
+struct TimePickerDialogExample {
+  @State isUseMilitaryTime: boolean = true
 
   build() {
-    Column() {
-      Button("DatePickerDialog")
-        .margin(20)
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('TimePickerDialog')
         .onClick(() => {
-          DatePickerDialog.show({
-            title: 'DatePickerDialog',
+          TimePickerDialog.show({
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
             maskRect: { x: 0, y: 90, width: 1000, height: 250  },
-            start: new Date("2000-1-1"),
-            end: new Date("2100-12-31"),
-            selected: new Date("2023-7-24"),
-            lunarSwitch: true,
-            onAccept: (value: DatePickerResult)=> {
-              console.info("DatePickerDialog: onAccept()" + JSON.stringify(value))
+            useMilitaryTime: this.isUseMilitaryTime,
+            onAccept: (value: TimePickerResult)=> {
+              console.info("TimePickerDialog: onAccept()" + JSON.stringify(value))
+              this.select = value.index as number
             },
             onCancel:()=> {
-              console.info("DatePickerDialog: onCancel()")
+              console.info("TimePickerDialog: onCancel()")
             },
-            onChange: (value: DatePickerResult)=> {
-              console.info("DatePickerDialog: onChange()" + JSON.stringify(value))
+            onChange: (value: TimePickerResult)=> {
+              console.info("TimePickerDialog: onChange()" + JSON.stringify(value))
             }
-          }).key('DatePickerDialog')
+          }).key('TimePickerDialog')
         })
     }.width('100%')
   }

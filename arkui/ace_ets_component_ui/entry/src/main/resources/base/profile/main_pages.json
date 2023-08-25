@@ -1,6 +1,6 @@
 {
     "src": [
-        "MainAbility/pages/index/index",
+		"MainAbility/pages/index/index",
         "MainAbility/pages/second/second",
         "MainAbility/pages/blankParentWidth",
         "MainAbility/pages/buttonExample",
@@ -93,6 +93,11 @@
         "MainAbility/pages/navition3",
         "MainAbility/pages/DragController",
         "MainAbility/pages/richEditor",
-        "MainAbility/pages/richEditorCustomKeyBoard"
+        "MainAbility/pages/richEditorCustomKeyBoard",
+		"MainAbility/pages/ActionSheetOptions",
+		"MainAbility/pages/AlertDialogParam",
+		"MainAbility/pages/ShowDialogOptions",
+		"MainAbility/pages/TextPickerDialogOptions",
+		"MainAbility/pages/TimePickerDialogOptions"
     ]
 }
