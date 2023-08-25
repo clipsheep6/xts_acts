@@ -29,6 +29,7 @@ group("componentUxTest") {
       "ace_ets_component_panel:ActsAcePanelTest",
       "ace_ets_component_popup:ActsAcePopupTest",
       "ace_ets_component_progress:ActsAceProgressTest",
+      "ace_ets_component_qrcode:ActsAceQRCodeTest",
       "ace_ets_component_radio:ActsAceRadioTest",
       "ace_ets_component_search:ActsAceSearchTest",
       "ace_ets_component_select:ActsAceSelectTest",
