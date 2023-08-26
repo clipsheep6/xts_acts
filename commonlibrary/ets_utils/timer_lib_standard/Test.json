@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup timer js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.timer",
+        "package-name": "com.example.timer"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsTimerJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
