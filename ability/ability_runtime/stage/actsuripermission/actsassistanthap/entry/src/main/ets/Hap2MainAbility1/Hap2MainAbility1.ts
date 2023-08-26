@@ -378,6 +378,29 @@ export default class Hap2MainAbility1 extends Ability {
         break;
       }
 
+      case 116: {
+        let uri : string = globalThis.abilityWant1.parameters['uri'];
+        if (uri == null) {
+          console.log('[Demo] Hap2MainAbility1 uri is invalid');
+          return;
+        }
+        let eventName16_1 : string = 'UriPermissionTest_1600_Write_Successfully';
+        let eventName16_2 : string = 'UriPermissionTest_1600_Write_Failed';
+        fs.open(uri, fs.OpenMode.READ_WRITE).then((file) => {
+            console.info('file fd: ' + file.fd);
+            commonEvent.publish(eventName16_1, (err) => {
+              console.log('Hap2MainAbility1' + eventName16_1);
+            });
+        }).catch((err) => {
+            console.info('open file failed with error message: ' + err.message + ', error code: ' + err.code);
+            commonEvent.publish(eventName16_2, (err) => {
+              console.log('Hap2MainAbility1' + eventName16_2);
+            });
+        });
+        this.context.terminateSelf();
+        break;
+      }
+
       case 19: {
         console.log('[Demo] Hap2MainAbility1 case 19 call.');
         let uri : string = globalThis.abilityWant1.uri;

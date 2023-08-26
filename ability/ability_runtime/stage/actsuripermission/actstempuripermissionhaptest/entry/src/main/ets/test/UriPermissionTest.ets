@@ -18,6 +18,7 @@ import commonEvent from '@ohos.commonEvent';
 import fileUri from '@ohos.file.fileuri';
 import fs from '@ohos.file.fs'
 import wantConstant from '@ohos.ability.wantConstant';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 export default function UriPermissionTest() {
 
@@ -1633,5 +1634,88 @@ export default function UriPermissionTest() {
       console.info("---------------Temp_UriPermissionTest_1500 is end---------------")
     });
 
+
+        /*
+     * @tc.number  UriPermissionTest_1600
+     * @tc.name    The ability of HAP A grant uri permission to the ability of HAP B
+     * @tc.desc    Function test
+     * @tc.level   0
+     */
+        it("UriPermissionTest_1600", 0, async function (done) {
+          console.info("---------------UriPermissionTest_1600 is start---------------")
+          let TAG16 = "UriPermissionTest_1600";
+          let filePath : string = abilityContext.filesDir + "/test_16.txt";
+          fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
+            if (err) {
+              console.info(TAG16 + "mkdir failed with error message: " + err.message + ", error code: " + err.code);
+              expect().assertFail();
+            } else {
+              console.info(TAG16 + "file created, fd: " + file.fd);
+            }
+          });
+          let uri_16 : string = fileUri.getUriFromPath(filePath);
+          let flag16_1 = false;
+          let flag16_2 = false;
+    
+          let eventName16_1 : string = 'UriPermissionTest_1600_Write_Successfully';
+          let eventName16_2 : string = 'UriPermissionTest_1600_Write_Failed';
+          let subscribeInfo16_1 = {
+              events: [eventName16_1, eventName16_2]
+          }
+          let subscriber16_1;
+          function UnSubscribeInfoCallback16_1(err, data) {
+            console.info(TAG16 + "===UnSubscribeInfoCallback16_1===")
+          }
+    
+          function SubscribeCallBackContext16_1(err, data) {
+              console.info(TAG16 + ' Subscribe CallBack data:' + JSON.stringify(data));
+              if (data.event === eventName16_1) {
+                  console.info(TAG16 + 'write file succeed.');
+                  flag16_1 = true;
+              }
+              if (data.event === eventName16_2) {
+                  console.info(TAG16 + 'write file failed.');
+                  commonEvent.unsubscribe(subscriber16_1, UnSubscribeInfoCallback16_1)
+                  expect().assertFail();
+              }
+          }
+    
+          commonEvent.createSubscriber(subscribeInfo16_1).then(async (data) => {
+            subscriber16_1 = data;
+            console.info(TAG16 + '====>Create subscriber16_1====>');
+            await commonEvent.subscribe(subscriber16_1, SubscribeCallBackContext16_1);
+          });
+    
+          let want = {
+            flags : 0,
+            bundleName : "com.acts.authorizeduriapplication",
+            abilityName : "Hap2MainAbility1",
+            parameters : {
+              'number' : 116,
+              'uri' : uri_16
+            }
+          }
+          await uriPermissionManager.grantUriPermission(uri_16, wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, 'com.acts.authorizeduriapplication', (err, data) => {
+            if(err) {
+              console.info(TAG16 + "grant error" + err.message);
+            }else{
+              console.info(TAG16 + "grant succeed");
+            }
+          })
+          await abilityContext.startAbility(want).then(() => {
+            console.info(TAG16 + ' startAbility succeed');
+          }).catch((error) => {
+            console.info(TAG16 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
+              JSON.stringify(error.message));
+          });
+          while (!flag16_1) {
+            console.info(TAG16 + 'waiting callback');
+            await sleep(1000);
+          }
+    
+          done()
+          console.info("---------------UriPermissionTest_1600 is end---------------")
+        });
+    
   })
 }
