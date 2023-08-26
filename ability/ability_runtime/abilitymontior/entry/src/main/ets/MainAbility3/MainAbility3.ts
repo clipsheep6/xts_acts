@@ -38,7 +38,7 @@ export default class MainAbility3 extends Ability {
       globalThis.abilityContext.terminateSelf().then(()=>{
         console.log("====>in terminateSelf====>");
       })
-    },2000)
+    }, 2500);
   }
 
   onWindowStageDestroy() {
@@ -49,7 +49,9 @@ export default class MainAbility3 extends Ability {
   onForeground() {
     // Ability has brought to foreground
     console.log("[Demo] MainAbility3 onForeground")
-    commonEvent.publish("commonEvent_foreground", PublishCallBack);
+    setTimeout(()=>{
+      commonEvent.publish("commonEvent_foreground", PublishCallBack);
+    }, 500);
   }
 
   onBackground() {
