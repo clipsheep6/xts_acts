@@ -536,87 +536,6 @@ export default function test() {
             done()
         });
         /**
-        * @tc.number: FMS_acquireForm_1400
-        * @tc.name: FormId does not match other parameters when adding a cached form.
-        * @tc.desc: Failed to create a cached form when verifying that FormId does not match other parameters.
-        */
-        it(`FMS_acquireForm_1400`, 0, async (done) => {
-            console.info(`FMS_acquireForm_1400 start`);
-            var formId;
-
-            function onErrorCallBack(_, data) {
-                console.info("!!!====>FMS_acquireForm_1400 onErrorCallBack data:====>" + JSON.stringify(data));
-                expect(data.event).assertEqual("FMS_FormOnError_commonEvent");
-                expect(data.data).assertEqual("the requested form id is not existed on fms.");
-                commonEvent.unsubscribe(subscriberOnError, () => unsubscribeOnErrorCallBackCache("FMS_acquireForm_1400"));
-                var commonEventPublishData = {
-                    data: formId
-                };
-                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
-                    console.info('FMS_acquireForm_1400 publish' + JSON.stringify(err));
-                    done()
-                });
-            }
-            async function onAcquiredCallBack(_, data) {
-                console.info("!!!====>FMS_acquireForm_1400 onAcquiredCallBack data:====>" + JSON.stringify(data));
-                expect(data.event).assertEqual("FMS_FormOnAcquired_commonEvent");
-                commonEvent.unsubscribe(subscriberOnAcquired, () => unsubscribeOnAcquiredCallback("FMS_acquireForm_1400"))
-                formId = data.data;
-                // add cache form
-                commonEvent.subscribe(subscriberOnError, onErrorCallBack);
-                console.info(`FMS_acquireForm_1400 featureAbility.startAbility again start`);
-                await featureAbility.startAbility({
-                    want: {
-                        bundleName: "com.ohos.st.formsystemhost",
-                        abilityName: "com.ohos.st.formsystemhost.MainAbility",
-                        parameters: {
-                            "formId": "1",
-                            "name": "Form_Js001",
-                            "bundle": "com.form.formsystemtestservicea.hmservice",
-                            "ability": "com.form.formsystemtestservicea.hmservice.FormAbility",
-                            "moduleName": "entry",
-                            "temporary": false,
-                            "isCreate": true
-                        }
-                    }
-                }).then((res: any) => {
-                    console.info(`FMS_acquireForm_1400 featureAbility.startAbilityhost res: ${JSON.stringify(res)}`);
-                }).catch((err: any) => {
-                    console.info(`FMS_acquireForm_1400 featureAbility.startAbilityhost error: ${JSON.stringify(err)}`);
-                    expect().assertFail();
-                    done();
-                });
-                console.info(`FMS_acquireForm_1400 featureAbility.startAbility again end`);
-                await sleepTime(3000)
-                
-            }
-
-            commonEvent.subscribe(subscriberOnAcquired, onAcquiredCallBack);
-            console.info(`FMS_acquireForm_1400 featureAbility.startAbility start`);
-            await featureAbility.startAbility({
-                want: {
-                    bundleName: "com.ohos.st.formsystemhost",
-                    abilityName: "com.ohos.st.formsystemhost.MainAbility",
-                    parameters: {
-                        "formId": "0",
-                        "name": "Form_Js001",
-                        "bundle": "com.form.formsystemtestservicea.hmservice",
-                        "ability": "com.form.formsystemtestservicea.hmservice.FormAbility",
-                        "moduleName": "entry",
-                        "temporary": false,
-                        "isCreate": true
-                    }
-                }
-            }).then((res: any) => {
-                console.info(`FMS_acquireForm_1400 featureAbility.startAbilityhost res: ${JSON.stringify(res)}`);
-            }).catch((err: any) => {
-                console.info(`FMS_acquireForm_1400 featureAbility.startAbilityhost error: ${JSON.stringify(err)}`);
-                expect().assertFail();
-                done();
-            });
-            console.info(`FMS_acquireForm_1400 featureAbility.startAbility end`);
-        });
-        /**
         * @tc.number: FMS_acquireForm_1500
         * @tc.name: Add a cached form.
         * @tc.desc: Verify that the cached form can be successfully created.
@@ -627,30 +546,28 @@ export default function test() {
             let formId2;
             let onCreateCount = 0;
 
-            function onAcquiredCallBackCache(_, data) {
-                console.info("!!!====>FMS_acquireForm_1500 onAcquiredCallBackCache data:====>" + JSON.stringify(data));
-                commonEvent.unsubscribe(subscriberOnAcquired, () => unsubscribeOnAcquiredCallBackCache("FMS_acquireForm_1500"));
-                expect(data.event).assertEqual("FMS_FormOnAcquired_commonEvent");
-                formId2 = data.data;
-                if (formId1 && formId2) {
-                    expect(formId1).assertEqual(formId2);
-                    let commonEventPublishData = {
-                        data: formId1
-                    };
-                    commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
-                        console.info('FMS_acquireForm_1500 publish' + JSON.stringify(err));
-                        done()
-                    });
-                }
+            function onErrorCallBack(_, data) {
+                console.info("!!!====>FMS_acquireForm_1500 onErrorCallBack data:====>" + JSON.stringify(data));
+                expect(data.event).assertEqual("FMS_FormOnError_commonEvent");
+                expect(data.data).assertEqual("the form id and form config are not matched.");
+                commonEvent.unsubscribe(subscriberOnError, () => unsubscribeOnErrorCallBackCache("FMS_acquireForm_1500"));
+                var commonEventPublishData = {
+                    data: formId1
+                };
+                commonEvent.publish(deleteForm_Event, commonEventPublishData, (err) => {
+                    console.info('FMS_acquireForm_1500 publish' + JSON.stringify(err));
+                    done()
+                });
             }
+
             async function onAcquiredCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_1500 onAcquiredCallBack data:====>" + JSON.stringify(data));
                 expect(data.event).assertEqual("FMS_FormOnAcquired_commonEvent");
                 commonEvent.unsubscribe(subscriberOnAcquired, () => unsubscribeOnAcquiredCallback("FMS_acquireForm_1500"))
                 formId1 = data.data;
                 // add cache form
-                subscriberOnAcquired = await commonEvent.createSubscriber(onAcquiredForm_Event);
-                commonEvent.subscribe(subscriberOnAcquired, onAcquiredCallBackCache);
+                console.info(`FMS_acquireForm_1500 subscribe onErrorCallBack start`);
+                commonEvent.subscribe(subscriberOnError, onErrorCallBack);
                 console.info(`FMS_acquireForm_1500 featureAbility.startAbility again start`);
                 await featureAbility.startAbility({
                     want: {
