@@ -51,11 +51,13 @@ napi_value ImageReceiverNDKTest::Init(napi_env env, napi_value exports)
         STATIC_FUNCTION("imageSize", JsImageSize),
         STATIC_FUNCTION("imageFormat", JsImageFormat),
         STATIC_FUNCTION("imageGetComponent", JsImageGetComponent),
+        STATIC_FUNCTION("receiverRelease", JsReceiverRelease),
+        STATIC_FUNCTION("imageRelease", JsImageRelease),
     };
     napi_define_properties(env, exports, sizeof(props) / sizeof(props[0]), props);
     return exports;
 }
-static bool CheckArgs(size_t count, napi_value* argValues, size_t exceptCount)
+static bool CheckArgs(size_t count, const napi_value* argValues, size_t exceptCount)
 {
     if (count != exceptCount) {
         return false;
@@ -86,7 +88,7 @@ napi_value ImageReceiverNDKTest::JsCreateImageReceiver(napi_env env, napi_callba
         return udfVar;
     }
     int32_t res = OH_Image_Receiver_CreateImageReceiver(env, receiverInfo, &receiver);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS || receiver == nullptr) {
+    if (res != IMAGE_RESULT_SUCCESS || receiver == nullptr) {
         return udfVar;
     }
     return receiver;
@@ -116,7 +118,7 @@ napi_value ImageReceiverNDKTest::JsGetReceivingSurfaceId(napi_env env, napi_call
     }
     char buf[ID_SIZE] = {0};
     int32_t res = OH_Image_Receiver_GetReceivingSurfaceId(native, buf, ID_SIZE);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
     HiviewDFX::HiLog::Debug(LABEL, "JsGetReceivingSurfaceId IN [%{public}x]", buf[0]);
@@ -137,7 +139,7 @@ napi_value ImageReceiverNDKTest::JsReadLatestImage(napi_env env, napi_callback_i
     }
 
     int32_t res = OH_Image_Receiver_ReadLatestImage(native, &result);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         napi_get_undefined(env, &result);
         return result;
     }
@@ -155,7 +157,7 @@ napi_value ImageReceiverNDKTest::JsReadNextImage(napi_env env, napi_callback_inf
     }
 
     int32_t res = OH_Image_Receiver_ReadNextImage(native, &result);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         napi_get_undefined(env, &result);
         return result;
     }
@@ -179,6 +181,22 @@ napi_value ImageReceiverNDKTest::JsOn(napi_env env, napi_callback_info info)
 
     sOnEvnentCount = NUM_0;
     int32_t res = OH_Image_Receiver_On(native, OnEvent);
+    napi_create_int32(env, res, &result);
+    return result;
+}
+
+napi_value ImageReceiverNDKTest::JsReceiverRelease(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+
+    ImageReceiverNative *native = getNativeReceiver(env, info);
+    if (native == nullptr)
+    {
+        return result;
+    }
+
+    int32_t res = OH_Image_Receiver_Release(native);
     napi_create_int32(env, res, &result);
     return result;
 }
@@ -210,7 +228,7 @@ napi_value ImageReceiverNDKTest::JsGetSize(napi_env env, napi_callback_info info
     }
     struct OhosImageSize size;
     int32_t res = OH_Image_Receiver_GetSize(native, &size);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
 
@@ -231,7 +249,7 @@ napi_value ImageReceiverNDKTest::JsGetCapacity(napi_env env, napi_callback_info 
     }
     int32_t capacity;
     int32_t res = OH_Image_Receiver_GetCapacity(native, &capacity);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
     napi_create_int32(env, capacity, &result);
@@ -249,7 +267,7 @@ napi_value ImageReceiverNDKTest::JsGetFormat(napi_env env, napi_callback_info in
     }
     int32_t format;
     int32_t res = OH_Image_Receiver_GetFormat(native, &format);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
     napi_create_int32(env, format, &result);
@@ -276,6 +294,22 @@ static ImageNative* getNativeImage(napi_env env, napi_callback_info info)
     return OH_Image_InitImageNative(env, argValue[NUM_0]);
 }
 
+napi_value ImageReceiverNDKTest::JsImageRelease(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+
+    ImageNative *native = getNativeImage(env, info);
+    if (native == nullptr)
+    {
+        return result;
+    }
+
+    int32_t res = OH_Image_Release(native);
+    napi_create_int32(env, res, &result);
+    return result;
+}
+
 napi_value ImageReceiverNDKTest::JsImageClipRect(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
@@ -287,7 +321,7 @@ napi_value ImageReceiverNDKTest::JsImageClipRect(napi_env env, napi_callback_inf
     }
     struct OhosImageRect rect;
     int32_t res = OH_Image_ClipRect(native, &rect);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
 
@@ -310,7 +344,7 @@ napi_value ImageReceiverNDKTest::JsImageSize(napi_env env, napi_callback_info in
     }
     struct OhosImageSize size;
     int32_t res = OH_Image_Size(native, &size);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
     napi_create_object(env, &result);
@@ -330,7 +364,7 @@ napi_value ImageReceiverNDKTest::JsImageFormat(napi_env env, napi_callback_info 
     }
     int32_t format;
     int32_t res = OH_Image_Format(native, &format);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
     napi_create_uint32(env, format, &result);
@@ -359,7 +393,7 @@ napi_value ImageReceiverNDKTest::JsImageGetComponent(napi_env env, napi_callback
 
     struct OhosImageComponent component;
     int32_t res = OH_Image_GetComponent(native, componentType, &component);
-    if (res != OHOS_IMAGE_RESULT_SUCCESS) {
+    if (res != IMAGE_RESULT_SUCCESS) {
         return result;
     }
 

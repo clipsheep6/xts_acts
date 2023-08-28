@@ -372,11 +372,11 @@ export default function Pointer_test() {
       console.info('Pointer_MOVE_test = ' + pointer.PointerStyle.MOVE);
       expect(pointer.PointerStyle.MOVE == 21).assertTrue();
 
-      console.info('Pointer_RESIZE_UP_DOWN_test = ' + pointer.PointerStyle.RESIZE_UP_DOWN);
-      expect(pointer.PointerStyle.RESIZE_UP_DOWN == 22).assertTrue();
-
       console.info('Pointer_RESIZE_LEFT_RIGHT_test = ' + pointer.PointerStyle.RESIZE_LEFT_RIGHT);
-      expect(pointer.PointerStyle.RESIZE_LEFT_RIGHT == 23).assertTrue();
+      expect(pointer.PointerStyle.RESIZE_LEFT_RIGHT == 22).assertTrue();
+
+      console.info('Pointer_RESIZE_UP_DOWN_test = ' + pointer.PointerStyle.RESIZE_UP_DOWN);
+      expect(pointer.PointerStyle.RESIZE_UP_DOWN == 23).assertTrue();
 
       console.info('Pointer_SCREENSHOT_CHOOSE_test = ' + pointer.PointerStyle.SCREENSHOT_CHOOSE);
       expect(pointer.PointerStyle.SCREENSHOT_CHOOSE == 24).assertTrue();
@@ -433,6 +433,17 @@ export default function Pointer_test() {
       expect(pointer.PointerStyle.CURSOR_CIRCLE == 41).assertTrue();
     })
 
+    it('Touchpad_RightClickType_test', 0, function () {
+      console.info('Touchpad_TOUCHPAD_RIGHT_BUTTON_test = ' + pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON);
+      expect(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON == 1).assertTrue();
+
+      console.info('Touchpad_TOUCHPAD_LEFT_BUTTON_test = ' + pointer.RightClickType.TOUCHPAD_LEFT_BUTTON);
+      expect(pointer.RightClickType.TOUCHPAD_LEFT_BUTTON == 2).assertTrue();
+
+      console.info('Touchpad_TOUCHPAD_TWO_FINGER_TAP_test = ' + pointer.RightClickType.TOUCHPAD_TWO_FINGER_TAP);
+      expect(pointer.RightClickType.TOUCHPAD_TWO_FINGER_TAP == 3).assertTrue();
+    })
+    
     /**
      * @tc.number MultimodalInputPointer_Test_001
      * @tc.name MultimodalInputDevice_PointerVisibleTest_Exception_Test_001
