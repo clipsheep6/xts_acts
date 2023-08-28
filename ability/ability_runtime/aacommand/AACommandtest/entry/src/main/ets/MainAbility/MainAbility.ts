@@ -258,6 +258,7 @@ export default class MainAbility extends Ability {
             console.log('ACTS_AACommand_finish_01_0300 start err: ' + JSON.stringify(err))
             console.log('ACTS_AACommand_finish_01_0300 stdResult = ' + data.stdResult)
             console.log('ACTS_AACommand_finish_01_0300 - executeShellCommand: end')
+            globalThis.stdResult30 = data["stdResult"];
             await startAbilityTest('ACTS_AACommand_finish_01_0300', this.context);
         })
 
@@ -267,30 +268,7 @@ export default class MainAbility extends Ability {
         abilityDelegator.executeShellCommand(cmd, async (err, data) => {
             console.info('ACTS_AACommand_finish_01_0300 : err : ' + JSON.stringify(err));
             console.info('ACTS_AACommand_finish_01_0300 : data : ' + JSON.stringify(data));
-            globalThis.stdResult30 = data["stdResult"];
             console.info('ACTS_AACommand_finish_01_0300 end');
-        })
-
-        await sleep(4000)
-
-        cmd = 'aa test -m entry_test -b com.example.aacommandrelyhap' +
-            ' -s class AACommandTest#ACTS_AACommand_finish_01_1600 -s unittest OpenHarmonyTestRunner'
-        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
-            console.log('ACTS_AACommand_finish_01_1600 - executeShellCommand: start ')
-            console.log('ACTS_AACommand_finish_01_1600 start err: ' + JSON.stringify(err))
-            console.log('ACTS_AACommand_finish_01_1600 stdResult = ' + data.stdResult)
-            console.log('ACTS_AACommand_finish_01_1600 - executeShellCommand: end')
-            await startAbilityTest('ACTS_AACommand_finish_01_1600', this.context);
-        })
-
-        await sleep(2000)
-
-        cmd = 'aa dump -a'
-        abilityDelegator.executeShellCommand(cmd, async (err, data) => {
-            console.info('ACTS_AACommand_finish_01_1600 : err : ' + JSON.stringify(err));
-            console.info('ACTS_AACommand_finish_01_1600 : data : ' + JSON.stringify(data));
-            globalThis.stdResult34 = data["stdResult"];
-            console.info('ACTS_AACommand_finish_01_1600 end');
         })
 
         setTimeout(() => {
