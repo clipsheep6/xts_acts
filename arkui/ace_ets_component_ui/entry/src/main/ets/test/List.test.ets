@@ -70,7 +70,7 @@ import TextPickerDialogJsunit from './TextPickerDialogJsunit.test.ets';
 import TimePickerDialogJsunit from './TimePickerDialogJsunit.test.ets';
 import OverlayJsunit from './OverlayJsunit.test.ets';
 import PanelJsunit from './PanelJsunit.test.ets';
-import GridTJsunit from './GridTJsunit.test.ets';
+import GridCallbackJsunit from './GridCallbackJsunit.test.ets';
 
 export default function testsuite() {
   DialogJsunit();
@@ -130,5 +130,5 @@ export default function testsuite() {
   TimePickerDialogJsunit();
   OverlayJsunit();
   PanelJsunit();
-  GridTJsunit();
+  GridCallbackJsunit();
 }

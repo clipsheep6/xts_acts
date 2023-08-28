@@ -16,7 +16,7 @@ import {MessageManager,Callback} from '../utils/MessageManager';
 
 @Entry
 @Component
-struct GridPage {
+struct GridCallbackPage {
   @State Number: String[] = ['0', '1', '2', '3', '4']
   @State columnsTemplate: string = '1fr 1fr 1fr 1fr 1fr'
   @State rowsTemplate: string = '1fr 1fr 1fr 1fr 1fr'

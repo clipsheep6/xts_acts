@@ -19,33 +19,33 @@ import CommonFunc from '../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
 
 
-export default function GridTJsunit() {
-  describe('GridTJsunit', function () {
+export default function GridCallbackJsunit() {
+  describe('GridCallbackJsunit', function () {
     beforeEach(async function (done) {
-      console.info("GridJsunit1 beforeEach start");
+      console.info("GridCallbackJsunit beforeEach start");
       let options = {
-        uri: 'MainAbility/pages/GridTPage',
+        uri: 'MainAbility/pages/GridCallbackPage',
       }
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get GridTJsunit state pages: " + JSON.stringify(pages));
-        if (!("GridPage" == pages.name)) {
-          console.info("get GridTJsunit state pages.name: " + JSON.stringify(pages.name));
+        console.info("get GridCallbackJsunit state pages: " + JSON.stringify(pages));
+        if (!("GridCallbackPage" == pages.name)) {
+          console.info("get GridCallbackJsunit state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
-          console.info("push GridTJsunit success: " + JSON.stringify(result));
+          console.info("push GridCallbackJsunit success: " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push GridTJsunit page error: " + err);
+        console.error("push GridCallbackJsunit page error: " + err);
         expect().assertFail();
       }
       done();
     });
 
-    it('GridTJsunit_1000', 0, async function (done) {
+    it('GridCallbackJsunit_1000', 0, async function (done) {
       // Verify Neither rowsTemplate nor columnsTemplate is set
-      console.info('[GridTJsunit_1000] START');
+      console.info('[GridCallbackJsunit_1000] START');
 
       let grid2 = CommonFunc.getComponentRect('grid2');
       let top = grid2.top
@@ -58,36 +58,36 @@ export default function GridTJsunit() {
       let onReachStartText = await driver.findComponent(BY.key('onReachStartText'));
 
       let text5 = await onReachStartText.getText();
-      console.info('[GridTJsunit_1000] onReachStartText' + text5);
+      console.info('[GridCallbackJsunit_1000] onReachStartText' + text5);
       expect(text5).assertEqual('onReachStart:succ');
       await CommonFunc.sleep(200);
 
       let onScrollText = await driver.findComponent(BY.key('onScrollText'));
       let text3 = await onScrollText.getText();
-      console.info('[GridTJsunit_1000] onScrollText' + text3);
+      console.info('[GridCallbackJsunit_1000] onScrollText' + text3);
       expect(text3).assertEqual('onScroll:succ');
 
       let onScrollIndexText = await driver.findComponent(BY.key('onScrollIndexText'));
       let text2 = await onScrollIndexText.getText();
-      console.info('[GridTJsunit_1000] onScrollIndexText' + text2);
+      console.info('[GridCallbackJsunit_1000] onScrollIndexText' + text2);
       expect(text2).assertEqual('onScrollIndex:succ');
 
       let onScrollStartText = await driver.findComponent(BY.key('onScrollStartText'));
       let text4 = await onScrollStartText.getText();
-      console.info('[GridTJsunit_1000] onScrollStartText' + text4);
+      console.info('[GridCallbackJsunit_1000] onScrollStartText' + text4);
       expect(text4).assertEqual('onScrollStart:succ');
       await CommonFunc.sleep(200);
 
 
       let onScrollStopText = await driver.findComponent(BY.key('onScrollStopText'));
       let text6 = await onScrollStopText.getText();
-      console.info('[GridTJsunit_1000] onScrollStopText' + text6);
+      console.info('[GridCallbackJsunit_1000] onScrollStopText' + text6);
       expect(text6).assertEqual('onScrollStop:succ');
       await CommonFunc.sleep(200);
 
       let onScrollFrameBeginText = await driver.findComponent(BY.key('onScrollFrameBeginText'));
       let text7 = await onScrollFrameBeginText.getText();
-      console.info('[GridTJsunit_1000] nScrollFrameBeginText ' + text7);
+      console.info('[GridCallbackJsunit_1000] nScrollFrameBeginText ' + text7);
       expect(text7).assertEqual('onScrollFrameBegin:succ');
       await CommonFunc.sleep(200);
 
@@ -102,11 +102,11 @@ export default function GridTJsunit() {
 
       let onReachEndText = await driver.findComponent(BY.key('onReachEndText'));
       let text9 = await onReachEndText.getText();
-      console.info("[GridTJsunit_1000] onReachEndText: " + text9);
+      console.info("[GridCallbackJsunit_1000] onReachEndText: " + text9);
       expect(text9).assertEqual('onReachEnd:succ');
       await CommonFunc.sleep(1000);
 
-      console.info('[GridTJsunit_1000] END');
+      console.info('[GridCallbackJsunit_1000] END');
       done();
     });
   })
