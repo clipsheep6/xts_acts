@@ -41,6 +41,13 @@ export async function nextFileName(testName) {
   return BASE_PATH + testName + "_" + randomString(testName.length);
 }
 
+export async function nextFileNameInFilesDir(testName) {
+  let context = globalThis.abilityContext;
+  let data = context.filesDir;
+  let BASE_PATH = data + "/";
+  return BASE_PATH + testName + "_" + randomString(testName.length);
+}
+
 export async function fileName(testName) {
   let context = globalThis.abilityContext;
   let data = context.filesDir;
