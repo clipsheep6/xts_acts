@@ -25,7 +25,7 @@ let abilityContext = getContext(this) as context.UIAbilityContext;
 struct CustomContainerUser {
   @State name: string = 'DeskFps';
   @State toSP_daemon: string = 'SP_daemon -editor fpsohtest com.ohos.launcher 桌面';
-  @State StepTips: string = '操作步骤：根据操作提示滑动系统桌面测试帧率'+'\n'+'预期结果：帧率大于55帧测试通过';
+  @State StepTips: string = '操作步骤：根据操作提示完成测试'+'\n'+'预期结果：帧率大于55帧测试通过';
   @State Vue: boolean = false;
   @State StartEnable: boolean = true;
   @State Fps: string = '0';

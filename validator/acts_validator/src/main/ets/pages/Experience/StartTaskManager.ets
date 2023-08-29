@@ -24,7 +24,7 @@ let abilityContext = getContext(this) as context.UIAbilityContext;
 struct CustomContainerUser {
   @State name: string = 'StartTaskManager';
   @State toSP_daemon: string = 'SP_daemon -editor completeTime com.ohos.launcher ohtest';
-  @State StepTips: string = '操作步骤：根据操作提示打开任务管理器'+'\n'+'预期结果：打开任务管理器时延小于1000ms测试通过';
+  @State StepTips: string = '操作步骤：根据操作提示完成测试'+'\n'+'预期结果：时延小于1000ms测试通过';
   @State Vue: boolean = false;
   @State StartEnable: boolean = true;
   @State time: number = 0;

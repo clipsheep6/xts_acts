@@ -22,7 +22,7 @@ import router from '@ohos.router';
 struct CustomContainerUser {
   @State name: string = 'KeyboardDisplay';
   @State toSP_daemon: string = 'SP_daemon -editor completeTime com.example.kikakeyboard ohtest';
-  @State StepTips: string = '操作步骤：根据操作提示点击输入框等待键盘加载'+'\n'+'预期结果：输入键盘弹出时延小于1000ms测试通过';
+  @State StepTips: string = '操作步骤：根据操作提示完成测试'+'\n'+'预期结果：时延小于1000ms测试通过';
   @State Vue: boolean = false;
   @State StartEnable: boolean = true;
   @State time: number = 0;
