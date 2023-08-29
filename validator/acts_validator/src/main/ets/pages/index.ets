@@ -155,7 +155,7 @@ struct IndexPage {
           .onClick(() => {
             this.SaveXml();
             AlertDialog.show({
-              message: "报告已生成，连接pc，通过xdevice获取可视化报告",
+              message: "报告已生成，请将设备连接pc，通过run.bat确认测试结束，获取可视化报告",
               confirm:{
                 value:'OK',
                 action:()=>{
