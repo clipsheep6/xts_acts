@@ -234,12 +234,12 @@ export default function UriPermissionTest() {
           console.info(TAG2 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName2_3) {
               console.info(TAG2 + 'write file succeed.');
-              commonEvent.unsubscribe(subscriber2_2, UnSubscribeInfoCallback2_2)
-              flag2_2 = true;
+              expect().assertFail();
           }
           if (data.event === eventName2_4) {
               console.info(TAG2 + 'write file failed.');
-              expect().assertFail();
+              commonEvent.unsubscribe(subscriber2_2, UnSubscribeInfoCallback2_2)
+              flag2_2 = true;
           }
       }
 
