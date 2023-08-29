@@ -60,6 +60,7 @@ group("ability_runtime") {
       "getrunningprocessinformation:getrunningprocessinformation",
       "newwant:newwant",
       "non_concurrent:non_concurrent",
+      "recordlastexitreason:recordlastexitreason",
       "registerjserror:registerjserror",
       "shareextensionability:actsshareextensionability",
       "stage:stage",
