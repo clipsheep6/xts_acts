@@ -235,9 +235,20 @@ const checkAlbumsCount = function (done, testNum, albumList, expectCount) {
 
 const getPermission = async function (name, context) {
     if (!name) {
-        name = "ohos.acts.multimedia.mediaLibrary";
+        name = "ohos.acts.multimedia.userfilemgr";
     }
+    console.info("getPermission start", name);
+    let permissions = [
+        "ohos.permission.MEDIA_LOCATION",
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.WRITE_AUDIO",
+        "ohos.permission.READ_AUDIO",
+        "ohos.permission.WRITE_MEDIA",
+        "ohos.permission.READ_MEDIA",
+    ];
 
+    let atManager = abilityAccessCtrl.createAtManager();
     try {
         console.info('getPermission start: ' + name);
         let isGetPermission = false;
@@ -251,22 +262,30 @@ const getPermission = async function (name, context) {
                 isGetPermission = true;
             }
         });
-
-        let driver = uitest.Driver.create();
+    } catch (err) {
+        console.info(`getPermission catch err -> ${JSON.stringify(err)}`);
+    }
+    await sleep(500);
+    let driver = uitest.Driver.create();
+    await sleep(500);
+    let button = await driver.findComponent(uitest.ON.text("允许"));
+    while (button) {
+        await button.click();
         await sleep(500);
-        for (let i = 0; i < 10; i++) {
-            if (isGetPermission) {
-                break;
-            }
-            await sleep(500);
-            let button = await driver.findComponent(uitest.ON.text('允许'));
-            if (button != undefined) {
-                await button.click();
-            }
-        }
-        console.info("getPermission end");
-    } catch (error) {
-        console.info('getPermission error: ' + error);
+
+        button = await driver.findComponent(uitest.ON.text("允许"));
+    }
+    await sleep(500);
+    let appInfo = await bundle.getApplicationInfo(name, 0, 100);
+    let tokenID = appInfo.accessTokenId;
+
+    let isGranted1 = await atManager.verifyAccessToken(tokenID, "ohos.permission.MEDIA_LOCATION");
+    let isGranted2 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_IMAGEVIDEO");
+    let isGranted3 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_IMAGEVIDEO");
+    let isGranted4 = await atManager.verifyAccessToken(tokenID, "ohos.permission.WRITE_AUDIO");
+    let isGranted5 = await atManager.verifyAccessToken(tokenID, "ohos.permission.READ_AUDIO");
+    if (!(isGranted1 == 0 && isGranted2 == 0 && isGranted3 == 0 && isGranted4 == 0 && isGranted5 == 0)) {
+        console.info("getPermission failed");
     }
 };
 
