@@ -550,7 +550,7 @@ export default function test() {
             function onErrorCallBack(_, data) {
                 console.info("!!!====>FMS_acquireForm_1500 onErrorCallBack data:====>" + JSON.stringify(data));
                 expect(data.event).assertEqual("FMS_FormOnError_commonEvent");
-                expect(data.data).assertEqual("the form id and form config are not matched.");
+                expect(data.data).assertEqual("The ID of the form to be operated does not exist");
                 commonEvent.unsubscribe(subscriberOnError, () => unsubscribeOnErrorCallBackCache("FMS_acquireForm_1500"));
                 var commonEventPublishData = {
                     data: formId1
