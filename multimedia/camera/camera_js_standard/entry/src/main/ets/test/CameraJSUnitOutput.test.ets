@@ -60,7 +60,6 @@ let videoConfig = {
 
 // 创建录像输出流
 let videoRecorder
-
 let surfaceId1
 let cameraManager;
 let cameraDevicesArray;
@@ -74,6 +73,7 @@ let videoSurfaceId;
 let fdPath;
 let fileAsset;
 let fdNumber;
+let receiver;
 
 let mMetadataObjectTypeArray;
 let mMetadataObjectArray;
@@ -82,7 +82,7 @@ export default function cameraJSUnitOutput() {
 
   async function getImageReceiverSurfaceId() {
     console.log(TAG + 'Entering create Image receiver')
-    var receiver = image.createImageReceiver(640, 480, 4, 8)
+    receiver = image.createImageReceiver(640, 480, 4, 8)
     console.log(TAG + 'before receiver check')
     if (receiver !== undefined) {
       console.log(TAG + 'Receiver is ok')
