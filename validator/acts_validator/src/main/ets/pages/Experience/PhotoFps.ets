@@ -86,11 +86,16 @@ struct CustomContainerUser {
                     let report = globalThis.resultNum;
                     let reg = /fps:(\d+)/g;
                     let matches = report.match(reg);
-                    let fpsValues = matches.map(match => parseInt(match.substring(4)));
-                    let maxFps = Math.max(...fpsValues);
-                    this.Fps = maxFps.toString();
-                    if(maxFps >= 55) {
-                      this.Vue = true;
+                    if (matches == null) {
+                      this.Fps = 0;
+                    }
+                    else {
+                      let fpsValues = matches.map(match => parseInt(match.substring(4)));
+                      let maxFps = Math.max(...fpsValues);
+                      this.Fps = maxFps;
+                      if(maxFps >= 55) {
+                        this.Vue = true;
+                      }
                     }
                     globalThis.HideFloatingWindow();
                   })
