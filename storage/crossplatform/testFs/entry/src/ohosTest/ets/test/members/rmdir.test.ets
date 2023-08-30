@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { FILE_CONTENT, prepareFile, nextFileName, describe, it, expect } from "../Common";
+import { FILE_CONTENT, prepareFile, nextFileName, nextFileNameInFilesDir, describe, it, expect } from "../Common";
 import fileIO from "@ohos.file.fs";
 
 export default function fileIORmdir() {
@@ -90,7 +90,7 @@ export default function fileIORmdir() {
      * @tc.level  : Level 2
      */
     it("fileIO_test_rmdir_async_002", 2, async function () {
-      let dpath = (await nextFileName("../cache/fileIO_test_rmdir_async_002")) + "d";
+      let dpath = (await nextFileNameInFilesDir("../files/fileIO_test_rmdir_async_002")) + "d";
 
       try {
         fileIO.mkdirSync(dpath);
@@ -186,7 +186,7 @@ export default function fileIORmdir() {
      * @tc.level  : Level 2
      */
     it("fileIO_test_rmdir_async_005", 2, async function (done) {
-      let dpath = (await nextFileName("../cache/fileIO_test_rmdir_async_005")) + "d";
+      let dpath = (await nextFileNameInFilesDir("../files/fileIO_test_rmdir_async_005")) + "d";
       fileIO.mkdirSync(dpath);
       // @ts-nocheck
       expect(fileIO.accessSync(dpath)).assertTrue();
@@ -369,7 +369,7 @@ export default function fileIORmdir() {
      * @tc.level  : Level 2
      */
     it("fileIO_test_rmdir_sync_002", 2, async function () {
-      let dpath = (await nextFileName("../cache/fileIO_test_rmdir_sync_002")) + "d";
+      let dpath = (await nextFileNameInFilesDir("../files/fileIO_test_rmdir_sync_002")) + "d";
 
       try {
         fileIO.mkdirSync(dpath);
