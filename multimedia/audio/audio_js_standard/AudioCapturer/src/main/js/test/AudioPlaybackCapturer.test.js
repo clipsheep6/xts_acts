@@ -51,8 +51,8 @@ export default function audioCapturer() {
             await button.click();
         }
         beforeAll(async function () {
-            await getPermission();
-            await driveFn();
+            // await getPermission();
+            // await driveFn();
             console.info('TestLog: Start Testing AudioPlaybackCapturer Interfaces');
         })
 
