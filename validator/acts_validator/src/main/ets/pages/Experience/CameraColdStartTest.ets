@@ -23,7 +23,7 @@ let abilityContext = getContext(this) as context.UIAbilityContext;
 @Component
 struct CustomContainerUser {
   @State name: string = 'CameraColdStart';
-  @State StepTips: string = '操作步骤：根据操作提示运行脚本文件，启动应用'+'\n'+'预期结果：所有应用冷启动时延小于2300ms则测试通过';
+  @State StepTips: string = '操作步骤：根据操作提示完成测试'+'\n'+'预期结果：时延小于2300ms则测试通过';
   @State toSP_daemon: string = 'SP_daemon -editor coldStartHM com.ohos.camera 相机 ohtest';
   @State Vue: boolean = false;
   @State StartEnable: boolean = true;
@@ -52,9 +52,10 @@ struct CustomContainerUser {
             }
             Row(){
               Text(`测试步骤:`+ '\n' + '\n' + '\n' + '\n' + `1.点击开始键进入系统桌面` + '\n' + '\n'
-              + `2.清空后台应用` + '\n' + '\n' + `3.快速点击桌面相机应用` + '\n' + '\n' +`4.测试应用拉起后手动返回validator界面`
-              + '\n' + '\n' + '5.点击结束键观察测试结果' + '\n' + '\n' + `6.若冷启动测试在规定时延内完成则通过测试`
-              + '\n' + '\n' + 'PS:双击悬浮球中断测试,长按悬浮球快速结束测试')
+              + `2.清空除validator外的后台应用` + '\n' + '\n' + `3.点击悬浮球开始测试` + '\n' + '\n' +`4.快速点击桌面应用`
+              + '\n' + '\n' + '5.待悬浮球倒计时结束显示为done后返回validator应用' + '\n' + '\n' + `6.点击结束观察测试结果`
+              + '\n' + '\n' + `7.若冷启动在规定时间内完成则通过测试` + '\n' + '\n' + `注意事项:` + '\n' + '\n' +
+              `※1.若悬浮球显示连接失败，需重启设备并在run.bat中输入run validator拉起测试` + '\n' + '\n' + `※2.双击悬浮球中断测试，长按悬浮球提前结束测试` + '\n' + '\n')
                 .fontColor(Color.White).fontSize('20fp')
             }
             Row(){
