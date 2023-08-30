@@ -38,8 +38,8 @@ export default function audioCapturerInterrupt() {
         }
 
         beforeAll(async function () {
-            await getPermission();
-            await driveFn();
+            // await getPermission();
+            // await driveFn();
             console.info('beforeAll called')
         })
 
