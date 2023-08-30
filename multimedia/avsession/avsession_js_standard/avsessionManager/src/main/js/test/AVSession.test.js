@@ -78,18 +78,22 @@ export default function AVSession() {
 
         afterEach(async function (done) {
             console.info('TestLog: Destroy Session And Controller');
-            await session.destroy().then(() => {
-                console.info('TestLog: Session destroy success');
-            }).catch((err) => {
-                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
-            await controller.destroy().then(() => {
-                console.info('TestLog: Controller destroy success');
-            }).catch((err) => {
-                console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
+            if(session){
+                await session.destroy().then(() => {
+                    console.info('TestLog: Session destroy success');
+                }).catch((err) => {
+                    console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
+                    expect(false).assertTrue();
+                });
+            }
+            if(controller){
+                await controller.destroy().then(() => {
+                    console.info('TestLog: Controller destroy success');
+                }).catch((err) => {
+                    console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
+                    expect(false).assertTrue();
+                });
+            }
             done();
         })
 
