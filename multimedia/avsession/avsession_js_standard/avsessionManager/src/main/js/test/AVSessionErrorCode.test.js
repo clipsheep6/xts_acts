@@ -126,12 +126,12 @@ export default function AVSessionErrorCode() {
                 console.info('TestLog: Controller destroy successfully');
                 expect(true).assertTrue();
             }).catch((err) => {
-                expect(err.code == 6600103).assertTrue();
+                expect(err.code == 6600103).assertTrue( );
                 console.info(avSession.AVSessionErrorCode.ERR_CODE_CONTROLLER_NOT_EXIST);
                 console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
                 expect(false).assertTrue();
             });
-            session = nullptr;
+            session = null;
             done();
         })
 

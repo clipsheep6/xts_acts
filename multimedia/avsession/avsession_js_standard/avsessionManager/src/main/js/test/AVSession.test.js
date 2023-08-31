@@ -644,7 +644,7 @@ export default function AVSession() {
                 console.info(`TestLog: Set metadata error: code: ${err.code}, message: ${err.message}`);
                 expect(true).assertTrue();
             });
-            session = nullptr;
+            session = null;
             done();
         })
 
@@ -1030,7 +1030,7 @@ export default function AVSession() {
                 console.info(`TestLog: Set playbackState error: code: ${err.code}, message: ${err.message}`);
                 expect(true).assertTrue();
             });
-            session = nullptr;
+            session = null;
             done();
         })
 

@@ -649,7 +649,7 @@ export default function AVSessionCallback() {
                     console.info('TestLog: Set metadata : successfully');
                     expect(false).assertTrue();
                 }
-                session = nullptr;
+                session = null;
                 done();
             })
             await sleep(500);
@@ -1055,7 +1055,7 @@ export default function AVSessionCallback() {
                     console.info('TestLog: Set playbackState successfully');
                     expect(false).assertTrue();
                 }
-                session = nullptr;
+                session = null;
                 done();
             })
             await sleep(500);
@@ -1243,7 +1243,7 @@ export default function AVSessionCallback() {
                 console.info('TestLog: Session destroyed failed');
                 expect(false).assertTrue();
             }
-            session = nullptr;
+            session = null;
             done();
         })
     })
