@@ -16,12 +16,18 @@ import hilog from '@ohos.hilog';
 import testNapi from 'librdbstore.so'
 import featureAbility from '@ohos.ability.featureAbility';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index';
+import featureAbility from '@ohos.ability.featureAbility';
 
 const TAG = "[RdbNdkStoreTest]";
 
 export default function RdbNdkStoreTest() {
   describe('RdbNdkStoreTest', function () {
     beforeAll(function () {
+      let context =  featureAbility.getContext();
+      let rdbpath = await context.getFilesDir();
+      console.info("testTag getFilesDir 1 is : "+  JSON.stringify(rdbpath));
+      console.info("testTag getFilesDir 2 is : "+  rdbpath);
+      testNapi.RdbFilePath(rdbpath);
     })
     beforeEach(function () {
       hilog.info(0x0000, TAG, 'testTag RdbstoreSetUpTestCase' , ' begin');      
