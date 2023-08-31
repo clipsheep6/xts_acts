@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for storage recent Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "bundle-name": "ohos.hits.storage.recent",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 100000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "setenforce 0",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": []
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "sleep 3"
+            ],
+            "teardown-command": [
+            ]
+        },
+        {
+            "test-file-name": [
+                "HitsStorageRecentEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
