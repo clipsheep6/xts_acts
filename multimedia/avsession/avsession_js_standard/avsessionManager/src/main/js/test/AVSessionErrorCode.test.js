@@ -131,6 +131,7 @@ export default function AVSessionErrorCode() {
                 console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
                 expect(false).assertTrue();
             });
+            session = nullptr;
             done();
         })
 
