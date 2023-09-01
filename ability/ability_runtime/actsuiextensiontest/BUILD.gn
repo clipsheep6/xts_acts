@@ -18,8 +18,10 @@ group("actsuiextensiontest") {
   if (is_standard_system) {
     deps = [
       "actsabilityusertest:StartAbilityByUIContentSession",
+      "uiextensionservice:UIExtensionService",
       "uiextensionprovider:UIExtensionProvider",
-      "uiextensiontest:UIExtensionTest",
+      "uiextensionprovider2:UIExtensionProvider2",
+      "uiextensiontest:UIExtensionTest"
     ]
   }
 }
