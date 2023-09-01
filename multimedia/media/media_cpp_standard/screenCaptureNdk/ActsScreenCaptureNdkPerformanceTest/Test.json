@@ -1,0 +1,33 @@
+{
+    "description": "Config for screen capture ndk test cases",
+    "driver": {
+        "module-name": "ActsScreenCaptureNdkPerformanceTest",
+        "native-test-timeout": "10000000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push" : [
+                "mount -o rw,remount /",
+                "rm /data/media/*",
+                "mkdir -p /data/media/",
+                "mkdir -p /data/local/tmp/",
+                "mkdir -p /data/local/tmp/screen_capture"
+            ],
+            "push": [
+                "ActsScreenCaptureNdkPerformanceTest->/data/local/tmp/ActsScreenCaptureNdkPerformanceTest"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 -R /data/local/tmp",
+                "chmod 777 -R /data/media",
+                "chmod 777 /data/media/*"
+            ]
+        }
+    ]
+}
