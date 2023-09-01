@@ -15,7 +15,8 @@
 
 import featureAbility from '@ohos.ability.featureAbility';
 import {
-    fileIO, FILE_CONTENT, prepareFile, describe, it, expect, randomString
+    fileIO, FILE_CONTENT, prepareFile, describe,
+    it, expect, randomString, fileUri,
 } from '../Common';
 
 export default function fileIOCopyDir() {
@@ -779,5 +780,303 @@ export default function fileIOCopyDir() {
     }
   });
 
+  /**
+   * @tc.number SUB_DF_FILEIO_COPYDIR_ASYNC_1800
+   * @tc.name fileIO_test_copyDir_async_018
+   * @tc.desc Test copyDir() interface.Promise.
+   * There is no target folder(path src) under uri dest.Mode is DIRMODE_FILE_COPY_REPLACE.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_copyDir_async_018', 3, async function (done) {
+    let dpath = await featureAbility.getContext().getFilesDir() + '/fileIO_test_copyDir_async_018';
+    let ddpath = dpath + '/srcDir_first';
+    let ffpath = ddpath + '/srcFile_first_01';
+    let ffpath2 = ddpath + '/srcFile_first_02';
+    let dddpath = ddpath + '/srcDir_second';
+    let fffpath = dddpath + '/srcFile_second_01';
+    let ddpath2 = dpath + '/destDir_first';
+    let ffpath3 = ddpath2 + '/destFile_first_01';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    fileIO.mkdirSync(ddpath2);
+    fileIO.mkdirSync(dddpath);
+    expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath3, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fffpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriTarget = fileUri.getUriFromPath(ddpath2);
+      await fileIO.copyDir(ddpath, uriTarget, DIRMODE_FILE_COPY_REPLACE);
+      let stat1 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_02');
+      expect(stat1.size == FILE_CONTENT.length).assertTrue();
+      let stat2 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_01');
+      expect(stat2.size == FILE_CONTENT.length).assertTrue();
+      expect(fileIO.accessSync(ddpath)).assertTrue();
+      expect(fileIO.accessSync(ddpath2 + '/srcDir_first/srcDir_second')).assertTrue();
+      let stat3 = fileIO.statSync(ddpath2 + '/srcDir_first/srcDir_second/srcFile_second_01');
+      expect(stat3.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+      done();
+    } catch (err) {
+      console.log('fileIO_test_copyDir_async_018 has failed for ' + err.message + ', code: ' + err.code);
+      expect(false).assertTrue();
+    }
   });
-  }
+
+  /**
+   * @tc.number SUB_DF_FILEIO_COPYDIR_ASYNC_1900
+   * @tc.name fileIO_test_copyDir_async_019
+   * @tc.desc Test copyDir() interface.Callback.
+   * There is no target folder(path src) under uri dest.Mode is DIRMODE_FILE_COPY_REPLACE.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_copyDir_async_019', 3, async function (done) {
+    let dpath = await featureAbility.getContext().getFilesDir() + '/fileIO_test_copyDir_async_019';
+    let ddpath = dpath + '/srcDir_first';
+    let ffpath = ddpath + '/srcFile_first_01';
+    let ffpath2 = ddpath + '/srcFile_first_02';
+    let dddpath = ddpath + '/srcDir_second';
+    let fffpath = dddpath + '/srcFile_second_01';
+    let ddpath2 = dpath + '/destDir_first';
+    let ffpath3 = ddpath2 + '/destFile_first_01';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    fileIO.mkdirSync(ddpath2);
+    fileIO.mkdirSync(dddpath);
+    expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath3, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fffpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriTarget = fileUri.getUriFromPath(ddpath2);
+      fileIO.copyDir(ddpath, uriTarget, DIRMODE_FILE_COPY_REPLACE, (err) => {
+        if (err) {
+          console.log('fileIO_test_copyDir_async_019 err package ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        let stat1 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_02');
+        expect(stat1.size == FILE_CONTENT.length).assertTrue();
+        let stat2 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_01');
+        expect(stat2.size == FILE_CONTENT.length).assertTrue();
+        expect(fileIO.accessSync(ddpath)).assertTrue();
+        expect(fileIO.accessSync(ddpath2 + '/srcDir_first/srcDir_second')).assertTrue();
+        let stat3 = fileIO.statSync(ddpath2 + '/srcDir_first/srcDir_second/srcFile_second_01');
+        expect(stat3.size == FILE_CONTENT.length).assertTrue();
+        fileIO.rmdirSync(dpath);
+        done();
+      });
+    } catch (err) {
+      console.log('fileIO_test_copyDir_async_019 has failed for ' + err.message + ', code: ' + err.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_COPYDIR_ASYNC_2000
+   * @tc.name fileIO_test_copyDir_async_020
+   * @tc.desc Test copyDir() interface.Promise.
+   * There is no target folder(uri src) under path dest.Mode is DIRMODE_FILE_COPY_REPLACE.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_copyDir_async_020', 3, async function (done) {
+    let dpath = await featureAbility.getContext().getFilesDir() + '/fileIO_test_copyDir_async_020';
+    let ddpath = dpath + '/srcDir_first';
+    let ffpath = ddpath + '/srcFile_first_01';
+    let ffpath2 = ddpath + '/srcFile_first_02';
+    let dddpath = ddpath + '/srcDir_second';
+    let fffpath = dddpath + '/srcFile_second_01';
+    let ddpath2 = dpath + '/destDir_first';
+    let ffpath3 = ddpath2 + '/destFile_first_01';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    fileIO.mkdirSync(ddpath2);
+    fileIO.mkdirSync(dddpath);
+    expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath3, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fffpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(ddpath);
+      await fileIO.copyDir(uri, ddpath2, DIRMODE_FILE_COPY_REPLACE);
+      let stat1 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_02');
+      expect(stat1.size == FILE_CONTENT.length).assertTrue();
+      let stat2 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_01');
+      expect(stat2.size == FILE_CONTENT.length).assertTrue();
+      expect(fileIO.accessSync(ddpath)).assertTrue();
+      expect(fileIO.accessSync(ddpath2 + '/srcDir_first/srcDir_second')).assertTrue();
+      let stat3 = fileIO.statSync(ddpath2 + '/srcDir_first/srcDir_second/srcFile_second_01');
+      expect(stat3.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+      done();
+    } catch (err) {
+      console.log('fileIO_test_copyDir_async_020 has failed for ' + err.message + ', code: ' + err.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_COPYDIR_ASYNC_2100
+   * @tc.name fileIO_test_copyDir_async_021
+   * @tc.desc Test copyDir() interface.Callback.
+   * There is no target folder(uri src) under path dest.Mode is DIRMODE_FILE_COPY_REPLACE.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_copyDir_async_021', 3, async function (done) {
+    let dpath = await featureAbility.getContext().getFilesDir() + '/fileIO_test_copyDir_async_021';
+    let ddpath = dpath + '/srcDir_first';
+    let ffpath = ddpath + '/srcFile_first_01';
+    let ffpath2 = ddpath + '/srcFile_first_02';
+    let dddpath = ddpath + '/srcDir_second';
+    let fffpath = dddpath + '/srcFile_second_01';
+    let ddpath2 = dpath + '/destDir_first';
+    let ffpath3 = ddpath2 + '/destFile_first_01';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    fileIO.mkdirSync(ddpath2);
+    fileIO.mkdirSync(dddpath);
+    expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath3, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fffpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(ddpath);
+      fileIO.copyDir(uri, ddpath2, DIRMODE_FILE_COPY_REPLACE, (err) => {
+        if (err) {
+          console.log('fileIO_test_copyDir_async_021 err package ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        let stat1 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_02');
+        expect(stat1.size == FILE_CONTENT.length).assertTrue();
+        let stat2 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_01');
+        expect(stat2.size == FILE_CONTENT.length).assertTrue();
+        expect(fileIO.accessSync(ddpath)).assertTrue();
+        expect(fileIO.accessSync(ddpath2 + '/srcDir_first/srcDir_second')).assertTrue();
+        let stat3 = fileIO.statSync(ddpath2 + '/srcDir_first/srcDir_second/srcFile_second_01');
+        expect(stat3.size == FILE_CONTENT.length).assertTrue();
+        fileIO.rmdirSync(dpath);
+        done();
+      });
+    } catch (err) {
+      console.log('fileIO_test_copyDir_async_021 has failed for ' + err.message + ', code: ' + err.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_COPYDIR_ASYNC_2200
+   * @tc.name fileIO_test_copyDir_async_022
+   * @tc.desc Test copyDir() interface.Promise.
+   * There is no target folder(uri src) under path dest.Mode is DIRMODE_FILE_COPY_REPLACE.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_copyDir_async_022', 3, async function (done) {
+    let dpath = await featureAbility.getContext().getFilesDir() + '/fileIO_test_copyDir_async_022';
+    let ddpath = dpath + '/srcDir_first';
+    let ffpath = ddpath + '/srcFile_first_01';
+    let ffpath2 = ddpath + '/srcFile_first_02';
+    let dddpath = ddpath + '/srcDir_second';
+    let fffpath = dddpath + '/srcFile_second_01';
+    let ddpath2 = dpath + '/destDir_first';
+    let ffpath3 = ddpath2 + '/destFile_first_01';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    fileIO.mkdirSync(ddpath2);
+    fileIO.mkdirSync(dddpath);
+    expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath3, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fffpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(ddpath);
+      let uriTarget = fileUri.getUriFromPath(ddpath2);
+      await fileIO.copyDir(uri, uriTarget, DIRMODE_FILE_COPY_REPLACE);
+      let stat1 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_02');
+      expect(stat1.size == FILE_CONTENT.length).assertTrue();
+      let stat2 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_01');
+      expect(stat2.size == FILE_CONTENT.length).assertTrue();
+      expect(fileIO.accessSync(ddpath)).assertTrue();
+      expect(fileIO.accessSync(ddpath2 + '/srcDir_first/srcDir_second')).assertTrue();
+      let stat3 = fileIO.statSync(ddpath2 + '/srcDir_first/srcDir_second/srcFile_second_01');
+      expect(stat3.size == FILE_CONTENT.length).assertTrue();
+      fileIO.rmdirSync(dpath);
+      done();
+    } catch (err) {
+      console.log('fileIO_test_copyDir_async_022 has failed for ' + err.message + ', code: ' + err.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_COPYDIR_ASYNC_2300
+   * @tc.name fileIO_test_copyDir_async_023
+   * @tc.desc Test copyDir() interface.Callback.
+   * There is no target folder(uri src) under uri dest.Mode is DIRMODE_FILE_COPY_REPLACE.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_copyDir_async_023', 3, async function (done) {
+    let dpath = await featureAbility.getContext().getFilesDir() + '/fileIO_test_copyDir_async_020';
+    let ddpath = dpath + '/srcDir_first';
+    let ffpath = ddpath + '/srcFile_first_01';
+    let ffpath2 = ddpath + '/srcFile_first_02';
+    let dddpath = ddpath + '/srcDir_second';
+    let fffpath = dddpath + '/srcFile_second_01';
+    let ddpath2 = dpath + '/destDir_first';
+    let ffpath3 = ddpath2 + '/destFile_first_01';
+    fileIO.mkdirSync(dpath);
+    fileIO.mkdirSync(ddpath);
+    fileIO.mkdirSync(ddpath2);
+    fileIO.mkdirSync(dddpath);
+    expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(ffpath3, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fffpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uri = fileUri.getUriFromPath(ddpath);
+      let uriTarget = fileUri.getUriFromPath(ddpath2);
+      fileIO.copyDir(uri, uriTarget, DIRMODE_FILE_COPY_REPLACE, (err) => {
+        if (err) {
+          console.log('fileIO_test_copyDir_async_023 err package ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        let stat1 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_02');
+        expect(stat1.size == FILE_CONTENT.length).assertTrue();
+        let stat2 = fileIO.statSync(ddpath2 + '/srcDir_first/srcFile_first_01');
+        expect(stat2.size == FILE_CONTENT.length).assertTrue();
+        expect(fileIO.accessSync(ddpath)).assertTrue();
+        expect(fileIO.accessSync(ddpath2 + '/srcDir_first/srcDir_second')).assertTrue();
+        let stat3 = fileIO.statSync(ddpath2 + '/srcDir_first/srcDir_second/srcFile_second_01');
+        expect(stat3.size == FILE_CONTENT.length).assertTrue();
+        fileIO.rmdirSync(dpath);
+        done();
+      });
+    } catch (err) {
+      console.log('fileIO_test_copyDir_async_023 has failed for ' + err.message + ', code: ' + err.code);
+      expect(false).assertTrue();
+    }
+  });
+});
+}

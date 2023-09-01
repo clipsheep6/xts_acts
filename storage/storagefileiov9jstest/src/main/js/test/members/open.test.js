@@ -14,7 +14,8 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, isIntNum, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  isIntNum, describe, it, expect, fileUri
 } from '../Common';
 
 export default function fileIOOpen() {
@@ -425,6 +426,34 @@ export default function fileIOOpen() {
       fileIO.unlinkSync(fpath);
       console.log('fileIO_test_open_sync_015 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900008 && e.message == 'Bad file descriptor').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_OPEN_SYNC_1600
+   * @tc.name fileIO_test_open_sync_016
+   * @tc.desc Test openSync() interfaces. mode=0o0.
+   * Open the file in read-only mode by uri, verifying the file is readable.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_open_sync_016', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_open_sync_016');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let file = fileIO.openSync(uri, fileIO.OpenMode.READ_ONLY);
+      expect(isIntNum(file.fd)).assertTrue();
+      let readlen = fileIO.readSync(file.fd, new ArrayBuffer(4096));
+      expect(readlen == FILE_CONTENT.length).assertTrue();
+      fileIO.closeSync(file);
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_open_sync_016 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
     }
   });
 
@@ -1394,6 +1423,73 @@ export default function fileIOOpen() {
       });
     } catch (e) {
       console.log('fileIO_test_open_async_032 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_OPEN_ASYNC_3300
+   * @tc.name fileIO_test_open_async_033
+   * @tc.desc Test open() interfaces. mode=0o0. Promise.
+   * Open the file in read-only mode, verifying the file is readable.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_open_async_033', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_open_async_033');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let file = await fileIO.open(uri, fileIO.OpenMode.READ_ONLY);
+      expect(isIntNum(file.fd)).assertTrue();
+      fileIO.read(file.fd, new ArrayBuffer(4096))
+        .then((readLen) => {
+          expect(readLen == FILE_CONTENT.length).assertTrue();
+          fileIO.closeSync(file);
+          fileIO.unlinkSync(fpath);
+          done();
+        });
+    } catch (e) {
+      console.log('fileIO_test_open_async_033 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_OPEN_ASYNC_3400
+   * @tc.name fileIO_test_open_async_001
+   * @tc.desc Test open() interfaces. mode=0o0. Callback.
+   * Open the file in read-only mode, verifying the file is readable.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_open_async_034', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_open_async_034');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(uri, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.open(uri, fileIO.OpenMode.READ_ONLY, (err, file) => {
+        if(err) {
+          console.log('fileIO_test_open_async_034 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(isIntNum(file.fd)).assertTrue();
+        fileIO.read(file.fd, new ArrayBuffer(4096))
+          .then((readLen) => {
+            expect(readLen == FILE_CONTENT.length).assertTrue();
+            fileIO.closeSync(file);
+            fileIO.unlinkSync(fpath);
+            done();
+          });
+      });
+    } catch (e) {
+      console.log('fileIO_test_open_async_034 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });

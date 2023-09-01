@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { fileIO, nextFileName, describe, it, expect } from '../Common';
+import { fileIO, nextFileName, describe, it, expect, fileUri } from '../Common';
 
 export default function fileIOMkdtemp() {
 describe('fileIO_fs_mkdtemp', function () {
@@ -22,7 +22,7 @@ describe('fileIO_fs_mkdtemp', function () {
    * @tc.number SUB_DF_FILEIO_MKDTEMP_SYNC_0000
    * @tc.name fileIO_test_mkdtemp_sync_000
    * @tc.desc Test mkdtempSync() interface.
-   * Create a temporary directory, verify the normal function.
+   * Create a temporary directory by path, verify the normal function.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -84,6 +84,31 @@ describe('fileIO_fs_mkdtemp', function () {
       expect(e.code == 13900020 && e.message == 'Invalid argument').assertTrue();
     }
   });
+
+    /**
+   * @tc.number SUB_DF_FILEIO_MKDTEMP_SYNC_0300
+   * @tc.name fileIO_test_mkdtemp_sync_003
+   * @tc.desc Test mkdtempSync() interface.
+   * Create a temporary directory by uri, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+    it('fileIO_test_mkdtemp_sync_003', 0, async function () {
+      let dpath = await nextFileName('fileIO_test_mkdtemp_sync_003');
+      dpath = dpath + 'XXXXXX';
+      let uri = fileUri.getUriFromPath(dpath);
+  
+      try {
+        let res = fileIO.mkdtempSync(uri);
+        expect(fileIO.accessSync(res)).assertTrue();
+        fileIO.rmdirSync(res);
+      } catch (e) {
+        console.log('fileIO_test_mkdtemp_sync_003 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
 
   /**
    * @tc.number SUB_DF_FILEIO_MKDTEMP_ASYNC_0000
@@ -211,5 +236,62 @@ describe('fileIO_fs_mkdtemp', function () {
       done();
     }
   });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MKDTEMP_ASYNC_0500
+   * @tc.name fileIO_test_mkdtemp_async_005
+   * @tc.desc Test mkdtemp() interface. Promise.
+   * Create a temporary directory, verify the normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+    it('fileIO_test_mkdtemp_async_005', 0, async function (done) {
+      let dpath = await nextFileName('fileIO_test_mkdtemp_async_005');
+      dpath = dpath + 'XXXXXX';
+      let uri = fileUri.getUriFromPath(dpath);
+  
+      try {
+        let res = await fileIO.mkdtemp(uri);
+        expect(fileIO.accessSync(res)).assertTrue();
+        fileIO.rmdirSync(res);
+        done();
+      } catch (e) {
+        console.log('fileIO_test_mkdtemp_async_005 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
+  
+    /**
+     * @tc.number SUB_DF_FILEIO_MKDTEMP_ASYNC_0600
+     * @tc.name fileIO_test_mkdtemp_async_006
+     * @tc.desc Test mkdtemp() interface. Callback.
+     * Create a temporary directory, verify the normal function.
+     * @tc.size MEDIUM
+     * @tc.type Functoin
+     * @tc.level Level 3
+     * @tc.require
+     */
+    it('fileIO_test_mkdtemp_async_006', 0, async function (done) {
+      let dpath = await nextFileName('fileIO_test_mkdtemp_async_006');
+      dpath = dpath + 'XXXXXX';
+      let uri = fileUri.getUriFromPath(dpath);
+  
+      try {
+        fileIO.mkdtemp(uri, (err, res) => {
+          if (err) {
+            console.log('fileIO_test_mkdtemp_async_006 error package: ' + JSON.stringify(err));
+            expect(false).assertTrue();
+          }
+          expect(fileIO.accessSync(res)).assertTrue();
+          fileIO.rmdirSync(res);
+          done();
+        });
+      } catch (e) {
+        console.log('fileIO_test_mkdtemp_async_006 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
 });
 }

@@ -15,7 +15,8 @@
 
 import featureAbility from '@ohos.ability.featureAbility';
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  describe, it, expect, fileUri,
 } from '../Common';
 
 export default function fileIOSymlink() {
@@ -25,7 +26,7 @@ describe('fileIO_fs_symlink', function () {
    * @tc.number SUB_DF_FILEIO_SYMLINK_SYNC_0000
    * @tc.name fileIO_test_symlink_sync_000
    * @tc.desc Test symlinkSync() interfaces.
-   * Create a symbolic link to verify normal function.
+   * Create a symbolic link to verify normal function by path.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -96,10 +97,37 @@ describe('fileIO_fs_symlink', function () {
   });
 
   /**
+   * @tc.number SUB_DF_FILEIO_SYMLINK_SYNC_0300
+   * @tc.name fileIO_test_symlink_sync_003
+   * @tc.desc Test symlinkSync() interfaces.
+   * Create a symbolic link to verify normal function by uri.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_symlink_sync_003', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_symlink_sync_003');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.symlinkSync(uri, fpath + 'link3');
+      expect(fileIO.accessSync(fpath + 'link3')).assertTrue();
+      fileIO.unlinkSync(fpath);
+      fileIO.unlinkSync(fpath + 'link3');
+    } catch (e) {
+      console.log('fileIO_test_symlink_sync_003 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
    * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0000
    * @tc.name fileIO_test_symlink_async_000
    * @tc.desc Test SymlinkAsync interfaces. Promise.then().catch()
-   * Create a symbolic link to verify normal function.
+   * Create a symbolic link to verify normal function by path.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 0
@@ -129,7 +157,7 @@ describe('fileIO_fs_symlink', function () {
    * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0100
    * @tc.name fileIO_test_symlink_async_001
    * @tc.desc Test SymlinkAsync interfaces. await Promise.
-   * Create a symbolic link to verify normal function.
+   * Create a symbolic link to verify normal function by path.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -155,7 +183,7 @@ describe('fileIO_fs_symlink', function () {
    * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0200
    * @tc.name fileIO_test_symlink_async_002
    * @tc.desc Test SymlinkAsync interfaces. Promise.
-   * Create a symbolic link to verify normal function.
+   * Create a symbolic link to verify normal function by path.
    * @tc.size MEDIUM
    * @tc.type Functoin
    * @tc.level Level 3
@@ -259,6 +287,124 @@ describe('fileIO_fs_symlink', function () {
       });
     } catch (e) {
       console.log('fileIO_test_symlink_async_005 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0600
+   * @tc.name fileIO_test_symlink_async_006
+   * @tc.desc Test SymlinkAsync interfaces. await Promise.
+   * Create a symbolic link to verify normal function by uri.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_symlink_async_006', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_symlink_async_006');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      await fileIO.symlink(uri, fpath + 'link6');
+      expect(fileIO.accessSync(fpath + 'link6')).assertTrue();
+      fileIO.unlinkSync(fpath);
+      fileIO.unlinkSync(fpath + 'link6');
+      done();
+    } catch (e) {
+      console.log('fileIO_test_symlink_async_006 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0700
+   * @tc.name fileIO_test_symlink_async_007
+   * @tc.desc Test SymlinkAsync interfaces. Promise.
+   * Create a symbolic link to verify normal function by uri.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_symlink_async_007', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_symlink_async_002');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.symlink(uri, fpath + 'link7', (err) => {
+        if (err) {
+          console.log('fileIO_test_symlink_async_007 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(fileIO.accessSync(fpath + 'link7')).assertTrue();
+        fileIO.unlinkSync(fpath);
+        fileIO.unlinkSync(fpath + 'link7');
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_symlink_async_007 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0800
+   * @tc.name fileIO_test_symlink_async_008
+   * @tc.desc Test SymlinkAsync interfaces. await Promise.
+   * Create a symbolic link to verify normal function by uri.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_symlink_async_008', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_symlink_async_008');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      await fileIO.symlink(uri, fpath + 'link8');
+      expect(fileIO.accessSync(fpath + 'link8')).assertTrue();
+      fileIO.unlinkSync(fpath);
+      fileIO.unlinkSync(fpath + 'link8');
+      done();
+    } catch (e) {
+      console.log('fileIO_test_symlink_async_008 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+  
+  /**
+   * @tc.number SUB_DF_FILEIO_SYMLINK_ASYNC_0900
+   * @tc.name fileIO_test_symlink_async_009
+   * @tc.desc Test SymlinkAsync interfaces. Promise.
+   * Create a symbolic link to verify normal function.
+   * @tc.size MEDIUM
+   * @tc.type Functoin
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_symlink_async_009', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_symlink_async_009');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.symlink(uri, fpath + 'link9', (err) => {
+        if (err) {
+          console.log('fileIO_test_symlink_async_009 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(fileIO.accessSync(fpath + 'link9')).assertTrue();
+        fileIO.unlinkSync(fpath);
+        fileIO.unlinkSync(fpath + 'link9');
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_symlink_async_009 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });

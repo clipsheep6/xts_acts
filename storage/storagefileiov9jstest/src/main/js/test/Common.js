@@ -16,6 +16,7 @@
 import fileIO from '@ohos.file.fs';
 import util from '@ohos.util';
 import featureAbility from '@ohos.ability.featureAbility';
+import fileUri from '@ohos.file.fileuri';
 
 export const FILE_CONTENT = 'hello world';
 
@@ -110,5 +111,6 @@ export {
   describe,
   it,
   expect,
-  util
+  util,
+  fileUri
 };

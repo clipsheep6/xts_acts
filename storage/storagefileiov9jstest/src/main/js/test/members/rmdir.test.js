@@ -14,7 +14,7 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect, fileUri,
 } from '../Common';
 
 export default function fileIORmdir() {
@@ -24,7 +24,7 @@ describe('fileIO_fs_rmdir', function () {
    * @tc.number SUB_STORAGE_FILEIO_RMDIR_SYNC_0000
    * @tc.name fileIO_test_rmdir_sync_000
    * @tc.desc Test rmdirSync() interface.
-   * Recursively delete all files and subfolders in a directory.
+   * Recursively delete all files and subfolders in a directory by path.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
@@ -140,6 +140,65 @@ describe('fileIO_fs_rmdir', function () {
     } catch (e) {
       console.log('fileIO_test_rmdir_sync_004 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_FILEIO_RMDIR_SYNC_0500
+   * @tc.name fileIO_test_rmdir_sync_005
+   * @tc.desc Test rmdirSync() interface.
+   * Recursively delete all files and subfolders in a directory by uri.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_rmdir_sync_005', 0, async function () {
+    let dpath1 = await nextFileName('fileIO_test_rmdir_sync_005') + 'd';
+    let fpath1 = dpath1 + '/rmdir_sync_005';
+    let fpath2 = dpath1 + '/rmdir_sync_005_1';
+    let dpath2 = dpath1 + '/rmdir_sync_005_1d';
+    let fpath3 = dpath2 + '/rmdir_sync_005';
+    fileIO.mkdirSync(dpath1);
+    fileIO.mkdirSync(dpath2);
+    expect(prepareFile(fpath1, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriDpath1 = fileUri.getUriFromPath(dpath1);
+      expect(fileIO.accessSync(dpath2)).assertTrue();
+      expect(fileIO.accessSync(fpath3)).assertTrue();
+      fileIO.rmdirSync(uriDpath1);
+      expect(!fileIO.accessSync(dpath1)).assertTrue();
+      expect(!fileIO.accessSync(dpath2)).assertTrue();
+      expect(!fileIO.accessSync(fpath3)).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_rmdir_sync_005 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+});
+  
+  /**
+   * @tc.number SUB_STORAGE_FILEIO_RMDIR_SYNC_0600
+   * @tc.name fileIO_test_rmdir_sync_006
+   * @tc.desc Test rmdirSync() interface.
+   * Invalid uri.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rmdir_sync_006', 0, async function () {
+    let dpath = await nextFileName('fileIO_test_rmdir_sync_006') + 'd';
+    let uri = fileUri.getUriFromPath(dpath);
+
+    try {
+      fileIO.rmdirSync(uri);
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_rmdir_sync_006 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
     }
   });
 
@@ -339,6 +398,137 @@ describe('fileIO_fs_rmdir', function () {
       expect(!fileIO.accessSync(dpath)).assertTrue();
     } catch (e) {
       console.log('fileIO_test_rmdir_async_006 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_FILEIO_RMDIR_ASYNC_0700
+   * @tc.name fileIO_test_rmdir_async_007
+   * @tc.desc Test rmdir() interface. Promise.
+   * Recursively delete all files and subfolders in a directory by uri.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rmdir_async_007', 0, async function (done) {
+    let dpath1 = await nextFileName('fileIO_test_rmdir_async_007') + 'd';
+    let fpath1 = dpath1 + '/rmdir_async_007';
+    let fpath2 = dpath1 + '/rmdir_async_007_1';
+    let dpath2 = dpath1 + '/rmdir_async_007_1d';
+    let fpath3 = dpath2 + '/rmdir_async_007_2';
+    fileIO.mkdirSync(dpath1);
+    fileIO.mkdirSync(dpath2);
+    expect(prepareFile(fpath1, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriDpath1 = fileUri.getUriFromPath(dpath1);
+      expect(fileIO.accessSync(dpath2)).assertTrue();
+      expect(fileIO.accessSync(fpath3)).assertTrue();
+      await fileIO.rmdir(uriDpath1);
+      expect(!fileIO.accessSync(dpath1)).assertTrue();
+      expect(!fileIO.accessSync(dpath2)).assertTrue();
+      expect(!fileIO.accessSync(fpath3)).assertTrue();
+      done();
+    } catch (e) {
+      console.log('fileIO_test_rmdir_async_007 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_FILEIO_RMDIR_ASYNC_0800
+   * @tc.name fileIO_test_rmdir_async_008
+   * @tc.desc Test rmdir() interface. Callback.
+   * Recursively delete all files and subfolders in a directory by uri.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rmdir_async_008', 0, async function (done) {
+    let dpath1 = await nextFileName('fileIO_test_rmdir_async_008') + 'd';
+    let fpath1 = dpath1 + '/rmdir_async_008';
+    let fpath2 = dpath1 + '/rmdir_async_008_1';
+    let dpath2 = dpath1 + '/rmdir_async_008_1d';
+    let fpath3 = dpath2 + '/rmdir_async_008_2';
+    fileIO.mkdirSync(dpath1);
+    fileIO.mkdirSync(dpath2);
+    expect(prepareFile(fpath1, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath2, FILE_CONTENT)).assertTrue();
+    expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
+
+    try {
+      let uriDpath1 = fileUri.getUriFromPath(dpath1);
+      expect(fileIO.accessSync(dpath2)).assertTrue();
+      expect(fileIO.accessSync(fpath3)).assertTrue();
+      fileIO.rmdir(uriDpath1, (err) => {
+        if(err) {
+          console.log('fileIO_test_rmdir_async_008 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(!fileIO.accessSync(dpath1)).assertTrue();
+        expect(!fileIO.accessSync(dpath2)).assertTrue();
+        expect(!fileIO.accessSync(fpath3)).assertTrue();
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_rmdir_async_008 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_FILEIO_RMDIR_ASYNC_0900
+   * @tc.name fileIO_test_rmdir_async_009
+   * @tc.desc Test rmdir() interface. Promise.
+   * Invalid uri.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rmdir_async_009', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_rmdir_async_009') + 'd';
+    let uri = fileUri.getUriFromPath(dpath);
+
+    try {
+      await fileIO.rmdir(uri);
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_rmdir_async_009 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900002 && e.message == 'No such file or directory').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_STORAGE_FILEIO_RMDIR_ASYNC_1000
+   * @tc.name fileIO_test_rmdir_async_010
+   * @tc.desc Test rmdir() interface. Callback.
+   * Invalid uri.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_rmdir_async_010', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_rmdir_async_010') + 'd';
+    let uri = fileUri.getUriFromPath(dpath)
+
+    try {
+      fileIO.rmdir(uri, (err) => {
+        if (err) {
+          console.log('fileIO_test_rmdir_async_010 error: {message: ' + err.message + ', code: ' + err.code + '}');
+          expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+          done();
+        }
+      });
+    } catch (e) {
+      console.log('fileIO_test_rmdir_async_010 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });

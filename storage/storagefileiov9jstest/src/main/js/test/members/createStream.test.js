@@ -14,7 +14,8 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect,
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  describe, it, expect, fileUri,
 } from '../Common';
 
 export default function fileIOCreateStream() {
@@ -433,6 +434,345 @@ describe('fileIO_fs_createStream', function () {
       fileIO.unlinkSync(fpath);
     } catch (e) {
       console.log('fileIO_test_create_stream_sync_015 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_1600
+   * @tc.name fileIO_test_create_stream_sync_016
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'r' mode by uri and read data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_016', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_016');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let sr = fileIO.createStreamSync(uri, 'r');
+
+    try {
+      expect(sr !== null).assertTrue();
+      expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+      sr.writeSync(FILE_CONTENT);
+      expect(false).assertTrue();
+    } catch (e) {
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_test_create_stream_sync_016 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900005 && e.message == 'I/O error').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_1700
+   * @tc.name fileIO_test_create_stream_sync_017
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'r+' mode by uri, reading and writing data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_017', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_017');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let sr = fileIO.createStreamSync(uri, 'r+');
+
+    try {
+      expect(sr !== null).assertTrue();
+      expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+      expect(sr.writeSync(FILE_CONTENT, { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_017 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_1800
+   * @tc.name fileIO_test_create_stream_sync_018
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'w' mode by uri, writing data to file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_018', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_018');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let sw = fileIO.createStreamSync(uri, 'w');
+
+    try {
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sw.readSync(new ArrayBuffer(4096));
+      expect(false).assertTrue();
+    } catch (e) {
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_test_create_stream_sync_018 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900005 && e.message == 'I/O error').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_1900
+   * @tc.name fileIO_test_create_stream_sync_019
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'w' mode by uri and empty contents.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_019', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_019');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sw = fileIO.createStreamSync(uri, 'w');
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sw.closeSync();
+
+      let sr = fileIO.createStreamSync(uri, 'r');
+      expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_019 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2000
+   * @tc.name fileIO_test_create_stream_sync_020
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'w' mode by uri, creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_020', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_020');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      let sw = fileIO.createStreamSync(uri, 'w');
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_020 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2100
+   * @tc.name fileIO_test_create_stream_sync_021
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'w+' mode by uri and empty contents.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_021', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_021');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sw = fileIO.createStreamSync(uri, 'w+');
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sw.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_021 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2200
+   * @tc.name fileIO_test_create_stream_sync_022
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'w+' mode by uri and creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_022', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_022');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      let sw = fileIO.createStreamSync(uri, 'w+');
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sw.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_022 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2300
+   * @tc.name fileIO_test_create_stream_sync_023
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'a' mode by uri and append contents.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_023', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_023');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sa = fileIO.createStreamSync(uri, 'a');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sa.closeSync();
+
+      let sr = fileIO.createStreamSync(uri, 'r');
+      expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length * 2).assertTrue();
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_023 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2400
+   * @tc.name fileIO_test_create_stream_sync_024
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'a' mode by uri and creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_024', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_024');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      let sa = fileIO.createStreamSync(uri, 'a');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_024 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2500
+   * @tc.name fileIO_test_create_stream_sync_025
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'a' mode by uri and write data to file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_025', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_025');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let sa = fileIO.createStreamSync(uri, 'a');
+
+    try {
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sa.readSync(new ArrayBuffer(4096));
+      expect(false).assertTrue();
+    } catch (e) {
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_test_create_stream_sync_025 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900005 && e.message == 'I/O error').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2600
+   * @tc.name fileIO_test_create_stream_sync_026
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'a+' mode by uri and append contents.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_026', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_026');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sa = fileIO.createStreamSync(uri, 'a+');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sa.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length * 2).assertTrue();
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_026 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_STREAM_CREATESTREAM_SYNC_2700
+   * @tc.name fileIO_test_create_stream_sync_027
+   * @tc.desc Test createStreamSync() interface.
+   * Create stream in 'a+' mode by uri and creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_sync_027', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_create_stream_sync_027');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      let sa = fileIO.createStreamSync(uri, 'a+');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sa.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+    } catch (e) {
+      console.log('fileIO_test_create_stream_sync_027 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });
@@ -1086,6 +1426,497 @@ describe('fileIO_fs_createStream', function () {
       });
     } catch (e) {
       console.log('fileIO_test_create_stream_async_021 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2200
+   * @tc.name fileIO_test_create_stream_async_022
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'r' mode by uri and read data from stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_022', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_022');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let sr = await fileIO.createStream(uri, 'r');
+
+    try {
+      expect(sr !== null).assertTrue();
+      expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+      sr.writeSync(FILE_CONTENT);
+      expect(false).assertTrue();
+    } catch (e) {
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_test_create_stream_async_022 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900005 && e.message == 'I/O error').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2300
+   * @tc.name fileIO_test_create_stream_async_023
+   * @tc.desc Test createStream() interfaces. Callback.
+   * Create stream in 'r' mode by uri and read data from stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_023', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_023');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.createStream(uri, 'r', (err, sr) => {
+        if (err) {
+          console.log('fileIO_test_create_stream_async_023 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(sr !== null).assertTrue();
+        expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+        sr.write(FILE_CONTENT, (err) => {
+          if (err) {
+            sr.closeSync();
+            fileIO.unlinkSync(fpath);
+            console.log(
+              'fileIO_test_create_stream_async_023 error: {message: ' + err.message + ', code: ' + err.code + '}'
+            );
+            expect(err.code == 13900005 && err.message == 'I/O error').assertTrue();
+            done();
+          } else {
+            expect(false).assertTrue();
+          }
+        });
+      });
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_023 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2400
+   * @tc.name fileIO_test_create_stream_async_024
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'r+' mode by uri, reading and writing data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 1
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_024', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_024');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sr = await fileIO.createStream(uri, 'r+');
+      expect(sr !== null).assertTrue();
+      expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+      expect(sr.writeSync(FILE_CONTENT, { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_024 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2500
+   * @tc.name fileIO_test_create_stream_async_025
+   * @tc.desc Test createStream() interfaces. Callback.
+   * Create stream in 'r+' mode by uri, reading and writing data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 1
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_025', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_025');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.createStream(uri, 'r+', (err, sr) => {
+        if (err) {
+          console.log('fileIO_test_create_stream_async_025 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(sr !== null).assertTrue();
+        expect(sr.readSync(new ArrayBuffer(4096)) == FILE_CONTENT.length).assertTrue();
+        expect(sr.writeSync(FILE_CONTENT, { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+        sr.closeSync();
+        fileIO.unlinkSync(fpath);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_025 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2600
+   * @tc.name fileIO_test_create_stream_async_026
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'w' mode by uri, can't to read data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_026', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_026');
+    let uri = fileUri.getUriFromPath(fpath);
+    let sw = await fileIO.createStream(uri, 'w');
+
+    try {
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sw.readSync(new ArrayBuffer(4096));
+      expect(false).assertTrue();
+    } catch (e) {
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_test_create_stream_async_026 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900005 && e.message == 'I/O error').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2700
+   * @tc.name fileIO_test_create_stream_async_027
+   * @tc.desc Test createStream() interfaces. Callback.
+   * Create stream in 'w' mode by uri, can't to read data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_027', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_027');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      fileIO.createStream(uri, 'w', (err, sw) => {
+        if (err) {
+          console.log('fileIO_test_create_stream_async_027 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(sw !== null).assertTrue();
+        expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+        sw.read(new ArrayBuffer(4096), (err) => {
+          if (err) {
+            sw.closeSync();
+            fileIO.unlinkSync(fpath);
+            console.log(
+              'fileIO_test_create_stream_async_027 error: {message: ' + err.message + ', code: ' + err.code + '}'
+            );
+            expect(err.code == 13900005 && err.message == 'I/O error').assertTrue();
+            done();
+          } else {
+            expect(false).assertTrue();
+          }
+        });
+      });
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_027 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2800
+   * @tc.name fileIO_test_create_stream_async_028
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'w+' mode by uri and write/read data from this stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_028', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_028');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sw = await fileIO.createStream(uri, 'w+');
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sw.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_028 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_2900
+   * @tc.name fileIO_test_create_stream_async_029
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'w+' mode by uri and creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_029', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_029');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      let sw = await fileIO.createStream(uri, 'w+');
+      expect(sw !== null).assertTrue();
+      expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sw.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sw.closeSync();
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_029 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3000
+   * @tc.name fileIO_test_create_stream_async_030
+   * @tc.desc Test createStream() interfaces. Callback.
+   * Create stream in 'w+' mode by uri and creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_030', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_030');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.createStream(uri, 'w+', (err, sw) => {
+        if (err) {
+          console.log('fileIO_test_create_stream_async_030 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(sw !== null).assertTrue();
+        expect(sw.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+        expect(sw.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+        sw.closeSync();
+        fileIO.unlinkSync(fpath);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_030 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3100
+   * @tc.name fileIO_test_create_stream_async_031
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'a' mode by uri and append content to file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_031', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_031');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sa = await fileIO.createStream(uri, 'a');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sa.closeSync();
+
+      let sr = fileIO.createStreamSync(fpath, 'r');
+      expect(sr.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length * 2).assertTrue();
+      sr.closeSync();
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_031 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3200
+   * @tc.name fileIO_test_create_stream_async_032
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'a' mode by uri and can't to read data from stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_032', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_032');
+    let uri = fileUri.getUriFromPath(fpath);
+    let sa = await fileIO.createStream(uri, 'a');
+
+    try {
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      sa.readSync(new ArrayBuffer(4096));
+      expect(false).assertTrue();
+    } catch (e) {
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+      console.log('fileIO_test_create_stream_async_032 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900005 && e.message == 'I/O error').assertTrue();
+      done();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3300
+   * @tc.name fileIO_test_create_stream_async_033
+   * @tc.desc Test createStream() interfaces. Callback.
+   * Create stream in 'a' mode by uri and can't to read data from stream.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_033', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_033');
+    let uri = fileUri.getUriFromPath(fpath);
+    
+    try {
+      fileIO.createStream(uri, 'a', (err, sa) => {
+        if (err) {
+          console.log('fileIO_test_create_stream_async_033 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(sa !== null).assertTrue();
+        expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+        sa.read(new ArrayBuffer(4096), (err) => {
+          if (err) {
+            sa.closeSync();
+            fileIO.unlinkSync(fpath);
+            console.log(
+              'fileIO_test_create_stream_async_033 error: {message: ' + err.message + ', code: ' + err.code + '}'
+              );
+            expect(err.code == 13900005 && err.message == 'I/O error').assertTrue();
+            done();
+          } else {
+            expect(false).assertTrue();
+          }
+        })
+      });
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_033 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3400
+   * @tc.name fileIO_test_create_stream_async_034
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'a+' mode by uri and append content to file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_034', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_034');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      let sa = await fileIO.createStream(uri, 'a+');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sa.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length * 2).assertTrue();
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_034 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3500
+   * @tc.name fileIO_test_create_stream_async_035
+   * @tc.desc Test createStream() interfaces. Promise.
+   * Create stream in 'a+' mode by uri and creat a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_035', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_035');
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      let sa = await fileIO.createStream(uri, 'a+');
+      expect(sa !== null).assertTrue();
+      expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+      expect(sa.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length).assertTrue();
+      sa.closeSync();
+      fileIO.unlinkSync(fpath);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_035 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_CREATE_CREATESTREAM_ASYNC_3600
+   * @tc.name fileIO_test_create_stream_async_036
+   * @tc.desc Test createStream() interfaces. Callback.
+   * Create stream in 'a+' mode by uri and append content to file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_create_stream_async_036', 0, async function (done) {
+    let fpath = await nextFileName('fileIO_test_create_stream_async_036');
+    let uri = fileUri.getUriFromPath(fpath);
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+
+    try {
+      fileIO.createStream(uri, 'a+', (err, sa) => {
+        if (err) {
+          console.log('fileIO_test_create_stream_async_036 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(sa !== null).assertTrue();
+        expect(sa.writeSync(FILE_CONTENT) == FILE_CONTENT.length).assertTrue();
+        expect(sa.readSync(new ArrayBuffer(4096), { offset: 0 }) == FILE_CONTENT.length * 2).assertTrue();
+        sa.closeSync();
+        fileIO.unlinkSync(fpath);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_create_stream_async_036 has failed for ' + e.message + ', code: ' + e.code);
       expect(false).assertTrue();
     }
   });

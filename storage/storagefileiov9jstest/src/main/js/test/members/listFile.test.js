@@ -14,7 +14,8 @@
  */
 
 import {
-  fileIO, FILE_CONTENT, prepareFile, nextFileName, describe, it, expect, randomString
+  fileIO, FILE_CONTENT, prepareFile, nextFileName,
+  describe, it, expect, randomString, fileUri,
 } from '../Common';
 
 export default function fileIOListfile() {
@@ -24,14 +25,15 @@ export default function fileIOListfile() {
    * @tc.number SUB_DF_FILEIO_LISTFILE_SYNC_0000
    * @tc.name fileIO_test_listfile_sync_000
    * @tc.desc Test listFileSync()interfaces.
-   * Only path, do not filter file.
+   * Only path or uri, do not filter file.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
-  */
+   */
   it('fileIO_test_listfile_sync_000', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_000');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_000.txt';
     let fpath2 = dpath + '/listfile_sync_000.doc';
     let fpath3 = dpath + '/listfile_sync_000.png';
@@ -41,8 +43,11 @@ export default function fileIOListfile() {
     expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
 
     try {
-      let dirents = fileIO.listFileSync(dpath);
-      expect(dirents.length == 3).assertTrue();
+      let dirents1 = fileIO.listFileSync(dpath);
+      expect(dirents1.length == 3).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri);
+      expect(dirents2.length == 3).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_000 has failed for ' + err.message + ', code:' + err.code);
@@ -62,6 +67,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_sync_001', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_001');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_001.txt';
     let fpath2 = dpath + '/listfile_sync_001.doc';
     let fpath3 = dpath + '/listfile_sync_001.png';
@@ -71,11 +77,17 @@ export default function fileIOListfile() {
     expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
 
     try {
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         listNum: 2,
         recursion: false
       });
-      expect(dirents.length == 2).assertTrue();
+      expect(dirents1.length == 2).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        listNum: 2,
+        recursion: false
+      });
+      expect(dirents2.length == 2).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_001 has failed for ' + err.message + ', code:' + err.code);
@@ -95,6 +107,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_sync_002', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_002');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_002.txt';
     let fpath2 = dpath + '/listfile_sync_002.doc';
     let fpath3 = dpath + '/listfile_sync_002.png';
@@ -105,7 +118,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         recursion: false,
         filter:{
           suffix: [".txt", ".doc", ".png"],
@@ -114,7 +127,18 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 3).assertTrue();
+      expect(dirents1.length == 3).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        recursion: false,
+        filter:{
+          suffix: [".txt", ".doc", ".png"],
+          displayName: ["*listfile*"],
+          fileSizeOver: 0,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 3).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_002 has failed for ' + err.message + ', code:' + err.code);
@@ -134,6 +158,7 @@ export default function fileIOListfile() {
   */
   it('fileIO_test_listfile_sync_003', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_003');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_003.txt';
     let fpath2 = dpath + '/listfile_sync_003.doc';
     let fpath3 = dpath + '/listfile_sync_003.png';
@@ -144,7 +169,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         listNum: 4,
         recursion: false,
         filter:{
@@ -153,7 +178,18 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 3).assertTrue();
+      expect(dirents1.length == 3).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        listNum: 4,
+        recursion: false,
+        filter:{
+          displayName: ["*listfile*"],
+          fileSizeOver: 5,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 3).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_003 has failed for ' + err.message + ', code:' + err.code);
@@ -173,6 +209,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_sync_004', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_004');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_004.txt';
     let fpath2 = dpath + '/listfile_sync_004.doc';
     let fpath3 = dpath + '/listfile_sync_004.png';
@@ -201,7 +238,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         listNum: 6,
         recursion: true,
         filter:{
@@ -211,7 +248,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 6).assertTrue();
+      expect(dirents1.length == 6).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        listNum: 6,
+        recursion: true,
+        filter:{
+          suffix: [".txt", ".doc"],
+          displayName: ["*listfile*", "*first*", "*akasd*", "*tdd*", "*makef*"],
+          fileSizeOver: 0,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 6).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_004 has failed for ' + err.message + ', code:' + err.code);
@@ -231,6 +280,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_sync_005', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_005') ;
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_005.txt';
     let fpath2 = dpath + '/listfile_sync_005.doc';
     let fpath3 = dpath + '/listfile_sync_005.png';
@@ -243,7 +293,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         listNum: 3,
         recursion: false,
         filter:{
@@ -253,7 +303,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 2).assertTrue();
+      expect(dirents1.length == 2).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        listNum: 3,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*", "*time*"],
+          fileSizeOver: 4,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 2).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_005 has failed for ' + err.message + ', code:' + err.code);
@@ -313,6 +375,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_sync_007', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_007');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_007.txt';
     let fpath2 = dpath + '/listfile_sync_007.doc';
     let fpath3 = dpath + '/listfile_sync_007.png';
@@ -323,7 +386,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         listNum: 3,
         recursion: false,
         filter:{
@@ -333,7 +396,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 0).assertTrue();
+      expect(dirents1.length == 0).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        listNum: 3,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*"],
+          fileSizeOver: 12,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 0).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_007 has failed for ' + err.message + ', code:' + err.code);
@@ -353,6 +428,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_sync_008', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_sync_008');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_sync_008.txt';
     let fpath2 = dpath + '/listfile_sync_008.doc';
     let fpath3 = dpath + '/listfile_sync_008.png';
@@ -365,7 +441,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = fileIO.listFileSync(dpath, {
+      let dirents1 = fileIO.listFileSync(dpath, {
         listNum: 0,
         recursion: false,
         filter:{
@@ -375,7 +451,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 2).assertTrue();
+      expect(dirents1.length == 2).assertTrue();
+
+      let dirents2 = fileIO.listFileSync(uri, {
+        listNum: 0,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*", "*trespass*"],
+          fileSizeOver: 5,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 2).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (err) {
       console.log('fileIO_test_listfile_sync_008 has failed for ' + err.message + ', code:' + err.code);
@@ -518,14 +606,15 @@ export default function fileIOListfile() {
    * @tc.number SUB_DF_FILEIO_LISTFILE_ASYNC_0000
    * @tc.name fileIO_test_listfile_async_000
    * @tc.desc Test listFile() interface. Callback.
-   * Only path, do not filter file.
+   * Only path or uri, do not filter file.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
    * @tc.require
    */
   it('fileIO_test_listfile_async_000', 0, async function () {
-    let dpath = await nextFileName('fileIO_test_listfile_async_000') ;
+    let dpath = await nextFileName('fileIO_test_listfile_async_000');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_000.txt';
     let fpath2 = dpath + '/listfile_async_000.doc';
     let fpath3 = dpath + '/listfile_async_000.png';
@@ -535,12 +624,20 @@ export default function fileIOListfile() {
     expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
 
     try {
-      fileIO.listFile(dpath, (err, dirents) => {
+      fileIO.listFile(dpath, (err, dirents1) => {
         if (err) {
-          console.log('fileIO_test_listfile_async_000 err package ' + JSON.stringify(err));
+          console.log('fileIO_test_listfile_async_000 err package1' + JSON.stringify(err));
           expect(false).assertTrue();
         }
-        expect(dirents.length == 3).assertTrue();
+        expect(dirents1.length == 3).assertTrue();
+      });
+
+      fileIO.listFile(uri, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_000 err package2' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 3).assertTrue();
         fileIO.rmdirSync(dpath);
       });
     } catch (e) {
@@ -561,6 +658,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_001', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_001');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_001.txt';
     let fpath2 = dpath + '/listfile_async_001_1.doc';
     let fpath3 = dpath + '/listfile_async_001.png';
@@ -570,8 +668,11 @@ export default function fileIOListfile() {
     expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
 
     try {
-      let dirents = await fileIO.listFile(dpath);
-      expect(dirents.length == 3).assertTrue();
+      let dirents1 = await fileIO.listFile(dpath);
+      expect(dirents1.length == 3).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri);
+      expect(dirents2.length == 3).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -592,6 +693,7 @@ export default function fileIOListfile() {
   */
   it('fileIO_test_listfile_async_002', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_002');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_002.txt';
     let fpath2 = dpath + '/listfile_async_002.doc';
     let fpath3 = dpath + '/listfile_async_002.png';
@@ -604,14 +706,25 @@ export default function fileIOListfile() {
       fileIO.listFile(dpath, {
           listNum: 2,
           recursion: false
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_002 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_002 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 2).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 2).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        listNum: 2,
+        recursion: false
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_002 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 2).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (e) {
       console.log('fileIO_test_listfile_async_002 has failed for ' + e.message + ', code:' + e.code);
       expect(false).assertTrue();
@@ -630,6 +743,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_003', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_003');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_003.txt';
     let fpath2 = dpath + '/listfile_async_003.doc';
     let fpath3 = dpath + '/listfile_async_003.png';
@@ -639,11 +753,17 @@ export default function fileIOListfile() {
     expect(prepareFile(fpath3, FILE_CONTENT)).assertTrue();
 
     try {
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         listNum: 2,
         recursion: false
       });
-      expect(dirents.length == 2).assertTrue();
+      expect(dirents1.length == 2).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        listNum: 2,
+        recursion: false
+      });
+      expect(dirents2.length == 2).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -664,6 +784,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_004', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_004');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_004.txt';
     let fpath2 = dpath + '/listfile_async_004.doc';
     let fpath3 = dpath + '/listfile_async_004.png';
@@ -682,14 +803,30 @@ export default function fileIOListfile() {
             fileSizeOver: 0,
             lastModifiedAfter: time - 3
           }
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_004 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_004 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 3).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 3).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        recursion: false,
+        filter:{
+          suffix: [".txt", ".doc", ".png"],
+          displayName: ["*listfile*"],
+          fileSizeOver: 0,
+          lastModifiedAfter: time - 3
+        }
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_004 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 3).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (e) {
       console.log('fileIO_test_listfile_async_004 has failed for ' + e.message + ', code:' + e.code);
       expect(false).assertTrue();
@@ -708,6 +845,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_005', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_005');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_005.txt';
     let fpath2 = dpath + '/listfile_async_005.doc';
     let fpath3 = dpath + '/listfile_async_005.png';
@@ -718,7 +856,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         recursion: false,
         filter:{
           suffix: [".txt", ".doc", ".png"],
@@ -727,7 +865,18 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 3).assertTrue();
+      expect(dirents1.length == 3).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        recursion: false,
+        filter:{
+          suffix: [".txt", ".doc", ".png"],
+          displayName: ["*listfile*"],
+          fileSizeOver: 0,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 3).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -748,6 +897,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_006', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_006');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_006.txt';
     let fpath2 = dpath + '/listfile_async_006.doc';
     let fpath3 = dpath + '/listfile_async_006.png';
@@ -766,14 +916,30 @@ export default function fileIOListfile() {
             fileSizeOver: 5,
             lastModifiedAfter: time - 3
           }
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_006 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_006 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 3).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 3).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        listNum: 4,
+        recursion: false,
+        filter:{
+          displayName: ["*listfile*"],
+          fileSizeOver: 5,
+          lastModifiedAfter: time - 3
+        }
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_006 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 3).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (e) {
       console.log('fileIO_test_listfile_async_006 has failed for ' + e.message + ', code:' + e.code);
       expect(false).assertTrue();
@@ -792,6 +958,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_007', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_007');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_007.txt';
     let fpath2 = dpath + '/listfile_async_007.doc';
     let fpath3 = dpath + '/listfile_async_007.png';
@@ -802,7 +969,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         listNum: 4,
         recursion: false,
         filter:{
@@ -811,7 +978,18 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 3).assertTrue();
+      expect(dirents1.length == 3).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        listNum: 4,
+        recursion: false,
+        filter:{
+          displayName: ["*listfile*"],
+          fileSizeOver: 5,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 3).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -832,6 +1010,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_008', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_008');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_008.txt';
     let fpath2 = dpath + '/listfile_async_008.doc';
     let fpath3 = dpath + '/listfile_async_008.png';
@@ -869,14 +1048,31 @@ export default function fileIOListfile() {
             fileSizeOver: 0,
             lastModifiedAfter: time - 3
           }
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_008 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_008 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 6).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 6).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        listNum: 6,
+        recursion: true,
+        filter:{
+          suffix: [".txt", ".doc"],
+          displayName: ["*listfile*", "*first*", "*akasd*", "*tdd*", "*makef*"],
+          fileSizeOver: 0,
+          lastModifiedAfter: time - 3
+        }
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_008 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 6).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (e) {
       console.log('fileIO_test_listfile_async_008 has failed for ' + e.message + ', code:' + e.code);
       expect(false).assertTrue();
@@ -895,6 +1091,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_009', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_009');
+    let uri = fileUri.getUriFromPath(dpath);
     let fpath1 = dpath + '/listfile_async_009.txt';
     let fpath2 = dpath + '/listfile_async_009.doc';
     let fpath3 = dpath + '/listfile_async_009.png';
@@ -923,7 +1120,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         listNum: 6,
         recursion: true,
         filter:{
@@ -933,7 +1130,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 6).assertTrue();
+      expect(dirents1.length == 6).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        listNum: 6,
+        recursion: true,
+        filter:{
+          suffix: [".txt", ".doc"],
+          displayName: ["*listfile*", "*first*", "*akasd*", "*tdd*", "*makef*"],
+          fileSizeOver: 0,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 6).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -954,6 +1163,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_010', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_010');
+    let uri = fileUri.getUriFromPath(dpath);
     let fapth1 = dpath + '/listfile_async_010.txt';
     let fapth2 = dpath + '/listfile_async_010.doc';
     let fapth3 = dpath + '/listfile_async_010.png';
@@ -975,14 +1185,31 @@ export default function fileIOListfile() {
             fileSizeOver: 4,
             lastModifiedAfter: time - 3
           }
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_010 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_010 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 2).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 2).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        listNum: 3,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*", "*time*"],
+          fileSizeOver: 4,
+          lastModifiedAfter: time - 3
+        }
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_010 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 2).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (e) {
       console.log('fileIO_test_listfile_async_010 has failed for ' + e.message + ', code:' + e.code);
       expect(false).assertTrue();
@@ -1001,6 +1228,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_011', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_011');
+    let uri = fileUri.getUriFromPath(dpath);
     let fapth1 = dpath + '/listfile_async_011.txt';
     let fapth2 = dpath + '/listfile_async_011.doc';
     let fapth3 = dpath + '/listfile_async_011.png';
@@ -1013,7 +1241,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         listNum: 3,
         recursion: false,
         filter:{
@@ -1023,7 +1251,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
         });
-      expect(dirents.length == 2).assertTrue();
+      expect(dirents1.length == 2).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        listNum: 3,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*", "*time*"],
+          fileSizeOver: 4,
+          lastModifiedAfter: time - 3
+        }
+        });
+      expect(dirents2.length == 2).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -1130,6 +1370,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_014', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_014');
+    let uri = fileUri.getUriFromPath(dpath);
     let fapth1 = dpath + '/listfile_async_014.txt';
     let fapth2 = dpath + '/listfile_async_014.doc';
     let fapth3 = dpath + '/listfile_async_014.png';
@@ -1149,14 +1390,31 @@ export default function fileIOListfile() {
             fileSizeOver: 12,
             lastModifiedAfter: time - 3
           }
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_014 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_014 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 0).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 0).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        listNum: 3,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*"],
+          fileSizeOver: 12,
+          lastModifiedAfter: time - 3
+        }
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_014 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 0).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (e) {
       console.log('fileIO_test_listfile_async_014 has failed for ' + e.message + ', code:' + e.code);
       expect(false).assertTrue();
@@ -1175,6 +1433,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_015', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_015');
+    let uri = fileUri.getUriFromPath(dpath);
     let fapth1 = dpath + '/listfile_async_015.txt';
     let fapth2 = dpath + '/listfile_async_015.doc';
     let fapth3 = dpath + '/listfile_async_015.png';
@@ -1185,7 +1444,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         listNum: 3,
         recursion: false,
         filter:{
@@ -1195,7 +1454,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 0).assertTrue();
+      expect(dirents1.length == 0).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        listNum: 3,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*"],
+          fileSizeOver: 12,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 0).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {
@@ -1216,6 +1487,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_016', 0, async function () {
     let dpath = await nextFileName('fileIO_test_listfile_async_016');
+    let uri = fileUri.getUriFromPath(dpath);
     let fapth1 = dpath + '/listfile_async_016.txt';
     let fapth2 = dpath + '/listfile_async_016.doc';
     let fapth3 = dpath + '/listfile_async_016.png';
@@ -1237,14 +1509,31 @@ export default function fileIOListfile() {
             fileSizeOver: 5,
             lastModifiedAfter: time - 3
           }
-        }, (err, dirents) => {
+        }, (err, dirents1) => {
           if (err) {
-            console.log('fileIO_test_listfile_async_016 err package ' + JSON.stringify(err));
+            console.log('fileIO_test_listfile_async_016 err package1 ' + JSON.stringify(err));
             expect(false).assertTrue();
           }
-          expect(dirents.length == 2).assertTrue();
-          fileIO.rmdirSync(dpath);
+          expect(dirents1.length == 2).assertTrue();
       });
+
+      fileIO.listFile(uri, {
+        listNum: 0,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*", "*trespass*"],
+          fileSizeOver: 5,
+          lastModifiedAfter: time - 3
+        }
+      }, (err, dirents2) => {
+        if (err) {
+          console.log('fileIO_test_listfile_async_016 err package2 ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(dirents2.length == 2).assertTrue();
+        fileIO.rmdirSync(dpath);
+    });
     } catch (err) {
       console.log('fileIO_test_listfile_async_016 has failed for ' + err.message + ', code:' + err.code);
       expect(false).assertTrue();
@@ -1263,6 +1552,7 @@ export default function fileIOListfile() {
    */
   it('fileIO_test_listfile_async_017', 0, async function (done) {
     let dpath = await nextFileName('fileIO_test_listfile_async_017');
+    let uri = fileUri.getUriFromPath(dpath);
     let fapth1 = dpath + '/listfile_async_017.txt';
     let fapth2 = dpath + '/listfile_async_017.doc';
     let fapth3 = dpath + '/listfile_async_017.png';
@@ -1275,7 +1565,7 @@ export default function fileIOListfile() {
 
     try {
       let time = new Date().getTime() / 1000;
-      let dirents = await fileIO.listFile(dpath, {
+      let dirents1 = await fileIO.listFile(dpath, {
         listNum: 0,
         recursion: false,
         filter:{
@@ -1285,7 +1575,19 @@ export default function fileIOListfile() {
           lastModifiedAfter: time - 3
         }
       });
-      expect(dirents.length == 2).assertTrue();
+      expect(dirents1.length == 2).assertTrue();
+
+      let dirents2 = await fileIO.listFile(uri, {
+        listNum: 0,
+        recursion: false,
+        filter:{
+          suffix: [".txt"],
+          displayName: ["*listfile*", "*trespass*"],
+          fileSizeOver: 5,
+          lastModifiedAfter: time - 3
+        }
+      });
+      expect(dirents2.length == 2).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (err) {

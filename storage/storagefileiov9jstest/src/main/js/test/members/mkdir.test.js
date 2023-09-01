@@ -14,7 +14,8 @@
  */
 
 import { 
-  fileIO, nextFileName, describe, it, expect, prepareFile, FILE_CONTENT,
+  fileIO, nextFileName, describe, it,
+  expect, prepareFile, FILE_CONTENT, fileUri,
 } from '../Common';
 
 export default function fileIOMkdir() {
@@ -24,7 +25,7 @@ describe('fileIO_fs_mkdir', function () {
    * @tc.number SUB_DF_FILEIO_MKDIR_SYNC_0000
    * @tc.name fileIO_test_mkdir_sync_000
    * @tc.desc Test mkdirSync() interfaces.
-   * Create a directory, verify normal function.
+   * Create a directory by path, verify normal function.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 0
@@ -42,6 +43,8 @@ describe('fileIO_fs_mkdir', function () {
       expect(false).assertTrue();
     }
   });
+
+  
 
   /**
    * @tc.number SUB_DF_FILEIO_MKDIR_SYNC_0100
@@ -108,11 +111,59 @@ describe('fileIO_fs_mkdir', function () {
     }
   });
 
+    /**
+   * @tc.number SUB_DF_FILEIO_MKDIR_SYNC_0400
+   * @tc.name fileIO_test_mkdir_sync_004
+   * @tc.desc Test mkdirSync() interfaces.
+   * Create a directory by uri, verify normal function.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 0
+   * @tc.require
+   */
+    it('fileIO_test_mkdir_sync_004', 0, async function () {
+      let dpath = await nextFileName('fileIO_test_mkdir_sync_004') + 'd';
+      let uri = fileUri.getUriFromPath(dpath);
+  
+      try {
+        fileIO.mkdirSync(uri);
+        expect(fileIO.accessSync(uri)).assertTrue();
+        fileIO.rmdirSync(uri);
+      } catch (e) {
+        console.log('fileIO_test_mkdir_sync_004 has failed for ' + e.message + ', code: ' + e.code);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+   * @tc.number SUB_DF_FILEIO_MKDIR_SYNC_0500
+   * @tc.name fileIO_test_mkdir_sync_005
+   * @tc.desc Test mkdirSync() interfaces.
+   * The uri has pointed to a file.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_mkdir_sync_005', 0, async function () {
+    let fpath = await nextFileName('fileIO_test_mkdir_sync_005');
+    expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
+    let uri = fileUri.getUriFromPath(fpath);
+
+    try {
+      fileIO.mkdirSync(uri);
+      expect(false).assertTrue();
+    } catch (e) {
+      console.log('fileIO_test_mkdir_sync_005 has failed for ' + e.message + ', code: ' + e.code);
+      expect(e.code == 13900015 && e.message == 'File exists').assertTrue();
+    }
+  });
+
   /**
    * @tc.number SUB_DF_FILEIO_MKDIR_ASYNC_0000
    * @tc.name fileIO_test_mkdir_async_000
    * @tc.desc Test mkdir() interfaces. Promise.
-   * Create a directory, verify normal function.
+   * Create a directory by path, verify normal function.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
@@ -136,7 +187,7 @@ describe('fileIO_fs_mkdir', function () {
    * @tc.number SUB_DF_FILEIO_MKDIR_ASYNC_0100
    * @tc.name fileIO_test_mkdir_async_001
    * @tc.desc Test mkdir() interfaces. Callback.
-   * Create a directory, verify normal function.
+   * Create a directory by path, verify normal function.
    * @tc.size MEDIUM
    * @tc.type Function
    * @tc.level Level 3
@@ -230,6 +281,61 @@ describe('fileIO_fs_mkdir', function () {
       fileIO.unlinkSync(fpath);
       console.log('fileIO_test_mkdir_async_004 has failed for ' + e.message + ', code: ' + e.code);
       expect(e.code == 13900015 && e.message == 'File exists').assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MKDIR_ASYNC_0500
+   * @tc.name fileIO_test_mkdir_async_005
+   * @tc.desc Test mkdir() interfaces. Promise.
+   * Create a directory by uri, verify normal function.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_mkdir_async_005', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_mkdir_async_005') + 'd';
+    let uri = fileUri.getUriFromPath(dpath);
+
+    try {
+      await fileIO.mkdir(uri);
+      expect(fileIO.accessSync(uri)).assertTrue();
+      fileIO.rmdirSync(uri);
+      done();
+    } catch (e) {
+      console.log('fileIO_test_mkdir_async_005 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
+    }
+  });
+
+  /**
+   * @tc.number SUB_DF_FILEIO_MKDIR_ASYNC_0600
+   * @tc.name fileIO_test_mkdir_async_006
+   * @tc.desc Test mkdir() interfaces. Callback.
+   * Create a directory, verify normal function.
+   * @tc.size MEDIUM
+   * @tc.type Function
+   * @tc.level Level 3
+   * @tc.require
+   */
+  it('fileIO_test_mkdir_async_006', 0, async function (done) {
+    let dpath = await nextFileName('fileIO_test_mkdir_async_006') + 'd';
+    let uri = fileUri.getUriFromPath(dpath);
+
+    try {
+      fileIO.mkdir(uri, (err) => {
+        if(err) {
+          console.log('fileIO_test_mkdir_async_006 error package: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+        }
+        expect(fileIO.accessSync(uri)).assertTrue();
+        fileIO.rmdirSync(uri);
+        done();
+      });
+    } catch (e) {
+      console.log('fileIO_test_mkdir_async_006 has failed for ' + e.message + ', code: ' + e.code);
+      expect(false).assertTrue();
     }
   });
 })
