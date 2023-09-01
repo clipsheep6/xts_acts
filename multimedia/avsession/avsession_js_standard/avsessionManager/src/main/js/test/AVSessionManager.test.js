@@ -89,6 +89,7 @@ export default function AVSessionManager() {
                 console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
                 expect(true).assertTrue();
             });
+            session = null;
             done();
         })
 
@@ -107,7 +108,7 @@ export default function AVSessionManager() {
                 console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
                 expect(true).assertTrue();
             });
-
+            session = null;
             done();
         })
 
@@ -145,6 +146,7 @@ export default function AVSessionManager() {
                     expect(true).assertTrue()
                 }
             }
+            session = null;
             done();
         })
 

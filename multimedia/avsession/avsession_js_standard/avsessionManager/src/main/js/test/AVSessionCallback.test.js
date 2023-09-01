@@ -64,18 +64,22 @@ export default function AVSessionCallback() {
 
         afterEach(async function (done) {
             console.info('TestLog: Destroy Session And Controller');
-            await session.destroy().then(() => {
-                console.info('TestLog: Session Destroy SUCCESS');
-            }).catch((err) => {
-                console.info(`TestLog: Session Destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
-            await controller.destroy().then(() => {
-                console.info('TestLog: Controller Destroy SUCCESS');
-            }).catch((err) => {
-                console.info(`TestLog: Controller Destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
+            if(session){
+                await session.destroy().then(() => {
+                    console.info('TestLog: Session Destroy SUCCESS');
+                }).catch((err) => {
+                    console.info(`TestLog: Session Destroy error: code: ${err.code}, message: ${err.message}`);
+                    expect(false).assertTrue();
+                });
+            }
+            if(controller){
+                await controller.destroy().then(() => {
+                    console.info('TestLog: Controller Destroy SUCCESS');
+                }).catch((err) => {
+                    console.info(`TestLog: Controller Destroy error: code: ${err.code}, message: ${err.message}`);
+                    expect(false).assertTrue();
+                });
+            }
             done();
         })
 
@@ -645,6 +649,7 @@ export default function AVSessionCallback() {
                     console.info('TestLog: Set metadata : successfully');
                     expect(false).assertTrue();
                 }
+                session = null;
                 done();
             })
             await sleep(500);
@@ -1050,6 +1055,7 @@ export default function AVSessionCallback() {
                     console.info('TestLog: Set playbackState successfully');
                     expect(false).assertTrue();
                 }
+                session = null;
                 done();
             })
             await sleep(500);
@@ -1237,6 +1243,7 @@ export default function AVSessionCallback() {
                 console.info('TestLog: Session destroyed failed');
                 expect(false).assertTrue();
             }
+            session = null;
             done();
         })
     })

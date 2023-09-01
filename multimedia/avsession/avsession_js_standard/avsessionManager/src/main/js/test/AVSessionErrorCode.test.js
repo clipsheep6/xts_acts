@@ -65,18 +65,22 @@ export default function AVSessionErrorCode() {
 
         afterEach(async function (done) {
             console.info('TestLog: Destroy Session And Controller');
-            await session.destroy().then(() => {
-                console.info('TestLog: Session destroy success');
-            }).catch((err) => {
-                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
-            await controller.destroy().then(() => {
-                console.info('TestLog: Controller destroy success');
-            }).catch((err) => {
-                console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
-                expect(false).assertTrue();
-            });
+            if(session){
+                await session.destroy().then(() => {
+                    console.info('TestLog: Session destroy success');
+                }).catch((err) => {
+                    console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
+                    expect(false).assertTrue();
+                });
+            }
+            if(controller){
+                await controller.destroy().then(() => {
+                    console.info('TestLog: Controller destroy success');
+                }).catch((err) => {
+                    console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
+                    expect(false).assertTrue();
+                });
+            }
             done();
         })
 
@@ -122,11 +126,12 @@ export default function AVSessionErrorCode() {
                 console.info('TestLog: Controller destroy successfully');
                 expect(true).assertTrue();
             }).catch((err) => {
-                expect(err.code == 6600103).assertTrue();
+                expect(err.code == 6600103).assertTrue( );
                 console.info(avSession.AVSessionErrorCode.ERR_CODE_CONTROLLER_NOT_EXIST);
                 console.info(`TestLog: Controller destroy error: code: ${err.code}, message: ${err.message}`);
                 expect(false).assertTrue();
             });
+            session = null;
             done();
         })
 
