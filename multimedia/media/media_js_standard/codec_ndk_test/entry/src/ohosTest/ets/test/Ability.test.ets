@@ -42,8 +42,6 @@ export default function abilityTest() {
       hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
       hilog.info(0x0000, 'testTag', '%{public}s', 'it begin1');
       console.info("add-------------c:--");
-      let c1 = entry_add.createAudioCapture()
-      console.info("add-------------c:--"+c1);
       // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
       expect(true).assertTrue();
     })
