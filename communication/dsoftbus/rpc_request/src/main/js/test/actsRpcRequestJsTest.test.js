@@ -42,6 +42,7 @@ export default function actsRpcRequestJsTest() {
         const CODE_ASYNC_ONREMOTEMESSAGE = 1;
         const CODE_ONREMOTE_ASYNC_ONREMOTEMESSAGE = 2;
         const CODE_ASHMEMDATA = 3;
+        const CODE_WRITE_RAWDATA = 4;
         
         function sleep(numberMillis)
         {
@@ -151,6 +152,12 @@ export default function actsRpcRequestJsTest() {
                         let tmp1 = data.readAshmem();
                         console.error("async onRemoteMessageRequest default case " + tmp1);
                         reply.writeAshmem(tmp1);
+                    }else if (code === 4){
+                        console.info("case 4 start");
+                        let size = data.readInt();
+                        let tmp = data.readRawData(size);
+                        let size1 = reply.writeInt(size);
+                        let result = reply.writeRawData(tmp, tmp.length);
                     }else {
                         console.error("async onRemoteMessageRequest default case " + code);
                         return super.onRemoteMessageRequest(code, data, reply, option);
@@ -635,7 +642,81 @@ export default function actsRpcRequestJsTest() {
                 data.reclaim();
             }
             console.info("--------------------end SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01600--------------------");
-        });         
+        });
+        
+        /*
+        * @tc.number  SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01700
+        * @tc.name    Test and transfer raw data intercept verification
+        * @tc.desc    [G-DISTRIBUTED-0212]禁止修改IPC中定义的数据结构和接口，并提供对应完整实现
+        * @tc.level   3
+        */
+        it("SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01700", 0, async function(done){
+            console.info("---------------------start SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01700---------------------------");
+            try{
+                var parcel = new rpc.MessageSequence();
+                var reply = new rpc.MessageSequence();
+                let option = new rpc.MessageOption();
+                let arr = [1, 2, 3, 4, 5];
+                parcel.writeInt(arr.length);
+                parcel.writeRawData(arr, 4);
+                expect(gIRemoteObject != undefined).assertTrue();
+                await gIRemoteObject.sendMessageRequest(CODE_WRITE_RAWDATA, parcel, reply, option).then((result) => {
+                    expect(result.errCode).assertEqual(0);
+                    let size = result.reply.readInt();
+                    expect(size).assertEqual(arr.length);
+                    let newReadResult = result.reply.readRawData(4);
+                    expect(arr[0]).assertEqual(newReadResult[0]);
+                    expect(arr[1]).assertEqual(newReadResult[1]);
+                    expect(arr[2]).assertEqual(newReadResult[2]);
+                    expect(arr[3]).assertEqual(newReadResult[3]);
+                });
+            } catch (error) {
+                console.info("SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01700 error is:" + error);
+                expect(error == null).assertTrue();
+            } finally{
+                parcel.reclaim();
+                reply.reclaim();
+                done();
+            }
+            console.info("---------------------end SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01700---------------------------");
+        });  
+        
+        /*
+         * @tc.number  SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01800
+         * @tc.name    Test and transfer raw data extension verification
+         * @tc.desc    [G-DISTRIBUTED-0212]禁止修改IPC中定义的数据结构和接口，并提供对应完整实现
+         * @tc.level   0
+         */
+        it("SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01800", 0, async function(done){
+            console.info("---------------------start SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01800---------------------------");
+            try{
+                var data = rpc.MessageSequence.create();
+                let rawdata = [1, 2, 3, 4, 5];
+                let option = new rpc.MessageOption();
+                var reply = rpc.MessageSequence.create();
+                data.writeInt(rawdata.length);
+                data.writeRawData(rawdata, rawdata.length);
+                expect(gIRemoteObject != undefined).assertTrue();
+                await gIRemoteObject.sendMessageRequest(CODE_WRITE_RAWDATA, data, reply, option).then((result) => {
+                    expect(result.errCode).assertEqual(0);
+                    let size = result.reply.readInt();
+                    let newReadResult = result.reply.readRawData(size+1);
+                    expect(rawdata[0]).assertEqual(newReadResult[0]);
+                    expect(rawdata[1]).assertEqual(newReadResult[1]);
+                    expect(rawdata[2]).assertEqual(newReadResult[2]);
+                    expect(rawdata[3]).assertEqual(newReadResult[3]);
+                    expect(rawdata[4]).assertEqual(newReadResult[4]);
+                });
+            } catch (error) {
+                console.info("SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01800 error is:" + error);
+                expect(error == null).assertTrue();
+            } finally{
+                data.reclaim();
+                reply.reclaim();
+                done();
+            }
+            console.info("---------------------end SUB_Softbus_IPC_Compatibility_onRemoteMessageRequest_01800---------------------------");
+        });        
 
         /*
         * @tc.number  SUB_Softbus_IPC_Compatibility_MessageSequence_errorcode_00100
