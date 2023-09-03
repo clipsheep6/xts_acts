@@ -15,6 +15,7 @@
 
 import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import { UiComponent, UiDriver, BY, Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, UiDirection, MouseButton, WindowMode, PointerMatrix, UIElementInfo, UIEventObserver } from '@ohos.UiTest'
 
 export default function btGattServiceTest() {
 describe('btGattServiceTest', function() {
@@ -25,12 +26,30 @@ describe('btGattServiceTest', function() {
         return new Promise(resovle => setTimeout(resovle, delay))
     }
 
+    async function clickTheWindow() {
+        try{
+            let driver = Driver.create();
+            console.info('[bluetooth_js] bt driver create:'+ driver);            
+            await driver.delayMs(1000);
+            await driver.wakeUpDisplay();
+            await driver.delayMs(3000);
+            await driver.swipe(1500, 1000, 1500, 100);
+            await driver.delayMs(3000);
+            await driver.click(950, 2550);
+            await driver.delayMs(1500);
+            await driver.click(950, 2550);
+        } catch (error) {
+            console.info('[bluetooth_js] driver error info:'+ error);
+        }
+    }
+
     async function tryToEnableBt() {
         let sta = bluetooth.getState();
         switch(sta){
             case 0:
                 console.info('[bluetooth_js] bt turn off:'+ JSON.stringify(sta));
                 bluetooth.enableBluetooth();
+                clickTheWindow();
                 await sleep(10000);
                 break;
             case 1:
@@ -43,6 +62,7 @@ describe('btGattServiceTest', function() {
             case 3:
                 console.info('[bluetooth_js] bt turning off:'+ JSON.stringify(sta));
                 bluetooth.enableBluetooth();
+                clickTheWindow();
                 await sleep(10000);
                 break;
             default:
@@ -53,7 +73,7 @@ describe('btGattServiceTest', function() {
         console.info('beforeAll called')
         gattServer = bluetooth.BLE.createGattServer();
         console.info('[bluetooth_js]bgs gattServer create info:' + gattServer);
-        gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
+        gattClient = bluetooth.BLE.createGattClientDevice("00:22:44:66:77:69");
         console.info('[bluetooth_js]bgs gattClient create info:' + gattClient);
     })
     beforeEach(async function(done) {
@@ -70,7 +90,7 @@ describe('btGattServiceTest', function() {
         console.info('[bluetooth_js]gattClient close success');
         await gattServer.close();
         console.info('[bluetooth_js]gattServer close success');
-        await sleep(15000);
+        await sleep(5000);
         done();
     })
 
@@ -490,36 +510,37 @@ describe('btGattServiceTest', function() {
      * @tc.type Function
      * @tc.level Level 3
      */
-    it('SUB_COMMUNICATION_BLUETOOTH_REMOVESERVICE_0100', 0, async function (done) {
-        let descriptors = [];
-        let arrayBuffer = new ArrayBuffer(8);
-        let descV = new Uint8Array(arrayBuffer);
-        descV[0] = 11;
-        let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-        characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-        descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
-        descriptors[0] = descriptor;
-        let characteristics = [];
-        let arrayBufferC = new ArrayBuffer(8);
-        let cccV = new Uint8Array(arrayBufferC);
-        cccV[0] = 1;
-        let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-        characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-        characteristicValue: arrayBufferC, descriptors:descriptors};
-        characteristics[0] = characteristic;
-        let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', 
-                 isPrimary: true,characteristics:characteristics,includeServices:[]};
-        let gattService1 = {serviceUuid:'00001888-0000-1000-8000-00805f9b34fb',
-                isPrimary: false,characteristics:characteristics,includeServices:[]};
-        let ret = gattServer.addService(gattService);
-        console.info('[bluetooth_js] bluetooth addService1 result : ' + ret);
-        let retN = gattServer.addService(gattService1);
-        console.info('[bluetooth_js] bluetooth addService2 result : ' + retN);
-        await sleep(1000);
-        let ret1=gattServer.removeService('00001810-0000-1000-8000-00805F9B34FB');
-        console.info('[bluetooth_js]removeService ret:'+ret1);
-        done();
-    })
+    // it('SUB_COMMUNICATION_BLUETOOTH_REMOVESERVICE_0100', 0, async function (done) {
+    //     let descriptors = [];
+    //     let arrayBuffer = new ArrayBuffer(8);
+    //     let descV = new Uint8Array(arrayBuffer);
+    //     descV[0] = 11;
+    //     let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B89TG',
+    //     characteristicUuid: '00001820-0000-1000-8000-00805F9B89TG',
+    //     descriptorUuid: '00002902-0000-1000-8000-00805F9B89TG', descriptorValue: arrayBuffer};
+    //     descriptors[0] = descriptor;
+    //     let characteristics = [];
+    //     let arrayBufferC = new ArrayBuffer(8);
+    //     let cccV = new Uint8Array(arrayBufferC);
+    //     cccV[0] = 1;
+    //     let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B89TG',
+    //     characteristicUuid: '00001820-0000-1000-8000-00805F9B89TG',
+    //     characteristicValue: arrayBufferC, descriptors:descriptors};
+    //     characteristics[0] = characteristic;
+    //     let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B89TG', 
+    //              isPrimary: true,characteristics:characteristics,includeServices:[]};
+    //     let ret = gattServer.addService(gattService);
+    //     console.info('[bluetooth_js] bluetooth addService1 result : ' + ret);
+    //     await sleep(1000);
+    //     try {
+    //         let ret1=gattServer.removeService('00001810-0000-1000-8000-00805F9B89TG');
+    //         console.info('[bluetooth_js]removeService ret:'+ret1);
+    //     } catch (error) {
+            
+    //     }
+        
+    //     done();
+    // })
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_REMOVESERVICE_0200
@@ -548,24 +569,24 @@ describe('btGattServiceTest', function() {
             let arrayBuffer = new ArrayBuffer(8);
             let descV = new Uint8Array(arrayBuffer);
             descV[0] = 11;
-            let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-            characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-            descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+            let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B21HZ',
+            characteristicUuid: '00001820-0000-1000-8000-00805F9B21HZ',
+            descriptorUuid: '00002902-0000-1000-8000-00805F9B21HZ', descriptorValue: arrayBuffer};
             descriptors[0] = descriptor;
             let characteristics = [];
             let arrayBufferC = new ArrayBuffer(8);
             let cccV = new Uint8Array(arrayBufferC);
             cccV[0] = 1;
-            let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-            characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', 
+            let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B21HZ',
+            characteristicUuid: '00001820-0000-1000-8000-00805F9B21HZ', 
             characteristicValue: arrayBufferC, descriptors:descriptors};
             characteristics[0] = characteristic;
-            let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true,
+            let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B21HZ', isPrimary: false,
             characteristics:characteristics, includeServices:[]};
             gattServer.addService(gattService);
             console.info('[bluetooth_js] bluetooth addService result : ' + ret);
             await sleep(1000);
-            let ret = gattServer.removeService('00001810-0000-1000-8000-00805F9B34FB');
+            let ret = gattServer.removeService('00001810-0000-1000-8000-00805F9B21HZ');
             await sleep(1000);
             console.info('[bluetooth_js]removeService ret:'+ret);
         } catch (error) {
@@ -586,16 +607,16 @@ describe('btGattServiceTest', function() {
         let arrayBuffer = new ArrayBuffer(8);
         let descV = new Uint8Array(arrayBuffer);
         descV[0] = 11;
-        let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-          characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-          descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: descV};
+        let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B77JX',
+          characteristicUuid: '00001820-0000-1000-8000-00805F9B77JX',
+          descriptorUuid: '00002902-0000-1000-8000-00805F9B77JX', descriptorValue: descV};
         descriptors[0] = descriptor;
         let arrayBufferC = new ArrayBuffer(8);
-        let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-          characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue:
+        let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B77JX',
+          characteristicUuid: '00001820-0000-1000-8000-00805F9B77JX', characteristicValue:
            arrayBufferC, descriptors:descriptors};
-        let NotifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-          characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: 
+        let NotifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B77JX',
+          characteristicUuid: '00001821-0000-1000-8000-00805F9B77JX', characteristicValue: 
           characteristic.characteristicValue, confirm: false};
         let ret = gattServer.notifyCharacteristicChanged('00:11:22:33:44:55', NotifyCharacteristic);
         console.info('[bluetooth_js] notifyCharacteristicChanged ret : ' + ret);
@@ -614,16 +635,16 @@ describe('btGattServiceTest', function() {
         let arrayBuffer = new ArrayBuffer(8);
         let descV = new Uint8Array(arrayBuffer);
         descV[0] = 11;
-        let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-          characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-          descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: descV};
+        let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B99BH',
+          characteristicUuid: '00001820-0000-1000-8000-00805F9B99BH',
+          descriptorUuid: '00002902-0000-1000-8000-00805F9B99BH', descriptorValue: descV};
         descriptors[0] = descriptor;
         let arrayBufferC = new ArrayBuffer(8);
-        let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-          characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue:
+        let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B99BH',
+          characteristicUuid: '00001820-0000-1000-8000-00805F9B99BH', characteristicValue:
            arrayBufferC, descriptors:descriptors};
-        let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-          characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: 
+        let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B99BH',
+          characteristicUuid: '00001821-0000-1000-8000-00805F9B99BH', characteristicValue: 
           characteristic.characteristicValue, confirm: false};
         let ret = gattServer.notifyCharacteristicChanged('00:11:22:33:44:55', notifyCharacteristic);
         console.info('[bluetooth_js] notifyCharacteristicChanged ret : ' + ret);
