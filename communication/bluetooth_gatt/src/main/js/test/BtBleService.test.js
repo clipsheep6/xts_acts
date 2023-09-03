@@ -16,6 +16,7 @@
 import bluetooth from '@ohos.bluetooth.ble';
 import btAccess from '@ohos.bluetooth.access';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import { UiComponent, UiDriver, BY, Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, UiDirection, MouseButton, WindowMode, PointerMatrix, UIElementInfo, UIEventObserver } from '@ohos.UiTest'
 
 export default function btBleServiceTest() {
 describe('btBleServiceTest', function() {
@@ -26,12 +27,30 @@ describe('btBleServiceTest', function() {
         return new Promise(resovle => setTimeout(resovle, delay))
     }
 
+    async function clickTheWindow() {
+        try{
+            let driver = Driver.create();
+            console.info('[bluetooth_js] bt driver create:'+ driver);            
+            await driver.delayMs(1000);
+            await driver.wakeUpDisplay();
+            await driver.delayMs(3000);
+            await driver.swipe(1500, 1000, 1500, 100);
+            await driver.delayMs(3000);
+            await driver.click(950, 2550);
+            await driver.delayMs(1500);
+            await driver.click(950, 2550);
+        } catch (error) {
+            console.info('[bluetooth_js] driver error info:'+ error);
+        }
+    }
+
     async function tryToEnableBt() {
         let sta = btAccess.getState();
         switch(sta){
             case 0:
                 console.info('[bluetooth_js] bt turn off:'+ JSON.stringify(sta));
                 btAccess.enableBluetooth();
+                clickTheWindow();
                 await sleep(10000);
                 break;
             case 1:
@@ -44,6 +63,7 @@ describe('btBleServiceTest', function() {
             case 3:
                 console.info('[bluetooth_js] bt turning off:'+ JSON.stringify(sta));
                 btAccess.enableBluetooth();
+                clickTheWindow();
                 await sleep(10000);
                 break;
             default:
