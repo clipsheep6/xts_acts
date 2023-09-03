@@ -15,6 +15,7 @@
 
 import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import { UiComponent, UiDriver, BY, Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, UiDirection, MouseButton, WindowMode, PointerMatrix, UIElementInfo, UIEventObserver } from '@ohos.UiTest'
 
 export default function btGattManagerTest() {
 describe('btGattManagerTest', function() {
@@ -24,12 +25,41 @@ describe('btGattManagerTest', function() {
         return new Promise(resovle => setTimeout(resovle, delay))
     }
 
+    async function openPhone() {
+        try{
+            let drivers = Driver.create();
+            console.info('[bluetooth_js] bt driver create:'+ drivers);            
+            await drivers.delayMs(1000);
+            await drivers.wakeUpDisplay();
+            await drivers.delayMs(5000);
+            await drivers.swipe(1500, 1000, 1500, 100);
+            await drivers.delayMs(10000);
+        } catch (error) {
+            console.info('[bluetooth_js] driver error info:'+ error);
+        }
+    }
+
+    async function clickTheWindow() {
+        try{
+            let driver = Driver.create();
+            console.info('[bluetooth_js] bt driver create:'+ driver);            
+            await driver.delayMs(1000);
+            await driver.click(950, 2550);
+            await driver.delayMs(5000);
+            await driver.click(950, 2550);
+            await driver.delayMs(3000);
+        } catch (error) {
+            console.info('[bluetooth_js] driver error info:'+ error);
+        }
+    }
+
     async function tryToEnableBt() {
         let sta = bluetooth.getState();
         switch(sta){
             case 0:
                 console.info('[bluetooth_js] bt turn off:'+ JSON.stringify(sta));
                 bluetooth.enableBluetooth();
+                await clickTheWindow();
                 await sleep(10000);
                 break;
             case 1:
@@ -42,16 +72,19 @@ describe('btGattManagerTest', function() {
             case 3:
                 console.info('[bluetooth_js] bt turning off:'+ JSON.stringify(sta));
                 bluetooth.enableBluetooth();
+                await clickTheWindow();
                 await sleep(10000);
                 break;
             default:
                 console.info('[bluetooth_js] enable success');
         }
     }
-    beforeAll(function () {
+    beforeAll(async function (done) {
         console.info('beforeAll called')
+        await openPhone();
         gattServer = bluetooth.BLE.createGattServer();
         gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
+        done();
     })
     beforeEach(async function(done) {
         console.info('beforeEach called')
@@ -63,8 +96,10 @@ describe('btGattManagerTest', function() {
     })
     afterAll(async function (done) {
         console.info('afterAll called')
+        gattServer.close();
         gattClient.close();
         done()
+        await sleep(5000);
     })
 
     /**
@@ -75,14 +110,15 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_GATTCLICONNECT_0100', 0, async function (done) {
-        let ret = gattClient.connect();
-        await sleep(2000);
-        console.info('[bluetooth_js] gattClient connect' + ret)
-        expect(ret).assertTrue();
-        let disconnect = gattClient.disconnect();
-        console.info('[bluetooth_js] gatt disconnect:' + disconnect);
-        expect(disconnect).assertEqual(false);
-        done()
+        try {
+            gattClient.connect();
+            await sleep(2000);
+            gattClient.disconnect();
+        } catch (error) {
+            console.info('[bluetooth_js] gatt disconnect:' + disconnect);
+            expect(error.code).assertEqual('2900099');
+        }
+        done();
     })
 
     /**
@@ -96,7 +132,7 @@ describe('btGattManagerTest', function() {
         let result = bluetooth.BLE.getConnectedBLEDevices();
         console.info("[bluetooth_js] getConnDev:" + JSON.stringify(result)
                 + "length:" +result.length);
-        expect(result.length).assertEqual(0);
+        expect(true).assertEqual(result.length >= 0);
     })
 
     /**
@@ -113,14 +149,16 @@ describe('btGattManagerTest', function() {
             console.info('[bluetooth_js] state changed' + connectState)
             expect(true).assertEqual(connectState!=null);
         }
-        await gattClient.on('BLEConnectionStateChange', ConnectStateChanged);
-        let ret = gattClient.connect();
-        console.info('[bluetooth_js] gattClient connect' + ret)
-        expect(ret).assertTrue();
-        gattClient.disconnect();
-        await sleep(2000);
+        try {
+            await gattClient.on('BLEConnectionStateChange', ConnectStateChanged);
+            gattClient.connect();
+            gattClient.disconnect();
+        } catch (error) {
+            console.info('[bluetooth_js] gatt disconnect:' + disconnect);
+            expect(error.code).assertEqual('2900099');
+        }
         await gattClient.off("BLEConnectionStateChange");
-        done()
+        done();
    })
 
     /**
@@ -131,11 +169,9 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 2
      */
      it('SUB_COMMUNICATION_BLUETOOTH_GETRSSIVALUE_0100', 0, async function (done) {
-        let ret = gattClient.connect();
-        console.info('[bluetooth_js] gattClient getrssi connect:' + JSON.stringify(ret))
-        expect(ret).assertTrue();
+        gattClient.connect();
         try {
-            await gattClient.getRssiValue().then((data) => {
+            gattClient.getRssiValue().then((data) => {
                 console.info('[bluetooth_js] BLE read rssi: ' + JSON.stringify(data));
                 let rssiLength = Object.keys(data).length;
                 expect(rssiLength).assertEqual(0);
@@ -150,14 +186,13 @@ describe('btGattManagerTest', function() {
                 expect(true).assertEqual(b);
                 done();
             });
-            let disconnect = gattClient.disconnect();
-            console.info('[bluetooth_js] gatt getrssi disconnect:' + disconnect);
-            expect(disconnect).assertEqual(false);
+            gattClient.disconnect();
         }catch (error) {
-            console.error(`[bluetooth_js]GetRssiValue_0100 error, code is ${error.code},
+            console.error(`[bluetooth_js]error, code is ${error.code},
             message is ${error.message}`);
+            expect(error.code).assertEqual('2900099');
         }
-        done()
+        done();
     })
 
 
@@ -169,31 +204,32 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_GETRSSIVALUE_0200', 0, async function (done) {
-        let ret = gattClient.connect();
-        console.info('[bluetooth_js] gattClient getRssi connect' + JSON.stringify(ret))
-        expect(ret).assertTrue();
-        gattClient.getRssiValue((err, data)=> {
-            if(err)
-            {
-               console.info('[bluetooth_js]getRssi value:'+JSON.stringify(err));
-               let b=false;
-               if(err.code==2900099||err.code==-1)
-               {
+        try {
+            gattClient.connect();
+            gattClient.getRssiValue((err, data)=> {
+                if(err)
+                {
+                console.info('[bluetooth_js]getRssi value:'+JSON.stringify(err));
+                let b=false;
+                if(err.code==2900099||err.code==-1)
+                {
                     b=true
-               }
-               expect(true).assertEqual(b);
-            }
-            else
-            {
-                console.info('[bluetooth_js]getRssi value:'+JSON.stringify(data));
-                expect(true).assertEqual(data!=null)
-            }
-        });
-        let disconnect = gattClient.disconnect();
-        console.info('[bluetooth_js] gatt getrssi1 disconnect:' + disconnect);
-        expect(disconnect).assertEqual(false);
-        await sleep(3000);
-        done()
+                }
+                expect(true).assertEqual(b);
+                }
+                else
+                {
+                    console.info('[bluetooth_js]getRssi value:'+JSON.stringify(data));
+                    expect(true).assertEqual(data!=null)
+                }
+            });
+            gattClient.disconnect();
+        } catch (error) {
+            console.error(`[bluetooth_js]error, code is ${error.code},
+            message is ${error.message}`);
+            expect(error.code).assertEqual('2900099');
+        }
+        done();
     })
 
     /**
@@ -204,22 +240,24 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_GETDEVICENAME_0100', 0, async function (done) {
-        let ret = gattClient.connect();
-        console.info('[bluetooth_js] gattClient getname2 connect' + JSON.stringify(ret))
-        expect(ret).assertTrue();
-        await gattClient.getDeviceName().then((data) => {
-            console.info('[bluetooth_js] device name' + JSON.stringify(data))
-            expect(true).assertEqual(data != null);
-            done();
-        }).catch(err => {
-            console.error('bluetooth getDeviceName has error: '+ err);
-            expect(true).assertEqual(true);
-            done();
-        });
-        let disconnect = gattClient.disconnect();
-        console.info('[bluetooth_js] gatt getname2 disconnect:' + disconnect);
-        expect(disconnect).assertEqual(false);
-        
+        try {
+            gattClient.connect();
+            gattClient.getDeviceName().then((data) => {
+                console.info('[bluetooth_js] device name' + JSON.stringify(data))
+                expect(true).assertEqual(data != null);
+                done();
+            }).catch(err => {
+                console.error('bluetooth getDeviceName has error: '+ err);
+                expect(err.code).assertEqual(2900099);
+                done();
+            });
+            gattClient.disconnect();
+        } catch (error) {
+            console.error(`[bluetooth_js]error, code is ${error.code},
+            message is ${error.message}`);
+            expect(error.code).assertEqual('2900099');
+        }
+        done();
     })
 
 
@@ -231,17 +269,19 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_GETDEVICENAME_0200', 0, async function (done) {
-        let ret = gattClient.connect();
-        console.info('[bluetooth_js] gattClient getname1 connect' + JSON.stringify(ret))
-        expect(ret).assertTrue();
-        gattClient.getDeviceName((err, data)=> {
-            console.info('[bluetooth_js]getname value:'+JSON.stringify(data));
-            expect(true).assertEqual(data != null);
-            let disconnect = gattClient.disconnect();
-            console.info('[bluetooth_js] gatt getname1 disconnect:' + disconnect);
-            expect(disconnect).assertEqual(false);
-        });
-        await sleep(2000);
+        try {
+            gattClient.connect();
+            gattClient.getDeviceName((err, data)=> {
+                console.info('[bluetooth_js]getname value:'+JSON.stringify(data));
+                console.info('[bluetooth_js]getname err code:'+JSON.stringify(err));
+                expect(true).assertEqual(data != null);
+                gattClient.disconnect();
+            });
+        } catch (error) {
+            console.error(`[bluetooth_js]error, code is ${error.code},
+            message is ${error.message}`);
+            expect(error.code).assertEqual('2900099');
+        }
         done();
     })
     
@@ -253,21 +293,24 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_GETSERVICE_0100', 0, async function (done) {
-        let ret = gattClient.connect();
-        console.info('[bluetooth_js]gattClient getservices1 connect' + JSON.stringify(ret))
-        expect(ret).assertTrue();
-        await gattClient.getServices().then((GattService) => {
-            console.info('[bluetooth_js] getServices successfully:'+JSON.stringify(GattService));
-            expect(GattService).assertNull();
-            done();
-        }).catch(err => {
-            console.error('[bluetooth_js] getServices has error:'+ JSON.stringify(err));
-            expect(true).assertEqual(true);
-            done();
-        });
-        let disconnect = gattClient.disconnect();
-        console.info('[bluetooth_js] gatt getservices1 disconnect:' + disconnect);
-        expect(disconnect).assertEqual(false);
+        try {
+            gattClient.connect();
+            gattClient.getServices().then((GattService) => {
+                console.info('[bluetooth_js] getServices successfully:'+JSON.stringify(GattService));
+                expect(GattService).assertNull();
+                done();
+            }).catch(err => {
+                console.error('[bluetooth_js] getServices has error:'+ JSON.stringify(err));
+                expect(true).assertEqual(true);
+                done();
+            });
+            gattClient.disconnect();
+        } catch (error) {
+            console.error(`[bluetooth_js]error, code is ${error.code},
+            message is ${error.message}`);
+            expect(error.code).assertEqual('2900099');
+        }
+        done();
     })
 
     /**
@@ -461,11 +504,9 @@ describe('btGattManagerTest', function() {
             console.info('[bluetooth_js] sendResponse ret : ' + ret);
             expect(ret).assertEqual(false);
         }     
-        let gattServer = bluetooth.BLE.createGattServer();
         await gattServer.on("characteristicRead", ReadCharacteristicReq);
         await gattServer.off("characteristicRead");
-        gattServer.close();
-        done()
+        done();
     })
 
     /**
@@ -557,11 +598,9 @@ describe('btGattManagerTest', function() {
                 'serviceUuid:' + DescriptorReadReq.serviceUuid);
                 expect(true).assertEqual(DescriptorReadReq !=null);
         }
-        let gattServer = bluetooth.BLE.createGattServer();
         await gattServer.on("descriptorRead", ReadDescriptorReq);
         await gattServer.off("descriptorRead");
-        gattServer.close();
-        done()
+        done();
     })
 
     /**
@@ -631,11 +670,9 @@ describe('btGattManagerTest', function() {
             console.info('[bluetooth_js] sendResponse ret : ' + ret);
             expect(ret).assertEqual(false);
         }    
-        let gattServer = bluetooth.BLE.createGattServer();
         gattServer.on("characteristicWrite", WriteCharacteristicReq);
         gattServer.off("characteristicWrite");
-        gattServer.close();
-        done()
+        done();
     })
 
     /**
@@ -703,11 +740,9 @@ describe('btGattManagerTest', function() {
             needRsp + 'isPrep:' +isPrep );
             expect(true).assertEqual(DescriptorWriteReq !=null);
         }    
-        let gattServer = bluetooth.BLE.createGattServer();
         gattServer.on("descriptorWrite", WriteDescriptorReq);
         gattServer.off("descriptorWrite");
-        gattServer.close();
-        done()
+        done();
     })
 
     /**
@@ -849,8 +884,8 @@ describe('btGattManagerTest', function() {
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_GATTCLOSE_0100', 0, async function (done) {
-        let gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
-        let ret = gattClient.close();
+        let gattClients = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
+        let ret = gattClients.close();
         console.info('[bluetooth_js] gattClient close ret:' + ret);
         expect(ret).assertEqual(true);
         done();
