@@ -13,17 +13,19 @@
  * limitations under the License.
  */
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import { KeyboardDelegate } from './KeyboardDelegate';
+import { KeyboardController } from './KeyboardController';
 
-export default class InputDemoService extends InputMethodExtensionAbility {
-  private keyboardDelegate: KeyboardDelegate;
+export default class InputKeyService extends InputMethodExtensionAbility {
+  private keyboardController: KeyboardController;
 
   onCreate(want) {
-    this.keyboardDelegate = new KeyboardDelegate(this.context);
-    this.keyboardDelegate.onCreate();  // 初始化窗口
+    console.log("====>onCreate onCreate onCreate onCreate onCreate onCreate InputKeyService************************");
+
+    this.keyboardController = new KeyboardController(this.context);
+    this.keyboardController.onCreate();
   }
 
   onDestroy() {
-    console.log("onDestroy inputStageService**");
+    console.log("onDestroy InputKeyService**");
   }
 }
