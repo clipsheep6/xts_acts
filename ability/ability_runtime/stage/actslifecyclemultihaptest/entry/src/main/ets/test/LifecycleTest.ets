@@ -15,16 +15,16 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 export default function abilityTest() {
 
-  describe('AbilityTest', function () {
+  describe('AbilityTest', () => {
 
     console.info("-----------------LifecycleTest is start----------------")
-    beforeEach(async function (done) {
+    beforeEach(async (done) => {
       console.info('LifeCycleTest before each called');
       await sleep(1000);
       done()
     });
 
-    afterEach(async function (done) {
+    afterEach(async (done) => {
       console.info('LifeCycleTest after each called');
       if ("Multihap_LifecycleTest_007" != TAG || "Multihap_LifecycleTest_011" != TAG
         || "Multihap_LifecycleTest_006" != TAG) {
@@ -58,7 +58,7 @@ export default function abilityTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Multihap_LifecycleTest_001", 0, async function (done) {
+    it("Multihap_LifecycleTest_001", 0, async (done) => {
       console.info("---------------Multihap_LifecycleTest_001 is start---------------")
       TAG = "Multihap_LifecycleTest_001";
 
@@ -509,12 +509,12 @@ export default function abilityTest() {
                 callBackId2 = globalThis.mainAbility6CallBackId;
                 console.log(TAG + "callBackId2 is :" + callBackId2);
                 expect(callBackId2).assertEqual(callBackId1 + 1);
-                expect(listTemp.indexOf("Hap2MainAbility9 onAbilityCreate") !== -1).assertTrue();
-                expect(listTemp.indexOf("Hap2MainAbility9 onWindowStageCreate") !== -1).assertTrue();
-                expect(listTemp.indexOf("Hap2MainAbility9 onAbilityForeground") !== -1).assertTrue();
-                expect(listTemp.indexOf("Hap2MainAbility9 onAbilityBackground") !== -1).assertTrue();
-                expect(listTemp.indexOf("Hap2MainAbility9 onWindowStageDestroy") !== -1).assertTrue();
-                expect(listTemp.indexOf("Hap2MainAbility9 onAbilityDestroy") !== -1).assertTrue();
+                expect(listTemp1.indexOf("Hap2MainAbility9 onAbilityCreate") !== -1).assertTrue();
+                expect(listTemp1.indexOf("Hap2MainAbility9 onWindowStageCreate") !== -1).assertTrue();
+                expect(listTemp1.indexOf("Hap2MainAbility9 onAbilityForeground") !== -1).assertTrue();
+                expect(listTemp1.indexOf("Hap2MainAbility9 onAbilityBackground") !== -1).assertTrue();
+                expect(listTemp1.indexOf("Hap2MainAbility9 onWindowStageDestroy") !== -1).assertTrue();
+                expect(listTemp1.indexOf("Hap2MainAbility9 onAbilityDestroy") !== -1).assertTrue();
 
                 globalThis.ApplicationContext6
                   .unregisterAbilityLifecycleCallback(globalThis.mainAbility6CallBackId, (error, data) => {
