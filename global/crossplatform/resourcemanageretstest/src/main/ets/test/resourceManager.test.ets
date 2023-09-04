@@ -95,17 +95,17 @@ describe('resourceManagerTest', function () {
     })
 
     /* *
-    * @tc.number  TEST_DEVICE_TYPE_PC_001
-    * @tc.name    test DEVICE_TYPE_PC
-    * @tc.desc    get the value of DEVICE_TYPE_PC
+    * @tc.number  TEST_DEVICE_TYPE_PAD_001
+    * @tc.name    test DEVICE_TYPE_PAD
+    * @tc.desc    get the value of DEVICE_TYPE_PAD
     * @tc.size:    MediumTest
     * @tc.type     method
     * @tc.level    level 0
     */
-    it('testDeviceTypePC001', 0, async function (done) {
-        console.log('testDeviceTypePC001 0');
-        expect(resourceManager.DeviceType.DEVICE_TYPE_PC).assertEqual(3);
-        console.log('testDeviceTypePC001 1');
+    it('testDeviceTypePAD001', 0, async function (done) {
+        console.log('testDeviceTypePAD001 0');
+        expect(resourceManager.DeviceType.DEVICE_TYPE_PAD).assertEqual(3);
+        console.log('testDeviceTypePAD001 1');
         done();
     })
 
@@ -777,8 +777,8 @@ describe('resourceManagerTest', function () {
                     console.log('testGetDeviceCapabilityCallback001 DEVICE_TYPE_TABLET');
                 }else if(dc.deviceType == resourceManager.DeviceType.DEVICE_TYPE_CAR){
                     console.log('testGetDeviceCapabilityCallback001 DEVICE_TYPE_CAR');
-                }else if(dc.deviceType == resourceManager.DeviceType.DEVICE_TYPE_PC){
-                    console.log('testGetDeviceCapabilityCallback001 DEVICE_TYPE_PC');
+                }else if(dc.deviceType == resourceManager.DeviceType.DEVICE_TYPE_PAD){
+                    console.log('testGetDeviceCapabilityCallback001 DEVICE_TYPE_PAD');
                 }else if(dc.deviceType == resourceManager.DeviceType.DEVICE_TYPE_TV){
                     console.log('testGetDeviceCapabilityCallback001 DEVICE_TYPE_TV');
                 }else if(dc.deviceType == resourceManager.DeviceType.DEVICE_TYPE_WEARABLE){
