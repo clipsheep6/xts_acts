@@ -198,10 +198,12 @@ export default function ImageReceiver() {
             globalreceiver = receiver;
             var error = receiver.checkDeviceTest;
             if (DEVICE_CODE == error) {
+                console.log(`${testNum} DEVICE_CODE err msg: ` + error);
                 expect(error == DEVICE_CODE).assertTrue();
                 done();
                 return;
             }
+            console.log(`${testNum} DEVICE_CODE success msg: `);
             receiver.on("imageArrival", () => {
                 if (once) {
                     return;
@@ -214,6 +216,7 @@ export default function ImageReceiver() {
                         return;
                     } else {
                         globalImg = img;
+                        console.log(`${testNum} DEVICE_CODE readLatestImage msg: `);
                         expect(img.size.width == WIDTH).assertTrue();
                         expect(img.size.height == HEIGHT).assertTrue();
                         checkFormat(img.format);
