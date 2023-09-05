@@ -25,6 +25,7 @@ import fileIO from '@ohos.file.fs';
 export default function ImageSource() {
     describe("ImageSource", function () {
         let context;
+        let filePath;
         let fileFd = null;
         let globalpixelmap;
         const { UNKNOWN, RGB_565, RGBA_8888 } = image.PixelMapFormat;
