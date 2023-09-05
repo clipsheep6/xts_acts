@@ -76,7 +76,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb044", 0, async function (done) {
-            await getFileFd("test.png", testPng);
+            await getFileFd("test.jpg", testJpg);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(
