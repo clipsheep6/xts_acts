@@ -17,6 +17,7 @@ import cameraObj from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { BusinessError } from '@ohos.base';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 // 创建视频录制的参数
@@ -2251,6 +2252,8 @@ export default function CameraErrorCodeUsecaseTest() {
                     expect(err.code == cameraObj.CameraErrorCode.SESSION_NOT_RUNNING).assertTrue();
                 }
             })
+            // Need to wait for the capture method to finish.
+            sleep(1000);
             done();
         })
 
