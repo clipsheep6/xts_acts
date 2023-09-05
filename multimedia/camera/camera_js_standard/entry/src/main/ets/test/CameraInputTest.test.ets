@@ -29,6 +29,7 @@ let mCameraNum;
 
 let mCameraInput;
 let mPreviewOutput;
+let times = 0;
 
 export default function CameraInputTest() {
     function sleep(ms) {
@@ -299,6 +300,19 @@ export default function CameraInputTest() {
         return true;
     }
 
+    function cameraInputErrCallback (err, data) {
+        console.info(TAG + "cameraInputErrCallback is called");
+        expect().assertFail();
+    }
+
+    function cameraInputErrCallbackOnce(err, data) {
+        times += 1;
+        console.info(TAG + "cameraInputErrCallbackOnce is called, times: " + times);
+        if (times > 1) {
+            expect().assertFail();
+        }
+    }
+
     describe('CameraInputTest', function () {
         console.info(TAG + '----------CameraInputTest--------------');
         beforeAll(async function () {
@@ -316,6 +330,7 @@ export default function CameraInputTest() {
         });
         afterEach(async function () {
             console.info('afterEach case');
+            times = 0;
         });
         afterAll(function () {
             releaseCameraSessionInstance();
@@ -379,7 +394,142 @@ export default function CameraInputTest() {
                 done(); 
             }
         });
-        
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ERROR_0100
+            * @tc.name      : camera status callback off CameraInput async api for error
+            * @tc.desc      : camera status callback off CameraInput async api for error
+            * @tc.size      : MEDIUM
+            * @tc.type      : Function
+            * @tc.level     : Level 0
+            */
+        it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ERROR_0100', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ERROR_0100--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ERROR_0100 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            } else {
+                for (let i = 0; i < mCameraNum; i++) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100 start for camera[" + i + "]");
+                    if (isEmpty(mCameraDevicesArray)) {
+                        console.info(TAG + "Entering createInputs FAILED with NoCamera");
+                        expect().assertFail();
+                        done();
+                    }
+                    let cameraInput = mCameraManager.createCameraInput(mCameraDevicesArray[i]);
+                    if (isEmpty(cameraInput)) {
+                        console.info(TAG + "createCameraInput FAILED");
+                        expect().assertFail();
+                        done();
+                    }
+                    cameraInput.on('error', mCameraDevicesArray[i], cameraInputErrCallback);
+                    cameraInput.off('error', mCameraDevicesArray[i], cameraInputErrCallback);
+                    try {
+                        await cameraInput.open();
+                        await cameraInput.open();
+                        await cameraInput.close();
+                    } catch (err) {
+                        console.info(TAG + "err: " + JSON.stringify(err));
+                    }
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100 end for camera[" + i + "]");
+                }
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100 ends here");
+                done();
+            }
+        });
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100
+            * @tc.name      : camera status callback off CameraInput async api for error
+            * @tc.desc      : camera status callback off CameraInput async api for error
+            * @tc.size      : MEDIUM
+            * @tc.type      : Function
+            * @tc.level     : Level 0
+            */
+        it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            } else {
+                for (let i = 0; i < mCameraNum; i++) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100 start for camera[" + i + "]");
+                    if (isEmpty(mCameraDevicesArray)) {
+                        console.info(TAG + "Entering createInputs FAILED with NoCamera");
+                        expect().assertFail();
+                        done();
+                    }
+                    let cameraInput = mCameraManager.createCameraInput(mCameraDevicesArray[i]);
+
+                    if (isEmpty(cameraInput)) {
+                        console.info(TAG + "createCameraInput FAILED");
+                        expect().assertFail();
+                        done();
+                    }
+                    cameraInput.on('error', mCameraDevicesArray[i], cameraInputErrCallback);
+                    cameraInput.off('error', mCameraDevicesArray[i]);
+                    try {
+                        await cameraInput.open();
+                        await cameraInput.open();
+                        await cameraInput.close();
+                    } catch (err) {
+                        console.info(TAG + "err: " + JSON.stringify(err));
+                    }
+
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100 end for camera[" + i + "]");
+                }
+
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OFF_ALL_ERROR_0100 ends here");
+                done();
+            }
+        });
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100
+            * @tc.name      : Invoke error callback at a time.
+            * @tc.desc      : Invoke error callback at a time.
+            * @tc.size      : MEDIUM
+            * @tc.type      : Function
+            * @tc.level     : Level 0
+            */
+        it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            } else {
+                for (let i = 0; i < mCameraNum; i++) {
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100 start for camera[" + i + "]");
+                    if (isEmpty(mCameraDevicesArray)) {
+                        console.info(TAG + "Entering createInputs FAILED with NoCamera");
+                        expect().assertFail();
+                        done();
+                    }
+                    let cameraInput = mCameraManager.createCameraInput(mCameraDevicesArray[i]);
+
+                    if (isEmpty(cameraInput)) {
+                        console.info(TAG + "createCameraInput FAILED");
+                        expect().assertFail();
+                        done();
+                    }
+                    cameraInput.once('error', mCameraDevicesArray[i], cameraInputErrCallbackOnce);
+                    await cameraInput.open();
+                    await cameraInput.open();
+                    await cameraInput.open();
+                    await cameraInput.close();
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100 end for camera[" + i + "]");
+                }
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ONCE_ERROR_0100 ends here");
+                done();
+            }
+        });
+
         /**
          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100
          * @tc.name      : open/close Camera with cameraInput callback api

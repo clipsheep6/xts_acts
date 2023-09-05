@@ -75,7 +75,7 @@ let fdPath;
 let fileAsset;
 let fdNumber;
 let receiver;
-
+let times = 0;
 let mMetadataObjectTypeArray;
 let mMetadataObjectArray;
 
@@ -194,6 +194,163 @@ export default function cameraJSUnitOutput() {
     return outputCapabilityPromise;
   }
 
+  function metadataObjectsAvailableCallback (err, data) {
+    console.info(TAG + "metadataObjectsAvailableCallback is called");
+    expect().assertFail();
+  }
+
+  function metadataObjectsAvailableCallbackOnce(err, data) {
+      times += 1;
+      console.info(TAG + "metadataObjectsAvailableCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function metadataErrCallback (err, data) {
+    console.info(TAG + "metadataErrCallback is called");
+    expect().assertFail();
+  }
+
+  function metadataErrCallbackOnce(err, data) {
+      times += 1;
+      console.info(TAG + "metadataErrCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function previewOutputErrCallback (err) {
+    console.info(TAG + "previewOutputErrCallback is called");
+    expect().assertFail();
+  }
+
+  function previewOutputErrCallbackOnce(err) {
+      times += 1;
+      console.info(TAG + "previewOutputErrCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function videoOutputErrCallback (err) {
+    console.info(TAG + "videoOutputErrCallback is called");
+    expect().assertFail();
+  }
+
+  function videoOutputErrCallbackOnce(err) {
+      times += 1;
+      console.info(TAG + "videoOutputErrCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function photoOutputErrCallback (err, data) {
+    console.info(TAG + "photoOutputErrCallback is called");
+    expect().assertFail();
+  }
+
+  function photoOutputErrCallbackOnce(err, data) {
+      times += 1;
+      console.info(TAG + "photoOutputErrCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function previewOutputFrameStartCallback () {
+    console.info(TAG + "previewOutputFrameStartCallback is called");
+    expect().assertFail();
+  }
+
+  function previewOutputFrameStartCallbackOnce() {
+      times += 1;
+      console.info(TAG + "previewOutputFrameStartCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function videoOutputFrameStartCallback () {
+    console.info(TAG + "videoOutputFrameStartCallback is called");
+    expect().assertFail();
+  }
+
+  function videoOutputFrameStartCallbackOnce() {
+      times += 1;
+      console.info(TAG + "videoOutputFrameStartCallback is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function photoOutputCaptureStartCallback (err, data) {
+    console.info(TAG + "photoOutputCaptureStartCallback is called");
+    expect().assertFail();
+  }
+
+  function photoOutputCaptureStartCallbackOnce(err, data) {
+      times += 1;
+      console.info(TAG + "photoOutputCaptureStartCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+
+  function previewOutputFrameEndCallback () {
+    console.info(TAG + "previewOutputFrameEndCallback is called");
+    expect().assertFail();
+  }
+
+  function previewOutputFrameEndCallbackOnce() {
+      times += 1;
+      console.info(TAG + "previewOutputFrameEndCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function videoOutputFrameEndCallback () {
+    console.info(TAG + "videoOutputFrameEndCallback is called");
+    expect().assertFail();
+  }
+
+  function videoOutputFrameEndCallbackOnce() {
+      times += 1;
+      console.info(TAG + "videoOutputFrameEndCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function photoOutputCaptureEndCallback (err, data) {
+    console.info(TAG + "photoOutputCaptureEndCallback is called");
+    expect().assertFail();
+  }
+
+  function photoOutputCaptureEndCallbackOnce(err, data) {
+      times += 1;
+      console.info(TAG + "photoOutputCaptureEndCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
+  function photoOutputFrameShutterCallback (err, data) {
+    console.info(TAG + "photoOutputFrameShutterCallback is called");
+    expect().assertFail();
+  }
+
+  function photoOutputFrameShutterCallbackOnce(err, data) {
+      times += 1;
+      console.info(TAG + "photoOutputFrameShutterCallbackOnce is called, times: " + times);
+      if (times > 1) {
+          expect().assertFail();
+      }
+  }
+
   describe('cameraJSUnitOutput', function () {
     console.info(TAG + '----------cameraJSUnitOutput begin--------------')
 
@@ -211,6 +368,7 @@ export default function cameraJSUnitOutput() {
 
     afterEach(async function () {
       console.info('afterEach case');
+      times = 0;
     })
 
     afterAll(function () {
@@ -654,6 +812,126 @@ export default function cameraJSUnitOutput() {
       done();
     })
 
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_ONCE_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100
+      * @tc.name      : On metadataObjectsAvailable callback
+      * @tc.desc      : On metadataObjectsAvailable callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_ONCE_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100', 1, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_ONCE_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100--------------");
+      if (isEmpty(metadataOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ONCE_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100 metadataOutput == null || undefined")
+      } else {
+        metadataOutput.once('metadataObjectsAvailable', metadataObjectsAvailableCallbackOnce);
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_OFF_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100
+      * @tc.name      : Off metadataObjectsAvailable callback
+      * @tc.desc      : Off metadataObjectsAvailable callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_OFF_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100', 1, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_OFF_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100--------------");
+      if (isEmpty(metadataOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100 metadataOutput == null || undefined")
+      } else {
+        metadataOutput.on('metadataObjectsAvailable', metadataObjectsAvailableCallback);
+        metadataOutput.off('metadataObjectsAvailable', metadataObjectsAvailableCallback);
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_OFF_ALL_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100
+      * @tc.name      : Off metadataObjectsAvailable callback
+      * @tc.desc      : Off metadataObjectsAvailable callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_OFF_ALL_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100', 1, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_OFF_ALL_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100--------------");
+      if (isEmpty(metadataOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_ALL_AVAILABLE_METADATA_OUTPUT_CALLBACK_0100 metadataOutput == null || undefined")
+      } else {
+        metadataOutput.on('metadataObjectsAvailable', metadataObjectsAvailableCallback);
+        metadataOutput.off('metadataObjectsAvailable');
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_ONCE_ERROR_0100
+      * @tc.name      : On error callback
+      * @tc.desc      : On error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_ONCE_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_ONCE_ERROR_0100--------------");
+      if (isEmpty(metadataOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_ONCE_ERROR_0100 metadata is not support")
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_ONCE_ERROR_0100 to operate");
+        metadataOutput.once('error', metadataErrCallbackOnce);
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ERROR_0100
+      * @tc.name      : Off error callback
+      * @tc.desc      : Off error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ERROR_0100--------------");
+      if (isEmpty(metadataOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ERROR_0100 metadata is not support")
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ERROR_0100 to operate");
+        metadataOutput.on('error', metadataErrCallback);
+        metadataOutput.off('error', metadataErrCallback);
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ERROR_0100
+      * @tc.name      : Off error callback
+      * @tc.desc      : Off error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100--------------");
+      if (isEmpty(metadataOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100 metadata is not support")
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100 to operate");
+        metadataOutput.on('error', metadataErrCallback);
+        metadataOutput.off('error');
+      }
+      await sleep(1000);
+      done();
+    })
 
     /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_METADATA_OUTPUT_CALLBACK_ON_ERROR_0100
@@ -685,6 +963,759 @@ export default function cameraJSUnitOutput() {
       done();
     })
 
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_START_0100
+      * @tc.name      : once previewOutput frameStart callback
+      * @tc.desc      : once previewOutput frameStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_START_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_START_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_START_0100 to operate");
+        previewOutput.once('frameStart', previewOutputFrameStartCallbackOnce);
+
+        await previewOutput.start();
+        await previewOutput.stop();
+        await previewOutput.start();
+
+        previewOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_START_0100
+      * @tc.name      : off previewOutput frameStart callback
+      * @tc.desc      : off previewOutput frameStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_START_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_START_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_START_0100 to operate");
+        previewOutput.on('frameStart', previewOutputFrameStartCallback);
+        previewOutput.off('frameStart', previewOutputFrameStartCallback);
+        await previewOutput.start();
+        await previewOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100
+      * @tc.name      : off previewOutput frameStart callback
+      * @tc.desc      : off previewOutput frameStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100 to operate");
+        previewOutput.on('frameStart', previewOutputFrameStartCallback);
+        previewOutput.off('frameStart');
+        await previewOutput.start();
+        await previewOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_END_0100
+      * @tc.name      : on previewOutput frameEnd callback
+      * @tc.desc      : on previewOutput frameEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_END_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_END_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_FRAME_END_0100 to operate");
+        previewOutput.once('frameEnd', previewOutputFrameEndCallbackOnce);
+        try {
+          await previewOutput.start();
+          await previewOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_END_0100
+      * @tc.name      : off previewOutput frameEnd callback
+      * @tc.desc      : off previewOutput frameEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_END_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_END_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_FRAME_END_0100 to operate");
+        previewOutput.on('frameEnd', previewOutputFrameEndCallback);
+        previewOutput.off('frameEnd', previewOutputFrameEndCallback);
+        await previewOutput.start();
+        await previewOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100
+      * @tc.name      : off previewOutput frameEnd callback
+      * @tc.desc      : off previewOutput frameEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100 to operate");
+        previewOutput.on('frameEnd', previewOutputFrameEndCallback);
+        previewOutput.off('frameEnd');
+        await previewOutput.start();
+        await previewOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_ERROR_0100
+      * @tc.name      : once previewOutput error callback
+      * @tc.desc      : once previewOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_ERROR_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ONCE_ERROR_0100 to operate");
+        previewOutput.once('error', previewOutputErrCallbackOnce);
+
+        try {
+          await previewOutput.start();
+          await previewOutput.start();
+          await previewOutput.start();
+          await previewOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ERROR_0100
+      * @tc.name      : off previewOutput error callback
+      * @tc.desc      : off previewOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ERROR_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ERROR_0100 to operate");
+        previewOutput.on('error', previewOutputErrCallbackOnce);
+        previewOutput.off('error', previewOutputErrCallbackOnce);
+        try {
+          await previewOutput.start();
+          await previewOutput.start();
+          await previewOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100
+      * @tc.name      : off previewOutput error callback
+      * @tc.desc      : off previewOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100--------------");
+      if (isEmpty(previewOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100 to operate");
+        previewOutput.on('error', previewOutputErrCallbackOnce);
+        previewOutput.off('error');
+        try {
+          await previewOutput.start();
+          await previewOutput.start();
+          await previewOutput.start();
+          await previewOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_START_0100
+      * @tc.name      : once photoOutput captureStart callback
+      * @tc.desc      : once photoOutput captureStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_START_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_START_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_START_0100 to operate");
+        photoOutput.once('captureStart', photoOutputCaptureStartCallbackOnce);
+        await photoOutput.capture();
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_START_0100
+      * @tc.name      : off photoOutput captureStart callback
+      * @tc.desc      : off photoOutput captureStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_START_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_START_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_START_0100 to operate");
+        photoOutput.on('captureStart', photoOutputCaptureStartCallback);
+        photoOutput.off('captureStart', photoOutputCaptureStartCallback);
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_START_0100
+      * @tc.name      : off photoOutput captureStart callback
+      * @tc.desc      : off photoOutput captureStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_START_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_START_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_START_0100 to operate");
+        photoOutput.on('captureStart', photoOutputCaptureStartCallback);
+        photoOutput.off('captureStart');
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_FRAME_SHUTTER_0100
+      * @tc.name      : once photoOutput frameShutter callback
+      * @tc.desc      : once photoOutput frameShutter callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_FRAME_SHUTTER_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_FRAME_SHUTTER_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_FRAME_SHUTTER_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_FRAME_SHUTTER_0100 to operate");
+        photoOutput.once('frameShutter', photoOutputFrameShutterCallbackOnce);
+        await photoOutput.capture();
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_FRAME_SHUTTER_0100
+      * @tc.name      : off photoOutput frameShutter callback
+      * @tc.desc      : off photoOutput frameShutter callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_FRAME_SHUTTER_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_FRAME_SHUTTER_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_FRAME_SHUTTER_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_FRAME_SHUTTER_0100 to operate");
+        photoOutput.on('frameShutter', photoOutputFrameShutterCallback);
+        photoOutput.off('frameShutter', photoOutputFrameShutterCallback);
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_FRAME_SHUTTER_0100
+      * @tc.name      : off photoOutput frameShutter callback
+      * @tc.desc      : off photoOutput frameShutter callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_FRAME_SHUTTER_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_FRAME_SHUTTER_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_FRAME_SHUTTER_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_FRAME_SHUTTER_0100 to operate");
+        photoOutput.on('frameShutter', photoOutputFrameShutterCallback);
+        photoOutput.off('frameShutter');
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_END_0100
+      * @tc.name      : once photoOutput captureEnd callback
+      * @tc.desc      : once photoOutput captureEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_END_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_END_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_CAPTURE_END_0100 to operate");
+        photoOutput.once('captureEnd', photoOutputCaptureEndCallbackOnce);
+        photoOutput.capture();
+        await sleep(100);
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_END_0100
+      * @tc.name      : off photoOutput captureEnd callback
+      * @tc.desc      : off photoOutput captureEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_END_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_END_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_CAPTURE_END_0100 to operate");
+        photoOutput.on('captureEnd', photoOutputCaptureEndCallback);
+        photoOutput.off('captureEnd', photoOutputCaptureEndCallback);
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_END_0100
+      * @tc.name      : off photoOutput captureEnd callback
+      * @tc.desc      : off photoOutput captureEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_END_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_END_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_CAPTURE_END_0100 to operate");
+        photoOutput.on('captureEnd', photoOutputCaptureEndCallback);
+        photoOutput.off('captureEnd');
+        await photoOutput.capture();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_ERROR_0100
+      * @tc.name      : once photoOutput error callback
+      * @tc.desc      : once photoOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_ERROR_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ONCE_ERROR_0100 to operate");
+        photoOutput.once('error', photoOutputErrCallbackOnce);
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ERROR_0100
+      * @tc.name      : off photoOutput error callback
+      * @tc.desc      : off photoOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ERROR_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ERROR_0100 to operate");
+        photoOutput.on('error', photoOutputErrCallback);
+        photoOutput.off('error', photoOutputErrCallback);
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100
+      * @tc.name      : off photoOutput error callback
+      * @tc.desc      : off photoOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100--------------");
+      if (isEmpty(photoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_OFF_ALL_ERROR_0100 to operate");
+        photoOutput.on('error', photoOutputErrCallback);
+        photoOutput.off('error');
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_START_0100
+      * @tc.name      : once videoOutput frameStart callback
+      * @tc.desc      : once videoOutput frameStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_START_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_START_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_START_0100 to operate");
+        videoOutput.once('frameStart', videoOutputFrameStartCallbackOnce);
+        await videoOutput.start();
+        await videoOutput.stop();
+
+        await videoOutput.start();
+        await videoOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_START_0100
+      * @tc.name      : off videoOutput frameStart callback
+      * @tc.desc      : off videoOutput frameStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_START_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_START_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_START_0100 to operate");
+        videoOutput.on('frameStart', videoOutputFrameStartCallback);
+        videoOutput.off('frameStart', videoOutputFrameStartCallback);
+        await videoOutput.start();
+        await videoOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100
+      * @tc.name      : off videoOutput frameStart callback
+      * @tc.desc      : off videoOutput frameStart callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_START_0100 to operate");
+        videoOutput.on('frameStart', videoOutputFrameStartCallback);
+        videoOutput.off('frameStart');
+        await videoOutput.start();
+        await videoOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_END_0100
+      * @tc.name      : once videoOutput frameEnd callback
+      * @tc.desc      : once videoOutput frameEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_END_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_END_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_END_0100 to operate");
+        videoOutput.once('frameEnd', videoOutputFrameEndCallbackOnce);
+        await videoOutput.start();
+        await videoOutput.stop();
+
+        await videoOutput.start();
+        await videoOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_END_0100
+      * @tc.name      : off videoOutput frameEnd callback
+      * @tc.desc      : off videoOutput frameEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_END_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_END_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_END_0100 to operate");
+        videoOutput.on('frameEnd', videoOutputFrameEndCallback);
+        videoOutput.off('frameEnd', videoOutputFrameEndCallback);
+
+        await videoOutput.start();
+        await videoOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100
+      * @tc.name      : off videoOutput frameEnd callback
+      * @tc.desc      : off videoOutput frameEnd callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_END_0100 to operate");
+        videoOutput.on('frameEnd', videoOutputFrameEndCallback);
+        videoOutput.off('frameEnd');
+
+        await videoOutput.start();
+        await videoOutput.stop();
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_ERROR_0100
+      * @tc.name      : once videoOutput error callback
+      * @tc.desc      : once videoOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_ERROR_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_ERROR_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_ONCE_FRAME_ERROR_0100 to operate");
+        videoOutput.once('error', videoOutputErrCallbackOnce);
+
+        try {
+          await videoOutput.start();
+          await videoOutput.start();
+          await videoOutput.start();
+          await videoOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_ERROR_0100
+      * @tc.name      : off videoOutput error callback
+      * @tc.desc      : off videoOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_ERROR_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_ERROR_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_FRAME_ERROR_0100 to operate");
+        videoOutput.on('error', videoOutputErrCallback);
+        videoOutput.off('error', videoOutputErrCallback);
+
+        try {
+          await videoOutput.start();
+          await videoOutput.start();
+          await videoOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+      * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_ERROR_0100
+      * @tc.name      : off videoOutput error callback
+      * @tc.desc      : off videoOutput error callback
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 1
+    */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_ERROR_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_ERROR_0100--------------");
+      if (isEmpty(videoOutput)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_ERROR_0100 videoOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_CALLBACK_OFF_ALL_FRAME_ERROR_0100 to operate");
+        videoOutput.on('error', videoOutputErrCallback);
+        videoOutput.off('error');
+        try {
+          await videoOutput.start();
+          await videoOutput.start();
+          await videoOutput.stop();
+        } catch (err) {
+          console.info(TAG + "err: " + err.code);
+        }
+      }
+      await sleep(1000);
+      done();
+    })
 
     /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_START_CALLBACK_0100
