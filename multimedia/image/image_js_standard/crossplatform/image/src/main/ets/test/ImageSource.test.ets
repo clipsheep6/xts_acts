@@ -21,24 +21,38 @@ import { getPropertyBuf } from "./getPropertyBuf";
 import { modifyBuf } from "./modifyBuffer";
 import { prepareImageFile, prepareImageFileFd } from './Common';
 import fileIO from '@ohos.file.fs';
+import fileio from '@ohos.file.fs';
 
 export default function ImageSource() {
     describe("ImageSource", function () {
-        let context;
         let filePath;
-        let fileFd = null;
+        let fileFd = 0;
         let globalpixelmap;
         const { UNKNOWN, RGB_565, RGBA_8888 } = image.PixelMapFormat;
-
-        async function getFileFd(fileName, imageArray) {
-            filePath = context.cacheDir + '/' + fileName;
-            fileFd = await prepareImageFileFd(filePath, imageArray);
-            expect(fileFd != null).assertTrue();
+        async function getFd(fileName) {
+            let context = await featureAbility.getContext();
+            await context.getFilesDir().then((data) => {
+                filePath = data + "/" + fileName;
+                console.info("image case filePath is " + filePath);
+            });
+            await fileio
+                .open(filePath)
+                .then(
+                    (data) => {
+                        fileFd = data;
+                        console.info("image case open fd success " + fileFd);
+                    },
+                    (err) => {
+                        console.info("image cese open fd fail" + err);
+                    }
+                )
+                .catch((err) => {
+                    console.info("image case open fd err " + err);
+                });
         }
 
         beforeAll(async function () {
             console.info("beforeAll case");
-            context = globalThis.abilityContext;
         });
 
         beforeEach(async function () {
@@ -76,7 +90,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb044", 0, async function (done) {
-            await getFileFd("test.jpg", testJpg);
+            await getFd("test.png");
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(
