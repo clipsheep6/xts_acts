@@ -12,13 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hilog from '@ohos.hilog';
-
-export default {
-  onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
-  },
-  onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
-  },
-}
+export const GetFileList: () => any;
+export const GetRawFileContent: () => any;
+export const GetRawFileDescriptor: () => any;

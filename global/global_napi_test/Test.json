@@ -5,7 +5,7 @@
         "test-timeout": "600000",
         "testcase-timeout": "300000",
 	    "bundle-name": "ohos.global.napitest",
-        "package-name": "ohos.global.napitest",
+        "package-name": "ohos.global.napitest_test",
         "shell-timeout": "600000"
     },
     "kits": [
