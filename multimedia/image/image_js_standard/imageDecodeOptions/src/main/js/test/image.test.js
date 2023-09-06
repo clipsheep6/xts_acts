@@ -17,11 +17,17 @@ import image from "@ohos.multimedia.image";
 import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import featureAbility from "@ohos.ability.featureAbility";
+import fileIO from '@ohos.file.fs';
+import buffer from '@ohos.buffer';
+import { testPng, testJpg } from './testImg';
+
+
 
 export default function imageDecodeOptions() {
     describe("imageDecodeOptions", function () {
         let filePath;
         let fdNumber;
+        let fileFd;
         let globalpixelmap;
         async function getFd(fileName) {
             let context = await featureAbility.getContext();
@@ -43,6 +49,30 @@ export default function imageDecodeOptions() {
                 .catch((err) => {
                     console.info("image case open fd err " + err);
                 });
+        }
+
+
+async function prepareImageFileFd(fpath, imageArray) {
+    console.info('prepareImageFileFd 1');
+    try {
+        const buf = buffer.from(imageArray);
+        const content = buf.buffer;
+        let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
+        fileIO.truncateSync(file.fd);
+        fileIO.writeSync(file.fd, content);
+        return file.fd;
+    }
+    catch (e) {
+        console.info('Failed to prepareFile for ' + e);
+    }
+    return null;
+}
+        async function getFileFd(fileName, imageArray) {
+            console.info("image case getFileFd fileName is " + fileName);
+            let context = await featureAbility.getContext();
+            filePath = context.cacheDir + '/' + fileName;
+            fileFd = await prepareImageFileFd(filePath, imageArray);
+            console.info("image case getFileFd fileFd is " + fileFd);
         }
 
         beforeAll(async function () {
@@ -1732,8 +1762,9 @@ export default function imageDecodeOptions() {
          * @tc.level     : Level 1
          */
         it("SUB_GRAPHIC_IMAGE_DECODEOPTIONS_CREATEPIXELMAP_PIXELFORMAT_0500", 0, async function (done) {
-            await getFd("test.bmp");
-            const imageSourceApi = image.createImageSource(fdNumber);
+            // await getFd("test.bmp");
+            await getFileFd("test2.png", testPng);
+            const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(
                     "SUB_GRAPHIC_IMAGE_DECODEOPTIONS_CREATEPIXELMAP_PIXELFORMAT_0500 create image source failed"

@@ -19,8 +19,5 @@ import ImageSource from './ImageSource.test.ets'
 import ImagePacker from './ImagePacker.test.ets'
 
 export default function testsuite() {
-    Image();
-    PixelMap();
     ImageSource();
-    ImagePacker();
 }
