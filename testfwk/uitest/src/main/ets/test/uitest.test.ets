@@ -40,6 +40,10 @@ async function stopApplication(bundleName: string) {
 export default function UiTest() {
     
     describe('UiTest_API10', function () {
+        beforeEach(async function () {
+            await stopApplication('com.uitestScene.acts')
+        })
+
         /*
          * @tc.number: uiTest_10001
          * @tc.name: testWithIn
@@ -229,6 +233,10 @@ export default function UiTest() {
     })
 
     describe('UiTest_API8', function () {
+        beforeEach(async function () {
+            await stopApplication('com.uitestScene.acts')
+        })
+
         /*
          * @tc.number: uiTest_8001
          * @tc.name: testInputText
@@ -586,6 +594,10 @@ export default function UiTest() {
     })
 
     describe('UiTest_API9', function () {
+        beforeEach(async function () {
+            await stopApplication('com.uitestScene.acts')
+        })
+        
         /*
          * @tc.number: uiTest_9001
          * @tc.name: testInputText
@@ -1118,7 +1130,8 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
-            await driver.fling({x:300, y:600},{x:300, y:300}, 20, 600)
+            await driver.fling({x:300, y:600},{x:300, y:100}, 20, 600)
+            await driver.delayMs(1000)
             let text = await driver.findComponent(ON.text('next page'))
             expect(text == null).assertTrue()
             let scrollBar = await driver.findComponent(ON.type('Scroll'))
