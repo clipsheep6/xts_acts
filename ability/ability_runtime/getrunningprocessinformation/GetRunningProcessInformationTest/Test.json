@@ -20,7 +20,7 @@
             ]
         },
 		{
-            "test-file-name": [  
+            "test-file-name": [
                 "GetRunningProcessInformationTest.hap",
                 "GetRunningProcessInformationOneReply.hap",
                 "GetRunningProcessInformationTwoReply.hap",
