@@ -3845,7 +3845,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb044", 0, async function (done) {
-            await getFileFd("test.png", testPng);
+            await getFileFd("test.jpg", testJpg);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(
@@ -4184,7 +4184,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb051", 0, async function (done) {
-            await getFileFd("test.png", testPng);
+            await getFileFd("test.jpg", testJpg);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(
@@ -4231,7 +4231,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb052", 0, async function (done) {
-            await getFileFd("test.png", testPng);
+            await getFileFd("test.jpg", testJpg);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info("testCreatePixelMapOptionsCb052 create image source failed");
@@ -4276,7 +4276,7 @@ export default function ImageSource() {
          * @tc.level     : Level 2
          */
         it("testCreatePixelMapOptionsCb053", 0, async function (done) {
-            await getFileFd("test.png", testPng);
+            await getFileFd("test.jpg", testJpg);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
                 console.info(" testCreatePixelMapOptionsCb053 create image source failed");
