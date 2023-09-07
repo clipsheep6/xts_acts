@@ -23,6 +23,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 export default function imageJsTest() {
     describe('imageJsTest', function () {
+        let context;
         let filePath;
         let fdNumber;
         let globalpixelmap;
@@ -114,6 +115,53 @@ export default function imageJsTest() {
         afterAll(async function () {
             console.info('afterAll case');
         })
+
+        /**
+         * @tc.number    : TEST_CREATEPIXELMAP_OPTIONS_CB_044
+         * @tc.name      : testCreatePixelMapOptionsCb044
+         * @tc.desc      : 1.create imagesource
+         *                 2.set index and DecodeOptions
+         *                 3.create PixelMap
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+         */
+        it("testCreatePixelMapOptionsCb044", 0, async function (done) {
+            await getFd("test.png");
+            const imageSourceApi = image.createImageSource(fdNumber);
+            if (imageSourceApi == undefined) {
+                console.info(
+                    "testCreatePixelMapOptionsCb044 create image source failed"
+                );
+                expect(false).assertTrue();
+                done();
+            } else {
+                let decodingOptions = {
+                    sampleSize: 1,
+                    editable: true,
+                    desiredSize: { width: 1, height: 2 },
+                    rotate: 10,
+                    desiredPixelFormat: RGB_565,
+                    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+                    index: 0,
+                };
+                imageSourceApi.createPixelMap(decodingOptions, (err, pixelmap) => {
+                    if (err) {
+                        console.info(
+                            "testCreatePixelMapOptionsCb044 createPixelMap error  " +
+                            JSON.stringify(err)
+                        );
+                        expect(false).assertTrue();
+                        done();
+                    } else {
+                        globalpixelmap = pixelmap;
+                        console.info("testCreatePixelMapOptionsCb044 success ");
+                        expect(pixelmap != undefined).assertTrue();
+                        done();
+                    }
+                });
+            }
+        });
 
         /**
              * @tc.number    : SUB_GRAPHIC_IMAGE_CREATEPIXELMAP_PROMISE_0500
