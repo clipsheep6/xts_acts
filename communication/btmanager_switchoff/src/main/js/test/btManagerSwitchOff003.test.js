@@ -16,6 +16,7 @@
 import bluetoothManager from '@ohos.bluetoothManager';
 import bluetooth from '@ohos.bluetooth';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
+import { UiComponent, UiDriver, BY, Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, UiDirection, MouseButton, WindowMode, PointerMatrix, UIElementInfo, UIEventObserver } from '@ohos.UiTest'
 
 export default function btManagerError003Test() {
 describe('btManagerError003Test', function() {
@@ -37,7 +38,8 @@ describe('btManagerError003Test', function() {
                 break;
             case 2:
                 console.info('[bluetooth_js] bt turn on:'+ JSON.stringify(sta));
-                bluetoothManager. disableBluetooth();
+                bluetoothManager.disableBluetooth();
+                clickTheWindow();
                 await sleep(3000);
                 break;
             case 3:
@@ -47,6 +49,25 @@ describe('btManagerError003Test', function() {
                 console.info('[bluetooth_js] enable success');
         }
     }
+
+    async function clickTheWindow() {
+        try{
+            let driver = Driver.create();
+            console.info('[bluetooth_js] bt driver create:'+ driver);            
+            await driver.delayMs(1000);
+            await driver.wakeUpDisplay();
+            await driver.delayMs(3000);
+            await driver.swipe(1500, 1000, 1500, 100);
+            await driver.delayMs(6000);
+            await driver.click(950, 2550);
+            await driver.delayMs(5000);
+            await driver.click(950, 2550);
+            await driver.delayMs(5000);
+        } catch (error) {
+            console.info('[bluetooth_js] driver error info:'+ error);
+        }
+    }
+    
     beforeAll(function () {
         console.info('beforeAll called')
         gattServer = bluetoothManager.BLE.createGattServer();
@@ -814,6 +835,7 @@ describe('btManagerError003Test', function() {
             console.info('[bluetooth_js] bt turn off1:'+ JSON.stringify(state));
             if(state == bluetoothManager.BluetoothState.STATE_ON) {
                 let result2= bluetoothManager.disableBluetooth();
+                clickTheWindow();
                 console.info('[bluetooth_js]disable result1'+ JSON.stringify(result2));
                 let state1 = bluetoothManager.getState();
                 console.info('[bluetooth_js] getState4 off = '+ JSON.stringify(state1));
@@ -854,6 +876,7 @@ describe('btManagerError003Test', function() {
          */
     it('SUB_COMMUNICATION_BTMANAGER_BLESCAN_0900', 0, async function (done) {
         bluetooth.disableBluetooth();
+        clickTheWindow();
         await sleep(3000);
         let state = bluetooth.getState();
         console.info('[bluetooth_js] bt turn off1:'+ JSON.stringify(state));
@@ -890,6 +913,7 @@ describe('btManagerError003Test', function() {
         console.info('[bluetooth_js] getState1 off = '+ JSON.stringify(state));
         if(state == bluetooth.BluetoothState.STATE_OFF) {
             let result2= bluetooth.disableBluetooth();
+            clickTheWindow();
             console.info('[bluetooth_js]disable result1'+ JSON.stringify(result2));
             expect(result2).assertFalse();
             let state1 = bluetooth.getState();
