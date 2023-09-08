@@ -48,7 +48,7 @@ export default function UiTest() {
             await btn.click()
             }
         })
-        
+
         afterEach(async function () {
             await stopApplication('com.uitestScene.acts')
         })
@@ -1653,6 +1653,9 @@ export default function UiTest() {
                 let rotation4 = await driver.getDisplayRotation()
                 expect(rotation4 == DisplayRotation.ROTATION_90)
                 await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+            } else {
+                console.info('setDisplayRotation failed')
+                expect(button == null).assertTrue()
             }
             await stopApplication('com.uitestScene.acts')
         })
