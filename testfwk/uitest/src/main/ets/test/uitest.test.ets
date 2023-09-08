@@ -1655,7 +1655,7 @@ export default function UiTest() {
                 await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
             } else {
                 console.info('setDisplayRotation failed')
-                expect(button == null).assertTrue()
+                expect(false).assertTrue()
             }
             await stopApplication('com.uitestScene.acts')
         })
