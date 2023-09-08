@@ -20,6 +20,8 @@
 #include "c/mutex.h"
 #include "c/queue.h"
 #include "c/sleep.h"
+#include <mutex>
+#include <thread>
 #include <string>
 #include <unistd.h>
 
@@ -41,6 +43,18 @@ void MulipleForTest(void* arg)
 void SubForTest(void* arg)
 {
     *(int*) arg -= 1;
+}
+
+void SleepAfterOnePlusTest(void* arg)
+{
+    *(int*) arg += 1;
+    usleep(20000);
+}
+
+void OnePlusSleepForTest(void* arg)
+{
+    sleep(5);
+    *(int*) arg += 1;
 }
 
 typedef struct {
@@ -156,6 +170,39 @@ static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_fu
     f->after_func = after_func;
     f->arg = arg;
     return (ffrt_function_header_t*)f;
+}
+
+template<class T>
+struct function {
+    template<class CT>
+    function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
+    ffrt_function_header_t header;
+    T closure;
+};
+
+template<class T>
+void exec_function_wrapper(void* t)
+{
+    auto f = reinterpret_cast<function<std::decay_t<T>>*>(t);
+    f->closure();
+}
+
+template<class T>
+void destroy_function_wrapper(void* t)
+{
+    auto f = reinterpret_cast<function<std::decay_t<T>>*>(t);
+    f->closure = nullptr;
+}
+
+template<class T>
+static inline ffrt_function_header_t* create_function_wrapper(T&& func,
+    ffrt_function_kind_t kind = ffrt_function_kind_general)
+{
+    using function_type = function<std::decay_t<T>>;
+    auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
+    auto f =
+        new (p)function_type({ exec_function_wrapper<T>, destroy_function_wrapper<T>, { 0 } }, std::forward<T>(func));
+    return reinterpret_cast<ffrt_function_header_t*>(f);
 }
 
 static inline void ffrt_submit_c(ffrt_function_t func, void* arg,
@@ -288,12 +335,58 @@ static napi_value QueueTest001(napi_env env, napi_callback_info info)
     ffrt_queue_destroy(queue_handle);
     return flag;
 }
+
+static napi_value QueueTest002(napi_env env, napi_callback_info info)
+{
+    const int maxNum = (int)ffrt_qos_user_initiated + 1;
+    ffrt_queue_attr_t queue_attr[maxNum];
+    ffrt_queue_t queue_handle[maxNum];
+    for (int num = 0; num < maxNum; num++) {
+        (void)ffrt_queue_attr_init(&queue_attr[num]);
+        ffrt_queue_attr_set_qos(&queue_attr[num], num);
+        queue_handle[num] = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr[num]);
+    }
+    
+    int a = 0;
+    int result[maxNum] = {0};
+    ffrt_task_handle_t task[maxNum][10];
+    for (int i = 0; i < 10; i++) {
+        for (int num = 0; num < maxNum; num++) {
+            task[num][i] = ffrt_queue_submit_h(queue_handle[num],
+                ffrt_create_function_wrapper(OnePlusForTest, NULL, &result[num], ffrt_function_kind_queue), nullptr);
+        }
+    }
+    for (int num = 0; num < maxNum; num++) {
+        ffrt_queue_wait(task[num][9]);
+        HiLogPrint(LOG_APP, LOG_INFO, 1, "FFRT QUEUE", "result in queue task %{public}d is %{public}d", num, result[num]);
+        if (result[num] != 10) {
+            a = 1;
+        }
+    }
+    for (int i = 0; i < 10; i++) {
+        for (int num = 0; num < maxNum; num++) {
+            ffrt_task_handle_destroy(task[num][i]);
+        }
+    }
+    for (int num =0; num < maxNum; num++) {
+        HiLogPrint(LOG_APP, LOG_INFO, 1, "FFRT QUEUE", "qos in queue task %{public}d is %{public}d", num, ffrt_queue_attr_get_qos(&queue_attr[num]));
+        if (ffrt_queue_attr_get_qos(&queue_attr[num]) != num) {
+            a = 1;
+        }
+        ffrt_queue_attr_destroy(&queue_attr[num]);
+        ffrt_queue_destroy(queue_handle[num]);
+    }
+    napi_value flag = nullptr;
+    napi_create_double(env, a, &flag);
+    return flag;
+}
+
 static napi_value QueueDfxTest001(napi_env env, napi_callback_info info)
 {
     int result = 0;
-    // ffrt_queue_attr_set_timeout接口attr为异常值
+    // ffrt_queue_attr_set_timeout??attr????
     ffrt_queue_attr_t queue_attr;
-    (void)ffrt_queue_attr_init(&queue_attr); // 初始化属性，必须
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
     ffrt_queue_attr_set_timeout(nullptr, 10000);
     uint64_t time = ffrt_queue_attr_get_timeout(&queue_attr);
     if (time != 0) {
@@ -303,7 +396,574 @@ static napi_value QueueDfxTest001(napi_env env, napi_callback_info info)
     if (queue_handle == nullptr) {
         result = 2;
     }
-    // 销毁队列
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueDfxTest002(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_get_timeout??attr????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_attr_set_timeout(&queue_attr, 10000);
+    uint64_t time = ffrt_queue_attr_get_timeout(nullptr);
+    if (time != 0) {
+        result = 1;
+    }
+    time = ffrt_queue_attr_get_timeout(&queue_attr);
+    if (time != 10000) {
+        result = 2;
+    }
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueDfxTest003(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_set_timeoutCb??attr????
+
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_attr_set_callback(nullptr, ffrt_create_function_wrapper(MyPrint, NULL, NULL, ffrt_function_kind_queue));
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueDfxTest004(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_attr_set_callback(&queue_attr, ffrt_create_function_wrapper(MyPrint, NULL, NULL, ffrt_function_kind_queue));
+    ffrt_function_header_t* func = ffrt_queue_attr_get_callback(nullptr);
+    if (func != nullptr) {
+        result = 1;
+    }
+    func = ffrt_queue_attr_get_callback(&queue_attr);
+    if (func == nullptr) {
+        result = 2;
+    }
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    // ????
+    ffrt_queue_destroy(queue_handle);
+    ffrt_queue_attr_destroy(&queue_attr);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest001(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_create??type????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_max, "test_queue", &queue_attr);
+    if (queue_handle != nullptr) {
+        result = 3;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest002(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_create??name??
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, nullptr, &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    // ????????,????????????,???task_handle,????????????
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    sleep(1);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest003(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", nullptr);
+    if (queue_handle != nullptr) {
+        result = 3;
+    }
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest004(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    (void)ffrt_queue_attr_init(nullptr);
+    sleep(1);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest005(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_destroy??attr????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+    
+    int a = 0;
+    // ????????,????????????,???task_handle,????????????
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+    sleep(1);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(nullptr);
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest006(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_set_qos??attr????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_attr_set_qos(nullptr, static_cast<int>(ffrt_qos_utility)); // ????????,???
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    // ????????,????????????,???task_handle,????????????
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    sleep(1);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest007(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_set_qos??qos????
+    // ??qos?-1
+    ffrt_queue_attr_t queue_attr;
+    ffrt_queue_t queue_handle;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_attr_set_qos(&queue_attr, (ffrt_qos_t)(-1));
+    int ret = ffrt_queue_attr_get_qos(&queue_attr);
+    if (ret != -1) {
+        result = 1;
+    }
+    queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue",&queue_attr);
+
+    int a = 0;
+    ffrt_task_handle_t handle = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    ffrt_queue_wait(handle);
+    if (a != 1) {
+        result = 2;
+    }
+
+    ffrt_task_handle_destroy(handle);
+    ffrt_queue_destroy(queue_handle);
+    
+    // ??qos?-2
+    ffrt_queue_attr_set_qos(&queue_attr, (ffrt_qos_t)(-2));
+    ret = ffrt_queue_attr_get_qos(&queue_attr);
+    if (ret != -1) {
+        result = 1;
+    }
+    queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue",&queue_attr);
+
+    handle = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    usleep(2000);
+    ffrt_queue_wait(handle);
+    if (a != 2) {
+        result = 3;
+    }
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_task_handle_destroy(handle);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest008(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_get_qos??attr????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_attr_set_qos(&queue_attr, static_cast<int>(ffrt_qos_utility)); // ????????,???
+    int ret = ffrt_queue_attr_get_qos(nullptr);
+    if (ret != 2) {
+        result = 2;
+    }
+    ret = ffrt_queue_attr_get_qos(&queue_attr);
+    if (ret != 1) {
+        result = 1;
+    }
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    // ????????,????????????,???task_handle,????????????
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+    sleep(1);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest009(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_destroy??queue????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    // ????????,????????????,???task_handle,????????????
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+    sleep(1);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(nullptr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest010(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_submit??queue?f????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    // ????????,????????????,???task_handle,????????????
+    ffrt_queue_submit(nullptr, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, nullptr, nullptr);
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    sleep(1);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest011(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_submit_h??queue?f????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    ffrt_task_handle_t handle = ffrt_queue_submit_h(nullptr,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+    if (handle != nullptr) {
+        result = 1;
+    }
+    handle = ffrt_queue_submit_h(queue_handle, nullptr, nullptr);
+    if (handle != nullptr) {
+        result = 2;
+    }
+    handle = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    ffrt_queue_wait(handle);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_task_handle_destroy(handle);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest012(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_wait??handle????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 3;
+    }
+
+    int a = 0;
+    ffrt_task_handle_t handle = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    ffrt_queue_wait(nullptr);
+    ffrt_queue_wait(handle);
+    if (a != 1) {
+        result = 1;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_task_handle_destroy(handle);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueApiTest013(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_cancel??handle????
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+
+    int a = 0;
+    ffrt_task_attr_t task_attr;
+    (void)ffrt_task_attr_init(&task_attr); // ???task??,??
+    ffrt_task_attr_set_delay(&task_attr, 1000000); // ????1s????
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), &task_attr);
+
+    int ret = ffrt_queue_cancel(nullptr);
+    if (ret != -1) {
+        result = 1;
+    }
+    ret = ffrt_queue_cancel(task1);
+    if (ret != 0) {
+        result = 2;
+    }
+    if (a != 0) {
+        result = 3;
+    }
+
+    ffrt_task_attr_destroy(&task_attr);
+    ffrt_task_handle_destroy(task1); // ??task_handle,??
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    if (a != 0) {
+        result = 4;
+    }
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueCancelTest001(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // cancel??delay????task
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+
+    int a = 0;
+    ffrt_task_attr_t task_attr;
+    (void)ffrt_task_attr_init(&task_attr); // ???task??,??
+    ffrt_task_attr_set_delay(&task_attr, 1000000); // ????1s????
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), &task_attr);
+
+    int ret = ffrt_queue_cancel(task1);
+    if (ret != 0) {
+        result = 2;
+    }
+    if (a != 0) {
+        result = 3;
+    }
+
+    ffrt_task_attr_destroy(&task_attr);
+    ffrt_task_handle_destroy(task1); // ??task_handle,??
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    if (a != 0) {
+        result = 4;
+    }
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueCancelTest003(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // cancel?????task,ffrt?sleep
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+
+    int a = 0;
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusSleepForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    usleep(2000);
+    int ret = ffrt_queue_cancel(task1);
+    if (ret != 1) {
+        result = 2;
+    }
+    if (a != 0) {
+        result = 3;
+    }
+    ffrt_task_handle_destroy(task1); // ??task_handle,??
+    if (a != 0) {
+        result = 4;
+    }
+
+    // ????
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    if (a != 1) {
+        result = 5;
+    }
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
+static napi_value QueueCancelTest004(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // cancel??????task
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // ?????,??
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+
+    int a = 0;
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t task2 = ffrt_queue_submit_h(queue_handle,
+        ffrt_create_function_wrapper(OnePlusSleepForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+
+    sleep(2);
+    int ret = ffrt_queue_cancel(task1);
+    if (ret != 1) {
+        result = 2;
+    }
+    if (a != 1) {
+        result = 3;
+    }
+    ffrt_queue_wait(task2);
+    if (a != 2) {
+        result = 4;
+    }
+    ffrt_task_handle_destroy(task1); // ??task_handle,??
+    ffrt_task_handle_destroy(task2); // ??task_handle,??
+
+    // ????
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
     napi_value flag = nullptr;
@@ -366,7 +1026,27 @@ static napi_value Init(napi_env env, napi_value exports)
         { "submitCondFfrtTask", nullptr, SubmitCondFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "submitQueueFfrtTask", nullptr, SubmitQueueFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "queueTest001", nullptr, QueueTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueTest002", nullptr, QueueTest002, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "queueDfxTest001", nullptr, QueueDfxTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueDfxTest002", nullptr, QueueDfxTest002, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueDfxTest003", nullptr, QueueDfxTest003, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueDfxTest004", nullptr, QueueDfxTest004, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest001", nullptr, QueueApiTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest002", nullptr, QueueApiTest002, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest003", nullptr, QueueApiTest003, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest004", nullptr, QueueApiTest004, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest005", nullptr, QueueApiTest005, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest006", nullptr, QueueApiTest006, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest007", nullptr, QueueApiTest007, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest008", nullptr, QueueApiTest008, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest009", nullptr, QueueApiTest009, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest010", nullptr, QueueApiTest010, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest011", nullptr, QueueApiTest011, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest012", nullptr, QueueApiTest012, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueApiTest013", nullptr, QueueApiTest013, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueCancelTest001", nullptr, QueueCancelTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueCancelTest003", nullptr, QueueCancelTest003, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueCancelTest004", nullptr, QueueCancelTest004, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "cancelQueueFfrtTask", nullptr, CancelQueueFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "waitQueueFfrtTask", nullptr, WaitQueueFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
