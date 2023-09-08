@@ -50,6 +50,16 @@ export default function ffrtTest() {
       var flag = ffrtndk.submitQueueFfrtTask();
       expect(flag).assertEqual(9);
     })
+    it('queueTest001',0, function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      var flag = ffrtndk.queueTest001();
+      expect(flag).assertEqual(9);
+    })
+    it('queueDfxTest001',0, function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      var flag = ffrtndk.queueDfxTest001();
+      expect(flag).assertEqual(0);
+    })
     it('cancelQueueFfrtTask',0, function () {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       var flag = ffrtndk.cancelQueueFfrtTask();

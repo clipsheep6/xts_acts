@@ -272,6 +272,44 @@ static napi_value SubmitQueueFfrtTask(napi_env env, napi_callback_info info)
     return flag;
 }
 
+static napi_value QueueTest001(napi_env env, napi_callback_info info)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    int result = 0;
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &result, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(MulipleForTest, nullptr, &result, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(SubForTest, nullptr, &result, ffrt_function_kind_queue), nullptr);
+    napi_value flag = nullptr;
+    sleep(2);
+    napi_create_double(env, result, &flag);
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return flag;
+}
+static napi_value QueueDfxTest001(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    // ffrt_queue_attr_set_timeout接口attr为异常值
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr); // 初始化属性，必须
+    ffrt_queue_attr_set_timeout(nullptr, 10000);
+    uint64_t time = ffrt_queue_attr_get_timeout(&queue_attr);
+    if (time != 0) {
+        result = 1;
+    }
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
+    if (queue_handle == nullptr) {
+        result = 2;
+    }
+    // 销毁队列
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
 static napi_value CancelQueueFfrtTask(napi_env env, napi_callback_info info)
 {
     int a = 0;
@@ -327,6 +365,8 @@ static napi_value Init(napi_env env, napi_value exports)
         { "submitSimpleFfrtTask", nullptr, SubmitSimpleFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "submitCondFfrtTask", nullptr, SubmitCondFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "submitQueueFfrtTask", nullptr, SubmitQueueFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueTest001", nullptr, QueueTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "queueDfxTest001", nullptr, QueueDfxTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "cancelQueueFfrtTask", nullptr, CancelQueueFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "waitQueueFfrtTask", nullptr, WaitQueueFfrtTask, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
