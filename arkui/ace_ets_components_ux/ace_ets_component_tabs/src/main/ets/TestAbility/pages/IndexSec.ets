@@ -18,6 +18,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 import { Hypium } from '@ohos/hypium';
 import hilog from '@ohos.hilog';
 import testsuite from '../../test/List.test'
+import {MessageManager,Callback} from '../../test/MessageManager.ets';
 @Entry
 @Component
 struct TabsExampleSec {
@@ -36,6 +37,32 @@ struct TabsExampleSec {
             this.barBackgroundColorNumber = eventData.data.barBackgroundColorNumber;
             this.barBackgroundColorString = eventData.data.barBackgroundColorString;
         }
+    }
+
+    messageManager:MessageManager = new MessageManager()
+    onPageShow() {
+        console.info('search onPageShow')
+        globalThis.value = {
+            name:'messageManager',message:this.messageManager
+        }
+        let callback:Callback = (message:any) => {
+            if (message.name == 'barBackgroundColorResource') {
+                this.barBackgroundColorResource = message.value
+            }
+            if (message.name == 'barOverlap') {
+                this.barOverlap = message.value
+            }
+            if (message.name == 'barBackgroundColorColor') {
+                this.barBackgroundColorColor = message.value
+            }
+            if (message.name == 'barBackgroundColorNumber') {
+                this.barBackgroundColorNumber = message.value
+            }
+            if (message.name == 'barBackgroundColorString') {
+                this.barBackgroundColorString  = message.value
+            }
+        }
+        this.messageManager.registerCallback(callback)
     }
 
     aboutToAppear(){
