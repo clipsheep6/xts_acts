@@ -1047,7 +1047,6 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_1300", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_1300 start-------------");
       TAG = "Singlehap_LifeCycleTest_1300";
-      listKeyTemp = [];
       globalThis.abilityContext.startAbility({
         bundleName: "com.example.lifecycle_xts",
         abilityName: "MainAbility9"
@@ -1069,21 +1068,25 @@ export default function lifecycleTest() {
         abilityName: "Hap1MainAbility1"
       }, (error, data) => {
         setTimeout(() => {
+          var strtemp = "";
+          var listKeyTemp = [];
           console.log(TAG + ": second Hap1MainAbility1 startAbility success, err: " + JSON.stringify(error) +
           ",data: " + JSON.stringify(data));
           for (var i = 0; i < globalThis.mainAbility9ListKey.length; i++) {
-            if (globalThis.mainAbility9ListKey[i].substring(0, 16) == "Hap1MainAbility1") {
+            strtemp = globalThis.mainAbility9ListKey[i].substring(0, 16);
+            if (strtemp === "Hap1MainAbility1") {
               listKeyTemp.push(globalThis.mainAbility9ListKey[i]);
             }
           }
           console.log(TAG + "listKeyTemp is :" + listKeyTemp);
           console.log(TAG + "globalThis.mainAbility9CallBackId is :" + globalThis.mainAbility9CallBackId);
-          expect(listKeyTemp[0]).assertEqual("Hap1MainAbility1 onAbilityCreate");
-          expect(listKeyTemp[1]).assertEqual("Hap1MainAbility1 onWindowStageCreate");
-          expect(listKeyTemp[2]).assertEqual("Hap1MainAbility1 onAbilityForeground");
-          expect(listKeyTemp[3]).assertEqual("Hap1MainAbility1 onAbilityBackground");
-          expect(listKeyTemp[4]).assertEqual("Hap1MainAbility1 onWindowStageDestroy");
-          expect(listKeyTemp[5]).assertEqual("Hap1MainAbility1 onAbilityDestroy");
+          let listKeyTemp9 = listKeyTemp;
+          expect(listKeyTemp9[0]).assertEqual("Hap1MainAbility1 onAbilityCreate");
+          expect(listKeyTemp9[1]).assertEqual("Hap1MainAbility1 onWindowStageCreate");
+          expect(listKeyTemp9[2]).assertEqual("Hap1MainAbility1 onAbilityForeground");
+          expect(listKeyTemp9[3]).assertEqual("Hap1MainAbility1 onAbilityBackground");
+          expect(listKeyTemp9[4]).assertEqual("Hap1MainAbility1 onWindowStageDestroy");
+          expect(listKeyTemp9[5]).assertEqual("Hap1MainAbility1 onAbilityDestroy");
           globalThis.applicationContext9
             .unregisterAbilityLifecycleCallback(globalThis.mainAbility9CallBackId, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
@@ -1104,7 +1107,6 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_1400", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_1400 start-------------");
       TAG = "Singlehap_LifeCycleTest_1400";
-      listKeyTemp = [];
       globalThis.abilityContext.startAbility({
         bundleName: "com.example.lifecycle_xts",
         abilityName: "MainAbility9"
@@ -1126,27 +1128,31 @@ export default function lifecycleTest() {
         abilityName: "Hap1MainAbility2"
       }, (error, data) => {
         setTimeout(() => {
+          var strtemp = "";
+          var listKeyTemp = [];
           console.log(TAG + ": second Hap1MainAbility2 startAbility success, err: " + JSON.stringify(error) +
           ",data: " + JSON.stringify(data));
           for (var i = 0;i < globalThis.mainAbility9ListKey.length; i++) {
-            if (globalThis.mainAbility9ListKey[i].substring(0, 16) == "Hap1MainAbility2") {
+            strtemp = globalThis.mainAbility9ListKey[i].substring(0, 16);
+            if (strtemp === "Hap1MainAbility2") {
               listKeyTemp.push(globalThis.mainAbility9ListKey[i]);
             }
           }
           console.log(TAG + "listKeyTemp is :" + listKeyTemp);
           console.log(TAG + "globalThis.mainAbility9CallBackId is :" + globalThis.mainAbility9CallBackId);
-          expect(listKeyTemp[0]).assertEqual("Hap1MainAbility2 onAbilityCreate");
-          expect(listKeyTemp[1]).assertEqual("Hap1MainAbility2 onWindowStageCreate");
-          expect(listKeyTemp[2]).assertEqual("Hap1MainAbility2 onAbilityForeground");
-          expect(listKeyTemp[3]).assertEqual("Hap1MainAbility2 onAbilityCreate");
-          expect(listKeyTemp[4]).assertEqual("Hap1MainAbility2 onWindowStageCreate");
-          expect(listKeyTemp[5]).assertEqual("Hap1MainAbility2 onAbilityForeground");
-          expect(listKeyTemp[6]).assertEqual("Hap1MainAbility2 onAbilityBackground");
-          expect(listKeyTemp[7]).assertEqual("Hap1MainAbility2 onWindowStageDestroy");
-          expect(listKeyTemp[8]).assertEqual("Hap1MainAbility2 onAbilityDestroy");
-          expect(listKeyTemp[9]).assertEqual("Hap1MainAbility2 onAbilityBackground");
-          expect(listKeyTemp[10]).assertEqual("Hap1MainAbility2 onWindowStageDestroy");
-          expect(listKeyTemp[11]).assertEqual("Hap1MainAbility2 onAbilityDestroy");
+          let listKeyTemp9 = listKeyTemp;
+          expect(listKeyTemp9[0]).assertEqual("Hap1MainAbility2 onAbilityCreate");
+          expect(listKeyTemp9[1]).assertEqual("Hap1MainAbility2 onWindowStageCreate");
+          expect(listKeyTemp9[2]).assertEqual("Hap1MainAbility2 onAbilityForeground");
+          expect(listKeyTemp9[3]).assertEqual("Hap1MainAbility2 onAbilityCreate");
+          expect(listKeyTemp9[4]).assertEqual("Hap1MainAbility2 onWindowStageCreate");
+          expect(listKeyTemp9[5]).assertEqual("Hap1MainAbility2 onAbilityForeground");
+          expect(listKeyTemp9[6]).assertEqual("Hap1MainAbility2 onAbilityBackground");
+          expect(listKeyTemp9[7]).assertEqual("Hap1MainAbility2 onWindowStageDestroy");
+          expect(listKeyTemp9[8]).assertEqual("Hap1MainAbility2 onAbilityDestroy");
+          expect(listKeyTemp9[9]).assertEqual("Hap1MainAbility2 onAbilityBackground");
+          expect(listKeyTemp9[10]).assertEqual("Hap1MainAbility2 onWindowStageDestroy");
+          expect(listKeyTemp9[11]).assertEqual("Hap1MainAbility2 onAbilityDestroy");
           globalThis.applicationContext9
             .unregisterAbilityLifecycleCallback(globalThis.mainAbility9CallBackId, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
@@ -1227,7 +1233,7 @@ export default function lifecycleTest() {
         var listtemp = [];
         for (var i = 0; i < globalThis.list11.length; i++) {
           strtemp = globalThis.list11[i].substring(0, 12);
-          if (strtemp == "MainAbility2") {
+          if (strtemp === "MainAbility2") {
             listtemp.push(globalThis.list11[i]);
           }
         }
