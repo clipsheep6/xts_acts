@@ -901,6 +901,8 @@ export default function CameraErrorCodeUsecaseTest() {
                 expect(err.code == cameraObj.CameraErrorCode.INVALID_ARGUMENT).assertTrue();
                 expect(true).assertTrue();
             });
+            // Need to wait for the capture method to finish.
+            sleep(1000);
             done();
         })
 
@@ -2251,6 +2253,8 @@ export default function CameraErrorCodeUsecaseTest() {
                     expect(err.code == cameraObj.CameraErrorCode.SESSION_NOT_RUNNING).assertTrue();
                 }
             })
+            // Need to wait for the capture method to finish.
+            sleep(1000);
             done();
         })
 
