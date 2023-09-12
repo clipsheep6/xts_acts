@@ -1071,7 +1071,7 @@ export default function lifecycleTest() {
 
       await sleep(1000);
 
-      let str = {
+      str = {
         bundleName: otherBundle,
         abilityName: "MainAbility",
         moduleName: "entry_test",
@@ -1208,7 +1208,7 @@ export default function lifecycleTest() {
         });
       await sleep(1500);
 
-      let listtemp = [];
+      listtemp = [];
       for (let i = 0; i < globalThis.mlist1.length; i++) {
         const item = globalThis.mlist1[i];
         if (item.indexOf("MultiMainability1") != -1) {
