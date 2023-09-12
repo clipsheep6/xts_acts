@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// @ts-nocheck
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import { describe, beforeAll, it, expect } from 'deccjsunit/index'
 import { getPermission } from '../../../../../../common'
@@ -39,6 +40,47 @@ export default function getPhotoAccessHelper () {
         done();
       } catch (error) {
         console.info(`getPhotoAccessHelper_000 failed, error: ${error}`);
+        expect(false).assertTrue();
+        done();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_GET_PHOTO_ACCESS_HELPER_ASYNC_CALLBACK_0000
+     * @tc.name      : getPhotoAccessHelperAsyncCallback_000
+     * @tc.desc      : Obtains a photoAccess instance async
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getPhotoAccessHelperAsyncCallback_000', 0, async function (done) {
+      photoAccessHelper.getPhotoAccessHelperAsync(globalThis.abilityContext, (err, helper) => {
+        if (err === undefined) {
+          expect(helper !== undefined).assertTrue();
+          done();
+        } else {
+          console.info(`getPhotoAccessHelperAsyncCallback_000 failed, error: ${err}`);
+          expect(false).assertTrue();
+          done();
+        }
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_GET_PHOTO_ACCESS_HELPER_ASYNC_PROMISE_0000
+     * @tc.name      : getPhotoAccessHelperAsyncPromise_000
+     * @tc.desc      : Obtains a photoAccess instance async
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getPhotoAccessHelperAsyncPromise_000', 0, async function (done) {
+      try {
+        const helper = await photoAccessHelper.getPhotoAccessHelperAsync(globalThis.abilityContext);
+        expect(helper !== undefined).assertTrue();
+        done();
+      } catch (error) {
+        console.info(`getPhotoAccessHelperAsyncPromise_000 failed, error: ${error}`);
         expect(false).assertTrue();
         done();
       }
