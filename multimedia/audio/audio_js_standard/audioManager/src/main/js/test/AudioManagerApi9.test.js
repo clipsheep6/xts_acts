@@ -490,6 +490,46 @@ export default function audioManagerApi9() {
         })
 
         /**
+         *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ON_VOLUMECHANGE_0200
+         *@tc.name      : OnVolumeChange - setVolume - MEDIA
+         *@tc.desc      : OnVolumeChange - setVolume - MEDIA
+         *@tc.size      : MEDIUM
+         *@tc.type      : Function
+         *@tc.level     : Level 3
+         */
+         it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_ON_VOLUMECHANGE_0200', 3, async function (done) {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            audioVolumeManager.on('volumeChange', (VolumeEvent) => { 
+                console.info('Volume Change Event is Called');
+                switch (VolumeEvent.volumeType) {
+                    case audio.AudioVolumeType.MEDIA:
+                        console.info(`VolumeEvent.volumeType is: ${VolumeEvent.volumeType}`);
+                        if (VolumeEvent.volume == 10) {
+                            console.info(`VolumeEvent.volume is: ${VolumeEvent.volume}`);
+                            expect(true).assertTrue();
+                        }
+                        if (VolumeEvent.updateUi != undefined) {
+                            console.info(`VolumeEvent.updateUi is: ${VolumeEvent.updateUi}`);
+                            expect(true).assertTrue();
+                        }
+                    default:
+                        console.info(`VolumeEvent.volumeType is: ${VolumeEvent.volumeType}`);
+                        expect(false).assertTrue();
+                        break;
+                }
+                done();
+            });
+            try {
+                await audioManager.setVolume(audioMedia, 10);
+                console.info('setVolume success!');
+            } catch (error) {
+                console.error(`setVolume error: ${error}`);
+                expect(false).assertTrue();
+                done();
+            }
+        })
+
+        /**
          * @tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_GETRINGERMODE_0100
          * @tc.name      : group manager getRingerMode - RINGTONE - Callback
          * @tc.desc      : getRingerMode - RINGTONE - Callback
