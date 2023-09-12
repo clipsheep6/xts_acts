@@ -669,6 +669,7 @@ export default function abilityTest() {
     it('Multihap_WindowStageLifecycleTest_010', 0, async function (done) {
       console.info("---------------Multihap_WindowStageLifecycleTest_010 is start---------------")
       TAG = "Multihap_WindowStageLifecycleTest_010";
+      let listKeyTemp = [];
 
       globalThis.abilityContext.startAbility({
         bundleName: "com.example.lifecycletest",
@@ -688,10 +689,14 @@ export default function abilityTest() {
           console.log(TAG + ": Hap4MainAbility1 startAbility success, err: " +
           JSON.stringify(error) + ",data: " + JSON.stringify(data));
 
-          let listTemp = JSON.stringify(globalThis.mainAbility2ListKey);
-          console.log(TAG + " listTemp is :" + listTemp);
+          for (var i = 0; i < globalThis.mainAbility2ListKey.length; i++) {
+            if (globalThis.mainAbility2ListKey[i].substring(0, 16) == "Hap4MainAbility1") {
+              listKeyTemp.push(globalThis.mainAbility2ListKey[i]);
+            }
+          }
+          console.log(TAG + " listKeyTemp is :" + listKeyTemp);
           console.log(TAG + " globalThis.mainAbility2CallBackId is :" + globalThis.mainAbility2CallBackId);
-          expect(listTemp.length).assertEqual(0);
+          expect(listKeyTemp.length).assertEqual(0);
 
           globalThis.ApplicationContext2
             .unregisterAbilityLifecycleCallback(globalThis.mainAbility2CallBackId, (error, data) => {

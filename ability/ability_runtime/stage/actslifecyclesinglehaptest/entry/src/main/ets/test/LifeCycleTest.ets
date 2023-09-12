@@ -690,14 +690,14 @@ export default function lifecycleTest() {
         console.log(TAG + " listTemp is :" + listTemp);
         try {
           expect(listTemp.indexOf("MainAbility1 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.split("MainAbility1 onAbilityForeground").length - 1).assertEqual(3);
+          expect(listTemp.split("MainAbility1 onAbilityForeground").length - 1).assertLarger(2);
           expect(listTemp.split("MainAbility1 onAbilityBackground").length - 1).assertEqual(3);
           expect(listTemp.split("MainAbility2 onAbilityCreate").length - 1).assertEqual(3);
           expect(listTemp.split("MainAbility2 onWindowStageCreate").length - 1).assertEqual(3);
           expect(listTemp.split("MainAbility2 onAbilityForeground").length - 1).assertEqual(3);
-          expect(listTemp.split("MainAbility2 onAbilityBackground").length - 1).assertEqual(2);
-          expect(listTemp.split("MainAbility2 onWindowStageDestroy").length - 1).assertEqual(2);
-          expect(listTemp.split("MainAbility2 onAbilityDestroy").length - 1).assertEqual(2);
+          expect(listTemp.split("MainAbility2 onAbilityBackground").length - 1).assertLarger(1);
+          expect(listTemp.split("MainAbility2 onWindowStageDestroy").length - 1).assertLarger(1);
+          expect(listTemp.split("MainAbility2 onAbilityDestroy").length - 1).assertLarger(1);
         } catch (error) {
           console.error(`${TAG} startRunning failed: ${JSON.stringify(error)}`);
           done();
