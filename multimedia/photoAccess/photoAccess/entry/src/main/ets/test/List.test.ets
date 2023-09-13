@@ -48,6 +48,7 @@ import commitModifyTest from './PhotoAsset/commitModify'
 import getTest from './PhotoAsset/get'
 import getReadOnlyFdTest from './PhotoAsset/getReadOnlyFd'
 import getThumbnailTest from './PhotoAsset/getThumbnail'
+import setPendingTest from './PendingTest/setPending'
 
 export default function testsuite () {
   getPhotoAccessHelperTest()
@@ -85,4 +86,5 @@ export default function testsuite () {
   getTest()
   getReadOnlyFdTest()
   getThumbnailTest()
+  setPendingTest()
 }
