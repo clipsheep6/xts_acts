@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.hits.storage.filetrash",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 100000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [
+            ],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/local/files/Documents/*",
+				"rm -rf /storage/media/100/local/files/local/files/Download/*",
+				"rm -rf /storage/media/100/local/files/local/files/Trash/*"
+            ]
+        },
+        {
+            "test-file-name": [
+                "HitsStorageFileTrashEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
