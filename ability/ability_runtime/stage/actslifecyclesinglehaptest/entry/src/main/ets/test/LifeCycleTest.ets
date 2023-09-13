@@ -27,7 +27,7 @@ export default function lifecycleTest() {
       if ("Singlehap_LifeCycleTest_0200" === TAG || "Singlehap_LifeCycleTest_0300" === TAG
       || "Singlehap_LifeCycleTest_0500" === TAG || "Singlehap_LifeCycleTest_0600" === TAG
       || "Singlehap_LifeCycleTest_0800" === TAG || "Singlehap_LifeCycleTest_0900" === TAG) {
-        var para = {
+        let para = {
           resultCode: 2,
           want: {
             "abilityName": "MainAbility1",
@@ -42,7 +42,7 @@ export default function lifecycleTest() {
             console.log("LifeCycleTest terminateSelfwithresult error: " + JSON.stringify(error));
           });
       } else if ("Singlehap_LifeCycleTest_2000" === TAG) {
-        var para1 = {
+        let para1 = {
           resultCode: 2,
           want: {
             "abilityName": "MainAbility12",
@@ -78,8 +78,8 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0100", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0100 START-------------");
       TAG = "Singlehap_LifeCycleTest_0100";
-      var code;
-      var str = {
+      let code;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility2",
       }
@@ -94,9 +94,9 @@ export default function lifecycleTest() {
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid));
         tempCallbackId = globalThis.callbackid;
         console.log(TAG + " registerAbilityLifecycleCallback tempCallbackId : " + JSON.stringify(tempCallbackId));
-        var strtemp = "";
+        let strtemp = "";
         let settemp = new Set();
-        for (var i = 0; i < globalThis.list.length; i++) {
+        for (let i = 0; i < globalThis.list.length; i++) {
           strtemp = globalThis.list[i].substring(0, 12);
           if (strtemp === "MainAbility2") {
             settemp.add(globalThis.list[i]);
@@ -132,8 +132,8 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0200", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0200 START-------------");
       TAG = "Singlehap_LifeCycleTest_0200";
-      var code;
-      var str = {
+      let code;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
       }
@@ -144,7 +144,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -158,10 +158,10 @@ export default function lifecycleTest() {
       setTimeout(function () {
         console.log(TAG + " registerAbilityLifecycleCallback listKey : " + JSON.stringify(globalThis.list1));
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid1));
-        var strtemp = "";
+        let strtemp = "";
         let maptemp = new Map();
         let settemp = new Set();
-        for (var i = 0; i < globalThis.list1.length; i++) {
+        for (let i = 0; i < globalThis.list1.length; i++) {
           strtemp = globalThis.list1[i].substring(0, 12);
           if (strtemp === "MainAbility1") {
             if (maptemp.has(globalThis.list1[i])) {
@@ -209,8 +209,8 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0300", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0300 START-------------");
       TAG = "Singlehap_LifeCycleTest_0300";
-      var code;
-      var str = {
+      let code;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
       }
@@ -221,7 +221,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -301,8 +301,8 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0400", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0400 START-------------");
       TAG = "Singlehap_LifeCycleTest_0400";
-      var code;
-      var str = {
+      let code;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility3",
       }
@@ -313,7 +313,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start3 failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -398,7 +398,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0500", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0500 START-------------");
       TAG = "Singlehap_LifeCycleTest_0500";
-      var str = {
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
       }
@@ -409,7 +409,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start1 failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility3",
         }
@@ -430,7 +430,7 @@ export default function lifecycleTest() {
           .catch((error) => {
             console.error(TAG + ' unregisterAbilityLifecycleCallback3 failed. Cause: ' + JSON.stringify(error));
           });
-        var str2 = {
+        let str2 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility4",
         }
@@ -475,7 +475,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0600", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0600 START-------------");
       TAG = "Singlehap_LifeCycleTest_0600";
-      var str = {
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
       }
@@ -486,7 +486,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start1 failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility5",
         }
@@ -498,7 +498,7 @@ export default function lifecycleTest() {
         })
       }, 500);
       setTimeout(function () {
-        var str2 = {
+        let str2 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -512,10 +512,10 @@ export default function lifecycleTest() {
       setTimeout(function () {
         console.log(TAG + " listKey1 : " + JSON.stringify(globalThis.list1));
         console.log(TAG + " callbackid1 : " + JSON.stringify(globalThis.callbackid1));
-        var strtemp = "";
+        let strtemp = "";
         let settemp = new Set();
         let settemp2 = new Set();
-        for (var i = 0; i < globalThis.list1.length; i++) {
+        for (let i = 0; i < globalThis.list1.length; i++) {
           strtemp = globalThis.list1[i].substring(0, 12);
           if (strtemp == "MainAbility2") {
               settemp.add(globalThis.list1[i]);
@@ -558,13 +558,13 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0700", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0700 START-------------");
       TAG = "Singlehap_LifeCycleTest_0700";
-      var code1;
-      var code2;
-      var code3;
-      var id1;
-      var id2;
-      var id3;
-      var listKey8 = [];
+      let code1;
+      let code2;
+      let code3;
+      let id1;
+      let id2;
+      let id3;
+      let listKey8 = [];
       let AbilityLifecycleCallback = {
         onAbilityCreate(ability) {
           console.log(TAG + " onAbilityCreate ability:" + JSON.stringify(ability));
@@ -679,7 +679,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0800", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0800 START-------------");
       TAG = "Singlehap_LifeCycleTest_0800";
-      var str = {
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
       }
@@ -690,7 +690,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -702,7 +702,7 @@ export default function lifecycleTest() {
         })
       }, 1500);
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -715,7 +715,7 @@ export default function lifecycleTest() {
       }, 3000);
 
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -791,7 +791,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0900", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_0900 START-------------");
       TAG = "Singlehap_LifeCycleTest_0900";
-      var str = {
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
       }
@@ -802,7 +802,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -814,7 +814,7 @@ export default function lifecycleTest() {
         })
       }, 500);
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -884,9 +884,9 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_1000", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_1000 START-------------");
       TAG = "Singlehap_LifeCycleTest_1000";
-      var id1;
-      var id2;
-      var str = {
+      let id1;
+      let id2;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility6",
       }
@@ -901,7 +901,7 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid : " + JSON.stringify(globalThis.callbackid6));
         id1 = globalThis.callbackid6;
         console.log(TAG + " firstCallback id : " + JSON.stringify(id1));
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -937,9 +937,9 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_1100", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_1100 START-------------");
       TAG = "Singlehap_LifeCycleTest_1100";
-      var id1;
-      var id2;
-      var str = {
+      let id1;
+      let id2;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility7",
       }
@@ -954,7 +954,7 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid : " + JSON.stringify(globalThis.callbackid7));
         id1 = globalThis.callbackid7;
         console.log(TAG + " firstCallback id : " + JSON.stringify(id1));
-        var str = {
+        let str = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility7",
         }
@@ -976,7 +976,7 @@ export default function lifecycleTest() {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
             ",data: " + JSON.stringify(data));
           });
-        var para = {
+        let para = {
           resultCode: 1,
           want: {
             "abilityName": "MainAbility1",
@@ -1001,9 +1001,9 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_1200", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_1200 START-------------");
       TAG = "Singlehap_LifeCycleTest_1200";
-      var id1;
-      var id2;
-      var str = {
+      let id1;
+      let id2;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility8",
       }
@@ -1018,7 +1018,7 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid : " + JSON.stringify(globalThis.callbackid8));
         id1 = globalThis.callbackid8;
         console.log(TAG + " firstCallback id : " + JSON.stringify(id1));
-        var str = {
+        let str = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility8",
         }
@@ -1040,7 +1040,7 @@ export default function lifecycleTest() {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
             ",data: " + JSON.stringify(data));
           });
-        var para = {
+        let para = {
           resultCode: 1,
           want: {
             "abilityName": "MainAbility8",
@@ -1192,9 +1192,9 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_1500", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_1500 START-------------");
       TAG = "Singlehap_LifeCycleTest_1500";
-      var id1;
-      var id2;
-      var str = {
+      let id1;
+      let id2;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility11",
       }
@@ -1205,7 +1205,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -1221,7 +1221,7 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid : " + JSON.stringify(globalThis.callbackid11));
         id1 = globalThis.callbackid11;
         console.log(TAG + " firstCallback id : " + JSON.stringify(id1));
-        var str = {
+        let str = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility11",
         }
@@ -1232,7 +1232,7 @@ export default function lifecycleTest() {
           console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
         })
         setTimeout(function () {
-          var str1 = {
+          let str1 = {
             "bundleName": "com.example.lifecycle_xts",
             "abilityName": "MainAbility2",
           }
@@ -1277,9 +1277,9 @@ export default function lifecycleTest() {
       }, 7000);
     });
 
-    var callbackid_NA = 100
-    var callbackid_errorNum = -1
-    var callbackid_errorType = "test"
+    let callbackid_NA = 100
+    let callbackid_errorNum = -1
+    let callbackid_errorType = "test"
     /*
      * @tc.number  Singlehap_LifeCycleTest_1600
      * @tc.name    input Nonexistent callbackid for unregisterAbilityLifecycleCallback parameter
@@ -1373,9 +1373,9 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_2000", 0, async function (done) {
       console.log("------------Singlehap_LifeCycleTest_2000 START-------------");
       TAG = "Singlehap_LifeCycleTest_2000";
-      var id1;
-      var id2;
-      var str = {
+      let id1;
+      let id2;
+      let str = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility12",
       }
@@ -1386,7 +1386,7 @@ export default function lifecycleTest() {
         console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
       })
       setTimeout(function () {
-        var str1 = {
+        let str1 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -1402,7 +1402,7 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid : " + JSON.stringify(globalThis.callbackid12));
         id1 = globalThis.callbackid12;
         console.log(TAG + " firstCallback id : " + JSON.stringify(id1));
-        var para = {
+        let para = {
           resultCode: 2000,
           want: {
             "abilityName": "MainAbility12",
@@ -1418,7 +1418,7 @@ export default function lifecycleTest() {
         });
       }, 3000);
       setTimeout(function () {
-        var str = {
+        let str = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility12",
         }
@@ -1429,7 +1429,7 @@ export default function lifecycleTest() {
           console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
         })
         setTimeout(function () {
-          var str1 = {
+          let str1 = {
             "bundleName": "com.example.lifecycle_xts",
             "abilityName": "MainAbility2",
           }
@@ -1496,7 +1496,7 @@ export default function lifecycleTest() {
           console.error(TAG + ' start failed. Cause: ' + JSON.stringify(error));
         })
       setTimeout(function () {
-        var str2 = {
+        let str2 = {
           "bundleName": "com.example.lifecycle_xts",
           "abilityName": "MainAbility2",
         }
@@ -1512,7 +1512,7 @@ export default function lifecycleTest() {
         console.log(TAG + " firstCallback callbackid1 : " + JSON.stringify(globalThis.callbackid1));
         id1 = globalThis.callbackid1;
         console.log(TAG + " firstCallback id1 : " + JSON.stringify(id1));
-        var para = {
+        let para = {
           resultCode: 2100,
           want: {
             "abilityName": "MainAbility1",
@@ -1528,8 +1528,6 @@ export default function lifecycleTest() {
           });
       }, 3500);
       setTimeout(function () {
-        console.log(TAG + " secondCallback listKey1 : " + JSON.stringify(globalThis.list1));
-        let templist1 = globalThis.list1;
         console.log(TAG + " secondCallback callbackid1 : " + JSON.stringify(globalThis.callbackid1));
         var strtemp = "";
         listtemp = [];
