@@ -21,9 +21,9 @@ import osaccount from '@ohos.account.osAccount';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-// function sleep(time) {
-//   return new Promise((resolve) => setTimeout(resolve, time))
-// }
+function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time))
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -342,11 +342,11 @@ export default function abilityTest() {
       }, 4000);
     })
 
-   /*
-    * @tc.number: Acts_StartupAndExitEventReport_0700.
-    * @tc.name: When the application starts and exits, the dot information is reported.
-    * @tc.desc: Verify that dot information is reported when the application exits.
-   */
+    /*
+     * @tc.number: Acts_StartupAndExitEventReport_0700.
+     * @tc.name: When the application starts and exits, the dot information is reported.
+     * @tc.desc: Verify that dot information is reported when the application exits.
+     */
     it('Acts_StartupAndExitEventReport_0700', 0, async function (done) {
       console.log('====>Acts_StartupAndExitEventReport_0700 start');
       let want = {
