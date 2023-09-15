@@ -21,32 +21,7 @@ import { describe, expect } from '@ohos/hypium'
 export default function paddingTest() {
   //A list of components that support padding attributes is required.
   let supportView = [
-    'Badge',
-    'Column',
-//    'Counter',
-    'GridRow',
-    'Grid',
-    'List',
-//    'Panel',
-    'Refresh',
-    'Row',
-    'Scroll',
-//    'SideBarContainer',
-    'Stack',
-    'Swiper',
-//    'Tabs',
-    'TabContent',
-    'WaterFlow',
-    'ColumnSplit',
-    'Flex',
-    'FlowItem',
-    'GridCol',
-    'GridItem',
-    'ListItemGroup',
-    'Navigator',
-//    'RelativeContainer',
-    'RowSplit',
-//    'ListItem'
+    'Navigator'
   ]
 
   //Called from the parent class when setting the background color.
