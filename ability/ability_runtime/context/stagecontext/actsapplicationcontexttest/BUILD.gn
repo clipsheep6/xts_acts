@@ -13,31 +13,31 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("ActsApplicationLifecycleHapTest") {
+ohos_js_hap_suite("ActsApplicationContextTest") {
   hap_profile = "entry/src/main/module.json"
   js_build_mode = "debug"
   deps = [
-    ":actsapplicationlifecyclehaptest_js_assets",
-    ":actsapplicationlifecyclehaptest_resources",
+    ":actsapplicationcontexttestjs_assets",
+    ":actsapplicationcontexttestresources",
   ]
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "ActsApplicationLifecycleHapTest"
+  hap_name = "ActsApplicationContextTest"
   subsystem_name = "ability"
   part_name = "ability_runtime"
 }
 
-ohos_app_scope("actsapplicationlifecyclehaptest_app_profile") {
+ohos_app_scope("actsapplicationcontexttestapp_profile") {
   app_profile = "AppScope/app.json"
   sources = [ "AppScope/resources" ]
 }
 
-ohos_js_assets("actsapplicationlifecyclehaptest_js_assets") {
+ohos_js_assets("actsapplicationcontexttestjs_assets") {
   source_dir = "entry/src/main/ets"
 }
 
-ohos_resources("actsapplicationlifecyclehaptest_resources") {
+ohos_resources("actsapplicationcontexttestresources") {
   sources = [ "entry/src/main/resources" ]
-  deps = [ ":actsapplicationlifecyclehaptest_app_profile" ]
+  deps = [ ":actsapplicationcontexttestapp_profile" ]
   hap_profile = "entry/src/main/module.json"
 }
