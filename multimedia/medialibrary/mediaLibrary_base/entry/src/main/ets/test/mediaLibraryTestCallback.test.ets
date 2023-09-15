@@ -160,7 +160,7 @@ export default function mediaLibraryTestCallback(abilityContext) {
                 relativePath: "Audios/Static/",
                 size: 1958311,
                 mediaType: AUDIO_TYPE.toString(),
-                title: "test",
+                title: "01",
                 artist: "元数据测试",
                 orientation: 0,
                 duration: "219600",
