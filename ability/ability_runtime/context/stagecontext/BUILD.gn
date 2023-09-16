@@ -17,7 +17,7 @@ group("stagecontext") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "actsapplicationcontexttest:ActsApplicationContextTest",
+      "actsapplicationcontextemittest:ActsApplicationContextEmitTest",
     ]
   }
 }
