@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 // @ts-ignore
 
 import cameraObj from '@ohos.multimedia.camera';
@@ -20,7 +19,8 @@ import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import deviceInfo from '@ohos.deviceInfo';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
+import { BusinessError } from '@ohos.base';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 const TAG = "CameraModuleTest: ";
 
@@ -500,6 +500,7 @@ export default function cameraSessionFocusTest() {
             await mCameraSession.removeOutput(mVideoOutput);
         }
         */
+        await mCameraSession.commitConfig();
         await releaseInput();
         await releaseOutput();
 
@@ -507,6 +508,49 @@ export default function cameraSessionFocusTest() {
 
         return true;
     }
+
+  async function configSession(captureSession: cameraObj.CaptureSession) {
+    console.info(TAG + "Enter configSession");
+    captureSession.beginConfig();
+    if (mCameraInput) {
+        captureSession.addInput(mCameraInput);
+    }
+    if (mPreviewOutput) {
+        captureSession.addOutput(mPreviewOutput);
+    }
+    await captureSession.commitConfig();
+    await captureSession.start();
+    captureSession.setFocusMode(cameraObj.FocusMode.FOCUS_MODE_AUTO);
+    console.info(TAG + "Exit configSession");
+  }
+
+  async function releaseSession(captureSession: cameraObj.CaptureSession) {
+    console.info(TAG + "Enter releaseSession");
+    if (mPreviewOutput) {
+      await mPreviewOutput.stop();
+      await mPreviewOutput.release();
+      mPreviewOutput = null;
+    }
+    if (captureSession) {
+      await captureSession.release();
+      captureSession = null;
+    }
+    if (mCameraInput) {
+      await mCameraInput.close();
+      mCameraInput = null;
+    }
+    console.info(TAG + "Exit releaseSession");
+  }
+
+  function cameraSessionFocusStateChangeCb(data) {
+    console.info(TAG + "cameraSessionFocusStateChangeCb is called");
+    expect().assertFail();
+  }
+
+  function cameraSessionFocusStateChangeCb2(data) {
+    console.info(TAG + "cameraSessionFocusStateChangeCb2 is called");
+    expect().assertFail();
+  }
 
     describe('cameraSessionFocusTest', function () {
         console.info(TAG + '----------cameraSessionFocusTest--------------')
@@ -1367,69 +1411,313 @@ export default function cameraSessionFocusTest() {
             }
         })
 
-
-        /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100
-      * @tc.name      : camera session focusstatechange api
-      * @tc.desc      : camera session focusstatechange api
-      * @tc.size      : MEDIUM
-      * @tc.type      : Function
-      * @tc.level     : Level 1
-    */
-    it('SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100', 1, async function (done) {
-        console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100--------------");
-        if (isEmpty(mCameraSession)) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 mCameraSession == null || undefined")
-          expect().assertFail();
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 to operate");
-          mCameraSession.on('focusStateChange', async (err, data) => {
-            if (!err) {
-              expect(true).assertTrue();
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 success");
-            } else {
-              expect().assertFail();
-              console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 FAILED: " + err.message);
-            }
-            await sleep(1000);
-            done();
-          })
-        }
-        await sleep(1000);
-        done();
-      })
-
-
-      /**
-      * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100
-      * @tc.name      : camera session callback on error
-      * @tc.desc      : camera session callback on error
-      * @tc.size      : MEDIUM
-      * @tc.type      : Function
-      * @tc.level     : Level 1
-    */
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100
+     * @tc.name      : camera session callback on error
+     * @tc.desc      : camera session callback on error
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
     it('SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100', 1, async function (done) {
-        console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100--------------");
-        if (isEmpty(mCameraSession)) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 previewOutput == null || undefined")
-          expect().assertFail();
-        } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 to operate");
-          mCameraSession.on('error', async (err, data) => {
-            if (!err) {
-              expect(true).assertTrue();
-              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 success");
-            } else {
-              expect().assertFail();
-              console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 FAILED: " + err.message);
-            }
-            await sleep(1000);
-            done();
-          })
-        }
-        await sleep(1000);
-        done();
-      })
-
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100--------------");
+      if (isEmpty(mCameraSession)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 previewOutput == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 to operate");
+        mCameraSession.on('error', async (err, data) => {
+          if (!err) {
+            expect(true).assertTrue();
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 success");
+          } else {
+            expect().assertFail();
+            console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_CAMERA_SESSION_ON_ERROR_0100 FAILED: " + err.message);
+          }
+          await sleep(1000);
+          done();
+        })
+      }
+      await sleep(1000);
+      done();
     })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100
+     * @tc.name      : camera session focusstatechange api
+     * @tc.desc      : camera session focusstatechange api
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100--------------");
+      if (isEmpty(mCameraManager)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 mCameraManager == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 to operate");
+        await releaseCameraSessionInstance();
+        if (mCameraNum < 1) {
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 cameraDevice is null");
+          expect().assertFail();
+          done();
+        }
+        let captureSession = null;
+        let flag = false;
+        try {
+          createOutput(0);
+          await createInput(0);
+          captureSession = mCameraManager.createCaptureSession();
+          captureSession.on('focusStateChange', async (err, data) => {
+            console.log(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 focusStateChange callback");
+            flag = true;
+          })
+          await configSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 startCameraSession call failed, error code: " + err.code);
+          await releaseSession(captureSession);
+          expect().assertFail();
+          done();
+        }
+        captureSession.setFocusPoint({
+          x: 0.6, y: 0.6
+        });
+        await sleep(1000);
+        try {
+          await releaseSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0100 stopCameraSession call failed, error code: " + err.code);
+          expect().assertFail();
+          done();
+        }
+        if (flag) {
+          expect(true).assertTrue();
+        } else {
+          expect().assertFail();
+        }
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101
+     * @tc.name      : camera session focusstatechange api
+     * @tc.desc      : camera session focusstatechange api
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101--------------");
+      if (isEmpty(mCameraManager)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 mCameraManager == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 to operate");
+        if (mCameraNum < 1) {
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 cameraDevice is null");
+          expect().assertFail();
+          done();
+        }
+        let captureSession = null;
+        let flag1 = false;
+        let flag2 = false;
+        try {
+          createOutput(0);
+          await createInput(0);
+          captureSession = mCameraManager.createCaptureSession();
+          captureSession.on('focusStateChange', (err, data) => {
+            console.log(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 focusStateChange callback flag1");
+            flag1 = true;
+          })
+          captureSession.on('focusStateChange', (err, data) => {
+            console.log(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 focusStateChange callback flag2");
+            flag2 = true;
+          })
+          await configSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 startCameraSession call failed, error code: " + err.code);
+          await releaseSession(captureSession);
+          expect().assertFail();
+          done();
+        }
+        captureSession.setFocusPoint({
+          x: 0.7, y: 0.7
+        });
+        await sleep(1000);
+        try {
+          await releaseSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_ON_FOCUSSTATECHANGE_0101 stopCameraSession call failed, error code: " + err.code);
+          expect().assertFail();
+          done();
+        }
+        if (flag1 && flag2) {
+          expect(true).assertTrue();
+        } else {
+          expect().assertFail();
+        }
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100
+     * @tc.name      : Disable the focusStateChange callback function.
+     * @tc.desc      : Disable the focusStateChange callback function.
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100--------------");
+      if (isEmpty(mCameraManager)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100 mCameraManager == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100 to operate");
+        if (mCameraNum < 1) {
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100 cameraDevice is null");
+          expect().assertFail();
+          done();
+        }
+        let captureSession = null;
+        try {
+          createOutput(0);
+          await createInput(0);
+          captureSession = mCameraManager.createCaptureSession();
+          captureSession.on('focusStateChange', cameraSessionFocusStateChangeCb);
+          captureSession.off('focusStateChange', cameraSessionFocusStateChangeCb);
+          await configSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100 startCameraSession call failed, error code: " + err.code);
+          await releaseSession(captureSession);
+          expect().assertFail();
+          done();
+        }
+        captureSession.setFocusPoint({
+          x: 0.7, y: 0.8
+        });
+        try {
+          await releaseSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_FOCUSSTATECHANGE_0100 stopCameraSession call failed, error code: " + err.code);
+          expect().assertFail();
+          done();
+        }
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100
+     * @tc.name      : Disable the focusStateChange callback function.MEDIUM
+     *
+     * @tc.desc      : Disable the focusStateChange callback function.
+     * @tc.size      :  @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100--------------");
+      if (isEmpty(mCameraManager)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100 mCameraManager == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100 to operate");
+        if (mCameraNum < 1) {
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100 cameraDevice is null");
+          expect().assertFail();
+          done();
+        }
+        let captureSession = null;
+        try {
+          createOutput(0);
+          await createInput(0);
+          captureSession = mCameraManager.createCaptureSession();
+          captureSession.on('focusStateChange', cameraSessionFocusStateChangeCb);
+          captureSession.off('focusStateChange');
+          await configSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100 startCameraSession call failed, error code: " + err.code);
+          await releaseSession(captureSession);
+          expect().assertFail();
+          done();
+        }
+        captureSession.setFocusPoint({
+          x: 0.8, y: 0.8
+        });
+        try {
+          await releaseSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0100 stopCameraSession call failed, error code: " + err.code);
+          expect().assertFail();
+          done();
+        }
+      }
+      await sleep(1000);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101
+     * @tc.name      : Disable the focusStateChange callback function.
+     * @tc.desc      : Disable the focusStateChange callback function.
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101', 1, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101--------------");
+      if (isEmpty(mCameraManager)) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101 mCameraManager == null || undefined")
+        expect().assertFail();
+      } else {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101 to operate");
+        if (mCameraNum < 1) {
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101 cameraDevice is null");
+          expect().assertFail();
+          done();
+        }
+        let captureSession = null;
+        try {
+          createOutput(0);
+          await createInput(0);
+          captureSession = mCameraManager.createCaptureSession();
+          captureSession.on('focusStateChange', cameraSessionFocusStateChangeCb);
+          captureSession.on('focusStateChange', cameraSessionFocusStateChangeCb2);
+          captureSession.off('focusStateChange');
+          await configSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101 startCameraSession call failed, error code: " + err.code);
+          await releaseSession(captureSession);
+          expect().assertFail();
+          done();
+        }
+        captureSession.setFocusPoint({
+          x: 0.9, y: 0.9
+        });
+        try {
+          await releaseSession(captureSession);
+        } catch (error) {
+          let err = error as BusinessError;
+          console.error(TAG + "SUB_MULTIMEDIA_CAMERA_OFF_ALL_FOCUSSTATECHANGE_0101 stopCameraSession call failed, error code: " + err.code);
+          expect().assertFail();
+          done();
+        }
+      }
+      await sleep(1000);
+      done();
+    })
+  })
 }
