@@ -359,5 +359,20 @@ export default function appManagerTest() {
           done();
         })
     })
+
+    /**
+     * @tc.number: Public_API_Test_App_Manager_0100
+     * @tc.name: ProcessState enum public interface test
+     * @tc.desc: Test the third-party application get ProcessState enum will be right
+     * @tc.level 3
+     */
+    it('Public_API_Test_App_Manager_0100',0, function (done) {
+      expect(appManager.ProcessState.STATE_CREATE).assertEqual(1);
+      expect(appManager.ProcessState.STATE_FOREGROUND).assertEqual(2);
+      expect(appManager.ProcessState.STATE_ACTIVE).assertEqual(3);
+      expect(appManager.ProcessState.STATE_BACKGROUND).assertEqual(4);
+      expect(appManager.ProcessState.STATE_DESTROY).assertEqual(5);
+      done();
+    })
   })
 }
