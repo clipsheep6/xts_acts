@@ -60,8 +60,10 @@ export default function lifecycleTest() {
       done();
     });
 
-    let TAG = "";
-    let tempCallbackId;
+    var TAG = "";
+    var listtemp1;
+    var listtemp;
+    var tempCallbackId;
 
     function sleep(time) {
       return new Promise((resolve) => setTimeout(resolve, time))
@@ -233,8 +235,28 @@ export default function lifecycleTest() {
       setTimeout(function () {
         console.log(TAG + " registerAbilityLifecycleCallback listKey : " + JSON.stringify(globalThis.list1));
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid1));
-        let listTemp = JSON.stringify(globalThis.list1);
-        console.log(TAG + " listTemp is :" + listTemp);
+        var strtemp = "";
+        let maptemp = new Map();
+        let settemp = new Set();
+        listtemp = [];
+        listtemp1 = [];
+        for (var i = 0; i < globalThis.list1.length; i++) {
+          strtemp = globalThis.list1[i].substring(0, 12);
+          if (strtemp === "MainAbility1") {
+            if (maptemp.has(globalThis.list1[i])) {
+              let value = maptemp.get(globalThis.list1[i]);
+              maptemp.set(globalThis.list1[i], value + 1);
+            } else {
+              maptemp.set(globalThis.list1[i], 1);
+            }
+            listtemp.push(globalThis.list1[i]);
+          } else if (strtemp === "MainAbility2") {
+            settemp.add(globalThis.list1[i]);
+            listtemp1.push(globalThis.list1[i]);
+          }
+        }
+        console.log(TAG + " listtemp is：" + JSON.stringify(listtemp));
+        console.log(TAG + " listtemp1 is：" + JSON.stringify(listtemp1));
         globalThis.applicationContext1
           .unregisterAbilityLifecycleCallback(globalThis.callbackid1)
           .then((data) => {
@@ -253,15 +275,16 @@ export default function lifecycleTest() {
             })
         }, 500);
         setTimeout(function () {
-          expect(listTemp.indexOf("MainAbility1 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.split("MainAbility1 onAbilityForeground").length - 1).assertEqual(2);
-          expect(listTemp.indexOf("MainAbility1 onAbilityBackground") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityCreate") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityForeground") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityBackground") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onWindowStageDestroy") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityDestroy") !== -1).assertTrue();
+          expect(maptemp.has("MainAbility1 onWindowStageCreate")).assertTrue();
+          expect(maptemp.get("MainAbility1 onAbilityForeground")).assertEqual(2);
+          expect(maptemp.has("MainAbility1 onAbilityBackground")).assertTrue();
+          
+          expect(settemp.has("MainAbility2 onAbilityCreate")).assertTrue();
+          expect(settemp.has("MainAbility2 onWindowStageCreate")).assertTrue();
+          expect(settemp.has("MainAbility2 onAbilityForeground")).assertTrue();
+          expect(settemp.has("MainAbility2 onAbilityBackground")).assertTrue();
+          expect(settemp.has("MainAbility2 onWindowStageDestroy")).assertTrue();
+          expect(settemp.has("MainAbility2 onAbilityDestroy")).assertTrue();
           expect(code).assertEqual(1);
           console.log("------------Singlehap_LifeCycleTest_0300 END-------------");
           done();
@@ -304,9 +327,29 @@ export default function lifecycleTest() {
       setTimeout(function () {
         console.log(TAG + " registerAbilityLifecycleCallback listKey : " + JSON.stringify(globalThis.list3));
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid3));
-        let listTemp = JSON.stringify(globalThis.list3);
-        console.log(TAG + " listTemp is :" + listTemp);
-        let para = {
+        var strtemp = "";
+        let maptemp = new Map();
+        let settemp = new Set();
+        listtemp = [];
+        listtemp1 = [];
+        for (var i = 0; i < globalThis.list3.length; i++) {
+          strtemp = globalThis.list3[i].substring(0, 12);
+          if (strtemp === "MainAbility3") {
+            if (maptemp.has(globalThis.list3[i])) {
+              let value = maptemp.get(globalThis.list3[i]);
+              maptemp.set(globalThis.list3[i], value + 1);
+            } else {
+              maptemp.set(globalThis.list3[i], 1);
+            }
+            listtemp.push(globalThis.list3[i]);
+          } else if (strtemp === "MainAbility2") {
+            settemp.add(globalThis.list3[i]);
+            listtemp1.push(globalThis.list3[i]);
+          }
+        }
+        console.log(TAG + " listtemp is：" + JSON.stringify(listtemp));
+        console.log(TAG + " listtemp1 is：" + JSON.stringify(listtemp1));
+        var para = {
           resultCode: 1,
           want: {
             "abilityName": "MainAbility3",
@@ -329,15 +372,16 @@ export default function lifecycleTest() {
             })
         }, 500);
         setTimeout(function () {
-          expect(listTemp.indexOf("MainAbility3 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.split("MainAbility3 onAbilityForeground").length - 1).assertEqual(2);
-          expect(listTemp.indexOf("MainAbility3 onAbilityBackground") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityCreate") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityForeground") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityBackground") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onWindowStageDestroy") !== -1).assertTrue();
-          expect(listTemp.indexOf("MainAbility2 onAbilityDestroy") !== -1).assertTrue();
+          expect(maptemp.has("MainAbility3 onWindowStageCreate")).assertTrue();
+          expect(maptemp.get("MainAbility3 onAbilityForeground")).assertEqual(2);
+          expect(maptemp.has("MainAbility3 onAbilityBackground")).assertTrue();
+          
+          expect(settemp.has("MainAbility2 onAbilityCreate")).assertTrue();
+          expect(settemp.has("MainAbility2 onWindowStageCreate")).assertTrue();
+          expect(settemp.has("MainAbility2 onAbilityForeground")).assertTrue();
+          expect(settemp.has("MainAbility2 onAbilityBackground")).assertTrue();
+          expect(settemp.has("MainAbility2 onWindowStageDestroy")).assertTrue();
+          expect(settemp.has("MainAbility2 onAbilityDestroy")).assertTrue();
           expect(code).assertEqual(0);
           console.log("------------Singlehap_LifeCycleTest_0400 END-------------");
           done();
@@ -686,18 +730,44 @@ export default function lifecycleTest() {
       setTimeout(function () {
         console.log(TAG + " registerAbilityLifecycleCallback listKey : " + JSON.stringify(globalThis.list1));
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid1));
-        let listTemp = JSON.stringify(globalThis.list1);
-        console.log(TAG + " listTemp is :" + listTemp);
+        var strtemp = "";
+        let maptemp = new Map();
+        let maptemp1 = new Map();
+        listtemp = [];
+        listtemp1 = [];
+        for (var i = 0; i < globalThis.list1.length; i++) {
+          strtemp = globalThis.list1[i].substring(0, 12);
+          if (strtemp === "MainAbility1") {
+            if (maptemp.has(globalThis.list1[i])) {
+              let value = maptemp.get(globalThis.list1[i]);
+              maptemp.set(globalThis.list1[i], value + 1);
+            } else {
+              maptemp.set(globalThis.list1[i], 1);
+            }
+            listtemp.push(globalThis.list1[i]);
+          } else if (strtemp === "MainAbility2") {
+            if (maptemp1.has(globalThis.list1[i])) {
+              let value1 = maptemp1.get(globalThis.list1[i]);
+              maptemp1.set(globalThis.list1[i], value1 + 1);
+            } else {
+              maptemp1.set(globalThis.list1[i], 1);
+            }
+            listtemp1.push(globalThis.list1[i]);
+          }
+        }
+        console.log(TAG + " listtemp is：" + JSON.stringify(listtemp));
+        console.log(TAG + " listtemp1 is：" + JSON.stringify(listtemp1));
         try {
-          expect(listTemp.indexOf("MainAbility1 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.split("MainAbility1 onAbilityForeground").length - 1).assertLarger(1);
-          expect(listTemp.split("MainAbility1 onAbilityBackground").length - 1).assertEqual(3);
-          expect(listTemp.split("MainAbility2 onAbilityCreate").length - 1).assertEqual(3);
-          expect(listTemp.split("MainAbility2 onWindowStageCreate").length - 1).assertEqual(3);
-          expect(listTemp.split("MainAbility2 onAbilityForeground").length - 1).assertEqual(3);
-          expect(listTemp.split("MainAbility2 onAbilityBackground").length - 1).assertLarger(1);
-          expect(listTemp.split("MainAbility2 onWindowStageDestroy").length - 1).assertLarger(1);
-          expect(listTemp.split("MainAbility2 onAbilityDestroy").length - 1).assertLarger(1);
+          expect(maptemp.has("MainAbility1 onWindowStageCreate")).assertTrue();
+          expect(maptemp.get("MainAbility1 onAbilityForeground")).assertEqual(4);
+          expect(maptemp.get("MainAbility1 onAbilityBackground")).assertEqual(3);
+
+          expect(maptemp1.get("MainAbility2 onAbilityCreate")).assertEqual(3);
+          expect(maptemp1.get("MainAbility2 onWindowStageCreate")).assertEqual(3);
+          expect(maptemp1.get("MainAbility2 onAbilityForeground")).assertEqual(3);
+          expect(maptemp1.get("MainAbility2 onAbilityBackground")).assertEqual(3);
+          expect(maptemp1.get("MainAbility2 onWindowStageDestroy")).assertEqual(3);
+          expect(maptemp1.get("MainAbility2 onAbilityDestroy")).assertEqual(3);
         } catch (error) {
           console.error(`${TAG} startRunning failed: ${JSON.stringify(error)}`);
           done();
@@ -709,7 +779,7 @@ export default function lifecycleTest() {
             console.log("------------Singlehap_LifeCycleTest_0800 END-------------");
             done();
           });
-      }, 5950);
+      }, 6500);
     });
 
     /*
@@ -758,18 +828,43 @@ export default function lifecycleTest() {
       setTimeout(function () {
         console.log(TAG + " registerAbilityLifecycleCallback listKey : " + JSON.stringify(globalThis.list1));
         console.log(TAG + " registerAbilityLifecycleCallback callbackid : " + JSON.stringify(globalThis.callbackid1));
-        let listTemp = JSON.stringify(globalThis.list1);
-        console.log(TAG + " listTemp is :" + listTemp);
+        var strtemp = "";
+        let maptemp = new Map();
+        let maptemp1 = new Map();
+        listtemp = [];
+        listtemp1 = [];
+        for (var i = 0; i < globalThis.list1.length; i++) {
+          strtemp = globalThis.list1[i].substring(0, 12);
+          if (strtemp === "MainAbility1") {
+            if (maptemp.has(globalThis.list1[i])) {
+              let value = maptemp.get(globalThis.list1[i]);
+              maptemp.set(globalThis.list1[i], value + 1);
+            } else {
+              maptemp.set(globalThis.list1[i], 1);
+            }
+             listtemp.push(globalThis.list1[i]);
+          } else if (strtemp === "MainAbility2") {
+            if (maptemp1.has(globalThis.list1[i])) {
+              let value1 = maptemp1.get(globalThis.list1[i]);
+              maptemp1.set(globalThis.list1[i], value1 + 1);
+            } else {
+              maptemp1.set(globalThis.list1[i], 1);
+            }
+             listtemp1.push(globalThis.list1[i]);
+          }
+        }
+        console.log(TAG + " listtemp is：" + JSON.stringify(listtemp));
+        console.log(TAG + " listtemp1 is：" + JSON.stringify(listtemp1));
+        expect(maptemp.has("MainAbility1 onWindowStageCreate")).assertTrue();
+        expect(maptemp.get("MainAbility1 onAbilityForeground")).assertEqual(3);
+        expect(maptemp.get("MainAbility1 onAbilityBackground")).assertEqual(2);
 
-        expect(listTemp.indexOf("MainAbility1 onWindowStageCreate") !== -1).assertTrue();
-        expect(listTemp.split("MainAbility1 onAbilityForeground").length - 1).assertEqual(3);
-        expect(listTemp.split("MainAbility1 onAbilityBackground").length - 1).assertEqual(2);
-        expect(listTemp.split("MainAbility2 onAbilityCreate").length - 1).assertEqual(2);
-        expect(listTemp.split("MainAbility2 onWindowStageCreate").length - 1).assertEqual(2);
-        expect(listTemp.split("MainAbility2 onAbilityForeground").length - 1).assertEqual(2);
-        expect(listTemp.split("MainAbility2 onAbilityBackground").length - 1).assertEqual(2);
-        expect(listTemp.split("MainAbility2 onWindowStageDestroy").length - 1).assertEqual(2);
-        expect(listTemp.split("MainAbility2 onAbilityDestroy").length - 1).assertEqual(2);
+        expect(maptemp1.get("MainAbility2 onAbilityCreate")).assertEqual(2);
+        expect(maptemp1.get("MainAbility2 onWindowStageCreate")).assertEqual(2);
+        expect(maptemp1.get("MainAbility2 onAbilityForeground")).assertEqual(2);
+        expect(maptemp1.get("MainAbility2 onAbilityBackground")).assertEqual(2);
+        expect(maptemp1.get("MainAbility2 onWindowStageDestroy")).assertEqual(2);
+        expect(maptemp1.get("MainAbility2 onAbilityDestroy")).assertEqual(2);
         globalThis.applicationContext1
           .unregisterAbilityLifecycleCallback(globalThis.callbackid1, (error, data) => {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
@@ -777,7 +872,7 @@ export default function lifecycleTest() {
             console.log("------------Singlehap_LifeCycleTest_0900 END-------------");
             done();
           });
-      }, 4800);
+      }, 5000);
     });
 
     /*
@@ -992,17 +1087,26 @@ export default function lifecycleTest() {
         abilityName: "Hap1MainAbility1"
       }, (error, data) => {
         setTimeout(() => {
+          var strtemp = "";
+          let settemp = new Set();
+          listtemp = [];
           console.log(TAG + ": second Hap1MainAbility1 startAbility success, err: " + JSON.stringify(error) +
           ",data: " + JSON.stringify(data));
-          let listTemp = JSON.stringify(globalThis.mainAbility9ListKey);
-          console.log(TAG + "listTemp is :" + listTemp);
+          for (var i = 0; i < globalThis.mainAbility9ListKey.length; i++) {
+            strtemp = globalThis.mainAbility9ListKey[i].substring(0, 16);
+            if (strtemp === "Hap1MainAbility1") {
+              settemp.add(globalThis.mainAbility9ListKey[i]);
+              listtemp.push(globalThis.mainAbility9ListKey[i]);
+            }
+          }
+          console.log(TAG + "listtemp is :" + JSON.stringify(listtemp));
           console.log(TAG + "globalThis.mainAbility9CallBackId is :" + globalThis.mainAbility9CallBackId);
-          expect(listTemp.indexOf("Hap1MainAbility1 onAbilityCreate") !== -1).assertTrue();
-          expect(listTemp.indexOf("Hap1MainAbility1 onWindowStageCreate") !== -1).assertTrue();
-          expect(listTemp.indexOf("Hap1MainAbility1 onAbilityForeground") !== -1).assertTrue();
-          expect(listTemp.indexOf("Hap1MainAbility1 onAbilityBackground") !== -1).assertTrue();
-          expect(listTemp.indexOf("Hap1MainAbility1 onWindowStageDestroy") !== -1).assertTrue();
-          expect(listTemp.indexOf("Hap1MainAbility1 onAbilityDestroy") !== -1).assertTrue();
+          expect(settemp.has("Hap1MainAbility1 onAbilityCreate")).assertTrue();
+          expect(settemp.has("Hap1MainAbility1 onWindowStageCreate")).assertTrue();
+          expect(settemp.has("Hap1MainAbility1 onAbilityForeground")).assertTrue();
+          expect(settemp.has("Hap1MainAbility1 onAbilityBackground")).assertTrue();
+          expect(settemp.has("Hap1MainAbility1 onWindowStageDestroy")).assertTrue();
+          expect(settemp.has("Hap1MainAbility1 onAbilityDestroy")).assertTrue();
           globalThis.applicationContext9
             .unregisterAbilityLifecycleCallback(globalThis.mainAbility9CallBackId, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
@@ -1044,17 +1148,31 @@ export default function lifecycleTest() {
         abilityName: "Hap1MainAbility2"
       }, (error, data) => {
         setTimeout(() => {
+          var strtemp = "";
+          let maptemp = new Map();
+          listtemp = [];
           console.log(TAG + ": second Hap1MainAbility2 startAbility success, err: " + JSON.stringify(error) +
           ",data: " + JSON.stringify(data));
-          let listTemp = JSON.stringify(globalThis.mainAbility9ListKey);
-          console.log(TAG + "listTemp is :" + listTemp);
+          for (var i = 0;i < globalThis.mainAbility9ListKey.length; i++) {
+            strtemp = globalThis.mainAbility9ListKey[i].substring(0, 16);
+            if (strtemp === "Hap1MainAbility2") {
+              if(maptemp.has(globalThis.mainAbility9ListKey[i])) {
+                let value = maptemp.get(globalThis.mainAbility9ListKey[i]);
+                maptemp.set(globalThis.mainAbility9ListKey[i], value + 1);
+              } else {
+                maptemp.set(globalThis.mainAbility9ListKey[i], 1);
+              }
+              listtemp.push(globalThis.mainAbility9ListKey[i]);
+            }
+          }
+          console.log(TAG + "listtemp is :" + JSON.stringify(listtemp));
           console.log(TAG + "globalThis.mainAbility9CallBackId is :" + globalThis.mainAbility9CallBackId);
-          expect(listTemp.split("Hap1MainAbility2 onAbilityCreate").length - 1).assertEqual(2);
-          expect(listTemp.split("Hap1MainAbility2 onWindowStageCreate").length - 1).assertEqual(2);
-          expect(listTemp.split("Hap1MainAbility2 onAbilityForeground").length - 1).assertEqual(2);
-          expect(listTemp.split("Hap1MainAbility2 onAbilityBackground").length - 1).assertEqual(2);
-          expect(listTemp.split("Hap1MainAbility2 onWindowStageDestroy").length - 1).assertEqual(2);
-          expect(listTemp.split("Hap1MainAbility2 onAbilityDestroy").length - 1).assertEqual(2);
+          expect(maptemp.get("Hap1MainAbility2 onAbilityCreate")).assertEqual(2);
+          expect(maptemp.get("Hap1MainAbility2 onWindowStageCreate")).assertEqual(2);
+          expect(maptemp.get("Hap1MainAbility2 onAbilityForeground")).assertEqual(2);
+          expect(maptemp.get("Hap1MainAbility2 onAbilityBackground")).assertEqual(2);
+          expect(maptemp.get("Hap1MainAbility2 onWindowStageDestroy")).assertEqual(2);
+          expect(maptemp.get("Hap1MainAbility2 onAbilityDestroy")).assertEqual(2);
           globalThis.applicationContext9
             .unregisterAbilityLifecycleCallback(globalThis.mainAbility9CallBackId, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
@@ -1131,14 +1249,23 @@ export default function lifecycleTest() {
         console.log(TAG + " secondCallback callbackid : " + JSON.stringify(globalThis.callbackid11));
         id2 = globalThis.callbackid11;
         console.log(TAG + " secondCallback id : " + JSON.stringify(id2));
-        let listTemp = JSON.stringify(globalThis.list11);
-        console.log(TAG + " listTemp is :" + listTemp);
-        expect(listTemp.indexOf("MainAbility2 onAbilityCreate") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onWindowStageCreate") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityForeground") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityBackground") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onWindowStageDestroy") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityDestroy") !== -1).assertTrue();
+        var strtemp = "";
+        listtemp = [];
+        let settemp = new Set();
+        for (var i = 0; i < globalThis.list11.length; i++) {
+          strtemp = globalThis.list11[i].substring(0, 12);
+          if (strtemp == "MainAbility2") {
+            settemp.add(globalThis.list11[i]);
+            listtemp.push(globalThis.list11[i]);
+          }
+        }
+        console.log(TAG + " listtemp is :" + JSON.stringify(listtemp));
+        expect(settemp.has("MainAbility2 onAbilityCreate")).assertTrue();
+        expect(settemp.has("MainAbility2 onWindowStageCreate")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityForeground")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityBackground")).assertTrue();
+        expect(settemp.has("MainAbility2 onWindowStageDestroy")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityDestroy")).assertTrue();
         expect(id1 + 1).assertEqual(id2);
         globalThis.applicationContext11
           .unregisterAbilityLifecycleCallback(globalThis.callbackid11, (error, data) => {
@@ -1319,14 +1446,23 @@ export default function lifecycleTest() {
         console.log(TAG + " secondCallback callbackid : " + JSON.stringify(globalThis.callbackid12));
         id2 = globalThis.callbackid12;
         console.log(TAG + " secondCallback id : " + JSON.stringify(id2));
-        let listTemp = JSON.stringify(globalThis.list12);
-        console.log(TAG + " listTemp is :" + listTemp);
-        expect(listTemp.indexOf("MainAbility2 onAbilityCreate") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onWindowStageCreate") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityForeground") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityBackground") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onWindowStageDestroy") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityDestroy") !== -1).assertTrue();
+        var strtemp = "";
+        listtemp = [];
+        let settemp = new Set();
+        for (var i = 0; i < globalThis.list12.length; i++) {
+          strtemp = globalThis.list12[i].substring(0, 12);
+          if (strtemp == "MainAbility2") {
+            settemp.add(globalThis.list12[i]);
+            listtemp.push(globalThis.list12[i]);
+          }
+        }
+        console.log(TAG + " listtemp is :" + JSON.stringify(listtemp));
+        expect(settemp.has("MainAbility2 onAbilityCreate")).assertTrue();
+        expect(settemp.has("MainAbility2 onWindowStageCreate")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityForeground")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityBackground")).assertTrue();
+        expect(settemp.has("MainAbility2 onWindowStageDestroy")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityDestroy")).assertTrue();
         expect(id1 + 1).assertEqual(id2);
         globalThis.applicationContext12
           .unregisterAbilityLifecycleCallback(id2, (error, data) => {
@@ -1393,14 +1529,23 @@ export default function lifecycleTest() {
       }, 3500);
       setTimeout(function () {
         console.log(TAG + " secondCallback callbackid1 : " + JSON.stringify(globalThis.callbackid1));
-        let listTemp = JSON.stringify(globalThis.list1);
-        console.log(TAG + " listTemp is :" + listTemp);
-        expect(listTemp.indexOf("MainAbility2 onAbilityCreate") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onWindowStageCreate") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityForeground") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityBackground") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onWindowStageDestroy") !== -1).assertTrue();
-        expect(listTemp.indexOf("MainAbility2 onAbilityDestroy") !== -1).assertTrue();
+        var strtemp = "";
+        listtemp = [];
+        let settemp = new Set();
+        for (var i = 0; i < templist1.length; i++) {
+          strtemp = templist1[i].substring(0, 12);
+          if (strtemp == "MainAbility2") {
+            settemp.add(templist1[i]);
+            listtemp.push(templist1[i]);
+          }
+        }
+        console.log(TAG + " listtemp is :" + JSON.stringify(listtemp));
+        expect(settemp.has("MainAbility2 onAbilityCreate")).assertTrue();
+        expect(settemp.has("MainAbility2 onWindowStageCreate")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityForeground")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityBackground")).assertTrue();
+        expect(settemp.has("MainAbility2 onWindowStageDestroy")).assertTrue();
+        expect(settemp.has("MainAbility2 onAbilityDestroy")).assertTrue();
         globalThis.applicationContext1
           .unregisterAbilityLifecycleCallback(globalThis.callbackid1, (error, data) => {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
