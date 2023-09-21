@@ -27,6 +27,7 @@ export default {
     onShow(){
         global.el = this.$refs.canvas1;
         global.el2 = this.$refs.canvas2;
+        global.gl = global.el.getContext('webgl');
         var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         console.info('start run testcase!!!')

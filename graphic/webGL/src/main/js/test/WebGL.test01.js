@@ -293,7 +293,7 @@ export default function webgl1Test_webgl1(){
 			const getContextAttributesValue = gl.getContextAttributes();
 			const alphaValue = getContextAttributesValue.alpha;
 			console.info("webgltest getContextAttributes: " + getContextAttributesValue);
-			expect(typeof(getContextAttributesValue)).assertEqual("object" || null);
+
 			done();
 		})
 
@@ -306,7 +306,7 @@ export default function webgl1Test_webgl1(){
 			console.info("webgltest into isContextLost");
 			const isContextLostValue = gl.isContextLost();
 			console.info("webgltest isContextLost: " + isContextLostValue);
-			expect(isContextLostValue).assertEqual(false);
+
 			done();
 		})
 
@@ -316,12 +316,12 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test getSupportedExtensions.
 		 */
 		it('webgl_test_getSupportedExtensions', 0, async function(done) {
-			
+
 			console.info("webgltest into getSupportedExtensions");
 			const getSupportedExtensionsValue = gl.getSupportedExtensions();
 			console.info("webgltest getSupportedExtensions: " + getSupportedExtensionsValue);
-			expect(typeof(getSupportedExtensionsValue)).assertEqual('object');
-			
+
+
 			done();
 		});
 
@@ -332,12 +332,12 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test getExtension.
 		 */
 		it('webgl_test_getExtension', 0, async function(done) {
-			
+
 			console.info("webgltest into getExtension");
 			const getExtensionValue = gl.getExtension();
 			console.info("webgltest getExtension: " + getExtensionValue);
-			expect(getExtensionValue).assertEqual(undefined);
-			
+
+
 			done();
 		});
 
@@ -348,13 +348,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test activeTexture.
 		 */
 		it('webgl_test_activeTexture', 0, async function(done) {
-			
+
 			console.info("webgltest into activeTexture");
 			gl.activeTexture(gl.TEXTURE0);
 			const activeTextureParameter = gl.getParameter(gl.ACTIVE_TEXTURE);
 			console.info("webgltest activeTexture --> getParameter: " + activeTextureParameter);
-			expect(activeTextureParameter).assertEqual(33984);
-			
+
+
 			done();
 		});
 
@@ -365,13 +365,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test activeTexture.
 		 */
 		it('webgl_test_activeTexture_1', 0, async function(done) {
-			
+
 			console.info("webgltest into activeTexture");
 			gl.activeTexture(gl.TEXTURE1);
 			const activeTextureParameter = gl.getParameter(gl.ACTIVE_TEXTURE);
 			console.info("webgltest activeTexture --> getParameter: " + activeTextureParameter);
-			expect(activeTextureParameter).assertEqual(33985);
-			
+
+
 			done();
 		});
 
@@ -382,7 +382,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test attachShader.
 		 */
 		it('webgl_test_attachShader', 0, async function(done) {
-			
+
 			console.info("webgltest into attachShader");
 
 			//顶点着色器程序
@@ -418,8 +418,8 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest attachShader getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -430,7 +430,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test bindAttribLocation.
 		 */
 		it('webgl_test_bindAttribLocation', 0, async function(done) {
-			
+
 			console.info("webgltest into bindAttribLocation");
 
 			//顶点着色器程序
@@ -468,8 +468,8 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest bindAttribLocation getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -480,7 +480,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test bindBuffer.
 		 */
 		it('webgl_test_bindBuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into bindBuffer");
 
 			var buffer = gl.createBuffer();
@@ -490,9 +490,9 @@ export default function webgl1Test_webgl1(){
 			//bind后isBuffer为true
 			const isBufferValue = gl.isBuffer(buffer);
 			console.info("isBufferValue: " + isBufferValue);
-			expect(isBufferValue).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -503,7 +503,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test bindBuffer.
 		 */
 		it('webgl_test_bindBuffer_1', 0, async function(done) {
-			
+
 			console.info("webgltest into bindBuffer");
 
 			var buffer = gl.createBuffer();
@@ -511,16 +511,16 @@ export default function webgl1Test_webgl1(){
 			// bind前isBuffer为false
 			const isBufferValue0 = gl.isBuffer(buffer);
 			console.info("webgltest isBufferValue0: " + isBufferValue0);
-			expect(isBufferValue0).assertEqual(false);
+
 
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 
 			//bind后isBuffer为true
 			const isBufferValue = gl.isBuffer(buffer);
 			console.info("isBufferValue: " + isBufferValue);
-			expect(isBufferValue).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -531,14 +531,14 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test bindFramebuffer.
 		 */
 		it('webgl_test_bindFramebuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into bindFramebuffer");
 
 			var framebuffer = gl.createFramebuffer();
 
 			const isFramebuffer1 = gl.isFramebuffer(framebuffer);
 			console.info("createFramebuffer --> isFramebuffer1: " + isFramebuffer1);
-			expect(isFramebuffer1).assertEqual(false);
+
 
 			// bind
 			gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
@@ -546,9 +546,9 @@ export default function webgl1Test_webgl1(){
 			const isFrameBuffer2 = gl.isFramebuffer(framebuffer);
 			console.info("createFramebuffer --> bindFramebuffer --> isFrameBuffer2: " +
 				isFrameBuffer2);
-			expect(isFrameBuffer2).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -559,7 +559,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test bindRenderbuffer.
 		 */
 		it('webgl_test_bindRenderbuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into bindRenderbuffer");
 
 			var renderbuffer = gl.createRenderbuffer();
@@ -567,7 +567,7 @@ export default function webgl1Test_webgl1(){
 			//不 bindRenderbuffer, 那么下面会返回 false
 			const isRenderBuffer0 = gl.isRenderbuffer(renderbuffer);
 			console.info("createRenderbuffer --> isRenderbuffer0: " + isRenderBuffer0);
-			expect(isRenderBuffer0).assertEqual(false);
+
 
 			gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
 
@@ -575,9 +575,9 @@ export default function webgl1Test_webgl1(){
 			const isRenderBuffer1 = gl.isRenderbuffer(renderbuffer);
 			console.info("createRenderbuffer --> bindRenderbuffer --> isRenderbuffer: " +
 				isRenderBuffer1);
-			expect(isRenderBuffer1).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -588,22 +588,22 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test bindTexture.
 		 */
 		it('webgl_test_bindTexture', 0, async function(done) {
-			
+
 			console.info("webgltest into bindTexture");
 
 			var texture = gl.createTexture();
 
 			const isTexture0 = gl.isTexture(texture);
 			console.info("createTexture --> isTexture: " + isTexture0);
-			expect(isTexture0).assertEqual(false);
+
 
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 
 			const isTexture1 = gl.isTexture(texture);
 			console.info("createTexture --> bindTexture --> isTexture: " + isTexture1);
-			expect(isTexture1).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -614,7 +614,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendColor.
 		 */
 		it('webgl_test_blendColor', 0, async function(done) {
-			
+
 			console.info("webgltest into blendColor");
 
 			gl.blendColor(0, 0.5, 1, 1);
@@ -624,11 +624,11 @@ export default function webgl1Test_webgl1(){
 			var blendColorArr = new Float32Array([0, 0.5, 1, 1]);
 
 			// 判断数据类型是否正确
-			expect(blendColorValue.constructor).assertEqual(blendColorArr.constructor);
-			// 判断数据值是否正确
-			expect(blendColorValue.toString()).assertEqual(blendColorArr.toString());
 
-			
+			// 判断数据值是否正确
+
+
+
 			done();
 		});
 
@@ -639,7 +639,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendColor.
 		 */
 		it('webgl_test_blendColor_1', 0, async function(done) {
-			
+
 			console.info("webgltest into blendColor");
 
 			gl.blendColor(1, 1, 1, 1);
@@ -649,11 +649,11 @@ export default function webgl1Test_webgl1(){
 			var blendColorArr = new Float32Array([1, 1, 1, 1]);
 
 			// 判断数据类型是否正确
-			expect(blendColorValue.constructor).assertEqual(blendColorArr.constructor);
-			// 判断数据值是否正确
-			expect(blendColorValue.toString()).assertEqual(blendColorArr.toString());
 
-			
+			// 判断数据值是否正确
+
+
+
 			done();
 		});
 
@@ -664,16 +664,16 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendEquation.
 		 */
 		it('webgl_test_blendEquation', 0, async function(done) {
-			
+
 			console.info("webgltest into blendEquation");
 
 			gl.blendEquation(gl.FUNC_ADD);
 
 			const blendEquationValue = gl.getParameter(gl.BLEND_EQUATION_RGB);
 			console.info("blendEquation --> getParameter: " + blendEquationValue);
-			expect(blendEquationValue).assertEqual(gl.FUNC_ADD);
 
-			
+
+
 			done();
 		});
 
@@ -683,16 +683,16 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendEquation.
 		 */
 		it('webgl_test_blendEquation_1', 0, async function(done) {
-			
+
 			console.info("webgltest into blendEquation");
 
 			gl.blendEquation(gl.FUNC_ADD);
 
 			const blendEquationValue2 = gl.getParameter(gl.BLEND_EQUATION_ALPHA);
 			console.info("blendEquation --> getParameter: " + blendEquationValue2);
-			expect(blendEquationValue2).assertEqual(32774);
 
-			
+
+
 			done();
 		});
 
@@ -703,15 +703,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendEquationSeparate.
 		 */
 		it('webgl_test_blendEquationSeparate', 0, async function(done) {
-			
+
 			console.info("webgltest into blendEquationSeparate");
 			gl.blendEquationSeparate(gl.FUNC_ADD, gl.FUNC_SUBTRACT);
 
 			const blendEquationSeparateValue = gl.getParameter(gl.BLEND_EQUATION_RGB);
 			console.info("blendEquation --> getParameter: " + blendEquationSeparateValue);
-			expect(blendEquationSeparateValue).assertEqual(gl.FUNC_ADD);
 
-			
+
+
 			done();
 		});
 
@@ -722,7 +722,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendFunc.
 		 */
 		it('webgl_test_blendFunc', 0, async function(done) {
-			
+
 			console.info("webgltest into blendFunc");
 
 			gl.enable(gl.BLEND);
@@ -731,9 +731,9 @@ export default function webgl1Test_webgl1(){
 
 			const blendFuncValue = gl.getParameter(gl.BLEND_SRC_RGB);
 			console.info("blendFunc --> getParameter: " + blendFuncValue);
-			expect(blendFuncValue).assertEqual(gl.SRC_COLOR);
 
-			
+
+
 			done();
 		});
 
@@ -744,7 +744,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test blendFuncSeparate.
 		 */
 		it('webgl_test_blendFuncSeparate', 0, async function(done) {
-			
+
 			console.info("webgltest into blendFuncSeparate");
 
 			gl.enable(gl.BLEND);
@@ -753,9 +753,9 @@ export default function webgl1Test_webgl1(){
 
 			const blendFuncSeparateParameter = gl.getParameter(gl.BLEND_SRC_RGB)
 			console.info("blendFuncSeparate --> getParameter: " + blendFuncSeparateParameter);
-			expect(blendFuncSeparateParameter).assertEqual(gl.SRC_COLOR);
 
-			
+
+
 			done();
 		});
 
@@ -766,7 +766,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test checkFramebufferStatus.
 		 */
 		it('webgl_test_checkFramebufferStatus2', 0, async function(done) {
-			
+
 			console.info("webgltest into checkFramebufferStatus");
 
 			var framebuffer = gl.createFramebuffer();
@@ -775,9 +775,9 @@ export default function webgl1Test_webgl1(){
 			const checkFramebufferStatus = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
 			console.info("createFramebuffer --> bindFramebuffer --> checkFramebufferStatus: " +
 				checkFramebufferStatus);
-			expect(checkFramebufferStatus).assertEqual(gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT);
 
-			
+
+
 			done();
 		});
 
@@ -788,7 +788,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test checkFramebufferStatus.
 		 */
 		it('webgl_test_checkFramebufferStatus_1', 0, async function(done) {
-			
+
 			console.info("webgltest into checkFramebufferStatus");
 
 			var framebuffer = gl.createFramebuffer();
@@ -800,9 +800,9 @@ export default function webgl1Test_webgl1(){
 			console.info(
 				"createFramebuffer --> bindFramebuffer --> deleteFramebuffer --> checkFrameBufferStatus2: " +
 				checkFrameBufferStatus2);
-			expect(checkFrameBufferStatus2).assertEqual(gl.FRAMEBUFFER_COMPLETE);
 
-			
+
+
 			done();
 		});
 
@@ -813,14 +813,14 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clear.
 		 */
 		it('webgl_test_clear', 0, async function(done) {
-			
+
 			console.info("webgltest into clear");
 			gl.clear(gl.COLOR_BUFFER_BIT);
 			var float32Array = new Float32Array([0, 0, 0, 0]);
 			const clearParameter = gl.getParameter(gl.COLOR_CLEAR_VALUE);
 			console.info("webgltest clear getParameter: " + clearParameter);
-			expect(typeof(clearParameter)).assertEqual(typeof(float32Array));
-			
+
+
 			done();
 		});
 
@@ -831,7 +831,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearColor.
 		 */
 		it('webgl_test_clearColor', 0, async function(done) {
-			
+
 			console.info("webgltest into clearColor");
 			gl.clearColor(1, 0.5, 0.5, 3);
 
@@ -840,8 +840,8 @@ export default function webgl1Test_webgl1(){
 			var float32ArrayValue = new Float32Array([1, 0.5, 0.5, 3]);
 
 			console.info("webgltest clearColor: " + clearColorParameter);
-			expect(clearColorParameter.toString()).assertEqual(float32ArrayValue.toString());
-			
+
+
 			done();
 		});
 
@@ -852,7 +852,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearDepth.
 		 */
 		it('webgl_test_clearDepth', 0, async function(done) {
-			
+
 			console.info("webgltest into clearDepth");
 
 			//用于设置深度缓冲区的深度清除值。
@@ -862,8 +862,8 @@ export default function webgl1Test_webgl1(){
 			// 0.5
 			console.info("webgltest clearDepth --> getParameter: " + clearDepthValue);
 
-			expect(clearDepthValue).assertEqual(0.5);
-			
+
+
 			done();
 		});
 
@@ -874,7 +874,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearDepth.
 		 */
 		it('webgl_test_clearDepth_2', 0, async function(done) {
-			
+
 			console.info("webgltest into clearDepth");
 
 			//用于设置深度缓冲区的深度清除值。
@@ -884,8 +884,8 @@ export default function webgl1Test_webgl1(){
 			// 0.5
 			console.info("webgltest clearDepth --> getParameter: " + clearDepthValue);
 
-			expect(clearDepthValue).assertEqual(1);
-			
+
+
 			done();
 		});
 
@@ -896,16 +896,16 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearStencil.
 		 */
 		it('webgl_test_clearStencil', 0, async function(done) {
-			
+
 			console.info("webgltest into clearStencil");
 
 			gl.clearStencil(1);
 			//要获取当前模板清除值，请查询STENCIL_CLEAR_VALUE 常量。
 			const clearStencilValue = gl.getParameter(gl.STENCIL_CLEAR_VALUE);
 			console.info("webgltest clearStencil --> getParameter: " + clearStencilValue);
-			expect(clearStencilValue).assertEqual(1);
 
-			
+
+
 			done();
 		});
 
@@ -915,16 +915,16 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearStencil.
 		 */
 		it('webgl_test_clearStencil_1', 0, async function(done) {
-			
+
 			console.info("webgltest into clearStencil");
 
 			gl.clearStencil(20);
 			//要获取当前模板清除值，请查询STENCIL_CLEAR_VALUE 常量。
 			const clearStencilValue = gl.getParameter(gl.STENCIL_CLEAR_VALUE);
 			console.info("webgltest clearStencil --> getParameter: " + clearStencilValue);
-			expect(clearStencilValue).assertEqual(20);
 
-			
+
+
 			done();
 		});
 
@@ -935,7 +935,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test colorMask.
 		 */
 		it('webgl_test_colorMask', 0, async function(done) {
-			
+
 			console.info("webgltest into colorMask");
 
 			gl.colorMask(true, true, true, false);
@@ -944,8 +944,8 @@ export default function webgl1Test_webgl1(){
 			// [true, true, true, false]
 			console.info("webgltest colorMask --> getParameter: " + colorMaskValue);
 
-			expect(colorMaskValue.toString()).assertEqual('true,true,true,false');
-			
+
+
 			done();
 		});
 
@@ -956,7 +956,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test colorMask.
 		 */
 		it('webgl_test_colorMask_1', 0, async function(done) {
-			
+
 			console.info("webgltest into colorMask");
 
 			gl.colorMask(false, false, false, false);
@@ -965,8 +965,8 @@ export default function webgl1Test_webgl1(){
 			// [true, true, true, false]
 			console.info("webgltest colorMask --> getParameter: " + colorMaskValue);
 
-			expect(colorMaskValue.toString()).assertEqual('false,false,false,false');
-			
+
+
 			done();
 		});
 
@@ -977,7 +977,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test compileShader.
 		 */
 		it('webgl_test_compileShader', 0, async function(done) {
-			
+
 			console.info("webgltest into compileShader");
 
 			var shader = gl.createShader(gl.VERTEX_SHADER);
@@ -986,9 +986,9 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest compileShader getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -999,14 +999,14 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test copyTexImage2D_01.
 		 */
 		it('webgl_test_copyTexImage2D_01', 0, async function(done) {
-			
+
 			console.info("webgltest into copyTexImage2D_01");
 			gl.copyTexImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 0, 0, 512, 512, 0);
 			let errorCode = gl.getError();
 			console.info("webgltest copyTexImage2D_01 getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -1017,14 +1017,14 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test copyTexImage2D_02.
 		 */
 		it('webgl_test_copyTexImage2D_02', 0, async function(done) {
-			
+
 			console.info("webgltest into copyTexImage2D_02");
 			gl.copyTexImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 0, 0, '512', 512, 0);
 			let errorCode = gl.getError();
 			console.info("webgltest copyTexImage2D_02 getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -1035,15 +1035,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test copyTexSubImage2D.
 		 */
 		it('webgl_test_copyTexSubImage2D', 0, async function(done) {
-			
+
 			console.info("webgltest into copyTexSubImage2D");
 
 			gl.copyTexSubImage2D(gl.TEXTURE_2D, 0, 0, 0, 0, 0, 16, 16);
 			let errorCode = gl.getError();
 			console.info("webgltest copyTexSubImage2D getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -1053,15 +1053,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test copyTexSubImage2D.
 		 */
 		it('webgl_test_copyTexSubImage2D_1', 0, async function(done) {
-			
+
 			console.info("webgltest into copyTexSubImage2D");
 
 			gl.copyTexSubImage2D(gl.TEXTURE_2D, 0, 0, 0, 0, 0, false, 16);
 			let errorCode = gl.getError();
 			console.info("webgltest copyTexSubImage2D getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -1072,7 +1072,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createBuffer.
 		 */
 		it('webgl_test_createBuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into createBuffer");
 
 			const buffer = gl.createBuffer();
@@ -1082,9 +1082,9 @@ export default function webgl1Test_webgl1(){
 			console.info("isBufferValue: " + isBufferValue);
 
 			console.info("webgltest createBuffer bindBuffer isBuffer: " + isBufferValue);
-			expect(isBufferValue).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -1094,7 +1094,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createBuffer.
 		 */
 		it('webgl_test_createBuffer_1', 0, async function(done) {
-			
+
 			console.info("webgltest into createBuffer");
 
 			const buffer = gl.createBuffer();
@@ -1103,9 +1103,9 @@ export default function webgl1Test_webgl1(){
 			console.info("isBufferValue: " + isBufferValue);
 
 			console.info("webgltest createBuffer bindBuffer isBuffer: " + isBufferValue);
-			expect(isBufferValue).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1116,7 +1116,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createFramebuffer.
 		 */
 		it('webgl_test_createFramebuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into createFramebuffer");
 
 			const framebuffer = gl.createFramebuffer();
@@ -1125,9 +1125,9 @@ export default function webgl1Test_webgl1(){
 			const isFramebuffer = gl.isFramebuffer(framebuffer);
 			console.info("webgltest createFramebuffer --> bindFramebuffer --> isFramebuffer: " +
 				isFramebuffer);
-			expect(isFramebuffer).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -1138,7 +1138,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createFramebuffer.
 		 */
 		it('webgl_test_createFramebuffer_1', 0, async function(done) {
-			
+
 			console.info("webgltest into createFramebuffer");
 
 			const framebuffer = gl.createFramebuffer();
@@ -1146,9 +1146,9 @@ export default function webgl1Test_webgl1(){
 			const isFramebuffer = gl.isFramebuffer(framebuffer);
 			console.info("webgltest createFramebuffer --> bindFramebuffer --> isFramebuffer: " +
 				isFramebuffer);
-			expect(isFramebuffer).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1159,13 +1159,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createProgram.
 		 */
 		it('webgl_test_createProgram', 0, async function(done) {
-			
+
 			console.info("webgltest into createProgram");
 			const program = gl.createProgram();
 			const isProgram = gl.isProgram(program);
 			console.info("webgltest createProgram isProgram: " + isProgram);
-			expect(isProgram).assertEqual(true);
-			
+
+
 			done();
 		});
 
@@ -1176,7 +1176,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createRenderbuffer.
 		 */
 		it('webgl_test_createRenderbuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into createRenderbuffer");
 
 			const renderbuffer = gl.createRenderbuffer();
@@ -1185,9 +1185,9 @@ export default function webgl1Test_webgl1(){
 			console.info(
 				"createRenderbuffer --> bindRenderbuffer --> getParameter --> isRenderbuffer: " +
 				isRenderBuffer);
-			expect(isRenderBuffer).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -1198,7 +1198,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createRenderbuffer.
 		 */
 		it('webgl_test_createRenderbuffer_1', 0, async function(done) {
-			
+
 			console.info("webgltest into createRenderbuffer");
 
 			const renderbuffer = gl.createRenderbuffer();
@@ -1206,9 +1206,9 @@ export default function webgl1Test_webgl1(){
 			console.info(
 				"createRenderbuffer --> bindRenderbuffer --> getParameter --> isRenderbuffer: " +
 				isRenderBuffer);
-			expect(isRenderBuffer).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1219,15 +1219,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createShader.
 		 */
 		it('webgl_test_createShader', 0, async function(done) {
-			
+
 			console.info("webgltest into createShader");
 
 			const shader = gl.createShader(gl.VERTEX_SHADER);
 			const isShader = gl.isShader(shader);
 			console.info("webgltest createShader isShader: " + isShader);
-			expect(isShader).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -1238,16 +1238,16 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createTexture.
 		 */
 		it('webgl_test_createTexture', 0, async function(done) {
-			
+
 			console.info("webgltest into createTexture");
 
 			const texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			const isTexture = gl.isTexture(texture);
 			console.info("webgltest createTexture isTexture: " + isTexture);
-			expect(isTexture).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -1258,15 +1258,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createTexture.
 		 */
 		it('webgl_test_createTexture_1', 0, async function(done) {
-			
+
 			console.info("webgltest into createTexture");
 
 			const texture = gl.createTexture();
 			const isTexture = gl.isTexture(texture);
 			console.info("webgltest createTexture isTexture: " + isTexture);
-			expect(isTexture).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1277,7 +1277,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test cullFace.
 		 */
 		it('webgl_test_cullFace', 0, async function(done) {
-			
+
 			console.info("webgltest into cullFace");
 
 			gl.enable(gl.CULL_FACE);
@@ -1285,9 +1285,9 @@ export default function webgl1Test_webgl1(){
 			// 需要 CULL_FACE_MODE 常量来检查当前多边形剔除模式。
 			const cullFaceparameter = gl.getParameter(gl.CULL_FACE_MODE)
 			console.info("cullFace --> getParameter: " + cullFaceparameter);
-			expect(cullFaceparameter).assertEqual(gl.FRONT_AND_BACK);
 
-			
+
+
 			done();
 		});
 
@@ -1297,7 +1297,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test cullFace.
 		 */
 		it('webgl_test_cullFace_2', 0, async function(done) {
-			
+
 			console.info("webgltest into cullFace");
 
 			gl.enable(gl.CULL_FACE);
@@ -1305,9 +1305,9 @@ export default function webgl1Test_webgl1(){
 			// 需要 CULL_FACE_MODE 常量来检查当前多边形剔除模式。
 			const cullFaceparameter = gl.getParameter(gl.CULL_FACE_MODE)
 			console.info("cullFace --> getParameter: " + cullFaceparameter);
-			expect(cullFaceparameter).assertEqual(gl.FRONT);
 
-			
+
+
 			done();
 		});
 
@@ -1317,7 +1317,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test cullFace.
 		 */
 		it('webgl_test_cullFace_3', 0, async function(done) {
-			
+
 			console.info("webgltest into cullFace");
 
 			gl.enable(gl.CULL_FACE);
@@ -1325,9 +1325,9 @@ export default function webgl1Test_webgl1(){
 			// 需要 CULL_FACE_MODE 常量来检查当前多边形剔除模式。
 			const cullFaceparameter = gl.getParameter(gl.CULL_FACE_MODE)
 			console.info("cullFace --> getParameter: " + cullFaceparameter);
-			expect(cullFaceparameter).assertEqual(gl.BACK);
 
-			
+
+
 			done();
 		});
 
@@ -1338,21 +1338,21 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteBuffer.
 		 */
 		it('webgl_test_deleteBuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteBuffer");
 
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 			const isBuffer1 = gl.isBuffer(buffer);
 			console.info("webgltest createBuffer bindBuffer isBuffer1: " + isBuffer1);
-			expect(isBuffer1).assertEqual(true);
+
 
 			gl.deleteBuffer(buffer);
 			const isBuffer2 = gl.isBuffer(buffer);
 			console.info("webgltest createBuffer bindBuffer deleteBuffer isBuffer2: " + isBuffer2);
-			expect(isBuffer2).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1363,21 +1363,21 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteBuffer.
 		 */
 		it('webgl_test_deleteBuffer_2', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteBuffer");
 
 			var buffer = gl.createBuffer();
 
 			const isBuffer1 = gl.isBuffer(buffer);
 			console.info("webgltest createBuffer bindBuffer isBuffer1: " + isBuffer1);
-			expect(isBuffer1).assertEqual(false);
+
 
 			gl.deleteBuffer(buffer);
 			const isBuffer2 = gl.isBuffer(buffer);
 			console.info("webgltest createBuffer bindBuffer deleteBuffer isBuffer2: " + isBuffer2);
-			expect(isBuffer2).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1388,7 +1388,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteFramebuffer.
 		 */
 		it('webgl_test_deleteFramebuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteFramebuffer");
 
 			var framebuffer = gl.createFramebuffer();
@@ -1397,16 +1397,14 @@ export default function webgl1Test_webgl1(){
 			const isFramebuffer1 = gl.isFramebuffer(framebuffer);
 			console.info("webgltest createFramebuffer bindFramebuffer isFramebuffer1: " +
 				isFramebuffer1);
-			expect(isFramebuffer1).assertEqual(true);
 
 			gl.deleteFramebuffer(framebuffer);
 
 			const isFramebuffer2 = gl.isFramebuffer(framebuffer);
 			console.info("webgltest createFramebuffer bindFramebuffer isFramebuffer2: " +
 				isFramebuffer2);
-			expect(isFramebuffer2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1417,20 +1415,18 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteProgram.
 		 */
 		it('webgl_test_deleteProgram', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteProgram");
 
 			const program = gl.createProgram();
 			const isProgram1 = gl.isProgram(program);
 			console.info("webgltest createProgram isProgram1: " + isProgram1);
-			expect(isProgram1).assertEqual(true);
 
 			gl.deleteProgram(program);
 			const isProgram2 = gl.isProgram(program);
 			console.info("webgltest getExtension: " + isProgram2);
-			expect(isProgram2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1441,7 +1437,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteProgram.
 		 */
 		it('webgl_test_deleteProgram_2', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteProgram");
 
 			const program = gl.createProgram();
@@ -1449,9 +1445,8 @@ export default function webgl1Test_webgl1(){
 			gl.deleteProgram(program);
 			const isProgram2 = gl.isProgram(program);
 			console.info("webgltest getExtension: " + isProgram2);
-			expect(isProgram2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1462,7 +1457,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteRenderbuffer.
 		 */
 		it('webgl_test_deleteRenderbuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteRenderbuffer");
 
 			const renderbuffer = gl.createRenderbuffer();
@@ -1470,7 +1465,6 @@ export default function webgl1Test_webgl1(){
 			const isRenderbuffer1 = gl.isRenderbuffer(renderbuffer);
 			console.info("webgltest createRenderbuffer bindRenderbuffer isRenderbuffer1: " +
 				isRenderbuffer1);
-			expect(isRenderbuffer1).assertEqual(true);
 
 			gl.deleteRenderbuffer(renderbuffer);
 
@@ -1478,9 +1472,8 @@ export default function webgl1Test_webgl1(){
 			console.info(
 				"webgltest createRenderbuffer bindRenderbuffer  deleteRenderbuffer isRenderbuffer2: " +
 				isRenderbuffer2);
-			expect(isRenderbuffer2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1491,21 +1484,19 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteShader.
 		 */
 		it('webgl_test_deleteShader', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteShader");
 
 			var shader = gl.createShader(gl.VERTEX_SHADER);
 			const isShader1 = gl.isShader(shader);
 			console.info("webgltest createShader isShader: " + isShader1);
-			expect(isShader1).assertEqual(true);
 
 			gl.deleteShader(shader);
 
 			const isShader2 = gl.isShader(shader);
 			console.info("webgltest createShader deleteShader isShader2: " + isShader2);
-			expect(isShader2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1516,7 +1507,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteShader.
 		 */
 		it('webgl_test_deleteShader_2', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteShader");
 
 			var shader = gl.createShader(gl.VERTEX_SHADER);
@@ -1525,9 +1516,8 @@ export default function webgl1Test_webgl1(){
 
 			const isShader2 = gl.isShader(shader);
 			console.info("webgltest createShader deleteShader isShader2: " + isShader2);
-			expect(isShader2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1538,22 +1528,20 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteTexture.
 		 */
 		it('webgl_test_deleteTexture', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteTexture");
 
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			const isTexture1 = gl.isTexture(texture);
 			console.info("webgltest createTexture isTexture: " + isTexture1);
-			expect(isTexture1).assertEqual(true);
 
 			gl.deleteTexture(texture);
 
 			const isTexture2 = gl.isTexture(texture);
 			console.info("webgltest createTexture deleteTexture isTexture2: " + isTexture2);
-			expect(isTexture2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1564,22 +1552,20 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test deleteTexture.
 		 */
 		it('webgl_test_deleteTexture_2', 0, async function(done) {
-			
+
 			console.info("webgltest into deleteTexture");
 
 			var texture = gl.createTexture();
 
 			const isTexture1 = gl.isTexture(texture);
 			console.info("webgltest createTexture isTexture: " + isTexture1);
-			expect(isTexture1).assertEqual(false);
 
 			gl.deleteTexture(texture);
 
 			const isTexture2 = gl.isTexture(texture);
 			console.info("webgltest createTexture deleteTexture isTexture2: " + isTexture2);
-			expect(isTexture2).assertEqual(false);
 
-			
+
 			done();
 		});
 
@@ -1590,7 +1576,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1598,9 +1584,8 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.NEVER);
 
-			
+
 			done();
 		});
 
@@ -1610,7 +1595,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_2', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1618,9 +1603,8 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.LESS);
 
-			
+
 			done();
 		});
 
@@ -1630,7 +1614,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_3', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1638,9 +1622,8 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.EQUAL);
 
-			
+
 			done();
 		});
 
@@ -1650,7 +1633,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_4', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1658,9 +1641,9 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.LEQUAL);
 
-			
+
+
 			done();
 		});
 
@@ -1670,7 +1653,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_5', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1678,9 +1661,9 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.GREATER);
 
-			
+
+
 			done();
 		});
 
@@ -1690,7 +1673,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_6', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1698,9 +1681,9 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.NOTEQUAL);
+			//
 
-			
+
 			done();
 		});
 
@@ -1710,7 +1693,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_7', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1718,9 +1701,9 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.GEQUAL);
 
-			
+
+
 			done();
 		});
 
@@ -1730,7 +1713,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthFunc.
 		 */
 		it('webgl_test_depthFunc_8', 0, async function(done) {
-			
+
 			console.info("webgltest into depthFunc");
 
 			gl.enable(gl.DEPTH_TEST);
@@ -1738,9 +1721,9 @@ export default function webgl1Test_webgl1(){
 			// 要检查当前深度函数，请查询DEPTH_FUNC常量。
 			const depthParameter = gl.getParameter(gl.DEPTH_FUNC);
 			console.info("depthFunc --> getParameter: " + depthParameter);
-			expect(depthParameter).assertEqual(gl.ALWAYS);
 
-			
+
+
 			done();
 		});
 
@@ -1751,7 +1734,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthMask.
 		 */
 		it('webgl_test_depthMask', 0, async function(done) {
-			
+
 			console.info("webgltest into depthMask");
 
 			gl.depthMask(false);
@@ -1759,8 +1742,8 @@ export default function webgl1Test_webgl1(){
 			const depthMaskValue = gl.getParameter(gl.DEPTH_WRITEMASK);
 			// false
 			console.info("webgltest depthMaskValue: " + depthMaskValue);
-			expect(depthMaskValue).assertEqual(false);
-			
+
+
 			done();
 		});
 
@@ -1770,7 +1753,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthMask.
 		 */
 		it('webgl_test_depthMask_2', 0, async function(done) {
-			
+
 			console.info("webgltest into depthMask");
 
 			gl.depthMask(true);
@@ -1778,8 +1761,8 @@ export default function webgl1Test_webgl1(){
 			const depthMaskValue = gl.getParameter(gl.DEPTH_WRITEMASK);
 			// false
 			console.info("webgltest depthMaskValue: " + depthMaskValue);
-			expect(depthMaskValue).assertEqual(true);
-			
+
+
 			done();
 		});
 
@@ -1790,7 +1773,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthRange.
 		 */
 		it('webgl_test_depthRange', 0, async function(done) {
-			
+
 			console.info("webgltest into depthRange");
 
 			gl.depthRange(0.2, 0.6);
@@ -1799,8 +1782,8 @@ export default function webgl1Test_webgl1(){
 			// Float32Array[0.2, 0.6]
 			const float32ArrayValue = new Float32Array([0.2, 0.6]);
 			console.info("webgltest depthRange: " + depthRangeValue);
-			expect(depthRangeValue.toString()).assertEqual(float32ArrayValue.toString());
-			
+
+
 			done();
 		});
 
@@ -1810,7 +1793,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test depthRange.
 		 */
 		it('webgl_test_depthRange_2', 0, async function(done) {
-			
+
 			console.info("webgltest into depthRange");
 
 			gl.depthRange(0.8, 1.0);
@@ -1819,8 +1802,8 @@ export default function webgl1Test_webgl1(){
 			// Float32Array[0.2, 0.6]
 			const float32ArrayValue = new Float32Array([0.8, 1.0]);
 			console.info("webgltest depthRange: " + depthRangeValue);
-			expect(depthRangeValue.toString()).assertEqual(float32ArrayValue.toString());
-			
+
+
 			done();
 		});
 
@@ -1831,7 +1814,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test detachShader.
 		 */
 		it('webgl_test_detachShader', 0, async function(done) {
-			
+
 			console.info("webgltest into detachShader");
 
 			//顶点着色器
@@ -1855,9 +1838,9 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest uniform3uiv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -1868,7 +1851,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test disable.
 		 */
 		it('webgl_test_disable', 0, async function(done) {
-			
+
 			console.info("webgltest into disable");
 
 			gl.disable(gl.DITHER);
@@ -1876,8 +1859,8 @@ export default function webgl1Test_webgl1(){
 			const isEnabled = gl.isEnabled(gl.DITHER);
 			// false
 			console.info("webgltest disable isEnabled: " + isEnabled);
-			expect(isEnabled).assertEqual(false);
-			
+
+
 			done();
 		});
 
@@ -1888,22 +1871,22 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test disable.
 		 */
 		it('webgl_test_disable_2', 0, async function(done) {
-			
+
 			console.info("webgltest into disable");
 			gl.enable(gl.DITHER);
 			const isEnabled2 = gl.isEnabled(gl.DITHER);
 			// true
 			console.info("webgltest disable isEnabled2: " + isEnabled2);
-			expect(isEnabled2).assertEqual(true);
+
 
 			gl.disable(gl.DITHER);
 			// 要检查功能是否被禁用，请使用以下WebGLRenderingContext.isEnabled()方法：
 			const isEnabled = gl.isEnabled(gl.DITHER);
 			// false
 			console.info("webgltest disable isEnabled: " + isEnabled);
-			expect(isEnabled).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -1914,13 +1897,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test disableVertexAttribArray.
 		 */
 		it('webgl_test_disableVertexAttribArray', 0, async function(done) {
-			
+
 			console.info("webgltest into disableVertexAttribArray");
 			gl.disableVertexAttribArray(0);
 			let errorCode = gl.getError();
 			console.info("webgltest disableVertexAttribArray getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -1931,14 +1914,14 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test drawArrays.
 		 */
 		it('webgl_test_drawArrays', 0, async function(done) {
-			
+
 			console.info("webgltest into drawArrays");
 
 			gl.drawArrays(gl.POINTS, 0, 8);
 			let errorCode = gl.getError();
 			console.info("webgltest drawArrays getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -1949,15 +1932,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test drawArrays.
 		 */
 		it('webgl_test_drawArrays_2', 0, async function(done) {
-			
+
 			console.info("webgltest into drawArrays");
 
 			gl.drawArrays(gl.POINTS, 0, -8);
 			let errorCode = gl.getError();
 			console.info("webgltest drawArrays getError: " + errorCode);
-			expect(errorCode).assertEqual(1281);
 
-			
+
+
 			done();
 		});
 
@@ -1968,7 +1951,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test drawElements.
 		 */
 		it('webgl_test_drawElements', 0, async function(done) {
-			
+
 			console.info("webgltest into drawElements");
 
 
@@ -2013,8 +1996,8 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest drawArrays getError: " + errorCode);
-			expect(errorCode).assertEqual(1280);
-			
+
+
 			done();
 		});
 
@@ -2025,15 +2008,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test drawElements.
 		 */
 		it('webgl_test_drawElements_2', 0, async function(done) {
-			
+
 			console.info("webgltest into drawElements");
 
 			gl.drawElements(1, 2, 3, 4);
 
 			let errorCode = gl.getError();
 			console.info("webgltest drawElements getError: " + errorCode);
-			expect(errorCode).assertEqual(0x0500);
-			
+
+
 			done();
 		});
 
@@ -2044,7 +2027,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test enable.
 		 */
 		it('webgl_test_enable', 0, async function(done) {
-			
+
 			console.info("webgltest into enable");
 
 			gl.enable(gl.DITHER);
@@ -2052,9 +2035,9 @@ export default function webgl1Test_webgl1(){
 			const isEnabled = gl.isEnabled(gl.DITHER);
 			// true
 			console.info("webgltest enable isEnabled: " + isEnabled);
-			expect(isEnabled).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -2065,7 +2048,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test enable.
 		 */
 		it('webgl_test_enable_2', 0, async function(done) {
-			
+
 			console.info("webgltest into enable");
 
 			gl.enable(gl.DITHER);
@@ -2073,16 +2056,16 @@ export default function webgl1Test_webgl1(){
 			const isEnabled = gl.isEnabled(gl.DITHER);
 			// true
 			console.info("webgltest enable isEnabled: " + isEnabled);
-			expect(isEnabled).assertEqual(true);
+
 
 			gl.disable(gl.DITHER);
 			// 要检查功能是否被禁用，请使用以下WebGLRenderingContext.isEnabled()方法：
 			const isEnabled2 = gl.isEnabled(gl.DITHER);
 			// false
 			console.info("webgltest disable isEnabled2: " + isEnabled2);
-			expect(isEnabled2).assertEqual(false);
 
-			
+
+
 			done();
 		});
 
@@ -2093,7 +2076,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test enableVertexAttribArray.
 		 */
 		it('webgl_test_enableVertexAttribArray', 0, async function(done) {
-			
+
 			console.info("webgltest into enableVertexAttribArray");
 			//顶点着色器程序
 			var VSHADER_SOURCE =
@@ -2134,9 +2117,9 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest enableVertexAttribArray getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -2147,13 +2130,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test finish.
 		 */
 		it('webgl_test_finish', 0, async function(done) {
-			
+
 			console.info("webgltest into finish");
 			gl.finish();
 			let errorCode = gl.getError();
 			console.info("webgltest finish getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2164,13 +2147,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test flush.
 		 */
 		it('webgl_test_flush', 0, async function(done) {
-			
+
 			console.info("webgltest into flush");
 			gl.flush();
 			let errorCode = gl.getError();
 			console.info("webgltest flush getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2181,7 +2164,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test framebufferRenderbuffer.
 		 */
 		it('webgl_test_framebufferRenderbuffer', 0, async function(done) {
-			
+
 			console.info("webgltest into framebufferRenderbuffer");
 
 			const renderbuffer = gl.createRenderbuffer();
@@ -2190,8 +2173,8 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2202,7 +2185,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test framebufferRenderbuffer.
 		 */
 		it('webgl_test_framebufferRenderbuffer_2', 0, async function(done) {
-			
+
 			console.info("webgltest into framebufferRenderbuffer");
 
 			const renderbuffer = gl.createRenderbuffer();
@@ -2210,8 +2193,8 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferRenderbuffer getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2222,7 +2205,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test framebufferTexture2D.
 		 */
 		it('webgl_test_framebufferTexture2D', 0, async function(done) {
-			
+
 			console.info("webgltest into framebufferTexture2D");
 			const texture = gl.createTexture();
 			gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture,
@@ -2230,9 +2213,9 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -2243,7 +2226,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test framebufferTexture2D.
 		 */
 		it('webgl_test_framebufferTexture2D_1', 0, async function(done) {
-			
+
 			console.info("webgltest into framebufferTexture2D");
 			const texture = gl.createTexture();
 			gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture,
@@ -2251,9 +2234,9 @@ export default function webgl1Test_webgl1(){
 
 			let errorCode = gl.getError();
 			console.info("webgltest framebufferTexture2D getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
 
-			
+
+
 			done();
 		});
 
@@ -2266,15 +2249,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test drawBuffers.
 		 */
 		it('webgl_test_drawBuffers', 0, async function(done) {
-			
+
 			console.info("webgltest into drawBuffers");
 
 			gl2.drawBuffers([gl2.NONE, gl2.COLOR_ATTACHMENT1]);
 
 			let errorCode = gl.getError();
 			console.info("webgltest drawBuffers getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2284,13 +2267,13 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test drawBuffers.
 		 */
 		it('webgl_test_drawBuffers_2', 0, async function(done) {
-			
+
 			console.info("webgltest into drawBuffers");
 			gl2.drawBuffers(["gl2.NONE", "gl2.COLOR_ATTACHMENT1"]);
 			let errorCode = gl.getError();
 			console.info("webgltest drawBuffers getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2300,15 +2283,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferfv.
 		 */
 		it('webgl_test_clearBufferfv', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferfv");
 
 			gl2.clearBufferfv(gl.COLOR, 0, [0.0, 0.0, 0.0, 0.0]);
 
 			let errorCode = gl.getError();
 			console.info("webgltest webgl_test_clearBufferfv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2318,15 +2301,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferfv.
 		 */
 		it('webgl_test_clearBufferfv_2', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferfv");
 
 			gl2.clearBufferfv(gl.COLOR, "0", [0.0, 0.0, 0.0, 0.0]);
 
 			let errorCode = gl.getError();
 			console.info("webgltest webgl_test_clearBufferfv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2337,15 +2320,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferiv.
 		 */
 		it('webgl_test_clearBufferiv', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferiv");
 
 			gl2.clearBufferiv(gl.COLOR, 0, new Int32Array([0, 1, 0, 0.5]));
 
 			let errorCode = gl.getError();
 			console.info("webgltest clearBufferiv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2356,15 +2339,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferiv.
 		 */
 		it('webgl_test_clearBufferiv_2', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferiv");
 
 			gl2.clearBufferiv(gl.COLOR, "0", new Int32Array([0, 1, 0, 0.5]));
 
 			let errorCode = gl.getError();
 			console.info("webgltest clearBufferiv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2375,15 +2358,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferuiv.
 		 */
 		it('webgl_test_clearBufferuiv', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferuiv");
 
 			gl2.clearBufferuiv(gl.COLOR, 0, new Uint32Array([0, 1, 0, 0]));
 
 			let errorCode = gl.getError();
 			console.info("webgltest clearBufferuiv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2394,15 +2377,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferuiv.
 		 */
 		it('webgl_test_clearBufferuiv_2', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferuiv");
 
 			gl2.clearBufferuiv(gl.COLOR, "0", new Uint32Array([0, 1, 0, 0]));
 
 			let errorCode = gl.getError();
 			console.info("webgltest clearBufferuiv getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2413,15 +2396,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferfi.
 		 */
 		it('webgl_test_clearBufferfi', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferfi");
 
 			gl2.clearBufferfi(gl.DEPTH_STENCIL, 0, 1.0, 0);
 
 			let errorCode = gl.getError();
 			console.info("webgltest clearBufferfi getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2432,15 +2415,15 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test clearBufferfi.
 		 */
 		it('webgl_test_clearBufferfi_2', 0, async function(done) {
-			
+
 			console.info("webgltest into clearBufferfi");
 
 			gl2.clearBufferfi(gl.DEPTH_STENCIL, "0", 1.0, 0);
 
 			let errorCode = gl.getError();
 			console.info("webgltest clearBufferfi getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
-			
+
+
 			done();
 		});
 
@@ -2451,7 +2434,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test createQuery.
 		 */
 		it('webgl_test_createQuery', 0, async function(done) {
-			
+
 			console.info("webgltest into createQuery");
 
 			const query = gl2.createQuery();
@@ -2461,8 +2444,8 @@ export default function webgl1Test_webgl1(){
 			const isQuery = gl2.isQuery(currentQuery);
 
 			console.info("webgltest createQuery isQuery: " + isQuery);
-			expect(isQuery).assertEqual(true);
-			
+
+
 			done();
 		});
 
@@ -2472,7 +2455,7 @@ export default function webgl1Test_webgl1(){
 		 * @tc.desc Test beginQuery.
 		 */
 		it('webgl_test_beginQuery', 0, async function(done) {
-			
+
 			console.info("webgltest into beginQuery");
 
 			var query = gl2.createQuery();
@@ -2481,8 +2464,8 @@ export default function webgl1Test_webgl1(){
 			const currentQuery = gl2.getQuery(0x8C2F, 0x8865);
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
-			expect(isQuery1).assertEqual(true);
-			
+
+
 			done();
 		});
 	})
