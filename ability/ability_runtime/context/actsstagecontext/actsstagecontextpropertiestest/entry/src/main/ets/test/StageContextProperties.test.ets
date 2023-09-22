@@ -16,6 +16,7 @@
 import { describe, it, expect, afterEach, beforeAll } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { Driver, ON } from '@ohos.UiTest';
 
 let Subscriber;
 let TAG;
@@ -512,50 +513,36 @@ export default function stageContextPropertiesTest(abilityContext) {
         * @tc.number: Acts_ReportDrawnCompleted_AsyncCallback_1400
         * @tc.name: Load management
         * @tc.desc: The uiability of this application use asyncCallback way call reportDrawnCompleted interface
-        *            viewing console output information.
-        * @tc.level 1
+        *           viewing console output information.
         */ 
-        it('Acts_ReportDrawnCompleted_AsyncCallback_1400', 0, function (done) {
-        beforeEachLoadmanagement();
-        setTimeout(function () {
-            let want = {
-            "deviceId": "",
-            "bundleName": "com.example.stagecontextpropertiestest",
-            "abilityName": "DrawnAbility",
-            "moduleName": "drawn",
-            };
-            globalThis.abilityContext.startAbility(want, () => {});
-
+        it('Acts_ReportDrawnCompleted_AsyncCallback_1400', 0, async function (done) {
+            await beforeEachLoadmanagement();
             let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-            setTimeout(function () {
-                console.log('====>ReportDrawnCompleted_1400 expect start ');
-                let grepLog = "'\"name_\":\"DRAWN_COMPLETED\"'";
-                let cmd = "hilog -x | grep " + grepLog;
-                abilityDelegator.executeShellCommand(cmd, (err, data) => {
-                    console.log('====>ReportDrawnCompleted_0100 executeShellCommand err : ' + JSON.stringify(err));
-                    if (data.stdResult) {
-                    console.log('====>ReportDrawnCompleted_1400 data.stdResult : ' + JSON.stringify(data.stdResult));
-                    try {
-                        expect(data.stdResult).assertContain("\"domain_\":\"AAFWK\"");
-                        expect(data.stdResult).assertContain("\"name_\":\"DRAWN_COMPLETED\"");
-                        expect(data.stdResult).assertContain("\"type_\":4");
-                        expect(data.stdResult).assertContain("\"tz_\":\"+0800\"");
-                        expect(data.stdResult).assertContain(
-                            "\"BUNDLE_NAME\":\"com.example.stagecontextpropertiestest\"");
-                        expect(data.stdResult).assertContain("\"MODULE_NAME\":\"drawn\"");
-                        expect(data.stdResult).assertContain("\"ABILITY_NAME\":\"DrawnAbility\"");
-                    } catch {
-                        expect().assertFail();
-                        done();
-                    }
-                    done();
-                    } else {
-                    expect().assertFail();
-                    done();
-                    }
-                });
-            }, 200);
-        }, 4000);
+            let want = {
+                "deviceId": "",
+                "bundleName": "com.example.stagecontextpropertiestest",
+                "abilityName": "DrawnAbility",
+                "moduleName": "drawn",
+            };
+            await globalThis.abilityContext.startAbility(want);
+            await Driver.create().delayMs(500);
+            console.log('====>ReportDrawnCompleted_1400 expect start ');
+            let grepLog = "'\"name_\":\"DRAWN_COMPLETED\"'";
+            let cmd = "hilog -x | grep " + grepLog;
+            await abilityDelegator.executeShellCommand(cmd).then((data) => {
+                expect(data.stdResult != "").assertTrue();
+                console.log('====>ReportDrawnCompleted_1400 data.stdResult : ' + JSON.stringify(data.stdResult));
+                expect(data.stdResult).assertContain("\"domain_\":\"AAFWK\"");
+                expect(data.stdResult).assertContain("\"name_\":\"DRAWN_COMPLETED\"");
+                expect(data.stdResult).assertContain("\"type_\":4");
+                expect(data.stdResult).assertContain("\"tz_\":\"+0800\"");
+                expect(data.stdResult).assertContain("\"BUNDLE_NAME\":\"com.example.stagecontextpropertiestest\"");
+                expect(data.stdResult).assertContain("\"MODULE_NAME\":\"drawn\"");
+                expect(data.stdResult).assertContain("\"ABILITY_NAME\":\"DrawnAbility\"");
+                done();
+            }).catch((error) => {
+                console.log('====>ReportDrawnCompleted_1400 executeShellCommand err : ' + JSON.stringify(error));
+            })
         })
 
         /*
@@ -563,48 +550,34 @@ export default function stageContextPropertiesTest(abilityContext) {
          * @tc.name: Load management
          * @tc.desc: The uiAbility of this external application use asyncCallback way call reportDrawnCompleted interface 
          *           viewing console output information.
-         * @tc.level 1
          */
-        it('Acts_ReportDrawnCompleted_AsyncCallback_1500', 0, function (done) {
-        beforeEachLoadmanagement();
-        setTimeout(function () {
+        it('Acts_ReportDrawnCompleted_AsyncCallback_1500', 0, async function (done) {
+            await beforeEachLoadmanagement();
+            let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
             let want = {
                 "deviceId": "",
                 "bundleName": "com.example.reportdrawncompletedmanualtest",
                 "abilityName": "EntryAbility"
             };
-            globalThis.abilityContext.startAbility(want, () => {});
-
-            let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-            setTimeout(function () {
-                console.log('====>ReportDrawnCompleted_1500 expect start ');
-                let grepLog = "'\"name_\":\"DRAWN_COMPLETED\"'";
-                let cmd = "hilog -x | grep " + grepLog;
-                abilityDelegator.executeShellCommand(cmd, (err, data) => {
-                console.log('====>ReportDrawnCompleted_1500 executeShellCommand err : ' + JSON.stringify(err));
-                if (data.stdResult) {
-                    console.log('====>ReportDrawnCompleted_1500 data.stdResult : ' + JSON.stringify(data.stdResult));
-                    try {
-                        expect(data.stdResult).assertContain("\"domain_\":\"AAFWK\"");
-                        expect(data.stdResult).assertContain("\"name_\":\"DRAWN_COMPLETED\"");
-                        expect(data.stdResult).assertContain("\"type_\":4");
-                        expect(data.stdResult).assertContain("\"tz_\":\"+0800\"");
-                        expect(data.stdResult).assertContain(
-                            "\"BUNDLE_NAME\":\"com.example.reportdrawncompletedmanualtest\"");
-                        expect(data.stdResult).assertContain("\"MODULE_NAME\":\"entry\"");
-                        expect(data.stdResult).assertContain("\"ABILITY_NAME\":\"EntryAbility\"");
-                    } catch {
-                        expect().assertFail();
-                        done();
-                    }
-                    done();
-                } else {
-                    expect().assertFail();
-                    done();
-                }
-                });
-            }, 1000);
-        }, 4000);
+            await globalThis.abilityContext.startAbility(want);
+            await Driver.create().delayMs(500);
+            console.log('====>ReportDrawnCompleted_1500 expect start ');
+            let grepLog = "'\"name_\":\"DRAWN_COMPLETED\"'";
+            let cmd = "hilog -x | grep " + grepLog;
+            await abilityDelegator.executeShellCommand(cmd).then((data) => {
+                expect(data.stdResult != "").assertTrue();
+                console.log('====>ReportDrawnCompleted_1500 data.stdResult : ' + JSON.stringify(data.stdResult));
+                expect(data.stdResult).assertContain("\"domain_\":\"AAFWK\"");
+                expect(data.stdResult).assertContain("\"name_\":\"DRAWN_COMPLETED\"");
+                expect(data.stdResult).assertContain("\"type_\":4");
+                expect(data.stdResult).assertContain("\"tz_\":\"+0800\"");
+                expect(data.stdResult).assertContain("\"BUNDLE_NAME\":\"com.example.reportdrawncompletedmanualtest\"");
+                expect(data.stdResult).assertContain("\"MODULE_NAME\":\"entry\"");
+                expect(data.stdResult).assertContain("\"ABILITY_NAME\":\"EntryAbility\"");
+                done();
+            }).catch((error) => {
+                console.log('====>ReportDrawnCompleted_1500 executeShellCommand err : ' + JSON.stringify(error));
+            })
         })
 
         function checkApplicationContextDir(applicationContext) {
