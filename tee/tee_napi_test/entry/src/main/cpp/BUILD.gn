@@ -1,0 +1,63 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+
+config("config") {
+  visibility = [ ":*" ]
+  cflags = [ "-Wno-error" ]
+  ldflags = [
+    "-lstdc++",
+    "-lm",
+    "-lpthread",
+  ]
+}
+
+config("public_config") {
+}
+
+ohos_shared_library("clientapi") {
+  tee_dev_kit_dir   = "//base/tee/tee_dev_kit"
+  tee_test_root_dir = "//base/tee/tee_os_framework/test/xts"
+  sources = [ "./napi/tee_client_napi_test.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+  include_dirs = [
+    tee_dev_kit_dir + "/sdk/include/TA",
+    tee_dev_kit_dir + "/sdk/thirdparty/open_source/libboundscheck/include/libhwsecurec",
+    tee_dev_kit_dir + "/sdk/include/CA",
+
+    tee_test_root_dir + "/utils",
+    tee_test_root_dir + "/utils/include",
+    tee_test_root_dir + "/utils/public_test",
+    tee_test_root_dir + "/utils/cmd_id",
+    tee_test_root_dir + "/ca/client_api/common",
+  ]
+
+  configs = [ ":config" ]
+
+  deps = [
+      "//base/tee/tee_client/frameworks/build/standard:libteec",
+      "//third_party/bounds_checking_function:libsec_shared",
+  ]
+
+  external_deps = [
+    "hilog:libhilog",
+    "napi:ace_napi",
+  ]
+
+  subsystem_name = "tee"
+#  part_name = "client_api" ###todo======================
+
+  output_extension = "so"
+}

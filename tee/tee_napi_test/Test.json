@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "testcase-timeout": "300000",
+	    "bundle-name": "ohos.tee.napitest",
+        "package-name": "ohos.tee.napitest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsTeeNapiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /"
+            ],
+            "push": [
+                "resource/tee/tee_test_client_api/534d4152-542d-4353-b919-d3016a171fc5.sec -> /system/bin/534d4152-542d-4353-b919-d3016a171fc5.sec"
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mount -o rw,remount /",
+                "chmod +x /system/bin/tee_test_client_api",
+                "setenforce 0",
+                "pkill cadaemon"
+            ]
+        }
+    ]
+}
