@@ -93,7 +93,7 @@ import StorageProp22Jsunit from './State/StorageProp22Jsunit.test.ets'
 import StorageProp25Jsunit from './State/StorageProp25Jsunit.test.ets'
 import StorageProp26Jsunit from './State/StorageProp26Jsunit.test.ets'
 import swiperAnimationJsunit from './swiperAnimationJsunit.test.ets'
-
+import navigationNavbar02 from './navigationNavbar02.test.ets'
 
 export default function testsuite() {
   DialogJsunit();
@@ -176,4 +176,5 @@ export default function testsuite() {
   StorageProp25Jsunit();
   StorageProp26Jsunit();
   swiperAnimationJsunit();
+  navigationNavbar02();
 }
