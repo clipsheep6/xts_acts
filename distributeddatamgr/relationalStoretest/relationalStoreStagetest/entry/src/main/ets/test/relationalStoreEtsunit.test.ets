@@ -45,12 +45,12 @@ export default function relationalStoreTest(context){
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S1
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0100
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1300
          * @tc.desc rdb store getRdbStore with securityLevel S1
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0100', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0100 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1300', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1300 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S1
@@ -67,17 +67,17 @@ export default function relationalStoreTest(context){
             }).catch((err) => {
                 expect(null).assertFail();
             })
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0100 end   *************");
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1300 end   *************");
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S2
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0200
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1400
          * @tc.desc rdb store getRdbStore with securityLevel S2
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0200', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0200 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1400', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1400 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S2
@@ -94,17 +94,17 @@ export default function relationalStoreTest(context){
             }).catch((err) => {
                 expect(null).assertFail();
             })
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0200 end   *************");
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1400 end   *************");
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S3
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0300
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1500
          * @tc.desc rdb store getRdbStore with securityLevel S3
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0300', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0300 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1500', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1500 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S3
@@ -121,17 +121,17 @@ export default function relationalStoreTest(context){
             }).catch((err) => {
                 expect(null).assertFail();
             })
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0300 end   *************");
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1500 end   *************");
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S4
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0400
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1600
          * @tc.desc rdb store getRdbStore with securityLevel S4
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0400', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0400 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1600', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1600 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S4
@@ -148,17 +148,17 @@ export default function relationalStoreTest(context){
             }).catch((err) => {
                 expect(null).assertFail();
             })
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_PROMISE_0400 end   *************");
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1600 end   *************");
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S1
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0100
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_0900
          * @tc.desc rdb store getRdbStore with securityLevel S1
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0100', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0100 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_0900', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_0900 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S1
@@ -173,19 +173,19 @@ export default function relationalStoreTest(context){
                 dataRdb.deleteRdbStore(context,"secure.db").then(()=>{
                     console.info(TAG + "Delete rdbstore success")
                     done();
-                    console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0100 end   *************");
+                    console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_0900 end   *************");
                 })
             });
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S2
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0200
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1000
          * @tc.desc rdb store getRdbStore with securityLevel S2
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0200', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0200 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1000', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1000 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S2
@@ -199,19 +199,19 @@ export default function relationalStoreTest(context){
                 }
                 dataRdb.deleteRdbStore(context, "secure.db").then(() => {
                     done();
-                    console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0200 end   *************");
+                    console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1000 end   *************");
                 })
             });
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S3
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0300
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1100
          * @tc.desc rdb store getRdbStore with securityLevel S3
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0300', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0300 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1100', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1100 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S3
@@ -225,19 +225,19 @@ export default function relationalStoreTest(context){
                 }
                 dataRdb.deleteRdbStore(context, "secure.db").then(() => {
                     done();
-                    console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0300 end   *************");
+                    console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1100 end   *************");
                 })
             });
         })
 
         /**
          * @tc.name rdb store getRdbStore with securityLevel S4
-         * @tc.number SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0400
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1200
          * @tc.desc rdb store getRdbStore with securityLevel S4
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0400', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0400 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1200', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1200 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S4
@@ -251,19 +251,19 @@ export default function relationalStoreTest(context){
                 }
                 dataRdb.deleteRdbStore(context,"secure.db").then(() => {
                     done();
-                    console.log(TAG + "************* SUB_DDM_RELATIONALETS_GETRDBSTORE_CALLBACK_0400 end   *************");
+                    console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsApiTest_1200 end   *************");
                 })
             });
         })
 
         /**
          * @tc.name rdb store deleteRdbStore
-         * @tc.number SUB_DDM_RELATIONALETS_DELETERDBSTORE_PROMISE_0100
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0200
          * @tc.desc rdb store deleteRdbStore
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_DELETERDBSTORE_PROMISE_0100', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_DELETERDBSTORE_PROMISE_0100 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0200', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0200 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S4
@@ -278,17 +278,17 @@ export default function relationalStoreTest(context){
                 expect(deleteResult).assertTrue();
                 done();
             })
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_DELETERDBSTORE_PROMISE_0100 end   *************");
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0200 end   *************");
         })
 
         /**
          * @tc.name rdb store deleteRdbStore
-         * @tc.number SUB_DDM_RELATIONALETS_DELETERDBSTORE_CALLBACK_0100
+         * @tc.number SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0100
          * @tc.desc rdb store deleteRdbStore
          * @tc.require: I5PIL6
          */
-        it('SUB_DDM_RELATIONALETS_DELETERDBSTORE_CALLBACK_0100', 0, async function (done) {
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_DELETERDBSTORE_CALLBACK_0100 start *************");
+        it('SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0100', 0, async function (done) {
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0100 start *************");
             let config = {
                 name: "secure.db",
                 securityLevel: dataRdb.SecurityLevel.S1
@@ -306,7 +306,7 @@ export default function relationalStoreTest(context){
                 expect(deleteResult).assertTrue();
                 done();
             })
-            console.log(TAG + "************* SUB_DDM_RELATIONALETS_DELETERDBSTORE_CALLBACK_0100 end   *************");
+            console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_DeleteJsApiTest_0100 end   *************");
         })
         console.log(TAG + "*************Unit Test End*************");
     })

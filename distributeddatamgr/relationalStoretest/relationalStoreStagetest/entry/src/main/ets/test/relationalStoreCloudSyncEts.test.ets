@@ -125,11 +125,11 @@ export default function relationalStoreCloudSyncEtsTest(context) {
 
     /**
      * @tc.name test PRIKeyType string
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_PRIKeyType_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0200
      * @tc.desc test PRIKeyType string
      */
-    it('testRdbStorePRIKeyType0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStorePRIKeyType0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0200', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0200 start *************");
       try {
         let priKey1 : relationalStore.PRIKeyType = "test_key1";
         let priKey2 : relationalStore.PRIKeyType = "test_key2";
@@ -146,17 +146,17 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStorePRIKeyType0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0200 end *************");
     })
 
     
     /**
      * @tc.name test PRIKeyType number
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_PRIKeyType_0020
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0100
      * @tc.desc test PRIKeyType number
      */
-    it('testRdbStorePRIKeyType0020', 0, async function (done) {
-      console.log(TAG + "************* testRdbStorePRIKeyType0020 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0100', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0100 start *************");
       try {
         let priKey1 : relationalStore.PRIKeyType = 2;
         let priKey2 : relationalStore.PRIKeyType = 4;
@@ -172,36 +172,36 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStorePRIKeyType0020 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0100 end *************");
     })
 
     /**
      * @tc.name test UTCTime type
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_UTCTime_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0300
      * @tc.desc test UTCTime type
      */
-    it('testRdbStoreUTCTime0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreUTCTime0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0300', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0300 start *************");
       try {
         let time = new Date();
         let timeUTC : relationalStore.UTCTime = time;
         expect( timeUTC == time ).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreUTCTime0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0300 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreUTCTime0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0300 end *************");
     })
 
     /**
      * @tc.name test ModifyTime type
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ModifyTime_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0500
      * @tc.desc test ModifyTime type
      */
-    it('testRdbStoreModifyTime0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreModifyTime0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0500', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0500 start *************");
       try {
         let priKey1 : relationalStore.PRIKeyType = "test_key1";
         let timeUTC : relationalStore.UTCTime = new Date();
@@ -212,38 +212,38 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect( modifyTime.size == 1 ).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreModifyTime0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0500 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreModifyTime0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0500 end *************");
     })
     /**
      * @tc.name test Progress type
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Progress_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0800
      * @tc.desc test Progress type
      */
-    it('testRdbStoreProgress0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreProgress0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0800', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0800 start *************");
       try {
         expect(relationalStore.Progress.SYNC_BEGIN == 0).assertTrue();
         expect(relationalStore.Progress.SYNC_IN_PROGRESS == 1).assertTrue();
         expect(relationalStore.Progress.SYNC_FINISH == 2).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreProgress0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0800 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreProgress0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0800 end *************");
     })
     /**
      * @tc.name test Statistic
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_Statistic_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0900
      * @tc.desc test Statistic
      */
-    it('testRdbStoreStatistic0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreStatistic0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0900', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0900 start *************");
       try {
         let statistic1 : relationalStore.Statistic = {"total":10, "successful":6, "failed":3, "remained":1};
         expect(statistic1.total == 10 ).assertTrue();
@@ -252,20 +252,20 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect(statistic1.remained == 1 ).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreStatistic0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0900 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreStatistic0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0900 end *************");
     })
 
     /**
      * @tc.name test TableDetails
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_TableDetails_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_1000
      * @tc.desc test TableDetails
      */
-    it('testRdbStoreTableDetails0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreTableDetails0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_1000', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_1000 start *************");
       try {
         let statistic1 : relationalStore.Statistic = {"total":10, "successful":6, "failed":3, "remained":1};
         let statistic2 : relationalStore.Statistic = {"total":100, "successful":60, "failed":30, "remained":10};
@@ -275,20 +275,20 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect(tableDetail.download == statistic2 ).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreTableDetails0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_1000 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreTableDetails0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_1000 end *************");
     })
 
     /**
      * @tc.name test ProgressCode
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ProgressCode_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0600
      * @tc.desc test ProgressCode
      */
-    it('testRdbStoreProgressCode0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreProgressCode0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0600', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0600 start *************");
       try {
         console.log(TAG + "SUCCESS=" + relationalStore.ProgressCode.SUCCESS);
         expect(relationalStore.ProgressCode.SUCCESS == 0).assertTrue();
@@ -300,20 +300,20 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect(relationalStore.ProgressCode.NO_SPACE_FOR_ASSET == 6).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreProgressCode0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0600 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreProgressCode0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0600 end *************");
     })
 
     /**
      * @tc.name test ProgressDetails
-     * @tc.number SUB_DDM_AppDataFWK_JSRDB_ProgressDetails_0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0700
      * @tc.desc test ProgressDetails
      */
-    it('testRdbStoreProgressDetails0010', 0, async function (done) {
-      console.log(TAG + "************* testRdbStoreProgressDetails0010 start *************");
+    it('SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0700', 0, async function (done) {
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0700 start *************");
       try {
         let statistic1 : relationalStore.Statistic = {"total":10, "successful":6, "failed":3, "remained":1};
         let statistic2 : relationalStore.Statistic = {"total":100, "successful":60, "failed":30, "remained":10};
@@ -325,11 +325,11 @@ export default function relationalStoreCloudSyncEtsTest(context) {
         expect(progressDetail.details[tableName] == tableDetail).assertTrue();
         done();
       } catch (err) {
-        console.log(TAG + `testRdbStoreProgressDetails0010 fail, err code is ${err.code}, message is ${err.message}.`);
+        console.log(TAG + `SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0700 fail, err code is ${err.code}, message is ${err.message}.`);
         expect(null).assertFail();
         done();
       }
-      console.log(TAG + "************* testRdbStoreProgressDetails0010 end *************");
+      console.log(TAG + "************* SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0700 end *************");
     })
 
 
