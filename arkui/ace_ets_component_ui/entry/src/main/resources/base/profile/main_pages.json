@@ -134,6 +134,8 @@
         "MainAbility/pages/State/StorageProp22",
         "MainAbility/pages/State/StorageProp25",
         "MainAbility/pages/State/StorageProp26",
-	"MainAbility/pages/swiperAnimation"
+		"MainAbility/pages/swiperAnimation",
+		"MainAbility/pages/CustomDialogSafeArea",
+		"MainAbility/pages/CustomDialogAlignment"
     ]
 }
