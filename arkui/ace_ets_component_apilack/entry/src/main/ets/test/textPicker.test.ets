@@ -57,7 +57,7 @@ export default function textPickerDefaultPickerItemHeightJsunit() {
       console.info("[testtextPickerDefaultPickerItemHeight0001] component width strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$type).assertEqual('TextPicker');
-      expect(obj.$attrs.width).assertEqual("-");
+      expect(obj.$attrs.width).assertEqual("112.00vp");
       console.info("[testtextPickerDefaultPickerItemHeight0001] width value :" + obj.$attrs.width);
       done();
     });
@@ -74,7 +74,7 @@ export default function textPickerDefaultPickerItemHeightJsunit() {
       console.info("[testtextPickerDefaultPickerItemHeight0002] component height strJson:" + strJson);
       let obj = JSON.parse(strJson);
       expect(obj.$type).assertEqual('TextPicker');
-      expect(obj.$attrs.height).assertEqual("-");
+      expect(obj.$attrs.height).assertEqual("160.00vp");
       console.info("[testtextPickerDefaultPickerItemHeight0002] height value :" + obj.$attrs.height);
       done();
     });
