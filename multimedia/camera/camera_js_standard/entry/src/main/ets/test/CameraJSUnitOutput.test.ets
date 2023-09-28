@@ -60,7 +60,6 @@ let videoConfig = {
 
 // 创建录像输出流
 let videoRecorder
-
 let surfaceId1
 let cameraManager;
 let cameraDevicesArray;
