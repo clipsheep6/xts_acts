@@ -27,6 +27,7 @@ group("storage") {
       "storagesecuritylabeljstest:storagesecuritylabel_js_test",
       "storagestatfsjstest:storagestatfs_js_test",
       "storagestatisticsjstest:storagestatistics_js_test",
+       "storagerecentEtstest:storagerecent_ets_test",
     ]
   }
 }
