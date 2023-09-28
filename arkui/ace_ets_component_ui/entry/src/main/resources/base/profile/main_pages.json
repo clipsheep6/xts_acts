@@ -175,6 +175,13 @@
         "MainAbility/pages/swiper/swiperNextPrevMargin82",
         "MainAbility/pages/swiper/swiperNextPrevMargin83",
         "MainAbility/pages/swiper/swiperNextPrevMargin84",
-        "MainAbility/pages/swiper/swiperNextPrevMargin85"
+        "MainAbility/pages/swiper/swiperNextPrevMargin85",
+        "MainAbility/pages/buttonEnabled",
+        "MainAbility/pages/textEnabled",
+        "MainAbility/pages/textAenEnabled",
+        "MainAbility/pages/textChangeEnabled",
+        "MainAbility/pages/menuEnabled",
+        "MainAbility/pages/gestureEnabled"
+		
     ]
 }
