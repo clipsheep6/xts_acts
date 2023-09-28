@@ -674,8 +674,8 @@ describe('resMgrTest', function () {
                     console.log('getDeviceCapability_test_001 DEVICE_TYPE_TABLET');
                 }else if(dc.deviceType == resmgr.DeviceType.DEVICE_TYPE_CAR){
                     console.log('getDeviceCapability_test_001 DEVICE_TYPE_CAR');
-                }else if(dc.deviceType == resmgr.DeviceType.DEVICE_TYPE_PC){
-                    console.log('getDeviceCapability_test_001 DEVICE_TYPE_PC');
+                }else if(dc.deviceType == resmgr.DeviceType.DEVICE_TYPE_PAD){
+                    console.log('getDeviceCapability_test_001 DEVICE_TYPE_PAD');
                 }else if(dc.deviceType == resmgr.DeviceType.DEVICE_TYPE_TV){
                     console.log('getDeviceCapability_test_001 DEVICE_TYPE_TV');
                 }else if(dc.deviceType == resmgr.DeviceType.DEVICE_TYPE_WEARABLE){
@@ -731,7 +731,7 @@ describe('resMgrTest', function () {
     */
     it('getDeviceCapability_test_005', 0, async function (done) {
         console.log('getDeviceCapability_test_005 0');
-        expect(resmgr.DeviceType.DEVICE_TYPE_PC).assertEqual(3);
+        expect(resmgr.DeviceType.DEVICE_TYPE_PAD).assertEqual(3);
         console.log('getDeviceCapability_test_005 1');
         done();
     })
