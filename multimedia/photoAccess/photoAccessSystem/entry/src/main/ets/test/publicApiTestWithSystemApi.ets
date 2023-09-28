@@ -882,6 +882,7 @@ export default function publicApiTestWithSystemApiTest () {
         done();
       } finally {
         helper.unRegisterChange(uri);
+        await sleep(1000);
       }
     });
 
