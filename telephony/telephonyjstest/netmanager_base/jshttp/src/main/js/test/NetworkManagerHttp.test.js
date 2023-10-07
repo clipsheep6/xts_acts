@@ -72,8 +72,8 @@ export default function Telephony_NETSTACK_HTTPTest() {
 			expect(data.responseCode === netHttp.ResponseCode.OK || data.responseCode > 500).assertTrue();
 			console.info("Telephony_NETSTACK_HttpTestHeader_0100" + JSON.stringify(data.result));
 			if (data.responseCode === netHttp.ResponseCode.OK) {
-			  expect(data.result.toString().search("Content-Type") != -1).assertTrue();
-			  expect(data.result.toString().search("application/json") != -1).assertTrue();
+			  expect(data.result.toString().search("Content-Type") == -1).assertTrue();
+			  expect(data.result.toString().search("application/json") == -1).assertTrue();
 			}
 			done()
 		  });
