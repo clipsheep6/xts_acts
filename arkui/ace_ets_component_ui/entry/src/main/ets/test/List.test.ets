@@ -108,7 +108,13 @@ import ObjectLinkFarJsunit from './State/ObjectLinkFarJsunit.test.ets';
 import ObjectLinkSplJsunit from './State/ObjectLinkSplJsunit.test.ets';
 import ObjectLinkCanJsunit from './State/ObjectLinkCanJsunit.test.ets';
 import ObjectLinkNusJsunit from './State/ObjectLinkNusJsunit.test.ets';
-import ObjectLinkArrayJsunit from './State/ObjectLinkArrayJsunit.test.ets'
+import ObjectLinkArrayJsunit from './State/ObjectLinkArrayJsunit.test.ets';
+import buttonEnabledJsunit from './buttonEnabledJsunit.test.ets';
+import textEnabledJsunit from './textEnabledJsunit.test.ets';
+import textAenEnabledJsunit from './textAenEnabledJsunit.test.ets';
+import textChangeEnabledJsunit from './textChangeEnabledJsunit.test.ets';
+import menuEnabledJsunit from './menuEnabledJsunit.test.ets';
+import gestureEnabledJsunit from './gestureEnabledJsunit.test.ets'
 
 
 export default function testsuite() {
@@ -208,4 +214,10 @@ export default function testsuite() {
   ObjectLinkCanJsunit();
   ObjectLinkNusJsunit();
   ObjectLinkArrayJsunit();
+  buttonEnabledJsunit();
+  textEnabledJsunit();
+  textAenEnabledJsunit();
+  textChangeEnabledJsunit();
+  menuEnabledJsunit();
+  gestureEnabledJsunit();
 }
