@@ -22,6 +22,7 @@ group("ActsVkTest") {
     "src/compute/build0002:ActsComputeTestSuite0002",
     "src/compute/build0003:ActsComputeTestSuite0003",
     "src/compute/build0004:ActsComputeTestSuite0004",
+
     #"src/compute/build0005:ActsComputeTestSuite0005",
     "src/compute/build0006:ActsComputeTestSuite0006",
     "src/image/build0001:ActsImageTestSuite0001",
@@ -49,11 +50,13 @@ group("ActsVkTest") {
     "src/renderpass/build0001:ActsRenderpassTestSuite0001",
     "src/renderpass/build0002:ActsRenderpassTestSuite0002",
     "src/renderpass/build0003:ActsRenderpassTestSuite0003",
+
     #"src/renderpass/build0004:ActsRenderpassTestSuite0004",
     "src/renderpass/build0005:ActsRenderpassTestSuite0005",
     "src/renderpass/build0006:ActsRenderpassTestSuite0006",
     "src/renderpass/build0007:ActsRenderpassTestSuite0007",
     "src/renderpass2/build0001:ActsRenderpass2TestSuite0001",
+
     # "src/renderpass2/build0002:ActsRenderpass2TestSuite0002",
     # "src/renderpass2/build0003:ActsRenderpass2TestSuite0003",
     # "src/renderpass2/build0004:ActsRenderpass2TestSuite0004",
@@ -72,10 +75,12 @@ group("ActsVkTest") {
     # "src/renderpass2/build0017:ActsRenderpass2TestSuite0017",
     # "src/renderpass2/build0018:ActsRenderpass2TestSuite0018",
     "src/renderpass2/build0019:ActsRenderpass2TestSuite0019",
+
     # "src/renderpass2/build0020:ActsRenderpass2TestSuite0020",
     # "src/renderpass2/build0021:ActsRenderpass2TestSuite0021",
     # "src/renderpass2/build0022:ActsRenderpass2TestSuite0022",
     "src/renderpass2/build0023:ActsRenderpass2TestSuite0023",
+
     # "src/renderpass2/build0024:ActsRenderpass2TestSuite0024",
     # "src/renderpass2/build0025:ActsRenderpass2TestSuite0025",
     "src/renderpass2/build0026:ActsRenderpass2TestSuite0026",
