@@ -123,6 +123,21 @@ import PropInit1Jsunit from './State/PropInit1Jsunit.test.ets';
 import PropNumberJsunit from './State/PropNumberJsunit.test.ets';
 import PropStringJsunit from './State/PropStringJsunit.test.ets';
 import StateArrayNewJsunit from './State/StateArrayNewJsunit.test.ets'
+import onMeasureSize1 from './onMeasureSize1.test.ets'
+import onMeasureSize2 from './onMeasureSize2.test.ets'
+import onMeasureSize3 from './onMeasureSize3.test.ets'
+import search_top from './search_top.test.ets'
+import search_center from './search_center.test.ets'
+import search_bottom from './search_bottom.test.ets'
+import textArea_top from './textArea_top.test.ets'
+import textArea_center from './textArea_center.test.ets'
+import textArea_bottom from './textArea_bottom.test.ets'
+import video1Jsunit from './video1Jsunit.test.ets'
+import scroll1 from './scroll1.test.ets'
+import scroll2 from './scroll2.test.ets'
+import scrollGrid from './scrollGrid.test.ets'
+import scrollList from './scrollList.test.ets'
+import scrollList2 from './scrollList2.test.ets'
 
 
 export default function testsuite() {
@@ -236,4 +251,19 @@ export default function testsuite() {
   PropNumberJsunit();
   PropStringJsunit();
   StateArrayNewJsunit();
+  video1Jsunit()
+  onMeasureSize1();
+  onMeasureSize2();
+  onMeasureSize3()
+  search_top()
+  search_center()
+  search_bottom()
+  textArea_top()
+  textArea_center()
+  textArea_bottom()
+  scroll1();
+  scroll2();
+  scrollGrid();
+  scrollList();
+  scrollList2();
 }
