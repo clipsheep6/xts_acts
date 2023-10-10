@@ -33,7 +33,7 @@ const ERROR_NOT_SYSTEM_APP = 202;
 const ERROR_PERMISSION_DENIED_ERROR = 201;
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('testQueryExtensionAbilityInfos', function () {
     beforeAll(function () {
     })
     beforeEach(function () {
@@ -43,11 +43,12 @@ export default function abilityTest() {
     afterAll(function () {
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0200', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0200 begin`);
+    it('testQueryExtensionAbilityInfos0200', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0200 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -67,11 +68,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0300', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0300 begin`);
+    it('testQueryExtensionAbilityInfos0300', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0300 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -91,11 +93,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0400', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0400 begin`);
+    it('testQueryExtensionAbilityInfos0400', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0400 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -115,11 +118,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0500', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0500 begin`);
+    it('testQueryExtensionAbilityInfos0500', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0500 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -134,11 +138,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0600', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0600 begin`);
+    it('testQueryExtensionAbilityInfos0600', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0600 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -158,11 +163,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0700', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0700 begin`);
+    it('testQueryExtensionAbilityInfos0700', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0700 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -171,11 +177,11 @@ export default function abilityTest() {
           abilityName: 'ActsShareExtensionAbility',
           moduleName: 'entry'
         };
-        console.info(`====>Acts_QueryExtensionAbilityInfos_0700 try`);
+        console.info(`====>testQueryExtensionAbilityInfos0700 try`);
         let data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
           GET_EXTENSION_ABILITY_INFO_DEFAULT, 100);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"extensionAbilityTypeName":"share"');
+        expect(data[0].extensionAbilityTypeName).assertEqual("share");
         clearTimeout(clear);
         done()
       } catch (err) {
@@ -184,11 +190,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0800', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0800 begin`);
+    it('testQueryExtensionAbilityInfos0800', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0800 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -207,11 +214,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_0900', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_0900 begin`);
+    it('testQueryExtensionAbilityInfos0900', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos0900 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -231,11 +239,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1100', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1100 begin`);
+    it('testQueryExtensionAbilityInfos1100', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1100 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -246,20 +255,22 @@ export default function abilityTest() {
         };
         let data = queryExtension.queryExtensionAbilityInfoSync(want, '', GET_EXTENSION_ABILITY_INFO_DEFAULT, 100);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"extensionAbilityTypeName":"share"');
+        expect(data[0].extensionAbilityTypeName).assertEqual("share");
         clearTimeout(clear);
         done();
       } catch (err) {
         console.info("catch queryExtensionAbilityInfo ng" + JSON.stringify(err));
         expect().assertFail();
+        done();
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1400', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1400 begin`);
+    it('testQueryExtensionAbilityInfos1400', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1400 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -278,11 +289,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1500', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1500 begin`);
+    it('testQueryExtensionAbilityInfos1500', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1500 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -301,11 +313,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1600', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1600 begin`);
+    it('testQueryExtensionAbilityInfos1600', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1600 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -317,7 +330,7 @@ export default function abilityTest() {
         let data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
           GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION, 100);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"extensionAbilityTypeName":"share"');
+        expect(data[0].extensionAbilityTypeName).assertEqual("share");
         clearTimeout(clear);
         done();
       } catch (err) {
@@ -326,11 +339,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1700', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1700 begin`);
+    it('testQueryExtensionAbilityInfos1700', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1700 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -342,7 +356,7 @@ export default function abilityTest() {
         let data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
           GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION, 100);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"extensionAbilityTypeName":"share"');
+        expect(data[0].extensionAbilityTypeName).assertEqual("share");
         clearTimeout(clear);
         done();
       } catch (err) {
@@ -351,11 +365,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1800', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1800 begin`);
+    it('testQueryExtensionAbilityInfos1800', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1800 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -367,7 +382,7 @@ export default function abilityTest() {
         let data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
           GET_EXTENSION_ABILITY_INFO_WITH_METADATA, 100);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"extensionAbilityTypeName":"share"');
+        expect(data[0].extensionAbilityTypeName).assertEqual("share");
         clearTimeout(clear);
         done();
       } catch (err) {
@@ -376,8 +391,8 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1900', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1900 begin`);
+    it('testQueryExtensionAbilityInfos1900', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1900 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
@@ -386,7 +401,7 @@ export default function abilityTest() {
 
       let subscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
-        console.info(`====>Acts_QueryExtensionAbilityInfos_1900 createSubscriber  ${data}`);
+        console.info(`====>testQueryExtensionAbilityInfos1900 createSubscriber  ${data}`);
         subscriber = data;
         commonEvent.subscribe(data, subscribeCallBack);
         globalThis.context.startAbility({
@@ -394,13 +409,13 @@ export default function abilityTest() {
           abilityName: 'EntryAbility',
           action: 'Acts_QueryExtensionAbilityInfos_1900'
         }, (err) => {
-          console.info('====> Acts_QueryExtensionAbilityInfos_1900 startAbility err:' + JSON.stringify(err));
+          console.info('====> testQueryExtensionAbilityInfos1900 startAbility err:' + JSON.stringify(err));
         });
       })
 
       function subscribeCallBack(err, data) {
         if (data.event == 'ACTS_CALL_EVENT') {
-          console.info(`====>Acts_QueryExtensionAbilityInfos_1900 subscribeCallBack 'ACTS_CALL_EVENT_CLOSE'  ${data}`)
+          console.info(`====>testQueryExtensionAbilityInfos1900 subscribeCallBack 'ACTS_CALL_EVENT_CLOSE'  ${data}`);
           expect(data.parameters.num).assertEqual(ERROR_NOT_SYSTEM_APP);
           clearTimeout(clear);
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
@@ -408,14 +423,14 @@ export default function abilityTest() {
       }
 
       function unSubscribeCallback() {
-        console.info(`====>Acts_QueryExtensionAbilityInfos_1900 unSubscribeCallback`);
+        console.info(`====>testQueryExtensionAbilityInfos1900 unSubscribeCallback`);
         done();
       }
 
     })
 
-    it('Acts_QueryExtensionAbilityInfos_2000', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_2000 begin`);
+    it('testQueryExtensionAbilityInfos2000', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos2000 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
@@ -424,7 +439,7 @@ export default function abilityTest() {
 
       let subscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
-        console.info(`====>Acts_QueryExtensionAbilityInfos_2000 createSubscriber  ${data}`);
+        console.info(`====>testQueryExtensionAbilityInfos2000 createSubscriber  ${data}`);
         subscriber = data;
         commonEvent.subscribe(data, subscribeCallBack);
         globalThis.context.startAbility({
@@ -432,13 +447,13 @@ export default function abilityTest() {
           abilityName: 'EntryAbility',
           action: 'Acts_QueryExtensionAbilityInfos_2000'
         }, (err) => {
-          console.info('====> Acts_QueryExtensionAbilityInfos_2000 startAbility err:' + JSON.stringify(err));
+          console.info('====> testQueryExtensionAbilityInfos2000 startAbility err:' + JSON.stringify(err));
         });
       })
 
       function subscribeCallBack(err, data) {
         if (data.event == 'ACTS_CALL_EVENT') {
-          console.info(`====>Acts_QueryExtensionAbilityInfos_2000 subscribeCallBack 'ACTS_CALL_EVENT_CLOSE'  ${data}`)
+          console.info(`====>testQueryExtensionAbilityInfos2000 subscribeCallBack 'ACTS_CALL_EVENT_CLOSE' ${data}`);
           expect(data.parameters.num).assertEqual(ERROR_PERMISSION_DENIED_ERROR);
           clearTimeout(clear);
           commonEvent.unsubscribe(subscriber, unSubscribeCallback);
@@ -446,17 +461,18 @@ export default function abilityTest() {
       }
 
       function unSubscribeCallback() {
-        console.info(`====>Acts_QueryExtensionAbilityInfos_2000 unSubscribeCallback`);
+        console.info(`====>testQueryExtensionAbilityInfos2000 unSubscribeCallback`);
         done();
       }
 
     })
 
-    it('Acts_QueryExtensionAbilityInfos_2100', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_2100 begin`);
+    it('testQueryExtensionAbilityInfos2100', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos2100 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -475,11 +491,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_2200', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_2200 begin`);
+    it('testQueryExtensionAbilityInfos2200', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos2200 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -490,7 +507,7 @@ export default function abilityTest() {
         let data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
           GET_EXTENSION_ABILITY_INFO_DEFAULT, 100);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"extensionAbilityTypeName":"share"');
+        expect(data[0].extensionAbilityTypeName).assertEqual("share");
         clearTimeout(clear);
         done();
       } catch (err) {
@@ -499,11 +516,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_1000', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_1000 begin`);
+    it('testQueryExtensionAbilityInfos1000', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos1000 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -523,11 +541,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_2300', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_2300 begin`);
+    it('testQueryExtensionAbilityInfos2300', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos2300 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -536,7 +555,8 @@ export default function abilityTest() {
           abilityName: 'ActsShareExtensionAbility',
           moduleName: 'entry'
         };
-        var data = queryExtension.queryExtensionAbilityInfoSync(want, 'share', GET_EXTENSION_ABILITY_INFO_DEFAULT, 200);
+        var data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
+        GET_EXTENSION_ABILITY_INFO_DEFAULT, 200);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
       } catch (err) {
         console.info("catch queryExtensionAbilityInfo ng" + JSON.stringify(err));
@@ -546,11 +566,12 @@ export default function abilityTest() {
       }
     })
 
-    it('Acts_QueryExtensionAbilityInfos_2400', 0, function (done) {
-      console.info(`====>Acts_QueryExtensionAbilityInfos_2400 begin`)
+    it('testQueryExtensionAbilityInfos2400', 0, function (done) {
+      console.info(`====>testQueryExtensionAbilityInfos2400 begin`);
 
       let clear = setTimeout(() => {
         expect().assertFail();
+        done();
       }, 5000);
 
       try {
@@ -559,10 +580,11 @@ export default function abilityTest() {
           abilityName: 'ActsShareExtensionAbility',
           moduleName: 'entry'
         };
-        console.info(`====>Acts_QueryExtensionAbilityInfos_2400 try`);
-        var data = queryExtension.queryExtensionAbilityInfoSync(want, 'share', GET_EXTENSION_ABILITY_INFO_DEFAULT, undefined);
+        console.info(`====>testQueryExtensionAbilityInfos2400 try`);
+        var data = queryExtension.queryExtensionAbilityInfoSync(want, 'share',
+        GET_EXTENSION_ABILITY_INFO_DEFAULT, undefined);
         console.info("====> queryExtensionAbilityInfo ok" + JSON.stringify(data));
-        expect(JSON.stringify(data)).assertContain('"name":"ActsShareExtensionAbility"');
+        expect(data[0].name).assertEqual("ActsShareExtensionAbility");
         clearTimeout(clear);
         done();
       } catch (err) {
