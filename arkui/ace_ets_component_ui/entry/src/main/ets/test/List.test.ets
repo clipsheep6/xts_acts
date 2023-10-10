@@ -124,6 +124,16 @@ import PropNumberJsunit from './State/PropNumberJsunit.test.ets';
 import PropStringJsunit from './State/PropStringJsunit.test.ets';
 import StateArrayNewJsunit from './State/StateArrayNewJsunit.test.ets'
 import video1Jsunit from './video1Jsunit.test.ets'
+import ActionsheetDialogAJsunit from './Dialog/ActionsheetDialogJsunit.test.ets'
+import AlertDialogAJsunit from './Dialog/AlertDialogJsunit.test.ets'
+import CalendarDialogAJsunit from './Dialog/CalendarDialogJsunit.test.ets'
+import CustomDialogAJsunit from './Dialog/CustomDialogJsunit.test.ets'
+import DatePickerDialogAJsunit from './Dialog/DatePickerDialogJsunit.test.ets'
+import PopupAJsunit from './Dialog/PopupJsunit.test.ets'
+import TextPickerDialogAJsunit from './Dialog/TextPickerDialogJsunit.test.ets'
+import TimePickerDialogAJsunit from './Dialog/TimePickerDialogJsunit.test.ets'
+import PromptDialogAJsunit from './Dialog/PromptDialogJsunit.test.ets'
+
 
 
 export default function testsuite() {
@@ -238,4 +248,13 @@ export default function testsuite() {
   PropStringJsunit();
   StateArrayNewJsunit();
   video1Jsunit();
+  ActionsheetDialogAJsunit()
+  AlertDialogAJsunit()
+  CalendarDialogAJsunit()
+  CustomDialogAJsunit()
+  DatePickerDialogAJsunit()
+  PopupAJsunit()
+  TextPickerDialogAJsunit()
+  TimePickerDialogAJsunit()
+  PromptDialogAJsunit()
 }
