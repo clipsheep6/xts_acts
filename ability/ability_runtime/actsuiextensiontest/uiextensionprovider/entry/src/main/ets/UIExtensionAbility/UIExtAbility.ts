@@ -21,7 +21,8 @@ const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
     onCreate() {
         Logger.log(TAG, `UIExtAbility onCreate`)
-        let UiExtensionContext:common.UIExtensionContext = this.context;
+		let UiExtensionContext:common.UIExtensionContext = this.context;
+        globalThis.context2 = this.context;
     }
 
     onForeground() {
