@@ -238,7 +238,7 @@ export default function editTest () {
             }
             let requestEditData = await photoAsset.requestEditData();
             expect(requestEditData).assertFalse();
-            photoAsset.setPending( async (err) => {
+            photoAsset.editTest( async (err) => {
               try {
                 if (err !== undefined) {
                   console.info(`${testNum} getAssets failed; err: ${err}`);
@@ -246,11 +246,10 @@ export default function editTest () {
                   expect(err).assertEqual(null);
 
                 } else {
-                  await resetPendingStatus(testNum, photoAsset.uri);
                   expect(true).assertTrue();
                 }
               } catch (error) {
-                console.info(`${testNum} setPending failed; error: ${error}`);
+                console.info(`${testNum} editTest failed; error: ${error}`);
                 expect(false).assertTrue();
               }
               done();
@@ -292,7 +291,7 @@ export default function editTest () {
             }
             let requestEditData = await photoAsset.requestEditData();
             expect(requestEditData).assertFalse();
-            photoAsset.setPending( async (err) => {
+            photoAsset.editTest( async (err) => {
               try {
                 if (err !== undefined) {
                   console.info(`${testNum} getAssets failed; err: ${err}`);
@@ -300,11 +299,10 @@ export default function editTest () {
                   expect(err).assertEqual(null);//判断返回结果是否为空字符串
 
                 } else {
-                  await resetPendingStatus(testNum, photoAsset.uri);
                   expect(true).assertTrue();
                 }
               } catch (error) {
-                console.info(`${testNum} setPending failed; error: ${error}`);
+                console.info(`${testNum} editTest failed; error: ${error}`);
                 expect(false).assertTrue();
               }
               done();
