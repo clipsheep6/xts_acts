@@ -147,6 +147,11 @@ import ListLanes from './ListLanes.test';
 import navigationNavbar02 from './navigationNavbar02.test.ets';
 import GridRowCol from './GridRowCol.test';
 import navigationPosition from './navigationPosition.test.ets';
+import scroll1 from './scroll1.test.ets'
+import scroll2 from './scroll2.test.ets'
+import scrollGrid from './scrollGrid.test.ets'
+import scrollList from './scrollList.test.ets'
+import scrollList2 from './scrollList2.test.ets'
 
 
 
@@ -285,4 +290,9 @@ export default function testsuite() {
   GridRowCol()
   navigationNavbar02()
   navigationPosition()
+  scroll1();
+  scroll2();
+  scrollGrid();
+  scrollList();
+  scrollList2();
 }
