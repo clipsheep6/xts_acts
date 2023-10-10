@@ -89,6 +89,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -124,6 +125,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -160,6 +162,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -195,6 +198,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -230,6 +234,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -283,6 +288,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -335,6 +341,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -370,6 +377,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -405,6 +413,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             let fd: number = await photoAsset.open('rw');//传入fd
             expect(fd).assertLarger(0);//判断fd大于0
             await photoAsset.close(fd);//关闭fd
@@ -470,6 +479,7 @@ export default function editTest () {
               };
               let fetchResult = await helper.getAssets(fetchColumn);
               photoAsset = await fetchResult.getFirstObject();
+              fetchResult.close();
               let fd: number = await photoAsset.open('rw');
               expect(fd).assertLarger(0);
               await photoAsset.close(fd);
@@ -508,6 +518,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             if (photoAsset === undefined) {
               console.info(`${testNum} failed; Can not getAsset`);
               expect(false).assertTrue();
@@ -543,6 +554,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             let fd: number = await photoAsset.open('rw');
             expect(fd).assertLarger(0);
             await photoAsset.close(fd);
@@ -581,6 +593,7 @@ export default function editTest () {
             };
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
+            fetchResult.close();
             let fd: number = await photoAsset.open('rw');
             expect(fd).assertLarger(0);
             await photoAsset.close(fd);
