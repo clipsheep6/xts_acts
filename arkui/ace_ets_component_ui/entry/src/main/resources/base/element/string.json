@@ -51,6 +51,10 @@
         {
             "name": "prevMarginString",
             "value": "20px"
+        }，
+        {
+            "name": "gutter_10",
+            "value": "10"
         }
     ]
 }
