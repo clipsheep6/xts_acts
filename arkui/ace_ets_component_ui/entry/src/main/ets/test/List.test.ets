@@ -141,7 +141,31 @@ import PopupAJsunit from './Dialog/PopupJsunit.test.ets'
 import TextPickerDialogAJsunit from './Dialog/TextPickerDialogJsunit.test.ets'
 import TimePickerDialogAJsunit from './Dialog/TimePickerDialogJsunit.test.ets'
 import PromptDialogAJsunit from './Dialog/PromptDialogJsunit.test.ets'
-
+import HoverJsunit1 from './HoverTest/HoverJsunit1.test.ets'
+import HoverJsunit2 from './HoverTest/HoverJsunit2.test.ets'
+import HoverJsunit3 from './HoverTest/HoverJsunit3.test.ets'
+import HoverJsunit4 from './HoverTest/HoverJsunit4.test.ets'
+import HoverJsunit5 from './HoverTest/HoverJsunit5.test.ets'
+import HoverJsunit6 from './HoverTest/HoverJsunit6.test.ets'
+import HoverJsunit7 from './HoverTest/HoverJsunit7.test.ets'
+import HoverJsunit8 from './HoverTest/HoverJsunit8.test.ets'
+import HoverJsunit9 from './HoverTest/HoverJsunit9.test.ets'
+import HoverJsunit10 from './HoverTest/HoverJsunit10.test.ets'
+import HoverJsunit11 from './HoverTest/HoverJsunit11.test.ets'
+import HoverJsunit12 from './HoverTest/HoverJsunit12.test.ets'
+import HoverJsunit13 from './HoverTest/HoverJsunit13.test.ets'
+import HoverJsunit14 from './HoverTest/HoverJsunit14.test.ets'
+import HoverJsunit15 from './HoverTest/HoverJsunit15.test.ets'
+import HoverJsunit16 from './HoverTest/HoverJsunit16.test.ets'
+import HoverJsunit17 from './HoverTest/HoverJsunit17.test.ets'
+import HoverJsunit18 from './HoverTest/HoverJsunit18.test.ets'
+import HoverJsunit19 from './HoverTest/HoverJsunit19.test.ets'
+import HoverJsunit20 from './HoverTest/HoverJsunit20.test.ets'
+import HoverJsunit21 from './HoverTest/HoverJsunit21.test.ets'
+import HoverJsunit22 from './HoverTest/HoverJsunit22.test.ets'
+import HoverJsunit23 from './HoverTest/HoverJsunit23.test.ets'
+import HoverJsunit24 from './HoverTest/HoverJsunit24.test.ets'
+import HoverJsunit25 from './HoverTest/HoverJsunit25.test.ets'
 
 
 export default function testsuite() {
@@ -273,4 +297,29 @@ export default function testsuite() {
   TextPickerDialogAJsunit()
   TimePickerDialogAJsunit()
   PromptDialogAJsunit()
+  HoverJsunit1()
+  HoverJsunit2()
+  HoverJsunit3()
+  HoverJsunit4()
+  HoverJsunit5()
+  HoverJsunit6()
+  HoverJsunit7()
+  HoverJsunit8()
+  HoverJsunit9()
+  HoverJsunit10()
+  HoverJsunit11()
+  HoverJsunit12()
+  HoverJsunit13()
+  HoverJsunit14()
+  HoverJsunit15()
+  HoverJsunit16()
+  HoverJsunit17()
+  HoverJsunit18()
+  HoverJsunit19()
+  HoverJsunit20()
+  HoverJsunit21()
+  HoverJsunit22()
+  HoverJsunit23()
+  HoverJsunit24()
+  HoverJsunit25()
 }

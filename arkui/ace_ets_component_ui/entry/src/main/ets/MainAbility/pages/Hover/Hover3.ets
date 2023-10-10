@@ -1,0 +1,39 @@
+@Entry
+@Component
+struct HoverExample3 {
+  @State isHoverValA3: boolean = false
+  @State isHoverValB3: boolean = false
+
+  build() {
+    Column({ space: 5 }) {
+      Column({ space: 5 }) {
+        Text('A').fontSize(20).fontColor(Color.Black).width('100%').position({ x: 0, y: 0 })
+        Column()
+          .width('100%').height('100%').backgroundColor(Color.Green)
+          .position({ x: 0, y: 0 })
+          .hoverEffect(HoverEffect.Highlight)
+          .onHover((isHover?: boolean) => {
+            console.info('Scale isHover: ' + isHover as string)
+            this.isHoverValA3 = isHover as boolean
+          })
+        Text('B').fontSize(20).fontColor(Color.Black).width('100%').position({ x: 0, y: 0 })
+        Column()
+          .width('100%').height('100%').backgroundColor(Color.Gray)
+          .position({ x: 150, y: 0 })
+          .hoverEffect(HoverEffect.Highlight)
+          .onHover((isHover?: boolean) => {
+            console.info('Scale isHover: ' + isHover as string)
+            this.isHoverValB3 = isHover as boolean
+          })
+        Text('A' + JSON.stringify(this.isHoverValA3) + 'B' + JSON.stringify(this.isHoverValB3))
+          .fontSize(20).margin(15).position({ x: 100, y: 100 }).key('hover3')
+      }
+      .hoverEffect(HoverEffect.None)
+      .width('100%').height('100%').border({ width: 1 })
+      // .onHover((isHover?: boolean) => {
+      //   console.info('HoverEffect.None')
+      //   this.isHoverVal2 = isHover as boolean
+      // })
+    }
+  }
+}
