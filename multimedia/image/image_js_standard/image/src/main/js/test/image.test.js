@@ -60,7 +60,7 @@ export default function imageJsTest() {
               return true;
             }
         }
-                class MySequence3 {
+            class MySequence3 {
             pixel_map;
             constructor(pixelmap) {
                 this.pixel_map = pixelmap;
