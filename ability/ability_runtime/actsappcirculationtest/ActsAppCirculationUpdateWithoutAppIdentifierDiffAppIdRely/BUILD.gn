@@ -13,7 +13,8 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_hap_assist_suite("ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely") {
+ohos_hap_assist_suite(
+    "ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely") {
   hap_profile = "entry/src/main/module.json"
   js_build_mode = "debug"
   deps = [
@@ -27,17 +28,22 @@ ohos_hap_assist_suite("ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely
   part_name = "ability_runtime"
 }
 
-ohos_app_scope("actsappcirculationupdatewithoutappidentifierdiffappidrely_app_profile") {
+ohos_app_scope(
+    "actsappcirculationupdatewithoutappidentifierdiffappidrely_app_profile") {
   app_profile = "AppScope/app.json"
   sources = [ "AppScope/resources" ]
 }
 
-ohos_js_assets("actsappcirculationupdatewithoutappidentifierdiffappidrely_js_assets") {
+ohos_js_assets(
+    "actsappcirculationupdatewithoutappidentifierdiffappidrely_js_assets") {
   source_dir = "entry/src/main/ets"
 }
 
-ohos_resources("actsappcirculationupdatewithoutappidentifierdiffappidrely_resources") {
+ohos_resources(
+    "actsappcirculationupdatewithoutappidentifierdiffappidrely_resources") {
   sources = [ "entry/src/main/resources" ]
-  deps = [ ":actsappcirculationupdatewithoutappidentifierdiffappidrely_app_profile" ]
+  deps = [
+    ":actsappcirculationupdatewithoutappidentifierdiffappidrely_app_profile",
+  ]
   hap_profile = "entry/src/main/module.json"
 }
