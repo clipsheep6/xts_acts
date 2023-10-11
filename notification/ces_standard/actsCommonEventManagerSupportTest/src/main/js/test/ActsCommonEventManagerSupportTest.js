@@ -431,5 +431,4 @@ export default function ActsCommonEventManagerSupportTest() {
     console.info(`${TAG} SUB_NOTIFICATION_CES_SUPPORT_ENUM_TEST END`)
   })
 
-
 }
