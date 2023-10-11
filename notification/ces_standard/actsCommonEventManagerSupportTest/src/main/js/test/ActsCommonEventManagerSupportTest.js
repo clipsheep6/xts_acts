@@ -428,5 +428,7 @@ export default function ActsCommonEventManagerSupportTest() {
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2200 END`)
     })
     console.info(`${TAG} SUB_NOTIFICATION_CES_SUPPORT_ENUM_TEST END`)
+
   })
+
 }
