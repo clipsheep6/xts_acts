@@ -31,6 +31,7 @@ public:
     static napi_value InitNativePixelMap(napi_env env, napi_callback_info info);
     static napi_value GetBytesNumberPerRow(napi_env env, napi_callback_info info);
     static napi_value GetIsEditable(napi_env env, napi_callback_info info);
+    static napi_value IsStrideAlignment(napi_env env, napi_callback_info info);
     static napi_value IsSupportAlpha(napi_env env, napi_callback_info info);
     static napi_value SetAlphaAble(napi_env env, napi_callback_info info);
     static napi_value GetDensity(napi_env env, napi_callback_info info);
