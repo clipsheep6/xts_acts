@@ -636,6 +636,39 @@ export default function Pointer_test() {
       console.info(`Pointer_PointerStyleTest_Exception_Test_002 exit`);
       done();
     })
+	
+	/**
+	 * 测试setPointerStyle的promise接口缺少一个传参
+     * @tc.number MultimodalInputPointer_Test_007
+     * @tc.name MultimodalInputDevice_PointerStyleTest_Exception_Test_003
+     * @tc.desc Pointer interface PointerStyle exception test
+     */
+    it('Pointer_PointerStyleTest_Exception_Test_003', 0, async function (done) {
+      console.info(`Pointer_PointerStyleTest_Exception_Test_003 enter`);
+      try {
+        await pointer.setPointerStyle(1).then((data) => {
+          console.info(`PointerStyleTest_Exception_Test_003 success`);
+          expect(true).assertTrue();
+        }, (error) => {
+          console.info(`PointerStyleTest_Exception_Test_003 failed, err=${JSON.stringify(error)}`);
+          expect(false).assertTrue();
+        });
+      } catch (error) {
+        console.info(`PointerStyleTest_Exception_Test_003 success`);
+        expect(error.code).assertEqual(errCode.COMMON_PARAMETER_CODE);
+        expect(error.message).assertEqual(errMsg.PARAMETER_WINDOWID_TYPE_MSG);
+      }
+
+      try {
+        await pointer.getPointerStyle();
+      } catch (error) {
+        console.info(`PointerStyleTest_Exception_Test_003: ${JSON.stringify(error, [`code`, `message`])}`);
+        expect(error.code).assertEqual(errCode.COMMON_PARAMETER_CODE);
+        expect(error.message).assertEqual(errMsg.PARAMETER_WINDOWID_TYPE_MSG);
+      }
+      console.info(`Pointer_PointerStyleTest_Exception_Test_003 exit`);
+      done();
+    })
 
     /**
      * @tc.number MultimodalInputPointer_Test_007
