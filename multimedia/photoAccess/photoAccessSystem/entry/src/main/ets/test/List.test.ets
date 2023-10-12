@@ -29,6 +29,7 @@ import trashAssetsTest from './deleteAssets'
 import setUserCommentTest from './setUserComment'
 import getPhotoIndexTest from './getPhotoIndex'
 import setPendingTest from './setPending'
+import editTest from './editTest.ets'
 import getPhotoAccessHelperAsyncTest from './getPhotoAccessHelperAsync'
 
 export default function testsuite () {
@@ -36,7 +37,7 @@ export default function testsuite () {
   deleteAssetsTest()
   recoverAssetsTest()
   // setCoverUriTest()
-
+  editTest()
   createAlbumTest()
   createAssetTest()
   deleteAlbumsTest()
@@ -50,3 +51,4 @@ export default function testsuite () {
   getPhotoIndexTest()
   setPendingTest()
 }
+
