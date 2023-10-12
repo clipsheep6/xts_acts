@@ -537,5 +537,116 @@ export default function actsStServiceAbilityTest() {
             abilityDelegator.setMockList(mockList);
             done();
         })
+
+        /*
+        * @tc.number    : ACTS_SetMockList_0900
+        * @tc.name      : Set mock list
+        * @tc.desc      : Set mock list with negative number
+        */
+        it('ACTS_SetMockList_0900', 0, async function (done) {
+          console.debug('ACTS_SetMockList_0900====<begin');
+          let abilityDelegator = abilityDelegatorRegistryNew.getAbilityDelegator();
+          let mockList = {
+              "-1": "1",
+              "test2": "2"
+          };
+          try {
+              abilityDelegator.setMockList(mockList);
+              expect().assertFail()
+              done()
+          } catch (error) {
+              console.log("ACTS_SetMockList_0900, error = " + error);
+              expect(error.code).assertEqual(401);
+              done();
+          }
+      })
+
+      /*
+      * @tc.number    : ACTS_SetMockList_1000
+      * @tc.name      : Set mock list
+      * @tc.desc      : Set mock list with letter
+      */
+      it('ACTS_SetMockList_1000', 0, async function (done) {
+          console.debug('ACTS_SetMockList_1000====<begin');
+          let abilityDelegator = abilityDelegatorRegistryNew.getAbilityDelegator();
+          let mockList = {
+              "zhong": "1",
+              "test2": "3"
+          };
+          try {
+              abilityDelegator.setMockList(mockList);
+              expect().assertFail()
+              done()
+          } catch (error) {
+              console.log("ACTS_SetMockList_1000, error = " + error);
+              expect(error.code).assertEqual(401);
+              done();
+          }
+      })
+
+      /*
+      * @tc.number    : ACTS_SetMockList_1100
+      * @tc.name      : Set mock list
+      * @tc.desc      : Set mock list with no param
+      */
+      it('ACTS_SetMockList_1100', 0, async function (done) {
+          console.debug('ACTS_SetMockList_1100====<begin');
+          let abilityDelegator = abilityDelegatorRegistryNew.getAbilityDelegator();
+          let mockList = {
+              "你好": "1",
+              "test2": "3"
+          };
+          try {
+              abilityDelegator.setMockList(mockList);
+              expect().assertFail()
+              done()
+          } catch (error) {
+              console.log("ACTS_SetMockList_1100, error = " + error);
+              expect(error.code).assertEqual(401);
+              done();
+          }
+      })
+
+      /*
+      * @tc.number    : ACTS_SetMockList_1200
+      * @tc.name      : Set mock list
+      * @tc.desc      : Set mock list with Special characters
+      */
+      it('ACTS_SetMockList_1200', 0, async function (done) {
+          console.debug('ACTS_SetMockList_1200====<begin');
+          let abilityDelegator = abilityDelegatorRegistryNew.getAbilityDelegator();
+          let mockList = {
+              "%￥#": "1",
+              "test2": "3"
+          };
+          try {
+              abilityDelegator.setMockList(mockList);
+              expect().assertFail()
+              done()
+          } catch (error) {
+              console.log("ACTS_SetMockList_1200, error = " + error);
+              expect(error.code).assertEqual(401);
+              done();
+          }
+      })
+
+      /*
+      * @tc.number    : ACTS_SetMockList_1300
+      * @tc.name      : Set mock list
+      * @tc.desc      : Set mock list with number
+      */
+      it('ACTS_SetMockList_1300', 0, async function (done) {
+          console.debug('ACTS_SetMockList_1300====<begin');
+          let abilityDelegator = abilityDelegatorRegistryNew.getAbilityDelegator();
+          try {
+              abilityDelegator.setMockList(1);
+              expect().assertFail()
+              done()
+          } catch (error) {
+              console.log("ACTS_SetMockList_1300, error = " + error);
+              expect(error.code).assertEqual(401);
+              done();
+          }
+      })
     })
 }
