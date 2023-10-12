@@ -212,6 +212,11 @@
         "MainAbility/pages/Dialog/CustomDialog",
         "MainAbility/pages/Dialog/DatePickerDialog",
         "MainAbility/pages/Dialog/Popup",
+        "MainAbility/pages/scroll1",
+        "MainAbility/pages/scroll2",
+        "MainAbility/pages/scrollGrid",
+        "MainAbility/pages/scrollList",
+        "MainAbility/pages/scrollList2",
         "MainAbility/pages/Dialog/TextPickerDialog",
         "MainAbility/pages/Dialog/TimePickerDialog",
         "MainAbility/pages/Dialog/PromptDialog"
