@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.formtest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsUnusedFormInfoRelyTwo.hap->/data/ActsUnusedFormInfoRelyTwo.hap"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsUnusedFormInfoTest.hap",
+                "ActsUnusedFormInfoRely.hap",
+                "ActsUnusedFormInfoRelyTwo.hap",
+				"GetUnusuedFormProvider.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+            ]
+        }
+    ]
+}
+
