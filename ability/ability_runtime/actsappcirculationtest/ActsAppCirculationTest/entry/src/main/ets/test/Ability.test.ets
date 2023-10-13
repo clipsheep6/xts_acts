@@ -19,7 +19,9 @@ import osAccount from '@ohos.account.osAccount';
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     let timeOut: number = 500;
+    let accountId;
     let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let osAccountManager = osAccount.getAccountManager();
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -32,6 +34,14 @@ export default function abilityTest() {
         console.log("Bundle uninstall fail");
       });
       await sleep(timeOut);
+    })
+    afterAll(async function () {
+      await osAccountManager.removeOsAccount(accountId).then((data) => {
+        console.log("AfterAll removeOsAccount successful");
+      }).catch((err) => {
+        console.log("AfterAll removeOsAccount fail" + JSON.stringify(err));
+        expect().assertFail()
+      });
     })
 
     /*
@@ -421,12 +431,6 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1900', 0, async function (done) {
       console.log("Acts_AppCirculation_1900 start");
-      let osAccountManager = osAccount.getAccountManager();
-      let isMultipleUserEnabled = await osAccountManager.checkMultiOsAccountEnabled();
-      if(!isMultipleUserEnabled) {
-        console.log("Acts_AppCirculation_1900 checkMultiOsAccountEnabled fail ");
-        done();
-      }
       await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap')
         .then(data => {
           console.log("Acts_AppCirculation_1900 install logFirst is : " + JSON.stringify(data.stdResult));
@@ -435,38 +439,73 @@ export default function abilityTest() {
         .catch(err => {
           expect().assertFail()
         });
-      
-      let accountId;
-      await osAccountManager.createOsAccount("200",osAccount.OsAccountType.NORMAL).then((data)=> {
-        console.log("createOsAccount successful" + JSON.stringify(data));
-        accountId = data.localId;
-      }).catch((err) => {
-        console.error("createOsAccount fail" + JSON.stringify(err));
-        expect().assertFail()
-      });
-      await osAccountManager.activateOsAccount(accountId).then((data)=> {
-        console.log("activateOsAccount successful");
-      }).catch((err) => {
-        console.error("activateOsAccount fail"+ JSON.stringify(err));
-        expect().assertFail()
-      });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffIdUpdateRely.hap')
+      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffAppIdUpdateRely.hap')
         .then(data => {
           console.log("Acts_AppCirculation_1900 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-          done();
+          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
         })
         .catch(err => {
           expect().assertFail()
+        });
+      await abilityDelegator.executeShellCommand('bm dump -n com.example.actsappcirculationrely | grep appId')
+        .then(data => {
+          console.log("Acts_AppCirculation_1900 bundle info is : " + JSON.stringify(data.stdResult));
+          expect(JSON.stringify(data.stdResult))
+            .assertContain('BH44SJJ7ZBsNGCSrqqmo+Leud3LZE1h5oZ1dkbiR0XykCuLX5rRU/hNRE4glPeOVbzKVaq1npODzUXwp3eO0bwk');
+          done();
+        })
+        .catch(err => {
+          expect().assertFail();
           done();
         });
-      await osAccountManager.removeOsAccount(accountId).then((data)=> {
-        console.log("removeOsAccount successful");
-      }).catch((err) => {
-        console.log("removeOsAccount fail"+ JSON.stringify(err));
-        expect().assertFail()
-      });
     })
 
+    /*
+     * @tc.number: Acts_AppCirculation_2000
+     * @tc.name: Signature circulation test
+     * @tc.desc: Deploy different identifier test whether the transfer was successful
+     * @tc.level:1
+     */
+    it('Acts_AppCirculation_2000', 0, async function (done) {
+      console.log("Acts_AppCirculation_2000 start");
+      let isMultipleUserEnabled = await osAccountManager.checkMultiOsAccountEnabled();
+      if (!isMultipleUserEnabled) {
+        console.log("Acts_AppCirculation_2000 checkMultiOsAccountEnabled fail ");
+        done();
+        return;
+      }
+      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap')
+        .then(data => {
+          console.log("Acts_AppCirculation_2000 install logFirst is : " + JSON.stringify(data.stdResult));
+          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
+        })
+        .catch(err => {
+          expect().assertFail()
+        });
+      await osAccountManager.createOsAccount("200", osAccount.OsAccountType.NORMAL).then((data) => {
+        console.log("Acts_AppCirculation_2000 createOsAccount successful" + JSON.stringify(data));
+        accountId = data.localId;
+      }).catch((err) => {
+        console.error("Acts_AppCirculation_2000 createOsAccount fail" + JSON.stringify(err));
+        expect().assertFail()
+      });
+      await osAccountManager.activateOsAccount(accountId).then((data) => {
+        console.log("Acts_AppCirculation_2000 activateOsAccount successful");
+      }).catch((err) => {
+        console.error("Acts_AppCirculation_2000 activateOsAccount fail" + JSON.stringify(err));
+        expect().assertFail()
+      });
+      await sleep(1000);
+      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffIdUpdateRely.hap')
+        .then(data => {
+          console.log("Acts_AppCirculation_2000 bundle logSecond is : " + JSON.stringify(data.stdResult));
+          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
+          done();
+        }).catch(err => {
+          console.log("Acts_AppCirculation_2000 bundle err is : " + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        });
+    })
   })
 }
