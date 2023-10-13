@@ -503,6 +503,7 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].enabled).assertTrue();
               expect(extensionList[i].readPermission).assertEqual("");
               expect(extensionList[i].writePermission).assertEqual("");
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("string");
               count = count + 1;
               break;
             case "Form1":
