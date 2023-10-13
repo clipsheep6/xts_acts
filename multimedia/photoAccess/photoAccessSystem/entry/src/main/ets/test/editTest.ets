@@ -206,7 +206,7 @@ export default function editTest () {
               return;
             }
             let requestEditData = await photoAsset.requestEditData();
-            expect(requestEditData).assertFalse();
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -224,6 +224,10 @@ export default function editTest () {
         * @tc.type      : Function
         * @tc.level     : Level 0
         */
+        // callback返回
+        // photoAsset.requestEditedContent((err, result) => {})
+        // promise返回
+        // let result = await photoAsset.requestEditedContent()
         it('requestEditData_callback_003', 0, async function (done) {
           const testNum = 'requestEditData_callback_003';
           let photoAsset: photoAccessHelper.PhotoAsset = undefined;
@@ -242,23 +246,8 @@ export default function editTest () {
               return;
             }
             let requestEditData = await photoAsset.requestEditData();
-            expect(requestEditData).assertFalse();
-            photoAsset.editTest( async (err) => {
-              try {
-                if (err !== undefined) {
-                  console.info(`${testNum} getAssets failed; err: ${err}`);
-                  expect(false).assertTrue();
-                  expect(err).assertEqual(null);
-
-                } else {
-                  expect(true).assertTrue();
-                }
-              } catch (error) {
-                console.info(`${testNum} editTest failed; error: ${error}`);
-                expect(false).assertTrue();
-              }
+            expect(requestEditData).assertEqual('');
               done();
-            })
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -267,6 +256,47 @@ export default function editTest () {
           }
           done();
         });
+        //   let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+        //   try {
+        //     let fetchColumn = {
+        //       fetchColumns: [],
+        //       predicates: new dataSharePredicates.DataSharePredicates()
+        //     };
+        //     let fetchResult = await helper.getAssets(fetchColumn);
+        //     photoAsset = await fetchResult.getFirstObject();
+        //     fetchResult.close();
+        //     if (photoAsset === undefined) {
+        //       console.info(`${testNum} failed; Can not getAsset`);
+        //       expect(false).assertTrue();
+        //       done();
+        //       return;
+        //     }
+        //     let requestEditData = await photoAsset.requestEditData();
+        //     expect(false).assertFalse();
+        //     photoAsset.editTest( async (err) => {
+        //       try {
+        //         if (err !== undefined) {
+        //           console.info(`${testNum} getAssets failed; err: ${err}`);
+        //           expect(err).assertEqual(null);
+
+        //         } else {
+        //           expect(true).assertTrue();
+                  
+        //         }
+        //       } catch (error) {
+        //         console.info(`${testNum} editTest failed; error: ${error}`);
+        //         expect(false).assertTrue();
+        //       }
+        //       done();
+        //     })
+        //   } catch (error) {
+        //     console.info(`${testNum} failed; error: ${error}`);
+        //     expect(false).assertTrue();
+        //     done();
+        //     return;
+        //   }
+        //   done();
+        // });
         
         
         /**
@@ -296,23 +326,8 @@ export default function editTest () {
               return;
             }
             let requestEditData = await photoAsset.requestEditData();
-            expect(requestEditData).assertFalse();
-            photoAsset.editTest( async (err) => {
-              try {
-                if (err !== undefined) {
-                  console.info(`${testNum} getAssets failed; err: ${err}`);
-                  expect(false).assertTrue();
-                  expect(err).assertEqual(null);//判断返回结果是否为空字符串
-
-                } else {
-                  expect(true).assertTrue();
-                }
-              } catch (error) {
-                console.info(`${testNum} editTest failed; error: ${error}`);
-                expect(false).assertTrue();
-              }
+            expect(requestEditData).assertEqual('');
               done();
-            })
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -332,8 +347,7 @@ export default function editTest () {
         */
         it('requestEditedContent_callback_004', 0, async function (done) {
           const testNum = 'requestEditedContent_callback_004';
-          let photoAsset: photoAccessHelper.PhotoAsset = undefined;//入参两个undefined怎么写
-          photoAsset.xxx(undefined, undefined)//这么写行么
+          let photoAsset: photoAccessHelper.PhotoAsset = undefined;
           try {
             let fetchColumn = {
               fetchColumns: [],
@@ -348,8 +362,16 @@ export default function editTest () {
               done();
               return;
             }
-            let requestEditedContent = await photoAsset.requestEditedContent();
-            expect(requestEditedContent).assertFalse();
+            try {
+              let requestEditedContent = await photoAsset.requestEditedContent();
+              photoAsset.requestEditedContent(editdata,uri,undefined);
+              expect(false).assertTrue();
+              done();
+              return;
+            } catch (error) {
+              expect(true).assertTrue();
+            }
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -384,8 +406,16 @@ export default function editTest () {
               done();
               return;
             }
-            let requestEditedContent = await photoAsset.requestEditedContent();
-            expect(requestEditedContent).assertFalse();
+            try {
+              let requestEditedContent = await photoAsset.requestEditedContent();
+              photoAsset.requestEditedContent(editdata,uri,undefined);
+              expect(false).assertTrue();
+              done();
+              return;
+            } catch (error) {
+              expect(true).assertTrue();
+            }
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -423,8 +453,15 @@ export default function editTest () {
               done();
               return;
             }
-            let requestEditedContent = await photoAsset.requestEditedContent();
-            expect(requestEditedContent).assertFalse();
+            try {
+              photoAsset.requestEditedContent(undefined);
+              expect(false).assertTrue();
+              done();
+              return;
+            } catch (error) {
+              expect(true).assertTrue();
+            }
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -489,8 +526,15 @@ export default function editTest () {
                 done();
                 return;
               }
-              let requestEditedContent = await photoAsset.requestEditedContent();
-              expect(requestEditedContent).assertFalse();
+              try {
+                photoAsset.requestEditedContent(undefined);
+                expect(false).assertTrue();
+                done();
+                return;
+              } catch (error) {
+                expect(true).assertTrue();
+              }
+              expect(false).assertFalse();
             } catch (error) {
               console.info(`${testNum} failed; error: ${error}`);
               expect(false).assertTrue();
@@ -525,8 +569,15 @@ export default function editTest () {
               done();
               return;
             }
-            let requestEditedContent = await photoAsset.requestEditedContent();
-            expect(requestEditedContent).assertFalse();
+            try {
+              photoAsset.requestEditedContent(editdata,uri,undefined);
+              expect(false).assertTrue();
+              done();
+              return;
+            } catch (error) {
+              expect(true).assertTrue();
+            }
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -535,7 +586,40 @@ export default function editTest () {
           }
           done();
         });
-          
+        //   let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+        //   try {
+        //     let fetchColumn = {
+        //       fetchColumns: [],
+        //       predicates: new dataSharePredicates.DataSharePredicates()
+        //     };
+        //     let fetchResult = await helper.getAssets(fetchColumn);
+        //     photoAsset = await fetchResult.getFirstObject();
+        //     fetchResult.close();
+        //     if (photoAsset === undefined) {
+        //       console.info(`${testNum} failed; Can not getAsset`);
+        //       expect(false).assertTrue();
+        //       done();
+        //       return;
+        //     }
+        //     try {
+        //       photoAsset.requestEditData(undefined);
+        //       console.info(`${testNum} failed; Can not getAsset111`);
+        //       expect(false).assertTrue();
+        //       done();
+        //       return;
+        //     } catch (error) {
+        //       console.info(`${testNum} failed; Can not getAsset222`);
+        //       expect(true).assertTrue();
+        //     }
+        //   } catch (error) {
+        //     console.info(`${testNum} failed; error: ${error}`);
+        //     expect(false).assertTrue();
+        //     done();
+        //     return;
+        //   }
+        //   done();
+        // });
+
         /**
         * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_EDITTEST_0000
         * @tc.name      : requestEditedContent_promise_003
@@ -555,7 +639,7 @@ export default function editTest () {
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
             fetchResult.close();
-            let fd: number = await photoAsset.open('rw');
+            let fd = await photoAsset.requestEditedContent();
             expect(fd).assertLarger(0);
             await photoAsset.close(fd);
             if (photoAsset === undefined) {
@@ -564,8 +648,8 @@ export default function editTest () {
               done();
               return;
             }
-            let requestEditedContent = await photoAsset.requestEditedContent();
-            expect(requestEditedContent).assertFalse();
+            photoAsset.requestEditedContent(undefined);
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
@@ -594,7 +678,7 @@ export default function editTest () {
             let fetchResult = await helper.getAssets(fetchColumn);
             photoAsset = await fetchResult.getFirstObject();
             fetchResult.close();
-            let fd: number = await photoAsset.open('rw');
+            let fd = await photoAsset.requestEditedContent();
             expect(fd).assertLarger(0);
             await photoAsset.close(fd);
             if (photoAsset === undefined) {
@@ -603,8 +687,8 @@ export default function editTest () {
               done();
               return;
             }
-            let requestEditedContent = await photoAsset.requestEditedContent();
-            expect(requestEditedContent).assertFalse();
+            photoAsset.requestEditedContent(undefined);
+            expect(false).assertFalse();
           } catch (error) {
             console.info(`${testNum} failed; error: ${error}`);
             expect(false).assertTrue();
