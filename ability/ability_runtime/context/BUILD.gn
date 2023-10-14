@@ -30,6 +30,7 @@ group("context") {
       "scene/contextapp:ContextApp",
       "scene/defpermission:DefPermission",
       "scene/fa8app:Fa8App",
+      "stagecontext:stagecontext"
     ]
   }
 }
