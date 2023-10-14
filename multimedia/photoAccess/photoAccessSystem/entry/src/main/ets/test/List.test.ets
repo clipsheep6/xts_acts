@@ -31,6 +31,8 @@ import getPhotoIndexTest from './getPhotoIndex'
 import setPendingTest from './setPending'
 import editTest from './editTest'
 import getPhotoAccessHelperAsyncTest from './getPhotoAccessHelperAsync'
+import editTestWithoutPermission from './editTestWithoutPermission'
+import setPendingWithoutPermission from './setPendingWithoutPermission'
 
 export default function testsuite () {
   getPhotoAccessHelperAsyncTest()
@@ -51,4 +53,6 @@ export default function testsuite () {
   getPhotoIndexTest()
   setPendingTest()
   editTest()
+  editTestWithoutPermission()
+  setPendingWithoutPermission()
 }

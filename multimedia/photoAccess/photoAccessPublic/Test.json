@@ -183,7 +183,7 @@
                 "hilog -p off",
                 "hilog -Q pidoff",
                 "hilog -Q domainoff",
-                "hilog -b D",
+                "hilog -b D -D 0xD002B70",
                 "scanner",
                 "sleep 10"
             ],
@@ -207,7 +207,7 @@
         },
         {
             "test-file-name": [
-                "ActsPhotoAccessSysTest.hap"
+                "ActsPhotoAccessPublicTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
