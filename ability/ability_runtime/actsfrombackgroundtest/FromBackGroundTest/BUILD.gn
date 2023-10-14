@@ -39,6 +39,6 @@ ohos_js_assets("frombackgroundtest_js_assets") {
 
 ohos_resources("frombackgroundtest_resources") {
   sources = [ "entry/src/main/resources" ]
-  deps = [ ":frombackgroundtestt_app_profile" ]
+  deps = [ ":frombackgroundtest_app_profile" ]
   hap_profile = "entry/src/main/module.json"
 }

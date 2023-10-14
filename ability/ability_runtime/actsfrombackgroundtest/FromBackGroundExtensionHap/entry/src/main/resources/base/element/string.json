@@ -29,6 +29,22 @@
       "value": "label"
     },
     {
+      "name": "ServiceAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DatashareAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DatashareAbility_label",
+      "value": "label"
+    },
+    {
       "name": "app_name",
       "value": "frombackGroundextensionhap"
     },
