@@ -697,5 +697,547 @@ export default function editTest () {
           }
           done();
         });
+
+        /**
+      * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_COMMIREDITEDASSET_0000
+      * @tc.name      : commitEditedAsset_callback_000
+      * @tc.desc      : commitEditedAsset by { undefined, undefined }
+      * @tc.size      : MEDIUM
+      * @tc.type      : Function
+      * @tc.level     : Level 0
+    */
+    it('commitEditedAsset_callback_000', 0, async function (done) {   
+      const testNum = 'commitEditedAsset_callback_000';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+      const editdata = undefined;
+      const uri= undefined;
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        fetchResult.close();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();  
+          return;  
+        }  
+        try {
+          photoAsset.commitEditedAsset(editdata,uri,(err) => {
+            if (err === undefined) {
+              console.info(`${testNum} can not find err`)
+              expect(false).assertTrue();
+              done();
+              return;
+            }
+            expect(true).assertTrue();
+          });
+        } catch (error) {
+          expect(true).assertTrue();
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;        
+      } 
+      done();
+    }) 
+  /**
+    * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_COMMIREDITEDASSET_0100
+    * @tc.name      : commitEditedAsset_callback_001
+    * @tc.desc      : commitEditedAsset by { undefined, "file://media" }
+    * @tc.size      : MEDIUM
+    * @tc.type      : Function
+    * @tc.level     : Level 0
+  */
+  it('commitEditedAsset_callback_001', 0, async function (done) {   
+    const testNum = 'commitEditedAsset_callback_001';
+    let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+    const editdata = undefined;
+    const uri= "file://media";
+    try {
+      let fetchColumn = {
+        fetchColumns: [],
+        predicates: new dataSharePredicates.DataSharePredicates()
+      };
+      let fetchResult = await helper.getAssets(fetchColumn);
+      photoAsset = await fetchResult.getFirstObject();
+      fetchResult.close();
+      if (photoAsset === undefined) {
+        console.info(`${testNum} failed; Can not getAsset`);
+        expect(false).assertTrue();
+        done();  
+        return;  
+      }  
+      try {
+        photoAsset.commitEditedAsset(editdata,uri,(err) => {
+          if (err === undefined) {
+            console.info(`${testNum} can not find err`)
+            expect(false).assertTrue();
+            done();
+            return;
+          }
+          expect(true).assertTrue();
+        });
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+    } catch (error) {
+      console.info(`${testNum} failed; error: ${error}`);
+      expect(false).assertTrue();
+      done();
+      return;        
+    } 
+    done();
+  }) 
+  /**
+    * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_COMMIREDITEDASSET_0200
+    * @tc.name      : commitEditedAsset_callback_002
+    * @tc.desc      : commitEditedAsset by { "123456", "undefined" }
+    * @tc.size      : MEDIUM
+    * @tc.type      : Function
+    * @tc.level     : Level 0
+  */
+  it('commitEditedAsset_callback_002', 0, async function (done) {   
+    const testNum = 'commitEditedAsset_callback_002';
+    let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+    const editdata = "123456";
+    const uri = "undefined";
+    try {
+      let fetchColumn = {
+        fetchColumns: [],
+        predicates: new dataSharePredicates.DataSharePredicates()
+      };
+      let fetchResult = await helper.getAssets(fetchColumn);
+      photoAsset = await fetchResult.getFirstObject();
+      fetchResult.close();
+      if (photoAsset === undefined) {
+        console.info(`${testNum} failed; Can not getAsset`);
+        expect(false).assertTrue();
+        done();  
+        return;  
+      }  
+      try {
+        photoAsset.commitEditedAsset(editdata,uri,(err) => {
+          if (err === undefined) {
+            console.info(`${testNum} can not find err`)
+            expect(false).assertTrue();
+            done();
+            return;
+          }
+          expect(true).assertTrue();
+        });
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+    } catch (error) {
+      console.info(`${testNum} failed; error: ${error}`);
+      expect(false).assertTrue();
+      done();
+      return;        
+    } 
+    done();
+  }) 
+  /**
+    * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_COMMIREDITEDASSET_0300
+    * @tc.name      : commitEditedAsset_callback_003
+    * @tc.desc      : commitEditedAsset by { "123456", "file://media" }
+    * @tc.size      : MEDIUM
+    * @tc.type      : Function
+    * @tc.level     : Level 0
+  */
+  it('commitEditedAsset_callback_003', 0, async function (done) {   
+    const testNum = 'commitEditedAsset_callback_003';
+    let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+    const editdata = "123456";
+    const uri = "file://media";
+    try {
+      let fetchColumn = {
+        fetchColumns: [],
+        predicates: new dataSharePredicates.DataSharePredicates()
+      };
+      let fetchResult = await helper.getAssets(fetchColumn);
+      photoAsset = await fetchResult.getFirstObject();
+      fetchResult.close();
+      if (photoAsset === undefined) {
+        console.info(`${testNum} failed; Can not getAsset`);
+        expect(false).assertTrue();
+        done();  
+        return;  
+      }  
+      try {
+        photoAsset.commitEditedAsset(editdata,uri,(err) => {
+          if (err === undefined) {
+            console.info(`${testNum} can not find err`)
+            expect(false).assertTrue();
+            done();
+            return;
+          }
+          expect(true).assertTrue();
+        });
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+    } catch (error) {
+      console.info(`${testNum} failed; error: ${error}`);
+      expect(false).assertTrue();
+      done();
+      return;        
+    } 
+    done();
+  }) 
+   /**
+    * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_COMMIREDITEDASSET_0400
+    * @tc.name      : commitEditedAsset_callback_004
+    * @tc.desc      : commitEditedAsset by { undefined, undefined,undefined }
+    * @tc.size      : MEDIUM
+    * @tc.type      : Function
+    * @tc.level     : Level 0
+  */
+   it('commitEditedAsset_callback_004', 0, async function (done) {   
+    const testNum = 'commitEditedAsset_callback_004';
+    let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+    const editdata = undefined;
+    const uri = undefined;
+    try {
+      let fetchColumn = {
+        fetchColumns: [],
+        predicates: new dataSharePredicates.DataSharePredicates()
+      };
+      let fetchResult = await helper.getAssets(fetchColumn);
+      photoAsset = await fetchResult.getFirstObject();
+      fetchResult.close();
+      if (photoAsset === undefined) {
+        console.info(`${testNum} failed; Can not getAsset`);
+        expect(false).assertTrue();
+        done();    
+        return;
+      }  
+      try {
+        photoAsset.commitEditedAsset(editdata,uri,undefined);
+        expect(false).assertTrue();
+        done();
+        return;
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+    } catch (error) {
+      console.info(`${testNum} failed; error: ${error}`);
+      expect(false).assertTrue();
+      done(); 
+      return;       
+    } 
+    done();
+  }) 
+    /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_COMMIREDITEDASSET_0000
+   * @tc.name      : commitEditedAsset_promise_000
+   * @tc.desc      : commitEditedAsset by { undefined, undefined }
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+    it('commitEditedAsset_promise_000', 0, async function (done) {
+      const testNum = 'commitEditedAsset_promise_000';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined
+      const editdata = undefined;
+      const uri = undefined;
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();
+          return;
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;
+      }
+      try {
+        // @ts-ignore
+        await photoAsset.commitEditedAsset(editdata,uri);
+        console.info(`${testNum} can not find err`);
+        expect(false).assertTrue();
+        done();
+        return;
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+      done();
+    })
+       /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_COMMIREDITEDASSET_0100
+   * @tc.name      : commitEditedAsset_promise_001
+   * @tc.desc      : commitEditedAsset by { undefined, "file://media" }}
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+    it('commitEditedAsset_promise_001', 0, async function (done) {
+      const testNum = 'commitEditedAsset_promise_001';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined
+      const editdata =undefined;
+      const uri="file://media";
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();
+          return;
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;
+      }
+      try {
+        // @ts-ignore
+        await photoAsset.commitEditedAsset(editdata,uri);
+        console.info(`${testNum} can not find err`);
+        expect(false).assertTrue();
+        done();
+        return;
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+      done();
+    })
+     /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_COMMIREDITEDASSET_0200
+   * @tc.name      : commitEditedAsset_promise_002
+   * @tc.desc      : commitEditedAsset by { "123456", undefined }}
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+    it('commitEditedAsset_promise_002', 0, async function (done) {
+      // setPending(true) and setPending(false) to created file
+      const testNum = 'commitEditedAsset_promise_002';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined
+      const editdata ="123456";
+      const uri=undefined;
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();
+          return;
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;
+      }
+      try {
+        // @ts-ignore
+        await photoAsset.commitEditedAsset(editdata,uri);
+        console.info(`${testNum} can not find err`);
+        expect(false).assertTrue();
+        done();
+        return;
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+      done();
+    })
+       /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_COMMIREDITEDASSET_0300
+   * @tc.name      : commitEditedAsset_promise_003
+   * @tc.desc      : commitEditedAsset by { "123456",  "file://media"}}
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+    it('commitEditedAsset_promise_003', 0, async function (done) {
+      // setPending(true) and setPending(false) to created file
+      const testNum = 'commitEditedAsset_promise_003';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined
+      const editdata ="123456";
+      const uri="file://media";
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();
+          return;
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;
+      }
+      try {
+        // @ts-ignore
+        await photoAsset.commitEditedAsset(editdata,uri);
+        console.info(`${testNum} can not find err`);
+        expect(false).assertTrue();
+        done();
+        return;
+      } catch (error) {
+        expect(true).assertTrue();
+      }
+      done();
+    })
+    /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_REVERTTOORIGINAL_0000
+   * @tc.name      : revertToOriginal_callback_000
+   * @tc.desc      : commitEditedAsset by { undefined}
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+    it('revertToOriginal_callback_000', 0, async function (done) {   
+      const testNum = 'revertToOriginal_callback_000';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        fetchResult.close();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();
+          return;    
+        }  
+        try {
+          photoAsset.revertToOriginal(undefined);
+        } catch (error) {
+          expect(true).assertTrue();
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();  
+        return;      
+      }
+      done(); 
+    }) 
+     /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_REVERTTOORIGINAL_0100
+   * @tc.name      : revertToOriginal_callback_001
+   * @tc.desc      : commitEditedAsset by { AsyncCallback<void>}
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+     it('revertToOriginal_callback_001', 0, async function (done) {   
+      const testNum = 'revertToOriginal_callback_001';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        fetchResult.close();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();    
+        }  
+        try {
+          photoAsset.revertToOriginal((err) => {
+            if (err === undefined) {
+              expect(true).assertTrue();
+            } else {
+            console.info(`${testNum} find err`)
+            expect(false).assertTrue();
+            done();
+            return;
+            }
+          });
+        } catch (error) {
+          expect(false).assertTrue();
+          done();
+          return;
+        }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;        
+      }
+      done(); 
+    })
+     /**
+   * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_REVERTTOORIGINAL_0000
+   * @tc.name      : revertToOriginal_promise_000
+   * @tc.desc      : commitEditedAsset
+   * @tc.size      : MEDIUM
+   * @tc.type      : Function
+   * @tc.level     : Level 0
+   */
+     it('revertToOriginal_promise_000', 0, async function (done) {   
+      const testNum = 'revertToOriginal_promise_000';
+      let photoAsset: photoAccessHelper.PhotoAsset = undefined;
+      try {
+        let fetchColumn = {
+          fetchColumns: [],
+          predicates: new dataSharePredicates.DataSharePredicates()
+        };
+        let fetchResult = await helper.getAssets(fetchColumn);
+        photoAsset = await fetchResult.getFirstObject();
+        fetchResult.close();
+        if (photoAsset === undefined) {
+          console.info(`${testNum} failed; Can not getAsset`);
+          expect(false).assertTrue();
+          done();
+          return;    
+        }  
+        try {
+            await photoAsset.revertToOriginal();
+            expect(true).assertTrue();
+          } catch (error) {
+            console.info(`${testNum} failed; error: ${error}`);
+            expect(false).assertTrue();
+            done();
+            return;
+          }
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+        return;        
+      } 
+      done();
+    })
     })
 }
