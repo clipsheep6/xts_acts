@@ -42,17 +42,16 @@ ohos_moduletest_suite("ActsGraphicNapiDrawingTest") {
   include_dirs = [
     "$comPath/rosen/modules/2d_engine",
     "//third_party/googletest/googletest/include",
+    "$comPath/rosen/modules/2d_engine/rosen_text/export",
   ]
-  enable_text_gine = false
-  if (enable_text_gine) {
-    include_dirs += [ "$comPath/rosen/modules/2d_engine/rosen_text/export" ]
-    defines = [ "USE_GRAPHIC_TEXT_GINE" ]
-  }
+  deps = [
+    "$comPath/rosen/modules/2d_graphics:2d_graphics_drawing",
+    "//third_party/googletest:gtest_main",
+  ]
 
   external_deps = [
     "c_utils:utils",
     "graphic_2d:2d_graphics",
     "hilog:libhilog",
   ]
-  deps = [ "//third_party/googletest:gtest_main" ]
 }
