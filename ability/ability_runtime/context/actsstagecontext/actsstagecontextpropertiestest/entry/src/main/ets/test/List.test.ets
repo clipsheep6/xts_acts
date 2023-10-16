@@ -19,5 +19,4 @@ import stageContextPropertiesTestUpdateConfiguration from './StageContextPropert
 export default function testsuite() {
   stageContextPropertiesTest(globalThis.abilityContext)
   stageContextPropertiesTestUpdateConfiguration(globalThis.abilityContext.getApplicationContext())
-
 }
