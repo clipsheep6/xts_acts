@@ -123,6 +123,7 @@ import PropInit1Jsunit from './State/PropInit1Jsunit.test.ets';
 import PropNumberJsunit from './State/PropNumberJsunit.test.ets';
 import PropStringJsunit from './State/PropStringJsunit.test.ets';
 import StateArrayNewJsunit from './State/StateArrayNewJsunit.test.ets'
+import video1Jsunit from './video1Jsunit.test.ets'
 import onMeasureSize1 from './onMeasureSize1.test.ets'
 import onMeasureSize2 from './onMeasureSize2.test.ets'
 import onMeasureSize3 from './onMeasureSize3.test.ets'
@@ -261,6 +262,7 @@ export default function testsuite() {
   PropNumberJsunit();
   PropStringJsunit();
   StateArrayNewJsunit();
+  video1Jsunit();
   onMeasureSize1();
   onMeasureSize2();
   onMeasureSize3()
