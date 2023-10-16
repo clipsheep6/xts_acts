@@ -503,7 +503,7 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].enabled).assertTrue();
               expect(extensionList[i].readPermission).assertEqual("");
               expect(extensionList[i].writePermission).assertEqual("");
-              expect(extensionList[i].extensionAbilityTypeName).assertEqual("string");
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("form");
               count = count + 1;
               break;
             case "Form1":
@@ -522,6 +522,7 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].enabled).assertTrue();
               expect(extensionList[i].readPermission).assertEqual("");
               expect(extensionList[i].writePermission).assertEqual("");
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("form");
               count = count + 2;
               break;
             case 'workScheduler':
@@ -634,6 +635,7 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].enabled).assertTrue();
                 expect(extensionList[i].readPermission).assertEqual("");
                 expect(extensionList[i].writePermission).assertEqual("");
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("form");
                 count = count + 1;
                 break;
               case "Form1":
@@ -652,6 +654,7 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].enabled).assertTrue();
                 expect(extensionList[i].readPermission).assertEqual("");
                 expect(extensionList[i].writePermission).assertEqual("");
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("form");
                 count = count + 2;
                 break;
               case 'workScheduler':
