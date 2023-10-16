@@ -1,0 +1,51 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actsappcirculationtest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "10000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir /data/haptest",
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D",
+                "setenforce 0"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAppCirculationBaseRely.hap->/data/ActsAppCirculationBaseRely.hap",
+                "ActsAppCirculationBaseWithoutAppIdentifierRely.hap->/data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap",
+                "ActsAppCirculationDiffAppIdModuleUpdateRely.hap->/data/ActsAppCirculationDiffAppIdModuleUpdateRely.hap",
+                "ActsAppCirculationDiffAppIdUpdateRely.hap->/data/ActsAppCirculationDiffAppIdUpdateRely.hap",
+                "ActsAppCirculationDiffIdUpdateRely.hap->/data/ActsAppCirculationDiffIdUpdateRely.hap",
+                "ActsAppCirculationDiffModuleIdUpdateRely.hap->/data/ActsAppCirculationDiffModuleIdUpdateRely.hap",
+                "ActsAppCirculationDiffModuleUpdateRely.hap->/data/ActsAppCirculationDiffModuleUpdateRely.hap",
+                "ActsAppCirculationUpdateRely.hap->/data/ActsAppCirculationUpdateRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap",
+                "ActsAppCirculationSameVersionEntryRely.hap->/data/haptest/ActsAppCirculationSameVersionEntryRely.hap",
+                "ActsAppCirculationSameVersionFeatureRely.hap->/data/haptest/ActsAppCirculationSameVersionFeatureRely.hap"
+            ]
+        },
+		{
+            "test-file-name": [
+                "ActsAppCirculationTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
