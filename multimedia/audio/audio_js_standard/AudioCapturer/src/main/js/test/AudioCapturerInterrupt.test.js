@@ -357,6 +357,7 @@ export default function audioCapturerInterrupt() {
             await capturerRelease(capture2, done)
             done()
         })
+        
 
         /**
           *@tc.number    : SUB_MULTIMEDIA_AUDIO_CAPTURER_INTERRUPT_0300
