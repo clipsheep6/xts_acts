@@ -109,8 +109,19 @@ export default function circleJsunit() {
       let strJson = getInspectorByKey('circle');
       let obj = JSON.parse(strJson);
       console.info("[circleTest_0300] component objNew is: " + JSON.stringify(obj));
-      expect(obj.$attrs.width).assertEqual('-');
-      expect(obj.$attrs.height).assertEqual('-');
+
+      let rectInfo = JSON.parse('[' + obj.$rect + ']');
+      let left = JSON.parse('[' + rectInfo[0] + ']')[0];
+      let right = JSON.parse('[' + rectInfo[1] + ']')[0]
+      let width =  px2vp(right - left);
+      width = Math.floor(width * 100) / 100;
+      expect(obj.$attrs.width).assertEqual(width.toFixed(2)+'vp');
+
+      let top = JSON.parse('[' + rectInfo[0] + ']')[1];
+      let bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
+      let height =  px2vp(bottom - top);
+      height = Math.floor(height * 100) / 100;
+      expect(obj.$attrs.height).assertEqual(height.toFixed(2)+'vp');
       console.info('circleTest_0300 END');
       done();
     });
