@@ -326,6 +326,7 @@ export default function audioCapturerInterrupt() {
             }
         })
 
+
         /**
             *@tc.number    : SUB_MULTIMEDIA_AUDIO_CAPTURER_INTERRUPT_0200
             *@tc.name      : AudioCapturer VOICE_RECOGNITION INTERRUPT MIC
