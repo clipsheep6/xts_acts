@@ -528,61 +528,73 @@ export default function getBundleInfoForSelf() {
             case 'workScheduler':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.WORK_SCHEDULER)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("workScheduler");
               count = count + 3;
               break;
             case 'inputMethod':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.INPUT_METHOD)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("inputMethod");
               count = count + 4;
               break;
             case 'accessibility':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ACCESSIBILITY)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("accessibility");
               count = count + 5;
               break;
             case 'fileShare':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.FILE_SHARE)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("fileShare");
               count = count + 6;
               break;
             case 'staticSubscriber':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.STATIC_SUBSCRIBER)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("staticSubscriber");
               count = count + 7;
               break;
             case 'wallpaper':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.WALLPAPER)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("wallpaper");
               count = count + 8;
               break;
             case 'backup':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.BACKUP)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("backup");
               count = count + 9;
               break;
             case 'window':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.WINDOW)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("window");
               count = count + 10;
               break;
             case 'enterpriseAdmin':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ENTERPRISE_ADMIN)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("enterpriseAdmin");
               count = count + 11;
               break;
             case 'thumbnail':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.THUMBNAIL)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("thumbnail");
               count = count + 12;
               break;
             case 'preview':
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.PREVIEW)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("preview");
               count = count + 13;
               break;
             case 'driver':
               console.info("driver" + JSON.stringify(extensionList[i].extensionAbilityType));
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.DRIVER)
+              expect(extensionList[i].extensionAbilityTypeName).assertEqual("driver");
               count = count + 14;
               break;
           }
@@ -660,61 +672,73 @@ export default function getBundleInfoForSelf() {
               case 'workScheduler':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.WORK_SCHEDULER)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("workScheduler");
                 count = count + 3;
                 break;
               case 'inputMethod':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.INPUT_METHOD)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("inputMethod");
                 count = count + 4;
                 break;
               case 'accessibility':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ACCESSIBILITY)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("accessibility");
                 count = count + 5;
                 break;
               case 'fileShare':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.FILE_SHARE)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("fileShare");
                 count = count + 6;
                 break;
               case 'staticSubscriber':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.STATIC_SUBSCRIBER)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("staticSubscriber");
                 count = count + 7;
                 break;
               case 'wallpaper':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.WALLPAPER)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("wallpaper");
                 count = count + 8;
                 break;
               case 'backup':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.BACKUP)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("backup");
                 count = count + 9;
                 break;
               case 'window':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.WINDOW)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("window");
                 count = count + 10;
                 break;
               case 'enterpriseAdmin':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ENTERPRISE_ADMIN)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("enterpriseAdmin");
                 count = count + 11;
                 break;
               case 'thumbnail':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.THUMBNAIL)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("thumbnail");
                 count = count + 12;
                 break;
               case 'preview':
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.PREVIEW)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("preview");
                 count = count + 13;
                 break;
               case 'driver':
                 console.info("driver" + JSON.stringify(extensionList[i].extensionAbilityType));
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.DRIVER)
+                expect(extensionList[i].extensionAbilityTypeName).assertEqual("driver");
                 count = count + 14;
                 break;
             }
