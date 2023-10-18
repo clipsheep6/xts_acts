@@ -265,7 +265,7 @@ export default function imagePixelMapFramework() {
                 done();
             }
         }
-        async function isStrideAlignmentTest(done, testNum, imageData) {
+        async function isStrideAlignmentTest(done, testNum, imageData, decodingOptions) {
             let logger = loger(testNum)
             try {
                 var sourceOptions = { sourceDensity: 120 };
@@ -279,7 +279,7 @@ export default function imagePixelMapFramework() {
                         globalpixelmap = pixelMap;
                         let ret = pixelMap.isStrideAlignmentTest();
                         logger.log("isStrideAlignment " + ret);
-                        expect(density == true).assertTrue();
+                        expect(decodingOptions ? (ret == true) : (ret == false)).assertTrue();
                         done();
                     } else {
                         logger.log('creat pixelMap failed ');
