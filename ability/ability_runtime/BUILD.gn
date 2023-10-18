@@ -36,7 +36,7 @@ group("ability_runtime") {
       "actsparsingparameterstest:actsparsingparameterstest",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsrequestdialogtest:actsrequestdialogtest",
-      "actsrevokequickfixtest:ActsRevokeQuickFixApp",
+      "actsrevokequickfixtest:actsrevokequickfixtest",
       "actsserviceabilityclienttest:serviceability",
       "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
       "actsstartrunnertest:ActsStartRunnerTest",
