@@ -18,6 +18,7 @@ import mindSporeLite from '@ohos.ai.mindSporeLite';
 import fs from '@ohos.file.fs';
 
 export default function abilityTest() {
+  //test
   describe('ActsAbilityTest', function () {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(function () {
