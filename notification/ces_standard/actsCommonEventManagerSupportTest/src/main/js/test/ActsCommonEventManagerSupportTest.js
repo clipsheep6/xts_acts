@@ -425,6 +425,8 @@ export default function ActsCommonEventManagerSupportTest() {
       expect(commonEventManager.Support.COMMON_EVENT_RADIO_STATE_CHANGE).assertEqual('usual.event.RADIO_STATE_CHANGE')
       expect(commonEventManager.Support.COMMON_EVENT_SCREEN_UNLOCKED).assertEqual('usual.event.SCREEN_UNLOCKED')
       expect(commonEventManager.Support.COMMON_EVENT_SCREEN_LOCKED).assertEqual('usual.event.SCREEN_LOCKED')
+      expect(commonEventManager.Support.COMMON_EVENT_AUDIO_QUALITY_CHANGE).assertEqual('usual.event.AUDIO_QUALITY_CHANGE')
+      expect(commonEventManager.Support.COMMON_EVENT_SPECIAL_CODE).assertEqual('usual.event.SPECIAL_CODE')
       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2200 END`)
     })   
     
