@@ -54,7 +54,11 @@ void HksGenerateKeyTest::TearDown()
 {
 }
 
+#if __WORDSIZE == 64
+const int DEFAULT_X25519_PARAM_SET_OUT = 120;
+#else
 const int DEFAULT_X25519_PARAM_SET_OUT = 104;
+#endif
 
 const struct HksTestGenKeyParams g_testGenKeyParams[] = {
     /* x25519: ree sign/verify */
