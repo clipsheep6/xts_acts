@@ -218,7 +218,7 @@ HWTEST_F(LiteIPCClientTest, testIPCClient0100, Function | MediumTest | Level2)
     ASSERT_EQ(iUnknown != nullptr, TRUE);
 
     SvcIdentity svcIdentity = SAMGR_GetRemoteIdentity("abilityms", "AmsFeature");
-    ASSERT_EQ(svcIdentity.handle != 0xffffffff, TRUE);
+    ASSERT_EQ(svcIdentity.handle != INVALID_INDEX, TRUE);
 };
 
 /**
@@ -229,10 +229,10 @@ HWTEST_F(LiteIPCClientTest, testIPCClient0100, Function | MediumTest | Level2)
 HWTEST_F(LiteIPCClientTest, testIPCClient0110, Function | MediumTest | Level2)
 {
     SvcIdentity svcIdentity = SAMGR_GetRemoteIdentity(nullptr, "AmsFeature");
-    ASSERT_EQ(svcIdentity.handle == 0xffffffff, TRUE);
+    ASSERT_EQ(svcIdentity.handle == INVALID_INDEX, TRUE);
 
     svcIdentity = SAMGR_GetRemoteIdentity("abilityms", nullptr);
-    ASSERT_EQ(svcIdentity.handle == 0xffffffff, TRUE);
+    ASSERT_EQ(svcIdentity.handle == INVALID_INDEX, TRUE);
 };
 
 /**
@@ -243,7 +243,7 @@ HWTEST_F(LiteIPCClientTest, testIPCClient0110, Function | MediumTest | Level2)
 HWTEST_F(LiteIPCClientTest, testIPCClient0120, Function | MediumTest | Level2)
 {
     SvcIdentity svcIdentity = SAMGR_GetRemoteIdentity("samgr", nullptr);
-    ASSERT_EQ(svcIdentity.handle == 0xffffffff, TRUE);
+    ASSERT_EQ(svcIdentity.handle == INVALID_INDEX, TRUE);
 };
 
 /**
@@ -254,8 +254,8 @@ HWTEST_F(LiteIPCClientTest, testIPCClient0120, Function | MediumTest | Level2)
 HWTEST_F(LiteIPCClientTest, testIPCClient0130, Function | MediumTest | Level2)
 {
     SvcIdentity svcIdentity = SAMGR_GetRemoteIdentity("noExistService", "noExistFeature");
-    ASSERT_EQ(svcIdentity.handle == 0xffffffff, TRUE);
-    ASSERT_EQ(svcIdentity.token == 0xffffffff, TRUE);
+    ASSERT_EQ(svcIdentity.handle == INVALID_INDEX, TRUE);
+    ASSERT_EQ(svcIdentity.token == INVALID_INDEX, TRUE);
 };
 
 /**
