@@ -1,0 +1,42 @@
+{
+  "module": {
+    "name": "second",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "SecondAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "SecondAbility",
+        "srcEntrance": "./ets/secondability/SecondAbility.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "SecondFormAbility",
+        "srcEntrance": "./ets/secondformability/SecondFormAbility.ts",
+        "label": "$string:SecondFormAbility_label",
+        "description": "$string:SecondFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ]
+  }
+}
