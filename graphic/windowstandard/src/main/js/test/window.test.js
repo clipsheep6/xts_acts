@@ -2457,11 +2457,11 @@ export default function window_test() {
                         wnd.setKeepScreenOn(true).then(() => {
                             console.log(msgStr + ' setKeepScreenOn(true) success ');
                             wnd.getProperties().then(data => {
-                                expect(data.touchable).assertTrue();
+                                expect(data.isKeepScreenOn).assertTrue();
                                 wnd.setKeepScreenOn(false).then(() => {
                                     console.log(msgStr + ' setKeepScreenOn(false) success ');
                                     wnd.getProperties().then(data => {
-                                        expect(!data.touchable).assertTrue();
+                                        expect(!data.isKeepScreenOn).assertTrue();
                                     }, (err) => {
                                         console.log(msgStr + ' getProperties failed: err' + JSON.stringify(err));
                                         expect().assertFail();
@@ -3108,36 +3108,44 @@ export default function window_test() {
      * @tc.name			Test setKeepScreenOnCallBack_Test_002
      * @tc.desc			Set whether the window can be touched or not
      */
-        it('setKeepScreenOnCallBack_Test_002', 0, async function (done) {
+         it('setKeepScreenOnCallBack_Test_002', 0, async function (done) {
             let msgStr = 'setKeepScreenOnCallBack_Test_002';
             console.log(msgStr + ' begin');
             window.getTopWindow().then(wnd => {
                 console.info(msgStr + ' getTopWindow wnd' + wnd);
                 expect(wnd != null).assertTrue();
                 for (let i = 0; i < 5; i++) {
-                    wnd.getProperties().then(data => {
-                        expect(!data.isKeepScreenOn).assertTrue();
-                        wnd.setKeepScreenOn(false, (err, data) => {
-                            if (err.code) {
-                                console.error(msgStr + 'Failed to set the screen to be always on. err: ' + JSON.stringify(err));
+                    wnd.setKeepScreenOn(true, (err, data) => {
+                        if (err.code) {
+                            console.error(msgStr + 'Failed to set the screen to be always on. err: ' + JSON.stringify(err));
+                            expect().assertFail();
+                            done();
+                        } else {
+                            wnd.getProperties().then(data => {
+                                expect(data.isKeepScreenOn).assertTrue();
+                                wnd.setKeepScreenOn(false, (err, data) => {
+                                    if (err.code) {
+                                        console.error(msgStr + 'Failed to set the screen to be always on. err: ' + JSON.stringify(err));
+                                        expect().assertFail();
+                                        done();
+                                    } else {
+                                        console.info(msgStr + 'success set the screen to be always on. data: ' + JSON.stringify(data));
+                                        wnd.getProperties().then(data => {
+                                            expect(!data.isKeepScreenOn).assertTrue();
+                                            done();
+                                        }, (err) => {
+                                            console.info(msgStr + ' getProperties failed: err' + JSON.stringify(err));
+                                            expect().assertFail();
+                                            done();
+                                        })
+                                    }
+                                })
+                            }, (err) => {
+                                console.info(msgStr + ' getProperties failed: err' + JSON.stringify(err));
                                 expect().assertFail();
                                 done();
-                            } else {
-                                console.info(msgStr + 'success set the screen to be always on. data: ' + JSON.stringify(data));
-                                wnd.getProperties().then(data => {
-                                    expect(!data.isKeepScreenOn).assertTrue();
-                                    done();
-                                }, (err) => {
-                                    console.info(msgStr + ' getProperties failed: err' + JSON.stringify(err));
-                                    expect().assertFail();
-                                    done();
-                                })
-                            }
-                        })
-                    }, (err) => {
-                        console.info(msgStr + ' getProperties failed: err' + JSON.stringify(err));
-                        expect().assertFail();
-                        done();
+                            })
+                        }
                     })
                 }
                 done();
@@ -3639,13 +3647,13 @@ export default function window_test() {
 
 
     /**
-     * @tc.number		SUB_WMS_ISFOLDABLE_JSAPI_001
-     * @tc.name			Test isFoldable_Test_001
+     * @tc.number		SUB_BASIC_WMS_ISFOLDABLE_JSAPI_2351
+     * @tc.name			Test isFoldable_Test
      * @tc.desc			To test the function of isFoldable
     */
-     it('isFoldable_Test_001', 0, async function (done) {
+     it('isFoldable_Test', 0, async function (done) {
         
-        let tag = 'isFoldable_Test_001 '
+        let tag = 'isFoldable_Test '
         try {
             display.isFoldable();
             expect(true).assertTrue();
@@ -3658,13 +3666,13 @@ export default function window_test() {
     })
 
     /**
-     * @tc.number		SUB_WMS_GETFOLDSTATUS_JSAPI_001
-     * @tc.name			Test getFoldStatus_Test_001
+     * @tc.number		SUB_BASIC_WMS_GETFOLDSTATUS_JSAPI_2352
+     * @tc.name			Test getFoldStatus_Test
      * @tc.desc			To test the function of getFoldStatus
     */
-     it('getFoldStatus_Test_001', 0, async function (done) {
+    it('getFoldStatus_Test', 0, async function (done) {
         
-        let tag = 'getFoldStatus_Test_001 '
+        let tag = 'getFoldStatus_Test '
         
         console.info(tag + ' begin');
         try {
@@ -3682,13 +3690,13 @@ export default function window_test() {
     })
 
     /**
-     * @tc.number		SUB_WMS_GETFOLDDISPLAYMODE_JSAPI_001
-     * @tc.name			Test getFoldDisplayMode_Test_001
+     * @tc.number		SUB_BASIC_WMS_GETFOLDDISPLAYMODE_JSAPI_2353
+     * @tc.name			Test getFoldDisplayMode_Test
      * @tc.desc			To test the function of getFoldDisplayMode
     */
-     it('getFoldDisplayMode_Test_001', 0, async function (done) {
+    it('getFoldDisplayMode_Test', 0, async function (done) {
         
-        let tag = 'getFoldDisplayMode_Test_001 '
+        let tag = 'getFoldDisplayMode_Test '
         
         console.info(tag + ' begin');
         try {
@@ -3707,13 +3715,13 @@ export default function window_test() {
     })
 
     /**
-     * @tc.number		SUB_WMS_GETCURRENTFOLDCREASEREGION_JSAPI_001
-     * @tc.name			Test getCurrentFoldCreaseRegion_Test_001
+     * @tc.number		SUB_BASIC_WMS_GETCURRENTFOLDCREASEREGION_JSAPI_2354
+     * @tc.name			Test getCurrentFoldCreaseRegion_Test
      * @tc.desc			To test the function of getCurrentFoldCreaseRegion
     */
-    it('getCurrentFoldCreaseRegion_Test_001', 0, async function (done) {
+    it('getCurrentFoldCreaseRegion_Test', 0, async function (done) {
         
-        let tag = 'getCurrentFoldCreaseRegion_Test_001 '
+        let tag = 'getCurrentFoldCreaseRegion_Test '
         
         console.info(tag + ' begin');
         try {
@@ -3731,6 +3739,104 @@ export default function window_test() {
             console.log(tag + 'getCurrentFoldCreaseRegion failed, err : ' + JSON.stringify(err))
             expect().assertFail();
             done();
+        }
+    })
+
+    /**
+     * @tc.number		SUB_BASIC_WMS_SETFOLDDDISPLAYMODE_JSAPI_2355
+     * @tc.name			Test setFoldDisplayMode_Test
+     * @tc.desc			To test the function of setFoldDisplayMode
+    */
+    it('setFoldDisplayMode_Test', 0, function(done){
+        let tag = 'setFoldDisplayMode_Test'
+        try {
+            let mode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_FULL;
+            display.setFoldDisplayMode(mode);
+            expect(true).assertTrue()
+            done()
+        } catch (err) {
+            console.log(tag + " failed, err : " + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        }
+    })
+
+    /**
+     * @tc.number		SUB_BASIC_WMS_ON_FOLDSTATUSCHANGE_JSAPI_2356
+     * @tc.name			Test on_foldStatusChange_Test
+     * @tc.desc			To test the function of on foldStatusChange
+    */
+     it('on_foldStatusChange_Test', 0, function(done){
+        let tag = 'on_foldStatusChange_Test'
+        try {
+            display.on('foldStatusChange', function(data) {
+                console.info(tag + ' Listening enabled. Data: ' + JSON.stringify(data));
+            });
+            expect(true).assertTrue()
+            done()
+        } catch (err) {
+            console.log(tag + " failed, err : " + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        }
+    })
+
+    /**
+     * @tc.number		SUB_BASIC_WMS_ON_FOLDSTATUSCHANGE_JSAPI_2357
+     * @tc.name			Test off_foldStatusChange_Test
+     * @tc.desc			To test the function of off foldStatusChange
+    */
+     it('off_foldStatusChange_Test', 0, function(done){
+        let tag = 'off_foldStatusChange_Test'
+        try {
+            display.off('foldStatusChange')
+            console.log(tag + "success")
+            expect(true).assertTrue()
+            done()
+        } catch (err) {
+            console.log(tag + " failed, err : " + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        }
+    })
+
+    /**
+     * @tc.number		SUB_BASIC_WMS_ON_FOLDDISPLAYMODECHANGE_JSAPI_2358
+     * @tc.name			Test on_foldDisplayModeChange_Test
+     * @tc.desc			To test the function of on foldDisplayModeChange
+    */
+     it('off_foldStatusChange_Test', 0, function(done){
+        let tag = 'on_foldDisplayModeChange_Test'
+        try {
+            display.on('foldDisplayModeChange', function() {
+                console.info(tag + 'Listening enabled. Data: ' + JSON.stringify(data));
+            })
+            console.log(tag + "success")
+            expect(true).assertTrue()
+            done()
+        } catch (err) {
+            console.log(tag + " failed, err : " + JSON.stringify(err))
+            expect().assertFail()
+            done()
+        }
+    })
+
+    /**
+     * @tc.number		SUB_BASIC_WMS_OFF_FOLDDISPLAYMODECHANGE_JSAPI_2359
+     * @tc.name			Test off_foldDisplayModeChange_Test
+     * @tc.desc			To test the function of off foldDisplayModeChange
+    */
+     it('off_foldDisplayModeChange_Test', 0, function(done){
+        let tag = 'off_foldDisplayModeChange_Test'
+        try {
+            display.off('foldDisplayModeChange')
+            console.log(tag + "success")
+            expect(true).assertTrue()
+            done()
+        } catch (err) {
+            console.log(tag + " failed, err : " + JSON.stringify(err))
+            expect().assertFail()
+            done()
         }
     })
 
