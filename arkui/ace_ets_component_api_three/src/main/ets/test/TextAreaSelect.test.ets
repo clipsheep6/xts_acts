@@ -16,6 +16,7 @@ import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@ohos.router'
 import {UiDriver, UiComponent, BY, Driver, Component, ON} from '@ohos.UiTest'
 import events_emitter from '@ohos.events.emitter';
+import Utils from './Utils.ets';
 export default function TextAreaSelectTest() {
 
   const SUITE = 'TextAreaSelect'
@@ -54,6 +55,7 @@ export default function TextAreaSelectTest() {
 
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
+      await Utils.sleep(500);
       sendEventByKey('TextAreaSelect_Button_1', 10, "")
       await driver.delayMs(waitUiReadyMs)
       let strJson = getInspectorByKey('TextAreaSelect_TextArea_1');
