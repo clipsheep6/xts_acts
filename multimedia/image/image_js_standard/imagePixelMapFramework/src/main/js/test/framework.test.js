@@ -265,6 +265,38 @@ export default function imagePixelMapFramework() {
                 done();
             }
         }
+        async function isStrideAlignmentTest(done, testNum, imageData, decodingOptions) {
+            let logger = loger(testNum)
+            try {
+                var sourceOptions = { sourceDensity: 120 };
+                let imageSource = image.createImageSource(imageData, sourceOptions);
+                logger.log("ImageSource " + (imageSource != undefined));
+                if (imageSource != undefined) {
+                    globalImagesource = imageSource;
+                    let pixelMap = await imageSource.createPixelMap();
+                    logger.log("PixelMap " + pixelMap);
+                    if (pixelMap != undefined) {
+                        globalpixelmap = pixelMap;
+                        let ret = pixelMap.isStrideAlignmentTest();
+                        logger.log("isStrideAlignment " + ret);
+                        expect(decodingOptions ? (ret == true) : (ret == false)).assertTrue();
+                        done();
+                    } else {
+                        logger.log('creat pixelMap failed ');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else {
+                    logger.log('creat imageSource failed ');
+                    expect(false).assertTrue();
+                    done();
+                }
+            } catch (error) {
+                logger.log('failed ' + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
 
         async function pixelMapModifySizeTestErr(done, testNum, type, pixelMapInterface, ...params) {
             let logger = loger(testNum)
@@ -1897,5 +1929,99 @@ export default function imagePixelMapFramework() {
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_OPACITY_CALLBACK_ERROR_ALPHA_0400', 0, async function (done) {
             opacityErr(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_OPACITY_CALLBACK_ERROR_ALPHA_0400', 2, 'callback')
         })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SOURCEOPTIONS_ISSTRIDEALIGNMENT_0100
+         * @tc.name      : SourceOptions isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SOURCEOPTIONS_ISSTRIDEALIGNMENT_0100', 0, async function (done) {
+            var imageData = testPng.buffer;
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SOURCEOPTIONS_ISSTRIDEALIGNMENT_0100', imageData)
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200
+         * @tc.name      : isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with isStrideAlignment
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', 0, async function (done) {
+            var imageData = testPng.buffer;
+            let decodingOptions = { isEditable: true };
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', imageData, decodingOptions)
+        })
+        
+                /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300
+         * @tc.name      : isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with isStrideAlignment
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300', 0, async function (done) {
+            var imageData = testPng.buffer;
+            let decodingOptions = { isEditable: false };
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300', imageData, decodingOptions)
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SOURCEOPTIONS_ISSTRIDEALIGNMENT_0100
+         * @tc.name      : SourceOptions isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SOURCEOPTIONS_ISSTRIDEALIGNMENT_0100', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_SOURCEOPTIONS_ISSTRIDEALIGNMENT_0100', imageData)
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200
+         * @tc.name      : isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with isStrideAlignment
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let decodingOptions = { isEditable: true };
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', imageData, decodingOptions)
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300
+         * @tc.name      : isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with isStrideAlignment
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let decodingOptions = { isEditable: false };
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300', imageData, decodingOptions)
+        })               
     })
 }
