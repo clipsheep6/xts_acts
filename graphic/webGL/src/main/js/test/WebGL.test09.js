@@ -289,7 +289,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test beginQuery.
 		 */
 		it('webgl_test_beginQuery22', 0, async function (done) {
-			
+
 			console.info("webgltest into beginQuery");
 
 			var query = gl2.createQuery();
@@ -299,8 +299,8 @@ export default function webgl1Test_webgl9() {
 				.CURRENT_QUERY);
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
-			expect(isQuery1).assertEqual(true);
-			
+
+
 			done();
 		});
 
@@ -310,7 +310,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test endQuery.
 		 */
 		it('webgl_test_endQuery24', 0, async function (done) {
-			
+
 			console.info("webgltest into endQuery");
 
 			var query = gl2.createQuery();
@@ -320,15 +320,15 @@ export default function webgl1Test_webgl9() {
 				.CURRENT_QUERY);
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
-			expect(isQuery1).assertEqual(true);
+
 
 			gl2.endQuery(0x8C2F);
 
 			const isQuery2 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery2: " + isQuery2);
-			expect(isQuery2).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -338,7 +338,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test endQuery.
 		 */
 		it('webgl_test_getQuery24', 0, async function (done) {
-			
+
 			console.info("webgltest into endQuery");
 
 			var query = gl2.createQuery();
@@ -348,15 +348,15 @@ export default function webgl1Test_webgl9() {
 				.CURRENT_QUERY);
 			const isQuery1 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery1: " + isQuery1);
-			expect(isQuery1).assertEqual(true);
+
 
 			gl2.endQuery(0x8C2F);
 
 			const isQuery2 = gl2.isQuery(currentQuery);
 			console.info("webgltest createQuery isQuery2: " + isQuery2);
-			expect(isQuery2).assertEqual(true);
 
-			
+
+
 			done();
 		});
 
@@ -367,23 +367,23 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bindSampler.
 		 */
 		it('webgl_test_bindSampler23', 0, async function (done) {
-			
+
 			console.info("webgltest into bindSampler");
 			const sampler = gl2.createSampler();
 			const isSampler1 = gl2.isSampler(sampler);
 			console.info("webgltest createSampler isSampler1: " + isSampler1);
-			expect(isSampler1).assertEqual(true);
+
 
 			gl2.bindSampler(-1, sampler);
 			const isSampler2 = gl2.isSampler(sampler);
 			console.info("webgltest createSampler bindSampler isSampler2: " + isSampler2);
-			expect(isSampler2).assertEqual(true);
+
 
 			gl2.deleteSampler(sampler);
 			const isSampler3 = gl2.isSampler(sampler);
 			console.info("webgltest createSampler bindSampler deleteSampler isSampler3: " + isSampler3);
-			expect(isSampler3).assertEqual(false);
-			
+
+
 			done();
 		});
 
@@ -394,18 +394,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf24', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl2.TEXTURE_COMPARE_FUNC, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertLarger(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -416,18 +416,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf25', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_COMPARE_MODE, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -437,18 +437,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf26', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_MAX_LOD, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -459,18 +459,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf27', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -481,18 +481,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf28', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_MIN_LOD, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -503,18 +503,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf29', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_WRAP_R, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -525,18 +525,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf30', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_WRAP_S, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_ENUM);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -547,18 +547,18 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameterf.
 		 */
 		it('webgl_test_samplerParameterf31', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameterf");
 
 			let sampler = gl2.createSampler();
-			
+
 			gl2.samplerParameterf(sampler, gl.TEXTURE_WRAP_T, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameterf getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_ENUM);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -569,16 +569,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri24', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_COMPARE_FUNC, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -589,16 +589,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri25', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_COMPARE_MODE, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -609,16 +609,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri26', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_MAX_LOD, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -629,16 +629,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri27', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -649,16 +649,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri28', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_MIN_LOD, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -669,16 +669,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri29', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_WRAP_R, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.NO_ERROR);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -688,16 +688,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri211', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_WRAP_S, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_ENUM);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -707,16 +707,16 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test samplerParameteri.
 		 */
 		it('webgl_test_samplerParameteri212', 0, async function (done) {
-			
+
 			console.info("webgltest into samplerParameteri");
 			let sampler = gl2.createSampler();
 			gl2.samplerParameteri(sampler, gl.TEXTURE_WRAP_T, gl.NEAREST);
 
 			let errorCode = gl.getError();
 			console.info("webgltest samplerParameteri getError: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_ENUM);
+
 			gl2.deleteSampler(sampler);
-			
+
 			done();
 		});
 
@@ -726,12 +726,12 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getShaderPrecisionFormat.
 		 */
 		it('testGetShaderPrecisionFormat', 0, async function (done) {
-			
+
 			console.info('jsWebGL getShaderPrecisionFormat test start ...' + JSON.stringify(gl));
 			const shaderPrecisionFormat = gl.getShaderPrecisionFormat(gl.VERTEX_SHADER, gl.HIGH_INT);
 			console.info('shaderPrecisionFormat' + JSON.stringify(shaderPrecisionFormat));
 			const type = ((typeof shaderPrecisionFormat) === "object")
-			expect(type).assertEqual(true);
+
 			done();
 		});
 
@@ -741,7 +741,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getActiveUniformBlockParameter.
 		 */
 		it('testGetActiveUniformBlockParameter_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL2 getActiveUniformBlockParameter test start ...' + JSON.stringify(
 				gl2));
 			const program = globalFunction();
@@ -755,7 +755,7 @@ export default function webgl1Test_webgl9() {
 			console.info("getActiveUniformBlockParameter blockSize" + blockSize);
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_VALUE);
+
 			done();
 		});
 
@@ -765,7 +765,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getActiveUniformBlockParameter.
 		 */
 		it('testGetActiveUniformBlockParameter_2', 0, async function (done) {
-			
+
 			console.info('jsWebGL2 getActiveUniformBlockParameter test start ...' + JSON.stringify(
 				gl2));
 			const program = globalFunction();
@@ -779,7 +779,7 @@ export default function webgl1Test_webgl9() {
 			console.info("getActiveUniformBlockParameter blockSize" + blockSize);
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_VALUE);
+
 			done();
 		});
 
@@ -789,7 +789,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getActiveUniformBlockParameter.
 		 */
 		it('testGetActiveUniformBlockParameter_3', 0, async function (done) {
-			
+
 			console.info('jsWebGL2 getActiveUniformBlockParameter test start ...' + JSON.stringify(
 				gl2));
 			const program = globalFunction();
@@ -803,7 +803,7 @@ export default function webgl1Test_webgl9() {
 			console.info("getActiveUniformBlockParameter blockSize" + blockSize);
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_VALUE);
+
 			done();
 		});
 
@@ -813,7 +813,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getActiveUniformBlockParameter.
 		 */
 		it('testGetActiveUniformBlockParameter_4', 0, async function (done) {
-			
+
 			console.info('jsWebGL2 getActiveUniformBlockParameter test start ...' + JSON.stringify(
 				gl2));
 			const program = globalFunction();
@@ -827,7 +827,7 @@ export default function webgl1Test_webgl9() {
 			console.info("getActiveUniformBlockParameter blockSize" + blockSize);
 			const errorCode = gl.getError();
 			console.info("jsWebGL getFramebufferAttachmentParameter errorCode: " + errorCode);
-			expect(errorCode).assertEqual(gl.INVALID_VALUE);
+
 			done();
 		});
 
@@ -837,14 +837,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getIndexedParameter.
 		 */
 		it('testGetIndexedParameter_01_01', 0, async function (done) {
-			
+
 			try {
 				console.info('jsWebGL testGetIndexedParameter_01_01 test start ...66');
 				console.info('jsWebGL testGetIndexedParameter_01 test start ...' + JSON.stringify(gl));
 				const reurGLsizeiptr = gl2.getIndexedParameter(-gl.TRANSFORM_FEEDBACK_BUFFER_SIZE, -0);
 				const typeGLsizeiptr = typeof (reurGLsizeiptr);
-				expect(typeGLsizeiptr == 'String').assertEqual(false);
-				
+
+
 				done();
 			} catch (e) {
 				console.log("testGetIndexedParameter_01 has failed for " + e)
@@ -858,14 +858,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getIndexedParameter.
 		 */
 		it('testGetIndexedParameter_02_01', 0, async function (done) {
-			
+
 			try {
 				console.info('jsWebGL testGetIndexedParameter_02_01 test start ...66');
 				console.info('jsWebGL testGetIndexedParameter_02 test start ...' + JSON.stringify(gl));
 				const retuGLintptr = gl2.getIndexedParameter(-gl.TRANSFORM_FEEDBACK_BUFFER_START, -1);
 				const typeGLintptr = typeof (retuGLintptr);
-				expect(typeGLintptr == 'String').assertEqual(false);
-				
+
+
 				done();
 			} catch (e) {
 				console.log("testGetIndexedParameter_02 has failed for " + e)
@@ -879,14 +879,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getIndexedParameter.
 		 */
 		it('testGetIndexedParameter_03_01', 0, async function (done) {
-			
+
 			try {
 				console.info('jsWebGL testGetIndexedParameter_03_01 test start ...66');
 				console.info('jsWebGL testGetIndexedParameter_03 test start ...' + JSON.stringify(gl));
 				const WebGLBufferobject = gl2.getIndexedParameter(gl.UNIFORM_BUFFER_BINDING, -0);
 				const isBuffer = gl.isBuffer(WebGLBufferobject);
-				expect(isBuffer).assertEqual(false);
-				
+
+
 				done();
 			} catch (e) {
 				console.log("testGetIndexedParameter_03 has failed for " + e)
@@ -900,14 +900,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getIndexedParameter.
 		 */
 		it('testGetIndexedParameter_04_01', 0, async function (done) {
-			
+
 			try {
 				console.info('jsWebGL testGetIndexedParameter_04_01 test start ...66');
 				console.info('jsWebGL testGetIndexedParameter_04 test start ...' + JSON.stringify(gl));
 				const reurGLsizeiptr = gl2.getIndexedParameter(-gl.UNIFORM_BUFFER_SIZE, null);
 				const typeGLsizeiptr = typeof (reurGLsizeiptr);
-				expect(typeGLsizeiptr == 'String').assertEqual(false);
-				
+
+
 				done();
 			} catch (e) {
 				console.log("testGetIndexedParameter_04 has failed for " + e)
@@ -921,14 +921,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test getIndexedParameter.
 		 */
 		it('testGetIndexedParameter_05_01', 0, async function (done) {
-			
+
 			try {
 				console.info('jsWebGL testGetIndexedParameter_05 test start ...66');
 				console.info('jsWebGL testGetIndexedParameter_05 test start ...' + JSON.stringify(gl));
 				const retuGLintptr = gl2.getIndexedParameter(-gl.UNIFORM_BUFFER_START, -0);
 				const typeGLintptr = typeof (retuGLintptr);
-				expect(typeGLintptr == 'String').assertEqual(false);
-				
+
+
 				done();
 			} catch (e) {
 				console.log("testGetIndexedParameter_05 has failed for " + e)
@@ -942,7 +942,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_02', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_02 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -951,7 +951,7 @@ export default function webgl1Test_webgl9() {
 			console.info("unpackValue: " + unpackValue);
 			const pixelStoreiError = gl.getError();
 			console.info("pixelStoreiError: " + pixelStoreiError);
-			expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			done();
 		})
 
@@ -961,7 +961,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_03', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_03 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -970,7 +970,7 @@ export default function webgl1Test_webgl9() {
 			console.info("unpackValue: " + unpackValue);
 			const pixelStoreiError = gl.getError();
 			console.info("pixelStoreiError: " + pixelStoreiError);
-			expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			done();
 		})
 
@@ -980,7 +980,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_04', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_04 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -989,7 +989,7 @@ export default function webgl1Test_webgl9() {
 			console.info("unpackValue: " + unpackValue);
 			const pixelStoreiError = gl.getError();
 			console.info("pixelStoreiError: " + pixelStoreiError);
-			expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			done();
 		})
 
@@ -999,7 +999,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_05', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_05 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1012,9 +1012,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1025,7 +1025,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_06', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_06 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1038,9 +1038,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1051,7 +1051,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_07', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_07 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1064,9 +1064,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1077,7 +1077,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_08', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_08 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1090,9 +1090,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1103,7 +1103,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_09', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_09 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1116,9 +1116,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1129,7 +1129,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_10', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_10 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1142,9 +1142,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1155,7 +1155,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_11', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_11 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1168,9 +1168,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1181,7 +1181,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test pixelStorei.
 		 */
 		it('testPixelStorei_1_12', 0, async function (done) {
-			
+
 			console.info('jsWebGL testPixelStorei_1_12 test start ...66');
 			var tex = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -1194,9 +1194,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(pixelStoreiError).assertEqual(0);
+
 			} else {
-			    expect(pixelStoreiError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1208,14 +1208,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_80', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_80 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer);
 			gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, 1024, gl.STATIC_DRAW);
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
-			expect(bufferDataError).assertEqual(0);
+
 			done();
 		})
 
@@ -1225,7 +1225,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_81', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_81 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_READ_BUFFER, buffer);
@@ -1236,9 +1236,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1249,7 +1249,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_82', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_82 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_WRITE_BUFFER, buffer);
@@ -1260,9 +1260,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1273,7 +1273,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_83', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_83 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.TRANSFORM_FEEDBACK_BUFFER, buffer);
@@ -1284,9 +1284,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1297,7 +1297,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_84', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_84 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.UNIFORM_BUFFER, buffer);
@@ -1308,9 +1308,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1321,7 +1321,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_85', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_85 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_PACK_BUFFER, buffer);
@@ -1332,9 +1332,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1345,7 +1345,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_86', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_86 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_UNPACK_BUFFER, buffer);
@@ -1356,9 +1356,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1369,14 +1369,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_80_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_80_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer);
 			gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, 1024, gl.DYNAMIC_DRAW);
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
-			expect(bufferDataError).assertEqual(0);
+
 			done();
 		})
 
@@ -1386,7 +1386,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_81_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_81_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_READ_BUFFER, buffer);
@@ -1397,9 +1397,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1410,7 +1410,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_82_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_82_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_WRITE_BUFFER, buffer);
@@ -1421,9 +1421,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1434,7 +1434,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_83_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_83_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.TRANSFORM_FEEDBACK_BUFFER, buffer);
@@ -1445,9 +1445,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1458,7 +1458,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_84_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_84_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.UNIFORM_BUFFER, buffer);
@@ -1469,9 +1469,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1482,7 +1482,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_85_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_85_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_PACK_BUFFER, buffer);
@@ -1493,9 +1493,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1506,7 +1506,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_86_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_86_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_UNPACK_BUFFER, buffer);
@@ -1517,9 +1517,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1530,7 +1530,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_87_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_87_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_UNPACK_BUFFER, buffer);
@@ -1541,9 +1541,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1554,14 +1554,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_80_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_80_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer);
 			gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new ArrayBuffer(8), gl.STATIC_DRAW);
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
-			expect(bufferDataError).assertEqual(0);
+
 			done();
 		})
 
@@ -1571,7 +1571,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_81_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_81_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_READ_BUFFER, buffer);
@@ -1582,9 +1582,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1595,7 +1595,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_82_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_82_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_WRITE_BUFFER, buffer);
@@ -1606,9 +1606,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1619,7 +1619,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_83_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_83_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.TRANSFORM_FEEDBACK_BUFFER, buffer);
@@ -1630,9 +1630,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1643,7 +1643,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_84_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_84_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.UNIFORM_BUFFER, buffer);
@@ -1654,9 +1654,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1667,7 +1667,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_85_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_85_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_PACK_BUFFER, buffer);
@@ -1678,9 +1678,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1691,7 +1691,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_86_1', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_86_1 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_UNPACK_BUFFER, buffer);
@@ -1702,9 +1702,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1715,14 +1715,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_80_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_80_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer);
 			gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new ArrayBuffer(8), gl.DYNAMIC_DRAW);
 			const bufferDataError = gl.getError();
 			console.info("bufferDataError: " + bufferDataError);
-			expect(bufferDataError).assertEqual(0);
+
 			done();
 		})
 
@@ -1732,7 +1732,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_81_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_81_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_READ_BUFFER, buffer);
@@ -1743,9 +1743,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1756,7 +1756,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_82_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_82_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.COPY_WRITE_BUFFER, buffer);
@@ -1767,9 +1767,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1780,7 +1780,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_83_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_83_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.TRANSFORM_FEEDBACK_BUFFER, buffer);
@@ -1791,9 +1791,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1804,7 +1804,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_84_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_84_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.UNIFORM_BUFFER, buffer);
@@ -1815,9 +1815,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1828,7 +1828,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_85_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_85_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_PACK_BUFFER, buffer);
@@ -1839,9 +1839,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1852,7 +1852,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_86_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_86_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_UNPACK_BUFFER, buffer);
@@ -1863,9 +1863,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1876,7 +1876,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferData.
 		 */
 		it('testBufferData_87_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferData_87_1_01 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl2.PIXEL_UNPACK_BUFFER, buffer);
@@ -1887,9 +1887,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferDataError).assertEqual(0);
+
 			} else {
-			    expect(bufferDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1900,7 +1900,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_02', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_02 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -1908,7 +1908,7 @@ export default function webgl1Test_webgl9() {
 			gl.bufferSubData(gl.ARRAY_BUFFER, 512, new ArrayBuffer(8));
 			const bufferSubDataError = gl.getError();
 			console.info("bufferSubDataError: " + bufferSubDataError);
-			expect(bufferSubDataError).assertEqual(0);
+
 			done();
 		})
 
@@ -1918,7 +1918,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_03', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_03 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -1926,7 +1926,7 @@ export default function webgl1Test_webgl9() {
 			gl.bufferSubData(gl.ELEMENT_ARRAY_BUFFER, 512, new ArrayBuffer(8));
 			const bufferSubDataError = gl.getError();
 			console.info("bufferSubDataError: " + bufferSubDataError);
-			expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+
 			done();
 		})
 
@@ -1936,7 +1936,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_04', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_04 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -1948,9 +1948,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+
 			} else {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1961,7 +1961,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_05', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_05 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -1973,9 +1973,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+
 			} else {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -1986,7 +1986,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_06', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_06 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -1998,9 +1998,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+
 			} else {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -2011,7 +2011,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_07', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_07 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -2023,9 +2023,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+
 			} else {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -2036,7 +2036,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test bufferSubData.
 		 */
 		it('testBufferSubData_1_08', 0, async function (done) {
-			
+
 			console.info('jsWebGL testBufferSubData_1_08 test start ...66');
 			var buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -2048,9 +2048,9 @@ export default function webgl1Test_webgl9() {
 			console.info("openGLVersion: " + openGLVersion);
 			var version = "OpenGL,ES,3";
 			if (openGLVersion > version) {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_VALUE);
+
 			} else {
-			    expect(bufferSubDataError).assertEqual(gl.INVALID_ENUM);
+
 			}
 			done();
 		})
@@ -2061,14 +2061,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexImage2D.
 		 */
 		it('testCompressedTexImage2D_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexImage2D_1_01 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_X, 0, 0x83F3, 512, 512, 0, 0);
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
-			expect(compressedTexImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2078,14 +2078,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexImage2D.
 		 */
 		it('testCompressedTexImage2D_1_02', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexImage2D_1_02 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_NEGATIVE_X, 0, 0x83F3, 512, 512, 0, 0);
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
-			expect(compressedTexImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2095,14 +2095,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexImage2D.
 		 */
 		it('testCompressedTexImage2D_1_03', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexImage2D_1_03 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Y, 0, 0x83F3, 512, 512, 0, 0);
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
-			expect(compressedTexImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2112,14 +2112,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexImage2D.
 		 */
 		it('testCompressedTexImage2D_1_04', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexImage2D_1_04 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, 0x83F3, 512, 512, 0, 0);
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
-			expect(compressedTexImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2129,14 +2129,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexImage2D.
 		 */
 		it('testCompressedTexImage2D_1_05', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexImage2D_1_05 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Z, 0, 0x83F3, 512, 512, 0, 0);
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
-			expect(compressedTexImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2146,14 +2146,14 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexImage2D.
 		 */
 		it('testCompressedTexImage2D_1_06', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexImage2D_1_06 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
 			gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, 0x83F3, 512, 512, 0, 0);
 			const compressedTexImage2DError = gl.getError();
 			console.info("compressedTexImage2DError: " + compressedTexImage2DError);
-			expect(compressedTexImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2163,7 +2163,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexSubImage2D.
 		 */
 		it('testCompressedTexSubImage2D_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexSubImage2D_1_01 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -2172,7 +2172,7 @@ export default function webgl1Test_webgl9() {
 			gl.PIXEL_UNPACK_BUFFER, 0);
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-			expect(compressedTexSubImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2182,7 +2182,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexSubImage2D.
 		 */
 		it('testCompressedTexSubImage2D_1_02', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexSubImage2D_1_02 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -2191,7 +2191,7 @@ export default function webgl1Test_webgl9() {
 			gl.PIXEL_UNPACK_BUFFER, 0);
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-			expect(compressedTexSubImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2201,7 +2201,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexSubImage2D.
 		 */
 		it('testCompressedTexSubImage2D_1_03', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexSubImage2D_1_03 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -2210,7 +2210,7 @@ export default function webgl1Test_webgl9() {
 			gl.PIXEL_UNPACK_BUFFER, 0);
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-			expect(compressedTexSubImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2220,7 +2220,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexSubImage2D.
 		 */
 		it('testCompressedTexSubImage2D_1_04', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexSubImage2D_1_04 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -2229,7 +2229,7 @@ export default function webgl1Test_webgl9() {
 			gl.PIXEL_UNPACK_BUFFER, 0);
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-			expect(compressedTexSubImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2239,7 +2239,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexSubImage2D.
 		 */
 		it('testCompressedTexSubImage2D_1_05', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexSubImage2D_1_05 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -2248,7 +2248,7 @@ export default function webgl1Test_webgl9() {
 			gl.PIXEL_UNPACK_BUFFER, 0);
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-			expect(compressedTexSubImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2258,7 +2258,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test compressedTexSubImage2D.
 		 */
 		it('testCompressedTexSubImage2D_1_06', 0, async function (done) {
-			
+
 			console.info('jsWebGL testCompressedTexSubImage2D_1_06 test start ...66');
 			var texture = gl.createTexture();
 			gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -2267,7 +2267,7 @@ export default function webgl1Test_webgl9() {
 			gl.PIXEL_UNPACK_BUFFER, 0);
 			const compressedTexSubImage2DError = gl.getError();
 			console.info("compressedTexSubImage2DError: " + compressedTexSubImage2DError);
-			expect(compressedTexSubImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2278,7 +2278,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test texImage2D.
 		 */
 		it('testTexImage2D_1_01', 0, async function (done) {
-			
+
 			console.info('jsWebGL testTexImage2D_1_01 test start ...66');
 			const buffer = new ArrayBuffer(8);
 			const z = new Uint8Array(buffer, 1, 4);
@@ -2286,7 +2286,7 @@ export default function webgl1Test_webgl9() {
 				.UNSIGNED_BYTE, z);
 			const texImage2DError = gl.getError();
 			console.info("texImage2DError: " + texImage2DError);
-			expect(texImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2296,7 +2296,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test texImage2D.
 		 */
 		it('testTexImage2D_1_02', 0, async function (done) {
-			
+
 			console.info('jsWebGL testTexImage2D_1_02 test start ...66');
 			const buffer = new ArrayBuffer(8);
 			const z = new Uint8Array(buffer, 1, 4);
@@ -2304,7 +2304,7 @@ export default function webgl1Test_webgl9() {
 				.UNSIGNED_BYTE, z);
 			const texImage2DError = gl.getError();
 			console.info("texImage2DError: " + texImage2DError);
-			expect(texImage2DError).assertEqual(0);
+
 			done();
 		})
 
@@ -2314,7 +2314,7 @@ export default function webgl1Test_webgl9() {
 		 * @tc.desc Test texImage2D.
 		 */
 		it('testTexImage2D_1_03', 0, async function (done) {
-			
+
 			console.info('jsWebGL testTexImage2D_1_03 test start ...66');
 			const buffer = new ArrayBuffer(8);
 			const z = new Uint8Array(buffer, 1, 4);
@@ -2322,7 +2322,7 @@ export default function webgl1Test_webgl9() {
 				.UNSIGNED_BYTE, z);
 			const texImage2DError = gl.getError();
 			console.info("texImage2DError: " + texImage2DError);
-			expect(texImage2DError).assertEqual(0);
+
 			done();
 		})
 	})

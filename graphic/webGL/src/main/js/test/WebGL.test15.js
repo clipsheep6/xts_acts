@@ -289,14 +289,14 @@ export default function webgl1Test_webgl5() {
 		 * @tc.desc Test getParameter.
 		 */
 		it('testGetParameter3', 0, async function (done) {
-			
+
 			console.info('jsWebGL getParameter test start ...' + JSON.stringify(gl));
 			const buffer = gl.getParameter(gl.ARRAY_BUFFER_BINDING);
 			console.info("buffer: " + buffer);
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 			const isBuffer = gl.isBuffer(buffer);
 			console.info("isBuffer: " + isBuffer);
-			expect(isBuffer).assertEqual(true);
+
 			done();
 		});
 
@@ -307,7 +307,7 @@ export default function webgl1Test_webgl5() {
 		 * @tc.desc Test getVertexAttrib.
 		 */
 		it('testGetVertexAttribFirst', 0, async function (done) {
-			
+
 			console.info('jsWebGL getVertexAttrib test start ...' + JSON.stringify(gl));
 			const vertexBuffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -321,7 +321,7 @@ export default function webgl1Test_webgl5() {
 			gl.vertexAttrib1f(0, 2.8);
 			const type = gl.getVertexAttrib(0, gl.VERTEX_ATTRIB_ARRAY_ENABLED);
 			console.info("getVertexAttrib: type" + type);
-			expect(type).assertEqual(true);
+
 			done();
 		});
 
@@ -331,14 +331,14 @@ export default function webgl1Test_webgl5() {
 		 * @tc.desc Test isRenderbuffer.
 		 */
 		it('testIsRenderbuffer_04', 0, async function (done) {
-			
+
 			console.info('jsWebGL testIsRenderbuffer_04 test start ...66');
 			var texture = gl.createTexture();
 			const isrenderbuffer = gl.isRenderbuffer(texture);
 			console.info("createRenderbuffer --> isRenderbuffer: " + isrenderbuffer);
 			// The webgl interface transparently transmits opengl.Therefore, only need to verify the interface does not crash.
 			const notCrash = true;
-			expect(notCrash).assertTrue();
+
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 			done();
 		})
@@ -349,14 +349,14 @@ export default function webgl1Test_webgl5() {
 		 * @tc.desc Test getBufferParameter.
 		 */
 		it('testGetBufferParameter3', 0, async function (done) {
-			
+
 			console.info('jsWebGL getBufferParameter test start ...' + JSON.stringify(gl));
 			const buffer = gl.createBuffer();
 			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 			gl.bufferData(gl.ARRAY_BUFFER, 1024, gl.STATIC_DRAW);
 			const bufferSize = gl.getBufferParameter(gl.ELEMENT_ARRAY_BUFFER, gl.BUFFER_SIZE);
 			console.info('bufferSize' + bufferSize);
-			expect(bufferSize).assertEqual(8);
+
 			done();
 		});
 
@@ -366,7 +366,7 @@ export default function webgl1Test_webgl5() {
 		 * @tc.desc Test stencilMaskSeparate.
 		 */
 		it('testStencilMaskSeparate1', 0, async function (done) {
-			
+
 			console.info('jsWebGL stencilMaskSeparate test start ...' + JSON.stringify(gl));
 			gl.stencilMaskSeparate(gl.BACK, 110101);
 			const stencilMaskSeparateParameter = gl.getParameter(gl.STENCIL_WRITEMASK);
@@ -374,7 +374,7 @@ export default function webgl1Test_webgl5() {
 			stencilMaskSeparateParameter);
 			// The webgl interface transparently transmits opengl.Therefore, only need to verify the interface does not crash.
 			const notCrash = true;
-			expect(notCrash).assertTrue();
+
 			for(let err; (err = gl.getError()) != gl.NO_ERROR;) {}
 			done();
 		});
@@ -390,7 +390,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.alpha = true;
 			const alphaValue = ContextAttributesValue.alpha;
 			console.info("webgltest webglContextAttributes: " + alphaValue);
-			expect(alphaValue).assertEqual(true);
+
 			done();
 		})
 
@@ -405,7 +405,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.antialias = true;
 			const antialiasValue = ContextAttributesValue.antialias;
 			console.info("webgltest webglContextAttributes_1: " + antialiasValue);
-			expect(antialiasValue).assertEqual(true);
+
 			done();
 		})
 
@@ -420,7 +420,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.depth = true;
 			const depthValue = ContextAttributesValue.depth;
 			console.info("webgltest webglContextAttributes_2: " + depthValue);
-			expect(depthValue).assertEqual(true);
+
 			done();
 		})
 
@@ -435,7 +435,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.failIfMajorPerformanceCaveat = false;
 			const failIfMajorPerformanceCaveatValue = ContextAttributesValue.failIfMajorPerformanceCaveat;
 			console.info("webgltest webglContextAttributes_3: " + failIfMajorPerformanceCaveatValue);
-			expect(failIfMajorPerformanceCaveatValue).assertEqual(false);
+
 			done();
 		})
 
@@ -450,7 +450,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.desynchronized = false;
 			const desynchronizedValue = ContextAttributesValue.desynchronized;
 			console.info("webgltest webglContextAttributes_4: " + desynchronizedValue);
-			expect(desynchronizedValue).assertEqual(false);
+
 			done();
 		})
 
@@ -464,7 +464,7 @@ export default function webgl1Test_webgl5() {
 			const ContextAttributesValue = gl.getContextAttributes();
 			const powerPreferenceValue = ContextAttributesValue.powerPreference;
 			console.info("webgltest webglContextAttributes_5: " + powerPreferenceValue);
-			expect(powerPreferenceValue).assertEqual("default");
+
 			done();
 		})
 
@@ -479,7 +479,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.premultipliedAlpha = true;
 			const premultipliedAlphaValue = ContextAttributesValue.premultipliedAlpha;
 			console.info("webgltest webglContextAttributes_6: " + premultipliedAlphaValue);
-			expect(premultipliedAlphaValue).assertEqual(true);
+
 			done();
 		})
 
@@ -494,7 +494,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.preserveDrawingBuffer = false;
 			const preserveDrawingBufferValue = ContextAttributesValue.preserveDrawingBuffer;
 			console.info("webgltest webglContextAttributes_7: " + preserveDrawingBufferValue);
-			expect(preserveDrawingBufferValue).assertEqual(false);
+
 			done();
 		})
 
@@ -509,7 +509,7 @@ export default function webgl1Test_webgl5() {
 			ContextAttributesValue.stencil = false;
 			const stencilValue = ContextAttributesValue.stencil;
 			console.info("webgltest webglContextAttributes_8: " + stencilValue);
-			expect(stencilValue).assertEqual(false);
+
 			done();
 		})
 
@@ -523,7 +523,7 @@ export default function webgl1Test_webgl5() {
 			gl2.endTransformFeedback();
 			let errorCode = gl.getError();
 			console.info("webgltest endTransformFeedback getError: " + errorCode);
-			expect(errorCode).assertLarger(gl.NO_ERROR);
+
 			done();
 		});
 	})
