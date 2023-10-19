@@ -11,11 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
-
 group("commonlibrary") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "crossplatform/commonlibraryLightWeightMapetstest:ActsCrossplatformLightWeightMapTest",
+      "crossplatform/commonlibraryLinkedListetstest:ActsCrossplatformLinkedListTest",
+      "crossplatform/commonlibraryprocessetstest:ActsCrossplatformProcessTest",
       "ets_utils:ets_utils",
       "toolchain:toolchain",
     ]
