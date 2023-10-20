@@ -254,26 +254,6 @@ napi_value ImagePixelMapNDKTest::GetIsEditable(napi_env env, napi_callback_info 
     return result;
 }
 
-napi_value ImagePixelMapNDKTest::IsStrideAlignment(napi_env env, napi_callback_info info)
-{
-    napi_value result = nullptr;
-    napi_get_undefined(env, &result);
-
-    NativePixelMap* native = getNativePixelMap(env, info);
-    if (native == nullptr) {
-        return result;
-    }
-
-    int32_t strideAlignment = NUM_0;
-    int32_t res = OH_PixelMap_IsStrideAlignment(native, &strideAlignment);
-    if (res != IMAGE_RESULT_SUCCESS) {
-        return result;
-    }
-
-    napi_create_int32(env, strideAlignment, &result);
-    return result;
-}
-
 napi_value ImagePixelMapNDKTest::IsSupportAlpha(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
