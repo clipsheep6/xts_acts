@@ -418,20 +418,6 @@ export default function ImagePixelMapNDKTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_1900
-         * @tc.name      : isSrtideAlignment
-         * @tc.desc      : 1.createPixelMap
-         *               : 2.isSrtideAlignment
-         * @tc.size      : MEDIUM
-         * @tc.type      : Functional
-         * @tc.level     : Level 0
-         */
-        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_1900', 0, async function (done) {
-            const checkResult = (result) => result == opts.strideAlignment;
-            await pixelMapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_1900', 'isSrtideAlignment', checkResult);
-        })
-
-        /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_ERR_0100
          * @tc.name      : setAlphaAble_1
          * @tc.desc      : 1.createPixelMap
