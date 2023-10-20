@@ -266,7 +266,7 @@ export default function imagePixelMapFramework() {
             }
         }
 
-        async function isStrideAlignmentTest(done, testNum, imageData, decodingOptions) {
+        async function isStrideAlignmentTest(done, testNum, imageData, result) {
             let logger = loger(testNum)
             try {
                 var sourceOptions = { sourceDensity: 120 };
@@ -280,7 +280,7 @@ export default function imagePixelMapFramework() {
                         globalpixelmap = pixelMap;
                         let ret = pixelMap.isStrideAlignment();
                         logger.log("isStrideAlignment " + ret);
-                        expect(decodingOptions == true && decodingOptions == false).assertTrue();
+                        expect(ret == result).assertTrue();
                         done();
                     } else {
                         logger.log('creat pixelMap failed ');
@@ -1943,8 +1943,8 @@ export default function imagePixelMapFramework() {
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0100', 0, async function (done) {
             var imageData = testPng.buffer;
-            let decodingOptions = { isEditable: false };
-            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0100', imageData, decodingOptions)
+            let result = false;
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0100', imageData, result)
         })
         
         /**
@@ -1959,8 +1959,8 @@ export default function imagePixelMapFramework() {
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', 0, async function (done) {
             var imageData = testJpg.buffer;
-            let decodingOptions = { isEditable: true };
-            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', imageData, decodingOptions)
+            let result = true;
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', imageData, result)
         })
     })
 }
