@@ -280,7 +280,7 @@ export default function imagePixelMapFramework() {
                         globalpixelmap = pixelMap;
                         let ret = pixelMap.isStrideAlignment();
                         logger.log("isStrideAlignment " + ret);
-                        expect(decodingOptions ? (ret == true) : (ret == false)).assertTrue();
+                        expect(decodingOptions == true && decodingOptions == false).assertTrue();
                         done();
                     } else {
                         logger.log('creat pixelMap failed ');
