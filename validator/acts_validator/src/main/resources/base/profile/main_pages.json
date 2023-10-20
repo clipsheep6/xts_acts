@@ -62,6 +62,10 @@
     "pages/Player/PlayVideo",
     "pages/Player/PlayAudioList",
     "pages/Player/PlayVideoList",
-    "pages/model/FloatBall"
+    "pages/model/FloatBall",
+    "pages/Sensor/Sensor_index",
+    "pages/Sensor/SensorAccelerometer",
+    "pages/Sensor/SensorColor",
+    "pages/Sensor/SensorSar"
   ]
 }
