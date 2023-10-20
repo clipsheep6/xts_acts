@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef IMAGE_SOURCE_RAW_FILE_NDK_TEST_H
-#define IMAGE_SOURCE_RAW_FILE_NDK_TEST_H
+#ifndef IMAGE_SOURCE_RAW_FILE_TEST_H
+#define IMAGE_SOURCE_RAW_FILE_TEST_H
 
 #include "napi/native_api.h"
 #include "image_source_mdk.h"
@@ -29,4 +29,4 @@ private:
 };
 } // namespace Media
 } // namespace OHOS
-#endif // IMAGE_SOURCE_RAW_FILE_NDK_TEST_H
+#endif // IMAGE_SOURCE_RAW_FILE_TEST_H

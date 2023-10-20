@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "image_source_raw_file_ndk_test.h"
+#include "image_source_raw_file_test.h"
 #include "node_api.h"
 #include <cstdlib>
 #include "hilog/log.h"
