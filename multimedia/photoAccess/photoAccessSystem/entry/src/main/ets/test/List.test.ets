@@ -29,7 +29,10 @@ import trashAssetsTest from './deleteAssets'
 import setUserCommentTest from './setUserComment'
 import getPhotoIndexTest from './getPhotoIndex'
 import setPendingTest from './setPending'
+import editTest from './editTest'
 import getPhotoAccessHelperAsyncTest from './getPhotoAccessHelperAsync'
+import editTestWithoutPermission from './editTestWithoutPermission'
+import setPendingWithoutPermission from './setPendingWithoutPermission'
 
 export default function testsuite () {
   getPhotoAccessHelperAsyncTest()
@@ -49,4 +52,7 @@ export default function testsuite () {
   setUserCommentTest()
   getPhotoIndexTest()
   setPendingTest()
+  editTest()
+  editTestWithoutPermission()
+  setPendingWithoutPermission()
 }
