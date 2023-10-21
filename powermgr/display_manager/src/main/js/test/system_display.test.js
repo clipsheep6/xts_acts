@@ -168,6 +168,76 @@ export default async function SystemDisplayTest() {
         });
 
         /**
+         * @tc.number system_display_js_0204
+         * @tc.name set_value_continuous_success
+         * @tc.desc Set brightness continuously success
+         */
+        it('set_value_continuous_success', 0, async function (done) {
+            brightness.setKeepScreenOn({
+                keepScreenOn: true,
+                success: function () {
+                    console.log('handling set keep screen on success.');
+                    brightness.setValue({
+                        value: 50,
+                        continunous: true,
+                        success: function () {
+                            console.log('set_value_continuous_success true success.');
+                            expect(true).assertTrue();
+                            done();
+                        },
+                        fail: function () {
+                            console.log('set_value_continuous_success true fail.');
+                            expect().assertFail();
+                            done();
+                        }
+                    });
+                },
+                fail: function (data, code) {
+                    console.error('handling set keep screen on fail, code:' + code + ', data: ' + data);
+                    done();
+                },
+                complete: function () {
+                    console.error('handling set keep screen on complete.');
+                }
+            });
+        });
+
+        /**
+         * @tc.number system_display_js_0205
+         * @tc.name set_value_continuous_success
+         * @tc.desc Set brightness continuously success
+         */
+        it('set_value_continuous_success', 0, async function (done) {
+            brightness.setKeepScreenOn({
+                keepScreenOn: true,
+                success: function () {
+                    console.log('handling set keep screen on success.');
+                    brightness.setValue({
+                        value: 50,
+                        continuous: false,
+                        success: function () {
+                            console.log('set_value_continuous_success false success.');
+                            expect(true).assertTrue();
+                            done();
+                        },
+                        fail: function () {
+                            console.log('set_value_continuous_success false fail.');
+                            expect().assertFail();
+                            done();
+                        }
+                    });
+                },
+                fail: function (data, code) {
+                    console.error('handling set keep screen on fail, code:' + code + ', data: ' + data);
+                    done();
+                },
+                complete: function () {
+                    console.error('handling set keep screen on complete.');
+                }
+            });
+        });
+
+        /**
          * @tc.number system_display_js_0300
          * @tc.name get_mode_success
          * @tc.desc Get mode success
