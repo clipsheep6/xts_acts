@@ -86,7 +86,7 @@ export default function swiperCurveJsunit() {
      */
     it('testswiperCurve0003', 0, async function (done) {
       console.info('swiperCurve testswiperCurve0003 START');
-      await Utils.sleep(2000);
+      await Utils.sleep(4000);
       let strJson = getInspectorByKey('swiper');
       console.info("[testswiperCurve0003] component index strJson:" + strJson);
       let obj = JSON.parse(strJson);
