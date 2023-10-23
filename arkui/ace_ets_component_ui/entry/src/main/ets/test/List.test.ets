@@ -93,6 +93,8 @@ import StorageProp22Jsunit from './State/StorageProp22Jsunit.test.ets'
 import StorageProp25Jsunit from './State/StorageProp25Jsunit.test.ets'
 import StorageProp26Jsunit from './State/StorageProp26Jsunit.test.ets'
 import swiperAnimationJsunit from './swiperAnimationJsunit.test.ets'
+import CustomDialogSafeAreaJsunit from './CustomDialogSafeAreaJsunit.test.ets'
+import CustomDialogAlignmentJsunit from './CustomDialogAlignmentJsunit.test.ets'
 import StateNumberJsunit from './State/StateNumberJsunit.test.ets';
 import StateArrayJsunit from './State/StateArrayJsunit.test.ets';
 import StateClassObjectJsunit from './State/StateClassObjectJsunit.test.ets';
@@ -239,6 +241,8 @@ export default function testsuite() {
   StorageProp25Jsunit();
   StorageProp26Jsunit();
   swiperAnimationJsunit();
+  CustomDialogSafeAreaJsunit();
+  CustomDialogAlignmentJsunit();
   StateNumberJsunit();
   StateArrayJsunit();
   StateClassObjectJsunit();
