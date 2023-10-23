@@ -19,13 +19,13 @@ usage()
 {
     echo
     echo "USAGE"
-    echo "       ./runtest.sh device=IP:PORT serial=[SERIAL_NUMBER] [module=MODULE_NAME] [test=TEST] [runonly=RUN_ONLY]"
-    echo "                  First, you must be execute stf/start.bat in the windows which connected a device."
+    echo "       ./runtest.sh device=IP:PORT serial=[SERIAL_NUMBER] [module=MODULE_NAME] [test=TEST] [run_only=RUN_ONLY]"
+    echo "                  Firstly, you must execute stf/start.bat in the windows which connected to a device."
     echo "                  target_platform : TARGET_PLATFORM the target platform, such as phone or ivi; Default to phone"
     echo "                  device    : IP:PORT  the host ip:port of the connected device."
     echo "                  module    : MODULE_NAME name of the module to run. Run all modules by default."
     echo "                  test      : TEST_NAME name of the test to run. Run all tests by default. This should be a FULL-QUALIFIED className or methodName."
-    echo "                  runonly   : RUN_ONLY TRUE=not build, only runtest; FALSE=build and runtest. FALSE by default."
+    echo "                  run_only  : RUN_ONLY TRUE=not build, only runtest; FALSE=build and runtest. FALSE by default."
     echo
     exit 1
 }
@@ -66,7 +66,7 @@ parse_cmdline()
                          ;;
         device)          DEVICE_SN="$DEVICE_SN;$PARAM"
                          ;;
-        runonly)         RUN_ONLY=$(echo $PARAM |tr [a-z] [A-Z])
+        run_only)        RUN_ONLY=$(echo $PARAM |tr [a-z] [A-Z])
                          ;;
         *)   usage
              break;;
