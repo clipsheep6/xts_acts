@@ -224,7 +224,7 @@ export default function imagePixelMapFramework() {
                     if (pixelMap != undefined) {
                         globalpixelmap = pixelMap;
                         if (number == 1) {
-                            await checkStridePixelmap(done, logger, stridePixelMap)
+                            await checkStridePixelmap(done, logger, pixelMap)
                         } else {
                             logger.log('stride != number');
                             expect(false).assertTrue();
