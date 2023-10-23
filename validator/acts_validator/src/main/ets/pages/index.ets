@@ -339,11 +339,11 @@ struct IndexPage {
     /**
      * Sensor 传感器
      */
-    let OP6 = fs.openSync(path55, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let OP6 = fs.openSync(path66, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let buf6 = new ArrayBuffer(40960);
     fs.readSync(OP6.fd,buf6);
-    ExperienceReport = String.fromCharCode.apply(null, new Uint8Array(buf6));
-    let str6 = ExperienceReport.split(";");
+    SensorReport = String.fromCharCode.apply(null, new Uint8Array(buf6));
+    let str6 = SensorReport.split(";");
     let title6 = [];
     let result6 = [];
     for (let i = 0; i < Math.floor(str6.length / 2); i++) {
@@ -473,23 +473,23 @@ struct IndexPage {
     /**
      * Sensor
      */
-    let SensorFailIndex = PlayerReport.indexOf('false');
+    let SensorFailIndex = SensorReport.indexOf('false');
     let SensorFailNum = 0;
     while (SensorFailIndex != -1) {
-      console.log(PlayerFailIndex);
-      PlayerFailNum++;
-      PlayerFailIndex = PlayerReport.indexOf('false',PlayerFailIndex + 1);
+      console.log(SensorFailIndex);
+      SensorFailNum++;
+      SensorFailIndex = SensorReport.indexOf('false',SensorFailIndex + 1);
     }
-    let sensorFailNum = (PlayerFailNum).toString();
-    let SensorPassIndex = PlayerReport.indexOf('true ');
+    let sensorFailNum = (SensorFailNum).toString();
+    let SensorPassIndex = SensorReport.indexOf('true ');
     let SensorPassNum = 0;
     while (SensorPassIndex != -1) {
-      console.log(PlayerPassIndex);
-      PlayerPassNum++;
-      PlayerPassIndex = PlayerReport.indexOf('true ',PlayerPassIndex + 1);
+      console.log(SensorPassIndex);
+      SensorPassNum++;
+      SensorPassIndex = SensorReport.indexOf('true ',SensorPassIndex + 1);
     }
     let SensorTestNum = SensorFailNum + SensorPassNum;
-    let sensorTestNum = (PlayerTestNum).toString();
+    let sensorTestNum = (SensorTestNum).toString();
 
     let arrayBuffer = new ArrayBuffer(40960);
     let bufView = new DataView(arrayBuffer);
@@ -638,7 +638,7 @@ struct IndexPage {
      * Sensor
      */
     serializer.startElement("testsuite");
-    serializer.setAttributes("name", "ActsExperienceTest");
+    serializer.setAttributes("name", "ActsSensorTest");
     serializer.setAttributes("time", "*");
     serializer.setAttributes("errors", "0");
     serializer.setAttributes("disabled", "0");
@@ -652,7 +652,7 @@ struct IndexPage {
       serializer.setAttributes("name", String(title6[i]));
       serializer.setAttributes("status", "run");
       serializer.setAttributes("time", "*");
-      serializer.setAttributes("classname", "ActsExperienceTest");
+      serializer.setAttributes("classname", "ActsSensorTest");
       serializer.setAttributes("result", String(result6[i]));
       serializer.setAttributes("level", "*");
       serializer.setAttributes("message", "*");

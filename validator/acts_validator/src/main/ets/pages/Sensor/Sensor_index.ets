@@ -60,10 +60,10 @@ struct IndexPage {
     await promise.then((object) => {
       preferences = object;
     });
-    promise = preferences.get('Player', 0);
+    promise = preferences.get('Sensor', 0);
     await promise.then((data) => {
       Test = data;
-      console.info("Succeeded in getting value of 'Player'. Data: " + data);
+      console.info("Succeeded in getting value of 'Sensor'. Data: " + data);
     });
 
     if (Test != 1) {
@@ -74,9 +74,9 @@ struct IndexPage {
       }
       fs.closeSync(fd);
     }
-    promise = preferences.put('Player', 1);
+    promise = preferences.put('Sensor', 1);
     promise.then(() => {
-      console.info("Succeeded in putting value of 'Player'.");
+      console.info("Succeeded in putting value of 'Sensor'.");
     });
     promise = preferences.flush();
     promise.then(() => {
@@ -331,7 +331,7 @@ struct IndexPage {
       let serializer = new xml.XmlSerializer(bufView);
       serializer.setDeclaration();
       serializer.startElement("testsuite");
-      serializer.setAttributes("name", "ActsPlayerTest");
+      serializer.setAttributes("name", "ActsSensorTest");
       serializer.setAttributes("time", "*");
       serializer.setAttributes("errors", "0");
       serializer.setAttributes("disabled", "0");
@@ -339,13 +339,13 @@ struct IndexPage {
       serializer.setAttributes("ignored", "0");
       serializer.setAttributes("tests", testNum);
       serializer.setAttributes("message", "*");
-      serializer.setAttributes("modulename", "ActsPlayerTest");
+      serializer.setAttributes("modulename", "ActsSensorTest");
       for (let i = 0; i < title.length; i++) {
         serializer.startElement("testcase");
         serializer.setAttributes("name", String(title[i]));
         serializer.setAttributes("status", "run");
         serializer.setAttributes("time", "*");
-        serializer.setAttributes("classname", "ActsPlayerTest");
+        serializer.setAttributes("classname", "ActsSensorTest");
         serializer.setAttributes("result", String(result[i]));
         serializer.setAttributes("level", "*");
         serializer.setAttributes("message", "*");
