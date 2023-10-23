@@ -197,6 +197,57 @@ export default function imagePixelMapFramework() {
             }
         }
 
+
+        async function checkStridePixelmap(done, logger, stridePixelMap) {
+            logger.log("StridePixelMap " + stridePixelMap);
+            if (stridePixelMap != undefined) {
+                globalpixelmap = stridePixelMap;
+                var imageInfo = await stridePixelMap.getImageInfo();
+                logger.log("StridePixelMap pixelformat " + imageInfo.pixelFormat);
+                expect(imageInfo.stride == 1).assertTrue();
+                done();
+            } else {
+                logger.log('creat stridePixelMap failed');
+                expect(false).assertTrue();
+                done();
+            }
+        }
+        async function createStridePixelmapTest(done, testNum, imageData, number) {
+            let logger = loger(testNum)
+            try {
+                let imageSource = image.createImageSource(imageData);
+                logger.log("ImageSource " + (imageSource != undefined));
+                if (imageSource != undefined) {
+                    globalImagesource = imageSource;
+                    let pixelMap = await imageSource.createPixelMap();
+                    logger.log("PixelMap " + pixelMap);
+                    if (pixelMap != undefined) {
+                        globalpixelmap = pixelMap;
+                        if (number == 1) {
+                            await checkStridePixelmap(done, logger, stridePixelMap)
+                        } else {
+                            logger.log('stride != number');
+                            expect(false).assertTrue();
+                            done();
+                            
+                        }
+                    } else {
+                        logger.log('creat pixelMap failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else {
+                    logger.log('creat ImageSource failed');
+                    expect(false).assertTrue();
+                    done();
+                }
+            } catch (error) {
+                logger.log('failed ' + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+
         async function getDensityTest(done, testNum, imageData, decodingOptions) {
             let logger = loger(testNum)
             try {
@@ -1961,6 +2012,40 @@ export default function imagePixelMapFramework() {
             var imageData = testJpg.buffer;
             let result = true;
             await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', imageData, result)
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100
+         * @tc.name      : createStridePixelmap
+         * @tc.desc      : 1.create imagesource
+         *               : 2.create pixelmap
+         *               : 3.create StridePixelmap
+         *               : 4.call getImageInfo
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', 0, async function (done) {
+            var imageData = testPng.buffer;
+            let result = 1;
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', imageData, result)
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200
+         * @tc.name      : createStridePixelmap
+         * @tc.desc      : 1.create imagesource
+         *               : 2.create pixelmap
+         *               : 3.create StridePixelmap
+         *               : 4.call getImageInfo
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let result = 1;
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', imageData, result)
         })
     })
 }
