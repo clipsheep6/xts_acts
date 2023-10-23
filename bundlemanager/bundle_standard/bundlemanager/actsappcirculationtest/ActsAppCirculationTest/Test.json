@@ -1,0 +1,51 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actsappcirculationtest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "10000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir /data/haptest",
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D",
+                "setenforce 0"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAppCirculationBaseRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationBaseRely.hap",
+                "ActsAppCirculationBaseWithoutAppIdentifierRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap",
+                "ActsAppCirculationDiffAppIdModuleUpdateRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationDiffAppIdModuleUpdateRely.hap",
+                "ActsAppCirculationDiffAppIdUpdateRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationDiffAppIdUpdateRely.hap",
+                "ActsAppCirculationDiffIdUpdateRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationDiffIdUpdateRely.hap",
+                "ActsAppCirculationDiffModuleIdUpdateRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationDiffModuleIdUpdateRely.hap",
+                "ActsAppCirculationDiffModuleUpdateRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationDiffModuleUpdateRely.hap",
+                "ActsAppCirculationUpdateRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationUpdateRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap",
+                "ActsAppCirculationSameVersionEntryRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/haptest/ActsAppCirculationSameVersionEntryRely.hap",
+                "ActsAppCirculationSameVersionFeatureRely.hap->/data/app/el2/100/base/ohos.bundle.installer.test/haps/entry/files/haptest/ActsAppCirculationSameVersionFeatureRely.hap"
+            ]
+        },
+		{
+            "test-file-name": [
+                "ActsAppCirculationTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
