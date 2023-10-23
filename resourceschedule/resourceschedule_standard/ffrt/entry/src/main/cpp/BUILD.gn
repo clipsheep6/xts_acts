@@ -52,6 +52,7 @@ ohos_shared_library("ffrtndk") {
 
   deps = [
     "../../../../../../../../../../foundation/resourceschedule/ffrt:ffrt_ndk",
+    "//third_party/bounds_checking_function:libsec_shared",
   ]
 
   output_extension = "so"
