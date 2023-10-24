@@ -197,6 +197,60 @@ export default function imagePixelMapFramework() {
             }
         }
 
+
+        async function checkStridePixelmap(done, logger, stridePixelMap) {
+            logger.log("StridePixelMap " + stridePixelMap);
+            if (stridePixelMap != undefined) {
+                globalpixelmap = stridePixelMap;
+                var imageInfo = await stridePixelMap.getImageInfo();
+                logger.log("StridePixelMap pixelformat " + imageInfo.pixelFormat);
+                expect(imageInfo.stride == 1).assertTrue();
+                logger.log("stride " + imageInfo.stride);
+                done();
+            } else {
+                logger.log('creat stridePixelMap failed');
+                expect(false).assertTrue();
+                done();
+            }
+        }
+        async function createStridePixelmapTest(done, testNum, imageData, number) {
+            let logger = loger(testNum)
+            logger.log("number " + number);
+            try {
+                let imageSource = image.createImageSource(imageData);
+                logger.log("ImageSource " + (imageSource != undefined));
+                if (imageSource != undefined) {
+                    globalImagesource = imageSource;
+                    let pixelMap = await imageSource.createPixelMap();
+                    logger.log("PixelMap " + pixelMap);
+                    if (pixelMap != undefined) {
+                        globalpixelmap = pixelMap;
+                        if (number == 1) {
+                            logger.log("number " + number);
+                            await checkStridePixelmap(done, logger, pixelMap)
+                        } else {
+                            logger.log('stride != number');
+                            expect(false).assertTrue();
+                            done();
+                            
+                        }
+                    } else {
+                        logger.log('creat pixelMap failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else {
+                    logger.log('creat ImageSource failed');
+                    expect(false).assertTrue();
+                    done();
+                }
+            } catch (error) {
+                logger.log('failed ' + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+
         async function getDensityTest(done, testNum, imageData, decodingOptions) {
             let logger = loger(testNum)
             try {
@@ -248,6 +302,40 @@ export default function imagePixelMapFramework() {
                         density = pixelMap.getDensity();
                         logger.log("Density2 " + density);
                         expect(density == 360).assertTrue();
+                        done();
+                    } else {
+                        logger.log('creat pixelMap failed ');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                } else {
+                    logger.log('creat imageSource failed ');
+                    expect(false).assertTrue();
+                    done();
+                }
+            } catch (error) {
+                logger.log('failed ' + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+
+        async function getIsStrideAlignmentTest(done, testNum, imageData, result) {
+            let logger = loger(testNum)
+            logger.log("result" + result);
+            try {
+                var sourceOptions = { sourceDensity: 120 };
+                let imageSource = image.createImageSource(imageData, sourceOptions);
+                logger.log("ImageSource " + (imageSource != undefined));
+                if (imageSource != undefined) {
+                    globalImagesource = imageSource;
+                    let pixelMap = await imageSource.createPixelMap();
+                    logger.log("PixelMap " + pixelMap);
+                    if (pixelMap != undefined) {
+                        globalpixelmap = pixelMap;
+                        let ret = pixelMap.getIsStrideAlignment();
+                        logger.log("getIsStrideAlignment " + ret);
+                        expect(ret == result).assertTrue();
                         done();
                     } else {
                         logger.log('creat pixelMap failed ');
@@ -1896,6 +1984,72 @@ export default function imagePixelMapFramework() {
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_OPACITY_CALLBACK_ERROR_ALPHA_0400', 0, async function (done) {
             opacityErr(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_OPACITY_CALLBACK_ERROR_ALPHA_0400', 2, 'callback')
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_GETISSTRIDEALIGNMENT_0100
+         * @tc.name      : getIsStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with getIsStrideAlignment
+         *               : 3.getIsStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_GETISSTRIDEALIGNMENT_0100', 0, async function (done) {
+            var imageData = testPng.buffer;
+            let result = false;
+            await getIsStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_GETISSTRIDEALIGNMENT_0100', imageData, result)
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_GETISSTRIDEALIGNMENT_0200
+         * @tc.name      : getIsStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with getIsStrideAlignment
+         *               : 3.getIsStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_GETISSTRIDEALIGNMENT_0200', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let result = true;
+            await getIsStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_GETISSTRIDEALIGNMENT_0200', imageData, result)
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100
+         * @tc.name      : createStridePixelmap
+         * @tc.desc      : 1.create imagesource
+         *               : 2.create pixelmap
+         *               : 3.create StridePixelmap
+         *               : 4.call getImageInfo
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', 0, async function (done) {
+            var imageData = testPng.buffer;
+            let number = 1;
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', imageData, number)
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200
+         * @tc.name      : createStridePixelmap
+         * @tc.desc      : 1.create imagesource
+         *               : 2.create pixelmap
+         *               : 3.create StridePixelmap
+         *               : 4.call getImageInfo
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let number = 1;
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', imageData, number)
         })
     })
 }
