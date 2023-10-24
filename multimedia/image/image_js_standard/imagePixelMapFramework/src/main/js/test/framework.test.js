@@ -2027,8 +2027,8 @@ export default function imagePixelMapFramework() {
          */
          it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', 0, async function (done) {
             var imageData = testPng.buffer;
-            let result = 1;
-            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', imageData, result)
+            let number = 1;
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', imageData, number)
         })
         
         /**
@@ -2044,8 +2044,8 @@ export default function imagePixelMapFramework() {
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', 0, async function (done) {
             var imageData = testJpg.buffer;
-            let result = 1;
-            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', imageData, result)
+            let number = 1;
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', imageData, number)
         })
     })
 }
