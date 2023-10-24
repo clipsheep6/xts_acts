@@ -2457,11 +2457,11 @@ export default function window_test() {
                         wnd.setKeepScreenOn(true).then(() => {
                             console.log(msgStr + ' setKeepScreenOn(true) success ');
                             wnd.getProperties().then(data => {
-                                expect(data.touchable).assertTrue();
+                                expect(data.isKeepScreenOn).assertTrue();
                                 wnd.setKeepScreenOn(false).then(() => {
                                     console.log(msgStr + ' setKeepScreenOn(false) success ');
                                     wnd.getProperties().then(data => {
-                                        expect(!data.touchable).assertTrue();
+                                        expect(!data.isKeepScreenOn).assertTrue();
                                     }, (err) => {
                                         console.log(msgStr + ' getProperties failed: err' + JSON.stringify(err));
                                         expect().assertFail();
