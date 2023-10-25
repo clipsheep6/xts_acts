@@ -222,6 +222,11 @@
         "MainAbility/pages/textAenEnabled",
         "MainAbility/pages/textChangeEnabled",
         "MainAbility/pages/menuEnabled",
+        "MainAbility/pages/scroll1",
+        "MainAbility/pages/scroll2",
+        "MainAbility/pages/scrollGrid",
+        "MainAbility/pages/scrollList",
+        "MainAbility/pages/scrollList2",
         "MainAbility/pages/gestureEnabled"
     ]
 }

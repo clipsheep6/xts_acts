@@ -155,6 +155,11 @@ import textAenEnabledJsunit from './textAenEnabledJsunit.test.ets';
 import textChangeEnabledJsunit from './textChangeEnabledJsunit.test.ets';
 import menuEnabledJsunit from './menuEnabledJsunit.test.ets';
 import gestureEnabledJsunit from './gestureEnabledJsunit.test.ets'
+import scroll1 from './scroll1.test.ets';
+import scroll2 from './scroll2.test.ets';
+import scrollGrid from './scrollGrid.test.ets';
+import scrollList from './scrollList.test.ets';
+import scrollList2 from './scrollList2.test.ets';
 
 
 
@@ -301,4 +306,9 @@ export default function testsuite() {
   textChangeEnabledJsunit();
   menuEnabledJsunit();
   gestureEnabledJsunit();
+  scroll1()
+  scroll2()
+  scrollGrid()
+  scrollList()
+  scrollList2()
 }
