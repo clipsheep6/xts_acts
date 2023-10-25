@@ -45,8 +45,7 @@ export default function link1() {
       await CommonFunc.sleep(1000);
       router.back()
     });
-
-
+    
     it('link1_0100', 0, async function (done) {
       console.info('link1_0100 START');
       let driver = await UiDriver.create()
