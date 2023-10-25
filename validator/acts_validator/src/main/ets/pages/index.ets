@@ -212,6 +212,7 @@ struct IndexPage {
     fs.unlinkSync(PlayerAudioTxtPath);
     fs.unlinkSync(PlayerVideoTxtPath);
     fs.unlinkSync(path55);
+    fs.unlinkSync(path66);
     fs.unlinkSync(ArkUIColorBackPath);
     fs.unlinkSync(AudioColorBackPath);
     fs.unlinkSync(CameraColorBackPath);
@@ -219,6 +220,7 @@ struct IndexPage {
     fs.unlinkSync(PlayerAudioColorBackPath);
     fs.unlinkSync(PlayerVideoColorBackPath);
     fs.unlinkSync(ExperienceColorBackPath);
+    fs.unlinkSync(SensorColorBackPath);
     fs.rmdirSync(picturePath);
     fs.mkdirSync(picturePath);
     fs.rmdirSync(ExperienceDataPath);
@@ -232,6 +234,7 @@ struct IndexPage {
     fs.openSync(PlayerAudioTxtPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(PlayerVideoTxtPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(path55, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    fs.openSync(path66, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(ArkUIColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(AudioColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(CameraColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -239,6 +242,7 @@ struct IndexPage {
     fs.openSync(PlayerAudioColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(PlayerVideoColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.openSync(ExperienceColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    fs.openSync(SensorColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     FlushData.ResetArkUI();
     FlushData.ResetAudio();
     FlushData.ResetCamera();
@@ -246,6 +250,7 @@ struct IndexPage {
     FlushData.ResetExperience();
     FlushData.ResetPlayerAudio();
     FlushData.ResetPlayerVideo();
+    FlushData.ResetSensor();
   }
   SaveXml() {
     let dateTimeUtil = new DateTimeUtil();

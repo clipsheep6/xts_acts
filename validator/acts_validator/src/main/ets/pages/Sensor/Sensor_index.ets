@@ -282,8 +282,7 @@ struct IndexPage {
       let log = (this.TestCaseList[i].title + ';' + 'none ' + ';').toString();
       fs.writeSync(fd.fd, log);
     }
-    FlushData.ResetPlayerAudio();
-    FlushData.ResetPlayerVideo();
+    FlushData.ResetSensor();
   }
 
   ReadTextParseXml() {

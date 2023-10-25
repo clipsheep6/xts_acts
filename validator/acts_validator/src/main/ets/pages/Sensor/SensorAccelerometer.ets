@@ -26,10 +26,10 @@ struct SensorAccelerometer {
   @State FillColor: string = '#FF000000';
   @State name: string = 'SensorAccelerometer';
   @State StepTips: string = '测试目的：用于测试本机传感器\n-确定是否有加速度传感器\n-点击开启关闭对传感器进行操作' + '\n' + '预期结果：操作后传感器数据显示表现一致';
-  private tag: string = 'Sensor Accelerometer'
-  @State Vue: boolean = false
-  @State isSensor: boolean = undefined
-  @State sensorChange: boolean = false
+  private tag: string = 'Sensor Accelerometer';
+  @State Vue: boolean = false;
+  @State isSensor: boolean = undefined;
+  @State sensorChange: boolean = false;
   @State dataX: number = 0;
   @State dataY: number = 0;
   @State dataZ: number = 0;
@@ -72,13 +72,12 @@ struct SensorAccelerometer {
     }
   }
 
-  onPageShow() {
-    // this.cameraInit()
-  }
-
   onPageHide() {
-    // CameraService.releaseCamera()
-    Logger.info(this.tag, 'onPageHide releaseCamera end')
+    // 关闭传感器
+    setTimeout(() => {
+      sensor.off(sensor.SensorId.ACCELEROMETER);
+    }, 100);
+    Logger.info(this.tag, 'onPageHide releaseSensor end');
   }
 
   build() {
@@ -90,7 +89,7 @@ struct SensorAccelerometer {
         .onClick(() => {
           router.back({
             url: 'pages/Sensor/Sensor_index',
-            params: { result: 'None', }
+            params: { result: 'None' }
           })
         })
 
@@ -128,10 +127,10 @@ struct SensorAccelerometer {
               .fontSize('16fp').fontColor(Color.White).margin('20fp')
             Row() {
               Button(this.sensorChange ? '关闭' : '开启').onClick(() => {
-                this.openAccelerometer()
+                this.openAccelerometer();
               })
               Button('无加速度传感器').onClick(() => {
-                this.Vue = true
+                this.Vue = true;
               })
             }.justifyContent(FlexAlign.SpaceEvenly).width('100%').margin('20fp')
           }
@@ -153,7 +152,7 @@ struct SensorAccelerometer {
 
   onBackPress() {
     router.replaceUrl({
-      url: 'pages/Sensor/Sensor_index',
+      url: 'pages/Sensor/Sensor_index'
     })
   }
 }
