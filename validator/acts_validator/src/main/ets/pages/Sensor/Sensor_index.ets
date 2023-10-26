@@ -271,8 +271,6 @@ struct IndexPage {
     fs.rmdirSync(path1);
     fs.mkdirSync(path1);
     fs.openSync(AccelerometerTxtPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    fs.openSync(ColorTxtPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    fs.openSync(SarTxtPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let fd = fs.openSync(ColorBackPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     for (let i = 0; i < this.TestCaseList.length; i++) {
       let log = (this.TestCaseList[i].title + ';' + 'none ' + ';').toString();
