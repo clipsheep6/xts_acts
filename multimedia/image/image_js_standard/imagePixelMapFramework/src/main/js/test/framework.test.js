@@ -215,7 +215,7 @@ export default function imagePixelMapFramework() {
             }
         }
         async function createStridePixelmapTest(done, testNum, imageData) {
-            let logger = loger(testNum)
+            let logger = loger(testNum);
             try {
                 let imageSource = image.createImageSource(imageData);
                 logger.log("ImageSource " + (imageSource != undefined));
