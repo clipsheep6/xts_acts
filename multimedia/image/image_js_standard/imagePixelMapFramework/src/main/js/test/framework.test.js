@@ -226,11 +226,6 @@ export default function imagePixelMapFramework() {
                     if (pixelMap != undefined) {
                         globalpixelmap = pixelMap;
                         await checkStridePixelmap(done, logger, pixelMap)
-                        } else {
-                            expect(false).assertTrue();
-                            done();  
-                        }
-                    } else {
                         logger.log('creat pixelMap failed');
                         expect(false).assertTrue();
                         done();
