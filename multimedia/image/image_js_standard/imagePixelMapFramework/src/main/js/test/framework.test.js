@@ -204,10 +204,9 @@ export default function imagePixelMapFramework() {
                 globalpixelmap = stridePixelMap;
                 var imageInfo = await stridePixelMap.getImageInfo();
                 logger.log("StridePixelMap pixelformat " + imageInfo.pixelFormat);
+                logger.log("imageInfo.width " + imageInfo.width);
                 logger.log("imageInfo.stride " + imageInfo.stride);
-                logger.log("stride " + stride);
-                expect(imageInfo.stride == 1).assertTrue();
-                logger.log("stride " + imageInfo.stride);
+                expect(imageInfo.stride == width*4).assertTrue();
                 done();
             } else {
                 logger.log('creat stridePixelMap failed');
@@ -215,9 +214,8 @@ export default function imagePixelMapFramework() {
                 done();
             }
         }
-        async function createStridePixelmapTest(done, testNum, imageData, number) {
+        async function createStridePixelmapTest(done, testNum, imageData) {
             let logger = loger(testNum)
-            logger.log("number " + number);
             try {
                 let imageSource = image.createImageSource(imageData);
                 logger.log("ImageSource " + (imageSource != undefined));
@@ -227,14 +225,10 @@ export default function imagePixelMapFramework() {
                     logger.log("PixelMap " + pixelMap);
                     if (pixelMap != undefined) {
                         globalpixelmap = pixelMap;
-                        if (number == 1) {
-                            logger.log("number " + number);
-                            await checkStridePixelmap(done, logger, pixelMap)
+                        await checkStridePixelmap(done, logger, pixelMap)
                         } else {
-                            logger.log('stride != number');
                             expect(false).assertTrue();
-                            done();
-                            
+                            done();  
                         }
                     } else {
                         logger.log('creat pixelMap failed');
@@ -2033,8 +2027,7 @@ export default function imagePixelMapFramework() {
          */
          it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', 0, async function (done) {
             var imageData = testPng.buffer;
-            let number = 1;
-            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', imageData, number)
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0100', imageData)
         })
         
         /**
@@ -2050,8 +2043,7 @@ export default function imagePixelMapFramework() {
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', 0, async function (done) {
             var imageData = testJpg.buffer;
-            let number = 1;
-            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', imageData, number)
+            await createStridePixelmapTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_CREATESTRIDEPIXELMAP_0200', imageData)
         })
     })
 }
