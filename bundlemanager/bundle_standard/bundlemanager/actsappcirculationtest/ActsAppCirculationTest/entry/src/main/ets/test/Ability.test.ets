@@ -57,7 +57,7 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0100', 0, async function (done) {
-     let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateRely.hap"];
+     let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateRely/ActsAppCirculationUpdateRely.hap"];
      console.log("Acts_AppCirculation_0100 start");
      bundle.getBundleInstallerSync().install(hapFilePaths,err => {
       console.log("Acts_AppCirculation_0100 install logFirst is : "+JSON.stringify(err));
@@ -77,14 +77,15 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0200', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
+      // let hapFilePaths = ["/data/test/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_0200 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
         console.log("Acts_AppCirculation_0200 install logFirst is : " + JSON.stringify(err));
         expect(err.code).assertEqual(0);
       })
       await sleep(timeOut);
-      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffModuleUpdateRely.hap"];
+      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffModuleUpdateRely/ActsAppCirculationDiffModuleUpdateRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0200 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -99,13 +100,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0300', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_0300 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err=> {
         console.log("Acts_AppCirculation_0300 install logFirst is : " + JSON.stringify(err));
         expect(err.code).assertEqual(0);
       });
-      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffIdUpdateRely.hap"];
+      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffIdUpdateRely/ActsAppCirculationDiffIdUpdateRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0300 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -120,13 +121,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0400', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_0400 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
         console.log("Acts_AppCirculation_0400 install logFirst is : " + JSON.stringify(err));
         expect(err.code).assertEqual(0);
       });
-      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffModuleIdUpdateRely.hap"];
+      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffModuleIdUpdateRely/ActsAppCirculationDiffModuleIdUpdateRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0400 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -141,13 +142,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0500', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_0500 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
         console.log("Acts_AppCirculation_0500 install logFirst is : " + JSON.stringify(err));
         expect(err.code).assertEqual(0);
       });
-      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffAppIdUpdateRely.hap"];
+      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffAppIdUpdateRely/ActsAppCirculationDiffAppIdUpdateRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0500 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -162,13 +163,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0600', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_0600 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
         console.log("Acts_AppCirculation_0600 install logFirst is : " + JSON.stringify(err));
         expect(err.code).assertEqual(0);
       });
-      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffAppIdModuleUpdateRely.hap"];
+      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffAppIdModuleUpdateRely/ActsAppCirculationDiffAppIdModuleUpdateRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0600 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -183,13 +184,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0700', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
       console.log("Acts_AppCirculation_0700 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_0700 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0700 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -204,13 +205,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_0800', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
       console.log("Acts_AppCirculation_0800 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_0800 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0800 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -226,12 +227,12 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0900', 0, async function (done) {
       console.log("Acts_AppCirculation_0900 start");
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_0900 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateRely/ActsAppCirculationUpdateRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_0900 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -246,13 +247,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_1000', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
       console.log("Acts_AppCirculation_1000 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1000 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffModuleUpdateRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffModuleUpdateRely/ActsAppCirculationDiffModuleUpdateRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_1000 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -276,13 +277,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_1100', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_1100 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1100 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierRely/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_1100 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -297,13 +298,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_1200', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_1200 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1200 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_1200 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -318,13 +319,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_1300', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
       console.log("Acts_AppCirculation_1300 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1300 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierRely/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1300 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -339,13 +340,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_1400', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap"];
       console.log("Acts_AppCirculation_1400 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1400 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_1400 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -360,13 +361,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_1900', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       console.log("Acts_AppCirculation_1900 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_1900 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffAppIdUpdateRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffAppIdUpdateRely/ActsAppCirculationDiffAppIdUpdateRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_1900 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -398,7 +399,7 @@ export default function abilityTest() {
         done();
         return;
       }
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_2000 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -417,7 +418,7 @@ export default function abilityTest() {
         expect().assertFail()
       });
       await sleep(1000);
-      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffIdUpdateRely.hap"];
+      let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/ActsAppCirculationDiffIdUpdateRely/ActsAppCirculationDiffIdUpdateRely.hap"];
       bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_2000 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
@@ -452,13 +453,13 @@ export default function abilityTest() {
      * @tc.level:1
      */
     it('Acts_AppCirculation_2400', 0, async function (done) {
-      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/haptest/ActsAppCirculationSameVersionEntryRely.hap"];
+      let hapFilePaths = ["/data/storage/el2/base/haps/entry/files/haptest/ActsAppCirculationSameVersionEntryRely/ActsAppCirculationSameVersionEntryRely.hap"];
       console.log("Acts_AppCirculation_2400 start");
       bundle.getBundleInstallerSync().install(hapFilePaths,err => {
           console.log("Acts_AppCirculation_2400 install logFirst is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
         });
-        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/haptest/ActsAppCirculationSameVersionFeatureRely.hap"];
+        let hapFilePaths2 = ["/data/storage/el2/base/haps/entry/files/haptest/ActsAppCirculationSameVersionFeatureRely/ActsAppCirculationSameVersionFeatureRely.hap"];
         bundle.getBundleInstallerSync().install(hapFilePaths2,err => {
           console.log("Acts_AppCirculation_2400 bundle logSecond is : " + JSON.stringify(err));
           expect(err.code).assertEqual(0);
