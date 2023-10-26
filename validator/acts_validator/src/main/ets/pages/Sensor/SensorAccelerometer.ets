@@ -25,14 +25,15 @@ import BusinessError from "@ohos.base";
 struct SensorAccelerometer {
   @State FillColor: string = '#FF000000';
   @State name: string = 'SensorAccelerometer';
-  @State StepTips: string = '测试目的：用于测试本机传感器\n-确定是否有加速度传感器\n-点击开启关闭对传感器进行操作' + '\n' + '预期结果：操作后传感器数据显示表现一致';
+  @State StepTips: string = '测试目的：用于测试本机传感器\n-确定是否有加速度传感器\n-点击开启按钮打开传感器,顺时针旋转90°'
+  + '\n-预期结果：操作后传感器X坐标分量在-1和1之间\n-Y坐标分量在9和10之间\n-Z坐标分量在-1和1之间';
   private tag: string = 'Sensor Accelerometer';
   @State Vue: boolean = false;
   @State isSensor: boolean = undefined;
   @State sensorChange: boolean = false;
-  @State dataX: number = 0;
-  @State dataY: number = 0;
-  @State dataZ: number = 0;
+  @State dataX: string = '';
+  @State dataY: string = '';
+  @State dataZ: string = '';
 
   async aboutToAppear() {
     await FirstDialog.ChooseDialog(this.StepTips, this.name)
@@ -40,20 +41,20 @@ struct SensorAccelerometer {
 
   openAccelerometer() {
     this.sensorChange = !this.sensorChange
-    if (this.dataX !== 0 && this.dataY !== 0 && this.dataZ !== 0) {
-      this.Vue = true;
-    }
     if (this.sensorChange) {
       // 打开加速度传感器
       Logger.info(this.tag, 'enter')
       try {
         sensor.on(1, (data: sensor.AccelerometerResponse) => {
           Logger.info(this.tag, 'Succeeded in invoking on. X-coordinate component: ' + data.x);
-          this.dataX = data.x;
+          this.dataX = data.x.toFixed(0);
           Logger.info(this.tag, 'Succeeded in invoking on. Y-coordinate component: ' + data.y);
-          this.dataY = data.y;
+          this.dataY = data.y.toFixed(0);
           Logger.info(this.tag, 'Succeeded in invoking on. Z-coordinate component: ' + data.z);
-          this.dataZ = data.z;
+          this.dataZ = data.z.toFixed(0);
+          if ((-1 <= data.x && data.x <= 1) && (9 <= data.y && data.y <= 10) && (-1 <= data.z && data.z <= 1)) {
+            this.Vue = true;
+          }
         }, { interval: 100000000 });
       } catch (error) {
         let e: BusinessError.BusinessError = error as BusinessError.BusinessError;

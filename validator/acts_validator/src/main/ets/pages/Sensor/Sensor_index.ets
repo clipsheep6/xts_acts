@@ -29,8 +29,6 @@ let VarColor = [];
 let ColorBackPath = path + '/SensorColorBack.txt';
 let txtPath = path1 + '/SensorReport.txt';
 let AccelerometerTxtPath = path1 + '/AccelerometerReport.txt';
-let ColorTxtPath = path1 + '/ColorReport.txt';
-let SarTxtPath = path1 + '/SarReport.txt';
 let xmlPath = path1 + '/SensorTest.xml';
 
 @Entry
@@ -42,9 +40,7 @@ struct IndexPage {
   @State result: string = '';
   @State TEST: number = 0;
   private TestCaseList = [
-    { title: 'SensorAccelerometer', uri: 'pages/Sensor/SensorAccelerometer' },
-    { title: 'SensorColor', uri: 'pages/Sensor/SensorColor' },
-    { title: 'SensorSar', uri: 'pages/Sensor/SensorSar' }
+    { title: 'SensorAccelerometer', uri: 'pages/Sensor/SensorAccelerometer' }
   ]
   @State ColorObject: Object[] = VarColor;
   @State ColorTrue: Object[] = [];
