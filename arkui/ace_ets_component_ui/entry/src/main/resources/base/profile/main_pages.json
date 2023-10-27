@@ -232,7 +232,7 @@
         "MainAbility/pages/Zhuang/state1",
         "MainAbility/pages/Zhuang/state2",
         "MainAbility/pages/Zhuang/ObjectLink1",
-        "MainAbility/pages/Zhuang/ObjectLink2"
+        "MainAbility/pages/Zhuang/ObjectLink2",
 		"MainAbility/pages/@state/ConsumeArray",
         "MainAbility/pages/@state/ConsumeArray1",
         "MainAbility/pages/@state/ConsumeColor",
