@@ -204,9 +204,7 @@ export default function imagePixelMapFramework() {
                 globalpixelmap = stridePixelMap;
                 var imageInfo = await stridePixelMap.getImageInfo();
                 logger.log("StridePixelMap pixelformat " + imageInfo.pixelFormat);
-                logger.log("imageInfo.size.width " + imageInfo.size.width);
-                logger.log("imageInfo.stride " + imageInfo.stride);
-                expect(imageInfo.stride == imageInfo.size.width*4).assertTrue();
+                expect(imageInfo.stride == imageInfo.size.width * 4).assertTrue();
                 done();
             } else {
                 logger.log('creat stridePixelMap failed');
@@ -226,8 +224,7 @@ export default function imagePixelMapFramework() {
                     if (pixelMap != undefined) {
                         globalpixelmap = pixelMap;
                         await checkStridePixelmap(done, logger, pixelMap)
-                        logger.log('creat pixelMap failed');
-                        expect(false).assertTrue();
+                        expect(true).assertTrue();
                         done();
                     }
                 } else {
