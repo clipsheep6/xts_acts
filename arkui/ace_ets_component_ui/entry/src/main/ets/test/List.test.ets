@@ -173,6 +173,11 @@ import provide1 from './Zhuang/provide1.test.ets'
 import provide2 from './Zhuang/provide2.test.ets'
 import state1 from './Zhuang/state1.test.ets'
 import state2 from './Zhuang/state2.test.ets'
+import HoverJsunit5 from './HoverTest/HoverJsunit5.test.ets'
+import HoverJsunit11 from './HoverTest/HoverJsunit11.test.ets'
+import HoverJsunit17 from './HoverTest/HoverJsunit17.test.ets'
+import HoverJsunit23 from './HoverTest/HoverJsunit23.test.ets'
+import HoverJsunit25 from './HoverTest/HoverJsunit25.test.ets'
 
 
 export default function testsuite() {
@@ -335,4 +340,9 @@ export default function testsuite() {
   provide2()
   state1()
   state2()
+  HoverJsunit5()
+  HoverJsunit11()
+  HoverJsunit17()
+  HoverJsunit23()
+  HoverJsunit25()
 }
