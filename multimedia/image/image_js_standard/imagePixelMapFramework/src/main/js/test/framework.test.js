@@ -226,6 +226,10 @@ export default function imagePixelMapFramework() {
                         await checkStridePixelmap(done, logger, pixelMap)
                         expect(true).assertTrue();
                         done();
+                    }else{
+                        logger.log('creat pixelMap failed');
+                        expect(false).assertTrue();
+                        done();
                     }
                 } else {
                     logger.log('creat ImageSource failed');
@@ -321,7 +325,7 @@ export default function imagePixelMapFramework() {
                     logger.log("PixelMap " + pixelMap);
                     if (pixelMap != undefined) {
                         globalpixelmap = pixelMap;
-                        let ret = pixelMap.isStrideAlignment;
+                        let ret = pixelMap.isStrideAlignment();
                         logger.log("ret " + ret);
                         expect(ret == result).assertTrue();
                         done();
