@@ -56,7 +56,7 @@ ohos_static_library("libdeqpgles2func0001") {
     "//third_party/vk-gl-cts/framework/egl/wrapper:libdeqp_eglwrapper",
     "//third_party/vk-gl-cts/framework/opengl:libdeqp_glutil",
     "//third_party/vk-gl-cts/framework/opengl/wrapper:libdeqp_glwrapper",
-    "//third_party/vk-gl-cts/framework/opengl/simplereference:libdeqp_glutil-sglr",
+   # "//third_party/vk-gl-cts/framework/opengl/simplereference:libdeqp_glutil-sglr",
     "//third_party/vk-gl-cts/modules/egl:libdeqp-egl",
     "//third_party/vk-gl-cts/modules/gles2:libdeqp-gles2",
     "//third_party/vk-gl-cts/modules/gles3:libdeqp-gles3",
