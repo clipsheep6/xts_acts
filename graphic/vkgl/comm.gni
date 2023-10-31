@@ -81,10 +81,6 @@ common_depends_gles2 = [
   "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
   "//third_party/vk-gl-cts/external/openglcts/modules:libdeqp_glcts",
 
-  "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics:2d_graphics",
-  "//foundation/graphic/graphic_2d/rosen/modules/render_service_base:librender_service_base",
-  "//foundation/graphic/graphic_2d/rosen/modules/render_service_client:librender_service_client",
-  "//third_party/zlib:libz",
 
   "//foundation/window/window_manager/dm:libdm",
   "//foundation/window/window_manager/dmserver:libdms",
@@ -117,10 +113,6 @@ common_depends_gles3 = [
   "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
   "//third_party/vk-gl-cts/external/openglcts/modules:libdeqp_glcts",
 
-  "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics:2d_graphics",
-  "//foundation/graphic/graphic_2d/rosen/modules/render_service_base:librender_service_base",
-  "//foundation/graphic/graphic_2d/rosen/modules/render_service_client:librender_service_client",
-  "//third_party/zlib:libz",
 
   "//foundation/window/window_manager/dm:libdm",
   "//foundation/window/window_manager/dmserver:libdms",
@@ -153,10 +145,6 @@ common_depends_gles31 = [
   "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
   "//third_party/vk-gl-cts/external/openglcts/modules:libdeqp_glcts",
 
-  "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics:2d_graphics",
-  "//foundation/graphic/graphic_2d/rosen/modules/render_service_base:librender_service_base",
-  "//foundation/graphic/graphic_2d/rosen/modules/render_service_client:librender_service_client",
-  "//third_party/zlib:libz",
 
   "//foundation/window/window_manager/dm:libdm",
   "//foundation/window/window_manager/dmserver:libdms",
