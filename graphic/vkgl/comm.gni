@@ -165,7 +165,7 @@ common_depends_gles31 = [
   "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context:rosen_context",
 ]
 
-common_depends = [
+common_depends_old = [
   "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics:2d_graphics",
   "//foundation/graphic/graphic_2d/rosen/modules/render_service_base:librender_service_base",
   "//foundation/graphic/graphic_2d/rosen/modules/render_service_client:librender_service_client",
