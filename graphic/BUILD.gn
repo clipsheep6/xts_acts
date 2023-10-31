@@ -12,6 +12,9 @@
 # limitations under the License.
 
 import("//build/ohos_var.gni")
+declare_args() {
+  acts_vulkan_feature = false
+}
 group("graphic") {
   testonly = true
   if (is_standard_system) {
@@ -27,7 +30,11 @@ group("graphic") {
     if (!(product_name == "ohcore")) {
       deps += [
         "vkgl:cpvkgl",
-        #"vulkan:cpvktest",
+      ]
+    }
+    if (acts_vulkan_feature) {
+      deps += [
+        "vulkan:cpvktest",
       ]
     }
   } else {
