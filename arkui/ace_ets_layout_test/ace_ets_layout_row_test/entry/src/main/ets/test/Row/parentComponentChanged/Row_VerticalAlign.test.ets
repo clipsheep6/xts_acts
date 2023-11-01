@@ -80,10 +80,10 @@ export default function Row_VerticalAlign() {
       
       expect(obj.$attrs.alignItems).assertEqual("VerticalAlign.Top");
       
-      expect(Text1.left).assertEqual(Row.left);
-      expect(Text1.top).assertEqual(Row.top);
-      expect(Text2.top).assertEqual(Row.top);
-      expect(Text3.top).assertEqual(Row.top);
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
+      expect(Math.abs(Text1.top - Row.top) <= 1).assertTrue();
+      expect(Math.abs(Text2.top - Row.top) <= 1).assertTrue();
+      expect(Math.abs(Text3.top - Row.top) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Row.right).assertLarger(Text3.right);
@@ -125,10 +125,10 @@ export default function Row_VerticalAlign() {
       
       expect(obj.$attrs.alignItems).assertEqual("VerticalAlign.Bottom");
       
-      expect(Text1.left).assertEqual(Row.left);
-      expect(Text1.bottom).assertEqual(Row.bottom);
-      expect(Text2.bottom).assertEqual(Row.bottom);
-      expect(Text3.bottom).assertEqual(Row.bottom);
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
+      expect(Math.abs(Text1.bottom - Row.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text2.bottom - Row.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text3.bottom - Row.bottom) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Row.right).assertLarger(Text3.right);

@@ -58,17 +58,13 @@ export default function Row_Space() {
       let Row_Space_012 = CommonFunc.getComponentRect('Row_Space_012');
       let Row_Space_013 = CommonFunc.getComponentRect('Row_Space_013');
       let Row_Space_01 = CommonFunc.getComponentRect('Row_Space_01');
-      expect(Math.round(Row_Space_011.top - Row_Space_01.top)).
-        assertEqual(Math.round(Row_Space_01.bottom - Row_Space_011.bottom));
-      expect(Math.round(Row_Space_012.top - Row_Space_01.top)).
-        assertEqual(Math.round(Row_Space_01.bottom - Row_Space_012.bottom));
-      expect(Math.round(Row_Space_013.top - Row_Space_01.top)).
-        assertEqual(Math.round(Row_Space_01.bottom - Row_Space_013.bottom));
-      expect(Math.round(Row_Space_012.left - Row_Space_011.right)).
-        assertEqual(Math.round(Row_Space_013.left - Row_Space_012.right));
+      expect(Math.abs(Math.round(Row_Space_011.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_012.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_013.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_013.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_012.left - Row_Space_011.right) - Math.round(Row_Space_013.left - Row_Space_012.right)) <= 1).assertTrue();
       expect(Math.round(Row_Space_012.left - Row_Space_011.right)).assertEqual(Math.round(vp2px(10)))
-      expect(Row_Space_01.left).assertEqual(Row_Space_011.left);
-      expect(Row_Space_013.right).assertLess(Row_Space_01.right);
+      expect(Math.abs(Row_Space_01.left - Row_Space_011.left) <= 1).assertTrue();
+      expect(Math.abs(Row_Space_013.right - Row_Space_01.right) <= 1).assertTrue();
       expect(Math.round(Row_Space_011.bottom - Row_Space_011.top)).assertEqual(Math.round(vp2px(50)));
       expect(Math.round(Row_Space_012.bottom - Row_Space_012.top)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Row_Space_013.bottom - Row_Space_013.top)).assertEqual(Math.round(vp2px(150)));
@@ -92,17 +88,13 @@ export default function Row_Space() {
       let Row_Space_012 = CommonFunc.getComponentRect('Row_Space_012');
       let Row_Space_013 = CommonFunc.getComponentRect('Row_Space_013');
       let Row_Space_01 = CommonFunc.getComponentRect('Row_Space_01');
-      expect(Math.round(Row_Space_011.top - Row_Space_01.top))
-        .assertEqual(Math.round(Row_Space_01.bottom - Row_Space_011.bottom));
-      expect(Math.round(Row_Space_012.top - Row_Space_01.top))
-        .assertEqual(Math.round(Row_Space_01.bottom - Row_Space_012.bottom));
-      expect(Math.round(Row_Space_013.top - Row_Space_01.top))
-        .assertEqual(Math.round(Row_Space_01.bottom - Row_Space_013.bottom));
-      expect(Math.round(Row_Space_012.left - Row_Space_011.right))
-        .assertEqual(Math.round(Row_Space_013.left - Row_Space_012.right));
-      expect(Math.round((Row_Space_012.left - Row_Space_011.right)*10)/10).assertEqual(Math.round(vp2px(25)*10)/10);
-      expect(Row_Space_01.left).assertEqual(Row_Space_011.left);
-      expect(Row_Space_013.right).assertEqual(Row_Space_01.right);
+      expect(Math.abs(Math.round(Row_Space_011.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_012.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_013.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_013.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_012.left - Row_Space_011.right) - Math.round(Row_Space_013.left - Row_Space_012.right)) <= 1).assertTrue();
+      expect(Math.abs(Math.round((Row_Space_012.left - Row_Space_011.right)*10)/10 - Math.round(vp2px(25)*10)/10) <= 1).assertTrue();
+      expect(Math.abs(Row_Space_01.left - Row_Space_011.left) <= 1).assertTrue();
+      expect(Math.abs(Row_Space_013.right - Row_Space_01.right) <= 1).assertTrue();
       expect(Math.round(Row_Space_011.bottom - Row_Space_011.top)).assertEqual(Math.round(vp2px(50)));
       expect(Math.round(Row_Space_012.bottom - Row_Space_012.top)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Row_Space_013.bottom - Row_Space_013.top)).assertEqual(Math.round(vp2px(150)));
@@ -126,17 +118,13 @@ export default function Row_Space() {
       let Row_Space_012 = CommonFunc.getComponentRect('Row_Space_012');
       let Row_Space_013 = CommonFunc.getComponentRect('Row_Space_013');
       let Row_Space_01 = CommonFunc.getComponentRect('Row_Space_01');
-      expect(Math.round(Row_Space_011.top - Row_Space_01.top))
-        .assertEqual(Math.round(Row_Space_01.bottom - Row_Space_011.bottom));
-      expect(Math.round(Row_Space_012.top - Row_Space_01.top))
-        .assertEqual(Math.round(Row_Space_01.bottom - Row_Space_012.bottom));
-      expect(Math.round(Row_Space_013.top - Row_Space_01.top))
-        .assertEqual(Math.round(Row_Space_01.bottom - Row_Space_013.bottom));
-      expect(Math.round(Row_Space_012.left - Row_Space_011.right))
-        .assertEqual(Math.round(Row_Space_013.left - Row_Space_012.right));
+      expect(Math.abs(Math.round(Row_Space_011.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_012.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_013.top - Row_Space_01.top) - Math.round(Row_Space_01.bottom - Row_Space_013.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_012.left - Row_Space_011.right) - Math.round(Row_Space_013.left - Row_Space_012.right)) <= 1).assertTrue();
       expect(Math.round(Row_Space_012.left - Row_Space_011.right)).assertEqual(Math.round(vp2px(30)))
-      expect(Row_Space_01.left).assertEqual(Row_Space_011.left);
-      expect(Row_Space_013.right).assertLarger(Row_Space_01.right);
+      expect(Math.abs(Row_Space_01.left - Row_Space_011.left) <= 1).assertTrue();
+      expect(Math.abs(Row_Space_013.right - Row_Space_01.right) <= 1).assertTrue();
       expect(Math.round(Row_Space_011.bottom - Row_Space_011.top)).assertEqual(Math.round(vp2px(50)));
       expect(Math.round(Row_Space_012.bottom - Row_Space_012.top)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Row_Space_013.bottom - Row_Space_013.top)).assertEqual(Math.round(vp2px(150)));

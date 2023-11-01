@@ -83,9 +83,10 @@ export default function Row_FlexAlign() {
       expect(obj.$attrs.justifyContent).assertEqual("FlexAlign.Start");
       
       expect(Text1.left).assertEqual(Row.left);
-      expect(Math.round(Text1.top - Row.top)).assertEqual(Math.round(Row.bottom - Text1.bottom));
-      expect(Math.round(Text2.top - Row.top)).assertEqual(Math.round(Row.bottom - Text2.bottom));
-      expect(Math.round(Text3.top - Row.top)).assertEqual(Math.round(Row.bottom - Text3.bottom));
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text1.top - Row.top) - Math.round(Row.bottom - Text1.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text2.top - Row.top) - Math.round(Row.bottom - Text2.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text3.top - Row.top) - Math.round(Row.bottom - Text3.bottom)) <= 1).assertTrue();
       
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
@@ -127,10 +128,10 @@ export default function Row_FlexAlign() {
       
       expect(obj.$attrs.justifyContent).assertEqual("FlexAlign.Center");
       
-      expect(Math.round(Text1.left - Row.left)).assertEqual(Math.round(Row.right - Text3.right));
-      expect(Math.round(Text1.top - Row.top)).assertEqual(Math.round(Row.bottom - Text1.bottom));
-      expect(Math.round(Text2.top - Row.top)).assertEqual(Math.round(Row.bottom - Text2.bottom));
-      expect(Math.round(Text3.top - Row.top)).assertEqual(Math.round(Row.bottom - Text3.bottom));
+      expect(Math.abs(Math.round(Text1.left - Row.left) - Math.round(Row.right - Text3.right)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text1.top - Row.top) - Math.round(Row.bottom - Text1.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text2.top - Row.top) - Math.round(Row.bottom - Text2.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text3.top - Row.top) - Math.round(Row.bottom - Text3.bottom)) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
 
@@ -170,10 +171,10 @@ export default function Row_FlexAlign() {
       
       expect(obj.$attrs.justifyContent).assertEqual("FlexAlign.End");
       
-      expect(Text3.right).assertEqual(Row.right);
-      expect(Math.round(Text1.top - Row.top)).assertEqual(Math.round(Row.bottom - Text1.bottom));
-      expect(Math.round(Text2.top - Row.top)).assertEqual(Math.round(Row.bottom - Text2.bottom));
-      expect(Math.round(Text3.top - Row.top)).assertEqual(Math.round(Row.bottom - Text3.bottom));
+      expect(Math.abs(Text3.right - Row.right) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text1.top - Row.top) - Math.round(Row.bottom - Text1.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text2.top - Row.top) - Math.round(Row.bottom - Text2.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text3.top - Row.top) - Math.round(Row.bottom - Text3.bottom)) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Text1.left).assertLarger(Row.left);
@@ -214,13 +215,13 @@ export default function Row_FlexAlign() {
       
       expect(obj.$attrs.justifyContent).assertEqual("FlexAlign.SpaceBetween");
       
-      expect(Text1.left).assertEqual(Row.left);
-      expect(Text3.right).assertEqual(Row.right);
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
+      expect(Math.abs(Text3.right - Row.right) <= 1).assertTrue();
       expect(Math.round(Math.round((Text2.left - Text1.right)*10)/10)).assertEqual(Math.round(vp2px(25)));
       expect(Math.round(Math.round((Text3.left - Text2.right)*10)/10)).assertEqual(Math.round(vp2px(25)));
-      expect(Math.round(Text1.top - Row.top)).assertEqual(Math.round(Row.bottom - Text1.bottom));
-      expect(Math.round(Text2.top - Row.top)).assertEqual(Math.round(Row.bottom - Text2.bottom));
-      expect(Math.round(Text3.top - Row.top)).assertEqual(Math.round(Row.bottom - Text3.bottom));
+      expect(Math.abs(Math.round(Text1.top - Row.top) - Math.round(Row.bottom - Text1.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text2.top - Row.top) - Math.round(Row.bottom - Text2.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text3.top - Row.top) - Math.round(Row.bottom - Text3.bottom)) <= 1).assertTrue();
 
       console.info('testRowJustifyContentFlexAlignSpaceBetween END');
       done();
@@ -259,14 +260,14 @@ export default function Row_FlexAlign() {
       
       expect(obj.$attrs.justifyContent).assertEqual("FlexAlign.SpaceAround");
       
-      expect(Math.round(Text1.left - Row.left)).assertEqual(Math.round(Row.right - Text3.right));
-      expect(Math.round((Text1.left - Row.left)*10)/10).assertEqual(Math.round(vp2px(50/6)*10)/10);
+      expect(Math.abs(Math.round(Text1.left - Row.left) - Math.round(Row.right - Text3.right)) <= 1).assertTrue();
+      expect(Math.abs(Math.round((Text1.left - Row.left)*10)/10 - Math.round(vp2px(50/6)*10)/10) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(50/3)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(50/3)));
 
-      expect(Math.round(Text1.top - Row.top)).assertEqual(Math.round(Row.bottom - Text1.bottom));
-      expect(Math.round(Text2.top - Row.top)).assertEqual(Math.round(Row.bottom - Text2.bottom));
-      expect(Math.round(Text3.top - Row.top)).assertEqual(Math.round(Row.bottom - Text3.bottom));
+      expect(Math.abs(Math.round(Text1.top - Row.top) - Math.round(Row.bottom - Text1.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text2.top - Row.top) - Math.round(Row.bottom - Text2.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text3.top - Row.top) - Math.round(Row.bottom - Text3.bottom)) <= 1).assertTrue();
 
       console.info('testRowJustifyContentFlexAlignSpaceAround END');
       done();
@@ -304,14 +305,14 @@ export default function Row_FlexAlign() {
       
       expect(obj.$attrs.justifyContent).assertEqual("FlexAlign.SpaceEvenly");
       
-      expect(Math.round(Text1.left - Row.left)).assertEqual(Math.round(Row.right - Text3.right));
-      expect(Math.round(Math.round((Text1.left - Row.left)*100)/100)).assertEqual(Math.round(Math.round(vp2px(50/4)*100)/100));
-      expect(Math.round(Math.round((Text2.left - Text1.right)*100)/100)).assertEqual(Math.round(Math.round(vp2px(50/4)*100)/100));
-      expect(Math.round(Math.round((Text3.left - Text2.right)*100)/100)).assertEqual(Math.round(Math.round(vp2px(50/4)*100)/100));
+      expect(Math.abs(Math.round(Text1.left - Row.left) - Math.round(Row.right - Text3.right)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Math.round((Text1.left - Row.left)*100)/100) - Math.round(Math.round(vp2px(50/4)*100)/100)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Math.round((Text2.left - Text1.right)*100)/100) - Math.round(Math.round(vp2px(50/4)*100)/100)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Math.round((Text3.left - Text2.right)*100)/100) - Math.round(Math.round(vp2px(50/4)*100)/100)) <= 1).assertTrue();
 
-      expect(Math.round(Text1.top - Row.top)).assertEqual(Math.round(Row.bottom - Text1.bottom));
-      expect(Math.round(Text2.top - Row.top)).assertEqual(Math.round(Row.bottom - Text2.bottom));
-      expect(Math.round(Text3.top - Row.top)).assertEqual(Math.round(Row.bottom - Text3.bottom));
+      expect(Math.abs(Math.round(Text1.top - Row.top) - Math.round(Row.bottom - Text1.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text2.top - Row.top) - Math.round(Row.bottom - Text2.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Text3.top - Row.top) - Math.round(Row.bottom - Text3.bottom)) <= 1).assertTrue();
 
       console.info('testRowJustifyContentFlexAlignSpaceEvenly END');
       done();

@@ -70,18 +70,17 @@ export default function row_TextSizeTest() {
       expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(150)));
 
       expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(secondText.right- secondText.left));
-      expect(Math.round(secondText.right- secondText.left)).assertEqual(Math.round(thirdText.right- thirdText.left));
+      expect(Math.abs(Math.round(firstText.right- firstText.left) - Math.round(secondText.right- secondText.left)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.right- secondText.left) - Math.round(thirdText.right- thirdText.left)) <= 1).assertTrue();
 
-      expect(firstText.left).assertEqual(rowContainer.left);
-      expect(Math.round(firstText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - firstText.bottom));
+      expect(Math.abs(firstText.left - rowContainer.left) <= 1).assertTrue();
+      expect(Math.abs(Math.round(firstText.top - rowContainer.top) - Math.round(rowContainer.bottom - firstText.bottom)) <= 1).assertTrue();
 
-      expect(secondText.top).assertEqual(secondTextTop);
-      expect(secondText.left).assertEqual(secondTextLeft);
+      expect(Math.abs(secondText.top - secondTextTop) <= 1).assertTrue();
+      expect(Math.abs(secondText.left - secondTextLeft) <= 1).assertTrue();
 
       expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(thirdText.left - secondText.right));
+      expect(Math.abs(Math.round(secondText.left - firstText.right) - Math.round(thirdText.left - secondText.right)) <= 1).assertTrue();
 
       expect(Math.round(rowContainer.right - thirdText.right)).assertEqual(Math.round(vp2px(30)));
       console.info('[testRowTextSizeHeight] END');

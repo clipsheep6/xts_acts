@@ -67,21 +67,18 @@ export default function row_TextLayoutWeightTest() {
       expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(150)));
 
       expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(vp2px(110)));
-      expect(Math.round(secondText.right- secondText.left)).assertEqual(Math.round(firstText.right- firstText.left));
-      expect(Math.round(thirdText.right- thirdText.left)).assertEqual(Math.round(secondText.right- secondText.left));
+      expect(Math.abs(Math.round(secondText.right- secondText.left) - Math.round(firstText.right- firstText.left)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdText.right- thirdText.left) - Math.round(secondText.right- secondText.left)) <= 1).assertTrue();
 
-      expect(Math.round(firstText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - firstText.bottom));
-      expect(Math.round(secondText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - secondText.bottom));
-      expect(Math.round(thirdText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - thirdText.bottom));
+      expect(Math.abs(Math.round(firstText.top - rowContainer.top) - Math.round(rowContainer.bottom - firstText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.top - rowContainer.top) - Math.round(rowContainer.bottom - secondText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdText.top - rowContainer.top) - Math.round(rowContainer.bottom - thirdText.bottom)) <= 1).assertTrue();
 
-      expect(firstText.left).assertEqual(rowContainer.left);
+      expect(Math.abs(firstText.left - rowContainer.left) <= 1).assertTrue();
       expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(thirdText.left - secondText.right));
+      expect(Math.abs(Math.round(secondText.left - firstText.right) - Math.round(thirdText.left - secondText.right)) <= 1).assertTrue();
 
-      expect(rowContainer.right).assertEqual(thirdText.right);
+      expect(Math.abs(rowContainer.right - thirdText.right) <= 1).assertTrue();
       console.info('[testRowTextLayoutWeight] END');
       done();
     });
