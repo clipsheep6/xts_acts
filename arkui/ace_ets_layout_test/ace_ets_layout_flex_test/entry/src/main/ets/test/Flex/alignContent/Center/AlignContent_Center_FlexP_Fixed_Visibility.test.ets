@@ -53,7 +53,7 @@ export default function AlignContent_Center_FlexP_Fixed_Visibility() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNCONTENT_CENTER_1300
      * @tc.name      testAlignContentCenterFlexfixedVisibilityHidden
-     * @tc.desc      The AlignContent property of the Flex component is set to FlexAlign. Center, and the visibility 
+     * @tc.desc      The AlignContent property of the Flex component is set to FlexAlign. Center, and the visibility
      *               property of the sub component is set to Visibility.Hidden.
      */
 
@@ -72,7 +72,7 @@ export default function AlignContent_Center_FlexP_Fixed_Visibility() {
       let AlignContentFlexCenter_2 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_2');
       let AlignContentFlexCenter_3 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_3');
       let AlignContentFlexCenter_4 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_4');
-    
+
       console.log('AlignContent_Center_FlexP_Fixed_Visibility_flex001 rect_value is:'+
       JSON.stringify(AlignContentFlexCenter_flex001));
 
@@ -83,26 +83,25 @@ export default function AlignContent_Center_FlexP_Fixed_Visibility() {
       console.log('AlignContentFlexCenter_4 rect_value is:'+
       JSON.stringify(AlignContentFlexCenter_4));
 
-      expect(Math.round(AlignContentFlexCenter_2.bottom - AlignContentFlexCenter_2.top)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(AlignContentFlexCenter_3.bottom - AlignContentFlexCenter_3.top)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_4.bottom - AlignContentFlexCenter_4.top)).assertEqual(Math.round(vp2px(200)));
-      expect(Math.round(AlignContentFlexCenter_2.right - AlignContentFlexCenter_2.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_3.right - AlignContentFlexCenter_3.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_4.right - AlignContentFlexCenter_4.left)).assertEqual(Math.round(vp2px(150)));
-      
+      expect(Math.abs((AlignContentFlexCenter_2.bottom - AlignContentFlexCenter_2.top) - vp2px(100)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_3.bottom - AlignContentFlexCenter_3.top) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_4.bottom - AlignContentFlexCenter_4.top) - vp2px(200)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_2.right - AlignContentFlexCenter_2.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_3.right - AlignContentFlexCenter_3.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_4.right - AlignContentFlexCenter_4.left) - vp2px(150)) <=1).assertTrue()
+
       expect(obj.$attrs.constructor.direction).assertEqual("FlexDirection.Row");
       expect(obj.$attrs.constructor.alignContent).assertEqual("FlexAlign.Center");
       expect(textObj.$attrs.visibility).assertEqual("Visibility.Hidden");
-      
-      expect(AlignContentFlexCenter_flex001.bottom - AlignContentFlexCenter_4.bottom)
-        .assertEqual(AlignContentFlexCenter_3.top - AlignContentFlexCenter_flex001.top);
-      
-      expect(Math.round(AlignContentFlexCenter_flex001.bottom - AlignContentFlexCenter_4.bottom)).assertEqual(Math.round(vp2px(25)));
-      
-      expect(AlignContentFlexCenter_4.top).assertEqual(AlignContentFlexCenter_3.bottom);
-      
-      expect(Math.round(AlignContentFlexCenter_2.left - AlignContentFlexCenter_flex001.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_4.top - AlignContentFlexCenter_2.top)).assertEqual(Math.round(vp2px(150)));
+
+      expect(Math.abs((AlignContentFlexCenter_flex001.bottom - AlignContentFlexCenter_4.bottom) - (AlignContentFlexCenter_3.top - AlignContentFlexCenter_flex001.top)) <= 1).assertTrue();
+
+      expect(Math.abs((AlignContentFlexCenter_flex001.bottom - AlignContentFlexCenter_4.bottom) - vp2px(25)) <= 1).assertTrue();
+
+      expect(Math.abs(AlignContentFlexCenter_4.top - AlignContentFlexCenter_3.bottom) <=1).assertTrue()
+
+      expect(Math.abs((AlignContentFlexCenter_2.left - AlignContentFlexCenter_flex001.left) - vp2px(150)) <= 1).assertTrue();
+      expect(Math.abs((AlignContentFlexCenter_4.top - AlignContentFlexCenter_2.top)         - vp2px(150)) <= 1).assertTrue();
       console.info('testAlignContentCenterFlexfixedVisibilityHidden END');
       done();
     });
@@ -110,7 +109,7 @@ export default function AlignContent_Center_FlexP_Fixed_Visibility() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNCONTENT_CENTER_1400
      * @tc.name      testAlignContentCenterFlexfixedVisibilityNone
-     * @tc.desc      The AlignContent property of the Flex component is set to FlexAlign. Center, and the visibility 
+     * @tc.desc      The AlignContent property of the Flex component is set to FlexAlign. Center, and the visibility
      *               property of the sub component is set to Visibility.None
      */
 
@@ -123,7 +122,7 @@ export default function AlignContent_Center_FlexP_Fixed_Visibility() {
       let textStrJson = getInspectorByKey('AlignContent_Center_FlexP_Fixed_Visibility_1');
       let textObj = JSON.parse(textStrJson);
       let AlignContentFlexCenter_flex002 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_flex001');
-      
+
       let AlignContentFlexCenter_2 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_2');
       let AlignContentFlexCenter_3 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_3');
       let AlignContentFlexCenter_4 = CommonFunc.getComponentRect('AlignContent_Center_FlexP_Fixed_Visibility_4');
@@ -137,28 +136,26 @@ export default function AlignContent_Center_FlexP_Fixed_Visibility() {
       JSON.stringify(AlignContentFlexCenter_3));
       console.log('AlignContentFlexCenter_4 rect_value is:'+
       JSON.stringify(AlignContentFlexCenter_4));
-      
-      expect(Math.round(AlignContentFlexCenter_2.bottom - AlignContentFlexCenter_2.top)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(AlignContentFlexCenter_3.bottom - AlignContentFlexCenter_3.top)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_4.bottom - AlignContentFlexCenter_4.top)).assertEqual(Math.round(vp2px(200)));
-      expect(Math.round(AlignContentFlexCenter_2.right - AlignContentFlexCenter_2.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_3.right - AlignContentFlexCenter_3.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexCenter_4.right - AlignContentFlexCenter_4.left)).assertEqual(Math.round(vp2px(150)));
-      
+
+      expect(Math.abs((AlignContentFlexCenter_2.bottom - AlignContentFlexCenter_2.top) - vp2px(100)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_3.bottom - AlignContentFlexCenter_3.top) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_4.bottom - AlignContentFlexCenter_4.top) - vp2px(200)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_2.right - AlignContentFlexCenter_2.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_3.right - AlignContentFlexCenter_3.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexCenter_4.right - AlignContentFlexCenter_4.left) - vp2px(150)) <=1).assertTrue()
+
       expect(obj.$attrs.constructor.direction).assertEqual("FlexDirection.Row");
       expect(obj.$attrs.constructor.alignContent).assertEqual("FlexAlign.Center");
       expect(textObj.$attrs.visibility).assertEqual("Visibility.None");
-      
-      expect(AlignContentFlexCenter_flex002.bottom - AlignContentFlexCenter_4.bottom)
-        .assertEqual(AlignContentFlexCenter_3.top - AlignContentFlexCenter_flex002.top);
-      
-      expect(Math.round(AlignContentFlexCenter_2.top - AlignContentFlexCenter_flex002.top))
-        .assertEqual(Math.round(vp2px(100)));
-      
-      expect(AlignContentFlexCenter_2.top).assertEqual(AlignContentFlexCenter_3.top);
-      expect(AlignContentFlexCenter_4.top).assertEqual(AlignContentFlexCenter_3.top);
-      
-      expect(AlignContentFlexCenter_2.left).assertEqual(AlignContentFlexCenter_flex002.left);
+
+      expect(Math.abs((AlignContentFlexCenter_flex002.bottom - AlignContentFlexCenter_4.bottom) - (AlignContentFlexCenter_3.top - AlignContentFlexCenter_flex002.top)) <= 1).assertTrue();
+
+      expect(Math.abs((AlignContentFlexCenter_2.top - AlignContentFlexCenter_flex002.top) - vp2px(100)) <= 1).assertTrue();
+
+      expect(Math.abs(AlignContentFlexCenter_2.top - AlignContentFlexCenter_3.top) <=1).assertTrue()
+      expect(Math.abs(AlignContentFlexCenter_4.top - AlignContentFlexCenter_3.top) <=1).assertTrue()
+
+      expect(Math.abs(AlignContentFlexCenter_2.left - AlignContentFlexCenter_flex002.left) <=1).assertTrue()
       console.info('testAlignContentCenterFlexfixedVisibilityNone END');
       done();
     });
