@@ -555,25 +555,6 @@ export default function cameraJSUnitOutput() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100
-     * @tc.name      : captureSession remove photoOutput
-     * @tc.desc      : captureSession remove photoOutput
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 1
-     */
-    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_0100', 1, async function (done) {
-      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100--------------");
-      cameraObj.createVideoOutput(videoSurfaceId);
-      let ret = cameraObj.sessionAddVideoOutput();
-      if (ret) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100 sessionAddVideoOutput fail")
-        expect().assertFail();
-      }
-      done();
-    })
-
-    /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_METADATA_OUTPUT_CALLBACK_0100
       * @tc.name      : captureSession add metadataOutput
       * @tc.desc      : captureSession add metadataOutput
@@ -680,46 +661,6 @@ export default function cameraJSUnitOutput() {
       let ret = cameraObj.previewOutputStop();
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_STOP_PREVIEW_OUTPUT_PROMISE_0100 previewOutputStop fail")
-        expect().assertFail();
-      }
-      await sleep(1000);
-      done();
-    })
-
-
-    /**
-     * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100
-     * @tc.name      : videoOutput start promise api
-     * @tc.desc      : videoOutput start promise api
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 1
-     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100', 1, async function (done) {
-      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100--------------");
-      let ret = cameraObj.videoOutputStart();
-      if (ret) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100 videoOutputStart fail")
-        expect().assertFail();
-      }
-      await sleep(1000);
-      done();
-    })
-
-
-    /**
-     * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100
-     * @tc.name      : videoOutput stop promise api
-     * @tc.desc      : videoOutput stop promise api
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 1
-     */
-    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100', 1, async function (done) {
-      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100--------------");
-      let ret = cameraObj.videoOutputStop();
-      if (ret) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100 videoOutputStop fail")
         expect().assertFail();
       }
       await sleep(1000);

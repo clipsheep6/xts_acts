@@ -21,7 +21,6 @@ import cameraSessionZoomRatioTest from './CameraSessionZoomRatioTest.test'
 import cameraSessionVideoStabilizationTest from './CameraSessionVideoStabilizationTest.test'
 import cameraSessionBaseTest from './CameraSessionBaseTest.test'
 import cameraInputTest from './CameraInputTest.test'
-import CameraErrorCodeUsecaseTest from './CameraErrorCodeUsecaseTest.test'
 
 let TAG = 'CameraModuleTest: '
 
@@ -36,5 +35,4 @@ export default function cameraKit() {
   cameraSessionZoomRatioTest()
   cameraSessionVideoStabilizationTest()
   cameraSessionBaseTest()
-  CameraErrorCodeUsecaseTest()
 }

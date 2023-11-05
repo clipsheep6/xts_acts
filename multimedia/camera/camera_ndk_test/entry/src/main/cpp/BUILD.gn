@@ -14,6 +14,7 @@
 import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
 import("//foundation/arkui/napi/napi.gni")
+import("//base/hiviewdfx/hitrace/hitrace.gni")
 
 MEDIA_ROOT_DIR = "//foundation/multimedia/camera_framework/"
 config("config") {
@@ -29,10 +30,15 @@ config("config") {
 ohos_shared_library("entry") {
   sources = [ "./main.cpp",
               "./camera_manager.cpp" ]
-  include_dirs = [ "$MEDIA_ROOT_DIR/interfaces/kits/native/include/" ]
+  include_dirs = [
+    "$MEDIA_ROOT_DIR/interfaces/kits/native/include/camera",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/surface",
+    "//base/hiviewdfx/hilog/interfaces/native/kits/include"
+  ]
   external_deps = [
     "graphic_2d:surface",
     "napi:ace_napi",
+    "hilog:libhilog"
   ]
   deps = [ "$MEDIA_ROOT_DIR/frameworks/native/ndk:camera_ndk" ]
   configs = [ ":config" ]

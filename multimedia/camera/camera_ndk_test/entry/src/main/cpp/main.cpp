@@ -1,12 +1,9 @@
 #include "napi/native_api.h"
-#include "camera_manager.h"
-#include "hilog/log.h"
+#include "camera_manager_ndk.h"
 #include <js_native_api.h>
-#include <multimedia/camera_framework/camera.h>
+#include <camera.h>
 #include <string.h>
 
-#define LOG_TAG "CAIHF ndkXTS"
-#define LOG_DOMAIN 0x3200
 static NDKCamera* ndkCamera_ = nullptr;
 struct Capture_Setting {
     int32_t quality;
@@ -20,35 +17,31 @@ struct Capture_Setting {
 
 static napi_value InitCamera(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "InitCamera Enter");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     size_t typeLen = 0;
     char * surfaceid = nullptr;
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
     surfaceid = new char[typeLen + 1];
     napi_get_value_string_utf8(env, args[0], surfaceid, typeLen + 1, &typeLen);
-    
+
     int32_t  cameraDeviceIndex;
     napi_get_value_int32(env, args[1], &cameraDeviceIndex);
-    
+
     ndkCamera_ = new NDKCamera(surfaceid);
-    OH_LOG_ERROR(LOG_APP, "InitCamera End");
     napi_create_int32(env, CAMERA_OK, &result);
     return result;
 }
 
 static napi_value VideoOutputStart(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "VideoOutputStart ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->VideoOutputStart();
     napi_create_int32(env, ret, &result);
     return result;
@@ -56,38 +49,32 @@ static napi_value VideoOutputStart(napi_env env, napi_callback_info info)
 
 static napi_value GetSupportedCameras(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "GetSupportedCameras ");
-    napi_value result;
-    
-    Camera_ErrorCode ret = ndkCamera_->GetSupportedCameras();
-    OH_LOG_ERROR(LOG_APP, "GetSupportedCameras  ret = %{public}d ", ret);
-    
+    ndkCamera_->GetSupportedCameras();
+
     napi_value cameraInfo = nullptr;
     napi_create_object(env, &cameraInfo);
-    
+
     napi_value jsValue = nullptr;
-    
+
     napi_create_int32(env, ndkCamera_->cameras_->cameraPosition, &jsValue);
     napi_set_named_property(env, cameraInfo, "cameraPosition", jsValue);
-    
+
     napi_create_int32(env, ndkCamera_->cameras_->cameraType, &jsValue);
     napi_set_named_property(env, cameraInfo, "cameraType", jsValue);
-    
+
     napi_create_int32(env, ndkCamera_->cameras_->connectionType, &jsValue);
     napi_set_named_property(env, cameraInfo, "connectionType", jsValue);
-    
+
     napi_create_string_utf8(env, ndkCamera_->cameras_->cameraId, sizeof(ndkCamera_->cameras_->cameraId) +1 , &jsValue);
     napi_set_named_property(env, cameraInfo, "cameraId", jsValue);
-    
+
     return cameraInfo;
 }
 
 static napi_value CreateCameraInput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CreateCameraInput ");
     napi_value result;
-    
-    OH_LOG_ERROR(LOG_APP, "CreateCameraInput  ndkCamera_ %{public}p ", ndkCamera_);
+
     Camera_ErrorCode ret = ndkCamera_->CreateCameraInput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -95,37 +82,32 @@ static napi_value CreateCameraInput(napi_env env, napi_callback_info info)
 
 static napi_value GetSupportedOutputCapability(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "GetSupportedOutputCapability ");
-    napi_value result;
-    
-    Camera_ErrorCode ret = ndkCamera_->GetSupportedOutputCapability();
-    OH_LOG_ERROR(LOG_APP, "GetSupportedOutputCapability  ret = %{public}d ", ret);
-    
+    ndkCamera_->GetSupportedOutputCapability();
+
     napi_value cameraOutputCapability = nullptr;
     napi_create_object(env, &cameraOutputCapability);
-    
+
     napi_value jsValue = nullptr;
-    
+
     napi_create_int32(env, ndkCamera_->cameraOutputCapability_->previewProfilesSize, &jsValue);
     napi_set_named_property(env, cameraOutputCapability, "previewProfilesSize", jsValue);
-    
+
     napi_create_int32(env, ndkCamera_->cameraOutputCapability_->photoProfilesSize, &jsValue);
     napi_set_named_property(env, cameraOutputCapability, "photoProfilesSize", jsValue);
-    
+
     napi_create_int32(env, ndkCamera_->cameraOutputCapability_->videoProfilesSize, &jsValue);
     napi_set_named_property(env, cameraOutputCapability, "videoProfilesSize", jsValue);
-    
+
     napi_create_int32(env, ndkCamera_->cameraOutputCapability_->metadataProfilesSize, &jsValue);
     napi_set_named_property(env, cameraOutputCapability, "metadataProfilesSize", jsValue);
-    
+
     return cameraOutputCapability;
 }
 
 static napi_value CreatePreviewOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput ndkCamera_ = %{public}p", ndkCamera_);
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->CreatePreviewOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -133,20 +115,19 @@ static napi_value CreatePreviewOutput(napi_env env, napi_callback_info info)
 
 static napi_value CreatePhotoOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CreatePhotoOutput ");
     napi_value result;
-    size_t requireArgc = 2;
+
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     size_t typeLen = 0;
     char* surfaceId = nullptr;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    
+
     napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
     surfaceId = new char[typeLen + 1];
     napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
-    
+
     Camera_ErrorCode ret = ndkCamera_->CreatePhotoOutput(surfaceId);
     napi_create_int32(env, ret, &result);
     return result;
@@ -154,8 +135,6 @@ static napi_value CreatePhotoOutput(napi_env env, napi_callback_info info)
 
 static napi_value CreateVideoOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CreateVideoOutput ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
@@ -164,11 +143,11 @@ static napi_value CreateVideoOutput(napi_env env, napi_callback_info info)
     char * videoId = nullptr;
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &videoIdLen);
+
+    napi_get_value_string_utf8(env, args[1], nullptr, 0, &videoIdLen);
     videoId = new char[videoIdLen + 1];
-    napi_get_value_string_utf8(env, args[0], videoId, videoIdLen + 1, &videoIdLen);
-    
+    napi_get_value_string_utf8(env, args[1], videoId, videoIdLen + 1, &videoIdLen);
+
     Camera_ErrorCode ret = ndkCamera_->CreateVideoOutput(videoId);
     napi_create_int32(env, ret, &result);
     return result;
@@ -176,19 +155,17 @@ static napi_value CreateVideoOutput(napi_env env, napi_callback_info info)
 
 static napi_value CreateMetadataOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CreateMetadataOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->CreateMetadataOutput();
     napi_create_int32(env, ret, &result);
-    return result; 
+    return result;
 }
 
 static napi_value IsCameraMuted(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "IsCameraMuted");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->IsCameraMuted();
     napi_create_int32(env, ret, &result);
     return result;
@@ -196,9 +173,8 @@ static napi_value IsCameraMuted(napi_env env, napi_callback_info info)
 
 static napi_value CameraInputOpen(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CameraInputOpen ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->CameraInputOpen();
     napi_create_int32(env, ret, &result);
     return result;
@@ -206,9 +182,8 @@ static napi_value CameraInputOpen(napi_env env, napi_callback_info info)
 
 static napi_value CameraInputClose(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CameraInputClose ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->CameraInputClose();
     napi_create_int32(env, ret, &result);
     return result;
@@ -216,9 +191,8 @@ static napi_value CameraInputClose(napi_env env, napi_callback_info info)
 
 static napi_value CameraInputRelease(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CameraInputRelease ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->CameraInputRelease();
     napi_create_int32(env, ret, &result);
     return result;
@@ -226,9 +200,8 @@ static napi_value CameraInputRelease(napi_env env, napi_callback_info info)
 
 static napi_value PreviewOutputStart(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "PreviewOutputStart ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->PreviewOutputStart();
     napi_create_int32(env, ret, &result);
     return result;
@@ -236,9 +209,8 @@ static napi_value PreviewOutputStart(napi_env env, napi_callback_info info)
 
 static napi_value PreviewOutputStop(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "PreviewOutputStop ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->PreviewOutputStop();
     napi_create_int32(env, ret, &result);
     return result;
@@ -246,9 +218,8 @@ static napi_value PreviewOutputStop(napi_env env, napi_callback_info info)
 
 static napi_value PreviewOutputRelease(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "PreviewOutputRelease ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->PreviewOutputRelease();
     napi_create_int32(env, ret, &result);
     return result;
@@ -256,9 +227,8 @@ static napi_value PreviewOutputRelease(napi_env env, napi_callback_info info)
 
 static napi_value PhotoOutputCapture(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "PhotoOutputCapture ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->PhotoOutputCapture();
     napi_create_int32(env, ret, &result);
     return result;
@@ -266,9 +236,8 @@ static napi_value PhotoOutputCapture(napi_env env, napi_callback_info info)
 
 static napi_value PhotoOutputRelease(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "PhotoOutputRelease ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->PhotoOutputRelease();
     napi_create_int32(env, ret, &result);
     return result;
@@ -276,9 +245,8 @@ static napi_value PhotoOutputRelease(napi_env env, napi_callback_info info)
 
 static napi_value IsMirrorSupported(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "IsMirrorSupported ");
     napi_value result;
-    
+
     ndkCamera_->IsMirrorSupported();
     napi_get_boolean(env, ndkCamera_->IsMirror_, &result);
     return result;
@@ -286,9 +254,8 @@ static napi_value IsMirrorSupported(napi_env env, napi_callback_info info)
 
 static napi_value VideoOutputStop(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "VideoOutputStop ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->VideoOutputStop();
     napi_create_int32(env, ret, &result);
     return result;
@@ -296,9 +263,8 @@ static napi_value VideoOutputStop(napi_env env, napi_callback_info info)
 
 static napi_value VideoOutputRelease(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "VideoOutputRelease ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->VideoOutputRelease();
     napi_create_int32(env, ret, &result);
     return result;
@@ -306,9 +272,8 @@ static napi_value VideoOutputRelease(napi_env env, napi_callback_info info)
 
 static napi_value MetadataOutputStart(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "MetadataOutputStart ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->MetadataOutputStart();
     napi_create_int32(env, ret, &result);
     return result;
@@ -316,9 +281,8 @@ static napi_value MetadataOutputStart(napi_env env, napi_callback_info info)
 
 static napi_value MetadataOutputStop(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "MetadataOutputStop ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->MetadataOutputStop();
     napi_create_int32(env, ret, &result);
     return result;
@@ -326,9 +290,8 @@ static napi_value MetadataOutputStop(napi_env env, napi_callback_info info)
 
 static napi_value MetadataOutputRelease(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "MetadataOutputRelease ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->MetadataOutputRelease();
     napi_create_int32(env, ret, &result);
     return result;
@@ -336,9 +299,8 @@ static napi_value MetadataOutputRelease(napi_env env, napi_callback_info info)
 
 static napi_value SessionAddInput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionAddInput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionAddInput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -346,9 +308,8 @@ static napi_value SessionAddInput(napi_env env, napi_callback_info info)
 
 static napi_value SessionRemoveInput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionRemoveInput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionRemoveInput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -356,9 +317,8 @@ static napi_value SessionRemoveInput(napi_env env, napi_callback_info info)
 
 static napi_value SessionAddPreviewOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionAddPreviewOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionAddPreviewOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -366,9 +326,8 @@ static napi_value SessionAddPreviewOutput(napi_env env, napi_callback_info info)
 
 static napi_value SessionAddPhotoOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionAddPhotoOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionAddPhotoOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -376,9 +335,8 @@ static napi_value SessionAddPhotoOutput(napi_env env, napi_callback_info info)
 
 static napi_value SessionAddVideoOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionAddVideoOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionAddVideoOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -386,9 +344,8 @@ static napi_value SessionAddVideoOutput(napi_env env, napi_callback_info info)
 
 static napi_value SessionAddMetadataOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionAddMetadataOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionAddMetadataOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -396,9 +353,8 @@ static napi_value SessionAddMetadataOutput(napi_env env, napi_callback_info info
 
 static napi_value SessionRemovePreviewOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionRemovePreviewOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionRemovePreviewOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -406,9 +362,8 @@ static napi_value SessionRemovePreviewOutput(napi_env env, napi_callback_info in
 
 static napi_value SessionRemovePhotoOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionRemovePhotoOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionRemovePhotoOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -416,9 +371,8 @@ static napi_value SessionRemovePhotoOutput(napi_env env, napi_callback_info info
 
 static napi_value SessionRemoveVideoOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionRemoveVideoOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionRemoveVideoOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -426,9 +380,8 @@ static napi_value SessionRemoveVideoOutput(napi_env env, napi_callback_info info
 
 static napi_value SessionRemoveMetadataOutput(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionRemoveMetadataOutput ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionRemoveMetadataOutput();
     napi_create_int32(env, ret, &result);
     return result;
@@ -436,9 +389,8 @@ static napi_value SessionRemoveMetadataOutput(napi_env env, napi_callback_info i
 
 static napi_value SessionStart(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionStart ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionStart();
     napi_create_int32(env, ret, &result);
     return result;
@@ -446,9 +398,8 @@ static napi_value SessionStart(napi_env env, napi_callback_info info)
 
 static napi_value SessionStop(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionStop ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionStop();
     napi_create_int32(env, ret, &result);
     return result;
@@ -456,9 +407,8 @@ static napi_value SessionStop(napi_env env, napi_callback_info info)
 
 static napi_value SessionBegin(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionBegin ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionBegin();
     napi_create_int32(env, ret, &result);
     return result;
@@ -466,9 +416,8 @@ static napi_value SessionBegin(napi_env env, napi_callback_info info)
 
 static napi_value SessionCommitConfig(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionCommitConfig ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionCommitConfig();
     napi_create_int32(env, ret, &result);
     return result;
@@ -476,9 +425,8 @@ static napi_value SessionCommitConfig(napi_env env, napi_callback_info info)
 
 static napi_value SessionRelease(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionRelease ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionRelease();
     napi_create_int32(env, ret, &result);
     return result;
@@ -486,9 +434,8 @@ static napi_value SessionRelease(napi_env env, napi_callback_info info)
 
 static napi_value CreateSession(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "CreateSession ");
     napi_value result;
-    
+
     Camera_ErrorCode ret = ndkCamera_->CreateSession();
     napi_create_int32(env, ret, &result);
     return result;
@@ -496,9 +443,8 @@ static napi_value CreateSession(napi_env env, napi_callback_info info)
 
 static napi_value SessionHasFlash(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionHasFlash ");
     napi_value result;
-    
+
     ndkCamera_->SessionHasFlash();
     napi_get_boolean(env, ndkCamera_->HasFlash_, &result);
     return result;
@@ -506,17 +452,15 @@ static napi_value SessionHasFlash(napi_env env, napi_callback_info info)
 
 static napi_value SessionIsFlashModeSupported(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionIsFlashModeSupported ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     int32_t flashMode;
     napi_get_value_int32(env, args[0], &flashMode);
-    
+
     ndkCamera_->SessionIsFlashModeSupported(flashMode);
     napi_get_boolean(env, ndkCamera_->IsFlashMode_, &result);
     return result;
@@ -524,9 +468,8 @@ static napi_value SessionIsFlashModeSupported(napi_env env, napi_callback_info i
 
 static napi_value SessionGetFlashMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetFlashMode ");
     napi_value result;
-    
+
     ndkCamera_->SessionGetFlashMode();
     Camera_FlashMode flashMode = ndkCamera_->flashMode_;
     napi_create_int32(env, flashMode, &result);
@@ -535,14 +478,12 @@ static napi_value SessionGetFlashMode(napi_env env, napi_callback_info info)
 
 static napi_value SessionSetFlashMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetFlashMode ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-        
+
     int32_t flashMode;
     napi_get_value_int32(env, args[0], &flashMode);
     Camera_ErrorCode ret = ndkCamera_->SessionSetFlashMode(flashMode);
@@ -552,17 +493,15 @@ static napi_value SessionSetFlashMode(napi_env env, napi_callback_info info)
 
 static napi_value SessionIsExposureModeSupported(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionIsExposureModeSupported ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     int32_t exposureMode;
     napi_get_value_int32(env, args[0], &exposureMode);
-    
+
     ndkCamera_->SessionIsExposureModeSupported(exposureMode);
     napi_get_boolean(env, ndkCamera_->IsExposureMode_, &result);
     return result;
@@ -570,9 +509,8 @@ static napi_value SessionIsExposureModeSupported(napi_env env, napi_callback_inf
 
 static napi_value SessionGetExposureMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetExposureMode ");
     napi_value result;
-    
+
     ndkCamera_->SessionGetExposureMode();
     Camera_ExposureMode exposureMode = ndkCamera_->exposureMode_;
     napi_create_int32(env, exposureMode, &result);
@@ -581,14 +519,12 @@ static napi_value SessionGetExposureMode(napi_env env, napi_callback_info info)
 
 static napi_value SessionSetExposureMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetExposureMode ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-        
+
     int32_t exposureMode;
     napi_get_value_int32(env, args[0], &exposureMode);
     Camera_ErrorCode ret = ndkCamera_->SessionSetExposureMode(exposureMode);
@@ -598,42 +534,38 @@ static napi_value SessionSetExposureMode(napi_env env, napi_callback_info info)
 
 static napi_value SessionGetMeteringPoint(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetMeteringPoint ");
-    
     ndkCamera_->SessionGetMeteringPoint();
     Camera_Point point = ndkCamera_->point_;
     napi_value Point = nullptr;
     napi_create_object(env, &Point);
-    
+
     napi_value jsValue = nullptr;
     napi_create_double(env, point.x, &jsValue);
     napi_set_named_property(env, Point, "x", jsValue);
-    
+
     napi_create_double(env, point.y, &jsValue);
     napi_set_named_property(env, Point, "y", jsValue);
-    
+
     return Point;
 }
 
 static napi_value SessionSetMeteringPoint(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetMeteringPoint ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-        
+
     napi_value value = nullptr;
     napi_get_named_property(env, args[0], "x", &value);
     double x;
     napi_get_value_double(env, value, &x);
-    
+
     napi_get_named_property(env, args[0], "y", &value);
     double y;
     napi_get_value_double(env, value, &y);
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionSetMeteringPoint(x,y);
     napi_create_int32(env, ret, &result);
     return result;
@@ -641,33 +573,30 @@ static napi_value SessionSetMeteringPoint(napi_env env, napi_callback_info info)
 
 static napi_value SessionGetExposureBiasRange(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetExposureBiasRange ");
     ndkCamera_->SessionGetExposureBiasRange();
 
     napi_value exposureBias = nullptr;
     napi_create_object(env, &exposureBias);
-    
+
     napi_value jsValue = nullptr;
-    
+
     napi_create_double(env, ndkCamera_->minExposureBias_, &jsValue);
     napi_set_named_property(env, exposureBias, "minExposureBias", jsValue);
-    
+
     napi_create_double(env, ndkCamera_->maxExposureBias_, &jsValue);
     napi_set_named_property(env, exposureBias, "maxExposureBias", jsValue);
-    
+
     return exposureBias;
 }
 
 static napi_value SessionSetExposureBias(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetExposureBias ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     double exposureBias;
     napi_get_value_double(env, args[0], &exposureBias);
     Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias);
@@ -677,9 +606,8 @@ static napi_value SessionSetExposureBias(napi_env env, napi_callback_info info)
 
 static napi_value SessionGetExposureBias(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetExposureBias ");
     napi_value result;
-    
+
     ndkCamera_->SessionGetExposureBias();
     double exposureBias = ndkCamera_->exposureBias_;
     napi_create_double(env, exposureBias, &result);
@@ -688,17 +616,15 @@ static napi_value SessionGetExposureBias(napi_env env, napi_callback_info info)
 
 static napi_value SessionIsFocusModeSupported(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionIsFocusModeSupported ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     int32_t focusMode;
     napi_get_value_int32(env, args[0], &focusMode);
-    
+
     ndkCamera_->SessionIsFocusModeSupported(focusMode);
     napi_get_boolean(env, ndkCamera_->isFocusSupported_, &result);
     return result;
@@ -706,9 +632,8 @@ static napi_value SessionIsFocusModeSupported(napi_env env, napi_callback_info i
 
 static napi_value SessionGetFocusMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetFocusMode ");
     napi_value result;
-    
+
     ndkCamera_->SessionGetFocusMode();
     Camera_FocusMode focusMode = ndkCamera_->focusMode_;
     napi_create_int32(env, focusMode, &result);
@@ -717,14 +642,12 @@ static napi_value SessionGetFocusMode(napi_env env, napi_callback_info info)
 
 static napi_value SessionSetFocusMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetFocusMode ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     int32_t focusMode;
     napi_get_value_int32(env, args[0], &focusMode);
     Camera_ErrorCode ret = ndkCamera_->SessionSetFocusMode(focusMode);
@@ -734,23 +657,21 @@ static napi_value SessionSetFocusMode(napi_env env, napi_callback_info info)
 
 static napi_value SessionSetFocusPoint(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetFocusPoint ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-        
+
     napi_value value = nullptr;
     napi_get_named_property(env, args[0], "x", &value);
     double x;
     napi_get_value_double(env, value, &x);
-    
+
     napi_get_named_property(env, args[0], "y", &value);
     double y;
     napi_get_value_double(env, value, &y);
-    
+
     Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x,y);
     napi_create_int32(env, ret, &result);
     return result;
@@ -758,47 +679,43 @@ static napi_value SessionSetFocusPoint(napi_env env, napi_callback_info info)
 
 static napi_value SessionGetFocusPoint(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetFocusPoint ");
-    
     ndkCamera_->SessionGetFocusPoint();
     Camera_Point point = ndkCamera_->focusPoint_;
     napi_value Point = nullptr;
     napi_create_object(env, &Point);
-    
+
     napi_value jsValue = nullptr;
     napi_create_double(env, point.x, &jsValue);
     napi_set_named_property(env, Point, "x", jsValue);
-    
+
     napi_create_double(env, point.y, &jsValue);
     napi_set_named_property(env, Point, "y", jsValue);
-    
+
     return Point;
 }
 
 static napi_value SessionGetZoomRatioRange(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetExposureBiasRange ");
     ndkCamera_->SessionGetExposureBiasRange();
 
     napi_value zoomRatio = nullptr;
     napi_create_object(env, &zoomRatio);
-    
+
     napi_value jsValue = nullptr;
-    
+
     napi_create_double(env, ndkCamera_->minZoom_, &jsValue);
     napi_set_named_property(env, zoomRatio, "minZoom", jsValue);
-    
+
     napi_create_double(env, ndkCamera_->maxZoom_, &jsValue);
     napi_set_named_property(env, zoomRatio, "maxZoom", jsValue);
-    
+
     return zoomRatio;
 }
 
 static napi_value SessionGetZoomRatio(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetZoomRatio ");
     napi_value result;
-    
+
     ndkCamera_->SessionGetZoomRatio();
     napi_create_double(env, ndkCamera_->zoom_, &result);
     return result;
@@ -806,14 +723,12 @@ static napi_value SessionGetZoomRatio(napi_env env, napi_callback_info info)
 
 static napi_value SessionSetZoomRatio(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetZoomRatio ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     double zoomRatio;
     napi_get_value_double(env, args[0], &zoomRatio);
     Camera_ErrorCode ret = ndkCamera_->SessionSetZoomRatio(zoomRatio);
@@ -823,17 +738,15 @@ static napi_value SessionSetZoomRatio(napi_env env, napi_callback_info info)
 
 static napi_value SessionIsVideoStabilizationModeSupported(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionIsVideoStabilizationModeSupported ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
+
     int32_t videoStabilizationMode;
     napi_get_value_int32(env, args[0], &videoStabilizationMode);
-    
+
     ndkCamera_->SessionIsVideoStabilizationModeSupported(videoStabilizationMode);
     napi_get_boolean(env, ndkCamera_->isVideoSupported_, &result);
     return result;
@@ -841,9 +754,8 @@ static napi_value SessionIsVideoStabilizationModeSupported(napi_env env, napi_ca
 
 static napi_value SessionGetVideoStabilizationMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionGetVideoStabilizationMode ");
     napi_value result;
-    
+
     ndkCamera_->SessionGetVideoStabilizationMode();
     Camera_VideoStabilizationMode videoMode = ndkCamera_->videoMode_;
     napi_create_int32(env, videoMode, &result);
@@ -852,14 +764,12 @@ static napi_value SessionGetVideoStabilizationMode(napi_env env, napi_callback_i
 
 static napi_value SessionSetVideoStabilizationMode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "SessionSetVideoStabilizationMode ");
-    size_t requireArgc = 2;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
-    
+
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-        
+
     int32_t videoStabilizationMode;
     napi_get_value_int32(env, args[0], &videoStabilizationMode);
     Camera_ErrorCode ret = ndkCamera_->SessionSetVideoStabilizationMode(videoStabilizationMode);
@@ -869,11 +779,9 @@ static napi_value SessionSetVideoStabilizationMode(napi_env env, napi_callback_i
 
 static napi_value GetCameraCallbackCode(napi_env env, napi_callback_info info)
 {
-    OH_LOG_ERROR(LOG_APP, "GetCameraCallbackCode ");
     napi_value result;
-    
+
     CameraCallbackCode status  = ndkCamera_->cameraCallbackCode_;
-    OH_LOG_ERROR(LOG_APP, "CAIHF GetCameraCallbackCode = %{public}d", status);
     napi_create_int32(env, status, &result);
     return result;
 }
@@ -899,15 +807,13 @@ static napi_value GetCaptureParam(napi_env env, napi_value captureConfigValue, C
     napi_get_named_property(env, captureConfigValue, "altitude", &value);
     napi_get_value_int32(env, value, &config->altitude);
 
-    OH_LOG_INFO(LOG_APP, "get quality %{public}d, rotation %{public}d, mirror %{public}d, latitude "
-        "%{public}d, longitude %{public}d, altitude %{public}d", config->quality, config->rotation,
-        config->mirror, config->latitude, config->longitude, config->altitude);
     return 0;
 }
+
 static void SetConfig(Capture_Setting settings, Camera_PhotoCaptureSetting* photoSetting, Camera_Location* location)
 {
     if (photoSetting == nullptr || location == nullptr) {
-        OH_LOG_INFO(LOG_APP, "photoSetting is null");
+        return;
     }
     photoSetting->quality = static_cast<Camera_QualityLevel>(settings.quality);
     photoSetting->rotation = static_cast<Camera_ImageRotation>(settings.rotation);
@@ -920,8 +826,6 @@ static void SetConfig(Capture_Setting settings, Camera_PhotoCaptureSetting* phot
 
 static napi_value TakePictureWithSettings(napi_env env, napi_callback_info info)
 {
-    OH_LOG_INFO(LOG_APP, "TakePictureWithSettings Start");
-    size_t requireArgc = 1;
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     Camera_PhotoCaptureSetting photoSetting;
@@ -934,7 +838,6 @@ static napi_value TakePictureWithSettings(napi_env env, napi_callback_info info)
 
     napi_value result;
     Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting);
-    OH_LOG_ERROR(LOG_APP, "TakePictureWithSettings result is %{public}d", ret);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -948,34 +851,34 @@ static napi_value Init(napi_env env, napi_value exports)
         { "getSupportedCameras", nullptr, GetSupportedCameras, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "createCameraInput", nullptr, CreateCameraInput, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "getSupportedOutputCapability", nullptr, GetSupportedOutputCapability, nullptr, nullptr, nullptr,
-            napi_default, nullptr }, 
-        { "createPreviewOutput", nullptr, CreatePreviewOutput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "createPhotoOutput", nullptr, CreatePhotoOutput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "createVideoOutput", nullptr, CreateVideoOutput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "createMetadataOutput", nullptr, CreateMetadataOutput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
+            napi_default, nullptr },
+        { "createPreviewOutput", nullptr, CreatePreviewOutput, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createPhotoOutput", nullptr, CreatePhotoOutput, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createVideoOutput", nullptr, CreateVideoOutput, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createMetadataOutput", nullptr, CreateMetadataOutput, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "createSession", nullptr, CreateSession, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "isCameraMuted", nullptr, IsCameraMuted, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "cameraInputOpen", nullptr, CameraInputOpen, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "cameraInputClose", nullptr, CameraInputClose, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "cameraInputRelease", nullptr, CameraInputRelease, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "previewOutputStart", nullptr, PreviewOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "previewOutputStop", nullptr, PreviewOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "previewOutputRelease", nullptr, PreviewOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "photoOutputCapture", nullptr, PhotoOutputCapture, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "photoOutputRelease", nullptr, PhotoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "isMirrorSupported", nullptr, IsMirrorSupported, nullptr, nullptr, nullptr, napi_default, nullptr }, 
+        { "isCameraMuted", nullptr, IsCameraMuted, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "cameraInputOpen", nullptr, CameraInputOpen, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "cameraInputClose", nullptr, CameraInputClose, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "cameraInputRelease", nullptr, CameraInputRelease, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "previewOutputStart", nullptr, PreviewOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "previewOutputStop", nullptr, PreviewOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "previewOutputRelease", nullptr, PreviewOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "photoOutputCapture", nullptr, PhotoOutputCapture, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "photoOutputRelease", nullptr, PhotoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "isMirrorSupported", nullptr, IsMirrorSupported, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "videoOutputStart", nullptr, VideoOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "videoOutputStop", nullptr, VideoOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "videoOutputRelease", nullptr, VideoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "metadataOutputStart", nullptr, MetadataOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "metadataOutputStop", nullptr, MetadataOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "metadataOutputRelease", nullptr, MetadataOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "previewOutputStop", nullptr, PreviewOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "sessionAddInput", nullptr, SessionAddInput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
-        { "sessionRemoveInput", nullptr, SessionRemoveInput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
+        { "previewOutputStop", nullptr, PreviewOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "sessionAddInput", nullptr, SessionAddInput, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "sessionRemoveInput", nullptr, SessionRemoveInput, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "sessionAddPreviewOutput", nullptr, SessionAddPreviewOutput, nullptr, nullptr, nullptr,
-            napi_default, nullptr }, 
-        { "sessionAddPhotoOutput", nullptr, SessionAddPhotoOutput, nullptr, nullptr, nullptr, napi_default, nullptr }, 
+            napi_default, nullptr },
+        { "sessionAddPhotoOutput", nullptr, SessionAddPhotoOutput, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "sessionAddVideoOutput", nullptr, SessionAddVideoOutput, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "sessionAddMetadataOutput", nullptr, SessionAddMetadataOutput, nullptr, nullptr, nullptr,
             napi_default, nullptr },
