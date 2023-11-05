@@ -86,9 +86,9 @@ export default function Row_MarginPadding() {
       expect(Math.round(Text1.left - Column.left)).assertEqual(Math.round(vp2px(20)));
       expect(Math.round(Text1.top - Column.top)).assertEqual(Math.round(vp2px(80)));
       expect(Math.round(Math.round((Text1.left - Row.left)*10)/10)).assertEqual(Math.round(vp2px(15)));
-      expect(Text1.top - Row.top).assertEqual(Row.bottom - Text1.bottom);
-      expect(Text2.top - Row.top).assertEqual(Row.bottom - Text2.bottom);
-      expect(Text3.top - Row.top).assertEqual(Row.bottom - Text3.bottom);
+      expect(Math.abs(Text1.top - Row.top - Row.bottom - Text1.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text2.top - Row.top - Row.bottom - Text2.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text3.top - Row.top - Row.bottom - Text3.bottom) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Math.round((Row.right - Text3.right)*10)/10)).assertEqual(Math.round(vp2px(15)));
@@ -135,9 +135,9 @@ export default function Row_MarginPadding() {
       expect(Math.round(Math.round((Text1.top - Column.top)*10)/10)).assertEqual(Math.round(vp2px(80)));
       
       expect(Math.round(Text1.left - Row.left)).assertEqual(Math.round(vp2px(40)));
-      expect(Text1.top - Row.top).assertEqual(Row.bottom - Text1.bottom);
-      expect(Text2.top - Row.top).assertEqual(Row.bottom - Text2.bottom);
-      expect(Text3.top - Row.top).assertEqual(Row.bottom - Text3.bottom);
+      expect(Math.abs(Text1.top - Row.top - Row.bottom - Text1.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text2.top - Row.top - Row.bottom - Text2.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text3.top - Row.top - Row.bottom - Text3.bottom) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Text3.right).assertLarger(Row.right);

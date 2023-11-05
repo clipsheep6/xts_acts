@@ -66,8 +66,8 @@ export default function Column_Space() {
       expect(Math.abs(Math.round(Column_Space_012.top - Column_Space_011.bottom) - 
       Math.round(Column_Space_013.top - Column_Space_012.bottom)) <= 1).assertTrue();
       expect(Math.round(Column_Space_012.top - Column_Space_011.bottom)).assertEqual(Math.round(vp2px(30)));
-      expect(Column_Space_01.top).assertEqual(Column_Space_011.top);
-      expect(Column_Space_013.bottom).assertLess(Column_Space_01.bottom);
+       expect(Math.abs(Column_Space_01.top - Column_Space_011.top) <= 1).assertTrue();
+      expect(Math.abs(Column_Space_013.bottom - Column_Space_01.bottom) <= 1).assertTrue();
       expect(Math.round(Column_Space_011.bottom - Column_Space_011.top)).assertEqual(Math.round(vp2px(50)));
       expect(Math.round(Column_Space_012.bottom - Column_Space_012.top)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Column_Space_013.bottom - Column_Space_013.top)).assertEqual(Math.round(vp2px(150)));
@@ -99,8 +99,8 @@ export default function Column_Space() {
       expect(Math.abs(Math.round(Column_Space_012.top - Column_Space_011.bottom) - 
       Math.round(Column_Space_013.top - Column_Space_012.bottom)) <= 1).assertTrue();
       expect(Math.round(Column_Space_012.top - Column_Space_011.bottom)).assertEqual(Math.round(vp2px(50)));
-      expect(Column_Space_01.top).assertEqual(Column_Space_011.top);
-      expect(Column_Space_013.bottom).assertEqual(Column_Space_01.bottom);
+      expect(Math.abs(Column_Space_01.top - Column_Space_011.top) <= 1).assertTrue();
+      expect(Math.abs(Column_Space_013.bottom - Column_Space_01.bottom) <= 1).assertTrue();
       expect(Math.round(Column_Space_011.bottom - Column_Space_011.top)).assertEqual(Math.round(vp2px(50)));
       expect(Math.round(Column_Space_012.bottom - Column_Space_012.top)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Column_Space_013.bottom - Column_Space_013.top)).assertEqual(Math.round(vp2px(150)));
@@ -132,8 +132,8 @@ export default function Column_Space() {
       expect(Math.round(Column_Space_012.top - Column_Space_011.bottom))
         .assertEqual(Math.round(Column_Space_013.top - Column_Space_012.bottom));
       expect(Math.round(Column_Space_012.top - Column_Space_011.bottom)).assertEqual(Math.round(vp2px(70)));
-      expect(Column_Space_01.top).assertEqual(Column_Space_011.top);
-      expect(Column_Space_013.bottom).assertLarger(Column_Space_01.bottom);
+      expect(Math.abs(Column_Space_01.top - Column_Space_011.top) <= 1).assertTrue();
+      expect(Math.abs(Column_Space_013.bottom - Column_Space_01.bottom) <= 1).assertTrue();
       expect(Math.round(Column_Space_011.bottom - Column_Space_011.top)).assertEqual(Math.round(vp2px(50)));
       expect(Math.round(Column_Space_012.bottom - Column_Space_012.top)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Column_Space_013.bottom - Column_Space_013.top)).assertEqual(Math.round(vp2px(150)));

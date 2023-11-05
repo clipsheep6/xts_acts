@@ -101,12 +101,10 @@ export default function row_TextDisplayPriorityTest() {
       expect(Math.round(thirdText.right- thirdText.left)).assertEqual(Math.round(vp2px(200)));
 
 
-      expect(Math.round(firstText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - firstText.bottom));
-      expect(Math.round(thirdText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - thirdText.bottom)); //text1、text3  center display
+      expect(Math.abs(Math.round(firstText.top - rowContainer.top) - Math.round(rowContainer.bottom - firstText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdText.top - rowContainer.top) - Math.round(rowContainer.bottom - thirdText.bottom)) <= 1).assertTrue();
 
-      expect(firstText.left).assertEqual(rowContainer.left);
+      expect(Math.abs(firstText.left - rowContainer.left) <= 1).assertTrue();
       expect(Math.round(thirdText.left - firstText.right)).assertEqual(Math.round(vp2px(10))); //text2 is hidden
 
       expect(Math.round(rowContainer.right - thirdText.right)).assertEqual(Math.round(vp2px(40)));

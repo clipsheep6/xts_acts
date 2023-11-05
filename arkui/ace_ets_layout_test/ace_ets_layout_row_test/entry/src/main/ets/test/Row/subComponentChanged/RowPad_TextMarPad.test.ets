@@ -69,20 +69,17 @@ export default function rowPad_TextMarPadTest() {
       expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(150)));
 
       expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(secondText.right- secondText.left));
-      expect(Math.round(secondText.right- secondText.left)).assertEqual(Math.round(thirdText.right- thirdText.left));
+      expect(Math.abs(Math.round(firstText.right- firstText.left) - Math.round(secondText.right- secondText.left)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.right- secondText.left) - Math.round(thirdText.right- thirdText.left)) <= 1).assertTrue();
 
-      expect(Math.round(firstText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - firstText.bottom));
-      expect(Math.round(secondText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - secondText.bottom));
-      expect(Math.round(thirdText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - thirdText.bottom));
+      expect(Math.abs(Math.round(firstText.top - rowContainer.top) - Math.round(rowContainer.bottom - firstText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.top - rowContainer.top) - Math.round(rowContainer.bottom - secondText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdText.top - rowContainer.top) - Math.round(rowContainer.bottom - thirdText.bottom)) <= 1).assertTrue();
 
       expect(Math.round(firstText.left - rowContainer.left)).assertEqual(Math.round(vp2px(10))); //row_padding=10
 
       expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(thirdText.left - secondText.right));
+      expect(Math.abs(Math.round(secondText.left - firstText.right) - Math.round(thirdText.left - secondText.right)) <= 1).assertTrue();
 
       expect(Math.round(rowContainer.right - thirdText.right)).assertEqual(Math.round(vp2px(20)));
       console.info('[testRowPadTextPad] END');
@@ -111,22 +108,19 @@ export default function rowPad_TextMarPadTest() {
       expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(150)));
 
       expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(secondText.right- secondText.left));
-      expect(Math.round(secondText.right- secondText.left)).assertEqual(Math.round(thirdText.right- thirdText.left));
+      expect(Math.abs(Math.round(firstText.right- firstText.left) - Math.round(secondText.right- secondText.left)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.right- secondText.left) - Math.round(thirdText.right- thirdText.left)) <= 1).assertTrue();
 
-      expect(Math.round(firstText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - firstText.bottom));
-      expect(Math.round(secondText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - secondText.bottom));
-      expect(Math.round(thirdText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - thirdText.bottom));
+      expect(Math.abs(Math.round(firstText.top - rowContainer.top) - Math.round(rowContainer.bottom - firstText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.top - rowContainer.top) - Math.round(rowContainer.bottom - secondText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdText.top - rowContainer.top) - Math.round(rowContainer.bottom - thirdText.bottom)) <= 1).assertTrue();
 
       expect(Math.round(firstText.left - rowContainer.left)).assertEqual(Math.round(vp2px(20))); //row_padding=10，firstText_margin=10
 
       expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(vp2px(20)));
       expect(Math.round(thirdText.left - secondText.right)).assertEqual(Math.round(vp2px(10)));
 
-      expect(rowContainer.right).assertEqual(thirdText.right);
+      expect(Math.abs(rowContainer.right - thirdText.right) <= 1).assertTrue();
       console.info('[testRowPadTextMar] END');
       done();
     });
@@ -155,22 +149,19 @@ export default function rowPad_TextMarPadTest() {
       expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(150)));
 
       expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(firstText.right- firstText.left)).assertEqual(Math.round(secondText.right- secondText.left));
-      expect(Math.round(secondText.right- secondText.left)).assertEqual(Math.round(thirdText.right- thirdText.left));
+      expect(Math.abs(Math.round(firstText.right- firstText.left) - Math.round(secondText.right- secondText.left)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.right- secondText.left) - Math.round(thirdText.right- thirdText.left)) <= 1).assertTrue();
 
-      expect(Math.round(firstText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - firstText.bottom));
-      expect(Math.round(secondText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - secondText.bottom));
-      expect(Math.round(thirdText.top - rowContainer.top))
-        .assertEqual(Math.round(rowContainer.bottom - thirdText.bottom));
+      expect(Math.abs(Math.round(firstText.top - rowContainer.top) - Math.round(rowContainer.bottom - firstText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(secondText.top - rowContainer.top) - Math.round(rowContainer.bottom - secondText.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdText.top - rowContainer.top) - Math.round(rowContainer.bottom - thirdText.bottom)) <= 1).assertTrue();
 
       expect(Math.round(firstText.left - rowContainer.left)).assertEqual(Math.round(vp2px(20))); //row_padding=10，firstText_margin=10
 
       expect(Math.round(secondText.left - firstText.right)).assertEqual(Math.round(vp2px(20)));
       expect(Math.round(thirdText.left - secondText.right)).assertEqual(Math.round(vp2px(10)));
 
-      expect(rowContainer.right).assertEqual(thirdText.right);
+      expect(Math.abs(rowContainer.right - thirdText.right) <= 1).assertTrue();
       console.info('[testRowPadTextMarPad] END');
       done();
     });

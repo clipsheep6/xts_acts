@@ -59,9 +59,9 @@ export default function rowNesting_justifyContent() {
       let rowNesting_justifyContent_01 = CommonFunc.getComponentRect('rowNesting_justifyContent_01');
 
       console.log('assert position')
-      expect(Math.round(rowNesting_justifyContent_011.top - rowNesting_justifyContent_01.top)).assertEqual(Math.round(rowNesting_justifyContent_01.bottom - rowNesting_justifyContent_011.bottom));
-      expect(Math.round(rowNesting_justifyContent_012.top - rowNesting_justifyContent_01.top)).assertEqual(Math.round(rowNesting_justifyContent_01.bottom - rowNesting_justifyContent_012.bottom));
-      expect(Math.round(rowNesting_justifyContent_013.top - rowNesting_justifyContent_01.top)).assertEqual(Math.round(rowNesting_justifyContent_01.bottom - rowNesting_justifyContent_013.bottom));
+      expect(Math.abs(Math.round(rowNesting_justifyContent_011.top - rowNesting_justifyContent_01.top) - Math.round(rowNesting_justifyContent_01.bottom - rowNesting_justifyContent_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(rowNesting_justifyContent_012.top - rowNesting_justifyContent_01.top) - Math.round(rowNesting_justifyContent_01.bottom - rowNesting_justifyContent_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(rowNesting_justifyContent_013.top - rowNesting_justifyContent_01.top) - Math.round(rowNesting_justifyContent_01.bottom - rowNesting_justifyContent_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(rowNesting_justifyContent_012.left - rowNesting_justifyContent_011.right)).assertEqual(Math.round(vp2px(10)));

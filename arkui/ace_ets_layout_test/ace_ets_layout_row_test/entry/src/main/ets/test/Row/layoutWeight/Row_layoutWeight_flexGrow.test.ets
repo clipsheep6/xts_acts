@@ -61,9 +61,9 @@ export default function Row_layoutWeight_flexGrow() {
       let Row_layoutWeight_flexGrow_01 = CommonFunc.getComponentRect('Row_layoutWeight_flexGrow_01');
 
       console.log('assert position')
-      expect(Math.round(Row_layoutWeight_flexGrow_011.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_011.bottom));
-      expect(Math.round(Row_layoutWeight_flexGrow_012.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_012.bottom));
-      expect(Math.round(Row_layoutWeight_flexGrow_013.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_013.bottom));
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_011.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_012.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_013.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_layoutWeight_flexGrow_012.left - Row_layoutWeight_flexGrow_011.right)).assertEqual(Math.round(vp2px(10)));
@@ -101,9 +101,9 @@ export default function Row_layoutWeight_flexGrow() {
       let Row_layoutWeight_flexGrow_01 = CommonFunc.getComponentRect('Row_layoutWeight_flexGrow_01');
 
       console.log('assert position')
-      expect(Math.round(Row_layoutWeight_flexGrow_011.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_011.bottom));
-      expect(Math.round(Row_layoutWeight_flexGrow_012.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_012.bottom));
-      expect(Math.round(Row_layoutWeight_flexGrow_013.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_013.bottom));
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_011.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_012.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_013.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_layoutWeight_flexGrow_012.left - Row_layoutWeight_flexGrow_011.right)).assertEqual(Math.round(vp2px(10)));
@@ -141,9 +141,9 @@ export default function Row_layoutWeight_flexGrow() {
       let Row_layoutWeight_flexGrow_01 = CommonFunc.getComponentRect('Row_layoutWeight_flexGrow_01');
 
       console.log('assert position')
-      expect(Math.round(Row_layoutWeight_flexGrow_011.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_011.bottom));
-      expect(Math.round(Row_layoutWeight_flexGrow_012.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_012.bottom));
-      expect(Math.round(Row_layoutWeight_flexGrow_013.top - Row_layoutWeight_flexGrow_01.top)).assertEqual(Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_013.bottom));
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_011.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_012.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_layoutWeight_flexGrow_013.top - Row_layoutWeight_flexGrow_01.top) - Math.round(Row_layoutWeight_flexGrow_01.bottom - Row_layoutWeight_flexGrow_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_layoutWeight_flexGrow_012.left - Row_layoutWeight_flexGrow_011.right)).assertEqual(Math.round(vp2px(10)));

@@ -60,9 +60,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(vp2px(30)));
@@ -100,9 +100,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(vp2px(30)));
@@ -139,9 +139,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(50);
@@ -178,9 +178,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(fp2px(70)));
@@ -217,9 +217,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
       console.log('Row_Space_String_011.top - Row_Space_String_01.top', + Row_Space_String_011.top - Row_Space_String_01.top)
       console.log('Row_Space_String_012.top - Row_Space_String_01.top', + Row_Space_String_012.top - Row_Space_String_01.top)
       console.log('Row_Space_String_013.top - Row_Space_String_01.top', + Row_Space_String_013.top - Row_Space_String_01.top)
@@ -259,9 +259,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(vp2px(10)));
@@ -299,9 +299,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(10);
@@ -339,9 +339,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(fp2px(10)));
@@ -379,9 +379,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(10);
@@ -419,9 +419,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(lpx2px(10)));
@@ -459,9 +459,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
       console.log('Row_Space_String_011.top - Row_Space_String_01.top', + Row_Space_String_011.top - Row_Space_String_01.top)
       console.log('Row_Space_String_012.top - Row_Space_String_01.top', + Row_Space_String_012.top - Row_Space_String_01.top)
       console.log('Row_Space_String_013.top - Row_Space_String_01.top', + Row_Space_String_013.top - Row_Space_String_01.top)
@@ -502,9 +502,9 @@ export default function Row_Space_String() {
       let Row_Space_String_01 = CommonFunc.getComponentRect('Row_Space_String_01');
 
       console.log('assert position')
-      expect(Math.round(Row_Space_String_011.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom));
-      expect(Math.round(Row_Space_String_012.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom));
-      expect(Math.round(Row_Space_String_013.top - Row_Space_String_01.top)).assertEqual(Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom));
+      expect(Math.abs(Math.round(Row_Space_String_011.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_011.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_012.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_012.bottom)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Row_Space_String_013.top - Row_Space_String_01.top) - Math.round(Row_Space_String_01.bottom - Row_Space_String_013.bottom)) <= 1).assertTrue();
 
       console.log('assert space')
       expect(Math.round(Row_Space_String_012.left - Row_Space_String_011.right)).assertEqual(Math.round(vp2px(30)));

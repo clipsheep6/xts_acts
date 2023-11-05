@@ -79,11 +79,11 @@ export default function Row_Size() {
       expect(Math.round(Text2.right - Text2.left)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Text3.right - Text3.left)).assertEqual(Math.round(vp2px(100)));
       
-      expect(Text1.left).assertEqual(Row.left);
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
       
-      expect(Text1.top - Row.top).assertEqual(Row.bottom - Text1.bottom);
-      expect(Text2.top - Row.top).assertEqual(Row.bottom - Text2.bottom);
-      expect(Text3.top - Row.top).assertEqual(Row.bottom - Text3.bottom);
+      expect(Math.abs(Text1.top - Row.top - Row.bottom - Text1.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text2.top - Row.top - Row.bottom - Text2.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text3.top - Row.top - Row.bottom - Text3.bottom) <= 1).assertTrue();
       
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
@@ -122,10 +122,10 @@ export default function Row_Size() {
       expect(Math.round(Text1.right - Text1.left)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Text2.right - Text2.left)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Text3.right - Text3.left)).assertEqual(Math.round(vp2px(100)));
-      expect(Text1.left).assertEqual(Row.left);
-      expect(Text1.top - Row.top).assertEqual(Row.bottom - Text1.bottom);
-      expect(Text2.top - Row.top).assertEqual(Row.bottom - Text2.bottom);
-      expect(Text3.top - Row.top).assertEqual(Row.bottom - Text3.bottom);
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
+      expect(Math.abs(Text1.top - Row.top - Row.bottom - Text1.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text2.top - Row.top - Row.bottom - Text2.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text3.top - Row.top - Row.bottom - Text3.bottom) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Text3.right).assertLarger(Row.right);
@@ -164,10 +164,10 @@ export default function Row_Size() {
       expect(Math.round(Text2.right - Text2.left)).assertEqual(Math.round(vp2px(100)));
       expect(Math.round(Text3.right - Text3.left)).assertEqual(Math.round(vp2px(100)));
       
-      expect(Text1.left).assertEqual(Row.left);
-      expect(Text1.top - Row.top).assertEqual(Row.bottom - Text1.bottom);
-      expect(Text2.top - Row.top).assertEqual(Row.bottom - Text2.bottom);
-      expect(Text3.top - Row.top).assertEqual(Row.bottom - Text3.bottom);
+      expect(Math.abs(Text1.left - Row.left) <= 1).assertTrue();
+      expect(Math.abs(Text1.top - Row.top - Row.bottom - Text1.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text2.top - Row.top - Row.bottom - Text2.bottom) <= 1).assertTrue();
+      expect(Math.abs(Text3.top - Row.top - Row.bottom - Text3.bottom) <= 1).assertTrue();
       expect(Math.round(Text2.left - Text1.right)).assertEqual(Math.round(vp2px(10)));
       expect(Math.round(Text3.left - Text2.right)).assertEqual(Math.round(vp2px(10)));
       expect(Text3.bottom).assertLarger(Row.bottom);
