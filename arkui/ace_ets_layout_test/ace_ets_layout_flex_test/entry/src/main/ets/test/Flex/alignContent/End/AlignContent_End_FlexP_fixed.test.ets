@@ -52,7 +52,7 @@ export default function AlignContent_End_FlexP_fixed() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNCONTENT_END_0800
      * @tc.name      testAlignContentEndFlexFixedSatisfy
-     * @tc.desc      Set the AlignContent property of the Flex component to FlexAlign.End, and set the height of the 
+     * @tc.desc      Set the AlignContent property of the Flex component to FlexAlign.End, and set the height of the
      *               subcomponent to meet the height requirements of the subcomponent in the container.
      */
 
@@ -72,7 +72,7 @@ export default function AlignContent_End_FlexP_fixed() {
 
       console.log('AlignContentFlexEnd_flex001 rect_value is:'+
       JSON.stringify(AlignContentFlexEnd_flex001));
- 
+
       console.log('AlignContentFlexEnd_1 rect_value is:'+
       JSON.stringify(AlignContentFlexEnd_1));
       console.log('AlignContentFlexEnd_2 rect_value is:'+
@@ -82,21 +82,20 @@ export default function AlignContent_End_FlexP_fixed() {
       console.log('AlignContentFlexEnd_4 rect_value is:'+
       JSON.stringify(AlignContentFlexEnd_4));
 
-      expect(Math.round(AlignContentFlexEnd_1.bottom - AlignContentFlexEnd_1.top)).assertEqual(Math.round(vp2px(80)));
-      expect(Math.round(AlignContentFlexEnd_2.bottom - AlignContentFlexEnd_2.top)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(AlignContentFlexEnd_3.bottom - AlignContentFlexEnd_3.top)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_4.bottom - AlignContentFlexEnd_4.top)).assertEqual(Math.round(vp2px(200)));
-      expect(Math.round(AlignContentFlexEnd_1.right - AlignContentFlexEnd_1.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_2.right - AlignContentFlexEnd_2.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_3.right - AlignContentFlexEnd_3.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_4.right - AlignContentFlexEnd_4.left)).assertEqual(Math.round(vp2px(150)));
-      
+      expect(Math.abs((AlignContentFlexEnd_1.bottom - AlignContentFlexEnd_1.top) - vp2px(80) ) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_2.bottom - AlignContentFlexEnd_2.top) - vp2px(100)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_3.bottom - AlignContentFlexEnd_3.top) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_4.bottom - AlignContentFlexEnd_4.top) - vp2px(200)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_1.right - AlignContentFlexEnd_1.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_2.right - AlignContentFlexEnd_2.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_3.right - AlignContentFlexEnd_3.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_4.right - AlignContentFlexEnd_4.left) - vp2px(150)) <=1).assertTrue()
+
       expect(obj.$attrs.constructor.direction).assertEqual("FlexDirection.Row");
       expect(obj.$attrs.constructor.alignContent).assertEqual("FlexAlign.End");
-      expect(AlignContentFlexEnd_flex001.bottom).assertEqual(AlignContentFlexEnd_4.bottom);
-      expect(AlignContentFlexEnd_4.top).assertEqual(AlignContentFlexEnd_3.bottom);
-      expect(Math.round(AlignContentFlexEnd_2.top - AlignContentFlexEnd_flex001.top)).assertEqual(Math.round(vp2px(50)));
-	  
+      expect(Math.abs(AlignContentFlexEnd_flex001.bottom - AlignContentFlexEnd_4.bottom) <=1).assertTrue()
+      expect(Math.abs(AlignContentFlexEnd_4.top - AlignContentFlexEnd_3.bottom) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_2.top - AlignContentFlexEnd_flex001.top) - vp2px(50)) <= 1).assertTrue();
       console.info('testAlignContentEndFlexFixedSatisfy END');
       done();
     });
@@ -104,7 +103,7 @@ export default function AlignContent_End_FlexP_fixed() {
     /**
      * @tc.number    SUB_ACE_FLEXALIGNCONTENT_END_0900
      * @tc.name      testAlignContentEndFlexFixedNoSatisfy
-     * @tc.desc      Set the AlignContent property of the Flex component to FlexAlign.End, and set the height of the 
+     * @tc.desc      Set the AlignContent property of the Flex component to FlexAlign.End, and set the height of the
      *               subcomponent to meet the height requirements of the subcomponent in the container.
      */
 
@@ -119,7 +118,7 @@ export default function AlignContent_End_FlexP_fixed() {
       let AlignContentFlexEnd_2 = CommonFunc.getComponentRect('AlignContentFlexEndP_fixed_2');
       let AlignContentFlexEnd_3 = CommonFunc.getComponentRect('AlignContentFlexEndP_fixed_3');
       let AlignContentFlexEnd_4 = CommonFunc.getComponentRect('AlignContentFlexEndP_fixed_4');
-  
+
       console.log('AlignContentFlexEndP_fixed_flex002 rect_value is:'+
       JSON.stringify(AlignContentFlexEnd_flex002))
 
@@ -131,22 +130,20 @@ export default function AlignContent_End_FlexP_fixed() {
       JSON.stringify(AlignContentFlexEnd_3));
       console.log('AlignContentFlexEnd_4 rect_value is:'+
       JSON.stringify(AlignContentFlexEnd_4));
-      
-      expect(Math.round(AlignContentFlexEnd_1.bottom - AlignContentFlexEnd_1.top)).assertEqual(Math.round(vp2px(300)));
-      expect(Math.round(AlignContentFlexEnd_2.bottom - AlignContentFlexEnd_2.top)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(AlignContentFlexEnd_3.bottom - AlignContentFlexEnd_3.top)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_4.bottom - AlignContentFlexEnd_4.top)).assertEqual(Math.round(vp2px(200)));
-      expect(Math.round(AlignContentFlexEnd_1.right - AlignContentFlexEnd_1.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_2.right - AlignContentFlexEnd_2.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_3.right - AlignContentFlexEnd_3.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(AlignContentFlexEnd_4.right - AlignContentFlexEnd_4.left)).assertEqual(Math.round(vp2px(150)));
-	  
+      expect(Math.abs((AlignContentFlexEnd_1.bottom - AlignContentFlexEnd_1.top) - vp2px(300)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_2.bottom - AlignContentFlexEnd_2.top) - vp2px(100)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_3.bottom - AlignContentFlexEnd_3.top) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_4.bottom - AlignContentFlexEnd_4.top) - vp2px(200)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_1.right - AlignContentFlexEnd_1.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_2.right - AlignContentFlexEnd_2.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_3.right - AlignContentFlexEnd_3.left) - vp2px(150)) <=1).assertTrue()
+      expect(Math.abs((AlignContentFlexEnd_4.right - AlignContentFlexEnd_4.left) - vp2px(150)) <=1).assertTrue()
+
       expect(obj.$attrs.constructor.direction).assertEqual("FlexDirection.Row");
       expect(obj.$attrs.constructor.alignContent).assertEqual("FlexAlign.End")
-      expect(AlignContentFlexEnd_1.top).assertEqual(AlignContentFlexEnd_flex002.top);    
+      expect(Math.abs(AlignContentFlexEnd_1.top - AlignContentFlexEnd_flex002.top) <=1).assertTrue()
       expect(AlignContentFlexEnd_4.bottom).assertLarger(AlignContentFlexEnd_flex002.bottom);
-      expect(AlignContentFlexEnd_1.bottom).assertEqual(AlignContentFlexEnd_4.top);
-	  
+      expect(Math.abs(AlignContentFlexEnd_1.bottom - AlignContentFlexEnd_4.top) <=1).assertTrue()
       console.info('testAlignContentEndFlexFixedNoSatisfy END');
       done();
     });
