@@ -98,6 +98,12 @@ let mMETERINGPointInvalidRB = {
   y: (mPicHeightMax + 1),
 }
 
+let Camera_ExposureMode = {
+  EXPOSURE_MODE_LOCKED : 0,
+  EXPOSURE_MODE_AUTO : 1,
+  EXPOSURE_MODE_CONTINUOUS_AUTO : 2,
+}
+
 let mEnableCheckInvalidMETERINGPoint = false;
 
 export default function cameraSessionExposureTest() {
@@ -332,7 +338,7 @@ export default function cameraSessionExposureTest() {
         'ohos.permission.ABILITY_BACKGROUND_COMMUNICATION',
       ];
       featureAbility.getContext().requestPermissionsFromUser(permissions, 0, (data) => {
-        console.info(TAG + "1031xmj request success" + JSON.stringify(data.code));
+        console.info(TAG + "request success" + JSON.stringify(data.code));
       })
     }
     console.info(TAG + '----------cameraSessionExposureTest--------------')
@@ -386,7 +392,7 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_001', 2, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_001--------------");
 
-      let sessionIsExposureModeSupported = cameraObj.sessionIsExposureModeSupported(0);
+      let sessionIsExposureModeSupported = cameraObj.sessionIsExposureModeSupported(Camera_ExposureMode.EXPOSURE_MODE_LOCKED);
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_001 finish");
       if (sessionIsExposureModeSupported != null || sessionIsExposureModeSupported != undefined) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_001 PASSED with sessionIsExposureModeSupported is: " + sessionIsExposureModeSupported);
@@ -411,12 +417,12 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002', 2, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002--------------");
 
-      cameraObj.sessionSetExposureMode(0);
+      cameraObj.sessionSetExposureMode(Camera_ExposureMode.EXPOSURE_MODE_LOCKED);
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002 finish");
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002 PASSED with ExposureMode is: 0");
       let exposureMode = cameraObj.sessionGetExposureMode();
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002 finish");
-      if (exposureMode == 0) {
+      if (exposureMode == Camera_ExposureMode.EXPOSURE_MODE_LOCKED) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002 PASSED with ExposureMode is: " + exposureMode);
       } else {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_002 FAILED with ExposureMode is: " + exposureMode);
@@ -438,7 +444,7 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_003', 2, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_003--------------");
 
-      let sessionIsExposureModeSupported = cameraObj.sessionIsExposureModeSupported(1);
+      let sessionIsExposureModeSupported = cameraObj.sessionIsExposureModeSupported(Camera_ExposureMode.EXPOSURE_MODE_AUTO);
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_003 finish");
       if (sessionIsExposureModeSupported != null || sessionIsExposureModeSupported != undefined) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_003 PASSED with sessionIsExposureModeSupported is: " + sessionIsExposureModeSupported);
@@ -462,13 +468,13 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004', 2, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004--------------");
 
-      cameraObj.sessionSetExposureMode(1);
+      cameraObj.sessionSetExposureMode(Camera_ExposureMode.EXPOSURE_MODE_AUTO);
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004 finish");
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004 PASSED with ExposureMode is: " + 1);
 
       let exposureMode = cameraObj.sessionGetExposureMode();
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004 finish");
-      if (exposureMode == 1) {
+      if (exposureMode == Camera_ExposureMode.EXPOSURE_MODE_AUTO) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004 PASSED with ExposureMode is: " + exposureMode);
       } else {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_004 FAILED with ExposureMode is: " + exposureMode);
@@ -490,7 +496,7 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_005', 2, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_005--------------");
 
-      let sessionIsExposureModeSupported = cameraObj.sessionIsExposureModeSupported(2);
+      let sessionIsExposureModeSupported = cameraObj.sessionIsExposureModeSupported(Camera_ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO);
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_005 finish");
       if (sessionIsExposureModeSupported != null || sessionIsExposureModeSupported != undefined) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_EXPOSURE_MODE_SUPPORT_PROMISE_005 PASSED with sessionIsExposureModeSupported is: " + sessionIsExposureModeSupported);
@@ -514,13 +520,13 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006', 2, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006--------------");
 
-      cameraObj.sessionSetExposureMode(2);
+      cameraObj.sessionSetExposureMode(Camera_ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO);
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006 finish");
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006 PASSED with ExposureMode is: " + 2);
 
       let exposureMode = cameraObj.sessionGetExposureMode();
       console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006 finish");
-      if (exposureMode == 2) {
+      if (exposureMode == Camera_ExposureMode.EXPOSURE_MODE_CONTINUOUS_AUTO) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006 PASSED with ExposureMode is: " + exposureMode);
       } else {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_MODE_PROMISE_006 FAILED with ExposureMode is: " + exposureMode);
@@ -854,7 +860,7 @@ export default function cameraSessionExposureTest() {
     it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_018', 2, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_018--------------");
 
-      let exposureBias =mExposureBiasMinArray[0];
+      let exposureBias = mExposureBiasMinArray[0];
       if (exposureBias == 0) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_018 exposureBias is 0");
       } else {
@@ -950,26 +956,26 @@ export default function cameraSessionExposureTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020', 2, async function (done) {
-      console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020--------------");
+    it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021', 2, async function (done) {
+      console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021--------------");
       let exposureBias = mExposureBiasMaxArray[0];
       if (exposureBias == 0) {
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 exposureBias is 0");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 exposureBias is 0");
       } else {
         cameraObj.sessionSetExposureBias(exposureBias + 0.1);
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 finish");
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 PASSED with ExposureBias is: " + (mExposureBiasMaxArray[0] + 0.1));
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 finish");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 PASSED with ExposureBias is: " + (mExposureBiasMaxArray[0] + 0.1));
 
         let exposureValue = cameraObj.sessionGetExposureBias();
-        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 finish");
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 finish");
         if (exposureValue != (exposureBias + 0.1)) {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 PASSED with ExposureValue is: " + exposureValue);
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 PASSED with ExposureValue is: " + exposureValue);
         } else {
-          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 FAILED with ExposureValue is: " + exposureValue);
+          console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 FAILED with ExposureValue is: " + exposureValue);
           expect().assertFail();
         }
       }
-      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_020 ends here");
+      console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_EXPOSURE_BIAS_PROMISE_021 ends here");
       done();
     })
   })

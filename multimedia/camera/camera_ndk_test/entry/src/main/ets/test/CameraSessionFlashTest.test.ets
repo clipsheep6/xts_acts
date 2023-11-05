@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // @ts-ignore
 
 import cameraObj from 'libentry.so';
@@ -67,6 +67,13 @@ let mVideoConfig = {
     maxDuration: 500
 }
 
+let Camera_FlashMode = {
+    FLASH_MODE_CLOSE : 0,
+    FLASH_MODE_OPEN : 1,
+    FLASH_MODE_AUTO : 2,
+    FLASH_MODE_ALWAYS_OPEN: 3
+}
+
 let mPicWidthMax = 8192;
 let mPicHeightMax = 8192;
 let receiver;
@@ -84,7 +91,7 @@ export default function cameraSessionFlashTest() {
         }
         return false;
     }
-    
+
     async function closeFd() {
         if (mFileAsset != null) {
                 await mFileAsset[0].close(mFdNumber).then(() => {
@@ -282,7 +289,7 @@ export default function cameraSessionFlashTest() {
 
         await releaseInput();
         await releaseOutput();
-        
+
         console.info(TAG + "Exit stopCameraSession");
 
         return true;
@@ -305,7 +312,7 @@ export default function cameraSessionFlashTest() {
                 'ohos.permission.ABILITY_BACKGROUND_COMMUNICATION',
             ];
             featureAbility.getContext().requestPermissionsFromUser(permissions, 0, (data) => {
-                console.info(TAG + "1031xmj request success" + JSON.stringify(data.code));
+                console.info(TAG + "request success" + JSON.stringify(data.code));
             })
         }
         console.info(TAG + '----------cameraSessionFlashTest--------------')
@@ -348,12 +355,6 @@ export default function cameraSessionFlashTest() {
             console.info('afterAll case');
         })
 
-//        typedef enum Camera_FlashMode {
-//            FLASH_MODE_CLOSE = 0,
-//            FLASH_MODE_OPEN = 1,
-//            FLASH_MODE_AUTO = 2,
-//            FLASH_MODE_ALWAYS_OPEN = 3
-//        }  Camera_FlashMode;
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001
         * @tc.name      : Check capture session has flash with promise or not
@@ -390,7 +391,7 @@ export default function cameraSessionFlashTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002', 2, async function (done) {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002--------------");
 
-            let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(0);
+            let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_CLOSE);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002 finish");
             if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
@@ -416,7 +417,7 @@ export default function cameraSessionFlashTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003', 2, async function (done) {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003--------------");
 
-            cameraObj.sessionSetFlashMode(0);
+            cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_CLOSE);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003 finish");
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003 PASSED with FlashMode is: " + 0);
 
@@ -437,7 +438,7 @@ export default function cameraSessionFlashTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004', 2, async function (done) {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004--------------");
 
-            let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(1);
+            let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_OPEN);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004 finish");
             if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
@@ -461,13 +462,13 @@ export default function cameraSessionFlashTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005', 2, async function (done) {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005--------------");
 
-            cameraObj.sessionSetFlashMode(1);
+            cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_OPEN);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 finish");
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 PASSED with FlashMode is: " + 1);
 
             let flashMode = cameraObj.sessionGetFlashMode();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 finish");
-            if (flashMode == 1) {
+            if (flashMode == Camera_FlashMode.FLASH_MODE_OPEN) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 PASSED with FlaseMode is: " + flashMode);
             } else {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 FAILED with FlaseMode is: " + flashMode);
@@ -490,7 +491,7 @@ export default function cameraSessionFlashTest() {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006--------------");
 
             if (mHasFlashArray[0] == true) {
-                let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(2);
+                let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_AUTO);
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 finish");
                 if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
@@ -518,12 +519,12 @@ export default function cameraSessionFlashTest() {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007--------------");
 
             if ((mHasFlashArray[0] == true) && (mIsFlashModeSupportedArray[0] == true)) {
-                cameraObj.sessionSetFlashMode(2);
+                cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_AUTO);
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 finish");
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 PASSED with FlashMode is: " + 2);
                 let flashMode = cameraObj.sessionGetFlashMode();
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 finish");
-                if (flashMode == 2) {
+                if (flashMode == Camera_FlashMode.FLASH_MODE_AUTO) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 PASSED with FlaseMode is: " + flashMode);
                 } else {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 FAILED with FlaseMode is: " + flashMode);
@@ -549,7 +550,7 @@ export default function cameraSessionFlashTest() {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008--------------");
 
             if (mHasFlashArray[0] == true) {
-                let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(3);
+                let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_ALWAYS_OPEN);
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 finish");
                 if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 PASSED with sessionHasFlash is: " + sessionIsFlashModeSupported);
@@ -576,12 +577,12 @@ export default function cameraSessionFlashTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009', 2, async function (done) {
             console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009--------------");
 
-            cameraObj.sessionSetFlashMode(3);
+            cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_ALWAYS_OPEN);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 finish");
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 PASSED with FlashMode is: " + 3);
             let flashMode = cameraObj.sessionGetFlashMode();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 finish");
-            if (flashMode == 3) {
+            if (flashMode == Camera_FlashMode.FLASH_MODE_ALWAYS_OPEN) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 PASSED with FlaseMode is: " + flashMode);
             } else {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 FAILED with FlaseMode is: " + flashMode);

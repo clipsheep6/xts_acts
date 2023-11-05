@@ -85,7 +85,7 @@ export default function CameraInputTest() {
         console.info('Exit getCameraSupportDevicesArray');
         return true;
     }
-    
+
     function beginCameraSessionConfig() {
         console.info('Enter beginCameraSessionConfig');
         console.info(TAG + "Entering beginConfig start");
@@ -125,7 +125,7 @@ export default function CameraInputTest() {
         await cameraObj.sessionRelease();
     }
 
-    async function createInput(idx: any) {
+    async function createInput() {
         console.info(TAG + 'Enter createInput');
         ret = cameraObj.createCameraInput();
         if (ret) {
@@ -145,11 +145,11 @@ export default function CameraInputTest() {
         return true;
     }
 
-    function createOutput(idx:any) {
+    function createOutput() {
         console.info('Enter createOutput');
 
         let cameraOutputCap = cameraObj.getSupportedOutputCapability();
-        
+
         console.info('Exit createOutputs');
 
         return true;
@@ -159,7 +159,7 @@ export default function CameraInputTest() {
         console.info('Enter releaseOutput');
         cameraObj.previewOutputRelease();
         console.info('Exit releaseOutput');
-        
+
         return true;
     }
 
@@ -176,22 +176,22 @@ export default function CameraInputTest() {
         return true;
     }
 
-    async function startCameraSession(idx:any) {
+    async function startCameraSession() {
         console.info(TAG + "Enter startCameraSession");
 
-        await createInput(idx);
+        await createInput();
         cameraObj.sessionAddInput();
 
         await sleep(1);
 
         createPreviewOutput();
         cameraObj.sessionAddPreviewOutput();
-        
+
         await sleep(1);
 
         await commitCameraSessionConfig();
         cameraObj.sessionStart();
-        
+
         console.info(TAG + "Exit startCameraSession");
 
         return true;
@@ -203,7 +203,7 @@ export default function CameraInputTest() {
         cameraObj.sessionRemoveInput();
 
         cameraObj.sessionRemovePreviewOutput();
-        
+
         await releaseInput();
         await releaseOutput();
 
@@ -226,7 +226,7 @@ export default function CameraInputTest() {
             await sleep(1000);
             getCameraManagerInstance();
             getCameraSupportDevicesArray();
-            createOutput(0);
+            createOutput();
             createCameraSessionInstance();
             console.info('beforeAll case');
         });
@@ -253,15 +253,15 @@ export default function CameraInputTest() {
         it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100', 0, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100--------------");
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100 start for camera");
-            await startCameraSession(0);
+            await startCameraSession();
 
-            await createInput(0);
+            await createInput();
             await cameraObj.cameraInputOpen();
 
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100 end for camera");
             done();
         });
-        
+
         /**
          * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100
          * @tc.name      : open/close Camera with cameraInput callback api
@@ -272,7 +272,7 @@ export default function CameraInputTest() {
         */
         it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100', 0, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100--------------");
-            await startCameraSession(0);
+            await startCameraSession();
             cameraObj.sessionBegin();
             console.info("CameraCallbackCode = " + cameraObj.getCameraCallbackCode());
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100 ends here");
@@ -292,7 +292,7 @@ export default function CameraInputTest() {
             let functionTag = "SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100";
             console.info(functionTag);
 
-            await startCameraSession(0);
+            await startCameraSession();
             await releaseInput();
 
             console.info(TAG + functionTag + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100 ends here");

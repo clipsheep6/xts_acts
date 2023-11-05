@@ -15,7 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
-import cameraKit from '../../test/Camera.test'
+import testsuite from '../../test/List.test'
 
 let TAG = 'CameraModuleTest: '
 var mXComponentController: XComponentController = new XComponentController()
@@ -50,7 +50,7 @@ struct CameraIndex {
           var abilityDelegatorArguments: any
           abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
           //console.info(0x00, 'testTag', '%{public}s', 'start run testcase!!!');
-          Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, cameraKit)
+          Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
         })
         .width('1920px')
         .height('1080px')

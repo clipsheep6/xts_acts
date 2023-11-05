@@ -443,7 +443,7 @@ export default function cameraSessionZoomRatioTest() {
 
             let zoomRatio = cameraObj.sessionGetZoomRatio();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 finish");
-            if (zoomRatio != (mZoomRatioMaxArray[0] + 1)) {  //yyx 存有疑惑
+            if (zoomRatio != (mZoomRatioMaxArray[0] + 1)) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 PASSED with ZoomRatio is: " + zoomRatio);
             } else {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 FAILED with ZoomRatio is: " + zoomRatio);

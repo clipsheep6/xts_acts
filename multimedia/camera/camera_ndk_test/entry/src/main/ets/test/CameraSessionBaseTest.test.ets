@@ -249,7 +249,7 @@ export default function cameraSessionTest() {
 
   describe('CameraSessionBaseTest', function () {
     async function getPermission() {
-      console.info(TAG + '1031xmj getPermission');
+      console.info(TAG + 'getPermission');
       let permissions = [
         'ohos.permission.CAMERA',
         'ohos.permission.MICROPHONE',

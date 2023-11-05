@@ -73,6 +73,14 @@ let mVideoConfig = {
     maxDuration: 500
 }
 
+let Camera_VideoStabilizationMode = {
+    STABILIZATION_MODE_OFF : 0,
+    STABILIZATION_MODE_LOW : 1,
+    STABILIZATION_MODE_MIDDLE : 2,
+    STABILIZATION_MODE_HIGH : 3,
+    STABILIZATION_MODE_AUTO : 4
+}
+
 let mPicWidthMax = 8192;
 let mPicHeightMax = 8192;
 let receiver;
@@ -372,7 +380,7 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001--------------");
 
-            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(0);
+            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_OFF);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
@@ -385,13 +393,6 @@ export default function cameraSessionVideoStabilizationTest() {
             done();
         })
 
-//       typedef enum Camera_VideoStabilizationMode {
-//            STABILIZATION_MODE_OFF = 0,
-//            STABILIZATION_MODE_LOW = 1,
-//            STABILIZATION_MODE_MIDDLE = 2,
-//            STABILIZATION_MODE_HIGH = 3,
-//            STABILIZATION_MODE_AUTO = 4
-//        } Camera_VideoStabilizationMode;
         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002
         * @tc.name      : Check capture session set video stabilization off mode with promise
@@ -403,13 +404,13 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002--------------");
 
-            cameraObj.sessionSetVideoStabilizationMode(0);  //STABILIZATION_MODE_OFF
+            cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_OFF);  //STABILIZATION_MODE_OFF
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 finish");
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 PASSED with VideoStabilizationMode is: " + 0);
 
             let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 finish");
-            if (videoStabilizationMode == 0) {
+            if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_OFF) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
             } else {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
@@ -431,7 +432,7 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003--------------");
 
-            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(1);  //STABILIZATION_MODE_LOW
+            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_LOW);  //STABILIZATION_MODE_LOW
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
@@ -455,13 +456,13 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004--------------");
 
-            cameraObj.sessionSetVideoStabilizationMode(1);
+            cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_LOW);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 finish");
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 PASSED with VideoStabilizationMode is: " + 1);
 
             let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 finish");
-            if (videoStabilizationMode == 1) {
+            if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_LOW) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
             } else {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
@@ -482,7 +483,7 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005--------------");
 
-            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(2);
+            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_MIDDLE);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
@@ -507,13 +508,13 @@ export default function cameraSessionVideoStabilizationTest() {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006--------------");
 
             if (mIsVideoStabilizationModeSupportedArray[0] == true) {
-                cameraObj.sessionSetVideoStabilizationMode(2);
+                cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_MIDDLE);
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 finish");
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 PASSED with VideoStabilizationMode is: " + 2);
 
                 let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 finish");
-                if (videoStabilizationMode == 2) {
+                if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_MIDDLE) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
                 } else {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
@@ -538,7 +539,7 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007--------------");
 
-            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(3);
+            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_HIGH);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
@@ -563,13 +564,13 @@ export default function cameraSessionVideoStabilizationTest() {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008--------------");
 
             if (mIsVideoStabilizationModeSupportedArray[0] == true) {
-                cameraObj.sessionSetVideoStabilizationMode(3);
+                cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_HIGH);
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 finish");
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 PASSED with VideoStabilizationMode is: " + 3);
 
                 let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 finish");
-                if (videoStabilizationMode == 3) {
+                if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_HIGH) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
                 } else {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
@@ -594,7 +595,7 @@ export default function cameraSessionVideoStabilizationTest() {
          it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009', 2, async function (done) {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009--------------");
 
-            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(4);
+            let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_AUTO);
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
@@ -619,13 +620,13 @@ export default function cameraSessionVideoStabilizationTest() {
             console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010--------------");
 
             if (mIsVideoStabilizationModeSupportedArray[0] == true) {
-                cameraObj.sessionSetVideoStabilizationMode(4);
+                cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_AUTO);
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 finish");
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 PASSED with VideoStabilizationMode is: " + 4);
 
                 let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
                 console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 finish");
-                if (videoStabilizationMode == 4) {
+                if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_AUTO) {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
                 } else {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);

@@ -138,7 +138,7 @@ export default function CameraFunctionTest() {
     return true;
   }
 
-  async function createInput(idx: any) {
+  async function createInput() {
     console.info(TAG + 'Enter createInput');
     ret = cameraObj.createCameraInput();
     if (ret) {
@@ -233,7 +233,7 @@ export default function CameraFunctionTest() {
     return true;
   }
 
-  function createMetadataOutput(idx: any) {
+  function createMetadataOutput() {
     console.info(TAG + 'Enter createMetadataOutput');
     let capability = cameraObj.getSupportedOutputCapability();
     cameraObj.createMetadataOutput();
@@ -317,7 +317,7 @@ export default function CameraFunctionTest() {
      */
     it('SUB_MULTIMEDIA_CAMERA_FUNCTION_SINGLE_PREVIEW', 0, async function (done) {
       console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_FUNCTION_SINGLE_PREVIEW--------------");
-      await createInput(0);
+      await createInput();
       createCameraSessionInstance();
       cameraObj.sessionAddInput();
       createPreviewOutput();
@@ -346,7 +346,7 @@ export default function CameraFunctionTest() {
      */
     it('SUB_MULTIMEDIA_CAMERA_FUNCTION_SINGLE_PHOTO_001', 0, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_FUNCTION_SINGLE_PHOTO--------------");
-      await createInput(0);
+      await createInput();
       createCameraSessionInstance();
       cameraObj.sessionAddInput();
       createPhotoOutput(mPhotoSurface);
@@ -375,7 +375,7 @@ export default function CameraFunctionTest() {
      */
     it('SUB_MULTIMEDIA_CAMERA_FUNCTION_SINGLE_PHOTO_002', 0, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_FUNCTION_SINGLE_PHOTO_002--------------");
-      await createInput(0);
+      await createInput();
       createCameraSessionInstance();
       cameraObj.sessionAddInput();
       createPhotoOutput(mPhotoSurface);
@@ -403,7 +403,7 @@ export default function CameraFunctionTest() {
      */
     it('SUB_MULTIMEDIA_CAMERA_FUNCTION_COMBINATION_PREVIEW_AND_PHOTO_001', 0, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_FUNCTION_COMBINATION_PREVIEW_AND_PHOTO_001--------------");
-      await createInput(0);
+      await createInput();
       createCameraSessionInstance();
       cameraObj.sessionAddInput();
       createPreviewOutput();
@@ -435,7 +435,7 @@ export default function CameraFunctionTest() {
      */
     it('SUB_MULTIMEDIA_CAMERA_FUNCTION_COMBINATION_PREVIEW_AND_PHOTO_002', 0, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_FUNCTION_COMBINATION_PREVIEW_AND_PHOTO_002--------------");
-      await createInput(0);
+      await createInput();
       createCameraSessionInstance();
       cameraObj.sessionAddInput();
       createPhotoOutput(mPhotoSurface);

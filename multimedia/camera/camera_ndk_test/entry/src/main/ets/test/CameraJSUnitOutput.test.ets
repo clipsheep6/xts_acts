@@ -94,7 +94,7 @@ export default function cameraJSUnitOutput() {
     }
   }
 
-  async function createInput(idx: any) {
+  async function createInput() {
     console.info(TAG + 'Enter createInput');
     let ret = cameraObj.createCameraInput();
     if (ret) {
@@ -555,6 +555,25 @@ export default function cameraJSUnitOutput() {
     })
 
     /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100
+     * @tc.name      : captureSession remove photoOutput
+     * @tc.desc      : captureSession remove photoOutput
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_0100', 1, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100--------------");
+      cameraObj.createVideoOutput(videoSurfaceId);
+      let ret = cameraObj.sessionAddVideoOutput();
+      if (ret) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_VIDEO_OUTPUT_CALLBACK_0100 sessionAddVideoOutput fail")
+        expect().assertFail();
+      }
+      done();
+    })
+
+    /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAPTURE_SESSION_ADD_METADATA_OUTPUT_CALLBACK_0100
       * @tc.name      : captureSession add metadataOutput
       * @tc.desc      : captureSession add metadataOutput
@@ -667,6 +686,46 @@ export default function cameraJSUnitOutput() {
       done();
     })
 
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100
+     * @tc.name      : videoOutput start promise api
+     * @tc.desc      : videoOutput start promise api
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100', 1, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100--------------");
+      let ret = cameraObj.videoOutputStart();
+      if (ret) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_START_PROMISE_0100 videoOutputStart fail")
+        expect().assertFail();
+      }
+      await sleep(1000);
+      done();
+    })
+
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100
+     * @tc.name      : videoOutput stop promise api
+     * @tc.desc      : videoOutput stop promise api
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100', 1, async function (done) {
+      console.info(TAG + " --------------SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100--------------");
+      let ret = cameraObj.videoOutputStop();
+      if (ret) {
+        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_VIDEO_OUTPUT_STOP_PROMISE_0100 videoOutputStop fail")
+        expect().assertFail();
+      }
+      await sleep(1000);
+      done();
+    })
+
     /**
       * @tc.number    : SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START_0100
       * @tc.name      : preview output callback on frameStart api
@@ -677,7 +736,7 @@ export default function cameraJSUnitOutput() {
     */
     it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START_0100', 1, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START_0100--------------");
-      let ret = cameraObj.createPreviewOutput();//test PreviewOutputRegisterCallback onFrameStart
+      let ret = cameraObj.createPreviewOutput(); //test PreviewOutputRegisterCallback onFrameStart
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_START_0100 PreviewOutputRegisterCallback fail")
         expect().assertFail();
@@ -698,7 +757,7 @@ export default function cameraJSUnitOutput() {
     */
     it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END_0100', 1, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END_0100--------------");
-      let ret = cameraObj.createPreviewOutput();//test PreviewOutputRegisterCallback onFrameEnd
+      let ret = cameraObj.createPreviewOutput(); //test PreviewOutputRegisterCallback onFrameEnd
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_FRAME_END_0100 PreviewOutputRegisterCallback fail")
         expect().assertFail();
@@ -719,7 +778,7 @@ export default function cameraJSUnitOutput() {
     */
     it('SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_ERROR_0100', 1, async function (done) {
       console.info("--------------SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_ERROR_0100--------------");
-      let ret = cameraObj.createPreviewOutput();//test PreviewOutputRegisterCallback onError
+      let ret = cameraObj.createPreviewOutput(); //test PreviewOutputRegisterCallback onError
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PREVIEW_OUTPUT_CALLBACK_ON_ERROR_0100 PreviewOutputRegisterCallback fail")
         expect().assertFail();
@@ -795,7 +854,7 @@ export default function cameraJSUnitOutput() {
       cameraObj.getSupportedOutputCapability()
       cameraObj.createSession();
       cameraObj.sessionBegin();
-      let ret = cameraObj.createPhotoOutput(surfaceId1);//test PhotoOutputRegisterCallback onFrameShutter
+      let ret = cameraObj.createPhotoOutput(surfaceId1); //test PhotoOutputRegisterCallback onFrameShutter
 
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_FRAME_SHUTTER_0100 createPhotoOutput fail")
@@ -824,7 +883,7 @@ export default function cameraJSUnitOutput() {
       cameraObj.getSupportedOutputCapability()
       cameraObj.createSession();
       cameraObj.sessionBegin();
-      let ret = cameraObj.createPhotoOutput(surfaceId1);//test PhotoOutputRegisterCallback onFrameEnd
+      let ret = cameraObj.createPhotoOutput(surfaceId1); //test PhotoOutputRegisterCallback onFrameEnd
 
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_CAPTURE_END_0100 createPhotoOutput fail")
@@ -853,7 +912,7 @@ export default function cameraJSUnitOutput() {
       cameraObj.getSupportedOutputCapability()
       cameraObj.createSession();
       cameraObj.sessionBegin();
-      let ret = cameraObj.createPhotoOutput(surfaceId1);//test PhotoOutputRegisterCallback onError
+      let ret = cameraObj.createPhotoOutput(surfaceId1); //test PhotoOutputRegisterCallback onError
 
       if (ret) {
         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CALLBACK_ON_ERROR_0100 createPhotoOutput fail")

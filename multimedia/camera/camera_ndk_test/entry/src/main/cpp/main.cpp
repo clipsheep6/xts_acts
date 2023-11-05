@@ -144,9 +144,9 @@ static napi_value CreateVideoOutput(napi_env env, napi_callback_info info)
 
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
 
-    napi_get_value_string_utf8(env, args[1], nullptr, 0, &videoIdLen);
+    napi_get_value_string_utf8(env, args[0], nullptr, 0, &videoIdLen);
     videoId = new char[videoIdLen + 1];
-    napi_get_value_string_utf8(env, args[1], videoId, videoIdLen + 1, &videoIdLen);
+    napi_get_value_string_utf8(env, args[0], videoId, videoIdLen + 1, &videoIdLen);
 
     Camera_ErrorCode ret = ndkCamera_->CreateVideoOutput(videoId);
     napi_create_int32(env, ret, &result);
