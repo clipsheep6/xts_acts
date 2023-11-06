@@ -201,6 +201,32 @@ import comSizeAbilityTest_26 from './comSizeAbility/comSizeAbilityTest_26.test';
 import comSizeAbilityTest_27 from './comSizeAbility/comSizeAbilityTest_27.test';
 import comSizeAbilityTest_28 from './comSizeAbility/comSizeAbilityTest_28.test';
 import comSizeAbilityTest_29 from './comSizeAbility/comSizeAbilityTest_29.test';
+import ConsumeArray from './@stateTest/ConsumeArray.test.ets'
+import ConsumeArray1 from './@stateTest/ConsumeArray1.test.ets'
+import ConsumeColor from './@stateTest/ConsumeColor.test.ets'
+import ConsumeHight from './@stateTest/ConsumeHight.test.ets'
+import ConsumeNumber from './@stateTest/ConsumeNumber.test.ets'
+import LinkArray from './@stateTest/LinkArray.test.ets'
+import LinkArray1 from './@stateTest/LinkArray1.test.ets'
+import LinkColor from './@stateTest/LinkColor.test.ets'
+import LinkHight from './@stateTest/LinkHight.test.ets'
+import LinkNumber from './@stateTest/LinkNumber.test.ets'
+import objectLinkNumber from './@stateTest/objectLinkNumber.test.ets'
+import PropArray from './@stateTest/PropArray.test.ets'
+import PropArray1 from './@stateTest/PropArray1.test.ets'
+import PropColor from './@stateTest/PropColor.test.ets'
+import PropHight from './@stateTest/PropHight.test.ets'
+import PropNumber from './@stateTest/PropNumber.test.ets'
+import ProvideArray from './@stateTest/ProvideArray.test.ets'
+import ProvideArray1 from './@stateTest/ProvideArray1.test.ets'
+import ProvideColor from './@stateTest/ProvideColor.test.ets'
+import ProvideHight from './@stateTest/ProvideHight.test.ets'
+import ProvideNumber from './@stateTest/ProvideNumber.test.ets'
+import StateArray from './@stateTest/StateArray.test.ets'
+import StateArray1 from './@stateTest/StateArray1.test.ets'
+import StateColor from './@stateTest/StateColor.test.ets'
+import StateHight from './@stateTest/StateHight.test.ets'
+import StateNumber from './@stateTest/StateNumber.test.ets'
 
 
 export default function testsuite() {
@@ -391,4 +417,30 @@ export default function testsuite() {
   comSizeAbilityTest_27();
   comSizeAbilityTest_28();
   comSizeAbilityTest_29();
+  ConsumeArray()
+  ConsumeArray1()
+  ConsumeColor()
+  ConsumeHight()
+  ConsumeNumber()
+  LinkArray()
+  LinkArray1()
+  LinkColor()
+  LinkHight()
+  LinkNumber()
+  objectLinkNumber()
+  PropArray()
+  PropArray1()
+  PropColor()
+  PropHight()
+  PropNumber()
+  ProvideArray()
+  ProvideArray1()
+  ProvideColor()
+  ProvideHight()
+  ProvideNumber()
+  StateArray()
+  StateArray1()
+  StateColor()
+  StateHight()
+  StateNumber()
 }

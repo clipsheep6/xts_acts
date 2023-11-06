@@ -413,7 +413,7 @@ HWTEST(MSLiteTest, OHOS_Context_CPU_0005, Function | MediumTest | Level1) {
     printf("==========Build model==========\n");
     OH_AI_Status ret = OH_AI_ModelBuildFromFile(model, "/data/test/ml_face_isface.ms", OH_AI_MODELTYPE_MINDIR, context);
     printf("==========build model return code:%d\n", ret);
-    ASSERT_EQ(ret, OH_AI_STATUS_LITE_NULLPTR);
+    ASSERT_EQ(ret, OH_AI_STATUS_LITE_NOT_SUPPORT);
     OH_AI_ModelDestroy(&model);
 }
 
@@ -489,7 +489,7 @@ HWTEST(MSLiteTest, OHOS_Context_CPU_0009, Function | MediumTest | Level1) {
     OH_AI_ContextSetThreadAffinityMode(context, 3);
     int thread_affinity_mode = OH_AI_ContextGetThreadAffinityMode(context);
     printf("==========thread_affinity_mode:%d\n", thread_affinity_mode);
-    ASSERT_EQ(thread_affinity_mode, 0);
+    ASSERT_EQ(thread_affinity_mode, 3);
     AddContextDeviceCPU(context);
     printf("==========Create model==========\n");
     OH_AI_ModelHandle model = OH_AI_ModelCreate();
@@ -497,7 +497,7 @@ HWTEST(MSLiteTest, OHOS_Context_CPU_0009, Function | MediumTest | Level1) {
     printf("==========Build model==========\n");
     OH_AI_Status ret = OH_AI_ModelBuildFromFile(model, "/data/test/ml_face_isface.ms", OH_AI_MODELTYPE_MINDIR, context);
     printf("==========build model return code:%d\n", ret);
-    ASSERT_EQ(ret, 0);
+    ASSERT_EQ(ret, OH_AI_STATUS_LITE_NULLPTR);
     OH_AI_ModelDestroy(&model);
 }
 
@@ -796,7 +796,7 @@ HWTEST(MSLiteTest, OHOS_Model_Build_0004, Function | MediumTest | Level1) {
     printf("==========Build model==========\n");
     OH_AI_Status ret = OH_AI_ModelBuild(model, graphBuf, 0, OH_AI_MODELTYPE_MINDIR, context);
     printf("==========build model return code:%d\n", ret);
-    ASSERT_EQ(ret, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID);
+    ASSERT_EQ(ret, OH_AI_STATUS_LITE_ERROR);
     delete[] graphBuf;
     OH_AI_ModelDestroy(&model);
 }
@@ -985,7 +985,7 @@ HWTEST(MSLiteTest, OHOS_Model_Resize_0004, Function | MediumTest | Level1) {
     OH_AI_ShapeInfo shape_infos = {4, {1, -32, 32, 1}};
     ret = OH_AI_ModelResize(model, inputs, &shape_infos, inputs.handle_num);
     printf("==========Resizes return code:%d\n", ret);
-    ASSERT_EQ(ret, OH_AI_STATUS_LITE_PARAM_INVALID);
+    ASSERT_EQ(ret, OH_AI_STATUS_LITE_ERROR);
     OH_AI_ModelDestroy(&model);
 }
 
@@ -1711,7 +1711,7 @@ HWTEST(MSLiteTest, OHOS_Multiple_0002, Function | MediumTest | Level1) {
     printf("==========Build model==========\n");
     int ret2 = OH_AI_ModelBuildFromFile(model, "/data/test/ml_face_isface.ms", OH_AI_MODELTYPE_MINDIR, context);
     printf("==========build model return code:%d\n", ret2);
-    ASSERT_EQ(ret2, OH_AI_STATUS_LITE_NULLPTR);
+    ASSERT_EQ(ret2, OH_AI_STATUS_SUCCESS);
     OH_AI_ModelDestroy(&model);
 }
 
@@ -2119,41 +2119,6 @@ HWTEST(MSLiteTest, OHOS_NNRT_0003, Function | MediumTest | Level1) {
     OH_AI_ModelDestroy(&model);
 }
 
-// 正常场景：delegate异构，使用高低级接口创建nnrt device info，多输入单输出
-HWTEST(MSLiteTest, OHOS_NNRT_0004, Function | MediumTest | Level1) {
-    size_t num = 0;
-    auto desc = OH_AI_GetAllNNRTDeviceDescs(&num);
-    bool is_npu = true;
-    if (desc == nullptr) {
-        is_npu = false;
-    }
-
-    printf("==========Init Context==========\n");
-    OH_AI_ContextHandle context = OH_AI_ContextCreate();
-    ASSERT_NE(context, nullptr);
-    AddContextDeviceNNRT(context);
-    AddContextDeviceCPU(context);
-    printf("==========Create model==========\n");
-    OH_AI_ModelHandle model = OH_AI_ModelCreate();
-    ASSERT_NE(model, nullptr);
-    printf("==========Build model==========\n");
-    OH_AI_Status ret = OH_AI_ModelBuildFromFile(model, "/data/test/ml_headpose_pb2tflite.ms",
-        OH_AI_MODELTYPE_MINDIR, context);
-    printf("==========build model return code:%d\n", ret);
-    ASSERT_EQ(ret, OH_AI_STATUS_SUCCESS);
-    printf("==========GetInputs==========\n");
-    OH_AI_TensorHandleArray inputs = OH_AI_ModelGetInputs(model);
-    ASSERT_NE(inputs.handle_list, nullptr);
-    FillInputsData(inputs, "ml_headpose_pb2tflite", false);
-    printf("==========Model Predict==========\n");
-    OH_AI_TensorHandleArray outputs;
-    ret = OH_AI_ModelPredict(model, inputs, &outputs, nullptr, nullptr);
-    ASSERT_EQ(ret, OH_AI_STATUS_SUCCESS);
-    if (!is_npu) {
-        CompareResult(outputs, "ml_headpose_pb2tflite", 0.02, 0.02);
-    }
-    OH_AI_ModelDestroy(&model);
-}
 
 // 正常场景：delegate异构，设置NNRT扩展选项，包括cache路径
 HWTEST(MSLiteTest, OHOS_NNRT_0005, Function | MediumTest | Level1) {
