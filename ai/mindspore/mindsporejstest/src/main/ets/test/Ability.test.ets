@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+//@ts-ignore
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 import fs from '@ohos.file.fs';
-
+//@ts-nocheck
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -127,6 +128,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     // 正常场景：ModelBuild，调用buffer方法，正常推理
+    //测试
     it('Test_load_model_param_model_buffer', 0, async function () {
       console.log("MSLITE api test: loadModel param model file.Test_load_model_param_model_buffer");
       let modelName = 'ml_face_isface.ms';
