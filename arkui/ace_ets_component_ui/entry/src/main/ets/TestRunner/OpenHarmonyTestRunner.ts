@@ -1,97 +1,559 @@
-/*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+class MonthViewData {
+}
+
+class CalendarDayInfo {
+}
+
+/**
+ *干支纪日法19世纪对应常数
  */
-import TestRunner from '@ohos.application.testRunner'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-
-var abilityDelegator = undefined
-var abilityDelegatorArguments = undefined
-
-
-function sleep(time){
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            resolve("ok")
-        },time)
-    }).then(()=>{
-        console.info(`sleep ${time} over...`)
-    })
-}
-
-function translateParamsToString(parameters) {
-    const keySet = new Set([
-        '-s class', '-s notClass', '-s suite', '-s it',
-        '-s level', '-s testType', '-s size', '-s timeout',
-        '-s dryRun'
-    ])
-    let targetParams = '';
-    for (const key in parameters) {
-        if (keySet.has(key)) {
-            targetParams = `${targetParams} ${key} ${parameters[key]}`
+const CENTURY_19_NUMBER = 31;
+const CENTURY_19 = 18;
+/**
+ *干支纪日法20世纪对应常数
+ */
+const CENTURY_20_NUMBER = 15;
+const CENTURY_20 = 19;
+/**
+ *干支纪日法21世纪对应常数
+ */
+const CENTURY_21_NUMBER = 0;
+const CENTURY_YEARS = 100;
+const MONTH_DAYS = [0,31,28,31,30,31,30,31,31,30,31,30,31];
+const NUMBER_THREE = 3;
+const NUMBER_FOUR = 4;
+const NUMBER_FIVE = 5;
+const NUMBER_SIX = 6;
+const GAN_ZHI_NUMBER = 60;
+class SexagenaryCycle {
+    /**
+     *干支纪日法
+     *
+     * @param year 公历年
+     * @param month 公历月
+     * @param day 公历日
+     * @return 对应日期当天的干支纪日法结果数字，60为一个周期，由甲子开始，癸亥结束
+     *例：1为甲，2为乙丑，3为丙寅，以此类推
+     *计算公式：r = s / 4 * 6 + 5 * (s / 4 * 3 + u) + m + d + x
+     *s:公元念书后两位-1。u:s除以4后的余数。m:月基数。d:日基数，x:世纪常数
+     */
+    getGanZhi(year, month, day) {
+        let yearNum = year % CENTURY_YEARS - 1;
+        let uuNum = yearNum % NUMBER_FOUR;
+        let dayNum = day;
+        let isRunYear = year % NUMBER_FOUR;
+        let resultNum = Math.floor(yearNum / NUMBER_FOUR) * NUMBER_SIX + NUMBER_FIVE * (Math.floor(yearNum / NUMBER_FOUR) * NUMBER_THREE
+        + uuNum) + this.getMonthNum(month) + dayNum + this.getCenturyNum(year) - 1;
+        if (isRunYear === 0) {
+            resultNum = resultNum + 1;
+        }
+        return resultNum;
+    }
+    /**
+     *获取对应年份所在的世纪常数
+     *
+     * @param year 当前公历年份
+     * @return 世纪常数
+     */
+    getCenturyNum(year) {
+        let century = Math.floor(year / CENTURY_YEARS);
+        if (century === CENTURY_19) {
+            return CENTURY_19_NUMBER;
+        }
+        else if (century === CENTURY_20) {
+            return CENTURY_20_NUMBER;
+        }
+        else {
+            return CENTURY_21_NUMBER;
         }
     }
-    return targetParams.trim()
-}
-
-async function onAbilityCreateCallback() {
-    console.log("onAbilityCreateCallback");
-}
-
-async function addAbilityMonitorCallback(err: any) {
-    console.info("addAbilityMonitorCallback : " + JSON.stringify(err))
-}
-
-export default class OpenHarmonyTestRunner implements TestRunner {
-    constructor() {
-    }
-
-    onPrepare() {
-        console.info("OpenHarmonyTestRunner OnPrepare ")
-    }
-
-    async onRun() {
-        console.log('OpenHarmonyTestRunner onRun run')
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var testAbilityName = abilityDelegatorArguments.bundleName + '.MainAbility'
-        let lMonitor = {
-            abilityName: testAbilityName,
-            onAbilityCreate: onAbilityCreateCallback,
-        };
-        abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
-        var cmd = 'aa start -d 0 -a com.example.myapplication.MainAbility' + ' -b ' + abilityDelegatorArguments.bundleName
-        cmd += ' '+translateParamsToString(abilityDelegatorArguments.parameters)
-        var debug = abilityDelegatorArguments.parameters["-D"]
-        if (debug == 'true')
-        {
-            cmd += ' -D'
+    /**
+     *获取对应月份的常数,数值为前几个月的日数总和除以60的余数
+     *
+     * @param month 当前公历月份
+     * @return 当前月份的对应常数
+     */
+    getMonthNum(month) {
+        let monthNum = 0;
+        for (let i = 0;i < month; i++) {
+            monthNum += MONTH_DAYS[i];
         }
-        console.info('cmd : '+cmd)
-        var cmdIn = "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
-        abilityDelegator.executeShellCommand(cmdIn,
-            (err: any, d: any) => {
-                console.info('executeShellCommand : err : ' + JSON.stringify(err));
-                console.info('executeShellCommand : data : ' + d.stdResult);
-                console.info('executeShellCommand : data : ' + d.exitCode);
-            })
-        await sleep(500)
-        abilityDelegator.executeShellCommand(cmd,
-            (err: any, d: any) => {
-                console.info('executeShellCommand : err : ' + JSON.stringify(err));
-                console.info('executeShellCommand : data : ' + d.stdResult);
-                console.info('executeShellCommand : data : ' + d.exitCode);
-            })
-        console.info('OpenHarmonyTestRunner onRun end')
+        let monthNumber = monthNum % GAN_ZHI_NUMBER;
+        return monthNumber;
     }
-};
+}
+
+class LunarTermsInfo {
+    constructor(year, month, day) {
+        this.mYear = year;
+        this.mMonth = month;
+        this.mDay = day;
+    }
+    /**
+     *is same year
+     *
+     * @param year year
+     * @return boolean
+     */
+    isSameYear(year) {
+        return this.mYear === year;
+    }
+    /**
+     *is same month
+     *
+     * @param month month
+     * @return boolean
+     */
+    isSameMonth(month) {
+        return this.mMonth === month;
+    }
+    /**
+     *is same day
+     *
+     * @param day day
+     * @return boolean
+     */
+    isSameDay(day) {
+        return this.mDay === day;
+    }
+}
+
+const J2000 = 2451545;
+const E10 = [
+    1.75347045673, 0.00000000000, 0.0000000000,
+    0.03341656456, 4.66925680417, 6283.0758499914,
+    0.00034894275, 4.62610241759, 12566.1516999828,
+    0.00003417571, 2.82886579606, 3.5231183490,
+    0.00003497056
+];
+const E11 = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const RAD = 180 / Math.PI;
