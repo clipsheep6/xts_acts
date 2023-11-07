@@ -64,23 +64,22 @@ export default function flex_Wrap_LayoutWeightTest() {
       expect(flexContainerObj.$type).assertEqual('Flex');
       expect(flexContainerObj.$attrs.constructor.wrap).assertEqual('FlexWrap.Wrap');
 
-      expect(Math.abs(firstText.left - flexContainer.left) <= 1).assertTrue();
-      expect(Math.abs(firstText.top - flexContainer.top) <= 1).assertTrue();
-      expect(Math.abs(firstText.right - secondText.left) <= 1).assertTrue();
-      expect(Math.abs(secondText.right - thirdText.left) <= 1).assertTrue();
-      expect(Math.abs(firstText.top - secondText.top) <= 1).assertTrue();
-      expect(Math.abs(secondText.top - thirdText.top) <= 1).assertTrue();
+      expect(Math.abs(firstText.left - flexContainer.left) <=1).assertTrue()
+      expect(Math.abs(firstText.top - flexContainer.top) <=1).assertTrue()
+      expect(Math.abs(firstText.right - secondText.left) <=1).assertTrue()
+      expect(Math.abs(secondText.right - thirdText.left) <=1).assertTrue()
+      expect(Math.abs(firstText.top - secondText.top) <=1).assertTrue()
+      expect(Math.abs(secondText.top - thirdText.top) <=1).assertTrue()
 
-      expect(Math.abs(Math.round(firstText.bottom - firstText.top) - Math.round(vp2px(100))) <= 1).assertTrue();
-      expect(Math.abs(Math.round(secondText.bottom - secondText.top) - Math.round(vp2px(150))) <= 1).assertTrue();
-      expect(Math.abs(Math.round(thirdText.bottom - thirdText.top) - Math.round(vp2px(200))) <= 1).assertTrue();
+      expect(Math.abs(firstText.bottom - firstText.top - vp2px(100)) <=1).assertTrue();
+      expect(Math.abs(secondText.bottom - secondText.top - vp2px(150)) <=1).assertTrue();
+      expect(Math.abs(thirdText.bottom - thirdText.top - vp2px(200)) <=1).assertTrue();
+      expect(Math.abs(firstText.right- firstText.left - vp2px(150)) <=1).assertTrue();
+      expect(Math.abs(secondText.right - secondText.left - (thirdText.right - thirdText.left)) <=1).assertTrue();
+      expect(Math.abs((firstText.right - firstText.left) - (thirdText.right - thirdText.left)) <=1).assertTrue();
 
-      expect(Math.abs(Math.round(firstText.right- firstText.left) - Math.round(vp2px(150))) <= 1).assertTrue();
-      expect(Math.abs(Math.round(secondText.right - secondText.left) - Math.round(thirdText.right - thirdText.left)) <= 1).assertTrue();
-      expect(Math.abs(Math.round(firstText.right - firstText.left) - Math.round(thirdText.right - thirdText.left)) <= 1).assertTrue();
-
-      expect(Math.abs(Math.round(flexContainer.right - thirdText.right) - Math.round(vp2px(50))) <= 1).assertTrue();
-      expect(Math.abs(thirdText.bottom - flexContainer.bottom) <= 1).assertTrue();
+      expect(Math.abs((flexContainer.right - thirdText.right) - vp2px(50)) <=1).assertTrue();
+      expect(Math.abs(thirdText.bottom - flexContainer.bottom) <=1).assertTrue();
       console.info('[testWrapWrapTextLayoutWeight] END');
       done();
     });
