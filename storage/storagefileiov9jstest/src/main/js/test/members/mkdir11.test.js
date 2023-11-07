@@ -383,14 +383,14 @@ describe('fileIO_fs_mkdir11', function () {
           expect(false).assertTrue();
         }
         expect(fileIO.accessSync(dpath)).assertTrue();
-      });
-      fileIO.mkdir(dpath1, false,(err) => {
-        if(err) {
-          fileIO.rmdirSync(dpath);
-          console.log('fileIO_test_mkdir_async_new_008 error package1: ' + JSON.stringify(err));
-          expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
-          done();
-        }
+        fileIO.mkdir(dpath1, false,(err) => {
+          if(err) {
+            fileIO.rmdirSync(dpath);
+            console.log('fileIO_test_mkdir_async_new_008 error package1: ' + JSON.stringify(err));
+            expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+            done();
+          }
+        });
       });
     } catch (e) {
       console.log('fileIO_test_mkdir_async_new_008 has failed for ' + e.message + ', code: ' + e.code);
@@ -448,14 +448,14 @@ describe('fileIO_fs_mkdir11', function () {
           expect(false).assertTrue();
         }
         expect(fileIO.accessSync(dpath)).assertTrue();
-      });
-      fileIO.mkdir(dpath1, (err) => {
-        if(err) {
-          fileIO.rmdirSync(dpath);
-          console.log('fileIO_test_mkdir_async_new_010 error package1: ' + JSON.stringify(err));
-          expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
-          done();
-        }
+        fileIO.mkdir(dpath1, (err) => {
+          if(err) {
+            fileIO.rmdirSync(dpath);
+            console.log('fileIO_test_mkdir_async_new_010 error package1: ' + JSON.stringify(err));
+            expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+            done();
+          }
+        });
       });
     } catch (e) {
       console.log('fileIO_test_mkdir_async_new_010 has failed for ' + e.message + ', code: ' + e.code);
@@ -473,7 +473,7 @@ describe('fileIO_fs_mkdir11', function () {
    * @tc.level Level 3
    * @tc.require
    */
-  it('fileIO_test_mkdir_async_new_011', 0, async function (done) {
+  it('fileIO_test_mkdir_async_new_011', 3, async function (done) {
     let dpath = await nextFileName('fileIO_test_mkdir_async_new_011') + 'd';
     let dpath1 = dpath + '/d1/d2';
 
@@ -484,14 +484,14 @@ describe('fileIO_fs_mkdir11', function () {
           expect(false).assertTrue();
         }
         expect(fileIO.accessSync(dpath)).assertTrue();
-      });
-      fileIO.mkdir(dpath1, undefined, (err) => {
-        if(err) {
-          fileIO.rmdirSync(dpath);
-          console.log('fileIO_test_mkdir_async_new_011 error package1: ' + JSON.stringify(err));
-          expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
-          done();
-        }
+        fileIO.mkdir(dpath1, undefined, (err) => {
+          if(err) {
+            fileIO.rmdirSync(dpath);
+            console.log('fileIO_test_mkdir_async_new_011 error package1: ' + JSON.stringify(err));
+            expect(err.code == 13900002 && err.message == 'No such file or directory').assertTrue();
+            done();
+          }
+        });
       });
     } catch (e) {
       console.log('fileIO_test_mkdir_async_new_011 has failed for ' + e.message + ', code: ' + e.code);
