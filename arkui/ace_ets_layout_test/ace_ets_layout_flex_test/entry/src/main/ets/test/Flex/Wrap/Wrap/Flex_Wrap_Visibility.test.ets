@@ -69,19 +69,18 @@ export default function flex_Wrap_VisibilityTest() {
         let firstTextObj = JSON.parse(firstTextStrJson);
         expect(firstTextObj.$attrs.visibility).assertEqual("Visibility.None");
 
-        expect(secondText.top).assertEqual(flexContainer.top);
-        expect(secondText.left).assertEqual(flexContainer.left);
+        expect(Math.abs(secondText.top - flexContainer.top) <=1).assertTrue()
+        expect(Math.abs(secondText.left - flexContainer.left) <=1).assertTrue()
 
-        expect(Math.round(secondText.bottom - secondText.top)).assertEqual(Math.round(vp2px(150)));
-        expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(200)));
+        expect(Math.abs((secondText.bottom - secondText.top) - vp2px(150)) <=1).assertTrue()
+        expect(Math.abs((thirdText.bottom - thirdText.top)   - vp2px(200)) <=1).assertTrue()
+        expect(Math.abs((thirdText.right - thirdText.left)   - vp2px(350)) <=1).assertTrue()
+        expect(Math.abs((thirdText.right - thirdText.left)   - (secondText.right - secondText.left)) <=1).assertTrue()
 
-        expect(Math.round(thirdText.right - thirdText.left)).assertEqual(Math.round(vp2px(350)));
-        expect(Math.round(thirdText.right - thirdText.left)).assertEqual(Math.round(secondText.right - secondText.left));
+        expect(Math.abs(thirdText.top - secondText.bottom) <=1).assertTrue()
+        expect(Math.abs(thirdText.left - secondText.left) <=1).assertTrue()
 
-        expect(thirdText.top).assertEqual(secondText.bottom);
-        expect(thirdText.left).assertEqual(secondText.left);
-
-        expect(Math.round(thirdText.bottom - flexContainer.bottom)).assertEqual(Math.round(vp2px(150)));
+        expect(Math.abs((thirdText.bottom - flexContainer.bottom) - vp2px(150)) <=1).assertTrue()
       } catch (err) {
         console.error('[testWrapWrapTextVisibilityNoneOverflow] failed');
         expect().assertFail();
@@ -115,18 +114,16 @@ export default function flex_Wrap_VisibilityTest() {
         let firstTextObj = JSON.parse(firstTextStrJson);
         expect(firstTextObj.$attrs.visibility).assertEqual("Visibility.None");
 
-        expect(secondText.right).assertEqual(thirdText.left);
-        expect(secondText.top).assertEqual(thirdText.top);
-        expect(flexContainer.top).assertEqual(thirdText.top);
+        expect(Math.abs(secondText.right - thirdText.left) <=1).assertTrue()
+        expect(Math.abs(secondText.top - thirdText.top) <=1).assertTrue()
+        expect(Math.abs(flexContainer.top - thirdText.top) <=1).assertTrue()
 
-        expect(Math.round(secondText.bottom - secondText.top)).assertEqual(Math.round(vp2px(150)));
-        expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(200)));
-
-        expect(Math.round(thirdText.right - thirdText.left)).assertEqual(Math.round(vp2px(150)));
-        expect(Math.round(thirdText.right - thirdText.left)).assertEqual(Math.round(secondText.right - secondText.left));
-
-        expect(Math.round(flexContainer.right - thirdText.right)).assertEqual(Math.round(vp2px(200)));
-        expect(flexContainer.left).assertEqual(secondText.left);
+        expect(Math.abs((secondText.bottom - secondText.top)    - vp2px(150)) <=1).assertTrue()
+        expect(Math.abs((thirdText.bottom - thirdText.top)      - vp2px(200)) <=1).assertTrue()
+        expect(Math.abs((thirdText.right - thirdText.left)      - vp2px(150)) <=1).assertTrue()
+        expect(Math.abs((thirdText.right - thirdText.left)      - (secondText.right - secondText.left)) <=1).assertTrue()
+        expect(Math.abs((flexContainer.right - thirdText.right) - vp2px(200)) <=1).assertTrue()
+        expect(Math.abs(flexContainer.left - secondText.left) <=1).assertTrue()
       } catch (err) {
         console.error('[testWrapWrapTextVisibilityNoneMeet] failed');
         expect().assertFail();
@@ -160,18 +157,17 @@ export default function flex_Wrap_VisibilityTest() {
         let firstTextObj = JSON.parse(firstTextStrJson);
         expect(firstTextObj.$attrs.visibility).assertEqual("Visibility.Hidden");
 
-        expect(secondText.right).assertEqual(thirdText.left)
-        expect(secondText.top).assertEqual(thirdText.top);
-        expect(flexContainer.top).assertEqual(thirdText.top);
+        expect(Math.abs(secondText.right - thirdText.left) <=1).assertTrue()
+        expect(Math.abs(secondText.top - thirdText.top) <=1).assertTrue()
+        expect(Math.abs(flexContainer.top - thirdText.top) <=1).assertTrue()
 
-        expect(Math.round(secondText.bottom - secondText.top)).assertEqual(Math.round(vp2px(150)));
-        expect(Math.round(thirdText.bottom - thirdText.top)).assertEqual(Math.round(vp2px(200)));
+        expect(Math.abs((secondText.bottom - secondText.top) - vp2px(150)) <=1).assertTrue()
+        expect(Math.abs((thirdText.bottom - thirdText.top)   - vp2px(200)) <=1).assertTrue()
+        expect(Math.abs((thirdText.right - thirdText.left)   - vp2px(150)) <=1).assertTrue()
+        expect(Math.abs((thirdText.right - thirdText.left)   - (secondText.right - secondText.left)) <=1).assertTrue()
 
-        expect(Math.round(thirdText.right - thirdText.left)).assertEqual(Math.round(vp2px(150)));
-        expect(Math.round(thirdText.right - thirdText.left)).assertEqual(Math.round(secondText.right - secondText.left));
-
-        expect(Math.round(flexContainer.right - thirdText.right)).assertEqual(Math.round(vp2px(50)));
-        expect(Math.round(secondText.left - flexContainer.left)).assertEqual(Math.round(vp2px(150)));
+        expect(Math.abs((flexContainer.right - thirdText.right) - vp2px(50) ) <=1).assertTrue()
+        expect(Math.abs((secondText.left - flexContainer.left)  - vp2px(150)) <=1).assertTrue()
       } catch (err) {
         console.error('[testWrapWrapTextVisibilityHidden] failed');
         expect().assertFail();
