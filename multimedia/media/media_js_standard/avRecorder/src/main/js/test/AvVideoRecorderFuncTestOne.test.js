@@ -51,7 +51,7 @@ export default function avVideoRecorderTestOne() {
 
         let avConfig = {
             audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile: avProfile,
             url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
             rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
@@ -67,7 +67,7 @@ export default function avVideoRecorderTestOne() {
             videoFrameRate: 30
         }
         let avConfigMpeg = {
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile: avProfileMpeg,
             url: 'fd://35',
             rotation: 0,
@@ -89,7 +89,7 @@ export default function avVideoRecorderTestOne() {
         }
         let avConfigMpegAac = {
             audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile: avProfileMpegAac,
             url: 'fd://35',
             rotation: 0,
@@ -106,7 +106,7 @@ export default function avVideoRecorderTestOne() {
             videoFrameRate: 30
         }
         let avConfigH264 = {
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile: avProfileH264,
             url: 'fd://35',
             rotation: 0,
@@ -128,7 +128,7 @@ export default function avVideoRecorderTestOne() {
         }
         let avConfigH264Aac = {
             audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
             profile: avProfileH264Aac,
             url: 'fd://35',
             rotation: 0,
