@@ -57,11 +57,14 @@ describe('fileIO_fs_mkdir11', function () {
    * @tc.require
    */
   it('fileIO_test_mkdir_sync_new_002', 0, async function () {
-    let dpath = await nextFileName('fileIO_test_mkdir_sync_new_002') + 'd/d1/d2';
+    let dpath = await nextFileName('fileIO_test_mkdir_sync_new_002') + 'd';
+    let dpath1 = dpath + '/d1/d2';
 
     try {
       fileIO.mkdirSync(dpath,true);
       expect(fileIO.accessSync(dpath)).assertTrue();
+      fileIO.mkdirSync(dpath1,true);
+      expect(fileIO.accessSync(dpath1)).assertTrue();
       fileIO.rmdirSync(dpath);
     } catch (e) {
       console.log('fileIO_test_mkdir_sync_new_002 has failed for ' + e.message + ', code: ' + e.code);
@@ -225,11 +228,14 @@ describe('fileIO_fs_mkdir11', function () {
    * @tc.require
    */
   it('fileIO_test_mkdir_async_new_002', 0, async function (done) {
-    let dpath = await nextFileName('fileIO_test_mkdir_async_new_002') + 'd/d1/d2';
+    let dpath = await nextFileName('fileIO_test_mkdir_async_new_002') + 'd';
+    let dpath1 = dpath + '/d1/d2';
 
     try {
       await fileIO.mkdir(dpath,true);
       expect(fileIO.accessSync(dpath)).assertTrue();
+      await fileIO.mkdir(dpath1,true);
+      expect(fileIO.accessSync(dpath1)).assertTrue();
       fileIO.rmdirSync(dpath);
       done();
     } catch (e) {
@@ -409,7 +415,8 @@ describe('fileIO_fs_mkdir11', function () {
    * @tc.require
    */
   it('fileIO_test_mkdir_async_new_009', 0, async function (done) {
-    let dpath = await nextFileName('fileIO_test_mkdir_async_new_009') + 'd/d1/d2';
+    let dpath = await nextFileName('fileIO_test_mkdir_async_new_009') + 'd';
+    let dpath1 = dpath + '/d1/d2';
 
     try {
       fileIO.mkdir(dpath, true, (err) => {
@@ -418,8 +425,15 @@ describe('fileIO_fs_mkdir11', function () {
           expect(false).assertTrue();
         }
         expect(fileIO.accessSync(dpath)).assertTrue();
-        fileIO.rmdirSync(dpath);
-        done();
+        fileIO.mkdir(dpath1, true, (err) => {
+          if(err) {
+            console.log('fileIO_test_mkdir_async_new_009 error package1: ' + JSON.stringify(err));
+            expect(false).assertTrue();
+          }
+          expect(fileIO.accessSync(dpath1)).assertTrue();
+          fileIO.rmdirSync(dpath);
+          done();
+        });
       });
     } catch (e) {
       console.log('fileIO_test_mkdir_async_new_009 has failed for ' + e.message + ', code: ' + e.code);
