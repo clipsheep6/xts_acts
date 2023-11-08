@@ -51,7 +51,7 @@ export default function avVideoRecorderTestOne() {
 
         let avConfig = {
             audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
+            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
             profile: avProfile,
             url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
             rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
@@ -67,7 +67,7 @@ export default function avVideoRecorderTestOne() {
             videoFrameRate: 30
         }
         let avConfigMpeg = {
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
             profile: avProfileMpeg,
             url: 'fd://35',
             rotation: 0,
@@ -89,7 +89,7 @@ export default function avVideoRecorderTestOne() {
         }
         let avConfigMpegAac = {
             audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
             profile: avProfileMpegAac,
             url: 'fd://35',
             rotation: 0,
@@ -106,7 +106,7 @@ export default function avVideoRecorderTestOne() {
             videoFrameRate: 30
         }
         let avConfigH264 = {
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
             profile: avProfileH264,
             url: 'fd://35',
             rotation: 0,
@@ -128,7 +128,7 @@ export default function avVideoRecorderTestOne() {
         }
         let avConfigH264Aac = {
             audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
+            videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
             profile: avProfileH264Aac,
             url: 'fd://35',
             rotation: 0,
@@ -261,11 +261,11 @@ export default function avVideoRecorderTestOne() {
          }
 
         function checkDevice(avConfig) {
-            if (deviceInfo.deviceType === 'default') {
-                avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
-            } else {
-                avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-            }
+            // if (deviceInfo.deviceType === 'default') {
+            //     avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
+            // } else {
+            //     avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
+            // }
             avConfig.profile.videoFrameWidth = myProfile.size.width;
             avConfig.profile.videoFrameHeight = myProfile.size.height;
         }
@@ -467,10 +467,19 @@ export default function avVideoRecorderTestOne() {
             steps.shift();
             avRecorder.prepare(avConfig).then(() => {
                 expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.PREPARED);
-                console.info('prepare success');
+                console.info('VIDEO_SOURCE_TYPE_SURFACE_YUV prepare success');
                 toNextStep(avRecorder, avConfig, recorderTime, steps, done);
             }).catch((err) => {
-                console.info('prepare failed and catch error is ' + err.message);
+                // avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
+                // avRecorder.prepare(avConfig).then(() => {
+                //     expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.PREPARED);
+                //     console.info('VIDEO_SOURCE_TYPE_SURFACE_ES prepare success');
+                //     toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                // }).catch((err) => {
+                //     console.info('VIDEO_SOURCE_TYPE_SURFACE_ES prepare failed and catch error is ' + err.message);
+                //     toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                // });
+                console.info('VIDEO_SOURCE_TYPE_SURFACE_YUV prepare failed and catch error is ' + err.message);
                 toNextStep(avRecorder, avConfig, recorderTime, steps, done);
             });
         });
