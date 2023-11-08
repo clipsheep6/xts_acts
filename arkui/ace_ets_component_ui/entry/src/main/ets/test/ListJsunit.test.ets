@@ -66,6 +66,7 @@ export default function ListJsunit() {
       console.info("[ListJsunit_0100] alignListItem: " + JSON.stringify(obj.$attrs.alignListItem));
       console.info("[ListJsunit_0100] sticky: " + JSON.stringify(obj.$attrs.sticky));
       console.info("[ListJsunit_0100] lanes: " + JSON.stringify(obj.$attrs.lanes));
+      console.info("[ListJsunit_0100] lanes: " + JSON.stringify(obj.$attrs.alwaysEnabled));
       expect(obj.$attrs.space).assertEqual('20.00vp');
       expect(obj.$attrs.initialIndex).assertEqual('0');
       expect(obj.$attrs.listDirection).assertEqual('Axis.Vertical');
@@ -80,6 +81,7 @@ export default function ListJsunit() {
       expect(obj.$attrs.lanes).assertEqual('1');
       expect(obj.$attrs.chainAnimation).assertEqual(false);
       expect(obj.$attrs.multiSelectable).assertEqual(false);
+      expect(obj.$attrs.alwaysEnabled).assertEqual(false);
       expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
       expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.End');      
       console.info('[ListJsunit_0100] END');

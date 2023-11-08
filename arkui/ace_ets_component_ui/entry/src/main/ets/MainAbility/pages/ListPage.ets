@@ -44,6 +44,7 @@ struct ListPage {
   @State onItemMoveText: string = "onItemMove"
   @State onItemDragText: string = "onItemDrag"
   @State onItemDropText: string = "onItemDrop"
+  @State alwaysEnabled: boolean = false
   scroller: Scroller = new Scroller()
   messageManager:MessageManager = new MessageManager()
 
@@ -143,7 +144,7 @@ struct ListPage {
       .scrollBar(this.scrollBar)
       .cachedCount(this.cachedCount)
       .editMode(this.editMode)
-      .edgeEffect(this.edgeEffect)
+      .edgeEffect(this.edgeEffect, {alwaysEnabled: this.alwaysEnabled})
       .chainAnimation(this.chainAnimation)
       .multiSelectable(this.multiSelectable)
       .lanes(this.lanes)

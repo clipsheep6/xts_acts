@@ -49,7 +49,8 @@ export default function textAreaJsunit() {
        let strJson = getInspectorByKey('textArea');
        let obj = JSON.parse(strJson);
        console.info('textAreaJsunit_0100 component obj is: ' + obj.$attrs.placeholderFont + "---" + obj.$attrs.text + "--" + obj.$attrs.placeholderColor + "--" + obj.$attrs.placeholder
-       + "--" + obj.$attrs.textAlign + "--" + obj.$attrs.caretColor + "--" + obj.$attrs.fontSize + "--" + obj.$attrs.inputFilter + "--" + obj.$attrs.copyOption);
+       + "--" + obj.$attrs.textAlign + "--" + obj.$attrs.caretColor + "--" + obj.$attrs.fontSize + "--" + obj.$attrs.inputFilter + "--" + obj.$attrs.copyOption
+       + obj.$attrs.positionIndex);
        expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"16.00fp","weight":"400","fontFamily":"sans-serif"}');
        expect(obj.$attrs.placeholder).assertEqual('The text area can hold an unlimited amount of text. input your word...');
        expect(obj.$attrs.text).assertEqual('test1');
@@ -58,6 +59,7 @@ export default function textAreaJsunit() {
        expect(obj.$attrs.caretColor).assertEqual('#FFACDEFF');
        expect(obj.$attrs.fontSize).assertEqual('16.00fp');
        expect(obj.$attrs.copyOption).assertEqual('CopyOptions.Local');
+       expect(obj.$attrs.positionIndex).assertEqual(1);
        done();
     });
 
@@ -66,6 +68,8 @@ export default function textAreaJsunit() {
       // modify the type attribute normal value of textArea dynamically
       globalThis.value.message.notify({name:'sizeT',value:20})
       await CommonFunc.sleep(2000);
+      globalThis.value.message.notify({name:'textAlign',value:TextAlign.JUSTIFY})
+      await CommonFunc.sleep(2000);
       globalThis.value.message.notify({name:'weightT',value:300})
       await CommonFunc.sleep(2000);
       // check the value of changed parameter
@@ -73,6 +77,7 @@ export default function textAreaJsunit() {
       let obj = JSON.parse(strJson);
       console.info('textAreaJsunit_0200 component obj is: ' + obj.$attrs.placeholderFont);
       expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"20.00fp","weight":"300","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.textAlign).assertEqual('TextAlign.JUSTIFY');
       done();
     });
 
@@ -82,13 +87,17 @@ export default function textAreaJsunit() {
       // modify the type attribute illegal value of textArea dynamically
       globalThis.value.message.notify({name:'sizeT',value:-30})
       await CommonFunc.sleep(200);
+      globalThis.value.message.notify({name:'copyOption',value:CopyOptions.CROSS_DEVICE })
+      await CommonFunc.sleep(1000);
       globalThis.value.message.notify({name:'weightT',value:-300})
       await CommonFunc.sleep(200);
       // check the value of changed parameter
       let strJson = getInspectorByKey('textArea');
       let obj = JSON.parse(strJson);
       console.info('textAreaJsunit_0300 component obj is: ' + obj.$attrs.placeholderFont);
+      console.info('textAreaJsunit_0300 component obj is: ' + obj.$attrs.copyOption);
       expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"-30.00fp","fontWeight":"FontWeight.Normal","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.options).assertEqual('CopyOptions.CROSS_DEVICE');
       done();   
    });
    

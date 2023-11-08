@@ -31,6 +31,8 @@ struct SearchPage {
   @State textFont: Font = { size: 14, weight: 400 }
   @State textAlign: TextAlign = TextAlign.Start
   @State copyOption: CopyOptions = CopyOptions.InApp
+  @State maxLength: number = 10
+  @State positionIndex: number = 1
   controller: SearchController = new SearchController()
   messageManager:MessageManager = new MessageManager()
 
@@ -105,6 +107,7 @@ struct SearchPage {
         .textFont(this.textFont)
         .textAlign(this.textAlign)
         .copyOption(this.copyOption)
+        .maxLength(this.maxLength)
         .onSubmit((value: string) => {
           this.submitValue = value
         })
@@ -125,6 +128,7 @@ struct SearchPage {
         .onClick(() => {
           // 设置光标位置到输入的第一个字符后
           this.controller.caretPosition(this.positionValue)
+          this.positionIndex = this.controller.getCaretOffset().index
         }).key('button')
     }.width('100%')
   }

@@ -48,6 +48,7 @@ struct GridPage {
   @State onScrollStopText: string = 'onScrollStop'
   @State onScrollFrameBeginText: string = 'onScrollFrameBegin'
   @State myKey: number = 0
+  @State alwaysEnabled: boolean = false
   scroller: Scroller = new Scroller()
   messageManager:MessageManager = new MessageManager()
 
@@ -152,7 +153,7 @@ struct GridPage {
       .key('grid1')
       .backgroundColor(0xFAEEE0)
       .height(150)
-      .edgeEffect(EdgeEffect.Spring)
+      .edgeEffect(EdgeEffect.Spring, {alwaysEnabled: this.alwaysEnabled})
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => {
         this.onItemDragStart = 'onItemDragStart:succ'
         console.info('DragInfo_x: ' + event.x + ' DragInfo_y: ' + event.y)

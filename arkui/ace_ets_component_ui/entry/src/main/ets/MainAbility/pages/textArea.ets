@@ -32,6 +32,7 @@ struct TextAreaExample {
   @State message2:string = 'text'
   @State message3:string = 'text'
   @State message4:string = 'text'
+  @State positionIndex: number = 1
 
   messageManager:MessageManager = new MessageManager()
 
@@ -133,6 +134,7 @@ struct TextAreaExample {
         .onClick(() => {
           // 设置光标位置到第一个字符后
           this.controller.caretPosition(1)
+          this.positionIndex = this.controller.getCaretOffset().index
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
