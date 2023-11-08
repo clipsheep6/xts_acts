@@ -77,7 +77,7 @@ export default function StartAbilityForResult(abilityContext) {
         it("FreeInstall_Stage_StartAbilityForResult_2500", 0, async function (done) {
             console.log("------------start FreeInstall_Stage_StartAbilityForResult_2500-------------");
             TAG = "FreeInstall_Stage_StartAbilityForResult_2500";
-            var cmd6 = "bm install -p data/test/AtomizationResultStageEntry.hap";
+            var cmd6 = "bm install -p /data/test/AtomizationResultStageEntry.hap";
             globalThis.delegator.executeShellCommand(cmd6, (err: any, d: any) => {
                 console.info("executeShellCommand6: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
             })
