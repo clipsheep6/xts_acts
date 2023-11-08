@@ -121,7 +121,6 @@ common_depends_gles31 = [
   "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context:rosen_context",
 ]
 
-
 common_src = [
   "//third_party/vk-gl-cts/framework/platform/ohos/context/tcuOhosNativeContext.cpp",
   "//third_party/vk-gl-cts/framework/platform/ohos/context/tcuOhosEglContextFactory.cpp",
