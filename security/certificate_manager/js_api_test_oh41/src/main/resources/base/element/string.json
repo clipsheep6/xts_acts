@@ -11,10 +11,6 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
-    },
-    {
-      "name": "ACCESS_CERT_MANAGER_INTERNAL_desc",
-      "value": "System Api right"
     }
   ]
 }

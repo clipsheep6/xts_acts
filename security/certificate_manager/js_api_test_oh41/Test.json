@@ -5,13 +5,13 @@
     "test-timeout": "1800000",
     "shell-timeout": "60000",
     "testcase-timeout": "900000",
-    "bundle-name": "com.openharmony.certificatemanager",
+    "bundle-name": "com.example.certmanager",
     "module-name": "entry_test"
   },
   "kits": [
     {
       "test-file-name": [
-        "CertificateManagerJSFuncTest.hap"
+        "ActsCertManagerJSFuncTest.hap"
       ],
       "type": "AppInstallKit",
       "cleanup-apps": true

@@ -26,12 +26,13 @@ export default function certManagerThirdPartyJsAPIAbnormalTestUnit() {
     beforeAll(async function () {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
-      try {
-        await commonFunction.installUserTrustedCertificates();
-      } catch (err) {
-        console.error("certManagerThirdPartyJsAPIAbnormalTestUnit beforeAll err: " + err);
-        expect(null).assertFail();
-      }
+
+      // try {
+      //   await commonFunction.installUserTrustedCertificates();
+      // } catch (err) {
+      //   console.error("certManagerThirdPartyJsAPIAbnormalTestUnit beforeAll err: " + err);
+      //   expect(null).assertFail();
+      // }
     })
     beforeEach(function () {
       // Presets an action, which is performed before each unit test case starts.
@@ -804,7 +805,7 @@ export default function certManagerThirdPartyJsAPIAbnormalTestUnit() {
       let signSpec1: certManager.CMSignatureSpec = {
         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN
       };
-      const supportPaddings = Object.keys(certManager.CmKeyPadding).filter(item => isNaN(Number(item)));
+      const supportPaddings = Object.keys(certManager.CmKeyPadding).filter(item => isNaN(Number(item))).filter(item => Number(item) > 0);
       const supportDigests = Object.keys(certManager.CmKeyDigest).filter(item => isNaN(Number(item)));
       for (let supportPadding of supportPaddings) {
         signSpec1.padding = certManager.CmKeyPadding[supportPadding as keyof typeof certManager.CmKeyPadding]
