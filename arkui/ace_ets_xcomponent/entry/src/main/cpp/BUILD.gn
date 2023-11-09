@@ -58,8 +58,8 @@ ohos_shared_library("nativerender") {
     "//third_party/openGLES:libGLES_public_config",
   ]
   external_deps = [
-    "napi:ace_napi",
     "hilog:hilog_ndk",
+    "napi:ace_napi",
   ]
   deps = [
     "$comPath:ace_ndk",
