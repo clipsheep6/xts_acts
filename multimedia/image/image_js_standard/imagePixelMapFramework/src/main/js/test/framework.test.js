@@ -1993,7 +1993,7 @@ export default function imagePixelMapFramework() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0100
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200
          * @tc.name      : isStrideAlignment
          * @tc.desc      : 1.create ImageSource
          *               : 2.create PixelMap with isStrideAlignment
