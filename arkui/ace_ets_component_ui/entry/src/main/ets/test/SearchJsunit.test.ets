@@ -110,6 +110,8 @@ export default function SearchJsunit() {
       console.info("[SearchJsunit_0200] textFont: " + JSON.stringify(obj.$attrs.textFont));
       console.info("[SearchJsunit_0200] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
       console.info("[SearchJsunit_0200] copyOption: " + JSON.stringify(obj.$attrs.copyOption));
+      console.info("[SearchJsunit_0200] copyOption: " + JSON.stringify(obj.$attrs.maxLength));
+      console.info("[SearchJsunit_0200] positionIndex: " + JSON.stringify(obj.$attrs.positionIndex));
       //expect(obj.$attrs.icon).assertEqual('./resources/base/media/star_3.png');
       expect(obj.$attrs.searchButton).assertEqual('search');
       expect(obj.$attrs.value).assertEqual('hello');
@@ -119,6 +121,8 @@ export default function SearchJsunit() {
       expect(obj.$attrs.copyOption).assertEqual('CopyOptions.Local');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF008000');
       expect(obj.$attrs.placeholder).assertEqual('Type to search...');
+      expect(obj.$attrs.maxLength).assertEqual(10); // 10 is maxLength
+      expect(obj.$attrs.positionIndex).assertEqual(2); // 2 is positionIndex
       console.info('[SearchJsunit_0200] END');
       done();
     });
@@ -252,6 +256,19 @@ export default function SearchJsunit() {
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
       expect(obj.$attrs.copyOption).assertEqual('');
       expect(obj.$attrs.placeholder).assertEqual('Type to search...');
+      console.info('[SearchJsunit_0400] END');
+      done();
+    });
+
+    it('SearchJsunit_0500', 0, async function (done) {
+      console.info('[SearchJsunit_0500] START');
+      await CommonFunc.sleep(1000);
+      globalThis.value.message.notify({name:'copyOption',value:CopyOptions.CROSS_DEVICE})
+      await CommonFunc.sleep(2000);
+
+      let strJson = getInspectorByKey('search');
+      let obj = JSON.parse(strJson);
+      expect(obj.$attrs.copyOption).assertEqual('CopyOptions.CROSS_DEVICE');
       console.info('[SearchJsunit_0400] END');
       done();
     });

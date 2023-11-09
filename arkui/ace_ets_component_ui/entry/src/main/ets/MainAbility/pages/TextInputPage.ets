@@ -34,6 +34,7 @@ struct TextInputPage {
   @State onCopy: string = ''
   @State onCut: string = ''
   @State onPaste: string = ''
+  @State positionIndex: number = 1
   controller: TextInputController = new TextInputController()
   messageManager:MessageManager = new MessageManager()
 
@@ -143,6 +144,7 @@ struct TextInputPage {
         .onClick(() => {
           // 将光标移动至第一个字符后
           this.controller.caretPosition(1)
+          this.positionIndex = this.controller.getCaretOffset().index
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })

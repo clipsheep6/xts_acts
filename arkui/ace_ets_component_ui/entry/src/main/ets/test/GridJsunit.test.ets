@@ -55,6 +55,7 @@ export default function GridJsunit() {
       expect(obj.$attrs.cachedCount).assertEqual(1);
       expect(obj.$attrs.multiSelectable).assertEqual('false');
       expect(obj.$attrs.supportAnimation).assertEqual('false');
+      expect(obj.$attrs.alwaysEnabled).assertEqual(false);
       await CommonFunc.sleep(1000);
       let strJson2 = getInspectorByKey('grid2');
       let obj2 = JSON.parse(strJson2);

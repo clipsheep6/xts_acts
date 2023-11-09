@@ -132,10 +132,13 @@ export default function imageTwoJsunit() {
       await CommonFunc.sleep(1000);
       globalThis.value.message.notify({name:'fillColor',value:"#FFEEAA"})
       await CommonFunc.sleep(200);
+      globalThis.value.message.notify({name:'copyOption',value:CopyOptions.CROSS_DEVICE})
+      await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('image1');
       let obj = JSON.parse(strJson);
       console.info('imageOneJsunit_0600 component obj is: ' + obj.$attrs.fillColor);
       expect(obj.$attrs.fillColor).assertEqual('#FFFFEEAA');
+      expect(obj.$attrs.copyOption).assertEqual('CopyOptions.CROSS_DEVICE');
 
       globalThis.value.message.notify({name:'fillColor',value:"rgb(238, 130, 238)"})
       await CommonFunc.sleep(2000);

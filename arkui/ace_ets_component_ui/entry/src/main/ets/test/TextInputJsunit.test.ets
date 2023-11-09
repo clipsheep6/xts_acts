@@ -61,6 +61,7 @@ export default function TextInputJsunit() {
       console.info("[TextInputJsunit_0100] showPasswordIcon: " + JSON.stringify(obj.$attrs.showPasswordIcon));
       console.info("[TextInputJsunit_0100] style: " + JSON.stringify(obj.$attrs.style));
       console.info("[TextInputJsunit_0100] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
+      console.info("[TextInputJsunit_0100] positionIndex: " + JSON.stringify(obj.$attrs.positionIndex));
       expect(obj.$attrs.placeholder).assertEqual('input your word...');
       expect(obj.$attrs.type).assertEqual('InputType.Email');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF808080');
@@ -72,6 +73,7 @@ export default function TextInputJsunit() {
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Center');
       expect(obj.$attrs.copyOption).assertEqual('CopyOptions.InApp');
       expect(obj.$attrs.showPasswordIcon).assertEqual(false); 
+      expect(obj.$attrs.positionIndex).assertEqual(1); 
       console.info('[TextInputJsunit_0100] END');
       done();
     });
@@ -79,6 +81,8 @@ export default function TextInputJsunit() {
     it('TextInputJsunit_0200', 0, async function (done) {
       // Get default attributes of TextInput component
       console.info('[TextInputJsunit_0200] START');
+      await CommonFunc.sleep(1000);
+      globalThis.value.message.notify({name:'copyOption',value:CopyOptions.CROSS_DEVICE })
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('input');
       let obj = JSON.parse(strJson);
@@ -101,6 +105,7 @@ export default function TextInputJsunit() {
       expect(obj.$attrs.maxLength).assertEqual('INF');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
       expect(obj.$attrs.showPasswordIcon).assertEqual(true);
+      expect(obj.$attrs.copyOption).assertEqual('CopyOptions.CROSS_DEVICE');
       await CommonFunc.sleep(1000);
       console.info('[TextInputJsunit_0200] END');
       done();
