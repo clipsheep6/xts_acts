@@ -33,6 +33,7 @@ group("ability_runtime") {
       "actsfwkdataaccessortest:dataability",
       "actsmultiplecall:actsmultiplecall",
       "actsnfcselecttypes:actsnfcselecttypes",
+      "actsobserveappstate:actsobserveappstate",
       "actsparsingparameterstest:actsparsingparameterstest",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsrequestdialogtest:actsrequestdialogtest",
