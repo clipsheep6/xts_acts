@@ -143,7 +143,7 @@ struct ListPage {
       .scrollBar(this.scrollBar)
       .cachedCount(this.cachedCount)
       .editMode(this.editMode)
-      .edgeEffect(this.edgeEffect)
+      .edgeEffect(this.edgeEffect, {alwaysEnabled: true })
       .chainAnimation(this.chainAnimation)
       .multiSelectable(this.multiSelectable)
       .lanes(this.lanes)

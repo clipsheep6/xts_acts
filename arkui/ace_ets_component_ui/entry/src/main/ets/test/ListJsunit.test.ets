@@ -80,6 +80,7 @@ export default function ListJsunit() {
       expect(obj.$attrs.lanes).assertEqual('1');
       expect(obj.$attrs.chainAnimation).assertEqual(false);
       expect(obj.$attrs.multiSelectable).assertEqual(false);
+      expect(obj.$attrs.edgeEffectAlwaysEnabled).assertEqual(true);
       expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
       expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.End');      
       console.info('[ListJsunit_0100] END');
