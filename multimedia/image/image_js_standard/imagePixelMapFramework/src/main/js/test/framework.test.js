@@ -1991,9 +1991,9 @@ export default function imagePixelMapFramework() {
             let result = false;
             await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0100', imageData, result)
         })
-        
+
         /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0100
          * @tc.name      : isStrideAlignment
          * @tc.desc      : 1.create ImageSource
          *               : 2.create PixelMap with isStrideAlignment
@@ -2003,9 +2003,41 @@ export default function imagePixelMapFramework() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', 0, async function (done) {
-            var imageData = testJpg.buffer;
+            var imageData = testPng.buffer;
             let result = true;
             await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0200', imageData, result)
+        })
+        
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300
+         * @tc.name      : isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with isStrideAlignment
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let result = true;
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0300', imageData, result)
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0400
+         * @tc.name      : isStrideAlignment
+         * @tc.desc      : 1.create ImageSource
+         *               : 2.create PixelMap with isStrideAlignment
+         *               : 3.isStrideAlignment
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0400', 0, async function (done) {
+            var imageData = testJpg.buffer;
+            let result = false;
+            await isStrideAlignmentTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPFRAMEWORK_ISSTRIDEALIGNMENT_0400', imageData, result)
         })
 
         /**
