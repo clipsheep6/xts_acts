@@ -325,6 +325,11 @@ export default function imagePixelMapFramework() {
                     logger.log("PixelMap " + pixelMap);
                     if (pixelMap != undefined) {
                         globalpixelmap = pixelMap;
+                        let ret = pixelMap.isStrideAlignment;
+                        logger.log("pixelMap.isStrideAlignment" + ret);
+                        if (ret == undefined) {
+                            logger.log("pixelMap.isStrideAlignment is undefined");
+                        }
                         expect(pixelMap.isStrideAlignment == result).assertTrue();
                         done();
                     } else {
