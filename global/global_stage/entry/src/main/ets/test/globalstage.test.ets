@@ -861,7 +861,6 @@ export default function globalStageTest() {
         catch(e){
             console.log('getDeviceCapabilitySync_stagetest_0100 2' + e.code);
             console.log('getDeviceCapabilitySync_stagetest_0100 3' + e.message);
-            console.log('*****  ')
         }
         done();
         })
