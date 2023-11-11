@@ -7,9 +7,9 @@
       "name": "1.0.0"
     },
     "apiVersion": {
-      "compatible": 7,
+      "compatible": 6,
       "target": 7,
-      "releaseType": "Release"
+      "releaseType": "beta1"
     }
   },
   "deviceConfig": {},
@@ -17,7 +17,6 @@
     "package": "com.example.xts_audiocapturerenhance",
     "name": ".entry",
     "mainAbility": ".MainAbility",
-    "srcPath": "",
     "deviceType": [
       "default",
       "tablet"
@@ -28,26 +27,6 @@
       "moduleType": "entry",
       "installationFree": false
     },
-    "reqPermissions": [
-      {
-        "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",
-        "reason": "use ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
-      },
-      {
-        "name": "ohos.permission.MICROPHONE",
-        "reason": "use ohos.permission.MICROPHONE",
-        "usedScene": {
-          "ability": [
-            "FormAbility"
-          ],
-          "when":"always"
-        }
-      },
-      {
-        "name": "ohos.permission.MANAGE_AUDIO_CONFIG",
-        "reason": "use ohos.permission.MANAGE_AUDIO_CONFIG"
-      }
-    ],
     "abilities": [
       {
         "skills": [
@@ -74,16 +53,24 @@
       },
       {
         "orientation": "unspecified",
-        "formsEnabled": false,
+        "visible": true,
+        "srcPath": "TestAbility",
         "name": ".TestAbility",
         "srcLanguage": "ets",
-        "srcPath": "TestAbility",
         "icon": "$media:icon",
         "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
         "label": "$string:TestAbility_label",
         "type": "page",
-        "visible": true,
         "launchType": "standard"
+      }
+
+    ],
+    "reqPermissions": [
+      
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "use ohos.permission.MICROPHONE"
       }
     ],
     "js": [
