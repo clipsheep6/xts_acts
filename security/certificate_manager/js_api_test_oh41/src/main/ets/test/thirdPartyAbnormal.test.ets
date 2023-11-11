@@ -895,6 +895,159 @@ export default function certManagerThirdPartyJsAPIAbnormalTestUnit() {
       }
       done();
     });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2300
+     * @tc.name Test init with abnormal parameters two
+     * @tc.desc Use Promise Type
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2300', 0, async (done: Function) => {
+      let cmResult: certManager.CMResult;
+      let appKeyUri: string = '';
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: 10
+      };
+      try {
+        await commonFunction.installPrivateCertificates();
+        cmResult = await certManager.getPrivateCertificateList();
+        appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
+      }
+      catch (err) {
+        expect(null).assertFail();
+      }
+      try {
+        await certManager.init(appKeyUri, signSpec);
+        expect(null).assertFail();
+      }
+      catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2400
+     * @tc.name Test init with abnormal parameters two
+     * @tc.desc Use Promise Type
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2400', 0, async (done: Function) => {
+      let cmResult: certManager.CMResult;
+      let appKeyUri: string = '';
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        digest: 10
+      };
+      try {
+        await commonFunction.installPrivateCertificates();
+        cmResult = await certManager.getPrivateCertificateList();
+        appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
+      }
+      catch (err) {
+        expect(null).assertFail();
+      }
+      try {
+        await certManager.init(appKeyUri, signSpec);
+        expect(null).assertFail();
+      }
+      catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2500
+     * @tc.name Test init with abnormal parameters two
+     * @tc.desc Use Promise Type
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2500', 0, async (done: Function) => {
+      let cmResult: certManager.CMResult;
+      let appKeyUri: string = '';
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: 10,
+        digest: 10
+      };
+      try {
+        await commonFunction.installPrivateCertificates();
+        cmResult = await certManager.getPrivateCertificateList();
+        appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
+      }
+      catch (err) {
+        expect(null).assertFail();
+      }
+      try {
+        await certManager.init(appKeyUri, signSpec);
+        expect(null).assertFail();
+      }
+      catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2600
+     * @tc.name Test init with abnormal parameters two
+     * @tc.desc Use Promise Type
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2600', 0, async (done: Function) => {
+      let cmResult: certManager.CMResult;
+      let appKeyUri: string = '';
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: 10
+      };
+      try {
+        await commonFunction.installPrivateCertificates();
+        cmResult = await certManager.getPrivateCertificateList();
+        appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
+      }
+      catch (err) {
+        expect(null).assertFail();
+      }
+      try {
+        await certManager.init(appKeyUri, signSpec);
+        expect(null).assertFail();
+      }
+      catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2700
+     * @tc.name Test init with abnormal parameters two
+     * @tc.desc Use Promise Type
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Abnormal_Func_2700', 0, async (done: Function) => {
+      let cmResult: certManager.CMResult;
+      let appKeyUri: string = '';
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: 10,
+        digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+      };
+      try {
+        await commonFunction.installPrivateCertificates();
+        cmResult = await certManager.getPrivateCertificateList();
+        appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
+      }
+      catch (err) {
+        expect(null).assertFail();
+      }
+      try {
+        await certManager.init(appKeyUri, signSpec);
+        expect(null).assertFail();
+      }
+      catch (err) {
+        expect(err.code).assertEqual(401);
+      }
+      done();
+    });
   })
 }
 

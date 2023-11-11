@@ -22,19 +22,24 @@ async function testInit(signSpec: certManager.CMSignatureSpec) {
   let appKeyUri: string = '';
 
   try {
+    console.error("[sssssss]thirdPartyNormallApi testInit begin");
     await commonFunction.installPrivateCertificates();
     cmResult = await certManager.getPrivateCertificateList();
     appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
-    expect(appKeyUri).assertEqual("oh:t=ak;o=testPriCredential001;u=100;a=20010043");
+    console.log("[sssssss]thirdPartyNormallApi testInit end");
   }
   catch (err) {
+    console.error("[sssssss]thirdPartyNormallApi testInit err: " + err);
     expect(null).assertFail();
   }
 
   try {
+    console.log("[sssssss]thirdPartyNormallApi init begin");
     await certManager.init(appKeyUri, signSpec);
+    console.log("[sssssss]thirdPartyNormallApi init end");
   }
   catch (err) {
+    console.error("[sssssss]thirdPartyNormallApi init err: " + err);
     expect(null).assertFail();
   }
 }

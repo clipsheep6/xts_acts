@@ -745,7 +745,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -760,7 +759,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         padding: certManager.CmKeyPadding.CM_PADDING_PSS
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -775,7 +773,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_MD5
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -791,7 +788,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_NONE
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -807,7 +803,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_MD5
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -823,7 +818,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_SHA1
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -839,7 +833,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_SHA224
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -855,7 +848,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -871,7 +863,6 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         digest: certManager.CmKeyDigest.CM_DIGEST_SHA384
       };
       await thNormal.testInit(signSpec);
-      await thNormalCallback.testInit(signSpec);
       done();
     });
 
@@ -883,10 +874,155 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
     it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3200', 0, async (done: Function) => {
       let signSpec: certManager.CMSignatureSpec = {
         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
-        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        padding: certManager.CmKeyPadding.CM_PADDING_PKCS1_V1_5,
         digest: certManager.CmKeyDigest.CM_DIGEST_SHA512
       };
       await thNormal.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3300
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3300', 0, async (done: Function) => {
+      const signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3400
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3400', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3500
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3500', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        digest: certManager.CmKeyDigest.CM_DIGEST_MD5
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3600
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3600', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: certManager.CmKeyDigest.CM_DIGEST_NONE
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3700
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3700', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: certManager.CmKeyDigest.CM_DIGEST_MD5
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3800
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3800', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: certManager.CmKeyDigest.CM_DIGEST_SHA1
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_3900
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_3900', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: certManager.CmKeyDigest.CM_DIGEST_SHA224
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_4000
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_4000', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_4100
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_4100', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+        digest: certManager.CmKeyDigest.CM_DIGEST_SHA384
+      };
+      await thNormalCallback.testInit(signSpec);
+      done();
+    });
+
+    /**
+     * @tc.number Security_CertManager_ThirdPartyJsApi_Normal_Func_4200
+     * @tc.name Test Max length of PublicCredential List
+     * @tc.desc Test Max length of PublicCredential List
+     */
+    it('Security_CertManager_ThirdPartyJsApi_Normal_Func_4200', 0, async (done: Function) => {
+      let signSpec: certManager.CMSignatureSpec = {
+        purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+        padding: certManager.CmKeyPadding.CM_PADDING_PKCS1_V1_5,
+        digest: certManager.CmKeyDigest.CM_DIGEST_SHA512
+      };
       await thNormalCallback.testInit(signSpec);
       done();
     });

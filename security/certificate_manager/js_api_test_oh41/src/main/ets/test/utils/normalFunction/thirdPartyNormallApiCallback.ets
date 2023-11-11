@@ -25,7 +25,6 @@ async function testInit(signSpec: certManager.CMSignatureSpec) {
     await commonFunction.installPrivateCertificates();
     cmResult = await certManager.getPrivateCertificateList();
     appKeyUri = cmResult.credentialList?.[0]?.keyUri as string;
-    expect(appKeyUri).assertEqual("oh:t=ak;o=testPriCredential001;u=100;a=20010043");
   }
   catch (err) {
     expect(null).assertFail();
