@@ -12,13 +12,11 @@
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
 
-group("certificate_framework") {
+group("certificate_manager") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "js_api_test_oh40:ActsCertFrameworkTwoJSNormalTest",
-      "js_api_test_oh41:ActsCertFramework41JSNormalTest",
-      "js_api_test_one:ActsCertificateFrameworkJSNormalTest",
+      "js_api_test_oh41:ActsCertManagerJSFuncTest"
     ]
   }
 }

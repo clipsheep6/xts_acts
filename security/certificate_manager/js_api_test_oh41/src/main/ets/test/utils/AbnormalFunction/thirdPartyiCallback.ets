@@ -15,11 +15,10 @@
 
 import certManager from '@ohos.security.certManager';
 
-async function getSystemTrustedCertificateAbnormal(certUri) {
+async function getSystemTrustedCertificateAbnormal(certUri: string): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.getSystemTrustedCertificate(certUri, (err, CMResult) => {
+    certManager.getSystemTrustedCertificate(certUri, (err: Error, CMResult: certManager.CMResult) => {
       if (err) {
-        console.error("[Callback]getSystemTrustedCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(CMResult);
@@ -28,11 +27,10 @@ async function getSystemTrustedCertificateAbnormal(certUri) {
   })
 }
 
-async function getUserTrustedCertificateAbnormal(certUri) {
+async function getUserTrustedCertificateAbnormal(certUri: string): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.getUserTrustedCertificate(certUri, (err, CMResult) => {
+    certManager.getUserTrustedCertificate(certUri, (err: Error, CMResult: certManager.CMResult) => {
       if (err) {
-        console.error("[Callback]getUserTrustedCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(CMResult);
@@ -41,11 +39,10 @@ async function getUserTrustedCertificateAbnormal(certUri) {
   })
 }
 
-async function installPrivateCertificateAbnormal(keystore, keystorePwd, certAlias) {
+async function installPrivateCertificateAbnormal(keystore: Uint8Array, keystorePwd: string, certAlias: string): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.installPrivateCertificate(keystore, keystorePwd, certAlias, (err, cmResult) => {
+    certManager.installPrivateCertificate(keystore, keystorePwd, certAlias, (err: Error, cmResult: certManager.CMResult) => {
       if (err) {
-        console.error("[Callback]installPrivateCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(cmResult);
@@ -55,11 +52,10 @@ async function installPrivateCertificateAbnormal(keystore, keystorePwd, certAlia
 }
 
 
-async function uninstallPrivateCertificateAbnormal(keyUri) {
+async function uninstallPrivateCertificateAbnormal(keyUri: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.uninstallPrivateCertificate(keyUri, (err, status) => {
+    certManager.uninstallPrivateCertificate(keyUri, (err: Error, status: boolean) => {
       if (err) {
-        console.error("[Callback]uninstallPrivateCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(status);
@@ -68,11 +64,10 @@ async function uninstallPrivateCertificateAbnormal(keyUri) {
   });
 }
 
-async function isAuthorizedAppAbnormal(keyUri) {
+async function isAuthorizedAppAbnormal(keyUri: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.isAuthorizedApp(keyUri, (err, status) => {
+    certManager.isAuthorizedApp(keyUri, (err: Error, status: boolean) => {
       if (err) {
-        console.error("[Callback]isAuthorizedApp err: " + err.code);
         reject(err);
       } else {
         resolve(status);
@@ -81,11 +76,10 @@ async function isAuthorizedAppAbnormal(keyUri) {
   });
 }
 
-async function initAbnormal(authUri, spec) {
+async function initAbnormal(authUri: string, spec: certManager.CMSignatureSpec): Promise<certManager.CMHandle> {
   return new Promise((resolve, reject) => {
-    certManager.init(authUri, spec, (err, CMHandle) => {
+    certManager.init(authUri, spec, (err: Error, CMHandle: certManager.CMHandle) => {
       if (err) {
-        console.error("[Callback]initAbnormal err: " + err.code);
         reject(err);
       } else {
         resolve(CMHandle);
@@ -94,11 +88,10 @@ async function initAbnormal(authUri, spec) {
   });
 }
 
-async function updateAbnormal(handle, data) {
+async function updateAbnormal(handle:Uint8Array, data:Uint8Array): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.update(handle, data, (err, status) => {
+    certManager.update(handle, data, (err: Error, status: boolean) => {
       if (err) {
-        console.error("[Callback]updateAbnormal err: " + err.code);
         reject(err);
       } else {
         resolve(status);
@@ -107,21 +100,19 @@ async function updateAbnormal(handle, data) {
   });
 }
 
-async function finishAbnormal(handle, signature = null) {
+async function finishAbnormal(handle: Uint8Array, signature?: Uint8Array): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
     if (signature != null && signature != undefined) {
-      certManager.finish(handle, signature, (err, CMResult) => {
+      certManager.finish(handle, signature, (err: Error, CMResult: certManager.CMResult) => {
         if (err) {
-          console.error("[Callback]finishAbnormal err1: " + err.code);
           reject(err);
         } else {
           resolve(CMResult);
         }
       })
     } else {
-      certManager.finish(handle, (err, CMResult) => {
+      certManager.finish(handle, (err: Error, CMResult: certManager.CMResult) => {
         if (err) {
-          console.error("[Callback]finishAbnormal err2: " + err.code);
           reject(err);
         } else {
           resolve(CMResult);
@@ -131,16 +122,41 @@ async function finishAbnormal(handle, signature = null) {
   });
 }
 
-async function abortAbnormal(handle) {
+async function abortAbnormal(handle: Uint8Array): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.abort(handle, (err, status) => {
+    certManager.abort(handle, (err: Error, status: boolean) => {
       if (err) {
-        console.error("[Callback]abortAbnormal err: " + err.code);
         reject(err);
       } else {
         resolve(status);
       }
     })
+  });
+}
+
+async function getAppCertificateAbnormal(keyUri: string): Promise<certManager.CMResult> {
+  return new Promise((resolve, reject) => {
+    certManager.getAppCertificate("", (err: Error, status: certManager.CMResult) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(status);
+      }
+    });
+  });
+}
+
+async function getPrivateCertificateAbnormal(keyUri: string): Promise<certManager.CMResult> {
+  return new Promise((resolve, reject) => {
+    certManager.getPrivateCertificate("", (err: Error, result: certManager.CMResult) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(result);
+      }
+    });
   });
 }
 
@@ -153,6 +169,8 @@ export {
   initAbnormal,
   updateAbnormal,
   finishAbnormal,
-  abortAbnormal
+  abortAbnormal,
+  getAppCertificateAbnormal,
+  getPrivateCertificateAbnormal
 }
 

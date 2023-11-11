@@ -15,11 +15,10 @@
 
 import certManager from '@ohos.security.certManager';
 
-async function setCertificateStatusAbnormal(certUri, store, status) {
+async function setCertificateStatusAbnormal(certUri: string, store: number, status: boolean): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.setCertificateStatus(certUri, store, status, (err, result) => {
+    certManager.setCertificateStatus(certUri, store, status, (err: Error, result: boolean) => {
       if (err) {
-        console.error("[Callback]setCertificateStatus err: " + err.code);
         reject(err);
       } else {
         resolve(result);
@@ -28,11 +27,10 @@ async function setCertificateStatusAbnormal(certUri, store, status) {
   });
 }
 
-async function installUserTrustedCertificateAbnormal(certificate) {
+async function installUserTrustedCertificateAbnormal(certificate: certManager.CertBlob): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.installUserTrustedCertificate(certificate, (err, CMResult) => {
+    certManager.installUserTrustedCertificate(certificate, (err: Error, CMResult: certManager.CMResult) => {
       if (err) {
-        console.error("[Callback]installUserTrustedCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(CMResult);
@@ -41,11 +39,10 @@ async function installUserTrustedCertificateAbnormal(certificate) {
   });
 }
 
-async function installAppCertificateAbnormal(keystore, keystorePwd, certAlias) {
+async function installAppCertificateAbnormal(keystore: Uint8Array, keystorePwd: string, certAlias: string): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.installAppCertificate(keystore, keystorePwd, certAlias, (err, cmResult) => {
+    certManager.installAppCertificate(keystore, keystorePwd, certAlias, (err: Error, cmResult: certManager.CMResult) => {
       if (err) {
-        console.error("[Callback]installAppCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(cmResult);
@@ -55,11 +52,10 @@ async function installAppCertificateAbnormal(keystore, keystorePwd, certAlias) {
 }
 
 
-async function uninstallAppCertificateAbnormal(keyUri) {
+async function uninstallAppCertificateAbnormal(keyUri: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.uninstallAppCertificate(keyUri, (err, status) => {
+    certManager.uninstallAppCertificate(keyUri, (err: Error, status: boolean) => {
       if (err) {
-        console.error("[Callback]uninstallAppCertificate err: " + err.code);
         reject(err);
       } else {
         resolve(status);
@@ -68,9 +64,22 @@ async function uninstallAppCertificateAbnormal(keyUri) {
   });
 }
 
-async function grantAppCertificateAbnormal(keyUri, appUid) {
+async function uninstallUserTrustedCertificateAbnormal(keyUri: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.grantAppCertificate(keyUri, appUid, (err, CMResult) => {
+    certManager.uninstallUserTrustedCertificate(null, (err: Error, status: boolean) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(status);
+      }
+    });
+  });
+}
+
+async function grantAppCertificateAbnormal(keyUri: string, appUid: string): Promise<certManager.CMResult> {
+  return new Promise((resolve, reject) => {
+    certManager.grantAppCertificate(keyUri, appUid, (err: Error, CMResult: certManager.CMResult) => {
       if (err) {
         reject(err);
       } else {
@@ -80,9 +89,9 @@ async function grantAppCertificateAbnormal(keyUri, appUid) {
   })
 }
 
-async function getAuthorizedAppListAbnormal(keyUri) {
+async function getAuthorizedAppListAbnormal(keyUri: string): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.getAuthorizedAppList(keyUri, (err, CMResult) => {
+    certManager.getAuthorizedAppList(keyUri, (err: Error, CMResult: certManager.CMResult) => {
       if (err) {
         reject(err);
       } else {
@@ -92,9 +101,9 @@ async function getAuthorizedAppListAbnormal(keyUri) {
   })
 }
 
-async function removeGrantedAppCertificateAbnormal(keyUri, clientAppUid) {
+async function removeGrantedAppCertificateAbnormal(keyUri: string, clientAppUid: string): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
-    certManager.removeGrantedAppCertificate(keyUri, clientAppUid, (err, CMResult) => {
+    certManager.removeGrantedAppCertificate(keyUri, clientAppUid, (err: Error, CMResult: certManager.CMResult) => {
       if (err) {
         reject(err);
       } else {
@@ -111,6 +120,7 @@ export {
   uninstallAppCertificateAbnormal,
   grantAppCertificateAbnormal,
   getAuthorizedAppListAbnormal,
-  removeGrantedAppCertificateAbnormal
+  removeGrantedAppCertificateAbnormal,
+  uninstallUserTrustedCertificateAbnormal
 }
 

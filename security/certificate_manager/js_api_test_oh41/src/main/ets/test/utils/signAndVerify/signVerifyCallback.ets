@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,9 +15,9 @@
 
 import certManager from '@ohos.security.certManager';
 
-async function initProcess(authUri: string, spec: certManager.CMSignatureSpec) {
+async function initProcess(authUri: string, spec: certManager.CMSignatureSpec): Promise<certManager.CMHandle> {
   return new Promise((resolve, reject) => {
-    certManager.init(authUri, spec, (err, CMHandle) => {
+    certManager.init(authUri, spec, (err: Error, CMHandle: certManager.CMHandle) => {
       if (err) {
         console.error("[Callback] initProcess get err: " + err);
         reject(err);
@@ -30,9 +29,9 @@ async function initProcess(authUri: string, spec: certManager.CMSignatureSpec) {
   })
 }
 
-async function updateProcess(handle: Uint8Array, data: Uint8Array) {
+async function updateProcess(handle: Uint8Array, data: Uint8Array): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.update(handle, data, (err, status) => {
+    certManager.update(handle, data, (err: Error, status: boolean) => {
       if (err) {
         console.error("[Callback] updateProcess get err: " + err);
         reject(err);
@@ -44,12 +43,12 @@ async function updateProcess(handle: Uint8Array, data: Uint8Array) {
   })
 }
 
-async function finishProcess(handle: Uint8Array, signature: Uint8Array = null) {
+async function finishProcess(handle: Uint8Array, signature?: Uint8Array): Promise<certManager.CMResult> {
   return new Promise((resolve, reject) => {
     if (signature) {
-      certManager.finish(handle, signature, (err, CMResult) => {
+      certManager.finish(handle, signature, (err: Error, CMResult: certManager.CMResult) => {
         if (err) {
-          console.error("[Callback] verify finishProcess get err: " + err.code);
+          console.error("[Callback] verify finishProcess get err: " + err);
           reject(err);
         } else {
           console.log("[Callback] verify finishProcess get CMResult: " + CMResult);
@@ -57,9 +56,9 @@ async function finishProcess(handle: Uint8Array, signature: Uint8Array = null) {
         }
       })
     } else {
-      certManager.finish(handle, (err, CMResult) => {
+      certManager.finish(handle, (err: Error, CMResult: certManager.CMResult) => {
         if (err) {
-          console.error("[Callback] signature finishProcess get err: " + err.code);
+          console.error("[Callback] signature finishProcess get err: " + err);
           reject(err);
         } else {
           console.log("[Callback] signature finishProcess get CMResult: " + CMResult);
@@ -70,9 +69,9 @@ async function finishProcess(handle: Uint8Array, signature: Uint8Array = null) {
   })
 }
 
-async function abortProcess(handle: Uint8Array) {
+async function abortProcess(handle: Uint8Array): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    certManager.abort(handle, (err, status) => {
+    certManager.abort(handle, (err: Error, status: boolean) => {
       if (err) {
         console.error("[Callback] abortProcess get err: " + err);
         reject(err);
@@ -102,7 +101,7 @@ async function signVerifyNormalProcess(authUri: string, srcData: Uint8Array) {
     return verifyResult;
   } catch (err) {
     console.error("[Callback]signVerifyNormalProcess catch err: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -136,12 +135,12 @@ async function verifyAbortProcess(authUri: string, srcData: Uint8Array, flag: st
         console.log("[Callback]abort status: " + status);
         return status;
       default:
-        throw "wrong parameter";
+        throw new Error("wrong parameter");
         break;
     }
   } catch (err) {
     console.error("[Callback]verifyAbortProcess catch err: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -170,12 +169,12 @@ async function signAbortProcess(authUri: string, srcData: Uint8Array, flag: stri
         console.log("[Callback]abort status: " + status);
         return status;
       default:
-        throw "wrong parameter";
+        throw new Error("wrong parameter");
         break;
     }
   } catch (err) {
     console.error("[Callback]signAbortProcess catch err: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 

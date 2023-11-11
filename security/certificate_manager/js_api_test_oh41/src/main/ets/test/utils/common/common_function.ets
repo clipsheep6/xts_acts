@@ -27,7 +27,7 @@ async function getClientAppUid() {
     return clientAppUid.toString();
   } catch (err) {
     console.error("getClientAppUid error: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -41,7 +41,7 @@ async function installPrivateCertificates() {
     await certManager.installPrivateCertificate(keystore2, keystorePwd, "testPriCredential002");
   } catch (err) {
     console.error("installPrivateCertificates err: " + err.code);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -59,7 +59,7 @@ async function installAppCertificates() {
     await certManager.installAppCertificate(keyStore4, keystorePwd, "testPubCredential004");
   } catch (err) {
     console.error("ActsCertManagerThirdPartyJsAPITestUnit beforeAll installAppCertificates err: " + err.code);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -87,7 +87,7 @@ async function installUserTrustedCertificates() {
     await certManager.installUserTrustedCertificate(certificate4);
   } catch (err) {
     console.error("ActsCertManagerThirdPartyJsAPINormalTestUnit beforeAll err: " + err.code);
-    throw err;
+    throw new Error(err);
   }
 }
 

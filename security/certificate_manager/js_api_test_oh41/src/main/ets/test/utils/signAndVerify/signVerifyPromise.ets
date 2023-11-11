@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,11 +29,11 @@ async function signVerifyNormalProcess(authUri: string, srcData: Uint8Array) {
     let signResult: certManager.CMResult = await certManager.finish(signHandle.handle);
     let verifyHandle: certManager.CMHandle = await certManager.init(authUri, verifySpec);
     await certManager.update(verifyHandle.handle, srcData);
-    let verifyResult: certManager.CMResult = await certManager.finish(verifyHandle.handle, signResult.outData);
+    let verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
     return verifyResult;
   } catch (err) {
     console.error("[Promise]signVerifyNormalProcess catch err: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -68,12 +67,12 @@ async function verifyAbortProcess(authUri: string, srcData: Uint8Array, flag: st
         console.log("[Promise]abort status: " + status);
         return status;
       default:
-        throw "wrong parameter";
+        throw new Error("wrong parameter");
         break;
     }
   } catch (err) {
     console.error("[Promise]verifyAbortProcess catch err: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 
@@ -102,12 +101,12 @@ async function signAbortProcess(authUri: string, srcData: Uint8Array, flag: stri
         console.log("[Promise]abort status: " + status);
         return status;
       default:
-        throw "wrong parameter";
+        throw new Error("wrong parameter");
         break;
     }
   } catch (err) {
     console.error("[Promise]signAbortProcess catch err: " + err);
-    throw err;
+    throw new Error(err);
   }
 }
 

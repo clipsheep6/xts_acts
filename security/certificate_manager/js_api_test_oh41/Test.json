@@ -5,7 +5,7 @@
     "test-timeout": "1800000",
     "shell-timeout": "60000",
     "testcase-timeout": "900000",
-    "bundle-name": "com.example.certmanager",
+    "bundle-name": "com.openharmony.certmanager",
     "module-name": "entry_test"
   },
   "kits": [
