@@ -14,7 +14,7 @@
  */
 
 import gestureEvent from '@ohos.multimodalInput.gestureEvent';
-import { Rotate, Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate, Pinch, ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
@@ -112,6 +112,16 @@ export default function MultimodalInput_GestureEvent_test() {
       expect(rotate.type == 1).assertTrue();
       expect(rotate.angle == 0).assertTrue();
       console.info(`Multimodalinput_GestureEvent_test_SUB_MMI_Rotate_001 exit`);
+    })
+
+    it('Multimodalinput_GestureEvent_test_SUB_MMI_ThreeFingersTap_001', 0, function () {
+      console.info(`Multimodalinput_GestureEvent_test_SUB_MMI_ThreeFingersTap_001 enter`);
+      /** @type { ThreeFingersTap } */
+      let threeFingersTap = {
+        type: gestureEvent.ActionType.END
+      }
+      expect(threeFingersTap.type == 3).assertTrue();
+      console.info(`Multimodalinput_GestureEvent_test_SUB_MMI_ThreeFingersTap_001 exit`);
     })
   })
 }
