@@ -30,8 +30,16 @@ static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info inf
     napi_value fingerprint;
     napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
     napi_set_named_property(env, result, "fingerprint", fingerprint);
+    napi_value appId;
+    napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
+    napi_set_named_property(env, result, "appId", appId);
+    napi_value appIdentifier;
+    napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
+    napi_set_named_property(env, result, "appIdentifier", appIdentifier);
     free(nativeApplicationInfo.bundleName);
     free(nativeApplicationInfo.fingerprint);
+    free(nativeApplicationInfo.appId);
+    free(nativeApplicationInfo.appIdentifier);
     return result;
 }
 
