@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ //@ts-nocheck 字段
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 import fs from '@ohos.file.fs';
-
+//@ts-nocheck 字段
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
