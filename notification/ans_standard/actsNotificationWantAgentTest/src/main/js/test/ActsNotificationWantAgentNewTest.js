@@ -217,12 +217,12 @@ export default function ActsNotificationWantAgentNewTest() {
       wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
         if (err != null) {
           console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code} ,message: ${err.message}`)
-          expect(true).assertTrue()
+          expect(false).assertTrue()
           done()
         } else {
           WantAgent = data
           console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
-          expect(false).assertTrue()
+          expect(true).assertTrue()
           done()
         }
       })
@@ -446,11 +446,11 @@ export default function ActsNotificationWantAgentNewTest() {
       wantAgent.getWantAgent(WantAgentInfo).then((data) => {
         WantAgent = data
         console.info(`${TAG} getWantAgent Promise success: ${JSON.stringify(data)}`)
-        expect(false).assertTrue()
+        expect(true).assertTrue()
         done()
       }).catch((err) => {
         console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code} ,message: ${err.message}`)
-        expect(true).assertTrue()
+        expect(false).assertTrue()
         done()
       })
       console.info(`${TAG} Sub_Notification_Ans_WantAgent_Create_4400 END`)
