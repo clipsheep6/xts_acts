@@ -14,7 +14,7 @@
 base_root = "../../../../../../"
 import("$base_root/test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("CertificateFrameworkJSFuncTest") {
+ohos_js_hap_suite("ActsCertFrameworkJSFuncTest") {
   hap_profile = "./src/main/module.json"
   deps = [
     ":windowStage_js_assets",
@@ -22,7 +22,7 @@ ohos_js_hap_suite("CertificateFrameworkJSFuncTest") {
   ]
   ets2abc = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "CertificateFrameworkJSFuncTest"
+  hap_name = "ActsCertFrameworkJSFuncTest"
   subsystem_name = "security"
   part_name = "certificate_framework"
 }

@@ -12,49 +12,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { reg } from './commonParam';
+import { DataUint8Array, IAnyObj } from './commonType';
 
-function stringToArray(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+function stringToArray(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
   return arr;
 }
 
 //字节流转成可理解的字符串
-function uInt8ArrayToString(fileData) {
-  var dataString = "";
-  for (var i = 0; i < fileData.length; i++) {
+function uInt8ArrayToString(fileData: Uint8Array) {
+  let dataString = "";
+  for (let i = 0; i < fileData.length; i++) {
     dataString += String.fromCharCode(fileData[i]);
   }
   return dataString;
 }
 
 //可理解的字符串转成自字节流
-function stringTouInt8Array(str) {
+function stringTouInt8Array(str: string): Uint8Array {
   if (str.length == 0) {
     console.error("stringTouInt8Array length is 0");
   }
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
+  let tmpUint8Array = new Uint8Array(arr);
   return tmpUint8Array;
 }
 
 //字节流以16进制形式输出
-function uInt8ArrayToShowStr(uInt8Array) {
+function uInt8ArrayToShowStr(uInt8Array: Uint8Array): string {
   if (uInt8Array.length == 0) {
     console.error("uInt8ArrayToShowStr length is 0");
   }
-  return Array.prototype.map
-    .call(uInt8Array, (x) => ("00" + x.toString(16)).slice(-2))
-    .join("");
+  const list: string[] = [];
+  for (let index = 0; index < uInt8Array.length; index++) {
+    const element = uInt8Array[index];
+    const temp = ("00" + element.toString(16)).slice(-2);
+    list.push(temp);
+  }
+  return list.join("");
 }
 
-function genIvParamsSpec(n) {
-  var arr;
+function genIvParamsSpec(n: number) {
+  let arr: number[];
   if (n == 8) {
     arr = [0, 0, 0, 0, 0, 0, 0, 0];
   } else if (n == 16) {
@@ -63,9 +69,9 @@ function genIvParamsSpec(n) {
     console.error("genIvParamsSpec error: n = " + n);
     return null;
   }
-  var dataIv = new Uint8Array(arr);
-  var dataBlob = { data: dataIv };
-  var ivParamSpec = {
+  let dataIv = new Uint8Array(arr);
+  let dataBlob: DataUint8Array = { data: dataIv };
+  let ivParamSpec: IAnyObj = {
     iv: dataBlob,
     algoName: "IvParamsSpec",
   };
@@ -73,16 +79,16 @@ function genIvParamsSpec(n) {
 }
 
 function genGcmParamsSpec() {
-  var arr = [0, 0, 0, 0, 0, 0, 0, 0];
-  var dataAad = new Uint8Array(arr);
-  var aadBlob = { data: dataAad };
-  var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var dataIv = new Uint8Array(arr);
-  var ivBlob = { data: dataIv };
-  var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var dataTag = new Uint8Array(arr);
-  var tagBlob = { data: dataTag };
-  var gcmParamsSpec = {
+  let arr: number[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: DataUint8Array = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: DataUint8Array = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: IAnyObj = { data: dataTag };
+  let gcmParamsSpec: IAnyObj = {
     iv: ivBlob,
     aad: aadBlob,
     authTag: tagBlob,
@@ -92,16 +98,16 @@ function genGcmParamsSpec() {
 }
 
 function genCcmParamsSpec() {
-  var arr = [0, 0, 0, 0, 0, 0, 0];
-  var dataIv = new Uint8Array(arr);
-  var ivBlob = { data: dataIv };
-  var arr = [0, 0, 0, 0, 0, 0, 0, 0];
-  var dataAad = new Uint8Array(arr);
-  var aadBlob = { data: dataAad };
-  var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var dataTag = new Uint8Array(arr);
-  var tagBlob = { data: dataTag };
-  var ccmParamsSpec = {
+  let arr = [0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: DataUint8Array = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: DataUint8Array = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: DataUint8Array = { data: dataTag };
+  let ccmParamsSpec: IAnyObj = {
     iv: ivBlob,
     aad: aadBlob,
     authTag: tagBlob,
@@ -110,8 +116,8 @@ function genCcmParamsSpec() {
   return ccmParamsSpec;
 }
 
-function genKeyMaterialBlob(keyLen) {
-  var arr;
+function genKeyMaterialBlob(keyLen: number) {
+  let arr: number[];
   if (keyLen == 128) {
     //16字节
     arr = [
@@ -139,9 +145,22 @@ function genKeyMaterialBlob(keyLen) {
     }
   }
 
-  var keyMaterial = new Uint8Array(arr);
-  var keyMaterialBlob = { data: keyMaterial };
+  let keyMaterial = new Uint8Array(arr);
+  let keyMaterialBlob: DataUint8Array = { data: keyMaterial };
   return keyMaterialBlob;
+}
+
+function convertToUint8Array(str: string) {
+  const match = str.match(reg);
+  let temp: number[] = [];
+  if(match) {
+    temp = match.map((h) => {
+      return Number(Number(h).toString(16));
+    });
+  }
+  return new Uint8Array(
+    temp
+  );
 }
 
 
@@ -154,4 +173,5 @@ export {
   genIvParamsSpec,
   genCcmParamsSpec,
   genKeyMaterialBlob,
+  convertToUint8Array
 };

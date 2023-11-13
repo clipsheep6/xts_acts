@@ -16,28 +16,27 @@ import {
   certExtensionInvalid01,
   certExtensionNormal02,
   certExtensionInvalid02,
+  testCrlWithSerialPem,
+  reg,
 } from "../common/commonParam";
-import { stringTouInt8Array, uInt8ArrayToString, } from "../common/commonFunction";
+import { convertToUint8Array, stringTouInt8Array, uInt8ArrayToString, } from "../common/commonFunction";
 import { expect } from "@ohos/hypium";
+import { IAnyObj } from '../common/commonType';
 
 
-function createX509CertInstancePromise(certType): Promise<cert.X509Cert> {
-  var certformat;
-  var encodingData;
+function createX509CertInstancePromise(certType: string): Promise<cert.X509Cert> {
+  let certformat: cert.EncodingFormat;
+  let encodingData: Uint8Array;
 
   if (certType == "der") {
     certformat = cert.EncodingFormat.FORMAT_DER;
-    encodingData = new Uint8Array(
-      selfSignedCaCertDer.match(/[\da-f]{2}/gi).map(function (h) {
-        return parseInt(h, 16);
-      })
-    );
+    encodingData = convertToUint8Array(selfSignedCaCertDer);
   } else {
     certformat = cert.EncodingFormat.FORMAT_PEM;
     encodingData = stringTouInt8Array(selfSignedCaCertPem);
   }
 
-  var encodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: encodingData,
     encodingFormat: certformat,
   };
@@ -51,19 +50,16 @@ function createX509CertInstancePromise(certType): Promise<cert.X509Cert> {
         );
         resolve(data);
       })
-      .catch((err) => {
-        console.error(
-          "[promise] create X509 Cert failed! error code is: " + err.code
-        );
+      .catch((err: Error) => {
         reject(err);
       });
   });
 }
 
-function createX509CertInstanceforCRLTestPromise(flag) {
-  var certformat;
-  var encodingData;
-  var invalidParams = false;
+function createX509CertInstanceforCRLTestPromise(flag: IAnyObj | string): Promise<cert.X509Cert> {
+  let certformat: cert.EncodingFormat;
+  let encodingData: Uint8Array = new Uint8Array();
+  let invalidParams = false;
 
   if (flag == "normal") {
     certformat = cert.EncodingFormat.FORMAT_PEM;
@@ -72,10 +68,12 @@ function createX509CertInstanceforCRLTestPromise(flag) {
     certformat = cert.EncodingFormat.FORMAT_PEM;
     encodingData = stringTouInt8Array(testErrorCert);
   } else {
+    //没有用，解决编译报错问题
+    certformat = cert.EncodingFormat.FORMAT_PEM;
     invalidParams = true;
   }
 
-  var encodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: encodingData,
     encodingFormat: certformat,
   };
@@ -88,23 +86,21 @@ function createX509CertInstanceforCRLTestPromise(flag) {
           "[promise] create X509 Cert success! format is: " + certformat
         );
         if (invalidParams == true) {
-          resolve(flag);
+          const cert: cert.X509Cert = flag as cert.X509Cert
+          resolve(cert);
         } else {
           resolve(data);
         }
       })
-      .catch((err) => {
-        console.error(
-          "[promise] create X509 Cert failed! error code is: " + err.code
-        );
+      .catch((err: Error) => {
         reject(err);
       });
   });
 }
 
-async function verifyX509CertPromise(certType, flag) {
-  var gInstance;
-  var publicKey;
+async function verifyX509CertPromise(certType: string, flag: string): Promise<void> {
+  let gInstance: cert.X509Cert;
+  let publicKey: cryptoFramework.PubKey | string;
   return new Promise((resolve, reject) => {
     createX509CertInstancePromise(certType)
       .then((instance) => {
@@ -119,12 +115,12 @@ async function verifyX509CertPromise(certType, flag) {
             publicKey = flag;
           }
         }
-        return gInstance.verify(publicKey);
+        return gInstance.verify(publicKey as cryptoFramework.PubKey);
       })
       .then((verifyret) => {
         resolve(verifyret);
       })
-      .catch((err) => {
+      .catch((err: IAnyObj) => {
         console.error("[promise] getPublickey failed! error is: " + err);
         if (flag != undefined) {
           resolve(err.code);
@@ -135,15 +131,15 @@ async function verifyX509CertPromise(certType, flag) {
   });
 }
 
-async function checkValidityX509CertPromise(certType, date) {
-  var result;
+async function checkValidityX509CertPromise(certType: string, date: string): Promise<void> {
+  let result: void;
   return new Promise((resolve, reject) => {
     createX509CertInstancePromise(certType)
       .then((instance) => {
         result = instance.checkValidityWithDate(date);
         resolve(result);
       })
-      .catch((err) => {
+      .catch((err: IAnyObj) => {
         console.error(
           "[promise] checkValidityX509Cert failed! error is: " + err
         );
@@ -156,8 +152,8 @@ async function checkValidityX509CertPromise(certType, date) {
   });
 }
 
-async function getX509CertInfoPromise(certType, processType) {
-  var gInstance;
+async function getX509CertInfoPromise(certType: string, processType: string) {
+  let gInstance: cert.X509Cert;
   return new Promise<void>((resolve, reject) => {
     createX509CertInstancePromise(certType)
       .then((instance) => {
@@ -258,15 +254,15 @@ async function getX509CertInfoPromise(certType, processType) {
         }
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[promise] getX509CertInfo failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkGetEncodedX509CertPromise(certType) {
-  var gInstance;
+async function checkGetEncodedX509CertPromise(certType: string) {
+  let gInstance: cert.X509Cert;
 
   return new Promise<void>((resolve, reject) => {
     createX509CertInstancePromise(certType)
@@ -281,15 +277,15 @@ async function checkGetEncodedX509CertPromise(certType) {
         expect(encodedBlob != null).assertTrue();
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[promise] getEncoded failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkGetPublicKeyX509CertPromise(certType) {
-  var publicKey;
+async function checkGetPublicKeyX509CertPromise(certType: string) {
+  let publicKey: cryptoFramework.PubKey;
   return new Promise<void>((resolve, reject) => {
     createX509CertInstancePromise(certType)
       .then((instance) => {
@@ -298,30 +294,26 @@ async function checkGetPublicKeyX509CertPromise(certType) {
         expect(publicKey != null).assertTrue();
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[promise] publicKey failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-function createX509CRLInstancePromise(certType): Promise<cert.X509CRL> {
-  var certformat;
-  var encodingData;
+function createX509CRLInstancePromise(certType: string): Promise<cert.X509CRL> {
+  let certformat: cert.EncodingFormat;
+  let encodingData: Uint8Array;
 
   if (certType == "der") {
     certformat = cert.EncodingFormat.FORMAT_DER;
-    encodingData = new Uint8Array(
-      testCrlDer.match(/[\da-f]{2}/gi).map(function (h) {
-        return parseInt(h, 16);
-      })
-    );
+    encodingData = convertToUint8Array(testCrlDer);
   } else {
     certformat = cert.EncodingFormat.FORMAT_PEM;
     encodingData = stringTouInt8Array(testCrlPem);
   }
 
-  var encodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: encodingData,
     encodingFormat: certformat,
   };
@@ -335,17 +327,14 @@ function createX509CRLInstancePromise(certType): Promise<cert.X509CRL> {
         );
         resolve(data);
       })
-      .catch((err) => {
-        console.error(
-          "[promise] createX509CRL failed! error code is: " + err.code
-        );
+      .catch((err: Error) => {
         reject(err);
       });
   });
 }
 
-function checkIsRevokedX509CRLPromise(crlInstance, flag) {
-  var status;
+function checkIsRevokedX509CRLPromise(crlInstance: cert.X509CRL, flag: string): Promise<boolean | number> {
+  let status: boolean;
   return new Promise((resolve, reject) => {
     createX509CertInstanceforCRLTestPromise(flag)
       .then((certInstance) => {
@@ -353,7 +342,7 @@ function checkIsRevokedX509CRLPromise(crlInstance, flag) {
         console.warn("[promise] isRevoked status is:" + status);
         resolve(status);
       })
-      .catch((err) => {
+      .catch((err: IAnyObj) => {
         console.error("[promise] isRevoked failed! err is: " + err);
         if (String(err).indexOf("get array data failed") != -1) {
           resolve(err.code);
@@ -364,8 +353,8 @@ function checkIsRevokedX509CRLPromise(crlInstance, flag) {
   });
 }
 
-async function checkGetEncodedX509CRLPromise(certType) {
-  var gInstance;
+async function checkGetEncodedX509CRLPromise(certType: string) {
+  let gInstance: cert.X509CRL;
   return new Promise<void>((resolve, reject) => {
     createX509CRLInstancePromise(certType)
       .then((instance) => {
@@ -379,51 +368,47 @@ async function checkGetEncodedX509CRLPromise(certType) {
         expect(encodedBlob != null).assertTrue();
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[promise] CRL getEncoded failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-function verifyX509CRLPromise(crlType, flag?: any) {
-  var certFormat;
-  var priKeyEncodingData;
-  var pubKeyEncodingData;
-  var crlEncodingData;
-  var globalCrlInstance;
+function verifyX509CRLPromise(crlType: string, flag?: string | cryptoFramework.PubKey): Promise<void | number> {
+  let certFormat: cert.EncodingFormat;
+  let priKeyEncodingData: Uint8Array = new Uint8Array();
+  let pubKeyEncodingData: Uint8Array = new Uint8Array();
+  let crlEncodingData: Uint8Array = new Uint8Array();
+  let globalCrlInstance: cert.X509CRL;
   if (crlType == "pem" || crlType == "der") {
-    certFormat = cert.EncodingFormat.FORMAT_DER;
-    priKeyEncodingData = new Uint8Array(
-      crlVerifyPriKeyHex.match(/[\da-f]{2}/gi).map(function (h) {
-        return parseInt(h, 16);
-      })
-    );
-    pubKeyEncodingData = new Uint8Array(
-      crlVerifyPubKeyHex.match(/[\da-f]{2}/gi).map(function (h) {
-        return parseInt(h, 16);
-      })
-    );
-    crlEncodingData = new Uint8Array(
-      crlHex.match(/[\da-f]{2}/gi).map(function (h) {
-        return parseInt(h, 16);
-      })
-    );
-
-    var priEncodingBlob = {
-      data: priKeyEncodingData,
-    };
-    var pubEncodingBlob = {
-      data: pubKeyEncodingData,
-    };
-    var crlEncodingBlob = {
-      data: crlEncodingData,
-      encodingFormat: certFormat,
-    };
+    if(crlType == "pem") {
+      certFormat = cert.EncodingFormat.FORMAT_PEM;
+    }
+    else {
+      certFormat = cert.EncodingFormat.FORMAT_DER;
+    }
+    priKeyEncodingData = convertToUint8Array(crlVerifyPriKeyHex);
+    pubKeyEncodingData = convertToUint8Array(crlVerifyPubKeyHex);
+    crlEncodingData = convertToUint8Array(crlHex);
   }
+  else {
+    //解决编译报错
+    certFormat = 2;
+  }
+  let priEncodingBlob: cryptoFramework.DataBlob = {
+    data: priKeyEncodingData,
+  };
+  let pubEncodingBlob: cryptoFramework.DataBlob = {
+    data: pubKeyEncodingData,
+  };
+  let crlEncodingBlob: cert.EncodingBlob = {
+    data: crlEncodingData,
+    encodingFormat: certFormat,
+  };
 
   return new Promise((resolve, reject) => {
-    var asyKeyGenerator =
+    let asyKeyGenerator =
     cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_3");
     expect(asyKeyGenerator != null);
     cert
@@ -438,7 +423,7 @@ function verifyX509CRLPromise(crlType, flag?: any) {
         let pubKey = convertKeyPair.pubKey;
         if (flag != undefined) {
           if (flag != "error") {
-            pubKey = flag;
+            pubKey = flag as cryptoFramework.PubKey;
           } else {
             pubKey = convertKeyPair.priKey;
           }
@@ -448,7 +433,7 @@ function verifyX509CRLPromise(crlType, flag?: any) {
       .then((result) => {
         resolve(result);
       })
-      .catch((err) => {
+      .catch((err: IAnyObj) => {
         console.error(
           "[Promise]verifyX509CRLPromise failed. error is " + err.code
         );
@@ -461,8 +446,8 @@ function verifyX509CRLPromise(crlType, flag?: any) {
   });
 }
 
-async function getX509CRLInfoPromise(certType, processType) {
-  var gInstance;
+async function getX509CRLInfoPromise(certType: string, processType: string) {
+  let gInstance: cert.X509CRL;
   return new Promise<void>((resolve, reject) => {
     createX509CRLInstancePromise(certType)
       .then((instance) => {
@@ -522,7 +507,7 @@ async function getX509CRLInfoPromise(certType, processType) {
             expect(signatureAlgParams != null).assertTrue();
             break;
           case "getTbsInfo":
-            let tbsInfo = gInstance.getTbsInfo();
+            let tbsInfo = gInstance.getTBSInfo();
             console.log(
               processType + " is : " + uInt8ArrayToString(tbsInfo.data)
             );
@@ -534,33 +519,33 @@ async function getX509CRLInfoPromise(certType, processType) {
         }
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[promise] getX509CrtInfo failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-function checkGetRevokedCertWithCertX509CRLPromise(crlInstance, flag) {
+function checkGetRevokedCertWithCertX509CRLPromise(crlInstance: cert.X509CRL, flag: string): Promise<cert.X509CRLEntry> {
   return new Promise((resolve, reject) => {
     createX509CertInstanceforCRLTestPromise(flag)
-      .then((certInstance) => {
+      .then((certInstance: cert.X509Cert) => {
         let crlEntry = crlInstance.getRevokedCertWithCert(certInstance);
         console.warn("[promise] getRevokedCertWithCert is:" + crlEntry);
-        let num = crlEntry.getSerialNumber();
+        let num = crlEntry.getCRLEntrySerialNumber();
         console.warn("[promise] getRevokedCertWithCert num is:" + num);
         resolve(crlEntry);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[promise] getRevokedCertWithCert failed!");
         reject(err);
       });
   });
 }
 
-async function checkGetRevokedCertsX509CRLPromise(certType) {
-  var gIndex;
-  var revocation;
+async function checkGetRevokedCertsX509CRLPromise(certType: string) {
+  let gIndex: number;
+  let revocation: string;
   return new Promise<void>((resolve, reject) => {
     createX509CRLInstancePromise(certType)
       .then((instance) => {
@@ -569,13 +554,13 @@ async function checkGetRevokedCertsX509CRLPromise(certType) {
       .then((certs) => {
         expect(certs != null && certs.length != 0).assertTrue();
         console.warn("[Promise] CRL get gevoked certs success");
-        for (var i = 0; i < certs.length; i++) {
+        for (let i = 0; i < certs.length; i++) {
           gIndex = i;
           console.log(
             "[Promise] certs i: " +
               gIndex +
               " serialNumber is: " +
-            certs[gIndex].getSerialNumber()
+            certs[gIndex].getCRLEntrySerialNumber()
           );
           revocation = certs[gIndex].getRevocationDate();
           expect(revocation != null).assertTrue();
@@ -593,7 +578,7 @@ async function checkGetRevokedCertsX509CRLPromise(certType) {
                 "[Promise] certs i: " + gIndex + " getEncoded is: " + eData
               );
             })
-            .catch((err) => {
+            .catch((err: Error) => {
               console.error(
                 "[Promise] certs i: " + gIndex + " getEncoded err is: " + err
               );
@@ -602,16 +587,16 @@ async function checkGetRevokedCertsX509CRLPromise(certType) {
         }
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[Promise] CRL gevoked certs failed! error  is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkGetRevokedCertX509CRLPromise(certType) {
-  var certIssuer;
-  var revocation;
+async function checkGetRevokedCertX509CRLPromise(certType: string) {
+  let certIssuer: cert.DataBlob;
+  let revocation: string;
   return new Promise<void>((resolve, reject) => {
     createX509CRLInstancePromise(certType)
       .then((instance) => {
@@ -624,23 +609,23 @@ async function checkGetRevokedCertX509CRLPromise(certType) {
         certIssuer = cert1.getCertIssuer();
         expect(certIssuer != null).assertTrue();
         console.log(
-          "[Promise] cert certIssuer is: " +
-            +uInt8ArrayToString(certIssuer.data)
+          "[Promise] cert certIssuer is: " + uInt8ArrayToString(certIssuer.data)
         );
         resolve();
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[Promise] CRL gevoked cert failed! error  is: " + err);
         reject(err);
       });
   });
 }
 
-function checkValidateOfCertChainValidatorPromise(algName, flag) {
+function checkValidateOfCertChainValidatorPromise(algName: string, flag: string): Promise<void> {
   return new Promise((resolve, reject) => {
+    let validator: cert.CertChainValidator;
     try {
-      var validator = cert.createCertChainValidator(algName);
-      var algorithm = validator.algorithm;
+      validator = cert.createCertChainValidator(algName);
+      let algorithm = validator.algorithm;
       console.log(
         "createCertChainValidator success! algorithm is: " + algorithm
       );
@@ -653,36 +638,40 @@ function checkValidateOfCertChainValidatorPromise(algName, flag) {
       }
       return;
     }
-    var certArray1 = stringTouInt8Array(chainFirstCaCert);
-    var byteLength1 = certArray1.byteLength;
-    var uInt16CertLength1 = new Uint16Array([byteLength1]);
+    let certArray1 = stringTouInt8Array(chainFirstCaCert);
+    let byteLength1 = certArray1.byteLength;
+    let uInt16CertLength1 = new Uint16Array([byteLength1]);
+    let uInt8CertLength1: Uint8Array;
     if (flag == "error") {
-      var uInt8CertLength1 = new Uint8Array([uInt16CertLength1.buffer] as any);
+      // 解决编译问题
+      // uInt8CertLength1 = new Uint8Array([uInt16CertLength1.buffer]);
+      const temp = [123];
+      uInt8CertLength1 = new Uint8Array(temp);
     } else {
-      var uInt8CertLength1 = new Uint8Array(uInt16CertLength1.buffer);
+      uInt8CertLength1 = new Uint8Array(uInt16CertLength1.buffer);
     }
-    var certArray2 = stringTouInt8Array(chainSecondCaCert);
-    var byteLength2 = certArray2.byteLength;
-    var uInt16CertLength2 = new Uint16Array([byteLength2]);
-    var uInt8CertLength2 = new Uint8Array(uInt16CertLength2.buffer);
+    let certArray2 = stringTouInt8Array(chainSecondCaCert);
+    let byteLength2 = certArray2.byteLength;
+    let uInt16CertLength2 = new Uint16Array([byteLength2]);
+    let uInt8CertLength2 = new Uint8Array(uInt16CertLength2.buffer);
 
-    var dataArray = new Uint8Array(
+    let dataArray = new Uint8Array(
       uInt8CertLength2.length +
       certArray2.length +
       uInt8CertLength1.length +
       certArray1.length
     );
-    for (var i = 0; i < uInt8CertLength2.length; i++) {
+    for (let i = 0; i < uInt8CertLength2.length; i++) {
       dataArray[i] = uInt8CertLength2[i];
     }
-    for (var i = 0; i < certArray2.length; i++) {
+    for (let i = 0; i < certArray2.length; i++) {
       dataArray[i + uInt8CertLength2.length] = certArray2[i];
     }
-    for (var i = 0; i < uInt8CertLength1.length; i++) {
+    for (let i = 0; i < uInt8CertLength1.length; i++) {
       dataArray[i + uInt8CertLength2.length + certArray2.length] =
       uInt8CertLength1[i];
     }
-    for (var i = 0; i < certArray1.length; i++) {
+    for (let i = 0; i < certArray1.length; i++) {
       dataArray[
       i +
       uInt8CertLength2.length +
@@ -690,7 +679,7 @@ function checkValidateOfCertChainValidatorPromise(algName, flag) {
       uInt8CertLength1.length
       ] = certArray1[i];
     }
-    var certChainData = {
+    let certChainData: cert.CertChainData = {
       data: dataArray,
       count: 2,
       encodingFormat: cert.EncodingFormat.FORMAT_PEM,
@@ -702,7 +691,7 @@ function checkValidateOfCertChainValidatorPromise(algName, flag) {
         console.warn("[promise]: validate success!");
         resolve(data);
       })
-      .catch((err) => {
+      .catch((err: IAnyObj) => {
         console.error("[promise]: validate error: " + err);
         if (flag == "error") {
           resolve(err.code);
@@ -713,96 +702,46 @@ function checkValidateOfCertChainValidatorPromise(algName, flag) {
   });
 }
 
-function createX509CRLWithExtensionInstancePromise(extensions?: number): Promise<cert.X509CRL> {
-  var certformat;
-  var encodingData;
-
-  switch (extensions) {
-    case 0:
-      certformat = cert.EncodingFormat.FORMAT_PEM;
-      encodingData = stringTouInt8Array(selfSignedCaCertPem);
-      break;
-    case 1:
-      certformat = cert.EncodingFormat.FORMAT_DER;
-      encodingData = new Uint8Array(
-        selfSignedCaCertDer.match(/[\da-f]{2}/gi).map(function (h) {
-          return parseInt(h, 16);
-        })
-      );
-      break;
-    default:
-      certformat = cert.EncodingFormat.FORMAT_DER;
-      encodingData = new Uint8Array(
-        selfSignedCaCertDer.match(/[\da-f]{2}/gi).map(function (h) {
-          return parseInt(h, 16);
-        })
-      );
-      break;
-  }
-  var encodingBlob = {
-    data: encodingData,
-    encodingFormat: certformat,
-  };
-
+async function checkGetX509CRLExtensionsPromise(certType: string): Promise<cert.DataBlob> {
   return new Promise((resolve, reject) => {
-    cert
-      .createX509CRL(encodingBlob)
-      .then((data) => {
-        console.warn(
-          "[promise] createX509CRL success! format is: " + certformat
-        );
-        resolve(data);
-      })
-      .catch((err) => {
-        console.error(
-          "[promise] createX509CRL failed! error code is: " + err.code
-        );
-        reject(err);
-      });
-  });
-}
-
-
-async function checkGetX509CRLExtensionsPromise(extensions?: number) {
-  return new Promise((resolve, reject) => {
-    createX509CRLWithExtensionInstancePromise(extensions)
+    createX509CRLInstancePromise(certType)
       .then((instance) => {
         const extension = instance.getExtensions();
         resolve(extension);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[Promise] Crl gevoked cert failed! error  is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkGetX509CRLEntryExtensionsPromise(extensions?: number) {
-  var cert1;
+async function checkGetX509CRLEntryExtensionsPromise(certType: string): Promise<cert.DataBlob> {
+  let cert1: cert.X509CRLEntry;
   return new Promise((resolve, reject) => {
-    createX509CRLWithExtensionInstancePromise(extensions)
+    createX509CRLInstancePromise(certType)
       .then((instance) => {
         cert1 = instance.getRevokedCert(BigInt(1));
         const list = cert1.getExtensions()
         resolve(list);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[Promise] Crl gevoked cert failed! error  is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkHasX509CRLEntryExtensionsPromise(extensions?: number) {
-  var cert1;
+async function checkHasX509CRLEntryExtensionsPromise(extensions: string): Promise<boolean> {
+  let cert1: cert.X509CRLEntry;
   return new Promise((resolve, reject) => {
-    createX509CRLWithExtensionInstancePromise(extensions)
+    createX509CRLInstancePromise(extensions)
       .then((instance) => {
         cert1 = instance.getRevokedCert(BigInt(1));
         const hasExtensions = cert1.hasExtensions()
         resolve(hasExtensions);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[Promise] Crl gevoked cert failed! error  is: " + err);
         reject(err);
       });
@@ -810,8 +749,8 @@ async function checkHasX509CRLEntryExtensionsPromise(extensions?: number) {
 }
 
 
-async function createX509CertExtensionNormalPromise(flag): Promise<any> {
-  let encodingData: any = "";
+async function createX509CertExtensionNormalPromise(flag: string): Promise<cert.CertExtension> {
+  let encodingData: Uint8Array = new Uint8Array();
   let certFormat = cert.EncodingFormat.FORMAT_DER;
 
   switch (flag) {
@@ -837,7 +776,7 @@ async function createX509CertExtensionNormalPromise(flag): Promise<any> {
       break;
   }
 
-  var encodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: encodingData,
     encodingFormat: certFormat,
   };
@@ -852,25 +791,85 @@ async function createX509CertExtensionNormalPromise(flag): Promise<any> {
         );
         resolve(extensionObj);
       })
-      .catch((err) => {
-        console.error(
-          "[promise] create X509 CertExtension failed! error code is: " +
-          err.code
-        );
+      .catch((err: Error) => {
         reject(err);
       });
   });
 }
 
-async function checkHasUnsupportedX509CrlPromise(flag) {
+async function checkHasUnsupportedX509CrlPromise(flag: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
     createX509CertExtensionNormalPromise(flag)
       .then((certExt) => {
         let hasUnsupported = certExt.hasUnsupportedCriticalExtension()
         resolve(hasUnsupported);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error("[Promise] Crl gevoked cert failed! error  is: " + err);
+        reject(err);
+      });
+  });
+}
+
+function createX509CRLInstanceWithSerialNumberPromise(): Promise<cert.X509CRL> {
+  let certformat: cert.EncodingFormat;
+  let encodingData: Uint8Array;
+
+  certformat = cert.EncodingFormat.FORMAT_PEM;
+  encodingData = stringTouInt8Array(testCrlWithSerialPem);
+
+
+  let encodingBlob: cert.EncodingBlob = {
+    data: encodingData,
+    encodingFormat: certformat,
+  };
+
+  return new Promise((resolve, reject) => {
+    cert
+      .createX509CRL(encodingBlob)
+      .then((data) => {
+        console.warn(
+          "[promise] createX509CRL success! format is: " + certformat
+        );
+        resolve(data);
+      })
+      .catch((err: Error) => {
+        reject(err);
+      });
+  });
+}
+
+async function checkX509CRLEntryGetSerialNumberPromise(certType: string) {
+  return new Promise<void>((resolve, reject) => {
+    createX509CRLInstanceWithSerialNumberPromise()
+      .then((instance) => {
+        return instance.getRevokedCerts();
+      })
+      .then((certs) => {
+        expect(certs != null && certs.length != 0).assertTrue();
+        console.warn("[Promise] CRL get gevoked certs success");
+        const serialNumber = certs[0].getCRLEntrySerialNumber();
+        expect(serialNumber !== null).assertTrue();
+        expect(serialNumber === BigInt(0XFF01FF01FF01FF01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01)).assertTrue();
+        resolve();
+      })
+      .catch((err: Error) => {
+        console.error("[Promise] CRL gevoked certs failed! error  is: " + err);
+        reject(err);
+      });
+  });
+}
+
+async function checkX509CRLGetRevokedCertPromise() {
+  return new Promise<void>((resolve, reject) => {
+    createX509CRLInstanceWithSerialNumberPromise()
+      .then((instance) => {
+        const crlEntry = instance.getRevokedCert(BigInt(0XFF01FF01FF01FF01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01));
+        expect(crlEntry !== null).assertTrue();
+        resolve();
+      })
+      .catch((err: Error) => {
+        console.error("[Promise] CRL get revoked certs failed! error  is: " + err);
         reject(err);
       });
   });
@@ -897,5 +896,7 @@ export {
   checkHasX509CRLEntryExtensionsPromise,
   createX509CertExtensionNormalPromise,
   checkHasUnsupportedX509CrlPromise,
-  checkGetX509CRLEntryExtensionsPromise
+  checkGetX509CRLEntryExtensionsPromise,
+  checkX509CRLEntryGetSerialNumberPromise,
+  checkX509CRLGetRevokedCertPromise
 };

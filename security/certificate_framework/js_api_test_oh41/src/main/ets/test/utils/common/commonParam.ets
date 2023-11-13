@@ -355,6 +355,32 @@ const testCrlPem =
     "eCtiNcgUr9Kz2bwCmvEXhP7PuF4RMLq4vfzi0YjCG98=\n" +
     "-----END X509 CRL-----\n";
 
+const testCrlPemWithoutExtension =
+"-----BEGIN X509 CRL-----\n" +
+  "MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n" +
+  "MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n" +
+  "MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n" +
+  "J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n" +
+  "5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n" +
+  "eavsH0Q3\n" +
+"-----END X509 CRL-----"
+
+const testCrlWithSerialPem =
+  "-----BEGIN X509 CRL-----\r\n" +
+"MIICEzCB/AIBATANBgkqhkiG9w0BAQsFADB0MQswCQYDVQQGEwJDTjEQMA4GA1UE\r\n" +
+"CAwHSmlhbmdTdTEQMA4GA1UEBwwHTmFuSmluZzEKMAgGA1UECgwBdDEKMAgGA1UE\r\n" +
+"CwwBdDEMMAoGA1UEAwwDemhiMRswGQYJKoZIhvcNAQkBFgx0ZXN0QDEyMy5jb20X\r\n" +
+"DTIzMTEwNzAyNTIwN1oXDTIzMTIwNzAyNTIwN1owLDAqAhkA/wH/Af8B/wH/////\r\n" +
+"//////////////8BFw0yMzExMDcwMjUxMDNaoCYwJDAiBgNVHRQEGwIZAP8B/wH/\r\n" +
+"Af8B////////////////////ATANBgkqhkiG9w0BAQsFAAOCAQEAcB23lkrRYo48\r\n" +
+"YT5RiTxIyjSK1kTT+Zxc3oJ6gXcPoS1j7/Td+fDmFfjLOUeKWYrrx/T7NyfjFxjn\r\n" +
+"On37RKmQCHlVJtqAxIstnXCwoSzq68kqK9uczZCaYzWr+aPz/obQRxFWRs0aJy2x\r\n" +
+"KvXp6iBObXlAQVSHXkI5ikjkxR5Xpfi+VH0ojTi5NjpPssLJMN4b7qCZ/334qkZ7\r\n" +
+"eH6O355R2z0XM4vxQJDAJBoF5X9EFYFJc/uwdZPITnSKaG5IBMt1k5ei5jOLsMDa\r\n" +
+"tQSBrPschBRBmg2kBAz8Zq6jgW2j5UaQZ6e0/oKOiiXB/uAPwkpBLAGewinkeZKJ\r\n" +
+"VBgXORYAFg==\r\n" +
+"-----END X509 CRL-----\r\n";
+
 const testCrlDer =
   "308201fc3081e5020101300d06092a864886f70d01010b0500" +
     "30818c310b300906035504061302434e3111300f06035504080c087368616e67686" +
@@ -410,7 +436,7 @@ const crlHex =
     "F39E25B16622B03D8F504A67DC36C4BF3C18790E52A90A0F0E833E61F6596B6DE1A13" +
     "2ECBB9DADA17A1B3FBE2C7FFF4AE74D69FFEF219B844E30B068453F3A190298EA079A" +
     "BEC1F4437";
-var certDataDER01 = [
+const certDataDER01 = [
   0x30, 0x82, 0x03, 0x4c, 0x30, 0x82, 0x02, 0x34, 0xa0, 0x03, 0x02, 0x01, 0x02,
   0x02, 0x06, 0x20, 0x06, 0x05, 0x16, 0x70, 0x02, 0x30, 0x0d, 0x06, 0x09, 0x2a,
   0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01, 0x05, 0x05, 0x00, 0x30, 0x3b, 0x31,
@@ -479,7 +505,7 @@ var certDataDER01 = [
   0x5f, 0x42, 0x83,
 ];
 
-var certDataPEM01 =
+const certDataPEM01 =
   "-----BEGIN CERTIFICATE-----\n" +
     "MIID/jCCAuagAwIBAgIBATANBgkqhkiG9w0BAQsFADCBjDELMAkGA1UEBhMCQ04x\n" +
     "ETAPBgNVBAgMCHNoYW5naGFpMQ8wDQYDVQQHDAZodWF3ZWkxFTATBgNVBAoMDHd3\n" +
@@ -505,7 +531,7 @@ var certDataPEM01 =
     "1Vsro0IOeXT9WAcqEtQUegsi\n" +
     "-----END CERTIFICATE-----\n";
 
-var certExtensionNormal01 = [
+const certExtensionNormal01 = [
   0x30, 0x40, 0x30, 0x0f, 0x06, 0x03, 0x55, 0x1d, 0x13, 0x01, 0x01, 0xff, 0x04,
   0x05, 0x30, 0x03, 0x01, 0x01, 0xff, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x1d, 0x0f,
   0x01, 0x01, 0xff, 0x04, 0x04, 0x03, 0x02, 0x01, 0xc6, 0x30, 0x1d, 0x06, 0x03,
@@ -514,7 +540,7 @@ var certExtensionNormal01 = [
   0xe4,
 ];
 
-var certExtensionNormal02 = [
+const certExtensionNormal02 = [
   0x30, 0x81, 0xc6, 0x30, 0x1d, 0x06, 0x03, 0x55, 0x1d, 0x0e, 0x04, 0x16, 0x04,
   0x14, 0x8c, 0xa3, 0x3b, 0x42, 0x63, 0x01, 0xb3, 0x4d, 0x51, 0xf6, 0xe4, 0x2d,
   0xb5, 0x83, 0x7f, 0x18, 0x39, 0x2f, 0xb7, 0xb5, 0x30, 0x1f, 0x06, 0x03, 0x55,
@@ -533,7 +559,7 @@ var certExtensionNormal02 = [
   0x72, 0x6b, 0x2e, 0x63, 0x6f, 0x6d,
 ];
 
-var certExtensionInvalid01 = [
+const certExtensionInvalid01 = [
   0x40, 0x81, 0xc6, 0x30, 0x1d, 0x06, 0x03, 0x55, 0x1d, 0x0e, 0x04, 0x16, 0x04,
   0x14, 0x8c, 0xa3, 0x3b, 0x42, 0x63, 0x01, 0xb3, 0x4e, 0x51, 0xf9, 0xe4, 0x2d,
   0xb5, 0x83, 0x7f, 0x18, 0x39, 0x2f, 0xb7, 0xb5, 0x30, 0x1f, 0x06, 0x03, 0x55,
@@ -552,7 +578,7 @@ var certExtensionInvalid01 = [
   0x72, 0x6b, 0x2e, 0x63, 0x6f, 0x6d,
 ];
 
-var certExtensionInvalid02 = [
+const certExtensionInvalid02 = [
   0x30, 0x51, 0x30, 0x1d, 0x06, 0x03, 0x55, 0x1d, 0x0e, 0x04, 0x16, 0x04, 0x14,
   0xb7, 0xb3, 0x20, 0x09, 0xd4, 0xcb, 0xea, 0x53, 0xc1, 0xe2, 0xd6, 0x8e, 0xa7,
   0x4a, 0x34, 0x25, 0xf0, 0xce, 0x26, 0xdf, 0x30, 0x1f, 0x06, 0x03, 0x55, 0x1d,
@@ -562,6 +588,17 @@ var certExtensionInvalid02 = [
   0x30, 0x03, 0x01, 0x01, 0xff,
 ];
 
+let crlWithExtends = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+const reg = new RegExp('[\\da-f]{2}', 'gi');
+
 export {
   rootCert,
   chainFirstCaCert,
@@ -569,6 +606,7 @@ export {
   testCert,
   testCrlDer,
   testCrlPem,
+  testCrlPemWithoutExtension,
   testErrorCert,
   testInvalidCert,
   deviceTestCert,
@@ -583,4 +621,7 @@ export {
   certExtensionNormal02,
   certExtensionInvalid01,
   certExtensionInvalid02,
+  testCrlWithSerialPem,
+  crlWithExtends,
+  reg
 };

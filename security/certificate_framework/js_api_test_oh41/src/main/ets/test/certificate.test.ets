@@ -18,303 +18,283 @@ import * as certPromise from "./utils/certificate/publicCertificatePromise";
 import * as certCallback from "./utils/certificate/publicCertificateCallback";
 
 export default function certificateJsunit() {
-  describe("CertificateJsunit", function () {
+  describe("CertificateJsunit", () => {
     console.info("##########start CertificateJsunit##########");
-    beforeAll(function () { });
-    afterEach(function () { });
-
-
+    beforeAll(() => {
+    });
+    afterEach(() => {
+    });
     /**
-     * @tc.number Security_crypto_framework_CertChainValidator_0400
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
+     * @tc.number Security_Cert_Framework_Certificate_0100
+     * @tc.name check X509CRL get extension by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
      */
+    it("Security_Cert_Framework_Certificate_0100", 0, async (done: Function) => {
+      await certPromise
+        .checkGetX509CRLExtensionsPromise("pem")
+        .then((data) => {
+          expect(data != null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0200
+     * @tc.name check X509CRL get extension by callback
+     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     */
+    it("Security_Cert_Framework_Certificate_0200", 0, async (done: Function) => {
+      await certCallback
+        .checkGetX509CRLExtensionsCallback("pem")
+        .then((data) => {
+          expect(data != null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0300
+     * @tc.name check X509CRL get extension by promise
+     * @tc.desc The X509 certificate FORMAT is FORMAT_DER
+     */
+    it("Security_Cert_Framework_Certificate_0300", 0, async (done: Function) => {
+      await certPromise
+        .checkGetX509CRLExtensionsPromise("der")
+        .then((data) => {
+          expect(data != null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0400
+     * @tc.name check X509CRL get extension by callback
+     * @tc.desc The X509 certificate FORMAT is FORMAT_DER
+     */
+    it("Security_Cert_Framework_Certificate_0400", 0, async (done: Function) => {
+      await certCallback
+        .checkGetX509CRLExtensionsCallback("der")
+        .then((data) => {
+          expect(data != null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0500
+     * @tc.name check X509CRL entry get extension by promise
+     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     */
+    it("Security_Cert_Framework_Certificate_0500", 0, async (done: Function) => {
+      await certPromise
+        .checkGetX509CRLEntryExtensionsPromise("pem")
+        .then((data) => {
+          expect(data == null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0600
+     * @tc.name check X509CRL entry get extension by callback
+     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     */
+    it("Security_Cert_Framework_Certificate_0600", 0, async (done: Function) => {
+      await certCallback
+        .checkGetX509CRLEntryExtensionsCallback("pem")
+        .then((data) => {
+          expect(data == null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0700
+     * @tc.name check X509CRL entry get extension by promise
+     * @tc.desc The X509 certificate FORMAT is FORMAT_DER
+     */
+    it("Security_Cert_Framework_Certificate_0700", 0, async (done: Function) => {
+      await certPromise
+        .checkGetX509CRLEntryExtensionsPromise("der")
+        .then((data) => {
+          expect(data == null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0880
+     * @tc.name check X509CRL entry get extension by callback
+     * @tc.desc The X509 certificate FORMAT is FORMAT_DER
+     */
+    it("Security_Cert_Framework_Certificate_0800", 0, async (done: Function) => {
+      await certCallback
+        .checkGetX509CRLEntryExtensionsCallback("der")
+        .then((data) => {
+          expect(data == null).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_0900
+     * @tc.name check X509CRL entry has extension by promise
+     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     */
+    it("Security_Cert_Framework_Certificate_0900", 0, async (done: Function) => {
+      await certPromise
+        .checkHasX509CRLEntryExtensionsPromise("pem")
+        .then((data) => {
+          expect(data != null && data == false).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_1000
+     * @tc.name check X509CRL entry has extension by callback
+     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     */
+    it("Security_Cert_Framework_Certificate_1000", 0, async (done: Function) => {
+      await certCallback
+        .checkHasX509CRLEntryExtensionsCallback("pem")
+        .then((data) => {
+          expect(data != null && data == false).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_1100
+     * @tc.name check X509CRL entry has extension by promise
+     * @tc.desc The X509 certificate FORMAT is FORMAT_DER
+     */
+    it("Security_Cert_Framework_Certificate_1100", 0, async (done: Function) => {
+      await certPromise
+        .checkHasX509CRLEntryExtensionsPromise("der")
+        .then((data) => {
+          expect(data != null && data == false).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_1200
+     * @tc.name check X509CRL entry has extension by callback
+     * @tc.desc The X509 certificate FORMAT is FORMAT_DER
+     */
+    it("Security_Cert_Framework_Certificate_1200", 0, async (done: Function) => {
+      await certCallback
+        .checkHasX509CRLEntryExtensionsCallback("der")
+        .then((data) => {
+          expect(data != null && data == false).assertTrue();
+        })
+        .catch((err: Error) => {
+          expect(null).assertFail();
+        });
+      done();
+    });
+    /**
+     * @tc.number Security_Cert_Framework_Certificate_1300
+     * @tc.name X509 CertExtension checkCA Test With Invalid Param 2
+     * @tc.desc Use callback style
+     */
     it(
-      "Security_crypto_framework_CertChainValidator_0400",
+      "Security_Cert_Framework_Certificate_1300",
       0,
-      async function (done) {
+      async (done: Function) => {
         await certPromise
-          .checkGetX509CRLExtensionsPromise(0)
+          .checkHasUnsupportedX509CrlPromise('certNoCritical')
           .then((data) => {
-            expect(data != null).assertTrue();
+            expect(data != null && data == false).assertTrue();
           })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
-        await certCallback
-          .checkGetX509CRLExtensionsCallback(0)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
+          .catch((err: Error) => {
             expect(null).assertFail();
           });
         done();
       }
     );
     /**
-     * @tc.number Security_crypto_framework_CertChainValidator_0500
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     * @tc.number Security_Cert_Framework_Certificate_1400
+     * @tc.name X509 CertExtension checkCA Test With Invalid Param 2
+     * @tc.desc Use callback style
      */
     it(
-      "Security_crypto_framework_CertChainValidator_0500",
+      "Security_Cert_Framework_Certificate_1400",
       0,
-      async function (done) {
-        await certPromise
-          .checkGetX509CRLExtensionsPromise(1)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
+      async (done: Function) => {
         await certCallback
-          .checkGetX509CRLExtensionsCallback(1)
+          .checkHasUnsupportedX509CrlCallback('certNoCritical')
           .then((data) => {
-            expect(data != null).assertTrue();
+            expect(data != null && data == false).assertTrue();
           })
-          .catch((err) => {
+          .catch((err: Error) => {
             expect(null).assertFail();
           });
         done();
       }
     );
     /**
-     * @tc.number Security_crypto_framework_CertChainValidator_0600
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     * @tc.number Security_Cert_Framework_Certificate_1500
+     * @tc.name X509 CertExtension checkCA Test With Invalid Param 2
+     * @tc.desc Use callback style
      */
     it(
-      "Security_crypto_framework_CertChainValidator_0600",
+      "Security_Cert_Framework_Certificate_1500",
       0,
-      async function (done) {
+      async (done: Function) => {
         await certPromise
-          .checkGetX509CRLExtensionsPromise()
+          .checkHasUnsupportedX509CrlPromise('certHasCritical')
           .then((data) => {
             expect(data != null).assertTrue();
           })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
-        await certCallback
-          .checkGetX509CRLExtensionsCallback()
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
+          .catch((err: Error) => {
             expect(null).assertFail();
           });
         done();
       }
     );
     /**
-     * @tc.number Security_crypto_framework_CertChainValidator_0700
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
+     * @tc.number Security_Cert_Framework_Certificate_1600
+     * @tc.name X509 CertExtension checkCA Test With Invalid Param 2
+     * @tc.desc Use callback style
      */
     it(
-      "Security_crypto_framework_CertChainValidator_0700",
+      "Security_Cert_Framework_Certificate_1600",
       0,
-      async function (done) {
-        await certPromise
-          .checkGetX509CRLEntryExtensionsPromise(1)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
+      async (done: Function) => {
         await certCallback
-          .checkGetX509CRLEntryExtensionsCallback(1)
+          .checkHasUnsupportedX509CrlCallback('certHasCritical')
           .then((data) => {
             expect(data != null).assertTrue();
           })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_CertChainValidator_0800
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it(
-      "Security_crypto_framework_CertChainValidator_0800",
-      0,
-      async function (done) {
-        await certPromise
-          .checkGetX509CRLEntryExtensionsPromise()
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
-        await certCallback
-          .checkGetX509CRLEntryExtensionsCallback()
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_CertChainValidator_0900
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it(
-      "Security_crypto_framework_CertChainValidator_0900",
-      0,
-      async function (done) {
-        await certPromise
-          .checkHasX509CRLEntryExtensionsPromise(0)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
-        await certCallback
-          .checkHasX509CRLEntryExtensionsCallback(0)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_CertChainValidator_1000
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it(
-      "Security_crypto_framework_CertChainValidator_1000",
-      0,
-      async function (done) {
-        await certPromise
-          .checkHasX509CRLEntryExtensionsPromise(1)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
-        await certCallback
-          .checkHasX509CRLEntryExtensionsCallback(1)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-        done();
-      }
-    );
-    /**
-     * @tc.number Security_crypto_framework_CertChainValidator_1100
-     * @tc.name check validate interface for CertChainValidator with invalid Certs
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it(
-      "Security_crypto_framework_CertChainValidator_1100",
-      0,
-      async function (done) {
-        await certPromise
-          .checkHasX509CRLEntryExtensionsPromise(2)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
-            expect(null).assertFail();
-          });
-
-        await certCallback
-          .checkHasX509CRLEntryExtensionsCallback(2)
-          .then((data) => {
-            expect(data != null).assertTrue();
-          })
-          .catch((err) => {
+          .catch((err: Error) => {
             expect(null).assertFail();
           });
         done();
       }
     );
   });
-
-
-  /**
-   * @tc.number Security_CertificateFramework_CertExtensionTest_Func_1200
-   * @tc.name X509 CertExtension checkCA Test With Invalid Param 2
-   * @tc.desc Use callback style
-   */
-  it(
-    "Security_CertificateFramework_CertExtensionTest_Func_1200",
-    0,
-    async function (done) {
-      await certPromise
-        .checkHasUnsupportedX509CrlPromise('certNoCritical')
-        .then((data) => {
-          expect(data != null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
-
-      await certCallback
-        .checkHasUnsupportedX509CrlCallback('certNoCritical')
-        .then((data) => {
-          expect(data != null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
-      done();
-    }
-  );
-  /**
-   * @tc.number Security_CertificateFramework_CertExtensionTest_Func_1300
-   * @tc.name X509 CertExtension checkCA Test With Invalid Param 2
-   * @tc.desc Use callback style
-   */
-  it(
-    "Security_CertificateFramework_CertExtensionTest_Func_1300",
-    0,
-    async function (done) {
-      await certPromise
-        .checkHasUnsupportedX509CrlPromise('certHasCritical')
-        .then((data) => {
-          expect(data != null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
-
-      await certCallback
-        .checkHasUnsupportedX509CrlCallback('certHasCritical')
-        .then((data) => {
-          expect(data != null).assertTrue();
-        })
-        .catch((err) => {
-          expect(null).assertFail();
-        });
-      done();
-    }
-  );
 }
