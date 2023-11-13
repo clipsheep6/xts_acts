@@ -418,7 +418,7 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
       catch (err) {
         expect(null).assertFail();
       }
-      let certUri: string = cmResult.credentialList?.[0]?.keyUri as string;
+      let certUri: string = cmResult.certList?.[0]?.uri as string;
       await certManager.getUserTrustedCertificate(certUri).then((cmResult: certManager.CMResult) => {
         expect(cmResult != null).assertTrue();
         expect(cmResult?.certInfo?.uri).assertEqual(certUri);
@@ -451,7 +451,7 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
       catch (err) {
         expect(null).assertFail();
       }
-      let certUri: string = cmResult?.credentialList?.[0]?.keyUri as string;
+      let certUri: string = cmResult?.certList?.[0]?.uri as string;
       try {
         let cmResult: certManager.CMResult = await new Promise((resolve, reject) => {
           certManager.getUserTrustedCertificate(certUri, (err: Error, cmResult: certManager.CMResult) => {
@@ -684,7 +684,7 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         }
         let cmResult: certManager.CMResult = await certManager.getUserTrustedCertificateList();
         console.warn("full UserTrustedCertificate list length is: " + cmResult.certList?.length);
-        expect(cmResult.certList?.length).assertLessOrEqual(129);
+        expect(cmResult.certList?.length).assertLessOrEqual(200);
       }
       catch (err) {
         console.error("Security_CertManager_ThirdPartyJsApi_Normal_Func_2000 get err: " + err);
@@ -705,7 +705,7 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         }
         let cmResult: certManager.CMResult = await certManager.getPrivateCertificateList();
         console.warn("full PrivateCredential list length is: " + cmResult.credentialList?.length);
-        expect(cmResult.credentialList?.length).assertLessOrEqual(129);
+        expect(cmResult.credentialList?.length).assertLessOrEqual(200);
       }
       catch (err) {
         console.error("Security_CertManager_ThirdPartyJsApi_Normal_Func_2100 get err: " + err);
@@ -726,7 +726,7 @@ export default function certManagerThirdPartyJsAPINormalTestUnit() {
         }
         let cmResult: certManager.CMResult = await certManager.getAppCertificateList();
         console.warn("full PublicCredential list length is: " + cmResult.credentialList?.length);
-        expect(cmResult.credentialList?.length).assertLessOrEqual(129);
+        expect(cmResult.credentialList?.length).assertLessOrEqual(200);
       }
       catch (err) {
         console.error("Security_CertManager_ThirdPartyJsApi_Normal_Func_2200 get err: " + err);

@@ -26,12 +26,12 @@ export default function certManagerThirdPartyJsAPIAbnormalTestUnit() {
     beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
-      // try {
-      //   await commonFunction.installUserTrustedCertificates();
-      // } catch (err) {
-      //   console.error("certManagerThirdPartyJsAPIAbnormalTestUnit beforeAll err: " + err);
-      //   expect(null).assertFail();
-      // }
+      try {
+        await commonFunction.installUserTrustedCertificates();
+      } catch (err) {
+        console.error("certManagerThirdPartyJsAPIAbnormalTestUnit beforeAll err: " + err);
+        expect(null).assertFail();
+      }
     });
     beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
