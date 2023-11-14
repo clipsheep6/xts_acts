@@ -173,9 +173,133 @@ import provide1 from './Zhuang/provide1.test.ets'
 import provide2 from './Zhuang/provide2.test.ets'
 import state1 from './Zhuang/state1.test.ets'
 import state2 from './Zhuang/state2.test.ets'
+import ConsumeArray from './@stateTest/ConsumeArray.test.ets'
+import ConsumeArray1 from './@stateTest/ConsumeArray1.test.ets'
+import ConsumeColor from './@stateTest/ConsumeColor.test.ets'
+import ConsumeHight from './@stateTest/ConsumeHight.test.ets'
+import ConsumeNumber from './@stateTest/ConsumeNumber.test.ets'
+import LinkArray from './@stateTest/LinkArray.test.ets'
+import LinkArray1 from './@stateTest/LinkArray1.test.ets'
+import LinkColor from './@stateTest/LinkColor.test.ets'
+import LinkHight from './@stateTest/LinkHight.test.ets'
+import LinkNumber from './@stateTest/LinkNumber.test.ets'
+import objectLinkNumber from './@stateTest/objectLinkNumber.test.ets'
+import PropArray from './@stateTest/PropArray.test.ets'
+import PropArray1 from './@stateTest/PropArray1.test.ets'
+import PropColor from './@stateTest/PropColor.test.ets'
+import PropHight from './@stateTest/PropHight.test.ets'
+import PropNumber from './@stateTest/PropNumber.test.ets'
+import ProvideArray from './@stateTest/ProvideArray.test.ets'
+import ProvideArray1 from './@stateTest/ProvideArray1.test.ets'
+import ProvideColor from './@stateTest/ProvideColor.test.ets'
+import ProvideHight from './@stateTest/ProvideHight.test.ets'
+import ProvideNumber from './@stateTest/ProvideNumber.test.ets'
+import StateArray from './@stateTest/StateArray.test.ets'
+import StateArray1 from './@stateTest/StateArray1.test.ets'
+import StateColor from './@stateTest/StateColor.test.ets'
+import StateHight from './@stateTest/StateHight.test.ets'
+import StateNumber from './@stateTest/StateNumber.test.ets'
+import HoverJsunit5 from './HoverTest/HoverJsunit5.test.ets'
+import HoverJsunit11 from './HoverTest/HoverJsunit11.test.ets'
+import HoverJsunit17 from './HoverTest/HoverJsunit17.test.ets'
+import HoverJsunit23 from './HoverTest/HoverJsunit23.test.ets'
+import HoverJsunit25 from './HoverTest/HoverJsunit25.test.ets'
 
+
+import comSizeAbilityTest_01 from './comSizeAbility/comSizeAbilityTest_01.test';
+import comSizeAbilityTest_02 from './comSizeAbility/comSizeAbilityTest_02.test';
+import comSizeAbilityTest_03 from './comSizeAbility/comSizeAbilityTest_03.test';
+import comSizeAbilityTest_04 from './comSizeAbility/comSizeAbilityTest_04.test';
+import comSizeAbilityTest_05 from './comSizeAbility/comSizeAbilityTest_05.test';
+import comSizeAbilityTest_06 from './comSizeAbility/comSizeAbilityTest_06.test';
+import comSizeAbilityTest_07 from './comSizeAbility/comSizeAbilityTest_07.test';
+import comSizeAbilityTest_08 from './comSizeAbility/comSizeAbilityTest_08.test';
+import comSizeAbilityTest_09 from './comSizeAbility/comSizeAbilityTest_09.test';
+import comSizeAbilityTest_10 from './comSizeAbility/comSizeAbilityTest_10.test';
+import comSizeAbilityTest_11 from './comSizeAbility/comSizeAbilityTest_11.test';
+import comSizeAbilityTest_12 from './comSizeAbility/comSizeAbilityTest_12.test';
+import comSizeAbilityTest_13 from './comSizeAbility/comSizeAbilityTest_13.test';
+import comSizeAbilityTest_14 from './comSizeAbility/comSizeAbilityTest_14.test';
+import comSizeAbilityTest_15 from './comSizeAbility/comSizeAbilityTest_15.test';
+import comSizeAbilityTest_16 from './comSizeAbility/comSizeAbilityTest_16.test';
+import comSizeAbilityTest_17 from './comSizeAbility/comSizeAbilityTest_17.test';
+import comSizeAbilityTest_18 from './comSizeAbility/comSizeAbilityTest_18.test';
+import comSizeAbilityTest_19 from './comSizeAbility/comSizeAbilityTest_19.test';
+import comSizeAbilityTest_20 from './comSizeAbility/comSizeAbilityTest_20.test';
+import comSizeAbilityTest_22 from './comSizeAbility/comSizeAbilityTest_22.test';
+import comSizeAbilityTest_23 from './comSizeAbility/comSizeAbilityTest_23.test';
+import comSizeAbilityTest_24 from './comSizeAbility/comSizeAbilityTest_24.test';
+import comSizeAbilityTest_25 from './comSizeAbility/comSizeAbilityTest_25.test';
+import comSizeAbilityTest_26 from './comSizeAbility/comSizeAbilityTest_26.test';
+import comSizeAbilityTest_27 from './comSizeAbility/comSizeAbilityTest_27.test';
+import comSizeAbilityTest_28 from './comSizeAbility/comSizeAbilityTest_28.test';
+import comSizeAbilityTest_29 from './comSizeAbility/comSizeAbilityTest_29.test';
+import NavigationStack01Jsunit from './Navigation/NavigationStack01Jsunit.test';
+import NavigationStack02Jsunit from './Navigation/NavigationStack02Jsunit.test';
+import NavigationStack03Jsunit from './Navigation/NavigationStack03Jsunit.test';
+import NavigationStack10Jsunit from './Navigation/NavigationStack10Jsunit.test';
+import NavigationStack11Jsunit from './Navigation/NavigationStack11Jsunit.test';
+import NavigationStack12Jsunit from './Navigation/NavigationStack12Jsunit.test';
+import NavigationStack13Jsunit from './Navigation/NavigationStack13Jsunit.test';
+import NavigationStack14Jsunit from './Navigation/NavigationStack14Jsunit.test';
+import NavigationStack15Jsunit from './Navigation/NavigationStack15Jsunit.test';
+import NavigationStack16Jsunit from './Navigation/NavigationStack16Jsunit.test';
+import NavigationStack17Jsunit from './Navigation/NavigationStack17Jsunit.test';
+import NavigationStack18Jsunit from './Navigation/NavigationStack18Jsunit.test';
+import NavigationStack19Jsunit from './Navigation/NavigationStack19Jsunit.test';
+import NavigationStack20Jsunit from './Navigation/NavigationStack20Jsunit.test';
+import NavigationStack21Jsunit from './Navigation/NavigationStack21Jsunit.test';
+import NavigationStack23Jsunit from './Navigation/NavigationStack23Jsunit.test';
+import NavigationStack24Jsunit from './Navigation/NavigationStack24Jsunit.test';
+import NavigationStack25Jsunit from './Navigation/NavigationStack25Jsunit.test';
+import NavigationStack26Jsunit from './Navigation/NavigationStack26Jsunit.test';
+import NavigationMode01Jsunit from './Navigation/NavigationMode01Jsunit.test';
+import NavigationMode02Jsunit from './Navigation/NavigationMode02Jsunit.test';
+import NavigationMode03Jsunit from './Navigation/NavigationMode03Jsunit.test';
+import NavigationMode04Jsunit from './Navigation/NavigationMode04Jsunit.test';
+import NavigationMode05Jsunit from './Navigation/NavigationMode05Jsunit.test';
+import NavigationMode06Jsunit from './Navigation/NavigationMode06Jsunit.test';
+import NavigationMode07Jsunit from './Navigation/NavigationMode07Jsunit.test';
+import NavigationMode08Jsunit from './Navigation/NavigationMode08Jsunit.test';
+import NavigationMode09Jsunit from './Navigation/NavigationMode09Jsunit.test';
+import NavigationMode10Jsunit from './Navigation/NavigationMode10Jsunit.test';
+import NavigationMode11Jsunit from './Navigation/NavigationMode11Jsunit.test';
+import NavigationMode12Jsunit from './Navigation/NavigationMode12Jsunit.test';
+import NavigationMode13Jsunit from './Navigation/NavigationMode13Jsunit.test';
+import NavigationMode14Jsunit from './Navigation/NavigationMode14Jsunit.test';
+import NavigationMode15Jsunit from './Navigation/NavigationMode15Jsunit.test';
+import NavigationMode16Jsunit from './Navigation/NavigationMode16Jsunit.test';
+import NavigationMode17Jsunit from './Navigation/NavigationMode17Jsunit.test';
 
 export default function testsuite() {
+ comSizeAbilityTest_01();
+  comSizeAbilityTest_02();
+  comSizeAbilityTest_03();
+  comSizeAbilityTest_04();
+  comSizeAbilityTest_05();
+  comSizeAbilityTest_06();
+  comSizeAbilityTest_07();
+  comSizeAbilityTest_08();
+  comSizeAbilityTest_09();
+  comSizeAbilityTest_10();
+  comSizeAbilityTest_11();
+  comSizeAbilityTest_12();
+  comSizeAbilityTest_13();
+  comSizeAbilityTest_14();
+  comSizeAbilityTest_15();
+  comSizeAbilityTest_16();
+  comSizeAbilityTest_17();
+  comSizeAbilityTest_18();
+  comSizeAbilityTest_19();
+  comSizeAbilityTest_20();
+  comSizeAbilityTest_22();
+  comSizeAbilityTest_23();
+  comSizeAbilityTest_24();
+  comSizeAbilityTest_25();
+  comSizeAbilityTest_26();
+  comSizeAbilityTest_27();
+  comSizeAbilityTest_28();
+  comSizeAbilityTest_29();
   DialogJsunit();
   blankJsunit();
   buttonJsunit();
@@ -335,4 +459,71 @@ export default function testsuite() {
   provide2()
   state1()
   state2()
+  ConsumeArray()
+  ConsumeArray1()
+  ConsumeColor()
+  ConsumeHight()
+  ConsumeNumber()
+  LinkArray()
+  LinkArray1()
+  LinkColor()
+  LinkHight()
+  LinkNumber()
+  objectLinkNumber()
+  PropArray()
+  PropArray1()
+  PropColor()
+  PropHight()
+  PropNumber()
+  ProvideArray()
+  ProvideArray1()
+  ProvideColor()
+  ProvideHight()
+  ProvideNumber()
+  StateArray()
+  StateArray1()
+  StateColor()
+  StateHight()
+  StateNumber()
+  HoverJsunit5()
+  HoverJsunit11()
+  HoverJsunit17()
+  HoverJsunit23()
+  HoverJsunit25()
+  NavigationStack01Jsunit();
+  NavigationStack02Jsunit();
+  NavigationStack03Jsunit();
+  NavigationStack10Jsunit();
+  NavigationStack11Jsunit();
+  NavigationStack12Jsunit();
+  NavigationStack13Jsunit();
+  NavigationStack14Jsunit();
+  NavigationStack15Jsunit();
+  NavigationStack16Jsunit();
+  NavigationStack17Jsunit();
+  NavigationStack18Jsunit();
+  NavigationStack19Jsunit();
+  NavigationStack20Jsunit();
+  NavigationStack21Jsunit();
+  NavigationStack23Jsunit();
+  NavigationStack24Jsunit();
+  NavigationStack25Jsunit();
+  NavigationStack26Jsunit();
+  NavigationMode01Jsunit();
+  NavigationMode02Jsunit();
+  NavigationMode03Jsunit();
+  NavigationMode04Jsunit();
+  NavigationMode05Jsunit();
+  NavigationMode06Jsunit();
+  NavigationMode07Jsunit();
+  NavigationMode08Jsunit();
+  NavigationMode09Jsunit();
+  NavigationMode10Jsunit();
+  NavigationMode11Jsunit();
+  NavigationMode12Jsunit();
+  NavigationMode13Jsunit();
+  NavigationMode14Jsunit();
+  NavigationMode15Jsunit();
+  NavigationMode16Jsunit();
+  NavigationMode17Jsunit();
 }
