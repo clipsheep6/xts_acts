@@ -355,34 +355,59 @@ const testCrlPem =
     "eCtiNcgUr9Kz2bwCmvEXhP7PuF4RMLq4vfzi0YjCG98=\n" +
     "-----END X509 CRL-----\n";
 
-const testCrlPemWithoutExtension =
-"-----BEGIN X509 CRL-----\n" +
-  "MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n" +
-  "MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n" +
-  "MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n" +
-  "J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n" +
-  "5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n" +
-  "eavsH0Q3\n" +
-"-----END X509 CRL-----"
+const testCrlWithoutExtensionPem =
+  "-----BEGIN X509 CRL-----\n" +
+    "MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n" +
+    "MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n" +
+    "MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n" +
+    "J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n" +
+    "5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n" +
+    "eavsH0Q3\n" +
+  "-----END X509 CRL-----";
+
+const testCrlEntryWithExtensionPem =
+  "-----BEGIN X509 CRL-----\r\n" +
+    "MIIBDjB5AgEDMA0GCSqGSIb3DQEBBAUAMBUxEzARBgNVBAMTCkNSTCBpc3N1ZXIX\r\n" +
+    "DTIzMTExMzExMTYxM1oXDTIzMTExMzExNDkzM1owMDAuAgMAq80XDTIzMTExMzEx\r\n" +
+    "NDkzM1owGDAWBglghkgBhvhCAQ0BAf8EBhYEdGVzdDANBgkqhkiG9w0BAQQFAAOB\r\n" +
+    "gQAJlecMe4ImV/IKP2LvT+vO1Os8Z2/tUERk9aleJB9mRpWXfk6hYbUr8RAw3nSu\r\n" +
+    "4aYnlhdRxS8tkthv2FFxp4Ms/Oto+biyby8zFyzgbjWocPlOx/kL65+itylJGXzN\r\n" +
+    "28Vgfm9pJFiUQWI34lohYeHyyvT0IlOkhUc8/fdzCZdATA==\r\n" +
+  "-----END X509 CRL-----\r\n";
 
 const testCrlWithSerialPem =
   "-----BEGIN X509 CRL-----\r\n" +
-"MIICEzCB/AIBATANBgkqhkiG9w0BAQsFADB0MQswCQYDVQQGEwJDTjEQMA4GA1UE\r\n" +
-"CAwHSmlhbmdTdTEQMA4GA1UEBwwHTmFuSmluZzEKMAgGA1UECgwBdDEKMAgGA1UE\r\n" +
-"CwwBdDEMMAoGA1UEAwwDemhiMRswGQYJKoZIhvcNAQkBFgx0ZXN0QDEyMy5jb20X\r\n" +
-"DTIzMTEwNzAyNTIwN1oXDTIzMTIwNzAyNTIwN1owLDAqAhkA/wH/Af8B/wH/////\r\n" +
-"//////////////8BFw0yMzExMDcwMjUxMDNaoCYwJDAiBgNVHRQEGwIZAP8B/wH/\r\n" +
-"Af8B////////////////////ATANBgkqhkiG9w0BAQsFAAOCAQEAcB23lkrRYo48\r\n" +
-"YT5RiTxIyjSK1kTT+Zxc3oJ6gXcPoS1j7/Td+fDmFfjLOUeKWYrrx/T7NyfjFxjn\r\n" +
-"On37RKmQCHlVJtqAxIstnXCwoSzq68kqK9uczZCaYzWr+aPz/obQRxFWRs0aJy2x\r\n" +
-"KvXp6iBObXlAQVSHXkI5ikjkxR5Xpfi+VH0ojTi5NjpPssLJMN4b7qCZ/334qkZ7\r\n" +
-"eH6O355R2z0XM4vxQJDAJBoF5X9EFYFJc/uwdZPITnSKaG5IBMt1k5ei5jOLsMDa\r\n" +
-"tQSBrPschBRBmg2kBAz8Zq6jgW2j5UaQZ6e0/oKOiiXB/uAPwkpBLAGewinkeZKJ\r\n" +
-"VBgXORYAFg==\r\n" +
-"-----END X509 CRL-----\r\n";
+    "MIICEzCB/AIBATANBgkqhkiG9w0BAQsFADB0MQswCQYDVQQGEwJDTjEQMA4GA1UE\r\n" +
+    "CAwHSmlhbmdTdTEQMA4GA1UEBwwHTmFuSmluZzEKMAgGA1UECgwBdDEKMAgGA1UE\r\n" +
+    "CwwBdDEMMAoGA1UEAwwDemhiMRswGQYJKoZIhvcNAQkBFgx0ZXN0QDEyMy5jb20X\r\n" +
+    "DTIzMTEwNzAyNTIwN1oXDTIzMTIwNzAyNTIwN1owLDAqAhkA/wH/Af8B/wH/////\r\n" +
+    "//////////////8BFw0yMzExMDcwMjUxMDNaoCYwJDAiBgNVHRQEGwIZAP8B/wH/\r\n" +
+    "Af8B////////////////////ATANBgkqhkiG9w0BAQsFAAOCAQEAcB23lkrRYo48\r\n" +
+    "YT5RiTxIyjSK1kTT+Zxc3oJ6gXcPoS1j7/Td+fDmFfjLOUeKWYrrx/T7NyfjFxjn\r\n" +
+    "On37RKmQCHlVJtqAxIstnXCwoSzq68kqK9uczZCaYzWr+aPz/obQRxFWRs0aJy2x\r\n" +
+    "KvXp6iBObXlAQVSHXkI5ikjkxR5Xpfi+VH0ojTi5NjpPssLJMN4b7qCZ/334qkZ7\r\n" +
+    "eH6O355R2z0XM4vxQJDAJBoF5X9EFYFJc/uwdZPITnSKaG5IBMt1k5ei5jOLsMDa\r\n" +
+    "tQSBrPschBRBmg2kBAz8Zq6jgW2j5UaQZ6e0/oKOiiXB/uAPwkpBLAGewinkeZKJ\r\n" +
+    "VBgXORYAFg==\r\n" +
+  "-----END X509 CRL-----\r\n";
+
+const testCrlWith18byteSerialPem =
+  "-----BEGIN X509 CRL-----\r\n" +
+    "MIIB8zCB3AIBATANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJDTjEQMA4GA1UE\r\n" +
+    "CAwHSmlhbmdTdTEQMA4GA1UEBwwHTmFuSmluZzEKMAgGA1UECgwBYzEKMAgGA1UE\r\n" +
+    "CwwBYzEKMAgGA1UEAwwBejEbMBkGCSqGSIb3DQEJARYMdGVzdEAxMjYuY29tFw0y\r\n" +
+    "MzExMTMwODM4MjJaFw0yMzEyMTMwODM4MjJaMCYwJAITAP8B/wH/Af8B////////\r\n" +
+    "////ARcNMjMxMTEzMDgzNzM3WqAOMAwwCgYDVR0UBAMCAQEwDQYJKoZIhvcNAQEL\r\n" +
+    "BQADggEBAJ8kVcLeXiWPqAjQi7Ch3RvdZSpLcwwkMpQ0XUUUsXx5VOeBU/nllmkF\r\n" +
+    "KLs7CnHb+LpZDpvh91sASXscPOlNDFh5g3TqZUEHZU2b9ZosVh6xdEv+THMKEaDm\r\n" +
+    "FmaWrd3enZZrPy7TBHOLnLKDYYHB3jA9KW1/ybfj5BCDxPVBoDdb0GgPQ5oVb7i0\r\n" +
+    "2PNiMMLlVJJ2e+WNNLZGvGnolTMvpEXGfUOKLqsoXcMSqMeecQVcO6FUnZeBxitp\r\n" +
+    "A8d5aUQXDl5uda25/tY4ehP5iV3Nj5bwCilnKtU7JW8unzIUtReRiolZiKYNiR1K\r\n" +
+    "t/liB2Ao4FOLn8w1Q55lKbe1WxOBQtY=\r\n" +
+  "-----END X509 CRL-----\r\n";
 
 const testCrlDer =
-  "308201fc3081e5020101300d06092a864886f70d01010b0500" +
+    "308201fc3081e5020101300d06092a864886f70d01010b0500" +
     "30818c310b300906035504061302434e3111300f06035504080c087368616e67686" +
     "169310f300d06035504070c0668756177656931153013060355040a0c0c7777772e" +
     "746573742e636f6d310d300b060355040b0c04746573743115301306035504030c0" +
@@ -398,6 +423,27 @@ const testCrlDer =
     "edbe7b46042148339f7ed43a22c639b095058d764231a2baf56f0a5ee772772c144" +
     "26e19fbce34eab21478f2c431e8e56d1fa939f6782b6235c814afd2b3d9bc029af1" +
     "1784fecfb85e1130bab8bdfce2d188c21bdf";
+
+const testCrlWithoutExtensionDer =
+    "3081f3305e020103300d06092a864886f70d0101040500301531133011060355040" +
+    "3130a43524c20697373756572170d3137303830373131313935355a170d33323132" +
+    "31343030353332305a30153013020203e8170d3332313231343030353332305a300" +
+    "d06092a864886f70d010104050003818100210f1e195a093580e36ca479a3b24744" +
+    "864081c839447781c0c72752da37088bfa00f123dacc426961b1418998f20f751b3" +
+    "db98c88f9ff39e25b16622b03d8f504a67dc36c4bf3c18790e52a90a0f0e833e61f" +
+    "6596b6de1a132ecbb9dada17a1b3fbe2c7fff4ae74d69ffef219b844e30b068453f" +
+    "3a190298ea079abec1f44370a";
+
+const testCrlEntryWithExtensionDer =
+    "3082010e3079020103300d06092a864886f70d01010405003015311330110603" +
+    "550403130a43524c20697373756572170d3233313131333131313631335a170d" +
+    "3233313131333131343933335a3030302e020300abcd170d3233313131333131" +
+    "343933335a3018301606096086480186f842010d0101ff040616047465737430" +
+    "0d06092a864886f70d0101040500038181000995e70c7b822657f20a3f62ef4f" +
+    "ebced4eb3c676fed504464f5a95e241f664695977e4ea161b52bf11030de74ae" +
+    "e1a627961751c52f2d92d86fd85171a7832cfceb68f9b8b26f2f33172ce06e35" +
+    "a870f94ec7f90beb9fa2b72949197ccddbc5607e6f69245894416237e25a2161" +
+    "e1f2caf4f42253a485473cfdf7730997404c0a";
 
 const crlVerifyPriKeyHex =
   "30820277020100300D06092A864886F70D0101010500048202613082025D020100028" +
@@ -436,6 +482,7 @@ const crlHex =
     "F39E25B16622B03D8F504A67DC36C4BF3C18790E52A90A0F0E833E61F6596B6DE1A13" +
     "2ECBB9DADA17A1B3FBE2C7FFF4AE74D69FFEF219B844E30B068453F3A190298EA079A" +
     "BEC1F4437";
+
 const certDataDER01 = [
   0x30, 0x82, 0x03, 0x4c, 0x30, 0x82, 0x02, 0x34, 0xa0, 0x03, 0x02, 0x01, 0x02,
   0x02, 0x06, 0x20, 0x06, 0x05, 0x16, 0x70, 0x02, 0x30, 0x0d, 0x06, 0x09, 0x2a,
@@ -531,6 +578,17 @@ const certDataPEM01 =
     "1Vsro0IOeXT9WAcqEtQUegsi\n" +
     "-----END CERTIFICATE-----\n";
 
+const certExtensionWithCriticalPem =
+  "-----BEGIN X509 CRL-----\n" +
+    "MIIBKzCBlQIBAzANBgkqhkiG9w0BAQQFADAVMRMwEQYDVQQDEwpDUkwgaXNzdWVy\n" +
+    "Fw0yMzExMTQwMjA5NDdaFw0yMzExMTQwMjQzMDdaMDAwLgIDAKvNFw0yMzExMTQw\n" +
+    "MjQzMDdaMBgwFgYJYIZIAYb4QgENAQH/BAYWBGNybEWgGjAYMBYGCWCGSAGG+EIB\n" +
+    "DQEB/wQGFgRjcmxFMA0GCSqGSIb3DQEBBAUAA4GBAGfqDhPR1POgyYZ8B7gIA0EO\n" +
+    "0uhOPhcwPy4QrntmXf6DQbcS8DQc0aUUS8iFYrnflUXTK4YKOyJEu8qns/bVCCQj\n" +
+    "q8uteNo9rGDWPMfbRPbitd8LCMomlMSUi9C1VpBSEt4W6j8Lpy8P7MY+ZOP5DWn6\n" +
+    "MIhCFPJqe0ZkzgIzYbdG\n" +
+  "-----END X509 CRL-----\n";
+
 const certExtensionNormal01 = [
   0x30, 0x40, 0x30, 0x0f, 0x06, 0x03, 0x55, 0x1d, 0x13, 0x01, 0x01, 0xff, 0x04,
   0x05, 0x30, 0x03, 0x01, 0x01, 0xff, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x1d, 0x0f,
@@ -588,6 +646,11 @@ const certExtensionInvalid02 = [
   0x30, 0x03, 0x01, 0x01, 0xff,
 ];
 
+const certExtensionWithUnSupportedCritical = [
+  0x30, 0x18, 0x30, 0x16, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x86, 0xF8, 0x42,
+  0x01, 0x0D, 0x01, 0x01, 0xFF, 0x04, 0x06, 0x16, 0x04, 0x63, 0x72, 0x6C, 0x45,
+];
+
 let crlWithExtends = '-----BEGIN X509 CRL-----\n' +
   'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
   'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -605,8 +668,9 @@ export {
   chainSecondCaCert,
   testCert,
   testCrlDer,
+  testCrlWithoutExtensionDer,
   testCrlPem,
-  testCrlPemWithoutExtension,
+  testCrlWithoutExtensionPem,
   testErrorCert,
   testInvalidCert,
   deviceTestCert,
@@ -622,6 +686,11 @@ export {
   certExtensionInvalid01,
   certExtensionInvalid02,
   testCrlWithSerialPem,
+  testCrlWith18byteSerialPem,
+  testCrlEntryWithExtensionPem,
   crlWithExtends,
+  certExtensionWithCriticalPem,
+  testCrlEntryWithExtensionDer,
+  certExtensionWithUnSupportedCritical,
   reg
 };

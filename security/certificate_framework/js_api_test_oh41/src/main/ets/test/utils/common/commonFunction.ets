@@ -155,7 +155,7 @@ function convertToUint8Array(str: string) {
   let temp: number[] = [];
   if(match) {
     temp = match.map((h) => {
-      return Number(Number(h).toString(16));
+      return Number("0x" + h);
     });
   }
   return new Uint8Array(

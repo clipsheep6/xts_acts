@@ -25,8 +25,9 @@ import {
   testErrorCert,
   testCert,
   testCrlPem,
-  testCrlPemWithoutExtension,
+  testCrlWithoutExtensionPem,
   testCrlDer,
+  testCrlWithoutExtensionDer,
   crlVerifyPriKeyHex,
   crlVerifyPubKeyHex,
   crlHex,
@@ -36,6 +37,10 @@ import {
   certExtensionInvalid02,
   testCrlWithSerialPem,
   reg,
+  testCrlWith18byteSerialPem,
+  testCrlEntryWithExtensionPem,
+  testCrlEntryWithExtensionDer,
+  certExtensionWithUnSupportedCritical,
 } from "../common/commonParam";
 import { IAnyObj } from '../common/commonType';
 
@@ -504,6 +509,9 @@ function verifyX509CRLCallback(crlType: string, flag?: string | cryptoFramework.
         }
         return verifyX509CRL(globalCrlInstance, pubKey);
       })
+      .then((result) => {
+        resolve(result);
+      })
       .catch((err: IAnyObj) => {
         console.error(
           "[Callback]verifyX509CRLCallback failed. error is " + err
@@ -604,7 +612,7 @@ function checkGetRevokedCertWithCertX509CRLCallback(crlInstance: cert.X509CRL, f
       .then((certInstance: cert.X509Cert) => {
         x509CrlEntry = crlInstance.getRevokedCertWithCert(certInstance);
         expect(x509CrlEntry != null).assertTrue();
-        let num = x509CrlEntry.getCRLEntrySerialNumber();
+        let num = x509CrlEntry.getSerialNumber();
         console.warn("[num] getRevokedCertWithCert num is:" + num);
         resolve(x509CrlEntry);
       })
@@ -632,7 +640,7 @@ async function checkGetRevokedCertsX509CRLCallback(certType: string) {
               "[callback] certs i: " +
                 gIndex +
                 " serialNumber is: " +
-              certs[gIndex].getCRLEntrySerialNumber()
+              certs[gIndex].getSerialNumber()
             );
             revocation = certs[gIndex].getRevocationDate();
             expect(revocation != null).assertTrue();
@@ -767,47 +775,133 @@ function checkValidateOfCertChainValidatorCallback(algName: string, flag: string
   });
 }
 
-async function checkGetX509CRLExtensionsCallback(extensions: string): Promise<cert.DataBlob> {
+function createX509CRLExtensionsInstanceCallback(certType: string, hasExtension: boolean): Promise<cert.X509CRL> {
+  let certformat: cert.EncodingFormat;
+  let encodingData: Uint8Array;
+
+  if (certType == "der") {
+    certformat = cert.EncodingFormat.FORMAT_DER;
+    if (!hasExtension) {
+      encodingData = convertToUint8Array(testCrlWithoutExtensionDer);
+    } else {
+      encodingData = convertToUint8Array(testCrlDer);
+    }
+  } else {
+    certformat = cert.EncodingFormat.FORMAT_PEM;
+    if (!hasExtension) {
+      encodingData = stringTouInt8Array(testCrlWithoutExtensionPem);
+    } else {
+      encodingData = stringTouInt8Array(testCrlPem);
+    }
+  }
+
+  let encodingBlob: cert.EncodingBlob = {
+    data: encodingData,
+    encodingFormat: certformat,
+  };
+
   return new Promise((resolve, reject) => {
-    createX509CRLInstanceCallback(extensions)
+    cert.createX509CRL(encodingBlob, (err, data) => {
+      if (err) {
+        console.error(
+          "[callback] createX509CRL failed! error code is: " + err.code
+        );
+        reject(err);
+      } else {
+        console.warn(
+          "[callback] createX509CRL success! format is: " + certformat
+        );
+        resolve(data);
+      }
+    });
+  });
+}
+
+async function checkGetX509CRLExtensionsCallback(extensions: string, hasExtension: boolean): Promise<cert.DataBlob> {
+  return new Promise((resolve, reject) => {
+    createX509CRLExtensionsInstanceCallback(extensions, hasExtension)
       .then((instance) => {
         const extension = instance.getExtensions();
         resolve(extension);
       })
       .catch((err: Error) => {
-        console.error("[callback] getPublickey failed! error is: " + err);
+        console.error("[callback] get crl extension failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkGetX509CRLEntryExtensionsCallback(extensions: string): Promise<cert.DataBlob> {
+function createX509CRLEntryExtensionsInstanceCallback(certType: string, hasExtension: boolean): Promise<cert.X509CRL> {
+  let certformat: cert.EncodingFormat;
+  let encodingData: Uint8Array;
+
+  if (certType == "der") {
+    certformat = cert.EncodingFormat.FORMAT_DER;
+    if (hasExtension) {
+      encodingData = convertToUint8Array(testCrlEntryWithExtensionDer);
+    } else {
+      encodingData = convertToUint8Array(testCrlDer);
+    }
+  } else {
+    certformat = cert.EncodingFormat.FORMAT_PEM;
+    if (hasExtension) {
+      encodingData = stringTouInt8Array(testCrlEntryWithExtensionPem);
+    } else {
+      encodingData = stringTouInt8Array(testCrlPem);
+    }
+  }
+
+  let encodingBlob: cert.EncodingBlob = {
+    data: encodingData,
+    encodingFormat: certformat,
+  };
+
+  return new Promise((resolve, reject) => {
+    cert.createX509CRL(encodingBlob, (err, data) => {
+      if (err) {
+        console.error(
+          "[callback] createX509CRL failed! error code is: " + err.code
+        );
+        reject(err);
+      } else {
+        console.warn(
+          "[callback] createX509CRL success! format is: " + certformat
+        );
+        resolve(data);
+      }
+    });
+  });
+}
+
+async function checkGetX509CRLEntryExtensionsCallback(extensions: string, hasExtension: boolean): Promise<cert.DataBlob> {
   let cert1: cert.X509CRLEntry;
   return new Promise((resolve, reject) => {
-    createX509CRLInstanceCallback(extensions)
-      .then((instance) => {
-        cert1 = instance.getRevokedCert(BigInt(1));
-        const list = cert1.getExtensions()
+    createX509CRLEntryExtensionsInstanceCallback(extensions, hasExtension)
+      .then(async (x509Crl) => {
+        const crlEntries = await x509Crl.getRevokedCerts();
+        cert1 = crlEntries?.[0];
+        const list = cert1.getExtensions();
         resolve(list);
       })
       .catch((err: Error) => {
-        console.error("[callback] Crl getPublickey failed! error is: " + err);
+        console.error("[callback] get crl entry extension failed! error is: " + err);
         reject(err);
       });
   });
 }
 
-async function checkHasX509CRLEntryExtensionsCallback(extensions: string): Promise<boolean> {
+async function checkHasX509CRLEntryExtensionsCallback(extensions: string, hasExtension: boolean): Promise<boolean> {
   let cert1: cert.X509CRLEntry;
   return new Promise((resolve, reject) => {
-    createX509CRLInstanceCallback(extensions)
-      .then((instance) => {
-        cert1 = instance.getRevokedCert(BigInt(1));
-        const hasExtensions = cert1.hasExtensions()
+    createX509CRLEntryExtensionsInstanceCallback(extensions, hasExtension)
+      .then(async (x509Crl) => {
+        const crlEntries = await x509Crl.getRevokedCerts();
+        cert1 = crlEntries?.[0];
+        const hasExtensions = cert1.hasExtensions();
         resolve(hasExtensions);
       })
       .catch((err: Error) => {
-        console.error("[callback] Crl getPublickey failed! error is: " + err);
+        console.error("[callback] crl entry has extension failed! error is: " + err);
         reject(err);
       });
   });
@@ -831,7 +925,7 @@ async function createX509CertExtensionNormalCallback(flag: string): Promise<cert
       encodingData = new Uint8Array(certExtensionInvalid02);
       break;
     case "certHasCritical":
-      encodingData = new Uint8Array(certExtensionInvalid02);
+      encodingData = new Uint8Array(certExtensionWithUnSupportedCritical);
       break;
     case "certNoCritical":
       encodingData = new Uint8Array(certExtensionInvalid02);
@@ -871,7 +965,7 @@ async function checkHasUnsupportedX509CrlCallback(flag: string): Promise<boolean
         resolve(hasUnsupported);
       })
       .catch((err: Error) => {
-        console.error("[callback] getPublickey failed! error is: " + err);
+        console.error("[callback] get public key failed! error is: " + err);
         reject(err);
       });
   });
@@ -881,7 +975,7 @@ function createX509CRLInstanceWithSerialNumberCallback(): Promise<cert.X509CRL> 
   let certformat: cert.EncodingFormat;
   let encodingData: Uint8Array;
   certformat = cert.EncodingFormat.FORMAT_PEM;
-  encodingData = stringTouInt8Array(testCrlWithSerialPem);
+  encodingData = stringTouInt8Array(testCrlWith18byteSerialPem);
 
   let encodingBlob: cert.EncodingBlob = {
     data: encodingData,
@@ -911,16 +1005,16 @@ async function checkX509CRLEntryGetSerialNumberCallback(certType: string) {
       .then((instance) => {
         instance.getRevokedCerts((err, certs: Array<cert.X509CRLEntry>) => {
           expect(certs != null && certs.length != 0).assertTrue();
-          console.warn("[callback] CRL get gevoked certs success");
-          const serialNumber = certs[0].getCRLEntrySerialNumber();
+          console.warn("[callback] CRL get revoked certs success");
+          const serialNumber = certs[0].getSerialNumber();
           expect(serialNumber !== null).assertTrue();
-          expect(serialNumber === BigInt(0XFF01FF01FF01FF01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01)).assertTrue();
-
+          expect(serialNumber === BigInt("22214312158469178443624022151750054219611905")).assertTrue();
+          console.log("checkX509CRLEntryGetSerialNumberCallback");
         });
         resolve();
       })
       .catch((err: Error) => {
-        console.error("[callback] CRL getPublickey failed! error is: " + err);
+        console.error("[callback] CRL get Public key failed! error is: " + err);
         reject(err);
       });
   });
@@ -930,7 +1024,7 @@ async function checkX509CRLGetRevokedCertCallback() {
   return new Promise<void>((resolve, reject) => {
     createX509CRLInstanceWithSerialNumberCallback()
       .then((instance) => {
-        const crlEntry = instance.getRevokedCert(BigInt(0XFF01FF01FF01FF01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01));
+        const crlEntry = instance.getRevokedCert(BigInt("22214312158469178443624022151750054219611905"));
         expect(crlEntry !== null).assertTrue();
         resolve();
         resolve();
