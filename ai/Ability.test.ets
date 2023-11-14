@@ -16,9 +16,8 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 import fs from '@ohos.file.fs';
-
+//@ts-nocheck
 export default function abilityTest() {
-  //test
   describe('ActsAbilityTest', function () {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(function () {
