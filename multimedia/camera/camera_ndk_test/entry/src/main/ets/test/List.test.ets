@@ -23,6 +23,7 @@ import cameraSessionFocusTest from './CameraSessionFocusTest.test'
 import cameraSessionZoomRatioTest from './CameraSessionZoomRatioTest.test'
 import cameraSessionVideoStabilizationTest from './CameraSessionVideoStabilizationTest.test'
 import CameraErrorCodeUsecaseTest from './CameraErrorCodeUsecaseTest.test'
+import CameraImageProcessingTest from './CameraImageProcessingTest.test'
 
 export default function testsuite() {
   CameraFunctionTest()
@@ -35,4 +36,5 @@ export default function testsuite() {
   cameraSessionZoomRatioTest()
   cameraSessionVideoStabilizationTest()
   CameraErrorCodeUsecaseTest()
+  CameraImageProcessingTest()
 }
