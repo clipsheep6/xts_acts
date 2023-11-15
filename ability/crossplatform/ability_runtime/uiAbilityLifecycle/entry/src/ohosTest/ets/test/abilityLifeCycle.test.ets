@@ -121,7 +121,7 @@ export default function abilityTest() {
 
       const result2 = globalThis.list2;
       console.info('result2: ' + JSON.stringify(result2));
-      
+
       expect(result2[0]).assertEqual('Main2Ability onCreate');
       expect(result2[1]).assertEqual('Main2Ability onWindowStageCreate');
       expect(result2[2]).assertEqual('Main2Ability onForeground');
@@ -159,7 +159,7 @@ export default function abilityTest() {
 
       const result1 = globalThis.list1;
       console.info('result1: ' + JSON.stringify(result1));
-      
+
       expect(result1[0]).assertEqual('Main1Ability onCreate');
       expect(result1[1]).assertEqual('Main1Ability onWindowStageCreate');
       expect(result1[2]).assertEqual('Main1Ability onForeground');
@@ -218,7 +218,7 @@ export default function abilityTest() {
       const result2 = globalThis.list2;
       console.info('result1: ' + JSON.stringify(result1));
       console.info('result2: ' + JSON.stringify(result2));
-      
+
       expect(result2[0]).assertEqual('Main2Ability onCreate');
       expect(result2[1]).assertEqual('Main2Ability onWindowStageCreate');
       expect(result2[2]).assertEqual('Main2Ability onForeground');
@@ -279,7 +279,7 @@ export default function abilityTest() {
 
       const result1 = globalThis.list3;
       console.info(TAG + 'result1: ' + JSON.stringify(result1));
-      
+
       // 启动Main2Ability后，Main3Ability将会切到后台
       expect(result1[0]).assertEqual('Main3Ability onCreate');
       expect(result1[1]).assertEqual('Main3Ability onWindowStageCreate');
@@ -341,7 +341,7 @@ export default function abilityTest() {
 
       const result1 = globalThis.list1;
       console.info(TAG + 'result1: ' + JSON.stringify(result1));
-      
+
       expect(result1[0]).assertEqual('Main1Ability onCreate');
       expect(result1[1]).assertEqual('Main1Ability onWindowStageCreate');
       expect(result1[2]).assertEqual('Main1Ability onForeground');
@@ -393,7 +393,7 @@ export default function abilityTest() {
 
       const result1 = globalThis.list3;
       console.info(TAG + 'result1: ' + JSON.stringify(result1));
-      
+
       expect(result1[0]).assertEqual('Main3Ability onCreate');
       expect(result1[1]).assertEqual('Main3Ability onWindowStageCreate');
       expect(result1[2]).assertEqual('Main3Ability onForeground');
