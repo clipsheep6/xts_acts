@@ -22,7 +22,7 @@ let mPreference;
 let context;
 
 export default function preferencesPromiseWithErrorTest() {
-  describe("preferencesPromiseWithErrorTest", async function () {
+  describe("preferencesPromiseWithErrorTest", function () {
     beforeAll(async function () {
       console.info("beforeAll");
       context = globalThis.abilityContext;
