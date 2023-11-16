@@ -66,7 +66,7 @@ static napi_value JsCreate(napi_env env, napi_callback_info info)
     napi_value thisVar = nullptr;
     napi_value argValue[NUM_4] = {0};
     size_t argCount = NUM_4;
-    struct OhosImageCreatorOpts creatorInfo;
+    ImageCreator_Opts creatorInfo;
     napi_value creator = nullptr;
     napi_get_undefined(env, &udfVar);
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok ||
