@@ -66,7 +66,7 @@ static napi_value JsCreate(napi_env env, napi_callback_info info)
     napi_value thisVar = nullptr;
     napi_value argValue[NUM_4] = {0};
     size_t argCount = NUM_4;
-    struct OhosImageCreatorInfo creatorInfo;
+    struct OhosImageCreatorOpts creatorInfo;
     napi_value creator = nullptr;
     napi_get_undefined(env, &udfVar);
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok ||
@@ -77,7 +77,7 @@ static napi_value JsCreate(napi_env env, napi_callback_info info)
         napi_get_value_int32(env, argValue[NUM_3], &(creatorInfo.capicity)) != napi_ok) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    return CreateResult(env, OH_Image_Creator_Create(env, creatorInfo, &creator), creator);
+    return CreateResult(env, OH_ImageCreator_Create(env, creatorInfo, &creator), creator);
 }
 
 static napi_value JsInitNative(napi_env env, napi_callback_info info)
@@ -90,7 +90,7 @@ static napi_value JsInitNative(napi_env env, napi_callback_info info)
         argCount < NUM_1 || argValue[NUM_0] == nullptr) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    if (OH_Image_Creator_InitNative(env, argValue[NUM_0]) != nullptr) {
+    if (OH_ImageCreator_InitNative(env, argValue[NUM_0]) != nullptr) {
         return CreateResult(env, IMAGE_RESULT_SUCCESS);
     }
     return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
@@ -105,9 +105,9 @@ static napi_value JsDequeue(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok || argCount < NUM_1) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    auto native = OH_Image_Creator_InitNative(env, argValue[NUM_0]);
+    auto native = OH_ImageCreator_InitNative(env, argValue[NUM_0]);
     napi_value image = nullptr;
-    return CreateResult(env, OH_Image_Creator_Dequeue(native, &image), image);
+    return CreateResult(env, OH_ImageCreator_Dequeue(native, &image), image);
 }
 
 static napi_value JsQueue(napi_env env, napi_callback_info info)
@@ -119,8 +119,8 @@ static napi_value JsQueue(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok || argCount < NUM_2) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    auto native = OH_Image_Creator_InitNative(env, argValue[NUM_0]);
-    return CreateResult(env, OH_Image_Creator_Queue(native, argValue[NUM_1]));
+    auto native = OH_ImageCreator_InitNative(env, argValue[NUM_0]);
+    return CreateResult(env, OH_ImageCreator_Queue(native, argValue[NUM_1]));
 }
 
 static void onEvent()
@@ -137,8 +137,8 @@ static napi_value JsOn(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok || argCount < NUM_1) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    auto native = OH_Image_Creator_InitNative(env, argValue[NUM_0]);
-    return CreateResult(env, OH_Image_Creator_On(native, onEvent));
+    auto native = OH_ImageCreator_InitNative(env, argValue[NUM_0]);
+    return CreateResult(env, OH_ImageCreator_On(native, onEvent));
 }
 
 static napi_value JsGetCapacity(napi_env env, napi_callback_info info)
@@ -150,9 +150,9 @@ static napi_value JsGetCapacity(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok || argCount < NUM_1) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    auto native = OH_Image_Creator_InitNative(env, argValue[NUM_0]);
+    auto native = OH_ImageCreator_InitNative(env, argValue[NUM_0]);
     int32_t capacity = NUM_0;
-    auto res = OH_Image_Creator_GetCapacity(native, &capacity);
+    auto res = OH_ImageCreator_GetCapacity(native, &capacity);
     napi_value nRes = nullptr;
     napi_create_int32(env, capacity, &nRes);
     return CreateResult(env, res, nRes);
@@ -167,9 +167,9 @@ static napi_value JsGetFormat(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok || argCount < NUM_1) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    auto native = OH_Image_Creator_InitNative(env, argValue[NUM_0]);
+    auto native = OH_ImageCreator_InitNative(env, argValue[NUM_0]);
     int32_t format = NUM_0;
-    auto res = OH_Image_Creator_GetFormat(native, &format);
+    auto res = OH_ImageCreator_GetFormat(native, &format);
     napi_value nRes = nullptr;
     napi_create_int32(env, format, &nRes);
     return CreateResult(env, res, nRes);
@@ -184,8 +184,8 @@ static napi_value JsRelease(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok || argCount < NUM_1) {
         return CreateResult(env, IMAGE_RESULT_INVALID_PARAMETER);
     }
-    auto native = OH_Image_Creator_InitNative(env, argValue[NUM_0]);
-    return CreateResult(env, OH_Image_Creator_Release(native));
+    auto native = OH_ImageCreator_InitNative(env, argValue[NUM_0]);
+    return CreateResult(env, OH_ImageCreator_Release(native));
 }
 
 #define STATIC_FUNCTION(n, f) { (n), nullptr, (f), nullptr, nullptr, nullptr, napi_static, nullptr }
