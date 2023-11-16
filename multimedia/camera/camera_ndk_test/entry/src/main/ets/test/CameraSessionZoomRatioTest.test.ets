@@ -370,171 +370,171 @@ export default function cameraSessionZoomRatioTest() {
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100
          * @tc.name      : Check capture session get zoom ratio range with promise
          * @tc.desc      : Check capture session get zoom ratio range with promise
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100--------------");
 
             try {
                 let zoomRatioRange = cameraObj.sessionGetZoomRatioRange();
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 finish");
                 if (!isEmpty(zoomRatioRange)) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 PASSED with ZoomRatioRange length is: " + (zoomRatioRange.maxZoom - zoomRatioRange.minZoom));
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 PASSED with ZoomRatioRange length is: " + (zoomRatioRange.maxZoom - zoomRatioRange.minZoom));
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 FAILED with ZoomRatioRange length is: " + (zoomRatioRange.maxZoom - zoomRatioRange.minZoom));
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 FAILED with ZoomRatioRange length is: " + (zoomRatioRange.maxZoom - zoomRatioRange.minZoom));
                     expect().assertFail();
                 }
             }
             catch {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_CALLBACK_0100 PASSED");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 PASSED");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_GET_ZOOM_RATIO_RANGE_PROMISE_0100 ends here");
             done();
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100
          * @tc.name      : Check capture session set zoom ratio with promise
          * @tc.desc      : Check capture session set zoom ratio with promise
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100--------------");
 
             cameraObj.sessionSetZoomRatio((mZoomRatioMaxArray[0] + 1));
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 PASSED with ZoomRatio is: 10.0 ");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 PASSED with ZoomRatio is: 10.0 ");
 
             let zoomRatio = cameraObj.sessionGetZoomRatio();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 finish");
             if (zoomRatio != (mZoomRatioMaxArray[0] + 1)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 PASSED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 PASSED with ZoomRatio is: " + zoomRatio);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 FAILED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 FAILED with ZoomRatio is: " + zoomRatio);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0100 ends here");
             done();
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200
          * @tc.name      : Check capture session set zoom ratio with promise(invalid value, max + 1)
          * @tc.desc      : Check capture session set zoom ratio with promise(invalid value, max + 1)
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200--------------");
 
             cameraObj.sessionSetZoomRatio((mZoomRatioMaxArray[0] + 1));
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] + 1));
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] + 1));
 
             let zoomRatio = cameraObj.sessionGetZoomRatio();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200 finish");
             if (zoomRatio != (mZoomRatioMaxArray[0] + 1)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 PASSED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200 PASSED with ZoomRatio is: " + zoomRatio);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 FAILED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200 FAILED with ZoomRatio is: " + zoomRatio);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0101 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0200 ends here");
             done();
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300
          * @tc.name      : Check capture session set zoom ratio with promise(invalid value, max + 0.1)
          * @tc.desc      : Check capture session set zoom ratio with promise(invalid value, max + 0.1)
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300--------------");
 
             cameraObj.sessionSetZoomRatio((mZoomRatioMaxArray[0] + 0.1));
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] + 0.1));
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] + 0.1));
 
             let zoomRatio = cameraObj.sessionGetZoomRatio();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300 finish");
             if (zoomRatio != (mZoomRatioMaxArray[0] + 0.1)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 PASSED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300 PASSED with ZoomRatio is: " + zoomRatio);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 FAILED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300 FAILED with ZoomRatio is: " + zoomRatio);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0102 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0300 ends here");
             done();
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400
          * @tc.name      : Check capture session set zoom ratio with promise(invalid value, min - 1)
          * @tc.desc      : Check capture session set zoom ratio with promise(invalid value, min - 1)
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400--------------");
 
             cameraObj.sessionSetZoomRatio((mZoomRatioMinArray[0] - 1));
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] - 1));
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] - 1));
 
             let zoomRatio = cameraObj.sessionGetZoomRatio();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400 finish");
             if (zoomRatio != (mZoomRatioMinArray[0] - 1)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 PASSED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400 PASSED with ZoomRatio is: " + zoomRatio);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 FAILED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400 FAILED with ZoomRatio is: " + zoomRatio);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0103 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0400 ends here");
             done();
         })
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500
          * @tc.name      : Check capture session set zoom ratio with promise(invalid value, min - 0.1)
          * @tc.desc      : Check capture session set zoom ratio with promise(invalid value, min - 0.1)
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500--------------");
 
             cameraObj.sessionSetZoomRatio((mZoomRatioMinArray[0] - 0.1));
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] - 0.1));
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500 PASSED with ZoomRatio is: " + (mZoomRatioMaxArray[0] - 0.1));
 
             let zoomRatio = cameraObj.sessionGetZoomRatio();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500 finish");
             if (zoomRatio != (mZoomRatioMinArray[0] - 0.1)) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 PASSED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500 PASSED with ZoomRatio is: " + zoomRatio);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 FAILED with ZoomRatio is: " + zoomRatio);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500 FAILED with ZoomRatio is: " + zoomRatio);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0104 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_ZOOM_RATIO_PROMISE_0500 ends here");
             done();
         })
     })
