@@ -13,5 +13,10 @@
  * limitations under the License.
  */
 require('./AudioInterrupt.test.js')
+require('./AudioRingInterrupt.test.js')
+require('./AudioVoiceInterrupt.test.js')
+
+
+
 
 
