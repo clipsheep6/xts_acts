@@ -22,7 +22,7 @@ let mPreference = undefined;
 let context;
 
 export default function preferencesCallbackWithErrorTest() {
-  describe("preferencesCallbackWithErrorTest", async function () {
+  describe("preferencesCallbackWithErrorTest", function () {
     beforeAll(async function () {
       console.info("beforeAll");
       context = globalThis.abilityContext;

@@ -517,7 +517,7 @@ export default function preferencesPromiseTest() {
      * @tc.type   : Method
      * @tc.level  : Level 2
      */
-    it("testPreferencesGetSyncBoolean0001", 0, async function (done) {
+    it("testPreferencesGetSyncStringArray0001", 0, async function (done) {
       await mPreferences.clear();
       var stringArr = ["11", "22", "33"];
       await mPreferences.put(KEY_TEST_STRING_ARRAY_ELEMENT, stringArr);
@@ -537,7 +537,7 @@ export default function preferencesPromiseTest() {
      * @tc.type   : Method
      * @tc.level  : Level 2
      */
-    it("testPreferencesGetSyncBoolean0001", 0, async function (done) {
+    it("testPreferencesGetSyncNumArray0001", 0, async function (done) {
       await mPreferences.clear();
       var doubleArr = [11, 22, 33];
       await mPreferences.put(KEY_TEST_NUMBER_ARRAY_ELEMENT, doubleArr);
