@@ -24,10 +24,9 @@ export default function ImageCreatorNDKTest() {
         const WIDTH = 8192;
         const HEIGHT = 8;
         const CAPACITY = 8;
-        const RGBA = 12;
-        const Jpg_Stride = 1;
         const CREATOR_FORMAT = 2000;
-        const RESULT_CODE_SUCCESS = 0
+        const RESULT_CODE_SUCCESS = 0;
+        const ERR_CODE = 62980115;
         const { JPEG } = image.ComponentType;
         function logger(caseName) {
             return {
@@ -37,9 +36,7 @@ export default function ImageCreatorNDKTest() {
                 }
             }
         }
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
+
         beforeAll(function () { console.info('beforeAll case'); })
 
         beforeEach(function () { console.info('beforeEach case'); })
@@ -59,15 +56,15 @@ export default function ImageCreatorNDKTest() {
         }
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0100
-        * @tc.name      : createImageCreator
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.create ImageCreator
-        *                 3.return ImageCreator not empty
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0100
+         * @tc.name      : createImageCreator
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.create ImageCreator
+         *                 3.return ImageCreator not empty
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
         it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0100', 0, async function (done) {
             let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0100");
             try {
@@ -83,15 +80,115 @@ export default function ImageCreatorNDKTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0200
-        * @tc.name      : initImageCreator
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.ini ImageCreator
-        *                 3.return success
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0100
+         * @tc.name      : createImageCreator
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.create ImageCreator
+         *                 3.return ImageCreator not empty
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0100', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0100");
+            try {
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0100");
+                let res = ndkTest.create('WIDTH', HEIGHT, CREATOR_FORMAT, CAPACITY);
+                expect(res.code == ERR_CODE).assertTrue();
+                expect(res.result == undefined).assertTrue();
+                done();
+            } catch (error) {
+                mlg.log("Test exception " + error);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0200
+         * @tc.name      : createImageCreator
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.create ImageCreator
+         *                 3.return ImageCreator not empty
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0200', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0200");
+            try {
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0200");
+                let res = ndkTest.create(WIDTH, 'wrong', CREATOR_FORMAT, CAPACITY);
+                expect(res.code == ERR_CODE).assertTrue();
+                expect(res.result == undefined).assertTrue();
+                done();
+            } catch (error) {
+                mlg.log("Test exception " + error);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0300
+         * @tc.name      : createImageCreator
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.create ImageCreator
+         *                 3.return ImageCreator not empty
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0300', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0300");
+            try {
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0300");
+                let res = ndkTest.create(WIDTH, HEIGHT, 'CREATOR_FORMAT', CAPACITY);
+                expect(res.code == ERR_CODE).assertTrue();
+                expect(res.result == undefined).assertTrue();
+                done();
+            } catch (error) {
+                mlg.log("Test exception " + error);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0400
+         * @tc.name      : createImageCreator
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.create ImageCreator
+         *                 3.return ImageCreator not empty
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0400', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0400");
+            try {
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_ERR_0400");
+                let res = ndkTest.create(WIDTH, HEIGHT, CREATOR_FORMAT, 'CAPACITY');
+                expect(res.code == ERR_CODE).assertTrue();
+                expect(res.result == undefined).assertTrue();
+                done();
+            } catch (error) {
+                mlg.log("Test exception " + error);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0200
+         * @tc.name      : initImageCreator
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.ini ImageCreator
+         *                 3.return success
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
         it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0200', 0, async function (done) {
             let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0200");
             try {
@@ -109,15 +206,15 @@ export default function ImageCreatorNDKTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0300
-        * @tc.name      : getCapacity, getFormat
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.ImageCreator getCapacity
-        *                 3.ImageCreator getFormat
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0300
+         * @tc.name      : getCapacity, getFormat
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.ImageCreator getCapacity
+         *                 3.ImageCreator getFormat
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
         it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0300', 0, async function (done) {
             let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0300");
             try {
@@ -139,19 +236,19 @@ export default function ImageCreatorNDKTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600
-        * @tc.name      : ImageCreator on
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.call on api
-        *                 3.return success
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
-        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600', 0, async function (done) {
-            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600");
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0400
+         * @tc.name      : ImageCreator on
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.call on api
+         *                 3.return success
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0400', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0400");
             try {
-                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600");
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0400");
                 let creatorRes = ndkTest.create(WIDTH, HEIGHT, CREATOR_FORMAT, CAPACITY);
                 checkResult(creatorRes)
                 let queueRes = ndkTest.on(creatorRes.result)
@@ -165,19 +262,19 @@ export default function ImageCreatorNDKTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700
-        * @tc.name      : ImageCreator dequeue
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.call dequeue api
-        *                 3.return success
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
-        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700', 0, async function (done) {
-            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700");
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0500
+         * @tc.name      : ImageCreator dequeue
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.call dequeue api
+         *                 3.return success
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0500', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0500");
             try {
-                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700");
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0500");
                 let creatorRes = ndkTest.create(WIDTH, HEIGHT, CREATOR_FORMAT, CAPACITY);
                 checkResult(creatorRes)
                 let deQueueRes = ndkTest.dequeue(creatorRes.result)
@@ -191,19 +288,19 @@ export default function ImageCreatorNDKTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0800
-        * @tc.name      : ImageCreator queue
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.call queue api
-        *                 3.return success
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
-        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0800', 0, async function (done) {
-            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0800");
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600
+         * @tc.name      : ImageCreator queue
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.call queue api
+         *                 3.return success
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600");
             try {
-                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0800");
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0600");
                 let creatorRes = ndkTest.create(WIDTH, HEIGHT, CREATOR_FORMAT, CAPACITY);
                 checkResult(creatorRes)
                 let deQueueRes = ndkTest.dequeue(creatorRes.result)
@@ -219,19 +316,19 @@ export default function ImageCreatorNDKTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700
-        * @tc.name      : ImageCreator release
-        * @tc.desc      : 1.set width,height,format,capacity
-        *                 2.call release api
-        *                 3.return success
-        * @tc.size      : MEDIUM 
-        * @tc.type      : Functional
-        * @tc.level     : Level 0
-        */
-        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0900', 0, async function (done) {
-            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0900");
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700
+         * @tc.name      : ImageCreator release
+         * @tc.desc      : 1.set width,height,format,capacity
+         *                 2.call release api
+         *                 3.return success
+         * @tc.size      : MEDIUM 
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700', 0, async function (done) {
+            let mlg = logger("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700");
             try {
-                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0900");
+                mlg.log("SUB_MULTIMEDIA_IMAGE_CREATORNDK_0700");
                 let creatorRes = ndkTest.create(WIDTH, HEIGHT, CREATOR_FORMAT, CAPACITY);
                 checkResult(creatorRes)
                 let releaseRes = ndkTest.release(creatorRes.result)

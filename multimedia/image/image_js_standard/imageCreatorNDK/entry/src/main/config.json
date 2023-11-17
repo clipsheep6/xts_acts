@@ -1,6 +1,6 @@
 {
     "app": {
-        "bundleName": "ohos.acts.multimedia.image.ReceiverNdk",
+        "bundleName": "ohos.acts.multimedia.image.creatorNdk",
         "vendor": "open",
         "version": {
             "code": 1000000,
@@ -14,9 +14,9 @@
     },
     "deviceConfig": {},
     "module": {
-        "package": "ohos.acts.multimedia.image.ReceiverNdk",
+        "package": "ohos.acts.multimedia.image.creatorNdk",
         "name": ".MyApplication",
-        "mainAbility": "ohos.acts.multimedia.image.ReceiverNdk.MainAbility",
+        "mainAbility": "ohos.acts.multimedia.image.creatorNdk.MainAbility",
         "deviceType": [
             "tablet",
             "default",

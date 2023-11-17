@@ -35,8 +35,8 @@ ohos_shared_library("ImageCreatorNDKTest") {
 
   external_deps = [
     "hilog:libhilog",
-    "image_framework:image_ndk",
     "image_framework:image_creator_ndk",
+    "image_framework:image_ndk",
     "napi:ace_napi",
   ]
 
