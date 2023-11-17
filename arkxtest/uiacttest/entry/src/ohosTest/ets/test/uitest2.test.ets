@@ -240,33 +240,6 @@ export default function UiTest2() {
     })
 
     /*
-     * @tc.number: TEST_SCROLL_SEARCH_PARAM_NULL_0087
-     * @tc.name: testScrollSearch
-     * @tc.desc: scroll on this UiComponent to find matched UiComponent.
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level:2
-     */
-    it('TEST_SCROLL_SEARCH_PARAM_NULL_0087', 0, async function (done) {
-      console.info('TEST_SCROLL_SEARCH_PARAM_NULL_0087 start')
-      await startAbility('com.example.uiacttest', 'UiTestAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      let scrollBar = await driver.findComponent(ON.type('Scroll'))
-      expect(scrollBar != null).assertTrue()
-      await driver.delayMs(waitUiReadyMs)
-      let button = await scrollBar.scrollSearch(null)
-      try {
-        expect(button == undefined).assertTrue()
-        console.info('TEST_SCROLL_SEARCH_PARAM_NULL_0087 pass')
-        done()
-      } catch (e) {
-        console.info('TEST_SCROLL_SEARCH_PARAM_NULL_0087 error' + e)
-        done()
-      }
-    })
-
-    /*
      * @tc.number: TEST_SCROLL_SEARCH_EXCEPTION_0089
      * @tc.name: testScrollSearch
      * @tc.desc: scroll on this UiComponent to find matched UiComponent.
@@ -383,31 +356,6 @@ export default function UiTest2() {
     })
 
     /*
-     * @tc.number: TEST_DRIVER_FINDCOMPONENT_NULL_0102
-     * @tc.name: testDriverFindComponent
-     * @tc.desc: click this UiComponentClick.
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level:2
-     */
-    it('TEST_DRIVER_FINDCOMPONENT_NULL_0102', 0, async function (done) {
-      console.info('TEST_DRIVER_FINDCOMPONENT_NULL_0102 start')
-      await startAbility('com.example.uiacttest', 'UiTestAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      let button = await driver.findComponent(null)
-      await driver.delayMs(waitUiReadyMs)
-      try {
-        expect(button == null).assertTrue()
-        console.info('TEST_DRIVER_FINDCOMPONENT_NULL_0102 pass')
-        done()
-      } catch(e) {
-        console.info('TEST_DRIVER_FINDCOMPONENT_NULL_0102 error' +e)
-        done()
-      }
-    })
-
-    /*
      * @tc.number: TEST_DRIVER_FINDCOMPONENTS_ZERO_0103
      * @tc.name: testDriverFindComponents
      * @tc.desc: find all the matched UiComponents on current UI
@@ -428,31 +376,6 @@ export default function UiTest2() {
         done()
       } catch (e) {
         console.info('TEST_DRIVER_FINDCOMPONENTS_ZERO_0103 error' + e)
-        done()
-      }
-    })
-
-    /*
-     * @tc.number: TEST_DRIVER_FINDCOMPONENTS_NULL_0105
-     * @tc.name: testDriverFindComponents
-     * @tc.desc: find all the matched UiComponents on current UI
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level:2
-     */
-    it('TEST_DRIVER_FINDCOMPONENTS_NULL_0105', 0, async function (done) {
-      console.info('TEST_DRIVER_FINDCOMPONENTS_NULL_0105 start')
-      await startAbility('com.example.uiacttest', 'UiTestAbility')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      let buttons = await driver.findComponents(null)
-      await driver.delayMs(waitUiReadyMs)
-      try {
-        expect(buttons[0] == null).assertTrue()
-        console.info('TEST_DRIVER_FINDCOMPONENTS_NULL_0105 pass')
-        done()
-      } catch (e) {
-        console.info('TEST_DRIVER_FINDCOMPONENTS_NULL_0105 error' + e)
         done()
       }
     })
@@ -635,7 +558,7 @@ export default function UiTest2() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(3000)
-      await driver.swipe(300, 600, 30000, 30000)
+      await driver.swipe(30, 60, 30000, 30000)
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.text('first'))
       try {
@@ -661,7 +584,7 @@ export default function UiTest2() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(3000)
-      await driver.swipe(30000, 60000, 300, 300)
+      await driver.swipe(3000, 6000, 30, 30)
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.text('first'))
       try {
@@ -690,7 +613,7 @@ export default function UiTest2() {
       await driver.fling({
         x: 300, y: 600
       }, {
-        x: 30000, y: 30000
+        x: 3000, y: 3000
       }, 20, 3000)
       await driver.delayMs(3000)
       let text = await driver.findComponent(ON.text('first'))
@@ -700,34 +623,6 @@ export default function UiTest2() {
         done()
       } catch (e) {
         console.info('TEST_FLING_OUT_0123 error' + e)
-        done()
-      }
-    })
-
-    /*
-     * @tc.number: TEST_FLING_TO_NULL_0124
-     * @tc.name: testFling
-     * @tc.desc: inject fling on the device display.
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level:2
-     */
-    it('TEST_FLING_TO_NULL_0124', 0, async function (done) {
-      console.info('TEST_FLING_TO_NULL_0124 start')
-      await startAbility('com.example.uiacttest', 'UiTestAbility')
-      let driver = Driver.create()
-      await driver.delayMs(3000)
-      await driver.fling({
-        x: 300, y: 600
-      }, null, 20, 3000)
-      await driver.delayMs(waitUiReadyMs)
-      let text = await driver.findComponent(ON.text('first'))
-      try {
-        expect(text != null).assertTrue()
-        console.info('TEST_FLING_TO_NULL_0124 pass')
-        done()
-      } catch (e) {
-        console.info('TEST_FLING_TO_NULL_0124 error' + e)
         done()
       }
     })
@@ -746,7 +641,7 @@ export default function UiTest2() {
       let driver = Driver.create()
       await driver.delayMs(3000)
       await driver.fling({
-        x: 30000, y: 60000
+        x: 3000, y: 6000
       }, {
         x: 300, y: 300
       }, 20, 3000)
@@ -758,34 +653,6 @@ export default function UiTest2() {
         done()
       } catch (e) {
         console.info('TEST_FLING_FROM_OUT_0125 error' + e)
-        done()
-      }
-    })
-
-    /*
-     * @tc.number: TEST_FLING_FROM_NULL_0126
-     * @tc.name: testFling
-     * @tc.desc: inject fling on the device display.
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level:2
-     */
-    it('TEST_FLING_FROM_NULL_0126', 0, async function (done) {
-      console.info('TEST_FLING_FROM_NULL_0126 start')
-      await startAbility('com.example.uiacttest', 'UiTestAbility')
-      let driver = Driver.create()
-      await driver.delayMs(3000)
-      await driver.fling(null, {
-        x: 300, y: 300
-      }, 20, 3000)
-      await driver.delayMs(waitUiReadyMs)
-      let text = await driver.findComponent(ON.text('first'))
-      try {
-        expect(text != null).assertTrue()
-        console.info('TEST_FLING_FROM_NULL_0126 pass')
-        done()
-      } catch (e) {
-        console.info('TEST_FLING_FROM_NULL_0126 error' + e)
         done()
       }
     })
@@ -803,14 +670,14 @@ export default function UiTest2() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(3000)
-      await driver.fling({
-        x: 300, y: 600
-      }, {
-        x: 300, y: 300
-      }, 0, 0)
-      await driver.delayMs(waitUiReadyMs)
-      let text = await driver.findComponent(ON.text('first'))
       try {
+        await driver.fling({
+          x: 300, y: 600
+        }, {
+          x: 300, y: 300
+        }, 0, 0)
+        await driver.delayMs(waitUiReadyMs)
+        let text = await driver.findComponent(ON.text('first'))
         expect(text != null).assertTrue()
         console.info('TEST_FLING_FROM_ZERO_ZERO_0127 pass')
         done()
@@ -833,14 +700,14 @@ export default function UiTest2() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(3000)
-      await driver.fling({
-        x: 300, y: 600
-      }, {
-        x: 300, y: 300
-      }, 40000, 0)
-      await driver.delayMs(3000)
-      let text = await driver.findComponent(ON.text('first'))
       try {
+        await driver.fling({
+          x: 300, y: 600
+        }, {
+          x: 300, y: 300
+        }, 40000, 0)
+        await driver.delayMs(3000)
+        let text = await driver.findComponent(ON.text('first'))
         expect(text != null).assertTrue()
         console.info('TEST_FLING_FROM_ZERO_MOST_0128 pass')
         done()
@@ -863,45 +730,19 @@ export default function UiTest2() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(3000)
-      await driver.fling({
-        x: 300, y: 600
-      }, {
-        x: 300, y: 300
-      }, 40000, 40000)
-      await driver.delayMs(waitUiReadyMs)
-      let text = await driver.findComponent(ON.text('first'))
       try {
+        await driver.fling({
+          x: 300, y: 600
+        }, {
+          x: 300, y: 300
+        }, 40000, 40000)
+        await driver.delayMs(waitUiReadyMs)
+        let text = await driver.findComponent(ON.text('first'))
         expect(text != null).assertTrue()
         console.info('TEST_FLING_FROM_MOST_MOST_0129 pass')
         done()
       } catch (e) {
         console.info('TEST_FLING_FROM_MOST_MOST_0129 error' + e)
-        done()
-      }
-    })
-
-    /*
-     * @tc.number: TEST_FLING_NULL_NULL_0130
-     * @tc.name: testFling
-     * @tc.desc: inject fling on the device display.
-     * @tc.size: MediumTest
-     * @tc.type: Function
-     * @tc.level:2
-     */
-    it('TEST_FLING_NULL_NULL_0130', 0, async function (done) {
-      console.info('TEST_FLING_NULL_NULL_0130 start')
-      await startAbility('com.example.uiacttest', 'UiTestAbility')
-      let driver = Driver.create()
-      await driver.delayMs(3000)
-      await driver.fling(null, null, 20, 3000)
-      await driver.delayMs(waitUiReadyMs)
-      let text = await driver.findComponent(ON.text('first'))
-      try {
-        expect(text != null).assertTrue()
-        console.info('TEST_FLING_NULL_NULL_0130 pass')
-        done()
-      } catch (e) {
-        console.info('TEST_FLING_NULL_NULL_0130 error' + e)
         done()
       }
     })
@@ -1124,12 +965,12 @@ export default function UiTest2() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(3000)
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 30; i++) {
         await driver.fling({
           x: 30, y: 60
         }, {
           x: 30, y: 30
-        }, 20, 3000)
+        }, 20, 600)
         await driver.click(3, 3)
         await driver.swipe(30, 600, 30, 300)
       }

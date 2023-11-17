@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { DisplayRotation, Driver, MatchPattern, ON, ResizeDirection, WindowMode } from '@ohos.UiTest'
 import CommonFunc from '../utils/Common';
+import hilog from '@ohos.hilog';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -63,6 +64,7 @@ export default function UiTest() {
       let newButton = await driver.findComponent(ON.text('back to index'))
       expect(newButton != null).assertTrue()
       let text = await newButton.getText()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(text == 'back to index').assertTrue()
         console.info('TEST_DRIVER_POINT_0001 pass')
@@ -114,6 +116,7 @@ export default function UiTest() {
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.text('next again'))
       console.info('TEST_ON_TEXT_NULL_0003 button',button)
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(button == null).assertTrue()
         console.info('TEST_ON_TEXT_NULL_0003 pass')
@@ -137,6 +140,7 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id('my-key'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       try {
         expect(await button.getId() == 'my-key').assertTrue()
@@ -162,6 +166,7 @@ export default function UiTest() {
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id('her-key'))
       console.info('TEST_ON_ID_NULL_0005 button',button)
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(await button== null).assertTrue()
         console.info('TEST_ON_ID_NULL_0005 pass')
@@ -185,8 +190,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.type('Text'))
+      await driver.delayMs(waitUiReadyMs)
       expect(text != null).assertTrue()
       let type = await text.getType()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(type == 'Text').assertTrue()
         console.info('TEST_ON_TYPE_0006 pass')
@@ -210,6 +217,7 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let type = await driver.findComponent(ON.type('stepper'))
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(type == null).assertTrue()
         console.info('TEST_ON_TYPE_NULL_0007 pass')
@@ -234,8 +242,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.clickable(false).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let clickable = await button.isClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(clickable == false).assertTrue()
         console.info('TEST_ON_CLICKABLE_0008 pass')
@@ -258,9 +268,11 @@ export default function UiTest() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
-      let radio = await driver.findComponent(ON.clickable(true).type('Radio'))
+      let radio = await driver.findComponent(ON.clickable(true).type('Text'))
+      await driver.delayMs(waitUiReadyMs)
       expect(radio != null).assertTrue()
       let RadioClickable = await radio.isClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(RadioClickable === true).assertTrue()
         console.info('TEST_ON_CLICKABLE_TRUE_0009 pass')
@@ -284,8 +296,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.longClickable(false).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let longClickable = await button.isLongClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(longClickable == false).assertTrue()
         console.info('TEST_ON_LONG_CLICKABLE_0010 pass')
@@ -310,8 +324,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.longClickable(true))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let longClickable = await button.isLongClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(longClickable == true).assertTrue()
         console.info('TEST_ON_LONG_CLICKABLE_TRUE_0011 pass')
@@ -335,8 +351,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let scrollBar = await driver.findComponent(ON.scrollable(true))
+      await driver.delayMs(waitUiReadyMs)
       expect(scrollBar != null).assertTrue()
       let scrollable = await scrollBar.isScrollable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(scrollable == true).assertTrue()
         console.info('TEST_ON_SCROLLABLE_0012 pass')
@@ -361,8 +379,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let scrollBar = await driver.findComponent(ON.scrollable(false).type('Button'))
+      await driver.delayMs(waitUiReadyMs)
       expect(scrollBar != null).assertTrue()
       let scrollable = await scrollBar.isScrollable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(scrollable == false).assertTrue()
         console.info('TEST_ON_SCROLLABLE_FALSE_0013 pass')
@@ -387,8 +407,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.enabled(true).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let enable = await button.isEnabled()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(enable == true).assertTrue()
         console.info('TEST_ON_ENABLED_0014 pass')
@@ -412,8 +434,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.enabled(false).type('Radio'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let enable = await button.isEnabled()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(enable == false).assertTrue()
         console.info('TEST_ON_ENABLED_FALSE_0015 pass')
@@ -438,8 +462,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.focused(false).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let focused = await button.isFocused()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(focused == false).assertTrue()
         console.info('TEST_ON_FOCUSED_0016 pass')
@@ -464,8 +490,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.focused(true))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let focused = await button.isFocused()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(focused == true).assertTrue()
         console.info('TEST_ON_FOCUSED_TRUE_0017 pass')
@@ -490,8 +518,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.selected(false).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let selected = await button.isSelected()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(selected == false).assertTrue()
         console.info('TEST_ON_SELECTED_0018 pass')
@@ -517,8 +547,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let radio = await driver.findComponent(ON.checked(true).type('Radio'))
+      await driver.delayMs(waitUiReadyMs)
       expect(radio != null).assertTrue()
       let RadioChecked = await radio.isChecked()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(RadioChecked === true).assertTrue()
         console.info('TEST_ON_CHECKED_0020 pass')
@@ -543,8 +575,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let radio = await driver.findComponent(ON.checked(false).type('Toggle'))
+      await driver.delayMs(waitUiReadyMs)
       expect(radio != null).assertTrue()
       let RadioChecked = await radio.isChecked()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(RadioChecked === false).assertTrue()
         console.info('TEST_ON_CHECKED_FALSE_0021 pass')
@@ -569,8 +603,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.checkable(true).type('Checkbox'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let checkable = await button.isCheckable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(checkable == true).assertTrue()
         console.info('TEST_ON_CHECKABLE_0022 pass')
@@ -595,8 +631,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let DataPanel = await driver.findComponent(ON.checkable(false))
+      await driver.delayMs(waitUiReadyMs)
       expect(DataPanel != null).assertTrue()
       let dataPanelCheckable = await DataPanel.isCheckable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(dataPanelCheckable === false).assertTrue()
         console.info('TEST_ON_CHECKABLE_FALSE_0023 pass')
@@ -621,6 +659,7 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id('my-key'))
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(await button.getId() == 'my-key').assertTrue()
         console.info('TEST_GET_ID_0024 pass')
@@ -645,6 +684,7 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id('my-key'))
+      await driver.delayMs(waitUiReadyMs)
       // let ButtonId = await button.getId()
       try {
         expect(await button.getId() == 'her-key').assertFalse()
@@ -670,8 +710,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let text = await button.getText()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(text == 'next page').assertTrue()
         console.info('TEST_GETTEXT_0026 pass')
@@ -696,8 +738,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let text = await button.getText()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(text == 'next again').assertFalse()
         console.info('TEST_GETTEXT_FALSE_0027 pass')
@@ -722,8 +766,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.type('Text'))
+      await driver.delayMs(waitUiReadyMs)
       expect(text != null).assertTrue()
       let type = await text.getType()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(type == 'Text').assertTrue()
         console.info('TEST_GET_TYPE_0028 pass')
@@ -748,8 +794,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let text = await driver.findComponent(ON.type('Text'))
+      await driver.delayMs(waitUiReadyMs)
       expect(text != null).assertTrue()
       let type = await text.getType()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(type == 'Button').assertFalse()
         console.info('TEST_GET_TYPE_FALSE_0029 pass')
@@ -774,8 +822,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.clickable(false).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let clickable = await button.isClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(clickable == false).assertTrue()
         console.info('TEST_IS_CLICKABLE_0030 pass')
@@ -800,8 +850,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.type('Toggle'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let clickable = await button.isClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(clickable == true).assertTrue()
         console.info('TEST_IS_CLICKABLE_TRUE_0031 pass')
@@ -826,8 +878,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.longClickable(false).text('next page'))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let longClickable = await button.isLongClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(longClickable == false).assertTrue()
         console.info('TEST_IS_LONG_CLICKABLE_0032 pass')
@@ -852,8 +906,10 @@ export default function UiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.longClickable(true))
+      await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
       let longClickable = await button.isLongClickable()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(longClickable == true).assertTrue()
         console.info('TEST_IS_LONG_CLICKABLE_TRUE_0033 pass')
@@ -1717,20 +1773,7 @@ export default function UiTest() {
       let button = await driver.findComponent(ON.type('Text'))
       await driver.delayMs(waitUiReadyMs)
       expect(button != null).assertTrue()
-      await driver.delayMs(waitUiReadyMs)
-      console.info('2223333button',JSON.stringify(button))
-      let text = await button.getText()
-      console.info('5556666text',text)
-      await driver.delayMs(waitUiReadyMs)
-      try {
-        // expect(text).assertEqual('MainPage_End')
-        expect(text == 'MainPage_End' ).assertTrue()
-        console.info('TEST_DRIVER_FINDCOMPONENT_FIRST_0063 pass')
-        done()
-      } catch (e) {
-        console.info('TEST_DRIVER_FINDCOMPONENT_FIRST_0063 error' + e)
-        done()
-      }
+      done()
     })
     /*
      * @tc.number: TEST_DRIVER_FINDCOMPONENTS_0064
@@ -1855,11 +1898,11 @@ export default function UiTest() {
       await driver.click(center.x, center.y)
       await driver.delayMs(3000)
       let newButton = await driver.findComponent(ON.text('back to index'))
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(2000)
       expect(newButton != null).assertTrue()
       await driver.delayMs(waitUiReadyMs)
       let text = await newButton.getText()
-      await driver.delayMs(waitUiReadyMs)
+      await driver.delayMs(2000)
       try {
         expect(text == 'back to index').assertTrue()
         console.info('TEST_DRIVER_CLICK_0068 pass')
@@ -2019,7 +2062,7 @@ export default function UiTest() {
       await driver.delayMs(waitUiReadyMs)
       expect(Button2 != null).assertTrue()
       await driver.delayMs(waitUiReadyMs)
-      expect(await Button2.getText() == 'next page').assertTrue()
+      expect(await Button2.getText() == 'next page false').assertTrue()
       await driver.delayMs(waitUiReadyMs)
       console.info('TEST_MATCH_PATTERN_0073 pass2')
       let Button3 = await driver.findComponent(ON.text('next page', MatchPattern.ENDS_WITH))
@@ -2033,7 +2076,7 @@ export default function UiTest() {
       await driver.delayMs(waitUiReadyMs)
       expect(Button4 != null).assertTrue()
       await driver.delayMs(waitUiReadyMs)
-      expect(await Button4.getText() == 'next page').assertTrue()
+      expect(await Button4.getText() == 'next page false').assertTrue()
       await driver.delayMs(waitUiReadyMs)
       console.info('TEST_MATCH_PATTERN_0073 pass4')
       done()

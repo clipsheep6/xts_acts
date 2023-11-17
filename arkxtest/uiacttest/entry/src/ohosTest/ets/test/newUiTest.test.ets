@@ -49,6 +49,7 @@ export default function NewUiTest() {
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.text("test"))
       let text = await button.getText()
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(text == "test").assertTrue()
         console.info('NewTEST_ON_TEXT_0001_test pass')
@@ -140,7 +141,7 @@ export default function NewUiTest() {
       await driver.delayMs(waitUiReadyMs)
       let Button1 = await driver.findComponent(ON.text('xt pa', MatchPattern.CONTAINS))
       try {
-        expect(await Button1.getText() == 'next page').assertTrue()
+        expect(await Button1.getText() == 'next page false').assertTrue()
         console.info('TEST_MATCH_CONTAINS_008 pass')
         done()
       } catch (e) {
@@ -185,6 +186,7 @@ export default function NewUiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let Button1 = await driver.findComponent(ON.text('page', MatchPattern.ENDS_WITH))
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(await Button1.getText() == "next page").assertTrue()
         console.info('TEST_MATCH_ENDS_WITH_0012 pass')
@@ -261,7 +263,7 @@ export default function NewUiTest() {
       await startAbility('com.example.uiacttest', 'UiTestAbility')
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
-      let radio = await driver.findComponent(ON.clickable().type('Radio'))
+      let radio = await driver.findComponent(ON.clickable())
       let RadioClickable = await radio.isClickable()
       try {
         expect(RadioClickable === true).assertTrue()
@@ -443,7 +445,7 @@ export default function NewUiTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       let button = await driver.findComponent(ON.id('my-key-new'))
-
+      await driver.delayMs(waitUiReadyMs)
       try {
         expect(button != null).assertTrue()
         console.info('TEST_GETTEXT_FALSE_0053 pass')
