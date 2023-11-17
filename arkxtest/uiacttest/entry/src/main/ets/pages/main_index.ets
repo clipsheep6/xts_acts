@@ -44,7 +44,7 @@ struct ScrollExample {
           Column() {
 
             Button() {
-              Text()
+              Text('1')
                 .fontSize(25)
                 .fontWeight(FontWeight.Bold)
                 .id('my-key-new')

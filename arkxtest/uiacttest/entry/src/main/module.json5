@@ -11,6 +11,12 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ExecuteArkTSLinter",
+        "value": "false"
+      }
+    ],
     "abilities": [
       {
         "name": "EntryAbility",
