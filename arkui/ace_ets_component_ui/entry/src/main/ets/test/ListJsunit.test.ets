@@ -80,6 +80,7 @@ export default function ListJsunit() {
       expect(obj.$attrs.lanes).assertEqual('1');
       expect(obj.$attrs.chainAnimation).assertEqual(false);
       expect(obj.$attrs.multiSelectable).assertEqual(false);
+      expect(obj.$attrs.edgeEffectAlwaysEnabled).assertEqual(true);
       expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
       expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.End');      
       console.info('[ListJsunit_0100] END');
@@ -281,7 +282,7 @@ export default function ListJsunit() {
       expect(obj.$attrs.scrollBar).assertEqual('BarState.Auto');
       await CommonFunc.sleep(1000);
       expect(obj.$attrs.cachedCount).assertEqual('1');
-      expect(obj.$attrs.edgeEffect).assertEqual('EdgeEffect.None');
+      expect(obj.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
       expect(obj.$attrs.lanes).assertEqual('5');
       expect(obj.$attrs.chainAnimation).assertEqual(true);
       expect(obj.$attrs.multiSelectable).assertEqual(true);
