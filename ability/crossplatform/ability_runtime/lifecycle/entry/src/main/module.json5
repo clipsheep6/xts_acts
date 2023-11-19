@@ -177,6 +177,7 @@
         "description": "$string:Hap1Main2Ability_desc",
         "icon": "$media:icon",
         "label": "$string:Hap1Main2Ability_label",
+        "launchType": "standard",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background"
       },

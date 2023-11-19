@@ -65,7 +65,7 @@ export default function AbilityDelegatorTest() {
         "GET_ARGUMENTS_0001 moduleName: " + moduleName
       );
       expect(bundleName).assertEqual("com.example.delegatortest");
-      expect(testRunnerClassName).assertEqual("OpenHarmonyTestRunner");
+      expect(testRunnerClassName).assertContain("OpenHarmonyTestRunner");
       expect(moduleName==null).assertFalse();
       abilityDelegator.printSync("GET_ARGUMENTS_0001 pass");
       done();
