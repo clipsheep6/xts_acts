@@ -261,11 +261,11 @@ export default function avVideoRecorderTestOne() {
          }
 
         function checkDevice(avConfig) {
-            if (deviceInfo.deviceType === 'default') {
-                avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
-            } else {
-                avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
-            }
+            // if (deviceInfo.deviceType === 'default') {
+            //     avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
+            // } else {
+            //     avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV
+            // }
             avConfig.profile.videoFrameWidth = myProfile.size.width;
             avConfig.profile.videoFrameHeight = myProfile.size.height;
         }
@@ -467,10 +467,19 @@ export default function avVideoRecorderTestOne() {
             steps.shift();
             avRecorder.prepare(avConfig).then(() => {
                 expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.PREPARED);
-                console.info('prepare success');
+                console.info('VIDEO_SOURCE_TYPE_SURFACE_YUV prepare success');
                 toNextStep(avRecorder, avConfig, recorderTime, steps, done);
             }).catch((err) => {
-                console.info('prepare failed and catch error is ' + err.message);
+                // avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES
+                // avRecorder.prepare(avConfig).then(() => {
+                //     expect(avRecorder.state).assertEqual(avVideoRecorderTestBase.AV_RECORDER_STATE.PREPARED);
+                //     console.info('VIDEO_SOURCE_TYPE_SURFACE_ES prepare success');
+                //     toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                // }).catch((err) => {
+                //     console.info('VIDEO_SOURCE_TYPE_SURFACE_ES prepare failed and catch error is ' + err.message);
+                //     toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+                // });
+                console.info('VIDEO_SOURCE_TYPE_SURFACE_YUV prepare failed and catch error is ' + err.message);
                 toNextStep(avRecorder, avConfig, recorderTime, steps, done);
             });
         });
