@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testabilityother/pages/Index",
+    "testabilityothersecond/pages/Index"
+  ]
+}

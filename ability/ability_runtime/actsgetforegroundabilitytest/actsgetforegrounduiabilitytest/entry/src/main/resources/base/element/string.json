@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "TestAbilityOther_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbilityOther_label",
+      "value": "test label"
+    },
+    {
+      "name": "TestAbilityOtherSecond_desc",
+      "value": "the test abilitysecond"
+    },
+    {
+      "name": "TestAbilityOtherSecond_label",
+      "value": "test labelsecond"
+    }
+  ]
+}
