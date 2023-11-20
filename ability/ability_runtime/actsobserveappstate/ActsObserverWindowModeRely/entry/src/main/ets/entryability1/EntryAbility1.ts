@@ -1,38 +1,10 @@
-import appManager from '@ohos.app.ability.appManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import commonEventManager from '@ohos.commonEventManager';
 
-let  TAG = 'ObserverAppState08 publish '
-let applicationState = -1
-let bundlename = ''
-let commonEventData = {
-  parameters: {
-    applicationState:applicationState,
-    bundlename:bundlename
-  }
-}
-let appForegroundStateObserver = {
-  onAppStateChanged(appStateData) {
-    console.info("onAppStateChanged: " + JSON.stringify(appStateData.state));
-    commonEventData.parameters.applicationState = appStateData.state;
-    commonEventData.parameters.bundlename = appStateData.bundleName;
-    commonEventManager.publish('stateEvent', commonEventData, (err) => {
-      console.info('publish error' + JSON.stringify(err));
-    })
-  }
-}
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility1 extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    appManager.on("appForegroundState", appForegroundStateObserver);
-    appManager.off("appForegroundState", appForegroundStateObserver);
-    try {
-      appManager.off("appForegroundState", appForegroundStateObserver);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-    }
   }
 
   onDestroy() {

@@ -1,8 +1,24 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEventManager from '@ohos.commonEventManager';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import appManager from '@ohos.app.ability.appManager';
 
 let StateEvent = {
   events: ['stateEvent', 'stateEvent2', 'stateEvent4']
@@ -933,65 +949,50 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: Acts_ObserverAppState_1500
+    * @tc.number: Acts_ObserverAppState_1700
     * @tc.name: Enable and disable application listening
     * @tc.desc:
     */
-    it('Acts_ObserverAppState_1500', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1500_TAG';
+    it('Acts_ObserverAppState_1700', 0, async function (done) {
+      let TAG = 'Acts_ObserverAppState_1700_TAG';
       console.info(TAG, 'Start.');
-      await sleep(500);
+      await sleep(200);
       let want = {
         bundleName: 'com.example.actsobserverwindowmoderely',
         abilityName: 'EntryAbility'
       };
-      let options = {
-        windowMode: AbilityConstant.WindowMode.WINDOW_MODE_SPLIT_PRIMARY
+      let want1 = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility1'
       };
-      await globalThis.abilityContext.startAbilityForResult(want, options).then((abilityResult) => {
+      let flag = 0;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            flag += 1;
+          }
+        }
+      };
+      await appManager.on('appForegroundState', windowModeObserver);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
         console.info(TAG, 'Start ability successfully.');
-        console.info(TAG, 'Result: ' + JSON.stringify(abilityResult));
-        expect(abilityResult.want.parameters.appStateData.isFloatingWindowMode).assertFalse();
-        expect(abilityResult.want.parameters.appStateData.isSplitScreenMode).assertTrue();
-        abilityDelegatorRegistry.getAbilityDelegator()
-          .executeShellCommand('aa force-stop com.example.actsobserverwindowmoderely');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(500);
+      await globalThis.abilityContext.startAbility(want1).then(async () => {
+        console.info(TAG, 'Start ability1 successfully.');
+        await sleep(500);
+        expect(flag).assertEqual(1);
+        appManager.off('appForegroundState', windowModeObserver);
         done();
       }).catch((error) => {
         expect().assertFail();
         done();
       });
-      console.info(TAG, 'End.');
-    })
-
-    /*
-    * @tc.number: Acts_ObserverAppState_1600
-    * @tc.name: Enable and disable application listening
-    * @tc.desc:
-    */
-    it('Acts_ObserverAppState_1600', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1600_TAG';
-      console.info(TAG, 'Start.');
-      await sleep(500);
-      let want = {
-        bundleName: 'com.example.actsobserverwindowmoderely',
-        abilityName: 'EntryAbility'
-      };
-      let options = {
-        windowMode: AbilityConstant.WindowMode.WINDOW_MODE_SPLIT_PRIMARY
-      };
-      await globalThis.abilityContext.startAbilityForResult(want, options).then((abilityResult) => {
-        console.info(TAG, 'Start ability successfully.');
-        console.info(TAG, 'Result: ' + JSON.stringify(abilityResult));
-        expect(abilityResult.want.parameters.appStateData.isFloatingWindowMode).assertFalse();
-        expect(abilityResult.want.parameters.appStateData.isSplitScreenMode).assertTrue();
-        abilityDelegatorRegistry.getAbilityDelegator()
-          .executeShellCommand('aa force-stop com.example.actsobserverwindowmoderely');
-        done();
-      }).catch((error) => {
-        expect().assertFail();
-        done();
-      });
-      console.info(TAG, 'End.');
+      await console.info(TAG, 'End.');
     })
   })
 }

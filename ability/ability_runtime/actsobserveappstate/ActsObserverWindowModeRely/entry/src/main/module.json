@@ -31,6 +31,16 @@
             ]
           }
         ]
+      },
+      {
+        "name": "EntryAbility1",
+        "srcEntry": "./ets/entryability1/EntryAbility1.ts",
+        "description": "$string:EntryAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility1_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
       }
     ],
     "requestPermissions": [
