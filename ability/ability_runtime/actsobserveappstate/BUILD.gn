@@ -17,6 +17,7 @@ group("actsobserveappstate") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "ActsObserverAppStateTest:ActsObserverAppStateTest",
       "ActsObserverWindowModeRely:ActsObserverWindowModeRely",
       "ObserverAppStateEight:ObserverAppStateEight",
       "ObserverAppStateEleven:ObserverAppStateEleven",
@@ -31,7 +32,6 @@ group("actsobserveappstate") {
       "ObserverAppStateSix:ObserverAppStateSix",
       "ObserverAppStateTenOne:ObserverAppStateTenOne",
       "ObserverAppStateTenTwo:ObserverAppStateTenTwo",
-      "ActsObserverAppStateTest:ActsObserverAppStateTest",
       "ObserverAppStateThirteen:ObserverAppStateThirteen",
       "ObserverAppStateThree:ObserverAppStateThree",
       "ObserverAppStateTwelve:ObserverAppStateTwelve",
