@@ -13,31 +13,31 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("ObserverAppStateTest") {
+ohos_js_hap_suite("ActsObserverAppStateTest") {
   hap_profile = "entry/src/main/module.json"
   js_build_mode = "debug"
   deps = [
-    ":observerappstatetest_js_assets",
-    ":observerappstatetest_resources",
+    ":actsobserverappstatetest_js_assets",
+    ":actsobserverappstatetest_resources",
   ]
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "ObserverAppStateTest"
+  hap_name = "ActsObserverAppStateTest"
   subsystem_name = "ability"
   part_name = "ability_runtime"
 }
 
-ohos_app_scope("observerappstatetest_app_profile") {
+ohos_app_scope("actsobserverappstatetest_app_profile") {
   app_profile = "AppScope/app.json"
   sources = [ "AppScope/resources" ]
 }
 
-ohos_js_assets("observerappstatetest_js_assets") {
+ohos_js_assets("actsobserverappstatetest_js_assets") {
   source_dir = "entry/src/main/ets"
 }
 
-ohos_resources("observerappstatetest_resources") {
+ohos_resources("actsobserverappstatetest_resources") {
   sources = [ "entry/src/main/resources" ]
-  deps = [ ":observerappstatetest_app_profile" ]
+  deps = [ ":actsobserverappstatetest_app_profile" ]
   hap_profile = "entry/src/main/module.json"
 }

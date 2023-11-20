@@ -28,7 +28,7 @@
                 "ObserverAppStateThirteen.hap",
                 "ObserverAppStateFourteen.hap",
                 "ObserverAppStateRely.hap",
-                "ObserverAppStateTest.hap",
+                "ActsObserverAppStateTest.hap",
                 "ActsObserverWindowModeRely.hap"
             ],
             "type": "AppInstallKit",

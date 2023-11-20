@@ -31,7 +31,7 @@ group("actsobserveappstate") {
       "ObserverAppStateSix:ObserverAppStateSix",
       "ObserverAppStateTenOne:ObserverAppStateTenOne",
       "ObserverAppStateTenTwo:ObserverAppStateTenTwo",
-      "ObserverAppStateTest:ObserverAppStateTest",
+      "ActsObserverAppStateTest:ActsObserverAppStateTest",
       "ObserverAppStateThirteen:ObserverAppStateThirteen",
       "ObserverAppStateThree:ObserverAppStateThree",
       "ObserverAppStateTwelve:ObserverAppStateTwelve",
