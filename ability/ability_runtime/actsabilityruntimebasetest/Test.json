@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.ohos.wantxtstest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "20000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAbilityRunTimeBaseTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
