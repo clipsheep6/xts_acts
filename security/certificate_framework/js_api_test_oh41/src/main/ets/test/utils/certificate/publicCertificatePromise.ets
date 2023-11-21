@@ -935,7 +935,7 @@ async function checkHasUnsupportedX509CrlPromise(flag: string): Promise<boolean>
   return new Promise((resolve, reject) => {
     createX509CertExtensionNormalPromise(flag)
       .then((certExt) => {
-        let hasUnsupported = certExt.hasUnsupportedCriticalExtension()
+        let hasUnsupported: boolean = certExt.hasUnsupportedCriticalExtension();
         resolve(hasUnsupported);
       })
       .catch((err: Error) => {

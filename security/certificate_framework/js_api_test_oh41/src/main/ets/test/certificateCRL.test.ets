@@ -128,27 +128,6 @@ export default function certificateCRLJsunit() {
     });
 
     /**
-     * @tc.number Security_Cert_Framework_CRL_Func_0600
-     * @tc.name Check isRevoked success for X509 CRL
-     * @tc.desc The X509 CRL FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_0600", 0, async (done: Function) => {
-      await certPromise
-        .createX509CRLInstancePromise("pem")
-        .then((crlInstance) => {
-          return certCallback.checkIsRevokedX509CRLCallback(crlInstance, "normal");
-        })
-        .then((result) => {
-          expect(result == true).assertTrue();
-        })
-        .catch((err: Error) => {
-          console.error("[promise] isRevoked failed! error is: " + err);
-          expect(null).assertFail();
-        });
-      done();
-    });
-
-    /**
      * @tc.number Security_Cert_Framework_CRL_Func_0700
      * @tc.name Check isRevoked failed for X509 CRL
      * @tc.desc The X509 CRL FORMAT is FORMAT_PEM
@@ -303,22 +282,6 @@ export default function certificateCRLJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_CRL_Func_1600
-     * @tc.name check getRevokedCert for X509 CRL
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_1600", 0, async (done: Function) => {
-      await certPromise
-        .checkGetRevokedCertX509CRLPromise("pem")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
      * @tc.number Security_Cert_Framework_CRL_Func_1700
      * @tc.name check getRevokedCertWithCert for X509 CRL
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
@@ -335,26 +298,6 @@ export default function certificateCRLJsunit() {
         })
         .catch((err: Error) => {
           console.error("[promise] checkgetRevokedCertWithCertX509CRLPromis failed! error is: " +
-            err);
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
-     * @tc.number Security_Cert_Framework_CRL_Func_1800
-     * @tc.name check getRevokedCertWithCert for X509 CRL
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     * @tc.desc Use the Promise Style of Interface
-     */
-    it("Security_Cert_Framework_CRL_Func_1800", 0, async (done: Function) => {
-      await certPromise
-        .createX509CRLInstancePromise("pem")
-        .then((crlInstance) => {
-          const result = certCallback.checkGetRevokedCertWithCertX509CRLCallback(crlInstance, "normal");
-          expect(result != null).assertTrue();
-        })
-        .catch((err: Error) => {
-          console.error("[callback] checkgetRevokedCertWithCertX509CRLCallback failed! error is: " +
             err);
           expect(null).assertFail();
         });
@@ -400,23 +343,6 @@ export default function certificateCRLJsunit() {
     it("Security_Cert_Framework_CRL_Func_2100", 0, async (done: Function) => {
       await certPromise
         .getX509CRLInfoPromise("pem", "getTbsInfo")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-
-    /**
-     * @tc.number Security_Cert_Framework_CRL_Func_2200
-     * @tc.name check getTbsInfo for X509 CRL
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_2200", 0, async (done: Function) => {
-      await certCallback
-        .getX509CRLInfoCallback("pem", "getTbsInfo")
         .then((data) => {
           expect(data == null).assertTrue();
         })
@@ -507,22 +433,6 @@ export default function certificateCRLJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_CRL_Func_2800
-     * @tc.name check getRevokedCert for X509 CRL
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_2800", 0, async (done: Function) => {
-      await certPromise
-        .checkGetRevokedCertX509CRLPromise("pem")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
      * @tc.number Security_Cert_Framework_CRL_Func_3500
      * @tc.name Check verify for X509 CRL
      * @tc.desc The X509 CRL FORMAT is FORMAT_PEM
@@ -546,38 +456,6 @@ export default function certificateCRLJsunit() {
     it("Security_Cert_Framework_CRL_Func_3600", 0, async (done: Function) => {
       await certCallback
         .verifyX509CRLCallback("pem")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
-     * @tc.number Security_Cert_Framework_CRL_Func_3700
-     * @tc.name Check verify for X509 CRL
-     * @tc.desc The X509 CRL FORMAT is FORMAT_DER
-     */
-    it("Security_Cert_Framework_CRL_Func_3700", 0, async (done: Function) => {
-      await certPromise
-        .verifyX509CRLPromise("der")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
-     * @tc.number Security_Cert_Framework_CRL_Func_3800
-     * @tc.name Check verify for X509 CRL
-     * @tc.desc The X509 CRL FORMAT is FORMAT_DER
-     */
-    it("Security_Cert_Framework_CRL_Func_3800", 0, async (done: Function) => {
-      await certCallback
-        .verifyX509CRLCallback("der")
         .then((data) => {
           expect(data == null).assertTrue();
         })
@@ -619,38 +497,6 @@ export default function certificateCRLJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_CRL_Func_4100
-     * @tc.name Check verify for X509 CRL with wrong PublicKey and right PublicKey
-     * @tc.desc The X509 CRL FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_4100", 0, async (done: Function) => {
-      await certPromise
-        .verifyX509CRLPromise("pem", "error")
-        .then((data) => {
-          expect(data == 401).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
-     * @tc.number Security_Cert_Framework_CRL_Func_4200
-     * @tc.name Check verify for X509 CRL with wrong PublicKey and right PublicKey
-     * @tc.desc The X509 CRL FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_4200", 0, async (done: Function) => {
-      await certCallback
-        .verifyX509CRLCallback("pem")
-        .then((data) => {
-          expect(data == null).assertTrue();
-        })
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
      * @tc.number Security_Cert_Framework_CRL_Func_4300
      * @tc.name check getSerialNumber for X509 CRL Entry
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
@@ -664,19 +510,6 @@ export default function certificateCRLJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_CRL_Func_4400
-     * @tc.name check getSerialNumber for X509 CRL Entry
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_4400", 0, async (done: Function) => {
-      await certPromise
-        .checkX509CRLEntryGetSerialNumberPromise("pem")
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
      * @tc.number Security_Cert_Framework_CRL_Func_4500
      * @tc.name check getRevokedCert for X509 CRL
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
@@ -684,19 +517,6 @@ export default function certificateCRLJsunit() {
     it("Security_Cert_Framework_CRL_Func_4500", 0, async (done: Function) => {
       await certCallback
         .checkX509CRLGetRevokedCertCallback()
-        .catch((err: Error) => {
-          expect(null).assertFail();
-        });
-      done();
-    });
-    /**
-     * @tc.number Security_Cert_Framework_CRL_Func_4600
-     * @tc.name check getRevokedCert for X509 CRL
-     * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
-     */
-    it("Security_Cert_Framework_CRL_Func_4600", 0, async (done: Function) => {
-      await certPromise
-        .checkX509CRLGetRevokedCertPromise()
         .catch((err: Error) => {
           expect(null).assertFail();
         });

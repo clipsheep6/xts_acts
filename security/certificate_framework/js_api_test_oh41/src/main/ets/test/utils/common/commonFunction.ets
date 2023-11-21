@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
- 
 import { reg } from './commonParam';
 import { DataUint8Array, IAnyObj } from './commonType';
 
