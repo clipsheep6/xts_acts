@@ -30,7 +30,7 @@ ohos_app_scope("hts_demo_ets_app_profile") {
   sources = [ "AppScope/resources" ]
 }
 ohos_js_assets("hts_demo_ets_resources") {
-   source_dir = "entry/src/main/ets"
+  source_dir = "entry/src/main/ets"
 }
 ohos_resources("hts_demo_ets_test_resources") {
   sources = [ "entry/src/main/resources" ]
