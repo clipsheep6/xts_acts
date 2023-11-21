@@ -24,6 +24,7 @@ group("ability_runtime") {
       "abilitystagemonitor:abilitystagemonitor",
       "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
+      "actsabilityruntimebasetest:ActsAbilityRunTimeBaseTest",
       "actsabilityusertest:ActsAbilityuserTest",
       "actsactionextensionability:actsactionextensionability",
       "actscalldataabilitytest:ActsCallDataAbilityTest",
@@ -66,7 +67,6 @@ group("ability_runtime") {
       "stopserviceextension:stopserviceextension",
       "want:want",
       "workercontextcover:workercontextcover",
-      "actsabilityruntimebasetest:ActsAbilityRunTimeBaseTest",
     ]
   }
 }
