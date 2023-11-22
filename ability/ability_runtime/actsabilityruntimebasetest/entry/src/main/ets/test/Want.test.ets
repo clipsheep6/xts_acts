@@ -29,6 +29,24 @@ export default function WantTest() {
       return new Promise((resolve) => setTimeout(resolve, time))
     }
 
+    function getParameterFd(fd) {
+      return {
+        'keyFd': {
+          'type': 'FD', 'value': fd
+        }
+      }
+    }
+
+    async function startAbilityTest(parameters) {
+      let wantInfo = {
+        'deviceId': '',
+        "bundleName": "com.ohos.wantxtstest",
+        "abilityName": "WantAbility",
+        "parameters": parameters
+      }
+      return globalThis.abilityDelegator.startAbility(wantInfo)
+    }
+
     /**
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0500
@@ -50,24 +68,14 @@ export default function WantTest() {
         hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} file fd: ${JSON.stringify(fd)}`);
         expect(fd).assertLargerOrEqual(1)
 
-        let want = {
-          deviceId: '',
-          bundleName: 'com.ohos.wantxtstest',
-          abilityName: 'WantAbility',
-          parameters: {
-            'keyFd': {
-              'type': 'FD', 'value': fd
-            }
-          }
-        };
-
-        await globalThis.abilityDelegator.startAbility(want).then(() => {
+        await  startAbilityTest(getParameterFd(fd)).then(() => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful..`);
         }).catch((error) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error:${JSON.stringify(error)}`);
           expect().assertFail();
           done();
         })
+
         await sleep(1500);
         const parameters = globalThis.parameters;
         hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} parameters: ${JSON.stringify(parameters)}`);
@@ -103,18 +111,13 @@ export default function WantTest() {
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500', 0, async function (done) {
       const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500';
       try {
-        let want = {
-          'deviceId': '',
-          'bundleName': 'com.ohos.wantxtstest',
-          'abilityName': 'WantAbility',
-          'parameters': {
-            'keyArrayObj': {
-              'data': [1, 2, 3]
-            }
+        let arrayParameter = {
+          'keyArrayObj': {
+            'data': [1, 2, 3]
           }
-        };
+        }
 
-        globalThis.abilityDelegator.startAbility(want).then(() => {
+        await  startAbilityTest(arrayParameter).then(() => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
         }).catch((error) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error:${JSON.stringify(error)}`);
@@ -142,7 +145,7 @@ export default function WantTest() {
     /**
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0700
-     * @tc.desc      : test startAbility wrong want
+     * @tc.desc      : test startAbility wrong want parameters为："keyFd":{"type":"FD", "value":0}
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -150,18 +153,7 @@ export default function WantTest() {
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700', 0, async function (done) {
       const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700';
       try {
-        let want = {
-          'deviceId': '',
-          'bundleName': 'com.ohos.wantxtstest',
-          'abilityName': 'WantAbility',
-          'parameters': {
-            'keyFd': {
-              'type': 'FD', 'value': 0
-            }
-          }
-        };
-
-        await globalThis.abilityDelegator.startAbility(want).then(() => {
+        await  startAbilityTest(getParameterFd(0)).then(() => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
           expect().assertFail();
           done()
@@ -171,7 +163,6 @@ export default function WantTest() {
           expect(error.code).assertEqual(2097167)
           done()
         })
-
       } catch (err) {
         hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err:${JSON.stringify(err)}`);
         done();
@@ -181,7 +172,7 @@ export default function WantTest() {
     /**
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0800
-     * @tc.desc      : test startAbility wrong want
+     * @tc.desc      : test startAbility wrong want parameters为："keyFd":{"type":"FD", "value":-1}
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -189,18 +180,7 @@ export default function WantTest() {
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800', 0, async function (done) {
       const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800';
       try {
-        let want = {
-          'deviceId': '',
-          'bundleName': 'com.ohos.wantxtstest',
-          'abilityName': 'WantAbility',
-          'parameters': {
-            'keyFd': {
-              'type': 'FD', 'value': -1
-            }
-          }
-        };
-
-        await globalThis.abilityDelegator.startAbility(want).then(() => {
+        await  startAbilityTest(getParameterFd(-1)).then(() => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
           expect().assertFail();
           done()
@@ -210,7 +190,6 @@ export default function WantTest() {
           expect(error.code).assertEqual(2097167)
           done()
         })
-
       } catch (err) {
         hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} fail: ${err}`);
         done();
@@ -220,7 +199,7 @@ export default function WantTest() {
     /**
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0900
-     * @tc.desc      : test startAbility wrong want : err
+     * @tc.desc      : test startAbility wrong want : err parameters为："keyFd":{"type":"FD", "value":"err"}
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -228,18 +207,7 @@ export default function WantTest() {
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900', 0, async function (done) {
       const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900';
       try {
-        let want = {
-          'deviceId': '',
-          'bundleName': 'com.ohos.wantxtstest',
-          'abilityName': 'WantAbility',
-          'parameters': {
-            'keyFd': {
-              'type': 'FD', 'value': "err"
-            }
-          }
-        };
-
-        await globalThis.abilityDelegator.startAbility(want).then(() => {
+        await  startAbilityTest(getParameterFd("err")).then(() => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful. `);
           expect().assertFail();
           done()
