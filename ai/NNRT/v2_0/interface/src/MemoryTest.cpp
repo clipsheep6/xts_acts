@@ -32,7 +32,7 @@ class MemoryTest : public testing::Test {
 protected:
     AddModel addModel;
     OHNNGraphArgs graphArgs = addModel.graphArgs;
-    OHNNCompileParam compileParam;
+    OHNNcompilationParam compilationParam;
 };
 
 } // namespace
@@ -60,7 +60,7 @@ HWTEST_F(MemoryTest, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_02
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
@@ -82,7 +82,7 @@ HWTEST_F(MemoryTest, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
@@ -106,7 +106,7 @@ HWTEST_F(MemoryTest, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
@@ -139,7 +139,7 @@ HWTEST_F(MemoryTest, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100, 
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
@@ -174,7 +174,7 @@ HWTEST_F(MemoryTest, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_0100, Fu
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);

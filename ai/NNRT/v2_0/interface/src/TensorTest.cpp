@@ -56,7 +56,7 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100, Function 
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compileParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
@@ -100,7 +100,7 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300, Function 
     ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompileGraphMock(compilation, compileParam));
+    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compileParam));
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
@@ -145,3 +145,5 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100, Function 
 {
     ASSERT_EQ(nullptr, OH_NNBackend_GetTensorDesc(nullptr));
 }
+
+

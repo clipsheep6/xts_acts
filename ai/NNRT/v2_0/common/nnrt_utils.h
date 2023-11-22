@@ -29,12 +29,12 @@ namespace NeuralNetworkRuntime {
 namespace Test {
 namespace V2_0 = OHOS::HDI::Nnrt::V2_0;
 struct OHNNOperandTest {
-    OH_NNCore_DataType dataType;
-    OH_NNCore_TensorDesc*Type type;
+    OH_NNCore_DataType* dataType;
+    OH_NNBackend_TensorType type;
     std::vector<int32_t> shape;
     void *data{nullptr};
     int32_t length{0};
-    const OH_NN_QuantParam *quantParam = nullptr;
+    OH_NNCore_Format format;
 };
 
 struct OHNNGraphArgs {
@@ -48,49 +48,24 @@ struct OHNNGraphArgs {
     bool addOperation = true;
 };
 
-struct OHNNGraphArgsMulti {
-    std::vector<OH_NN_OperationType> operationTypes;
-    std::vector<std::vector<OHNNOperandTest>> operands;
-    std::vector<std::vector<uint32_t>> paramIndices;
-    std::vector<std::vector<uint32_t>> inputIndices;
-    std::vector<std::vector<uint32_t>> outputIndices;
-    std::vector<uint32_t> graphInput;
-    std::vector<uint32_t> graphOutput;
-};
-
-struct OHNNCompileParam {
-    int32_t deviceId = 0;
-    std::string cacheDir;
+struct OHNNcompilationParam {
     uint32_t cacheVersion = 0;
-    OH_NN_PerformanceMode performanceMode = OH_NN_PERFORMANCE_NONE;
-    OH_NN_Priority priority = OH_NN_PRIORITY_NONE;
+    OH_NN_PerformanceMode performanceMode = OH_NNBACKEND_PERFORMANCE_NONE;
+    OH_NN_Priority priority = OH_NNBACKEND_PRIORITY_NONE;
     bool enableFp16 = false;
 };
 
+OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const int32_t* shape, size_t shapeNum, 
+                                                   OH_NNCore_DataType dataType, OH_NNCore_Format format,
+                                                   OH_NNBackend_TensorType tensorType)
+
 int BuildSingleOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgs &graphArgs);
 
-int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NNBackend_Memory *OHNNMemory[],
-    float* expect);
+void Free(OH_NNBackend_Model *model = nullptr, OH_NNCore_Compilation *compilation = nullptr,OH_NNCore_Compiled *compiled = nullptr, OH_NNExecutor *executor = nullptr);
 
-void Free(OH_NNBackend_Model *model = nullptr, OH_NNCore_Compilation *compilation = nullptr, OH_NNExecutor *executor = nullptr);
+int CompilationGraphMock(OH_NNCore_Compilation *compilation, const OHNNcompilationParam &compilationParam);
 
-int CompileGraphMock(OH_NNCore_Compilation *compilation, const OHNNCompileParam &compileParam);
-
-int ExecuteGraphMock(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, float* expect);
-
-OH_NNCore_ReturnCode SetDevice(OH_NNCore_Compilation *compilation);
-int BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgsMulti &graphArgs);
 OH_NNCORE_UINT32Array GetUInt32Array(std::vector<uint32_t> indices);
-
-bool CheckOutput(const float* output, const float* expect);
-
-enum class PathType { FILE, DIR, UNKNOWN, NOT_FOUND };
-PathType CheckPath(const std::string &path);
-bool DeleteFile(const std::string &path);
-void CopyFile(const std::string &srcPath, const std::string &dstPath);
-std::string ConcatPath(const std::string &str1, const std::string &str2);
-void DeleteFolder(const std::string &path);
-bool CreateFolder(const std::string &path);
 
 } // namespace Test
 } // namespace NeuralNetworkRuntime
