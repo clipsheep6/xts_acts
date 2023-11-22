@@ -13,12 +13,17 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium'
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
+import hilog from '@ohos.hilog';
+
+const TAG: string = 'ActsAbilityRunTimeBaseTest';
+
 
 export default function WantTest() {
   describe('ActsWantTest', function () {
+    const TEST_SUITE_NAME: string = 'ActsWantTest'
 
     function sleep(time) {
       return new Promise((resolve) => setTimeout(resolve, time))
@@ -33,6 +38,8 @@ export default function WantTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200', 0, async function (done) {
+      const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200';
+
       let fd: number = 0;
       let filePath = '/data/storage/el2/base/haps/test_pic.png';
 
@@ -40,49 +47,47 @@ export default function WantTest() {
         let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         fs.writeSync(fd, `dadas342412`);
         fd = file.fd
-        console.info("AbilityBase_WantParam_WantParametersJs_0200 file fd: " + file.fd);
-
+        hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} file fd: ${JSON.stringify(fd)}`);
         expect(fd).assertLargerOrEqual(1)
 
-        console.log(`AbilityBase_WantParam_WantParametersJs_0200 fd: ${JSON.stringify(fd)}`);
         let want = {
-          deviceId: '', // deviceId为空表示本设备
+          deviceId: '',
           bundleName: 'com.ohos.wantxtstest',
           abilityName: 'WantAbility',
           parameters: {
             'keyFd': {
               'type': 'FD', 'value': fd
-            } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
+            }
           }
         };
 
         await globalThis.abilityDelegator.startAbility(want).then(() => {
-          console.info('AbilityBase_WantParam_WantParametersJs_0200 start successful.');
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful..`);
         }).catch((error) => {
-          console.log(`AbilityBase_WantParam_WantParametersJs_0200 error.code: ` + error.code);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error:${JSON.stringify(error)}`);
           expect().assertFail();
           done();
         })
         await sleep(1500);
         const parameters = globalThis.parameters;
-        console.info('AbilityBase_WantParam_WantParametersJs_0200 parameters: ' + JSON.stringify(parameters));
+        hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} parameters: ${JSON.stringify(parameters)}`);
         expect(parameters.keyFd.type).assertEqual("FD");
         expect(parameters.keyFd.value).assertEqual(fd);
         let abilityWantContext: common.UIAbilityContext = globalThis.abilityWantContext;
         abilityWantContext.terminateSelf();
         await sleep(1000);
 
-        console.log(`AbilityBase_WantParam_WantParametersJs_0200 success`);
+        hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} success`);
         done();
       } catch (err) {
-        console.error(`AbilityBase_WantParam_WantParametersJs_0200 err: ${JSON.stringify(err)}`);
+        hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err:${JSON.stringify(err)}`);
         expect().assertFail();
         done();
       } finally {
         fs.unlink(filePath).then(() => {
-          console.info("AbilityBase_WantParam_WantParametersJs_0200 remove file succeed");
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} remove file succeed`);
         }).catch((err) => {
-          console.info("AbilityBase_WantParam_WantParametersJs_0200 remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+          hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}  remove file failed with error:${JSON.stringify(err)}`);
         });
       }
     })
@@ -96,6 +101,7 @@ export default function WantTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500', 0, async function (done) {
+      const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500';
       try {
         let want = {
           'deviceId': '',
@@ -109,24 +115,24 @@ export default function WantTest() {
         };
 
         globalThis.abilityDelegator.startAbility(want).then(() => {
-          console.info('AbilityBase_WantParam_WantParametersJs_0500 start successful.');
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
         }).catch((error) => {
-          console.log(`AbilityBase_WantParam_WantParametersJs_0500 error.code: ` + error.code);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error:${JSON.stringify(error)}`);
         })
         await sleep(1500);
         const parameters = globalThis.parameters;
-        console.info('AbilityBase_WantParam_WantParametersJs_0500 parameters: ' + JSON.stringify(parameters));
+        hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} parameters: ${JSON.stringify(parameters)}`);
         expect(parameters.keyArrayObj.data[0]).assertEqual(1);
         expect(parameters.keyArrayObj.data[1]).assertEqual(2);
         expect(parameters.keyArrayObj.data[2]).assertEqual(3);
         let abilityWantContext: common.UIAbilityContext = globalThis.abilityWantContext;
         abilityWantContext.terminateSelf();
         await sleep(1000);
-        console.log(`AbilityBase_WantParam_WantParametersJs_0500 success`);
+        hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} success`);
         done();
 
       } catch (err) {
-        console.log(`AbilityBase_WantParam_WantParametersJs_0500 fail: ` + err);
+        hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err:${JSON.stringify(err)}`);
         expect().assertFail();
         done();
       }
@@ -142,31 +148,32 @@ export default function WantTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700', 0, async function (done) {
+      const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700';
       try {
         let want = {
-          'deviceId': '', 
+          'deviceId': '',
           'bundleName': 'com.ohos.wantxtstest',
           'abilityName': 'WantAbility',
           'parameters': {
             'keyFd': {
               'type': 'FD', 'value': 0
-            } 
+            }
           }
         };
 
         await globalThis.abilityDelegator.startAbility(want).then(() => {
-          console.info(`AbilityBase_WantParam_WantParametersJs_0700 start successful. `);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
           expect().assertFail();
           done()
         }).catch((error) => {
-          console.log(`AbilityBase_WantParam_WantParametersJs_0700 error :${JSON.stringify(error)}}`);
+          hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error:${JSON.stringify(error)}`);
           expect(error.code === undefined).assertFalse();
           expect(error.code).assertEqual(2097167)
           done()
         })
 
       } catch (err) {
-        console.log(`AbilityBase_WantParam_WantParametersJs_0700 fail: ${err}`);
+        hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err:${JSON.stringify(err)}`);
         done();
       }
     })
@@ -180,6 +187,7 @@ export default function WantTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800', 0, async function (done) {
+      const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800';
       try {
         let want = {
           'deviceId': '',
@@ -193,18 +201,18 @@ export default function WantTest() {
         };
 
         await globalThis.abilityDelegator.startAbility(want).then(() => {
-          console.info(`AbilityBase_WantParam_WantParametersJs_0800 start successful. `);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
           expect().assertFail();
           done()
         }).catch((error) => {
-          console.log(`AbilityBase_WantParam_WantParametersJs_0800 error :${JSON.stringify(error)}}`);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error :${JSON.stringify(error)}}`);
           expect(error.code === undefined).assertFalse();
           expect(error.code).assertEqual(2097167)
           done()
         })
 
       } catch (err) {
-        console.log(`AbilityBase_WantParam_WantParametersJs_0800 fail: ${err}`);
+        hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} fail: ${err}`);
         done();
       }
     })
@@ -218,31 +226,32 @@ export default function WantTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900', 0, async function (done) {
+      const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900';
       try {
         let want = {
-          'deviceId': '', 
+          'deviceId': '',
           'bundleName': 'com.ohos.wantxtstest',
           'abilityName': 'WantAbility',
           'parameters': {
             'keyFd': {
               'type': 'FD', 'value': "err"
-            } 
+            }
           }
         };
 
         await globalThis.abilityDelegator.startAbility(want).then(() => {
-          console.info(`AbilityBase_WantParam_WantParametersJs_0900 start successful. `);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful. `);
           expect().assertFail();
           done()
         }).catch((error) => {
-          console.log(`AbilityBase_WantParam_WantParametersJs_0900 error :${JSON.stringify(error)}}`);
+          hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error :${JSON.stringify(error)}}`);
           expect(error.code === undefined).assertFalse();
           expect(error.code).assertEqual(2097167)
           done()
         })
 
       } catch (err) {
-        console.log(`AbilityBase_WantParam_WantParametersJs_0900 fail: ${err}`);
+        hilog.error(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err :${JSON.stringify(err)}}`);
         done();
       }
     })
