@@ -19,7 +19,9 @@ import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
 
-let TAG = 'ObserverAppState07 publish';
+const STATETWO = 2;
+const STATEFOUR = 4;
+const TAG = 'ObserverAppState07 publish';
 let applicationState = -1;
 let bundlename = '';
 let commonEventData = {
@@ -27,35 +29,35 @@ let commonEventData = {
     applicationState: applicationState,
     bundlename: bundlename
   }
-}
+};
 let appForegroundStateObserver1 = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
-    if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 2) {
-      commonEventData.parameters.applicationState = appStateData.state;
+    if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATETWO) {
+      commonEventData.parameters.applicationState = appStateData.state; //
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent2', commonEventData, (err) => {
         console.info(TAG + '01 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
-      })
-    } else if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 4) {
+      });
+    } else if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATEFOUR) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent4', commonEventData, (err) => {
         console.info(TAG + '01 ' + 'onAppStateChanged publish4 error' + JSON.stringify(err));
-      })
+      });
     }
   }
-}
+};
 let appForegroundStateObserver2 = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
-    if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 2) {
+    if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATETWO) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent2', commonEventData, (err) => {
         console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
-      })
-    } else if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 4) {
+      });
+    } else if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATEFOUR) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent4', commonEventData, (err) => {
@@ -63,7 +65,7 @@ let appForegroundStateObserver2 = {
       })
     }
   }
-}
+};
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
