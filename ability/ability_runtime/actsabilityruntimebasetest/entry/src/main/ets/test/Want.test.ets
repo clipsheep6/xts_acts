@@ -24,34 +24,15 @@ export default function WantTest() {
       return new Promise((resolve) => setTimeout(resolve, time))
     }
 
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-
     /**
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0500
      * @tc.desc      : test startAbility  want FD
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('AbilityBase_WantParam_WantParametersJs_0200', 0, async function (done) {
+    it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200', 0, async function (done) {
       let fd: number = 0;
       let filePath = '/data/storage/el2/base/haps/test_pic.png';
 
@@ -98,11 +79,11 @@ export default function WantTest() {
         expect().assertFail();
         done();
       } finally {
-        // fs.unlink(filePath).then(() => {
-        //   console.info("AbilityBase_WantParam_WantParametersJs_0200 remove file succeed");
-        // }).catch((err) => {
-        //   console.info("AbilityBase_WantParam_WantParametersJs_0200 remove file failed with error message: " + err.message + ", error code: " + err.codeor);
-        // });
+        fs.unlink(filePath).then(() => {
+          console.info("AbilityBase_WantParam_WantParametersJs_0200 remove file succeed");
+        }).catch((err) => {
+          console.info("AbilityBase_WantParam_WantParametersJs_0200 remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+        });
       }
     })
 
@@ -110,13 +91,14 @@ export default function WantTest() {
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0500
      * @tc.desc      : test startAbility  want Array
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('AbilityBase_WantParam_WantParametersJs_0500', 0, async function (done) {
+    it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500', 0, async function (done) {
       try {
         let want = {
-          'deviceId': '', // deviceId为空表示本设备
+          'deviceId': '',
           'bundleName': 'com.ohos.wantxtstest',
           'abilityName': 'WantAbility',
           'parameters': {
@@ -140,7 +122,6 @@ export default function WantTest() {
         let abilityWantContext: common.UIAbilityContext = globalThis.abilityWantContext;
         abilityWantContext.terminateSelf();
         await sleep(1000);
-        //
         console.log(`AbilityBase_WantParam_WantParametersJs_0500 success`);
         done();
 
@@ -156,19 +137,20 @@ export default function WantTest() {
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0700
      * @tc.desc      : test startAbility wrong want
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('AbilityBase_WantParam_WantParametersJs_0700', 0, async function (done) {
+    it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0700', 0, async function (done) {
       try {
         let want = {
-          'deviceId': '', // deviceId为空表示本设备
+          'deviceId': '', 
           'bundleName': 'com.ohos.wantxtstest',
           'abilityName': 'WantAbility',
           'parameters': {
             'keyFd': {
               'type': 'FD', 'value': 0
-            } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
+            } 
           }
         };
 
@@ -193,19 +175,20 @@ export default function WantTest() {
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0800
      * @tc.desc      : test startAbility wrong want
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('AbilityBase_WantParam_WantParametersJs_0800', 0, async function (done) {
+    it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0800', 0, async function (done) {
       try {
         let want = {
-          'deviceId': '', // deviceId为空表示本设备
+          'deviceId': '',
           'bundleName': 'com.ohos.wantxtstest',
           'abilityName': 'WantAbility',
           'parameters': {
             'keyFd': {
               'type': 'FD', 'value': -1
-            } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
+            }
           }
         };
 
@@ -230,19 +213,20 @@ export default function WantTest() {
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900
      * @tc.name      : AbilityBase_WantParam_WantParametersJs_0900
      * @tc.desc      : test startAbility wrong want : err
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('AbilityBase_WantParam_WantParametersJs_0900', 0, async function (done) {
+    it('SUB_Ability_AbilityBase_WantParam_WantParametersJs_0900', 0, async function (done) {
       try {
         let want = {
-          'deviceId': '', // deviceId为空表示本设备
+          'deviceId': '', 
           'bundleName': 'com.ohos.wantxtstest',
           'abilityName': 'WantAbility',
           'parameters': {
             'keyFd': {
               'type': 'FD', 'value': "err"
-            } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
+            } 
           }
         };
 
