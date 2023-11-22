@@ -120,6 +120,7 @@ export default function WantTest() {
         await  startAbilityTest(arrayParameter).then(() => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start successful`);
         }).catch((error) => {
+          expect().assertFail();
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} error:${JSON.stringify(error)}`);
         })
         await sleep(1500);
