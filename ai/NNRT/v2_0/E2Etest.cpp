@@ -25,7 +25,7 @@ OH_NNCore_ReturnCode End2EndTest::BuildModel(OH_NNBackend_Model **model,
     }
 
     int8_t activationValue = OH_NNBACKEND_FUSED_NONE;
-    status = OH_NNBackend_SetModelTensorData(*model, 2, &activationValue,sizeof(int8_t));
+    status = OH_NNBackend_SetModelTensorData(*model, 2, &activationValue, sizeof(int8_t));
     if (status != OH_NNCORE_SUCCESS) {
         LOGE("End2EndTest::BuildModel failed, error happens when setting model tensor data.");
         return status;
@@ -56,7 +56,7 @@ OH_NNCore_ReturnCode End2EndTest::CreateTensorDesc(OH_NNCore_TensorDesc** tensor
                                                    OH_NNCore_DataType dataType, OH_NNCore_Format format,
                                                    OH_NNBackend_TensorType tensorType)
 {
-    *tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    *tensorDesc = OH_NNCore_CreateTensorDesc(backendName.c_str());
     if (*model == nullptr) {
         LOGE("End2EndTest::CreateTensorDesc failed, error happens when creating OH_NNCore_TensorDesc.");
         return OH_NNCORE_INVALID_PARAMETER;
