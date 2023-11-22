@@ -15,7 +15,6 @@
 
 import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
 import * as certPromise from "./utils/certificate/publicCertificatePromise";
-import * as certCallback from "./utils/certificate/publicCertificateCallback";
 
 export default function certificateStabJsunit() {
   describe("certificateStabJsunit", () => {

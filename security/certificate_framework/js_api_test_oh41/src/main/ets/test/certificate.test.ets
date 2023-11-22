@@ -15,8 +15,6 @@
 
 import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
 import * as certPromise from "./utils/certificate/publicCertificatePromise";
-import * as certCallback from "./utils/certificate/publicCertificateCallback";
-import cert from "@ohos.security.cert";
 
 export default function certificateJsunit() {
   describe("CertificateJsunit", () => {
@@ -42,11 +40,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_0300
+     * @tc.number Security_Cert_Framework_Certificate_Func_0200
      * @tc.name check X509CRL get extension true by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_DER
      */
-    it("Security_Cert_Framework_Certificate_Func_0300", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0200", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLExtensionsPromise("der", true)
         .then((data) => {
@@ -58,11 +56,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_0500
+     * @tc.number Security_Cert_Framework_Certificate_Func_0300
      * @tc.name check X509CRL get extension false by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
      */
-    it("Security_Cert_Framework_Certificate_Func_0500", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0300", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLExtensionsPromise("pem", false)
         .then((data) => {
@@ -74,11 +72,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_0700
+     * @tc.number Security_Cert_Framework_Certificate_Func_0400
      * @tc.name check X509CRL get extension false by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_DER
      */
-    it("Security_Cert_Framework_Certificate_Func_0700", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0400", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLExtensionsPromise("der", false)
         .then((data) => {
@@ -90,11 +88,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_0900
+     * @tc.number Security_Cert_Framework_Certificate_Func_0500
      * @tc.name check X509CRLEntry get extension true by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
      */
-    it("Security_Cert_Framework_Certificate_Func_0900", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0500", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLEntryExtensionsPromise("pem", true)
         .then((data) => {
@@ -106,11 +104,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_1100
+     * @tc.number Security_Cert_Framework_Certificate_Func_0600
      * @tc.name check X509CRLEntry get extension true by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_DER
      */
-    it("Security_Cert_Framework_Certificate_Func_1100", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0600", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLEntryExtensionsPromise("der", true)
         .then((data) => {
@@ -122,11 +120,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_1300
+     * @tc.number Security_Cert_Framework_Certificate_Func_0700
      * @tc.name check X509CRLEntry get extension false by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
      */
-    it("Security_Cert_Framework_Certificate_Func_1300", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0700", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLEntryExtensionsPromise("pem", false)
         .then((data) => {
@@ -138,11 +136,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_1500
+     * @tc.number Security_Cert_Framework_Certificate_Func_0800
      * @tc.name check X509CRLEntry get extension false by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_DER
      */
-    it("Security_Cert_Framework_Certificate_Func_1500", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0800", 0, async (done: Function) => {
       await certPromise
         .checkGetX509CRLEntryExtensionsPromise("der", false)
         .then((data) => {
@@ -154,11 +152,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_1700
+     * @tc.number Security_Cert_Framework_Certificate_Func_0900
      * @tc.name check X509CRLEntry has extension true by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
      */
-    it("Security_Cert_Framework_Certificate_Func_1700", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_0900", 0, async (done: Function) => {
       await certPromise
         .checkHasX509CRLEntryExtensionsPromise("pem", true)
         .then((data) => {
@@ -171,11 +169,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_1900
+     * @tc.number Security_Cert_Framework_Certificate_Func_1000
      * @tc.name check X509CRLEntry has extension true by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_DER
      */
-    it("Security_Cert_Framework_Certificate_Func_1900", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_1000", 0, async (done: Function) => {
       await certPromise
         .checkHasX509CRLEntryExtensionsPromise("der", true)
         .then((data) => {
@@ -188,11 +186,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_2100
+     * @tc.number Security_Cert_Framework_Certificate_Func_1100
      * @tc.name check X509CRLEntry has extension false by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_PEM
      */
-    it("Security_Cert_Framework_Certificate_Func_2100", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_1100", 0, async (done: Function) => {
       await certPromise
         .checkHasX509CRLEntryExtensionsPromise("pem", false)
         .then((data) => {
@@ -205,11 +203,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_2300
+     * @tc.number Security_Cert_Framework_Certificate_Func_1200
      * @tc.name check X509CRLEntry has extension false by promise
      * @tc.desc The X509 certificate FORMAT is FORMAT_DER
      */
-    it("Security_Cert_Framework_Certificate_Func_2300", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_1200", 0, async (done: Function) => {
       await certPromise
         .checkHasX509CRLEntryExtensionsPromise("der", false)
         .then((data) => {
@@ -222,11 +220,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_2500
+     * @tc.number Security_Cert_Framework_Certificate_Func_1300
      * @tc.name X509 cert extension has not unSupported Critical by promise
      * @tc.desc certExtension test
      */
-    it("Security_Cert_Framework_Certificate_Func_2500", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_1300", 0, async (done: Function) => {
       await certPromise
         .checkHasUnsupportedX509CrlPromise('certNoCritical')
         .then((data) => {
@@ -239,11 +237,11 @@ export default function certificateJsunit() {
       done();
     });
     /**
-     * @tc.number Security_Cert_Framework_Certificate_Func_2700
+     * @tc.number Security_Cert_Framework_Certificate_Func_1400
      * @tc.name X509 cert extension has unSupported Critical by promise
      * @tc.desc certExtension test
      */
-    it("Security_Cert_Framework_Certificate_Func_2700", 0, async (done: Function) => {
+    it("Security_Cert_Framework_Certificate_Func_1400", 0, async (done: Function) => {
       await certPromise
         .checkHasUnsupportedX509CrlPromise('certHasCritical')
         .then((data) => {

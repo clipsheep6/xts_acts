@@ -107,7 +107,7 @@ function createX509CertInstanceforCRLTestPromise(flag: IAnyObj | string): Promis
           "[promise] create X509 Cert success! format is: " + certformat
         );
         if (invalidParams == true) {
-          const cert: cert.X509Cert = flag as cert.X509Cert
+          const cert: cert.X509Cert = flag as cert.X509Cert;
           resolve(cert);
         } else {
           resolve(data);
