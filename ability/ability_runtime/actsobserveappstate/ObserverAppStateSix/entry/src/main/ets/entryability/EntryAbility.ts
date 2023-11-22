@@ -19,6 +19,8 @@ import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
 
+const STATETWO = 2;
+const STATEFOUR = 4;
 let TAG = 'ObserverAppState06 publish';
 let applicationState = -1;
 let bundlename = '';
@@ -27,17 +29,17 @@ let commonEventData = {
     applicationState: applicationState,
     bundlename: bundlename
   }
-}
+};
 let appForegroundStateObserver1 = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
-    if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 2) {
+    if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATETWO) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent2', commonEventData, (err) => {
         console.info(TAG + '01 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
       })
-    } else if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 4) {
+    } else if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATEFOUR) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent4', commonEventData, (err) => {
@@ -49,13 +51,13 @@ let appForegroundStateObserver1 = {
 let appForegroundStateObserver2 = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
-    if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 2) {
+    if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATETWO) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent2', commonEventData, (err) => {
         console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
       })
-    } else if (appStateData.bundleName == 'com.example.observerappstaterely' && appStateData.state == 4) {
+    } else if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATEFOUR) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent4', commonEventData, (err) => {

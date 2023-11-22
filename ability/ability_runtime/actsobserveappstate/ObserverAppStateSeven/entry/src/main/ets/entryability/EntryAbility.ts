@@ -62,7 +62,7 @@ let appForegroundStateObserver2 = {
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent4', commonEventData, (err) => {
         console.info(TAG + '02 ' + 'onAppStateChanged publish4 error' + JSON.stringify(err));
-      })
+      });
     }
   }
 };
