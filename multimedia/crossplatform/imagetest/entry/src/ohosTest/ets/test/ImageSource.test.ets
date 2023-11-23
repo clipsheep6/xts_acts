@@ -229,19 +229,19 @@ export default function ImageSource() {
             }
         }
 
-        async function getDelayTimePromise(done, testNum, picName) {
+        async function getDelayTimeListPromise(done, testNum, picName) {
             await getFileFd(picName, testGif);
             let imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
-                console.info(`${testNum} getDelayTimePromise create imagesource failed`);
+                console.info(`${testNum} getDelayTimeListPromise create imagesource failed`);
                 expect(false).assertTrue();
                 done();
             } else {
                 try {
-                    console.info(`${testNum} getDelayTimePromise create imagesource success`);
-                    let delayTimes = await imageSourceApi.getDelayTime();
+                    console.info(`${testNum} getDelayTimeListPromise create imagesource success`);
+                    let delayTimes = await imageSourceApi.getDelayTimeList();
                     if (delayTimes != undefined) {
-                        console.info(`${testNum} getDelayTimePromise getDelayTime success`);
+                        console.info(`${testNum} getDelayTimeListPromise getDelayTimeList success`);
                         expect(true).assertTrue();
                         console.info(`${testNum} delayTimes show begin length: ${delayTimes.length} `);
                         for (var i = 0; i < delayTimes.length; i++) {
@@ -249,36 +249,36 @@ export default function ImageSource() {
                         }
                         console.info(`${testNum} delayTimes show end`);
                     } else {
-                        console.info(`${testNum} getDelayTimePromise getDelayTime failed`);
+                        console.info(`${testNum} getDelayTimeListPromise getDelayTimeList failed`);
                         expect(false).assertTrue();
                     }
                     done();
                 } catch (error) {
-                    console.log(`${testNum} getDelayTimePromise err: ${error}`);
+                    console.log(`${testNum} getDelayTimeListPromise err: ${error}`);
                     expect(false).assertTrue();
                     done();
                 };
             }
         }
 
-        async function getDelayTimeCallBack(done, testNum, picName) {
+        async function getDelayTimeListCallBack(done, testNum, picName) {
             await getFileFd(picName, testGif);
             const imageSourceApi = image.createImageSource(fileFd);
             if (imageSourceApi == undefined) {
-                console.info(`${testNum} getDelayTimeCallBack create imagesource failed`);
+                console.info(`${testNum} getDelayTimeListCallBack create imagesource failed`);
                 expect(false).assertTrue();
                 done();
             } else {
-                console.info(`${testNum} getDelayTimeCallBack create imagesource success`);
-                imageSourceApi.getDelayTime((err, delayTimes) => {
+                console.info(`${testNum} getDelayTimeListCallBack create imagesource success`);
+                imageSourceApi.getDelayTimeList((err, delayTimes) => {
                     if (err != undefined) {
-                        console.info(`${testNum} getDelayTimeCallBack getDelayTime failed err: ${err}`);
+                        console.info(`${testNum} getDelayTimeListCallBack getDelayTimeList failed err: ${err}`);
                         expect(false).assertTrue();
                         done();
                         return;
                     }
                     expect(delayTimes != undefined).assertTrue();
-                    console.info(`${testNum} getDelayTimeCallBack getDelayTime success`);
+                    console.info(`${testNum} getDelayTimeListCallBack getDelayTimeList success`);
                     console.info(`${testNum} delayTimes show begin(length:` + delayTimes.length + `)`);
                     for (var i = 0; i < delayTimes.length; i++) {
                         console.info(`${testNum} delayTimes[` + i + `]=` + delayTimes[i]);
@@ -4710,29 +4710,29 @@ export default function ImageSource() {
         });
 
         /**
-         * @tc.number    : TEST_GETDELAYTIME_PROMISE_001
-         * @tc.name      : testGetDelayTimePromise001
+         * @tc.number    : TEST_GETDELAYTIMELIST_PROMISE_001
+         * @tc.name      : testGetDelayTimeListPromise001
          * @tc.desc      : 1.create imagesource
-         *                 2.getDelayTime
+         *                 2.getDelayTimeList
          * @tc.size      : MediumTest
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it("testGetDelayTimePromise001", 0, async function (done) {
-            getDelayTimePromise(done, "testGetDelayTimePromise001", "test.gif");
+        it("testGetDelayTimeListPromise001", 0, async function (done) {
+            getDelayTimeListPromise(done, "testGetDelayTimeListPromise001", "test.gif");
         });
 
         /**
-         * @tc.number    : TEST_GETDELAYTIME_CB_001
-         * @tc.name      : testGetDelayTimeCb001
+         * @tc.number    : TEST_GETDELAYTIMELIST_CB_001
+         * @tc.name      : testGetDelayTimeListCb001
          * @tc.desc      : 1.create imagesource
-         *                 2.getDelayTime
+         *                 2.getDelayTimeList
          * @tc.size      : MediumTest
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it("testGetDelayTimeCb001", 0, async function (done) {
-            getDelayTimeCallBack(done, "testGetDelayTimeCb001", "test.gif");
+        it("testGetDelayTimeListCb001", 0, async function (done) {
+            getDelayTimeListCallBack(done, "testGetDelayTimeListCb001", "test.gif");
         });
 
         /**
