@@ -15,60 +15,37 @@
 #include "mock_backend.h"
 namespace OHOS::NeuralNetworkCore {
 
+std::shared_ptr<Backend> RegisterBackendFirst()
+{
+    std::shared_ptr<MockBackend> mockBackend = std::make_shared<MockBackend>("backendFirst");
+    if (mockBackend == nullptr) {
+        return nullptr;
+    }
+    mockBackend->SetDeviceEnableFp16(false);
+    std::shared_ptr<Backend> backend = std::dynamic_cast<std::shared_ptr<Backend>>(mockBackend);
+    if (backend == nullptr) {
+        return nullptr;
+    }
+    return backend;
+}
+
+std::shared_ptr<Backend> RegisterBackendSecond()
+{
+    std::shared_ptr<MockBackend> mockBackend = std::make_shared<MockBackend>("backendSecond");
+    if (mockBackend == nullptr) {
+        return nullptr;
+    }
+    mockBackend->SetDeviceEnableFp16(true);
+    std::shared_ptr<Backend> backend = std::dynamic_cast<std::shared_ptr<Backend>>(mockBackend);
+    if (backend == nullptr) {
+        return nullptr;
+    }
+    return backend;
+}
+
 MockBackend::MockBackend(std::string backendName)
 {
     m_backendName = backendName;
-}
-
-OH_NNCore_ReturnCode MockBackend::GetBackendName(std::string& backendName)
-{
-    backendName = m_backendName;
-    return OH_NNCORE_SUCCESS;
-}
-
-OH_NNCore_ReturnCode MockBackend::GetBackendStatus(OH_NNCore_BackendStatus& status)
-{
-    status = OH_NNCORE_AVAILABLE;
-    return OH_NNCORE_SUCCESS;
-}
-
-Compiler* MockBackend::CreateCompiler()
-{
-    return nullptr;
-}
-
-OH_NNCore_ReturnCode MockBackend::DestroyCompiler(Compiler* compiler)
-{
-    return OH_NNCORE_FAILED;
-}
-
-Compiled* MockBackend::CreateCompiled(const std::string& filePath)
-{
-    return nullptr;
-}
-
-Compiled* MockBackend::CreateCompiled(const void* buffer, size_t modelSize)
-{
-    return nullptr;
-}
-
-OH_NNCore_ReturnCode MockBackend::DestroyCompiled(Compiled* compiled)
-{
-    return OH_NNCORE_FAILED;
-}
-
-OH_NNCore_ReturnCode MockBackend::DestroyExecutor(Executor* executor)
-{
-    return OH_NNCORE_FAILED;
-}
-
-TensorDesc* MockBackend::CreateTensorDesc()
-{
-    return nullptr;
-}
-
-OH_NNCore_ReturnCode DestroyTensorDesc(TensorDesc* tensorDesc)
-{
-    return OH_NNCORE_FAILED;
+    m_device = MockDevice::GetInstance();
 }
 }

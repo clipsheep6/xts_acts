@@ -38,7 +38,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Construct_Comp
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Construct_Compilation_With_NNModel_0200, Function | MediumTest | Level1)
 {
-    OH_NNModel *model = OH_NNModel_Construct();
+    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
     ASSERT_NE(nullptr, model);
     ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_ConstructCompilationWithNNModel(reinterpret_cast<const void*>(model)));
 }
@@ -72,7 +72,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Construct_Comp
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Construct_Compilation_With_Offline_Buffer_0100, Function | MediumTest | Level1)
 {
     size_t modelSize = MODEL_SIZE;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_ConstructCompilationWithOfflineBuffer(nullptr, MODEL_SIZE));
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_ConstructCompilationWithOfflineBuffer(nullptr, modelSize));
 }
 
 /**
@@ -82,9 +82,12 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Construct_Comp
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Construct_Compilation_With_Offline_Buffer_0200, Function | MediumTest | Level1)
 {
+    //传入
     size_t modelSize = MODEL_SIZE;
-    std::string s = "buffer";
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(s), MODEL_SIZE));
+    OH_NNBackend_Model* model = nullptr;
+    TestConstructModel(&model);
+
+    ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(model), modelSize));
 }
 
 /**
@@ -258,38 +261,24 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Set_Compilatio
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Compilation_Enable_Float16_0100
- * @tc.desc: 设备支持，设置enablefp16为true
+ * @tc.desc: 设备支持，设置enablefp16为true,编译失败
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Set_Compilation_Enable_Float16_0100, Function | MediumTest | Level1)
 {
     bool enableFloat16 = true;
-    bool isSupport = true;
-    TestSetCompilationEnableFloat16(enableFloat16, isSupport);
+    TestSetCompilationEnableFloat16(enableFloat16);
 }
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Compilation_Enable_Float16_0200
- * @tc.desc: 设备支持，设置enablefp16为false
+ * @tc.desc: 设备支持，设置enablefp16为false，编译成功
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Set_Compilation_Enable_Float16_0200, Function | MediumTest | Level1)
 {
     bool enableFloat16 = false;
-    bool isSupport = true;
-    TestSetCompilationEnableFloat16(enableFloat16, isSupport);
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Compilation_Enable_Float16_0300
- * @tc.desc: 设置不支持，设置enablefp16为true，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Set_Compilation_Enable_Float16_0300, Function | MediumTest | Level1)
-{
-    bool enableFloat16 = true;
-    bool isSupport = false;
-    TestSetCompilationEnableFloat16(enableFloat16, isSupport);
+    TestSetCompilationEnableFloat16(enableFloat16);
 }
 
 /**
@@ -374,6 +363,103 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilat
 }
 
 /**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0500
+ * @tc.desc: nnmodel中，存在不支持算子，编译失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0500, Function | MediumTest | Level1)
+{
+    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+
+    AddTopKModel addTopKModel;
+    OHNNGraphArgsMulti graphArgsMulti = addTopKModel.graphArgs;
+    ASSERT_EQ(OH_NN_SUCCESS, BuildMultiOpGraph(model, graphArgsMulti));
+
+    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
+    ASSERT_NE(nullptr, compilation);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0600
+ * @tc.desc: 传入定长模型nnmode，返回成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0600, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compilation* compilation = nullptr;
+    SetCompilationBackendName(&compilation);
+    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0700
+ * @tc.desc: 传入变长模型nnmode，返回成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0700, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compilation* compilation = nullptr;
+    TestConstructCompilationWithDynamicNNModel(&compilation);
+    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0800
+ * @tc.desc: offlinemodel，传入filepath为合法离线模型，编译成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0800, Function | MediumTest | Level1)
+{
+    std::string filePath ="hefa";
+    std::ifstream ifs(filePath.c_str(), std::ios::in | std::ios::binary);
+    char* ptr = nullptr;
+    int cacheSize = ifs.tellg();
+    ifs.read(ptr, cacheSize);
+    ASSERT_NE(nullptr, ptr);
+    ifs.close();
+    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(ptr), cacheSize);
+
+    char* backendName = nullptr;
+    TestGetBackendName(&backendName);
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
+    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0900
+ * @tc.desc: offlinemodel，离线模型存在不支持算子，编译错误
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_0800, Function | MediumTest | Level1)
+{
+
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_1000
+ * @tc.desc: modelBuffer，传入modelData内含不支持算子，返回错误
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_1000, Function | MediumTest | Level1)
+{
+
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_1100
+ * @tc.desc: offlinemodel，传入modelData为合法离线模型buffer，modelSize正确，编译成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Build_Compilation_1100, Function | MediumTest | Level1)
+{
+
+}
+
+/**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Destroy_Compilation_0100
  * @tc.desc: 释放编译实例，返回成功
  * @tc.type: FUNC
@@ -394,8 +480,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Compil
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Compilation_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = nullptr;
-    OH_NNCore_Compilation** doublePointCompilation = &compilation;
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&doublePointCompilation));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
 }
 } // namespace OHOS::NeuralNetworkCore

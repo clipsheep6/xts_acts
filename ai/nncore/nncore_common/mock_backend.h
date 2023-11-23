@@ -16,26 +16,30 @@
 #define MOCK_BACKEND_H
 
 #include "backend.h"
+#include "mock_device.h"
 namespace OHOS::NeuralNetworkCore {
-class MockBackend : public Backend {
+class MockBackend : public NNBackend {
 public:
     MockBackend(std::string backendName);
     virtual ~Backend() = default;
 
-    OH_NNCore_ReturnCode GetBackendName(std::string& backendName) override;
-    OH_NNCore_ReturnCode GetBackendStatus(OH_NNCore_BackendStatus& status) override;
-
-    Compiler* CreateCompiler() override;
-    OH_NNCore_ReturnCode DestroyCompiler(Compiler* compiler) override;
-
-    Compiled* CreateCompiled(const std::string& filePath) override;
-    Compiled* CreateCompiled(const void* buffer, size_t modelSize) override;
-    OH_NNCore_ReturnCode DestroyCompiled(Compiled* compiled) override;
-
-    OH_NNCore_ReturnCode DestroyExecutor(Executor* executor) override;
-
-    TensorDesc* CreateTensorDesc() override;
-    OH_NNCore_ReturnCode DestroyTensorDesc(TensorDesc* tensorDesc) override;
+    OH_NNCore_ReturnCode GetBackendName(std::string& backendName)
+    {
+        if (m_backendName.empty()) {
+            LOGE("Get backend name fail, backend name is empty");
+            return OH_NNCORE_FAILED;
+        }
+        backendName = m_backendName;
+        return OH_NNCORE_SUCCESS;
+    }
+public:
+    void SetDeviceEnableFp16(bool isSupported)
+    {
+        if (m_device != nullptr) {
+            m_device->SetFP16Supported(isSupported);
+        }
+    }
+    std::shared_ptr<MockDevice> m_device {nullptr};
 private:
     std::string m_backendName;
 };
