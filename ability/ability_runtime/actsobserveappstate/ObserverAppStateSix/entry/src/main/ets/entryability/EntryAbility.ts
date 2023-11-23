@@ -38,16 +38,16 @@ let appForegroundStateObserver1 = {
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent2', commonEventData, (err) => {
         console.info(TAG + '01 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
-      })
+      });
     } else if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATEFOUR) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent4', commonEventData, (err) => {
         console.info(TAG + '01 ' + 'onAppStateChanged publish4 error' + JSON.stringify(err));
-      })
+      });
     }
   }
-}
+};
 let appForegroundStateObserver2 = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
@@ -56,7 +56,7 @@ let appForegroundStateObserver2 = {
       commonEventData.parameters.bundlename = appStateData.bundleName;
       commonEventManager.publish('stateEvent2', commonEventData, (err) => {
         console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
-      })
+      });
     } else if (appStateData.bundleName === 'com.example.observerappstaterely' && appStateData.state === STATEFOUR) {
       commonEventData.parameters.applicationState = appStateData.state;
       commonEventData.parameters.bundlename = appStateData.bundleName;
@@ -65,7 +65,7 @@ let appForegroundStateObserver2 = {
       })
     }
   }
-}
+};
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {

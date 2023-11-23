@@ -31,7 +31,7 @@ let commonEventData = {
     bundlename: bundlename,
     flag: flag
   }
-}
+};
 let appForegroundStateObserver1 = {
   onAppStateChanged(appStateData) {
     flag = ONE;
@@ -39,7 +39,7 @@ let appForegroundStateObserver1 = {
       console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
     })
   }
-}
+};
 let appForegroundStateObserver2 = {
   onAppStateChanged(appStateData) {
     flag = TWO;
@@ -47,7 +47,7 @@ let appForegroundStateObserver2 = {
       console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
     })
   }
-}
+};
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {

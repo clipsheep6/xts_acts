@@ -19,8 +19,8 @@ import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
 
-let ObserverNull = null;
-let ObserverUndefined = undefined;
+let observerNull = null;
+let observerUndefined = undefined;
 let TAG = 'Observe Error';
 let applicationState = -1;
 let bundlename = '';
@@ -42,7 +42,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate1');
     appManager.on('appForegroundState', appForegroundStateObserver);
     try {
-      appManager.off('appForegroundState', ObserverNull);
+      appManager.off('appForegroundState', observerNull);
     } catch (error) {
       console.error(TAG, 'on error' + JSON.stringify(error));
       commonEventData.parameters.applicationState = error.code;
@@ -51,7 +51,7 @@ export default class EntryAbility extends UIAbility {
       })
     }
     try {
-      appManager.off('appForegroundState', ObserverUndefined);
+      appManager.off('appForegroundState', observerUndefined);
     } catch (error) {
       console.error(TAG, 'on error' + JSON.stringify(error));
       commonEventData.parameters.applicationState = error.code;
