@@ -1,0 +1,61 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "description": "This is a service widget.",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "widget_message",
+      "description": "This is a service widget.",
+      "src": "./ets/widget_message/pages/Widget_messageCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "widget_call",
+      "description": "This is a service widget.",
+      "src": "./ets/widget_call/pages/Widget_callCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    }
+  ]
+}
