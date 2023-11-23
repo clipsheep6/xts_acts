@@ -39,6 +39,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc getPreferencesSync interface test
      */
     it('SUB_DDM_Preferences_GetPreferencesSync_0100', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_GetPreferencesSync_0100 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: null,
@@ -60,6 +61,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc getPreferencesSync interface test
      */
     it('SUB_DDM_Preferences_GetPreferencesSync_0200', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_GetPreferencesSync_0200 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: undefined,
@@ -81,6 +83,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc getPreferencesSync interface test
      */
     it('SUB_DDM_Preferences_GetPreferencesSync_0300', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_GetPreferencesSync_0300 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: '123456',
@@ -102,6 +105,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc getPreferencesSync interface test
      */
     it('SUB_DDM_Preferences_GetPreferencesSync_0400', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_GetPreferencesSync_0400 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: '123123',
@@ -123,6 +127,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc removePreferencesFromCacheSync interface test
      */
     it('SUB_DDM_Preferences_removePreferencesFromCacheSync_0100', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_removePreferencesFromCacheSync_0100 context ${globalThis.abilityContext}.`);
       const Options1 = {
         name: "test_preferences_callback",
         dataGroupId: '123456',
@@ -149,6 +154,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc removePreferencesFromCacheSync interface test
      */
     it('SUB_DDM_Preferences_removePreferencesFromCacheSync_0200', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_removePreferencesFromCacheSync_0200 context ${globalThis.abilityContext}.`);
       const Options1 = {
         name: "test_preferences_callback",
         dataGroupId: '123456',
@@ -175,6 +181,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc removePreferencesFromCacheSync interface test
      */
     it('SUB_DDM_Preferences_removePreferencesFromCacheSync_0300', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_removePreferencesFromCacheSync_0300 context ${globalThis.abilityContext}.`);
       const Options1 = {
         name: "test_preferences_callback",
         dataGroupId: '123456',
@@ -201,6 +208,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc removePreferencesFromCacheSync interface test
      */
     it('SUB_DDM_Preferences_removePreferencesFromCacheSync_0400', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_removePreferencesFromCacheSync_0400 context ${globalThis.abilityContext}.`);
       console.log("SUB_DDM_Preferences_removePreferencesFromCacheSync_0100 begin.");
       const Options = {
         name: "test_preferences_callback",

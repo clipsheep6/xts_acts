@@ -30,6 +30,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences getPreferences dataGroupId null callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0100', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0100 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: null,
@@ -58,6 +59,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences getPreferences dataGroupId undefined callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0200', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0200 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: undefined,
@@ -85,6 +87,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences getPreferences dataGroupId callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0300', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0300 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: '112233',
@@ -113,6 +116,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences deletePreferences dataGroupId callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0400', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0400 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: '123456',
@@ -146,6 +150,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences getPreferences dataGroupId null callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0500', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0500 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: null,
@@ -174,6 +179,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences removePreferencesFromCache dataGroupId undefined callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0600', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0600 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: undefined,
@@ -201,6 +207,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences removePreferencesFromCache dataGroupId callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0700', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0700 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: '112233',
@@ -229,6 +236,7 @@ export default function preferencesDataGroupIdCallback() {
      * @tc.desc preferences removePreferencesFromCache dataGroupId callback test
      */
     it('SUB_DDM_Preferences_DataGroupId_Callback_0800', 0, async function (done) {
+      console.info(TAG, `SUB_DDM_Preferences_DataGroupId_Callback_0800 context ${globalThis.abilityContext}.`);
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: '123456',
