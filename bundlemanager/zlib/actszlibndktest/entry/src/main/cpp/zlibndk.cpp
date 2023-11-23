@@ -17,9 +17,9 @@
 #include "native_common.h"
 #include "zconf.h"
 #include "zlib.h"
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <cstdio>
 
 #define NO_ERR 0
 #define SUCCESS 1
@@ -371,7 +371,7 @@ static napi_value ZLibVersion(napi_env env, napi_callback_info info)
 {
     static const char *myVersion = ZLIB_VERSION;
     static const char *err;
-    err = zlibVersion(); // 1.2.11
+    err = zlibVersion();
     NAPI_ASSERT(env, err == myVersion, "zlibVersion error");
     napi_value result = nullptr;
     napi_create_int32(env, SUCCESS, &result);
@@ -710,6 +710,24 @@ static napi_value InflatePrime(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, ret == Z_OK, "inflateInit error");
     ret = inflatePrime(&strm, VALUE_FIVE, VALUE_THIRTYONE);
     NAPI_ASSERT(env, ret == Z_OK, "inflatePrime error");
+    if (zone->first != nullptr) {
+        zone->first = nullptr;
+    }
+    if (zone->total != VALUE_ZERO) {
+        zone->total = VALUE_ZERO;
+    }
+    if (zone->highwater != VALUE_ZERO) {
+        zone->highwater = VALUE_ZERO;
+    }
+    if (zone->limit != VALUE_ZERO) {
+        zone->limit = VALUE_ZERO;
+    }
+    if (zone->notlifo != VALUE_ZERO) {
+        zone->notlifo = VALUE_ZERO;
+    }
+    if (zone->rogue != VALUE_ZERO) {
+        zone->rogue = VALUE_ZERO;
+    }
     free(zone);
     napi_value result = nullptr;
     napi_create_int32(env, SUCCESS, &result);
@@ -783,6 +801,24 @@ static napi_value InflateInit2(napi_env env, napi_callback_info info)
     strm.next_in = nullptr;
     err = inflateInit2_(&strm, windowBits, ZLIB_VERSION - VALUE_ONE, static_cast<int>(sizeof(z_stream)));
     NAPI_ASSERT(env, err == Z_VERSION_ERROR, "inflateInit2_ error");
+    if (zone->first != nullptr) {
+        zone->first = nullptr;
+    }
+    if (zone->total != VALUE_ZERO) {
+        zone->total = VALUE_ZERO;
+    }
+    if (zone->highwater != VALUE_ZERO) {
+        zone->highwater = VALUE_ZERO;
+    }
+    if (zone->limit != VALUE_ZERO) {
+        zone->limit = VALUE_ZERO;
+    }
+    if (zone->notlifo != VALUE_ZERO) {
+        zone->notlifo = VALUE_ZERO;
+    }
+    if (zone->rogue != VALUE_ZERO) {
+        zone->rogue = VALUE_ZERO;
+    }
     free(zone);
     napi_value result = nullptr;
     napi_create_int32(env, SUCCESS, &result);
@@ -821,6 +857,24 @@ static napi_value InflateInit(napi_env env, napi_callback_info info)
     strm.next_in = nullptr;
     err = inflateInit_(&strm, ZLIB_VERSION - VALUE_ONE, static_cast<int>(sizeof(z_stream)));
     NAPI_ASSERT(env, err == Z_VERSION_ERROR, "inflateInit_ error");
+    if (zone->first != nullptr) {
+        zone->first = nullptr;
+    }
+    if (zone->total != VALUE_ZERO) {
+        zone->total = VALUE_ZERO;
+    }
+    if (zone->highwater != VALUE_ZERO) {
+        zone->highwater = VALUE_ZERO;
+    }
+    if (zone->limit != VALUE_ZERO) {
+        zone->limit = VALUE_ZERO;
+    }
+    if (zone->notlifo != VALUE_ZERO) {
+        zone->notlifo = VALUE_ZERO;
+    }
+    if (zone->rogue != VALUE_ZERO) {
+        zone->rogue = VALUE_ZERO;
+    }
     free(zone);
     napi_value result = nullptr;
     napi_create_int32(env, SUCCESS, &result);
@@ -860,6 +914,24 @@ static napi_value InflateGetHeader(napi_env env, napi_callback_info info)
     head.comm_max = len;
     err = inflateGetHeader(&strm, &head);
     NAPI_ASSERT(env, err == Z_STREAM_ERROR, "inflateGetHeader error");
+    if (zone->first != nullptr) {
+        zone->first = nullptr;
+    }
+    if (zone->total != VALUE_ZERO) {
+        zone->total = VALUE_ZERO;
+    }
+    if (zone->highwater != VALUE_ZERO) {
+        zone->highwater = VALUE_ZERO;
+    }
+    if (zone->limit != VALUE_ZERO) {
+        zone->limit = VALUE_ZERO;
+    }
+    if (zone->notlifo != VALUE_ZERO) {
+        zone->notlifo = VALUE_ZERO;
+    }
+    if (zone->rogue != VALUE_ZERO) {
+        zone->rogue = VALUE_ZERO;
+    }
     free(out);
     free(zone);
     napi_value result = nullptr;
@@ -1144,7 +1216,7 @@ static napi_value GzTell(napi_env env, napi_callback_info info)
     file = gzopen(TESTFILE, "wb");
     NAPI_ASSERT(env, file != nullptr, "gzopen error");
     char ret = VALUE_ZERO;
-    NAPI_ASSERT(env, gztell(file) == ret, "gzseek error"); /* define gztell gztell in zlib.h */
+    NAPI_ASSERT(env, gztell(file) == ret, "gzseek error");
     gzclose(file);
     napi_create_int32(env, SUCCESS, &result);
     return result;
