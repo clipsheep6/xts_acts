@@ -90,10 +90,10 @@ OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const i
 OH_NNCore_ReturnCode BuildSingleOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgs &graphArgs)
 {
     OH_NNCore_ReturnCode ret;
+    char* backendName = nullptr;
+    TestGetBackendName(&backendName);
     for (int i = 0; i < graphArgs.operands.size(); i++) {
         const OHNNOperandTest &operandTem = graphArgs.operands[i];
-        char* backendName = nullptr;
-        OH_NNCore_GetBackendName(i, &backendName);
         OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
         ret = CreateTensorDesc(&operand, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
                                operandTem.format, operandTem.type);
@@ -136,6 +136,58 @@ OH_NNCore_ReturnCode BuildSingleOpGraph(OH_NNBackend_Model *model, const OHNNGra
             LOGE("[NNRtTest] OH_NNBackend_BuildModel failed! ret=%d\n", ret);
             return ret;
         }
+    }
+    return OH_NNCore_SUCCESS;
+}
+OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgsMulti &graphArgs)
+{
+    OH_NNCore_ReturnCode ret;
+    int opCnt = 0;
+    for (int j = 0; j < graphArgs.operationTypes.size(); j++) {
+        for (int i = 0; i < graphArgs.operands.size(); i++) {
+            const OHNNOperandTest &operandTem = graphArgs.operands[j][i];
+            char* backendName = nullptr;
+            OH_NNCore_GetBackendName(i, &backendName);
+            OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+            ret = CreateTensorDesc(&operand, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                                   operandTem.format, operandTem.type);
+            ret = OH_NNBackend_AddTensorToModel(model, operand);
+            if (ret != OH_NNCore_SUCCESS) {
+                LOGE("[NNRtTest] OH_NNBackend_AddTensorToModel failed! ret=%d\n", ret);
+                return ret;
+            }
+
+            if (std::find(graphArgs.paramIndices[j].begin(), graphArgs.paramIndices[j].end(), opCnt) !=
+                graphArgs.paramIndices[j].end()) {
+                ret = OH_NNBackend_SetModelTensorData(model, opCnt, operandTem.data, operandTem.length);
+                if (ret != OH_NNCore_SUCCESS) {
+                    LOGE("[NNRtTest] OH_NNBackend_SetModelTensorData failed! ret=%d\n", ret);
+                    return ret;
+                }
+                opCnt++;
+            }
+        }
+        auto paramIndices = TransformUInt32Array(graphArgs.paramIndices[j]);
+        auto inputIndices = TransformUInt32Array(graphArgs.inputIndices[j]);
+        auto outputIndices = TransformUInt32Array(graphArgs.outputIndices[j]);
+        ret = OH_NNBackend_AddOperationToModel(model, graphArgs.operationType[j], &paramIndices, &inputIndices,
+                                               &outputIndices);
+        if (ret != OH_NNCore_SUCCESS) {
+            LOGE("[NNRtTest] OH_NNBackend_AddOperationToModel failed! ret=%d\n", ret);
+            return ret;
+        }
+    }
+    auto graphInputs = TransformUInt32Array(graphArgs.graphInput);
+    auto graphOutputs = TransformUInt32Array(graphArgs.graphOutput);
+    ret = OH_NNBackend_SpecifyModelInputsAndOutputs(model, &graphInputs, &graphOutputs);
+    if (ret != OH_NNCore_SUCCESS) {
+        LOGE("[NNRtTest] OH_NNBackend_SpecifyModelInputsAndOutputs failed! ret=%d\n", ret);
+        return ret;
+    }
+    ret = OH_NNBackend_BuildModel(model);
+    if (ret != OH_NNCore_SUCCESS) {
+        LOGE("[NNRtTest] OH_NNBackend_BuildModel failed! ret=%d\n", ret);
+        return ret;
     }
     return OH_NNCore_SUCCESS;
 }
@@ -298,7 +350,7 @@ void TestSetCompilationPerformanceMode(OH_NNBackend_PerformanceMode performanceM
 
 //单独设置enableFp16,共注册2个设备，第一个设备支持
 void TestSetCompilationEnableFloat16(bool enableFloat16)
-{   
+{
     OH_NNCore_Compilation* compilation = nullptr;
     SetCompilationBackendName(&compilation);
 

@@ -51,16 +51,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemo
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, 0);
     ASSERT_EQ(nullptr, memory);
     Free(model, compilation, compiled, executor);
@@ -73,16 +65,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemo
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
     ASSERT_NE(nullptr, memory);
     OH_NNBackend_ReleaseMemory(nullptr, &memory);
@@ -97,16 +81,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMem
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = nullptr;
     ASSERT_NO_THROW(OH_NNBackend_ReleaseMemory(executor, &memory));
 }
@@ -130,16 +106,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
     ASSERT_NE(nullptr, memory);
     void* data = nullptr;
@@ -165,16 +133,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_010
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_0100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compilationParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
     ASSERT_NE(nullptr, memory);
     int32_t fd = 0;
@@ -209,16 +169,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100, Func
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100, Function | MediumTest | Level0)
 {
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compileParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
     ASSERT_NE(nullptr, memory);
     ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetTensorData(nullptr, memory));
@@ -236,6 +188,9 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200, Func
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
     OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
     ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format, operandTem.type));
     OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(tensorDesc);
     ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetTensorData(tensor, nullptr));
 }
@@ -252,17 +207,12 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300, Func
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
     OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
     ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format, operandTem.type));
     OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(tensorDesc);
-    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNCore_Compilation *compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
-    ASSERT_NE(nullptr, compilation);
-    ASSERT_EQ(OH_NNCore_SUCCESS, CompilationGraphMock(compilation, compileParam));
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
-    ASSERT_NE(nullptr, compiled);
-    OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
-    ASSERT_NE(nullptr, executor);
+    OH_NNCore_Executor* executor;
+    TestExecutor(&executor);
     OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
     ASSERT_NE(nullptr, memory);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetTensorData(tensor, memory));
@@ -290,6 +240,9 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200, Func
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
     OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
     ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format, operandTem.type));
     OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(tensorDesc);
     ASSERT_EQ(nullptr, OH_NNBackend_GetTensorData(tensor));
 }

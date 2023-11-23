@@ -50,7 +50,6 @@ class HdiNNCoreCompiled : protected testing::Test {
             remove(filename)
         }
     }
-   
 protected:
     OHNNCompileParam m_compileParam;
     AddModel addModel;
@@ -64,8 +63,10 @@ protected:
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Save_Compiled_To_File_0100, Function | MediumTest | Level1)
 {
-    const OH_NNCore_Compiled* compiled = nullptr;
-    const char* filePath = "hefa.txt";
+    OH_NNCore_Compilation *compilation = nullptr;
+    TestConstructCompilationWithNNModel(&compilation);
+    const OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(&compilation);
+    const char* filePath = "hefa";
     ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
 }
 
@@ -104,7 +105,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Save_Compiled_To_
 {
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
-    const char* filePath = "hefa.txt";
+    const char* filePath = "hefa";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
 }
 
@@ -130,25 +131,12 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_From_File_0200, Function | MediumTest | Level1)
 {
-    const char* filePath = "hefa.txt";
+    const char* filePath = "hefa";
     const char* backendName = "nnrt_backend";
     OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filepath));
 
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_RestoreCompiledFromFile(filePath, backendName, &compiled));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_From_File_0300
- * @tc.desc: filePath存在，compileFile文件非法（其他类型不支持格式文件），返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_From_File_0300, Function | MediumTest | Level1)
-{
-    const char* filePath = "hefa.abc";
-    char* backendName = nullptr;
-    TestGetBackendName(&backendName);
-
-    OH_NNCore_Compiled* compiled = nullptr;
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_RestoreCompiledFromFile(filePath, backendName, &compiled));
 }
 
@@ -161,7 +149,21 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
 {
     //？？不兼容
     const char* filePath = "hefa.txt";
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filepath));
+
+    std::ifstream ifs(filePath, std::ios::in | std::ios::binary);
+    char* ptr{nullptr};
+    int fileSize = ifs.tellg();
+    int invalidfileSize = fileSize * 0.9;
+    ifs.read(ptr, fileSize);
+    ifs.close();
+    std::ofstream ofs(filePath, std::ios::out | std::ios::binary);
+    ofs.write(ptr, invalidfileSize);
+    ofs.close();
     char* backendName = nullptr;
+
     TestGetBackendName(&backendName);
 
     OH_NNCore_Compiled* compiled = nullptr;
@@ -175,11 +177,12 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_From_File_0500, Function | MediumTest | Level1)
 {
-    const char* filePath = "hefa.txt";
+    const char* filePath = "hefa";
     char* backendName = nullptr;
-    TestGetBackendName(&backendName);
-
     OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filepath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(filePath, backendName, &compiled));
     ASSERT_NE(nullptr, compiled);
 }
@@ -195,7 +198,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Save_Compiled_To_
     TestBuildCompiled(&compiled);
     const void* buffer = nullptr;
     size_t length = 0;
-    size_t modelSize = 0;
+    size_t modelSize = 1;
     ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SaveCompiledToBuffer(compiled, buffer, length, &modelSize));        
 }
 
@@ -210,9 +213,8 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Save_Compiled_To_
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
     const void* buffer = nullptr;
-    size_t length = ZERO;
-    size_t* modelSize = nullptr;
-    ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_SaveCompiledToBuffer(compiled, buffer, length, modelSize));          
+    size_t modelSize = 10;
+    ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_SaveCompiledToBuffer(compiled, buffer, graphArgs.operands[0].length, &modelSize));          
 }
 
 /**
@@ -394,13 +396,13 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_GetCompiled_Outpu
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0100, Function | MediumTest | Level1)
 {
-    // OH_NNCore_Compiled* compiled = nullptr;
-    // TestBuildCompiled(&compiled);
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
 
-    // OH_NNCore_CompilationOptions* options = nullptr;
-    // TestSetCompilationOptions(&options);
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
 
-    // ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 1));
 }
 
 /**
@@ -410,13 +412,17 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0200, Function | MediumTest | Level1)
 {
-    // OH_NNCore_Compiled* compiled = nullptr;
-    // TestBuildCompiled(&compiled);
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
 
-    // OH_NNCore_CompilationOptions* options = nullptr;
-    // TestSetCompilationOptions(&options);
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
 
-    // ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "./";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 1));
+    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
 }
 
 /**
@@ -426,13 +432,103 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0300, Function | MediumTest | Level1)
 {
-    // OH_NNCore_Compiled* compiled = nullptr;
-    // TestBuildCompiled(&compiled);
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
 
-    // OH_NNCore_CompilationOptions* options = nullptr;
-    // TestSetCompilationOptions(&options);
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
 
-    // ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "hefa";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0400
+ * @tc.desc: 有cache，版本号大于现有cache，加载现有cache，返回成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0400, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "hefa";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 11));
+    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0500
+ * @tc.desc: 有cache，设置cache版本=1，版本号小于现有cache，加载失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0500, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "hefa";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 1));
+    char *backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
+    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_RestoreCompiledFromFile(compiled, backendName, filePath));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0600
+ * @tc.desc: 有cache，版本号相等，加载成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0600, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "hefa";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+    char *backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(compiled, backendName, filePath));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0700
+ * @tc.desc: 有cache，版本号大于现有cache，加载失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Options_0700, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "./";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 11));
+    char *backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
+    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_RestoreCompiledFromFile(compiled, backendName, filePath));
 }
 
 /**
