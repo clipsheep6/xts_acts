@@ -72,7 +72,8 @@ struct NavigationStack03 {
                     .fontWeight(1000)
                     .textAlign(TextAlign.Center)
                   NavDestination()
-                    .onBlur(()=>{
+                    .focusable(true)
+                    .onFocus(()=>{
                       this.flagBlur = 'BlurDone'
                     })
                     .backgroundColor(Color.Orange)
