@@ -16,35 +16,40 @@
 import Ability from '@ohos.app.ability.UIAbility'
 import dataShare from '@ohos.data.dataShare'
 import rpc from "@ohos.rpc";
+let abilityWant;
+let abilityContext;
+let helper;
+let testhelper;
+let connectDataShareExtAbility;
 
 var seConnect = {
     onConnect:function (elementName, proxy) {
         console.log("[ttt] [DataShareTest] <<Consumer>> seConnect onConnect called.");
         console.log("[ttt] [DataShareTest] <<Consumer>> seConnect onConnect elementName = " + elementName);
         console.log("[ttt] [DataShareTest] <<Consumer>> seConnect onConnect proxy = " + proxy);
-         let data = rpc.MessageParcel.create();
-         let reply = rpc.MessageParcel.create();
-         let option = new rpc.MessageOption();
-         data.writeInterfaceToken("connect-test");
-         data.writeInt(111);
+        let data = rpc.MessageParcel.create();
+        let reply = rpc.MessageParcel.create();
+        let option = new rpc.MessageOption();
+        data.writeInterfaceToken("connect-test");
+        data.writeInt(111);
 
-         console.log("[ttt] [DataShareTest] <<Consumer>> seConnect onConnect sendRequest.");
-         proxy.sendRequest(1, data, reply, option)
-             .then(function (result) {
-                 if (result.errCode === 0) {
-                     let msg = result.reply.readInt();
-                     console.log("[ttt] [DataShareTest] <<Consumer>> seConnect reply msg: " + msg);
-                 } else {
-                     console.log("[ttt] [DataShareTest] <<Consumer>> seConnect sendRequest failed, errCode: " + result.errCode);
-                 }
-                 // callback没有返回值，默认返回undefined
-             }).catch(function (e) {
-             console.log("[ttt] [DataShareTest] <<Consumer>> seConnect sendRequest got exception: " + e);
-         }).finally (async () => {
-             console.log("[ttt] [DataShareTest] <<Consumer>> seConnect sendRequest ends, reclaim parcel");
-             data.reclaim();
-             reply.reclaim();
-         })
+        console.log("[ttt] [DataShareTest] <<Consumer>> seConnect onConnect sendRequest.");
+        proxy.sendRequest(1, data, reply, option)
+            .then(function (result) {
+                if (result.errCode === 0) {
+                    let msg = result.reply.readInt();
+                    console.log("[ttt] [DataShareTest] <<Consumer>> seConnect reply msg: " + msg);
+                } else {
+                    console.log("[ttt] [DataShareTest] <<Consumer>> seConnect sendRequest failed, errCode: " + result.errCode);
+                }
+                // callback没有返回值，默认返回undefined
+            }).catch(function (e) {
+            console.log("[ttt] [DataShareTest] <<Consumer>> seConnect sendRequest got exception: " + e);
+        }).finally (async () => {
+            console.log("[ttt] [DataShareTest] <<Consumer>> seConnect sendRequest ends, reclaim parcel");
+            data.reclaim();
+            reply.reclaim();
+        })
     },
     onDisconnect:function (elementName) {
         console.log("[ttt] [DataShareTest] <<Consumer>> seConnect onDisconnect");
@@ -95,7 +100,7 @@ export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         // Ability is creating, initialize resources for this ability
         console.log("[ttt] [DataShareTest] <<Consumer>> MainAbility onCreate")
-        globalThis.abilityWant = want;
+        abilityWant = want;
     }
 
     onDestroy() {
@@ -106,15 +111,15 @@ export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
         console.log("[ttt] [DataShareTest] <<Consumer>> MainAbility onWindowStageCreate")
-        globalThis.abilityContext = this.context;
+        abilityContext = this.context;
         let context = this.context;
         dseConnectionId = context.connectServiceExtensionAbility(dseWant, dseConnect);
-        globalThis.connectDataShareExtAbility = (async () => {
+        connectDataShareExtAbility = (async () => {
             console.log("[ttt] [DataShareTest] <<Consumer>> connectDataShareExtAbility begin");
-            await dataShare.createDataShareHelper(globalThis.abilityContext, dseUri, (err,data)=>{
-                globalThis.helper = data;
-                globalThis.testhelper = data;
-                console.info("[ttt] [DataShareTest] <<Consumer>> ----- 1 -----, globalThis.helper = " + globalThis.helper);
+            await dataShare.createDataShareHelper(abilityContext, dseUri, (err,data)=>{
+                helper = data;
+                testhelper = data;
+                console.info("[ttt] [DataShareTest] <<Consumer>> ----- 1 -----, helper = " + helper);
                 console.info("[ttt] [DataShareTest] <<Consumer>> ----- 2 -----, data = " + data);
                 console.info("[ttt] [DataShareTest] <<Consumer>> ----- 3 -----, err = " + err);
                 console.info("[ttt] [DataShareTest] <<Consumer>> ----- 4 -----, JSON.stringify(err) = " + JSON.stringify(err));

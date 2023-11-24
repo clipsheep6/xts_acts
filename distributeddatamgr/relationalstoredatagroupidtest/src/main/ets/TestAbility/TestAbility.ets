@@ -19,7 +19,7 @@ import hilog from "@ohos.hilog";
 import { Hypium } from "@ohos/hypium";
 import testsuite from "../test/List.test";
 import window from "@ohos.window";
-let context:Context;
+let context;
 
 export default class TestAbility extends UIAbility {
   onCreate(want, launchParam) {

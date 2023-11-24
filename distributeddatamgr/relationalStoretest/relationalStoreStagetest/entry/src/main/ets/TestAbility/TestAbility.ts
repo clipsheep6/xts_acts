@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import Ability from '@ohos.app.ability.UIAbility'
-let context:Context
+let context;
 
 export default class TestAbility extends Ability {
     onCreate(want, launchParam) {
