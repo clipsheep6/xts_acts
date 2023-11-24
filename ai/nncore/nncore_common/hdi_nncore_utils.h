@@ -24,24 +24,23 @@
 
 
 namespace OHOS::NeuralNetworkCore {
-
 struct AddModel {
-    // ADD MODEL
-    float inputValue0[4] = {0, 1, 2, 3};
-    float inputValue1[4] = {0, 1, 2, 3};
-    int8_t activationValue = OH_NN_FUSED_NONE;
-    float outputValue[4] = {0};
-    float expectValue[4] = {0, 2, 4, 6};
+// ADD MODEL
+float inputValue0[4] = {0, 1, 2, 3};
+float inputValue1[4] = {0, 1, 2, 3};
+int8_t activationValue = OH_NN_FUSED_NONE;
+float outputValue[4] = {0};
+float expectValue[4] = {0, 2, 4, 6};
 
-    OHNNOperandTest input0 = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, TENSOR_SHAPE, inputValue0, ADD_DATA_LENGTH, OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest input1 = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, TENSOR_SHAPE, inputValue1, ADD_DATA_LENGTH, OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest activation = {OH_NNCORE_INT8, OH_NN_ADD_ACTIVATIONTYPE, {}, &activationValue, sizeof(int8_t), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest output = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, TENSOR_SHAPE, outputValue, ADD_DATA_LENGTH, OH_NNCORE_FORMAT_NONE};
-    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_ADD,
-                               .operands = {input0, input1, activation, output},
-                               .paramIndices = {2},
-                               .inputIndices = {0, 1},
-                               .outputIndices = {3}};
+OHNNOperandTest input0 = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, TENSOR_SHAPE, inputValue0, ADD_DATA_LENGTH, OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest input1 = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, TENSOR_SHAPE, inputValue1, ADD_DATA_LENGTH, OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest activation = {OH_NNCORE_INT8, OH_NN_ADD_ACTIVATIONTYPE, {}, &activationValue, sizeof(int8_t), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest output = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, TENSOR_SHAPE, outputValue, ADD_DATA_LENGTH, OH_NNCORE_FORMAT_NONE};
+OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_ADD,
+                            .operands = {input0, input1, activation, output},
+                            .paramIndices = {2},
+                            .inputIndices = {0, 1},
+                            .outputIndices = {3}};
 };
 
 struct AvgPoolDynamicModel {
@@ -152,10 +151,7 @@ OH_NNCore_ReturnCode BuildSingleOpGraph(OH_NNBackend_Model *model, const OHNNGra
 OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgsMulti &graphArgs)
 void Free(OH_NNBackend_Model *model = nullptr, OH_NNCore_Compilation *compilation = nullptr,OH_NNCore_Compiled *compiled = nullptr, OH_NNExecutor *executor = nullptr);
 
-OH_NNCore_ReturnCode CompilationGraphMock(OH_NNCore_Compilation *compilation, const OHNNcompilationParam &compilationParam);
-
 OH_NNCORE_UINT32Array GetUInt32Array(std::vector<uint32_t> indices);
-
 void RegisterBackend();
 void TestGetBackendNum(bool isNull = false);
 void TestGetBackendName(char** backendName, bool isNull = false);

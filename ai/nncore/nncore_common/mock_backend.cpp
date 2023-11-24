@@ -46,6 +46,6 @@ std::shared_ptr<Backend> RegisterBackendSecond()
 MockBackend::MockBackend(std::string backendName)
 {
     m_backendName = backendName;
-    m_device = MockDevice::GetInstance();
+    m_device = std::make_shared<MockDevice>();
 }
 }

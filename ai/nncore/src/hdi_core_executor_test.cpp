@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#include "../nncore_common/const.h"
 #include "../nncore_common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
@@ -31,22 +31,22 @@ void onServiceDied(void* point)
 class HdiNNCoreExecutor : public testing::Test {};
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Construct_Executor_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Construct_Executor_0100
  * @tc.desc: compiled为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Construct_Executor_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Construct_Executor_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Compiled* compiled = nullptr;
     ASSERT_EQ(nullptr, OH_NNCore_ConstructExecutor(compiled));
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Destroy_Executor_0100
  * @tc.desc: 重复释放executor，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Destroy_Executor_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Executor* executor = nullptr;
     TestExecutor(&executor);
@@ -56,11 +56,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Destroy_Executor_0200
  * @tc.desc: 正常释放，检查executor为空
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Destroy_Executor_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Executor* executor = nullptr;
     TestExecutor(&executor);
@@ -70,11 +70,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_OnRunDone_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Executor_OnRunDone_0100
  * @tc.desc: 在推理完成时设置executor，executor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_OnRunDone_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_OnRunDone_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_OnRunDone onRunDone = runDone;
     OH_NNCore_Executor* executor = nullptr;
@@ -82,11 +82,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_OnRu
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_OnRunDone_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Executor_OnRunDone_0200
  * @tc.desc: 在推理完成时设置executor，合法参数返回不支持
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_OnRunDone_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_OnRunDone_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_OnRunDone onRunDone= runDone;
     OH_NNCore_Executor* executor = nullptr;
@@ -95,11 +95,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_OnRu
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Service_Died_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Executor_Service_Died_0100
  * @tc.desc: executor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Service_Died_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_OnServiceDied onServiceDied = onServiceDied;
     OH_NNCore_Executor* executor = nullptr;
@@ -108,11 +108,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Service_Died_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Executor_Service_Died_0200
  * @tc.desc: 合法参数，返回不支持
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Service_Died_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_OnServiceDied onServiceDied = onServiceDied;
     OH_NNCore_Executor* executor = nullptr;
@@ -122,11 +122,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Destroy_Executor_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Options_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Executor_Options_0100
  * @tc.desc: 设置executor选项，executor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Options_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Options_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Executor* executor = nullptr;
     OH_NNCore_CompilationOptions* option;
@@ -136,11 +136,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Opti
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Options_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Executor_Options_0200
  * @tc.desc: 遍历设置executor options，返回不支持
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Options_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Options_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Executor* executor = nullptr;
     TestExecutor(&executor);
@@ -151,11 +151,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Opti
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0100
  * @tc.desc: executor sync推理，executor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Options_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -169,11 +169,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Set_Executor_Opti
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0200
  * @tc.desc: executor sync推理，inputSize为0，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -187,11 +187,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0300
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0300
  * @tc.desc: executor sync推理，outputSize为0，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0300, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -205,11 +205,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0400
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0400
  * @tc.desc: executor sync推理，inputTensor为空指针,返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0400, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0400, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -223,11 +223,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0500
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0500
  * @tc.desc: executor sync推理，outputTensor为空指针,返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0500, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0500, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -241,11 +241,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0600
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0600
  * @tc.desc: executor sync推理，定长模型，推理成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0400, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0600, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -259,11 +259,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0700
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0700
  * @tc.desc: executor sync推理，变长模型，推理成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_0600, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0700, Function | MediumTest | Level1)
 {
 
     TestGetBackendNum();
@@ -296,11 +296,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunSync_
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0100
  * @tc.desc: executor async推理，executor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -316,11 +316,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0200
  * @tc.desc: executor async推理，inputSize为0，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -337,11 +337,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0300
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0300
  * @tc.desc: executor async推理，outputSize为0，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0300, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -358,11 +358,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0400
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0400
  * @tc.desc: executor async推理，inputTensor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0400, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0400, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -378,11 +378,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0500
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0500
  * @tc.desc: executor async推理，outputTensor为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0500, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0500, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};
@@ -398,11 +398,11 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0300
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0300
  * @tc.desc: executor async推理，定长模型，返回不支持
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Device_Executor_RunASync_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0300, Function | MediumTest | Level1)
 {
     OH_NNCore_Tensor inputTensor[] = {};
     OH_NNCore_Tensor outputTensor[] = {};

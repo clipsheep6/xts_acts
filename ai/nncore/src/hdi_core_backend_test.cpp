@@ -12,42 +12,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#include "../nncore_common/const.h"
 #include "../nncore_common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
-static const size_t MODEL_SIZE = 100;
-static const int ZERO = 0;
-
 namespace OHOS::NeuralNetworkCore {
 class HdiNNCoreCompilation : public testing::Test {};
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Number_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Get_Backend_Number_0100
  * @tc.desc: 获取设备数量，传入参数为空指针，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Number_0100, Function | MediumTest | Level1)
+HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_North_Get_Backend_Number_0100, Function | MediumTest | Level1)
 {
     TestGetBackendNum(true);
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Number_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Get_Backend_Number_0200
  * @tc.desc: 获取设备数量，传入参数非空，检查数量
  * @tc.type: FUNC
  */
-HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Number_0200, Function | MediumTest | Level1)
+HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_North_Get_Backend_Number_0200, Function | MediumTest | Level1)
 {
     TestGetBackendNum(false);
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Name_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0100
  * @tc.desc: 获取设备名字，未注册backend，获取backend名字，检查size=0，backendName为空
  * @tc.type: FUNC
  */
-HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Name_0100, Function | MediumTest | Level1)
+HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0100, Function | MediumTest | Level1)
 {
     //未注册，数量为0
     size_t backendNum = -1;
@@ -61,11 +58,11 @@ HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Na
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Name_0200
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0200
  * @tc.desc: 获取设备名字，已注册backend，获取backend名字，检查size>0，backend名字非空
  * @tc.type: FUNC
  */
-HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Name_0200, Function | MediumTest | Level1)
+HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0200, Function | MediumTest | Level1)
 {
     TestGetBackendNum();
 
@@ -74,11 +71,11 @@ HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Na
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Name_0300
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0300
  * @tc.desc: 获取设备名字，传入参数为空指针，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_South_Device_Get_Backend_Name_0300, Function | MediumTest | Level1)
+HWTEST_F(HDINNCORECOMPILATION, SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0300, Function | MediumTest | Level1)
 {
     char* backendName = nullptr;
     TestGetBackendName(&backendName, true);

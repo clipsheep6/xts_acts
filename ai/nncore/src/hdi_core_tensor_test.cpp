@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include<vector>
 
+#include "../nncore_common/const.h"
 #include "../nncore_common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
-static const int ZERO = 0;
-
 namespace OHOS::NeuralNetworkCore {
 class HdiNNCoreTensorDesc : public testing::Test {};
 
@@ -86,8 +86,9 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_020
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescDataType(tensorDesc, OH_NNCORE_INT32));
+    for (int dataType = 0; dataType < 13; dataType++) {
+        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<OH_NNCore_DataType>(dataType)));
+    }
 }
 
 /**
@@ -134,7 +135,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_020
  */
 HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0100, Function | MediumTest | Level1)
 {
-    int32_t shape[] = {1, 2, 3, 4, 5};
+    vector<int32_t> shape = {1, 2, 3, 4, 5};
     size_t size = sizeof(shape)/sizeof(int32_t);
 
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
@@ -164,7 +165,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_02
  */
 HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0300, Function | MediumTest | Level1)
 {
-    int32_t shape[] = {1, 2, 3, 4, 5};
+    vector<int32_t> shape = {1, 2, 3, 4, 5};
     size_t size = ZERO;
 
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
@@ -208,7 +209,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_02
 HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0300, Function | MediumTest | Level1)
 {
     int32_t *shape = nullptr;
-    int32_t shapeBegin[] = {1, 2, 3, 4, 5};
+    vector<int32_t> shapeBegin = {1, 2, 3, 4, 5};
     size_t sizeBegin = sizeof(shapeBegin)/sizeof(int32_t);
     size_t size = sizeBegin;
 
@@ -301,7 +302,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
 {
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     size_t elementNum = -1;
-    OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum);
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum));
 }
 
 /**
@@ -313,6 +314,8 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
 {
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
+    vector<int32_t> shape = {1, 2, 3, 4, 5};
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
     size_t elementNum = -1;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum));
     ASSERT_LT(ZERO, elementNum);
@@ -324,8 +327,11 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0300, Function | MediumTest | Level1)
-{
-
+{   
+    OH_NNCore_TensorDesc *tensorDesc = nullptr;
+    TestConstructTensorDesc(&tensorDesc);
+    size_t elementNum = -1;
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum));
 }
 
 /**
@@ -352,7 +358,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_02
         OH_NNCore_TensorDesc *tensorDescOne = nullptr;
         TestConstructTensorDesc(&tensorDesc);
         size_t byteSize = -1;
-        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescElementNum(tensorDesc, &byteSize));
+        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
         ASSERT_LT(ZERO, byteSize);
     }
 }
@@ -364,6 +370,11 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_02
  */
 HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0300, Function | MediumTest | Level1)
 {
-
+    OH_NNCore_TensorDesc *tensorDesc = nullptr;
+    TestConstructTensorDesc(&tensorDesc);
+    vector<int32_t> shape = {1, 2, 3, 4, 5};
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
+    size_t byteSize = -1;
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
 }
 } // namespace OHOS::NeuralNetworkCore

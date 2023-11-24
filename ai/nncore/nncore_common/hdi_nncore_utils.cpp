@@ -12,12 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "nncore_const.h"
 #include "mock_backend.h"
 #include "hdi_nncore_utils.h"
 
 namespace OHOS::NeuralNetworkCore {
-static const int ZERO = 0;
-static const int TWO = 2;
 //注册设备
 void RegisterBackend()
 {
@@ -139,6 +138,7 @@ OH_NNCore_ReturnCode BuildSingleOpGraph(OH_NNBackend_Model *model, const OHNNGra
     }
     return OH_NNCore_SUCCESS;
 }
+
 OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgsMulti &graphArgs)
 {
     OH_NNCore_ReturnCode ret;
@@ -192,47 +192,6 @@ OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGrap
     return OH_NNCore_SUCCESS;
 }
 
-OH_NNCore_ReturnCode CompilationGraphMock(OH_NNCore_Compilation *compilation, const OHNNcompilationParam &compilationParam)
-{
-    OH_NNCore_ReturnCode ret;
-    OH_NNCore_CompilationOptions* compilationOptions = OH_NNBackend_CreateCompilationOptions();
-    if (compilationOptions == nullptr) {
-        LOGE("OH_NNBackend_CreateCompilationOptions failed.");
-        return ret;
-    }
-    // set performance//sth wrong here
-    if (compilationParam.performanceMode != OH_NNBACKEND_PERFORMANCE_NONE) {
-        ret = OH_NNBackend_SetCompilationPerformanceMode(compilationOptions, compilationParam.performanceMode);
-        if (ret != OH_NNCore_SUCCESS) {
-            LOGE("[NNRtTest] OH_NNBackend_SetCompilationPerformanceMode failed! ret=%d\n", ret);
-            return ret;
-        }
-    }
-    // set priority//sth wrong here
-    if (compilationParam.priority != OH_NNBACKEND_PRIORITY_NONE) {
-        ret = OH_NNBackend_SetCompilationPriority(compilationOptions, compilationParam.priority);
-        if (ret != OH_NNCore_SUCCESS) {
-            LOGE("[NNRtTest] OH_NNBackend_SetCompilationPriority failed! ret=%d\n", ret);
-            return ret;
-        }
-    }
-    // enable fp16
-    if (compilationParam.enableFp16) {
-        ret = OH_NNBackend_SetCompilationEnableFloat16(compilationOptions, compilationParam.enableFp16);
-        if (ret != OH_NNCore_SUCCESS) {
-            LOGE("[NNRtTest] OH_NNBackend_SetCompilationEnableFloat16 failed! ret=%d\n", ret);
-            return ret;
-        }
-    }
-    //set compilationOptions
-    ret = OH_NNCore_SetCompilationOptions(compilation, compilationOptions);
-    if (ret != OH_NNCore_SUCCESS) {
-        LOGE("[NNRtTest] OH_NNCore_SetCompilationOptions failed! ret=%d\n", ret);
-        return ret;
-    }
-    return ret;
-}
-
 void Free(OH_NNBackend_Model *model, OH_NNCore_Compilation *compilation, OH_NNCore_Compiled* compiled, OH_NNExecutor *executor)
 {
     if (model != nullptr) {
@@ -252,7 +211,6 @@ void Free(OH_NNBackend_Model *model, OH_NNCore_Compilation *compilation, OH_NNCo
         ASSERT_EQ(nullptr, executor);
     }
 }
-
 //创建addmodel
 void TestConstructModel(OH_NNBackend_Model** model)
 {
@@ -350,7 +308,7 @@ void TestSetCompilationPerformanceMode(OH_NNBackend_PerformanceMode performanceM
 
 //单独设置enableFp16,共注册2个设备，第一个设备支持
 void TestSetCompilationEnableFloat16(bool enableFloat16)
-{
+{   
     OH_NNCore_Compilation* compilation = nullptr;
     SetCompilationBackendName(&compilation);
 
