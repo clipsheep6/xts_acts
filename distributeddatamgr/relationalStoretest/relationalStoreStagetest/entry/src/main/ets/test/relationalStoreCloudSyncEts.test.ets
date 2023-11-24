@@ -16,13 +16,14 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import relationalStore from '@ohos.data.relationalStore';
 import ability_featureAbility from '@ohos.ability.featureAbility';
+import {context} from '../TestAbility/TestAbility';
 
 const TAG = "[RELATIONAL_STORE_JSKITS_TEST]";
 const STORE_NAME = "cloud_sync_rdb.db";
 let rdbStore = undefined;
 
 
-export default function relationalStoreCloudSyncEtsTest(context) {
+export default function relationalStoreCloudSyncEtsTest() {
   describe('relationalStoreCloudSyncEtsTest', function () {
     beforeAll(async function (done) {
       console.info(TAG + 'beforeAll')

@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 import Ability from '@ohos.app.ability.UIAbility'
+let context:Context
 
 export default class TestAbility extends Ability {
     onCreate(want, launchParam) {
         console.log('TestAbility onCreate')
+        context = this.context
     }
 
     onDestroy() {
@@ -33,7 +35,7 @@ export default class TestAbility extends Ability {
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
         });
 
-        globalThis.abilityContext = this.context;
+        //globalThis.abilityContext = this.context;
     }
 
     onWindowStageDestroy() {
@@ -48,3 +50,4 @@ export default class TestAbility extends Ability {
         console.log('TestAbility onBackground')
     }
 };
+export{context};

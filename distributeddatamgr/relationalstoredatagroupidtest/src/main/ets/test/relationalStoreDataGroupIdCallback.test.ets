@@ -16,6 +16,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import relationalStore from '@ohos.data.relationalStore';
+import {context} from '../TestAbility/TestAbility';
 
 const TAG = "[ttt]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
@@ -25,7 +26,6 @@ const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
 + "salary REAL, "
 + "blobType BLOB)";
 
-let context = globalThis.abilityContext;
 
 //let rdbStore;
 
@@ -63,12 +63,12 @@ export default function relationalStoreDataGroupIdCallback() {
         dataGroupId: null,
       };
       try {
-        relationalStore.getRdbStore(globalThis.abilityContext, STORE_CONFIG, async function (err, rdbStore) {
+        relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
           console.info(TAG, `Get RdbStore successfully.`);
           expect().assertFail();
           done();
           await rdbStore.executeSql(CREATE_TABLE_TEST);
-          relationalStore.deleteRdbStore(globalThis.abilityContext, STORE_CONFIG, function (error) {
+          relationalStore.deleteRdbStore(context, STORE_CONFIG, function (error) {
             expect(error).assertFail();
             console.info(TAG, `Delete RdbStore successfully.`);
             done();
@@ -93,12 +93,12 @@ export default function relationalStoreDataGroupIdCallback() {
         dataGroupId: undefined,
       };
       try {
-        relationalStore.getRdbStore(globalThis.abilityContext, STORE_CONFIG, async function (err, rdbStore) {
+        relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
           console.info(TAG, `Get RdbStore successfully.`);
           expect().assertFail();
           done();
           await rdbStore.executeSql(CREATE_TABLE_TEST);
-          relationalStore.deleteRdbStore(globalThis.abilityContext, STORE_CONFIG, function (error) {
+          relationalStore.deleteRdbStore(context, STORE_CONFIG, function (error) {
             expect(error).assertFail();
             console.info(TAG, `Delete RdbStore successfully.`);
             done();
@@ -124,12 +124,12 @@ export default function relationalStoreDataGroupIdCallback() {
         dataGroupId: '112233',
       };
       try {
-        relationalStore.getRdbStore(globalThis.abilityContext, STORE_CONFIG, async function (err, rdbStore) {
+        relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
           console.info(TAG, `Get RdbStore successfully.`);
           expect().assertFail();
           done();
           await rdbStore.executeSql(CREATE_TABLE_TEST);
-          relationalStore.deleteRdbStore(globalThis.abilityContext, STORE_CONFIG, function (error) {
+          relationalStore.deleteRdbStore(context, STORE_CONFIG, function (error) {
             expect(error).assertFail();
             console.info(TAG, `Delete RdbStore successfully.`);
             done();
@@ -154,14 +154,14 @@ export default function relationalStoreDataGroupIdCallback() {
             dataGroupId: '123456'
           };
           try {
-            relationalStore.getRdbStore(globalThis.abilityContext, STORE_CONFIG, async function (err, rdbStore) {
+            relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
               if (err) {
                 console.error(TAG, `Get RdbStore failed, code is ${err.code},message is ${err.message}`);
                 return false;
               }
               console.info(TAG, `Get RdbStore successfully.` + `  rdbStore = ${rdbStore} , err = ${err}`);
               await rdbStore.executeSql(CREATE_TABLE_TEST);
-              relationalStore.deleteRdbStore(globalThis.abilityContext, STORE_CONFIG, function (err) {
+              relationalStore.deleteRdbStore(context, STORE_CONFIG, function (err) {
                 if (err) {
                   console.error(TAG, `Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
                   return false;
