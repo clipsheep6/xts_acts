@@ -155,47 +155,6 @@ OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGrap
     return OH_NNCore_SUCCESS;
 }
 
-OH_NNCore_ReturnCode CompilationGraphMock(OH_NNCore_Compilation *compilation, const OHNNcompilationParam &compilationParam)
-{
-    OH_NNCore_ReturnCode ret;
-    OH_NNCore_Options* Options = OH_NNBackend_CreateOptions();
-    if (Options == nullptr) {
-        LOGE("OH_NNBackend_CreateOptions failed.");
-        return ret;
-    }
-    // set performance//sth wrong here
-    if (compilationParam.performanceMode != OH_NNBACKEND_PERFORMANCE_NONE) {
-        ret = OH_NNCore_SetPerformanceMode(Options, compilationParam.performanceMode);
-        if (ret != OH_NNCore_SUCCESS) {
-            LOGE("[NNRtTest] OH_NNCore_SetPerformanceMode failed! ret=%d\n", ret);
-            return ret;
-        }
-    }
-    // set priority//sth wrong here
-    if (compilationParam.priority != OH_NNBACKEND_PRIORITY_NONE) {
-        ret = OH_NNCore_SetPriority(Options, compilationParam.priority);
-        if (ret != OH_NNCore_SUCCESS) {
-            LOGE("[NNRtTest] OH_NNCore_SetPriority failed! ret=%d\n", ret);
-            return ret;
-        }
-    }
-    // enable fp16
-    if (compilationParam.enableFp16) {
-        ret = OH_NNCore_SetEnableFloat16(Options, compilationParam.enableFp16);
-        if (ret != OH_NNCore_SUCCESS) {
-            LOGE("[NNRtTest] OH_NNCore_SetEnableFloat16 failed! ret=%d\n", ret);
-            return ret;
-        }
-    }
-    //set Options
-    ret = OH_NNCore_SetOptions(compilation, Options);
-    if (ret != OH_NNCore_SUCCESS) {
-        LOGE("[NNRtTest] OH_NNCore_SetOptions failed! ret=%d\n", ret);
-        return ret;
-    }
-    return ret;
-}
-
 void Free(OH_NNBackend_Model *model, OH_NNCore_Compilation *compilation, OH_NNCore_Compiled* compiled, OH_NNExecutor *executor)
 {
     if (model != nullptr) {

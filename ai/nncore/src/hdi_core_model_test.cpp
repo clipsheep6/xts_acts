@@ -39,8 +39,8 @@ void BuildModel(OH_NNBackend_Model *model, const OHNNGraphArgs &graphArgs)
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_CreateModel_0100
- * @tc.name   : 创建模型实例，指针校验
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 创建模型实例，指针校验
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0100, Function | MediumTest | Level0)
 {
@@ -50,8 +50,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0100, Function
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_CreateModel_0200
- * @tc.name   : 创建多个模型实例，指针校验
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 创建多个模型实例，指针校验
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0200, Function | MediumTest | Level2)
 {
@@ -74,8 +74,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0200, Function
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_Destroy_0100
- * @tc.name   : 释放模型，model为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 释放模型，model为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0100, Function | MediumTest | Level3)
 {
@@ -85,8 +85,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0100, Function | M
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_Destroy_0200
- * @tc.name   : 释放模型，model未构图
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 释放模型，model未构图
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0200, Function | MediumTest | Level3)
 {
@@ -100,8 +100,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0200, Function | M
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperand_0100
- * @tc.name   : 添加操作数值，model为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加操作数值，model为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0100, Function | MediumTest | Level3)
 {
@@ -115,8 +115,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0100, Function 
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperand_0200
- * @tc.name   : 添加操作数，operand为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加操作数，operand为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0200, Function | MediumTest | Level3)
 {
@@ -130,8 +130,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0200, Function 
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperand_0300
- * @tc.name   : 添加操作数，operand中dataType为100000
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加操作数，operand中dataType为100000
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0300, Function | MediumTest | Level3)
 {
@@ -148,8 +148,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0300, Function 
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperand_0400
- * @tc.name   : 添加操作数，operand中type为100000
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加操作数，operand中type为100000
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0400, Function | MediumTest | Level3)
 {
@@ -166,8 +166,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0400, Function 
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SetOperandValue_0100
- * @tc.name   : 设置操作数值，model为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置操作数值，model为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0100, Function | MediumTest | Level3)
 {
@@ -188,8 +188,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0100, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SetOperandValue_0200
- * @tc.name   : 设置操作数值，操作数不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置操作数值，操作数不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0200, Function | MediumTest | Level3)
 {
@@ -210,8 +210,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0200, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SetOperandValue_0300
- * @tc.name   : 设置操作数值，buffer为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置操作数值，buffer为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0300, Function | MediumTest | Level3)
 {
@@ -230,8 +230,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0300, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SetOperandValue_0400
- * @tc.name   : 设置操作数值，length为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置操作数值，length为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0400, Function | MediumTest | Level3)
 {
@@ -251,8 +251,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0400, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0100
- * @tc.name   : 添加算子，model为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，model为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0100, Function | MediumTest | Level3)
 {
@@ -275,8 +275,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0100, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0200
- * @tc.name   : 添加算子，paramIndices为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，paramIndices为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0200, Function | MediumTest | Level3)
 {
@@ -298,8 +298,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0200, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0300
- * @tc.name   : 添加算子，paramIndices中data为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，paramIndices中data为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0300, Function | MediumTest | Level3)
 {
@@ -321,8 +321,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0300, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0400
- * @tc.name   : 添加算子，paramIndices中data对应序号不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，paramIndices中data对应序号不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0400, Function | MediumTest | Level3)
 {
@@ -345,8 +345,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0400, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0500
- * @tc.name   : 添加算子，paramIndices中size为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，paramIndices中size为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0500, Function | MediumTest | Level3)
 {
@@ -368,8 +368,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0500, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0600
- * @tc.name   : 添加算子，inputIndices为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，inputIndices为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0600, Function | MediumTest | Level3)
 {
@@ -390,8 +390,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0600, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0700
- * @tc.name   : 添加算子，inputIndices中data为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，inputIndices中data为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0700, Function | MediumTest | Level3)
 {
@@ -413,8 +413,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0700, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0800
- * @tc.name   : 添加算子，inputIndices中data对应序号不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，inputIndices中data对应序号不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0800, Function | MediumTest | Level3)
 {
@@ -437,8 +437,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0800, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_0900
- * @tc.name   : 添加算子，inputIndices中size为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，inputIndices中size为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0900, Function | MediumTest | Level3)
 {
@@ -460,8 +460,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0900, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_1000
- * @tc.name   : 添加算子，outputIndices为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，outputIndices为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1000, Function | MediumTest | Level3)
 {
@@ -481,8 +481,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1000, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_1100
- * @tc.name   : 添加算子，outputIndices中data为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，outputIndices中data为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1100, Function | MediumTest | Level3)
 {
@@ -504,8 +504,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1100, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_1200
- * @tc.name   : 添加算子，outputIndices中data对应序号不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，outputIndices中data对应序号不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1200, Function | MediumTest | Level3)
 {
@@ -528,8 +528,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1200, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_AddOperation_1300
- * @tc.name   : 添加算子，outputIndices中size为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 添加算子，outputIndices中size为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1300, Function | MediumTest | Level3)
 {
@@ -551,8 +551,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1300, Functio
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0100
- * @tc.name   : 设置输入输出，model为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，model为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0100, Function | MediumTest | Level3)
 {
@@ -572,8 +572,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_01
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0200
- * @tc.name   : 设置输入输出，inputIndices为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，inputIndices为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0200, Function | MediumTest | Level3)
 {
@@ -590,8 +590,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_02
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0300
- * @tc.name   : 设置输入输出，inputIndices中data为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，inputIndices中data为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0300, Function | MediumTest | Level3)
 {
@@ -609,8 +609,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_03
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0400
- * @tc.name   : 设置输入输出，inputIndices中data对应序号不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，inputIndices中data对应序号不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0400, Function | MediumTest | Level3)
 {
@@ -630,8 +630,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_04
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0500
- * @tc.name   : 设置输入输出，inputIndices中size为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，inputIndices中size为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0500, Function | MediumTest | Level3)
 {
@@ -650,8 +650,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_05
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0600
- * @tc.name   : 设置输入输出，outputIndices为空指针
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，outputIndices为空指针
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0600, Function | MediumTest | Level3)
 {
@@ -669,8 +669,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_06
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0700
- * @tc.name   : 设置输入输出，outputIndices中data为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，outputIndices中data为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0700, Function | MediumTest | Level3)
 {
@@ -689,8 +689,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_07
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0800
- * @tc.name   : 设置输入输出，outputIndices中data对应序号不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，outputIndices中data对应序号不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0800, Function | MediumTest | Level3)
 {
@@ -710,8 +710,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_08
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0900
- * @tc.name   : 设置输入输出，outputIndices中size为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置输入输出，outputIndices中size为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0900, Function | MediumTest | Level3)
 {
@@ -730,8 +730,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_09
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_Finish_0100
- * @tc.name   : 模型构图，model为空指针
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 模型构图，model为空指针
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0100, Function | MediumTest | Level3)
 {
@@ -740,8 +740,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0100, Function | Me
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_Finish_0200
- * @tc.name   : 模型构图，未添加操作数
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 模型构图，未添加操作数
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0200, Function | MediumTest | Level3)
 {
@@ -753,8 +753,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0200, Function | Me
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_Finish_0300
- * @tc.name   : 模型构图，未设置输入输出
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 模型构图，未设置输入输出
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0300, Function | MediumTest | Level3)
 {
@@ -767,8 +767,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0300, Function | Me
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_Finish_0400
- * @tc.name   : 模型构图，设置输入输出，构图成功
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 模型构图，设置输入输出，构图成功
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0400, Function | MediumTest | Level1)
 {
@@ -780,8 +780,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0400, Function | Me
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0100
- * @tc.name   : 查询算子支持，model为空指针
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，model为空指针
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0100, Function | MediumTest | Level3)
 {
@@ -797,8 +797,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0100
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0200
- * @tc.name   : 查询算子支持，deviceID不存在
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，deviceID不存在
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0200, Function | MediumTest | Level3)
 {
@@ -816,8 +816,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0200
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0300
- * @tc.name   : 查询算子支持，*isSupported为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，*isSupported为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0300, Function | MediumTest | Level3)
 {
@@ -838,8 +838,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0300
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0400
- * @tc.name   : 查询算子支持，**isSupported非nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，**isSupported非nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0400, Function | MediumTest | Level3)
 {
@@ -861,8 +861,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0400
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0500
- * @tc.name   : 查询算子支持，*opCount为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，*opCount为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0500, Function | MediumTest | Level3)
 {
@@ -882,8 +882,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0500
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0600
- * @tc.name   : 查询算子支持，model未完成构图
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，model未完成构图
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0600, Function | MediumTest | Level3)
 {
@@ -905,8 +905,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0600
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0700
- * @tc.name   : 查询算子支持，算子均支持
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，算子均支持
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0700, Function | MediumTest | Level1)
 {
@@ -953,8 +953,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0700
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0800
- * @tc.name   : 查询算子支持，算子部分支持
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 查询算子支持，算子部分支持
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0800, Function | MediumTest | Level2)
 {
@@ -983,8 +983,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0800
 
 /**
  * @tc.number : SUB_AI_NNR_Func_North_Model_Combine_0100
- * @tc.name   : 不同model，多线程并发在线构图，构图成功
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 不同model，多线程并发在线构图，构图成功
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0100, Function | MediumTest | Level2)
 {
@@ -1002,8 +1002,8 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0100, Function | Me
 
 /**
  * @tc.number : SUB_AI_NNR_Func_North_Model_Combine_0200
- * @tc.name   : 多模型构图，模型构图过程中释放其他模型
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 多模型构图，模型构图过程中释放其他模型
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0200, Function | MediumTest | Level1)
 {
@@ -1020,4 +1020,180 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0200, Function | Me
     th2.join();
     ASSERT_EQ(nullptr, model1);
     Free(model2);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数为空，返回失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    //??
+    ASSERT_NE(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(nullptr, , 1));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,count=1,参数的channel=1,调用成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,count=1,参数的channel=2,调用失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 2, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 1));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,count=2,参数的channel=1,调用失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 2));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 2));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 2));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,参数count不一致,调用失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 2));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 1));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,不设置zeroPoints,调用失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 1));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,不设置numBits,调用失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 1));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,不设置scales,调用失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 1));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 0, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100
+ * @tc.desc: 设置量化参数，参数合法,tensor下标等于当前tensor个数,返回失败
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
+{
+    OH_NNBackend_Model *model = OH_NNbackend_ConstructModel();
+    ASSERT_NE(nullptr, model);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_AQ(OH_NNCore_SUCCESS, CreateTensorDesc(&tensorDesc, {1, 1, 2, 3}, 4, OH_NNCORE_FLOAT32,
+                                                  OH_NNCORE_FORMAT_NCHW, OH_NNBACKEND_TENSOR));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    OH_NNBackend_QuantParam* quantParam = OH_NNBackend_CreateQuantParam();
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamScale(quantParam, 0.2, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamZeroPoints(quantParam, 0, 1));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_SetQuantParamNumBits(quantParam, 8, 1));
+    ASSERT_AQ(OH_NNCore_FAILED, OH_NNBackend_SetModelTensorQuantParam(model, 1, quantParam));
+    ASSERT_AQ(OH_NNCore_SUCCESS, OH_NNBackend_DestroyQuantParam());
 }

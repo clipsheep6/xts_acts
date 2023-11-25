@@ -35,8 +35,8 @@ protected:
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0100
- * @tc.name   : 创建共享内存，executor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 创建共享内存，executor为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0100, Function | MediumTest | Level3)
 {
@@ -46,8 +46,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemo
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0200
- * @tc.name   : 创建输入共享内存，length为0
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 创建输入共享内存，length为0
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0200, Function | MediumTest | Level3)
 {
@@ -60,8 +60,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemo
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0100
- * @tc.name   : 销毁共享内存，executor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 销毁共享内存，executor为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0100, Function | MediumTest | Level3)
 {
@@ -76,8 +76,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMem
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0300
- * @tc.name   : 销毁共享内存，*memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 销毁共享内存，*memory为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0300, Function | MediumTest | Level3)
 {
@@ -89,8 +89,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMem
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存数据，memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取内存数据，memory为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100, Function | MediumTest | Level3)
 {
@@ -101,8 +101,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存数据，返回正确
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取内存数据，返回正确
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100, Function | MediumTest | Level3)
 {
@@ -117,8 +117,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存fd，memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取内存fd，memory为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_0100, Function | MediumTest | Level3)
 {
@@ -128,8 +128,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_010
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存fd，返回正确
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取内存fd，返回正确
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_0100, Function | MediumTest | Level3)
 {
@@ -143,8 +143,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_010
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100
- * @tc.name   : 创建Tensor实例，TensorDesc为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 创建Tensor实例，TensorDesc为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100, Function | MediumTest | Level0)
 {
@@ -154,8 +154,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100, Funct
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100
- * @tc.name   : 销毁Tensor实例，Tensor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 销毁Tensor实例，Tensor为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100, Function | MediumTest | Level0)
 {
@@ -164,8 +164,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100
- * @tc.name   : 设置Tensor，Tensor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置Tensor，Tensor为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100, Function | MediumTest | Level0)
 {
@@ -178,8 +178,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200
- * @tc.name   : 设置Tensor，memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置Tensor，memory为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200, Function | MediumTest | Level0)
 {
@@ -194,8 +194,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300
- * @tc.name   : 设置Tensor，返回成功
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置Tensor，返回成功
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300, Function | MediumTest | Level0)
 {
@@ -214,8 +214,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0100
- * @tc.name   : 获取Tensor，Tensor为空
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取Tensor，Tensor为空
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0100, Function | MediumTest | Level0)
 {
@@ -224,8 +224,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0100, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200
- * @tc.name   : 获取Tensor，未设置tensorData
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取Tensor，未设置tensorData
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200, Function | MediumTest | Level0)
 {
@@ -240,8 +240,8 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200, Func
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100
- * @tc.name   : 获取TensorDesc,tensor为空
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取TensorDesc,tensor为空
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100, Function | MediumTest | Level0)
 {
