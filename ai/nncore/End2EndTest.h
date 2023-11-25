@@ -15,15 +15,14 @@ namespace SystemTest {
 class End2EndTest : public NNRtTest {
 public:
     End2EndTest() = default;
-
     OH_NNCore_ReturnCode BuildModel(OH_NNBackend_Model **model,
                                     const std::vector<OH_NNCore_TensorDesc*>& tensorDescs);
     
-    OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, std::string &backendName, const int32_t* shape, size_t shapeNum, 
+    OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const int32_t* shape, size_t shapeNum, 
                                           OH_NNCore_DataType dataType, OH_NNCore_Format format,
                                           OH_NNBackend_TensorType tensorType);
 
-    void SetCompilation(OH_NNCore_Compilation* compilation);
+    void SetOptions(const char* backendName);
 
     void GetTensorDescFormCompiled(OH_NNCore_Compiled* compiled, size_t *count, std::vector<OH_NNCore_TensorDesc*>& tensorDescs)
 

@@ -56,12 +56,5 @@ ohos_moduletest_suite("NncoreTest") {
 
 group("ActsHdfNncoreTest") {
   testonly = true
-  if (hats_rich == false) {
-    if (is_standard_system) {
-      if (hats_nnrt) {
-        deps = [ ":NncoreTest" ]
-        ]
-      }
-    }
-  }
+  deps = [ ":NncoreTest" ]
 }

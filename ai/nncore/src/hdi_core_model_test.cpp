@@ -106,9 +106,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0200, Function | M
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0100, Function | MediumTest | Level3)
 {
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
                                                   OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
     OH_NNCore_ReturnCode ret = OH_NNBackend_AddTensorToModel(nullptr, &operand);
@@ -141,9 +139,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0300, Function 
     ASSERT_NE(nullptr, model);
 
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, static_cast<OH_NNCore_DataType>(100000),
                                                 OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     EXPECT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_AddTensorToModel(model, &operand));
@@ -161,9 +157,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0400, Function 
     ASSERT_NE(nullptr, model);
 
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
                                                   OH_NNCORE_FORMAT_NONE, static_cast<OH_NNCore_TensorDescType>(100000)));
     EXPECT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_AddTensorToModel(model, &operand));
@@ -182,9 +176,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0100, Func
 
     int8_t activationValue{0};
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
                                                   OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
     ASSERT_EQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, &operand));
@@ -206,9 +198,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0200, Func
 
     int8_t activationValue{0};
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
                                                   OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
     ASSERT_EQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, &operand));
@@ -229,9 +219,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0300, Func
     ASSERT_NE(nullptr, model);
 
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
                                                   OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
     ASSERT_EQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, &operand));
@@ -252,9 +240,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0400, Func
 
     int8_t activationValue{0};
     int32_t dimensions[3]{3, 2, 2};
-    char* backendName = nullptr;
-    OH_NNCore_GetBackendName(0, &backendName);
-    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
                                                   OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
     ASSERT_EQ(OH_NNCore_SUCCESS, OH_NNBackend_AddTensorToModel(model, &operand));

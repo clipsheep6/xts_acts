@@ -24,8 +24,9 @@
 
 
 namespace OHOS::NeuralNetworkCore {
+//模型相关
 struct AddModel {
-// ADD MODEL
+//ADD MODEL
 float inputValue0[4] = {0, 1, 2, 3};
 float inputValue1[4] = {0, 1, 2, 3};
 int8_t activationValue = OH_NN_FUSED_NONE;
@@ -45,47 +46,47 @@ OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_ADD,
 
 struct AvgPoolDynamicModel {
     // AVG POOL MODEL
-    float inputValue[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    uint64_t kernelValue[2] = {2, 2};
-    uint64_t strideValue[2] = {1, 1};
-    int8_t padValue = 1;
-    int8_t activationValue = OH_NN_FUSED_NONE;
-    float outputValue[4] = {0};
-    float expectValue[4] = {2, 3, 5, 6};
+float inputValue[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+uint64_t kernelValue[2] = {2, 2};
+uint64_t strideValue[2] = {1, 1};
+int8_t padValue = 1;
+int8_t activationValue = OH_NN_FUSED_NONE;
+float outputValue[4] = {0};
+float expectValue[4] = {2, 3, 5, 6};
 
-    OHNNOperandTest dynamicInput = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {-1, -1, -1, -1}, inputValue, AVG_INPUT_LENGTH, OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest kernel = {OH_NNCORE_INT64, OH_NN_AVG_POOL_KERNEL_SIZE, {2}, kernelValue, sizeof(kernelValue), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest strides = {OH_NNCORE_INT64, OH_NN_AVG_POOL_STRIDE, {2}, strideValue, sizeof(strideValue), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest padMode = {OH_NNCORE_INT8, OH_NN_AVG_POOL_PAD_MODE, {}, &padValue, sizeof(padValue), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest activation = {OH_NNCORE_INT8, OH_NN_AVG_POOL_ACTIVATION_TYPE, {}, &activationValue, sizeof(int8_t), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest output = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {-1, -1, -1, -1}, outputValue, sizeof(outputValue), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest dynamicInput = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {-1, -1, -1, -1}, inputValue, AVG_INPUT_LENGTH, OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest kernel = {OH_NNCORE_INT64, OH_NN_AVG_POOL_KERNEL_SIZE, {2}, kernelValue, sizeof(kernelValue), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest strides = {OH_NNCORE_INT64, OH_NN_AVG_POOL_STRIDE, {2}, strideValue, sizeof(strideValue), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest padMode = {OH_NNCORE_INT8, OH_NN_AVG_POOL_PAD_MODE, {}, &padValue, sizeof(padValue), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest activation = {OH_NNCORE_INT8, OH_NN_AVG_POOL_ACTIVATION_TYPE, {}, &activationValue, sizeof(int8_t), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest output = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {-1, -1, -1, -1}, outputValue, sizeof(outputValue), OH_NNCORE_FORMAT_NONE};
 
-    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_AVG_POOL,
-                               .operands = {dynamicInput, kernel, strides, padMode, activation, output},
-                               .paramIndices = {1, 2, 3, 4},
-                               .inputIndices = {0},
-                               .outputIndices = {5}};
+OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_AVG_POOL,
+                            .operands = {dynamicInput, kernel, strides, padMode, activation, output},
+                            .paramIndices = {1, 2, 3, 4},
+                            .inputIndices = {0},
+                            .outputIndices = {5}};
 };
 
 struct TopKModel {
     // TopK Model
-    float valueX[6] = {0, 1, 2, 3, 4, 5};
-    int8_t valueK = 2;
-    bool valueSorted = true;
-    float valueOutput1[2];
-    int32_t valueOutput2[2];
+float valueX[6] = {0, 1, 2, 3, 4, 5};
+int8_t valueK = 2;
+bool valueSorted = true;
+float valueOutput1[2];
+int32_t valueOutput2[2];
 
-    OHNNOperandTest x = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {1, 6}, valueX, 6 * sizeof(float), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest k = {OH_NNCORE_INT8, OH_NNBACKEND_TENSOR, {}, &valueK, sizeof(int8_t), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest sorted = {OH_NNCORE_BOOL, OH_NN_TOP_K_SORTED, {}, &valueSorted, sizeof(bool), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest output1 = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {1, 2}, valueOutput1, 2 * sizeof(float), OH_NNCORE_FORMAT_NONE};
-    OHNNOperandTest output2 = {OH_NNCORE_INT32, OH_NNBACKEND_TENSOR, {1, 2}, valueOutput2, 2 * sizeof(int32_t), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest x = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {1, 6}, valueX, 6 * sizeof(float), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest k = {OH_NNCORE_INT8, OH_NNBACKEND_TENSOR, {}, &valueK, sizeof(int8_t), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest sorted = {OH_NNCORE_BOOL, OH_NN_TOP_K_SORTED, {}, &valueSorted, sizeof(bool), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest output1 = {OH_NNCORE_FLOAT32, OH_NNBACKEND_TENSOR, {1, 2}, valueOutput1, 2 * sizeof(float), OH_NNCORE_FORMAT_NONE};
+OHNNOperandTest output2 = {OH_NNCORE_INT32, OH_NNBACKEND_TENSOR, {1, 2}, valueOutput2, 2 * sizeof(int32_t), OH_NNCORE_FORMAT_NONE};
 
-    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_TOP_K,
-                               .operands = {x, k, sorted, output1, output2},
-                               .paramIndices = {2},
-                               .inputIndices = {0, 1},
-                               .outputIndices = {3, 4}};
+OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_TOP_K,
+                            .operands = {x, k, sorted, output1, output2},
+                            .paramIndices = {2},
+                            .inputIndices = {0, 1},
+                            .outputIndices = {3, 4}};
 };
 
 class AddTopKModel {
@@ -152,19 +153,32 @@ OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGrap
 void Free(OH_NNBackend_Model *model = nullptr, OH_NNCore_Compilation *compilation = nullptr,OH_NNCore_Compiled *compiled = nullptr, OH_NNExecutor *executor = nullptr);
 
 OH_NNCORE_UINT32Array GetUInt32Array(std::vector<uint32_t> indices);
+//nncore相关
 void RegisterBackend();
 void TestGetBackendNum(bool isNull = false);
 void TestGetBackendName(char** backendName, bool isNull = false);
+void TestConstructModel(OH_NNBackend_Model** model);
 void TestConstructCompilationWithNNModel(OH_NNCore_Compilation** compilation);
-void SetCompilationBackendName(OH_NNCore_Compilation** compilation);
-void TestCreateCompilationOptions(OH_NNCore_CompilationOptions** options);
-void TestSetCompilationPriority(OH_NNBackend_Priority priority);
-void TestSetCompilationPerformanceMode(OH_NNBackend_PerformanceMode performanceMode);
-void TestSetCompilationEnableFloat16(bool enableFloat16, bool isSupport);
-void TestSetCompilationOptions(OH_NNCore_CompilationOptions **option);
-void TestBuildCompiled(OH_NNCore_Compilation** compilation, OH_NNCore_Compiled** compiled);
+void TestConstructCompilationWithDynamicNNModel(OH_NNCore_Compilation** compilation);
+void TestCreateOptions(OH_NNCore_Options** options);
+void SetbackendNameOptions(OH_NNCore_Compilation* compilation);
+void TestSetPriority(OH_NNBackend_Priority priority);
+void TestPerformanceMode(OH_NNBackend_PerformanceMode performanceMode);
+void TestSetEnableFloat16(bool enableFloat16, bool isSupport);
+void TestSetAllOptions(OH_NNCore_Options **option);
+void TestBuildCompiled(OH_NNCore_Compiled** compiled);
 void TestConstructTensorDesc(OH_NNCore_TensorDesc** tensorDesc);
 void TestExecutor(OH_NNCore_Executor** executor);
+void TestGetInputOutputTensor(OH_NNCore_Executor* executor, OH_NNCore_Tensor* inputTensor[], size_t& inputSize, 
+                              OH_NNCore_Tensor* outputTensor[], size_t& outputSize);
+//文件相关
+enum class PathType { FILE, DIR, UNKNOWN, NOT_FOUND };
+PathType CheckPath(const std::string &path);
+bool DeleteFile(const std::string &path);
+void CopyFile(const std::string &srcPath, const std::string &dstPath);
+std::string ConcatPath(const std::string &str1, const std::string &str2);
+void DeleteFolder(const std::string &path);
+bool CreateFolder(const std::string &path);
 } // namespace OHOS::NeuralNetworkCore
 
 #endif // HDI_NNCORE_UTILS_H

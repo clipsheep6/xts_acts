@@ -183,10 +183,7 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100, Func
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200, Function | MediumTest | Level0)
 {
-    char *backendName = nullptr;
-    RegisterBackend();
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
-    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
     ASSERT_NE(nullptr, tensorDesc);
     const OHNNOperandTest &operandTem = graphArgs.operands[0];
     ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
@@ -202,10 +199,7 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200, Func
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300, Function | MediumTest | Level0)
 {
-    char *backendName = nullptr;
-    RegisterBackend();
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
-    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
     ASSERT_NE(nullptr, tensorDesc);
     const OHNNOperandTest &operandTem = graphArgs.operands[0];
     ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
@@ -235,10 +229,7 @@ HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0100, Func
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200, Function | MediumTest | Level0)
 {
-    char *backendName = nullptr;
-    RegisterBackend();
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
-    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
     ASSERT_NE(nullptr, tensorDesc);
     const OHNNOperandTest &operandTem = graphArgs.operands[0];
     ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,

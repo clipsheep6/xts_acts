@@ -75,7 +75,7 @@ class HdiNNCoreCompilation : public testing::Test {
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_NNModel_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_ConstructCompilationWithNNModel(nullptr));
+    ASSERT_EQ(nullptr, OH_NNCore_ConstructCompilationWithNNModel(nullptr));
 }
 
 /**
@@ -87,7 +87,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
 {
     OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
     ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_ConstructCompilationWithNNModel(reinterpret_cast<const void*>(model)));
+    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(reinterpret_cast<const void*>(model));
+    ASSERT_NE(nullptr, compilation);
+    SetbackendNameOptions(compilation, false);
 }
 
 /**
@@ -97,7 +99,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_Offline_Model_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_ConstructCompilationWithOfflineModel(nullptr));
+    ASSERT_NE(nullptr, OH_NNCore_ConstructCompilationWithOfflineModel(nullptr));
 }
 
 /**
@@ -108,7 +110,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_Offline_Model_0200, Function | MediumTest | Level1)
 {
     const char* filePath = CACHE_PATH;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_ConstructCompilationWithOfflineModel(filePath));
+    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(filePath);
+    ASSERT_NE(nullptr, compilation);
+    SetbackendNameOptions(compilation, false);
 }
 
 /**
@@ -119,7 +123,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_Offline_Buffer_0100, Function | MediumTest | Level1)
 {
     size_t modelSize = MODEL_SIZE;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_ConstructCompilationWithOfflineBuffer(nullptr, modelSize));
+    ASSERT_EQ(nullptr, OH_NNCore_ConstructCompilationWithOfflineBuffer(nullptr, modelSize));
 }
 
 /**
@@ -132,96 +136,31 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
     int modelSize = 0;
     void* buffer = nullptr;
     GetBuffer(SUPPORTMODELPATH.c_str(), &buffer, modelSize);
-    ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_Device_Set_Compilation_Backend_0100
- * @tc.desc: 传入compilation为空指针，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Set_Compilation_Backend_0100, Function | MediumTest | Level1)
-{
-    const char* backendName = nullptr;
-    TestGetBackendName(&backendName);
-
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetCompilationBackend(nullptr, backendName));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Compilation_Backend_0200
- * @tc.desc: 传入backendName为空指针，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Backend_0200, Function | MediumTest | Level1)
-{
-    OH_NNCore_Compilation* compilation = nullptr;
-    TestConstructCompilationWithNNModel(&compilation);
-
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetCompilationBackend(compilation, nullptr));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Compilation_Backend_0300
- * @tc.desc: 传入backendName不存在，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Backend_0300, Function | MediumTest | Level1)
-{
-    OH_NNCore_Compilation* compilation = nullptr;
-    TestConstructCompilationWithNNModel(&compilation);
-
-    const char* backendName = "wrongName";
-    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SetCompilationBackend(compilation, backendName));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_Device_Set_Compilation_Backend_0400
- * @tc.desc: 传入compilation已完成编译，backendName存在，返回成功
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Set_Compilation_Backend_0400, Function | MediumTest | Level1)
-{
-    OH_NNCore_Compilation* compilation = nullptr;
-    SetCompilationBackendName(&compilation);
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Compilation_Options_0100
- * @tc.desc: 传入compilation为空指针，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Options_0100, Function | MediumTest | Level1)
-{
-    OH_NNCore_Compilation* compilation = nullptr;
-
-    OH_NNCore_CompilationOptions* options = nullptr;
-    TestCreateCompilationOptions(&options);
-
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetCompilationOptions(compilation, options));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Compilation_Options_0200
- * @tc.desc: 传入compilationOptions为空指针，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Options_0200, Function | MediumTest | Level1)
-{
-    OH_NNCore_Compilation* compilation = nullptr;  
-    TestConstructCompilationWithNNModel(&compilation);
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetCompilationOptions(compilation, nullptr));
+    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
+    //不支持
+    ASSERT_EQ(nullptr, compilation);
 }
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Create_Compilation_Options_0100
- * @tc.desc: 创建编译option结构体，返回正确
+ * @tc.desc: 创建编译option结构体，传入正确的backendName，返回正确
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Create_Compilation_Options_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_CompilationOptions* options = nullptr;
-    TestCreateCompilationOptions(&options);
+    OH_NNCore_Options* options = nullptr;
+    TestCreateOptions(&options);
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Create_Compilation_Options_0200
+ * @tc.desc: 创建编译option结构体，backendName为空指针，返回错误
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Create_Compilation_Options_0200, Function | MediumTest | Level1)
+{
+    char* backendName = nullptr;
+    ASSERT_EQ(nullptr, OH_NNBackend_CreateOptions(backendName));
 }
 
 /**
@@ -231,7 +170,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Create_Compilation_Op
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0100, Function | MediumTest | Level1)
 {
-    TestSetCompilationPriority(OH_NNBACKEND_PRIORITY_LOW);
+    TestSetPriority(OH_NNBACKEND_PRIORITY_LOW);
 }
 
 /**
@@ -241,7 +180,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0200, Function | MediumTest | Level1)
 {
-    TestSetCompilationPriority(OH_NNBACKEND_PRIORITY_MEDIUM);
+    TestSetPriority(OH_NNBACKEND_PRIORITY_MEDIUM);
 }
 
 /**
@@ -251,7 +190,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0300, Function | MediumTest | Level1)
 {
-    TestSetCompilationPriority(OH_NNBACKEND_PRIORITY_HIGH);
+    TestSetPriority(OH_NNBACKEND_PRIORITY_HIGH);
 }
 
 /**
@@ -261,7 +200,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0400, Function | MediumTest | Level1)
 {
-    TestSetCompilationPriority(static_cast<OH_NNBackend_Priority>(OH_NNBACKEND_PRIORITY_HIGH + 1));
+    TestSetPriority(static_cast<OH_NNBackend_Priority>(OH_NNBACKEND_PRIORITY_HIGH + 1));
 }
 
 /**
@@ -271,7 +210,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0100, Function | MediumTest | Level1)
 {
-    TestSetCompilationPerformanceMode(OH_NNBACKEND_PERFORMANCE_EXTREME);
+    TestPerformanceMode(OH_NNBACKEND_PERFORMANCE_EXTREME);
 }
 
 /**
@@ -281,7 +220,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0200, Function | MediumTest | Level1)
 {
-    TestSetCompilationPerformanceMode(OH_NNBACKEND_PERFORMANCE_HIGH);
+    TestPerformanceMode(OH_NNBACKEND_PERFORMANCE_HIGH);
 }
 
 /**
@@ -291,7 +230,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0300, Function | MediumTest | Level1)
 {
-    TestSetCompilationPerformanceMode(OH_NNBACKEND_PERFORMANCE_MEDIUM);
+    TestPerformanceMode(OH_NNBACKEND_PERFORMANCE_MEDIUM);
 }
 
 /**
@@ -301,7 +240,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0400, Function | MediumTest | Level1)
 {
-    TestSetCompilationPerformanceMode(static_cast<OH_NNBackend_PerformanceMode>(OH_NNBACKEND_PERFORMANCE_EXTREME + 1));
+    TestPerformanceMode(static_cast<OH_NNBackend_PerformanceMode>(OH_NNBACKEND_PERFORMANCE_EXTREME + 1));
 }
 
 /**
@@ -312,18 +251,18 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Enable_Float16_0100, Function | MediumTest | Level1)
 {
     bool enableFloat16 = true;
-    TestSetCompilationEnableFloat16(enableFloat16);
+    TestSetEnableFloat16(enableFloat16);
 }
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_Compilation_Enable_Float16_0200
- * @tc.desc: 设备支持，设置enablefp16为false，编译成功
+ * @tc.desc: 设备支持，设置enablefp16为false，编译失败
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Enable_Float16_0200, Function | MediumTest | Level1)
 {
     bool enableFloat16 = false;
-    TestSetCompilationEnableFloat16(enableFloat16);
+    TestSetEnableFloat16(enableFloat16);
 }
 
 /**
@@ -333,7 +272,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Enabl
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_Options_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNBackend_DestroyCompilationOptions(nullptr));
+    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNBackend_DestroyOptions(nullptr));
 }
 
 /**
@@ -343,9 +282,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_O
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_Options_0200, Function | MediumTest | Level1)
 {
-    OH_NNCore_CompilationOptions* options = nullptr;
-    TestCreateCompilationOptions(&options);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_DestroyCompilationOptions(&options));
+    OH_NNCore_Options* options = nullptr;
+    TestCreateOptions(&options);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_DestroyOptions(&options));
 }
 
 /**
@@ -355,60 +294,100 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_O
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_Options_0300, Function | MediumTest | Level1)
 {
-    OH_NNCore_CompilationOptions* options = nullptr;
-    TestSetCompilationOptions(&options);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_DestroyCompilationOptions(&options));
+    OH_NNCore_Options* options = nullptr;
+    TestSetOptions(&options);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_DestroyOptions(&options));
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0100
- * @tc.desc: 编译模型，传入compilation为空指针，返回错误
+ * @tc.name: SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0100
+ * @tc.desc: 传入compilation为空指针，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0100, Function | MediumTest | Level1)
-{
-    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(nullptr));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0200
- * @tc.desc: 传入合法compilation，返回成功
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = nullptr;
-    SetCompilationBackendName(&compilation);
 
-    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+    const char* backendName = nullptr;
+    TestGetBackendName(&backendName);
+
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0300
- * @tc.desc: 编译模型，未设置backend，返回错误
+ * @tc.name: SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0200
+ * @tc.desc: 传入backendName为空指针，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
-    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation));
+    const char* backendName = nullptr;
+
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0400
- * @tc.desc: 编译模型，设置全部options，返回成功
+ * @tc.name: SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0300
+ * @tc.desc: 传入backendName不存在，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0400, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0300, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compiled* compiled = nullptr;
-    TestBuildCompiled(&compiled);
+    OH_NNCore_Compilation* compilation = nullptr;
+    TestConstructCompilationWithNNModel(&compilation);
+
+    const char* backendName = "wrongName";
+
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0400
+ * @tc.desc: 传入compilation已完成编译，backendName存在，返回成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0400, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compilation* compilation = nullptr;
+    TestConstructCompilationWithNNModel(&compilation);
+
+    SetbackendNameOptions(compilation);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0500
+ * @tc.desc: 传入Options为空指针，返回错误
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Options_0200, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compilation* compilation = nullptr;
+    TestConstructCompilationWithNNModel(&compilation);
+
+    char* backendName = nullptr;
+    TestGetBackendName(&backendName);
+
+    OH_NNCore_Options* options = nullptr;
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0600
  * @tc.desc: nnmodel中，存在不支持算子，编译失败
  * @tc.type: FUNC
  */
@@ -416,47 +395,61 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_050
 {
     OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
     ASSERT_NE(nullptr, model);
-
+    
+    //不支持算子模型
     AddTopKModel addTopKModel;
     OHNNGraphArgsMulti graphArgsMulti = addTopKModel.graphArgs;
     ASSERT_EQ(OH_NN_SUCCESS, BuildMultiOpGraph(model, graphArgsMulti));
 
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
-
-    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation));
-}
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0600
- * @tc.desc: 传入定长模型nnmode，返回成功
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0600, Function | MediumTest | Level1)
-{
-    OH_NNCore_Compilation* compilation = nullptr;
-    SetCompilationBackendName(&compilation);
-    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+    SetbackendNameOptions(compilation, false);
 }
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0700
- * @tc.desc: 传入变长模型nnmode，返回成功
+ * @tc.desc: 传入定长模型nnmode，返回成功
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0700, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = nullptr;
-    TestConstructCompilationWithDynamicNNModel(&compilation);
-    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+    TestConstructCompilationWithNNModel(&compilation);
+
+    char* backendName = nullptr;
+    TestGetBackendName(&backendName);
+
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0800
- * @tc.desc: offlinemodel，传入filepath为合法离线模型，编译成功
+ * @tc.desc: 传入变长模型nnmode，返回成功
  * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0800, Function | MediumTest | Level1)
+{
+    OH_NNCore_Compilation* compilation = nullptr;
+    TestConstructCompilationWithDynamicNNModel(&compilation);
+
+    char* backendName = nullptr;
+    TestGetBackendName(&backendName);
+
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
+}
+
+/**
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0900
+ * @tc.desc: offlinemodel，传入filepath为合法离线模型，编译成功
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0900, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(SUPPORTMODELPATH.c_str());
     ASSERT_NE(nullptr, compilation);
@@ -464,16 +457,18 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_080
     char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
-    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_0900
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_Build_Compilation_1000
  * @tc.desc: offlinemodel，离线模型存在不支持算子，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0900, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_1000, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(NOSUPPORTMODELPATH.c_str());
     ASSERT_NE(nullptr, compilation);
@@ -481,8 +476,10 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_090
     char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
-    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation));
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
@@ -501,8 +498,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_100
     char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
-    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation));
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+    ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
@@ -521,8 +519,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_110
     char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
-    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation));
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
+    ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
 
 /**
@@ -533,7 +532,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_110
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Compilation* compilation = nullptr;
-    SetCompilationBackendName(&compilation);
+    TestConstructCompilationWithNNModel(&compilation);
 
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
 }

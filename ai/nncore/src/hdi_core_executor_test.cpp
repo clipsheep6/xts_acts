@@ -129,8 +129,8 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Service_Die
 HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Options_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Executor* executor = nullptr;
-    OH_NNCore_CompilationOptions* option;
-    TestSetCompilationOptions(&option);
+    OH_NNCore_Options* option;
+    TestSetAllOptions(&option);
 
     ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetExecutorOptions(executor, reinterpret_cast<OH_NNCore_ExecutorOptions*>(option)));
 }
@@ -145,8 +145,8 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Set_Executor_Options_020
     OH_NNCore_Executor* executor = nullptr;
     TestExecutor(&executor);
 
-    OH_NNCore_CompilationOptions* option;
-    TestSetCompilationOptions(&option);
+    OH_NNCore_Options* option;
+    TestSetAllOptions(&option);
     ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_SetExecutorOptions(executor, reinterpret_cast<OH_NNCore_ExecutorOptions*>(option)));
 }
 
@@ -274,13 +274,10 @@ HWTEST_F(HdiNNCoreExecutor, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0700, F
     OH_NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithDynamicNNModel(&compilation);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(*compilation, backendName));
+    OH_NNCore_Options* options = nullptr;
+    TestSetAllOptions(&options);
 
-    OH_NNCore_CompilationOptions* options = nullptr;
-    TestSetCompilationOptions(&options);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationOptions(compilation, options));
-
-    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(&compilation);
+    OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation, backendName, options);
     ASSERT_NE(nullptr, compiled);
 
     OH_NNCore_Executor* executor = OH_NNCore_ConstructExecutor(compiled);
