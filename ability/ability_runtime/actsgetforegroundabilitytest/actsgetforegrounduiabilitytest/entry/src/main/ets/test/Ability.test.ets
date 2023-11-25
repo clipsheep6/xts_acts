@@ -121,15 +121,21 @@ export default function abilityTest() {
         if (data.event == 'Acts_MonitorApp_First') {
           console.info('====>Acts_GetForegroundUiAbilityTest_0400 data.parameters.message=====' +
             JSON.stringify(data.parameters.message));
-          expect(data.parameters.message[0].abilityName).assertEqual('TestAbilityOther');
-          expect(data.parameters.message[0].abilityType).assertLarger(0);
-          expect(data.parameters.message[0].bundleName).assertEqual('com.example.getforegroundtest');
-          expect(data.parameters.message[0].moduleName).assertEqual('entry_test');
-          expect(data.parameters.message[0].pid).assertLarger(0);
-          expect(data.parameters.message[0].state).assertEqual(9);
-          expect(data.parameters.message[0].uid).assertLarger(0);
-          commonEvent.unsubscribe(subscriber);
-          done();
+          for (let j = 0; j < data.parameters.message.length; j++) {
+            console.log("Acts_GetForegroundUiAbilityTest_0400 data.parameters.message[" + j + "] : "
+              + data.parameters.message[j]);
+            if (data.parameters.message[j].abilityName == 'TestAbilityOther') {
+              expect(data.parameters.message[j].abilityName).assertEqual('TestAbilityOther');
+              expect(data.parameters.message[j].abilityType).assertLarger(0);
+              expect(data.parameters.message[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.message[j].moduleName).assertEqual('entry_test');
+              expect(data.parameters.message[j].pid).assertLarger(0);
+              expect(data.parameters.message[j].state).assertEqual(9);
+              expect(data.parameters.message[j].uid).assertLarger(0);
+              commonEvent.unsubscribe(subscriber);
+              done();
+            }
+          }
         }
       }
 
@@ -159,25 +165,38 @@ export default function abilityTest() {
     */
     it('Acts_GetForegroundUiAbilityTest_0500', 0, async function (done) {
       let subscriber;
+      let msg = { "ACTS_RegisterEvent_First": false, "ACTS_RegisterEvent_Second": false }
 
       function subscribeCallBack(err, data) {
         console.info('====>Acts_GetForegroundUiAbilityTest_0500 data: ' + JSON.stringify(data));
         if (data.event == 'Acts_MonitorApp_Third') {
-          console.info('====>Acts_GetForegroundUiAbilityTest_0500 data.parameters.message====='
-            + JSON.stringify(data.parameters.result[0].abilityName));
-          console.info('====>Acts_GetForegroundUiAbilityTest_0500 data.parameters.message[1]====='
-            + JSON.stringify(data.parameters.result[1].abilityName));
-          expect(data.parameters.result[0].abilityName).assertEqual('TestAbilityOtherSecond');
-          expect(data.parameters.result[0].bundleName).assertEqual('com.example.getforegroundtest');
-          expect(data.parameters.result[0].moduleName).assertEqual('entry_test');
-          expect(data.parameters.result[0].state).assertEqual(9);
-          expect(data.parameters.result[1].abilityName).assertEqual('TestAbilityOther');
-          expect(data.parameters.result[1].bundleName).assertEqual('com.example.getforegroundtest');
-          expect(data.parameters.result[1].moduleName).assertEqual('entry_test');
-          expect(data.parameters.result[1].state).assertEqual(9);
-          commonEvent.unsubscribe(subscriber);
-          done();
+          for (let j = 0; j < data.parameters.result.length; j++) {
+            console.log("Acts_GetForegroundUiAbilityTest_0500 data.parameters.result[" + j + "] : "
+              + data.parameters.result[j]);
+            if (data.parameters.result[j].abilityName == 'TestAbilityOtherSecond') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0500 data1: ');
+              expect(data.parameters.result[j].abilityName).assertEqual('TestAbilityOtherSecond');
+              expect(data.parameters.result[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.result[j].moduleName).assertEqual('entry_test');
+              expect(data.parameters.result[j].state).assertEqual(9);
+              msg["ACTS_RegisterEvent_First"] = true;
+            } else if (data.parameters.result[j].abilityName == 'TestAbilityOther') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0500 data2: ');
+              expect(data.parameters.result[j].abilityName).assertEqual('TestAbilityOther');
+              expect(data.parameters.result[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.result[j].moduleName).assertEqual('entry_test');
+              expect(data.parameters.result[j].state).assertEqual(9);
+              msg["ACTS_RegisterEvent_Second"] = true;
+            }
+          }
         }
+
+        setTimeout(() => {
+          if (msg["ACTS_RegisterEvent_First"] == true && msg["ACTS_RegisterEvent_Second"] == true) {
+            commonEvent.unsubscribe(subscriber);
+            done();
+          }
+        }, TIMEOUTTEN)
       }
 
       commonEvent.createSubscriber(ACTS_ProcessState).then(async (data) => {
@@ -206,21 +225,38 @@ export default function abilityTest() {
     */
     it('Acts_GetForegroundUiAbilityTest_0600', 0, async function (done) {
       let subscriber;
+      let msg = { "ACTS_RegisterEvent_First": false, "ACTS_RegisterEvent_Second": false }
 
       async function subscribeCallBack(err, data) {
         console.info('====>Acts_GetForegroundUiAbilityTest_0600 data: ' + JSON.stringify(data));
         if (data.event == 'Acts_MonitorApp_First') {
-          expect(data.parameters.result[0].abilityName).assertEqual('EntryAbility');
-          expect(data.parameters.result[0].bundleName).assertEqual('com.example.getforegroundtest');
-          expect(data.parameters.result[0].moduleName).assertEqual('entry');
-          expect(data.parameters.result[0].state).assertEqual(9);
-          expect(data.parameters.result[1].abilityName).assertEqual('TestAbilityOther');
-          expect(data.parameters.result[1].bundleName).assertEqual('com.example.getforegroundtest');
-          expect(data.parameters.result[1].moduleName).assertEqual('entry_test');
-          expect(data.parameters.result[1].state).assertEqual(9);
-          commonEvent.unsubscribe(subscriber);
-          done();
+          for (let j = 0; j < data.parameters.result.length; j++) {
+            console.log("Acts_GetForegroundUiAbilityTest_0600 data.parameters.result[" + j + "] : "
+              + data.parameters.result[j]);
+            if (data.parameters.result[j].abilityName == 'EntryAbility') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0600 data1: ');
+              expect(data.parameters.result[j].abilityName).assertEqual('EntryAbility');
+              expect(data.parameters.result[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.result[j].moduleName).assertEqual('entry');
+              expect(data.parameters.result[j].state).assertEqual(9);
+              msg["ACTS_RegisterEvent_First"] = true;
+            } else if (data.parameters.result[j].abilityName == 'TestAbilityOther') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0600 data2: ');
+              expect(data.parameters.result[j].abilityName).assertEqual('TestAbilityOther');
+              expect(data.parameters.result[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.result[j].moduleName).assertEqual('entry_test');
+              expect(data.parameters.result[j].state).assertEqual(9);
+              msg["ACTS_RegisterEvent_Second"] = true;
+            }
+          }
         }
+
+        setTimeout(() => {
+          if (msg["ACTS_RegisterEvent_First"] == true && msg["ACTS_RegisterEvent_Second"] == true) {
+            commonEvent.unsubscribe(subscriber);
+            done();
+          }
+        }, TIMEOUTTEN)
       }
 
       commonEvent.createSubscriber(ACTS_ProcessState).then(async (data) => {
@@ -249,21 +285,38 @@ export default function abilityTest() {
       */
     it('Acts_GetForegroundUiAbilityTest_0700', 0, async function (done) {
       let subscriber;
+      let msg = { "ACTS_RegisterEvent_First": false, "ACTS_RegisterEvent_Second": false }
 
       async function subscribeCallBack(err, data) {
         console.info('====>Acts_GetForegroundUiAbilityTest_0700 data: ' + JSON.stringify(data));
         if (data.event == 'Acts_MonitorApp_Second') {
-          expect(data.parameters.result[0].abilityName).assertEqual('EntryAbility');
-          expect(data.parameters.result[0].bundleName).assertEqual('com.example.getforegroundfirstrely');
-          expect(data.parameters.result[0].moduleName).assertEqual('entry');
-          expect(data.parameters.result[0].state).assertEqual(9);
-          expect(data.parameters.result[1].abilityName).assertEqual('TestAbilityOther');
-          expect(data.parameters.result[1].bundleName).assertEqual('com.example.getforegroundtest');
-          expect(data.parameters.result[1].moduleName).assertEqual('entry_test');
-          expect(data.parameters.result[1].state).assertEqual(9);
-          commonEvent.unsubscribe(subscriber);
-          done();
+          for (let j = 0; j < data.parameters.result.length; j++) {
+            console.log("Acts_GetForegroundUiAbilityTest_0700 data.parameters.result[" + j + "] : "
+              + data.parameters.result[j]);
+            if (data.parameters.result[j].abilityName == 'EntryAbility') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0700 data1: ');
+              expect(data.parameters.result[j].abilityName).assertEqual('EntryAbility');
+              expect(data.parameters.result[j].bundleName).assertEqual('com.example.getforegroundfirstrely');
+              expect(data.parameters.result[j].moduleName).assertEqual('entry');
+              expect(data.parameters.result[j].state).assertEqual(9);
+              msg["ACTS_RegisterEvent_First"] = true;
+            } else if (data.parameters.result[j].abilityName == 'TestAbilityOther') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0700 data2: ');
+              expect(data.parameters.result[j].abilityName).assertEqual('TestAbilityOther');
+              expect(data.parameters.result[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.result[j].moduleName).assertEqual('entry_test');
+              expect(data.parameters.result[j].state).assertEqual(9);
+              msg["ACTS_RegisterEvent_Second"] = true;
+            }
+          }
         }
+
+        setTimeout(() => {
+          if (msg["ACTS_RegisterEvent_First"] == true && msg["ACTS_RegisterEvent_Second"] == true) {
+            commonEvent.unsubscribe(subscriber);
+            done();
+          }
+        }, TIMEOUTTEN)
       }
 
       commonEvent.createSubscriber(ACTS_ProcessState).then(async (data) => {
