@@ -16,41 +16,41 @@
 #define MOCK_DEVICE_H
 
 #include <iostream>
-#include "device.h"
+#include "frameworks/native/compat/device.h"
 
 namespace OHOS::NeuralNetworkCore{
-class MockDevice : public Device {
+class MockDevice : public NeuralNetworkRuntime::Device {
 public:
     int32_t GetSupportedOperation(const Model& model, std::vector<bool>& ops) override
     {
         return HDF_SUCCESS;
     }
 
-    int32_t IsFloat16PrecisionSupported(bool& isSupported) override
+    OH_NN_ReturnCode IsFloat16PrecisionSupported(bool& isSupported) override
     {
         isSupported = m_enableFp16;
         return HDF_SUCCESS;
     }
 
-    int32_t IsPerformanceModeSupported(bool& isSupported) override
+    OH_NN_ReturnCode IsPerformanceModeSupported(bool& isSupported) override
     {
         isSupported = true;
         return HDF_SUCCESS;
     }
 
-    int32_t IsPrioritySupported(bool& isSupported) override
+    OH_NN_ReturnCode IsPrioritySupported(bool& isSupported) override
     {
         isSupported = true;
         return HDF_SUCCESS;
     }
 
-    int32_t IsDynamicInputSupported(bool& isSupported) override
+    OH_NN_ReturnCode IsDynamicInputSupported(bool& isSupported) override
     {
         isSupported = true;
         return HDF_SUCCESS;
     }
 
-    int32_t IsModelCacheSupported(bool& isSupported) override
+    OH_NN_ReturnCode IsModelCacheSupported(bool& isSupported) override
     {
         isSupported = true;
         return HDF_SUCCESS;

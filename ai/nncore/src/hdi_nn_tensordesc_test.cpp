@@ -14,11 +14,11 @@
  */
 #include <vector>
 
-#include "hdi_nncore_utils.h"
+#include "../nncore_common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {
-class HdiNNTessorDesc : public testing::Test {};
+class HdiNNCoreTensorDesc : public testing::Test {};
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_Datatype_0100

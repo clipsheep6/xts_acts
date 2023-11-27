@@ -6,8 +6,9 @@
 #include <cstdio>
 #include <vector>
 
-#include "interfaces/kits/c/neural_network_runtime.h"
-#include "test/system_test/common/nnrt_test.h"
+#include "interfaces/kits/c/v2_0/neural_network_core.h"
+#include "interfaces/kits/c/v2_0/neural_network_runtime_type.h"
+
 
 namespace OHOS {
 namespace NeuralNetworkRuntime {
@@ -15,14 +16,15 @@ namespace SystemTest {
 class End2EndTest : public NNRtTest {
 public:
     End2EndTest() = default;
+
     OH_NNCore_ReturnCode BuildModel(OH_NNBackend_Model **model,
                                     const std::vector<OH_NNCore_TensorDesc*>& tensorDescs);
     
-    OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const int32_t* shape, size_t shapeNum, 
+    OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, std::string &backendName, const int32_t* shape, size_t shapeNum, 
                                           OH_NNCore_DataType dataType, OH_NNCore_Format format,
                                           OH_NNBackend_TensorType tensorType);
 
-    void SetOptions(const char* backendName);
+    void SetCompilation(OH_NNCore_Compilation* compilation);
 
     void GetTensorDescFormCompiled(OH_NNCore_Compiled* compiled, size_t *count, std::vector<OH_NNCore_TensorDesc*>& tensorDescs)
 

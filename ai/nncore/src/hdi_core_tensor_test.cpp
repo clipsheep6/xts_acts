@@ -14,7 +14,7 @@
  */
 #include<vector>
 
-#include "../nncore_common/const.h"
+#include "../nncore_common/nncore_const.h"
 #include "../nncore_common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
@@ -100,8 +100,8 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_030
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-    int num = (int)OH_NNCORE_FLOAT64 + 1;
-
+    int num = (int)OH_NNCORE_FLOAT64;
+    num++;
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<OH_NNCore_DataType>(num)));
 }
 
@@ -315,7 +315,6 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
     vector<int32_t> shape = {1, 2, 3, 4, 5};
-    size_t size = 5;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
     size_t elementNum = -1;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum));
@@ -358,9 +357,6 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_02
     for(size_t i = 0; i < cycleNum; i++) {
         OH_NNCore_TensorDesc *tensorDescOne = nullptr;
         TestConstructTensorDesc(&tensorDesc);
-        vector<int32_t> shape = {1, 2, 3, 4, 5};
-        size_t size = 5;
-        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
         size_t byteSize = -1;
         ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
         ASSERT_LT(ZERO, byteSize);
@@ -378,8 +374,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_03
     TestConstructTensorDesc(&tensorDesc);
     vector<int32_t> shape = {1, 2, 3, 4, 5};
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
-    size_t byteSize = 0;
+    size_t byteSize = -1;
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
-    ASSERT_EQ(ZERO, byteSize);
 }
 } // namespace OHOS::NeuralNetworkCore

@@ -147,6 +147,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_From_File_0400, Function | MediumTest | Level1)
 {
+    //？？不兼容
     const char* filePath = "hefa.txt";
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
@@ -208,10 +209,10 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Save_Compiled_To_
  */
 HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Save_Compiled_To_Buffer_0100, Function | MediumTest | Level1)
 {
+    //？？
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
-    const char* stringBuffer = "123456789";
-    const void* buffer = reinterpret_cast<const void*>(stringBuffer);
+    const void* buffer = nullptr;
     size_t modelSize = 10;
     ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_SaveCompiledToBuffer(compiled, buffer, graphArgs.operands[0].length, &modelSize));          
 }
@@ -398,10 +399,10 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
 
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 1));
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 1));
 }
 
 /**
@@ -414,14 +415,13 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
 
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
 
-    char* filePath = "hefa";
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
+    char* filePath = "./";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 1));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 1));
     ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
 }
 
@@ -435,13 +435,13 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
 
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
     char* filePath = "hefa";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
     ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
 }
 
@@ -455,13 +455,13 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
 
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
     char* filePath = "hefa";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 11));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 11));
     ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_SaveCompiledToFile(compiled, filePath));
 }
 
@@ -475,13 +475,13 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
 
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
     char* filePath = "hefa";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 1));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 1));
     char *backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
     ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_RestoreCompiledFromFile(compiled, backendName, filePath));
@@ -496,13 +496,14 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
 {
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
     char* filePath = "hefa";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
     char *backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(compiled, backendName, filePath));
@@ -518,13 +519,13 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     OH_NNCore_Compiled* compiled = nullptr;
     TestBuildCompiled(&compiled);
 
-    char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
-    OH_NNCore_Options* options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 10));
+    OH_NNCore_CompiledOptions* options = OH_NNBackend_ConstructCompiledOptions();
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 10));
+
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, options));
     char* filePath = "./";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCacheVersion(options, 11));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompiledCacheVersion(options, 11));
     char *backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, backendName));
     ASSERT_EQ(OH_NNCORE_FAILED, OH_NNCore_RestoreCompiledFromFile(compiled, backendName, filePath));

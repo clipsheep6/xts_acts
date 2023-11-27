@@ -15,30 +15,37 @@ import("//test/xts/tools/build/suite.gni")
 module_output_path = "acts/nnrt"
 
 config("nncore_config") {
-  visibility = [ ":*" ]
+  include_dirs = [
+    "../nncore",
+    "../../../../../../foundation/ai/neural_network_runtime",
+    "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
+  ]
+
   cflags = [ "-Wno-error" ]
   cflags_cc = [ "-fexceptions" ]
 }
 
 ohos_moduletest_suite("NncoreTest") {
-  testonly = true;
+  testonly = true
   module_out_path = module_output_path
-  source = [ 
-    "./nncore_common/hdi_nncore_utils.cpp",
-    "./nncore_common/mock_backend.cpp",
-    "./src/hdi_core_backend_test.cpp",
-    "./src/hdi_core_compilation_test.cpp",
-    "./src/hdi_core_compiled_test.cpp",
-    "./src/hdi_core_executor_test.cpp",
-    "./src/hdi_core_tensor_test.cpp",
-    "../neural_network_runtime/v2_0/common/nnrt_utils.cpp",
+  sources = [
+    "nncore_common/hdi_nncore_utils.cpp",
+    "nncore_common/mock_backend.cpp",
+    "src/hdi_core_backend_test.cpp",
+    "src/hdi_core_compilation_test.cpp",
+    "src/hdi_core_compiled_test.cpp",
+    "src/hdi_core_executor_test.cpp",
+    "src/hdi_core_memory_test.cpp",
+    "src/hdi_core_model_test.cpp",
+    "src/hdi_core_tensor_test.cpp",
+    "src/hdi_nn_tensordesc_test.cpp",
    ]
 
-  public_configs = [ ":nncore_config" ]
+  configs = [ ":nncore_config" ]
 
-  include_dirs = [
-    "../../../../../../../../foundation/ai/neural_network_runtime",
-    "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
+  deps = [
+    "//third_party/googletest:gmock",
+    "//third_party/googletest:gtest",
   ]
 
   external_deps = [
@@ -56,5 +63,5 @@ ohos_moduletest_suite("NncoreTest") {
 
 group("ActsHdfNncoreTest") {
   testonly = true
-  deps = [ ":NncoreTest" ]
+  deps = [ ":NncoreTest"]
 }

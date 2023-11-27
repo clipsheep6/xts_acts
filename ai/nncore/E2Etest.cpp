@@ -52,11 +52,11 @@ OH_NNCore_ReturnCode End2EndTest::BuildModel(OH_NNBackend_Model **model,
     return status;
 }
 
-OH_NNCore_ReturnCode End2EndTest::CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const int32_t* shape, size_t shapeNum, 
+OH_NNCore_ReturnCode End2EndTest::CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const char* backendName, const int32_t* shape, size_t shapeNum, 
                                                    OH_NNCore_DataType dataType, OH_NNCore_Format format,
                                                    OH_NNBackend_TensorType tensorType)
 {
-    *tensorDesc = OH_NNCore_CreateTensorDesc();
+    *tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
     if (*model == nullptr) {
         LOGE("End2EndTest::CreateTensorDesc failed, error happens when creating OH_NNCore_TensorDesc.");
         return OH_NNCORE_INVALID_PARAMETER;
@@ -89,13 +89,14 @@ OH_NNCore_ReturnCode End2EndTest::CreateTensorDesc(OH_NNCore_TensorDesc** tensor
     return status;
 }
 
-void End2EndTest::SetOptions(const char* backendName)
+void End2EndTest::SetCompilation(OH_NNCore_Compilation* compilation)
 {
-    OH_NNCore_Options* Options = OH_NNBackend_CreateOptions(backendName);
-    ASSERT_NE(nullptr, Options);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetPriority(Options, OH_NNBACKEND_PRIORITY_HIGH));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetPerformanceMode(Options, OH_NNBACKEND_PERFORMANCE_EXTREME));
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetEnableFloat16(Options, true));
+    OH_NNCore_CompilationOptions* compilationOptions = OH_NNBackend_CreateCompilationOptions();
+    ASSERT_NE(nullptr, compilationOptions);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompilationPriority(compilationOptions, OH_NNBACKEND_PRIORITY_HIGH));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompilationPerformanceMode(compilationOptions, OH_NNBACKEND_PERFORMANCE_EXTREME));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetCompilationEnableFloat16(compilationOptions, true));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationOptions(compilation, compilationOptions));
 }
 
 void End2EndTest::GetTensorDescFormCompiled(OH_NNCore_Compiled* compiled, size_t *count, std::vector<OH_NNCore_TensorDesc*>& tensorDescs)
@@ -173,19 +174,19 @@ HWTEST_F(End2EndTest, end_to_end_test_001, testing::ext::TestSize.Level1)
     std::vector<OH_NNCore_TensorDesc*> tensorDescs;
     OH_NNCore_TensorDesc* tensorDesc;
     int32_t inputDims[4] = {1, 2, 2, 3};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc);
 
     int32_t activationDims = 1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, &activationDims, 1, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, &activationDims, 1, 
                                                   OH_NNCORE_INT8, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_ADD_ACTIVATIONTYPE));
     tensorDescs.push_back(tensorDesc);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc);
 
@@ -199,11 +200,17 @@ HWTEST_F(End2EndTest, end_to_end_test_001, testing::ext::TestSize.Level1)
     // 设置backendName
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
     // 创建并设置compilation options
-    SetOptions(backendName);
+    SetCompilation(compilation);
     // 编译生成compiled对象后销毁compilation
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
+
+    // 创建并设置compiled options
+    OH_NNCore_CompiledOptions* compiledOptions = nullptr;
+    ASSERT_EQ(nullptr, compiledOptions);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, compiledOptions));
+    // 保存cache
     const char* filePath = "file";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(filePath, backendName, &compiled));
@@ -227,20 +234,20 @@ HWTEST_F(End2EndTest, end_to_end_test_002, testing::ext::TestSize.Level1)
     std::vector<OH_NNCore_TensorDesc*> tensorDescs;
     OH_NNCore_TensorDesc* tensorDesc;
     int32_t inputDims[4] = {-1, 2, 2, 3};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc);
 
     inputDims[0] = 1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc);
 
     int32_t activationDims = 1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, &activationDims, 1, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, &activationDims, 1, 
                                                   OH_NNCORE_INT8, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_ADD_ACTIVATIONTYPE));
     tensorDescs.push_back(tensorDesc);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc);
 
@@ -254,11 +261,17 @@ HWTEST_F(End2EndTest, end_to_end_test_002, testing::ext::TestSize.Level1)
     // 设置backendName
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation, backendName));
     // 创建并设置compilation options
-    SetOptions(backendName);
+    SetCompilation(compilation);
     // 编译生成compiled对象后销毁compilation
     OH_NNCore_Compiled* compiled = OH_NNCore_BuildCompilation(compilation);
     ASSERT_NE(nullptr, compiled);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
+
+    // 创建并设置compiled options
+    OH_NNCore_CompiledOptions* compiledOptions = nullptr;
+    ASSERT_EQ(nullptr, compiledOptions);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled, compiledOptions));
+    // 保存cache
     const char* filePath = "file";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled, filePath));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(filePath, backendName, &compiled));
@@ -280,19 +293,19 @@ HWTEST_F(End2EndTest, end_to_end_test_003, testing::ext::TestSize.Level3)
     std::vector<OH_NNCore_TensorDesc*> tensorDescs1;
     OH_NNCore_TensorDesc* tensorDesc1;
     int32_t inputDims[4] = {1, 2, 2, 3};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs1.push_back(tensorDesc1);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs1.push_back(tensorDesc1);
 
     int32_t activationDims = 1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, &activationDims, 1, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, backendName, &activationDims, 1, 
                                                   OH_NNCORE_INT8, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_ADD_ACTIVATIONTYPE));
     tensorDescs1.push_back(tensorDesc1);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc1, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs1.push_back(tensorDesc1);
 
@@ -306,11 +319,17 @@ HWTEST_F(End2EndTest, end_to_end_test_003, testing::ext::TestSize.Level3)
     // 设置backendName
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation1, backendName));
     // 创建并设置compilation options
-    SetOptions(backendName);
+    SetCompilation(compilation1);
     // 编译生成compiled对象后销毁compilation
     OH_NNCore_Compiled* compiled1 = OH_NNCore_BuildCompilation(compilation1);
     ASSERT_NE(nullptr, compiled1);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation1));
+
+    // 创建并设置compiled options
+    OH_NNCore_CompiledOptions* compiledOptions1 = nullptr;
+    ASSERT_EQ(nullptr, compiledOptions1);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled1, compiledOptions1));
+    // 保存cache
     const char* filePath1 = "file1";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled1, filePath1));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(filePath1, backendName, &compiled1));
@@ -320,19 +339,19 @@ HWTEST_F(End2EndTest, end_to_end_test_003, testing::ext::TestSize.Level3)
     std::vector<OH_NNCore_TensorDesc*> tensorDescs2;
     OH_NNCore_TensorDesc* tensorDesc2;
     inputDims[0] = -1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs2.push_back(tensorDesc2);
 
     inputDims[0] = 1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs2.push_back(tensorDesc2);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, &activationDims, 1, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, backendName, &activationDims, 1, 
                                                   OH_NNCORE_INT8, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_ADD_ACTIVATIONTYPE));
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, inputDims, 4, 
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc2, backendName, inputDims, 4, 
                                                   OH_NNCORE_FLOAT32, OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
     tensorDescs.push_back(tensorDesc2);
 
@@ -345,11 +364,17 @@ HWTEST_F(End2EndTest, end_to_end_test_003, testing::ext::TestSize.Level3)
     // 设置backendName
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompilationBackend(compilation2, backendName));
     // 创建并设置compilation options
-    SetOptions(backendName);
+    SetCompilation(compilation2);
     // 编译生成compiled对象后销毁compilation
     OH_NNCore_Compiled* compiled2 = OH_NNCore_BuildCompilation(compilation2);
     ASSERT_NE(nullptr, compiled);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation2));
+
+    // 创建并设置compiled options
+    OH_NNCore_CompiledOptions* compiledOptions2 = nullptr;
+    ASSERT_EQ(nullptr, compiledOptions2);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetCompiledOptions(compiled2, compiledOptions2));
+    // 保存cache
     const char* filePath2 = "file2";
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SaveCompiledToFile(compiled2, filePath2));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_RestoreCompiledFromFile(filePath2, backendName, &compiled2));
