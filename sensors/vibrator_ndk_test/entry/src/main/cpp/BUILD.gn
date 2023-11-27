@@ -1,0 +1,51 @@
+# Copyright (C) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//foundation/arkui/napi/napi.gni")
+
+VIBRATOR_ROOT_DIR = "//base/sensors/miscdevice/"
+config("config") {
+  visibility = [ ":*" ]
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+ohos_shared_library("vibratorNdkTest") {
+  sources = [ "./napi/vibratorTest.cpp" ]
+  if (use_musl) {
+    libs = [ rebase_path(libcxx_ndk_shared_file) ]
+  }
+  include_dirs = [
+    "$VIBRATOR_ROOT_DIR/interfaces/kits/c/",
+    "$VIBRATOR_ROOT_DIR/interfaces/inner_api/vibrator/",
+  ]
+  configs = [ ":config" ]
+  deps = [
+    "$VIBRATOR_ROOT_DIR/frameworks/capi:ohvibrator",
+    "$VIBRATOR_ROOT_DIR/interfaces/kits/c:lib_vibrator_ndk",
+  ]
+  external_deps = [
+    "hilog:libhilog",
+    "napi:ace_napi",
+  ]
+
+  output_extension = "so"
+  part_name = "miscdevice"
+  subsystem_name = "sensors"
+}

@@ -19,6 +19,7 @@ group("sensors") {
     deps = [
       "miscdevice_standard:miscdevice_js_test",
       "sensor_standard:sensor_js_test",
+      "vibrator_ndk_test:vibrator_ndk_hap",
     ]
   }
 }
