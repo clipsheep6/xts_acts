@@ -31,6 +31,5 @@ const std::string NONEDIR = "./undir";
 const std::string NONEFILE = CACHE_DIR + "/9.nncache";
 const std::string SUPPORTMODELPATH = "modelPath";
 const std::string NOSUPPORTMODELPATH = "noModelPath";
-const int32_t ELEMENT_COUNT = 4;
 }
 #endif // NNCORE_CONST_H

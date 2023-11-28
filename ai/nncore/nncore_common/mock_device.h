@@ -15,112 +15,106 @@
 #ifndef MOCK_DEVICE_H
 #define MOCK_DEVICE_H
 
-#include <iostream>
-#include "frameworks/native/compat/device.h"
-
+#include <v2_0/innrt_device.h>
+#include <v2_0/innrt_device.h>
+#include <v2_0/iprepared_model.h>
 
 namespace OHOS::NeuralNetworkCore{
-class MockDevice : public NeuralNetworkRuntime::Device {
 namespace V2_0 = OHOS::HDI::Nnrt::V2_0;
+class MockDevice : public V2_0::INnrtDevice {
 public:
-    int32_t GetSupportedOperation(std::shared_ptr<const mindspore::lite::LiteGraph> model,std::vector<bool>& ops) override
+    int32_t GetSupportedOperation(const V2_0::Model& model, std::vector<bool>& ops)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t IsFloat16PrecisionSupported(bool& isSupported) override
+    int32_t IsFloat16PrecisionSupported(bool& isSupported)
     {
         isSupported = m_enableFp16;
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t IsPerformanceModeSupported(bool& isSupported) override
+    int32_t IsPerformanceModeSupported(bool& isSupported)
     {
         isSupported = true;
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t IsPrioritySupported(bool& isSupported) override
+    int32_t IsPrioritySupported(bool& isSupported)
     {
         isSupported = true;
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t IsDynamicInputSupported(bool& isSupported) override
+    int32_t IsDynamicInputSupported(bool& isSupported)
     {
         isSupported = true;
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t IsModelCacheSupported(bool& isSupported) override
+    int32_t IsModelCacheSupported(bool& isSupported)
     {
         isSupported = true;
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t AllocateBuffer(uint32_t length, SharedBuffer &buffer) override;
+    int32_t AllocateBuffer(uint32_t length, V2_0::SharedBuffer &buffer)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t ReleaseBuffer(const V2_0::SharedBuffer &buffer) override
+    int32_t ReleaseBuffer(const V2_0::SharedBuffer &buffer)
     {;
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t GetDeviceName(std::string& name) override
+    int32_t GetDeviceName(std::string& name)
     {
-        return OH_NNCORE_SUCCESS;
+        name = "Device-CPU";
+        return 0;
     }
 
-    int32_t GetVendorName(std::string& name) override
+    int32_t GetVendorName(std::string& name)
     {
-        return OH_NNCORE_SUCCESS;
+        name = "TestVendor";
+        return 0;
     }
 
-    int32_t GetDeviceType(DeviceType& deviceType) override
+    int32_t GetDeviceType(V2_0::DeviceType& deviceType)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t GetDeviceStatus(DeviceStatus& status) override
+    int32_t GetDeviceStatus(V2_0::DeviceStatus& status)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t GetVersion(uint32_t &majorVersion, uint32_t &minorVersion) override
+    int32_t GetVersion(uint32_t &majorVersion, uint32_t &minorVersion)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t PrepareModel(std::shared_ptr<const mindspore::lite::LiteGraph> model, const OHOS::NeuralNetworkRuntime::ModelConfig& config, sptr<IPreparedModel>& preparedModel) override
+    int32_t PrepareModel(const V2_0::Model& model, const V2_0::ModelConfig& config, sptr<V2_0::IPreparedModel>& preparedModel)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t PrepareOfflineModel(std::shared_ptr<const mindspore::lite::LiteGraph> model, const OHOS::NeuralNetworkRuntime::ModelConfig& config,
-        sptr<OHOS::HDI::Nnrt::V2_0::IPreparedModel>& preparedModel) override
+    int32_t PrepareOfflineModel(const std::vector<V2_0::SharedBuffer>& offlineModels, const V2_0::ModelConfig& config,
+        sptr<V2_0::IPreparedModel>& preparedModel)
     {
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
-    int32_t PrepareModelFromModelCache(const std::vector<SharedBuffer>& modelCache, const OHOS::NeuralNetworkRuntime::ModelConfig& config,
-         sptr<IPreparedModel>& preparedModel) override;
+    int32_t PrepareModelFromModelCache(const std::vector<V2_0::SharedBuffer>& modelCache, const V2_0::ModelConfig& config,
+         sptr<V2_0::IPreparedModel>& preparedModel)
     {
-
-        return OH_NNCORE_SUCCESS;
+        return 0;
     }
 
     void SetFP16Supported(bool isSupported)
     {
         m_enableFp16 = isSupported;
-        return OH_NNCORE_SUCCESS;
-    }
-
-    static MockDevice *GetInstance()
-    {
-        static MockDevice device;
-        return &device;
     }
 
     MockDevice() = default;

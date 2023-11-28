@@ -19,7 +19,7 @@ void MockBackend::SetDeviceEnableFp16(bool isSupported)
 {
     std::shared_ptr<OHOS::NeuralNetworkRuntime::Device> device = GetDevice();
     if (device != nullptr) {
-        std::shared_ptr<MockDevice> mockDevice= std::make_shared<MockDevice>(device);
+        std::shared_ptr<MockDevice> mockDevice= device;
         mockDevice->SetFP16Supported(isSupported);
     }
 }
