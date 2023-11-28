@@ -20,6 +20,7 @@ group("stage") {
       "actsbatchuripermission:ActsBatchUriPermission",
       "actsdebuggabletest:actsdebuggabletest",
       "actsflagstartwithouttipstest:ActsFlagStartWithoutTipsTest",
+      "actscontextdirareamodetest:ActsContextDirAreaModeTest",
       "actsgetgroupdirtest:actsgetgroupdirtest",
       "actslifecyclemultihap2:ActsLifecycleMultiHap2",
       "actslifecyclemultihap3:ActsLifecycleMultiHap3",
