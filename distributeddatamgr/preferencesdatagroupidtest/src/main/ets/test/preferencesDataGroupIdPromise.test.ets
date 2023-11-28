@@ -20,6 +20,9 @@ import {context} from '../TestAbility/TestAbility'
 const TAG = "[ttt]"
 export default function preferencesDataGroupIdPromise() {
   describe('preferencesDataGroupIdPromise', function () {
+    beforeAll(function () {
+      console.log('beforeAll context'+ context)
+    })
     console.log(TAG + "*************Unit Test Begin*************");
 
 
@@ -29,6 +32,7 @@ export default function preferencesDataGroupIdPromise() {
      * @tc.desc preferences getPreferences dataGroupId null promise test
      */
     it('SUB_DDM_Preferences_DataGroupId_Promise_0100', 0, async function (done) {
+      console.log('SUB_DDM_Preferences_DataGroupId_Promise_0100 context'+ context)
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: null,

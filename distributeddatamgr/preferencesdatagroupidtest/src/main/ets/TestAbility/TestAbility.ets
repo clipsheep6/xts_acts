@@ -26,6 +26,9 @@ export default class TestAbility extends UIAbility {
         hilog.info(0x0000, "testTag", "%{public}s", "want param:" + JSON.stringify(want) ?? "");
         hilog.info(0x0000, "testTag", "%{public}s", "launchParam:" + JSON.stringify(launchParam) ?? "");
         context = this.context
+        console.log('onCreate--context' + context)
+        console.log('onCreate--this.context' + this.context)
+
         var abilityDelegator: any;
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         var abilityDelegatorArguments: any;
@@ -61,5 +64,6 @@ export default class TestAbility extends UIAbility {
     onBackground() {
         hilog.info(0x0000, "testTag", "%{public}s", "TestAbility onBackground");
     }
+
 }
 export {context}

@@ -26,6 +26,7 @@ export default function preferencesDataGroupIdSync() {
   describe('preferencesDataGroupIdSync', function () {
     beforeAll(async function () {
       console.info('beforeAll');
+      console.log('beforeAll context'+ context)
     })
     afterAll(async function () {
       console.info('afterAll');
@@ -39,6 +40,7 @@ export default function preferencesDataGroupIdSync() {
      * @tc.desc getPreferencesSync interface test
      */
     it('SUB_DDM_Preferences_GetPreferencesSync_0100', 0, async function (done) {
+      console.log('SUB_DDM_Preferences_GetPreferencesSync_0100 context'+ context)
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: null,
