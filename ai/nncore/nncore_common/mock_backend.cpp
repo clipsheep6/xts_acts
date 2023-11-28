@@ -13,39 +13,14 @@
  * limitations under the License.
  */
 #include "mock_backend.h"
+
 namespace OHOS::NeuralNetworkCore {
-
-std::shared_ptr<Backend> RegisterBackendFirst()
+void MockBackend::SetDeviceEnableFp16(bool isSupported)
 {
-    std::shared_ptr<MockBackend> mockBackend = std::make_shared<MockBackend>("backendFirst");
-    if (mockBackend == nullptr) {
-        return nullptr;
+    std::shared_ptr<OHOS::NeuralNetworkRuntime::Device> device = GetDevice();
+    if (device != nullptr) {
+        std::shared_ptr<MockDevice> mockDevice= std::make_shared<MockDevice>(device);
+        mockDevice->SetFP16Supported(isSupported);
     }
-    mockBackend->SetDeviceEnableFp16(false);
-    std::shared_ptr<Backend> backend = std::dynamic_cast<std::shared_ptr<Backend>>(mockBackend);
-    if (backend == nullptr) {
-        return nullptr;
-    }
-    return backend;
-}
-
-std::shared_ptr<Backend> RegisterBackendSecond()
-{
-    std::shared_ptr<MockBackend> mockBackend = std::make_shared<MockBackend>("backendSecond");
-    if (mockBackend == nullptr) {
-        return nullptr;
-    }
-    mockBackend->SetDeviceEnableFp16(true);
-    std::shared_ptr<Backend> backend = std::dynamic_cast<std::shared_ptr<Backend>>(mockBackend);
-    if (backend == nullptr) {
-        return nullptr;
-    }
-    return backend;
-}
-
-MockBackend::MockBackend(std::string backendName)
-{
-    m_backendName = backendName;
-    m_device = std::make_shared<MockDevice>();
 }
 }

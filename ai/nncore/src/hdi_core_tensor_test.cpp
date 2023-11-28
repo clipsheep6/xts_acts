@@ -19,25 +19,14 @@
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {
-class HdiNNCoreTensorDesc : public testing::Test {};
-
-/**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_Create_Tensor_0100
- * @tc.desc: 创建tensor，bankendName不存在，返回错误
- * @tc.type: FUNC
- */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Create_Tensor_0100, Function | MediumTest | Level1)
-{
-    const char* backendName = "other_device";
-    ASSERT_EQ(nullptr, OH_NNCore_CreateTensorDesc(backendName));
-}
+class HdiNNCoreTensor : public testing::Test {};
 
 /**
  * @tc.name: SUB_AI_NNRt_Core_Func_North_Create_Tensor_0200
  * @tc.desc: 创建tensor，bankendName合法，返回成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Create_Tensor_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_Create_Tensor_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
@@ -48,7 +37,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Create_Tensor_0100, Fu
  * @tc.desc: 销毁tensor，tensorDesc为空，返回成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Destroy_Tensor_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_Destroy_Tensor_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     ASSERT_NE(OH_NNCORE_SUCCESS, OH_NNCore_DestroyTensorDesc(&tensorDesc));
@@ -59,7 +48,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Destroy_Tensor_0100, F
  * @tc.desc: 销毁tensor，tensorDesc不为空，返回成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Destroy_Tensor_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_Destroy_Tensor_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
@@ -72,7 +61,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_Destroy_Tensor_0200, F
  * @tc.desc: 设置tensor datatype，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_0100, Function | MediumTest | Level1)
 {
     ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescDataType(nullptr, OH_NNCORE_INT32));
 }
@@ -82,7 +71,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_010
  * @tc.desc: 设置tensor datatype，遍历设置支持的datatype
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
@@ -96,12 +85,12 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_020
  * @tc.desc: 设置tensor datatype，设置不支持的DataType，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_0300, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-    int num = (int)OH_NNCORE_FLOAT64;
-    num++;
+    int num = (int)OH_NNCORE_FLOAT64 + 1;
+
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<OH_NNCore_DataType>(num)));
 }
 
@@ -110,7 +99,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DataType_030
  * @tc.desc: 获取datatype，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_DataType dataType ;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescDataType(nullptr, &dataType));
@@ -121,7 +110,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_010
  * @tc.desc: 获取datatype，未设置datatype，获取datatype，返回默认值
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_DataType dataType = OH_NNCORE_UINT8;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescDataType(nullptr, &dataType));
@@ -133,7 +122,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DataType_020
  * @tc.desc: 设置tensorDesc shape类型，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0100, Function | MediumTest | Level1)
 {
     vector<int32_t> shape = {1, 2, 3, 4, 5};
     size_t size = sizeof(shape)/sizeof(int32_t);
@@ -148,7 +137,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_01
  * @tc.desc: 设置tensorDesc shape类型，设置shape为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0200, Function | MediumTest | Level1)
 {
     int32_t *shape = nullptr;
     size_t size = 5;
@@ -163,7 +152,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_02
  * @tc.desc: 设置tensorDesc shape类型，设置shapeNum为0，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0300, Function | MediumTest | Level1)
 {
     vector<int32_t> shape = {1, 2, 3, 4, 5};
     size_t size = ZERO;
@@ -178,7 +167,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_03
  * @tc.desc: 获取tensorDesc shape类型，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0100, Function | MediumTest | Level1)
 {   
     int32_t *shape = nullptr;
     size_t size = ZERO;
@@ -192,7 +181,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_01
  * @tc.desc: 获取tensorDesc shape类型，未设置DescShape，返回默认值
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0200, Function | MediumTest | Level1)
 {
     int32_t *shape = nullptr;
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
@@ -206,7 +195,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_02
  * @tc.desc: 获取tensorDesc shape类型，合法设置，检查返回结果正确
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0300, Function | MediumTest | Level1)
 {
     int32_t *shape = nullptr;
     vector<int32_t> shapeBegin = {1, 2, 3, 4, 5};
@@ -228,7 +217,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_03
  * @tc.desc: 设置tensorDesc format，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescFormat_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescFormat_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Format format = OH_NNCORE_FORMAT_NCHW;
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
@@ -240,7 +229,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescFormat_0
  * @tc.desc: 设置tensorDesc format，遍历设置OH_NNCore_Format，返回成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescFormat_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescFormat_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Format format = OH_NNCORE_FORMAT_NCHW;
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
@@ -254,7 +243,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_SetTensor_DescFormat_0
  * @tc.desc: 获取tensorDesc format，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_Format format = OH_NNCORE_FORMAT_NONE;
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
@@ -267,7 +256,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0
  * @tc.desc: 获取tensorDesc format，未设置format，返回默认值
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_Format format = OH_NNCORE_FORMAT_NONE;
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
@@ -281,7 +270,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0
  * @tc.desc: 获取tensorDesc format，合法获取，返回成功
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0300, Function | MediumTest | Level1)
 {
     OH_NNCore_Format formatBegin = OH_NNCORE_FORMAT_NCHW;
     OH_NNCore_Format format = OH_NNCORE_FORMAT_NONE;
@@ -298,7 +287,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_DescFormat_0
  * @tc.desc: 获取tensorDesc元素个数，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     size_t elementNum = -1;
@@ -310,11 +299,12 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
  * @tc.desc: 获取tensorDesc元素个数，合法获取，设置多个元素，检查元素个数正确
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0200, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
     vector<int32_t> shape = {1, 2, 3, 4, 5};
+    size_t size = 5;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
     size_t elementNum = -1;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum));
@@ -326,7 +316,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
  * @tc.desc: 获取tensorDesc元素个数，合法获取，不设置tensorDesc，返回错误
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0300, Function | MediumTest | Level1)
 {   
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
@@ -339,7 +329,7 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Numb
  * @tc.desc: 获取tensorDesc字节长度，tensorDesc为空，返回失败
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0100, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0100, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     size_t byteSize = -1;
@@ -351,12 +341,15 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_01
  * @tc.desc: 获取tensorDesc字节长度，合法获取，设置多个元素，检查字节长度正确
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0200, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0200, Function | MediumTest | Level1)
 {
     size_t cycleNum = 5;
     for(size_t i = 0; i < cycleNum; i++) {
         OH_NNCore_TensorDesc *tensorDescOne = nullptr;
         TestConstructTensorDesc(&tensorDesc);
+        vector<int32_t> shape = {1, 2, 3, 4, 5};
+        size_t size = 5;
+        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape, size));
         size_t byteSize = -1;
         ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
         ASSERT_LT(ZERO, byteSize);
@@ -368,13 +361,14 @@ HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_02
  * @tc.desc: 获取tensorDesc字节长度，合法获取，不设置tensorDesc，检查字节长度为0
  * @tc.type: FUNC
  */
-HWTEST_F(HdiNNCoreTensorDesc, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0300, Function | MediumTest | Level1)
+HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0300, Function | MediumTest | Level1)
 {
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
     vector<int32_t> shape = {1, 2, 3, 4, 5};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
-    size_t byteSize = -1;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape, size));
+    size_t byteSize = 0;
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
+    ASSERT_EQ(ZERO, byteSize);
 }
 } // namespace OHOS::NeuralNetworkCore

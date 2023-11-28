@@ -952,3 +952,281 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0200, Function | Me
     ASSERT_EQ(nullptr, model1);
     Free(model2);
 }
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100
+ * @tc.desc: 创建Tensor，TensorDesc为nullptr
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100, Function | MediumTest | Level0)
+{
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(backendName, nullptr);
+    ASSERT_EQ(nullptr, tensor);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100
+ * @tc.desc: 销毁Tensor实例，Tensor为nullptr
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100, Function | MediumTest | Level0)
+{
+    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_DestroyTensor(nullptr));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithSize_0100
+ * @tc.desc: 根据size创建Tensor，TensorDesc为nullptr
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithSize_0100, Function | MediumTest | Level0)
+{
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    size_t size = 4;
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensorWithSize(backendName, nullptr, size);
+    ASSERT_EQ(nullptr, tensor);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithSize_0200
+ * @tc.desc: 根据size创建Tensor，size = 0
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithSize_0200, Function | MediumTest | Level0)
+{
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    size_t size = 0;
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensorWithSize(backendName, tensorDesc, size);
+    ASSERT_EQ(nullptr, tensor);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0100
+ * @tc.desc: 通过fd根据size创建tensor，TensorDesc为nullptr
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0100, Function | MediumTest | Level0)
+{
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    size_t size = 4;
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensorWithSize(backendName, tensorDesc, size);
+    ASSERT_EQ(nullptr, tensor);
+    int fd = 0;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetFd(tensor, &fd));
+    OH_NNCore_Tensor* tensortmp = OH_NNCore_CreateTensorWithFd(backendName, nullptr, fd, size, 1);
+    ASSERT_EQ(nullptr, tensortmp);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0200
+ * @tc.desc: 通过fd根据size创建tensor，fd = 0
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0200, Function | MediumTest | Level0)
+{
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    size_t size = 4;
+    int fd = 0;
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensorWithFd(backendName, tensorDesc, fd, size, 1);
+    ASSERT_EQ(nullptr, tensor);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0300
+ * @tc.desc: 通过fd根据size创建tensor，size = 0
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0300, Function | MediumTest | Level0)
+{
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    size_t size = 4;
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensorWithSize(backendName, tensorDesc, size);
+    ASSERT_EQ(nullptr, tensor);
+    int fd = 0;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetFd(tensor, &fd));
+    OH_NNCore_Tensor* tensortmp = OH_NNCore_CreateTensorWithFd(backendName, tensorDesc, fd, 0, -1);
+    ASSERT_EQ(nullptr, tensortmp);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0400
+ * @tc.desc: 通过fd根据size创建tensor，size = offset
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0400, Function | MediumTest | Level0)
+{
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    size_t size = 4;
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensorWithSize(backendName, tensorDesc, size);
+    ASSERT_EQ(nullptr, tensor);
+    int fd = 0;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetFd(tensor, &fd));
+    OH_NNCore_Tensor* tensortmp = OH_NNCore_CreateTensorWithFd(backendName, tensorDesc, fd, size, size);
+    ASSERT_EQ(nullptr, tensortmp);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetDataBuffer_0100
+ * @tc.desc: 获取Tensor，Tensor为空
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetDataBuffer_0100, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(nullptr, OH_NNCore_GetDataBuffer(nullptr));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200
+ * @tc.desc: 获取Tensor，未设置tensorData
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200, Function | MediumTest | Level0)
+{
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(backendName, tensorDesc);
+    ASSERT_EQ(nullptr, OH_NNCore_GetDataBuffer(tensor));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100
+ * @tc.desc: 获取TensorDesc,tensor为空
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(nullptr, OH_NNCore_GetTensorDesc(nullptr));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0200
+ * @tc.desc: 获取TensorDesc,返回正确
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0200, Function | MediumTest | Level0)
+{
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(backendName, tensorDesc);
+    OH_NNCore_TensorDesc* tensorDescTmp = OH_NNCore_GetTensorDesc(tensor);
+    ASSERT_NE(nullptr, tensorDescTmp);
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetSize_0100
+ * @tc.desc: 获取size,tensor为空
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetSize_0100, Function | MediumTest | Level0)
+{
+    size_t size = 0;
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetSize(nullptr, &size));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetFd_0100
+ * @tc.desc: 获取Fd,tensor为空
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetFd_0100, Function | MediumTest | Level0)
+{
+    int fd = 0;
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetFd(nullptr, &fd));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetFd_0200
+ * @tc.desc: 获取Fd,返回正确
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetFd_0200, Function | MediumTest | Level0)
+{
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(backendName, tensorDesc);
+    int fd = 0;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetFd(tensor, &fd));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetOffset_0100
+ * @tc.desc: 获取Offset,tensor为空
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetOffset_0100, Function | MediumTest | Level0)
+{
+    size_t offset = 0;
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetOffset(nullptr, &offset));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetOffset_0200
+ * @tc.desc: 获取Offset,返回正确
+ * @tc.type: FUNC
+ */
+HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Tensor_GetOffset_0200, Function | MediumTest | Level0)
+{
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
+    ASSERT_NE(nullptr, tensorDesc);
+    const OHNNOperandTest &operandTem = graphArgs.operands[0];
+    ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
+                           operandTem.format));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(backendName, tensorDesc);
+    int fd = 0;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetFd(tensor, &fd));
+    size_t size = 4;
+    size_t offsetin = 1;
+    OH_NNCore_Tensor* tensortmp = OH_NNCore_CreateTensorWithFd(backendName, tensorDesc, fd, size, offsetin);
+    size_t offsetout = 0;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetOffset(tensortmp, &offsetout));
+}

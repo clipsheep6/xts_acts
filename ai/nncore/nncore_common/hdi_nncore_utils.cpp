@@ -17,13 +17,44 @@
 #include "hdi_nncore_utils.h"
 
 namespace OHOS::NeuralNetworkCore {
+std::shared_ptr<Backend> RegisterBackendFirst()
+{
+    std::shared_ptr<MockBackend> mockBackend = std::make_shared<MockBackend>("backendFirst");
+    if (mockBackend == nullptr) {
+        return nullptr;
+    }
+    mockBackend->SetDeviceEnableFp16(false);
+    std::shared_ptr<Backend> backend = std::make_shared<NeuralNetworkCore::Backend>(mockBackend);
+    if (backend == nullptr) {
+        return nullptr;
+    }
+    return backend;
+}
+
+std::shared_ptr<Backend> RegisterBackendSecond()
+{
+    std::shared_ptr<MockBackend> mockBackend = std::make_shared<MockBackend>("backendSecond");
+    if (mockBackend == nullptr) {
+        return nullptr;
+    }
+    mockBackend->SetDeviceEnableFp16(true);
+    std::shared_ptr<Backend> backend = std::make_shared<NeuralNetworkCore::Backend>(mockBackend);
+    if (backend == nullptr) {
+        return nullptr;
+    }
+    return backend;
+}
+
 //注册设备
 void RegisterBackend()
 {
-    REGISTER_BACKEND(Test1, RegisterBackendFirst);
-    REGISTER_BACKEND(Test2, RegisterBackendSecond);
+    static bool isRegister = false;
+    if (!isRegister) {
+        REGISTER_BACKEND(BackendFirst, RegisterBackendFirst);
+        REGISTER_BACKEND(BackendSecond, RegisterBackendSecond);
+        isRegister = true;
+    }
 }
-
 //测试backend number
 void TestGetBackendNum(bool isNull = false)
 {
@@ -350,58 +381,48 @@ void TestExecutor(OH_NNCore_Executor** executor)
     ASSERT_NE(nullptr, executor);
 }
 
-void TestGetInputOutputTensor(OH_NNCore_Executor* executor, OH_NNCore_Tensor* inputTensor[], size_t& inputSize, 
-                              OH_NNCore_Tensor* outputTensor[], size_t& outputSize)
+void TestGetInputOutputTensor(OH_NNCore_Executor* executor, OH_NNCore_Tensor* inputTensors[], size_t& inputSize, 
+                              OH_NNCore_Tensor* outputTensors[], size_t& outputSize)
 {
-    OH_NNCore_ReturnCode returnCode = OH_NNCore_GetCompiledInputCount(*compiled, &inputSize);
+    OH_NNCore_Compiled* compiled = nullptr;
+    TestBuildCompiled(&compiled);
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(ZERO, &backendName));
+    OH_NNCore_ReturnCode returnCode = OH_NNCore_GetCompiledInputNum(compiled, &inputSize);
     ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
     std::vector<OH_NNCore_TensorDesc*> inputTensorDescs;
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     for (size_t i = 0; i < inputSize; ++i) {
         tensorDesc = nullptr;
-        returnCode = OH_NNCore_GetCompiledInputDesc(*compiled, i, &tensorDesc);
+        returnCode = OH_NNCore_GetCompiledInputDesc(compiled, i, &tensorDesc);
         ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
         inputTensorDescs.emplace_back(tensorDesc);
     }
 
-    returnCode = OH_NNCore_GetCompiledOutputCount(*compiled, &outputSize);
+    returnCode = OH_NNCore_GetCompiledOutputNum(compiled, &outputSize);
     std::vector<OH_NNCore_TensorDesc*> outputTensorDescs;
     ASSERT_EQ(returnCode, OH_NNCORE_SUCCESS);
     for (size_t i = 0; i < outputSize; ++i) {
         tensorDesc = nullptr;
-        returnCode = OH_NNCore_GetCompiledOutputDesc(*compiled, i, &tensorDesc);
+        returnCode = OH_NNCore_GetCompiledOutputDesc(compiled, i, &tensorDesc);
         ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
         outputTensorDescs.emplace_back(tensorDesc);
     }
 
     OH_NNCore_Tensor* tensor = nullptr;
     size_t byteSize = 0;
-    OH_NNBackend_Memory* memory = nullptr;
     for (size_t i = 0; i < inputSize; ++i) {
         tensor = nullptr;
         byteSize = 0;
-        tensor = OH_NNBackend_CreateTensor(inputTensorDescs[i]);
+        tensor = OH_NNCore_CreateTensor(backendName, inputTensorDescs[i]);
         ASSERT_NE(nullptr, tensor);
-        returnCode = OH_NNCore_GetTensorDescByteSize(inputTensorDescs[i], &byteSize);
-        ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
-        memory = OH_NNBackend_AllocateMemory(executor, byteSize);
-        ASSERT_NE(nullptr, memory);
-        returnCode = OH_NNBackend_SetTensorData(tensor, memory);
-        ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
         inputTensors[i] = tensor;
     }
     for (size_t i = 0; i < outputSize; ++i) {
         tensor = nullptr;
-        memory = nullptr;
         byteSize = 0;
-        tensor = OH_NNBackend_CreateTensor(outputTensorDescs[i]);
+        tensor = OH_NNCore_CreateTensor(backendName, outputTensorDescs[i]);
         ASSERT_NE(nullptr, tensor);
-        returnCode = OH_NNCore_GetTensorDescByteSize(outputTensorDescs[i], &byteSize);
-        ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
-        memory = OH_NNBackend_AllocateMemory(executor, byteSize);
-        ASSERT_NE(nullptr, memory);
-        returnCode = OH_NNBackend_SetTensorData(tensor, memory);
-        ASSERT_EQ(OH_NNCORE_SUCCESS, returnCode);
         outputTensors[i] = tensor;
     }                
 }
