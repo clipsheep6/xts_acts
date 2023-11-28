@@ -19,12 +19,13 @@ import hilog from "@ohos.hilog";
 import { Hypium } from "@ohos/hypium";
 import testsuite from "../test/List.test";
 import window from "@ohos.window";
-
+let context: Context
 export default class TestAbility extends UIAbility {
     onCreate(want, launchParam) {
         hilog.info(0x0000, "testTag", "%{public}s", "TestAbility onCreate");
         hilog.info(0x0000, "testTag", "%{public}s", "want param:" + JSON.stringify(want) ?? "");
         hilog.info(0x0000, "testTag", "%{public}s", "launchParam:" + JSON.stringify(launchParam) ?? "");
+        context = this.context
         var abilityDelegator: any;
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
         var abilityDelegatorArguments: any;
@@ -61,3 +62,4 @@ export default class TestAbility extends UIAbility {
         hilog.info(0x0000, "testTag", "%{public}s", "TestAbility onBackground");
     }
 }
+export {context}

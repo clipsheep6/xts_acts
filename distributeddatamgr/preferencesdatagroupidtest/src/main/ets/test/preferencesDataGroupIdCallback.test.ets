@@ -15,18 +15,11 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import dataPreferences from '@ohos.data.preferences';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import {context} from '../TestAbility/TestAbility'
 
 const TAG = "[ttt]"
-let context: Context
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-
 export default function preferencesDataGroupIdCallback() {
   describe('preferencesDataGroupIdCallback', function () {
-    beforeAll(async function () {
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context
-    })
     console.log(TAG + "*************Unit Test Begin*************");
 
     /**
