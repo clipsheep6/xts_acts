@@ -307,10 +307,10 @@ export default function contextDirTest() {
     it('SUB_Ability_AbilityRuntime_AbilityStageContext_Dir_0900', 0, async (done: Function) => {
       let TAG = 'SUB_Ability_AbilityRuntime_AbilityStageContext_Dir_0900';
       hilog.info(0x0000, 'testTag', '%{public}s', TAG + ' --start');
-      await abilityDelegator.startAbility({
-        bundleName: 'com.example.contextdirtest',
-        abilityName: 'AbilityStage',
-      })
+      // await abilityDelegator.startAbility({
+      //   bundleName: 'com.example.contextdirtest',
+      //   abilityName: 'AbilityStage',
+      // })
       await sleep(300);
       let abilityStageContext = AppStorage.get<common.AbilityStageContext>('myAbilityStageContext') as common.AbilityStageContext;
       console.log('testTag stageContext ', JSON.stringify(abilityStageContext.cacheDir))
@@ -334,10 +334,10 @@ export default function contextDirTest() {
     it('SUB_Ability_AbilityRuntime_AbilityStageContext_Dir_1000', 0, async (done: Function) => {
       let TAG = 'SUB_Ability_AbilityRuntime_AbilityStageContext_Dir_1000';
       hilog.info(0x0000, 'testTag', '%{public}s', TAG + ' --start');
-      await abilityDelegator.startAbility({
-        bundleName: 'com.example.contextdirtest',
-        abilityName: 'AbilityStage',
-      })
+      // await abilityDelegator.startAbility({
+      //   bundleName: 'com.example.contextdirtest',
+      //   abilityName: 'AbilityStage',
+      // })
       await sleep(300);
       let abilityStageContext = AppStorage.get<common.AbilityStageContext>('myAbilityStageContext') as common.AbilityStageContext;
       console.log('testTag stageContext ', JSON.stringify(abilityStageContext.cacheDir))

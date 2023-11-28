@@ -16,5 +16,6 @@
 import contextDirTest from './ContextDirTest.test'
 
 export default function testsuite() {
-  contextDirTest()
+  console.log('start_cese_cese normal ContextDirTest');
+  contextDirTest();
 }
