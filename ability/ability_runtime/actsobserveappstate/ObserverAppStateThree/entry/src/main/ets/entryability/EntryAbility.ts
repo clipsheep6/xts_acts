@@ -34,19 +34,11 @@ let appForegroundStateObserver = {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData.state));
   }
 }
-
+let wantValue;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    try {
-      appManager.on('appForegroundState', appForegroundStateObserver);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-      commonEventData.parameters.applicationState = error.code;
-      commonEventManager.publish('stateEvent', commonEventData, (err) => {
-        console.info('publish error' + JSON.stringify(err));
-      })
-    }
+    wantValue = want;
   }
 
   onDestroy() {
@@ -79,6 +71,33 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    if (wantValue.action == 'Acts_ObserverAppState_0300') {
+      try {
+        appManager.on('appForegroundState', appForegroundStateObserver);
+      } catch (error) {
+        console.error(TAG, 'on error' + JSON.stringify(error));
+        commonEventData.parameters.applicationState = error.code;
+        commonEventManager.publish('Acts_ObserverAppState_0300', commonEventData, (err) => {
+          console.info('publish error' + JSON.stringify(err));
+        })
+      }
+    }
+    if (wantValue.action == 'Acts_ObserverAppState_0600') {
+      try {
+        appManager.on('appForegroundState', appForegroundStateObserver);
+      } catch (error) {
+        try {
+          appManager.off('appForegroundState', appForegroundStateObserver);
+        } catch (error) {
+          console.error(TAG, 'on error' + JSON.stringify(error));
+          commonEventData.parameters.applicationState = error.code;
+          commonEventManager.publish('Acts_ObserverAppState_0600', commonEventData, (err) => {
+            console.info('publish error' + JSON.stringify(err));
+          })
+        }
+      }
+    }
+
   }
 
   onBackground() {

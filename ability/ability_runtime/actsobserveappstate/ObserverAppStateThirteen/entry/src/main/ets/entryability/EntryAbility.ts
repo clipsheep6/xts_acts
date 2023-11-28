@@ -39,15 +39,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate1');
     appManager.on('appForegroundState', appForegroundStateObserver);
-    try {
-      appManager.off('appForegroundState', appForegroundStateObserver);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-      commonEventData.parameters.applicationState = error.code;
-      commonEventManager.publish('stateEvent', commonEventData, (err) => {
-        console.info('publish error' + JSON.stringify(err));
-      })
-    }
+
   }
 
   onDestroy() {
@@ -76,6 +68,15 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    try {
+      appManager.off('appForegroundState', appForegroundStateObserver);
+    } catch (error) {
+      console.error(TAG, 'on error' + JSON.stringify(error));
+      commonEventData.parameters.applicationState = error.code;
+      commonEventManager.publish('Acts_ObserverAppState_0600', commonEventData, (err) => {
+        console.info('publish error' + JSON.stringify(err));
+      })
+    }
   }
 
   onBackground() {

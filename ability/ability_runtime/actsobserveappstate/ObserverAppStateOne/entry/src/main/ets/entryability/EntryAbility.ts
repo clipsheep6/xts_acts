@@ -31,33 +31,23 @@ let commonEventData = {
   }
 }
 
+let appForegroundStateObserver = {
+  onAppStateChanged(appStateData) {
+    console.info('onAppStateChanged: ' + JSON.stringify(appStateData.bundleName));
+    console.info('onAppStateChanged: ' + JSON.stringify(appStateData.state));
+  }
+}
+
+let wantValue;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate' + TAG);
-    try {
-      appManager.on('appForegroundState', observerNull);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-      commonEventData.parameters.applicationState = error.code;
-      commonEventManager.publish('stateEvent', commonEventData, (err) => {
-        console.info(TAG + 'publish error' + JSON.stringify(err));
-      })
-    }
-    try {
-      appManager.on('appForegroundState', observerUndefined);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-      commonEventData.parameters.applicationState = error.code;
-      commonEventManager.publish('stateEvent', commonEventData, (err) => {
-        console.info('publish error' + JSON.stringify(err));
-      })
-    }
+    wantValue  = want;
   }
 
   onDestroy() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    appManager.off('appForegroundState', observerNull);
-    appManager.off('appForegroundState', observerUndefined);
+    appManager.off('appForegroundState', appForegroundStateObserver);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -81,6 +71,53 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    if (wantValue.action == 'Acts_ObserverAppState_0100') {
+      try {
+        appManager.on('appForegroundState', observerNull);
+      } catch (error) {
+        console.error(TAG, 'on error' + JSON.stringify(error));
+        commonEventData.parameters.applicationState = error.code;
+        commonEventManager.publish('Acts_ObserverAppState_0100_1', commonEventData, (err) => {
+          console.info(TAG + 'publish error' + JSON.stringify(err));
+        })
+      }
+      setTimeout(() => {
+        try {
+          appManager.on('appForegroundState', observerUndefined);
+        } catch (error) {
+          console.error(TAG, 'on error' + JSON.stringify(error));
+          commonEventData.parameters.applicationState = error.code;
+          commonEventManager.publish('Acts_ObserverAppState_0100_2', commonEventData, (err) => {
+            console.info('publish error' + JSON.stringify(err));
+          })
+        }
+      }, 1000);
+    }
+
+    if (wantValue.action == 'Acts_ObserverAppState_0400') {
+      try {
+        appManager.on('appForegroundState', appForegroundStateObserver);
+        appManager.off('appForegroundState', observerNull);
+      } catch (error) {
+        console.error(TAG, 'on error' + JSON.stringify(error));
+        commonEventData.parameters.applicationState = error.code;
+        commonEventManager.publish('Acts_ObserverAppState_0400_1', commonEventData, (err) => {
+          console.info('publish error' + JSON.stringify(err));
+        })
+      }
+      setTimeout(() => {
+        try {
+          appManager.off('appForegroundState', observerUndefined);
+        } catch (error) {
+          console.error(TAG, 'on error' + JSON.stringify(error));
+          commonEventData.parameters.applicationState = error.code;
+          commonEventManager.publish('Acts_ObserverAppState_0400_2', commonEventData, (err) => {
+            console.info('publish error' + JSON.stringify(err));
+          })
+        }
+      }, 1000)
+    }
+    
   }
 
   onBackground() {

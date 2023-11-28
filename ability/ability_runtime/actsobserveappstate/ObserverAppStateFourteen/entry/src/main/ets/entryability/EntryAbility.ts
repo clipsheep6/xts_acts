@@ -19,46 +19,45 @@ import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
 
-const ONE = 1;
-const TWO = 2;
-let TAG = 'ObserverAppState06 publish';
-let applicationState = -1;
-let flag = 0;
-let bundlename = '';
+
+let TAG = 'ObserverAppState06 publish '
+let applicationState = -1
+let flog = 0;
+let bundlename = ''
 let commonEventData = {
   parameters: {
     applicationState: applicationState,
     bundlename: bundlename,
-    flag: flag
+    flog: flog
   }
-};
+}
 let appForegroundStateObserver1 = {
   onAppStateChanged(appStateData) {
-    flag = ONE;
+    flog = 1;
     commonEventManager.publish('stateEvent', commonEventData, (err) => {
-      console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
+      console.info(TAG + '01 ' + 'onAppStateChanged publish1 error' + JSON.stringify(err));
     })
   }
-};
+}
 let appForegroundStateObserver2 = {
   onAppStateChanged(appStateData) {
-    flag = TWO;
+    flog = 2;
     commonEventManager.publish('stateEvent', commonEventData, (err) => {
       console.info(TAG + '02 ' + 'onAppStateChanged publish2 error' + JSON.stringify(err));
     })
   }
-};
+}
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    appManager.on('appForegroundState', appForegroundStateObserver1);
-    appManager.on('appForegroundState', appForegroundStateObserver2);
+    appManager.on("appForegroundState", appForegroundStateObserver1);
+    appManager.on("appForegroundState", appForegroundStateObserver2);
+    appManager.off("appForegroundState");
   }
 
   onDestroy() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    appManager.off('appForegroundState');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -83,6 +82,9 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    commonEventManager.publish('stateEvent', commonEventData, (err) => {
+      console.info(TAG + 'publish error' + JSON.stringify(err));
+    })
   }
 
   onBackground() {

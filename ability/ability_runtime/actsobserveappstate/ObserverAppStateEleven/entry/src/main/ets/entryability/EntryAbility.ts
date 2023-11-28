@@ -16,7 +16,7 @@
 import appManager from '@ohos.app.ability.appManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
-import type window from '@ohos.window';
+import window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
 
 let observerNull = null;
@@ -41,24 +41,6 @@ export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate1');
     appManager.on('appForegroundState', appForegroundStateObserver);
-    try {
-      appManager.off('appForegroundState', observerNull);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-      commonEventData.parameters.applicationState = error.code;
-      commonEventManager.publish('stateEvent', commonEventData, (err) => {
-        console.info('publish error' + JSON.stringify(err));
-      })
-    }
-    try {
-      appManager.off('appForegroundState', observerUndefined);
-    } catch (error) {
-      console.error(TAG, 'on error' + JSON.stringify(error));
-      commonEventData.parameters.applicationState = error.code;
-      commonEventManager.publish('stateEvent', commonEventData, (err) => {
-        console.info('publish error' + JSON.stringify(err));
-      })
-    }
   }
 
   onDestroy() {
@@ -87,6 +69,26 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    try {
+      appManager.off('appForegroundState', observerNull);
+    } catch (error) {
+      console.error(TAG, 'on error' + JSON.stringify(error));
+      commonEventData.parameters.applicationState = error.code;
+      commonEventManager.publish('Acts_ObserverAppState_0400_1', commonEventData, (err) => {
+        console.info('publish error' + JSON.stringify(err));
+      })
+    }
+    setTimeout(() => {
+      try {
+        appManager.off('appForegroundState', observerUndefined);
+      } catch (error) {
+        console.error(TAG, 'on error' + JSON.stringify(error));
+        commonEventData.parameters.applicationState = error.code;
+        commonEventManager.publish('Acts_ObserverAppState_0400_2', commonEventData, (err) => {
+          console.info('publish error' + JSON.stringify(err));
+        })
+      }
+    }, 1000)
   }
 
   onBackground() {

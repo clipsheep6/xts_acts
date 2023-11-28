@@ -30,12 +30,8 @@ let commonEventData = {
 }
 let appForegroundStateObserver = {
   onAppStateChanged(appStateData) {
+    console.info('onAppStateChanged: ' + JSON.stringify(appStateData.bundleName));
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData.state));
-    commonEventData.parameters.applicationState = appStateData.state;
-    commonEventData.parameters.bundlename = appStateData.bundleName;
-    commonEventManager.publish('stateEvent', commonEventData, (err) => {
-      console.info('publish error' + JSON.stringify(err));
-    })
   }
 }
 
@@ -48,6 +44,10 @@ export default class EntryAbility extends UIAbility {
       appManager.off('appForegroundState', appForegroundStateObserver);
     } catch (error) {
       console.error(TAG, 'on error' + JSON.stringify(error));
+      commonEventData.parameters.applicationState = error.code;
+      commonEventManager.publish('stateEvent', commonEventData, (err) => {
+        console.info('publish error' + JSON.stringify(err));
+      })
     }
   }
 
