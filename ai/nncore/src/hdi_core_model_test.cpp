@@ -46,7 +46,7 @@ void BuildModel(OH_NNBackend_Model *model, const OHNNGraphArgs &graphArgs)
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0100, Function | MediumTest | Level0)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 }
 
@@ -57,13 +57,13 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0100, Function
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_CreateModel_0200, Function | MediumTest | Level2)
 {
-    OH_NNBackend_Model *model_first = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model_first = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model_first);
 
-    OH_NNBackend_Model *model_second = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model_second = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model_second);
 
-    OH_NNBackend_Model *model_third = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model_third = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model_third);
 
     ASSERT_NE(model_first, model_second);
@@ -92,7 +92,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0100, Function | M
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Destroy_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
@@ -110,7 +110,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0100, Function 
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
-                                                  OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
+                                                  OH_NNCORE_FORMAT_NONE));
     OH_NNCore_ReturnCode ret = OH_NNBackend_AddTensorToModel(nullptr, operand);
     EXPECT_EQ(OH_NNCORE_INVALID_PARAMETER, ret);
 }
@@ -122,7 +122,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0100, Function 
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     OH_NNCore_ReturnCode ret = OH_NNBackend_AddTensorToModel(model, nullptr);
@@ -137,13 +137,13 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0200, Function 
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, static_cast<OH_NNCore_DataType>(100000),
-                                                OH_NNCORE_FORMAT_NONE, OH_NNBACKEND_TENSOR));
+                                                OH_NNCORE_FORMAT_NONE));
     EXPECT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_AddTensorToModel(model, operand));
     Free(model);
 }
@@ -155,14 +155,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0300, Function 
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0400, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
-                                                  OH_NNCORE_FORMAT_NONE, static_cast<OH_NNBackend_TensorType>(100000)));
-    EXPECT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_AddTensorToModel(model, operand));
+                                                  OH_NNCORE_FORMAT_NONE));
+    EXPECT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
+    EXPECT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetModelTensorType(model, 0, static_cast<OH_NNBackend_TensorType>(100000)));
     Free(model);
 }
 
@@ -173,14 +174,14 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperand_0400, Function 
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     int8_t activationValue{0};
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
-                                                  OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
+                                                  OH_NNCORE_FORMAT_NONE));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
 
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
@@ -195,14 +196,14 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0100, Func
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     int8_t activationValue{0};
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
-                                                  OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
+                                                  OH_NNCORE_FORMAT_NONE));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
 
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
@@ -217,13 +218,13 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0200, Func
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
-                                                  OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
+                                                  OH_NNCORE_FORMAT_NONE));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
 
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetModelTensorData(model, 1, nullptr, sizeof(int8_t)));
@@ -237,14 +238,14 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0300, Func
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0400, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
 
     int8_t activationValue{0};
     int32_t dimensions[3]{3, 2, 2};
     OH_NNCore_TensorDesc* operand = OH_NNCore_CreateTensorDesc();
     EXPECT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&operand, dimensions, 3, OH_NNCORE_FLOAT32,
-                                                  OH_NNCORE_FORMAT_NONE, OH_NNCore_TensorDesc));
+                                                  OH_NNCORE_FORMAT_NONE));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_AddTensorToModel(model, operand));
 
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetModelTensorData(model, 1, (void *)&activationValue, 0));
@@ -258,17 +259,17 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SetOperandValue_0400, Func
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(nullptr, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -282,16 +283,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0100, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, nullptr, &inputIndices, &outputIndices));
@@ -305,16 +306,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0200, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{nullptr, graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array paramIndices{nullptr, graphArgs.paramIndices.size()};
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -328,17 +329,17 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0300, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0400, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     uint32_t paramIndicesValue{10};
-    OH_NNBackend_UInt32Array paramIndices{&paramIndicesValue, graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array paramIndices{&paramIndicesValue, graphArgs.paramIndices.size()};
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -352,16 +353,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0400, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0500, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()), 0};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()), 0};
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -375,15 +376,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0500, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0600, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, nullptr, &outputIndices));
@@ -397,16 +398,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0600, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0700, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{nullptr, graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array inputIndices{nullptr, graphArgs.inputIndices.size()};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -420,17 +421,17 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0700, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0800, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
     uint32_t inputIndicesValue{10};
-    OH_NNBackend_UInt32Array inputIndices{&inputIndicesValue, graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array inputIndices{&inputIndicesValue, graphArgs.inputIndices.size()};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -444,16 +445,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0800, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0900, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()), 0};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()), 0};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
@@ -467,15 +468,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_0900, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1000, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()), 0};
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()), 0};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, nullptr));
     Free(model);
@@ -488,17 +489,17 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1000, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{nullptr, graphArgs.outputIndices.size()};
+    OH_NNBackend_Array outputIndices{nullptr, graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
     Free(model);
@@ -511,18 +512,18 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1100, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
     uint32_t outputIndicesValue{10};
-    OH_NNBackend_UInt32Array outputIndices{&outputIndicesValue, graphArgs.outputIndices.size()};
+    OH_NNBackend_Array outputIndices{&outputIndicesValue, graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
     Free(model);
@@ -535,17 +536,17 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1200, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     graphArgs.addOperation = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
+    OH_NNBackend_Array paramIndices{const_cast<uint32_t *>(graphArgs.paramIndices.data()),
                                        graphArgs.paramIndices.size()};
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()), 0};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()), 0};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER,
               OH_NNBackend_AddOperationToModel(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
     Free(model);
@@ -558,15 +559,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_AddOperation_1300, Functio
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0100, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(nullptr, &inputIndices, &outputIndices));
     Free(model);
@@ -579,12 +580,12 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_01
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, nullptr, &outputIndices));
     Free(model);
@@ -597,13 +598,13 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_02
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array inputIndices{nullptr, 2};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array inputIndices{nullptr, 2};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, &outputIndices));
     Free(model);
@@ -616,15 +617,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_03
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0400, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     uint32_t modelInputIndicesValue{5};
-    OH_NNBackend_UInt32Array inputIndices{&modelInputIndicesValue, 1};
+    OH_NNBackend_Array inputIndices{&modelInputIndicesValue, 1};
 
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, &outputIndices));
     Free(model);
@@ -637,13 +638,13 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_04
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0500, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()), 0};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()), 0};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()),
                                         graphArgs.outputIndices.size()};
 
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, &outputIndices));
@@ -657,13 +658,13 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_05
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0600, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                        graphArgs.inputIndices.size()};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, nullptr));
     Free(model);
@@ -676,15 +677,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_06
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0700, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                    graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{nullptr, 1};
+    OH_NNBackend_Array outputIndices{nullptr, 1};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, &outputIndices));
     Free(model);
 }
@@ -696,16 +697,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_07
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0800, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                    graphArgs.inputIndices.size()};
     uint32_t modelOutputIndicesValue{5};
-    OH_NNBackend_UInt32Array outputIndices{&modelOutputIndicesValue, 1};
+    OH_NNBackend_Array outputIndices{&modelOutputIndicesValue, 1};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, &outputIndices));
     Free(model);
 }
@@ -717,15 +718,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_08
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_SpecifyInputsAndOutputs_0900, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    OH_NNBackend_UInt32Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
+    OH_NNBackend_Array inputIndices{const_cast<uint32_t *>(graphArgs.inputIndices.data()),
                                    graphArgs.inputIndices.size()};
-    OH_NNBackend_UInt32Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()), 0};
+    OH_NNBackend_Array outputIndices{const_cast<uint32_t *>(graphArgs.outputIndices.data()), 0};
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SpecifyModelInputsAndOutputs(model, &inputIndices, &outputIndices));
     Free(model);
 }
@@ -747,9 +748,9 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0100, Function | Me
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NNCore_OPERATION_FORBIDDEN, OH_NNBackend_BuildModel(model));
+    ASSERT_EQ(OH_NNCORE_OPERATION_FORBIDDEN, OH_NNBackend_BuildModel(model));
     Free(model);
 }
 
@@ -760,10 +761,10 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0200, Function | Me
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.specifyIO = false;
-    ASSERT_EQ(OH_NNCore_OPERATION_FORBIDDEN, BuildSingleOpGraph(model, graphArgs));
+    ASSERT_EQ(OH_NNCORE_OPERATION_FORBIDDEN, BuildSingleOpGraph(model, graphArgs));
     Free(model);
 }
 
@@ -774,7 +775,7 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0300, Function | Me
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0400, Function | MediumTest | Level1)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     Free(model);
@@ -787,31 +788,28 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_Finish_0400, Function | Me
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0100, Function | MediumTest | Level3)
 {
-    const size_t *devicesID{nullptr};
     const bool *isSupported{nullptr};
     uint32_t opCount{0};
-    uint32_t devicesCount{0};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    size_t targetDevice = devicesID[0];
-    OH_NNCore_ReturnCode ret = OH_NNBackend_GetModelAvailableOperations(nullptr, targetDevice, &isSupported, &opCount);
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_ReturnCode ret = OH_NNBackend_GetModelAvailableOperations(nullptr, backendName, &isSupported, &opCount);
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, ret);
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0200
- * @tc.name   : 查询算子支持，deviceID不存在
+ * @tc.name   : 查询算子支持，backend不存在
  * @tc.desc   : [C- SOFTWARE -0200]
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0200, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    size_t targetDevice{100000};
     const bool *isSupported{nullptr};
     uint32_t opCount{0};
-    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNBackend_GetModelAvailableOperations(model, targetDevice, &isSupported, &opCount));
+    ASSERT_EQ(OH_NNCORE_FAILED, OH_NNBackend_GetModelAvailableOperations(model, nullptr, &isSupported, &opCount));
 
     Free(model);
 }
@@ -823,17 +821,15 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0200
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0300, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    const size_t *devicesID{nullptr};
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
     uint32_t opCount{0};
-    uint32_t devicesCount{0};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    size_t targetDevice = devicesID[0];
 
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, targetDevice, nullptr, &opCount));
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, backendName, nullptr, &opCount));
 
     Free(model);
 }
@@ -845,19 +841,16 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0300
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0400, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    const size_t *devicesID{nullptr};
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
     const bool isSupported = true;
     const bool *realSupported = &isSupported;
     uint32_t opCount{0};
-    uint32_t devicesCount{0};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    size_t targetDevice = devicesID[0];
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, targetDevice,
-                                                                                    &realSupported, &opCount));
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, backendName, &realSupported, &opCount));
     Free(model);
 }
 
@@ -868,17 +861,14 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0400
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0500, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    const size_t *devicesID{nullptr};
     const bool *isSupported{nullptr};
-    uint32_t devicesCount{0};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    size_t targetDevice = devicesID[0];
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, targetDevice,
-                                                                                    &isSupported, nullptr));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, backendName, &isSupported, nullptr));
     Free(model);
 }
 
@@ -889,98 +879,37 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0500
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0600, Function | MediumTest | Level3)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     graphArgs.build = false;
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
 
-    const size_t *devicesID{nullptr};
     const bool *isSupported{nullptr};
     uint32_t opCount{0};
-    uint32_t devicesCount{0};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    size_t targetDevice = devicesID[0];
-    ASSERT_EQ(OH_NNCore_OPERATION_FORBIDDEN, OH_NNBackend_GetModelAvailableOperations(model, targetDevice,
-                                                                                      &isSupported, &opCount));
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetModelAvailableOperations(model, backendName, &isSupported, &opCount));
     Free(model);
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0700
- * @tc.name   : 查询算子支持，算子均支持
+ * @tc.name   : 查询算子支持，返回成功
  * @tc.desc   : [C- SOFTWARE -0200]
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0700, Function | MediumTest | Level1)
 {
-    OHOS::sptr<V2_0::MockIDevice> device = V2_0::MockIDevice::GetInstance();
-    std::vector<bool> isSupported{true, true};
-    device->SetOperationsSupported(isSupported);
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
-    BuildAddTopKGraph(model);
+    ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model, graphArgs));
     
-    const size_t *devicesID{nullptr};
     const bool *realSupported{nullptr};
     uint32_t opCount;
-    uint32_t devicesCount;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    
-    uint32_t count = 1;
-    EXPECT_LE(devicesCount, count);
-    const char *name = nullptr;
-    std::string m_deviceName{"Device-CPU_TestVendor_v2_0"};
-    OH_NNCore_ReturnCode ret = OH_NNCORE_FAILED;
-    bool isHaveDevice = false;
-    uint32_t deviceId = 0;
-    for (uint32_t i = 0; i < devicesCount; i++) {
-        name = nullptr;
-        ret = OH_NNDevice_GetName(devicesID[i], &name);
-        EXPECT_EQ(OH_NNCORE_SUCCESS, ret);
-        std::string sName(name);
-        if (m_deviceName == sName) {
-            isHaveDevice = true;
-            deviceId = i;
-        }  
-    }
-    ASSERT_EQ(isHaveDevice, true);
-    size_t targetDevice = devicesID[deviceId];
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 
-    ret = OH_NNBackend_GetModelAvailableOperations(model, targetDevice, &realSupported, &opCount);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, ret);
-    for (uint32_t i = 0; i < opCount; i++) {
-        EXPECT_EQ(realSupported[i], isSupported[i]);
-    }
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_GetModelAvailableOperations(model, backendName, &realSupported, &opCount));
     Free(model);
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0800
- * @tc.name   : 查询算子支持，算子部分支持
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0800, Function | MediumTest | Level2)
-{
-    OHOS::sptr<V2_0::MockIDevice> device = V2_0::MockIDevice::GetInstance();
-    std::vector<bool> isSupported{true, false};
-    device->SetOperationsSupported(isSupported);
-    OH_NNBackend_Model *model = OH_NNBackend_ConstructModel();
-    ASSERT_NE(nullptr, model);
-    BuildAddTopKGraph(model);
-
-    const size_t *devicesID{nullptr};
-    const bool *realSupported{nullptr};
-    uint32_t opCount;
-    uint32_t devicesCount;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
-    size_t targetDevice = devicesID[0];
-
-    OH_NNCore_ReturnCode ret = OH_NNBackend_GetModelAvailableOperations(model, targetDevice, &realSupported, &opCount);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, ret);
-    for (uint32_t i = 0; i < opCount; i++) {
-        EXPECT_EQ(realSupported[i], isSupported[i]);
-    }
-    Free(model);
-    device->SetOperationsSupported({true});
 }
 
 /**
@@ -990,9 +919,9 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNRt_Func_North_Model_GetSupportedOperation_0800
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0100, Function | MediumTest | Level2)
 {
-    OH_NNBackend_Model *model1 = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model1 = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model1);
-    OH_NNBackend_Model *model2 = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model2 = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model2);
     std::thread th1(BuildModel, model1, graphArgs);
     std::thread th2(BuildModel, model2, graphArgs);
@@ -1009,11 +938,11 @@ HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0100, Function | Me
  */
 HWTEST_F(HdiNNCoreModel, SUB_AI_NNR_Func_North_Model_Combine_0200, Function | MediumTest | Level1)
 {
-    OH_NNBackend_Model *model1 = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model1 = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model1);
     ASSERT_EQ(OH_NNCORE_SUCCESS, BuildSingleOpGraph(model1, graphArgs));
 
-    OH_NNBackend_Model *model2 = OH_NNBackend_ConstructModel();
+    OH_NNBackend_Model *model2 = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model2);
 
     std::thread th1(BuildModel, model2, graphArgs);

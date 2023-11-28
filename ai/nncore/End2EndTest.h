@@ -24,7 +24,7 @@ public:
                                           OH_NNCore_DataType dataType, OH_NNCore_Format format,
                                           OH_NNBackend_TensorType tensorType);
 
-    void SetCompilation(OH_NNCore_Compilation* compilation);
+    OH_NNCore_Options* SetOptions(const char* backendName);
 
     void GetTensorDescFormCompiled(OH_NNCore_Compiled* compiled, size_t *count, std::vector<OH_NNCore_TensorDesc*>& tensorDescs)
 

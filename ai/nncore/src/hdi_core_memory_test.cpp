@@ -35,223 +35,105 @@ protected:
 } // namespace
 
 /**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0100
- * @tc.name   : 创建共享内存，executor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0100, Function | MediumTest | Level3)
-{
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(nullptr, 4);
-    ASSERT_EQ(nullptr, memory);
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0200
- * @tc.name   : 创建输入共享内存，length为0
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_CreateInputMemory_0200, Function | MediumTest | Level3)
-{
-    OH_NNCore_Executor* executor;
-    TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, 0);
-    ASSERT_EQ(nullptr, memory);
-    Free(model, compilation, compiled, executor);
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0100
- * @tc.name   : 销毁共享内存，executor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0100, Function | MediumTest | Level3)
-{
-    OH_NNCore_Executor* executor;
-    TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
-    ASSERT_NE(nullptr, memory);
-    OH_NNBackend_ReleaseMemory(nullptr, &memory);
-    ASSERT_NE(nullptr, memory);
-    Free(model, compilation, compiled, executor);
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0300
- * @tc.name   : 销毁共享内存，*memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_DestroyInputMemory_0300, Function | MediumTest | Level3)
-{
-    OH_NNCore_Executor* executor;
-    TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = nullptr;
-    ASSERT_NO_THROW(OH_NNBackend_ReleaseMemory(executor, &memory));
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存数据，memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100, Function | MediumTest | Level3)
-{
-    void* data = nullptr;
-    size_t length = 0;
-    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetMemoryData(nullptr, &data, &length));
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存数据，返回正确
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100, Function | MediumTest | Level3)
-{
-    OH_NNCore_Executor* executor;
-    TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
-    ASSERT_NE(nullptr, memory);
-    void* data = nullptr;
-    size_t length = 0;
-    ASSERT_EQ(OH_NNCore_SUCCESS, OH_NNBackend_GetMemoryData(nullptr, &data, &length));
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存fd，memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_0100, Function | MediumTest | Level3)
-{
-    int32_t fd = 0;
-    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_GetMemoryfd(nullptr, &fd));
-}
-
-/**
- * @tc.number : SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryData_0100
- * @tc.name   : 获取内存fd，返回正确
- * @tc.desc   : [C- SOFTWARE -0200]
- */
-HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Executor_Memory_GetMemoryfd_0100, Function | MediumTest | Level3)
-{
-    OH_NNCore_Executor* executor;
-    TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
-    ASSERT_NE(nullptr, memory);
-    int32_t fd = 0;
-    ASSERT_EQ(OH_NNCore_SUCCESS, OH_NNBackend_GetMemoryfd(nullptr, &fd));
-}
-
-/**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100
- * @tc.name   : 创建Tensor实例，TensorDesc为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 创建Tensor实例，TensorDesc为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_CreateTensor_0100, Function | MediumTest | Level0)
 {
-    OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(nullptr);
+    const char* backendName = nullptr;
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(backendName, nullptr);
     ASSERT_EQ(nullptr, tensor);
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100
- * @tc.name   : 销毁Tensor实例，Tensor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 销毁Tensor实例，Tensor为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_DestroyTensor_0100, Function | MediumTest | Level0)
 {
-    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_DestroyTensor(nullptr));
+    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_DestroyTensor(nullptr));
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100
- * @tc.name   : 设置Tensor，Tensor为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置Tensor，Tensor为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0100, Function | MediumTest | Level0)
 {
     OH_NNCore_Executor* executor;
     TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
-    ASSERT_NE(nullptr, memory);
-    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetTensorData(nullptr, memory));
+    ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorData(nullptr, memory));
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200
- * @tc.name   : 设置Tensor，memory为nullptr
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置Tensor，memory为nullptr
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0200, Function | MediumTest | Level0)
 {
-    char *backendName = nullptr;
-    RegisterBackend();
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
-    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
     ASSERT_NE(nullptr, tensorDesc);
     const OHNNOperandTest &operandTem = graphArgs.operands[0];
     ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
                            operandTem.format, operandTem.type));
-    OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(tensorDesc);
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(tensorDesc);
     ASSERT_NE(OH_NNCORE_INVALID_PARAMETER, OH_NNBackend_SetTensorData(tensor, nullptr));
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300
- * @tc.name   : 设置Tensor，返回成功
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 设置Tensor，返回成功
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_SetTensorData_0300, Function | MediumTest | Level0)
 {
-    char *backendName = nullptr;
-    RegisterBackend();
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
-    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
     ASSERT_NE(nullptr, tensorDesc);
     const OHNNOperandTest &operandTem = graphArgs.operands[0];
     ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
                            operandTem.format, operandTem.type));
-    OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(tensorDesc);
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(tensorDesc);
     OH_NNCore_Executor* executor;
     TestExecutor(&executor);
-    OH_NNBackend_Memory *memory = OH_NNBackend_AllocateMemory(executor, graphArgs.operands[0].length);
     ASSERT_NE(nullptr, memory);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNBackend_SetTensorData(tensor, memory));
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0100
- * @tc.name   : 获取Tensor，Tensor为空
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取Tensor，Tensor为空
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0100, Function | MediumTest | Level0)
 {
-    ASSERT_EQ(nullptr, OH_NNBackend_GetTensorData(nullptr));
+    ASSERT_EQ(nullptr, OH_NNCore_GetDataBuffer(nullptr));
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200
- * @tc.name   : 获取Tensor，未设置tensorData
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取Tensor，未设置tensorData
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorData_0200, Function | MediumTest | Level0)
 {
-    char *backendName = nullptr;
-    RegisterBackend();
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
-    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc(backendName);
+    OH_NNCore_TensorDesc* tensorDesc = OH_NNCore_CreateTensorDesc();
     ASSERT_NE(nullptr, tensorDesc);
     const OHNNOperandTest &operandTem = graphArgs.operands[0];
     ASSERT_EQ(OH_NNCORE_SUCCESS, CreateTensorDesc(&tensorDesc, operandTem.shape.data(), operandTem.shape.size(), operandTem.dataType,
                            operandTem.format, operandTem.type));
-    OH_NNCore_Tensor* tensor = OH_NNBackend_CreateTensor(tensorDesc);
-    ASSERT_EQ(nullptr, OH_NNBackend_GetTensorData(tensor));
+    OH_NNCore_Tensor* tensor = OH_NNCore_CreateTensor(tensorDesc);
+    ASSERT_EQ(nullptr, OH_NNCore_GetDataBuffer(tensor));
 }
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100
- * @tc.name   : 获取TensorDesc,tensor为空
- * @tc.desc   : [C- SOFTWARE -0200]
+ * @tc.desc: 获取TensorDesc,tensor为空
+ * @tc.type: FUNC
  */
 HWTEST_F(HdiNNCoreMemory, SUB_AI_NNRt_Func_North_Tensor_GetTensorDesc_0100, Function | MediumTest | Level0)
 {

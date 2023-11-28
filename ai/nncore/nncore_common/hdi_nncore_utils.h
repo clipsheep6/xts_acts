@@ -148,25 +148,24 @@ public:
 };
 
 OH_NNCore_ReturnCode CreateTensorDesc(OH_NNCore_TensorDesc** tensorDesc, const int32_t* shape, size_t shapeNum, 
-                                                   OH_NNCore_DataType dataType, OH_NNCore_Format format,
-                                                   OH_NNBackend_TensorType tensorType);
+                                                   OH_NNCore_DataType dataType, OH_NNCore_Format format);
 
 OH_NNCore_ReturnCode BuildSingleOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgs &graphArgs);
 OH_NNCore_ReturnCode BuildMultiOpGraph(OH_NNBackend_Model *model, const OHNNGraphArgsMulti &graphArgs);
 void Free(OH_NNBackend_Model *model = nullptr, OH_NNCore_Compilation *compilation = nullptr,OH_NNCore_Compiled *compiled = nullptr, OH_NNExecutor *executor = nullptr);
 
-OH_NNBackend_UInt32Array GetUInt32Array(std::vector<uint32_t> indices);
+OH_NNBackend_Array GetUInt32Array(std::vector<uint32_t> indices);
 void RegisterBackend();
 void TestGetBackendNum(bool isNull = false);
 void TestGetBackendName(char** backendName, bool isNull = false);
 void TestConstructCompilationWithNNModel(OH_NNCore_Compilation** compilation);
 void SetCompilationBackendName(OH_NNCore_Compilation** compilation);
-void TestCreateCompilationOptions(OH_NNCore_CompilationOptions** options);
+void TestCreateOptions(OH_NNCore_Options** options, const char* backendName);
 void TestSetCompilationPriority(OH_NNCore_Priority priority);
 void TestSetCompilationPerformanceMode(OH_NNCore_PerformanceMode performanceMode);
 void TestSetCompilationEnableFloat16(bool enableFloat16, bool isSupport);
-void TestSetCompilationOptions(OH_NNCore_CompilationOptions **option);
-void TestBuildCompiled(OH_NNCore_Compilation** compilation, OH_NNCore_Compiled** compiled);
+void TestSetCompilationOptions(OH_NNCore_Options **option);
+void TestBuildCompiled(OH_NNCore_Compiled** compiled);
 void TestConstructTensorDesc(OH_NNCore_TensorDesc** tensorDesc);
 void TestExecutor(OH_NNCore_Executor** executor);
 } // namespace OHOS::NeuralNetworkCore
