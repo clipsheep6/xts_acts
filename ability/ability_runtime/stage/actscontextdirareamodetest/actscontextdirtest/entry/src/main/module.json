@@ -3,6 +3,7 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
@@ -51,15 +52,6 @@
             ]
           }
         ]
-      },
-      {
-        "name": "AbilityStage",
-        "srcEntry": "./ets/Application/AbilityStage.ets",
-        "description": "$string:AbilityStage_desc",
-        "icon": "$media:icon",
-        "label": "$string:AbilityStage_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background"
       }
     ],
     "requestPermissions": [
@@ -68,8 +60,7 @@
         "usedScene": {
           "abilities": [
             "EntryAbility",
-            "TestAbility",
-            "AbilityStage"
+            "TestAbility"
           ],
           "when": "inuse"
         }
