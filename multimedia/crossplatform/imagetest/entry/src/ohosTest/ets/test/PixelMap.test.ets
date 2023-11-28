@@ -681,7 +681,7 @@ export default function PixelMap() {
             image.createPixelMap(color, opts, (err, pixelmap) => {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
-                    console.info('testReadPixelsToBufferCb001 createPixelMap failed');
+                    console.info('testReadPixelsCb001 createPixelMap failed');
                     expect(false).assertTrue();
                     done();
                 } else {
@@ -716,7 +716,7 @@ export default function PixelMap() {
 
         /**
          * @tc.number    : TEST_READPIXELS_CB_002
-         * @tc.name      : testReadPixelsCb001
+         * @tc.name      : testReadPixelsCb002
          * @tc.desc      : 1.create PixelMap
          *                 2.call readPixels
          *                 3.promise return array
@@ -725,7 +725,7 @@ export default function PixelMap() {
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('testReadPixelsCb001', 0, async function (done) {
+        it('testReadPixelsCb002', 0, async function (done) {
             const color = new ArrayBuffer(96);
             var bufferArr = new Uint8Array(color);
             for (var i = 0; i < bufferArr.length; i++) {
@@ -736,7 +736,7 @@ export default function PixelMap() {
                 globalpixelmap = pixelmap;
                 if (pixelmap == undefined) {
                     expect(false).assertTrue();
-                    console.info('testReadPixelsCb001 create pixelmap fail');
+                    console.info('testReadPixelsCb002 create pixelmap fail');
                     done();
                 } else {
                     const area = {
@@ -746,12 +746,12 @@ export default function PixelMap() {
                         region: { size: { height: 1, width: 2 }, x: -1, y: -1 }
                     }
                     pixelmap.readPixels(area).then(() => {
-                        console.info('testReadPixelsCb001 failed');
+                        console.info('testReadPixelsCb002 failed');
                         expect(false).assertTrue();
                         done();
                     }).catch(() => {
                         expect(true).assertTrue();
-                        console.info('testReadPixelsCb001 success');
+                        console.info('testReadPixelsCb002 success');
                         done();
                     })
                 }
@@ -2026,15 +2026,15 @@ export default function PixelMap() {
 
         /**
          * @tc.number    : TEST_ROTATE_PROMISE_005
-         * @tc.name      : testRotatePromise004
+         * @tc.name      : testRotatePromise005
          * @tc.desc      : 1.create pixelmap
          *               : 2.call rotate
          * @tc.size      : MediumTest
          * @tc.type      : Function
          * @tc.level     : Level 2
          */
-        it('testRotatePromise004', 0, async function (done) {
-            await pixelMapModifySizeTestErr(done, 'testRotatePromise004', 'promise', 'rotate', false)
+        it('testRotatePromise005', 0, async function (done) {
+            await pixelMapModifySizeTestErr(done, 'testRotatePromise005', 'promise', 'rotate', false)
         })
 
         /**
