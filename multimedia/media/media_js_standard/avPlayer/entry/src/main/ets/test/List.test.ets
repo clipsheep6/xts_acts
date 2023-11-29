@@ -20,6 +20,7 @@ import AVPlayerLocalTest from './AVPlayerLocalTest.test.js'
 import AVPlayerStabilityTest from './AVPlayerStabilityTest.test.js'
 import AvPlayerEnumTest from './AvPlayerEnumTest.test.js'
 import AVPlayerMultiTrackTest from './AVPlayerMultiTrackTest.test.js'
+import abilityTest from './AVMetadata.test.ets'
 
 
 export default function testsuite() {
@@ -30,5 +31,6 @@ export default function testsuite() {
   AVPlayerLocalTest();
   AVPlayerAudioEffectModeTest();
   AVPlayerMultiTrackTest();
+  abilityTest(globalThis.resourceManager);
   // AVPlayerStabilityTest();
 }
