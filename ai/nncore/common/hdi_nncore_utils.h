@@ -21,10 +21,10 @@
 #include <fstream>
 #include <dirent.h>
 #include <sys/stat.h>
-
 #include <gtest/gtest.h>
+
 #include "common/log.h"
-#include "../nncore_common/hdi_nncore_utils.h"
+#include "hdi_nncore_utils.h"
 #include "frameworks/native/backend_registrar.h"
 #include "frameworks/native/backend_manager.h"
 #include "interfaces/kits/c/v2_0/neural_network_core.h"

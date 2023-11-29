@@ -14,8 +14,8 @@
  */
 #include <fstream>
 
-#include "../nncore_common/nncore_const.h"
-#include "../nncore_common/hdi_nncore_utils.h"
+#include "nncore_const.h"
+#include "hdi_nncore_utils.h"
 #include "interfaces/kits/c/v2_0/neural_network_runtime.h"
 
 using namespace testing::ext;

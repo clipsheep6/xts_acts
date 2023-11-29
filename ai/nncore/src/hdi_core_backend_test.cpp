@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "../nncore_common/nncore_const.h"
-#include "../nncore_common/hdi_nncore_utils.h"
+#include "nncore_const.h"
+#include "hdi_nncore_utils.h"
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {

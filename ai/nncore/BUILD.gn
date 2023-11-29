@@ -16,7 +16,7 @@ module_output_path = "acts/nnrt"
 
 config("nncore_config") {
   include_dirs = [
-    "nncore",
+    "common",
     "../../../../../foundation/ai/neural_network_runtime",
     "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
   ]
@@ -29,14 +29,14 @@ ohos_moduletest_suite("NncoreTest") {
   module_out_path = module_output_path
   sources = [
     "nncore_common/hdi_nncore_utils.cpp",
-#    "nncore_common/mock_backend.cpp",
-#    "src/hdi_core_backend_test.cpp",
-#    "src/hdi_core_compilation_test.cpp",
+    "nncore_common/mock_backend.cpp",
+    "src/hdi_core_backend_test.cpp",
+    "src/hdi_core_compilation_test.cpp",
     "src/hdi_core_compiled_test.cpp",
-#    "src/hdi_core_executor_test.cpp",
+    "src/hdi_core_executor_test.cpp",
     "src/hdi_core_model_test.cpp",
-#    "src/hdi_core_tensor_test.cpp",
-#    "src/hdi_core_tensordesc_test.cpp",
+    "src/hdi_core_tensor_test.cpp",
+    "src/hdi_core_tensordesc_test.cpp",
   ]
 
   configs = [ ":nncore_config" ]
@@ -86,7 +86,7 @@ ohos_moduletest_suite("E2EEndTest") {
 group("ActsHdfNncoreTest") {
   testonly = true
   deps = [ 
-#    ":NncoreTest",
+    ":NncoreTest",
     ":E2EEndTest"
   ]
 }

@@ -17,7 +17,7 @@
 #include <vector>
 #include <thread>
 #include <fstream>
-#include "../nncore_common/hdi_nncore_utils.h"
+#include "hdi_nncore_utils.h"
 
 using namespace testing::ext;
 
