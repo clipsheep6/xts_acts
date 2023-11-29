@@ -1636,6 +1636,8 @@ static napi_value MyConstructor(napi_env env, napi_callback_info info)
 
 static napi_value NewTargetTest(napi_env env, napi_callback_info info)
 {
+    napi_value ex;
+    napi_get_and_clear_last_exception(env, &ex);
     bool isConstructor = true;
     napi_value constructor = nullptr;
     napi_get_new_target(env, info, &constructor);
@@ -2305,6 +2307,8 @@ static napi_value napiCreateBigintWords(napi_env env, napi_callback_info info)
 
 static napi_value callFunction(napi_env env, napi_callback_info info)
 {
+    napi_value ex;
+    napi_get_and_clear_last_exception(env, &ex);
     size_t argc = 1;
     napi_value args[1];
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, NULL, NULL));
