@@ -24,6 +24,8 @@ export default class TestAbility extends Ability {
     }
 
     onWindowStageCreate(windowStage) {
+        let context = this.context.createModuleContext("phone");
+        globalThis.resourceManager = context.resourceManager;
         console.log('TestAbility onWindowStageCreate')
         windowStage.loadContent("TestAbility/pages/index", (err, data) => {
             if (err.code) {
