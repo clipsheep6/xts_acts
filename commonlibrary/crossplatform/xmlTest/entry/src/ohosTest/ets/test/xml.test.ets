@@ -59,7 +59,7 @@ export default function XmlSerializerXmlPullParserTest() {
         var thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
         expect(thatSer != null).assertEqual(true);
       } catch (err) {
-        console.log("testConstructor001 meet error: " + err);
+        console.log("testConstructor002 meet error: " + err);
       }
     });
 
@@ -1418,14 +1418,14 @@ export default function XmlSerializerXmlPullParserTest() {
     });
 
     /**
-     * @tc.number: TEST_CONSTRUCTOR_001
-     * @tc.name  : testConstructor001
-     * @tc.desc  : Construct and return an XmlPullParser object.
+     * @tc.number: TEST_PARSE_TAG_001
+     * @tc.name  : testParseTag001
+     * @tc.desc  : Starts parsing the XML file.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it("testConstructor001", 0, function () {
+    it("testParseTag001", 0, function () {
       let strXml =
         '<?xml version="1.0" encoding="utf-8"?>' +
         '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +

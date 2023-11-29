@@ -19,37 +19,37 @@ import app from "@system.app";
 import process from "@ohos.process";
 import request from "@ohos.request";
 
-class Temperature {
-  private readonly _temp: Temperature;
-
-  constructor(value) {
-    this._temp = value;
-  }
-  compareTo(value) {
-    return this._temp >= value.getTemp();
-  }
-  getTemp() {
-    return this._temp;
-  }
-  toString() {
-    return this._temp.toString();
-  }
-}
-let tempLower = new Temperature(30);
-let tempUpper = new Temperature(40);
-let tempLess = new Temperature(20);
-let tempMiDF = new Temperature(35);
-let tempMidS = new Temperature(39);
-let tempMore = new Temperature(45);
-
-let rangeHp = new util.ScopeHelper(tempLower, tempUpper);
-let rangeHpFir = new util.ScopeHelper(tempMiDF, tempMidS);
-let rangeHpSec = new util.ScopeHelper(tempLess, tempMore);
-let rangeHpThi = new util.ScopeHelper(tempLess, tempMiDF);
-let rangeHpFif = new util.ScopeHelper(tempMiDF, tempMore);
-
 export default function UtilFunTest() {
   describe("UtilTest", function () {
+    class Temperature {
+      private readonly _temp: Temperature;
+
+      constructor(value) {
+        this._temp = value;
+      }
+      compareTo(value) {
+        return this._temp >= value.getTemp();
+      }
+      getTemp() {
+        return this._temp;
+      }
+      toString() {
+        return this._temp.toString();
+      }
+    }
+    let tempLower = new Temperature(30);
+    let tempUpper = new Temperature(40);
+    let tempLess = new Temperature(20);
+    let tempMiDF = new Temperature(35);
+    let tempMidS = new Temperature(39);
+    let tempMore = new Temperature(45);
+
+    let rangeHp = new util.ScopeHelper(tempLower, tempUpper);
+    let rangeHpFir = new util.ScopeHelper(tempMiDF, tempMidS);
+    let rangeHpSec = new util.ScopeHelper(tempLess, tempMore);
+    let rangeHpThi = new util.ScopeHelper(tempLess, tempMiDF);
+    let rangeHpFif = new util.ScopeHelper(tempMiDF, tempMore);
+
     /**
      * @tc.number: TEST_IS_NUMBER_OBJECT_001
      * @tc.name  : testIsNumberObject001
@@ -7765,15 +7765,15 @@ export default function UtilFunTest() {
     });
 
     /**
-     * @tc.number: TEST_ENCODE_SYNC_BASE64_001
-     * @tc.name  : testEncodeSyncBase64001
+     * @tc.number: TEST_ENCODE_BASE64_001
+     * @tc.name  : testEncodeBase64001
      * @tc.desc  : Asynchronously encodes all bytes in the specified u8 array into the newly
      allocated u8 array using the Base64 encoding scheme.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it("testEncodeSyncBase64001", 0, async function () {
+    it("testEncodeBase64001", 0, async function () {
       let that = await new util.Base64Helper();
       let array = new Uint8Array([115, 49, 51]);
       let rarray = new Uint8Array([99, 122, 69, 122]);
@@ -7785,15 +7785,15 @@ export default function UtilFunTest() {
     });
 
     /**
-     * @tc.number: TEST_ENCODE_SYNC_BASE64_002
-     * @tc.name  : testEncodeSyncBase64002
+     * @tc.number: TEST_ENCODE_BASE64_002
+     * @tc.name  : testEncodeBase64002
      * @tc.desc  : Asynchronously encodes all bytes in the specified u8 array into the newly
      allocated u8 array using the Base64 encoding scheme.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it("testEncodeSyncBase64002", 0, async function () {
+    it("testEncodeBase64002", 0, async function () {
       let that = new util.Base64Helper();
       let array = new Uint8Array([66, 97, 115, 101, 54, 52, 32, 78, 111, 100, 101, 46, 106, 115]);
       let rarray = new Uint8Array([81, 109, 70, 122, 90, 84, 89, 48, 73, 69, 53, 118, 90, 71, 85, 117, 97, 110, 77, 61]);
@@ -7805,15 +7805,15 @@ export default function UtilFunTest() {
     });
 
     /**
-     * @tc.number: TEST_ENCODE_SYNC_BASE64_003
-     * @tc.name  : testEncodeSyncBase64003
+     * @tc.number: TEST_ENCODE_BASE64_003
+     * @tc.name  : testEncodeBase64003
      * @tc.desc  : Asynchronously encodes all bytes in the specified u8 array into the newly
      allocated u8 array using the Base64 encoding scheme.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it("testEncodeSyncBase64003", 0, async function () {
+    it("testEncodeBase64003", 0, async function () {
       let that = new util.Base64Helper();
       let array = new Uint8Array([66, 97, 115, 101, 54, 52, 32, 69, 110, 99, 111, 100, 105, 110, 103, 32, 105, 110, 32, 78, 111, 100, 101, 46, 106, 115]);
       let rarray = new Uint8Array([81, 109, 70, 122, 90, 84, 89, 48, 73, 69, 86, 117, 89, 50, 57, 107, 97, 87, 53, 110, 73, 71, 108, 117, 73, 69, 53, 118, 90, 71, 85, 117, 97, 110, 77, 61]);
@@ -7825,15 +7825,15 @@ export default function UtilFunTest() {
     });
 
     /**
-     * @tc.number: TEST_ENCODE_SYNC_BASE64_004
-     * @tc.name  : testEncodeSyncBase64004
+     * @tc.number: TEST_ENCODE_BASE64_004
+     * @tc.name  : testEncodeBase64004
      * @tc.desc  : Asynchronously encodes all bytes in the specified u8 array into the newly
      allocated u8 array using the Base64 encoding scheme.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it("testEncodeSyncBase64004", 0, async function () {
+    it("testEncodeBase64004", 0, async function () {
       let that = new util.Base64Helper();
       let array = new Uint8Array([168, 174, 155, 255]);
       let rarray = new Uint8Array([113, 75, 54, 98, 47, 119, 61, 61]);
@@ -7845,15 +7845,15 @@ export default function UtilFunTest() {
     });
 
     /**
-     * @tc.number: TEST_ENCODE_SYNC_BASE64_005
-     * @tc.name  : testEncodeSyncBase64005
+     * @tc.number: TEST_ENCODE_BASE64_005
+     * @tc.name  : testEncodeBase64005
      * @tc.desc  : Asynchronously encodes all bytes in the specified u8 array into the newly
      allocated u8 array using the Base64 encoding scheme.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it("testEncodeSyncBase64005", 0, async function () {
+    it("testEncodeBase64005", 0, async function () {
       let that = new util.Base64Helper();
       let array = new Uint8Array([66, 97, 115, 101, 54, 52]);
       let rarray = new Uint8Array([81, 109, 70, 122, 90, 84, 89, 48]);

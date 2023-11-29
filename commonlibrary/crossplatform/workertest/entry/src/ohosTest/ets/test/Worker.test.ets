@@ -358,14 +358,14 @@ export default function WorkerTest() {
 
     /**
      * @tc.number: TEST_POSTMESSAGE_001
-     * @tc.name  : test_ThreadWorkerGlobalScope_PostMessage_001
+     * @tc.name  : test_ThreadWorkerGlobalScope_PostMessage_002
      * @tc.desc  : Sends a message to the worker thread.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
     it(
-      "test_ThreadWorkerGlobalScope_PostMessage_001",
+      "test_ThreadWorkerGlobalScope_PostMessage_002",
       0,
       async function (done) {
         let ss = new worker.ThreadWorker(

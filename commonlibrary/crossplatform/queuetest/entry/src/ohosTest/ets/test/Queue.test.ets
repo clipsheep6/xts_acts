@@ -392,7 +392,7 @@ describe("QueueTest", function () {
    * @tc.type: Function
    * @tc.level: Level 0
    */
-  it("testLength001", 0, function () {
+  it("testLength002", 0, function () {
     let queue = new Queue();
     let res = queue.length;
     expect(0).assertEqual(res);
