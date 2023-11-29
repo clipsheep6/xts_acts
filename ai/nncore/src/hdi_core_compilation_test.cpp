@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include<fstream>
+#include <fstream>
 
 #include "../nncore_common/nncore_const.h"
 #include "../nncore_common/hdi_nncore_utils.h"
@@ -149,8 +149,10 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Create_Compilation_Options_0100, Function | MediumTest | Level1)
 {
+    const char* backendName = nullptr;
+    TestGetBackendName(&backendName);
     OH_NNCore_Options* options = nullptr;
-    TestCreateOptions(&options);
+    TestCreateOptions(&options, backendName);
 }
 
 /**
@@ -283,8 +285,10 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_O
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_Options_0200, Function | MediumTest | Level1)
 {
+    const char* backendName = nullptr;
+    TestGetBackendName(&backendName);
     OH_NNCore_Options* options = nullptr;
-    TestCreateOptions(&options);
+    TestCreateOptions(&options, backendName);
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyOptions(&options));
 }
 
@@ -309,7 +313,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_01
 {
     OH_NNCore_Compilation* compilation = nullptr;
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -377,7 +381,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Optio
     OH_NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -415,7 +419,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_070
     OH_NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -434,7 +438,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_080
     OH_NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithDynamicNNModel(&compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -453,7 +457,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_090
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(SUPPORTMODELPATH.c_str());
     ASSERT_NE(nullptr, compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -472,7 +476,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_100
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(NOSUPPORTMODELPATH.c_str());
     ASSERT_NE(nullptr, compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -494,7 +498,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_110
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
     ASSERT_NE(nullptr, compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;
@@ -515,7 +519,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_120
     OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
     ASSERT_NE(nullptr, compilation);
 
-    char* backendName = nullptr;
+    const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
     OH_NNCore_Options* options = nullptr;

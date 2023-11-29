@@ -106,7 +106,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
     const char* filePath = "bucunzai";
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
     OH_NNCore_Compiled* compiled = nullptr;
@@ -127,7 +127,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
     TestConstructCompilationWithNNModel(&compilation);
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 
@@ -151,7 +151,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
     TestConstructCompilationWithNNModel(&compilation);
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 
@@ -186,7 +186,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
     TestConstructCompilationWithNNModel(&compilation);
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 
@@ -239,7 +239,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_Restore_Compiled_
     size_t modelSize = 10;
     const char* backendName = "backend";
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     OH_NNCore_Compiled* compiled = nullptr;
     ASSERT_EQ(OH_NNCORE_UNSUPPORTED, OH_NNCore_RestoreCompiledFromBuffer(buffer, modelSize, backendName, options, &compiled));
 }
@@ -489,7 +489,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     TestConstructCompilationWithNNModel(&compilation);
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 
@@ -513,7 +513,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     TestConstructCompilationWithNNModel(&compilation);
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 
@@ -537,7 +537,7 @@ HWTEST_F(HdiNNCoreCompiled, SUB_AI_NNRt_Core_Func_North_Device_SetCompiled_Optio
     TestConstructCompilationWithNNModel(&compilation);
 
     OH_NNCore_Options* options = nullptr;
-    TestSetCompilationOptions(&options);
+    TestSetAllOptions(&options);
     const char* backendName = nullptr;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(0, &backendName));
 

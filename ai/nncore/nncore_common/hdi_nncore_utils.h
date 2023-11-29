@@ -17,10 +17,16 @@
 #define HDI_NNCORE_UTILS_H
 
 #include <string>
+#include <vector>
+#include <fstream>
+#include <dirent.h>
+#include <sys/stat.h>
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "common/log.h"
 #include "../nncore_common/hdi_nncore_utils.h"
+#include "frameworks/native/backend_registrar.h"
+#include "frameworks/native/backend_manager.h"
 #include "interfaces/kits/c/v2_0/neural_network_core.h"
 #include "interfaces/kits/c/v2_0/neural_network_core_type.h"
 #include "interfaces/kits/c/v2_0/neural_network_runtime.h"
@@ -161,24 +167,28 @@ void TestGetBackendNum(bool isNull = false);
 void TestGetBackendName(const char** backendName, bool isNull = false);
 void TestConstructModel(OH_NNBackend_Model** model);
 void TestConstructCompilationWithNNModel(OH_NNCore_Compilation** compilation);
+void TestConstructCompilationWithDynamicNNModel(OH_NNCore_Compilation** compilation);
 void SetCompilationBackendName(OH_NNCore_Compilation** compilation);
 void TestCreateOptions(OH_NNCore_Options** options, const char* backendName);
-void TestSetCompilationPriority(OH_NNCore_Priority priority);
-void TestSetCompilationPerformanceMode(OH_NNCore_PerformanceMode performanceMode);
-void TestSetCompilationEnableFloat16(bool enableFloat16, bool isSupport);
-void TestSetCompilationOptions(OH_NNCore_Options **option);
+void SetbackendNameOptions(OH_NNCore_Compilation* compilation, bool isTrue = true);
+void TestSetPriority(OH_NNCore_Priority priority);
+void TestPerformanceMode(OH_NNCore_PerformanceMode performanceMode);
+void TestSetEnableFloat16(bool enableFloat16);
+void TestSetAllOptions(OH_NNCore_Options **option);
 void TestBuildCompiled(OH_NNCore_Compiled** compiled);
 void TestConstructTensorDesc(OH_NNCore_TensorDesc** tensorDesc);
 void TestExecutor(OH_NNCore_Executor** executor);
-void TestGetInputOutputTensor(OH_NNCore_Executor* executor, OH_NNCore_Tensor* inputTensors[], size_t& inputSize, 
-                              OH_NNCore_Tensor* outputTensors[], size_t& outputSize);
-// PathType CheckPath(const std::string &path);
-// bool DeleteFile(const std::string &path);
-// void CopyFile(const std::string &srcPath, const std::string &dstPath);
-// std::string ConcatPath(const std::string &str1, const std::string &str2);
-// void DeleteFolder(const std::string &path);
-// bool CreateFolder(const std::string &path);
-// bool CheckOutput(const float* output, const float* expect);
+void TestGetInputOutputTensor(OH_NNCore_Executor* executor, std::vector<OH_NNCore_Tensor*>& inputTensor, size_t& inputSize, 
+                              std::vector<OH_NNCore_Tensor*>& outputTensor, size_t& outputSize);
+//文件相关
+enum class PathType { FILE, DIR, UNKNOWN, NOT_FOUND };
+PathType CheckPath(const std::string &path);
+bool DeleteFile(const std::string &path);
+void CopyFile(const std::string &srcPath, const std::string &dstPath);
+std::string ConcatPath(const std::string &str1, const std::string &str2);
+void DeleteFolder(const std::string &path);
+bool CreateFolder(const std::string &path);
+bool CheckOutput(const float* output, const float* expect);
 } // namespace OHOS::NeuralNetworkCore
 
 #endif // HDI_NNCORE_UTILS_H

@@ -129,7 +129,7 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0100, 
 
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescShape(tensorDesc, shape, size));
+    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescShape(tensorDesc, shape.data(), size));
 }
 
 /**
@@ -159,7 +159,7 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_SetTensor_DescShape_0300, 
 
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescShape(tensorDesc, shape, size));
+    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescShape(tensorDesc, shape.data(), size));
 }
 
 /**
@@ -186,7 +186,7 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0200, 
     int32_t *shape = nullptr;
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-
+    size_t size = 0;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescShape(tensorDesc, &shape, &size));
 }
 
@@ -199,16 +199,16 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_DescShape_0300, 
 {
     int32_t *shape = nullptr;
     vector<int32_t> shapeBegin = {1, 2, 3, 4, 5};
-    size_t sizeBegin = sizeof(shapeBegin)/sizeof(int32_t);
+    size_t sizeBegin = shapeBegin.size();
     size_t size = sizeBegin;
 
     OH_NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescShape(tensorDesc, shapeBegin, sizeBegin));
+    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_SetTensorDescShape(tensorDesc, shapeBegin.data(), sizeBegin));
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescShape(tensorDesc, &shape, &size));
     ASSERT_EQ(sizeBegin, size);
     for(size_t i = 0; i < size; i++) {
-        ASSERT_EQ(sizeBegin[i], size[i]);
+        ASSERT_EQ(shapeBegin[i], shape[i]);
     }
 }
 
@@ -304,8 +304,7 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Element_Number_0
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
     vector<int32_t> shape = {1, 2, 3, 4, 5};
-    size_t size = 5;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(*tensorDesc, shape, size));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape.data(), shape.size()));
     size_t elementNum = -1;
     ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescElementNum(tensorDesc, &elementNum));
     ASSERT_LT(ZERO, elementNum);
@@ -345,11 +344,11 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0200, 
 {
     size_t cycleNum = 5;
     for(size_t i = 0; i < cycleNum; i++) {
-        OH_NNCore_TensorDesc *tensorDescOne = nullptr;
+        OH_NNCore_TensorDesc *tensorDesc = nullptr;
         TestConstructTensorDesc(&tensorDesc);
         vector<int32_t> shape = {1, 2, 3, 4, 5};
         size_t size = 5;
-        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape, size));
+        ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape.data(), size));
         size_t byteSize = -1;
         ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
         ASSERT_LT(ZERO, byteSize);
@@ -366,7 +365,7 @@ HWTEST_F(HdiNNCoreTensor, SUB_AI_NNRt_Core_Func_North_GetTensor_Byte_Size_0300, 
     OH_NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
     vector<int32_t> shape = {1, 2, 3, 4, 5};
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape, size));
+    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescShape(tensorDesc, shape.data(), shape.size()));
     size_t byteSize = 0;
     ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
     ASSERT_EQ(ZERO, byteSize);

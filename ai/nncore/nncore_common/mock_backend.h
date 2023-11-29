@@ -23,8 +23,8 @@ namespace OHOS::NeuralNetworkCore {
 class MockBackend : public NeuralNetworkBackend::NNBackend {
 public:
     MockBackend(std::string backendName) : 
-        NeuralNetworkBackend::NNBackend(static_cast<OHOS::NeuralNetworkRuntime::Device>(MockDevice()), backendName) {}
-    virtual ~MockBackend() = default; 
+        NeuralNetworkBackend::NNBackend(std::shared_ptr<OHOS::NeuralNetworkRuntime::Device>(new MockDevice()), backendName) {}
+    virtual ~MockBackend() = default;
 public:
     void SetDeviceEnableFp16(bool isSupported);
 };
