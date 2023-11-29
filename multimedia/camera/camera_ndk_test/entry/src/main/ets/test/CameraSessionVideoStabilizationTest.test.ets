@@ -370,273 +370,273 @@ export default function cameraSessionVideoStabilizationTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100
         * @tc.name      : Check capture session support video stabilization off mode with promise or not
         * @tc.desc      : Check capture session support video stabilization off mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100--------------");
 
             let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_OFF);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_001 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0100 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100
         * @tc.name      : Check capture session set video stabilization off mode with promise
         * @tc.desc      : Check capture session set video stabilization off mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100--------------");
 
             cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_OFF);  //STABILIZATION_MODE_OFF
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 PASSED with VideoStabilizationMode is: " + 0);
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100 PASSED with VideoStabilizationMode is: " + 0);
 
             let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100 finish");
             if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_OFF) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_002 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0100 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200
         * @tc.name      : Check capture session support video stabilization low mode with promise or not
         * @tc.desc      : Check capture session support video stabilization low mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200--------------");
 
             let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_LOW);  //STABILIZATION_MODE_LOW
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_003 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0200 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200
         * @tc.name      : Check capture session set video stabilization low mode with promise
         * @tc.desc      : Check capture session set video stabilization low mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200--------------");
 
             cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_LOW);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 PASSED with VideoStabilizationMode is: " + 1);
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200 PASSED with VideoStabilizationMode is: " + 1);
 
             let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200 finish");
             if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_LOW) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_004 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0200 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300
         * @tc.name      : Check capture session support video stabilization middle mode with promise or not
         * @tc.desc      : Check capture session support video stabilization middle mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300--------------");
 
             let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_MIDDLE);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_005 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0300 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300
         * @tc.name      : Check capture session set video stabilization middle mode with promise
         * @tc.desc      : Check capture session set video stabilization middle mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300--------------");
 
             if (mIsVideoStabilizationModeSupportedArray[0] == true) {
                 cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_MIDDLE);
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 finish");
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 PASSED with VideoStabilizationMode is: " + 2);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 PASSED with VideoStabilizationMode is: " + 2);
 
                 let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 finish");
                 if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_MIDDLE) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
                     expect().assertFail();
                 }
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 PASSED");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 PASSED");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_006 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0300 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400
         * @tc.name      : Check capture session support video stabilization high mode with promise or not
         * @tc.desc      : Check capture session support video stabilization high mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400--------------");
 
             let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_HIGH);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_007 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0400 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400
         * @tc.name      : Check capture session set video stabilization high mode with promise
         * @tc.desc      : Check capture session set video stabilization high mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400--------------");
 
             if (mIsVideoStabilizationModeSupportedArray[0] == true) {
                 cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_HIGH);
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 finish");
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 PASSED with VideoStabilizationMode is: " + 3);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 PASSED with VideoStabilizationMode is: " + 3);
 
                 let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 finish");
                 if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_HIGH) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
                     expect().assertFail();
                 }
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 PASSED");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 PASSED");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_008 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0400 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500
         * @tc.name      : Check capture session support video stabilization auto mode with promise or not
         * @tc.desc      : Check capture session support video stabilization auto mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500--------------");
 
             let sessionIsVideoStabilizationModeSupported = cameraObj.sessionIsVideoStabilizationModeSupported(Camera_VideoStabilizationMode.STABILIZATION_MODE_AUTO);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500 finish");
             if (sessionIsVideoStabilizationModeSupported != null || sessionIsVideoStabilizationModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500 PASSED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500 FAILED with sessionIsVideoStabilizationModeSupported is: " + sessionIsVideoStabilizationModeSupported);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_009 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_VIDEO_STABILIZATION_MODE_SUPPORT_PROMISE_0500 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500
         * @tc.name      : Check capture session set video stabilization auto mode with promise
         * @tc.desc      : Check capture session set video stabilization auto mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010', 2, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500', 2, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500--------------");
 
             if (mIsVideoStabilizationModeSupportedArray[0] == true) {
                 cameraObj.sessionSetVideoStabilizationMode(Camera_VideoStabilizationMode.STABILIZATION_MODE_AUTO);
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 finish");
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 PASSED with VideoStabilizationMode is: " + 4);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 PASSED with VideoStabilizationMode is: " + 4);
 
                 let videoStabilizationMode = cameraObj.sessionGetVideoStabilizationMode();
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 finish");
                 if (videoStabilizationMode == Camera_VideoStabilizationMode.STABILIZATION_MODE_AUTO) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 PASSED with VideoStabilizationMode is: " + videoStabilizationMode);
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 FAILED with VideoStabilizationMode is: " + videoStabilizationMode);
                     expect().assertFail();
                 }
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 PASSED");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 PASSED");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_010 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_VIDEO_STABILIZATION_MODE_PROMISE_0500 ends here");
             done();
         })
     })

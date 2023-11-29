@@ -356,240 +356,240 @@ export default function cameraSessionFlashTest() {
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100
         * @tc.name      : Check capture session has flash with promise or not
         * @tc.desc      : Check capture session has flash with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100--------------");
 
             let hasFlashPromise = cameraObj.sessionHasFlash();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100 finish");
             if (hasFlashPromise != null || hasFlashPromise != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001 PASSED with sessionHasFlash is: " + hasFlashPromise);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100 PASSED with sessionHasFlash is: " + hasFlashPromise);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001 FAILED with sessionHasFlash is: " + hasFlashPromise);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100 FAILED with sessionHasFlash is: " + hasFlashPromise);
                 expect().assertFail();
             }
             await sleep(100);
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_HAS_FLASH_PROMISE_001 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_HAS_FLASH_PROMISE_0100 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100
         * @tc.name      : Check capture session support flash close mode with promise or not
         * @tc.desc      : Check capture session support flash close mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100--------------");
 
             let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_CLOSE);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100 finish");
             if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002 FAILED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100 FAILED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
                 expect().assertFail();
             }
 
             await sleep(100);
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_002 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0100 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100
         * @tc.name      : Check capture session set flash close mode with promise
         * @tc.desc      : Check capture session set flash close mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100--------------");
 
             cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_CLOSE);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003 PASSED with FlashMode is: " + 0);
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100 PASSED with FlashMode is: " + 0);
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100 finish");
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_003 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0100 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200
         * @tc.name      : Check capture session support flash open mode with promise or not
         * @tc.desc      : Check capture session support flash open mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200--------------");
 
             let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_OPEN);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200 finish");
             if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004 FAILED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200 FAILED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_004 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0200 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200
         * @tc.name      : Check capture session set flash open mode with promise
         * @tc.desc      : Check capture session set flash open mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200--------------");
 
             cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_OPEN);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 PASSED with FlashMode is: " + 1);
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200 PASSED with FlashMode is: " + 1);
 
             let flashMode = cameraObj.sessionGetFlashMode();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200 finish");
             if (flashMode == Camera_FlashMode.FLASH_MODE_OPEN) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 PASSED with FlaseMode is: " + flashMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200 PASSED with FlaseMode is: " + flashMode);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 FAILED with FlaseMode is: " + flashMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200 FAILED with FlaseMode is: " + flashMode);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_005 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0200 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300
         * @tc.name      : Check capture session support flash auto mode with promise or not
         * @tc.desc      : Check capture session support flash auto mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300--------------");
 
             if (mHasFlashArray[0] == true) {
                 let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_AUTO);
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300 finish");
                 if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300 PASSED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 FAILED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300 FAILED with sessionIsFlashModeSupported is: " + sessionIsFlashModeSupported);
                     expect().assertFail();
                 }
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 not support");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300 not support");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_006 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0300 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300
         * @tc.name      : Check capture session set flash auto mode with promise
         * @tc.desc      : Check capture session set flash auto mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300--------------");
 
             if ((mHasFlashArray[0] == true) && (mIsFlashModeSupportedArray[0] == true)) {
                 cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_AUTO);
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 finish");
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 PASSED with FlashMode is: " + 2);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 PASSED with FlashMode is: " + 2);
                 let flashMode = cameraObj.sessionGetFlashMode();
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 finish");
                 if (flashMode == Camera_FlashMode.FLASH_MODE_AUTO) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 PASSED with FlaseMode is: " + flashMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 PASSED with FlaseMode is: " + flashMode);
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 FAILED with FlaseMode is: " + flashMode);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 FAILED with FlaseMode is: " + flashMode);
                     expect().assertFail();
                 }
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 not support");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 not support");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_007 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0300 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400
         * @tc.name      : Check capture session support flash always open mode with promise or not
         * @tc.desc      : Check capture session support flash always open mode with promise or not
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400--------------");
 
             if (mHasFlashArray[0] == true) {
                 let sessionIsFlashModeSupported = cameraObj.sessionIsFlashModeSupported(Camera_FlashMode.FLASH_MODE_ALWAYS_OPEN);
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 finish");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400 finish");
                 if (sessionIsFlashModeSupported != null || sessionIsFlashModeSupported != undefined) {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 PASSED with sessionHasFlash is: " + sessionIsFlashModeSupported);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400 PASSED with sessionHasFlash is: " + sessionIsFlashModeSupported);
                 } else {
-                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 FAILED with sessionHasFlash is: " + sessionIsFlashModeSupported);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400 FAILED with sessionHasFlash is: " + sessionIsFlashModeSupported);
                     expect().assertFail();
                 }
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 not support");
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400 not support");
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_008 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_IS_FLASH_MODE_SUPPORT_PROMISE_0400 ends here");
             done();
         })
 
         /**
-        * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400
         * @tc.name      : Check capture session set flash always open mode with promise
         * @tc.desc      : Check capture session set flash always open mode with promise
         * @tc.size      : MEDIUM
         * @tc.type      : Function
         * @tc.level     : Level 2
         */
-         it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009', 2, async function (done) {
-            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009--------------");
+         it('SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400', 2, async function (done) {
+            console.info(TAG + "--------------SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400--------------");
 
             cameraObj.sessionSetFlashMode(Camera_FlashMode.FLASH_MODE_ALWAYS_OPEN);
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 finish");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 PASSED with FlashMode is: " + 3);
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400 PASSED with FlashMode is: " + 3);
             let flashMode = cameraObj.sessionGetFlashMode();
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 finish");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400 finish");
             if (flashMode == Camera_FlashMode.FLASH_MODE_ALWAYS_OPEN) {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 PASSED with FlaseMode is: " + flashMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400 PASSED with FlaseMode is: " + flashMode);
             } else {
-                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 FAILED with FlaseMode is: " + flashMode);
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400 FAILED with FlaseMode is: " + flashMode);
                 expect().assertFail();
             }
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_GET_FLASH_MODE_PROMISE_009 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_SESSION_SET_GET_FLASH_MODE_PROMISE_0400 ends here");
             done();
         })
     })

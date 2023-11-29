@@ -243,59 +243,59 @@ export default function CameraInputTest() {
         });
 
         /**
-             * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100
+             * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_ON_ERROR_0100
              * @tc.name      : camera status callback on CameraInput async api for error
              * @tc.desc      : camera status callback on CameraInput async api for error
              * @tc.size      : MEDIUM
              * @tc.type      : Function
              * @tc.level     : Level 0
             */
-        it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100', 0, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100--------------");
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100 start for camera");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_ON_ERROR_0100', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_ON_ERROR_0100--------------");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_ON_ERROR_0100 start for camera");
             await startCameraSession();
 
             await createInput();
             await cameraObj.cameraInputOpen();
 
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_ON_ERROR_0100 end for camera");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_ON_ERROR_0100 end for camera");
             done();
         });
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100
          * @tc.name      : open/close Camera with cameraInput callback api
          * @tc.desc      : open/close Camera with cameraInput callback api
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
         */
-        it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100', 0, async function (done) {
-            console.info("--------------SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100--------------");
+        it('SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100--------------");
             await startCameraSession();
             cameraObj.sessionBegin();
             console.info("CameraCallbackCode = " + cameraObj.getCameraCallbackCode());
-            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100 ends here");
+            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_CALLBACK_0100 ends here");
             await sleep(1000);
             done();
         });
 
         /**
-         * @tc.number    : SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100
          * @tc.name      : open/close Camera with cameraInput promise api
          * @tc.desc      : open/close Camera with cameraInput promise api
          * @tc.size      : MEDIUM
          * @tc.type      : Function
          * @tc.level     : Level 0
         */
-        it('SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100', 0, async function (done) {
-            let functionTag = "SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100";
+        it('SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100', 0, async function (done) {
+            let functionTag = "SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100";
             console.info(functionTag);
 
             await startCameraSession();
             await releaseInput();
 
-            console.info(TAG + functionTag + "Entering SUB_MULTIMEDIA_CAMERA_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100 ends here");
+            console.info(TAG + functionTag + "Entering SUB_MULTIMEDIA_CAMERA_NDK_CAMERA_INPUT_OPEN_CLOSE_PROMISE_0100 ends here");
             done();
         });
 
