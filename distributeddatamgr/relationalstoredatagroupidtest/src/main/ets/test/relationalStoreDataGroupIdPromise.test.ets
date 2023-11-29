@@ -16,7 +16,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import relationalStore from '@ohos.data.relationalStore';
-import {context} from '../TestAbility/TestAbility';
+import common from "@ohos.app.ability.common";
 
 const TAG = "[ttt]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
@@ -27,11 +27,28 @@ const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
 + "blobType BLOB)";
 
 let rdbStore;
-
+let context: common.UIAbilityContext;
 
 export default function relationalStoreDataGroupIdPromise() {
   describe('relationalStoreDataGroupIdPromise', function () {
 
+    beforeAll(function () {
+      console.info(TAG + 'beforeAll')
+	  context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+	  console.info("context=======>"+context);
+    })
+
+    beforeEach(function () {
+      console.info(TAG + 'beforeEach')
+    })
+
+    afterEach(function () {
+      console.info(TAG + 'afterEach')
+    })
+
+    afterAll(async function () {
+      console.info(TAG + 'afterAll')
+    })
 
     console.log(TAG + "*************Unit Test Begin*************");
 

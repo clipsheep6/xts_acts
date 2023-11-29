@@ -16,11 +16,12 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore';
-import {context} from '../TestAbility/TestAbility';
+import common from "@ohos.app.ability.common";
 
 const TAG = "[RDB_JSKITS_TEST_Distributed]"
 const STORE_NAME = "distributed_rdb.db"
 var rdbStore = undefined;
+let context: common.UIAbilityContext;
 
 const config = {
     "name": STORE_NAME,
@@ -32,6 +33,8 @@ export default function relationalStoreDistributedTest() {
 describe('relationalStoreDistributedTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
+		context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+        console.info("context=======>"+context);
     })
 
     beforeEach(async function () {

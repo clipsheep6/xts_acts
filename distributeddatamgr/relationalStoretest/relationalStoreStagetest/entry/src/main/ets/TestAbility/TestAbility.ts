@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 import Ability from '@ohos.app.ability.UIAbility'
-let context;
+import common from "@ohos.app.ability.common";
 
 export default class TestAbility extends Ability {
     onCreate(want, launchParam) {
         console.log('TestAbility onCreate')
-        context = this.context
+        AppStorage.SetOrCreate<common.UIAbilityContext>("TestAbilityContext",this.context);
     }
 
     onDestroy() {
@@ -50,4 +50,3 @@ export default class TestAbility extends Ability {
         console.log('TestAbility onBackground')
     }
 };
-export{context};

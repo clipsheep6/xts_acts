@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import data_Rdb from '@ohos.data.relationalStore';
-import {context} from '../TestAbility/TestAbility';
+import common from "@ohos.app.ability.common";
 
 const TAG = "[RelationalStore_Emit_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
@@ -24,7 +24,7 @@ const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
 + "age INTEGER, "
 + "salary REAL, "
 + "blobType BLOB)";
-
+let context: common.UIAbilityContext;
 let rdbStore;
 const STORE_CONFIG = {
   name: "rdbstoreEmit.db",
@@ -39,6 +39,8 @@ export default function relationalStoreEmitTest() {
   describe('relationalStoreEmitTest', function () {
     beforeAll(async function () {
       console.info(TAG + 'beforeAll');
+	  context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+      console.info("context=======>"+context);
     })
 
     beforeEach(async function () {

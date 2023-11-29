@@ -16,7 +16,8 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore';
 import {context} from '../TestAbility/TestAbility';
-
+import common from "@ohos.app.ability.common";
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]"
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 
@@ -28,6 +29,8 @@ export default function relationalStoreTest(){
     describe('relationalStoreTest', function () {
         beforeAll(async function () {
             console.info(TAG + 'beforeAll')
+			context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+            console.info("context=======>"+context);
         })
 
         beforeEach(function () {

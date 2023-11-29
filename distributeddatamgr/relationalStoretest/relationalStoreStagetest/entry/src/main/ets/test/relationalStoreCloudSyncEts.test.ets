@@ -16,17 +16,19 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import relationalStore from '@ohos.data.relationalStore';
 import ability_featureAbility from '@ohos.ability.featureAbility';
-import {context} from '../TestAbility/TestAbility';
+import common from "@ohos.app.ability.common";
 
 const TAG = "[RELATIONAL_STORE_JSKITS_TEST]";
 const STORE_NAME = "cloud_sync_rdb.db";
 let rdbStore = undefined;
-
+let context: common.UIAbilityContext;
 
 export default function relationalStoreCloudSyncEtsTest() {
   describe('relationalStoreCloudSyncEtsTest', function () {
     beforeAll(async function (done) {
       console.info(TAG + 'beforeAll')
+	  context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+      console.info("context=======>"+context);
       const config = {
         "name": STORE_NAME,
         securityLevel: relationalStore.SecurityLevel.S1,

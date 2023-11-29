@@ -15,10 +15,10 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
 import data_Rdb from '@ohos.data.relationalStore';
-import {context} from '../TestAbility/TestAbility';
+import common from "@ohos.app.ability.common";
 
 
-
+let context: common.UIAbilityContext ;
 
 
 const TAG = "[DifferenceCustomDirMultiple_TEST]";
@@ -63,6 +63,8 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
   describe('relationalStoreDifferenceCustomDirMultipleTest', function () {
     beforeAll(async function () {
       console.info(TAG + 'beforeAll');
+	  context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+      console.info("context=======>"+context);
     })
 
     beforeEach(function () {
