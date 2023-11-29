@@ -42,4 +42,5 @@ export default function cameraKit() {
   CameraErrorCodeUsecaseTest()
   cameraManagerTest()
   cameraEnumTest()
+  cameraSessionMacroTest()
 }
