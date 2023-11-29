@@ -64,6 +64,9 @@ export default function relationalStoreEmitTest() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0400
      * @tc.name relationalStore emit test
      * @tc.desc relationalStore emit test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreDistributed0012', 0, async function (done) {
       async function subscribeInsert() {

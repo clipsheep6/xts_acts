@@ -85,6 +85,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0100
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0100
      * @tc.desc RelationalStore store getRdbStore test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('DifferenceCustomDirMultiple0100', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0001 start *************");
@@ -154,6 +157,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0200
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0200
      * @tc.desc RelationalStore store getRdbStore test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('DifferenceCustomDirMultiple0200', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0002 start *************");
@@ -181,6 +187,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0300
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0300
      * @tc.desc RelationalStore store getRdbStore test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('DifferenceCustomDirMultiple0300', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0003 start *************");
@@ -208,6 +217,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0400
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0400
      * @tc.desc RelationalStore store getRdbStore test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('DifferenceCustomDirMultiple0400', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0004 start *************");

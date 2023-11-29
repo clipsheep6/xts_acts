@@ -130,6 +130,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test PRIKeyType string
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0200
      * @tc.desc test PRIKeyType string
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStorePRIKeyType0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStorePRIKeyType0010 start *************");
@@ -157,6 +160,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test PRIKeyType number
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0100
      * @tc.desc test PRIKeyType number
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStorePRIKeyType0020', 0, async function (done) {
       console.log(TAG + "************* testRdbStorePRIKeyType0020 start *************");
@@ -182,6 +188,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test UTCTime type
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0300
      * @tc.desc test UTCTime type
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreUTCTime0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreUTCTime0010 start *************");
@@ -202,6 +211,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test ModifyTime type
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0500
      * @tc.desc test ModifyTime type
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreModifyTime0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreModifyTime0010 start *************");
@@ -225,6 +237,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test Progress type
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0800
      * @tc.desc test Progress type
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreProgress0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreProgress0010 start *************");
@@ -244,6 +259,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test Statistic
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0900
      * @tc.desc test Statistic
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreStatistic0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreStatistic0010 start *************");
@@ -266,6 +284,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test TableDetails
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_1000
      * @tc.desc test TableDetails
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreTableDetails0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreTableDetails0010 start *************");
@@ -289,6 +310,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test ProgressCode
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0600
      * @tc.desc test ProgressCode
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreProgressCode0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreProgressCode0010 start *************");
@@ -314,6 +338,9 @@ export default function relationalStoreCloudSyncEtsTest() {
      * @tc.name test ProgressDetails
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0700
      * @tc.desc test ProgressDetails
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('testRdbStoreProgressDetails0010', 0, async function (done) {
       console.log(TAG + "************* testRdbStoreProgressDetails0010 start *************");

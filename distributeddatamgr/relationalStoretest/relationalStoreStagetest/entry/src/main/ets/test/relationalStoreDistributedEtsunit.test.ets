@@ -57,6 +57,9 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Callback interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0100
      * @tc.desc obtainDistributedTableName test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('SUB_DDM_AppDataFWK_ETSRDB_Distributed_obtainDistributedTableName_0100', 0, async function (done){
         let errInfo = undefined;
@@ -79,6 +82,9 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Promise interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0200
      * @tc.desc obtainDistributedTableName test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
      it('SUB_DDM_AppDataFWK_ETSRDB_Distributed_obtainDistributedTableName_0200',0,async function (done){
         let errInfo = undefined

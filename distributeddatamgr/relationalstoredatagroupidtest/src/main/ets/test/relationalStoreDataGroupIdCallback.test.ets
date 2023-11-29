@@ -57,6 +57,9 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0100
      * @tc.name relationalStore dataGroupId null callback test
      * @tc.desc relationalStore getRdbStore dataGroupId null callback test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('SUB_DDM_RelationalStore_DataGroupId_Callback_0100', 0, async function (done) {
       const STORE_CONFIG = {
@@ -87,6 +90,9 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0200
      * @tc.name relationalStore dataGroupId undefined callback test
      * @tc.desc relationalStore getRdbStore dataGroupId undefined callback test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('SUB_DDM_RelationalStore_DataGroupId_Callback_0200', 0, async function (done) {
       const STORE_CONFIG = {
@@ -118,6 +124,9 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0300
      * @tc.name relationalStore dataGroupId callback test
      * @tc.desc relationalStore getRdbStore dataGroupId callback test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('SUB_DDM_RelationalStore_DataGroupId_Callback_0300', 0, async function (done) {
       const STORE_CONFIG = {
@@ -148,6 +157,9 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0400
      * @tc.name relationalStore dataGroupId callback test
      * @tc.desc relationalStore deleteRdbStore dataGroupId callback test
+	 * @tc.size Mideum
+     * @tc.type Function
+     * @tc.level Level 1
      */
         it('SUB_DDM_RelationalStore_DataGroupId_Callback_0400', 0, async function (done) {
           const STORE_CONFIG = {
