@@ -23,7 +23,7 @@ import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 
-export class TestAbility extends UIAbility {
+export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
@@ -57,9 +57,11 @@ export class TestAbility extends UIAbility {
 
   onForeground() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onForeground');
+
   }
 
   onBackground() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onBackground');
   }
 }
+
