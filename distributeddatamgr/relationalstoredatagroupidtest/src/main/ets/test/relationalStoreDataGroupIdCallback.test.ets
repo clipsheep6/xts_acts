@@ -57,7 +57,7 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0100
      * @tc.name relationalStore dataGroupId null callback test
      * @tc.desc relationalStore getRdbStore dataGroupId null callback test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -90,7 +90,7 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0200
      * @tc.name relationalStore dataGroupId undefined callback test
      * @tc.desc relationalStore getRdbStore dataGroupId undefined callback test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -124,7 +124,7 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0300
      * @tc.name relationalStore dataGroupId callback test
      * @tc.desc relationalStore getRdbStore dataGroupId callback test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -157,7 +157,7 @@ export default function relationalStoreDataGroupIdCallback() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_0400
      * @tc.name relationalStore dataGroupId callback test
      * @tc.desc relationalStore deleteRdbStore dataGroupId callback test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */

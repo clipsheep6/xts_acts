@@ -57,7 +57,7 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Callback interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0100
      * @tc.desc obtainDistributedTableName test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -82,7 +82,7 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Promise interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0200
      * @tc.desc obtainDistributedTableName test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */

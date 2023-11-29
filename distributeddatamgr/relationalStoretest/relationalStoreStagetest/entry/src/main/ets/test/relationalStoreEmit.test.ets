@@ -64,7 +64,7 @@ export default function relationalStoreEmitTest() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0400
      * @tc.name relationalStore emit test
      * @tc.desc relationalStore emit test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */

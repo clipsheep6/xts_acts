@@ -85,7 +85,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0100
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0100
      * @tc.desc RelationalStore store getRdbStore test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -157,7 +157,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0200
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0200
      * @tc.desc RelationalStore store getRdbStore test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -187,7 +187,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0300
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0300
      * @tc.desc RelationalStore store getRdbStore test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
@@ -217,7 +217,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0400
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0400
      * @tc.desc RelationalStore store getRdbStore test
-	 * @tc.size Medium
+	 * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
