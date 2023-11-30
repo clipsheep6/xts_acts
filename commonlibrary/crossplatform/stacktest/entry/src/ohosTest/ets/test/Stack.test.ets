@@ -485,7 +485,7 @@ describe("StackTest", function () {
    * @tc.name: testPush036
    * @tc.desc: Insert element at top of stack. For example: stack.push.bind({}, 10)().
    */
-  it("testPush036 ", 0, function () {
+  it("testPush036", 0, function () {
     let stack = new Stack();
     try {
       stack.push.bind({}, 10)();
