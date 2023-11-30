@@ -14,8 +14,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore'
-import common from "@ohos.app.ability.common"
-let context: common.UIAbilityContext ;
+import {context} from '../TestAbility/TestAbility'
 
 const TAG = '[RDB_JSKITS_TEST]'
 const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' + 'data1 text,' + 'data2 long, ' + 'data3 double,' + 'data4 blob)';
@@ -31,8 +30,6 @@ export default function relationalStoreResultSetTest() {
 describe('relationalStoreResultSetTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-		context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
-        console.info("context=======>"+context);
         rdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
         await createTest();
@@ -91,9 +88,6 @@ describe('relationalStoreResultSetTest', function () {
      * @tc.name resultSet getBlob normal test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_ResultSetJsApiTest_0100
      * @tc.desc resultSet getBlob normal test
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 1
      */
     it('SUB_DDM_RELATIONALETS_RESULTSET_0010', 0, async function (done) {
         console.info(TAG + '************* SUB_DDM_RELATIONALETS_RESULTSET_0010 start *************');
