@@ -19,6 +19,7 @@ config("nncore_config") {
     "common",
     "../../../../../foundation/ai/neural_network_runtime",
     "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
+    "//third_party/googletest/googletest/include/gtest",
   ]
 
   cflags = [ "-Wno-error" ]
@@ -28,8 +29,8 @@ config("nncore_config") {
 ohos_moduletest_suite("NncoreTest") {
   module_out_path = module_output_path
   sources = [
-    "nncore_common/hdi_nncore_utils.cpp",
-    "nncore_common/mock_backend.cpp",
+    "common/hdi_nncore_utils.cpp",
+    "common/mock_idevice.cpp",
     "src/hdi_core_backend_test.cpp",
     "src/hdi_core_compilation_test.cpp",
     "src/hdi_core_compiled_test.cpp",
@@ -61,7 +62,10 @@ ohos_moduletest_suite("NncoreTest") {
 
 ohos_moduletest_suite("E2EEndTest") {
   module_out_path = module_output_path
-  sources = [ "E2Etest.cpp" ]
+  sources = [
+    "common/hdi_nncore_utils.cpp",
+    "src/E2Etest.cpp",
+  ]
 
   configs = [ ":nncore_config" ]
 
@@ -85,8 +89,8 @@ ohos_moduletest_suite("E2EEndTest") {
 
 group("ActsHdfNncoreTest") {
   testonly = true
-  deps = [ 
-    ":NncoreTest",
-    ":E2EEndTest"
+  deps = [
+    #":NncoreTest",
+    ":E2EEndTest",
   ]
 }

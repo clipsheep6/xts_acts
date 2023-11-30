@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 #include "nncore_const.h"
-#include "mock_backend.h"
+#include "mock_idevice.h"
 #include "hdi_nncore_utils.h"
 
 namespace OHOS::NeuralNetworkCore {
@@ -446,149 +446,149 @@ void TestGetInputOutputTensor(OH_NNCore_Executor* executor, std::vector<OH_NNCor
     }                
 }
 
-PathType CheckPath(const std::string &path)
-{
-    if (path.empty()) {
-        LOGI("CheckPath: path is null");
-        return PathType::NOT_FOUND;
-    }
-    struct stat buf{};
-    if (stat(path.c_str(), &buf) == 0) {
-        if (buf.st_mode & S_IFDIR) {
-            return PathType::DIR;
-        } else if (buf.st_mode & S_IFREG) {
-            return PathType::FILE;
-        } else {
-            return PathType::UNKNOWN;
-        }
-    }
-    LOGI("%s not found", path.c_str());
-    return PathType::NOT_FOUND;
-}
+// PathType CheckPath(const std::string &path)
+// {
+//     if (path.empty()) {
+//         LOGI("CheckPath: path is null");
+//         return PathType::NOT_FOUND;
+//     }
+//     struct stat buf{};
+//     if (stat(path.c_str(), &buf) == 0) {
+//         if (buf.st_mode & S_IFDIR) {
+//             return PathType::DIR;
+//         } else if (buf.st_mode & S_IFREG) {
+//             return PathType::FILE;
+//         } else {
+//             return PathType::UNKNOWN;
+//         }
+//     }
+//     LOGI("%s not found", path.c_str());
+//     return PathType::NOT_FOUND;
+// }
 
-bool DeleteFile(const std::string &path)
-{
-    if (path.empty()) {
-        LOGI("DeleteFile: path is null");
-        return false;
-    }
-    if (CheckPath(path) == PathType::NOT_FOUND) {
-        LOGI("not found: %s", path.c_str());
-        return true;
-    }
-    if (remove(path.c_str()) == 0) {
-        LOGI("deleted: %s", path.c_str());
-        return true;
-    }
-    LOGI("delete failed: %s", path.c_str());
-    return false;
-}
+// bool DeleteFile(const std::string &path)
+// {
+//     if (path.empty()) {
+//         LOGI("DeleteFile: path is null");
+//         return false;
+//     }
+//     if (CheckPath(path) == PathType::NOT_FOUND) {
+//         LOGI("not found: %s", path.c_str());
+//         return true;
+//     }
+//     if (remove(path.c_str()) == 0) {
+//         LOGI("deleted: %s", path.c_str());
+//         return true;
+//     }
+//     LOGI("delete failed: %s", path.c_str());
+//     return false;
+// }
 
-void CopyFile(const std::string &srcPath, const std::string &dstPath)
-{
-    std::ifstream src(srcPath, std::ios::binary);
-    std::ofstream dst(dstPath, std::ios::binary);
+// void CopyFile(const std::string &srcPath, const std::string &dstPath)
+// {
+//     std::ifstream src(srcPath, std::ios::binary);
+//     std::ofstream dst(dstPath, std::ios::binary);
 
-    dst << src.rdbuf();
-}
+//     dst << src.rdbuf();
+// }
 
-std::string ConcatPath(const std::string &str1, const std::string &str2)
-{
-    // boundary
-    if (str2.empty()) {
-        return str1;
-    }
-    if (str1.empty()) {
-        return str2;
-    }
-    // concat
-    char end = str1[str1.size() - 1];
-    if (end == '\\' or end == '/') {
-        return str1 + str2;
-    } else {
-        return str1 + '/' + str2;
-    }
-}
+// std::string ConcatPath(const std::string &str1, const std::string &str2)
+// {
+//     // boundary
+//     if (str2.empty()) {
+//         return str1;
+//     }
+//     if (str1.empty()) {
+//         return str2;
+//     }
+//     // concat
+//     char end = str1[str1.size() - 1];
+//     if (end == '\\' or end == '/') {
+//         return str1 + str2;
+//     } else {
+//         return str1 + '/' + str2;
+//     }
+// }
 
-void DeleteFolder(const std::string &path)
-{
-    if (path.empty()) {
-        LOGI("DeletePath: path is null");
-        return;
-    }
+// void DeleteFolder(const std::string &path)
+// {
+//     if (path.empty()) {
+//         LOGI("DeletePath: path is null");
+//         return;
+//     }
 
-    DIR *dir = opendir(path.c_str());
-    // check is dir ?
-    if (dir == nullptr) {
-        LOGE("[NNRtTest] Can not open dir. Check path or permission! path: %s", path.c_str());
-        return;
-    }
-    struct dirent *file;
-    // read all the files in dir
-    std::vector <std::string> pathList;
-    while ((file = readdir(dir)) != nullptr) {
-        // skip "." and ".."
-        if (strcmp(file->d_name, ".") == 0 || strcmp(file->d_name, "..") == 0) {
-            continue;
-        }
-        if (file->d_type == DT_DIR) {
-            std::string filePath = path + "/" + file->d_name;
-            DeleteFolder(filePath); // 递归执行
-        } else {
-            pathList.emplace_back(ConcatPath(path, file->d_name));
-        }
-    }
-    closedir(dir);
-    pathList.emplace_back(path);
-    LOGI("[Common] Delete folder %s", path.c_str());
-    for (auto &i : pathList) {
-        DeleteFile(i);
-    }
-}
+//     DIR *dir = opendir(path.c_str());
+//     // check is dir ?
+//     if (dir == nullptr) {
+//         LOGE("[NNRtTest] Can not open dir. Check path or permission! path: %s", path.c_str());
+//         return;
+//     }
+//     struct dirent *file;
+//     // read all the files in dir
+//     std::vector <std::string> pathList;
+//     while ((file = readdir(dir)) != nullptr) {
+//         // skip "." and ".."
+//         if (strcmp(file->d_name, ".") == 0 || strcmp(file->d_name, "..") == 0) {
+//             continue;
+//         }
+//         if (file->d_type == DT_DIR) {
+//             std::string filePath = path + "/" + file->d_name;
+//             DeleteFolder(filePath); // 递归执行
+//         } else {
+//             pathList.emplace_back(ConcatPath(path, file->d_name));
+//         }
+//     }
+//     closedir(dir);
+//     pathList.emplace_back(path);
+//     LOGI("[Common] Delete folder %s", path.c_str());
+//     for (auto &i : pathList) {
+//         DeleteFile(i);
+//     }
+// }
 
-bool CreateFolder(const std::string &path)
-{
-    if (path.empty()) {
-        LOGI("CreateFolder: path is empty");
-        return false;
-    }
-    LOGI("CreateFolder:%s", path.c_str());
-    mode_t mode = 0700;
-    for (uint32_t i = 1; i < path.size() - 1; i++) {
-        if (path[i] != '/') {
-            continue;
-        }
-        PathType ret = CheckPath(path.substr(0, i));
-        switch (ret) {
-            case PathType::DIR:
-                continue;
-            case PathType::NOT_FOUND:
-                LOGI("mkdir: %s", path.substr(0, i).c_str());
-                mkdir(path.substr(0, i).c_str(), mode);
-                break;
-            default:
-                LOGI("error: %s", path.substr(0, i).c_str());
-                return false;
-        }
-    }
-    mkdir(path.c_str(), mode);
-    return CheckPath(path) == PathType::DIR;
-}
+// bool CreateFolder(const std::string &path)
+// {
+//     if (path.empty()) {
+//         LOGI("CreateFolder: path is empty");
+//         return false;
+//     }
+//     LOGI("CreateFolder:%s", path.c_str());
+//     mode_t mode = 0700;
+//     for (uint32_t i = 1; i < path.size() - 1; i++) {
+//         if (path[i] != '/') {
+//             continue;
+//         }
+//         PathType ret = CheckPath(path.substr(0, i));
+//         switch (ret) {
+//             case PathType::DIR:
+//                 continue;
+//             case PathType::NOT_FOUND:
+//                 LOGI("mkdir: %s", path.substr(0, i).c_str());
+//                 mkdir(path.substr(0, i).c_str(), mode);
+//                 break;
+//             default:
+//                 LOGI("error: %s", path.substr(0, i).c_str());
+//                 return false;
+//         }
+//     }
+//     mkdir(path.c_str(), mode);
+//     return CheckPath(path) == PathType::DIR;
+// }
 
-bool CheckOutput(const float* output, const float* expect)
-{
-    if (output == nullptr || expect == nullptr) {
-        LOGE("[NNRtTest] output or expect is nullptr\n");
-        return false;
-    }
-    for (int i = 0; i < ELEMENT_COUNT; i++) {
-        if (std::abs(float(output[i]) - float(expect[i])) > 1e-8) {
-            for (int j = 0; j < ELEMENT_COUNT; j++) {
-                LOGE("[NNRtTest] output %d not match: expect:%f, actual:%f\n", j, float(expect[j]), float(output[j]));
-            }
-            return false;
-        }
-    }
-    return true;
-}
+// bool CheckOutput(const float* output, const float* expect)
+// {
+//     if (output == nullptr || expect == nullptr) {
+//         LOGE("[NNRtTest] output or expect is nullptr\n");
+//         return false;
+//     }
+//     for (int i = 0; i < ELEMENT_COUNT; i++) {
+//         if (std::abs(float(output[i]) - float(expect[i])) > 1e-8) {
+//             for (int j = 0; j < ELEMENT_COUNT; j++) {
+//                 LOGE("[NNRtTest] output %d not match: expect:%f, actual:%f\n", j, float(expect[j]), float(output[j]));
+//             }
+//             return false;
+//         }
+//     }
+//     return true;
+// }
 }

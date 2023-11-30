@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include <thread>
-#include <gtest/gtest.h>
 
 #include "hdi_nncore_utils.h"
+#include "gtest.h"
 
 using namespace OHOS::NeuralNetworkCore;
 using namespace testing::ext;
@@ -14,7 +14,7 @@ using namespace testing::ext;
 class End2EndTest: public testing::Test {};
 
 OH_NNCore_ReturnCode BuildModel(OH_NNBackend_Model **model,
-                                             const std::vector<OH_NNCore_TensorDesc*>& tensorDescs)
+                                const std::vector<OH_NNCore_TensorDesc*>& tensorDescs)
 {
     *model = OH_NNBackend_CreateModel();
     if (*model == nullptr) {
