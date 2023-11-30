@@ -66,7 +66,7 @@ describe('SUB_NOTIFICATION_ANS_SYSTEM_API_TEST', function () {
 
     /*
      * @tc.number: Sub_Notification_Ans_Publish_Publish_4200
-     * @tc.name: publishAsBundle 
+     * @tc.name: publishAsBundle
      * @tc.desc: test function publishAsBundle
      */
     it('Sub_Notification_Ans_Publish_Publish_4200', 0, async function (done) {
@@ -696,6 +696,34 @@ describe('SUB_NOTIFICATION_ANS_SYSTEM_API_TEST', function () {
     });
 
     /*
+     * @tc.number: Sub_Notification_Ans_Enable_SetEnable_9501
+     * @tc.name: setNotificationEnableSlot
+     * @tc.desc: test function setNotificationEnableSlot
+     */
+    it('Sub_Notification_Ans_Enable_SetEnable_9501', 0, async function (done) {
+        console.info(`${TAG} Sub_Notification_Ans_Enable_SetEnable_9501 START`);
+
+        let bundleOpt : notificationManager.BundleOption = {
+            bundle: "example.bundleName",
+            uid: 0
+        }
+        let type = notificationManager.SlotType.LIVE_VIEW;
+        notificationManager.setNotificationEnableSlot(bundleOpt, type, true, false, (err) => {
+            if (err) {
+                console.info(`${TAG} setNotificationEnableSlot AsyncCallback errCode: ${err.code}, errMes: ${err.message}`)
+                expect(err.code).assertEqual(202);
+                done()
+            } else {
+                console.info(`${TAG} setNotificationEnableSlot AsyncCallback success`)
+                expect(false).assertTrue()
+                done()
+            }
+        });
+
+        console.info(`${TAG} Sub_Notification_Ans_Enable_SetEnable_9501 END`);
+    });
+
+    /*
      * @tc.number: Sub_Notification_Ans_Enable_SetEnable_9700
      * @tc.name: isNotificationSlotEnabled
      * @tc.desc: test function isNotificationSlotEnabled
@@ -1002,4 +1030,32 @@ describe('SUB_NOTIFICATION_ANS_SYSTEM_API_TEST', function () {
         console.info(`${TAG} Sub_Notification_Ans_Delete_SpecifiedGroup_0600 END`);
     });
 
-}) } 
+    /*
+     * @tc.number: Sub_Notification_Ans_Set_Slot_Enable_0100
+     * @tc.name: setNotificationEnableSlot
+     * @tc.desc: test function setNotificationEnableSlot
+     */
+    it('Sub_Notification_Ans_Set_Slot_Enable_0100', 0, async function (done) {
+        console.info(`${TAG} Sub_Notification_Ans_Set_Slot_Enable_0100 START`);
+
+        let bundleOpt : notificationManager.BundleOption = {
+            bundle: "example.bundleName",
+            uid: 0
+        }
+        let type = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+        notificationManager.setNotificationEnableSlot(bundleOpt, type, true, true, (err) => {
+            if (err) {
+                console.info(`${TAG} setNotificationEnableSlot AsyncCallback errCode: ${err.code}, errMes: ${err.message}`)
+                expect(err.code).assertEqual(202);
+                done()
+            } else {
+                console.info(`${TAG} setNotificationEnableSlot AsyncCallback success`)
+                expect(false).assertTrue()
+                done()
+            }
+        });
+
+        console.info(`${TAG} Sub_Notification_Ans_Set_Slot_Enable_0100 END`);
+    });
+
+}) }

@@ -35,7 +35,7 @@ export default function ActsNotificationPublishTest() {
       alphaType: 0,
       scaleMode: 1
     }
-    
+
     let picture_buffer = new ArrayBuffer(picture_opts.size.height * picture_opts.size.width * 4)
     let notification_picture = undefined
 
@@ -103,7 +103,7 @@ export default function ActsNotificationPublishTest() {
       console.info(`${TAG} afterEach END`)
     })
 
-    
+
     /*
      * @tc.number    : Sub_Notification_Ans_Publish_Publish_8300
      * @tc.name      : function publish(request: NotificationRequest, callback: AsyncCallback<void>): void
@@ -148,7 +148,7 @@ export default function ActsNotificationPublishTest() {
       console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_8300 END`)
     })
 
-    
+
     /*
      * @tc.number    : Sub_Notification_Ans_Publish_Publish_8350
      * @tc.name      : function publish(request: NotificationRequest): Promise<void>
