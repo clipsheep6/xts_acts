@@ -18,6 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import contextConstant from '@ohos.app.ability.contextConstant';
 import common from '@ohos.app.ability.common';
+import commonEventManager from '@ohos.commonEventManager';
 
 let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let areaMode: string;
@@ -63,7 +64,7 @@ export default function contextDirTest() {
       abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
     })
 
-    beforeEach(async () =>{
+    beforeEach(async () => {
       await abilityDelegator.startAbility({
         bundleName: 'com.example.contextdirtest',
         abilityName: 'TestAbility',
@@ -155,7 +156,7 @@ export default function contextDirTest() {
       }, 300)
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_AbilityContext_Dir_0400
      * @tc.name       : testAbilityContextDir0400
      * @tc.desc       : When area mode is EL4, check the path of the AbilityContext under different modules of the same application.
@@ -188,7 +189,7 @@ export default function contextDirTest() {
       }, 300)
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_ModuleContext_Dir_0500
      * @tc.name       : testModuleContextDir0500
      * @tc.desc       : When area mode is EL3, check the path of the ModuleContext under different modules of the same application.
@@ -221,7 +222,7 @@ export default function contextDirTest() {
       }, 300)
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_ModuleContext_Dir_0600
      * @tc.name       : testModuleContextDir0600
      * @tc.desc       : When area mode is EL4, check the path of the ModuleContext under different modules of the same application.
@@ -254,7 +255,7 @@ export default function contextDirTest() {
       }, 300)
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_ApplicationContext_Dir_0700
      * @tc.name       : testApplicationContextDir0700
      * @tc.desc       : When area mode is EL3, check the path of the ApplicationContext under different application.
@@ -287,7 +288,7 @@ export default function contextDirTest() {
       })
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_ApplicationContext_Dir_0800
      * @tc.name       : testApplicationContextDir0800
      * @tc.desc       : When area mode is EL4, check the path of the ApplicationContext under different application.
@@ -312,6 +313,7 @@ export default function contextDirTest() {
           areaMode = "el4";
           let result = checkApplicationContextDir(otherAppContext.getApplicationContext());
           expect(result).assertTrue();
+          abilityDelegator.executeShellCommand('aa force-stop com.example.contextdirnormaltest');
           done();
         } catch (e) {
           hilog.info(0x0000, 'testTag', '%{public}s', TAG + " error: " + JSON.stringify(e));
@@ -320,7 +322,7 @@ export default function contextDirTest() {
       })
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_AbilityStageContext_Dir_0900
      * @tc.name       : testAbilityStageContextDir0900
      * @tc.desc       : When area mode is EL3, check the path of the AbilityStageContext under the same application and module.
@@ -346,7 +348,7 @@ export default function contextDirTest() {
       }
     })
 
-     /**
+    /**
      * @tc.number     : SUB_Ability_AbilityRuntime_AbilityStageContext_Dir_1000
      * @tc.name       : testAbilityStageContextDir1000
      * @tc.desc       : When area mode is EL4, check the path of the AbilityStageContext under the same application and module.
@@ -370,6 +372,242 @@ export default function contextDirTest() {
         hilog.info(0x0000, 'testTag', '%{public}s', TAG + " error: " + JSON.stringify(e));
         done();
       }
+    })
+
+    /**
+     * @tc.number     : SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1100
+     * @tc.name       : testGetGroupDir1100
+     * @tc.desc       : When use the same groupId, check the data of the getGroupDir is the same under the different application.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1100', 0, async (done: Function) => {
+      let TAG = 'SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1100';
+      hilog.info(0x0000, 'testTag', '%{public}s', TAG + ' --start');
+      let getGroupDirData: string;
+      let getGroupDirDataOther: string;
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+
+      commonEventManager.createSubscriber({
+        events: ["getGroupDirEvent1"],
+      }).then(async (data) => {
+        console.log(TAG + "Subscriber create");
+        Subscriber = data;
+        commonEventManager.subscribe(Subscriber, (_, data) => {
+          if (data?.parameters?.result !== undefined) {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " Subscriber data " + JSON.stringify(data.parameters.result));
+            getGroupDirDataOther = data.parameters.result;
+            expect(getGroupDirDataOther).assertEqual(getGroupDirData);
+            commonEventManager.unsubscribe(Subscriber);
+            abilityDelegator.executeShellCommand('aa force-stop com.example.contextdirnormaltest');
+            done();
+          }
+        });
+
+        let abilityContext = AppStorage.get<common.AbilityStageContext>('TestAbilityContext') as common.AbilityStageContext;
+        abilityContext.area = contextConstant.AreaMode.EL3;
+        abilityContext.getGroupDir("context_test1", (err, data) => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'this app getGroupDir context_test1 ====> result data ' + JSON.stringify(data));
+          getGroupDirData = data;
+          expect(getGroupDirData).assertContain("/data/storage/el3/group");
+          expect(err).assertNull();
+        })
+        await sleep(1000);
+        try {
+          abilityDelegator.startAbility({
+            bundleName: "com.example.contextdirnormaltest",
+            abilityName: "EntryAbility",
+            moduleName: 'entry',
+            parameters: {
+              isPublish: true,
+              areaMode: "el3"
+            }
+          }, (err) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " startAbility err:" + JSON.stringify(err));
+          })
+        } catch (e) {
+          hilog.info(0x0000, 'testTag', '%{public}s', TAG + " error: " + JSON.stringify(e));
+          done();
+        }
+      })
+    })
+
+    /**
+     * @tc.number     : SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1200
+     * @tc.name       : testGetGroupDir1200
+     * @tc.desc       : When use the same groupId, check the data of the getGroupDir is the same under the different application.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1200', 0, async (done: Function) => {
+      let TAG = 'SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1200';
+      hilog.info(0x0000, 'testTag', '%{public}s', TAG + ' --start');
+      let getGroupDirData: string;
+      let getGroupDirDataOther: string;
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+
+      commonEventManager.createSubscriber({
+        events: ["getGroupDirEvent1"],
+      }).then(async (data) => {
+        console.log(TAG + "Subscriber create");
+        Subscriber = data;
+        commonEventManager.subscribe(Subscriber, (_, data) => {
+          if (data?.parameters?.result !== undefined) {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " Subscriber data " + JSON.stringify(data.parameters.result));
+            getGroupDirDataOther = data.parameters.result;
+            expect(getGroupDirDataOther).assertEqual(getGroupDirData);
+            commonEventManager.unsubscribe(Subscriber);
+            abilityDelegator.executeShellCommand('aa force-stop com.example.contextdirnormaltest');
+            done();
+          }
+        });
+
+        let abilityContext = AppStorage.get<common.AbilityStageContext>('TestAbilityContext') as common.AbilityStageContext;
+        abilityContext.area = contextConstant.AreaMode.EL4;
+        abilityContext.getGroupDir("context_test1", (err, data) => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'this app getGroupDir context_test1 ====> result data ' + JSON.stringify(data));
+          getGroupDirData = data;
+          expect(getGroupDirData).assertContain("/data/storage/el4/group");
+          expect(err).assertNull();
+        })
+        await sleep(1000);
+        try {
+          abilityDelegator.startAbility({
+            bundleName: "com.example.contextdirnormaltest",
+            abilityName: "EntryAbility",
+            moduleName: 'entry',
+            parameters: {
+              isPublish: true,
+              areaMode: "el4"
+            }
+          }, (err) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " startAbility err:" + JSON.stringify(err));
+          })
+        } catch (e) {
+          hilog.info(0x0000, 'testTag', '%{public}s', TAG + " error: " + JSON.stringify(e));
+          done();
+        }
+      })
+    })
+
+    /**
+     * @tc.number     : SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1300
+     * @tc.name       : testGetGroupDir1300
+     * @tc.desc       : When use the different groupId, check the data of the getGroupDir is different under the different application.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1300', 0, async (done: Function) => {
+      let TAG = 'SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1300';
+      hilog.info(0x0000, 'testTag', '%{public}s', TAG + ' --start');
+      let getGroupDirData: string;
+      let getGroupDirDataOther: string;
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+
+      commonEventManager.createSubscriber({
+        events: ["getGroupDirEvent2"],
+      }).then(async (data) => {
+        console.log(TAG + "Subscriber create");
+        Subscriber = data;
+        commonEventManager.subscribe(Subscriber, (_, data) => {
+          if (data?.parameters?.result !== undefined) {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " Subscriber data " + JSON.stringify(data.parameters.result));
+            getGroupDirDataOther = data.parameters.result;
+            expect(getGroupDirDataOther !== getGroupDirData).assertTrue();
+            commonEventManager.unsubscribe(Subscriber);
+            abilityDelegator.executeShellCommand('aa force-stop com.example.contextdirnormaltest');
+            done();
+          }
+        });
+
+        let abilityContext = AppStorage.get<common.AbilityStageContext>('TestAbilityContext') as common.AbilityStageContext;
+        abilityContext.area = contextConstant.AreaMode.EL3;
+        abilityContext.getGroupDir("context_test1", (err, data) => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'this app getGroupDir context_test1 ====> result data ' + JSON.stringify(data));
+          getGroupDirData = data;
+          expect(getGroupDirData).assertContain("/data/storage/el3/group");
+          expect(err).assertNull();
+        })
+        await sleep(1000);
+        try {
+          abilityDelegator.startAbility({
+            bundleName: "com.example.contextdirnormaltest",
+            abilityName: "EntryAbility",
+            moduleName: 'entry',
+            parameters: {
+              isPublish: true,
+              areaMode: "el3"
+            }
+          }, (err) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " startAbility err:" + JSON.stringify(err));
+          })
+        } catch (e) {
+          hilog.info(0x0000, 'testTag', '%{public}s', TAG + " error: " + JSON.stringify(e));
+          done();
+        }
+      })
+    })
+
+    /**
+     * @tc.number     : SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1400
+     * @tc.name       : testGetGroupDir1400
+     * @tc.desc       : When use the different groupId, check the data of the getGroupDir is different under the different application.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1400', 0, async (done: Function) => {
+      let TAG = 'SUB_Ability_AbilityRuntime_AbilityContext_GetGroupDir_1400';
+      hilog.info(0x0000, 'testTag', '%{public}s', TAG + ' --start');
+      let getGroupDirData: string;
+      let getGroupDirDataOther: string;
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+
+      commonEventManager.createSubscriber({
+        events: ["getGroupDirEvent2"],
+      }).then(async (data) => {
+        console.log(TAG + "Subscriber create");
+        Subscriber = data;
+        commonEventManager.subscribe(Subscriber, (_, data) => {
+          if (data?.parameters?.result !== undefined) {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " Subscriber data " + JSON.stringify(data.parameters.result));
+            getGroupDirDataOther = data.parameters.result;
+            expect(getGroupDirDataOther !== getGroupDirData).assertTrue();
+            commonEventManager.unsubscribe(Subscriber);
+            abilityDelegator.executeShellCommand('aa force-stop com.example.contextdirnormaltest');
+            done();
+          }
+        });
+
+        let abilityContext = AppStorage.get<common.AbilityStageContext>('TestAbilityContext') as common.AbilityStageContext;
+        abilityContext.area = contextConstant.AreaMode.EL4;
+        abilityContext.getGroupDir("context_test1", (err, data) => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'this app getGroupDir context_test1 ====> result data ' + JSON.stringify(data));
+          getGroupDirData = data;
+          expect(getGroupDirData).assertContain("/data/storage/el4/group");
+          expect(err).assertNull();
+        })
+        await sleep(1000);
+        try {
+          abilityDelegator.startAbility({
+            bundleName: "com.example.contextdirnormaltest",
+            abilityName: "EntryAbility",
+            moduleName: 'entry',
+            parameters: {
+              isPublish: true,
+              areaMode: "el4"
+            }
+          }, (err) => {
+            hilog.info(0x0000, 'testTag', '%{public}s', TAG + " startAbility err:" + JSON.stringify(err));
+          })
+        } catch (e) {
+          hilog.info(0x0000, 'testTag', '%{public}s', TAG + " error: " + JSON.stringify(e));
+          done();
+        }
+      })
     })
   })
 }

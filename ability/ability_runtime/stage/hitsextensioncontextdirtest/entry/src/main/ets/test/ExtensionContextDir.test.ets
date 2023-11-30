@@ -47,10 +47,12 @@ function checkExtensionContextDir(serviceExtensionContext: common.ServiceExtensi
 export default function extensionContextDirTest() {
   describe('extensionContextDirTest', () => {
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0100
-     * @tc.name: When area mode is EL3, check the path of the ServiceExtensionContext is correct.
-     * @tc.desc: Function test
-     * @tc.level 0
+     * @tc.number     : SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0100
+     * @tc.name       : testExtensionContextDir0100
+     * @tc.desc       : When area mode is EL3, check the path of the ServiceExtensionContext is correct.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
      */
     it('SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0100', 0, async (done: Function) => {
       let TAG = 'SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0100';
@@ -76,10 +78,12 @@ export default function extensionContextDirTest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0200
-     * @tc.name: When area mode is EL4, check the path of the ServiceExtensionContext is correct.
-     * @tc.desc: Function test
-     * @tc.level 0
+     * @tc.number     : SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0200
+     * @tc.name       : testExtensionContextDir0200
+     * @tc.desc       : When area mode is EL4, check the path of the ServiceExtensionContext is correct.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
      */
     it('SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0200', 0, async (done: Function) => {
       let TAG = 'SUB_Ability_AbilityRuntime_ExtensionContext_Dir_0200';

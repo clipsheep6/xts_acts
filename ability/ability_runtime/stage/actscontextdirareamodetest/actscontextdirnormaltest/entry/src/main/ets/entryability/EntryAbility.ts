@@ -18,10 +18,53 @@ import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+import commonEventManager from '@ohos.commonEventManager';
+import contextConstant from '@ohos.app.ability.contextConstant';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let areaMode = want.parameters?.areaMode;
+    let isPublish = want.parameters?.isPublish;
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onCreate areaMode' + JSON.stringify(areaMode));
+    if (areaMode === "el3") {
+      this.context.area = contextConstant.AreaMode.EL3;
+    } else if (areaMode === "el4") {
+      this.context.area = contextConstant.AreaMode.EL4;
+    }
+    if (isPublish) {
+      try {
+        this.context.getGroupDir("context_test1").then(data => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getGroupDir context_test1 ====> result data' + JSON.stringify(data));
+          let options = {
+            parameters: {
+              result: data
+            }
+          };
+          commonEventManager.publish('getGroupDirEvent1', options, () => {
+            hilog.info(0x0000, 'testTag', '%{public}s', "--- create file success and send msg ");
+          });
+        }).catch((error) => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getGroupDir context_test1 ====> result error' + JSON.stringify(error));
+        });
+
+        this.context.getGroupDir("context_test2").then(data => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getGroupDir context_test2 ====> result data' + JSON.stringify(data));
+          let options = {
+            parameters: {
+              result: data
+            }
+          };
+          commonEventManager.publish('getGroupDirEvent2', options, () => {
+            hilog.info(0x0000, 'testTag', '%{public}s', "--- create file success and send msg ");
+          });
+        }).catch((error) => {
+          hilog.info(0x0000, 'testTag', '%{public}s', 'getGroupDir context_test2 ====> result error' + JSON.stringify(error));
+        });
+      } catch (error) {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'getGroupDir ====> result err' + JSON.stringify(error));
+      }
+    }
   }
 
   onDestroy() {

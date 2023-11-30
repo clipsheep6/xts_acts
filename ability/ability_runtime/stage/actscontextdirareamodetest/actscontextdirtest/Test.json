@@ -23,10 +23,7 @@
       "run-command": [
         "power-shell wakeup",
         "power-shell setmode 602",
-        "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
-      ],
-      "teardown-command": [
-        "power-shell setmode 601"
+        "uinput -T -m 300 2700 280 200"
       ]
     }
   ]
