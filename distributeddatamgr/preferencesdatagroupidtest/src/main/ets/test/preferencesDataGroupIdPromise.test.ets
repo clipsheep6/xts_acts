@@ -15,13 +15,16 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import dataPreferences from '@ohos.data.preferences';
-import {context} from '../TestAbility/TestAbility'
+import common from "@ohos.app.ability.common"
 
 const TAG = "[ttt]"
+let context: common.UIAbilityContext
+
 export default function preferencesDataGroupIdPromise() {
   describe('preferencesDataGroupIdPromise', function () {
-    beforeAll(function () {
-      console.log('beforeAll context'+ context)
+    beforeAll(async function () {
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext
+      console.log('beforeAll context------>'+ context)
     })
     console.log(TAG + "*************Unit Test Begin*************");
 
@@ -32,7 +35,6 @@ export default function preferencesDataGroupIdPromise() {
      * @tc.desc preferences getPreferences dataGroupId null promise test
      */
     it('SUB_DDM_Preferences_DataGroupId_Promise_0100', 0, async function (done) {
-      console.log('SUB_DDM_Preferences_DataGroupId_Promise_0100 context'+ context)
       const Options = {
         name: "test_preferences_callback",
         dataGroupId: null,
