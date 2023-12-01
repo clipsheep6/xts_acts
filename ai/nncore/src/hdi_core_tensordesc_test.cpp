@@ -14,8 +14,8 @@
  */
 #include <vector>
 
-#include "nncore_const.h"
-#include "hdi_nncore_utils.h"
+#include "../common/nncore_const.h"
+#include "../common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {
@@ -28,11 +28,11 @@ class HdiNNTessorDesc : public testing::Test {};
  */
 HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_Datatype_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_TensorDesc* tensorDesc = nullptr;
+    NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
 
-    int dataType = static_cast<int>(OH_NNCORE_OTHER_TYPES) + 1;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<OH_NNCore_DataType>(dataType)));
+    int dataType = static_cast<int>(NNCORE_OTHER_TYPES) + 1;
+    ASSERT_EQ(NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<NNCore_DataType>(dataType)));
 }
 
 /**
@@ -42,11 +42,11 @@ HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_Datatype
  */
 HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_Datatype_0200, Function | MediumTest | Level1)
 {
-    OH_NNCore_TensorDesc* tensorDesc = nullptr;
+    NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
 
-    int dataType = static_cast<int>(OH_NNCORE_UINT8) - 1;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<OH_NNCore_DataType>(dataType)));
+    int dataType = static_cast<int>(NNCORE_UINT8) - 1;
+    ASSERT_EQ(NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescDataType(tensorDesc, static_cast<NNCore_DataType>(dataType)));
 }
 
 /**
@@ -56,11 +56,11 @@ HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_Datatype
  */
 HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_format_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_TensorDesc* tensorDesc = nullptr;
+    NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
 
-    int format = static_cast<int>(OH_NNCORE_FORMAT_NCHW) - 1;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescFormat(tensorDesc, static_cast<OH_NNCore_Format>(format)));
+    int format = static_cast<int>(NNCORE_FORMAT_NCHW) - 1;
+    ASSERT_EQ(NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescFormat(tensorDesc, static_cast<NNCore_Format>(format)));
 }
 
 /**
@@ -70,11 +70,11 @@ HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_format_0
  */
 HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_format_0200, Function | MediumTest | Level1)
 {
-    OH_NNCore_TensorDesc* tensorDesc = nullptr;
+    NNCore_TensorDesc* tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
 
-    int format = static_cast<int>(OH_NNCORE_ND) + 1;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescFormat(tensorDesc, static_cast<OH_NNCore_Format>(format)));
+    int format = static_cast<int>(NNCORE_ND) + 1;
+    ASSERT_EQ(NNCORE_INVALID_PARAMETER, OH_NNCore_SetTensorDescFormat(tensorDesc, static_cast<NNCore_Format>(format)));
 }
 
 /**
@@ -84,11 +84,11 @@ HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_format_0
  */
 HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Get_NNTensor_Desc_Byte_Size_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_TensorDesc *tensorDesc = nullptr;
+    NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
 
     size_t byteSize = -1;
-    ASSERT_EQ(OH_NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
+    ASSERT_EQ(NNCORE_INVALID_PARAMETER, OH_NNCore_GetTensorDescByteSize(tensorDesc, &byteSize));
 }
 
 /**
@@ -98,9 +98,9 @@ HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Get_NNTensor_Desc_Byte_Siz
  */
 HWTEST_F(HdiNNTessorDesc, SUB_AI_NNRt_Core_Func_North_Set_NNTensor_Desc_Type_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_TensorDesc *tensorDesc = nullptr;
+    NNCore_TensorDesc *tensorDesc = nullptr;
     TestConstructTensorDesc(&tensorDesc);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_SetTensorDescDataType(tensorDesc, OH_NNCORE_INT32));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_SetTensorDescDataType(tensorDesc, NNCORE_INT32));
 }
 } // namespace OHOS::NeuralNetworkCore

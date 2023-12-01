@@ -19,11 +19,11 @@
 
 namespace OHOS::NeuralNetworkCore{
 
-const int MODEL_SIZE = 100;
-const int ONE = 1;
+const size_t MODEL_SIZE = 100;
+const size_t ONE = 1;
 const double ZEROPOINTTWO = 0.2;
 const size_t ZERO = 0;
-const int FIVE = 5;
+const size_t FIVE = 5;
 const std::string CACHE_DIR = "./cache";
 const std::string CACHE_PATH = CACHE_DIR + "/0.nncache";
 const std::string CACHE_INFO_PATH = CACHE_DIR + "/cache_info.nncache";

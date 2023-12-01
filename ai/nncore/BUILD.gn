@@ -16,14 +16,27 @@ module_output_path = "acts/nnrt"
 
 config("nncore_config") {
   include_dirs = [
-    "common",
+    "nncore",
     "../../../../../foundation/ai/neural_network_runtime",
     "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
-    "//third_party/googletest/googletest/include/gtest",
   ]
 
-  cflags = [ "-Wno-error" ]
-  cflags_cc = [ "-fexceptions" ]
+  cflags = [
+    "-Wno-error",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-Wall",
+    "-fno-common",
+    "-fstack-protector-strong",
+    "-Wshadow",
+    "-FPIC",
+    "-FS",
+    "-O2",
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-Wformat=2",
+    "-Wdate-time",
+  ]
 }
 
 ohos_moduletest_suite("NncoreTest") {
@@ -44,7 +57,7 @@ ohos_moduletest_suite("NncoreTest") {
 
   deps = [
     "//third_party/googletest:gmock",
-    "//third_party/googletest:gtest",
+    "//third_party/googletest:gtest_rtti",
   ]
 
   external_deps = [
@@ -62,16 +75,13 @@ ohos_moduletest_suite("NncoreTest") {
 
 ohos_moduletest_suite("E2EEndTest") {
   module_out_path = module_output_path
-  sources = [
-    "common/hdi_nncore_utils.cpp",
-    "src/E2Etest.cpp",
-  ]
+  sources = [ "src/E2Etest.cpp" ]
 
   configs = [ ":nncore_config" ]
 
   deps = [
     "//third_party/googletest:gmock",
-    "//third_party/googletest:gtest",
+    "//third_party/googletest:gtest_rtti",
   ]
 
   external_deps = [
@@ -89,8 +99,8 @@ ohos_moduletest_suite("E2EEndTest") {
 
 group("ActsHdfNncoreTest") {
   testonly = true
-  deps = [
-    #":NncoreTest",
+  deps = [ 
+    ":NncoreTest",
     ":E2EEndTest",
   ]
 }

@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "nncore_const.h"
-#include "hdi_nncore_utils.h"
+#include "../common/nncore_const.h"
+#include "../common/hdi_nncore_utils.h"
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {
@@ -48,12 +48,12 @@ HWTEST_F(HdiNNCoreBackend, SUB_AI_NNRt_Core_Func_North_Get_Backend_Name_0100, Fu
 {
     //未注册，数量为0
     size_t backendNum = -1;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendNum(&backendNum));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_GetBackendNum(&backendNum));
     ASSERT_EQ(ZERO, backendNum);
     
     //获取为空
     const char* backendName = nullptr;
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_GetBackendName(ZERO, &backendName));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_GetBackendName(ZERO, &backendName));
     ASSERT_EQ(nullptr, backendName);
 }
 

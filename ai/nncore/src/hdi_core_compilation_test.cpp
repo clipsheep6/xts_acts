@@ -14,14 +14,16 @@
  */
 #include <fstream>
 
-#include "nncore_const.h"
-#include "hdi_nncore_utils.h"
+#include "../common/nncore_const.h"
+#include "../common/hdi_nncore_utils.h"
 #include "interfaces/kits/c/v2_0/neural_network_runtime.h"
-#include "test.h"
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {
 class HdiNNCoreCompilation : public testing::Test {
+public:
+    static void SetUpTestCase() {}
+    static void TearDownTestCase() {}
     void SetUp()
     {
         CreateFolder(CACHE_DIR);
@@ -35,7 +37,7 @@ class HdiNNCoreCompilation : public testing::Test {
 public:
     void SaveSupportModel()
     {
-        OH_NNBackend_Model* model;
+        NNBackend_Model* model;
         TestConstructModel(&model);
         std::ofstream ofs(SUPPORTMODELPATH.c_str(), std::ios::out | std::ios::binary);
         if (ofs) {
@@ -46,7 +48,7 @@ public:
     //离线模型存在不支持算子
     void SaveNOSupportModel()
     {
-        OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
+        NNBackend_Model *model = OH_NNBackend_CreateModel();
         ASSERT_NE(nullptr, model);
 
         AddTopKModel addTopKModel;
@@ -87,9 +89,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_NNModel_0200, Function | MediumTest | Level1)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
+    NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(reinterpret_cast<const void*>(model));
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(reinterpret_cast<const void*>(model));
     ASSERT_NE(nullptr, compilation);
     SetbackendNameOptions(compilation, false);
 }
@@ -112,7 +114,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_Offline_Model_0200, Function | MediumTest | Level1)
 {
     const char* filePath = CACHE_PATH.c_str();
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(filePath);
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(filePath);
     ASSERT_NE(nullptr, compilation);
     SetbackendNameOptions(compilation, false);
 }
@@ -138,7 +140,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Construct_Compilation
     int modelSize = 0;
     char* buffer = nullptr;
     GetBuffer(SUPPORTMODELPATH.c_str(), &buffer, modelSize);
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
     //不支持
     ASSERT_EQ(nullptr, compilation);
 }
@@ -152,7 +154,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Create_Compilation_Op
 {
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestCreateOptions(&options, backendName);
 }
 
@@ -174,7 +176,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Create_Compilation_Op
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0100, Function | MediumTest | Level1)
 {
-    TestSetPriority(OH_NNCORE_PRIORITY_LOW);
+    TestSetPriority(NNCORE_PRIORITY_LOW);
 }
 
 /**
@@ -184,7 +186,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0200, Function | MediumTest | Level1)
 {
-    TestSetPriority(OH_NNCORE_PRIORITY_MEDIUM);
+    TestSetPriority(NNCORE_PRIORITY_MEDIUM);
 }
 
 /**
@@ -194,7 +196,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0300, Function | MediumTest | Level1)
 {
-    TestSetPriority(OH_NNCORE_PRIORITY_HIGH);
+    TestSetPriority(NNCORE_PRIORITY_HIGH);
 }
 
 /**
@@ -204,7 +206,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Priority_0400, Function | MediumTest | Level1)
 {
-    TestSetPriority(static_cast<OH_NNCore_Priority>(OH_NNCORE_PRIORITY_HIGH + 1));
+    TestSetPriority(static_cast<NNCore_Priority>(NNCORE_PRIORITY_HIGH + 1));
 }
 
 /**
@@ -214,7 +216,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Prior
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0100, Function | MediumTest | Level1)
 {
-    TestPerformanceMode(OH_NNCORE_PERFORMANCE_EXTREME);
+    TestPerformanceMode(NNCORE_PERFORMANCE_EXTREME);
 }
 
 /**
@@ -224,7 +226,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0200, Function | MediumTest | Level1)
 {
-    TestPerformanceMode(OH_NNCORE_PERFORMANCE_HIGH);
+    TestPerformanceMode(NNCORE_PERFORMANCE_HIGH);
 }
 
 /**
@@ -234,7 +236,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0300, Function | MediumTest | Level1)
 {
-    TestPerformanceMode(OH_NNCORE_PERFORMANCE_MEDIUM);
+    TestPerformanceMode(NNCORE_PERFORMANCE_MEDIUM);
 }
 
 /**
@@ -244,7 +246,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Perfo
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Performance_Mode_0400, Function | MediumTest | Level1)
 {
-    TestPerformanceMode(static_cast<OH_NNCore_PerformanceMode>(OH_NNCORE_PERFORMANCE_EXTREME + 1));
+    TestPerformanceMode(static_cast<NNCore_PerformanceMode>(NNCORE_PERFORMANCE_EXTREME + 1));
 }
 
 /**
@@ -276,7 +278,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Enabl
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_Options_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NNCORE_NULL_PTR, OH_NNCore_DestroyOptions(nullptr));
+    ASSERT_EQ(NNCORE_NULL_PTR, OH_NNCore_DestroyOptions(nullptr));
 }
 
 /**
@@ -288,9 +290,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_O
 {
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestCreateOptions(&options, backendName);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyOptions(&options));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_DestroyOptions(&options));
 }
 
 /**
@@ -300,9 +302,9 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_O
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_Options_0300, Function | MediumTest | Level1)
 {
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyOptions(&options));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_DestroyOptions(&options));
 }
 
 /**
@@ -312,12 +314,12 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_O
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -330,12 +332,12 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_01
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0200, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
     const char* backendName = nullptr;
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -348,12 +350,12 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_02
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0300, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
     const char* backendName = "wrongName";
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -366,7 +368,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_03
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_0400, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
     SetbackendNameOptions(compilation);
@@ -379,13 +381,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_Device_Build_Compilation_04
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Options_0200, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
 
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
@@ -397,7 +399,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Set_Compilation_Optio
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0500, Function | MediumTest | Level1)
 {
-    OH_NNBackend_Model *model = OH_NNBackend_CreateModel();
+    NNBackend_Model *model = OH_NNBackend_CreateModel();
     ASSERT_NE(nullptr, model);
     
     //不支持算子模型
@@ -405,7 +407,7 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_050
     OHNNGraphArgsMulti graphArgsMulti = addTopKModel.graphArgs;
     ASSERT_EQ(OH_NN_SUCCESS, BuildMultiOpGraph(model, graphArgsMulti));
 
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithNNModel(model);
     ASSERT_NE(nullptr, compilation);
     SetbackendNameOptions(compilation, false);
 }
@@ -417,13 +419,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_050
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0700, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -436,13 +438,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_070
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0800, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithDynamicNNModel(&compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -455,13 +457,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_080
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_0900, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(SUPPORTMODELPATH.c_str());
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(SUPPORTMODELPATH.c_str());
     ASSERT_NE(nullptr, compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -474,13 +476,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_090
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_1000, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(NOSUPPORTMODELPATH.c_str());
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineModel(NOSUPPORTMODELPATH.c_str());
     ASSERT_NE(nullptr, compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
 
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
@@ -496,13 +498,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_110
     int modelSize = 0;
     char* buffer = nullptr;
     GetBuffer(NOSUPPORTMODELPATH.c_str(), &buffer, modelSize);
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
     ASSERT_NE(nullptr, compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
     ASSERT_EQ(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
@@ -517,13 +519,13 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_120
     int modelSize = 0;
     char* buffer = nullptr;
     GetBuffer(SUPPORTMODELPATH.c_str(), &buffer, modelSize);
-    OH_NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
+    NNCore_Compilation* compilation = OH_NNCore_ConstructCompilationWithOfflineBuffer(reinterpret_cast<const void*>(buffer), modelSize);
     ASSERT_NE(nullptr, compilation);
 
     const char* backendName = nullptr;
     TestGetBackendName(&backendName);
 
-    OH_NNCore_Options* options = nullptr;
+    NNCore_Options* options = nullptr;
     TestSetAllOptions(&options);
     ASSERT_NE(nullptr, OH_NNCore_BuildCompilation(compilation, backendName, options));
 }
@@ -535,10 +537,10 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Build_Compilation_120
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_0100, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
     TestConstructCompilationWithNNModel(&compilation);
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
 }
 
 /**
@@ -548,8 +550,8 @@ HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_0
  */
 HWTEST_F(HdiNNCoreCompilation, SUB_AI_NNRt_Core_Func_North_Destroy_Compilation_0200, Function | MediumTest | Level1)
 {
-    OH_NNCore_Compilation* compilation = nullptr;
+    NNCore_Compilation* compilation = nullptr;
 
-    ASSERT_EQ(OH_NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
+    ASSERT_EQ(NNCORE_SUCCESS, OH_NNCore_DestroyCompilation(&compilation));
 }
 } // namespace OHOS::NeuralNetworkCore
