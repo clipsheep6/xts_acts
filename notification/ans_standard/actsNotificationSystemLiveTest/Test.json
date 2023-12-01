@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.actsnotificationsystemlive",
+        "package-name": "com.example.actsnotificationsystemlive"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNotificationSytemLiveTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
