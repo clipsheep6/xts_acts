@@ -35,9 +35,9 @@ export default function abilityTest() {
 
     /*
     * @tc.number: Acts_GetForegroundUiAbilityTest_0200
-    * @tc.name: Listen for UIAbility start and exit
-    * @tc.desc: Verify that the observer parameters for registering on and unregistering off are passed in
-    *           as null and undefined (non system applications)
+    * @tc.name: Query foreground applications, UIAbility, Page
+    * @tc.desc: Call API getForegroundUIAbilities to query application foreground information
+    *           (non-system applications)
     */
     it('Acts_GetForegroundUiAbilityTest_0200', 0, async function (done) {
       let subscriber;
@@ -72,9 +72,9 @@ export default function abilityTest() {
 
     /*
      * @tc.number: Acts_GetForegroundUiAbilityTest_0300
-     * @tc.name: Listen for UIAbility start and exit
-     * @tc.desc: Verify that the observer parameters for registration on and deregistration off are passed in
-     *           with null and undefined parameters respectively (the application does not have permission)
+     * @tc.name: Query foreground applications, UIAbility, Page
+     * @tc.desc: Call API getForegroundUIAbilities to query the foreground information of the application
+     *          (the application does not have permission)
      */
     it('Acts_GetForegroundUiAbilityTest_0300', 0, async function (done) {
       let subscriber;
@@ -109,9 +109,9 @@ export default function abilityTest() {
 
     /*
     * @tc.number: Acts_GetForegroundUiAbilityTest_0400
-    * @tc.name: Listen for UIAbility start and exit
-    * @tc.desc: Verify registering an observer in OtherAbility and switching between the front-end and back-end
-    *          (single module)
+    * @tc.name: Query foreground applications, UIAbility, Page
+    * @tc.desc: Start the TestAbilityOther call API getForegroundUIAbilities to query the application 
+    *          foreground information (single module)
     */
     it('Acts_GetForegroundUiAbilityTest_0400', 0, async function (done) {
       let subscriber;
@@ -159,9 +159,9 @@ export default function abilityTest() {
 
     /*
     * @tc.number: Acts_GetForegroundUiAbilityTest_0500
-    * @tc.name: Listen for UIAbility start and exit
-    * @tc.desc: Verify that the same observer is registered twice in OtherAbility and switches between
-    *          the front-end and back-end (single module)
+    * @tc.name: Query foreground applications, UIAbility, Page
+    * @tc.desc: After starting TestAbilityOther, start the TestAbilityOtherSecond call API getForegroundUIAbilities
+    *          to query the application foreground information respectively (single module)
     */
     it('Acts_GetForegroundUiAbilityTest_0500', 0, async function (done) {
       let subscriber;
@@ -219,9 +219,9 @@ export default function abilityTest() {
 
     /*
     * @tc.number: Acts_GetForegroundUiAbilityTest_0600
-    * @tc.name: Listen for UIAbility start and exit
-    * @tc.desc: Verify that different observers are registered twice in OtherAbility and switch between the
-    *          front-end and back-end (single module)
+    * @tc.name: Query foreground applications, UIAbility, Page
+    * @tc.desc: Call the API to query the foreground information of the application after the test 
+    *          starts EntryAbility (multiple module)
     */
     it('Acts_GetForegroundUiAbilityTest_0600', 0, async function (done) {
       let subscriber;
@@ -279,9 +279,9 @@ export default function abilityTest() {
 
     /*
       * @tc.number: Acts_GetForegroundUiAbilityTest_0700
-      * @tc.name: Listen for UIAbility start and exit
-      * @tc.desc: Verify that different observers are registered twice in OtherAbility and switch between the
-      *          front-end and back-end (single module)
+      * @tc.name: Query foreground applications, UIAbility, Page
+      * @tc.desc: After starting TestAbilityOther, start the EntryAbility call API getForegroundUIAbilities to query 
+      *          the foreground information of the application respectively (multiple applications)
       */
     it('Acts_GetForegroundUiAbilityTest_0700', 0, async function (done) {
       let subscriber;
@@ -332,6 +332,55 @@ export default function abilityTest() {
         await sleep(TIMEOUTTEN);
         globalThis.abilityContext.startAbility(want, (error) => {
           console.info('Acts_GetForegroundUiAbilityTest_0700 error.code = ' + error.code);
+          expect(error.code).assertEqual(ERROR_CODE_ZERO);
+        })
+      })
+    })
+
+    /*
+    * @tc.number: Acts_GetForegroundUiAbilityTest_0800
+    * @tc.name: Query foreground applications, UIAbility, Page
+    * @tc.desc: After starting TestAbilityOther, start the EntryAbility call API getForegroundUIAbilities to query
+    *          the application background information (multiple module)
+    */
+    it('Acts_GetForegroundUiAbilityTest_0800', 0, async function (done) {
+      let subscriber;
+
+      async function subscribeCallBack(err, data) {
+        console.info('====>Acts_GetForegroundUiAbilityTest_0800 data: ' + JSON.stringify(data));
+        if (data.event == 'Acts_MonitorApp_Second') {
+          for (let j = 0; j < data.parameters.message.length; j++) {
+            console.log("Acts_GetForegroundUiAbilityTest_0800 data.parameters.message[" + j + "] : "
+              + data.parameters.message[j]);
+            if (data.parameters.message[j].abilityName == 'TestAbilityOther') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0800 data1: ');
+              expect().assertFail();
+            } else if (data.parameters.message[j].abilityName == 'EntryAbility') {
+              console.info('====>Acts_GetForegroundUiAbilityTest_0800 data2: ');
+              expect(data.parameters.message[j].abilityName).assertEqual('EntryAbility');
+              expect(data.parameters.message[j].bundleName).assertEqual('com.example.getforegroundtest');
+              expect(data.parameters.message[j].moduleName).assertEqual('entry');
+              expect(data.parameters.message[j].state).assertEqual(9);
+              commonEvent.unsubscribe(subscriber);
+              done();
+            }
+          }
+        }
+      }
+
+      commonEvent.createSubscriber(ACTS_ProcessState).then(async (data) => {
+        console.info('====>Acts_GetForegroundUiAbilityTest_0800 Create Subscribe');
+        subscriber = data;
+        commonEvent.subscribe(subscriber, subscribeCallBack);
+
+        let want = {
+          'bundleName': 'com.example.getforegroundtest',
+          'abilityName': 'TestAbilityOther',
+          'action': 'Acts_ForegroundApp_0800'
+        }
+        await sleep(TIMEOUTTEN);
+        globalThis.abilityContext.startAbility(want, (error) => {
+          console.info('Acts_GetForegroundUiAbilityTest_0800 error.code = ' + error.code);
           expect(error.code).assertEqual(ERROR_CODE_ZERO);
         })
       })

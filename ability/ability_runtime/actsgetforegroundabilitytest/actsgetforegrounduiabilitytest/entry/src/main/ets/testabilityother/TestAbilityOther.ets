@@ -21,6 +21,7 @@ let TIMEOUTFIVE = 500;
 let TIMEOUTEIGHT = 800;
 let TIMEOUTTEN = 1000;
 let actionStr;
+let count = 0;
 let message;
 let commonEventData = {
   parameters: {
@@ -132,10 +133,42 @@ export default class TestAbilityOther extends UIAbility {
         this.context.terminateSelf();
       }, TIMEOUTTEN)
     }
+
+    if (actionStr === 'Acts_ForegroundApp_0800') {
+      console.info('=====>Acts_ForegroundApp_0800 want.action =====>' + actionStr);
+      let want = {
+        'bundleName': 'com.example.getforegroundtest',
+        'abilityName': 'EntryAbility',
+        'action': 'Acts_ForegroundApp0800'
+      }
+      setTimeout(() => {
+        globalThis.abilityContext.startAbility(want, (err) => {
+          console.info('Acts_ForegroundApp0800 err.code = ' + err.code);
+        });
+      }, TIMEOUTFIVE)
+    }
   }
 
   onBackground() {
     // Ability has back to background
     console.info('=====> OtherAbility onBackground =====>');
+    if (actionStr === 'Acts_ForegroundApp_0800') {
+      count++;
+      if (count == 1) {
+        console.log('=====>  OtherAbilitySecond Acts_GetForegroundUiAbilityTest0800 want.action =====>' + actionStr);
+        abilityManager.getForegroundUIAbilities().then(async (data) => {
+          console.log('=====> OtherAbilitySecond onBackground data =====>' + JSON.stringify(data));
+          commonEventData.parameters.message = data;
+          await commonEventManager.publish('Acts_MonitorApp_Second', commonEventData, (err) => {
+            console.info('====>Acts_GetForegroundUiAbilityTest0800 publish err: ' + JSON.stringify(err));
+            setTimeout(() => {
+              this.context.terminateSelf();
+            }, TIMEOUTTEN)
+          });
+        }).catch((err) => {
+          console.info('====>Acts_GetForegroundUiAbilityTest0800 err: ' + JSON.stringify(err));
+        })
+      }
+    }
   }
 }

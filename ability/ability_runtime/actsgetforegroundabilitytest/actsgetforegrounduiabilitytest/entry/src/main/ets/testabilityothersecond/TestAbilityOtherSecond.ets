@@ -55,7 +55,7 @@ export default class TestAbilityOtherSecond extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     console.log('=====> OtherAbilitySecond onForeground =====>');
-    if (actionStr == "Acts_ForegroundApp0500") {
+    if (actionStr === "Acts_ForegroundApp0500") {
       console.log('=====>  OtherAbilitySecond Acts_GetForegroundUiAbilityTest0500 want.action =====>' + actionStr);
       abilityManager.getForegroundUIAbilities().then(async (data) => {
         console.log('=====> OtherAbilitySecond onForeground data =====>' + JSON.stringify(data));

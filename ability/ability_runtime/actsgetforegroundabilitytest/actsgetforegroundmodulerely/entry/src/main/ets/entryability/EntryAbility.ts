@@ -74,6 +74,13 @@ export default class EntryAbility extends UIAbility {
         });
       });
     }
+
+    if (actionStr === "Acts_ForegroundApp0800") {
+      console.log('=====>  OtherAbilitySecond Acts_ForegroundApp0800 want.action =====>' + actionStr);
+      setTimeout(() => {
+        this.context.terminateSelf();
+      }, TIMEOUTFIVE);
+    }
   }
 
   onBackground() {
