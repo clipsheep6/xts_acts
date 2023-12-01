@@ -16,6 +16,7 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore';
+import {context} from '../TestAbility/TestAbility';
 
 const TAG = "[RDB_JSKITS_TEST_Distributed]"
 const STORE_NAME = "distributed_rdb.db"
@@ -27,7 +28,7 @@ const config = {
 }
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
     + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)"
-export default function relationalStoreDistributedTest(context) {
+export default function relationalStoreDistributedTest() {
 describe('relationalStoreDistributedTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
@@ -53,6 +54,9 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Callback interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0100
      * @tc.desc obtainDistributedTableName test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
      */
     it('SUB_DDM_AppDataFWK_ETSRDB_Distributed_obtainDistributedTableName_0100', 0, async function (done){
         let errInfo = undefined;
@@ -75,6 +79,9 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Promise interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0200
      * @tc.desc obtainDistributedTableName test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
      */
      it('SUB_DDM_AppDataFWK_ETSRDB_Distributed_obtainDistributedTableName_0200',0,async function (done){
         let errInfo = undefined

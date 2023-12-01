@@ -20,10 +20,10 @@ import relationalStoreEmitTest from './relationalStoreEmit.test'
 import relationalStoreDifferenceCustomDirMultipleTest from './relationalStoreDifferenceCustomDirMultiple.test'
 
 export default function testsuite() {
-  relationalStoreCloudSyncEtsTest(globalThis.abilityContext)
-  relationalStoreDistributedTest(globalThis.abilityContext)
-  relationalStoreTest(globalThis.abilityContext)
-  relationalStoreResultSetTest(globalThis.abilityContext)
+  relationalStoreCloudSyncEtsTest()
+  relationalStoreDistributedTest()
+  relationalStoreTest()
+  relationalStoreResultSetTest()
   relationalStoreEmitTest()
   relationalStoreDifferenceCustomDirMultipleTest()
 }
