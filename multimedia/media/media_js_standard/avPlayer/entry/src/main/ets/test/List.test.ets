@@ -31,6 +31,6 @@ export default function testsuite() {
   AVPlayerLocalTest();
   AVPlayerAudioEffectModeTest();
   AVPlayerMultiTrackTest();
-  abilityTest(globalThis.resourceManager);
+  AVMetadata(globalThis.resourceManager);
   // AVPlayerStabilityTest();
 }
