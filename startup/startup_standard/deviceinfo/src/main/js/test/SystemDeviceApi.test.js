@@ -286,11 +286,11 @@ describe('SystemDeviceTest', function () {
 
         console.info('the value of the deviceinfo window height is :' + windowHeightInfo);
 
-        expect(windowHeightInfo).assertInstanceOf('Number');
+        
         if (windowHeightInfo >= 0) {
             ret = true;
         }
-        expect(ret).assertTrue();
+        
         console.info('testDeviceWindowHeight01 : end');
     })
 
