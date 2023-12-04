@@ -64,7 +64,7 @@ let mVideoConfig = {
     audioSourceType: 1,
     videoSourceType: 0,
     profile: mVideoProfileCfg,
-    url: 'file:///data/media/CameraSessionFlush.mp4',
+    url: 'file:///data/media/CameraSessionMacroTest.mp4',
     orientationHint: 0,
     location: { latitude: 30, longitude: 130 },
     maxSize: 100,
@@ -137,7 +137,7 @@ export default function cameraSessionMacroTest() {
 
     async function getVideoReceiveSurface() {
         console.log(TAG + 'Entering getVideoReceiveSurface')
-        await getFd('CameraSessionFlush.mp4');
+        await getFd('CameraSessionMacroTest.mp4');
         mVideoConfig.url = mFdPath;
         media.createAVRecorder((err, recorder) => {
             if (!err) {
