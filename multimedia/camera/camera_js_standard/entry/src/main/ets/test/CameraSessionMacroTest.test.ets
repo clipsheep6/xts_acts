@@ -513,7 +513,7 @@ export default function cameraSessionMacroTest() {
 
 
 
-        /**  zss
+        /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_IS_MACRO_MODE_SUPPORT_0100
         * @tc.name      : Check capture session support Macro mode or not
         * @tc.desc      : Check capture session support Macro mode or not
@@ -536,7 +536,7 @@ export default function cameraSessionMacroTest() {
                     await startCameraSession(i);
     
                     let isMacroSupported = mCameraSession.isMacroSupported();
-                    if (isMacroSupported != null || isMacroSupported != undefined) {
+                    if (isMacroSupported) {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_MACRO_MODE_SUPPORT_0100 PASSED with supportted Macro mode : " + isMacroSupported);
                     } else {
                         console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_IS_MACRO_MODE_SUPPORT_0100 PASSED with don't supportted Macro mode");
@@ -555,7 +555,7 @@ export default function cameraSessionMacroTest() {
         })
 
  
-         /**  zss
+         /**
         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101
         * @tc.name      : Check capture session enable Macro mode
         * @tc.desc      : Check capture session enable Macro mode
@@ -576,17 +576,28 @@ export default function cameraSessionMacroTest() {
                     console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 start for camera[" + i + "]");
     
                     await startCameraSession(i);
-    
-                    let isMacroSupported = mCameraSession.isMacroSupported();
-                    if (isMacroSupported != null || isMacroSupported != undefined) {
-                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 PASSED with supportted Macro mode : " + isMacroSupported);
 
+                    let isMacroSupported = mCameraSession.isMacroSupported();
+                    if (isMacroSupported) {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 PASSED with supportted Macro mode : " + isMacroSupported);
+                        // enable Macro mode
                         let ret = mCameraSession.enableMacro(isMacroSupported);
                         if (ret != null || ret != undefined) {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 PASSED with enable Macro mode ");
                             expect(true).assertTrue();
+
                         } else {
                             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 FAILED with enable Macro mode");
+                            expect().assertFail();
+                        }
+                        // disable Macro mode
+                        ret = mCameraSession.enableMacro(!isMacroSupported);
+                        if (ret != null || ret != undefined) {
+                            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 PASSED with disable Macro mode ");
+                            expect(true).assertTrue();
+
+                        } else {
+                            console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_ENABLE_MACRO_MODE_SUPPORT_0101 FAILED with disable Macro mode");
                             expect().assertFail();
                         }
 
@@ -605,6 +616,36 @@ export default function cameraSessionMacroTest() {
                 done();     
             }
         })
+        /**
+        * @tc.number    : SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102
+        * @tc.name      : camera session macroStatusChanged api
+        * @tc.desc      : camera session macroStatusChanged api
+        * @tc.size      : MEDIUM
+        * @tc.type      : Function
+        * @tc.level     : Level 1
+        */
+        it('SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102', 1, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102--------------");
+            if (isEmpty(mCameraSession)) {
+              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102 mCameraSession == null || undefined")
+              expect().assertFail();
+            } else {
+              console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102 to operate");
+              mCameraSession.on('macroStatusChanged', async (err, data) => {
+                if (!err) {
+                  expect(true).assertTrue();
+                  console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102 success");
+                } else {
+                  expect().assertFail();
+                  console.info(TAG + "Error in SUB_MULTIMEDIA_CAMERA_ON_MACROSTATECHANGE_0102 FAILED: " + err.message);
+                }
+                await sleep(1000);
+                done();
+              })
+            }
+            await sleep(1000);
+            done();
+          })
 
     })
 }
