@@ -15,16 +15,16 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import dataPreferences from '@ohos.data.preferences';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import common from "@ohos.app.ability.common"
 
 const TAG = "[ttt]"
-let context: Context
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+let context: common.UIAbilityContext
+
 export default function preferencesDataGroupIdPromise() {
   describe('preferencesDataGroupIdPromise', function () {
     beforeAll(async function () {
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext
+      console.log('beforeAll context------>'+ context)
     })
     console.log(TAG + "*************Unit Test Begin*************");
 

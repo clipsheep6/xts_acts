@@ -15,10 +15,10 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import data_preferences from '@ohos.data.preferences';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import common from "@ohos.app.ability.common"
 
-let context: Context
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+let context: common.UIAbilityContext
+
 const NAME = 'test_preferences_store';
 const TAG = "[preferencesDataGroupIdSync]"
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -28,8 +28,8 @@ export default function preferencesDataGroupIdSync() {
   describe('preferencesDataGroupIdSync', function () {
     beforeAll(async function () {
       console.info('beforeAll');
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext
+      console.log('beforeAll context------>'+ context)
     })
     afterAll(async function () {
       console.info('afterAll');
