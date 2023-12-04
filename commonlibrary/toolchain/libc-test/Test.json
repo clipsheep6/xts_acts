@@ -27,6 +27,20 @@
                 "mkdir /data/tests",
                 "mkdir /data/tests/libc-test",
                 "mkdir /data/tests/libc-test/src",
+
+                "mkdir -p /data/local/tmp/libc-test/rpath_lib/rpath_support_A",
+                "mkdir -p /data/local/tmp/libc-test/rpath_lib/rpath_support_B",
+                "mkdir -p /data/local/tmp/libc-test/rpath_support_C",
+
+                "mv /data/local/tmp/libc-test-lib/libprimary_absolute.so /data/local/tmp/libc-test/rpath_lib",
+                "mv /data/local/tmp/libc-test-lib/libprimary_origin.so /data/local/tmp/libc-test/rpath_lib",
+                "mv /data/local/tmp/libc-test-lib/libprimary_multiple.so /data/local/tmp/libc-test/rpath_lib",
+                "mv /data/local/tmp/libc-test-lib/libsupport_002.so /data/local/tmp/libc-test/rpath_support_C",
+                "mv /data/local/tmp/libc-test-lib/libsupport_001.so /data/local/tmp/libc-test/rpath_lib/rpath_support_A",
+
+                "cp -r /data/local/tmp/libc-test/rpath_lib /data/tests/libc-test/src",
+                "cp -r /data/local/tmp/libc-test/rpath_support_C /data/tests/libc-test/src",
+
                 "mv /data/local/tmp/libc-test-lib/libatexit_dlclose_dso.so /data/tests/libc-test/src",
                 "mv /data/local/tmp/libc-test-lib/libldso_cfi_test_lib.so /data/tests/libc-test/src",
                 "param set debug.hitrace.tags.enableflags 1",
@@ -100,7 +114,12 @@
                 "rm -rf /data/local/tmp/libc-test/unittest_ldso_ns_config",
                 "rm -rf /data/local/tmp/libc-test/unittest_ldso_dynlink",
                 "rm -rf /data/local/tmp/libc-test/gwp_asan_invalid_free_right_test",
-                "rm -rf /data/local/tmp/libc-test/gwp_asan_invalid_free_left_test"
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_invalid_free_left_test",
+
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_smoke_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_unwind_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_random_sample_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_buffer_underflow_test"
             ],
             "cleanup-apps": true
         }
