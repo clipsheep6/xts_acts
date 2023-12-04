@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 import imageSvg from "./svg.test.js";
+import imageFillColor from './fillcolor.test.js'
 export default function testsuite() {
     imageSvg();
+    imageFillColor()
 }
