@@ -441,7 +441,7 @@ export default function ImagePixelMapNDKTest() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_ERR_0200', 0, async function (done) {
-            const checkResult = (result) => result == -1;
+            const checkResult = (result) => result != RESULT_SUCCESS;
             await pixelMapErrTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_ERR_0200', 'setAlphaAble', checkResult, 66);
         })
 
@@ -527,7 +527,7 @@ export default function ImagePixelMapNDKTest() {
         * @tc.level     : Level 0
         */
         it('SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_ERR_0800', 0, async function (done) {
-            const checkResult = (result) => result == -1;
+            const checkResult = (result) => result != RESULT_SUCCESS;
             await pixelMapErrTest(done, 'SUB_MULTIMEDIA_IMAGE_PIXELMAPNDK_ERR_0800', 'setOpacity', checkResult, 2);
         })
 
