@@ -100,7 +100,14 @@
                 "rm -rf /data/local/tmp/libc-test/unittest_ldso_ns_config",
                 "rm -rf /data/local/tmp/libc-test/unittest_ldso_dynlink",
                 "rm -rf /data/local/tmp/libc-test/gwp_asan_invalid_free_right_test",
-                "rm -rf /data/local/tmp/libc-test/gwp_asan_invalid_free_left_test"
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_invalid_free_left_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_buffer_overflow_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_buffer_underflow_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_double_free_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_random_sample_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_smoke_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_unwind_test",
+                "rm -rf /data/local/tmp/libc-test/gwp_asan_use_after_free_test"
             ],
             "cleanup-apps": true
         }
