@@ -31,6 +31,8 @@ import relationalStoreBackupRestoreCallbackTest from './RelationalStoreBackupRes
 import relationalStoreAssetResultSetTest from './RelationalStoreAssetResultSetJsunit.test.js'
 import relationalStoreCustomDirTest from './RelationalStoreCustomDir.test.js'
 import relationalStoreCloudCursor from './RelationalStoreCloudCursor.test.js'
+import CloudSyncConfigCallback from './CloudSyncConfigCallback.test.js'
+import CloudSyncConfigPromise from './CloudSyncConfigPromise.test.js'
 
 export default function testsuite() {
     relationalStoreCloudSyncTest()
@@ -52,4 +54,6 @@ export default function testsuite() {
     relationalStoreAssetResultSetTest()
     relationalStoreCustomDirTest()
     relationalStoreCloudCursor()
+    CloudSyncConfigCallback()
+    CloudSyncConfigPromise()
 }
