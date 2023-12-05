@@ -14,8 +14,7 @@
                 "ActsCardClickCallback.hap",
                 "ActsCardClickCallbackNormal.hap",
                 "ActsCardClickCallbackRely.hap",
-                "ActsCardClickCallbackTest.hap",
-                "ActsCardClickCallbackNoPermission.hap"
+                "ActsCardClickCallbackTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

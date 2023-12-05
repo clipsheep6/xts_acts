@@ -16,7 +16,7 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import type formInfo from '@ohos.app.form.formInfo';
 import commonEventManager from '@ohos.commonEventManager';
 
 let ACTS_CallFunction = {
@@ -38,666 +38,237 @@ export default function abilityTest() {
     })
 
     /*
-     * @tc.number:Acts_CardClickCallback_0700
+     * @tc.number:Acts_CardClickCallback_0100
      * @tc.name:Support card click callback
-     * @tc.desc:Click the callback when the type is null and undefined.
+     * @tc.desc:Call related API with invalid parameters (on:type is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
-    it('Acts_CardClickCallback_0700', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_0700 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_0700 firstCallBack: ' + JSON.stringify(data));
+    it('Acts_CardClickCallback_0100', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_0100] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_0100] [callback] be called , data : ' + JSON.stringify(data));
       }
 
       try {
         formObserver.on(null, callback);
-        console.info('====>Acts_CardClickCallback_0700 first end');
+        console.info('====>[Acts_CardClickCallback_0100] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_0700 first err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_0100] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_0200
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1 
+     */
+    it('Acts_CardClickCallback_0200', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_0200] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_0200] [callback] be called , data : ' + JSON.stringify(data));
       }
 
       try {
         formObserver.on(undefined, callback);
-        console.info('====>Acts_CardClickCallback_0700 second end');
+        console.info('====>[Acts_CardClickCallback_0200] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_0700 second err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_0200] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
+        done();
       }
+    })
 
+    /*
+     * @tc.number:Acts_CardClickCallback_0300
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is router and callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_0300', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_0300] start!');
       try {
-        formObserver.on(null, hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_0700 third end');
+        formObserver.on('router', null);
+        console.info('====>[Acts_CardClickCallback_0300] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_0700 third err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_0300] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
+        done();
       }
+    })
 
+    /*
+     * @tc.number:Acts_CardClickCallback_0400
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is router and callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_0400', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_0400] start!');
       try {
-        formObserver.on(undefined, hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_0700 fourth end');
+        formObserver.on('router', undefined);
+        console.info('====>[Acts_CardClickCallback_0400] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_0700 fourth err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_0400] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
+        done();
       }
-      console.info('====>Acts_CardClickCallback_0700 end');
-      done();
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_0700
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is message, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_0700', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_0700] start!');
+      try {
+        formObserver.on('message', null);
+        console.info('====>[Acts_CardClickCallback_0700] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_0700] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
     })
 
     /*
      * @tc.number:Acts_CardClickCallback_0800
      * @tc.name:Support card click callback
-     * @tc.desc:The registered listening type is router, and the remaining parameters are null and undefined.
+     * @tc.desc:Call related API with invalid parameters (on:type is message, callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_CardClickCallback_0800', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_0800 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_0800 firstCallBack: ' + JSON.stringify(data));
-      }
-
+      console.info('====>[Acts_CardClickCallback_0800] start!');
       try {
-        formObserver.on("router", null);
-        console.info('====>Acts_CardClickCallback_0800 first end');
+        formObserver.on('message', undefined);
+        console.info('====>[Acts_CardClickCallback_0800] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_0800 first err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_0800] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("router", undefined);
-        console.info('====>Acts_CardClickCallback_0800 second end');
-        expect().assertFail();
         done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0800 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
       }
-
-      try {
-        formObserver.on("router", null, callback);
-        console.info('====>Acts_CardClickCallback_0800 third end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0800 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("router", undefined, callback);
-        console.info('====>Acts_CardClickCallback_0800 fourth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0800 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("router", hostBundleName, null);
-        console.info('====>Acts_CardClickCallback_0800 fifth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0800 fifth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("router", hostBundleName, undefined);
-        console.info('====>Acts_CardClickCallback_0800 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0800 sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_0800 end');
-      done();
-    })
-
-    /*
-     * @tc.number:Acts_CardClickCallback_0900
-     * @tc.name:Support card click callback
-     * @tc.desc:The registered listening type is message, and the remaining parameters are null and undefined.
-     */
-    it('Acts_CardClickCallback_0900', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_0900 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_0900 firstCallBack: ' + JSON.stringify(data));
-      }
-
-      try {
-        formObserver.on("message", null);
-        console.info('====>Acts_CardClickCallback_0900 first end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0900 first err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("message", undefined);
-        console.info('====>Acts_CardClickCallback_0900 second end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0900 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("message", null, callback);
-        console.info('====>Acts_CardClickCallback_0900 third end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0900 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("message", undefined, callback);
-        console.info('====>Acts_CardClickCallback_0900 fourth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0900 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("message", hostBundleName, null);
-        console.info('====>Acts_CardClickCallback_0900 fifth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0900 fifth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("message", hostBundleName, undefined);
-        console.info('====>Acts_CardClickCallback_0900 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_0900  sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_0900 end');
-      done();
-    })
-
-    /*
-     * @tc.number:Acts_CardClickCallback_1000
-     * @tc.name:Support card click callback
-     * @tc.desc:The registered listening type is call, and the remaining parameters are null and undefined.
-     */
-    it('Acts_CardClickCallback_1000', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1000 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_1000 firstCallBack: ' + JSON.stringify(data));
-      }
-
-      try {
-        formObserver.on("call", null);
-        console.info('====>Acts_CardClickCallback_1000 first end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1000 first err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("call", undefined);
-        console.info('====>Acts_CardClickCallback_1000 second end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1000 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("call", null, callback);
-        console.info('====>Acts_CardClickCallback_1000 third end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1000 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("call", undefined, callback);
-        console.info('====>Acts_CardClickCallback_1000 fourth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1000 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("call", hostBundleName, null);
-        console.info('====>Acts_CardClickCallback_1000 fifth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1000 fifth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.on("call", hostBundleName, undefined);
-        console.info('====>Acts_CardClickCallback_1000 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1000 sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_1000 end');
-      done();
     })
 
     /*
      * @tc.number:Acts_CardClickCallback_1100
      * @tc.name:Support card click callback
-     * @tc.desc:Type is null and undefined when unregistering listening.
+     * @tc.desc:Call related API with invalid parameters (on:type is call, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_CardClickCallback_1100', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1100 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_1100 firstCallBack: ' + JSON.stringify(data));
-      }
-
+      console.info('====>[Acts_CardClickCallback_1100] start!');
       try {
-        formObserver.off(null, hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_1100 third end');
+        formObserver.on('call', null);
+        console.info('====>[Acts_CardClickCallback_1100] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_1100 third err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_1100] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off(undefined, hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_1100 fourth end');
-        expect().assertFail();
         done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1100 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
       }
-      console.info('====>Acts_CardClickCallback_1100 end');
-      done();
     })
 
     /*
      * @tc.number:Acts_CardClickCallback_1200
      * @tc.name:Support card click callback
-     * @tc.desc:Unregister the listening type as router, and the remaining parameters are null and undefined.
+     * @tc.desc:Call related API with invalid parameters (on:type is call, callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_CardClickCallback_1200', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1200 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_1200 firstCallBack: ' + JSON.stringify(data));
-      }
-
-      console.info('====>Acts_CardClickCallback_1200  1');
+      console.info('====>[Acts_CardClickCallback_1200] start!');
       try {
-        formObserver.off("router", null);
-        console.info('====>Acts_CardClickCallback_1300 first end');
+        formObserver.on('call', undefined);
+        console.info('====>[Acts_CardClickCallback_1200] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 first err is' + JSON.stringify(err));
+        console.info('====>[Acts_CardClickCallback_1200] [try] err :' + JSON.stringify(err));
         expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("router", undefined);
-        console.info('====>Acts_CardClickCallback_1300 second end');
-        expect().assertFail();
         done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
       }
-
-      try {
-        formObserver.off("router", null, callback);
-        console.info('====>Acts_CardClickCallback_1200 third end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1200 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_1200  2');
-      try {
-        formObserver.off("router", undefined, callback);
-        console.info('====>Acts_CardClickCallback_1200 fourth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1200 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("router", hostBundleName, null);
-        console.info('====>Acts_CardClickCallback_1200 fifth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1200 fifth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("router", hostBundleName, undefined);
-        console.info('====>Acts_CardClickCallback_1200 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1200 sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_1200 end');
-      done();
     })
 
     /*
-     * @tc.number:Acts_CardClickCallback_1300
+     * @tc.number:Acts_CardClickCallback_1500
      * @tc.name:Support card click callback
-     * @tc.desc:Unregister the listening type as message, and the remaining parameters are null and undefined.
+     * @tc.desc:Call related API with invalid parameters (on:type is null and there is a bundleName parameter).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
-    it('Acts_CardClickCallback_1300', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1300 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_1300 firstCallBack: ' + JSON.stringify(data));
-      }
-
-      try {
-        formObserver.off("message", null);
-        console.info('====>Acts_CardClickCallback_1300 first end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 first err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("message", undefined);
-        console.info('====>Acts_CardClickCallback_1300 second end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("message", null, callback);
-        console.info('====>Acts_CardClickCallback_1300 third end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("message", undefined, callback);
-        console.info('====>Acts_CardClickCallback_1300 fourth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("message", hostBundleName, null);
-        console.info('====>Acts_CardClickCallback_1300 fifth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300 fifth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("message", hostBundleName, undefined);
-        console.info('====>Acts_CardClickCallback_1300 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1300  sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_1300 end');
-      done();
-    })
-
-    /*
-     * @tc.number:Acts_CardClickCallback_1400
-     * @tc.name:Support card click callback
-     * @tc.desc:Unregister the listening type as call, and the remaining parameters are null and undefined.
-     */
-    it('Acts_CardClickCallback_1400', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1400 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
-      function callback(data: formInfo.RunningFormInfo): void {
-        console.info('====>Acts_CardClickCallback_1400 firstCallBack: ' + JSON.stringify(data));
-      }
-
-      try {
-        formObserver.off("call", null);
-        console.info('====>Acts_CardClickCallback_1400 first end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1400 first err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("call", undefined);
-        console.info('====>Acts_CardClickCallback_1400 second end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1400 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("call", null, callback);
-        console.info('====>Acts_CardClickCallback_1400 third end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1400 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("call", undefined, callback);
-        console.info('====>Acts_CardClickCallback_1400 fourth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1400 fourth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("call", hostBundleName, null);
-        console.info('====>Acts_CardClickCallback_1400 fifth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1400 fifth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-
-      try {
-        formObserver.off("call", hostBundleName, undefined);
-        console.info('====>Acts_CardClickCallback_1400 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1400 sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(401);
-      }
-      console.info('====>Acts_CardClickCallback_1400 end');
-      done();
-    })
-
     it('Acts_CardClickCallback_1500', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1500 start');
-      let hostBundleName = 'com.acts.cardclickcallback';
-
+      console.info('====>[Acts_CardClickCallback_1500] start!');
       function callback(data: formInfo.RunningFormInfo) {
-        console.info('====>Acts_CardClickCallback_1500 callback: ' + JSON.stringify(data));
-      }
-
-      function secondCallback(data: formInfo.RunningFormInfo) {
-        console.info('====>Acts_CardClickCallback_1500 secondCallback: ' + JSON.stringify(data));
+        console.info('====>[Acts_CardClickCallback_1500] [callback] be called , data : ' + JSON.stringify(data));
       }
 
       try {
-        formObserver.on("router", hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_1500 first end');
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 first err is' + JSON.stringify(err));
-        expect().assertFail();
-      }
-
-      try {
-        formObserver.off("router", hostBundleName, secondCallback);
-        console.info('====>Acts_CardClickCallback_1500 second end');
+        formObserver.on(null, 'com.acts.cardclickcallback', callback);
+        console.info('====>[Acts_CardClickCallback_1500] [try] on success! ');
         expect().assertFail();
         done();
       } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 second err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(16500100);
-      }
-
-      try {
-        formObserver.off("router", '', callback);
-        console.info('====>Acts_CardClickCallback_1500 third end');
-        expect().assertFail();
+        console.info('====>[Acts_CardClickCallback_1500] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
         done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 third err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(16500100);
       }
-
-      try {
-        formObserver.off("router", hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_1500 fourth end');
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 fourth err is' + JSON.stringify(err));
-        expect().assertFail();
-      }
-
-      try {
-        formObserver.on("router", '', callback);
-        console.info('====>Acts_CardClickCallback_1500 fifth end');
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 fifth err is' + JSON.stringify(err));
-        expect().assertFail();
-      }
-
-      try {
-        formObserver.off("router", hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_1500 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(16500100);
-      }
-
-      try {
-        formObserver.off("call", hostBundleName, callback);
-        console.info('====>Acts_CardClickCallback_1500 sixth end');
-        expect().assertFail();
-        done();
-      } catch (err) {
-        console.info('====>Acts_CardClickCallback_1500 sixth err is' + JSON.stringify(err));
-        expect(err.code).assertEqual(16500100);
-      }
-      console.info('====>Acts_CardClickCallback_1500 end');
-      done();
     })
 
     /*
      * @tc.number:Acts_CardClickCallback_1600
      * @tc.name:Support card click callback
-     * @tc.desc:Click callback for registering and deregistering monitoring cards in non-system applications.
+     * @tc.desc:Call related API with invalid parameters (on:type is undefined and there is a bundleName parameter).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_CardClickCallback_1600', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1600 start');
-      let subscriber;
-      commonEventManager.createSubscriber(ACTS_CallFunction).then((data) => {
-        subscriber = data;
-
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-
-        globalThis.context.startAbility({
-          bundleName: 'com.acts.cardclickcallbacknormal',
-          abilityName: 'EntryAbility'
-        }, (err) => {
-          console.info('====> Acts_CardClickCallback_1600 startAbility OK err: ' + JSON.stringify(err));
-        })
-      })
-
-      function subscribeCallBack(err, data): void {
-        if (data.event === 'ACTS_CALL') {
-          expect(data.parameters.str).assertEqual('202202202202202202202202202');
-          commonEventManager.unsubscribe(subscriber, unSubscribeCallback);
-        } else {
-          expect().assertFail();
-          commonEventManager.unsubscribe(subscriber, unSubscribeCallback);
-        }
+      console.info('====>[Acts_CardClickCallback_1600] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_1600] [callback] be called , data : ' + JSON.stringify(data));
       }
 
-      function unSubscribeCallback(): void {
-        console.info(`====>Acts_CardClickCallback_1600 unSubscribeCallback`);
+      try {
+        formObserver.on(undefined, 'com.acts.cardclickcallback', callback);
+        console.info('====>[Acts_CardClickCallback_1600] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_1600] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
         done();
       }
     })
@@ -705,37 +276,601 @@ export default function abilityTest() {
     /*
      * @tc.number:Acts_CardClickCallback_1700
      * @tc.name:Support card click callback
-     * @tc.desc:Click callback of monitoring card for registration and deregistration in unauthorized system application
+     * @tc.desc:Call related API with invalid parameters (on:type is router and bundleName is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_CardClickCallback_1700', 0, async function (done) {
-      console.info('====>Acts_CardClickCallback_1700 start');
-      let subscriber;
-      commonEventManager.createSubscriber(ACTS_CallFunction).then((data) => {
-        subscriber = data;
-
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-
-        globalThis.context.startAbility({
-          bundleName: 'com.acts.cardclickcallbacknopermission',
-          abilityName: 'EntryAbility',
-          action: 'Acts_CardClickCallback_1700'
-        }, (err) => {
-          console.info('====> Acts_CardClickCallback_1700 startAbility OK err: ' + JSON.stringify(err));
-        })
-      })
-
-      function subscribeCallBack(err, data) {
-        if (data.event === 'ACTS_CALL') {
-          expect(data.parameters.str).assertEqual('201201');
-          commonEventManager.unsubscribe(subscriber, unSubscribeCallback);
-        } else {
-          expect().assertFail();
-          commonEventManager.unsubscribe(subscriber, unSubscribeCallback);
-        }
+      console.info('====>[Acts_CardClickCallback_1700] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_1700] [callback] be called , data : ' + JSON.stringify(data));
       }
 
-      function unSubscribeCallback() {
-        console.info(`====>Acts_CardClickCallback_1700 unSubscribeCallback`);
+      try {
+        formObserver.on('router', null, callback);
+        console.info('====>[Acts_CardClickCallback_1700] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_1700] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_1800
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is router and bundleName is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_1800', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_1800] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_1800] [callback] be called , data : ' + JSON.stringify(data));
+      }
+
+      try {
+        formObserver.on('router', undefined, callback);
+        console.info('====>[Acts_CardClickCallback_1800] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_1800] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_1900
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is router, bundleName is normal, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_1900', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_1900] start!');
+      try {
+        formObserver.on('router', 'com.acts.cardclickcallback', null);
+        console.info('====>[Acts_CardClickCallback_1900] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_1900] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_2000
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is router, bundleName is normal,
+     * callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_2000', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_2000] start!');
+
+      try {
+        formObserver.on('router', 'com.acts.cardclickcallback', undefined);
+        console.info('====>[Acts_CardClickCallback_2000] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_2000] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_2300
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is message and bundleName is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_2300', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_2300] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_2300] [callback] be called , data : ' + JSON.stringify(data));
+      }
+
+      try {
+        formObserver.on('message', null, callback);
+        console.info('====>[Acts_CardClickCallback_2300] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_2300] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_2400
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is message and bundleName is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_2400', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_2400] start!');
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_2400] [callback] be called , data : ' + JSON.stringify(data));
+      }
+
+      try {
+        formObserver.on('message', undefined, callback);
+        console.info('====>[Acts_CardClickCallback_2400] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_2400] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_2500
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is message, bundleName is normal, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_2500', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_2500] start!');
+      try {
+        formObserver.on('message', 'com.acts.cardclickcallback', null);
+        console.info('====>[Acts_CardClickCallback_2500] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_2500] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_2600
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is message, bundleName is normal,
+     * callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_2600', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_2600] start!');
+      try {
+        formObserver.on('message', 'com.acts.cardclickcallback', undefined);
+        console.info('====>[Acts_CardClickCallback_2600] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_2600] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_2900
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is call and bundleName is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_2900', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_2900] start!');
+
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_2900] [callback] be called , data : ' + JSON.stringify(data));
+      }
+
+      try {
+        formObserver.on('call', null, callback);
+        console.info('====>[Acts_CardClickCallback_2900] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_2900] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_3000
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is call and bundleName is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_3000', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_3000] start!');
+
+      function callback(data: formInfo.RunningFormInfo) {
+        console.info('====>[Acts_CardClickCallback_3000] [callback] be called , data : ' + JSON.stringify(data));
+      }
+
+      try {
+        formObserver.on('call', undefined, callback);
+        console.info('====>[Acts_CardClickCallback_3000] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_3000] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_3100
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is call, bundleName is normal, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_3100', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_3100] start!');
+      try {
+        formObserver.on('call', 'com.acts.cardclickcallback', null);
+        console.info('====>[Acts_CardClickCallback_3100] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_3100] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_3200
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (on:type is call, bundleName is normal,
+     * callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_3200', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_3200] start!');
+      try {
+        formObserver.on('call', 'com.acts.cardclickcallback', undefined);
+        console.info('====>[Acts_CardClickCallback_3200] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_3200] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_3500
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_3500', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_3500] start!');
+      try {
+        formObserver.off(null);
+        console.info('====>[Acts_CardClickCallback_3500] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_3500] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_3600
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_3600', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_3600] start!');
+      try {
+        formObserver.off(undefined);
+        console.info('====>[Acts_CardClickCallback_3600] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_3600] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_4100
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is router and bundelName is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_4100', 0, async function (done) {
+      try {
+        formObserver.off('router', null);
+        console.info('====>[Acts_CardClickCallback_4100] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_4100] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_4200
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is router and bundelName is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_4200', 0, async function (done) {
+      try {
+        formObserver.off('router', undefined);
+        console.info('====>[Acts_CardClickCallback_4200] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_4200] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_4400
+     * @tc.name:Support card click callback
+     * @tc.desc:Click callback on the router type registration/deregistration card (off:bundelName is normal,
+     * callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_4400', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_4400] start!');
+      try {
+        formObserver.off('router', 'com.act.cardclickcallbackrely', null);
+        console.info('====>[Acts_CardClickCallback_4400] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_4400] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_4500
+     * @tc.name:Support card click callback
+     * @tc.desc:Click callback on the router type registration/deregistration card (off:bundelName is normal,
+     * callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_4500', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_4500] start!');
+      try {
+        formObserver.off('router', 'com.act.cardclickcallbackrely', undefined);
+        console.info('====>[Acts_CardClickCallback_4500] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_4500] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_4800
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is message, bundelName is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_4800', 0, async function (done) {
+      try {
+        formObserver.off('message', null);
+        console.info('====>[Acts_CardClickCallback_4800] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_4800] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_4900
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is message, bundelName is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_4900', 0, async function (done) {
+      try {
+        formObserver.off('message', undefined);
+        console.info('====>[Acts_CardClickCallback_4900] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_4900] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_5100
+     * @tc.name:Support card click callback
+     * @tc.desc:Click callback for message type registration/deregistration
+     * card (off:bundelName is normal, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_5100', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_5100] start!');
+      try {
+        formObserver.off('message', 'com.act.cardclickcallbackrely', null);
+        console.info('====>[Acts_CardClickCallback_5100] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_5100] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_5200
+     * @tc.name:Support card click callback
+     * @tc.desc:Click callback for message type registration/deregistration
+     * card (off:bundelName is normal, callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_5200', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_5200] start!');
+      try {
+        formObserver.off('message', 'com.act.cardclickcallbackrely', undefined);
+        console.info('====>[Acts_CardClickCallback_5200] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_5200] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_5500
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is call and bundelName is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_5500', 0, async function (done) {
+      try {
+        formObserver.off('call', null);
+        console.info('====>[Acts_CardClickCallback_5500] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_5500] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_5600
+     * @tc.name:Support card click callback
+     * @tc.desc:Call related API with invalid parameters (off: type is call and bundelName is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_5600', 0, async function (done) {
+      try {
+        formObserver.off('call', undefined);
+        console.info('====>[Acts_CardClickCallback_5600] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_5600] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_5800
+     * @tc.name:Support card click callback
+     * @tc.desc:Call type registration/deregistration card click
+     * callback (off:bundelName is normal, callback is null).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_5800', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_5800] start!');
+      try {
+        formObserver.off('call', 'com.act.cardclickcallbackrely', null);
+        console.info('====>[Acts_CardClickCallback_5800] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_5800] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
+        done();
+      }
+    })
+
+    /*
+     * @tc.number:Acts_CardClickCallback_5900
+     * @tc.name:Support card click callback
+     * @tc.desc:Call type registration/deregistration card click
+     * callback (off:bundelName is normal, callback is undefined).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('Acts_CardClickCallback_5900', 0, async function (done) {
+      console.info('====>[Acts_CardClickCallback_5900] start!');
+      try {
+        formObserver.off('call', 'com.act.cardclickcallbackrely', undefined);
+        console.info('====>[Acts_CardClickCallback_5900] [try] on success! ');
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info('====>[Acts_CardClickCallback_5900] [try] err :' + JSON.stringify(err));
+        expect(err.code).assertEqual(401);
         done();
       }
     })

@@ -17,7 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import type formInfo from '@ohos.app.form.formInfo';
 import commonEventManager from '@ohos.commonEventManager';
 
 export default class EntryAbility extends UIAbility {
@@ -49,7 +49,7 @@ export default class EntryAbility extends UIAbility {
             str: errCode
           }
         };
-        commonEventManager.publish("ACTS_CALL", commEventData, (err) => {
+        commonEventManager.publish('ACTS_CALL', commEventData, (err) => {
           console.info('====> rely ACTS_CALL publish: ' + JSON.stringify(err));
         });
         errCode += err.code;
@@ -84,7 +84,7 @@ export default class EntryAbility extends UIAbility {
             str: errCode
           }
         };
-        commonEventManager.publish("ACTS_CALL", commEventData, (err) => {
+        commonEventManager.publish('ACTS_CALL', commEventData, (err) => {
           console.info('====> rely ACTS_CALL publish: ' + JSON.stringify(err));
         });
         errCode += err.code;

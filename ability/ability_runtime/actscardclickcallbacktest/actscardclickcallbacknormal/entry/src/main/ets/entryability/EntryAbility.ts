@@ -16,84 +16,93 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import type formInfo from '@ohos.app.form.formInfo';
 import commonEventManager from '@ohos.commonEventManager';
+
+function callBack(data: formInfo.RunningFormInfo): void {
+  console.log('====> callback: ' + JSON.stringify(data));
+}
+
+let errString = '';
+let hostBundleName = 'com.acts.cardclickcallback';
+
+function tryFirst(): void {
+  try {
+    formObserver.on('router', callBack);
+  } catch (err) {
+    console.info('===> normal1 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+  try {
+    formObserver.on('router', hostBundleName, callBack);
+  } catch (err) {
+    console.info('===> normal2 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+  try {
+    formObserver.off('router', hostBundleName, callBack);
+  } catch (err) {
+    console.info('===> normal3 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+
+  try {
+    formObserver.on('message', callBack);
+  } catch (err) {
+    console.info('===> normal4 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+  try {
+    formObserver.on('message', hostBundleName, callBack);
+  } catch (err) {
+    console.info('===> normal5 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+}
+
+function trySecond(): void {
+  try {
+    formObserver.off('message', hostBundleName, callBack);
+  } catch (err) {
+    console.info('===> normal6 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+
+  try {
+    formObserver.on('call', callBack);
+  } catch (err) {
+    console.info('===> normal7 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+  try {
+    formObserver.on('call', hostBundleName, callBack);
+  } catch (err) {
+    console.info('===> normal8 err: ' + JSON.stringify(err));
+    errString += err.code;
+  }
+  try {
+    formObserver.off('call', hostBundleName, callBack);
+  } catch (err) {
+    console.info('===> normal9 err: ' + JSON.stringify(err));
+    errString += err.code;
+    let commonEventData = {
+      parameters: {
+        str: errString
+      }
+    };
+    console.info('===> normal9 err: ' + errString);
+    commonEventManager.publish('ACTS_CALL', commonEventData, (err) => {
+      console.info('====> normal ACTS_CALL publish: ' + JSON.stringify(err));
+    });
+  }
+
+}
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-
-    function callBack(data: formInfo.RunningFormInfo): void {
-      console.log('====> callback: ' + JSON.stringify(data));
-    }
-
-    let errString = "";
-    let hostBundleName = 'com.acts.cardclickcallback';
-    try {
-      formObserver.on("router", callBack);
-    } catch (err) {
-      console.info('===> normal1 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-    try {
-      formObserver.on("router", hostBundleName, callBack);
-    } catch (err) {
-      console.info('===> normal2 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-    try {
-      formObserver.off("router", hostBundleName, callBack);
-    } catch (err) {
-      console.info('===> normal3 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-
-    try {
-      formObserver.on("message", callBack);
-    } catch (err) {
-      console.info('===> normal4 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-    try {
-      formObserver.on("message", hostBundleName, callBack);
-    } catch (err) {
-      console.info('===> normal5 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-    try {
-      formObserver.off("message", hostBundleName, callBack);
-    } catch (err) {
-      console.info('===> normal6 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-
-    try {
-      formObserver.on("call", callBack);
-    } catch (err) {
-      console.info('===> normal7 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-    try {
-      formObserver.on("call", hostBundleName, callBack);
-    } catch (err) {
-      console.info('===> normal8 err: ' + JSON.stringify(err));
-      errString += err.code;
-    }
-    try {
-      formObserver.off("call", hostBundleName, callBack);
-    } catch (err) {
-      console.info('===> normal9 err: ' + JSON.stringify(err));
-      errString += err.code;
-      let commonEventData = {
-        parameters: {
-          str: errString
-        }
-      };
-      console.info('===> normal9 err: ' + errString);
-      commonEventManager.publish('ACTS_CALL', commonEventData, (err) => {
-        console.info('====> normal ACTS_CALL publish: ' + JSON.stringify(err));
-      });
-    }
+    tryFirst();
+    trySecond();
   }
 
   onDestroy() {

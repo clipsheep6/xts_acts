@@ -16,8 +16,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import rpc from '@ohos.rpc';
+import type formInfo from '@ohos.app.form.formInfo';
+import type rpc from '@ohos.rpc';
 
 function beCalled(data): rpc.Parcelable {
   console.log('====> beCalled:' + JSON.stringify(data.readString()));
