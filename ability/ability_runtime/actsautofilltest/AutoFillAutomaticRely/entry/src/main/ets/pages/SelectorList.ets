@@ -18,26 +18,26 @@ import hilog from '@ohos.hilog'
 
 let storage = LocalStorage.getShared()
 let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-let viewData : autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
+let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
 let pageNodeInfos = storage.get<Array<autoFillManager.PageNodeInfo>>('pageNodeInfos');
 
-function parseInfoString(item : Array<autoFillManager.PageNodeInfo>) {
-  if ( item.length == 0) {
+function parseInfoString(item: Array<autoFillManager.PageNodeInfo>) {
+  if (item.length == 0) {
     return 'empty pageNodeInfos';
   }
   return JSON.stringify(item);
 }
 
-function parseViewDataString(item : autoFillManager.ViewData) {
+function parseViewDataString(item: autoFillManager.ViewData) {
   if (!item) {
     return 'empty viewData';
   }
   return JSON.stringify(item);
 }
 
-function successFunc(data : autoFillManager.ViewData) {
+function successFunc(data: autoFillManager.ViewData) {
   if (data.pageNodeInfos.length !== 3) {
-    hilog.error(0x0000,'testTag', '%{public}s', 'get unEnough pageNodeInfos, skipping!');
+    hilog.error(0x0000, 'testTag', '%{public}s', 'get unEnough pageNodeInfos, skipping!');
     return;
   }
   data.pageNodeInfos[0].value = 'user1';
@@ -45,7 +45,7 @@ function successFunc(data : autoFillManager.ViewData) {
   data.pageNodeInfos[2].value = 'U41Ne6p@$$Wor!?';
   hilog.info(0x0000, 'testTag', 'autofill about to success with viewData: %{public}s', JSON.stringify(viewData));
   if (fillCallback) {
-    let response : autoFillManager.FillResponse = { viewData : data };
+    let response: autoFillManager.FillResponse = { viewData: data };
     fillCallback.onSuccess(response);
   }
 }
@@ -61,12 +61,14 @@ function cancelFunc() {
     fillCallback.onCancel();
   }
 }
+
 @Entry
 @Component
 struct SelectorList {
   @State message: string = 'AutoFill Page'
+
   build() {
-    Flex({direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Column() {
         Row() {
           Text(this.message)
@@ -74,19 +76,19 @@ struct SelectorList {
             .fontSize(30)
         }
         .alignSelf(ItemAlign.Center)
-        .margin({ top:20, bottom:20 })
+        .margin({ top: 20, bottom: 20 })
         .justifyContent(FlexAlign.SpaceBetween)
 
         Row() {
           Text('Got ViewData:')
             .fontWeight(FontWeight.Bold)
-            .margin({ bottom:10 })
+            .margin({ bottom: 10 })
         }
         .alignSelf(ItemAlign.Start)
-        .margin({ left:30 })
+        .margin({ left: 30 })
 
         Row() {
-          Flex({direction: FlexDirection.Column, justifyContent: FlexAlign.Start}) {
+          Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
             Text(parseViewDataString(viewData))
               .fontSize(25)
           }

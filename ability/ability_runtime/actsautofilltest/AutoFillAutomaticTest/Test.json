@@ -26,6 +26,10 @@
                 "uinput -T -m 300 2700 280 200",
                 "power-shell setmode 602",
                 "setenforce 0"
+            ],
+            "teardown-command": [
+                "param set persist.sys.suspend_manager_enabled true",
+                "reboot"
             ]
         }
     ]

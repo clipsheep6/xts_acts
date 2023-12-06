@@ -16,10 +16,10 @@
 import autoFillManager from '@ohos.app.ability.autoFillManager'
 import hilog from '@ohos.hilog';
 
-let storage=LocalStorage.getShared();
+let storage = LocalStorage.getShared();
 let saveRequestCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
 
-function SuccessFunc(success : boolean) {
+function SuccessFunc(success: boolean) {
   if (saveRequestCallback) {
     if (success) {
       saveRequestCallback.onSuccess();
@@ -45,8 +45,8 @@ struct SavePage {
           Button('OK')
             .type(ButtonType.Capsule)
             .fontSize(20)
-            .margin({ top:30 ,right: 30})
-            .onClick(()=>{
+            .margin({ top: 30, right: 30 })
+            .onClick(() => {
               SuccessFunc(true);
             })
             .id('ok_btn')
@@ -54,8 +54,8 @@ struct SavePage {
           Button('No')
             .type(ButtonType.Capsule)
             .fontSize(20)
-            .margin({ top:30 ,left:30})
-            .onClick(()=>{
+            .margin({ top: 30, left: 30 })
+            .onClick(() => {
               SuccessFunc(false);
             })
             .id('no_btn')

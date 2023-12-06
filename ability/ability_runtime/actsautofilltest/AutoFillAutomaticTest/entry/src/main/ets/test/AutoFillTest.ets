@@ -26,7 +26,7 @@ let want = {
   bundleName: 'com.ohos.passwordbox'
 };
 
-function sleep(ms) {
+function sleep(ms): Promise<any> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -35,7 +35,7 @@ export default function abilityTest() {
     afterEach(async function (done) {
       await abilityDelegator.executeShellCommand('pkill -f com.ohos.passwordbox');
       done();
-    })    
+    })
 
     /**
      * @tc.number: Acts_AutoFillTest_0700
@@ -136,7 +136,7 @@ export default function abilityTest() {
      * @tc.name: RequestAutoFill Interface : onFillRequestSuccess
      * @tc.desc: Implicitly call the AutoFillRequest interface and trigger success callback
      */
-    it('Acts_AutoFillTest_0100',0, async function (done) {
+    it('Acts_AutoFillTest_0100', 0, async function (done) {
       const TAG = 'Acts_AutoFillTest_0100_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -154,7 +154,7 @@ export default function abilityTest() {
       expect(successButton != null).assertTrue();
       await sleep(500);
       await successButton.click();
-      
+
       await sleep(1000);
       let userTextInput = await driver.waitForComponent(ON.id('username_input'), 2500);
       expect(userTextInput != null).assertTrue();
@@ -172,7 +172,7 @@ export default function abilityTest() {
      * @tc.name: RequestAutoFill Interface : onFillRequestFailed
      * @tc.desc: Implicitly call the AutoFillRequest interface and trigger failure callback
      */
-    it('Acts_AutoFillTest_0200',0, async function (done) {
+    it('Acts_AutoFillTest_0200', 0, async function (done) {
       const TAG = 'Acts_AutoFillTest_0200_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -208,7 +208,7 @@ export default function abilityTest() {
      * @tc.name: RequestAutoFill Interface : onFillRequestCanceled
      * @tc.desc: Implicitly call the AutoFillRequest interface and trigger cancel callback
      */
-    it('Acts_AutoFillTest_0300',0, async function (done) {
+    it('Acts_AutoFillTest_0300', 0, async function (done) {
       const TAG = 'Acts_AutoFillTest_0300_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -243,7 +243,7 @@ export default function abilityTest() {
      * @tc.name: RequestAutoFill Interface : onFillRequestSuccess(USER_NAME textInput)
      * @tc.desc: Implicitly call the AutoFillRequest interface and trigger success callback
      */
-    it('Acts_AutoFillTest_0400',0, async function (done) {
+    it('Acts_AutoFillTest_0400', 0, async function (done) {
       const TAG = 'Acts_AutoFillTest_0400_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -279,7 +279,7 @@ export default function abilityTest() {
      * @tc.name: RequestAutoFill Interface : onFillRequestFailed
      * @tc.desc: Implicitly call the AutoFillRequest interface and trigger failure callback
      */
-    it('Acts_AutoFillTest_0500',0, async function (done) {
+    it('Acts_AutoFillTest_0500', 0, async function (done) {
       const TAG = 'Acts_AutoFillTest_0500_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -316,7 +316,7 @@ export default function abilityTest() {
      * @tc.name: RequestAutoFill Interface : onFillRequestCanceled
      * @tc.desc: Implicitly call the AutoFillRequest interface and trigger cancel callback
      */
-    it('Acts_AutoFillTest_0600',0, async function (done) {
+    it('Acts_AutoFillTest_0600', 0, async function (done) {
       const TAG = 'Acts_AutoFillTest_0600_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();

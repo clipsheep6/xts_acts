@@ -26,7 +26,7 @@ let want = {
   bundleName: 'com.ohos.passwordbox'
 };
 
-function sleep(ms) {
+function sleep(ms): Promise<any> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -42,7 +42,7 @@ export default function abilityTest() {
      * @tc.name: AutoFillRequest Interface: new password request
      * @tc.desc: Implicitly call AutoFillRequest( AutoFillType: NEW_PASSWORD) and trigger success callback.
      */
-    it('Acts_AutoFillPasswordTest_0100',0, async function (done) {
+    it('Acts_AutoFillPasswordTest_0100', 0, async function (done) {
       const TAG = 'Acts_AutoFillPasswordTest_0100_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -79,7 +79,7 @@ export default function abilityTest() {
      * @tc.name: AutoFillRequest Interface: new password request
      * @tc.desc: Implicitly call AutoFillRequest( AutoFillType: NEW_PASSWORD) and trigger failure callback.
      */
-    it('Acts_AutoFillPasswordTest_0200',0, async function (done) {
+    it('Acts_AutoFillPasswordTest_0200', 0, async function (done) {
       const TAG = 'Acts_AutoFillPasswordTest_0200_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();
@@ -116,7 +116,7 @@ export default function abilityTest() {
      * @tc.name: AutoFillRequest Interface: new password request
      * @tc.desc: Implicitly call AutoFillRequest( AutoFillType: NEW_PASSWORD) and trigger cancel callback.
      */
-    it('Acts_AutoFillPasswordTest_0300',0, async function (done) {
+    it('Acts_AutoFillPasswordTest_0300', 0, async function (done) {
       const TAG = 'Acts_AutoFillPasswordTest_0300_TAG';
       console.info(TAG, 'start.');
       let driver = Driver.create();

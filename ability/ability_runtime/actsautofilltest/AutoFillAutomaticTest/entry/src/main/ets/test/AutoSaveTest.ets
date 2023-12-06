@@ -26,7 +26,7 @@ let want = {
   bundleName: 'com.ohos.passwordbox'
 };
 
-function sleep(ms) {
+function sleep(ms): Promise<any> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -72,7 +72,7 @@ export default function abilityTest() {
       let ok_btn = await driver.waitForComponent(ON.id('ok_btn'), 2500);
       expect(ok_btn != null).assertTrue();
       await ok_btn.click();
-  
+
       await sleep(1000);
       let username_input = await driver.waitForComponent(ON.id('username_input'), 2500);
       expect(username_input != null).assertTrue();
@@ -117,7 +117,7 @@ export default function abilityTest() {
       let no_btn = await driver.waitForComponent(ON.id('no_btn'), 2500);
       expect(no_btn != null).assertTrue();
       await no_btn.click();
-  
+
       await sleep(1000);
       let username_input = await driver.waitForComponent(ON.id('username_input'), 2500);
       expect(username_input != null).assertTrue();

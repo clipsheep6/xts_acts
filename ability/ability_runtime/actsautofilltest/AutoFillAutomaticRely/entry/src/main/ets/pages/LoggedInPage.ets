@@ -16,9 +16,10 @@
 import router from '@ohos.router';
 import hilog from '@ohos.hilog';
 
-let options : router.RouterOptions = {
+let options: router.RouterOptions = {
   url: 'pages/Index'
 }
+
 @Entry
 @Component
 struct LoggedInPage {
@@ -34,10 +35,10 @@ struct LoggedInPage {
         Button("Back")
           .type(ButtonType.Capsule)
           .fontSize(20)
-          .margin({ top:30 })
-          .onClick(()=>{
-            router.pushUrl(options,(err,data)=>{
-              hilog.info(0x0000, 'testTag',"back to Index page got err: %{public}s, and data: %{public}s",
+          .margin({ top: 30 })
+          .onClick(() => {
+            router.pushUrl(options, (err, data) => {
+              hilog.info(0x0000, 'testTag', "back to Index page got err: %{public}s, and data: %{public}s",
                 JSON.stringify(err), JSON.stringify(data))
             })
           })

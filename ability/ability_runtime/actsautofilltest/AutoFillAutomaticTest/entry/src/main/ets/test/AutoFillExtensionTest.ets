@@ -25,14 +25,15 @@ let want = {
   bundleName: 'com.ohos.passwordbox'
 };
 let SubscribeList = {
-  events: [ 
-    "AutoFillExtensionTest0100",
-    "AutoFillExtensionTest0200",
-    "AutoFillExtensionTest0300",
-    "AutoFillExtensionTest0400",
+  events: [
+    'AutoFillExtensionTest0100',
+    'AutoFillExtensionTest0200',
+    'AutoFillExtensionTest0300',
+    'AutoFillExtensionTest0400',
   ]
 };
-function sleep(ms) {
+
+function sleep(ms): Promise<any> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -42,13 +43,13 @@ export default function abilityTest() {
       await abilityDelegator.executeShellCommand('pkill -f com.ohos.passwordbox');
       done();
     })
-    
+
     /**
      * @tc.number: Acts_AutoFillExtensionTest_0100
      * @tc.name: AutoFillExtensionAbility: onCreate, onFillRequest, onForeground
      * @tc.desc: verify onCreate, onFillRequest and onForeground lifecycle of AutoFillExtensionAbility
      */
-    it('Acts_AutoFillExtensionTest_0100',0, async function (done) {
+    it('Acts_AutoFillExtensionTest_0100', 0, async function (done) {
       const TAG = 'Acts_AutoFillExtensionTest_0100_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
@@ -57,7 +58,7 @@ export default function abilityTest() {
 
       function subscribeCallBack(err, data) {
         console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
-        if (data.event == "AutoFillExtensionTest0100") {
+        if (data.event == 'AutoFillExtensionTest0100') {
           expect(data.parameters.onCreate).assertEqual(1);
           expect(data.parameters.onFillRequest).assertEqual(1);
           expect(data.parameters.onForeground).assertEqual(1);
@@ -65,7 +66,7 @@ export default function abilityTest() {
         commonEventManager.unsubscribe(subscriber, () => {
           console.info(TAG, 'enter subscribe callback oncreate' + data.parameters.onCreate);
           done();
-        }); 
+        });
       }
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
@@ -95,7 +96,7 @@ export default function abilityTest() {
      * @tc.name: AutoFillExtensionAbility: onSaveRequest, onSessionDestroy, onDestroy
      * @tc.desc: verify onSaveRequest, onSessionDestroy and onDestroy lifecycle of AutoFillExtensionAbility
      */
-    it('Acts_AutoFillExtensionTest_0200',0, async function (done) {
+    it('Acts_AutoFillExtensionTest_0200', 0, async function (done) {
       const TAG = 'Acts_AutoFillExtensionTest_0200_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
@@ -104,16 +105,17 @@ export default function abilityTest() {
 
       function subscribeCallBack(err, data) {
         console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
-        if (data.event == "AutoFillExtensionTest0200" && data.parameters.onSaveRequest == 1) {
+        if (data.event == 'AutoFillExtensionTest0200' && data.parameters.onSaveRequest == 1) {
           expect(data.parameters.onSaveRequest).assertEqual(1);
           expect(data.parameters.onSessionDestroy).assertEqual(1);
           expect(data.parameters.onDestroy).assertEqual(1);
           commonEventManager.unsubscribe(subscriber, () => {
             console.info(TAG, 'enter subscribe callback onSaveRequest, onSessionDestroy and onDestroy');
             done();
-          }); 
+          });
         }
       }
+
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
         console.info(TAG, 'create subscriber.');
         subscriber = data;
@@ -122,7 +124,6 @@ export default function abilityTest() {
         await globalThis.abilityContext.startAbility(want);
         let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 2500);
         await sleep(500);
-        console.log("71");
         expect(pwdTextInput != null).assertTrue();
         await pwdTextInput.click();
         let successButton = await driver.waitForComponent(ON.id('success_btn'), 2500);
@@ -155,7 +156,7 @@ export default function abilityTest() {
      * @tc.name: AutoFillExtensionAbility: onBackground
      * @tc.desc: verify onBackground lifecycle of AutoFillExtensionAbility
      */
-    it('Acts_AutoFillExtensionTest_0300',0, async function (done) {
+    it('Acts_AutoFillExtensionTest_0300', 0, async function (done) {
       const TAG = 'Acts_AutoFillExtensionTest_0300_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
@@ -163,14 +164,15 @@ export default function abilityTest() {
       let subscriber;
 
       function subscribeCallBack(err, data) {
-        if (data.event == "AutoFillExtensionTest0300") {
+        if (data.event == 'AutoFillExtensionTest0300') {
           expect(data.parameters.onBackground).assertEqual(1);
         }
         commonEventManager.unsubscribe(subscriber, () => {
           console.info(TAG, 'enter subscribe callback onBackground' + data.parameters.onBackground);
           done();
-        }); 
+        });
       }
+
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
         console.info(TAG, 'create subscriber');
         subscriber = data;
@@ -208,26 +210,26 @@ export default function abilityTest() {
       let subscriber;
 
       function SubscribeCallback(err, data) {
-        console.info(TAG, "SubScribeCallback err: " + JSON.stringify(err));
-        console.info(TAG, "SubscribeCallback data: " + JSON.stringify(data));
-        if (data.event == "AutoFillExtensionTest0400") {
-          console.info("enter verify");
+        console.info(TAG, 'SubScribeCallback err: ' + JSON.stringify(err));
+        console.info(TAG, 'SubscribeCallback data: ' + JSON.stringify(data));
+        if (data.event == 'AutoFillExtensionTest0400') {
+          console.info('enter verify');
           VerifyContext(data.parameters);
         }
       }
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
-        console.debug(TAG, "Create Subscriber");
+        console.debug(TAG, 'Create Subscriber');
         subscriber = data;
         commonEventManager.subscribe(subscriber, SubscribeCallback);
         await sleep(2000);
         globalThis.abilityContext.startAbility(want);
-        let pwd_input = await driver.waitForComponent(ON.id("password_input"), 2500);
+        let pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
         await sleep(500);
         expect(pwd_input != null).assertTrue();
         await pwd_input.click();
 
-        let success_btn = await driver.waitForComponent(ON.id("success_btn"), 2500);
+        let success_btn = await driver.waitForComponent(ON.id('success_btn'), 2500);
         await sleep(500);
         expect(success_btn != null).assertTrue();
         await success_btn.click();
@@ -238,30 +240,30 @@ export default function abilityTest() {
       function VerifyContext(context) {
         try {
           expect(context != null).assertTrue();
-          console.info("out verify begin");
-          expect(context.currentHapModuleInfoName == "entry").assertTrue();
-          expect(context.configLanguage == "zh-Hans").assertTrue();
-          expect(context.extensionAbilityInfoBundleName == "com.ohos.passwordbox").assertTrue();
-          expect(context.applicationInfoName == "com.ohos.passwordbox").assertTrue();
-          console.info("out verify middle1");
-          expect(context.applicationContextCacheDir.indexOf("/cache") != -1).assertTrue();
-          expect(context.applicationContextTempDir.indexOf("/temp") != -1).assertTrue();
-          expect(context.applicationContextFilesDir.indexOf("/files") != -1).assertTrue();
-          expect(context.applicationContextDatabaseDir.indexOf("/database") != -1).assertTrue();
-          expect(context.applicationContextPreferencesDir.indexOf("/preferences") != -1).assertTrue();
-          expect(context.applicationContextBundleCodeDir.indexOf("/bundle") != -1).assertTrue();
-          expect(context.applicationContextDistributedFilesDir.indexOf("/distributedfiles") != -1).assertTrue();
+          console.info('out verify begin');
+          expect(context.currentHapModuleInfoName == 'entry').assertTrue();
+          expect(context.configLanguage == 'zh-Hans').assertTrue();
+          expect(context.extensionAbilityInfoBundleName == 'com.ohos.passwordbox').assertTrue();
+          expect(context.applicationInfoName == 'com.ohos.passwordbox').assertTrue();
+          console.info('out verify middle1');
+          expect(context.applicationContextCacheDir.indexOf('/cache') != -1).assertTrue();
+          expect(context.applicationContextTempDir.indexOf('/temp') != -1).assertTrue();
+          expect(context.applicationContextFilesDir.indexOf('/files') != -1).assertTrue();
+          expect(context.applicationContextDatabaseDir.indexOf('/database') != -1).assertTrue();
+          expect(context.applicationContextPreferencesDir.indexOf('/preferences') != -1).assertTrue();
+          expect(context.applicationContextBundleCodeDir.indexOf('/bundle') != -1).assertTrue();
+          expect(context.applicationContextDistributedFilesDir.indexOf('/distributedfiles') != -1).assertTrue();
           expect(context.applicationContextArea == 1).assertTrue();
-          expect(context.eventHubEventMessage == "").assertFalse();
-          console.info("out verify middle2");
-          expect(context.bundleContext_ApplicationInfo == "").assertFalse();
-          expect(context.moduleContextA_ApplicationInfo == "").assertFalse();
-          expect(context.moduleContextB_ApplicationInfo == "").assertFalse();
-          console.info("out verify middle3");
+          expect(context.eventHubEventMessage == '').assertFalse();
+          console.info('out verify middle2');
+          expect(context.bundleContext_ApplicationInfo == '').assertFalse();
+          expect(context.moduleContextA_ApplicationInfo == '').assertFalse();
+          expect(context.moduleContextB_ApplicationInfo == '').assertFalse();
+          console.info('out verify middle3');
           expect(context.stageMode == true).assertTrue();
-          console.info("out verify end");
+          console.info('out verify end');
         } catch (err) {
-          hilog.error(0x0000, 'testTAG', "context verification caught an error: %{public}s", JSON.stringify(err));
+          hilog.error(0x0000, 'testTAG', 'context verification caught an error: %{public}s', JSON.stringify(err));
         }
         done();
       }

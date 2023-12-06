@@ -21,6 +21,6 @@ import AutoFillPasswordTest from './AutoFillPasswordTest'
 export default function testsuite() {
   AutoFillTest();
   AutoSaveTest();
-  AutoFillExtensionTest();
   AutoFillPasswordTest();
+  AutoFillExtensionTest();
 }
