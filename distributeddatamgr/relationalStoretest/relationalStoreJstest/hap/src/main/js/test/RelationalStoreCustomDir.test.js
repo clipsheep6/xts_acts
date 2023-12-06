@@ -638,7 +638,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir: "data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t"
+        customDir: "data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00/123323vjkdfn/48378498/nvnvnvn/88999/vvbbb/nvjdnvj/8"
       }
       data_Rdb.getRdbStore(context, STORE_CONFIG, async (err, rdbStore) => {
         if (err == null) {
@@ -665,7 +665,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir:"data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t"
+        customDir:"data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00/123323vjkdfn/48378498/nvnvnvn/88999/vvbbb/nvjdnvj/8"
       }
       await data_Rdb.getRdbStore(context, STORE_CONFIG).then(async (rdbStore) => {
         console.info(TAG + "getRdbStore done: " + rdbStore);
@@ -688,8 +688,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        //customDir: "data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00"
-        customDir:"data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00/123323vjkdfn/48378498/nvnvnvn/88999/vvbbb/nvjdnvj/78378n"
+        customDir:"data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00/123323vjkdfn/48378498/nvnvnvn/88999/vvbbb/nvjdnvj/78"
       }
       try {
         data_Rdb.getRdbStore(context, STORE_CONFIG, async (err, store) => {
@@ -720,8 +719,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        //customDir: "data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t0"
-        customDir:"data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00/123323vjkdfn/48378498/nvnvnvn/88999/vvbbb/nvjdnvj/78378n"
+        customDir:"data/app/el2/100/database/bundleName/rdb/ttst/tee00/11/tee2288000000/#% 0t00/123323vjkdfn/48378498/nvnvnvn/88999/vvbbb/nvjdnvj/78"
       }
       try{
         await data_Rdb.getRdbStore(context, STORE_CONFIG).then(async (rdbStore) => {
@@ -843,7 +841,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir: "dataappel66teeeeeeeee67eeeeeeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)"
+        customDir: "dataappel66teeeeeeeee67eeeehfghfgheeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)25555555555555hfhfg55gggggghgfhhhfghfghgfhfhfgh"
       }
       data_Rdb.getRdbStore(context, STORE_CONFIG, async (err, rdbStore) => {
         if (err == null) {
@@ -869,7 +867,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir: "dataappel66teeeeeeeee67eeeeeeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)"
+        customDir: "dataappel66teeeeeeeee67eeeehfghfgheeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)25555555555555hfhfg55gggggghgfhhhfghfghgfhfhfgh"
       }
       await data_Rdb.getRdbStore(context, STORE_CONFIG).then(async (rdbStore) => {
         console.info(TAG + "getRdbStore done: " + rdbStore);
@@ -892,8 +890,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir:"dataappel66teeeeeeeee67eeeehfghfgheeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)25555555555555hfhfg55gggggghgfhhhfghfghgfhfhfgh"
-        //customDir: "dataappel66teeeeeeeee67eeeeeeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)2"
+        customDir:"dataappel66teeeeeeeee67eeeehfghfgheeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)25555555555555hfhfg55gggggghgfhhhfghfghgfhfhfgh5"
       }
       try {
         data_Rdb.getRdbStore(context, STORE_CONFIG, async (err, store) => {
@@ -925,8 +922,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir:"dataappel66teeeeeeeee67eeeehfghfgheeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)25555555555555hfhfg55gggggghgfhhhfghfghgfhfhfgh"
-        //customDir: "dataappel66teeeeeeeee67eeeeeeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)2"
+        customDir:"dataappel66teeeeeeeee67eeeehfghfgheeeeeeeee!@#@$$#%%(*  (eeee9988711ssssssssss+_)25555555555555hfhfg55gggggghgfhhhfghfghgfhfhfgh5"
       }
       try{
         await data_Rdb.getRdbStore(context, STORE_CONFIG).then(async (rdbStore) => {
@@ -956,7 +952,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir: "/data/app/el2/100/database/bundleName/rdb/test/rdbStore.db"
+        customDir: "data/app/el2/100/database/bundleName/rdb/test/rdbStore.db"
       }
       let store = null;
       try {
@@ -1050,7 +1046,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir:"/data/app/el2/100/database/bundleName/rdb/test/rdbStore1.db"}
+        customDir:"data/app/el2/100/database/bundleName/rdb/test/rdbStore1.db"}
       data_Rdb.getRdbStore(context, STORE_CONFIG, async (err, store) => {
         if (err == null) {
           console.info(TAG + "getRdbStore done: " + store);
@@ -1146,7 +1142,7 @@ export default function relationalStoreCustomDirTest() {
         name: "rdbStore1.db",
         securityLevel: data_Rdb.SecurityLevel.S1,
         encrypt:true,
-        customDir: "/data/app/el2/100/database/bundleName/rdb/test/rdbStore1.db"
+        customDir: "data/app/el2/100/database/bundleName/rdb/test/rdbStore1.db"
       }
       let store = null;
       try {
@@ -1280,7 +1276,7 @@ export default function relationalStoreCustomDirTest() {
       const STORE_CONFIG = {
         name: "rdbStore.db2",
         securityLevel: data_Rdb.SecurityLevel.S1,
-        customDir: "/data/app/el2/100/database/bundleName/rdb/test/rdbStore2.db"
+        customDir: "data/app/el2/100/database/bundleName/rdb/test/rdbStore2.db"
       }
       data_Rdb.getRdbStore(context, STORE_CONFIG, async (err, store) => {
         if (err == null) {
