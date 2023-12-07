@@ -34,6 +34,7 @@ struct OHNNOperandTest {
     std::vector<int32_t> shape;
     void *data{nullptr};
     int32_t length{0};
+    OH_NN_Format format = OH_NN_FORMAT_NONE;
     const OH_NN_QuantParam *quantParam = nullptr;
 };
 
@@ -68,22 +69,18 @@ struct OHNNCompileParam {
 };
 
 int BuildSingleOpGraph(OH_NNModel *model, const OHNNGraphArgs &graphArgs);
-
 int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NN_Memory *OHNNMemory[],
     float* expect);
-
 void Free(OH_NNModel *model = nullptr, OH_NNCompilation *compilation = nullptr, OH_NNExecutor *executor = nullptr);
-
 int CompileGraphMock(OH_NNCompilation *compilation, const OHNNCompileParam &compileParam);
-
 int ExecuteGraphMock(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, float* expect);
 
 OH_NN_ReturnCode SetDevice(OH_NNCompilation *compilation);
 int BuildMultiOpGraph(OH_NNModel *model, const OHNNGraphArgsMulti &graphArgs);
 OH_NN_UInt32Array GetUInt32Array(std::vector<uint32_t> indices);
-
 bool CheckOutput(const float* output, const float* expect);
 
+//文件相关
 enum class PathType { FILE, DIR, UNKNOWN, NOT_FOUND };
 PathType CheckPath(const std::string &path);
 bool DeleteFile(const std::string &path);
@@ -92,6 +89,13 @@ std::string ConcatPath(const std::string &str1, const std::string &str2);
 void DeleteFolder(const std::string &path);
 bool CreateFolder(const std::string &path);
 
+//模型相关
+void ConstructAddModel(OH_NNModel **model);
+void ConstructCompilation(OH_NNCompilation **compilation);
+void CreateExecutor(OH_NNExecutor **executor);
+void CreateDynamicExecutor(OH_NNExecutor **executor);
+void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
+                                  std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
 } // namespace Test
 } // namespace NeuralNetworkRuntime
 } // namespace OHOS

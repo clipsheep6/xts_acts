@@ -15,8 +15,8 @@ import("//test/xts/tools/build/suite.gni")
 
 config("nnrt_config") {
   include_dirs = [
-    "../common",
-    "../../../../../../../foundation/ai/neural_network_runtime",
+    "common",
+    "../../../../../../foundation/ai/neural_network_runtime",
     "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
   ]
   cflags = [ "-Wno-error" ]
@@ -29,6 +29,8 @@ ohos_moduletest_suite("NncoreTest") {
     "common/nncore_utils.cpp",
     "common/mock_idevice.cpp",
     "src/hdi_tensor_test.cpp",
+    "src/hdi_model_test.cpp",
+    "src/hdi_tensorDesc_test.cpp",
   ]
 
   configs = [ ":nncore_config" ]
