@@ -1,0 +1,11 @@
+./OfflineAssembler/file.ts;file;esm;xxx;yyy
+./OfflineAssembler/ast.ts;ast;esm;xxx;yyy
+./OfflineAssembler/expected.ts;expected;esm;xxx;yyy
+./OfflineAssembler/parser.ts;parser;esm;xxx;yyy
+./OfflineAssembler/registers.ts;registers;esm;xxx;yyy
+./OfflineAssembler/instructions.ts;instructions;esm;xxx;yyy
+./OfflineAssembler/LowLevelInterpreter.ts;LowLevelInterpreter;esm;xxx;yyy
+./OfflineAssembler/InitBytecodes.ts;InitBytecodes;esm;xxx;yyy
+./OfflineAssembler/LowLevelInterpreter32_64.ts;LowLevelInterpreter32_64;esm;xxx;yyy
+./OfflineAssembler/LowLevelInterpreter64.ts;LowLevelInterpreter64;esm;xxx;yyy
+./OfflineAssembler/OfflineAssembler.ts;OfflineAssembler;esm;xxx;yyy
