@@ -49,6 +49,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store Single level directory getRdbStore callback test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_1700
      * @tc.desc RelationalStore store Single level directory getRdbStore callback test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0100', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0100 start *************");
@@ -81,6 +84,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store Single level directory getRdbStore promise test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_1800
      * @tc.desc RelationalStore store Single level directory getRdbStore promise test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0200', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0200 start *************");
@@ -108,6 +114,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store Single level directory insert、update、delete、query test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_1900
      * @tc.desc RelationalStore store Single level directory insert、update、delete、query test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0300', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0300start *************");
@@ -238,6 +247,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store Multi-level directory getRdbStore callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2000
      * @tc.desc RelationalStore store Multi-level directory getRdbStore callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0400', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0400 start *************");
@@ -264,6 +276,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store Multi-level directory getRdbStore promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2100
      * @tc.desc cRelationalStore store Multi-level directory getRdbStore promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0500', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0500 start *************");
@@ -287,6 +302,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store Multi-level directory insert、update、delete、query test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2200
      * @tc.desc RelationalStore store Multi-level directory insert、update、delete、query test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0600', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0600start *************");
@@ -419,6 +437,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir: "" getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2300
      * @tc.desc RelationalStore store customDir: "" getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0700', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0700 start *************");
@@ -446,6 +467,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir: "" getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2400
      * @tc.desc RelationalStore store customDir: "" getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0800', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0800 start *************");
@@ -470,6 +494,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir: null getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2500
      * @tc.desc RelationalStore store customDir: null getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest0900', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest0900 start *************");
@@ -498,6 +525,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir: null getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2600
      * @tc.desc RelationalStore store customDir: null getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1000', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1000 start *************");
@@ -521,6 +551,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir: undefined getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2700
      * @tc.desc RelationalStore store customDir: undefined getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1100', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1100 start *************");
@@ -548,6 +581,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir: undefined getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2800
      * @tc.desc RelationalStore store customDir: undefined getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1200', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1200 start *************");
@@ -571,6 +607,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir:"*"  getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_2900
      * @tc.desc RelationalStore store customDir:"*"  getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1300', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1300 start *************");
@@ -604,6 +643,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store customDir:"*"  getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3000
      * @tc.desc RelationalStore store customDir:"*"  getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1400', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1400 start *************");
@@ -629,9 +671,12 @@ export default function relationalStoreCustomDirTest() {
     })
 
     /**
-     * @tc.name RelationalStore store Sandbox Path 128 bytes，customDir:Multi-level directory  getRdbStore test callback
+     * @tc.name RelationalStore store customDir Path 128 bytes，customDir:Multi-level directory  getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3100
-     * @tc.desc RelationalStore store Sandbox Path 128 bytes customDir:Multi-level directory getRdbStore test callback
+     * @tc.desc RelationalStore store customDir Path 128 bytes customDir:Multi-level directory getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1500', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1500 start *************");
@@ -656,9 +701,12 @@ export default function relationalStoreCustomDirTest() {
       console.info(TAG + "************* CustomDirTest1500 end*************");
     })
     /**
-     * @tc.name RelationalStore store Sandbox Path 128 bytes customDir:Multi-level directory getRdbStore test promise
+     * @tc.name RelationalStore store customDir Path 128 bytes customDir:Multi-level directory getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3200
-     * @tc.desc RelationalStore store Sandbox Path 128 bytes customDir:Multi-level directory getRdbStore test promise
+     * @tc.desc RelationalStore store customDir Path 128 bytes customDir:Multi-level directory getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1600', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1600 start *************");
@@ -679,9 +727,12 @@ export default function relationalStoreCustomDirTest() {
       console.info(TAG + "************* CustomDirTest1600 end   *************");
     })
     /**
-     * @tc.name RelationalStore store Sandbox Path 129 bytes customDir:Multi-level directory getRdbStore test callback
+     * @tc.name RelationalStore store customDir Path 129 bytes customDir:Multi-level directory getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3300
-     * @tc.desc RelationalStore store Sandbox Path 129 bytes customDir:Multi-level directory  getRdbStore test callback
+     * @tc.desc RelationalStore store customDir Path 129 bytes customDir:Multi-level directory  getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1700', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1700 start *************");
@@ -710,9 +761,12 @@ export default function relationalStoreCustomDirTest() {
 
     })
     /**
-     * @tc.name RelationalStore store Sandbox Path 129 bytes customDir:Multi-level directory  getRdbStore test promise
+     * @tc.name RelationalStore store customDir Path 129 bytes customDir:Multi-level directory  getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3400
-     * @tc.desc RelationalStore store Sandbox Path 129 bytes customDir:Multi-level directory  getRdbStore test promise
+     * @tc.desc RelationalStore store customDir Path 129 bytes customDir:Multi-level directory  getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1800', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1800 start *************");
@@ -743,6 +797,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore getrdbStore-deleteRdbStore-getrdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3500
      * @tc.desc RelationalStore getrdbStore-deleteRdbStore-getrdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest1900', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest1900 start *************");
@@ -794,6 +851,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore getrdbStore-deleteRdbStore-getrdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3600
      * @tc.desc RelationalStore getrdbStore-deleteRdbStore-getrdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2000', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2000 start *************");
@@ -832,9 +892,12 @@ export default function relationalStoreCustomDirTest() {
       console.info(TAG + "************* CustomDirTest2000 end   *************");
     })
     /**
-     * @tc.name RelationalStore store Sandbox Path 128 bytes customDir:Single level directory   getRdbStore test callback
+     * @tc.name RelationalStore store customDir Path 128 bytes customDir:Single level directory   getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3700
-     * @tc.desc RelationalStore store Sandbox Path 128 bytes customDir:Single level directory  getRdbStore test callback
+     * @tc.desc RelationalStore store customDir Path 128 bytes customDir:Single level directory  getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2100', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2100 start *************");
@@ -858,9 +921,12 @@ export default function relationalStoreCustomDirTest() {
       console.info(TAG + "************* CustomDirTest2100 end*************");
     })
     /**
-     * @tc.name RelationalStore store Sandbox Path 128 bytes customDir:Single level directory    getRdbStore test promise
+     * @tc.name RelationalStore store customDir Path 128 bytes customDir:Single level directory    getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3800
-     * @tc.desc RelationalStore store Sandbox Path 128 bytes customDir:Single level directory  getRdbStore test promise
+     * @tc.desc RelationalStore store customDir Path 128 bytes customDir:Single level directory  getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2200', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2200 start *************");
@@ -881,9 +947,12 @@ export default function relationalStoreCustomDirTest() {
       console.info(TAG + "************* CustomDirTest2200 end   *************");
     })
     /**
-     * @tc.name RelationalStore store Sandbox Path 129 bytes customDir:Single level directory   getRdbStore test callback
+     * @tc.name RelationalStore store customDir Path 129 bytes customDir:Single level directory   getRdbStore test callback
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_3900
-     * @tc.desc RelationalStore store Sandbox Path 129 bytes customDir:Single level directory getRdbStore test callback
+     * @tc.desc RelationalStore store customDir Path 129 bytes customDir:Single level directory getRdbStore test callback
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2300', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2300 start *************");
@@ -913,9 +982,12 @@ export default function relationalStoreCustomDirTest() {
     })
 
     /**
-     * @tc.name RelationalStore store Sandbox Path 129 bytes customDir:Single level directory   getRdbStore test promise
+     * @tc.name RelationalStore store customDir Path 129 bytes customDir:Single level directory   getRdbStore test promise
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_4000
-     * @tc.desc RelationalStore store Sandbox Path 129 bytes customDir:Single level directory getRdbStore test promise
+     * @tc.desc RelationalStore store customDir Path 129 bytes customDir:Single level directory getRdbStore test promise
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2400', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2400 start *************");
@@ -945,6 +1017,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store backup and restore promise test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_4100
      * @tc.desc RelationalStore store backup and restore promise test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2500', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2500 *************");
@@ -1039,6 +1114,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store backup and restore callback test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_4200
      * @tc.desc RelationalStore store backup and restore callback test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2600', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2600 start *************");
@@ -1135,6 +1213,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store encrypt promise test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_4300
      * @tc.desc RelationalStore store encrypt promisr test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2700', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2700start *************");
@@ -1270,6 +1351,9 @@ export default function relationalStoreCustomDirTest() {
      * @tc.name RelationalStore store encrypt callback test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetRdbStoreJsAPITest_4400
      * @tc.desc RelationalStore store encrypt callback test
+	 * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
     it('CustomDirTest2800', 0, async function (done) {
       console.info(TAG + "************* CustomDirTest2800 start *************");
@@ -1403,6 +1487,7 @@ export default function relationalStoreCustomDirTest() {
         }
       })
     })
+
   })
 }
 
