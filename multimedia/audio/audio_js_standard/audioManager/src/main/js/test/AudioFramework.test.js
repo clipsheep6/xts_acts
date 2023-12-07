@@ -3782,7 +3782,7 @@ describe('audioFramework', function () {
                 console.info(`SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 Promise returned to indicate that the device is set to the active status.`);
             });
             await audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then(function (value) {
-                if (flag == true && value == false) {
+                if (flag == false && value == false) {
                     console.info(`SUB_MULTIMEDIA_AUDIO_MANAGER_SETDEVICEACTIVE_0100 isDeviceActive : SPEAKER: Deactivate : PASS :${value } flag is ${flag}`);
                     expect(true).assertTrue();
                 }
