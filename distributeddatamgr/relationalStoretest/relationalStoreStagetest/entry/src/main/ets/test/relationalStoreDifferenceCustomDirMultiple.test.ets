@@ -31,31 +31,31 @@ const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIM
 const STORE_CONFIG1: data_Rdb.StoreConfig = {
   name: "rdbstore.db",
   securityLevel: data_Rdb.SecurityLevel.S1,
-  customDir: "/rdbstore.db"
+  customDir: "rdbstore.db"
 };
 
 const STORE_CONFIG2: data_Rdb.StoreConfig = {
   name: "rdbstoretest.db",
   securityLevel: data_Rdb.SecurityLevel.S1,
-  customDir: "/rdbstore.db"
+  customDir: "rdbstore.db"
 };
 
 const STORE_CONFIG3: data_Rdb.StoreConfig = {
   name: "rdbstore.db",
   securityLevel: data_Rdb.SecurityLevel.S1,
-  customDir: "/rdbstore.db/test"
+  customDir: "rdbstore.db/test"
 };
 
 const STORE_CONFIG4: data_Rdb.StoreConfig = {
   name: "rdbstoretest.db",
   securityLevel: data_Rdb.SecurityLevel.S1,
-  customDir: "/rdbstore.db/test"
+  customDir: "rdbstore.db/test"
 };
 
 const STORE_CONFIG5: data_Rdb.StoreConfig = {
   name: "rdbstore.db",
   securityLevel: data_Rdb.SecurityLevel.S1,
-  customDir: "/rdbstore.db"
+  customDir: "rdbstore.db"
 };
 
 
@@ -83,65 +83,68 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0100
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0100
      * @tc.desc RelationalStore store getRdbStore test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 3
      */
     it('DifferenceCustomDirMultiple0100', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0001 start *************");
-        rdbStore1 = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG1).then(async (rdbStore) => {
-          rdbStore1= rdbStore;
-          console.info(TAG +`Get RdbStore successfully.`)
-          await rdbStore1.executeSql(CREATE_TABLE_TEST, null)
-          var u8 = new Uint8Array([1, 2, 3])
+      rdbStore1 = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG1).then(async (rdbStore) => {
+        rdbStore1= rdbStore;
+        console.info(TAG +`Get RdbStore successfully.`)
+        await rdbStore1.executeSql(CREATE_TABLE_TEST, null)
+        var u8 = new Uint8Array([1, 2, 3])
 
-          const valueBucket = {
-            "name": "zhangsan",
-            "age": 18,
-            "salary": 100.5,
-            "blobType": u8,
-          }
-          await rdbStore1.insert("test", valueBucket).then(() => {
-            console.info(TAG +`insert successfully.`)
-          }).catch((err) => {
-            console.info("insert error " + err);
-            expect().assertFail();
-            done();
-          })
+        const valueBucket = {
+          "name": "zhangsan",
+          "age": 18,
+          "salary": 100.5,
+          "blobType": u8,
+        }
+        await rdbStore1.insert("test", valueBucket).then(() => {
+          console.info(TAG +`insert successfully.`)
         }).catch((err) => {
-          expect(null).assertFail();
-          console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+          console.info("insert error " + err);
+          expect().assertFail();
+          done();
         })
+      }).catch((err) => {
+        expect(null).assertFail();
+        console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+      })
 
-          rdbStore2 = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG5).then(async (rdbStore) => {
-            rdbStore2 = rdbStore;
-            console.info(TAG +`Get RdbStore successfully.`)
-            let predicates = new data_Rdb.RdbPredicates("test")
-            predicates.equalTo("name", "zhangsan")
-            await rdbStore2.query(predicates).then(async (resultSet) => {
-              console.info(TAG + "resultSet query done");
-              expect(true).assertEqual(resultSet.goToFirstRow())
-              const id = resultSet.getLong(resultSet.getColumnIndex("id"))
-              const name = resultSet.getString(resultSet.getColumnIndex("name"))
-              const age = resultSet.getLong(resultSet.getColumnIndex("age"))
-              const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
-              const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-              console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
-              expect(1).assertEqual(id);
-              expect("zhangsan").assertEqual(name)
-              expect(18).assertEqual(age)
-              expect(100.5).assertEqual(salary)
-              expect(false).assertEqual(resultSet.goToNextRow())
-              done();
-              console.info(TAG + "************* querySuccess end *************");
-              resultSet.close();
-              resultSet = null;
-            }).catch((err) => {
-              console.info("query error " + err);
-              expect().assertFail();
-              done();
-            })
-          }).catch((err) => {
-            expect(null).assertFail();
-            console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-          })
+      rdbStore2 = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG5).then(async (rdbStore) => {
+        rdbStore2 = rdbStore;
+        console.info(TAG +`Get RdbStore successfully.`)
+        let predicates = new data_Rdb.RdbPredicates("test")
+        predicates.equalTo("name", "zhangsan")
+        await rdbStore2.query(predicates).then(async (resultSet) => {
+          console.info(TAG + "resultSet query done");
+          expect(true).assertEqual(resultSet.goToFirstRow())
+          const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+          const name = resultSet.getString(resultSet.getColumnIndex("name"))
+          const age = resultSet.getLong(resultSet.getColumnIndex("age"))
+          const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+          const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+          console.info(TAG + "id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", blobType=" + blobType);
+          expect(1).assertEqual(id);
+          expect("zhangsan").assertEqual(name)
+          expect(18).assertEqual(age)
+          expect(100.5).assertEqual(salary)
+          expect(false).assertEqual(resultSet.goToNextRow())
+          done();
+          console.info(TAG + "************* querySuccess end *************");
+          resultSet.close();
+          resultSet = null;
+        }).catch((err) => {
+          console.info("query error " + err);
+          expect().assertFail();
+          done();
+        })
+      }).catch((err) => {
+        expect(null).assertFail();
+        console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+      })
       console.info(TAG + "************* testRdbStore0001 end   *************");
       await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG1);
       done();
@@ -152,6 +155,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0200
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0200
      * @tc.desc RelationalStore store getRdbStore test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 3
      */
     it('DifferenceCustomDirMultiple0200', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0002 start *************");
@@ -179,6 +185,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0300
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0300
      * @tc.desc RelationalStore store getRdbStore test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 3
      */
     it('DifferenceCustomDirMultiple0300', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0003 start *************");
@@ -206,6 +215,9 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      * @tc.name DifferenceCustomDirMultiple0400
      * @tc.number SUB_DistributedData_RelationalStore_SDK_DifferenceCustomDirMultipleJsAPITest_0400
      * @tc.desc RelationalStore store getRdbStore test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 3
      */
     it('DifferenceCustomDirMultiple0400', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0004 start *************");
