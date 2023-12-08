@@ -19,7 +19,7 @@
 #include <sys/stat.h>
 #include <gtest/gtest.h>
 
-#include "interfaces/kits/c/v1_0/neural_network_runtime_compat.h"
+#include "interfaces/kits/c/neural_network_runtime/neural_network_runtime_compat.h"
 #include "common/log.h"
 #include "mock_idevice.h"
 #include "const.h"
@@ -67,7 +67,7 @@ struct OHNNCompileParam {
     OH_NN_Priority priority = OH_NN_PRIORITY_NONE;
     bool enableFp16 = false;
 };
-
+NN_TensorDesc* createTensorDesc(const int32_t* shape, size_t shapeNum, OH_NN_DataType dataType, OH_NN_Format format);
 int BuildSingleOpGraph(OH_NNModel *model, const OHNNGraphArgs &graphArgs);
 int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NN_Memory *OHNNMemory[],
     float* expect);

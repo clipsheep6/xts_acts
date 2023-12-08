@@ -16,7 +16,7 @@
 #define MODEL_H
 
 #include "const.h"
-#include "nnrt_utils.h"
+#include "nncore_utils.h"
 
 namespace OHOS {
 namespace NeuralNetworkRuntime {

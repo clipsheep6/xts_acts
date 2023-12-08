@@ -14,7 +14,7 @@
  */
 #include <fstream>
 
-#include "hdi_nncore_utils.h"
+#include "nncore_utils.h"
 
 using namespace testing::ext;
 namespace OHOS::NeuralNetworkCore {

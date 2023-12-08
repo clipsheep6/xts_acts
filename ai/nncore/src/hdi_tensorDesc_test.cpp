@@ -172,11 +172,11 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0200, Fu
 }
 
 /**
- * @tc.name: SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0100
+ * @tc.name: SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0300
  * @tc.desc: 获取TensorDescShape，合法设置返回成功
  * @tc.type: FUNC
  */
-HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0100, Function | MediumTest | Level1)
+HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0300, Function | MediumTest | Level1)
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);

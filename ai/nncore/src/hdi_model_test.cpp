@@ -32,14 +32,6 @@ void BuildModel(OH_NNModel *model, const OHNNGraphArgs &graphArgs)
 
 } // namespace
 
-void CreateTensorDesc(NN_TensorDesc** tensorDesc, const int32_t* shape, size_t shapeNum, 
-                      OH_NN_DataType dataType, OH_NN_Format format)
-{
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetDataType(*tensorDesc, dataType));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetShape(*tensorDesc, shape, shapeNum));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetFormat(*tensorDesc, format));
-}
-
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_CreateQuantParam_0100
  * @tc.desc: 创建量化参数
@@ -81,9 +73,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0200, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -106,9 +97,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0300, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 2, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -131,9 +121,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0400, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -156,9 +145,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0500, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -181,9 +169,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0600, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -191,7 +178,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0600, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_EQ(OH_NN_FAILEN, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -205,9 +192,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0700, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -215,7 +201,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0700, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
-    ASSERT_EQ(OH_NN_FAILEN, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -229,9 +215,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0800, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -253,9 +238,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0900, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
@@ -276,11 +260,9 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0900, Function | 
  */
 HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_AddTensorToModel_0100, Function | MediumTest | Level0)
 {
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_FAILED, OH_NNModel_AddTensorToModel(nullptr, tensorDesc));
-    OH_NNModel_Destroy(&model);
 }
 
 /**
@@ -316,9 +298,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0200, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     int8_t activationValue{0};
     ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(model, 0, nullptr, sizeof(int8_t)));
@@ -334,9 +315,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0300, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     int8_t activationValue{0};
     ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(model, 0, (void *)&activationValue, 0));
@@ -352,9 +332,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0400, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     int8_t activationValue{0};
     ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(model, 1000, (void *)&activationValue, sizeof(int8_t)));
@@ -380,9 +359,8 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorType_0200, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorType(model, 1000, OH_NN_TENSOR));
     OH_NNModel_Destroy(&model);
@@ -397,12 +375,11 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorType_0300, Function | 
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     int32_t inputDims[4] = {1, 1, 2, 3};
-    CreateTensorDesc(&tensorDesc, inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     for (int tensorType = 0; tensorType < 77; tensorType++) {
-        ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorType(model, 0, static_cast<OH_NN_TensorType>tensorType));
+        ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorType(model, 0, static_cast<OH_NN_TensorType>(tensorType)));
     }
     OH_NNModel_Destroy(&model);
 }

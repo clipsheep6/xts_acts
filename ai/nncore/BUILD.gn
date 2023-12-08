@@ -12,11 +12,12 @@
 # limitations under the License.
 
 import("//test/xts/tools/build/suite.gni")
+module_output_path = "acts/nnrt"
 
-config("nnrt_config") {
+config("nncore_config") {
   include_dirs = [
     "common",
-    "../../../../../../foundation/ai/neural_network_runtime",
+    "../../../../../foundation/ai/neural_network_runtime",
     "//third_party/mindspore/mindspore-src/source/mindspore/lite/mindir/include",
   ]
   cflags = [ "-Wno-error" ]
@@ -24,12 +25,14 @@ config("nnrt_config") {
 }
 
 ohos_moduletest_suite("NncoreTest") {
-  module_out_path = "acts/nnrt"
+  module_out_path = module_output_path
   sources = [
     "common/nncore_utils.cpp",
     "common/mock_idevice.cpp",
-    "src/hdi_tensor_test.cpp",
+    "src/hdi_compilation_test.cpp",
+    "src/hdi_executor_test.cpp",
     "src/hdi_model_test.cpp",
+    "src/hdi_tensor_test.cpp",
     "src/hdi_tensorDesc_test.cpp",
   ]
 
@@ -43,10 +46,7 @@ ohos_moduletest_suite("NncoreTest") {
   external_deps = [
     "c_utils:utils",
     "drivers_interface_nnrt:libnnrt_proxy_2.0",
-    "hdf_core:libhdf_utils",
-    "hdf_core:libhdi",
     "hilog:libhilog",
-    "hitrace:libhitracechain",
     "ipc:ipc_single",
     "mindspore:mindir",
     "neural_network_runtime:nnrt_target",
