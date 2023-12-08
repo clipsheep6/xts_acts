@@ -664,5 +664,187 @@ export default function cameraSessionTest() {
                 done();
             }
         })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100
+         * @tc.name      : Check capture session set colorspace
+         * @tc.desc      : Check capture session set colorspace
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+         */
+        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            } else {
+                await sleep(5);
+                createCameraSessionInstance();
+                createOutput(0);
+                await createInput(0)
+                mCameraSession.beginConfig();
+                mCameraSession.addInput(mCameraInput);
+                mCameraSession.addOutput(mPreviewOutput);
+                mCameraSession.addOutput(mPhotoOutput);
+
+                let supportedColorSpaces = mCameraSession.getSupportedColorSpaces();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 PASSED with supportedColorSpaces length is: " + supportedColorSpaces.length);
+
+                for (let j = 0; j < supportedColorSpaces.length; j++) {
+                    console.info(TAG + j + "th, color space is: " + supportedColorSpaces[j]);
+                }
+
+                if (supportedColorSpaces.length != 0) {
+                    mCameraSession.setColorSpace(supportedColorSpaces[supportedColorSpaces.length - 1]);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 PASSED with set colorSpace is: " + supportedColorSpaces[supportedColorSpaces.length - 1]);
+                }
+
+                await mCameraSession.commitConfig();
+
+                if (supportedColorSpaces.length != 0) {
+                    let colorSpace = mCameraSession.getActiveColorSpace();
+                    if (colorSpace == supportedColorSpaces[supportedColorSpaces.length - 1]) {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 PASSED");
+                    } else {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 FAILED");
+                        expect().assertFail();
+                    }
+                }
+
+                await mCameraSession.start();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 start PASSED");
+                await sleep(20);
+                await mCameraSession.stop();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 stop PASSED");
+                await releaseInput();
+                await releaseOutput();
+                await mCameraSession.release();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0100 ends here");
+                done();
+            }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101
+         * @tc.name      : Check capture session set colorspace
+         * @tc.desc      : Check capture session set colorspace
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+         */
+        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            } else {
+                await sleep(5);
+                createCameraSessionInstance();
+                createOutput(0);
+                await createInput(0)
+                mCameraSession.beginConfig();
+                mCameraSession.addInput(mCameraInput);
+                mCameraSession.addOutput(mPreviewOutput);
+                mCameraSession.addOutput(mPhotoOutput);
+                await mCameraSession.commitConfig();
+
+                let supportedColorSpaces = mCameraSession.getSupportedColorSpaces();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 PASSED with supportedColorSpaces length is: " + supportedColorSpaces.length);
+
+                for (let j = 0; j < supportedColorSpaces.length; j++) {
+                    console.info(TAG + j + "th, color space is: " + supportedColorSpaces[j]);
+                }
+
+                if (supportedColorSpaces.length != 0) {
+                    mCameraSession.setColorSpace(supportedColorSpaces[supportedColorSpaces.length - 1]);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 PASSED with set colorSpace is: " + supportedColorSpaces[supportedColorSpaces.length - 1]);
+
+                    let colorSpace = mCameraSession.getActiveColorSpace();
+                    if (colorSpace == supportedColorSpaces[supportedColorSpaces.length - 1]) {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 PASSED");
+                    } else {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 FAILED");
+                        expect().assertFail();
+                    }
+                }
+
+                await mCameraSession.start();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 start PASSED");
+                await sleep(20);
+                await mCameraSession.stop();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 stop PASSED");
+                await releaseInput();
+                await releaseOutput();
+                await mCameraSession.release();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0101 ends here");
+                done();
+            }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102
+         * @tc.name      : Check capture session set colorspace
+         * @tc.desc      : Check capture session set colorspace
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 2
+         */
+        it('SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102', 0, async function (done) {
+            console.info("--------------SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102--------------");
+
+            if (mCameraNum == 0) {
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 FAILED with NoCamera");
+                expect().assertFail();
+                done();
+            } else {
+                await sleep(5);
+                createCameraSessionInstance();
+                createOutput(0);
+                await createInput(0)
+                mCameraSession.beginConfig();
+                mCameraSession.addInput(mCameraInput);
+                mCameraSession.addOutput(mPreviewOutput);
+                mCameraSession.addOutput(mPhotoOutput);
+                await mCameraSession.commitConfig();
+
+                await mCameraSession.start();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 start PASSED");
+                await sleep(20);
+
+                let supportedColorSpaces = mCameraSession.getSupportedColorSpaces();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 PASSED with supportedColorSpaces length is: " + supportedColorSpaces.length);
+
+                for (let j = 0; j < supportedColorSpaces.length; j++) {
+                    console.info(TAG + j + "th, color space is: " + supportedColorSpaces[j]);
+                }
+
+                if (supportedColorSpaces.length != 0) {
+                    mCameraSession.setColorSpace(supportedColorSpaces[supportedColorSpaces.length - 1]);
+                    console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 PASSED with set colorSpace is: " + supportedColorSpaces[supportedColorSpaces.length - 1]);
+
+                    let colorSpace = mCameraSession.getActiveColorSpace();
+                    if (colorSpace == supportedColorSpaces[supportedColorSpaces.length - 1]) {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 PASSED");
+                    } else {
+                        console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 FAILED");
+                        expect().assertFail();
+                    }
+                }
+
+                await sleep(5);
+                await mCameraSession.stop();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 stop PASSED");
+                await releaseInput();
+                await releaseOutput();
+                await mCameraSession.release();
+                console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_SESSION_SET_COLORSPACE_0102 ends here");
+                done();
+            }
+        })
     })
 }
